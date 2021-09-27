@@ -1,0 +1,15 @@
+{
+  "name": "youtube-js",
+  "version": "1.0.0",
+  "description": "Basically YouTube, well kind of, but in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LuanRT",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "user-agents": "^1.0.778"
+  }
+}
