@@ -1,6 +1,6 @@
 # YouTube.js
 
-A wrapper around YouTube's Innertube API, which is what YouTube itself uses. This makes YouTube.js fast, simple & efficient.
+A wrapper around the Innertube API, which is what YouTube itself uses. This makes YouTube.js fast, simple & efficient.
 
 • What can it do?
 
