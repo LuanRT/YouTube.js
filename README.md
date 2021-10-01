@@ -13,11 +13,12 @@ No, since it's basically what YouTube itself uses to populate its app/website no
 ## Installation
 
 ```bash
-soon
+Soon.
 ```
 
 ## Usage
 
+Soon.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
