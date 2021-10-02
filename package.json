@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.4",
+    "time-to-seconds": "^1.1.5",
     "user-agents": "^1.0.778"
   }
 }
