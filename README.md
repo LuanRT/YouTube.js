@@ -4,7 +4,7 @@ A wrapper around the Innertube API, which is what YouTube itself uses. This make
 
 #### What can it do?
 
-Well currently this library can search, get detailed info about videos, like/dislike/comment (Cookies required) and download videos. 
+Well currently this library is able to: search, get detailed info about videos, subscribe/unsubscribe/like/dislike/comment (Cookies required) and download videos. 
 
 #### Do I need an API key to use this?
 
