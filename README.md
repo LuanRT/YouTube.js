@@ -937,7 +937,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 ## Disclaimer
-This project not affiliated with, endorsed, or sponsored by YouTube or any of their affiliates or subsidiaries. 
+This project is not affiliated with, endorsed, or sponsored by YouTube or any of their affiliates or subsidiaries. 
 All trademarks, logos and brand names are the property of their respective owners. 
 
 Should you have any questions or concerns please contact me directly via email.
