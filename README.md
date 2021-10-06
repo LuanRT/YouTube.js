@@ -1,5 +1,7 @@
 # YouTube.js
 
+[![Build](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml)
+
 An object-oriented wrapper around the Innertube API, which is what YouTube itself uses. This makes YouTube.js fast, simple & efficient. And big thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
 
 #### What can it do?
