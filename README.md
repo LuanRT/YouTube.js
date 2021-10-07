@@ -15,14 +15,14 @@ No, since it's basically what YouTube itself uses to populate its app/website no
 ## Installation
 
 ```bash
-Soon.
+npm install youtubei.js
 ```
 
 ## Usage
 First of all we're gonna start by initializing the Innertube class:
 
 ```js
-const Innertube = require('youtube.js');
+const Innertube = require('youtubei.js');
 const COOKIE = 'YT_COOKIE_HERE'; // Optional, but highly recommended
 
 async function start() {
@@ -889,7 +889,7 @@ All of the interactions above will return ```{ success: true, status_code: 200 }
 
 ```js
 const fs = require('fs');
-const Innertube = require('youtube.js');
+const Innertube = require('youtubei.js');
 const COOKIE = 'YT_COOKIE_HERE'; 
 
 async function start() {
