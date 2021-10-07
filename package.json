@@ -1,16 +1,41 @@
 {
-  "name": "youtube-js",
+  "name": "youtubei.js",
   "version": "1.0.0",
-  "description": "Basically YouTube, well kind of, but in JavaScript",
+  "description": "An object-oriented library that allows you to search, get detailed info about videos, subscribe, unsubscribe, like, dislike, comment, download videos and much more!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "LuanRT",
   "license": "MIT",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
   "dependencies": {
     "axios": "^0.21.4",
     "time-to-seconds": "^1.1.5",
     "user-agents": "^1.0.778"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https//github.com/LuanRT/YouTube.js.git"
+  },
+  "keywords": [
+    "youtube",
+    "youtube-dl",
+    "innertube",
+    "innertubeapi",
+    "api",
+    "search",
+    "like",
+    "dislike",
+    "comment",
+    "downloader",
+    "youtube-downloader"
+  ],
+  "bugs": {
+    "url": "https://github.com/LuanRT/YouTube.js/issues"
+  },
+  "homepage": "https://github.com/LuanRT/YouTube.js#readme"
 }
