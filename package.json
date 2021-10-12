@@ -1,11 +1,11 @@
 {
   "name": "youtubei.js",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "An object-oriented library that allows you to search, get detailed info about videos, subscribe, unsubscribe, like, dislike, comment, download videos and much more!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  }, 
+  },
   "author": "LuanRT",
   "license": "MIT",
   "directories": {
@@ -15,7 +15,8 @@
   "dependencies": {
     "axios": "^0.21.4",
     "time-to-seconds": "^1.1.5",
-    "user-agents": "^1.0.778"
+    "user-agents": "^1.0.778",
+    "uuid": "^8.3.2"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "dislike",
     "comment",
     "downloader",
+    "automation",
     "youtube-downloader"
   ],
   "bugs": {
