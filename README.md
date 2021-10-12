@@ -26,15 +26,15 @@ npm install youtubei.js
 
 ## Usage
 
-[1. Basic Usage](https://github.com/LuanRT/YouTube.js/blob/main/README.md#usage)
+[1. Basic Usage](https://github.com/LuanRT/YouTube.js#usage)
 
-[2. Interactions](https://github.com/LuanRT/YouTube.js/blob/main/README.md#interactions)
+[2. Interactions](https://github.com/LuanRT/YouTube.js#interactions)
 
-[3. Downloading Videos](https://github.com/LuanRT/YouTube.js/blob/main/README.md#downloading-videos)
+[3. Downloading Videos](https://github.com/LuanRT/YouTube.js#downloading-videos)
 
-[4. Signing-in](https://github.com/LuanRT/YouTube.js/blob/main/README.md#signing-in)
+[4. Signing-in](https://github.com/LuanRT/YouTube.js#signing-in)
 
-[5. Disclaimer](https://github.com/LuanRT/YouTube.js/blob/main/README.md#disclaimer)
+[5. Disclaimer](https://github.com/LuanRT/YouTube.js#disclaimer)
 
 First of all we're gonna start by initializing the Innertube class:
 
