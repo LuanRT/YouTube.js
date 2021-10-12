@@ -39,8 +39,6 @@ npm install youtubei.js
 First of all we're gonna start by initializing the Innertube class:
 
 ```js
-'use strict';
-
 const Innertube = require('youtubei.js');
 
 async function start() {
@@ -258,8 +256,6 @@ This library allows you to sign-in in two different ways:
 OAuth 2.0:
 
 ```js
-'use strict';
-
 const fs = require('fs');
 const Innertube = require('youtubei.js');
 const creds_path = './yt_oauth_creds.json';
@@ -295,8 +291,6 @@ start();
 Cookies:
 
 ```js
-'use strict';
-
 const Innertube = require('youtubei.js');
 
 async function start() {
@@ -310,8 +304,6 @@ start();
 ### Downloading videos:
 
 ```js
-'use strict';
-
 const fs = require('fs');
 const Innertube = require('youtubei.js');
 
