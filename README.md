@@ -10,8 +10,8 @@ As of now, this is one of the most advanced & stable YouTube libraries out there
 
 - Search.
 - Get detailed info about videos.
-- Fetch notifications (Sign-in required).
-- Subscribe/Unsubscribe/Like/Dislike/Comment (Sign-In required). 
+- Fetch notifications (sign-in required).
+- Subscribe/Unsubscribe/Like/Dislike/Comment (sign-in required). 
 - Last but not least, you can also download videos!
 
 #### Do I need an API key to use this?
