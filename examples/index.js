@@ -1,9 +1,8 @@
 const fs = require('fs');
 const Innertube = require('..');
-const COOKIE = 'YT_COOKIE_HERE';
 
 async function start() {
-  const youtube = await new Innertube(COOKIE);
+  const youtube = await new Innertube();
 
   // Searching, getting details about videos & making interactions:
   const search = await youtube.search('Looking for life on Mars - documentary');
