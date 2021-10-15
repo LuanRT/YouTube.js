@@ -1,6 +1,8 @@
 # YouTube.js
 
 [![Build](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml)
+[![NPM](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)](https://www.npmjs.com/package/youtubei.js)
+[![CodeFactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)](https://www.codefactor.io/repository/github/luanrt/youtube.js)
 
 An object-oriented wrapper around the Innertube API, which is what YouTube itself uses. This makes YouTube.js fast, simple & efficient. And big thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
 
@@ -8,15 +10,20 @@ An object-oriented wrapper around the Innertube API, which is what YouTube itsel
 
 As of now, this is one of the most advanced & stable YouTube libraries out there, and it can: 
 
-- Search.
-- Get detailed info about videos.
-- Fetch notifications (sign-in required).
-- Subscribe/Unsubscribe/Like/Dislike/Comment (sign-in required). 
+- Search
+- Get detailed info about videos
+- Fetch live chat & live stats in real time
+- Fetch notifications
+- Change notifications preferences for a channel
+- Subscribe/Unsubscribe/Like/Dislike/Comment
+- Easily sign into your account without having to use cookies!
 - Last but not least, you can also download videos!
+
+Do note that you must be signed-in to perform actions that involve an account, like commenting, subscribing, sending messages to a live chat, etc.
 
 #### Do I need an API key to use this?
 
-No, since it's basically what YouTube itself uses to populate its app/website no API keys are required.
+No, YouTube.js does not use any official API so no API keys are required.
 
 ## Installation
 
@@ -30,11 +37,13 @@ npm install youtubei.js
 
 [2. Interactions](https://github.com/LuanRT/YouTube.js#interactions)
 
-[3. Downloading Videos](https://github.com/LuanRT/YouTube.js#downloading-videos)
+[3. Fetching live chats](https://github.com/LuanRT/YouTube.js#fetching-live-chats)
 
-[4. Signing-in](https://github.com/LuanRT/YouTube.js#signing-in)
+[4. Downloading videos](https://github.com/LuanRT/YouTube.js#downloading-videos)
 
-[5. Disclaimer](https://github.com/LuanRT/YouTube.js#disclaimer)
+[5. Signing-in](https://github.com/LuanRT/YouTube.js#signing-in)
+
+[6. Disclaimer](https://github.com/LuanRT/YouTube.js#disclaimer)
 
 First of all we're gonna start by initializing the Innertube class:
 
@@ -243,65 +252,55 @@ const video = await youtube.getDetails(VIDEO_ID_HERE);
 await video.comment('Haha, nice!');
 ```
 
+* Changing notification preferences:
+```js
+const video = await youtube.getDetails(VIDEO_ID_HERE);
+await video.setNotificationPref('ALL'); // ALL | NONE | PERSONALIZED
+```
+
 All of the interactions above will return ```{ success: true, status_code: 200 }``` if everything goes alright.
 
-### Signing-in:
+
+### Fetching live chats:
 ---
-
-This library allows you to sign-in in two different ways:
-
-- Using OAuth 2.0, easy, simple & reliable.
-- Cookies, usually more complicated to get and unreliable.
-
-OAuth 2.0:
-
+YouTube.js isn't able to download live content yet, but it does allow you to fetch live chats in an easy way plus you can also send messages!
 ```js
-const fs = require('fs');
 const Innertube = require('youtubei.js');
-const creds_path = './yt_oauth_creds.json';
 
 async function start() {
-  const creds = fs.existsSync(creds_path) && JSON.parse(fs.readFileSync(creds_path).toString()) || {};
   const youtube = await new Innertube();
+
+  const search = await youtube.search('Some random live');
+  const video = await youtube.getDetails(search.videos[0].id);
   
-  // Only triggered when signing-in.
-  youtube.on('auth', (data) => {
-    if (data.status === 'AUTHORIZATION_PENDING') {
-      console.info(`Hello!\nOn your phone or computer, go to ${data.verification_url} and enter the code ${data.code}`);
-    } else if (data.status === 'SUCCESS') {
-      fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token }));
-      console.info('Successfully signed-in, enjoy!');
+  // This should only be called if you're sure it's a live and that it's still ongoing
+  const livechat = video.getLivechat();
+
+  // Updated stats about the livestream
+  livechat.on('update-metadata', (data) => {
+    console.info('Info:', data);
+  });
+   
+  // Fired whenever there is a new message or other chat events
+  livechat.on('chat-update', (message) => {
+    console.info(`- ${message.author.name}\n${message.text}\n\n`);
+    
+    If(message.text == '!info') {
+      livechat.sendMessage('Hello! This message was sent from YouTube.js');
     }
   });
-  
-  // Triggered whenever the access token is refreshed.
-  youtube.on('update-credentials', (data) => {
-    fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token }));
-    console.info('Credentials updated!', data);
-  });
-  
-  await youtube.signIn(creds);
-  
-  //...
 }
 
 start();
 ```
-
-Cookies:
-
+Deleting a message:
 ```js
-const Innertube = require('youtubei.js');
-
-async function start() {
-  const youtube = await new Innertube(COOKIE_HERE); 
-  //...
-}
-
-start();
+const msg = await livechat.sendMessage('Nice live!');
+await msg.deleteMessage();
 ```
 
 ### Downloading videos:
+---
 
 ```js
 const fs = require('fs');
@@ -349,6 +348,65 @@ Cancelling a download:
 stream.cancel();
 ```
 
+### Signing-in:
+---
+
+This library allows you to sign-in in two different ways:
+
+- Using OAuth 2.0, easy, simple & reliable.
+- Cookies, usually more complicated to get and unreliable.
+
+OAuth 2.0:
+
+```js
+const fs = require('fs');
+const Innertube = require('youtubei.js');
+const creds_path = './yt_oauth_creds.json'; 
+
+async function start() {
+  const creds = fs.existsSync(creds_path) && JSON.parse(fs.readFileSync(creds_path).toString()) || {};
+  const youtube = await new Innertube();
+  
+  // Only triggered when signing-in.
+  youtube.on('auth', (data) => {
+    if (data.status === 'AUTHORIZATION_PENDING') {
+      console.info(`Hello!\nOn your phone or computer, go to ${data.verification_url} and enter the code ${data.code}`);
+    } else if (data.status === 'SUCCESS') {
+      fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token }));
+      console.info('Successfully signed-in, enjoy!');
+    }
+  });
+  
+  // Triggered whenever the access token is refreshed.
+  youtube.on('update-credentials', (data) => {
+    fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token }));
+    console.info('Credentials updated!', data);
+  });
+  
+  await youtube.signIn(creds);
+  
+  //...
+}
+
+start();
+```
+
+Cookies:
+
+```js
+const Innertube = require('youtubei.js');
+
+async function start() {
+  const youtube = await new Innertube(COOKIE_HERE); 
+  //...
+}
+
+start();
+```
+
+## Note
+Never sign-in with your personal account, you might get banned if you spam (don't ever do that) or simply because YouTube detected unusual activity coming from your account. Also, I'm not responsible if any of that happens to you. 
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
@@ -358,5 +416,6 @@ This project is not affiliated with, endorsed, or sponsored by YouTube or any of
 All trademarks, logos and brand names are the property of their respective owners. 
 
 Should you have any questions or concerns please contact me directly via email.
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
