@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs');
 const Innertube = require('..');
 
@@ -10,7 +12,8 @@ async function start() {
 
   const video = await youtube.getDetails(search.videos[0].id);
   console.info('Video details:', video);
-
+  if (video.error) return;
+  
   if (youtube.logged_in) {
     const myNotifications = await youtube.getNotifications();
     console.info('My notifications:', myNotifications);
@@ -53,7 +56,7 @@ async function start() {
     type: 'videoandaudio' // can be “video”, “audio” and “videoandaudio”
   });
 
-  stream.pipe(fs.createWriteStream(`./${search.videos[0].title}.mp4`));
+  stream.pipe(fs.createWriteStream(`./${search.videos[0].id}.mp4`));
 
   stream.on('start', () => {
     console.info('[DOWNLOADER]', 'Starting download now!');
