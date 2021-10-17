@@ -293,6 +293,11 @@ async function start() {
 
 start();
 ```
+Stop fetching the live chat:
+```js
+livechat.stop();
+```
+
 Deleting a message:
 ```js
 const msg = await livechat.sendMessage('Nice live!');
