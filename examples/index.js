@@ -9,7 +9,10 @@ async function start() {
   // Searching, getting details about videos & making interactions:
   const search = await youtube.search('Looking for life on Mars - documentary');
   console.info('Search results:', search);
-
+  
+  if (search.videos.length === 0) 
+    return console.info('[INFO]', 'Could not find any video about that on YouTube.');
+  
   const video = await youtube.getDetails(search.videos[0].id);
   console.info('Video details:', video);
   if (video.error) return;
