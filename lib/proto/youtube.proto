@@ -2,7 +2,7 @@ syntax = "proto2";
 package proto;
 
 message NotificationPreferences {
-  required string channel_id = 1;
+  string channel_id = 1;
   string pref_code  = 2;
   int32 number_0 = 3;
   int32 number_1 = 4;
