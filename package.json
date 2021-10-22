@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.21.4",
+    "protons": "^2.0.3",
     "time-to-seconds": "^1.1.5",
     "user-agents": "^1.0.778",
     "uuid": "^8.3.2"
