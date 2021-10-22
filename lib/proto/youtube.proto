@@ -3,19 +3,32 @@ package proto;
 
 message NotificationPreferences {
   string channel_id = 1;
-  string pref_code  = 2;
+  message Preference {
+    int32 index = 1;
+  }
+  Preference pref_id = 2;
   int32 number_0 = 3;
   int32 number_1 = 4;
 }
 
 message LiveMessageParams {
-  string ids = 1;
+  message Params {
+    message Ids {
+      string channel_id = 1;
+      string video_id = 2;
+    }
+    Ids ids = 5;
+  }
+  Params params = 1;
   int32 number_0 = 2;
   int32 number_1 = 3;
 }
 
 message CreateCommentParams {
   string video_id = 2;
-  string params = 5;
+  message Params {
+    int32 index = 1;
+  }
+  Params params = 5;
   int32 number = 10;
 }
