@@ -493,7 +493,7 @@ const notifications = await youtube.getNotifications();
 
 ---
 
-* Subscribe/Unsubscribe to channels:
+* Subscribe/Unsubscribe:
 ```js
 const video = await youtube.getDetails(VIDEO_ID_HERE); // this is equivalent to opening the watch page on YouTube
 
