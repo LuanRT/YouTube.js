@@ -11,11 +11,13 @@ async function start() {
   console.info('Search results:', search);
   
   if (search.videos.length === 0) 
-    return console.info('[INFO]', 'Could not find any video about that on YouTube.');
+    return console.error('Could not find any video about that on YouTube.');
   
-  const video = await youtube.getDetails(search.videos[0].id);
+  const video = await youtube.getDetails(search.videos[0].id).catch((error) => error);
   console.info('Video details:', video);
-  if (video.error) return;
+ 
+  if (video instanceof Error) 
+    return console.error('Could not get details for ' + search.videos[0].title);
   
   if (youtube.logged_in) {
     const myNotifications = await youtube.getNotifications();
