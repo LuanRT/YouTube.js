@@ -128,7 +128,7 @@ const search = await youtube.search('Looking for life on Mars - Documentary');
 
 
 
-Getting details about a specific video:
+Get details about a specific video:
 
 ```js
 const video = await youtube.getDetails(search.videos[0].id);
@@ -188,7 +188,7 @@ const video = await youtube.getDetails(search.videos[0].id);
 </p>
 </details>
 
-Getting comments:
+Get comments:
 
 ```js
 const video = await youtube.getDetails(VIDEO_ID_HERE);
@@ -278,7 +278,7 @@ const comments_continuation = await comments.getContinuation();
 </p>
 </details>
 
-Getting subscriptions feed:
+Get subscriptions feed:
 ```js
 const mysubfeed = await youtube.getSubscriptionsFeed();
 ```
@@ -452,7 +452,7 @@ const mysubfeed = await youtube.getSubscriptionsFeed();
 </p>
 </details>
 
-Getting notifications:
+Get notifications:
 
 ```js
 const notifications = await youtube.getNotifications();
@@ -493,7 +493,7 @@ const notifications = await youtube.getNotifications();
 
 ---
 
-* Subscribing/Unsubscribing to channels:
+* Subscribe/Unsubscribe to channels:
 ```js
 const video = await youtube.getDetails(VIDEO_ID_HERE); // this is equivalent to opening the watch page on YouTube
 
@@ -501,7 +501,7 @@ await video.subscribe();
 await video.unsubscribe();
 ```
 
-* Liking/Disliking:
+* Like/Dislike:
 ```js
 const video = await youtube.getDetails(VIDEO_ID_HERE); // this is equivalent to opening the watch page on YouTube
 
@@ -510,23 +510,23 @@ await video.dislike();
 await video.removeLike(); // removes either a like or dislike
 ```
 
-* Commenting:
+* Comment:
 ```js
 const video = await youtube.getDetails(VIDEO_ID_HERE);
 await video.comment('Haha, nice!');
 ```
 
-* Changing notification preferences:
+* Change notification preferences:
 ```js
 const video = await youtube.getDetails(VIDEO_ID_HERE);
 await video.setNotificationPref('ALL'); // ALL | NONE | PERSONALIZED
 ```
 
-All of the interactions above will return ```{ success: true, status_code: 200 }``` if everything goes alright.
+All of the above interactions will return ```{ success: true, status_code: 200 }``` if everything goes alright.
 
 ### Fetching live chats:
 ---
-YouTube.js isn't able to download live content yet, but it does allow you to fetch live chats in an easy way plus you can also send messages!
+YouTube.js isn't able to download live content yet, but it does allow you to fetch live chats plus you can also send messages!
 ```js
 const Innertube = require('youtubei.js');
 
@@ -570,7 +570,7 @@ await msg.deleteMessage();
 ### Downloading videos:
 ---
 
-The library provides an easy-to-use and simple downloader:
+YouTube.js provides an easy-to-use and simple downloader:
 
 ```js
 const fs = require('fs');
