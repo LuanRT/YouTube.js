@@ -8,18 +8,19 @@ An object-oriented wrapper around the Innertube API, which is what YouTube itsel
 
 #### What can it do?
 
-As of now, this is one of the most advanced & stable YouTube libraries out there, and it can: 
+As of now, this is one of the most advanced & stable YouTube libraries out there, here's a short summary of what it can do: 
 
-- Search
-- Get detailed info about videos
+- Search videos
+- Get detailed info about any video
 - Fetch live chat & live stats in real time
 - Fetch notifications
+- Fetch subscriptions feed
 - Change notifications preferences for a channel
 - Subscribe/Unsubscribe/Like/Dislike/Comment
-- Easily sign into your account without having to use cookies!
+- Easily sign into your account in an easy & reliable way.
 - Last but not least, you can also download videos!
 
-Do note that you must be signed-in to perform actions that involve an account, like commenting, subscribing, sending messages to a live chat, etc.
+Do note that you must be signed-in to perform actions that involve an account, such as commenting, subscribing, sending messages to a live chat, etc.
 
 #### Do I need an API key to use this?
 
@@ -187,8 +188,271 @@ const video = await youtube.getDetails(search.videos[0].id);
 </p>
 </details>
 
+Getting comments:
 
-Fetching notifications:
+```js
+const video = await youtube.getDetails(VIDEO_ID_HERE);
+const comments = await video.getComments();
+
+// If you want to load more comments simply call:
+const comments_continuation = await comments.getContinuation();
+```
+
+<details>
+<summary>Output</summary>
+<p>
+
+```js
+{
+   "comments":[
+      {
+         "text":"The amazing thing to me is the engineering. It's truly remarkable that we can build machines like these.",
+         "author":{
+            "name":"Mark B",
+            "thumbnail":[
+               {
+                  "url":"https://yt3.ggpht.com/ytc/AKedOLTKxmup9YqNEMvf-nSdOe7F6CwWhUtu4mpUsg=s48-c-k-c0x00ffffff-no-rj",
+                  "width":48,
+                  "height":48
+               },
+               {
+                  "url":"https://yt3.ggpht.com/ytc/AKedOLTKxmup9YqNEMvf-nSdOe7F6CwWhUtu4mpUsg=s88-c-k-c0x00ffffff-no-rj",
+                  "width":88,
+                  "height":88
+               },
+               {
+                  "url":"https://yt3.ggpht.com/ytc/AKedOLTKxmup9YqNEMvf-nSdOe7F6CwWhUtu4mpUsg=s176-c-k-c0x00ffffff-no-rj",
+                  "width":176,
+                  "height":176
+               }
+            ],
+            "channel_id":"UClnPXUOtCLnKsbS2reuN7wg"
+         },
+         "metadata":{
+            "published":"2 months ago",
+            "is_liked":false,
+            "is_channel_owner":false,
+            "like_count":"54",
+            "reply_count":3,
+            "id":"Ugy-bGGepYil_2dAQUp4AaABAg"
+         }
+      },
+      {
+         "text":"May 25th,  2021 and everything has gone perfectly! Ingenuity,  moxy and perseverance all working to plan.  Unbelievable accomplishments!!!",
+         "author":{
+            "name":"cliff luebke",
+            "thumbnail":[
+               {
+                  "url":"https://yt3.ggpht.com/ytc/AKedOLR1_6jvPZa_ycrkUEVxVxo0Alo25e7O8fOcm5v9ww=s48-c-k-c0x00ffffff-no-rj",
+                  "width":48,
+                  "height":48
+               },
+               {
+                  "url":"https://yt3.ggpht.com/ytc/AKedOLR1_6jvPZa_ycrkUEVxVxo0Alo25e7O8fOcm5v9ww=s88-c-k-c0x00ffffff-no-rj",
+                  "width":88,
+                  "height":88
+               },
+               {
+                  "url":"https://yt3.ggpht.com/ytc/AKedOLR1_6jvPZa_ycrkUEVxVxo0Alo25e7O8fOcm5v9ww=s176-c-k-c0x00ffffff-no-rj",
+                  "width":176,
+                  "height":176
+               }
+            ],
+            "channel_id":"UCeVFeX4jCgaJpvNJ4f_I4RA"
+         },
+         "metadata":{
+            "published":"4 months ago",
+            "is_liked":false,
+            "is_channel_owner":false,
+            "like_count":"54",
+            "reply_count":0,
+            "id":"UgylkZHOe7v78hxHPpl4AaABAg"
+         }
+      },
+      //...
+   ],
+   "comment_count":"3,231" // not available in continuations
+}
+```
+
+</p>
+</details>
+
+Getting subscriptions feed:
+```js
+const mysubfeed = await youtube.getSubscriptionsFeed();
+```
+
+<details>
+<summary>Output</summary>
+<p>
+
+```js
+{
+   "today":[
+      {
+         "title":"Life As My P*nis",
+         "id":"udDINILQH10",
+         "channel":"penguinz0",
+         "metadata":{
+            "view_count":"220,432 views",
+            "thumbnail":[
+               {
+                  "url":"https://i.ytimg.com/vi/udDINILQH10/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQ7bbeUhCxRSg-g-CPek-soixUMQ",
+                  "width":210,
+                  "height":118
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/udDINILQH10/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB6fuvBJMeLtkM0TLkZwharsyojjA",
+                  "width":246,
+                  "height":138
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/udDINILQH10/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDd7BncH1QuZD-Hada_n6dAVRTnmg",
+                  "width":336,
+                  "height":188
+               }
+            ],
+            "published":"2 hours ago",
+            "badges":"N/A",
+            "owner_badges":[
+               "Verified"
+            ]
+         }
+      },
+      {
+         "title":"Perseverance and Ingenuity went two weeks without contacting Earth",
+         "id":"VsmYZMVCHuc",
+         "channel":"Mars Guy",
+         "metadata":{
+            "view_count":"2,633 views",
+            "thumbnail":[
+               {
+                  "url":"https://i.ytimg.com/vi/VsmYZMVCHuc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA0-vwAgpFbMO1zG4HTzdHZey1kZQ",
+                  "width":210,
+                  "height":118
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/VsmYZMVCHuc/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBtM3W-RXsCfPnxgnrktaBkiL9zzg",
+                  "width":246,
+                  "height":138
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/VsmYZMVCHuc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDTil7At4FUVYeSNySOoFoKlPXWSA",
+                  "width":336,
+                  "height":188
+               }
+            ],
+            "published":"15 hours ago",
+            "badges":"N/A",
+            "owner_badges":"N/A"
+         }
+      }
+      //...
+   ],
+   "yesterday":[
+      {
+         "title":"Fortnite - S.T.A.R.S (Resident Evil) | PS5, PS4",
+         "id":"-ZLEQOVbWD4",
+         "channel":"PlayStation",
+         "metadata":{
+            "view_count":"157,197 views",
+            "thumbnail":[
+               {
+                  "url":"https://i.ytimg.com/vi/-ZLEQOVbWD4/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAeA1fLzsEA0ZIouNJuMDJOqOc9Ng",
+                  "width":210,
+                  "height":118
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/-ZLEQOVbWD4/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDzvhxJ6m2ztykk2ezNH2Din33hEw",
+                  "width":246,
+                  "height":138
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/-ZLEQOVbWD4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDo67DvnaiKzOVfNm9lJg_Edd1UDQ",
+                  "width":336,
+                  "height":188
+               }
+            ],
+            "published":"1 day ago",
+            "badges":"N/A",
+            "owner_badges":[
+               "Verified"
+            ]
+         }
+      },
+      //...
+   ],
+   "this_week":[
+      {
+         "title":"Horrible $100 Million Gold Mansion",
+         "id":"F-d3CEYJyrg",
+         "channel":"penguinz0",
+         "metadata":{
+            "view_count":"693,041 views",
+            "thumbnail":[
+               {
+                  "url":"https://i.ytimg.com/vi/F-d3CEYJyrg/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDdMMGG-50O4U5uIcoZ2FoiO6Mopg",
+                  "width":210,
+                  "height":118
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/F-d3CEYJyrg/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAwqMy1ekLaxWGnjWwCJl7z7Nw2aQ",
+                  "width":246,
+                  "height":138
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/F-d3CEYJyrg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLADaPBg0vh52e6clHvUf5otBZO9HA",
+                  "width":336,
+                  "height":188
+               }
+            ],
+            "published":"2 days ago",
+            "badges":"N/A",
+            "owner_badges":[
+               "Verified"
+            ]
+         }
+      },
+      {
+         "title":"OOopsieeee",
+         "id":"mJ2WOIhEPm8",
+         "channel":"PewDiePie",
+         "metadata":{
+            "view_count":"1,953,970 views",
+            "thumbnail":[
+               {
+                  "url":"https://i.ytimg.com/vi/mJ2WOIhEPm8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCrJe2a6rasJICj_jchMquZ2YGVrQ",
+                  "width":210,
+                  "height":118
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/mJ2WOIhEPm8/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCpxERsiLJayuKegeb5mHw3Ok6wGA",
+                  "width":246,
+                  "height":138
+               },
+               {
+                  "url":"https://i.ytimg.com/vi/mJ2WOIhEPm8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAlRLjypimzrE3GD_iGYDGwTlCGvA",
+                  "width":336,
+                  "height":188
+               }
+            ],
+            "published":"2 days ago",
+            "badges":"N/A",
+            "owner_badges":[
+               "Verified"
+            ]
+         }
+      },
+      //...
+   ]
+}
+```
+
+</p>
+</details>
+
+Getting notifications:
 
 ```js
 const notifications = await youtube.getNotifications();
@@ -260,7 +524,6 @@ await video.setNotificationPref('ALL'); // ALL | NONE | PERSONALIZED
 
 All of the interactions above will return ```{ success: true, status_code: 200 }``` if everything goes alright.
 
-
 ### Fetching live chats:
 ---
 YouTube.js isn't able to download live content yet, but it does allow you to fetch live chats in an easy way plus you can also send messages!
@@ -285,7 +548,7 @@ async function start() {
   livechat.on('chat-update', (message) => {
     console.info(`- ${message.author.name}\n${message.text}\n\n`);
     
-    If(message.text == '!info') {
+    if(message.text == '!info') {
       livechat.sendMessage('Hello! This message was sent from YouTube.js');
     }
   });
@@ -306,6 +569,8 @@ await msg.deleteMessage();
 
 ### Downloading videos:
 ---
+
+The library provides an easy-to-use and simple downloader:
 
 ```js
 const fs = require('fs');
@@ -361,7 +626,7 @@ This library allows you to sign-in in two different ways:
 - Using OAuth 2.0, easy, simple & reliable.
 - Cookies, usually more complicated to get and unreliable.
 
-OAuth 2.0:
+OAuth:
 
 ```js
 const fs = require('fs');
