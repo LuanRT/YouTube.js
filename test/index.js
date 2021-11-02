@@ -22,11 +22,11 @@ async function performTests() {
   const video = await downloadVideo(Constants.test_video_id_1, youtube).catch((error) => error);
   assert(video instanceof Error ? false : true, `should download video (${Constants.test_video_id_1})`);
     
-  const n_token = new NToken(Constants.n_scramble_sc).transform('PqjqqJjdB9K821VIisj');
+  const n_token = new NToken(Constants.n_scramble_sc).transform(Constants.original_ntoken);
   assert(n_token == Constants.expected_ntoken, `should transform n token into ${Constants.expected_ntoken}`);
 
-  const n_sig = new SigDecipher(Constants.test_url, Constants.client_version, { sig_decipher_sc: Constants.sig_decipher_sc, ntoken_sc: Constants.n_scramble_sc }).decipher();
-  assert(n_sig == Constants.expected_url, `should correctly decipher signature`);
+  const transformed_url = new SigDecipher(Constants.test_url, Constants.client_version, { sig_decipher_sc: Constants.sig_decipher_sc, ntoken_sc: Constants.n_scramble_sc }).decipher();
+  assert(transformed_url == Constants.expected_url, `should correctly decipher signature`);
 }
 
 function downloadVideo(id, youtube) {
