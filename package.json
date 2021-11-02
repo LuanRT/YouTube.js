@@ -4,7 +4,7 @@
   "description": "An object-oriented library that allows you to search, get detailed info about videos, subscribe, unsubscribe, like, dislike, comment, download videos and much more!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test"
   },
   "author": "LuanRT",
   "license": "MIT",
