@@ -7,12 +7,10 @@ module.exports = {
   client_version: '2.20211101.01.00',
   test_video_id: 'FT_nzxtgXEw',
   test_video_id_1: 'YE7VzlLtp-4',
-  sig_decipher_sc:
-`fB={RP:function(a,b){a.splice(0,b)},
+  sig_decipher_sc: `fB={RP:function(a,b){a.splice(0,b)},
 Td:function(a){a.reverse()},
 kq:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c};fB.kq(a,35);fB.RP(a,2);fB.kq(a,46);fB.Td(a,6);`,
-  n_scramble_sc:
-`var b=a.split(""),c=[-470482026,-691770757,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(-e).reverse().forEach(function(f){d.unshift(f)})},
+  n_scramble_sc: `var b=a.split(""),c=[-470482026,-691770757,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(-e).reverse().forEach(function(f){d.unshift(f)})},
 b,258876269,-1426380890,318754300,-68090711,-2064438462,-1886316521,1913911047,1635047330,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(-e).reverse().forEach(function(f){d.unshift(f)})},
 -1815897225,1940621629,-714586149,-1723898467,null,778601498,2145333248,1245726977,1952270083,268207944,244274044,null,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(0,1,d.splice(e,1,d[0])[0])},
 null,-762271981,604636391,1087224318,-931565987,-338396815,function(d,e){for(e=(e%d.length+d.length)%d.length;e--;)d.unshift(d.pop())},
