@@ -594,6 +594,7 @@ async function start() {
   });
   
   stream.on('info', (info) => {
+    // { video_details: {..}, selected_format: {..}, formats: {..} }
     console.info('[DOWNLOADER]', `Downloading ${info.video_details.title} by ${info.video_details.metadata.channel_name}`);
   });
   
