@@ -615,6 +615,16 @@ async function start() {
 start();
 ```
 
+You can also download only a portion of a video by specifying a range:
+```js
+const stream = youtube.download(VIDEO_ID, {
+  //...
+  type: 'videoandaudio',
+  range: { start: 0, end: 1048576 * 5 }
+});
+  
+```
+
 Cancelling a download:
 ```js
 stream.cancel();
