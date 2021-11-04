@@ -16,7 +16,7 @@ As of now, this is one of the most advanced & stable YouTube libraries out there
 - Fetch notifications
 - Fetch subscriptions feed
 - Change notifications preferences for a channel
-- Subscribe/Unsubscribe/Like/Dislike/Comment
+- Subscribe/Unsubscribe/Like/Dislike/Comment, etc
 - Easily sign into your account in an easy & reliable way.
 - Last but not least, you can also download videos!
 
@@ -519,7 +519,9 @@ await video.comment('Haha, nice!');
 * Change notification preferences:
 ```js
 const video = await youtube.getDetails(VIDEO_ID_HERE);
-await video.setNotificationPref('ALL'); // ALL | NONE | PERSONALIZED
+
+// Can be: ALL | NONE | PERSONALIZED
+await video.setNotificationPref('ALL'); 
 ```
 
 All of the above interactions will return ```{ success: true, status_code: 200 }``` if everything goes alright.
@@ -533,10 +535,10 @@ const Innertube = require('youtubei.js');
 async function start() {
   const youtube = await new Innertube();
 
-  const search = await youtube.search('Some random live');
+  const search = await youtube.search('Some random livestream');
   const video = await youtube.getDetails(search.videos[0].id);
   
-  // This should only be called if you're sure it's a live and that it's still ongoing
+  // This should only be called if you're sure it's a livestream and that it's still ongoing
   const livechat = video.getLivechat();
 
   // Updated stats about the livestream
@@ -563,7 +565,7 @@ livechat.stop();
 
 Deleting a message:
 ```js
-const msg = await livechat.sendMessage('Nice live!');
+const msg = await livechat.sendMessage('Nice livestream!');
 await msg.deleteMessage();
 ```
 
@@ -581,7 +583,7 @@ async function start() {
   const search = await youtube.search('Looking for life on Mars - documentary');
   const stream = youtube.download(search.videos[0].id, {
     format: 'mp4', // Optional, ignored when type is set to audio and defaults to mp4, and I recommend to leave it as it is
-    quality: '360p', // if a video doesn't have a specific quality it'll fall back to 360p, this is ignored when type is set to audio
+    quality: '360p', // if a video doesn't have a specific quality it'll fall back to 360p, also ignored when type is set to audio
     type: 'videoandaudio' // can be “video”, “audio” and “videoandaudio”
   });
   
@@ -681,6 +683,7 @@ Never sign-in with your personal account, you might get banned if you spam (don'
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
 ## Disclaimer
 This project is not affiliated with, endorsed, or sponsored by YouTube or any of their affiliates or subsidiaries. 
 All trademarks, logos and brand names are the property of their respective owners. 
