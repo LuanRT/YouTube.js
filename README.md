@@ -3,6 +3,7 @@
 [![Build](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml)
 [![NPM](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)](https://www.npmjs.com/package/youtubei.js)
 [![CodeFactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)](https://www.codefactor.io/repository/github/luanrt/youtube.js)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLuanRT%2FYouTube.js.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FLuanRT%2FYouTube.js?ref=badge_shield)
 
 An object-oriented wrapper around the Innertube API, which is what YouTube itself uses. This makes YouTube.js fast, simple & efficient. And big thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
 
@@ -703,3 +704,5 @@ Should you have any questions or concerns please contact me directly via email.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLuanRT%2FYouTube.js.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FLuanRT%2FYouTube.js?ref=badge_large)
