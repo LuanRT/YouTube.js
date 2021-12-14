@@ -655,14 +655,14 @@ async function start() {
     if (data.status === 'AUTHORIZATION_PENDING') {
       console.info(`Hello!\nOn your phone or computer, go to ${data.verification_url} and enter the code ${data.code}`);
     } else if (data.status === 'SUCCESS') {
-      fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token }));
+      fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token, expires: data.expires }));
       console.info('Successfully signed-in, enjoy!');
     }
   });
   
   // Triggered whenever the access token is refreshed.
   youtube.on('update-credentials', (data) => {
-    fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token }));
+    fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token, expires: data.expires }));
     console.info('Credentials updated!', data);
   });
   
