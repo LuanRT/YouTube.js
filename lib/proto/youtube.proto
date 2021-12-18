@@ -32,3 +32,13 @@ message CreateCommentParams {
   Params params = 5;
   int32 number = 10;
 }
+
+message SearchFilter {
+  int32 number = 1;
+  message Filter {
+    int32 param_0 = 1;
+    int32 param_1 = 2;
+    int32 param_2 = 3;
+  }
+  Filter filter = 2;
+}
