@@ -650,19 +650,17 @@ async function start() {
   const creds = fs.existsSync(creds_path) && JSON.parse(fs.readFileSync(creds_path).toString()) || {};
   const youtube = await new Innertube();
   
-  // Only triggered when signing-in.
-  youtube.on('auth', (data) => {
+  youtube.ev.on('auth', (data) => {
     if (data.status === 'AUTHORIZATION_PENDING') {
       console.info(`Hello!\nOn your phone or computer, go to ${data.verification_url} and enter the code ${data.code}`);
     } else if (data.status === 'SUCCESS') {
-      fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token, expires: data.expires }));
+      fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
       console.info('Successfully signed-in, enjoy!');
     }
   });
   
-  // Triggered whenever the access token is refreshed.
-  youtube.on('update-credentials', (data) => {
-    fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token, expires: data.expires }));
+  youtube.ev.on('update-credentials', (data) => {
+    fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
     console.info('Credentials updated!', data);
   });
   
