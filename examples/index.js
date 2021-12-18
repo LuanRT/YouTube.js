@@ -2,23 +2,34 @@
 
 const fs = require('fs');
 const Innertube = require('..');
+const creds_path = './yt_oauth_creds.json';
+const creds = fs.existsSync(creds_path) && JSON.parse(fs.readFileSync(creds_path).toString()) || {};
 
 async function start() {
   const youtube = await new Innertube();
 
-  // Searching, getting details about videos & making interactions:
+  youtube.on('auth', (data) => {
+    if (data.status === 'AUTHORIZATION_PENDING') {
+      console.info(`Hello!\nOn your phone or computer, go to ${data.verification_url} and enter the code ${data.code}`);
+    } else if (data.status === 'SUCCESS') {
+      fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token, expires: data.expires }));
+      console.info('Successfully signed-in, enjoy!');
+    }
+  });
+
+  youtube.on('update-credentials', (data) => {
+    fs.writeFileSync(creds_path, JSON.stringify({ access_token: data.access_token, refresh_token: data.refresh_token, expires: data.expires }));
+    console.info('Credentials updated!', data);
+  });
+
+  await youtube.signIn(creds);
+
   const search = await youtube.search('Looking for life on Mars - documentary');
   console.info('Search results:', search);
-  
-  if (search.videos.length === 0) 
-    return console.error('Could not find any video about that on YouTube.');
-  
+
   const video = await youtube.getDetails(search.videos[0].id).catch((error) => error);
   console.info('Video details:', video);
- 
-  if (video instanceof Error) 
-    return console.error('Could not get details for ' + search.videos[0].title);
-  
+
   if (youtube.logged_in) {
     const myNotifications = await youtube.getNotifications();
     console.info('My notifications:', myNotifications);
