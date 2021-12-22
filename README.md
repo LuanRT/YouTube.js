@@ -21,7 +21,7 @@ As of now, this is one of the most advanced & stable YouTube libraries out there
 - Fetch live chat & live stats in real time
 - Get notifications
 - Get subscriptions feed
-- Change notifications preferences for a channel
+- Change notification preferences for a channel
 - Subscribe/Unsubscribe/Like/Dislike/Comment etc
 - Easily sign in to any Google Account
 - Download videos
