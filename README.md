@@ -1,24 +1,30 @@
-# YouTube.js
+<h1 align="center">YouTube.js</h1>
+<p align="center"><i>An object-oriented wrapper around the Innertube API, which is what YouTube itself uses.</i><p>
 
-[![Build](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml)
-[![NPM](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)](https://www.npmjs.com/package/youtubei.js)
-[![CodeFactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)](https://www.codefactor.io/repository/github/luanrt/youtube.js)
+<p align="center">
+<img src="https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg">
+<img src="https://img.shields.io/npm/v/youtubei.js?color=%2335C757">
+<img src="https://www.codefactor.io/repository/github/luanrt/youtube.js/badge">
+</p>
 
-An object-oriented wrapper around the Innertube API, which is what YouTube itself uses. This makes YouTube.js fast, simple & efficient. And big thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
+Innertube is an API used across all YouTube clients, it was [made to simplify](https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491) the internal structure of the platform and make it easy to push updates. This library takes advantage of that API, therefore providing a simple & efficient way to interact with YouTube programmatically.
+
+And big thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
+
 
 #### What can it do?
 
-As of now, this is one of the most advanced & stable YouTube libraries out there, here's a short summary of what it can do: 
+As of now, this is one of the most advanced & stable YouTube libraries out there, here's a short summary of its features: 
 
 - Search videos
 - Get detailed info about any video
 - Fetch live chat & live stats in real time
-- Fetch notifications
-- Fetch subscriptions feed
+- Get notifications
+- Get subscriptions feed
 - Change notifications preferences for a channel
-- Subscribe/Unsubscribe/Like/Dislike/Comment, etc
-- Easily sign into your account in an easy & reliable way.
-- Last but not least, you can also download videos!
+- Subscribe/Unsubscribe/Like/Dislike/Comment etc
+- Easily sign in to any Google Account
+- Download videos
 
 Do note that you must be signed-in to perform actions that involve an account, such as commenting, subscribing, sending messages to a live chat, etc.
 
@@ -38,7 +44,7 @@ npm install youtubei.js
 
 [2. Interactions](https://github.com/LuanRT/YouTube.js#interactions)
 
-[3. Fetching live chats](https://github.com/LuanRT/YouTube.js#fetching-live-chats)
+[3. Live chats](https://github.com/LuanRT/YouTube.js#fetching-live-chats)
 
 [4. Downloading videos](https://github.com/LuanRT/YouTube.js#downloading-videos)
 
@@ -46,20 +52,12 @@ npm install youtubei.js
 
 [6. Disclaimer](https://github.com/LuanRT/YouTube.js#disclaimer)
 
-First of all we're gonna start by initializing the Innertube class:
+First of all we're gonna start by initializing the Innertube instance.
+And to make things faster, you should do this only once and reuse the Innertube object when needed.
 
 ```js
-const Innertube = require('youtubei.js');
-
-async function start() {
-  const youtube = await new Innertube(); 
-  //...
-}
-
-start();
+const youtube = await new Innertube(); 
 ```
-
-After this you should be good to go, so let's dive into it!
 
 Doing a simple search:
 
@@ -489,13 +487,19 @@ const notifications = await youtube.getNotifications();
 </p>
 </details>
 
+Get unseen notifications count:
+
+```js
+const notifications = await youtube.getUnseenNotificationsCount();
+```
+
 ### Interactions:
 
 ---
 
 * Subscribe/Unsubscribe:
 ```js
-const video = await youtube.getDetails(VIDEO_ID_HERE); // this is equivalent to opening the watch page on YouTube
+const video = await youtube.getDetails(VIDEO_ID_HERE);
 
 await video.subscribe();
 await video.unsubscribe();
@@ -503,7 +507,7 @@ await video.unsubscribe();
 
 * Like/Dislike:
 ```js
-const video = await youtube.getDetails(VIDEO_ID_HERE); // this is equivalent to opening the watch page on YouTube
+const video = await youtube.getDetails(VIDEO_ID_HERE);
 
 await video.like();
 await video.dislike();
@@ -520,7 +524,7 @@ await video.comment('Haha, nice!');
 ```js
 const video = await youtube.getDetails(VIDEO_ID_HERE);
 
-// Can be: ALL | NONE | PERSONALIZED
+// Options: ALL | NONE | PERSONALIZED
 await video.setNotificationPref('ALL'); 
 ```
 
@@ -538,7 +542,6 @@ async function start() {
   const search = await youtube.search('Some random livestream');
   const video = await youtube.getDetails(search.videos[0].id);
   
-  // This should only be called if you're sure it's a livestream and that it's still ongoing
   const livechat = video.getLivechat();
 
   // Updated stats about the livestream
@@ -563,7 +566,7 @@ Stop fetching the live chat:
 livechat.stop();
 ```
 
-Deleting a message:
+Delete a message:
 ```js
 const msg = await livechat.sendMessage('Nice livestream!');
 await msg.deleteMessage();
@@ -580,7 +583,9 @@ const Innertube = require('youtubei.js');
 
 async function start() {
   const youtube = await new Innertube();
+ 
   const search = await youtube.search('Looking for life on Mars - documentary');
+  
   const stream = youtube.download(search.videos[0].id, {
     format: 'mp4', // Optional, ignored when type is set to audio and defaults to mp4, and I recommend to leave it as it is
     quality: '360p', // if a video doesn't have a specific quality it'll fall back to 360p, also ignored when type is set to audio
@@ -616,7 +621,7 @@ async function start() {
 start();
 ```
 
-You can also download only a portion of a video by specifying a range:
+You can also specify a range:
 ```js
 const stream = youtube.download(VIDEO_ID, {
   //...
@@ -634,10 +639,10 @@ stream.cancel();
 ### Signing-in:
 ---
 
-This library allows you to sign-in in two different ways:
+When signing in to your account, you have two options:
 
-- Using OAuth 2.0, easy, simple & reliable.
-- Cookies, usually more complicated to get and unreliable.
+- Use OAuth 2.0; easy, simple & reliable.
+- Cookies; usually more complicated to get and unreliable.
 
 OAuth:
 
@@ -684,9 +689,6 @@ async function start() {
 
 start();
 ```
-
-## Note
-Never sign-in with your personal account, you might get banned if you spam (don't ever do that) or simply because YouTube detected unusual activity coming from your account. Also, I'm not responsible if any of that happens to you. 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
