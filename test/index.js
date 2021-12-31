@@ -52,6 +52,6 @@ function assert(outcome, description, data) {
   !outcome && (failed_tests += 1);
   console.info(pass_fail, ':', description, !outcome && `\nError: ${data}` || '');
   return outcome;
-};
+}
 
 performTests();
