@@ -22,9 +22,10 @@ async function performTests() {
     const comments = await youtube.getComments(Constants.test_video_id).catch((error) => error);
     assert(comments instanceof Error ? false : true, `should retrieve comments for ${Constants.test_video_id}`, comments);
 
-    const video = await downloadVideo(Constants.test_video_id_1, youtube).catch((error) => error);
-    assert(video instanceof Error ? false : true, `should download video (${Constants.test_video_id_1})`, video);
+    const video = await downloadVideo(Constants.test_video_id, youtube).catch((error) => error);
+    assert(video instanceof Error ? false : true, `should download video (${Constants.test_video_id})`, video);
   }
+
 
   const n_token = new NToken(Constants.n_scramble_sc).transform(Constants.original_ntoken);
   assert(n_token == Constants.expected_ntoken, `should transform n token into ${Constants.expected_ntoken}`, n_token);
