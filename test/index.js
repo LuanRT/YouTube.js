@@ -14,16 +14,16 @@ async function performTests() {
 
   if (!(youtube instanceof Error)) {
     const search = await youtube.search('Carl Sagan - Documentary').catch((error) => error);
-    assert((search instanceof Error ? false : true) && search.videos.length >= 1, `should search videos`, search);
+    assert(!(search instanceof Error) && search.videos.length >= 1, `should search videos`, search);
 
     const details = await youtube.getDetails(Constants.test_video_id).catch((error) => error);
-    assert(details instanceof Error ? false : true, `should retrieve details for ${Constants.test_video_id}`, details);
+    assert(!(details instanceof Error), `should retrieve details for ${Constants.test_video_id}`, details);
 
     const comments = await youtube.getComments(Constants.test_video_id).catch((error) => error);
-    assert(comments instanceof Error ? false : true, `should retrieve comments for ${Constants.test_video_id}`, comments);
+    assert(!(comments instanceof Error), `should retrieve comments for ${Constants.test_video_id}`, comments);
 
     const video = await downloadVideo(Constants.test_video_id, youtube).catch((error) => error);
-    assert(video instanceof Error ? false : true, `should download video (${Constants.test_video_id})`, video);
+    assert(!(video instanceof Error), `should download video (${Constants.test_video_id})`, video);
   }
 
 
@@ -50,8 +50,11 @@ function downloadVideo(id, youtube) {
 
 function assert(outcome, description, data) {
   const pass_fail = outcome ? 'pass' : 'fail';
+
+  console.info(pass_fail, ':', description);
   !outcome && (failed_tests += 1);
-  console.info(pass_fail, ':', description, !outcome && `\nError: ${data}` || '');
+  !outcome && console.error('Error: ', data);
+
   return outcome;
 }
 
