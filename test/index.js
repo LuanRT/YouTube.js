@@ -10,7 +10,7 @@ let failed_tests = 0;
 
 async function performTests() {
   const youtube = await new Innertube().catch((error) => error);
-  assert(youtube instanceof Error ? false : true, `should retrieve Innertube configuration data`, youtube);
+  assert(!(youtube instanceof Error), `should retrieve Innertube configuration data`, youtube);
 
   if (!(youtube instanceof Error)) {
     const search = await youtube.search('Carl Sagan - Documentary').catch((error) => error);
