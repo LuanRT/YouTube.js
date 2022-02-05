@@ -2,7 +2,7 @@
 <p align="center"><i>An object-oriented wrapper around the Innertube API, which is what YouTube itself uses.</i><p>
 
 <p align="center">
-<img src="https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg">
+<img src="/actions/workflows/node.js.yml/badge.svg">
 <img src="https://img.shields.io/npm/v/youtubei.js?color=%2335C757">
 <img src="https://www.codefactor.io/repository/github/luanrt/youtube.js/badge">
 </p>
@@ -40,17 +40,17 @@ npm install youtubei.js
 
 ## Usage
 
-[1. Basic Usage](https://github.com/LuanRT/YouTube.js#usage)
+[1. Basic Usage](#usage)
 
-[2. Interactions](https://github.com/LuanRT/YouTube.js#interactions)
+[2. Interactions](#interactions)
 
-[3. Live chats](https://github.com/LuanRT/YouTube.js#fetching-live-chats)
+[3. Live chats](#fetching-live-chats)
 
-[4. Downloading videos](https://github.com/LuanRT/YouTube.js#downloading-videos)
+[4. Downloading videos](#downloading-videos)
 
-[5. Signing-in](https://github.com/LuanRT/YouTube.js#signing-in)
+[5. Signing-in](#signing-in)
 
-[6. Disclaimer](https://github.com/LuanRT/YouTube.js#disclaimer)
+[6. Disclaimer](#disclaimer)
 
 First of all we're gonna start by initializing the Innertube instance.
 And to make things faster, you should do this only once and reuse the Innertube object when needed.
