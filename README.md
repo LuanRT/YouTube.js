@@ -2,7 +2,7 @@
 <p align="center"><i>An object-oriented wrapper around the Innertube API, which is what YouTube itself uses.</i><p>
 
 <p align="center">
-<img src="/actions/workflows/node.js.yml/badge.svg">
+<img src="https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg">
 <img src="https://img.shields.io/npm/v/youtubei.js?color=%2335C757">
 <img src="https://www.codefactor.io/repository/github/luanrt/youtube.js/badge">
 </p>
