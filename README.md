@@ -67,13 +67,10 @@ const search = await youtube.search('Looking for life on Mars - Documentary');
 
 // YTMusic:
 const search = await youtube.search('Never Gonna Give You Up', { client: 'YTMUSIC' });
-
-// Get lyrics for a song directly from YouTube Music!
-const lyrics = await search.songs[0].getLyrics();
 ```
 
 <details>
-<summary>YouTube Search Output</summary>
+<summary>YT Search Output</summary>
 <p>
 
 ```js
@@ -132,7 +129,7 @@ const lyrics = await search.songs[0].getLyrics();
 </details> 
 
 <details>
-<summary>YouTube Music Search Output</summary>
+<summary>YTMusic Search Output</summary>
 <p>
 
 
@@ -347,8 +344,17 @@ const lyrics = await search.songs[0].getLyrics();
 
 </p>
 </details> 
+<br>
 
-Get details about a specific video:
+Find lyrics for a song, directly from YTMusic!
+```js
+const search = await youtube.search('7 Years', { client: 'YTMUSIC' });
+const lyrics = await search.songs[0].getLyrics();
+
+// Or:
+const lyrics = await youtube.getLyrics(search.songs[0].id);
+```
+Get video details:
 
 ```js
 const video = await youtube.getDetails(search.videos[0].id);
