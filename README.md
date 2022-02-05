@@ -20,7 +20,7 @@ As of now, this is one of the most advanced & stable YouTube libraries out there
 - Get detailed info about any video
 - Fetch live chat & live stats in real time
 - Get notifications
-- Get subscriptions feed
+- Get subscriptions/home feed
 - Change notification preferences for a channel
 - Subscribe/Unsubscribe/Like/Dislike/Comment etc
 - Easily sign in to any Google Account
@@ -62,11 +62,18 @@ const youtube = await new Innertube();
 Doing a simple search:
 
 ```js
+// YouTube:
 const search = await youtube.search('Looking for life on Mars - Documentary');
+
+// YTMusic:
+const search = await youtube.search('Never Gonna Give You Up', { client: 'YTMUSIC' });
+
+// Get lyrics for a song directly from YouTube Music!
+const lyrics = await search.songs[0].getLyrics();
 ```
 
 <details>
-<summary>Output</summary>
+<summary>YouTube Search Output</summary>
 <p>
 
 ```js
@@ -124,7 +131,222 @@ const search = await youtube.search('Looking for life on Mars - Documentary');
 </p>
 </details> 
 
+<details>
+<summary>YouTube Music Search Output</summary>
+<p>
 
+
+```js
+{
+   "songs":[
+      {
+         "id":"AhCWdFBd_fM",
+         "title":"Never Gonna Give You Up",
+         "artist":"Barry White",
+         "album":"Barry White - His Greatest Hits",
+         "duration":"4:50",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://lh3.googleusercontent.com/S69XTGGI63L8rJJlCx7rJgp0decIo3EdDKGWR_y8B3SE9fEYp-VGu3ygZ3DrlS3tTTyqN8CUfpajjsA=w60-h60-l90-rj",
+                  "width":60,
+                  "height":60
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/S69XTGGI63L8rJJlCx7rJgp0decIo3EdDKGWR_y8B3SE9fEYp-VGu3ygZ3DrlS3tTTyqN8CUfpajjsA=w120-h120-l90-rj",
+                  "width":120,
+                  "height":120
+               }
+            ]
+         }
+      },
+      {
+         "id":"C5ITdcx-wRA",
+         "title":"Never Gonna Give You Up",
+         "artist":"Home Free",
+         "album":"Never Gonna Give You Up",
+         "duration":"3:03",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://lh3.googleusercontent.com/isnABE6M8Dzq5WG7ZrJRGdKVmF8M8xJDJTM6aMf7d0C-XpqGIHFd1n7i6lgZM_K7LbHXuEuRaXhfnqc=w60-h60-l90-rj",
+                  "width":60,
+                  "height":60
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/isnABE6M8Dzq5WG7ZrJRGdKVmF8M8xJDJTM6aMf7d0C-XpqGIHFd1n7i6lgZM_K7LbHXuEuRaXhfnqc=w120-h120-l90-rj",
+                  "width":120,
+                  "height":120
+               }
+            ]
+         }
+      },
+      {
+         "id":"XxWzZxuo6Vk",
+         "title":"Never Gonna Give You Up",
+         "artist":"Barry White",
+         "album":"Dinah Washington",
+         "duration":"The Unforgettable Voices: 30 Best Of Dinah Washington & Barry White",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://lh3.googleusercontent.com/KXnlog1Me9ONfcdtT1O4fHr2uRqYrhH1cHWksFmzNpJwzX8lNr_S5TlQsE8ICtihijkGCLp9y8ypI7BiOA=w60-h60-l90-rj",
+                  "width":60,
+                  "height":60
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/KXnlog1Me9ONfcdtT1O4fHr2uRqYrhH1cHWksFmzNpJwzX8lNr_S5TlQsE8ICtihijkGCLp9y8ypI7BiOA=w120-h120-l90-rj",
+                  "width":120,
+                  "height":120
+               }
+            ]
+         }
+      }
+   ],
+   "videos":[
+      {
+         "id":"dMbZfdrzILA",
+         "title":"Rick Astley - Never Gonna Give You Up • TopPop",
+         "author":"TopPop",
+         "views":"313K views",
+         "duration":"3:25",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://i.ytimg.com/vi/dMbZfdrzILA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kLVbR-3q7t0AIjayar6gbsUe-OoQ",
+                  "width":400,
+                  "height":225
+               }
+            ]
+         }
+      },
+      {
+         "id":"IO9XlQrEt2Y",
+         "title":"Never Gonna Give You Up",
+         "author":"Rick Astley",
+         "views":"7.1M views",
+         "duration":"2:58",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://i.ytimg.com/vi/IO9XlQrEt2Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mqRLVI-_NB9-t7Qy-j2J030ejrKA",
+                  "width":400,
+                  "height":225
+               }
+            ]
+         }
+      },
+      {
+         "id":"a9WHZ5M8I8w",
+         "title":"Rick Astley - Never Gonna Give You Up - Festival de Viña del Mar 2016 HD",
+         "author":"FESTIVALDEVINACHILE",
+         "views":"2.8M views",
+         "duration":"8:13",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://i.ytimg.com/vi/a9WHZ5M8I8w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mJDPxemHrcREbbK-9uBM3SIRm-Og",
+                  "width":400,
+                  "height":225
+               }
+            ]
+         }
+      }
+   ],
+   "albums":[
+      {
+         "title":"Never Gonna Give You Up",
+         "author":"Royal Reggie",
+         "year":"2022",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://lh3.googleusercontent.com/DeMUgtcPxCOye_JYJaywQjuJHZjdzSYqU-231p8ZADV1EmPC5w3poMQRfm3_U83wLQR0nUbXnJ_Ujyq8=w60-h60-l90-rj",
+                  "width":60,
+                  "height":60
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/DeMUgtcPxCOye_JYJaywQjuJHZjdzSYqU-231p8ZADV1EmPC5w3poMQRfm3_U83wLQR0nUbXnJ_Ujyq8=w120-h120-l90-rj",
+                  "width":120,
+                  "height":120
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/DeMUgtcPxCOye_JYJaywQjuJHZjdzSYqU-231p8ZADV1EmPC5w3poMQRfm3_U83wLQR0nUbXnJ_Ujyq8=w226-h226-l90-rj",
+                  "width":226,
+                  "height":226
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/DeMUgtcPxCOye_JYJaywQjuJHZjdzSYqU-231p8ZADV1EmPC5w3poMQRfm3_U83wLQR0nUbXnJ_Ujyq8=w544-h544-l90-rj",
+                  "width":544,
+                  "height":544
+               }
+            ]
+         }
+      },
+      {
+         "title":"Never Gonna Give You Up",
+         "author":"Carlos Marin",
+         "year":"2020",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://lh3.googleusercontent.com/i6JslNpviVqPZfLCBvLvmDyscy8ZQ2CShRz38hGj-PUz_H4wLTR0gkKU6tQoREDoARwKBl1krytJdBQ=w60-h60-l90-rj",
+                  "width":60,
+                  "height":60
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/i6JslNpviVqPZfLCBvLvmDyscy8ZQ2CShRz38hGj-PUz_H4wLTR0gkKU6tQoREDoARwKBl1krytJdBQ=w120-h120-l90-rj",
+                  "width":120,
+                  "height":120
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/i6JslNpviVqPZfLCBvLvmDyscy8ZQ2CShRz38hGj-PUz_H4wLTR0gkKU6tQoREDoARwKBl1krytJdBQ=w226-h226-l90-rj",
+                  "width":226,
+                  "height":226
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/i6JslNpviVqPZfLCBvLvmDyscy8ZQ2CShRz38hGj-PUz_H4wLTR0gkKU6tQoREDoARwKBl1krytJdBQ=w544-h544-l90-rj",
+                  "width":544,
+                  "height":544
+               }
+            ]
+         }
+      },
+      {
+         "title":"Never Gonna Give You Up",
+         "author":"Magnus Carlsson",
+         "year":"2021",
+         "thumbnail":{
+            "thumbnails":[
+               {
+                  "url":"https://lh3.googleusercontent.com/43cP--d3Eqj3L5FeBbYFkdsnisf7nYb5-Rq4yZDf1kvH6_pEk4RW4Nd004L4ZwG6VzzT4JzFDVPS-8w=w60-h60-l90-rj",
+                  "width":60,
+                  "height":60
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/43cP--d3Eqj3L5FeBbYFkdsnisf7nYb5-Rq4yZDf1kvH6_pEk4RW4Nd004L4ZwG6VzzT4JzFDVPS-8w=w120-h120-l90-rj",
+                  "width":120,
+                  "height":120
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/43cP--d3Eqj3L5FeBbYFkdsnisf7nYb5-Rq4yZDf1kvH6_pEk4RW4Nd004L4ZwG6VzzT4JzFDVPS-8w=w226-h226-l90-rj",
+                  "width":226,
+                  "height":226
+               },
+               {
+                  "url":"https://lh3.googleusercontent.com/43cP--d3Eqj3L5FeBbYFkdsnisf7nYb5-Rq4yZDf1kvH6_pEk4RW4Nd004L4ZwG6VzzT4JzFDVPS-8w=w544-h544-l90-rj",
+                  "width":544,
+                  "height":544
+               }
+            ]
+         }
+      }
+   ]
+}
+```
+
+</p>
+</details> 
 
 Get details about a specific video:
 
@@ -276,9 +498,442 @@ const comments_continuation = await comments.getContinuation();
 </p>
 </details>
 
+Get home feed:
+```js
+const home_feed = await youtube.getHomeFeed();
+```
+<details>
+<summary>Output</summary>
+<p>
+
+```js
+[
+   {
+      "id":"TVcKu_c1C7E",
+      "title":"The Things We Don't Know About the Universe",
+      "channel":"Sciencephile the AI",
+      "metadata":{
+         "view_count":"233,835 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/TVcKu_c1C7E/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLByf2X2pKs1wbWyLIx-FnXFt1PVZw",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/TVcKu_c1C7E/mqdefault_6s.webp?du=3000&sqp=COGe-48G&rs=AOn4CLDslQ2RYSgaF3aEY8pcuyIzvfLJbQ",
+            "width":320,
+            "height":180
+         },
+         "published":"3 months ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"1Tdx9ZZuf_w",
+      "title":"Life is Strange: Before The Storm Remastered Episode 1 Gameplay Walkthrough",
+      "channel":"DomTheBomb",
+      "metadata":{
+         "view_count":"N/A",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/1Tdx9ZZuf_w/hq720_live.jpg?sqp=CMzD-48G-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC9N4GPouauc-Jw3Y69uCXWVEfBiQ",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":[
+            
+         ],
+         "published":"N/A",
+         "badges":[
+            "LIVE NOW"
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"C776bXWlgSk",
+      "title":"Probably my Most BRUTAL BIRDEATER TARANTULA ever .",
+      "channel":"Exotics Lair",
+      "metadata":{
+         "view_count":"346,246 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/C776bXWlgSk/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDgWQrLwmFTG-KzLUYRdR9KFA5bDw",
+            "width":480,
+            "height":270
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/C776bXWlgSk/mqdefault_6s.webp?du=3000&sqp=COal-48G&rs=AOn4CLAfsyW-NUXvgFqAHBJr_3pJDZlfhA",
+            "width":320,
+            "height":180
+         },
+         "published":"5 months ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"nrvnpFCcZeA",
+      "title":"Run Windows 11 on phone! And play PC games?!!!",
+      "channel":"Geekerwan",
+      "metadata":{
+         "view_count":"519,217 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/nrvnpFCcZeA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA0ny_9_K9iLL_u7grHZ4PoAJkH4Q",
+            "width":480,
+            "height":270
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/nrvnpFCcZeA/mqdefault_6s.webp?du=3000&sqp=CKCR-48G&rs=AOn4CLB9atuuBjdMCWTHgP-v4N75agxvPA",
+            "width":320,
+            "height":180
+         },
+         "published":"1 month ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            
+         ]
+      }
+   },
+   {
+      "id":"owtvGIQDdiU",
+      "title":"This Is What The Clouds Of Titan Sound Like! Huygens Probe Sound Recording 2005 (4K UHD)",
+      "channel":"V101 Science",
+      "metadata":{
+         "view_count":"744,350 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/owtvGIQDdiU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDbQLvaaOO3jW9bGY1SaQAdxIUJOQ",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/owtvGIQDdiU/mqdefault_6s.webp?du=3000&sqp=CImy-48G&rs=AOn4CLDXD3UPQ6iix8orhjJs3yDPpJlckQ",
+            "width":320,
+            "height":180
+         },
+         "published":"1 year ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"pI7ytZ1oyY4",
+      "title":"My Pet Praying Mantis Passed Away. Goodbye, Kiwi..",
+      "channel":"제발돼라 PleaseBee",
+      "metadata":{
+         "view_count":"3,311,251 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/pI7ytZ1oyY4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDisjK7ZecKov3aFUsE-Xe5x92VEQ",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/pI7ytZ1oyY4/mqdefault_6s.webp?du=3000&sqp=CKbE-48G&rs=AOn4CLD_wWCno1Q6EqhLYp7kMkCPc0y0dg",
+            "width":320,
+            "height":180
+         },
+         "published":"3 weeks ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            
+         ]
+      }
+   },
+   {
+      "id":"dXdoim96v5A",
+      "title":"8-bit CPU control logic: Part 1",
+      "channel":"Ben Eater",
+      "metadata":{
+         "view_count":"718,780 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/dXdoim96v5A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCBSzOjvO-0645gRSb8WezGKYSvUg",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/dXdoim96v5A/mqdefault_6s.webp?du=3000&sqp=CKCO-48G&rs=AOn4CLArMCkZu073j8k_QRHCm_4IuB2Uyw",
+            "width":320,
+            "height":180
+         },
+         "published":"4 years ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"AawLM81gIHo",
+      "title":"playlist to study like a medieval philosopher having the truth revealed by divine grace",
+      "channel":"Filosofia Acadêmica",
+      "metadata":{
+         "view_count":"3,182,206 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/AawLM81gIHo/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA_6jX1WlJ8JgjdzJ4vBdmajwkZmA",
+            "width":480,
+            "height":270
+         },
+         "moving_thumbnail":[
+            
+         ],
+         "published":"4 months ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            
+         ]
+      }
+   },
+   {
+      "id":"ILyQ4A3ZYu8",
+      "title":"LIGHTWEIGHT Mirrorless Macro Photography w/ 7Artisans 60mm f/2.8 mkII macro",
+      "channel":"Thomas Shahan",
+      "metadata":{
+         "view_count":"26,594 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/ILyQ4A3ZYu8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAYn-kG_hpBdu0BZ0QLeb9EdnkXfg",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/ILyQ4A3ZYu8/mqdefault_6s.webp?du=3000&sqp=CMit-48G&rs=AOn4CLBdzzV12LamKVEyPdPUXeHqLwqOzg",
+            "width":320,
+            "height":180
+         },
+         "published":"5 months ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            
+         ]
+      }
+   },
+   {
+      "id":"8E2l4K0OvMc",
+      "title":"Linkin Park & Eminem - Soldiers (2021) Official Music Video",
+      "channel":"zwieR.Z.",
+      "metadata":{
+         "view_count":"2,949,402 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/8E2l4K0OvMc/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAqJt07Iwc5IFmUv-HazVO9OZWzFw",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":[
+            
+         ],
+         "published":"1 month ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"XFqn3uy238E",
+      "title":"...And We'll Do it Again",
+      "channel":"Kurzgesagt – In a Nutshell",
+      "metadata":{
+         "view_count":"8,782,886 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/XFqn3uy238E/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATvhGBLlbbTmMV4aDwmsBRqlh3rQ",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/XFqn3uy238E/mqdefault_6s.webp?du=3000&sqp=COGu-48G&rs=AOn4CLCghw3iwEHMhpOZU2Sd79eQAUZg9g",
+            "width":320,
+            "height":180
+         },
+         "published":"1 month ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"Ks7mmrer37g",
+      "title":"Using 5000 Minecarts to LAG a Pay-To-Win Server in Minecraft - Part 1",
+      "channel":"The Horizon",
+      "metadata":{
+         "view_count":"3,351,437 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/Ks7mmrer37g/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA16Zi1QZ5YACpDMM0We5k5C6Cc0w",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/Ks7mmrer37g/mqdefault_6s.webp?du=3000&sqp=COip-48G&rs=AOn4CLDY3tU8sodjfeSM61JtfSovZIcmww",
+            "width":320,
+            "height":180
+         },
+         "published":"13 days ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"y7fMTCJaWjQ",
+      "title":"2004 PC Power On",
+      "channel":"hardrivethrutown",
+      "metadata":{
+         "view_count":"336,545 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/y7fMTCJaWjQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB2GeuZo6-IUkJKl6M0VYhtAowNqQ",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/y7fMTCJaWjQ/mqdefault_6s.webp?du=3000&sqp=CKjB-48G&rs=AOn4CLAUUDj7VcH8uIysPlgcVZ7rx2AFaQ",
+            "width":320,
+            "height":180
+         },
+         "published":"1 month ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            
+         ]
+      }
+   },
+   {
+      "id":"oq2-RJH_3NE",
+      "title":"What if we replace the Moon with other Space Objects?",
+      "channel":"Sciencephile the AI",
+      "metadata":{
+         "view_count":"128,961 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/oq2-RJH_3NE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBuCNxw_LAFkvrGfnWZ5rI_fI2cuw",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/oq2-RJH_3NE/mqdefault_6s.webp?du=3000&sqp=CNSk-48G&rs=AOn4CLAKV2gb8ZMH6_pEGroEC6FIZmyTjg",
+            "width":320,
+            "height":180
+         },
+         "published":"7 days ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"pB-nGyqJMy0",
+      "title":"for 4 years I thought PISSY was a boy ~ Maybe that’s why SHE’s always PISSED at me !!!",
+      "channel":"Exotics Lair",
+      "metadata":{
+         "view_count":"974,222 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/pB-nGyqJMy0/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAf7vp-L054e_PSMrs5z_GSoIKC1w",
+            "width":480,
+            "height":270
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/pB-nGyqJMy0/mqdefault_6s.webp?du=3000&sqp=CMqL-48G&rs=AOn4CLC-yzDWXwJo45NudEmzQBMQ_8nsNg",
+            "width":320,
+            "height":180
+         },
+         "published":"1 year ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"RW4s2WtwoUY",
+      "title":"This Is Why Crabs Hate Stingrays",
+      "channel":"WATOP",
+      "metadata":{
+         "view_count":"4,329,223 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/RW4s2WtwoUY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD5iz1haM6niPfCZxeZFfublo_tPQ",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":{
+            "url":"https://i.ytimg.com/an_webp/RW4s2WtwoUY/mqdefault_6s.webp?du=3000&sqp=CMS1-48G&rs=AOn4CLBkPjwEFtz6e6iNOpB13tWcuik4pw",
+            "width":320,
+            "height":180
+         },
+         "published":"8 months ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Verified"
+         ]
+      }
+   },
+   {
+      "id":"0wj8ueoUjt8",
+      "title":"Rag’n’Bone Man & Calvin Harris - Giant (Live at BRITs 2019)",
+      "channel":"Rag'n'Bone Man",
+      "metadata":{
+         "view_count":"5,636,727 views",
+         "thumbnail":{
+            "url":"https://i.ytimg.com/vi/0wj8ueoUjt8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDgmKnz4ilXGAdfU3zBBhZVPe9ERw",
+            "width":720,
+            "height":404
+         },
+         "moving_thumbnail":[
+            
+         ],
+         "published":"2 years ago",
+         "badges":[
+            
+         ],
+         "owner_badges":[
+            "Official Artist Channel"
+         ]
+      }
+   }
+]
+```
+
+</p>
+</details>
+
 Get subscriptions feed:
 ```js
-const mysubfeed = await youtube.getSubscriptionsFeed();
+const mysubsfeed = await youtube.getSubscriptionsFeed();
 ```
 
 <details>
