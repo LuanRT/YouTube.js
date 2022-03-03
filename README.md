@@ -169,7 +169,7 @@ const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSI
          description: string,
          total_items: number,
          duration: string,
-         year: string
+         year: string,
          items: [
             {
                id: string,
