@@ -609,6 +609,7 @@ The library makes it easy to interact with YouTube programatically. However, don
 
 ```js
 await youtube.interact.subscribe('CHANNEL_ID');
+await youtube.interact.unsubscribe('CHANNEL_ID');
 ```
 
 * Like/Dislike:
