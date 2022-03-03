@@ -30,7 +30,7 @@ async function performTests() {
   const n_token = new NToken(Constants.n_scramble_sc).transform(Constants.original_ntoken);
   assert(n_token == Constants.expected_ntoken, `should transform n token into ${Constants.expected_ntoken}`, n_token);
 
-  const transformed_url = new SigDecipher(Constants.test_url, Constants.client_version, { sig_decipher_sc: Constants.sig_decipher_sc, ntoken_sc: Constants.n_scramble_sc }).decipher();
+  const transformed_url = new SigDecipher(Constants.test_url, { sig_decipher_sc: Constants.sig_decipher_sc }).decipher();
   assert(transformed_url == Constants.expected_url, `should correctly decipher signature`, transformed_url);
 
   if (failed_tests > 0)
