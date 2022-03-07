@@ -7,6 +7,7 @@
     "test": "node test"
   },
   "author": "LuanRT",
+  "funding": "https://ko-fi.com/luanrt",
   "license": "MIT",
   "directories": {
     "example": "examples",
@@ -24,6 +25,7 @@
   },
   "keywords": [
     "yt",
+    "ytdl",
     "youtube",
     "youtube-dl",
     "youtubedl",
@@ -31,13 +33,13 @@
     "innertube",
     "innertubeapi",
     "livechat",
-    "dl",
-    "api",
-    "like",
+    "downloader",
     "dislike",
     "search",
     "comment",
-    "downloader"
+    "like",
+    "api",
+    "dl"
   ],
   "bugs": {
     "url": "https://github.com/LuanRT/YouTube.js/issues"

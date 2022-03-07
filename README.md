@@ -49,17 +49,17 @@ npm install youtubei.js
 
 ## Usage
 
-[1. Getting Started](https://github.com/LuanRT/YouTube.js#usage)
+[1. Getting Started](#usage)
 
-[2. Interactions](https://github.com/LuanRT/YouTube.js#interactions)
+[2. Interactions](#interactions)
 
-[3. Live chats](https://github.com/LuanRT/YouTube.js#fetching-live-chats)
+[3. Live chats](#fetching-live-chats)
 
-[4. Downloading videos](https://github.com/LuanRT/YouTube.js#downloading-videos)
+[4. Downloading videos](#downloading-videos)
 
-[5. Signing-in](https://github.com/LuanRT/YouTube.js#signing-in)
+[5. Signing-in](#signing-in)
 
-[6. Disclaimer](https://github.com/LuanRT/YouTube.js#disclaimer)
+[6. Disclaimer](#disclaimer)
 
 First of all we're gonna start by initializing the Innertube instance.
 And to make things faster, you should do this only once and reuse the Innertube object when needed.
@@ -761,7 +761,7 @@ async function start() {
   const search = await youtube.search('Looking for life on Mars - documentary');
   
   const stream = youtube.download(search.videos[0].id, {
-    format: 'mp4', // Optional, ignored when type is set to audio and defaults to mp4, and I recommend to leave it as it is
+    format: 'mp4', // Optional, defaults to mp4 and I recommend to leave it as it is unless you know what you're doing
     quality: '360p', // if a video doesn't have a specific quality it'll fall back to 360p, also ignored when type is set to audio
     type: 'videoandaudio' // can be “video”, “audio” and “videoandaudio”
   });
