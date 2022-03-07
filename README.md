@@ -627,7 +627,7 @@ await youtube.interact.comment('VIDEO_ID', 'Haha, nice video!');
 * Change notification preferences:
 ```js
 // Options: ALL | NONE | PERSONALIZED
-await youtube.interact.changeNotificationPreferences('VIDEO_ID', 'ALL'); 
+await youtube.interact.changeNotificationPreferences('CHANNEL_ID', 'ALL'); 
 ```
 
 These methods will always return ```{ success: true, status_code: 200 }``` if successful.
