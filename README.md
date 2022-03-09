@@ -603,7 +603,7 @@ const playlist = await youtube.getPlaylist(search.playlists[0].id);
 ### Interactions:
 ---
 
-The library makes it easy to interact with YouTube programatically. However, don't forget that you must be signed in to use the following features!
+The library makes it easy to interact with YouTube programmatically. However, don't forget that you must be signed in to use the following features!
 
 * Subscribe/Unsubscribe:
 
