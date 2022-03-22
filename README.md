@@ -90,9 +90,9 @@ const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSI
    estimated_results: number,
    videos: [
       {
+         id: string,
          title: string,
          description: string,
-         id: string,
          url: string,
          metadata:{
             view_count: string,
@@ -246,10 +246,18 @@ const video = await youtube.getDetails('VIDEO_ID');
       channel_id: string,
       channel_url: string,
       external_channel_id: string,
+      allow_ratings: boolean,
       is_live_content: boolean,
       is_family_safe: boolean,
       is_unlisted: boolean,
       is_private: boolean,
+      is_liked: boolean,
+      is_disliked: boolean,
+      is_subscribed: boolean,
+      subscriber_count: string,
+      current_notification_preference: string,
+      likes: { count: number, short_count_text: string },
+      publish_date_text: string,
       has_ypc_metadata: boolean,
       category: string,
       channel_name: string,
@@ -327,22 +335,29 @@ const homefeed = await youtube.getHomeFeed();
    {
       id: string,
       title: string,
+      description: string,
       channel: string,
       metadata: {
          view_count: string,
+         short_view_count_text: { simple_text: string, accessibility_label: string },
          thumbnail: {
             url: string,
             width: number,
             height: number
-         },
-         moving_thumbnail: {
+          },
+          moving_thumbnail: {
             url: string,
-            widt: number,
+            width: number,
             height: number
-         },
-         published: string,
-         badges: [Array],
-         owner_badges: [Array]
+          },
+          published: string,
+          duration: {
+            seconds: number,
+            simple_text: string,
+            accessibility_label: string
+          },
+          badges: string,
+          owner_badges: [Array]
       }
    }
    // ...
@@ -370,19 +385,21 @@ const mysubsfeed = await youtube.getSubscriptionsFeed();
          channel: string,
          metadata: {
             view_count: string,
+            short_view_count_text: { simple_text: string, accessibility_label: string },
             thumbnail: {
-               url: string,
-               width: number,
-               height: number
+              url: string,
+              width: number,
+              height: number
             },
             moving_thumbnail: {
-               url: string,
-               width: number,
-               height: number
+              url: string,
+              width: number,
+              height: number
             },
             published: string,
-            badges: [Array],
+            badges: string,
             owner_badges: [Array]
+         }
       }
       //...
    ],
@@ -393,42 +410,44 @@ const mysubsfeed = await youtube.getSubscriptionsFeed();
          channel: string,
          metadata: {
             view_count: string,
+            short_view_count_text: { simple_text: string, accessibility_label: string },
             thumbnail: {
-               url: string,
-               width: number,
-               height: number
+              url: string,
+              width: number,
+              height: number
             },
             moving_thumbnail: {
-               url: string,
-               width: number,
-               height: number
+              url: string,
+              width: number,
+              height: number
             },
             published: string,
-            badges: [Array],
+            badges: string,
             owner_badges: [Array]
+         }
       }
       //...
    ],
    this_week: [
-      {
          id: string,
          title: string,
          channel: string,
          metadata: {
             view_count: string,
             thumbnail: {
-               url: string,
-               width: number,
-               height: number
+              url: string,
+              width: number,
+              height: number
             },
             moving_thumbnail: {
-               url: string,
-               width: number,
-               height: number
+              url: string,
+              width: number,
+              height: number
             },
             published: string,
-            badges: [Array],
+            badges: string,
             owner_badges: [Array]
+         }
       }
       // ...
    ]
@@ -453,9 +472,14 @@ const history = await youtube.getHistory();
    {
     id: string,
     title: string,
-    channel: string,
+    description: string,
+    channel: {
+      name: string,
+      url: string
+    }, 
     metadata: {
       view_count: string,
+      short_view_count_text: { simple_text: string, accessibility_label: string },
       thumbnail: {
          url: string,
          width: number,
@@ -467,7 +491,11 @@ const history = await youtube.getHistory();
          height: number
       },
       published: string,
-      duration: string,
+      duration: {
+        seconds: number,
+        simple_text: string,
+        accessibility_label: string
+      },
       badges: string,
       owner_badges: [Array]
     }
