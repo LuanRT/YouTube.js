@@ -211,7 +211,7 @@ const suggestions = await youtube.getSearchSuggestions('QUERY', {
 </p>
 </details> 
 
-Get details about a specific video:
+Get details about a given video:
 
 ```js
 const video = await youtube.getDetails('VIDEO_ID');
