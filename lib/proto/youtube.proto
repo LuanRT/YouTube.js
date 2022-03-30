@@ -33,6 +33,37 @@ message CreateCommentParams {
   int32 number = 10;
 }
 
+message CreateCommentReplyParams {
+  string video_id = 2;
+  string comment_id = 4;
+ 
+  message UnknownParams {
+    int32 unk_num = 1;
+  }
+  UnknownParams params = 5;
+  
+  int32 unk_num = 10;
+}
+
+message PeformCommentActionParams {
+  int32 type = 1;
+  int32 unk_num = 2;
+  
+  string comment_id = 3;
+  string video_id = 5;
+  
+  int32 unk_num_1 = 6;
+  int32 unk_num_2 = 7;
+  
+  string unk_num_3 = 9;
+  
+  int32 unk_num_4 = 10;
+  int32 unk_num_5 = 21;
+  
+  string channel_id = 23;
+  int32 unk_num_6 = 30;
+}
+
 message SearchFilter {
   int32 number = 1;
   message Filter {
