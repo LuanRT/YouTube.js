@@ -274,14 +274,22 @@ const video = await youtube.getDetails('VIDEO_ID');
 Get comments:
 
 ```js
-const comments = await youtube.getComments('VIDEO_ID');
+const response = await youtube.getComments('VIDEO_ID');
 
 // Or:
 const video = await youtube.getDetails('VIDEO_ID');
-const comments = await video.getComments(); 
+const response = await video.getComments(); 
 
-// Get comments continuation:
-const continuation = await comments.getContinuation();
+// Get comment replies:
+const replies = await response.comments[0].getReplies();
+
+// Like, dislike, reply (same logic for replies):
+await response.comments[0].like();
+await response.comments[0].dislike();
+await response.comments[0].reply('Nice comment!'); 
+
+// Get comments continuation (same logic for replies):
+const continuation = await response.getContinuation();
 ```
 
 <details>
@@ -307,6 +315,8 @@ const continuation = await comments.getContinuation();
          metadata:{
             published: string,
             is_liked: boolean,
+            is_disliked: boolean,
+            is_pinned: boolean,
             is_channel_owner: boolean,
             like_count: number,
             reply_count: number,
