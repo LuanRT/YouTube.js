@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.21.4",
+    "flat": "^5.0.2",
     "protons": "^2.0.3",
     "user-agents": "^1.0.778",
     "uuid": "^8.3.2"
