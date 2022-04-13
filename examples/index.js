@@ -27,7 +27,7 @@ async function start() {
   const search = await youtube.search('Looking for life on Mars - documentary');
   console.info('Search results:', search);
 
-  const video = await youtube.getDetails(search.videos[0].id).catch((error) => error);
+  const video = await youtube.getDetails(search.videos[0].id);
   console.info('Video details:', video);
 
   if (youtube.logged_in) {

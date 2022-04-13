@@ -1,66 +1,114 @@
 <h1 align=center>YouTube.js</h1>
-<p align=center><i>An object-oriented wrapper around the Innertube API, which is what YouTube itself uses.</i><p>
 
 <p align=center>
-   <a href=https://github.com/LuanRT/YouTube.js/issues>Report Bug</a>
+  <i>A full-featured wrapper around the Innertube API, which is what YouTube itself uses.</i>
+<p>
+
+<p align=center>
+   <a href="https://github.com/LuanRT/YouTube.js/issues">Report Bug</a>
     ·
-    <a href=https://github.com/LuanRT/YouTube.js/issues>Request Feature
-   </a>
-   <br/>
-   <br/>
-<img src=https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg>
-<img src=https://img.shields.io/npm/v/youtubei.js?color=%2335C757>
-<img src=https://www.codefactor.io/repository/github/luanrt/youtube.js/badge>
+    <a href="https://github.com/LuanRT/YouTube.js/issues">Request Feature</a>
+<br/>
+<br/>
+ 
+ <!-- PROJECT SHIELDS -->
+<img src="https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg">
+<img src="https://img.shields.io/npm/v/youtubei.js?color=%2335C757">
+<img src="https://www.codefactor.io/repository/github/luanrt/youtube.js/badge">
+<img src="https://img.shields.io/npm/dm/youtubei.js">
+<a href="https://saythanks.io/to/LuanRT">
+<img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg">
+</a>
 </p>
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about">About The Project</a>
+      <ul>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#interactions">Interactions</a></li>
+        <li><a href="#live-chats">Livechats</a></li>
+         <li><a href="#downloading-videos">Downloading videos</a></li>
+        <li><a href="#signing-in">Signing in</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#disclaimer">Disclaimer</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About
 
 Innertube is an API used across all YouTube clients, it was [made to simplify](https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491) the internal structure of the platform and make it easy to push updates. This library takes advantage of that API, therefore providing a simple & efficient way to interact with YouTube programmatically.
 
 And big thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
 
 
-#### What can it do?
+### Features
 
 As of now, this is one of the most advanced & stable YouTube libraries out there, here's a short summary of its features: 
 
 - Search videos, playlists, music, albums etc
 - Get detailed info about any video or playlist
 - Fetch live chat & live stats in real time
-- Get notifications
-- Get watch history
-- Get subscriptions/home feed
 - Change notification preferences for a channel
 - Subscribe/Unsubscribe/Like/Dislike/Comment etc
 - Easily sign in to any Google Account
 - Change an account's settings.
+- Get subscriptions/home feed
+- Get notifications
+- Get watch history
 - Download videos
 
 Do note that you must be signed-in to perform actions that involve an account, such as commenting, subscribing, sending messages to a live chat, etc.
 
-#### Do I need an API key to use this?
+### Do I need an API key to use this?
 
 No, YouTube.js does not use any official API so no API keys are required.
 
-## Installation
+<!-- GETTING STARTED -->
+## Getting Started
 
-```bash
-npm install youtubei.js
-```
+### Prerequisites
+- [NodeJS](https://nodejs.org) v14 or greater
 
+  To verify things are set up
+properly, you can run this:
+  ```bash
+  node --version
+  ```
+
+
+### Installation
+- NPM:
+  ```bash
+  npm install youtubei.js@latest
+  ```
+- Yarn:
+  ```bash
+  yarn add youtubei.js@latest
+  ```
+
+<!-- USAGE -->
 ## Usage
-
-[1. Getting Started](#usage)
-
-[2. Interactions](#interactions)
-
-[3. Live chats](#fetching-live-chats)
-
-[4. Downloading videos](#downloading-videos)
-
-[5. Signing-in](#signing-in)
-
-[6. Disclaimer](#disclaimer)
-
 First of all we're gonna start by initializing the Innertube instance.
 And to make things faster, you should do this only once and reuse the Innertube object when needed.
 
@@ -69,18 +117,20 @@ const Innertube = require('youtubei.js');
 const youtube = await new Innertube();  
 ```
 
-Doing a simple search:
+### Doing a simple search
 
+YouTube:
 ```js
-// YouTube:
 const search = await youtube.search('Looking for life on Mars - Documentary');
+```
 
-// YTMusic:
+YTMusic:
+```js
 const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSIC' });
 ```
 
 <details>
-<summary>YouTube Search Output</summary>
+<summary>YouTube Output</summary>
 <p>
 
 ```js
@@ -91,9 +141,9 @@ const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSI
    videos: [
       {
          id: string,
+         url: string,
          title: string,
          description: string,
-         url: string,
          metadata:{
             view_count: string,
             short_view_count_text: {
@@ -120,67 +170,80 @@ const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSI
 </details> 
 
 <details>
-<summary>YouTube Music Search Output</summary>
+<summary>YTMusic Output</summary>
 <p>
 
 
 ```js
 {
-   songs: [
-      {
-         id: string,
-         title: string,
-         artist: string,
-         album: string,
-         duration: string,
-         thumbnail: {
-            thumbnails: [Array]
-         }
-      },
-      //...
-   ],
-   videos: [
-      {
-         id: string,
-         title: string,
-         author: string,
-         views: string,
-         duration: string,
-         thumbnail: {
-            thumbnails: [Array]
-         }
-      }
-      //...
-   ],
-   albums: [
-      {
-         title: string,
-         author: string,
-         year: string,
-         thumbnail: {
-            thumbnails: [Array]
-         }
-      },
-      //...
-   ],
-   playlists: [
-      {
-         title: string,
-         description: string,
-         total_items: number,
-         duration: string,
-         year: string,
-         items: [
-            {
-               id: string,
-               title: string,
-               author: string,
-               duration: string,
-               thumbnail: [Array]
-            }
-         ]
-      }
-   ]
+   query:string,
+   corrected_query:string,
+   results:{
+      top_result:[Array],  // Can be anything; video, playlist, artist etc..
+	  songs:[
+         {
+            id:string,
+            title:string,
+            artist:string,
+            album:string,
+            duration:string,
+            thumbnails:[
+               Array
+            ]
+         },
+         //...
+      ],
+      videos:[
+         {
+            id:string,
+            title:string,
+            author:string,
+            views:string,
+            duration:string,
+            thumbnails:[Array]
+         },
+         //...
+      ],
+      albums:[
+         {
+            id:string,
+            title:string,
+            author:string,
+            year:string,
+            thumbnails:[Array]
+         },
+         //...
+      ],
+      featured_playlists:[
+         {
+            id:string,
+            title:string,
+            author:string,
+            channel_id:string,
+            total_items:number
+         },
+         //...
+      ],
+      community_playlists:[
+         {
+            id:string,
+            title:string,
+            author:string,
+            channel_id:string,
+            total_items:number
+         },
+         //...
+      ],
+      artists:[
+         {
+            id:string,
+            name:string,
+            subscribers:string,
+            thumbnails:[Array]
+         },
+         //...
+      ]
+   }
 }
 ```
 
@@ -188,7 +251,7 @@ const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSI
 </details> 
 <br>
 
-Get search suggestions:
+### Get search suggestions:
 ```js
 const suggestions = await youtube.getSearchSuggestions('QUERY', {
    client: 'YOUTUBE' // Use YTMUSIC if you want music search suggestions 
@@ -211,7 +274,7 @@ const suggestions = await youtube.getSearchSuggestions('QUERY', {
 </p>
 </details> 
 
-Get details about a given video:
+### Get video info:
 
 ```js
 const video = await youtube.getDetails('VIDEO_ID');
@@ -271,27 +334,17 @@ const video = await youtube.getDetails('VIDEO_ID');
 </p>
 </details>
 
-Get comments:
+### Get comments:
 
 ```js
 const response = await youtube.getComments('VIDEO_ID');
+```
+Alternatively you can use:
 
-// Or:
+```js
 const video = await youtube.getDetails('VIDEO_ID');
 const response = await video.getComments(); 
-
-// Get comment replies:
-const replies = await response.comments[0].getReplies();
-
-// Like, dislike, reply (same logic for replies):
-await response.comments[0].like();
-await response.comments[0].dislike();
-await response.comments[0].reply('Nice comment!'); 
-
-// Get comments continuation (same logic for replies):
-const continuation = await response.getContinuation();
 ```
-
 <details>
 <summary>Output</summary>
 <p>
@@ -332,7 +385,25 @@ const continuation = await response.getContinuation();
 </p>
 </details>
 
-Get home feed:
+Reply to, like and dislike comments:
+```js
+await response.comments[0].like();
+await response.comments[0].dislike();
+await response.comments[0].reply('Nice comment!'); 
+```
+
+Get comment replies:
+```js
+const replies = await response.comments[0].getReplies();
+```
+
+Get comments/replies continuation:
+```js
+const continuation = await response.getContinuation();
+const replies_continuation = await replies.getContinuation();
+```
+
+### Get home feed:
 ```js
 const homefeed = await youtube.getHomeFeed();
 ```
@@ -341,62 +412,21 @@ const homefeed = await youtube.getHomeFeed();
 <p>
 
 ```js
-[
-   {
-      id: string,
-      title: string,
-      description: string,
-      channel: string,
-      metadata: {
-         view_count: string,
-         short_view_count_text: { simple_text: string, accessibility_label: string },
-         thumbnail: {
-            url: string,
-            width: number,
-            height: number
-          },
-          moving_thumbnail: {
-            url: string,
-            width: number,
-            height: number
-          },
-          published: string,
-          duration: {
-            seconds: number,
-            simple_text: string,
-            accessibility_label: string
-          },
-          badges: string,
-          owner_badges: [Array]
-      }
-   }
-   // ...
-]
-```
-
-</p>
-</details>
-
-Get subscriptions feed:
-```js
-const mysubsfeed = await youtube.getSubscriptionsFeed();
-```
-
-<details>
-<summary>Output</summary>
-<p>
-
-```js
 {
-   today: [
-      {
-         id: string,
-         title: string,
-         channel: string,
-         metadata: {
-            view_count: string,
-            short_view_count_text: { simple_text: string, accessibility_label: string },
-            thumbnail: {
+   videos: [
+     {
+        id: string,
+        title: string,
+        description: string,
+        channel: {
+          id: string,
+          name: string,
+          url: string
+        },
+        metadata: {
+           view_count: string,
+           short_view_count_text: { simple_text: string, accessibility_label: string },
+           thumbnail: {
               url: string,
               width: number,
               height: number
@@ -407,67 +437,29 @@ const mysubsfeed = await youtube.getSubscriptionsFeed();
               height: number
             },
             published: string,
+            duration: {
+              seconds: number,
+              simple_text: string,
+              accessibility_label: string
+            },
             badges: string,
             owner_badges: [Array]
-         }
-      }
-      //...
-   ],
-   yesterday: [
-      {
-         id: string,
-         title: string,
-         channel: string,
-         metadata: {
-            view_count: string,
-            short_view_count_text: { simple_text: string, accessibility_label: string },
-            thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            moving_thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            published: string,
-            badges: string,
-            owner_badges: [Array]
-         }
-      }
-      //...
-   ],
-   this_week: [
-         id: string,
-         title: string,
-         channel: string,
-         metadata: {
-            view_count: string,
-            thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            moving_thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            published: string,
-            badges: string,
-            owner_badges: [Array]
-         }
-      }
-      // ...
-   ]
-} 
+        }
+     },
+     // ...
+  ]
+}
 ```
 
 </p>
 </details>
 
-Get watch history:
+Get continuation:
+```js
+const continuation = await homefeed.getContinuation();
+````
+
+### Get watch history:
 ```js
 const history = await youtube.getHistory();
 ```
@@ -478,45 +470,118 @@ const history = await youtube.getHistory();
 <p>
 
 ```js
-[
-   {
-    id: string,
-    title: string,
-    description: string,
-    channel: {
-      name: string,
-      url: string
-    }, 
-    metadata: {
-      view_count: string,
-      short_view_count_text: { simple_text: string, accessibility_label: string },
-      thumbnail: {
-         url: string,
-         width: number,
-         height: number
+{
+   items: [
+      {
+         date: string,
+         videos: [
+            {
+               id: string,
+               title: string,
+               channel: {
+                  id: string,
+                  name: string,
+                  url: string
+               },
+               metadata: {
+                  view_count: string,
+                  short_view_count_text: {
+                     simple_text: string,
+                     accessibility_label: string
+                  },
+                  thumbnail: {
+                     url: string,
+                     width: number,
+                     height: number
+                  },
+                  moving_thumbnail: {
+                     url: string,
+                     width: number,
+                     height: number
+                  },
+                  published: string,
+                  badges: [Array],
+                  owner_badges: [Array]
+               }
+            },
+            //...
+         ]
       },
-      moving_thumbnail: {
-         url: string,
-         width: number,
-         height: number
-      },
-      published: string,
-      duration: {
-        seconds: number,
-        simple_text: string,
-        accessibility_label: string
-      },
-      badges: string,
-      owner_badges: [Array]
-    }
-  }
-]
+      //...
+   ]
+}
 ```
 
 </p>
 </details>
 
-Get notifications:
+Get continuation:
+```js
+const continuation = await history.getContinuation();
+````
+
+### Get subscriptions feed:
+```js
+const mysubsfeed = await youtube.getSubscriptionsFeed();
+```
+
+<details>
+<summary>Output</summary>
+<p>
+
+```js
+{
+   items: [
+      {
+         date: string,
+         videos: [
+            {
+               id: string,
+               title: string,
+               description: string,
+               channel: {
+                  id: string,
+                  name: string,
+                  url: string
+               },
+               metadata: {
+                  view_count: string,
+                  short_view_count_text: {
+                     simple_text: string,
+                     accessibility_label: string
+                  },
+                  thumbnail: {
+                     url: string,
+                     width: number,
+                     height: number
+                  },
+                  moving_thumbnail: {
+                     url: string,
+                     width: number,
+                     height: number
+                  },
+                  published: string,
+                  badges: [Array],
+                  owner_badges: [Array]
+               }
+            },
+            //...
+         ]
+      },
+      //...
+   ]
+}
+```
+
+</p>
+</details>
+
+Get continuation:
+```js
+const continuation = await mysubsfeed.getContinuation();
+````
+
+### Get notifications:
 
 ```js
 const notifications = await youtube.getNotifications();
@@ -527,8 +592,9 @@ const notifications = await youtube.getNotifications();
 <p>
 
 ```js
-[
-   {
+{
+  items: [  
+    {
       title: string,
       sent_time: string,
       channel_name: string,
@@ -545,67 +611,44 @@ const notifications = await youtube.getNotifications();
       video_url: string,
       read: boolean,
       notification_id: string
-   },
-   //...
-]
-```
-
-</p>
-</details>
-
-Get unseen notifications count:
-
-```js
-const notifications = await youtube.getUnseenNotificationsCount();
-```
-
-Get song lyrics:
-```js
-const search = await youtube.search('Never give you up', { client: 'YTMUSIC' });
-const lyrics = await youtube.getLyrics(search.songs[0].id); 
-```
-
-Get playlist: 
-```js
-const search = await youtube.search('Interstellar Soundtrack', {
-   client: 'YTMUSIC' 
-});
-
-// YouTube Music
-const playlist = await youtube.getPlaylist(search.playlists[0].id, {
-   client: 'YTMUSIC' 
-});
-
-// YouTube (default)
-const playlist = await youtube.getPlaylist(search.playlists[0].id);
-```
-
-
-<details>
-<summary>YouTube Music Output</summary>
-<p>
-
-```js
-{
-  title: string,
-  description: string,
-  total_items: number,
-  duration: string,
-  year: string,
-  items: [
-    {
-      id: string,
-      title: string,
-      author: string,
-      duration: string,
-      thumbnail: [Array]
     },
     //...
+  ]
 }
 ```
 
 </p>
 </details>
+
+Get continuation:
+```js
+const continuation = await notifications.getContinuation();
+````
+
+### Get unseen notifications count:
+
+```js
+const notifications = await youtube.getUnseenNotificationsCount();
+```
+
+### Get song lyrics:
+```js
+const search = await youtube.search('Never give you up', { client: 'YTMUSIC' });
+const lyrics = await youtube.getLyrics(search.results.songs[0].id); 
+```
+
+### Get playlist: 
+YouTube (default):
+```js
+const playlist = await youtube.getPlaylist('PLAYLIST_ID');
+```
+
+YouTube Music:
+```js
+const playlist = await youtube.getPlaylist('PLAYLIST_ID', {
+   client: 'YTMUSIC' 
+});
+```
 
 <details>
 <summary>YouTube Output</summary>
@@ -628,10 +671,39 @@ const playlist = await youtube.getPlaylist(search.playlists[0].id);
          simple_text: string,
          accessibility_label: string
       },
-      thumbnail: [Array]
+      thumbnails: [Array]
     },
     //...
   ]
+}
+```
+
+</p>
+</details>
+
+<details>
+<summary>YouTube Music Output</summary>
+<p>
+
+```js
+{
+  title: string,
+  description: string,
+  total_items: number,
+  duration: string,
+  year: string,
+  items: [
+    {
+      id: string,
+      title: string,
+      author: string,
+      duration: {
+         seconds: number,
+         simple_text: string
+      },
+      thumbnails: [Array]
+    },
+    //...
 }
 ```
 
@@ -644,29 +716,28 @@ const playlist = await youtube.getPlaylist(search.playlists[0].id);
 The library makes it easy to interact with YouTube programmatically. However, don't forget that you must be signed in to use the following features!
 
 * Subscribe/Unsubscribe:
-
-```js
-await youtube.interact.subscribe('CHANNEL_ID');
-await youtube.interact.unsubscribe('CHANNEL_ID');
-```
+  ```js
+  await youtube.interact.subscribe('CHANNEL_ID');
+  await youtube.interact.unsubscribe('CHANNEL_ID');
+  ```
 
 * Like/Dislike:
-```js
-await youtube.interact.like('VIDEO_ID');
-await youtube.interact.dislike('VIDEO_ID');
-await youtube.interact.removeLike('VIDEO_ID');
-```
+  ```js
+  await youtube.interact.like('VIDEO_ID');
+  await youtube.interact.dislike('VIDEO_ID');
+  await youtube.interact.removeLike('VIDEO_ID');
+  ```
 
 * Comment:
-```js
-await youtube.interact.comment('VIDEO_ID', 'Haha, nice video!');
-```
+  ```js
+  await youtube.interact.comment('VIDEO_ID', 'Haha, nice video!');
+  ```
 
 * Change notification preferences:
-```js
-// Options: ALL | NONE | PERSONALIZED
-await youtube.interact.changeNotificationPreferences('CHANNEL_ID', 'ALL'); 
-```
+  ```js
+  // Options: ALL | NONE | PERSONALIZED
+  await youtube.interact.changeNotificationPreferences('CHANNEL_ID', 'ALL'); 
+  ```
 
 These methods will always return ```{ success: true, status_code: 200 }``` if successful.
 
@@ -674,73 +745,73 @@ These methods will always return ```{ success: true, status_code: 200 }``` if su
 It is also possible to manage an account's settings:
 
 * Get account info:
-```js
-await youtube.account.info();
-```
+  ```js
+  await youtube.account.info();
+  ```
 
-<details>
-<summary>Output</summary>
-<p>
+  <details>
+  <summary>Output</summary>
+  <p>
 
-```js
-{
-    name: string,
-    photo: [
-       {
-          url: string,
-          width: number,
-          height: number
-       }
-    ],
-    country: string,
-    language: string;
-}
-```
-</p>
-</details>
+  ```js
+  {
+      name: string,
+      photo: [
+         {
+            url: string,
+            width: number,
+            height: number
+         }
+      ],
+      country: string,
+      language: string;
+  }
+  ```
+  </p>
+  </details>
 
 <br>
 
 #### Notification settings:
 
 * Subscription notifications:
-```js
-await youtube.account.settings.notifications.setSubscriptions(true); 
-```
+  ```js
+  await youtube.account.settings.notifications.setSubscriptions(true); 
+  ```
 
 * Recommended content notifications:
-```js
-await youtube.account.settings.notifications.setRecommendedVideos(true); 
-```
+  ```js
+  await youtube.account.settings.notifications.setRecommendedVideos(true); 
+  ```
 
 * Channel activity notifications:
-```js
-await youtube.account.settings.notifications.setChannelActivity(true); 
-```
+  ```js
+  await youtube.account.settings.notifications.setChannelActivity(true); 
+  ```
 
 * Comment replies notifications:
-```js
-await youtube.account.settings.notifications.setCommentReplies(true); 
-```
+  ```js
+  await youtube.account.settings.notifications.setCommentReplies(true); 
+  ```
 
 * Channel mention notifications:
-```js
-await youtube.account.settings.notifications.setSharedContent(true); 
-```
+  ```js
+  await youtube.account.settings.notifications.setSharedContent(true); 
+  ```
 
 #### Privacy settings:
 
 * Subscriptions privacy:
-```js
-await youtube.account.settings.privacy.setSubscriptionsPrivate(true); 
-```
+  ```js
+  await youtube.account.settings.privacy.setSubscriptionsPrivate(true); 
+  ```
 
 * Saved playlists privacy:
-```js
-await youtube.account.settings.privacy.setSavedPlaylistsPrivate(true); 
-```
+  ```js
+  await youtube.account.settings.privacy.setSavedPlaylistsPrivate(true); 
+  ```
 
-### Fetching live chats:
+### Live chats:
 ---
 
 YouTube.js isn't able to download live content yet, but it does allow you to fetch live chats plus you can also send messages!
@@ -843,7 +914,7 @@ const stream = youtube.download(VIDEO_ID, {
   
 ```
 
-Cancelling a download:
+Cancel a download:
 ```js
 stream.cancel();
 ```
@@ -922,7 +993,7 @@ When signing in to your account, you have two options:
 - Use OAuth 2.0; easy, simple & reliable.
 - Cookies; usually more complicated to get and unreliable.
 
-OAuth:
+#### OAuth:
 
 ```js
 const fs = require('fs');
@@ -955,7 +1026,7 @@ async function start() {
 start();
 ```
 
-Cookies:
+#### Cookies:
 
 ```js
 const Innertube = require('youtubei.js');
@@ -968,16 +1039,29 @@ async function start() {
 start();
 ```
 
+<!-- CONTRIBUTING -->
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
+
+<!-- CONTACT -->
+## Contact
+
+LuanRT  - [@lrt_nooneknows](https://twitter.com/lrt_nooneknows) - luan.lrt4@gmail.com
+
+Project Link: [https://github.com/LuanRT/YouTube.js](https://github.com/LuanRT/YouTube.js)
+
+<!-- DISCLAIMER -->
 ## Disclaimer
 This project is not affiliated with, endorsed, or sponsored by YouTube or any of their affiliates or subsidiaries. 
 All trademarks, logos and brand names are the property of their respective owners. 
 
 Should you have any questions or concerns please contact me directly via email.
 
+<!-- LICENSE -->
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
