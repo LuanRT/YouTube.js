@@ -22,6 +22,12 @@ async function performTests() {
     const ytmsearch = await youtube.search('Logic - Obediently Yours', { client: 'YTMUSIC' }).catch((error) => error);
     assert(!(ytmsearch instanceof Error), `should search on YouTube Music`, ytmsearch);
      
+    const ytsearch_suggestions = await youtube.getSearchSuggestions('test', { client: 'YOUTUBE' });
+    assert(!(ytsearch_suggestions instanceof Error), `should retrieve YouTube search suggestions`);
+     
+    const ytmsearch_suggestions = await youtube.getSearchSuggestions('test', { client: 'YTMUSIC' });
+    assert(!(ytmsearch_suggestions instanceof Error), `should retrieve YouTube Music search suggestions`);
+     
     const details = await youtube.getDetails(Constants.test_video_id).catch((error) => error);
     assert(!(details instanceof Error), `should retrieve details for ${Constants.test_video_id}`, details);
 
@@ -34,7 +40,7 @@ async function performTests() {
     const ytmplaylist = await youtube.getPlaylist(ytmsearch.results.community_playlists[0].id, { client: 'YTMUSIC' });
     assert(!(ytmplaylist instanceof Error), `should retrieve and parse playlist with YouTube Music`, ytmplaylist);
     
-    const lyrics = await youtube.getLyrics(ytmsearch.results.songs[0].id);
+    const lyrics = await youtube.getLyrics(Constants.test_song_id);
     assert(!(lyrics instanceof Error), `should retrieve song lyrics`, lyrics);
     
     const video = await downloadVideo(Constants.test_video_id, youtube).catch((error) => error);
