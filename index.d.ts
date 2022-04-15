@@ -11,7 +11,6 @@ interface AccountInfo {
   language: string
 }
 
-// { query: string; corrected_query: string; estimated_results: number; videos: [] }
 interface SearchOptions {
   client: 'YTMUSIC' | 'YOUTUBE'
   period: 'any' | 'hour' | 'day' | 'week' | 'month' | 'year'
