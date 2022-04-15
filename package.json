@@ -12,9 +12,12 @@
   "scripts": {
     "test": "node test"
   },
+  "types": "./typings/index.d.ts",
   "directories": {
-    "example": "examples",
-    "lib": "lib"
+    "test": "./test",
+    "typings": "./typings",
+    "examples": "./examples",
+    "lib": "./lib"
   },
   "dependencies": {
     "axios": "^0.21.4",
