@@ -7,6 +7,7 @@ module.exports = {
   expected_ntoken: 'AxwyS-osUl1WhMUd1',
   client_version: '2.20211101.01.00',
   test_video_id: 'dQw4w9WgXcQ',
+  test_song_id: 'UGB_Bsm5Unk',
   sig_decipher_sc: `fB={RP:function(a,b){a.splice(0,b)},
 Td:function(a){a.reverse()},
 kq:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c};fB.kq(a,35);fB.RP(a,2);fB.kq(a,46);fB.Td(a,6);`,

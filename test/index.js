@@ -6,24 +6,24 @@ const NToken = require('../lib/deciphers/NToken');
 const SigDecipher = require('../lib/deciphers/Sig');
 const Constants = require('./constants');
 
-let failed_tests = 0;
+let failed_tests_count = 0;
 
 async function performTests() {
   const youtube = await new Innertube().catch((error) => error);
   assert(!(youtube instanceof Error), `should retrieve Innertube configuration data`, youtube);
 
   if (!(youtube instanceof Error)) {
-    const homefeed = await youtube.getHomeFeed();
+    const homefeed = await youtube.getHomeFeed().catch((error) => error);
     assert(!(homefeed instanceof Error), `should retrieve recommendations`, homefeed);
     
     const ytsearch = await youtube.search('Carl Sagan - Documentary').catch((error) => error);
-    assert(!(ytsearch instanceof Error) && ytsearch.videos.length, `should search on YouTube`, ytsearch);
+    assert(!(ytsearch instanceof Error), `should search on YouTube`, ytsearch);
     
     const ytmsearch = await youtube.search('Logic - Obediently Yours', { client: 'YTMUSIC' }).catch((error) => error);
     assert(!(ytmsearch instanceof Error), `should search on YouTube Music`, ytmsearch);
      
-    const ytsearch_suggestions = await youtube.getSearchSuggestions('test', { client: 'YOUTUBE' });
-    assert(!(ytsearch_suggestions instanceof Error), `should retrieve YouTube search suggestions`);
+    const ytsearch_suggestions = await youtube.getSearchSuggestions('test', { client: 'YOUTUBE' }).catch((error) => error);
+    assert(!(ytsearch_suggestions instanceof Error), `should retrieve YouTube search suggestions`, ytsearch_suggestions);
      
     const ytmsearch_suggestions = await youtube.getSearchSuggestions('test', { client: 'YTMUSIC' });
     assert(!(ytmsearch_suggestions instanceof Error), `should retrieve YouTube Music search suggestions`);
@@ -34,13 +34,13 @@ async function performTests() {
     const comments = await youtube.getComments(Constants.test_video_id).catch((error) => error);
     assert(!(comments instanceof Error), `should retrieve comments for ${Constants.test_video_id}`, comments);
     
-    const ytplaylist = await youtube.getPlaylist(ytmsearch.results.community_playlists[0].id, { client: 'YOUTUBE' });
+    const ytplaylist = await youtube.getPlaylist(ytmsearch?.results?.community_playlists[0].id, { client: 'YOUTUBE' }).catch((error) => error);
     assert(!(ytplaylist instanceof Error), `should retrieve and parse playlist with YouTube`, ytplaylist);
     
-    const ytmplaylist = await youtube.getPlaylist(ytmsearch.results.community_playlists[0].id, { client: 'YTMUSIC' });
+    const ytmplaylist = await youtube.getPlaylist(ytmsearch?.results?.community_playlists[0].id, { client: 'YTMUSIC' }).catch((error) => error);
     assert(!(ytmplaylist instanceof Error), `should retrieve and parse playlist with YouTube Music`, ytmplaylist);
     
-    const lyrics = await youtube.getLyrics(ytmsearch.results.songs[0].id);
+    const lyrics = await youtube.getLyrics(Constants.test_song_id).catch((error) => error);
     assert(!(lyrics instanceof Error), `should retrieve song lyrics`, lyrics);
     
     const video = await downloadVideo(Constants.test_video_id, youtube).catch((error) => error);
@@ -53,8 +53,8 @@ async function performTests() {
   const transformed_url = new SigDecipher(Constants.test_url, { sig_decipher_sc: Constants.sig_decipher_sc }).decipher();
   assert(transformed_url == Constants.expected_url, `should correctly decipher signature`, transformed_url);
 
-  if (failed_tests > 0)
-    throw new Error('Some tests have failed');
+  if (failed_tests_count > 0)
+    throw new Error(`${failed_tests_count} tests have failed`);
 }
 
 function downloadVideo(id, youtube) {
@@ -72,7 +72,7 @@ function assert(outcome, description, data) {
   const pass_fail = outcome ? 'pass' : 'fail';
 
   console.info(pass_fail, ':', description);
-  !outcome && (failed_tests += 1);
+  !outcome && (failed_tests_count += 1);
   !outcome && console.error('Error: ', data);
 
   return outcome;
