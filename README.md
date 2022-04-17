@@ -1025,6 +1025,13 @@ async function start() {
 
 start();
 ```
+Sign-out:
+```js
+const response = await youtube.signOut();
+if (response.success) {
+  console.log('You have successfully signed out');
+}
+```
 
 #### Cookies:
 
