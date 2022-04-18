@@ -122,6 +122,18 @@ interface HomeFeed {
   }[];
 }
 
+interface Trending {
+  now: {
+    content:  {
+      title: string;
+      videos: [];
+    }[];
+  };
+  music: { getVideos: () => Promise<Array>; };
+  gaming: { getVideos: () => Promise<Array>; };
+  movies: { getVideos: () => Promise<Array>; };
+}
+
 interface Notifications {
   items: {
     title: string;
@@ -149,7 +161,7 @@ export default class Innertube {
   constructor(cookie?: string)
 
   public signIn(auth_info: AuthInfo): Promise<void>;
-  public signOut(): Promise.<ApiStatus>;
+  public signOut(): Promise<ApiStatus>;
   public getAccountInfo(): Promise<AccountInfo>;
   public search(query: string, options: SearchOptions): Promise<SearchResults>;
   public getSearchSuggestions(options: ClientOption): Promise<Suggestion>;
@@ -160,6 +172,7 @@ export default class Innertube {
   public getComments(video_id: string, options?: CommentData): Promise<Comments[]>;
   public getHistory(): Promise<History>;
   public getHomeFeed(): Promise<HomeFeed>;
+  public getTrending(): Promise<Trending>;
   public getSubscriptionsFeed(): Promise<SubscriptionFeed>;
   public getNotifications(): Promise<Notifications>;
   public getUnseenNotificationsCount(): Promise<number>;

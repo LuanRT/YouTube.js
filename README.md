@@ -66,23 +66,18 @@ And big thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for
 
 As of now, this is one of the most advanced & stable YouTube libraries out there, here's a short summary of its features: 
 
-- Search videos, playlists, music, albums etc
-- Get detailed info about any video or playlist
-- Fetch live chat & live stats in real time
-- Change notification preferences for a channel
-- Subscribe/Unsubscribe/Like/Dislike/Comment etc
-- Easily sign in to any Google Account
-- Change an account's settings.
-- Get subscriptions/home feed
-- Get notifications
-- Get watch history
-- Download videos
+- Search videos, playlists, music, albums etc.
+- Subscribe/Unsubscribe/Like/Dislike/Comment etc.
+- Get subscriptions/home feed, notifications and watch history.
+- Easily sign in to any Google Account.
+- Fetch live chat & live stats.
+- Manage account settings.
+- Create/delete playlists.
+- Download videos.
 
-Do note that you must be signed-in to perform actions that involve an account, such as commenting, subscribing, sending messages to a live chat, etc.
+~ And more!
 
-### Do I need an API key to use this?
-
-No, YouTube.js does not use any official API so no API keys are required.
+Do note that you must be signed-in to perform actions that involve an account; such as commenting, liking/disliking videos, sending messages to a live chat, etc.
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -392,12 +387,12 @@ await response.comments[0].dislike();
 await response.comments[0].reply('Nice comment!'); 
 ```
 
-Get comment replies:
+Comment replies:
 ```js
 const replies = await response.comments[0].getReplies();
 ```
 
-Get comments/replies continuation:
+Comments/replies continuation:
 ```js
 const continuation = await response.getContinuation();
 const replies_continuation = await replies.getContinuation();
@@ -454,7 +449,7 @@ const homefeed = await youtube.getHomeFeed();
 </p>
 </details>
 
-Get continuation:
+Continuation:
 ```js
 const continuation = await homefeed.getContinuation();
 ````
@@ -515,7 +510,7 @@ const history = await youtube.getHistory();
 </p>
 </details>
 
-Get continuation:
+Continuation:
 ```js
 const continuation = await history.getContinuation();
 ````
@@ -576,10 +571,47 @@ const mysubsfeed = await youtube.getSubscriptionsFeed();
 </p>
 </details>
 
-Get continuation:
+Continuation:
 ```js
 const continuation = await mysubsfeed.getContinuation();
 ````
+
+### Get trending content:
+
+```js
+const trending = await youtube.getTrending();
+```
+
+<details>
+<summary>Output</summary>
+<p>
+
+```js
+{
+  now: {
+    content: [
+      {
+        title: string,
+        videos: [] 
+      },
+      //...
+    ]
+  },
+  // Other categories require an additional call to fetch videos
+  music: { getVideos: Promise.<Array> },
+  gaming: { getVideos: Promise.<Array> },
+  movies: { getVideos: Promise.<Array> }
+}
+```
+
+</p>
+</details>
+
+### Get song lyrics:
+```js
+const search = await youtube.search('Never give you up', { client: 'YTMUSIC' });
+const lyrics = await youtube.getLyrics(search.results.songs[0].id); 
+```
 
 ### Get notifications:
 
@@ -620,21 +652,15 @@ const notifications = await youtube.getNotifications();
 </p>
 </details>
 
-Get continuation:
+Continuation:
 ```js
 const continuation = await notifications.getContinuation();
 ````
 
-### Get unseen notifications count:
+Unseen notifications count:
 
 ```js
-const notifications = await youtube.getUnseenNotificationsCount();
-```
-
-### Get song lyrics:
-```js
-const search = await youtube.search('Never give you up', { client: 'YTMUSIC' });
-const lyrics = await youtube.getLyrics(search.results.songs[0].id); 
+const unread_notis_count = await youtube.getUnseenNotificationsCount();
 ```
 
 ### Get playlist: 
@@ -732,12 +758,24 @@ The library makes it easy to interact with YouTube programmatically. However, do
   ```js
   await youtube.interact.comment('VIDEO_ID', 'Haha, nice video!');
   ```
-
-* Change notification preferences:
-  ```js
-  // Options: ALL | NONE | PERSONALIZED
-  await youtube.interact.changeNotificationPreferences('CHANNEL_ID', 'ALL'); 
-  ```
+  
+ * Playlists:
+   ```js
+   // Create a playlist:
+   await youtube.playlist.create('NAME', 'VIDEO_ID');
+   
+   // Delete a playlist:
+   await youtube.playlist.delete('PLAYLIST_ID');
+   
+   // Add videos to a playlist:
+   await youtube.playlist.addVideos('PLAYLIST_ID', [ 'VIDEO_ID1', 'VIDEO_ID2' ]);
+   ```
+   
+ * Change notification preferences:
+   ```js
+   // Options: ALL | NONE | PERSONALIZED
+   await youtube.interact.changeNotificationPreferences('CHANNEL_ID', 'ALL'); 
+   ```
 
 These methods will always return ```{ success: true, status_code: 200 }``` if successful.
 
