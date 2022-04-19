@@ -157,8 +157,13 @@ interface StreamingOptions {
   format?: string;
 }
 
+interface Config {
+  gl?: string;
+  cookie?: string;
+}
+
 export default class Innertube {
-  constructor(cookie?: string)
+  constructor(auth_info?: Config)
 
   public signIn(auth_info: AuthInfo): Promise<void>;
   public signOut(): Promise<ApiStatus>;

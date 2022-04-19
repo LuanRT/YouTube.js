@@ -109,7 +109,7 @@ And to make things faster, you should do this only once and reuse the Innertube 
 
 ```js
 const Innertube = require('youtubei.js');
-const youtube = await new Innertube();  
+const youtube = await new Innertube({ gl: 'US' }); // all parameters are optional.
 ```
 
 ### Doing a simple search
@@ -774,7 +774,7 @@ The library makes it easy to interact with YouTube programmatically. However, do
  * Change notification preferences:
    ```js
    // Options: ALL | NONE | PERSONALIZED
-   await youtube.interact.changeNotificationPreferences('CHANNEL_ID', 'ALL'); 
+   await youtube.interact.setNotificationPreferences('CHANNEL_ID', 'ALL'); 
    ```
 
 These methods will always return ```{ success: true, status_code: 200 }``` if successful.
