@@ -3,7 +3,7 @@
 const Fs = require('fs');
 const Innertube = require('..');
 const NToken = require('../lib/deciphers/NToken');
-const SigDecipher = require('../lib/deciphers/Sig');
+const SigDecipher = require('../lib/deciphers/Signature');
 const Constants = require('./constants');
 
 let failed_tests_count = 0;
