@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "1.4.1",
+  "version": "1.4.1-dev.2",
   "description": "A full-featured library that allows you to get detailed info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
   "main": "index.js",
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
@@ -22,7 +22,7 @@
   "dependencies": {
     "axios": "^0.21.4",
     "flat": "^5.0.2",
-    "protons": "^2.0.3",
+    "protocol-buffers-encodings": "^1.1.1",
     "user-agents": "^1.0.778",
     "uuid": "^8.3.2"
   },
@@ -43,6 +43,7 @@
     "youtube-downloader",
     "innertube",
     "innertubeapi",
+    "unofficial",
     "downloader",
     "livechat",
     "dislike",

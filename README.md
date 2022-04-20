@@ -1077,7 +1077,7 @@ if (response.success) {
 const Innertube = require('youtubei.js');
 
 async function start() {
-  const youtube = await new Innertube(COOKIE_HERE); 
+  const youtube = await new Innertube({ cookie: '...' }); 
   //...
 }
 
