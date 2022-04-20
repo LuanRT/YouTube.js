@@ -24,9 +24,9 @@ async function performTests() {
      
     const ytsearch_suggestions = await youtube.getSearchSuggestions('test', { client: 'YOUTUBE' }).catch((error) => error);
     assert(!(ytsearch_suggestions instanceof Error), `should retrieve YouTube search suggestions`, ytsearch_suggestions);
-     
-    const ytmsearch_suggestions = await youtube.getSearchSuggestions('test', { client: 'YTMUSIC' });
-    assert(!(ytmsearch_suggestions instanceof Error), `should retrieve YouTube Music search suggestions`);
+    
+    const ytmsearch_suggestions = await youtube.getSearchSuggestions('test', { client: 'YTMUSIC' }).catch((error) => error);
+    assert(!(ytmsearch_suggestions instanceof Error), `should retrieve YouTube Music search suggestions`, ytmsearch_suggestions);
      
     const details = await youtube.getDetails(Constants.test_video_id).catch((error) => error);
     assert(!(details instanceof Error), `should retrieve details for ${Constants.test_video_id}`, details);
@@ -70,7 +70,7 @@ function downloadVideo(id, youtube) {
 
 function assert(outcome, description, data) {
   const pass_fail = outcome ? 'pass' : 'fail';
-
+  
   console.info(pass_fail, ':', description);
   !outcome && (failed_tests_count += 1);
   !outcome && console.error('Error: ', data);
