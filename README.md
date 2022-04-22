@@ -332,13 +332,14 @@ const video = await youtube.getDetails('VIDEO_ID');
 ### Get comments:
 
 ```js
-const response = await youtube.getComments('VIDEO_ID');
+// Sorting options: `TOP_COMMENTS` and `NEWEST_FIRST`
+const comments = await youtube.getComments('VIDEO_ID', 'TOP_COMMENTS');
 ```
 Alternatively you can use:
 
 ```js
 const video = await youtube.getDetails('VIDEO_ID');
-const response = await video.getComments(); 
+const comments = await video.getComments(); 
 ```
 <details>
 <summary>Output</summary>
@@ -346,12 +347,14 @@ const response = await video.getComments();
 
 ```js
 {
-   comments: [
+   page_count: number,
+   comment_count: number,
+   items: [
       {
          text: string,
          author: {
             name: string,
-            thumbnail: [
+            thumbnails: [
                {
                   url: string,
                   width: number,
@@ -366,35 +369,35 @@ const response = await video.getComments();
             is_disliked: boolean,
             is_pinned: boolean,
             is_channel_owner: boolean,
+            is_reply: boolean,
             like_count: number,
             reply_count: number,
             id: string
          }
       },
       //...
-   ],
-   comment_count: string // not available in continuations
+   ]
 }
 ```
 
 </p>
 </details>
 
-Reply to, like and dislike comments:
+Reply to, like/dislike and report a comment:
 ```js
-await response.comments[0].like();
-await response.comments[0].dislike();
-await response.comments[0].reply('Nice comment!'); 
+await comments.items[0].like();
+await comments.items[0].dislike();
+await comments.items[0].reply('Nice comment!'); 
 ```
 
 Comment replies:
 ```js
-const replies = await response.comments[0].getReplies();
+const replies = await comments.items[0].getReplies();
 ```
 
 Comments/replies continuation:
 ```js
-const continuation = await response.getContinuation();
+const continuation = await comments.getContinuation();
 const replies_continuation = await replies.getContinuation();
 ```
 

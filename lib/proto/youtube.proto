@@ -2,66 +2,111 @@ syntax = "proto2";
 package proto;
 
 message NotificationPreferences {
-  string channel_id = 1;
+  required string channel_id = 1;
+ 
   message Preference {
-    int32 index = 1;
+    required int32 index = 1;
   }
   Preference pref_id = 2;
-  int32 number_0 = 3;
-  int32 number_1 = 4;
+  
+  optional int32 number_0 = 3;
+  optional int32 number_1 = 4;
 }
 
 message LiveMessageParams {
   message Params {
     message Ids {
-      string channel_id = 1;
-      string video_id = 2;
+      required string channel_id = 1;
+      required string video_id = 2;
     }
     Ids ids = 5;
   }
   Params params = 1;
-  int32 number_0 = 2;
-  int32 number_1 = 3;
+  
+  optional int32 number_0 = 2;
+  optional int32 number_1 = 3;
+}
+
+message GetCommentsSectionParams {
+  message Context {
+    string video_id = 2;
+  }
+  Context ctx = 2;
+  
+  required int32 unk_param = 3;
+  
+  message Params {
+    optional string unk_token = 1;
+    
+    message Options {
+      required string video_id = 4;
+      required int32 sort_by = 6;
+      required int32 type = 15;
+    }
+    
+    message RepliesOptions {
+      required string comment_id = 2;
+    
+      message UnkOpts {
+        required int32 unk_param = 1;
+      }
+      UnkOpts unkopts = 4;
+      
+      optional string channel_id = 5;
+      required string video_id = 6;
+      
+      required int32 unk_param_1 = 8;
+      required int32 unk_param_2 = 9;
+    }
+    
+    optional Options opts = 4;
+    optional RepliesOptions replies_opts = 3;
+    
+    optional int32 page = 5;
+    required string target = 8;
+  }
+  
+  Params params = 6;
 }
 
 message CreateCommentParams {
-  string video_id = 2;
+  required string video_id = 2;
   message Params {
-    int32 index = 1;
+    required int32 index = 1;
   }
   Params params = 5;
-  int32 number = 10;
+  required int32 number = 10;
 }
 
 message CreateCommentReplyParams {
-  string video_id = 2;
-  string comment_id = 4;
+  required string video_id = 2;
+  required string comment_id = 4;
  
   message UnknownParams {
-    int32 unk_num = 1;
+    required int32 unk_num = 1;
   }
   UnknownParams params = 5;
   
-  int32 unk_num = 10;
+  optional int32 unk_num = 10;
 }
 
 message PeformCommentActionParams {
-  int32 type = 1;
-  int32 unk_num = 2;
+  required int32 type = 1;
+  optional int32 unk_num = 2;
   
-  string comment_id = 3;
-  string video_id = 5;
+  required string comment_id = 3;
+  required string video_id = 5;
   
-  int32 unk_num_1 = 6;
-  int32 unk_num_2 = 7;
+  optional int32 unk_num_1 = 6;
+  optional int32 unk_num_2 = 7;
   
-  string unk_num_3 = 9;
+  optional string unk_num_3 = 9;
   
-  int32 unk_num_4 = 10;
-  int32 unk_num_5 = 21;
+  optional int32 unk_num_4 = 10;
+  optional int32 unk_num_5 = 21;
   
-  string channel_id = 23;
-  int32 unk_num_6 = 30;
+  optional string channel_id = 23;
+  optional int32 unk_num_6 = 30;
 }
 
 message SearchFilter {

@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "1.4.1-dev.2",
+  "version": "1.4.1-dev.3",
   "description": "A full-featured library that allows you to get detailed info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
   "main": "index.js",
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",

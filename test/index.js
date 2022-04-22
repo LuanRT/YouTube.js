@@ -3,7 +3,7 @@
 const Fs = require('fs');
 const Innertube = require('..');
 const NToken = require('../lib/deciphers/NToken');
-const SigDecipher = require('../lib/deciphers/Signature');
+const Signature = require('../lib/deciphers/Signature');
 const Constants = require('./constants');
 
 let failed_tests_count = 0;
@@ -50,8 +50,8 @@ async function performTests() {
   const n_token = new NToken(Constants.n_scramble_sc, Constants.original_ntoken).transform();
   assert(n_token == Constants.expected_ntoken, `should transform n token into ${Constants.expected_ntoken}`, n_token);
 
-  const transformed_url = new SigDecipher(Constants.test_url, { sig_decipher_sc: Constants.sig_decipher_sc }).decipher();
-  assert(transformed_url == Constants.expected_url, `should correctly decipher signature`, transformed_url);
+  const transformed_url = new Signature(Constants.test_url, { sig_decipher_sc: Constants.sig_decipher_sc }).decipher();
+  assert(transformed_url == Constants.expected_url, `should decipher signature`, transformed_url);
 
   if (failed_tests_count > 0)
     throw new Error(`${failed_tests_count} tests have failed`);

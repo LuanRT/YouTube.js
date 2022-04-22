@@ -23,6 +23,7 @@ interface YouTubeSearch {
   corrected_query: string;
   estimated_results: number;
   videos: any[];
+  getContinuation: () => Promise<object>;
 }
 
 interface YouTubeMusicSearch {
@@ -42,6 +43,8 @@ type SearchResults = YouTubeSearch | YouTubeMusicSearch;
 
 type ClientOption = Pick<SearchOptions, 'client'>;
 
+type SortBy = 'TOP_COMMENTS' | 'NEWEST_FIRST';
+
 interface Suggestion {
   text: string;
   bold_text: string;
@@ -55,8 +58,10 @@ interface ApiStatus {
 }
 
 interface Comments {
-  comments: any[];
-  comment_count?: string;
+  page_count: number,
+  comment_count: number;
+  items: any[];
+  getContinuation: () => Promise<object>;
 }
 
 interface Video {
@@ -72,7 +77,7 @@ interface Video {
   comment: (text: string) => Promise<ApiStatus>;
   getComments: () => Promise<Comments>;
   getLivechat: () => any; // TODO type LiveChat
-  changeNotificationPreferences: () => Promise<ApiStatus>;
+  setNotificationPreferences: () => Promise<ApiStatus>;
 }
 
 interface Channel {
@@ -93,16 +98,12 @@ interface PlayList {
   year?: string;
 }
 
-interface CommentData {
-  token: string;
-  channel_id: string;
-}
-
 interface History {
   items: {
     date: string;
     videos: any[];
   }[];
+  getContinuation: () => Promise<object>;
 }
 
 interface SubscriptionFeed {
@@ -110,6 +111,7 @@ interface SubscriptionFeed {
     date: string; 
     videos: any[];
   }[];
+  getContinuation: () => Promise<object>;
 }
 
 interface HomeFeed {
@@ -120,6 +122,7 @@ interface HomeFeed {
     channel: string;
     metadata: Record<string, any>;
   }[];
+  getContinuation: () => Promise<object>;
 }
 
 interface Trending {
@@ -145,6 +148,7 @@ interface Notifications {
     read: boolean;
     notification_id: string;
   }[];
+  getContinuation: () => Promise<object>;
 }
 
 interface StreamingData {
@@ -169,12 +173,12 @@ export default class Innertube {
   public signOut(): Promise<ApiStatus>;
   public getAccountInfo(): Promise<AccountInfo>;
   public search(query: string, options: SearchOptions): Promise<SearchResults>;
-  public getSearchSuggestions(options: ClientOption): Promise<Suggestion>;
+  public getSearchSuggestions(query: string, options?: ClientOption): Promise<Suggestion>;
   public getDetails(video_id: string): Promise<ApiStatus>;
   public getChannel(id: string): Promise<Channel>;
   public getLyrics(video_id: string): Promise<string>;
   public getPlaylist(playlist_id: string, options?: ClientOption): Promise<PlayList>;
-  public getComments(video_id: string, options?: CommentData): Promise<Comments[]>;
+  public getComments(video_id: string, sort_by?: SortBy): Promise<Comments>;
   public getHistory(): Promise<History>;
   public getHomeFeed(): Promise<HomeFeed>;
   public getTrending(): Promise<Trending>;
