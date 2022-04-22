@@ -387,6 +387,7 @@ Reply to, like/dislike and report a comment:
 ```js
 await comments.items[0].like();
 await comments.items[0].dislike();
+await comments.items[0].report();
 await comments.items[0].reply('Nice comment!'); 
 ```
 
