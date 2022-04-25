@@ -40,9 +40,6 @@ async function performTests() {
     const ytmplaylist = await youtube.getPlaylist(ytmsearch?.results?.community_playlists[0].id, { client: 'YTMUSIC' }).catch((error) => error);
     assert(!(ytmplaylist instanceof Error), `should retrieve and parse playlist with YouTube Music`, ytmplaylist);
     
-    const lyrics = await youtube.getLyrics(Constants.test_song_id).catch((error) => error);
-    assert(!(lyrics instanceof Error), `should retrieve song lyrics`, lyrics);
-    
     const video = await downloadVideo(Constants.test_video_id, youtube).catch((error) => error);
     assert(!(video instanceof Error), `should download video (${Constants.test_video_id})`, video);
   }
