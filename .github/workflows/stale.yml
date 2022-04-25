@@ -15,5 +15,5 @@ jobs:
   recent activity. It will be closed if no further activity occurs. Thank you
   for your contributions.'
         stale-pr-message: 'This PR has been automatically marked as stale because it has not had recent activity. Remove the stale label or comment or this will be closed in 2 days'
-        days-before-stale: 6
+        days-before-stale: 20
         days-before-close: 2
