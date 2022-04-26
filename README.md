@@ -769,23 +769,36 @@ The library makes it easy to interact with YouTube programmatically. However, do
   
  * Playlists:
    ```js
-   // Create a playlist:
-   await youtube.playlist.create('NAME', 'VIDEO_ID');
-   
-   // Delete a playlist:
+   const videos = [
+     'VIDEO_ID1',
+     'VIDEO_ID2',
+     'VIDEO_ID3'
+     //...
+   ];
+
+   // Create and delete a playlist:
+   await youtube.playlist.create('My Playlist', videos);
    await youtube.playlist.delete('PLAYLIST_ID');
    
-   // Add videos to a playlist:
-   await youtube.playlist.addVideos('PLAYLIST_ID', [ 'VIDEO_ID1', 'VIDEO_ID2' ]);
+   // Add and remove videos from a playlist:
+   await youtube.playlist.addVideos('PLAYLIST_ID', videos);
+   await youtube.playlist.removeVideos('PLAYLIST_ID', videos);
    ```
-   
+
  * Change notification preferences:
    ```js
    // Options: ALL | NONE | PERSONALIZED
    await youtube.interact.setNotificationPreferences('CHANNEL_ID', 'ALL'); 
    ```
 
-These methods will always return ```{ success: true, status_code: 200 }``` if successful.
+Response schema:
+```js 
+{
+  success: boolean, 
+  status_code: number, 
+  playlist_id?: string 
+}
+```
 
 ### Account Settings
 It is also possible to manage an account's settings:
