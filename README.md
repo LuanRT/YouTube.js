@@ -19,6 +19,10 @@
 <a href="https://saythanks.io/to/LuanRT">
 <img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg">
 </a>
+<br>
+<a href="https://ko-fi.com/luanrt">
+<img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white">
+</a>
 </p>
 
 <!-- TABLE OF CONTENTS -->
