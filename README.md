@@ -21,7 +21,7 @@
 </a>
 <br>
 <a href="https://ko-fi.com/luanrt">
-<img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white">
+<img src="https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white">
 </a>
 </p>
 
