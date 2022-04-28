@@ -1,6 +1,28 @@
 syntax = "proto2";
 package proto;
 
+message InnertubePayload {
+  message Context {
+    message Client {
+      required int32 unkparam = 16;
+      required string client_version = 17;
+      required string client_name = 18;
+    }
+    Client client = 1;
+  }
+  
+  required Context context = 1;
+  
+  optional string target = 2;
+  
+  message SoundSearchParams {
+    required string target_id = 2;
+    required string query = 3;
+  }
+  
+  optional SoundSearchParams sound_search_params = 16;
+}
+
 message NotificationPreferences {
   required string channel_id = 1;
  
