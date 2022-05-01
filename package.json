@@ -10,7 +10,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "test": "node test"
+    "test": "jest",
+    "types": "npx tsc"
   },
   "types": "./typings/index.d.ts",
   "directories": {
@@ -52,5 +53,8 @@
     "like",
     "api",
     "dl"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
 }
