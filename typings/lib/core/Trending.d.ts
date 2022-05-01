@@ -21,6 +21,7 @@ export class Trending {
         metadata: any;
         header: any;
         microformat: any;
+        sidebar: any;
     };
     #private;
 }

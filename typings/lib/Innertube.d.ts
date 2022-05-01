@@ -483,17 +483,19 @@ declare class Innertube {
      * @param {string} options.type - download type, can be: video, audio or videoandaudio
      * @param {string} options.format - file format
      *
-     * @return {ReadableStream}
+     * @return {Stream.PassThrough}
      */
     download(id: string, options?: {
         quality: string;
         type: string;
         format: string;
-    }): ReadableStream;
+    }): Stream.PassThrough;
     #private;
 }
+import EventEmitter = require("events");
 import Request = require("./utils/Request");
 import Actions = require("./core/Actions");
 import Channel = require("./core/Channel");
 import HomeFeed = require("./core/HomeFeed");
 import { Trending } from "./core/Trending";
+import Stream = require("stream");

@@ -4,13 +4,9 @@ export class ParsingError extends InnertubeError {
 }
 export class DownloadError extends InnertubeError {
 }
-export function InnertubeError(message: any, info: any): void;
-export class InnertubeError {
+export class InnertubeError extends Error {
     constructor(message: any, info: any);
     info: any;
-    stack: string;
-    message: any;
-    constructor: typeof InnertubeError;
 }
 export class MissingParamError extends InnertubeError {
 }

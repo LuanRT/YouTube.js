@@ -7,6 +7,7 @@ declare class ResultsParser {
         metadata: any;
         header: any;
         microformat: any;
+        sidebar: any;
     };
     static parseRR(actions: any): any;
     static parse(contents: any): any;

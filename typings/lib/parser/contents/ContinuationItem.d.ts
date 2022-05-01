@@ -14,6 +14,7 @@ declare class ContinuationItem {
         metadata: any;
         header: any;
         microformat: any;
+        sidebar: any;
     };
 }
 import NavigationEndpoint = require("./NavigationEndpoint");

@@ -8,6 +8,11 @@ declare class Channel {
         metadata: any;
         header: any;
         microformat: any;
+        sidebar: any; /**
+         *
+         * @param {string} name
+         * @returns {import('../parser/contents/Tab')}
+         */
     };
     get title(): any;
     get description(): any;

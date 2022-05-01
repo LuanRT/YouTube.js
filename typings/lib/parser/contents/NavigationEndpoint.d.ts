@@ -1,3 +1,4 @@
+/// <reference types="node" />
 export = NavigationEndpoint;
 declare class NavigationEndpoint {
     constructor(item: any);
@@ -32,7 +33,7 @@ declare class NavigationEndpoint {
         sequence_params: any;
     };
     url: {
-        url: any;
+        url: import("url").URL;
         target: any;
         nofollow: any;
     };
