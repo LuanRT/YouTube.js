@@ -1111,6 +1111,11 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+<!-- CONTRIBUTORS -->
+## Contributors
+<a href="https://github.com/LuanRT/YouTube.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=LuanRT/YouTube.js" />
+</a>
 
 <!-- CONTACT -->
 ## Contact
