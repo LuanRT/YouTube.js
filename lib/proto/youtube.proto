@@ -129,6 +129,21 @@ message PeformCommentActionParams {
   
   optional string channel_id = 23;
   optional int32 unk_num_6 = 30;
+  
+  message TranslateCommentParams {
+    message Params {
+      message Comment {
+        required string text = 1;
+      }
+      required Comment comment = 1;
+    }
+    required Params params = 3;
+    
+    required string comment_id = 2;
+    required string target_language = 4;
+  }
+  
+  optional TranslateCommentParams translate_comment_params = 31;
 }
 
 message SearchFilter {
