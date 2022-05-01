@@ -3,7 +3,10 @@
         "declaration": true,
         "emitDeclarationOnly": true,
         "allowJs": true,
-        "outDir": "./typings"
+        "outDir": "./typings",
+        "lib": ["ESNext"],
+        "target": "ESNext",
+        "moduleResolution": "node"
     },
     "include": [
         "./lib/**/*.js",

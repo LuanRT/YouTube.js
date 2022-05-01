@@ -25,6 +25,18 @@ export namespace OAUTH {
         const CLIENT_IDENTITY: RegExp;
     }
 }
+export namespace CLIENTS {
+    namespace YTMUSIC {
+        const NAME: string;
+        const VERSION: string;
+    }
+    namespace ANDROID {
+        const NAME_1: string;
+        export { NAME_1 as NAME };
+        const VERSION_1: string;
+        export { VERSION_1 as VERSION };
+    }
+}
 export function DEFAULT_HEADERS(config: any): {
     headers: {
         Cookie: any;
@@ -64,7 +76,6 @@ export function VIDEO_INFO_REQBODY(id: any, sts: any, context: any): {
     context: any;
     videoId: any;
 };
-export const YTMUSIC_VERSION: string;
 export const METADATA_KEYS: string[];
 export const BLACKLISTED_KEYS: string[];
 export namespace ACCOUNT_SETTINGS {

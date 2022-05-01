@@ -9,6 +9,7 @@ export class InnertubeError {
     constructor(message: any, info: any);
     info: any;
     stack: string;
+    message: any;
     constructor: typeof InnertubeError;
 }
 export class MissingParamError extends InnertubeError {

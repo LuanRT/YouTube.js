@@ -5,9 +5,11 @@ declare class Innertube {
      * const Innertube = require('youtubei.js');
      * const youtube = await new Innertube();
      * ```
+     *
      * @param {object} [config]
      * @param {string} [config.gl]
      * @param {string} [config.cookie]
+     *
      * @returns {Innertube}
      * @constructor
      */
@@ -26,13 +28,14 @@ declare class Innertube {
     logged_in: any;
     sts: any;
     /**
-     * @event Innertube#auth - Fired when signing in to an account.
-     * @event Innertube#update-credentials - Fired when the access token is no longer valid.
+     * @event Innertube#auth - fired when signing in to an account.
+     * @event Innertube#update-credentials - fired when the access token is no longer valid.
      * @type {EventEmitter}
      */
     ev: EventEmitter;
     auth_apisid: any;
     request: Request;
+    actions: Actions;
     account: {
         info: () => Promise<{
             name: string;
@@ -208,6 +211,7 @@ declare class Innertube {
          *
          * @param {string} title
          * @param {string} video_ids
+         *
          * @returns {Promise.<{ success: boolean; status_code: string; playlist_id: string; }>}
          */
         create: (title: string, video_ids: string) => Promise<{
@@ -268,7 +272,7 @@ declare class Innertube {
     access_token: any;
     refresh_token: any;
     /**
-     * Signs out of your account.
+     * Signs out of an account.
      * @returns {Promise.<{ success: boolean; status_code: number }>}
      */
     signOut(): Promise<{
@@ -285,20 +289,26 @@ declare class Innertube {
         country: string;
         language: string;
     }>;
+    getTimeWatched(): Promise<void>;
     /**
      * Searches on YouTube.
      *
-     * @param {string} query - Search query.
-     * @param {object} options - Search options.
-     * @param {string} option.params - Pre-defined search parameter.
-     * @param {string} options.client - Client used to perform the search, can be: `YTMUSIC` or `YOUTUBE`.
-     * @param {string} options.period - Filter videos uploaded within a period, can be: any | hour | day | week | month | year
-     * @param {string} options.order - Filter results by order, can be: relevance | rating | age | views
-     * @param {string} options.duration - Filter video results by duration, can be: any | short | long
+     * @param {string} query - search query.
+     * @param {object} options - search options.
+     * @param {string} options.client - client used to perform the search, can be: `YTMUSIC` or `YOUTUBE`.
+     * @param {string} options.period - filter videos uploaded within a period, can be: any | hour | day | week | month | year
+     * @param {string} options.order - filter results by order, can be: relevance | rating | age | views
+     * @param {string} options.duration - filter video results by duration, can be: any | short | long
+     *
      * @returns {Promise.<{ query: string; corrected_query: string; estimated_results: number; videos: [] } |
      * { results: { songs: []; videos: []; albums: []; community_playlists: [] } }>}
      */
-    search(query: string, options?: object): Promise<{
+    search(query: string, options?: {
+        client: string;
+        period: string;
+        order: string;
+        duration: string;
+    }): Promise<{
         query: string;
         corrected_query: string;
         estimated_results: number;
@@ -314,9 +324,10 @@ declare class Innertube {
     /**
      * Retrieves search suggestions.
      *
-     * @param {string} input - The search query.
-     * @param {object} [options] - Search options.
-     * @param {string} [options.client='YOUTUBE'] - Client used to retrieve search suggestions, can be: `YOUTUBE` or `YTMUSIC`.
+     * @param {string} input - the search query.
+     * @param {object} [options] - search options.
+     * @param {string} [options.client='YOUTUBE'] - client used to retrieve search suggestions, can be: `YOUTUBE` or `YTMUSIC`.
+     *
      * @returns {Promise.<[{ text: string; bold_text: string }]>}
      */
     getSearchSuggestions(input: string, options?: {
@@ -328,7 +339,7 @@ declare class Innertube {
     /**
      * Retrieves video info.
      *
-     * @param {string} video_id - Video id
+     * @param {string} video_id - video id
      * @return {Promise.<{ title: string; description: string; thumbnail: []; metadata: object }>}
      */
     getDetails(video_id: string): Promise<{
@@ -340,8 +351,8 @@ declare class Innertube {
     /**
      * Retrieves comments for a video.
      *
-     * @param {string} video_id - Video id
-     * @param {string} [sort_by] - Can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
+     * @param {string} video_id - video id
+     * @param {string} [sort_by] - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
      * @return {Promise.<{ page_count: number; comment_count: number; items: []; }>}
      */
     getComments(video_id: string, sort_by?: string): Promise<{
@@ -352,7 +363,7 @@ declare class Innertube {
     /**
      * Retrieves contents for a given channel. (WIP)
      *
-     * @param {string} id - The id of the channel.
+     * @param {string} id - channel id
      * @return {Promise.<{ title: string; description: string; metadata: object; content: object }>}
      */
     getChannel(id: string): Promise<{
@@ -362,7 +373,7 @@ declare class Innertube {
         content: object;
     }>;
     /**
-     * Retrieves your watch history.
+     * Retrieves watch history.
      * @returns {Promise.<{ items: [{ date: string; videos: [] }] }>}
      */
     getHistory(): Promise<{
@@ -378,6 +389,7 @@ declare class Innertube {
     getHomeFeed(): Promise<HomeFeed>;
     /**
      * Retrieves trending content.
+     *
      * @returns {Promise.<{ now: { content: [{ title: string; videos: []; }] };
      * music: { getVideos: Promise.<Array>; }; gaming: { getVideos: Promise.<Array>; };
      * gaming: { getVideos: Promise.<Array>; }; }>}
@@ -399,8 +411,9 @@ declare class Innertube {
             getVideos: Promise<any[]>;
         };
     }>;
+    getLibrary(): Promise<any>;
     /**
-     * Retrieves your subscriptions feed.
+     * Retrieves subscriptions feed.
      * @returns {Promise.<{ items: [{ date: string; videos: [] }] }>}
      */
     getSubscriptionsFeed(): Promise<{
@@ -427,22 +440,22 @@ declare class Innertube {
     }>;
     /**
      * Retrieves unseen notifications count.
-     * @returns {Promise.<number>} unseen notifications count.
+     * @returns {Promise.<number>}
      */
     getUnseenNotificationsCount(): Promise<number>;
     /**
      * Retrieves lyrics for a given song if available.
      *
      * @param {string} video_id
-     * @returns {Promise.<string>} Song lyrics
+     * @returns {Promise.<string>}
      */
     getLyrics(video_id: string): Promise<string>;
     /**
-     * Parses a given playlist.
+     * Retrieves a given playlist.
      *
-     * @param {string} playlist_id - The id of the playlist.
+     * @param {string} playlist_id - playlist id.
      * @param {object} options - { client: YOUTUBE | YTMUSIC }
-     * @param {string} options.client - Client used to parse the playlist, can be: `YTMUSIC` | `YOUTUBE`
+     * @param {string} options.client - client used to parse the playlist, can be: `YTMUSIC` | `YOUTUBE`
      * @returns {Promise.<
      *  { title: string; description: string; total_items: string; last_updated: string; views: string; items: [] } |
      *  { title: string; description: string; total_items: number; duration: string; year: string; items: [] }>}
@@ -468,11 +481,12 @@ declare class Innertube {
      * An alternative to {@link download}.
      * Returns deciphered streaming data.
      *
-     * @param {string} id - Video id
-     * @param {object} options - Download options.
-     * @param {string} options.quality - Video quality; 360p, 720p, 1080p, etc....
-     * @param {string} options.type - Download type, can be: video, audio or videoandaudio
-     * @param {string} options.format - File format
+     * @param {string} id - video id
+     * @param {object} options - download options.
+     * @param {string} options.quality - video quality; 360p, 720p, 1080p, etc...
+     * @param {string} options.type - download type, can be: video, audio or videoandaudio
+     * @param {string} options.format - file format
+     *
      * @returns {Promise.<{ selected_format: {}; formats: [] }>}
      */
     getStreamingData(id: string, options?: {
@@ -486,11 +500,12 @@ declare class Innertube {
     /**
      * Downloads a given video. If you only need the direct download link take a look at {@link getStreamingData}.
      *
-     * @param {string} id - Video id
-     * @param {object} options - Download options.
-     * @param {string} options.quality - Video quality; 360p, 720p, 1080p, etc....
-     * @param {string} options.type - Download type, can be: video, audio or videoandaudio
-     * @param {string} options.format - File format
+     * @param {string} id - video id
+     * @param {object} options - download options.
+     * @param {string} options.quality - video quality; 360p, 720p, 1080p, etc...
+     * @param {string} options.type - download type, can be: video, audio or videoandaudio
+     * @param {string} options.format - file format
+     *
      * @return {ReadableStream}
      */
     download(id: string, options?: {
@@ -500,5 +515,7 @@ declare class Innertube {
     }): ReadableStream;
     #private;
 }
+import EventEmitter = require("events");
 import Request = require("./utils/Request");
+import Actions = require("./core/Actions");
 import HomeFeed = require("./core/HomeFeed");
