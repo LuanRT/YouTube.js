@@ -2,7 +2,10 @@ export = Tab;
 declare class Tab {
     constructor(item: any);
     type: string;
-    title: any;
+    /**
+     * @type {string}
+     */
+    title: string;
     endpoint: NavigationEndpoint;
     selected: any;
     content: any;

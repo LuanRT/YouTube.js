@@ -2,7 +2,6 @@ export = NavigatableText;
 declare class NavigatableText extends Text {
     constructor(node: any);
     endpoint: NavigationEndpoint;
-    toString(): string;
     toJSON(): NavigatableText;
 }
 import Text = require("./Text");

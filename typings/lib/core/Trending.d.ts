@@ -1,0 +1,60 @@
+export class Trending {
+    constructor(session: any, data: any);
+    /**
+     *
+     * @param {string} title title of the tab to get
+     * @returns
+     */
+    getTab(title: string): TrendingTab;
+    /**
+     * @alias getTab('now')
+     */
+    get now(): TrendingTab;
+    /**
+     * @alias getTab('music')
+     */
+    get music(): TrendingTab;
+    get page(): {
+        contents: any;
+        on_response_received_actions: any;
+        on_response_received_endpoints: any;
+        metadata: any;
+        header: any;
+        microformat: any;
+    };
+    #private;
+}
+export class TrendingTab {
+    /**
+     * @param {import('../parser/contents/Tab')} tab
+     */
+    constructor(session: any, tab: import('../parser/contents/Tab'));
+    get title(): string;
+    /**
+     * @returns {import('../parser/contents/Shelf')[]}
+     */
+    getShelfs(): import('../parser/contents/Shelf')[];
+    getShelf(title: any): any;
+    /**
+     * @type {{
+     *  title: string,
+     *  videos: SimpleVideo[]
+     * }[] | null}
+     */
+    get content(): {
+        title: string;
+        videos: SimpleVideo[];
+    }[];
+    /**
+     * Selects this tab and returns a new TrendingTab with this tab selected
+     */
+    getSelected(): Promise<TrendingTab>;
+    /**
+     * @note getVideos returns only the vidoes of the first shelf
+     * @returns {SimpleVideo[]}
+     */
+    getVideos(): SimpleVideo[];
+    get raw(): import("../parser/contents/Tab");
+    #private;
+}
+import SimpleVideo = require("./SimpleVideo");

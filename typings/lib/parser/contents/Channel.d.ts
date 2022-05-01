@@ -5,9 +5,9 @@ declare class Channel {
     id: any;
     author: Author;
     subscribers: Text;
-    description_snippet: Text;
     videos: Text;
     endpoint: NavigationEndpoint;
+    description_snippet: Text;
 }
 import Author = require("./Author");
 import Text = require("./Text");

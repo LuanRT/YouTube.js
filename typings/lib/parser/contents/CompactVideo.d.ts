@@ -11,6 +11,7 @@ declare class CompactVideo {
     views: Text;
     duration: Text;
     endpoint: NavigationEndpoint;
+    get best_thumbnail(): Thumbnail;
 }
 import Thumbnail = require("./Thumbnail");
 import Text = require("./Text");

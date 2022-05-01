@@ -1,4 +1,3 @@
-/// <reference types="node" />
 export = NavigationEndpoint;
 declare class NavigationEndpoint {
     constructor(item: any);
@@ -33,7 +32,7 @@ declare class NavigationEndpoint {
         sequence_params: any;
     };
     url: {
-        url: import("url").URL;
+        url: any;
         target: any;
         nofollow: any;
     };
@@ -48,5 +47,14 @@ declare class NavigationEndpoint {
         button: any;
         content: any;
     };
-    call(session: any): any;
+    /**
+     *
+     * @param {import('../../Innertube')} session
+     * @returns
+     */
+    call(session: import('../../Innertube')): Promise<{
+        success: boolean;
+        status_code: number;
+        data: any;
+    }>;
 }

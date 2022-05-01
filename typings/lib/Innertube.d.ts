@@ -364,14 +364,9 @@ declare class Innertube {
      * Retrieves contents for a given channel. (WIP)
      *
      * @param {string} id - channel id
-     * @return {Promise.<{ title: string; description: string; metadata: object; content: object }>}
+     * @return {Promise<Channel>}
      */
-    getChannel(id: string): Promise<{
-        title: string;
-        description: string;
-        metadata: object;
-        content: object;
-    }>;
+    getChannel(id: string): Promise<Channel>;
     /**
      * Retrieves watch history.
      * @returns {Promise.<{ items: [{ date: string; videos: [] }] }>}
@@ -390,27 +385,9 @@ declare class Innertube {
     /**
      * Retrieves trending content.
      *
-     * @returns {Promise.<{ now: { content: [{ title: string; videos: []; }] };
-     * music: { getVideos: Promise.<Array>; }; gaming: { getVideos: Promise.<Array>; };
-     * gaming: { getVideos: Promise.<Array>; }; }>}
+     * @returns {Promise<Trending>}
      */
-    getTrending(): Promise<{
-        now: {
-            content: [{
-                title: string;
-                videos: [];
-            }];
-        };
-        music: {
-            getVideos: Promise<any[]>;
-        };
-        gaming: {
-            getVideos: Promise<any[]>;
-        };
-        gaming: {
-            getVideos: Promise<any[]>;
-        };
-    }>;
+    getTrending(): Promise<Trending>;
     getLibrary(): Promise<any>;
     /**
      * Retrieves subscriptions feed.
@@ -515,7 +492,8 @@ declare class Innertube {
     }): ReadableStream;
     #private;
 }
-import EventEmitter = require("events");
 import Request = require("./utils/Request");
 import Actions = require("./core/Actions");
+import Channel = require("./core/Channel");
 import HomeFeed = require("./core/HomeFeed");
+import { Trending } from "./core/Trending";

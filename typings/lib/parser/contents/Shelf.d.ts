@@ -5,11 +5,7 @@ declare class Shelf {
     title: Text;
     content: any;
     endpoint: NavigationEndpoint;
-    button: {
-        text: Text;
-        endpoint: NavigationEndpoint;
-        icon: any;
-    };
+    button: any;
 }
 import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");

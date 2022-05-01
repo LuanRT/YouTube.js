@@ -2,11 +2,19 @@ export = Text;
 declare class Text {
     constructor(txt: any, def?: any);
     type: string;
-    text: any;
+    /**
+     * @type {string | undefined}
+     */
+    text: string | undefined;
     runs: any;
-    toString(): any;
+    /**
+     * Get the string representation of this text
+     * @note may return an empty string if this.text is undefined
+     * @returns {string}
+     */
+    toString(): string;
     toJSON(): {
-        text: any;
+        string: string;
         runs: any;
     };
 }

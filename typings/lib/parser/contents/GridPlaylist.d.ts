@@ -4,12 +4,13 @@ declare class GridPlaylist {
     type: string;
     id: any;
     videos: Text;
-    thumbnauls: Thumbnail[];
+    thumbnails: Thumbnail[];
     video_thumbnails: any;
     title: Text;
     endpoint: NavigationEndpoint;
-    view_playlist: Text;
+    view_playlist: NavigatableText;
 }
 import Text = require("./Text");
 import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");
+import NavigatableText = require("./NavigatableText");

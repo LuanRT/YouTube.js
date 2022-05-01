@@ -2,7 +2,7 @@ export = PlaylistPanelVideo;
 declare class PlaylistPanelVideo {
     constructor(item: any);
     type: string;
-    index: any;
+    index: string;
     selected: any;
     duration: Text;
     author: Author;
@@ -10,6 +10,7 @@ declare class PlaylistPanelVideo {
     thumbnails: Thumbnail[];
     title: Text;
     id: any;
+    get best_thumbnail(): Thumbnail;
 }
 import Text = require("./Text");
 import Author = require("./Author");

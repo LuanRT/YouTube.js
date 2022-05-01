@@ -3,12 +3,11 @@ declare class GridChannel {
     constructor(item: any);
     type: string;
     id: any;
-    thumbnails: Thumbnail[];
-    videos: Text;
+    author: Author;
     subscribers: Text;
-    name: Text;
+    videos: Text;
     endpoint: NavigationEndpoint;
 }
-import Thumbnail = require("./Thumbnail");
+import Author = require("./Author");
 import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");

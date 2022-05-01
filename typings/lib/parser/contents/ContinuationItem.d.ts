@@ -10,6 +10,10 @@ declare class ContinuationItem {
     response: {
         contents: any;
         on_response_received_actions: any;
+        on_response_received_endpoints: any;
+        metadata: any;
+        header: any;
+        microformat: any;
     };
 }
 import NavigationEndpoint = require("./NavigationEndpoint");

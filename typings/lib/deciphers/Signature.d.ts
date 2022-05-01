@@ -8,6 +8,6 @@ declare class Signature {
     /**
      * Deciphers signature.
      */
-    decipher(): string;
+    decipher(): any;
     #private;
 }
