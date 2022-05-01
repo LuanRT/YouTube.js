@@ -373,17 +373,9 @@ declare class Innertube {
     }>;
     /**
      * Retrieves YouTube's home feed (aka recommendations).
-     * @returns {Promise.<{ videos: [{ id: string; title: string; description: string; channel: string; metadata: object }] }>}
+     * @returns {Promise<HomeFeed>}
      */
-    getHomeFeed(): Promise<{
-        videos: [{
-            id: string;
-            title: string;
-            description: string;
-            channel: string;
-            metadata: object;
-        }];
-    }>;
+    getHomeFeed(): Promise<HomeFeed>;
     /**
      * Retrieves trending content.
      * @returns {Promise.<{ now: { content: [{ title: string; videos: []; }] };
@@ -509,3 +501,4 @@ declare class Innertube {
     #private;
 }
 import Request = require("./utils/Request");
+import HomeFeed = require("./core/HomeFeed");
