@@ -454,6 +454,34 @@ const homefeed = await youtube.getHomeFeed();
 }
 ```
 
+### Get music feed:
+```js
+const musicfeed = await youtube.getMusicFeed();
+```
+<details>
+<summary>Output</summary>
+<p>
+
+```js
+{
+   contents: [
+     {
+        id: string,
+        title: string,
+        subtitle: string,
+        thumbnail: [
+           {
+              url: string,
+              width: number,
+              height: number
+           }
+        ]
+     },
+     // ...
+  ]
+}
+```
+
 </p>
 </details>
 
