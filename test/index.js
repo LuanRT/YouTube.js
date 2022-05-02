@@ -1,3 +1,5 @@
+// TODO: Refactor this to use a testing library 
+
 'use strict';
 
 const Fs = require('fs');
