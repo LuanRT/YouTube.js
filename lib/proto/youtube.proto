@@ -4,30 +4,46 @@ package proto;
 message InnertubePayload {
   message Context {
     message Client {
-      required int32 unkparam = 16;
-      required string client_version = 17;
-      required string client_name = 18;
+      int32 unkparam = 16;
+      string client_version = 17;
+      string client_name = 18;
     }
     Client client = 1;
   }
   
-  required Context context = 1;
+  Context context = 1;
   
   optional string target = 2;
   
   message SoundSearchParams {
-    required string target_id = 2;
-    required string query = 3;
+    string target_id = 2;
+    string query = 3;
   }
   
   optional SoundSearchParams sound_search_params = 16;
 }
 
+message SoundInfoParams {
+  message Sound {
+    message Params {
+      message Ids {
+        string id_1 = 1;
+        string id_2 = 2;
+        string id_3 = 3;
+      }
+      Ids ids = 2;
+    }
+    Params params = 1;
+  }
+  
+  Sound sound = 94;
+}
+
 message NotificationPreferences {
-  required string channel_id = 1;
+  string channel_id = 1;
  
   message Preference {
-    required int32 index = 1;
+    int32 index = 1;
   }
   Preference pref_id = 2;
   
@@ -38,8 +54,8 @@ message NotificationPreferences {
 message LiveMessageParams {
   message Params {
     message Ids {
-      required string channel_id = 1;
-      required string video_id = 2;
+      string channel_id = 1;
+      string video_id = 2;
     }
     Ids ids = 5;
   }
@@ -55,57 +71,57 @@ message GetCommentsSectionParams {
   }
   Context ctx = 2;
   
-  required int32 unk_param = 3;
+  int32 unk_param = 3;
   
   message Params {
     optional string unk_token = 1;
     
     message Options {
-      required string video_id = 4;
-      required int32 sort_by = 6;
-      required int32 type = 15;
+      string video_id = 4;
+      int32 sort_by = 6;
+      int32 type = 15;
     }
     
     message RepliesOptions {
-      required string comment_id = 2;
+      string comment_id = 2;
     
       message UnkOpts {
-        required int32 unk_param = 1;
+        int32 unk_param = 1;
       }
       UnkOpts unkopts = 4;
       
       optional string channel_id = 5;
-      required string video_id = 6;
+      string video_id = 6;
       
-      required int32 unk_param_1 = 8;
-      required int32 unk_param_2 = 9;
+      int32 unk_param_1 = 8;
+      int32 unk_param_2 = 9;
     }
     
     optional Options opts = 4;
     optional RepliesOptions replies_opts = 3;
     
     optional int32 page = 5;
-    required string target = 8;
+    string target = 8;
   }
   
   Params params = 6;
 }
 
 message CreateCommentParams {
-  required string video_id = 2;
+  string video_id = 2;
   message Params {
-    required int32 index = 1;
+    int32 index = 1;
   }
   Params params = 5;
-  required int32 number = 10;
+  int32 number = 10;
 }
 
 message CreateCommentReplyParams {
-  required string video_id = 2;
-  required string comment_id = 4;
+  string video_id = 2;
+  string comment_id = 4;
  
   message UnknownParams {
-    required int32 unk_num = 1;
+    int32 unk_num = 1;
   }
   UnknownParams params = 5;
   
@@ -113,11 +129,11 @@ message CreateCommentReplyParams {
 }
 
 message PeformCommentActionParams {
-  required int32 type = 1;
+  int32 type = 1;
   optional int32 unk_num = 2;
   
-  required string comment_id = 3;
-  required string video_id = 5;
+  string comment_id = 3;
+  string video_id = 5;
   
   optional int32 unk_num_1 = 6;
   optional int32 unk_num_2 = 7;
@@ -133,14 +149,14 @@ message PeformCommentActionParams {
   message TranslateCommentParams {
     message Params {
       message Comment {
-        required string text = 1;
+        string text = 1;
       }
-      required Comment comment = 1;
+      Comment comment = 1;
     }
-    required Params params = 3;
+    Params params = 3;
     
-    required string comment_id = 2;
-    required string target_language = 4;
+    string comment_id = 2;
+    string target_language = 4;
   }
   
   optional TranslateCommentParams translate_comment_params = 31;
