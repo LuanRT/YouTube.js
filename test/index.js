@@ -15,6 +15,9 @@ async function performTests() {
   if (!(youtube instanceof Error)) {
     const homefeed = await youtube.getHomeFeed().catch((error) => error);
     assert(!(homefeed instanceof Error), `should retrieve recommendations`, homefeed);
+
+    const musicfeed = await youtube.getMusicFeed().catch((error) => error);
+    assert(!(musicfeed instanceof Error), `should retrieve music recommendations`, musicfeed);
     
     const ytsearch = await youtube.search('Carl Sagan - Documentary').catch((error) => error);
     assert(!(ytsearch instanceof Error), `should search on YouTube`, ytsearch);
