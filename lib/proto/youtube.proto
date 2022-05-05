@@ -1,6 +1,11 @@
 syntax = "proto2";
 package proto;
 
+message VisitorData {
+  string id = 1;
+  int32 timestamp = 5;
+}
+
 message InnertubePayload {
   message Context {
     message Client {
