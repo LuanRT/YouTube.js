@@ -15,6 +15,21 @@ declare class ContinuationItem {
         header: any;
         microformat: any;
         sidebar: any;
+        playability_status: {
+            status: any;
+            embeddable: any;
+        };
+        streaming_data: {
+            expires: Date;
+            formats: import("./Format")[];
+            adaptive_formats: import("./Format")[];
+        };
+        captions: any;
+        video_details: import("./VideoDetails");
+        annotations: any;
+        storyboards: any;
+        endscreen: any;
+        cards: any;
     };
 }
 import NavigationEndpoint = require("./NavigationEndpoint");

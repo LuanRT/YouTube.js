@@ -46,5 +46,5 @@ declare class Feed {
     getContinuation(): Promise<Feed>;
     #private;
 }
-import SimpleVideo = require("./SimpleVideo");
-import SimplePlaylist = require("./SimplePlaylist");
+import SimpleVideo = require("./VideoItem");
+import SimplePlaylist = require("./PlaylistItem");

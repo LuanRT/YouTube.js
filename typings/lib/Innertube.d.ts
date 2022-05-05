@@ -349,6 +349,12 @@ declare class Innertube {
         metadata: object;
     }>;
     /**
+     * This is temorary, will replace getDetails() in the future.
+     * @param {*} video_id
+     * @returns
+     */
+    _getDetails(video_id: any): Promise<Video>;
+    /**
      * Retrieves comments for a video.
      *
      * @param {string} video_id - video id
@@ -490,11 +496,13 @@ declare class Innertube {
         type: string;
         format: string;
     }): Stream.PassThrough;
+    getPlayer(): any;
     #private;
 }
 import EventEmitter = require("events");
 import Request = require("./utils/Request");
 import Actions = require("./core/Actions");
+import Video = require("./core/Video");
 import Channel = require("./core/Channel");
 import HomeFeed = require("./core/HomeFeed");
 import { Trending } from "./core/Trending";

@@ -43,11 +43,15 @@ declare class NavigationEndpoint {
         trigger: any;
     };
     is_reveal_business_emal: boolean;
+    sign_in: {
+        next: NavigationEndpoint;
+    };
     modal: {
         title: any;
         button: any;
         content: any;
     };
+    perform_comment_action: {};
     /**
      *
      * @param {import('../../Innertube')} session

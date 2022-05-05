@@ -22,6 +22,21 @@ export class Trending {
         header: any;
         microformat: any;
         sidebar: any;
+        playability_status: {
+            status: any;
+            embeddable: any;
+        };
+        streaming_data: {
+            expires: Date;
+            formats: import("../parser/contents/Format")[];
+            adaptive_formats: import("../parser/contents/Format")[];
+        };
+        captions: any;
+        video_details: import("../parser/contents/VideoDetails");
+        annotations: any;
+        storyboards: any;
+        endscreen: any;
+        cards: any;
     };
     #private;
 }
@@ -58,4 +73,4 @@ export class TrendingTab {
     get raw(): import("../parser/contents/Tab");
     #private;
 }
-import SimpleVideo = require("./SimpleVideo");
+import SimpleVideo = require("./VideoItem");

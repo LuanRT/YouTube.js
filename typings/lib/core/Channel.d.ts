@@ -8,11 +8,22 @@ declare class Channel {
         metadata: any;
         header: any;
         microformat: any;
-        sidebar: any; /**
-         *
-         * @param {string} name
-         * @returns {import('../parser/contents/Tab')}
-         */
+        sidebar: any;
+        playability_status: {
+            status: any;
+            embeddable: any;
+        };
+        streaming_data: {
+            expires: Date;
+            formats: import("../parser/contents/Format")[];
+            adaptive_formats: import("../parser/contents/Format")[];
+        };
+        captions: any;
+        video_details: import("../parser/contents/VideoDetails");
+        annotations: any;
+        storyboards: any;
+        endscreen: any;
+        cards: any;
     };
     get title(): any;
     get description(): any;

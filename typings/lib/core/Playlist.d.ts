@@ -13,7 +13,7 @@ declare class Playlist extends Feed {
     /**
      * @alias videos
      */
-    get items(): import("./SimpleVideo")[];
+    get items(): import("./VideoItem")[];
     getContinuation(): Promise<Playlist>;
     #private;
 }

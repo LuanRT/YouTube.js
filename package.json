@@ -10,8 +10,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "test": "jest",
-    "types": "npx tsc"
+    "test": "node test",
+    "build:types": "npx tsc"
   },
   "types": "./typings/index.d.ts",
   "directories": {
@@ -55,6 +55,7 @@
     "dl"
   ],
   "devDependencies": {
+    "@types/node": "^17.0.31",
     "typescript": "^4.6.4"
   }
 }
