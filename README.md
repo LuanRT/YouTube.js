@@ -391,17 +391,22 @@ const comments = await video.getComments();
 </p>
 </details>
 
-Reply to, like/dislike and report a comment:
+Reply to, like/dislike, translate and report a comment:
 ```js
-await comments.items[0].like();
-await comments.items[0].dislike();
-await comments.items[0].report();
-await comments.items[0].reply('Nice comment!'); 
+const top_comment = comments.items[0];
+
+await top_comment.like();
+await top_comment.dislike();
+await top_comment.report();
+await top_comment.reply('Nice comment!'); 
+
+// Note: only ISO language codes are accepted
+await top_comment.translate('ru');  
 ```
 
 Comment replies:
 ```js
-const replies = await comments.items[0].getReplies();
+const replies = await top_comment.getReplies();
 ```
 
 Comments/replies continuation:
@@ -770,37 +775,44 @@ The library makes it easy to interact with YouTube programmatically. However, do
   ```js
   await youtube.interact.comment('VIDEO_ID', 'Haha, nice video!');
   ```
-  
- * Playlists:
-   ```js
-   const videos = [
-     'VIDEO_ID1',
-     'VIDEO_ID2',
-     'VIDEO_ID3'
-     //...
-   ];
 
-   // Create and delete a playlist:
-   await youtube.playlist.create('My Playlist', videos);
-   await youtube.playlist.delete('PLAYLIST_ID');
+* Playlists:
+  ```js
+  const videos = [
+    'VIDEO_ID1',
+    'VIDEO_ID2',
+    'VIDEO_ID3'
+    //...
+  ];
+
+  // Create and delete a playlist:
+  await youtube.playlist.create('My Playlist', videos);
+  await youtube.playlist.delete('PLAYLIST_ID');
    
-   // Add and remove videos from a playlist:
-   await youtube.playlist.addVideos('PLAYLIST_ID', videos);
-   await youtube.playlist.removeVideos('PLAYLIST_ID', videos);
-   ```
+  // Add and remove videos from a playlist:
+  await youtube.playlist.addVideos('PLAYLIST_ID', videos);
+  await youtube.playlist.removeVideos('PLAYLIST_ID', videos);
+  ```
 
- * Change notification preferences:
-   ```js
-   // Options: ALL | NONE | PERSONALIZED
-   await youtube.interact.setNotificationPreferences('CHANNEL_ID', 'ALL'); 
-   ```
+* Translate (does not require sign in)
+  ```js
+  await youtube.interact.translate('Hi mom!', 'ru');
+  ```
+
+* Change notification preferences:
+  ```js
+  // Options: ALL | NONE | PERSONALIZED
+  await youtube.interact.setNotificationPreferences('CHANNEL_ID', 'ALL'); 
+  ```
 
 Response schema:
 ```js 
 {
   success: boolean, 
   status_code: number, 
-  playlist_id?: string 
+  playlist_id?: string,
+  translated_content?: string,
+  data?: object
 }
 ```
 
