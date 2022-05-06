@@ -135,21 +135,11 @@ message CreateCommentReplyParams {
 
 message PeformCommentActionParams {
   int32 type = 1;
-  optional int32 unk_num = 2;
-  
   string comment_id = 3;
   string video_id = 5;
   
-  optional int32 unk_num_1 = 6;
-  optional int32 unk_num_2 = 7;
-  
-  optional string unk_num_3 = 9;
-  
-  optional int32 unk_num_4 = 10;
-  optional int32 unk_num_5 = 21;
-  
+  optional int32 unk_num = 2;
   optional string channel_id = 23;
-  optional int32 unk_num_6 = 30;
   
   message TranslateCommentParams {
     message Params {
