@@ -105,6 +105,10 @@ properly, you can run this:
   ```bash
   yarn add youtubei.js@latest
   ```
+- Git (bleeding-edge version):
+  ```bash
+  npm install git+https://github.com/LuanRT/YouTube.js.git
+  ```
 
 <!-- USAGE -->
 ## Usage
