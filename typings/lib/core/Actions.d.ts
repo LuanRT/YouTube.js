@@ -65,9 +65,8 @@ declare class Actions {
         data: object;
     }>;
     /**
-     * Covers the endpoint used for searches.
+     * Covers endpoint used for searches.
      *
-     * @param {string} client
      * @param {object} args
      * @param {string} args.query
      * @param {object} args.options
@@ -77,13 +76,28 @@ declare class Actions {
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
      */
-    search(client: string, args?: {
+    search(args?: {
         query: string;
         options: {
             period: string;
             duration: string;
             order: string;
         };
+    }): Promise<{
+        success: boolean;
+        status_code: number;
+        data: object;
+    }>;
+    /**
+     * Endpoint used fo Shorts' sound search.
+     *
+     * @param {object} args
+     * @param {string} args.query
+     *
+     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     */
+    searchSound(args?: {
+        query: string;
     }): Promise<{
         success: boolean;
         status_code: number;
@@ -212,9 +226,11 @@ declare class Actions {
      * Used to retrieve video info.
      *
      * @param {string} id
+     * @param {string} [cpn]
+     *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
      */
-    getVideoInfo(id: string): Promise<{
+    getVideoInfo(id: string, cpn?: string): Promise<{
         success: boolean;
         status_code: number;
         data: object;

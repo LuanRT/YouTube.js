@@ -1,12 +1,11 @@
 export = Signature;
 declare class Signature {
-    constructor(url: any, player: any);
+    constructor(url: any, sig_decipher_sc: any);
     url: any;
-    player: any;
-    func_regex: RegExp;
-    actions_regex: RegExp;
+    sig_decipher_sc: any;
     /**
      * Deciphers signature.
+     * @returns {string}
      */
     decipher(): string;
     #private;

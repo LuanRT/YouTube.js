@@ -47,7 +47,7 @@
       <ul>
         <li><a href="#interactions">Interactions</a></li>
         <li><a href="#live-chats">Livechats</a></li>
-         <li><a href="#downloading-videos">Downloading videos</a></li>
+        <li><a href="#download-videos">Download videos</a></li>
         <li><a href="#signing-in">Signing in</a></li>
       </ul>
     </li>
@@ -61,27 +61,24 @@
 <!-- ABOUT THE PROJECT -->
 ## About
 
-Innertube is an API used across all YouTube clients, it was [made to simplify](https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491) the internal structure of the platform and make it easy to push updates. This library takes advantage of that API, therefore providing a simple & efficient way to interact with YouTube programmatically.
+Innertube is an API used across all YouTube clients, it was created [to simplify](https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491) the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple and efficient way to interact with YouTube programmatically.
 
 And huge thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
 
-
 ### Features
 
-As of now, this is one of the most advanced & stable YouTube libraries out there, here's a short summary of its features: 
-
-- Search videos, playlists, music, albums etc.
-- Subscribe/Unsubscribe/Like/Dislike/Comment etc.
-- Get subscriptions/home feed, notifications and watch history.
+- Search videos, playlists, music, albums, artists, etc.
+- Subscribe, unsubscribe, like, dislike, post comments, replies, and etc.
+- Get subscriptions/home feed, notifications, watch history, and more.
 - Easily sign in to any Google Account.
 - Fetch live chat & live stats.
 - Manage account settings.
-- Create/delete playlists.
+- Manage playlists.
 - Download videos.
 
 ~ And more!
 
-Do note that you must be signed-in to perform actions that involve an account; such as commenting, liking/disliking videos, sending messages to a live chat, etc.
+Do note that you must be signed in to perform actions that involve an account; such as commenting, liking/disliking videos, sending messages to a live chat, etc.
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -105,18 +102,23 @@ properly, you can run this:
   ```bash
   yarn add youtubei.js@latest
   ```
+- Git (bleeding-edge version):
+  ```bash
+  npm install git+https://github.com/LuanRT/YouTube.js.git
+  ```
 
 <!-- USAGE -->
 ## Usage
-First of all we're gonna start by initializing the Innertube instance.
-And to make things faster, you should do this only once and reuse the Innertube object when needed.
 
+Create an Innertube instance (or session):
 ```js
 const Innertube = require('youtubei.js');
 const youtube = await new Innertube({ gl: 'US' }); // all parameters are optional.
 ```
 
-### Doing a simple search
+To improve performance, the Innertube instance should be initialized once and then reused throughout your program.
+
+### A simple search:
 
 YouTube:
 ```js
@@ -250,7 +252,7 @@ const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSI
 </details> 
 <br>
 
-### Get search suggestions:
+### Search suggestions:
 ```js
 const suggestions = await youtube.getSearchSuggestions('QUERY', {
    client: 'YOUTUBE' // Use YTMUSIC if you want music search suggestions 
@@ -273,7 +275,7 @@ const suggestions = await youtube.getSearchSuggestions('QUERY', {
 </p>
 </details> 
 
-### Get video info:
+### Video info:
 
 ```js
 const video = await youtube.getDetails('VIDEO_ID');
@@ -333,7 +335,7 @@ const video = await youtube.getDetails('VIDEO_ID');
 </p>
 </details>
 
-### Get comments:
+### Comments
 
 ```js
 // Sorting options: `TOP_COMMENTS` and `NEWEST_FIRST`
@@ -387,17 +389,22 @@ const comments = await video.getComments();
 </p>
 </details>
 
-Reply to, like/dislike and report a comment:
+Reply to, like/dislike, translate and report a comment:
 ```js
-await comments.items[0].like();
-await comments.items[0].dislike();
-await comments.items[0].report();
-await comments.items[0].reply('Nice comment!'); 
+const top_comment = comments.items[0];
+
+await top_comment.like();
+await top_comment.dislike();
+await top_comment.report();
+await top_comment.reply('Nice comment!'); 
+
+// Note: only ISO language codes are accepted
+await top_comment.translate('ru');  
 ```
 
 Comment replies:
 ```js
-const replies = await comments.items[0].getReplies();
+const replies = await top_comment.getReplies();
 ```
 
 Comments/replies continuation:
@@ -406,7 +413,7 @@ const continuation = await comments.getContinuation();
 const replies_continuation = await replies.getContinuation();
 ```
 
-### Get home feed:
+### Home feed:
 ```js
 const homefeed = await youtube.getHomeFeed();
 ```
@@ -462,7 +469,7 @@ Continuation:
 const continuation = await homefeed.getContinuation();
 ````
 
-### Get watch history:
+### Watch history:
 ```js
 const history = await youtube.getHistory();
 ```
@@ -523,7 +530,7 @@ Continuation:
 const continuation = await history.getContinuation();
 ````
 
-### Get subscriptions feed:
+### Subscriptions feed:
 ```js
 const mysubsfeed = await youtube.getSubscriptionsFeed();
 ```
@@ -584,7 +591,7 @@ Continuation:
 const continuation = await mysubsfeed.getContinuation();
 ````
 
-### Get trending content:
+### Trending content:
 
 ```js
 const trending = await youtube.getTrending();
@@ -615,13 +622,13 @@ const trending = await youtube.getTrending();
 </p>
 </details>
 
-### Get song lyrics:
+### Song lyrics:
 ```js
 const search = await youtube.search('Never give you up', { client: 'YTMUSIC' });
 const lyrics = await youtube.getLyrics(search.results.songs[0].id); 
 ```
 
-### Get notifications:
+### Notifications:
 
 ```js
 const notifications = await youtube.getNotifications();
@@ -766,37 +773,44 @@ The library makes it easy to interact with YouTube programmatically. However, do
   ```js
   await youtube.interact.comment('VIDEO_ID', 'Haha, nice video!');
   ```
-  
- * Playlists:
-   ```js
-   const videos = [
-     'VIDEO_ID1',
-     'VIDEO_ID2',
-     'VIDEO_ID3'
-     //...
-   ];
 
-   // Create and delete a playlist:
-   await youtube.playlist.create('My Playlist', videos);
-   await youtube.playlist.delete('PLAYLIST_ID');
+* Playlists:
+  ```js
+  const videos = [
+    'VIDEO_ID1',
+    'VIDEO_ID2',
+    'VIDEO_ID3'
+    //...
+  ];
+
+  // Create and delete a playlist:
+  await youtube.playlist.create('My Playlist', videos);
+  await youtube.playlist.delete('PLAYLIST_ID');
    
-   // Add and remove videos from a playlist:
-   await youtube.playlist.addVideos('PLAYLIST_ID', videos);
-   await youtube.playlist.removeVideos('PLAYLIST_ID', videos);
-   ```
+  // Add and remove videos from a playlist:
+  await youtube.playlist.addVideos('PLAYLIST_ID', videos);
+  await youtube.playlist.removeVideos('PLAYLIST_ID', videos);
+  ```
 
- * Change notification preferences:
-   ```js
-   // Options: ALL | NONE | PERSONALIZED
-   await youtube.interact.setNotificationPreferences('CHANNEL_ID', 'ALL'); 
-   ```
+* Translate (does not require sign in)
+  ```js
+  await youtube.interact.translate('Hi mom!', 'ru');
+  ```
+
+* Change notification preferences:
+  ```js
+  // Options: ALL | NONE | PERSONALIZED
+  await youtube.interact.setNotificationPreferences('CHANNEL_ID', 'ALL'); 
+  ```
 
 Response schema:
 ```js 
 {
   success: boolean, 
   status_code: number, 
-  playlist_id?: string 
+  playlist_id?: string,
+  translated_content?: string,
+  data?: object
 }
 ```
 
@@ -873,7 +887,7 @@ It is also possible to manage an account's settings:
 ### Live chats:
 ---
 
-YouTube.js isn't able to download live content yet, but it does allow you to fetch live chats plus you can also send messages!
+Currently, the library can retrieve live chat messages, stats and also send messages.
 
 ```js
 const Innertube = require('youtubei.js');
@@ -914,7 +928,7 @@ const msg = await livechat.sendMessage('Nice livestream!');
 await msg.deleteMessage();
 ```
 
-### Downloading videos:
+### Download videos:
 ---
 
 YouTube.js provides an easy-to-use and simple downloader:
@@ -1044,7 +1058,7 @@ const streaming_data = await youtube.getStreamingData(search.videos[0].id, {
 </p>
 </details>
 
-### Signing-in:
+### Signing in:
 ---
 
 When signing in to your account, you have two options:
@@ -1084,7 +1098,7 @@ async function start() {
 
 start();
 ```
-Sign-out:
+Sign out:
 ```js
 const response = await youtube.signOut();
 if (response.success) {
@@ -1111,6 +1125,11 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+<!-- CONTRIBUTORS -->
+## Contributors
+<a href="https://github.com/LuanRT/YouTube.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=LuanRT/YouTube.js" />
+</a>
 
 <!-- CONTACT -->
 ## Contact

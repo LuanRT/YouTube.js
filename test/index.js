@@ -1,3 +1,5 @@
+// TODO: Refactor this to use a testing library 
+
 'use strict';
 
 const Fs = require('fs');
@@ -47,7 +49,7 @@ async function performTests() {
   const n_token = new NToken(Constants.n_scramble_sc, Constants.original_ntoken).transform();
   assert(n_token == Constants.expected_ntoken, `should transform n token into ${Constants.expected_ntoken}`, n_token);
 
-  const transformed_url = new Signature(Constants.test_url, { sig_decipher_sc: Constants.sig_decipher_sc }).decipher();
+  const transformed_url = new Signature(Constants.test_url, Constants.sig_decipher_sc).decipher();
   assert(transformed_url == Constants.expected_url, `should decipher signature`, transformed_url);
 
   if (failed_tests_count > 0)

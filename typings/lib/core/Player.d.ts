@@ -1,11 +1,11 @@
 export = Player;
 declare class Player {
-    constructor(session: any);
-    session: any;
-    player_name: string;
-    tmp_cache_dir: string;
-    init(): Promise<void>;
-    sig_decipher_sc: string;
-    ntoken_sc: string;
+    constructor(id: any);
+    init(): Promise<Player>;
+    get url(): string;
+    get sts(): any;
+    get ntoken_decipher(): any;
+    get signature_decipher(): any;
+    isCached(): any;
     #private;
 }
