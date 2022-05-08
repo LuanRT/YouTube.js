@@ -9,6 +9,7 @@ declare class Innertube {
      * @param {object} [config]
      * @param {string} [config.gl]
      * @param {string} [config.cookie]
+     * @param {boolean} [config.debug]
      *
      * @returns {Innertube}
      * @constructor
@@ -16,20 +17,22 @@ declare class Innertube {
     constructor(config?: {
         gl?: string;
         cookie?: string;
+        debug?: boolean;
     });
     config: {
         gl?: string;
         cookie?: string;
+        debug?: boolean;
     };
     key: any;
     version: any;
     context: any;
+    logged_in: boolean;
     player_url: any;
-    logged_in: any;
     sts: any;
     /**
-     * @event Innertube#auth - fired when signing in to an account.
-     * @event Innertube#update-credentials - fired when the access token is no longer valid.
+     * @fires Innertube#auth - fired when signing in to an account.
+     * @fires Innertube#update-credentials - fired when the access token is no longer valid.
      * @type {EventEmitter}
      */
     ev: EventEmitter;
@@ -43,6 +46,7 @@ declare class Innertube {
             country: string;
             language: string;
         }>;
+        getTimeWatched: () => void;
         settings: {
             notifications: {
                 /**
@@ -173,6 +177,24 @@ declare class Innertube {
             status_code: string;
         }>;
         /**
+         * Translates a given text using YouTube's comment translate feature.
+         *
+         * @param {string} text
+         * @param {string} target_language
+         * @param {object} [args] - optional arguments
+         * @param {string} [args.video_id]
+         * @param {string} [args.comment_id]
+         *
+         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         */
+        translate: (text: string, target_language: string, args?: {
+            video_id?: string;
+            comment_id?: string;
+        }) => Promise<{
+            success: boolean;
+            status_code: string;
+        }>;
+        /**
          * Subscribes to a given channel.
          *
          * @param {string} channel_id
@@ -289,7 +311,6 @@ declare class Innertube {
         country: string;
         language: string;
     }>;
-    getTimeWatched(): Promise<void>;
     /**
      * Searches on YouTube.
      *
@@ -485,9 +506,9 @@ declare class Innertube {
      *
      * @param {string} id - video id
      * @param {object} options - download options.
-     * @param {string} options.quality - video quality; 360p, 720p, 1080p, etc...
-     * @param {string} options.type - download type, can be: video, audio or videoandaudio
-     * @param {string} options.format - file format
+     * @param {string} [options.quality] - video quality; 360p, 720p, 1080p, etc...
+     * @param {string} [options.type] - download type, can be: video, audio or videoandaudio
+     * @param {string} [options.format] - file format
      *
      * @return {Stream.PassThrough}
      */

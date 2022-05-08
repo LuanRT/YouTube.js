@@ -1,12 +1,14 @@
+export class InnertubeError extends Error {
+    constructor(message: any, info: any);
+    info: any;
+    date: Date;
+    version: any;
+}
 export class UnavailableContentError extends InnertubeError {
 }
 export class ParsingError extends InnertubeError {
 }
 export class DownloadError extends InnertubeError {
-}
-export class InnertubeError extends Error {
-    constructor(message: any, info: any);
-    info: any;
 }
 export class MissingParamError extends InnertubeError {
 }
@@ -36,6 +38,7 @@ export function getRandomUserAgent(type: string): object;
  * @returns {string}
  */
 export function generateSidAuth(sid: string): string;
+export function generateRandomString(length: any): string;
 /**
  * Gets a string between two delimiters.
  *

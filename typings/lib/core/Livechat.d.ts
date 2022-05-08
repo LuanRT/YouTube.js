@@ -1,5 +1,5 @@
 export = Livechat;
-declare class Livechat extends EventEmitter {
+declare class Livechat {
     constructor(session: any, token: any, channel_id: any, video_id: any);
     ctoken: any;
     session: any;
@@ -10,7 +10,7 @@ declare class Livechat extends EventEmitter {
     poll_intervals_ms: number;
     running: boolean;
     metadata_ctoken: any;
-    livechat_poller: NodeJS.Timeout;
+    livechat_poller: any;
     sendMessage(text: any): Promise<any>;
     /**
      * Blocks a user.
@@ -21,4 +21,3 @@ declare class Livechat extends EventEmitter {
     stop(): void;
     #private;
 }
-import EventEmitter = require("events");

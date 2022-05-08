@@ -37,16 +37,6 @@ export namespace CLIENTS {
         export { VERSION_1 as VERSION };
     }
 }
-export function DEFAULT_HEADERS(config: any): {
-    headers: {
-        Cookie: any;
-        'user-agent': any;
-        Referer: string;
-        Accept: string;
-        'Accept-Language': string;
-        'Accept-Encoding': string;
-    };
-};
 export const STREAM_HEADERS: {
     Accept: string;
     'User-Agent': any;
@@ -58,23 +48,6 @@ export const STREAM_HEADERS: {
 export const INNERTUBE_HEADERS_BASE: {
     accept: string;
     'content-type': string;
-};
-export function VIDEO_INFO_REQBODY(id: any, sts: any, context: any): {
-    playbackContext: {
-        contentPlaybackContext: {
-            currentUrl: string;
-            vis: number;
-            splay: boolean;
-            autoCaptionsDefaultOn: boolean;
-            autonavState: string;
-            html5Preference: string;
-            signatureTimestamp: any;
-            referer: string;
-            lactMilliseconds: string;
-        };
-    };
-    context: any;
-    videoId: any;
 };
 export const METADATA_KEYS: string[];
 export const BLACKLISTED_KEYS: string[];
@@ -92,11 +65,16 @@ export namespace BASE64_DIALECT {
     const NORMAL: string[];
     const REVERSE: string[];
 }
-export namespace NTOKEN_REGEX {
-    const CALLS: RegExp;
-    const PLACEHOLDERS: RegExp;
+export namespace SIG_REGEX {
+    const ACTIONS: RegExp;
+    const FUNCTIONS: RegExp;
 }
-export const FUNCS_REGEX: RegExp;
+export namespace NTOKEN_REGEX {
+    export const CALLS: RegExp;
+    export const PLACEHOLDERS: RegExp;
+    const FUNCTIONS_1: RegExp;
+    export { FUNCTIONS_1 as FUNCTIONS };
+}
 export namespace FUNCS {
     const PUSH: string;
     const REVERSE_1: string;
