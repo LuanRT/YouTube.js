@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "allowJs": true,
+        "outDir": "./typings",
+        "lib": ["ESNext"],
+        "target": "ESNext",
+        "moduleResolution": "node"
+    },
+    "include": [
+        "./lib/**/*.js",
+        "./index.js"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.d.ts"
+    ]
+}

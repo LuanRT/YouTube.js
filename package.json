@@ -10,7 +10,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "test": "node test"
+    "test": "node test",
+    "build:types": "npx tsc"
   },
   "types": "./typings/index.d.ts",
   "directories": {
@@ -25,6 +26,10 @@
     "protocol-buffers-encodings": "^1.1.1",
     "user-agents": "^1.0.778",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "typescript": "^4.6.4"
   },
   "repository": {
     "type": "git",
