@@ -61,7 +61,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About
 
-Innertube is an API used across all YouTube clients, it was created to simplify the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple and efficient way to interact with YouTube programmatically.
+Innertube is an API used across all YouTube clients, it was created [to simplify](https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491) the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple and efficient way to interact with YouTube programmatically.
 
 And huge thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
 
