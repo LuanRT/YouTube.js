@@ -8,7 +8,6 @@ declare class OAuth {
     init(auth_info: any): Promise<void>;
     client_id: string;
     client_secret: string;
-    refresh_interval: any;
     /**
      * Refreshes the access token if necessary.
      * @returns {Promise.<void>}

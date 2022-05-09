@@ -6,6 +6,6 @@ declare class Player {
     get sts(): any;
     get ntoken_decipher(): any;
     get signature_decipher(): any;
-    isCached(): any;
+    isCached(): boolean;
     #private;
 }

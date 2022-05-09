@@ -52,84 +52,92 @@ declare class Innertube {
                 /**
                  * Notify about activity from the channels you're subscribed to.
                  *
-                 * @param {boolean} new_value
-                 * @returns {Promise.<{ success: boolean; status_code: string; }>}
+                 * @param {boolean} new_value - ON | OFF
+                 * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
                  */
                 setSubscriptions: (new_value: boolean) => Promise<{
                     success: boolean;
-                    status_code: string;
+                    status_code: number;
+                    data: object;
                 }>;
                 /**
                  * Recommended content notifications.
                  *
-                 * @param {boolean} new_value
-                 * @returns {Promise.<{ success: boolean; status_code: string; }>}
+                 * @param {boolean} new_value - ON | OFF
+                 * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
                  */
                 setRecommendedVideos: (new_value: boolean) => Promise<{
                     success: boolean;
-                    status_code: string;
+                    status_code: number;
+                    data: object;
                 }>;
                 /**
                  * Notify about activity on your channel.
                  *
-                 * @param {boolean} new_value
-                 * @returns {Promise.<{ success: boolean; status_code: string; }>}
+                 * @param {boolean} new_value - ON | OFF
+                 * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
                  */
                 setChannelActivity: (new_value: boolean) => Promise<{
                     success: boolean;
-                    status_code: string;
+                    status_code: number;
+                    data: object;
                 }>;
                 /**
                  * Notify about replies to your comments.
                  *
-                 * @param {boolean} new_value
-                 * @returns {Promise.<{ success: boolean; status_code: string; }>}
+                 * @param {boolean} new_value - ON | OFF
+                 * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
                  */
                 setCommentReplies: (new_value: boolean) => Promise<{
                     success: boolean;
-                    status_code: string;
+                    status_code: number;
+                    data: object;
                 }>;
                 /**
                  * Notify when others mention your channel.
                  *
-                 * @param {boolean} new_value
-                 * @returns {Promise.<{ success: boolean; status_code: string; }>}
+                 * @param {boolean} new_value - ON | OFF
+                 * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
                  */
                 setMentions: (new_value: boolean) => Promise<{
                     success: boolean;
-                    status_code: string;
+                    status_code: number;
+                    data: object;
                 }>;
                 /**
                  * Notify when others share your content on their channels.
                  *
-                 * @param {boolean} new_value
-                 * @returns {Promise.<{ success: boolean; status_code: string; }>}
+                 * @param {boolean} new_value - ON | OFF
+                 * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
                  */
                 setSharedContent: (new_value: boolean) => Promise<{
                     success: boolean;
-                    status_code: string;
+                    status_code: number;
+                    data: object;
                 }>;
             };
             privacy: {
                 /**
                  * If set to true, your subscriptions won't be visible to others.
                  *
-                 * @param {boolean} new_value
-                 * @returns {Promise.<{ success: boolean; status_code: string; }>}
+                 * @param {boolean} new_value - ON | OFF
+                 * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
                  */
                 setSubscriptionsPrivate: (new_value: boolean) => Promise<{
                     success: boolean;
-                    status_code: string;
+                    status_code: number;
+                    data: object;
                 }>;
                 /**
                  * If set to true, saved playlists won't appear on your channel.
                  *
-                 * @param {boolean} new_value
-                 * @returns {Promise.<{ success: boolean; status_code: string; }>}
+                 * @param {boolean} new_value - ON | OFF
+                 * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
                  */
                 setSavedPlaylistsPrivate: (new_value: boolean) => Promise<{
                     success: boolean;
-                    status_code: string;
+                    status_code: number;
+                    data: object;
                 }>;
             };
         };
@@ -139,42 +147,46 @@ declare class Innertube {
          * Likes a given video.
          *
          * @param {string} video_id
-         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
          */
         like: (video_id: string) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
+            data: object;
         }>;
         /**
          * Diskes a given video.
          *
          * @param {string} video_id
-         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
          */
         dislike: (video_id: string) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
+            data: object;
         }>;
         /**
          * Removes a like/dislike.
          *
          * @param {string} video_id
-         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
          */
         removeLike: (video_id: string) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
+            data: object;
         }>;
         /**
          * Posts a comment on a given video.
          *
          * @param {string} video_id
          * @param {string} text
-         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
          */
         comment: (video_id: string, text: string) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
+            data: object;
         }>;
         /**
          * Translates a given text using YouTube's comment translate feature.
@@ -185,34 +197,38 @@ declare class Innertube {
          * @param {string} [args.video_id]
          * @param {string} [args.comment_id]
          *
-         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; translated_content: string; data: object; }>}
          */
         translate: (text: string, target_language: string, args?: {
             video_id?: string;
             comment_id?: string;
         }) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
+            translated_content: string;
+            data: object;
         }>;
         /**
          * Subscribes to a given channel.
          *
          * @param {string} channel_id
-         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
          */
         subscribe: (channel_id: string) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
+            data: object;
         }>;
         /**
          * Unsubscribes from a given channel.
          *
          * @param {string} channel_id
-         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
          */
         unsubscribe: (channel_id: string) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
+            data: object;
         }>;
         /**
          * Changes notification preferences for a given channel.
@@ -220,11 +236,12 @@ declare class Innertube {
          *
          * @param {string} channel_id
          * @param {string} type PERSONALIZED | ALL | NONE
-         * @returns {Promise.<{ success: boolean; status_code: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
          */
         setNotificationPreferences: (channel_id: string, type: string) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
+            data: object;
         }>;
     };
     playlist: {
@@ -232,49 +249,54 @@ declare class Innertube {
          * Creates a playlist.
          *
          * @param {string} title
-         * @param {string} video_ids
+         * @param {Array.<string>} video_ids
          *
-         * @returns {Promise.<{ success: boolean; status_code: string; playlist_id: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; playlist_id: string; data: object; }>}
          */
-        create: (title: string, video_ids: string) => Promise<{
+        create: (title: string, video_ids: Array<string>) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
             playlist_id: string;
+            data: object;
         }>;
         /**
          * Deletes a given playlist.
          *
          * @param {string} playlist_id
-         * @returns {Promise.<{ success: boolean; status_code: string; playlist_id: string;  }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; playlist_id: string; data: object; }>}
          */
         delete: (playlist_id: string) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
             playlist_id: string;
+            data: object;
         }>;
         /**
          * Adds an array of videos to a given playlist.
          *
          * @param {string} playlist_id
          * @param {Array.<string>} video_ids
-         * @returns {Promise.<{ success: boolean; status_code: string; playlist_id: string; }>}
+         * @returns {Promise.<{ success: boolean; status_code: number; playlist_id: string; data: object; }>}
          */
         addVideos: (playlist_id: string, video_ids: Array<string>) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
             playlist_id: string;
+            data: object;
         }>;
         /**
          * Removes videos from a given playlist.
          *
          * @param {string} playlist_id
          * @param {Array.<string>} video_ids
-         * @returns {Promise.<{ success: boolean; status_code: string; playlist_id: string; }>}
+         *
+         * @returns {Promise.<{ success: boolean; status_code: number; playlist_id: string; data: object; }>}
          */
         removeVideos: (playlist_id: string, video_ids: Array<string>) => Promise<{
             success: boolean;
-            status_code: string;
+            status_code: number;
             playlist_id: string;
+            data: object;
         }>;
     };
     /**
@@ -317,17 +339,17 @@ declare class Innertube {
      * @param {string} query - search query.
      * @param {object} options - search options.
      * @param {string} options.client - client used to perform the search, can be: `YTMUSIC` or `YOUTUBE`.
-     * @param {string} options.period - filter videos uploaded within a period, can be: any | hour | day | week | month | year
      * @param {string} options.order - filter results by order, can be: relevance | rating | age | views
+     * @param {string} options.period - filter videos uploaded within a period, can be: any | hour | day | week | month | year
      * @param {string} options.duration - filter video results by duration, can be: any | short | long
      *
      * @returns {Promise.<{ query: string; corrected_query: string; estimated_results: number; videos: [] } |
      * { results: { songs: []; videos: []; albums: []; community_playlists: [] } }>}
      */
-    search(query: string, options?: {
+    search(query: string, options: {
         client: string;
-        period: string;
         order: string;
+        period: string;
         duration: string;
     }): Promise<{
         query: string;
@@ -513,7 +535,7 @@ declare class Innertube {
      * An alternative to {@link download}.
      * Returns deciphered streaming data.
      *
-     * @param {string} id - video id
+     * @param {string} video_id - video id
      * @param {object} options - download options.
      * @param {string} options.quality - video quality; 360p, 720p, 1080p, etc...
      * @param {string} options.type - download type, can be: video, audio or videoandaudio
@@ -521,7 +543,7 @@ declare class Innertube {
      *
      * @returns {Promise.<{ selected_format: {}; formats: [] }>}
      */
-    getStreamingData(id: string, options?: {
+    getStreamingData(video_id: string, options?: {
         quality: string;
         type: string;
         format: string;
@@ -532,7 +554,7 @@ declare class Innertube {
     /**
      * Downloads a given video. If you only need the direct download link take a look at {@link getStreamingData}.
      *
-     * @param {string} id - video id
+     * @param {string} video_id - video id
      * @param {object} options - download options.
      * @param {string} [options.quality] - video quality; 360p, 720p, 1080p, etc...
      * @param {string} [options.type] - download type, can be: video, audio or videoandaudio
@@ -540,12 +562,14 @@ declare class Innertube {
      *
      * @return {Stream.PassThrough}
      */
-    download(id: string, options?: {
+    download(video_id: string, options?: {
         quality?: string;
         type?: string;
         format?: string;
     }): Stream.PassThrough;
     #private;
 }
+import EventEmitter = require("events");
 import Request = require("./utils/Request");
 import Actions = require("./core/Actions");
+import Stream = require("stream");
