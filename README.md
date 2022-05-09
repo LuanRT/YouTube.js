@@ -740,7 +740,7 @@ const playlist = await youtube.getPlaylist('PLAYLIST_ID', { client: 'YOUTUBE' })
 ### Interactions:
 ---
 
-The library makes it easy to interact with YouTube programmatically. However, don't forget that you must be signed in to use the following features!
+Don't forget that you must be signed in to use some of the following methods!
 
 * Subscribe/Unsubscribe:
   ```js
@@ -930,7 +930,7 @@ const options = {
   range: { start: number, end: number }
 };
 
-const stream = youtube.download('VIDEO_ID, options);
+const stream = youtube.download('VIDEO_ID', options);
 ```
 
 Options:
