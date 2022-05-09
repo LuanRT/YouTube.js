@@ -47,7 +47,7 @@
       <ul>
         <li><a href="#interactions">Interactions</a></li>
         <li><a href="#live-chats">Livechats</a></li>
-        <li><a href="#download-videos">Download videos</a></li>
+        <li><a href="#downloading-videos">Downloading videos</a></li>
         <li><a href="#signing-in">Signing in</a></li>
       </ul>
     </li>
@@ -116,18 +116,11 @@ const Innertube = require('youtubei.js');
 const youtube = await new Innertube({ gl: 'US' }); // all parameters are optional.
 ```
 
-To improve performance, the Innertube instance should be initialized once and then reused throughout your program.
-
 ### A simple search:
 
-YouTube:
+Client: `YOUTUBE` | `YTMUSIC`
 ```js
-const search = await youtube.search('Looking for life on Mars - Documentary');
-```
-
-YTMusic:
-```js
-const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSIC' });
+const search = await youtube.search('Looking for life on Mars - Documentary', { client: 'YOUTUBE' });
 ```
 
 <details>
@@ -254,9 +247,7 @@ const search = await youtube.search('Interstellar Main Theme', { client: 'YTMUSI
 
 ### Search suggestions:
 ```js
-const suggestions = await youtube.getSearchSuggestions('QUERY', {
-   client: 'YOUTUBE' // Use YTMUSIC if you want music search suggestions 
-})
+const suggestions = await youtube.getSearchSuggestions('QUERY', { client: 'YOUTUBE' })
 ```
 
 <details>
@@ -335,13 +326,14 @@ const video = await youtube.getDetails('VIDEO_ID');
 </p>
 </details>
 
-### Comments
+### Comments:
+
+Sorting options: `TOP_COMMENTS` | `NEWEST_FIRST`
 
 ```js
-// Sorting options: `TOP_COMMENTS` and `NEWEST_FIRST`
 const comments = await youtube.getComments('VIDEO_ID', 'TOP_COMMENTS');
 ```
-Alternatively you can use:
+Alternatively, you can use:
 
 ```js
 const video = await youtube.getDetails('VIDEO_ID');
@@ -679,16 +671,10 @@ const unread_notis_count = await youtube.getUnseenNotificationsCount();
 ```
 
 ### Get playlist: 
-YouTube (default):
-```js
-const playlist = await youtube.getPlaylist('PLAYLIST_ID');
-```
+Client: `YOUTUBE` | `YTMUSIC`
 
-YouTube Music:
 ```js
-const playlist = await youtube.getPlaylist('PLAYLIST_ID', {
-   client: 'YTMUSIC' 
-});
+const playlist = await youtube.getPlaylist('PLAYLIST_ID', { client: 'YOUTUBE' });
 ```
 
 <details>
@@ -798,8 +784,10 @@ The library makes it easy to interact with YouTube programmatically. However, do
   ```
 
 * Change notification preferences:
+  
+  Options: `ALL` | `NONE` | `PERSONALIZED`
+  
   ```js
-  // Options: ALL | NONE | PERSONALIZED
   await youtube.interact.setNotificationPreferences('CHANNEL_ID', 'ALL'); 
   ```
 
@@ -815,7 +803,7 @@ Response schema:
 ```
 
 ### Account Settings
-It is also possible to manage an account's settings:
+It is also possible to manage account settings:
 
 * Get account info:
   ```js
@@ -847,41 +835,45 @@ It is also possible to manage an account's settings:
 
 #### Notification settings:
 
+Options: `ON` | `OFF`
+
 * Subscription notifications:
   ```js
-  await youtube.account.settings.notifications.setSubscriptions(true); 
+  await youtube.account.settings.notifications.setSubscriptions('ON'); 
   ```
 
 * Recommended content notifications:
   ```js
-  await youtube.account.settings.notifications.setRecommendedVideos(true); 
+  await youtube.account.settings.notifications.setRecommendedVideos('ON'); 
   ```
 
 * Channel activity notifications:
   ```js
-  await youtube.account.settings.notifications.setChannelActivity(true); 
+  await youtube.account.settings.notifications.setChannelActivity('ON'); 
   ```
 
 * Comment replies notifications:
   ```js
-  await youtube.account.settings.notifications.setCommentReplies(true); 
+  await youtube.account.settings.notifications.setCommentReplies('ON'); 
   ```
 
 * Channel mention notifications:
   ```js
-  await youtube.account.settings.notifications.setSharedContent(true); 
+  await youtube.account.settings.notifications.setSharedContent('ON'); 
   ```
 
 #### Privacy settings:
 
+Options: `ON` | `OFF`
+
 * Subscriptions privacy:
   ```js
-  await youtube.account.settings.privacy.setSubscriptionsPrivate(true); 
+  await youtube.account.settings.privacy.setSubscriptionsPrivate('ON'); 
   ```
 
 * Saved playlists privacy:
   ```js
-  await youtube.account.settings.privacy.setSavedPlaylistsPrivate(true); 
+  await youtube.account.settings.privacy.setSavedPlaylistsPrivate('ON'); 
   ```
 
 ### Live chats:
@@ -928,11 +920,40 @@ const msg = await livechat.sendMessage('Nice livestream!');
 await msg.deleteMessage();
 ```
 
-### Download videos:
+### Downloading videos:
 ---
+```js
+const options = {
+  format: string,
+  quality: string,
+  type: string,
+  range: { start: number, end: number }
+};
 
-YouTube.js provides an easy-to-use and simple downloader:
+const stream = youtube.download('VIDEO_ID, options);
+```
 
+Options:
+
+* format: 
+  `mp4` | `webm` etc.. (note: only formats provided by YouTube are available) 
+
+* quality: 
+  `144p`, `240p`, `360p`, `480p`, `720p`, `1080p` etc..
+   
+* type:
+  `video` | `audio` | `videoandaudio`
+
+* range: indicates which bytes should be downloaded 
+  * start: an integer indicating the beginning of the range
+  * end: an integer indicating the end of the range
+
+Cancel a download:
+```js
+stream.cancel();
+```
+
+Example:
 ```js
 const fs = require('fs');
 const Innertube = require('youtubei.js');
@@ -977,29 +998,10 @@ async function start() {
 start();
 ```
 
-You can also specify a range:
-```js
-const stream = youtube.download(VIDEO_ID, {
-  //...
-  type: 'videoandaudio',
-  range: { start: 0, end: 1048576 * 5 }
-});
-  
-```
-
-Cancel a download:
-```js
-stream.cancel();
-```
-
 Alternatively, you can get the deciphered streaming data and handle the download yourself:
 
 ```js
-const streaming_data = await youtube.getStreamingData(search.videos[0].id, {
-   format: 'mp4',
-   quality: '360p',
-   type: 'videoandaudio'
-});
+const streaming_data = await youtube.getStreamingData('VIDEO_ID', options);
 ```
 
 <details>
