@@ -158,11 +158,14 @@ message PeformCommentActionParams {
 }
 
 message SearchFilter {
-  int32 number = 1;
-  message Filter {
-    int32 param_0 = 1;
-    int32 param_1 = 2;
-    int32 param_2 = 3;
+  optional int32 filter = 1; // almost always sort_by
+  optional int32 no_filter = 19;
+  
+  message Filters {
+    optional int32 param_0 = 1;
+    optional int32 param_1 = 2;
+    optional int32 param_2 = 3;
   }
-  Filter filter = 2;
+  
+  optional Filters filters = 2;
 }
