@@ -443,7 +443,7 @@ declare class Innertube {
      *
      * @returns {Promise.<{ now: { content: [{ title: string; videos: []; }] };
      * music: { getVideos: Promise.<Array>; }; gaming: { getVideos: Promise.<Array>; };
-     * gaming: { getVideos: Promise.<Array>; }; }>}
+     * movies: { getVideos: Promise.<Array>; } }>}
      */
     getTrending(): Promise<{
         now: {
@@ -458,7 +458,7 @@ declare class Innertube {
         gaming: {
             getVideos: Promise<any[]>;
         };
-        gaming: {
+        movies: {
             getVideos: Promise<any[]>;
         };
     }>;
