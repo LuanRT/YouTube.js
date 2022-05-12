@@ -33,7 +33,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https//github.com/LuanRT/YouTube.js.git"
+    "url": "git+https://github.com/LuanRT/YouTube.js.git"
   },
   "bugs": {
     "url": "https://github.com/LuanRT/YouTube.js/issues"
@@ -43,17 +43,19 @@
     "yt",
     "ytdl",
     "youtube",
+    "youtube-downloader",
     "youtube-dl",
     "youtubedl",
-    "youtube-downloader",
     "innertube",
     "innertubeapi",
     "unofficial",
     "downloader",
     "livechat",
+    "ytmusic",
     "dislike",
     "search",
     "comment",
+    "music",
     "like",
     "api",
     "dl"
