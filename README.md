@@ -1,28 +1,55 @@
-<h1 align=center>YouTube.js</h1>
+<!-- Hi there, fellow coder :) -->
+
+<h1 align=center>
+  YouTube.js
+</h1>
 
 <p align=center>
-  <i>A full-featured wrapper around the Innertube API, which is what YouTube itself uses.</i>
-<p>
+  <!-- SHORT DESCRIPTION -->
+  <i>
+    A full-featured wrapper around the Innertube API, which is what YouTube itself uses.
+  </i>
+</p>
 
 <p align=center>
-   <a href="https://github.com/LuanRT/YouTube.js/issues">Report Bug</a>
+  <!-- SHORTCUTS -->
+  <a href="https://github.com/LuanRT/YouTube.js/issues">
+     Report Bug
+  </a>
     ·
-    <a href="https://github.com/LuanRT/YouTube.js/issues">Request Feature</a>
-<br/>
-<br/>
+  <a href="https://github.com/LuanRT/YouTube.js/issues">
+    Request Feature
+  </a>
+  
+  <br>
+  <br>
  
- <!-- PROJECT SHIELDS -->
-<img src="https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg">
-<img src="https://img.shields.io/npm/v/youtubei.js?color=%2335C757">
-<img src="https://www.codefactor.io/repository/github/luanrt/youtube.js/badge">
-<img src="https://img.shields.io/npm/dm/youtubei.js">
-<a href="https://saythanks.io/to/LuanRT">
-<img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg">
-</a>
-<br>
-<a href="https://ko-fi.com/luanrt">
-<img src="https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white">
-</a>
+  <!-- PROJECT SHIELDS -->
+  <a href='https://github.com/LuanRT/YouTube.js/actions'>
+    <img src='https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg' alt='Tests'>
+  </a>
+
+  <a href='https://www.npmjs.com/package/youtubei.js?activeTab=versions'>
+    <img src='https://img.shields.io/npm/v/youtubei.js?color=%2335C757' alt='Latest version'>
+  </a>
+
+  <a href='https://www.codefactor.io/repository/github/luanrt/youtube.js'>
+    <img src='https://www.codefactor.io/repository/github/luanrt/youtube.js/badge' alt='Code factor'>
+  </a>
+
+  <a href='https://www.npmjs.com/package/youtubei.js'>
+    <img src='https://img.shields.io/npm/dm/youtubei.js' alt='Monthly downloads'>
+  </a>
+
+  <a href="https://saythanks.io/to/LuanRT">
+    <img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg">
+  </a>
+  <br>
+
+  <!-- DONATE BUTTON -->
+  <a href="https://ko-fi.com/luanrt">
+    <img src="https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white" alt="Donate">
+  </a>
 </p>
 
 <!-- TABLE OF CONTENTS -->
@@ -118,9 +145,20 @@ const youtube = await new Innertube({ gl: 'US' }); // all parameters are optiona
 
 ### A simple search:
 
-Client: `YOUTUBE` | `YTMUSIC`
+Options:
+  * client: `YOUTUBE` | `YTMUSIC`
+  
+  * filters (youtube only):
+    * upload_date: `any` | `last_hour` | `today` | `this_week` | `this_month` | `this_year`
+    
+    * type: `any` | `video` | `channel` | `playlist` | `movie`
+    
+    * duration: `any` | `short` | `medium` | `long`
+    
+    * sort_by: `relevance` | `rating` | `upload_date` | `view_count`
+  
 ```js
-const search = await youtube.search('Looking for life on Mars - Documentary', { client: 'YOUTUBE' });
+const search = await youtube.search('QUERY', { client: 'YOUTUBE' });
 ```
 
 <details>
@@ -678,7 +716,7 @@ const playlist = await youtube.getPlaylist('PLAYLIST_ID', { client: 'YOUTUBE' })
 ```
 
 <details>
-<summary>YouTube Output</summary>
+  <summary>YouTube Output</summary>
 <p>
 
 ```js
@@ -709,7 +747,7 @@ const playlist = await youtube.getPlaylist('PLAYLIST_ID', { client: 'YOUTUBE' })
 </details>
 
 <details>
-<summary>YouTube Music Output</summary>
+  <summary>YouTube Music Output</summary>
 <p>
 
 ```js
@@ -1151,4 +1189,6 @@ Should you have any questions or concerns please contact me directly via email.
 ## License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">
+  (<a href="#top">back to top</a>)
+</p>
