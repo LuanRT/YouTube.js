@@ -337,20 +337,25 @@ declare class Innertube {
      * Searches on YouTube.
      *
      * @param {string} query - search query.
-     * @param {object} options - search options.
-     * @param {string} options.client - client used to perform the search, can be: `YTMUSIC` or `YOUTUBE`.
-     * @param {string} options.order - filter results by order, can be: relevance | rating | age | views
-     * @param {string} options.period - filter videos uploaded within a period, can be: any | hour | day | week | month | year
-     * @param {string} options.duration - filter video results by duration, can be: any | short | long
+     * @param {object} [options] - search options.
+     * @param {string} [options.client] - client used to perform the search, can be: `YTMUSIC` or `YOUTUBE`.
+     * @param {object} [options.filters] - search filters.
+     * @param {string} [options.filters.upload_date] - filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
+     * @param {string} [options.filters.type] - filter results by type, can be: any | video | channel | playlist | movie
+     * @param {string} [options.filters.duration] - filter videos by duration, can be: any | short | medium | long
+     * @param {string} [options.filters.sort_by] - filter video results by order, can be: relevance | rating | upload_date | view_count
      *
      * @returns {Promise.<{ query: string; corrected_query: string; estimated_results: number; videos: [] } |
      * { results: { songs: []; videos: []; albums: []; community_playlists: [] } }>}
      */
-    search(query: string, options: {
-        client: string;
-        order: string;
-        period: string;
-        duration: string;
+    search(query: string, options?: {
+        client?: string;
+        filters?: {
+            upload_date?: string;
+            type?: string;
+            duration?: string;
+            sort_by?: string;
+        };
     }): Promise<{
         query: string;
         corrected_query: string;

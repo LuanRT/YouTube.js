@@ -12,15 +12,21 @@ declare class Proto {
     /**
      * Encodes search filters.
      *
-     * @param {string} period
-     * @param {string} duration
-     * @param {string} order
-     *
+     * @param {object} filters
+     * @param {string} [filters.upload_date] - any | last_hour | today | this_week | this_month | this_year
+     * @param {string} [filters.type] - any | video | channel | playlist | movie
+     * @param {string} [filters.duration] - any | short | medium | long
+     * @param {string} [filters.sort_by] - relevance | rating | upload_date | view_count
      * @todo implement remaining filters.
      *
      * @returns {string}
      */
-    static encodeSearchFilter(period: string, duration: string, order: string): string;
+    static encodeSearchFilter(filters: {
+        upload_date?: string;
+        type?: string;
+        duration?: string;
+        sort_by?: string;
+    }): string;
     /**
      * Encodes livechat message parameters.
      *

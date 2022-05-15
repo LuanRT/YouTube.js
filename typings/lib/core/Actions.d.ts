@@ -207,7 +207,6 @@ declare class Actions {
      * @param {string} action
      * @param {object} args
      * @param {string} args.video_id
-     * @param {string} args.channel_id
      * @param {string} args.ctoken
      * @param {boolean} is_ytm
      *
@@ -215,7 +214,6 @@ declare class Actions {
      */
     next(args?: {
         video_id: string;
-        channel_id: string;
         ctoken: string;
     }): Promise<{
         success: boolean;
