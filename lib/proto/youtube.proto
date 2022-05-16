@@ -6,6 +6,14 @@ message VisitorData {
   int32 timestamp = 5;
 }
 
+message ChannelAnalytics {
+    message Params {
+        string channel_id = 1001;
+    }
+
+    Params params = 32;
+}
+
 message InnertubePayload {
   message Context {
     message Client {
