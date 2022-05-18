@@ -1,6 +1,6 @@
 .git
 .github
-tests/
+test/
 cache/
 lib/proto/messages.js
 coverage/
