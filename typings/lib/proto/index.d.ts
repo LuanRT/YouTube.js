@@ -10,6 +10,13 @@ declare class Proto {
      */
     static encodeVisitorData(id: string, timestamp: number): string;
     /**
+     * Encodes basic channel analytics parameters.
+     *
+     * @param {string} channel_id
+     * @returns {string}
+     */
+    static encodeChannelAnalyticsParams(channel_id: string): string;
+    /**
      * Encodes search filters.
      *
      * @param {object} filters

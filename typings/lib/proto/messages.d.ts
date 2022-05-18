@@ -4,7 +4,7 @@ export namespace VisitorData {
     const encode: any;
     const decode: any;
 }
-export namespace InnertubePayload {
+export namespace ChannelAnalytics {
     const buffer_1: boolean;
     export { buffer_1 as buffer };
     const encodingLength_1: any;
@@ -14,7 +14,7 @@ export namespace InnertubePayload {
     const decode_1: any;
     export { decode_1 as decode };
 }
-export namespace SoundInfoParams {
+export namespace InnertubePayload {
     const buffer_2: boolean;
     export { buffer_2 as buffer };
     const encodingLength_2: any;
@@ -24,7 +24,7 @@ export namespace SoundInfoParams {
     const decode_2: any;
     export { decode_2 as decode };
 }
-export namespace NotificationPreferences {
+export namespace SoundInfoParams {
     const buffer_3: boolean;
     export { buffer_3 as buffer };
     const encodingLength_3: any;
@@ -34,7 +34,7 @@ export namespace NotificationPreferences {
     const decode_3: any;
     export { decode_3 as decode };
 }
-export namespace LiveMessageParams {
+export namespace NotificationPreferences {
     const buffer_4: boolean;
     export { buffer_4 as buffer };
     const encodingLength_4: any;
@@ -44,7 +44,7 @@ export namespace LiveMessageParams {
     const decode_4: any;
     export { decode_4 as decode };
 }
-export namespace GetCommentsSectionParams {
+export namespace LiveMessageParams {
     const buffer_5: boolean;
     export { buffer_5 as buffer };
     const encodingLength_5: any;
@@ -54,7 +54,7 @@ export namespace GetCommentsSectionParams {
     const decode_5: any;
     export { decode_5 as decode };
 }
-export namespace CreateCommentParams {
+export namespace GetCommentsSectionParams {
     const buffer_6: boolean;
     export { buffer_6 as buffer };
     const encodingLength_6: any;
@@ -64,7 +64,7 @@ export namespace CreateCommentParams {
     const decode_6: any;
     export { decode_6 as decode };
 }
-export namespace CreateCommentReplyParams {
+export namespace CreateCommentParams {
     const buffer_7: boolean;
     export { buffer_7 as buffer };
     const encodingLength_7: any;
@@ -74,7 +74,7 @@ export namespace CreateCommentReplyParams {
     const decode_7: any;
     export { decode_7 as decode };
 }
-export namespace PeformCommentActionParams {
+export namespace CreateCommentReplyParams {
     const buffer_8: boolean;
     export { buffer_8 as buffer };
     const encodingLength_8: any;
@@ -84,7 +84,7 @@ export namespace PeformCommentActionParams {
     const decode_8: any;
     export { decode_8 as decode };
 }
-export namespace SearchFilter {
+export namespace PeformCommentActionParams {
     const buffer_9: boolean;
     export { buffer_9 as buffer };
     const encodingLength_9: any;
@@ -93,4 +93,14 @@ export namespace SearchFilter {
     export { encode_9 as encode };
     const decode_9: any;
     export { decode_9 as decode };
+}
+export namespace SearchFilter {
+    const buffer_10: boolean;
+    export { buffer_10 as buffer };
+    const encodingLength_10: any;
+    export { encodingLength_10 as encodingLength };
+    const encode_10: any;
+    export { encode_10 as encode };
+    const decode_10: any;
+    export { decode_10 as decode };
 }

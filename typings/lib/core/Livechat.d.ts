@@ -14,10 +14,9 @@ declare class Livechat extends EventEmitter {
     sendMessage(text: any): Promise<any>;
     /**
      * Blocks a user.
-     * @todo Implement this method.
-     * @param {object} msg_params
+     * @todo Implement this method
      */
-    blockUser(msg_params: object): Promise<void>;
+    blockUser(): Promise<void>;
     stop(): void;
     #private;
 }
