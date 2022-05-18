@@ -6,7 +6,7 @@ const NToken = require('../lib/deciphers/NToken');
 const Signature = require('../lib/deciphers/Signature');
 const Constants = require('./constants');
 
-describe("YouTube.js Tests", () => { 
+describe('YouTube.js Tests', () => { 
   beforeAll(async () => {
     this.session = await new Innertube();
   });
