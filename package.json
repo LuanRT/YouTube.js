@@ -10,7 +10,9 @@
     "node": ">=14"
   },
   "scripts": {
-    "test": "node test",
+    "test": "jest",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./",
     "build:types": "npx tsc"
   },
   "types": "./typings/index.d.ts",
@@ -29,7 +31,9 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "eslint": "^8.15.0",
+    "jest": "^28.1.0"
   },
   "repository": {
     "type": "git",
