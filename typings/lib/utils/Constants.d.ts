@@ -26,13 +26,17 @@ export namespace OAUTH {
     }
 }
 export namespace CLIENTS {
-    namespace YTMUSIC {
+    namespace WEB {
         const NAME: string;
-        const VERSION: string;
     }
-    namespace ANDROID {
+    namespace YTMUSIC {
         const NAME_1: string;
         export { NAME_1 as NAME };
+        export const VERSION: string;
+    }
+    namespace ANDROID {
+        const NAME_2: string;
+        export { NAME_2 as NAME };
         const VERSION_1: string;
         export { VERSION_1 as VERSION };
     }

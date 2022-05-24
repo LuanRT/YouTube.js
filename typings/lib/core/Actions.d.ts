@@ -2,8 +2,8 @@ export = Actions;
 declare class Actions {
     constructor(session: any);
     /**
-     * Covers Innertube's browse endpoint, mostly used to
-     * access YouTube's sections such as the home page
+     * Covers `/browse` endpoint, mostly used to access
+     * YouTube's sections such as the home feed, etc
      * and sometimes to retrieve continuations.
      *
      * @param {string} id - browseId or a continuation token
@@ -11,6 +11,7 @@ declare class Actions {
      * @param {string} [args.params]
      * @param {boolean} [args.is_ytm]
      * @param {boolean} [args.is_ctoken]
+     * @param {string} [args.client]
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object }>}
      */
@@ -18,6 +19,7 @@ declare class Actions {
         params?: string;
         is_ytm?: boolean;
         is_ctoken?: boolean;
+        client?: string;
     }): Promise<{
         success: boolean;
         status_code: number;
@@ -65,24 +67,28 @@ declare class Actions {
         data: object;
     }>;
     /**
-     * Covers endpoint used for searches.
+     * Covers endpoint used for search.
      *
      * @param {object} args
-     * @param {string} args.query
-     * @param {object} args.options
-     * @param {string} args.options.period
-     * @param {string} args.options.duration
-     * @param {string} args.options.order
+     * @param {string} [args.query]
+     * @param {object} [args.options]
+     * @param {string} [args.options.period]
+     * @param {string} [args.options.duration]
+     * @param {string} [args.options.order]
+     * @param {string} [args.client]
+     * @param {string} [args.ctoken]
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
      */
     search(args?: {
-        query: string;
-        options: {
-            period: string;
-            duration: string;
-            order: string;
+        query?: string;
+        options?: {
+            period?: string;
+            duration?: string;
+            order?: string;
         };
+        client?: string;
+        ctoken?: string;
     }): Promise<{
         success: boolean;
         status_code: number;
@@ -201,20 +207,18 @@ declare class Actions {
         data: object;
     }>;
     /**
-     * Mostly used to retrieve data continuation for
-     * previously executed actions.
+     * Mostly used for pagination and specific operations.
      *
-     * @param {string} action
      * @param {object} args
-     * @param {string} args.video_id
-     * @param {string} args.ctoken
-     * @param {boolean} is_ytm
+     * @param {string} [args.video_id]
+     * @param {string} [args.ctoken]
+     * @param {string} [client]
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
      */
     next(args?: {
-        video_id: string;
-        ctoken: string;
+        video_id?: string;
+        ctoken?: string;
     }): Promise<{
         success: boolean;
         status_code: number;
