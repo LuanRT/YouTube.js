@@ -35,7 +35,7 @@ describe('YouTube.js Tests', () => {
   
   describe('Comments', () => {
     it('Should retrieve comments', async () => {
-      this.comments = await this.session.getComments(Constants.VIDEOS[0].ID);
+      this.comments = await this.session.getComments(Constants.VIDEOS[1].ID);
       expect(this.comments.items.length).toBeLessThanOrEqual(20);
     });
     
