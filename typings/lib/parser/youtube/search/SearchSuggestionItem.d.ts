@@ -1,4 +1,7 @@
 export = SearchSuggestionItem;
 declare class SearchSuggestionItem {
-    static parse(data: any, bold_text: any): any;
+    static parse(data: any): {
+        query: any;
+        results: any;
+    };
 }

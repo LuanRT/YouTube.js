@@ -1,6 +1,11 @@
 export = Actions;
+/** namespace **/
 declare class Actions {
-    constructor(session: any);
+    /**
+     * @param {Innertube} session
+     * @constructor
+     */
+    constructor(session: Innertube);
     /**
      * Covers `/browse` endpoint, mostly used to access
      * YouTube's sections such as the home feed, etc
@@ -53,21 +58,21 @@ declare class Actions {
      *
      * @param {string} action
      * @param {object} args
-     * @param {string} args.new_value
-     * @param {string} args.setting_item_id
+     * @param {string} [args.new_value]
+     * @param {string} [args.setting_item_id]
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object }>}
      */
     account(action: string, args?: {
-        new_value: string;
-        setting_item_id: string;
+        new_value?: string;
+        setting_item_id?: string;
     }): Promise<{
         success: boolean;
         status_code: number;
         data: object;
     }>;
     /**
-     * Covers endpoint used for search.
+     * Endpoint used for search.
      *
      * @param {object} args
      * @param {string} [args.query]
@@ -104,6 +109,24 @@ declare class Actions {
      */
     searchSound(args?: {
         query: string;
+    }): Promise<{
+        success: boolean;
+        status_code: number;
+        data: object;
+    }>;
+    /**
+     * Channel management endpoints.
+     *
+     * @param {string} action
+     * @param {object} args
+     * @param {string} [args.new_name]
+     * @param {string} [args.new_description]
+     *
+     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     */
+    channel(action: string, args?: {
+        new_name?: string;
+        new_description?: string;
     }): Promise<{
         success: boolean;
         status_code: number;
@@ -176,6 +199,44 @@ declare class Actions {
         data: object;
     }>;
     /**
+     * Endpoint used to retrieve video thumbnails.
+     *
+     * @param {object} args
+     * @param {string} args.video_id
+     *
+     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     */
+    thumbnails(args?: {
+        video_id: string;
+    }): Promise<{
+        success: boolean;
+        status_code: number;
+        data: object;
+    }>;
+    /**
+     * Place Autocomplete endpoint, found it in the APK but
+     * doesn't seem to be used anywhere on YouTube (maybe for ads?).
+     *
+     * Ex:
+     * ```js
+     * const places = await session.actions.geo('place_autocomplete', { input: 'San diego cafe' });
+     * console.info(places.data);
+     * ```
+     *
+     * @param {string} action
+     * @param {object} args
+     * @param {string} args.input
+     *
+     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     */
+    geo(action: string, args?: {
+        input: string;
+    }): Promise<{
+        success: boolean;
+        status_code: number;
+        data: object;
+    }>;
+    /**
      * Covers endpoints used to report content.
      *
      * @param {string} action
@@ -212,13 +273,14 @@ declare class Actions {
      * @param {object} args
      * @param {string} [args.video_id]
      * @param {string} [args.ctoken]
-     * @param {string} [client]
+     * @param {string} [args.client]
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
      */
     next(args?: {
         video_id?: string;
         ctoken?: string;
+        client?: string;
     }): Promise<{
         success: boolean;
         status_code: number;
@@ -245,7 +307,22 @@ declare class Actions {
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
      */
-    getSearchSuggestions(client: string, input: string): Promise<{
+    getSearchSuggestions(client: string, query: any): Promise<{
+        success: boolean;
+        status_code: number;
+        data: object;
+    }>;
+    /**
+     * Endpoint used to retrieve user mention suggestions.
+     *
+     * @param {object} args
+     * @param {string} args.input
+     *
+     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     */
+    getUserMentionSuggestions(args?: {
+        input: string;
+    }): Promise<{
         success: boolean;
         status_code: number;
         data: object;

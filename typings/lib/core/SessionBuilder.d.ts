@@ -1,12 +1,23 @@
 export = SessionBuilder;
+/** @namespace */
 declare class SessionBuilder {
-    constructor(config: any);
+    /**
+     * @param {string} config
+     * @constructor
+     */
+    constructor(config: string);
     build(): Promise<SessionBuilder>;
-    get key(): any;
-    get context(): any;
-    get api_version(): any;
-    get client_version(): any;
-    get client_name(): any;
-    get player(): any;
+    /** @readonly */
+    readonly get key(): any;
+    /** @readonly */
+    readonly get context(): any;
+    /** @readonly */
+    readonly get api_version(): any;
+    /** @readonly */
+    readonly get client_version(): any;
+    /** @readonly */
+    readonly get client_name(): any;
+    /** @readonly */
+    readonly get player(): any;
     #private;
 }

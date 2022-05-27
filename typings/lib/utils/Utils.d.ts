@@ -1,3 +1,4 @@
+/** @namespace */
 export class InnertubeError extends Error {
     constructor(message: any, info: any);
     info: any;

@@ -24,12 +24,12 @@ describe('YouTube.js Tests', () => {
     
     it('Should retrieve YouTube search suggestions', async () => {
       const suggestions = await this.session.getSearchSuggestions(Constants.VIDEOS[0].QUERY, { client: 'YOUTUBE' });
-      expect(suggestions.length).toBeLessThanOrEqual(10);
+      expect(suggestions.results.length).toBeLessThanOrEqual(10);
     });
     
     it('Should retrieve YouTube Music search suggestions', async () => {
       const suggestions = await this.session.getSearchSuggestions(Constants.VIDEOS[1].QUERY, { client: 'YTMUSIC' });
-      expect(suggestions.length).toBeLessThanOrEqual(10);
+      expect(suggestions.results.length).toBeLessThanOrEqual(10);
     });
   });
   
