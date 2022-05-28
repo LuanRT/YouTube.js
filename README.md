@@ -880,6 +880,28 @@ ___
   </details>
   <br>
 
+* Get Time Watched stats:
+  ```js
+  await session.account.getTimeWatched();
+  ```
+
+  <details>
+  <summary>Output</summary>
+  <p>
+  
+  ```js
+  [
+    {
+      title: string,
+      time: string
+    }
+  ]
+  ```
+
+  </p>
+  </details>
+  <br>
+  
 #### Channel:
 
 * Edit channel name:
