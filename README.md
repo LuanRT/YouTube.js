@@ -1,18 +1,32 @@
 <!-- Hi there, fellow coder :) -->
+  
+<!-- BADGE LINKS -->
+[npm]: https://www.npmjs.com/package/youtubei.js
+[versions]: https://www.npmjs.com/package/youtubei.js?activeTab=versions
+[codefactor]: https://www.codefactor.io/repository/github/luanrt/youtube.js
+[actions]: https://github.com/LuanRT/YouTube.js/actions
+[say-thanks]: https://saythanks.io/to/LuanRT
+[ko-fi]:https://ko-fi.com/luanrt
 
+<!-- OTHER LINKS -->
+[project]: https://github.com/LuanRT/YouTube.js
+[twitter]: https://twitter.com/lrt_nooneknows
+[nodejs]: https://nodejs.org
+[gatecrasher]: https://github.com/gatecrasher777/ytcog
+[gizmodo]: https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491 
+
+<!-- INTRODUCTION -->
 <h1 align=center>
   YouTube.js
 </h1>
 
 <p align=center>
-  <!-- SHORT DESCRIPTION -->
   <i>
     A full-featured wrapper around the Innertube API, which is what YouTube itself uses.
   </i>
 </p>
 
-<p align=center>
-  <!-- SHORTCUTS -->
+<p align="center">
   <a href="https://github.com/LuanRT/YouTube.js/issues">
      Report Bug
   </a>
@@ -20,37 +34,22 @@
   <a href="https://github.com/LuanRT/YouTube.js/issues">
     Request Feature
   </a>
-  
-  <br>
-  <br>
- 
-  <!-- PROJECT SHIELDS -->
-  <a href='https://github.com/LuanRT/YouTube.js/actions'>
-    <img src='https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg' alt='Tests'>
-  </a>
-
-  <a href='https://www.npmjs.com/package/youtubei.js?activeTab=versions'>
-    <img src='https://img.shields.io/npm/v/youtubei.js?color=%2335C757' alt='Latest version'>
-  </a>
-
-  <a href='https://www.codefactor.io/repository/github/luanrt/youtube.js'>
-    <img src='https://www.codefactor.io/repository/github/luanrt/youtube.js/badge' alt='Code factor'>
-  </a>
-
-  <a href='https://www.npmjs.com/package/youtubei.js'>
-    <img src='https://img.shields.io/npm/dm/youtubei.js' alt='Monthly downloads'>
-  </a>
-
-  <a href="https://saythanks.io/to/LuanRT">
-    <img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg">
-  </a>
-  <br>
-
-  <!-- DONATE BUTTON -->
-  <a href="https://ko-fi.com/luanrt">
-    <img src="https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white" alt="Donate">
-  </a>
 </p>
+
+<!-- BADGES -->
+<div align="center">
+  
+  [![Tests](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)][actions]
+  [![Latest version](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)][versions]
+  [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
+  [![Monthly downloads](https://img.shields.io/npm/dm/youtubei.js)][npm]
+  [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks] 
+  <br>
+  [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][ko-fi]
+ 
+</div>
+
+___
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -88,9 +87,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About
 
-Innertube is an API used across all YouTube clients, it was created [to simplify](https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491) the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple and efficient way to interact with YouTube programmatically.
+Innertube is an API used across all YouTube clients, it was created [to simplify][gizmodo] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
 
-And huge thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) for his research on the workings of the Innertube API!
+And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workings of the Innertube API!
 
 ### Features
 
@@ -105,20 +104,17 @@ And huge thanks to [@gatecrasher777](https://github.com/gatecrasher777/ytcog) fo
 
 ~ And more!
 
-Do note that you must be signed in to perform actions that involve an account; such as commenting, liking/disliking videos, sending messages to a live chat, etc.
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
 ### Prerequisites
-- [NodeJS](https://nodejs.org) v14 or greater
+- [NodeJS][nodejs] v14 or greater
 
   To verify things are set up
-properly, you can run this:
+properly, run this:
   ```bash
   node --version
   ```
-
 
 ### Installation
 - NPM:
@@ -139,16 +135,17 @@ properly, you can run this:
 
 Create an Innertube instance (or session):
 ```js
-const Innertube = require('youtubei.js');
-const youtube = await new Innertube({ gl: 'US' }); // all parameters are optional.
+// const Innertube = require('youtubei.js'); 
+import Innertube from 'youtubei.js';
+const youtube = await new Innertube({ gl: 'US' });
 ```
 
-### A simple search:
+### Search:
 
 Options:
   * client: `YOUTUBE` | `YTMUSIC`
   
-  * filters (youtube only):
+  * filters (WIP, youtube only):
     * upload_date: `any` | `last_hour` | `today` | `this_week` | `this_month` | `this_year`
     
     * type: `any` | `video` | `channel` | `playlist` | `movie`
@@ -156,7 +153,7 @@ Options:
     * duration: `any` | `short` | `medium` | `long`
     
     * sort_by: `relevance` | `rating` | `upload_date` | `view_count`
-  
+
 ```js
 const search = await youtube.search('QUERY', { client: 'YOUTUBE' });
 ```
@@ -167,34 +164,33 @@ const search = await youtube.search('QUERY', { client: 'YOUTUBE' });
 
 ```js
 {
-   query: string,
-   corrected_query: string,
-   estimated_results: number,
-   videos: [
-      {
-         id: string,
-         url: string,
-         title: string,
-         description: string,
-         metadata:{
-            view_count: string,
-            short_view_count_text: {
-               simple_text: string,
-               accessibility_label: string
-            },
-            thumbnails: [Array],
-            duration: {
-               seconds: number,
-               simple_text: string,
-               accessibility_label: string
-            },
-            published: string,
-            badges:[Array],
-            owner_badges:[Array]
-         }
+  query: string,
+  corrected_query: string,
+  estimated_results: number,
+  videos: [
+    {
+      id: string,
+      url: string,
+      title: string,
+      description: string,
+      metadata: {
+        view_count: string,
+        short_view_count_text: {
+          simple_text: string,
+          accessibility_label: string
+        },
+        thumbnails: object[],
+        duration: {
+          seconds: number,
+          simple_text: string,
+          accessibility_label: string
+        },
+        published: string,
+        badges: string[],
+        owner_badges: string[]
       }
-      //...
-   ]
+    }
+  ]
 }
 ```
 
@@ -208,74 +204,66 @@ const search = await youtube.search('QUERY', { client: 'YOUTUBE' });
 
 ```js
 {
-   query:string,
-   corrected_query:string,
-   results:{
-      top_result:[Array],  // Can be anything; video, playlist, artist etc..
-      songs:[
-         {
-            id:string,
-            title:string,
-            artist:string,
-            album:string,
-            duration:string,
-            thumbnails:[
-               Array
-            ]
-         },
-         //...
-      ],
-      videos:[
-         {
-            id:string,
-            title:string,
-            author:string,
-            views:string,
-            duration:string,
-            thumbnails:[Array]
-         },
-         //...
-      ],
-      albums:[
-         {
-            id:string,
-            title:string,
-            author:string,
-            year:string,
-            thumbnails:[Array]
-         },
-         //...
-      ],
-      featured_playlists:[
-         {
-            id:string,
-            title:string,
-            author:string,
-            channel_id:string,
-            total_items:number
-         },
-         //...
-      ],
-      community_playlists:[
-         {
-            id:string,
-            title:string,
-            author:string,
-            channel_id:string,
-            total_items:number
-         },
-         //...
-      ],
-      artists:[
-         {
-            id:string,
-            name:string,
-            subscribers:string,
-            thumbnails:[Array]
-         },
-         //...
-      ]
-   }
+  query: string,
+  corrected_query: string,
+  results: {
+    top_result: object[],  // <- Can be anything; video, playlist, artist etc..
+    songs: [
+      {
+        id: string,
+        title: string,
+        artist: string,
+        album: string,
+        duration: string,
+        thumbnails: object[]
+      }
+    ],
+    videos: [
+      {
+        id: string,
+        title: string,
+        author: string,
+        views: string,
+        duration: string,
+        thumbnails: object[]
+      }
+    ],
+    albums: [
+      {
+        id: string,
+        title: string,
+        author: string,
+        year: string,
+        thumbnails: object[]
+      }
+    ],
+    featured_playlists: [
+      {
+        id: string,
+        title: string,
+        author: string,
+        channel_id: string,
+        total_items:number
+      }
+    ],
+    community_playlists: [
+      {
+        id: string,
+        title: string,
+        author: string,
+        channel_id: string,
+        total_items: number
+      }
+    ],
+    artists: [
+      {
+        id: string,
+        name: string,
+        subscribers: string,
+        thumbnails: object[]
+      }
+    ]
+  }
 }
 ```
 
@@ -283,7 +271,7 @@ const search = await youtube.search('QUERY', { client: 'YOUTUBE' });
 </details> 
 <br>
 
-### Search suggestions:
+Search suggestions:
 ```js
 const suggestions = await youtube.getSearchSuggestions('QUERY', { client: 'YOUTUBE' })
 ```
@@ -293,12 +281,10 @@ const suggestions = await youtube.getSearchSuggestions('QUERY', { client: 'YOUTU
 <p>
 
 ```js
-[
-  {
-     text: string, bold_text: string
-  },
-  //...
-]
+{
+  query: string,
+  results: string[]
+}
 ```
 
 </p>
@@ -316,48 +302,49 @@ const video = await youtube.getDetails('VIDEO_ID');
 
 ```js
 {
-   title: string,
-   description: string,
-   thumbnail: {
-      url: string,
+  title: string,
+  description: string,
+  thumbnail: {
+    url: string,
+    width: number,
+    height: number
+  },
+  metadata: {
+    embed: {
+      iframeUrl: string,
+      flashUrl: string,
       width: number,
-      height: number
-   },
-   metadata: {
-      embed: {
-         iframeUrl: string,
-         flashUrl: string,
-         width: number,
-         height: number,
-         flashSecureUrl: string
-      },
-      likes: number,
-      dislikes: number,
-      view_count: number,
-      average_rating: number,
-      length_seconds: number,
-      channel_id: string,
-      channel_url: string,
-      external_channel_id: string,
-      allow_ratings: boolean,
-      is_live_content: boolean,
-      is_family_safe: boolean,
-      is_unlisted: boolean,
-      is_private: boolean,
-      is_liked: boolean,
-      is_disliked: boolean,
-      is_subscribed: boolean,
-      subscriber_count: string,
-      current_notification_preference: string,
-      likes: { count: number, short_count_text: string },
-      publish_date_text: string,
-      has_ypc_metadata: boolean,
-      category: string,
-      channel_name: string,
-      publish_date: string,
-      upload_date: string,
-      keywords: [Array]
-   }
+      height: number,
+      flashSecureUrl: string
+    },
+    likes: {
+      count: number, 
+      short_count_text: string
+    },
+    view_count: number,
+    average_rating: number,
+    length_seconds: number,
+    channel_id: string,
+    channel_url: string,
+    external_channel_id: string,
+    allow_ratings: boolean,
+    is_live_content: boolean,
+    is_family_safe: boolean,
+    is_unlisted: boolean,
+    is_private: boolean,
+    is_liked: boolean,
+    is_disliked: boolean,
+    is_subscribed: boolean,
+    subscriber_count: string,
+    current_notification_preference: string,
+    publish_date_text: string,
+    has_ypc_metadata: boolean,
+    category: string,
+    channel_name: string,
+    publish_date: string,
+    upload_date: string,
+    keywords: string[]
+  }
 }
 ```
 
@@ -383,36 +370,35 @@ const comments = await video.getComments();
 
 ```js
 {
-   page_count: number,
-   comment_count: number,
-   items: [
-      {
-         text: string,
-         author: {
-            name: string,
-            thumbnails: [
-               {
-                  url: string,
-                  width: number,
-                  height: number
-               }
-            ],
-            channel_id: string
-         },
-         metadata:{
-            published: string,
-            is_liked: boolean,
-            is_disliked: boolean,
-            is_pinned: boolean,
-            is_channel_owner: boolean,
-            is_reply: boolean,
-            like_count: number,
-            reply_count: number,
-            id: string
-         }
+  page_count: number,
+  comment_count: number,
+  items: [
+    {
+      text: string,
+      author: {
+        name: string,
+        thumbnails: [
+          {
+            url: string,
+            width: number,
+            height: number
+          }
+        ],
+        channel_id: string
       },
-      //...
-   ]
+      metadata: {
+        published: string,
+        is_liked: boolean,
+        is_disliked: boolean,
+        is_pinned: boolean,
+        is_channel_owner: boolean,
+        is_reply: boolean,
+        like_count: number,
+        reply_count: number,
+        id: string
+      }
+    }
+  ]
 }
 ```
 
@@ -453,40 +439,37 @@ const homefeed = await youtube.getHomeFeed();
 
 ```js
 {
-   videos: [
-     {
+  videos: [
+    {
+      id: string,
+      title: string,
+      description: string,
+      channel: {
         id: string,
-        title: string,
-        description: string,
-        channel: {
-          id: string,
-          name: string,
-          url: string
+        name: string,
+        url: string
+      },
+      metadata: {
+        view_count: string,
+        short_view_count_text: {
+          simple_text: string,
+          accessibility_label: string
         },
-        metadata: {
-           view_count: string,
-           short_view_count_text: { simple_text: string, accessibility_label: string },
-           thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            moving_thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            published: string,
-            duration: {
-              seconds: number,
-              simple_text: string,
-              accessibility_label: string
-            },
-            badges: string,
-            owner_badges: [Array]
-        }
-     },
-     // ...
+        thumbnail: {
+          url: string,
+          width: number,
+          height: number
+        },
+        moving_thumbnail: {
+          url: string,
+          width: number,
+          height: number
+        },
+        published: string,
+        badges: string[],
+        owner_badges: string[]
+      }
+    }
   ]
 }
 ```
@@ -504,51 +487,49 @@ const continuation = await homefeed.getContinuation();
 const history = await youtube.getHistory();
 ```
 
-
 <details>
 <summary>Output</summary>
 <p>
 
 ```js
 {
-   items: [
-      {
-         date: string,
-         videos: [
-            {
-               id: string,
-               title: string,
-               channel: {
-                  id: string,
-                  name: string,
-                  url: string
-               },
-               metadata: {
-                  view_count: string,
-                  short_view_count_text: {
-                     simple_text: string,
-                     accessibility_label: string
-                  },
-                  thumbnail: {
-                     url: string,
-                     width: number,
-                     height: number
-                  },
-                  moving_thumbnail: {
-                     url: string,
-                     width: number,
-                     height: number
-                  },
-                  published: string,
-                  badges: [Array],
-                  owner_badges: [Array]
-               }
+  items: [
+    {
+      date: string,
+      videos: [
+        {
+          id: string,
+          title: string,
+          description: string,
+          channel: {
+            id: string,
+            name: string,
+            url: string
+          },
+          metadata: {
+            view_count: string,
+            short_view_count_text: {
+              simple_text: string,
+              accessibility_label: string
             },
-            //...
-         ]
-      },
-      //...
-   ]
+            thumbnail: {
+              url: string,
+              width: number,
+              height: number
+            },
+            moving_thumbnail: {
+              url: string,
+              width: number,
+              height: number
+            },
+            published: string,
+            badges: string[],
+            owner_badges: string[]
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -571,45 +552,43 @@ const mysubsfeed = await youtube.getSubscriptionsFeed();
 
 ```js
 {
-   items: [
-      {
-         date: string,
-         videos: [
-            {
-               id: string,
-               title: string,
-               description: string,
-               channel: {
-                  id: string,
-                  name: string,
-                  url: string
-               },
-               metadata: {
-                  view_count: string,
-                  short_view_count_text: {
-                     simple_text: string,
-                     accessibility_label: string
-                  },
-                  thumbnail: {
-                     url: string,
-                     width: number,
-                     height: number
-                  },
-                  moving_thumbnail: {
-                     url: string,
-                     width: number,
-                     height: number
-                  },
-                  published: string,
-                  badges: [Array],
-                  owner_badges: [Array]
-               }
+  items: [
+    {
+      date: string,
+      videos: [
+        {
+          id: string,
+          title: string,
+          description: string,
+          channel: {
+            id: string,
+            name: string,
+            url: string
+          },
+          metadata: {
+            view_count: string,
+            short_view_count_text: {
+              simple_text: string,
+              accessibility_label: string
             },
-            //...
-         ]
-      },
-      //...
-   ]
+            thumbnail: {
+              url: string,
+              width: number,
+              height: number
+            },
+            moving_thumbnail: {
+              url: string,
+              width: number,
+              height: number
+            },
+            published: string,
+            badges: string[],
+            owner_badges: string[]
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -637,15 +616,14 @@ const trending = await youtube.getTrending();
     content: [
       {
         title: string,
-        videos: [] 
-      },
-      //...
+        videos: object[]
+      }
     ]
   },
   // Other categories require an additional call to fetch videos
-  music: { getVideos: Promise.<Array> },
-  gaming: { getVideos: Promise.<Array> },
-  movies: { getVideos: Promise.<Array> }
+  music: { getVideos: Promise.<Array.<object>> },
+  gaming: { getVideos: Promise.<Array.<object>> },
+  movies: { getVideos: Promise.<Array.<object>> }
 }
 ```
 
@@ -670,7 +648,7 @@ const notifications = await youtube.getNotifications();
 
 ```js
 {
-  items: [  
+  items: [
     {
       title: string,
       sent_time: string,
@@ -688,8 +666,7 @@ const notifications = await youtube.getNotifications();
       video_url: string,
       read: boolean,
       notification_id: string
-    },
-    //...
+    }
   ]
 }
 ```
@@ -732,13 +709,12 @@ const playlist = await youtube.getPlaylist('PLAYLIST_ID', { client: 'YOUTUBE' })
       title: string,
       author: string,
       duration: {
-         seconds: number,
-         simple_text: string,
-         accessibility_label: string
+        seconds: number,
+        simple_text: string,
+        accessibility_label: string
       },
-      thumbnails: [Array]
-    },
-    //...
+      thumbnails: object[]
+    }
   ]
 }
 ```
@@ -763,12 +739,12 @@ const playlist = await youtube.getPlaylist('PLAYLIST_ID', { client: 'YOUTUBE' })
       title: string,
       author: string,
       duration: {
-         seconds: number,
-         simple_text: string
+        seconds: number,
+        simple_text: string
       },
-      thumbnails: [Array]
-    },
-    //...
+      thumbnails: object[]
+    }
+  ]
 }
 ```
 
@@ -776,9 +752,10 @@ const playlist = await youtube.getPlaylist('PLAYLIST_ID', { client: 'YOUTUBE' })
 </details>
 
 ### Interactions:
----
 
-Don't forget that you must be signed in to use some of the following methods!
+___
+
+Don't forget that you must be signed in to use some of the following features!
 
 * Subscribe/Unsubscribe:
   ```js
@@ -808,7 +785,7 @@ Don't forget that you must be signed in to use some of the following methods!
   ];
 
   // Create and delete a playlist:
-  await youtube.playlist.create('My Playlist', videos);
+  await youtube.playlist.create('My Awesome Playlist', videos);
   await youtube.playlist.delete('PLAYLIST_ID');
    
   // Add and remove videos from a playlist:
@@ -830,7 +807,7 @@ Don't forget that you must be signed in to use some of the following methods!
   ```
 
 Response schema:
-```js 
+```js
 {
   success: boolean, 
   status_code: number, 
@@ -840,12 +817,13 @@ Response schema:
 }
 ```
 
-### Account Settings
-It is also possible to manage account settings:
+### Account
+
+___
 
 * Get account info:
   ```js
-  await youtube.account.info();
+  await youtube.account.getInfo();
   ```
 
   <details>
@@ -854,22 +832,65 @@ It is also possible to manage account settings:
 
   ```js
   {
-      name: string,
-      photo: [
-         {
-            url: string,
-            width: number,
-            height: number
-         }
-      ],
-      country: string,
-      language: string;
+    name: string,
+    email: string,
+    channel_id: string,
+    subscriber_count: string,
+    photo: object[]
   }
   ```
+  
   </p>
   </details>
+  <br>
+  
+* Get basic channel analytics:
+  ```js
+  await youtube.account.getAnalytics();
+  ```
 
-<br>
+  <details>
+  <summary>Output</summary>
+  <p>
+  
+  ```js
+  {
+    metrics: [
+      {
+        title: string,
+        subtitle: string,
+        metric_value: string,
+        comparison_indicator: object,
+        series_configuration: object
+      }
+    ],
+    top_content: [
+      {
+        views: string,
+        published: string,
+        thumbnails: object[],
+        duration: string,
+        is_short: boolean
+      }
+    ]
+  }
+  ```
+  
+  </p>
+  </details>
+  <br>
+
+#### Channel:
+
+* Edit channel name:
+  ```js
+  await youtube.account.channel.editName('My new awesome name');
+  ```
+
+* Edit channel description:
+  ```js
+  await youtube.account.channel.editDescription('An awesome description');
+  ```
 
 #### Notification settings:
 
@@ -917,36 +938,34 @@ Options: `ON` | `OFF`
 ### Live chats:
 ---
 
-Currently, the library can retrieve live chat messages, stats and also send messages.
+Currently, the library can retrieve the live chat, stats, and send messages.
 
+Example:
 ```js
-const Innertube = require('youtubei.js');
+import Innertube from 'youtubei.js';
 
-async function start() {
-  const youtube = await new Innertube();
+const youtube = await new Innertube();
 
-  const search = await youtube.search('Lofi girl live');
-  const video = await youtube.getDetails(search.videos[0].id);
+const search = await youtube.search('Lofi girl live');
+const video = await youtube.getDetails(search.videos[0].id);
   
-  const livechat = video.getLivechat();
+const livechat = video.getLivechat();
 
-  // Updated stats about the livestream
-  livechat.on('update-metadata', (data) => {
-    console.info('Info:', data);
-  });
+// Updated stats about the livestream
+livechat.on('update-metadata', (data) => {
+  console.info('Info:', data);
+});
    
-  // Fired whenever there is a new message or other chat events
-  livechat.on('chat-update', (message) => {
-    console.info(`- ${message.author.name}\n${message.text}\n\n`);
+// Fired whenever there is a new message or other chat events
+livechat.on('chat-update', (message) => {
+  console.info(`- ${message.author.name}\n${message.text}\n\n`);
     
-    if(message.text == '!info') {
-      livechat.sendMessage('Hello! This message was sent from YouTube.js');
-    }
-  });
-}
-
-start();
+  if(message.text == '!info') {
+    livechat.sendMessage('Hello! This message was sent from YouTube.js');
+  }
+});
 ```
+
 Stop fetching the live chat:
 ```js
 livechat.stop();
@@ -962,10 +981,10 @@ await msg.deleteMessage();
 ---
 ```js
 const options = {
-  format: string,
-  quality: string,
-  type: string,
-  range: { start: number, end: number }
+  format?: string,
+  quality?: string,
+  type?: string,
+  range?: { start: number, end: number }
 };
 
 const stream = youtube.download('VIDEO_ID', options);
@@ -993,53 +1012,47 @@ stream.cancel();
 
 Example:
 ```js
-const fs = require('fs');
-const Innertube = require('youtubei.js');
+import fs from 'fs':
+import Innertube from 'youtubei.js';
 
-async function start() {
-  const youtube = await new Innertube();
+const youtube = await new Innertube();
+const search = await youtube.search('Sound Coming From A Massive Black Hole - Anton Petrov');
+  
+const stream = youtube.download(search.videos[0].id, {
+  format: 'mp4', // defaults to mp4
+  quality: '720p', // falls back to 360p if a specific quality isn't available
+  type: 'videoandaudio' 
+});
+  
+stream.pipe(fs.createWriteStream(`./${search.videos[0].id}.mp4`));
  
-  const search = await youtube.search('Looking for life on Mars - documentary');
+stream.on('start', () => {
+  console.info('[YOUTUBE.JS]', 'Starting now!');
+});
   
-  const stream = youtube.download(search.videos[0].id, {
-    format: 'mp4', // Optional, defaults to mp4 and I recommend to leave it as it is unless you know what you're doing
-    quality: '360p', // if a video doesn't have a specific quality it'll fall back to 360p, also ignored when type is set to audio
-    type: 'videoandaudio' // can be “video”, “audio” and “videoandaudio”
-  });
+stream.on('info', (info) => {
+  console.info('[YOUTUBE.JS]', `Downloading ${info.video_details.title} by ${info.video_details.metadata.channel_name}`);
+});
   
-  stream.pipe(fs.createWriteStream(`./${search.videos[0].title}.mp4`));
- 
-  stream.on('start', () => {
-    console.info('[DOWNLOADER]', 'Starting download now!');
-  });
+stream.on('progress', (info) => {
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+  process.stdout.write(`[YOUTUBE.JS] Downloaded ${info.percentage}% (${info.downloaded_size}MB) of ${info.size}MB`);
+});
   
-  stream.on('info', (info) => {
-    // { video_details: {..}, selected_format: {..}, formats: {..} }
-    console.info('[DOWNLOADER]', `Downloading ${info.video_details.title} by ${info.video_details.metadata.channel_name}`);
-  });
+stream.on('end', () => {
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+  console.info('[YOUTUBE.JS]', 'Done!');
+});
   
-  stream.on('progress', (info) => {
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    process.stdout.write(`[DOWNLOADER] Downloaded ${info.percentage}% (${info.downloaded_size}MB) of ${info.size}MB`);
-  });
-  
-  stream.on('end', () => {
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
-    console.info('[DOWNLOADER]', 'Done!');
-  });
-  
-  stream.on('error', (err) => console.error('[ERROR]', err)); 
-}
-
-start();
+stream.on('error', (err) => console.error('[ERROR]', err)); 
 ```
 
 Alternatively, you can get the deciphered streaming data and handle the download yourself:
 
 ```js
-const streaming_data = await youtube.getStreamingData('VIDEO_ID', options);
+await youtube.getStreamingData('VIDEO_ID', options);
 ```
 
 <details>
@@ -1048,26 +1061,26 @@ const streaming_data = await youtube.getStreamingData('VIDEO_ID', options);
 
 ```js
 {
-   selected_format: {
-      itag: number,
-      mimeType: string,
-      bitrate: number,
-      initRange: { start: string, end: string },
-      indexRange: { start: string, end: string },
-      lastModified: string,
-      contentLength: string,
-      quality: string,
-      projectionType: string,
-      averageBitrate: number,
-      highReplication: boolean,
-      audioQuality: string,
-      approxDurationMs: string,
-      audioSampleRate: string,
-      audioChannels: number,
-      loudnessDb: number,
-      url: string, 
-      has_audio: boolean,
-      has_video: boolean
+  selected_format: {
+    itag: number,
+    mimeType: string,
+    bitrate: number,
+    initRange: { start: string, end: string },
+    indexRange: { start: string, end: string },
+    lastModified: string,
+    contentLength: string,
+    quality: string,
+    projectionType: string,
+    averageBitrate: number,
+    highReplication: boolean,
+    audioQuality: string,
+    approxDurationMs: string,
+    audioSampleRate: string,
+    audioChannels: number,
+    loudnessDb: number,
+    url: string,
+    has_audio: boolean,
+    has_video: boolean
   },
   formats: [
     {
@@ -1087,13 +1100,13 @@ const streaming_data = await youtube.getStreamingData('VIDEO_ID', options);
       audioSampleRate: string,
       audioChannels: number,
       loudnessDb: number,
-      url: string, 
+      url: string,
       has_audio: boolean,
       has_video: boolean
     }
-    //...
   ]
 }
+  
 ```
 </p>
 </details>
@@ -1101,43 +1114,48 @@ const streaming_data = await youtube.getStreamingData('VIDEO_ID', options);
 ### Signing in:
 ---
 
-When signing in to your account, you have two options:
+When signing in to a Google account, you have two options:
 
-- Use OAuth 2.0; easy, simple & reliable.
-- Cookies; usually more complicated to get and unreliable.
+- OAuth 2.0; easy, simple & reliable.
+- Cookies; usually complicated to extract and unreliable.
 
 #### OAuth:
 
 ```js
-const fs = require('fs');
-const Innertube = require('youtubei.js');
+import fs from 'fs';
+import Innertube from 'youtubei.js';
+
+const youtube = await new Innertube();
+
 const creds_path = './yt_oauth_creds.json'; 
+const creds = fs.existsSync(creds_path) && JSON.parse(fs.readFileSync(creds_path).toString()) || {};
 
-async function start() {
-  const creds = fs.existsSync(creds_path) && JSON.parse(fs.readFileSync(creds_path).toString()) || {};
-  const youtube = await new Innertube();
-  
-  youtube.ev.on('auth', (data) => {
-    if (data.status === 'AUTHORIZATION_PENDING') {
-      console.info(`Hello!\nOn your phone or computer, go to ${data.verification_url} and enter the code ${data.code}`);
-    } else if (data.status === 'SUCCESS') {
+youtube.ev.on('auth', (data) => {
+  switch (data.status) {
+    case 'AUTHORIZATION_PENDING':
+      console.info(`
+        Hello! On your phone or computer,
+        go to ${data.verification_url} and enter
+        the code ${data.code}.
+      `);
+      break;
+    case 'SUCCESS'
       fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
-      console.info('Successfully signed-in, enjoy!');
-    }
-  });
-  
-  youtube.ev.on('update-credentials', (data) => {
-    fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
-    console.info('Credentials updated!', data);
-  });
-  
-  await youtube.signIn(creds);
-  
-  //...
-}
+      console.info('Successfully signed in, enjoy!');
+      break;
+  }
+});
 
-start();
+youtube.ev.on('update-credentials', (data) => {
+  fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
+  console.info('Credentials updated!', data);
+});
+  
+await youtube.signIn(creds);
+  
+//...
 ```
+
 Sign out:
 ```js
 const response = await youtube.signOut();
@@ -1149,21 +1167,14 @@ if (response.success) {
 #### Cookies:
 
 ```js
-const Innertube = require('youtubei.js');
-
-async function start() {
-  const youtube = await new Innertube({ cookie: '...' }); 
-  //...
-}
-
-start();
+import Innertube from 'youtubei.js';
+const youtube = await new Innertube({ cookie: '...' }); 
 ```
 
 <!-- CONTRIBUTING -->
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+Contributions, issues and feature requests are welcome.
+Feel free to check [issues page](https://github.com/LuanRT/YouTube.js/issues) if you want to contribute.
 
 <!-- CONTRIBUTORS -->
 ## Contributors
@@ -1174,14 +1185,14 @@ Please make sure to update tests as appropriate.
 <!-- CONTACT -->
 ## Contact
 
-LuanRT  - [@lrt_nooneknows](https://twitter.com/lrt_nooneknows) - luan.lrt4@gmail.com
+LuanRT  - [@lrt_nooneknows][twitter] - luan.lrt4@gmail.com
 
-Project Link: [https://github.com/LuanRT/YouTube.js](https://github.com/LuanRT/YouTube.js)
+Project Link: [https://github.com/LuanRT/YouTube.js][project]
 
 <!-- DISCLAIMER -->
 ## Disclaimer
 This project is not affiliated with, endorsed, or sponsored by YouTube or any of their affiliates or subsidiaries. 
-All trademarks, logos and brand names are the property of their respective owners. 
+All trademarks, logos and brand names are the property of their respective owners, and are used only to directly describe the services being provided, as such, any usage of trademarks to refer to such services is considered nominative use.
 
 Should you have any questions or concerns please contact me directly via email.
 
