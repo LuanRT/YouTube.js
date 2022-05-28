@@ -165,7 +165,7 @@ declare class Actions {
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
      */
-    notifications(action: string, args: {
+    notifications(action: string, args?: {
         pref?: string;
         channel_id?: string;
         ctoken?: string;

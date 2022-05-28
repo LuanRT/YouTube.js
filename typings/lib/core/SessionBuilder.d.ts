@@ -2,10 +2,10 @@ export = SessionBuilder;
 /** @namespace */
 declare class SessionBuilder {
     /**
-     * @param {string} config
+     * @param {object} config
      * @constructor
      */
-    constructor(config: string);
+    constructor(config: object);
     build(): Promise<SessionBuilder>;
     /** @readonly */
     readonly get key(): any;

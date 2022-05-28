@@ -1,7 +1,7 @@
 {
   "name": "youtubei.js",
-  "version": "1.4.2",
-  "description": "A full-featured library that allows you to get detailed info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
+  "version": "1.4.3",
+  "description": "A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
   "main": "index.js",
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
   "funding": "https://ko-fi.com/luanrt",
@@ -45,11 +45,12 @@
   "homepage": "https://github.com/LuanRT/YouTube.js#readme",
   "keywords": [
     "yt",
+    "dl"
     "ytdl",
     "youtube",
-    "youtube-downloader",
-    "youtube-dl",
     "youtubedl",
+    "youtube-dl",
+    "youtube-downloader",
     "innertube",
     "innertubeapi",
     "unofficial",
@@ -62,6 +63,5 @@
     "music",
     "like",
     "api",
-    "dl"
   ]
 }
