@@ -1034,7 +1034,7 @@ stream.cancel();
 
 Example:
 ```js
-import fs from 'fs':
+import fs from 'fs';
 import Innertube from 'youtubei.js';
 
 const youtube = await new Innertube();
