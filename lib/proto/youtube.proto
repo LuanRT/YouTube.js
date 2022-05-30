@@ -7,11 +7,11 @@ message VisitorData {
 }
 
 message ChannelAnalytics {
-    message Params {
-        string channel_id = 1001;
-    }
+  message Params {
+    string channel_id = 1001;
+  }
 
-    Params params = 32;
+  Params params = 32;
 }
 
 message InnertubePayload {
@@ -27,13 +27,6 @@ message InnertubePayload {
   Context context = 1;
   
   optional string target = 2;
-  
-  message SoundSearchParams {
-    string target_id = 2;
-    string query = 3;
-  }
-  
-  optional SoundSearchParams sound_search_params = 16;
 }
 
 message SoundInfoParams {
@@ -58,6 +51,7 @@ message NotificationPreferences {
   message Preference {
     int32 index = 1;
   }
+  
   Preference pref_id = 2;
   
   optional int32 number_0 = 3;
@@ -72,6 +66,7 @@ message LiveMessageParams {
     }
     Ids ids = 5;
   }
+  
   Params params = 1;
   
   optional int32 number_0 = 2;
