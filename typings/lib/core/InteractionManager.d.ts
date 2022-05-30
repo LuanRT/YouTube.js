@@ -98,7 +98,7 @@ declare class InteractionManager {
      *
      * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
      */
-    setNotificationPreferences(channel_id: string, type: string): Promise<{
+    setNotificationPreferences(channel_id: string, type: 'PERSONALIZED' | 'ALL' | 'NONE'): Promise<{
         success: boolean;
         status_code: number;
         data: object;

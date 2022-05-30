@@ -89,12 +89,12 @@ declare class Innertube {
      * { results: { songs: object[]; videos: object[]; albums: object[]; community_playlists: object[] } }>}
      */
     search(query: string, options?: {
-        client?: string;
+        client?: 'YOUTUBE' | 'YTMUSIC';
         filters?: {
-            upload_date?: string;
-            type?: string;
-            duration?: string;
-            sort_by?: string;
+            upload_date?: 'any' | 'last_hour' | 'today' | 'this_week' | 'this_month' | 'this_year';
+            type?: 'any' | 'video' | 'channel' | 'playlist' | 'movie';
+            duration?: 'any' | 'short' | 'medium' | 'long';
+            sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count';
         };
     }): Promise<{
         query: string;
@@ -119,7 +119,7 @@ declare class Innertube {
      * @returns {Promise.<{ query: string; results: string[] }>}
      */
     getSearchSuggestions(query: string, options?: {
-        client?: string;
+        client?: 'YOUTUBE' | 'YTMUSIC';
     }): Promise<{
         query: string;
         results: string[];
@@ -142,7 +142,7 @@ declare class Innertube {
      * @param {string} [sort_by] - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
      * @return {Promise.<{ page_count: number; comment_count: number; items: object[]; }>}
      */
-    getComments(video_id: string, sort_by?: string): Promise<{
+    getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<{
         page_count: number;
         comment_count: number;
         items: object[];
@@ -259,7 +259,7 @@ declare class Innertube {
      *  { title: string; description: string; total_items: number; duration: string; year: string; items: [] }>}
      */
     getPlaylist(playlist_id: string, options?: {
-        client: string;
+        client: 'YOUTUBE' | 'YTMUSIC';
     }): Promise<{
         title: string;
         description: string;
@@ -289,7 +289,7 @@ declare class Innertube {
      */
     getStreamingData(video_id: string, options?: {
         quality: string;
-        type: string;
+        type: 'video' | 'audio' | 'videoandaudio';
         format: string;
     }): Promise<{
         selected_format: object;
@@ -311,7 +311,7 @@ declare class Innertube {
      */
     download(video_id: string, options?: {
         quality?: string;
-        type?: string;
+        type?: 'video' | 'audio' | 'videoandaudio';
         format?: string;
         range?: {
             start: number;

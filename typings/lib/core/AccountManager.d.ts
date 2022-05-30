@@ -60,7 +60,7 @@ declare class AccountManager {
              * @param {boolean} option - ON | OFF
              * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
              */
-            setSubscriptions: (option: boolean) => Promise<{
+            setSubscriptions: (option: 'ON' | 'OFF') => Promise<{
                 success: boolean;
                 status_code: number;
                 data: object;
@@ -71,7 +71,7 @@ declare class AccountManager {
              * @param {boolean} option - ON | OFF
              * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
              */
-            setRecommendedVideos: (option: boolean) => Promise<{
+            setRecommendedVideos: (option: 'ON' | 'OFF') => Promise<{
                 success: boolean;
                 status_code: number;
                 data: object;
@@ -82,7 +82,7 @@ declare class AccountManager {
              * @param {boolean} option - ON | OFF
              * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
              */
-            setChannelActivity: (option: boolean) => Promise<{
+            setChannelActivity: (option: 'ON' | 'OFF') => Promise<{
                 success: boolean;
                 status_code: number;
                 data: object;
@@ -93,7 +93,7 @@ declare class AccountManager {
              * @param {boolean} option - ON | OFF
              * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
              */
-            setCommentReplies: (option: boolean) => Promise<{
+            setCommentReplies: (option: 'ON' | 'OFF') => Promise<{
                 success: boolean;
                 status_code: number;
                 data: object;
@@ -104,7 +104,7 @@ declare class AccountManager {
              * @param {boolean} option - ON | OFF
              * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
              */
-            setMentions: (option: boolean) => Promise<{
+            setMentions: (option: 'ON' | 'OFF') => Promise<{
                 success: boolean;
                 status_code: number;
                 data: object;
@@ -115,7 +115,7 @@ declare class AccountManager {
              * @param {boolean} option - ON | OFF
              * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
              */
-            setSharedContent: (option: boolean) => Promise<{
+            setSharedContent: (option: 'ON' | 'OFF') => Promise<{
                 success: boolean;
                 status_code: number;
                 data: object;
@@ -128,7 +128,7 @@ declare class AccountManager {
              * @param {boolean} option - ON | OFF
              * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
              */
-            setSubscriptionsPrivate: (option: boolean) => Promise<{
+            setSubscriptionsPrivate: (option: 'ON' | 'OFF') => Promise<{
                 success: boolean;
                 status_code: number;
                 data: object;
@@ -139,7 +139,7 @@ declare class AccountManager {
              * @param {boolean} option - ON | OFF
              * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
               */
-            setSavedPlaylistsPrivate: (option: boolean) => Promise<{
+            setSavedPlaylistsPrivate: (option: 'ON' | 'OFF') => Promise<{
                 success: boolean;
                 status_code: number;
                 data: object;
