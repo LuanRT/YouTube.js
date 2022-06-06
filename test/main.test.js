@@ -14,7 +14,7 @@ describe('YouTube.js Tests', () => {
   describe('Search', () => {
     it('Should search on YouTube', async () => {
       const search = await this.session.search(Constants.VIDEOS[0].QUERY, { client: 'YOUTUBE' });
-      expect(search.results.length).toBeLessThanOrEqual(20);
+      expect(search.results.length).toBeLessThanOrEqual(30);
     });
     
     /*
