@@ -1,6 +1,5 @@
 # Parser
 
-## What
 Sanitizes and standardizes InnerTube responses while maintaining the integrity of the data. This clever approach was initially implemented and suggested by [Wykerd](https://github.com/Wykerd) (See #44).
 
 Note: 
