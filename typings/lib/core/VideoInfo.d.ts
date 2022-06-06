@@ -32,12 +32,11 @@ declare class VideoInfo {
         dls_manifest_url: any;
     };
     playability_status: {
-        /**
-         * @type {import('../parser/contents/classes/VideoPrimaryInfo')}
-         */
         status: number;
         embeddable: boolean;
-        reason: string;
+        reason: string; /**
+         * @type {import('../parser/contents/classes/PlayerOverlay')}
+         */
     };
     /**
      * @type {import('../parser/contents/classes/PlayerAnnotationsExpanded')[]}
@@ -63,6 +62,10 @@ declare class VideoInfo {
         contents: any;
         on_response_received_actions: any;
         on_response_received_endpoints: any;
+        on_response_received_commands: any; /**
+         * Microformat is a bit redundant, so only
+         * a few things there are interesting to us.
+         */
         metadata: any;
         header: any;
         microformat: import("../parser/contents/classes/PlayerMicroformat");
@@ -72,12 +75,11 @@ declare class VideoInfo {
         estimated_results: any;
         player_overlays: any;
         playability_status: {
-            /**
-             * @type {import('../parser/contents/classes/VideoPrimaryInfo')}
-             */
             status: number;
             embeddable: boolean;
-            reason: string;
+            reason: string; /**
+             * @type {import('../parser/contents/classes/PlayerOverlay')}
+             */
         };
         streaming_data: {
             expires: Date;
@@ -89,6 +91,9 @@ declare class VideoInfo {
         captions: any;
         video_details: import("../parser/contents/classes/VideoDetails");
         annotations: any;
+        /**
+         * @type {import('../parser/contents/classes/PlayerStoryboardSpec')}
+         */
         storyboards: any;
         endscreen: import("../parser/contents/classes/Endscreen");
         cards: import("../parser/contents/classes/CardCollection");

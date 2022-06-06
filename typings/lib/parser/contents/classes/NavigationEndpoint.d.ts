@@ -68,6 +68,7 @@ declare class NavigationEndpoint {
         contents: any;
         on_response_received_actions: any;
         on_response_received_endpoints: any;
+        on_response_received_commands: any;
         metadata: any;
         header: any;
         microformat: import("./PlayerMicroformat");

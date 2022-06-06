@@ -7,10 +7,7 @@ declare class Playlist {
     author: Text | PlaylistAuthor;
     badges: any;
     endpoint: NavigationEndpoint;
-    thumbnail: {
-        thumbnails: any;
-        sampled_thumbnail_color: any;
-    };
+    thumbnails: any;
     video_count: Text;
     video_count_short_text: Text;
     first_videos: any;

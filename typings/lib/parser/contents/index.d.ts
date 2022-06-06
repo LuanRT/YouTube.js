@@ -5,6 +5,7 @@ declare class Parser {
         contents: any;
         on_response_received_actions: any;
         on_response_received_endpoints: any;
+        on_response_received_commands: any;
         metadata: any;
         header: any;
         /** @type {import('./classes/PlayerMicroformat')} **/
@@ -43,6 +44,11 @@ declare class Parser {
     static parseRR(actions: any): any;
     static parseFormats(formats: any): any;
     static parse(data: any): any;
+    static formatError({ classname, classdata, err }: {
+        classname: any;
+        classdata: any;
+        err: any;
+    }): void;
     static sanitizeClassName(input: any): any;
 }
 import VideoDetails = require("./classes/VideoDetails");
