@@ -20,7 +20,7 @@ rules:
   
   no-template-curly-in-string: error
   no-unreachable-loop: error
-  no-unused-private-class-members: error
+  no-unused-private-class-members: 'off'
   no-prototype-builtins: 'off'
   no-async-promise-executor: 'off'
   no-case-declarations: 'off'
