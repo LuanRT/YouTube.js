@@ -134,7 +134,7 @@ declare class Innertube {
         results: string[];
     }>;
     /**
-     * Retrives video info.
+     * Retrieves video info.
      * @returns {Promise.<VideoInfo>}
      */
     getInfo(video_id: any): Promise<VideoInfo>;
