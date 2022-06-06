@@ -3,9 +3,10 @@ export = OAuth;
 declare class OAuth {
     /**
      * @param {EventEmitter} ev
+     * @param {AxiosInstance} axios
      * @constructor
      */
-    constructor(ev: EventEmitter);
+    constructor(ev: EventEmitter, axios: AxiosInstance);
     /**
      * Starts the auth flow in case no valid credentials are available.
      * @returns {Promise.<void>}

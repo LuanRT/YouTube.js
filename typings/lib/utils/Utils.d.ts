@@ -42,7 +42,7 @@ export function getRandomUserAgent(type: string): object;
  */
 export function generateSidAuth(sid: string): string;
 /**
- * Generates a random string with a given length.
+ * Generates a random string with the given length.
  *
  * @param {number} length
  * @returns {string}

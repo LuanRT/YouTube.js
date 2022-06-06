@@ -34,22 +34,7 @@ declare class AccountManager {
          * Retrieves basic channel analytics.
          * @borrows AccountManager#getAnalytics as getBasicAnalytics
          */
-        getBasicAnalytics: () => Promise<{
-            metrics: {
-                title: string;
-                subtitle: string;
-                metric_value: string;
-                comparison_indicator: object;
-                series_configuration: object;
-            }[];
-            top_content: {
-                views: string;
-                published: string;
-                thumbnails: object[];
-                duration: string;
-                is_short: boolean;
-            }[];
-        }>;
+        getBasicAnalytics: () => Promise<Analytics>;
     };
     /** @namespace */
     settings: {
@@ -159,34 +144,23 @@ declare class AccountManager {
     }>;
     /**
      * Retrieves time watched statistics.
-     * @returns {Promise.<[{ title: string; time: string; }]>}
+     * @returns {Promise.<{ title: string; time: string; }[]>}
      */
-    getTimeWatched(): Promise<[{
+    getTimeWatched(): Promise<{
         title: string;
         time: string;
-    }]>;
+    }[]>;
     /**
      * Retrieves basic channel analytics.
-     *
-     * @returns {Promise.<{ metrics: { title: string; subtitle: string; metric_value: string;
-     * comparison_indicator: object; series_configuration: object; }[]; top_content: { views: string;
-     * published: string; thumbnails: object[]; duration: string; is_short: boolean }[]; }>}
+     * @returns {Promise.<Analytics>}
      */
-    getAnalytics(): Promise<{
-        metrics: {
-            title: string;
-            subtitle: string;
-            metric_value: string;
-            comparison_indicator: object;
-            series_configuration: object;
-        }[];
-        top_content: {
-            views: string;
-            published: string;
-            thumbnails: object[];
-            duration: string;
-            is_short: boolean;
-        }[];
-    }>;
+    getAnalytics(): Promise<Analytics>;
+    /**
+     * Returns the account's library.
+     * @returns {Promise.<Library>}
+     */
+    getLibrary(): Promise<Library>;
     #private;
 }
+import Analytics = require("./Analytics");
+import Library = require("./Library");

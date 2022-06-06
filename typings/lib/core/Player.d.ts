@@ -4,9 +4,10 @@ declare class Player {
     /**
      * Represents the YouTube Web player script.
      * @param {string} id - the id of the player.
+     * @param {AxiosInstance} axios
      * @constructor
      */
-    constructor(id: string);
+    constructor(id: string, axios: AxiosInstance);
     init(): Promise<Player>;
     /**
      * Returns the current player's url.

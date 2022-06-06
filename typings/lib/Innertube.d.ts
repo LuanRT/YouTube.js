@@ -15,6 +15,9 @@ declare class Innertube {
      * @param {string} [config.gl]
      * @param {string} [config.cookie]
      * @param {boolean} [config.debug]
+     * @param {object} [config.proxy]
+     * @param {object} [config.httpAgent]
+     * @param {object} [config.httpsAgent]
      *
      * @returns {Innertube}
      * @constructor
@@ -23,11 +26,17 @@ declare class Innertube {
         gl?: string;
         cookie?: string;
         debug?: boolean;
+        proxy?: object;
+        httpAgent?: object;
+        httpsAgent?: object;
     });
     config: {
         gl?: string;
         cookie?: string;
         debug?: boolean;
+        proxy?: object;
+        httpAgent?: object;
+        httpsAgent?: object;
     };
     key: any;
     version: any;
@@ -125,7 +134,41 @@ declare class Innertube {
         results: string[];
     }>;
     /**
+     * Retrives video info.
+     * @returns {Promise.<VideoInfo>}
+     */
+    getInfo(video_id: any): Promise<VideoInfo>;
+    /**
+     * Searches a given query.
+     *
+     * WIP — this will replace {@link search} soon.
+     *
+     * @param {string} query - search query.
+     * @param {object} [options] - search options.
+     * @param {string} [options.client] - client used to perform the search, can be: `YTMUSIC` or `YOUTUBE`.
+     * @param {object} [options.filters] - search filters.
+     * @param {string} [options.filters.upload_date] - filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
+     * @param {string} [options.filters.type] - filter results by type, can be: any | video | channel | playlist | movie
+     * @param {string} [options.filters.duration] - filter videos by duration, can be: any | short | medium | long
+     * @param {string} [options.filters.sort_by] - filter video results by order, can be: relevance | rating | upload_date | view_count
+     *
+     * @returns {Promise.<Search>}
+     */
+    _search(query: string, options?: {
+        client?: string;
+        filters?: {
+            upload_date?: string;
+            type?: string;
+            duration?: string;
+            sort_by?: string;
+        };
+    }): Promise<Search>;
+    /**
      * Retrieves video info.
+     *
+     * @deprecated do not use this, it is slow and inefficient.
+     * Use {@link getInfo} instead.
+     *
      * @param {string} video_id - the video id.
      * @return {Promise.<{ title: string; description: string; thumbnail: []; metadata: object }>}
      */
@@ -318,6 +361,8 @@ declare class Innertube {
             end: number;
         };
     }): Stream.PassThrough;
+    /** @readonly */
+    readonly get axios(): any;
     #private;
 }
 import EventEmitter = require("events");
@@ -327,4 +372,6 @@ import Actions = require("./core/Actions");
 import AccountManager = require("./core/AccountManager");
 import PlaylistManager = require("./core/PlaylistManager");
 import InteractionManager = require("./core/InteractionManager");
+import VideoInfo = require("./core/VideoInfo");
+import Search = require("./core/Search");
 import Stream = require("stream");

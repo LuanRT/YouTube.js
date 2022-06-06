@@ -8,6 +8,8 @@ declare class SessionBuilder {
     constructor(config: object);
     build(): Promise<SessionBuilder>;
     /** @readonly */
+    readonly get axios(): AxiosInstance;
+    /** @readonly */
     readonly get key(): any;
     /** @readonly */
     readonly get context(): any;
