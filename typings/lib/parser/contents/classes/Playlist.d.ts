@@ -5,12 +5,15 @@ declare class Playlist {
     id: any;
     title: Text;
     author: Text | PlaylistAuthor;
-    badges: any;
-    endpoint: NavigationEndpoint;
     thumbnails: any;
     video_count: Text;
-    video_count_short_text: Text;
+    video_count_short: Text;
     first_videos: any;
+    share_url: any;
+    menu: any;
+    badges: any;
+    endpoint: NavigationEndpoint;
+    thumbnail_overlays: any;
 }
 import Text = require("./Text");
 import PlaylistAuthor = require("./PlaylistAuthor");

@@ -162,5 +162,5 @@ declare class AccountManager {
     getLibrary(): Promise<Library>;
     #private;
 }
-import Analytics = require("./Analytics");
-import Library = require("./Library");
+import Analytics = require("../parser/youtube/Analytics");
+import Library = require("../parser/youtube/Library");

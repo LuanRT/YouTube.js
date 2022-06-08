@@ -4,5 +4,6 @@ declare class TwoColumnWatchNextResults {
     type: string;
     get results(): any;
     get secondary_results(): any;
+    get conversation_bar(): any;
     #private;
 }
