@@ -1161,7 +1161,7 @@ youtube.ev.on('auth', (data) => {
         the code ${data.code}.
       `);
       break;
-    case 'SUCCESS'
+    case 'SUCCESS':
       fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
       console.info('Successfully signed in, enjoy!');
       break;
