@@ -7,14 +7,15 @@ This will eventually replace the old parser.
 
 ## Methods
 
-#### parse(object: data)
+#### parse(data: object, ctx?: any)
 
-Responsible for parsing especially the `contents` property of the response object.
+Responsible for parsing specifically the `contents` property of the response object.
 
 ##### Arguments
   * `data` - the `contents` property.
+  * `ctx` - optional, can be used to give additional context to the parser.
 
-#### parseResponse(object: data)
+#### parseResponse(data: object)
 
 Unlike `parse`, this can be used to parse the entire response object.
 
