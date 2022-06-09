@@ -7,6 +7,7 @@
 [actions]: https://github.com/LuanRT/YouTube.js/actions
 [say-thanks]: https://saythanks.io/to/LuanRT
 [ko-fi]:https://ko-fi.com/luanrt
+[github-sponsors]:https://github.com/sponsors/LuanRT
 
 <!-- OTHER LINKS -->
 [project]: https://github.com/LuanRT/YouTube.js
@@ -45,7 +46,7 @@
   [![Monthly downloads](https://img.shields.io/npm/dm/youtubei.js)][npm]
   [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks] 
   <br>
-  [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][ko-fi]
+  [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][github-sponsors]
  
 </div>
 
@@ -1161,7 +1162,7 @@ youtube.ev.on('auth', (data) => {
         the code ${data.code}.
       `);
       break;
-    case 'SUCCESS'
+    case 'SUCCESS':
       fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
       console.info('Successfully signed in, enjoy!');
       break;
