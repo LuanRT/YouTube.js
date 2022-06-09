@@ -7,5 +7,6 @@ declare class AlbumResultItem {
         author: any;
         year: any;
         thumbnails: any;
+        playlistId: any;
     };
 }
