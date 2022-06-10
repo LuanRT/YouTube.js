@@ -4,10 +4,15 @@ declare class Search {
     /**
      * @param {object} response - API response.
      * @param {import('../../core/Actions')} actions
-     * @param {boolean} is_continuation
+     * @param {object} args
+     * @param {boolean} args.is_continuation
+     * @param {boolean} args.is_filtered
      * @constructor
      */
-    constructor(response: object, actions: import('../../core/Actions'), args?: {});
+    constructor(response: object, actions: import('../../core/Actions'), args?: {
+        is_continuation: boolean;
+        is_filtered: boolean;
+    });
     /**
      * @type {import('../contents/classes/DidYouMean')}
      */
