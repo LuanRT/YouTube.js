@@ -94,7 +94,7 @@ export namespace PeformCommentActionParams {
     const decode_9: any;
     export { decode_9 as decode };
 }
-export namespace SearchFilter {
+export namespace MusicSearchFilter {
     const buffer_10: boolean;
     export { buffer_10 as buffer };
     const encodingLength_10: any;
@@ -103,4 +103,14 @@ export namespace SearchFilter {
     export { encode_10 as encode };
     const decode_10: any;
     export { decode_10 as decode };
+}
+export namespace SearchFilter {
+    const buffer_11: boolean;
+    export { buffer_11 as buffer };
+    const encodingLength_11: any;
+    export { encodingLength_11 as encodingLength };
+    const encode_11: any;
+    export { encode_11 as encode };
+    const decode_11: any;
+    export { decode_11 as decode };
 }

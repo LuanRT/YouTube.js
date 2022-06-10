@@ -7,7 +7,7 @@ declare class Search {
      * @param {boolean} is_continuation
      * @constructor
      */
-    constructor(response: object, actions: import('../../core/Actions'), is_continuation: boolean);
+    constructor(response: object, actions: import('../../core/Actions'), args?: {});
     /**
      * @type {import('../contents/classes/DidYouMean')}
      */
@@ -18,6 +18,10 @@ declare class Search {
     showing_results_for: import('../contents/classes/ShowingResultsFor');
     results: any;
     sections: any;
+    /**
+     * Retrieves continuation, only works for individual sections or filtered results.
+     * @returns {Promise.<Search>}
+     */
     getContinuation(): Promise<Search>;
     /**
    * Applies given filter to the search.

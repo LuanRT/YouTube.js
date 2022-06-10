@@ -160,14 +160,31 @@ message PeformCommentActionParams {
   optional TranslateCommentParams translate_comment_params = 31;
 }
 
+message MusicSearchFilter {
+  message Filters {
+    message Type {
+      optional int32 all = 0;
+      optional int32 song = 1;
+      optional int32 video = 2;
+      optional int32 album = 3;
+      optional int32 artist = 4;
+      optional int32 playlist = 5;
+    }
+    
+    optional Type type = 17;
+  }
+  
+  optional Filters filters = 2;
+}
+
 message SearchFilter {
-  optional int32 filter = 1; // almost always sort_by
+  optional int32 sort_by = 1;
   optional int32 no_filter = 19;
   
   message Filters {
-    optional int32 param_0 = 1;
-    optional int32 param_1 = 2;
-    optional int32 param_2 = 3;
+    optional int32 upload_date = 1;
+    optional int32 type = 2;
+    optional int32 duration = 3;
   }
   
   optional Filters filters = 2;

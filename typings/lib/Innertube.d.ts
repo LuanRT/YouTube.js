@@ -107,24 +107,19 @@ declare class Innertube {
      * Searches a given query.
      *
      * @param {string} query - search query.
-     * @param {object} [options] - search options.
-     * @param {string} [options.client] - client used to perform the search, can be: `YTMUSIC` or `YOUTUBE`.
-     * @param {object} [options.filters] - search filters.
-     * @param {string} [options.filters.upload_date] - filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
-     * @param {string} [options.filters.type] - filter results by type, can be: any | video | channel | playlist | movie
-     * @param {string} [options.filters.duration] - filter videos by duration, can be: any | short | medium | long
-     * @param {string} [options.filters.sort_by] - filter video results by order, can be: relevance | rating | upload_date | view_count
+     * @param {object} [filters] - search filters.
+     * @param {string} [filters.upload_date] - filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
+     * @param {string} [filters.type] - filter results by type, can be: any | video | channel | playlist | movie
+     * @param {string} [filters.duration] - filter videos by duration, can be: any | short | medium | long
+     * @param {string} [filters.sort_by] - filter video results by order, can be: relevance | rating | upload_date | view_count
      *
      * @returns {Promise.<Search>}
      */
-    search(query: string, options?: {
-        client?: string;
-        filters?: {
-            upload_date?: string;
-            type?: string;
-            duration?: string;
-            sort_by?: string;
-        };
+    search(query: string, filters?: {
+        upload_date?: string;
+        type?: string;
+        duration?: string;
+        sort_by?: string;
     }): Promise<Search>;
     /**
      * Retrieves video info.
