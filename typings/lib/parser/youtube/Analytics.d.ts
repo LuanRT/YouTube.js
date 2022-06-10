@@ -22,6 +22,7 @@ declare class Analytics {
         player_overlays: any;
         playability_status: {
             status: number;
+            error_screen: any;
             embeddable: boolean;
             reason: string;
         };

@@ -1,9 +1,9 @@
-export = ChipCloudChip;
-declare class ChipCloudChip {
+export = DidYouMean;
+declare class DidYouMean {
     constructor(data: any);
     type: string;
-    text: any;
+    corrected_query: Text;
     endpoint: NavigationEndpoint;
-    is_selected: any;
 }
+import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");

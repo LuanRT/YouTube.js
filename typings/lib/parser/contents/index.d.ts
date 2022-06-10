@@ -18,6 +18,7 @@ declare class Parser {
         playability_status: {
             /** @type {number} */
             status: number;
+            error_screen: any;
             /** @type {boolean} */
             embeddable: boolean;
             /** @type {string} */
@@ -43,12 +44,13 @@ declare class Parser {
     };
     static parseRR(actions: any): any;
     static parseFormats(formats: any): any;
-    static parse(data: any): any;
+    static parse(data: any, ctx: any): any;
     static formatError({ classname, classdata, err }: {
         classname: any;
         classdata: any;
         err: any;
     }): void;
     static sanitizeClassName(input: any): any;
+    static shouldIgnore(classname: any): boolean;
 }
 import VideoDetails = require("./classes/VideoDetails");

@@ -4,4 +4,5 @@ declare class SectionList {
     type: string;
     target_id: any;
     contents: any;
+    header: any;
 }

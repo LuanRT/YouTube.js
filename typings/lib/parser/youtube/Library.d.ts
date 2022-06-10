@@ -3,10 +3,10 @@ export = Library;
 declare class Library {
     /**
      * @param {object} response - API response.
-     * @param {import('./Actions')} actions
+     * @param {import('../../core/Actions')} actions
      * @constructor
      */
-    constructor(response: object, actions: any);
+    constructor(response: object, actions: import('../../core/Actions'));
     profile: {
         stats: any;
         user_info: any;
@@ -27,6 +27,7 @@ declare class Library {
         player_overlays: any;
         playability_status: {
             status: number;
+            error_screen: any;
             embeddable: boolean;
             reason: string;
         };

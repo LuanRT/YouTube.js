@@ -3,32 +3,36 @@ export = VideoInfo;
 declare class VideoInfo {
     /**
      * @param {object} data - API response.
-     * @param {import('./Actions')} actions
-     * @param {import('./Player')} player
+     * @param {import('../../core/Actions')} actions
+     * @param {import('../../core/Player')} player
      * @constructor
      */
-    constructor(data: object, actions: any, player: any);
+    constructor(data: object, actions: import('../../core/Actions'), player: import('../../core/Player'));
     /**
-     * @type {import('../parser/contents/classes/VideoDetails')}
+     * @type {import('../contents/classes/VideoDetails')}
      */
-    basic_info: any;
+    basic_info: import('../contents/classes/VideoDetails');
     /**
-     * @type {import('../parser/contents/classes/VideoPrimaryInfo')}
+     * @type {import('../contents/classes/VideoPrimaryInfo')}
      */
-    primary_info: any;
+    primary_info: import('../contents/classes/VideoPrimaryInfo');
     /**
-     * @type {import('../parser/contents/classes/VideoSecondaryInfo')}
+     * @type {import('../contents/classes/VideoSecondaryInfo')}
      */
-    secondary_info: any;
+    secondary_info: import('../contents/classes/VideoSecondaryInfo');
     /**
-     * @type {import('../parser/contents/classes/ChipCloud')}
+     * @type {import('../contents/classes/MerchandiseShelf')}
      */
-    related_chip_cloud: any;
+    merchandise: import('../contents/classes/MerchandiseShelf');
+    /**
+     * @type {import('../contents/classes/ChipCloud')}
+     */
+    related_chip_cloud: import('../contents/classes/ChipCloud');
     watch_next_feed: any;
     /**
-     * @type {import('../parser/contents/classes/PlayerOverlay')}
+     * @type {import('../contents/classes/PlayerOverlay')}
      */
-    player_overlays: any;
+    player_overlays: import('../contents/classes/PlayerOverlay');
     streaming_data: {
         expires: Date;
         formats: import("../contents/classes/Format")[];
@@ -38,35 +42,47 @@ declare class VideoInfo {
     };
     playability_status: {
         status: number;
+        error_screen: any;
         embeddable: boolean;
-        reason: string; /**
-         * @type {import('../parser/contents/classes/ChipCloud')}
-         */
+        reason: string;
     };
     /**
-     * @type {import('../parser/contents/classes/PlayerAnnotationsExpanded')[]}
+     * @type {import('../contents/classes/PlayerAnnotationsExpanded')[]}
      */
-    annotations: any[];
+    annotations: import('../contents/classes/PlayerAnnotationsExpanded')[];
     /**
-     * @type {import('../parser/contents/classes/PlayerStoryboardSpec')}
+     * @type {import('../contents/classes/PlayerStoryboardSpec')}
      */
-    storyboards: any;
+    storyboards: import('../contents/classes/PlayerStoryboardSpec');
     /**
-     * @type {import('../parser/contents/classes/Endscreen')}
+     * @type {import('../contents/classes/Endscreen')}
      */
-    endscreen: any;
+    endscreen: import('../contents/classes/Endscreen');
     /**
-     * @type {import('../parser/contents/classes/PlayerCaptionsTracklist')}
+     * @type {import('../contents/classes/PlayerCaptionsTracklist')}
      */
-    captions: any;
+    captions: import('../contents/classes/PlayerCaptionsTracklist');
     /**
-     * @type {import('../parser/contents/classes/CardCollection')}
+     * @type {import('../contents/classes/CardCollection')}
      */
-    cards: any;
+    cards: import('../contents/classes/CardCollection');
     /**
-     * @type {import('../parser/contents/classes/CommentsEntryPointHeader')}
+     * @type {import('../contents/classes/CommentsEntryPointHeader')}
      */
-    comments_entry_point_header: any;
+    comments_entry_point_header: import('../contents/classes/CommentsEntryPointHeader');
+    /**
+     * Applies given filter to the watch next feed.
+     * @param {string} name
+     * @returns {Promise.<VideoInfo>}
+     */
+    selectFilter(name: string): Promise<VideoInfo>;
+    /**
+     * Retrieves watch next feed continuation.
+     * @returns {Promise.<CompactVideo[] | CompactMix[]>}
+     */
+    getWatchNextContinuation(): Promise<CompactVideo[] | CompactMix[]>;
+    /** @type {string[]} */
+    get filters(): string[];
     get page(): {
         contents: any;
         on_response_received_actions: any;
@@ -82,10 +98,9 @@ declare class VideoInfo {
         player_overlays: any;
         playability_status: {
             status: number;
+            error_screen: any;
             embeddable: boolean;
-            reason: string; /**
-             * @type {import('../parser/contents/classes/ChipCloud')}
-             */
+            reason: string;
         };
         streaming_data: {
             expires: Date;
@@ -99,6 +114,9 @@ declare class VideoInfo {
         annotations: any;
         storyboards: any;
         endscreen: import("../contents/classes/Endscreen");
+        /**
+         * @type {import('../contents/classes/PlayerAnnotationsExpanded')[]}
+         */
         cards: import("../contents/classes/CardCollection");
     }[];
     #private;

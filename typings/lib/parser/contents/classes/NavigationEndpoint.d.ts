@@ -2,12 +2,7 @@ export = NavigationEndpoint;
 declare class NavigationEndpoint {
     constructor(data: any);
     type: string;
-    metadata: {
-        url: any;
-        page_type: any;
-        api_url: any;
-        send_post: any;
-    };
+    metadata: {};
     browse: {
         id: any;
         params: any;
@@ -19,6 +14,10 @@ declare class NavigationEndpoint {
         params: any;
         index: any;
         supported_onesie_config: any;
+    };
+    search: {
+        query: any;
+        params: any;
     };
     subscribe: {
         channel_ids: any;
@@ -32,6 +31,7 @@ declare class NavigationEndpoint {
         status: any;
         target: {
             video_id: any;
+            playlist_id: any;
         };
         remove_like_params: any;
     };
@@ -64,7 +64,7 @@ declare class NavigationEndpoint {
     get_report_form: {
         params: any;
     };
-    call(actions: any): Promise<{
+    call(actions: any, client: any): Promise<{
         contents: any;
         on_response_received_actions: any;
         on_response_received_endpoints: any;
@@ -79,6 +79,7 @@ declare class NavigationEndpoint {
         player_overlays: any;
         playability_status: {
             status: number;
+            error_screen: any;
             embeddable: boolean;
             reason: string;
         };

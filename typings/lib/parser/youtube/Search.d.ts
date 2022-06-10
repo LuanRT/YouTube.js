@@ -3,11 +3,11 @@ export = Search;
 declare class Search {
     /**
      * @param {object} response - API response.
-     * @param {import('./Actions')} actions
+     * @param {import('../../core/Actions')} actions
      * @param {boolean} is_continuation
      * @constructor
      */
-    constructor(response: object, actions: any, is_continuation: boolean);
+    constructor(response: object, actions: import('../../core/Actions'), is_continuation: boolean);
     estimated_results: any;
     refinements: any;
     results: any;

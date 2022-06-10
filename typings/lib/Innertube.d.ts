@@ -57,6 +57,7 @@ declare class Innertube {
     account: AccountManager;
     playlist: PlaylistManager;
     interact: InteractionManager;
+    music: YTMusic;
     /**
      * Signs in to a google account.
      *
@@ -334,6 +335,7 @@ import Actions = require("./core/Actions");
 import AccountManager = require("./core/AccountManager");
 import PlaylistManager = require("./core/PlaylistManager");
 import InteractionManager = require("./core/InteractionManager");
+import YTMusic = require("./core/Music");
 import VideoInfo = require("./parser/youtube/VideoInfo");
 import Search = require("./parser/youtube/Search");
 import Stream = require("stream");

@@ -28,6 +28,14 @@ export class NoStreamingDataError extends InnertubeError {
  */
 export function findNode(obj: object, key: string, target: string, depth: number, safe?: boolean): object | Array<any>;
 /**
+ * Creates a trap to intercept property access
+ * and add utilities to an object.
+ *
+ * @param {*} obj
+ * @returns
+ */
+export function observe(obj: any): any;
+/**
  * Returns a random user agent.
  *
  * @param {string} type - mobile | desktop
