@@ -242,7 +242,7 @@ declare class Actions {
      *
      * @returns {Response}
      */
-    getVideoInfo(id: string, cpn?: string): Response;
+    getVideoInfo(id: string, cpn?: string, client: any): Response;
     /**
      * Covers search suggestion endpoints.
      *

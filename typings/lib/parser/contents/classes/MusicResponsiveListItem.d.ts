@@ -1,7 +1,7 @@
 export = MusicResponsiveListItem;
 declare class MusicResponsiveListItem {
-    constructor(data: any, ctx: any);
-    type: any;
+    constructor(data: any);
+    type: string;
     endpoint: NavigationEndpoint;
     thumbnails: any;
     badges: any;
@@ -9,8 +9,6 @@ declare class MusicResponsiveListItem {
     overlay: any;
     id: any;
     title: any;
-    artist: any;
-    album: any;
     duration: {
         text: any;
         seconds: number;
@@ -18,16 +16,25 @@ declare class MusicResponsiveListItem {
         text: any;
         seconds: number;
     };
+    album: {
+        id: any;
+        name: any;
+        endpoint: any;
+    };
+    artists: any;
     views: any;
     author: {
         name: any;
         channel_id: any;
+        endpoint: any;
     } | {
         name: any;
         channel_id: any;
+        endpoint: any;
     } | {
         name: any;
         channel_id: any;
+        endpoint: any;
     };
     name: any;
     subscribers: any;

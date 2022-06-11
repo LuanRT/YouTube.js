@@ -7,6 +7,7 @@ declare class NavigationEndpoint {
         id: any;
         params: any;
         base_url: any;
+        page_type: any;
     };
     watch: {
         video_id: any;
