@@ -21,22 +21,38 @@ declare class Music {
     /**
      * Retrieves song lyrics.
      * @param {string} video_id
-     * @returns {Promise.<{ text: string; footer: Text }>}
      */
     getLyrics(video_id: string): Promise<{
+        /** @type {string} */
         text: string;
+        /** @type {Text} */
         footer: Text;
+    }>;
+    /**
+     * Retrieves up next.
+     * @param {string} video_id
+     */
+    getUpNext(video_id: string): Promise<{
+        /** @type {string} */
+        id: string;
+        /** @type {string} */
+        title: string;
+        /** @type {boolean} */
+        is_editable: boolean;
+        /** @type {import('../parser/contents/classes/PlaylistPanelVideo')[]} */
+        items: import('../parser/contents/classes/PlaylistPanelVideo')[];
     }>;
     /**
      * Retrieves related content.
      * @param {string} video_id
-     * @returns {Promise.<{ sections: { header: import('../parser/contents/classes/MusicCarouselShelfBasicHeader'); items: any[]; }[]; info: string }>}
      */
     getRelated(video_id: string): Promise<{
+        /** @type {{ header: import('../parser/contents/classes/MusicCarouselShelfBasicHeader'); items: object[]; }[]} */
         sections: {
             header: import('../parser/contents/classes/MusicCarouselShelfBasicHeader');
-            items: any[];
+            items: object[];
         }[];
+        /** @type {string} */
         info: string;
     }>;
     #private;

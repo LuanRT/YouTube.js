@@ -4,7 +4,7 @@ declare class Search {
     /**
      * @param {object} response - API response.
      * @param {import('../../core/Actions')} actions
-     * @param {object} args
+     * @param {object} [args]
      * @param {boolean} [args.is_continuation]
      * @constructor
      */

@@ -22,7 +22,12 @@ declare class Search {
      */
     showing_results_for: import('../contents/classes/ShowingResultsFor');
     results: any;
-    sections: any;
+    /** @type {{ title: string; items: object[]; getMore: Promise.<Search>; }} */
+    sections: {
+        title: string;
+        items: object[];
+        getMore: Promise<Search>;
+    };
     /**
      * Retrieves continuation, only works for individual sections or filtered results.
      * @returns {Promise.<Search>}
