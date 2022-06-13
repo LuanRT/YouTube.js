@@ -44,7 +44,7 @@ declare class Parser {
     };
     static parseRR(actions: any): any;
     static parseFormats(formats: any): any;
-    static parse(data: any, ctx: any): any;
+    static parse(data: any): any;
     static formatError({ classname, classdata, err }: {
         classname: any;
         classdata: any;

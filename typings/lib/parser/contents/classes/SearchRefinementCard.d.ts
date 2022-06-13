@@ -2,9 +2,8 @@ export = SearchRefinementCard;
 declare class SearchRefinementCard {
     constructor(data: any);
     type: string;
-    thumbnail: any;
+    thumbnails: any;
     endpoint: NavigationEndpoint;
-    query: Text;
+    query: any;
 }
 import NavigationEndpoint = require("./NavigationEndpoint");
-import Text = require("./Text");

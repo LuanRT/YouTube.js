@@ -31,10 +31,10 @@ export function findNode(obj: object, key: string, target: string, depth: number
  * Creates a trap to intercept property access
  * and add utilities to an object.
  *
- * @param {*} obj
+ * @param {object} obj
  * @returns
  */
-export function observe(obj: any): any;
+export function observe(obj: object): any;
 /**
  * Returns a random user agent.
  *
