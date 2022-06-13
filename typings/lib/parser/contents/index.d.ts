@@ -6,6 +6,8 @@ declare class Parser {
         on_response_received_actions: any;
         on_response_received_endpoints: any;
         on_response_received_commands: any;
+        /** @type {*} */
+        continuation_contents: any;
         metadata: any;
         header: any;
         /** @type {import('./classes/PlayerMicroformat')} **/
@@ -42,6 +44,7 @@ declare class Parser {
         /** @type {import('./classes/CardCollection')} */
         cards: import('./classes/CardCollection');
     };
+    static parseCC(data: any): SectionListContinuation;
     static parseRR(actions: any): any;
     static parseFormats(formats: any): any;
     static parse(data: any): any;
@@ -54,3 +57,10 @@ declare class Parser {
     static shouldIgnore(classname: any): boolean;
 }
 import VideoDetails = require("./classes/VideoDetails");
+/** @namespace */
+declare class SectionListContinuation {
+    constructor(data: any);
+    type: string;
+    contents: any;
+    continuation: any;
+}

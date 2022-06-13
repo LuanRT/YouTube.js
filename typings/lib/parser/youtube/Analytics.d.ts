@@ -3,7 +3,6 @@ export = Analytics;
 declare class Analytics {
     /**
      * @param {object} response - API response.
-     * @constructor
      */
     constructor(response: object);
     sections: any;
@@ -12,6 +11,7 @@ declare class Analytics {
         on_response_received_actions: any;
         on_response_received_endpoints: any;
         on_response_received_commands: any;
+        continuation_contents: any;
         metadata: any;
         header: any;
         microformat: import("../contents/classes/PlayerMicroformat");

@@ -2,8 +2,7 @@ export = MusicCarouselShelfBasicHeader;
 declare class MusicCarouselShelfBasicHeader {
     constructor(data: any);
     type: string;
-    title: Text;
-    label: any;
+    strapline: any;
+    title: any;
     thumbnail: any;
 }
-import Text = require("./Text");

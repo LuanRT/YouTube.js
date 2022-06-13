@@ -4,7 +4,6 @@ declare class Library {
     /**
      * @param {object} response - API response.
      * @param {import('../../core/Actions')} actions
-     * @constructor
      */
     constructor(response: object, actions: import('../../core/Actions'));
     profile: {
@@ -17,6 +16,7 @@ declare class Library {
         on_response_received_actions: any;
         on_response_received_endpoints: any;
         on_response_received_commands: any;
+        continuation_contents: any;
         metadata: any;
         header: any;
         microformat: import("../contents/classes/PlayerMicroformat");

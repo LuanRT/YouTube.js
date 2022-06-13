@@ -15,6 +15,7 @@ declare class NavigationEndpoint {
         params: any;
         index: any;
         supported_onesie_config: any;
+        music_video_type: any;
     };
     search: {
         query: any;
@@ -70,6 +71,7 @@ declare class NavigationEndpoint {
         on_response_received_actions: any;
         on_response_received_endpoints: any;
         on_response_received_commands: any;
+        continuation_contents: any;
         metadata: any;
         header: any;
         microformat: import("./PlayerMicroformat");

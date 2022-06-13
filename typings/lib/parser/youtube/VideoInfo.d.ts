@@ -1,11 +1,10 @@
 export = VideoInfo;
-/** namespace **/
+/** namespace */
 declare class VideoInfo {
     /**
      * @param {object} data - API response.
      * @param {import('../../core/Actions')} actions
      * @param {import('../../core/Player')} player
-     * @constructor
      */
     constructor(data: object, actions: import('../../core/Actions'), player: import('../../core/Player'));
     /**
@@ -88,9 +87,15 @@ declare class VideoInfo {
         on_response_received_actions: any;
         on_response_received_endpoints: any;
         on_response_received_commands: any;
+        continuation_contents: any;
         metadata: any;
+        /**
+         * @type {import('../contents/classes/VideoSecondaryInfo')}
+         */
         header: any;
-        microformat: import("../contents/classes/PlayerMicroformat");
+        microformat: import("../contents/classes/PlayerMicroformat"); /**
+         * @type {import('../contents/classes/MerchandiseShelf')}
+         */
         sidebar: any;
         overlay: any;
         refinements: any;
@@ -114,9 +119,6 @@ declare class VideoInfo {
         annotations: any;
         storyboards: any;
         endscreen: import("../contents/classes/Endscreen");
-        /**
-         * @type {import('../contents/classes/PlayerAnnotationsExpanded')[]}
-         */
         cards: import("../contents/classes/CardCollection");
     }[];
     #private;

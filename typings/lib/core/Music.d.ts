@@ -19,6 +19,11 @@ declare class Music {
         type?: string;
     }): Promise<Search>;
     /**
+     * Retrieves YouTube Music home feed.
+     * @returns {Promise.<HomeFeed>}
+     */
+    getHomeFeed(): Promise<HomeFeed>;
+    /**
      * Retrieves song lyrics.
      * @param {string} video_id
      */
@@ -58,3 +63,4 @@ declare class Music {
     #private;
 }
 import Search = require("../parser/ytmusic/Search");
+import HomeFeed = require("../parser/ytmusic/HomeFeed");
