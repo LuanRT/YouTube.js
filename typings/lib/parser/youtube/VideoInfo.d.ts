@@ -80,6 +80,37 @@ declare class VideoInfo {
      * @returns {Promise.<CompactVideo[] | CompactMix[]>}
      */
     getWatchNextContinuation(): Promise<CompactVideo[] | CompactMix[]>;
+    /**
+     * API response.
+     * @typedef {Promise.<{ success: boolean; status_code: number; data: object; }>} Response
+     */
+    /**
+     * Likes the video.
+     * @returns {Response}
+     */
+    like(): Promise<{
+        success: boolean;
+        status_code: number;
+        data: object;
+    }>;
+    /**
+     * Dislikes the video.
+     * @returns {Response}
+     */
+    dislike(): Promise<{
+        success: boolean;
+        status_code: number;
+        data: object;
+    }>;
+    /**
+     * Removes like/dislike.
+     * @returns {Response}
+     */
+    removeLike(): Promise<{
+        success: boolean;
+        status_code: number;
+        data: object;
+    }>;
     /** @type {string[]} */
     get filters(): string[];
     get page(): {

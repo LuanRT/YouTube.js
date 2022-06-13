@@ -35,7 +35,7 @@ declare class NavigationEndpoint {
             video_id: any;
             playlist_id: any;
         };
-        remove_like_params: any;
+        params: any;
     };
     offline_video: {
         video_id: any;
@@ -66,38 +66,5 @@ declare class NavigationEndpoint {
     get_report_form: {
         params: any;
     };
-    call(actions: any, client: any): Promise<{
-        contents: any;
-        on_response_received_actions: any;
-        on_response_received_endpoints: any;
-        on_response_received_commands: any;
-        continuation_contents: any;
-        metadata: any;
-        header: any;
-        microformat: import("./PlayerMicroformat");
-        sidebar: any;
-        overlay: any;
-        refinements: any;
-        estimated_results: any;
-        player_overlays: any;
-        playability_status: {
-            status: number;
-            error_screen: any;
-            embeddable: boolean;
-            reason: string;
-        };
-        streaming_data: {
-            expires: Date;
-            formats: import("./Format")[];
-            adaptive_formats: import("./Format")[];
-            dash_manifest_url: any;
-            dls_manifest_url: any;
-        };
-        captions: any;
-        video_details: import("./VideoDetails");
-        annotations: any;
-        storyboards: any;
-        endscreen: import("./Endscreen");
-        cards: import("./CardCollection");
-    }>;
+    call(actions: any, client: any): Promise<any>;
 }

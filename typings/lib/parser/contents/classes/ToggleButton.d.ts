@@ -12,6 +12,7 @@ declare class ToggleButton {
     like_count: number;
     short_like_count: any;
     endpoint: NavigationEndpoint;
+    toggled_endpoint: NavigationEndpoint;
     button_id: any;
     target_id: any;
 }
