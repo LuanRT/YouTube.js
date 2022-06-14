@@ -1,6 +1,12 @@
 export = OAuth;
+/** @namespace */
 declare class OAuth {
-    constructor(ev: any);
+    /**
+     * @param {EventEmitter} ev
+     * @param {AxiosInstance} axios
+     * @constructor
+     */
+    constructor(ev: EventEmitter, axios: AxiosInstance);
     /**
      * Starts the auth flow in case no valid credentials are available.
      * @returns {Promise.<void>}
@@ -8,7 +14,6 @@ declare class OAuth {
     init(auth_info: any): Promise<void>;
     client_id: string;
     client_secret: string;
-    refresh_interval: any;
     /**
      * Refreshes the access token if necessary.
      * @returns {Promise.<void>}
@@ -19,10 +24,18 @@ declare class OAuth {
      * @returns {Promise.<void>}
      */
     revokeAccessToken(): Promise<void>;
-    getAccessToken(): any;
-    getRefreshToken(): any;
     /**
-     * Checks if the auth info is valid.
+     * Returns the access token.
+     * @returns {string}
+     */
+    getAccessToken(): string;
+    /**
+     * Returns the refresh token.
+     * @returns {string}
+     */
+    getRefreshToken(): string;
+    /**
+     * Checks if the auth info format is valid.
      * @returns {boolean} true | false
      */
     isValidAuthInfo(): boolean;

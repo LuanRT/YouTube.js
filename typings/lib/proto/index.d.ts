@@ -10,17 +10,40 @@ declare class Proto {
      */
     static encodeVisitorData(id: string, timestamp: number): string;
     /**
+     * Encodes basic channel analytics parameters.
+     *
+     * @param {string} channel_id
+     * @returns {string}
+     */
+    static encodeChannelAnalyticsParams(channel_id: string): string;
+    /**
      * Encodes search filters.
      *
-     * @param {string} period
-     * @param {string} duration
-     * @param {string} order
-     *
-     * @todo implement remaining filters.
+     * @param {object} filters
+     * @param {string} [filters.upload_date] - all | hour | today | week | month | year
+     * @param {string} [filters.type] - all | video | channel | playlist | movie
+     * @param {string} [filters.duration] - all | short | medium | long
+     * @param {string} [filters.sort_by] - relevance | rating | upload_date | view_count
      *
      * @returns {string}
      */
-    static encodeSearchFilter(period: string, duration: string, order: string): string;
+    static encodeSearchFilters(filters: {
+        upload_date?: string;
+        type?: string;
+        duration?: string;
+        sort_by?: string;
+    }): string;
+    /**
+     * Encodes YouTube Music search filters.
+     *
+     * @param {object} filters
+     * @param {string} filters.type - all | song | video | album | playlist | artist
+     *
+     * @returns {string}
+     */
+    static encodeMusicSearchFilters(filters?: {
+        type: string;
+    }): string;
     /**
      * Encodes livechat message parameters.
      *

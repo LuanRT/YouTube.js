@@ -26,27 +26,31 @@ export namespace OAUTH {
     }
 }
 export namespace CLIENTS {
-    namespace YTMUSIC {
+    namespace WEB {
         const NAME: string;
-        const VERSION: string;
     }
-    namespace ANDROID {
+    namespace YTMUSIC {
         const NAME_1: string;
         export { NAME_1 as NAME };
+        export const VERSION: string;
+    }
+    namespace ANDROID {
+        const NAME_2: string;
+        export { NAME_2 as NAME };
         const VERSION_1: string;
         export { VERSION_1 as VERSION };
     }
 }
-export const STREAM_HEADERS: {
-    Accept: string;
-    'User-Agent': any;
-    Connection: string;
-    Origin: string;
-    Referer: string;
-    DNT: string;
-};
+export namespace STREAM_HEADERS {
+    const accept: string;
+    const connection: string;
+    const origin: string;
+    const referer: string;
+    const DNT: string;
+}
 export const INNERTUBE_HEADERS_BASE: {
     accept: string;
+    'accept-encoding': string;
     'content-type': string;
 };
 export const METADATA_KEYS: string[];

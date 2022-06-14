@@ -1,7 +1,12 @@
 export = Request;
+/** @namespace */
 declare class Request {
-    constructor(session: any);
-    session: any;
+    /**
+     * @param {Innertube} session
+     * @constructor
+     */
+    constructor(session: Innertube);
+    session: Innertube;
     instance: any;
     #private;
 }

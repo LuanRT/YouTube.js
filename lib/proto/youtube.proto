@@ -1,9 +1,17 @@
 syntax = "proto2";
-package proto;
+package youtube;
 
 message VisitorData {
   string id = 1;
   int32 timestamp = 5;
+}
+
+message ChannelAnalytics {
+  message Params {
+    string channel_id = 1001;
+  }
+
+  Params params = 32;
 }
 
 message InnertubePayload {
@@ -19,13 +27,6 @@ message InnertubePayload {
   Context context = 1;
   
   optional string target = 2;
-  
-  message SoundSearchParams {
-    string target_id = 2;
-    string query = 3;
-  }
-  
-  optional SoundSearchParams sound_search_params = 16;
 }
 
 message SoundInfoParams {
@@ -50,6 +51,7 @@ message NotificationPreferences {
   message Preference {
     int32 index = 1;
   }
+  
   Preference pref_id = 2;
   
   optional int32 number_0 = 3;
@@ -64,6 +66,7 @@ message LiveMessageParams {
     }
     Ids ids = 5;
   }
+  
   Params params = 1;
   
   optional int32 number_0 = 2;
@@ -157,12 +160,32 @@ message PeformCommentActionParams {
   optional TranslateCommentParams translate_comment_params = 31;
 }
 
-message SearchFilter {
-  int32 number = 1;
-  message Filter {
-    int32 param_0 = 1;
-    int32 param_1 = 2;
-    int32 param_2 = 3;
+message MusicSearchFilter {
+  message Filters {
+    message Type {
+      optional int32 all = 0;
+      optional int32 song = 1;
+      optional int32 video = 2;
+      optional int32 album = 3;
+      optional int32 artist = 4;
+      optional int32 playlist = 5;
+    }
+    
+    optional Type type = 17;
   }
-  Filter filter = 2;
+  
+  optional Filters filters = 2;
+}
+
+message SearchFilter {
+  optional int32 sort_by = 1;
+  optional int32 no_filter = 19;
+  
+  message Filters {
+    optional int32 upload_date = 1;
+    optional int32 type = 2;
+    optional int32 duration = 3;
+  }
+  
+  optional Filters filters = 2;
 }

@@ -1,7 +1,7 @@
 {
   "name": "youtubei.js",
-  "version": "1.4.2",
-  "description": "A full-featured library that allows you to get detailed info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
+  "version": "1.4.3",
+  "description": "A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
   "main": "index.js",
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
   "funding": "https://ko-fi.com/luanrt",
@@ -10,7 +10,9 @@
     "node": ">=14"
   },
   "scripts": {
-    "test": "node test",
+    "test": "jest",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./",
     "build:types": "npx tsc"
   },
   "types": "./typings/index.d.ts",
@@ -29,11 +31,13 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "eslint": "^8.15.0",
+    "jest": "^28.1.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https//github.com/LuanRT/YouTube.js.git"
+    "url": "git+https://github.com/LuanRT/YouTube.js.git"
   },
   "bugs": {
     "url": "https://github.com/LuanRT/YouTube.js/issues"
@@ -41,25 +45,23 @@
   "homepage": "https://github.com/LuanRT/YouTube.js#readme",
   "keywords": [
     "yt",
+    "dl",
     "ytdl",
     "youtube",
-    "youtube-dl",
     "youtubedl",
+    "youtube-dl",
     "youtube-downloader",
     "innertube",
     "innertubeapi",
     "unofficial",
     "downloader",
     "livechat",
+    "ytmusic",
     "dislike",
     "search",
     "comment",
+    "music",
     "like",
-    "api",
-    "dl"
-  ],
-  "devDependencies": {
-    "@types/node": "^17.0.31",
-    "typescript": "^4.6.4"
-  }
+    "api"
+  ]
 }

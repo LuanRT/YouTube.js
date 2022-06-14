@@ -1,0 +1,7 @@
+.git
+.github
+test/
+cache/
+lib/proto/messages.js
+coverage/
+node_modules/

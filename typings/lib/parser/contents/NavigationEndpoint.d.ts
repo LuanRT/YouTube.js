@@ -57,9 +57,6 @@ declare class NavigationEndpoint {
      * @param {import('../../Innertube')} session
      * @returns
      */
-    call(session: import('../../Innertube')): Promise<{
-        success: boolean;
-        status_code: number;
-        data: any;
-    }>;
+    call(session: import('../../Innertube')): Actions.Response;
 }
+import Actions = require("../../core/Actions");

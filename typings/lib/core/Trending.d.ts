@@ -18,25 +18,35 @@ export class Trending {
         contents: any;
         on_response_received_actions: any;
         on_response_received_endpoints: any;
+        on_response_received_commands: any;
+        continuation_contents: any;
         metadata: any;
         header: any;
-        microformat: any;
+        microformat: import("../parser/contents/classes/PlayerMicroformat");
         sidebar: any;
+        overlay: any;
+        refinements: any;
+        estimated_results: any;
+        player_overlays: any;
         playability_status: {
-            status: any;
-            embeddable: any;
+            status: number;
+            error_screen: any;
+            embeddable: boolean;
+            reason: string;
         };
         streaming_data: {
             expires: Date;
-            formats: import("../parser/contents/Format")[];
-            adaptive_formats: import("../parser/contents/Format")[];
+            formats: import("../parser/contents/classes/Format")[];
+            adaptive_formats: import("../parser/contents/classes/Format")[];
+            dash_manifest_url: any;
+            dls_manifest_url: any;
         };
         captions: any;
-        video_details: import("../parser/contents/VideoDetails");
+        video_details: import("../parser/contents/classes/VideoDetails");
         annotations: any;
         storyboards: any;
-        endscreen: any;
-        cards: any;
+        endscreen: import("../parser/contents/classes/Endscreen");
+        cards: import("../parser/contents/classes/CardCollection");
     };
     #private;
 }

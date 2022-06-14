@@ -15,7 +15,7 @@ export = SimpleVideo;
 declare class SimpleVideo {
     static get regex(): RegExp;
     constructor(video: any);
-    getUnderlyingRenderer(): import("../parser/contents/Video") | import("../parser/contents/GridVideo") | import("../parser/contents/PlaylistVideo") | import("../parser/contents/CompactVideo") | import("../parser/contents/PlaylistPanelVideo");
+    getUnderlyingRenderer(): import("../parser/contents/Video") | import("../parser/contents/GridVideo") | import("../parser/contents/CompactVideo") | import("../parser/contents/PlaylistVideo") | import("../parser/contents/PlaylistPanelVideo");
     get id(): any;
     get title(): string;
     get description(): any;

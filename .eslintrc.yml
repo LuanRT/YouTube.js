@@ -1,0 +1,45 @@
+env:
+  commonjs: true
+  es2021: true
+  node: true
+extends: eslint:recommended
+parserOptions:
+  ecmaVersion: latest
+rules:
+  max-len:
+    - error
+    -
+      code: 200
+      ignoreComments: true
+      ignoreTrailingComments: true
+      ignoreStrings: true
+      ignoreTemplateLiterals: true
+      ignoreRegExpLiterals: true
+
+  quotes: [error, single] 
+  
+  no-template-curly-in-string: error
+  no-unreachable-loop: error
+  no-unused-private-class-members: 'off'
+  no-prototype-builtins: 'off'
+  no-async-promise-executor: 'off'
+  no-case-declarations: 'off'
+  no-return-assign: 'off'
+  no-floating-decimal: error
+  no-implied-eval: error
+  arrow-spacing: error
+  no-invalid-this: error
+  no-lone-blocks: error
+  no-new-func: error
+  no-new-wrappers: error
+  no-new: error
+  no-void: error
+  no-octal-escape: error
+  no-self-compare: error
+  no-sequences: error
+  no-throw-literal: error
+  no-unmodified-loop-condition: error
+  no-useless-call: error
+  no-useless-concat: error
+  no-useless-escape: error
+  no-useless-return: error

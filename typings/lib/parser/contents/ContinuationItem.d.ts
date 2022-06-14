@@ -11,25 +11,35 @@ declare class ContinuationItem {
         contents: any;
         on_response_received_actions: any;
         on_response_received_endpoints: any;
+        on_response_received_commands: any;
+        continuation_contents: any;
         metadata: any;
         header: any;
-        microformat: any;
+        microformat: import("./classes/PlayerMicroformat");
         sidebar: any;
+        overlay: any;
+        refinements: any;
+        estimated_results: any;
+        player_overlays: any;
         playability_status: {
-            status: any;
-            embeddable: any;
+            status: number;
+            error_screen: any;
+            embeddable: boolean;
+            reason: string;
         };
         streaming_data: {
             expires: Date;
-            formats: import("./Format")[];
-            adaptive_formats: import("./Format")[];
+            formats: import("./classes/Format")[];
+            adaptive_formats: import("./classes/Format")[];
+            dash_manifest_url: any;
+            dls_manifest_url: any;
         };
         captions: any;
-        video_details: import("./VideoDetails");
+        video_details: import("./classes/VideoDetails");
         annotations: any;
         storyboards: any;
-        endscreen: any;
-        cards: any;
+        endscreen: import("./classes/Endscreen");
+        cards: import("./classes/CardCollection");
     };
 }
 import NavigationEndpoint = require("./NavigationEndpoint");
