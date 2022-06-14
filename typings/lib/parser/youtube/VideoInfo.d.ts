@@ -71,22 +71,28 @@ declare class VideoInfo {
     comments_entry_point_header: import('../contents/classes/CommentsEntryPointHeader');
     /**
      * Applies given filter to the watch next feed.
+     *
      * @param {string} name
      * @returns {Promise.<VideoInfo>}
      */
     selectFilter(name: string): Promise<VideoInfo>;
+    /** @typedef {import('../contents/classes/CompactVideo')} CompactVideo */
+    /** @typedef {import('../contents/classes/CompactMix')} CompactMix */
     /**
      * Retrieves watch next feed continuation.
+     *
      * @returns {Promise.<CompactVideo[] | CompactMix[]>}
      */
-    getWatchNextContinuation(): Promise<CompactVideo[] | CompactMix[]>;
+    getWatchNextContinuation(): Promise<import("../contents/classes/CompactVideo")[] | import("../contents/classes/CompactMix")[]>;
     /**
      * API response.
-     * @typedef {Promise.<{ success: boolean; status_code: number; data: object; }>} Response
+     *
+     * @typedef {{ success: boolean, status_code: number, data: object }} Response
      */
     /**
      * Likes the video.
-     * @returns {Response}
+     *
+     * @returns {Promise.<Response>}
      */
     like(): Promise<{
         success: boolean;
@@ -95,7 +101,8 @@ declare class VideoInfo {
     }>;
     /**
      * Dislikes the video.
-     * @returns {Response}
+     *
+     * @returns {Promise.<Response>}
      */
     dislike(): Promise<{
         success: boolean;
@@ -104,7 +111,8 @@ declare class VideoInfo {
     }>;
     /**
      * Removes like/dislike.
-     * @returns {Response}
+     *
+     * @returns {Promise.<Response>}
      */
     removeLike(): Promise<{
         success: boolean;
@@ -120,13 +128,8 @@ declare class VideoInfo {
         on_response_received_commands: any;
         continuation_contents: any;
         metadata: any;
-        /**
-         * @type {import('../contents/classes/VideoSecondaryInfo')}
-         */
         header: any;
-        microformat: import("../contents/classes/PlayerMicroformat"); /**
-         * @type {import('../contents/classes/MerchandiseShelf')}
-         */
+        microformat: import("../contents/classes/PlayerMicroformat");
         sidebar: any;
         overlay: any;
         refinements: any;

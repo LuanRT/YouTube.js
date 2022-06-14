@@ -1,5 +1,4 @@
 export = Parser;
-/** @namespace */
 declare class Parser {
     static parseResponse(data: any): {
         contents: any;
@@ -57,7 +56,6 @@ declare class Parser {
     static shouldIgnore(classname: any): boolean;
 }
 import VideoDetails = require("./classes/VideoDetails");
-/** @namespace */
 declare class SectionListContinuation {
     constructor(data: any);
     type: string;

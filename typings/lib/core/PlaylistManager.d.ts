@@ -2,19 +2,22 @@ export = PlaylistManager;
 /** @namespace */
 declare class PlaylistManager {
     /**
-     * @param {Actions} actions
-     * @constructor
+     * @param {import('../Actions')} actions
      */
-    constructor(actions: Actions);
+    constructor(actions: any);
+    /**
+     * API
+     *
+     * @typedef {{ success: boolean, status_code: number, playlist_id: string, data: object }} Response
+     */
     /**
      * Creates a playlist.
      *
      * @param {string} title
-     * @param {Array.<string>} video_ids
-     *
-     * @returns {Promise.<{ success: boolean; status_code: number; playlist_id: string; data: object; }>}
+     * @param {string[]} video_ids
+     * @returns {Promise.<Response>}
      */
-    create(title: string, video_ids: Array<string>): Promise<{
+    create(title: string, video_ids: string[]): Promise<{
         success: boolean;
         status_code: number;
         playlist_id: string;
@@ -22,8 +25,9 @@ declare class PlaylistManager {
     }>;
     /**
      * Deletes a given playlist.
+     *
      * @param {string} playlist_id
-     * @returns {Promise.<{ success: boolean; status_code: number; playlist_id: string; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     delete(playlist_id: string): Promise<{
         success: boolean;
@@ -36,8 +40,7 @@ declare class PlaylistManager {
      *
      * @param {string} playlist_id
      * @param {Array.<string>} video_ids
-     *
-     * @returns {Promise.<{ success: boolean; status_code: number; playlist_id: string; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     addVideos(playlist_id: string, video_ids: Array<string>): Promise<{
         success: boolean;
@@ -50,8 +53,7 @@ declare class PlaylistManager {
      *
      * @param {string} playlist_id
      * @param {Array.<string>} video_ids
-     *
-     * @returns {Promise.<{ success: boolean; status_code: number; playlist_id: string; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     removeVideos(playlist_id: string, video_ids: Array<string>): Promise<{
         success: boolean;

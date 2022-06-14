@@ -5,6 +5,7 @@ declare class NToken {
     raw_code: any;
     /**
      * Solves throttling challange by transforming the n token.
+     *
      * @returns {string}
      */
     transform(): string;

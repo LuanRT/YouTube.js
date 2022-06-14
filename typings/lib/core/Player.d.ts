@@ -3,36 +3,45 @@ export = Player;
 declare class Player {
     /**
      * Represents the YouTube Web player script.
+     *
      * @param {string} id - the id of the player.
      * @param {AxiosInstance} axios
-     * @constructor
      */
     constructor(id: string, axios: AxiosInstance);
     init(): Promise<Player>;
     /**
-     * Returns the current player's url.
+     * Js player url.
+     *
      * @readonly
      * @returns {string}
      */
     readonly get url(): string;
     /**
-     * Returns the signature timestamp.
+     * Signature timestamp.
+     *
      * @readonly
      * @returns {string}
      */
     readonly get sts(): string;
     /**
-     * Returns the n-token decipher algorithm.
+     * N-Token decipher algorithm.
+     *
      * @readonly
      * @returns {string}
      */
     readonly get ntoken_decipher(): string;
     /**
-     * Returns the signature decipher algorithm.
+     * Signature decipher algorithm.
+     *
      * @readonly
      * @returns {string}
      */
     readonly get signature_decipher(): string;
+    /**
+     * Checks if the player script is cached.
+     *
+     * @returns {boolean}
+     */
     isCached(): boolean;
     #private;
 }

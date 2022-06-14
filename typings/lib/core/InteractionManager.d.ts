@@ -2,14 +2,19 @@ export = InteractionManager;
 /** @namespace */
 declare class InteractionManager {
     /**
-     * @param {Actions} actions
-     * @constructor
+     * @param {import('../Actions')} actions
      */
-    constructor(actions: Actions);
+    constructor(actions: any);
+    /**
+     * API response.
+     *
+     * @typedef {{ success: boolean, status_code: number, data: object }} Response
+     */
     /**
      * Likes a given video.
+     *
      * @param {string} video_id
-     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     like(video_id: string): Promise<{
         success: boolean;
@@ -18,8 +23,9 @@ declare class InteractionManager {
     }>;
     /**
      * Dislikes a given video.
+     *
      * @param {string} video_id
-     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     dislike(video_id: string): Promise<{
         success: boolean;
@@ -28,8 +34,9 @@ declare class InteractionManager {
     }>;
     /**
      * Removes a like/dislike.
+     *
      * @param {string} video_id
-     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     removeLike(video_id: string): Promise<{
         success: boolean;
@@ -38,8 +45,9 @@ declare class InteractionManager {
     }>;
     /**
      * Subscribes to a given channel.
+     *
      * @param {string} channel_id
-     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     subscribe(channel_id: string): Promise<{
         success: boolean;
@@ -48,8 +56,9 @@ declare class InteractionManager {
     }>;
     /**
      * Unsubscribes from a given channel.
+     *
      * @param {string} channel_id
-     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     unsubscribe(channel_id: string): Promise<{
         success: boolean;
@@ -61,8 +70,7 @@ declare class InteractionManager {
      *
      * @param {string} video_id
      * @param {string} text
-     *
-     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     comment(video_id: string, text: string): Promise<{
         success: boolean;
@@ -77,8 +85,7 @@ declare class InteractionManager {
      * @param {object} [args] - optional arguments
      * @param {string} [args.video_id]
      * @param {string} [args.comment_id]
-     *
-     * @returns {Promise.<{ success: boolean; status_code: number; translated_content: string; data: object; }>}
+     * @returns {Promise.<{ success: boolean, status_code: number, translated_content: string, data: object }>}
      */
     translate(text: string, target_language: string, args?: {
         video_id?: string;
@@ -95,8 +102,7 @@ declare class InteractionManager {
      *
      * @param {string} channel_id
      * @param {string} type - `PERSONALIZED` | `ALL` | `NONE`
-     *
-     * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+     * @returns {Promise.<Response>}
      */
     setNotificationPreferences(channel_id: string, type: string): Promise<{
         success: boolean;

@@ -1,4 +1,5 @@
 export = Livechat;
+/** @namespace */
 declare class Livechat extends EventEmitter {
     constructor(session: any, token: any, channel_id: any, video_id: any);
     ctoken: any;
@@ -14,6 +15,7 @@ declare class Livechat extends EventEmitter {
     sendMessage(text: any): Promise<any>;
     /**
      * Blocks a user.
+     *
      * @todo Implement this method
      */
     blockUser(): Promise<void>;
