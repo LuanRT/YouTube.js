@@ -15,6 +15,7 @@ declare class HomeFeed {
     };
     /**
      * Retrieves home feed continuation.
+     *
      * @returns {Promise.<HomeFeed>}
      */
     getContinuation(): Promise<HomeFeed>;

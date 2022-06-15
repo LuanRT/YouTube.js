@@ -2,17 +2,21 @@ export = AccountManager;
 /** @namespace */
 declare class AccountManager {
     /**
-     * @param {Actions} actions
-     * @constructor
+     * @param {import('./Actions')} actions
      */
-    constructor(actions: Actions);
+    constructor(actions: import('./Actions'));
+    /**
+     * API response.
+     *
+     * @typedef {{ success: boolean, status_code: number, data: object }} Response
+     */
     /** @namespace */
     channel: {
         /**
          * Edits channel name.
          *
          * @param {string} new_name
-         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+         * @returns {Promise.<Response>}
          */
         editName: (new_name: string) => Promise<{
             success: boolean;
@@ -23,7 +27,7 @@ declare class AccountManager {
          * Edits channel description.
          *
          * @param {string} new_description
-         * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+         * @returns {Promise.<Response>}
          */
         editDescription: (new_description: string) => Promise<{
             success: boolean;
@@ -32,7 +36,8 @@ declare class AccountManager {
         }>;
         /**
          * Retrieves basic channel analytics.
-         * @borrows AccountManager#getAnalytics as getBasicAnalytics
+         *
+         * @borrows getAnalytics as getBasicAnalytics
          */
         getBasicAnalytics: () => Promise<Analytics>;
     };
@@ -43,7 +48,7 @@ declare class AccountManager {
              * Notify about activity from the channels you're subscribed to.
              *
              * @param {boolean} option - ON | OFF
-             * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+             * @returns {Promise.<Response>}
              */
             setSubscriptions: (option: boolean) => Promise<{
                 success: boolean;
@@ -54,7 +59,7 @@ declare class AccountManager {
              * Recommended content notifications.
              *
              * @param {boolean} option - ON | OFF
-             * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+             * @returns {Promise.<Response>}
              */
             setRecommendedVideos: (option: boolean) => Promise<{
                 success: boolean;
@@ -65,7 +70,7 @@ declare class AccountManager {
              * Notify about activity on your channel.
              *
              * @param {boolean} option - ON | OFF
-             * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+             * @returns {Promise.<Response>}
              */
             setChannelActivity: (option: boolean) => Promise<{
                 success: boolean;
@@ -76,7 +81,7 @@ declare class AccountManager {
              * Notify about replies to your comments.
              *
              * @param {boolean} option - ON | OFF
-             * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+             * @returns {Promise.<Response>}
              */
             setCommentReplies: (option: boolean) => Promise<{
                 success: boolean;
@@ -87,7 +92,7 @@ declare class AccountManager {
              * Notify when others mention your channel.
              *
              * @param {boolean} option - ON | OFF
-             * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+             * @returns {Promise.<Response>}
              */
             setMentions: (option: boolean) => Promise<{
                 success: boolean;
@@ -98,7 +103,7 @@ declare class AccountManager {
              * Notify when others share your content on their channels.
              *
              * @param {boolean} option - ON | OFF
-             * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+             * @returns {Promise.<Response>}
              */
             setSharedContent: (option: boolean) => Promise<{
                 success: boolean;
@@ -111,7 +116,7 @@ declare class AccountManager {
              * If set to true, your subscriptions won't be visible to others.
              *
              * @param {boolean} option - ON | OFF
-             * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
+             * @returns {Promise.<Response>}
              */
             setSubscriptionsPrivate: (option: boolean) => Promise<{
                 success: boolean;
@@ -122,8 +127,8 @@ declare class AccountManager {
              * If set to true, saved playlists won't appear on your channel.
              *
              * @param {boolean} option - ON | OFF
-             * @returns {Promise.<{ success: boolean; status_code: number; data: object; }>}
-              */
+             * @returns {Promise.<Response>}
+             */
             setSavedPlaylistsPrivate: (option: boolean) => Promise<{
                 success: boolean;
                 status_code: number;
@@ -133,7 +138,8 @@ declare class AccountManager {
     };
     /**
      * Retrieves channel info.
-     * @returns {Promise.<{ name: string; email: string; channel_id: string; subscriber_count: string; photo: object[]; }>}
+     *
+     * @returns {Promise.<{ name: string, email: string, channel_id: string, subscriber_count: string, photo: object[] }>}
      */
     getInfo(): Promise<{
         name: string;
@@ -144,19 +150,22 @@ declare class AccountManager {
     }>;
     /**
      * Retrieves time watched statistics.
-     * @returns {Promise.<{ title: string; time: string; }[]>}
+     *
+     * @returns {Promise.<Array.<{ title: string, time: string }>>}
      */
-    getTimeWatched(): Promise<{
+    getTimeWatched(): Promise<Array<{
         title: string;
         time: string;
-    }[]>;
+    }>>;
     /**
      * Retrieves basic channel analytics.
+     *
      * @returns {Promise.<Analytics>}
      */
     getAnalytics(): Promise<Analytics>;
     /**
      * Returns the account's library.
+     *
      * @returns {Promise.<Library>}
      */
     getLibrary(): Promise<Library>;

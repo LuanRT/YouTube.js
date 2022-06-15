@@ -5,7 +5,7 @@ declare class History {
      * @param {object} page - parsed data.
      * @param {import('../../core/Actions')} actions
      * @param {boolean} is_continuation
-     * @constructor
+     * @function Object() { [native code] }
      */
     constructor(page: object, actions: import('../../core/Actions'), is_continuation: boolean);
     sections: any;

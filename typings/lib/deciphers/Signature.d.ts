@@ -6,6 +6,7 @@ declare class Signature {
     decipherBeta(): any;
     /**
      * Deciphers signature.
+     *
      * @returns {string}
      */
     decipher(): string;

@@ -2,17 +2,15 @@ export = Music;
 /** @namespace */
 declare class Music {
     /**
-     * @param {Innertube} session
-     * @constructor
+     * @param {import('../Innertube')} session
      */
-    constructor(session: Innertube);
+    constructor(session: import('../Innertube'));
     /**
-     * Search on YouTube Music.
+     * Searches on YouTube Music.
      *
      * @param {string} query
      * @param {object} filters - search filters
      * @param {string} [filters.type] - all | song | video | album | playlist | artist
-     *
      * @returns {Promise.<Search>}
      */
     search(query: string, filters: {
@@ -20,21 +18,24 @@ declare class Music {
     }): Promise<Search>;
     /**
      * Retrieves YouTube Music home feed.
+     *
      * @returns {Promise.<HomeFeed>}
      */
     getHomeFeed(): Promise<HomeFeed>;
     /**
      * Retrieves song lyrics.
+     *
      * @param {string} video_id
      */
     getLyrics(video_id: string): Promise<{
         /** @type {string} */
         text: string;
-        /** @type {Text} */
-        footer: Text;
+        /** @type {import('../parser/contents/classes/Text')} */
+        footer: import('../parser/contents/classes/Text');
     }>;
     /**
      * Retrieves up next.
+     *
      * @param {string} video_id
      */
     getUpNext(video_id: string): Promise<{
@@ -49,10 +50,11 @@ declare class Music {
     }>;
     /**
      * Retrieves related content.
+     *
      * @param {string} video_id
      */
     getRelated(video_id: string): Promise<{
-        /** @type {{ header: import('../parser/contents/classes/MusicCarouselShelfBasicHeader'); items: object[]; }[]} */
+        /** @type {Array.<{ header: import('../parser/contents/classes/MusicCarouselShelfBasicHeader'), items: object[] }>} */
         sections: {
             header: import('../parser/contents/classes/MusicCarouselShelfBasicHeader');
             items: object[];

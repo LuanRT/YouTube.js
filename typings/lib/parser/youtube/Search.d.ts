@@ -6,7 +6,6 @@ declare class Search {
      * @param {import('../../core/Actions')} actions
      * @param {object} [args]
      * @param {boolean} [args.is_continuation]
-     * @constructor
      */
     constructor(response: object, actions: import('../../core/Actions'), args?: {
         is_continuation?: boolean;
@@ -15,7 +14,7 @@ declare class Search {
     results: object[];
     refinements: any;
     estimated_results: any;
-    /** @type {{ sections: { title: string; items: object[]; }[] }} */
+    /** @type {{ sections: { title: string, items: object[] }[] }} */
     sections: {
         sections: {
             title: string;
@@ -30,15 +29,17 @@ declare class Search {
     };
     /**
      * Retrieves next batch of results.
+     *
      * @returns {Promise.<Search>}
      */
     getContinuation(): Promise<Search>;
     /**
      * Applies given refinement card and returns a new {@link Search} object.
-     * @param {SearchRefinementCard | string} card - refinement card object or query
+     *
+     * @param {import('../contents/classes/SearchRefinementCard') | string} card - refinement card object or query
      * @returns {Promise.<Search>}
      */
-    selectRefinementCard(card: SearchRefinementCard | string): Promise<Search>;
+    selectRefinementCard(card: import('../contents/classes/SearchRefinementCard') | string): Promise<Search>;
     /** @type {boolean} */
     get has_continuation(): boolean;
     /** @type {string[]} */

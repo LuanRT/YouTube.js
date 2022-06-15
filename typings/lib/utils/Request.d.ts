@@ -2,11 +2,10 @@ export = Request;
 /** @namespace */
 declare class Request {
     /**
-     * @param {Innertube} session
-     * @constructor
+     * @param {import('../Innertube')} session
      */
-    constructor(session: Innertube);
-    session: Innertube;
+    constructor(session: import('../Innertube'));
+    session: import("../Innertube");
     instance: any;
     #private;
 }

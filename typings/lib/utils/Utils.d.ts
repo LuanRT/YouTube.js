@@ -1,4 +1,3 @@
-/** @namespace */
 export class InnertubeError extends Error {
     constructor(message: any, info: any);
     info: any;
@@ -23,18 +22,17 @@ export class NoStreamingDataError extends InnertubeError {
  * @param {string} target - anything that might be inside of the property.
  * @param {number} depth - maximum number of nested objects to flatten.
  * @param {boolean} safe - if set to true arrays will be preserved.
- *
- * @returns {object|Array.<any>}
+ * @returns {object|object[]}
  */
-export function findNode(obj: object, key: string, target: string, depth: number, safe?: boolean): object | Array<any>;
+export function findNode(obj: object, key: string, target: string, depth: number, safe?: boolean): object | object[];
 /**
  * Creates a trap to intercept property access
  * and add utilities to an object.
  *
  * @param {object} obj
- * @returns
+ * @returns {object}
  */
-export function observe(obj: object): any;
+export function observe(obj: object): object;
 /**
  * Returns a random user agent.
  *
@@ -62,7 +60,6 @@ export function generateRandomString(length: number): string;
  * @param {string} data - the data.
  * @param {string} start_string - start string.
  * @param {string} end_string - end string.
- *
  * @returns {string}
  */
 export function getStringBetweenStrings(data: string, start_string: string, end_string: string): string;
@@ -84,7 +81,7 @@ export function isValidClient(client: string): boolean;
  * Throws an error if given parameters are undefined.
  *
  * @param {object} params
- * @returns
+ * @returns {void}
  */
 export function throwIfMissing(params: object): void;
 /**

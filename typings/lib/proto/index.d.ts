@@ -5,7 +5,6 @@ declare class Proto {
      *
      * @param {string} id
      * @param {number} timestamp
-     *
      * @returns {string}
      */
     static encodeVisitorData(id: string, timestamp: number): string;
@@ -24,7 +23,6 @@ declare class Proto {
      * @param {string} [filters.type] - all | video | channel | playlist | movie
      * @param {string} [filters.duration] - all | short | medium | long
      * @param {string} [filters.sort_by] - relevance | rating | upload_date | view_count
-     *
      * @returns {string}
      */
     static encodeSearchFilters(filters: {
@@ -38,7 +36,6 @@ declare class Proto {
      *
      * @param {object} filters
      * @param {string} filters.type - all | song | video | album | playlist | artist
-     *
      * @returns {string}
      */
     static encodeMusicSearchFilters(filters?: {
@@ -49,7 +46,6 @@ declare class Proto {
      *
      * @param {string} channel_id
      * @param {string} video_id
-     *
      * @returns {string}
      */
     static encodeMessageParams(channel_id: string, video_id: string): string;
@@ -60,7 +56,6 @@ declare class Proto {
      * @param {object} options
      * @param {string} options.type
      * @param {string} options.sort_by
-     *
      * @returns {string}
      */
     static encodeCommentsSectionParams(video_id: string, options?: {
@@ -72,7 +67,6 @@ declare class Proto {
      *
      * @param {string} video_id
      * @param {string} comment_id
-     *
      * @returns {string}
      */
     static encodeCommentRepliesParams(video_id: string, comment_id: string): string;
@@ -88,28 +82,31 @@ declare class Proto {
      *
      * @param {string} comment_id
      * @param {string} video_id
-     *
-     * @return {string}
+     * @returns {string}
      */
     static encodeCommentReplyParams(comment_id: string, video_id: string): string;
     /**
      * Encodes comment action parameters.
      *
      * @param {string} type
-     * @param {string} comment_id
-     * @param {string} video_id
-     * @param {string} [text]
-     * @param {string} [target_language]
-     *
+     * @param {object} [args]
+     * @param {string} [args.comment_id]
+     * @param {string} [args.video_id]
+     * @param {string} [args.text]
+     * @param {string} [args.target_language]
      * @returns {string}
      */
-    static encodeCommentActionParams(type: string, args?: {}): string;
+    static encodeCommentActionParams(type: string, args?: {
+        comment_id?: string;
+        video_id?: string;
+        text?: string;
+        target_language?: string;
+    }): string;
     /**
      * Encodes notification preference parameters.
      *
      * @param {string} channel_id
      * @param {number} index
-     *
      * @returns {string}
      */
     static encodeNotificationPref(channel_id: string, index: number): string;

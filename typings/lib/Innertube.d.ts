@@ -1,8 +1,4 @@
 export = Innertube;
-/**
- * Innertube instance.
- * @namespace
- */
 declare class Innertube {
     /**
      * @example
@@ -10,33 +6,29 @@ declare class Innertube {
      * const Innertube = require('youtubei.js');
      * const youtube = await new Innertube();
      * ```
-     *
      * @param {object} [config]
      * @param {string} [config.gl]
      * @param {string} [config.cookie]
      * @param {boolean} [config.debug]
      * @param {object} [config.proxy]
-     * @param {object} [config.httpAgent]
-     * @param {object} [config.httpsAgent]
-     *
-     * @returns {Innertube}
-     * @constructor
+     * @param {object} [config.http_ent]
+     * @param {object} [config.https_agent]
      */
     constructor(config?: {
         gl?: string;
         cookie?: string;
         debug?: boolean;
         proxy?: object;
-        httpAgent?: object;
-        httpsAgent?: object;
+        http_ent?: object;
+        https_agent?: object;
     });
     config: {
         gl?: string;
         cookie?: string;
         debug?: boolean;
         proxy?: object;
-        httpAgent?: object;
-        httpsAgent?: object;
+        http_ent?: object;
+        https_agent?: object;
     };
     key: any;
     version: any;
@@ -65,7 +57,6 @@ declare class Innertube {
      * @param {string} auth_info.access_token - Token used to sign in.
      * @param {string} auth_info.refresh_token - Token used to get a new access token.
      * @param {Date} auth_info.expires - Access token's expiration date, which is usually 24hrs-ish.
-     *
      * @returns {Promise.<void>}
      */
     signIn(auth_info?: {
@@ -77,7 +68,8 @@ declare class Innertube {
     refresh_token: string;
     /**
      * Signs out of an account.
-     * @returns {Promise.<{ success: boolean; status_code: number }>}
+     *
+     * @returns {Promise.<{ success: boolean, status_code: number }>}
      */
     signOut(): Promise<{
         success: boolean;
@@ -89,8 +81,7 @@ declare class Innertube {
      * @param {string} query - the search query.
      * @param {object} [options] - search options.
      * @param {string} [options.client='YOUTUBE'] - client used to retrieve search suggestions, can be: `YOUTUBE` or `YTMUSIC`.
-     *
-     * @returns {Promise.<{ query: string; results: string[] }>}
+     * @returns {Promise.<{ query: string, results: string[] }>}
      */
     getSearchSuggestions(query: string, options?: {
         client?: string;
@@ -100,9 +91,11 @@ declare class Innertube {
     }>;
     /**
      * Retrieves video info.
+     *
+     * @param {string} video_id
      * @returns {Promise.<VideoInfo>}
      */
-    getInfo(video_id: any): Promise<VideoInfo>;
+    getInfo(video_id: string): Promise<VideoInfo>;
     /**
      * Searches a given query.
      *
@@ -112,7 +105,6 @@ declare class Innertube {
      * @param {string} [filters.type] - filter results by type, can be: any | video | channel | playlist | movie
      * @param {string} [filters.duration] - filter videos by duration, can be: any | short | medium | long
      * @param {string} [filters.sort_by] - filter video results by order, can be: relevance | rating | upload_date | view_count
-     *
      * @returns {Promise.<Search>}
      */
     search(query: string, filters?: {
@@ -126,14 +118,13 @@ declare class Innertube {
      *
      * @deprecated do not use this, it is slow and inefficient.
      * Use {@link getInfo} instead.
-     *
      * @param {string} video_id - the video id.
-     * @return {Promise.<{ title: string; description: string; thumbnail: []; metadata: object }>}
+     * @returns {Promise.<{ title: string, description: string, thumbnail: any[], metadata: object }>}
      */
     getDetails(video_id: string): Promise<{
         title: string;
         description: string;
-        thumbnail: [];
+        thumbnail: any[];
         metadata: object;
     }>;
     /**
@@ -147,7 +138,7 @@ declare class Innertube {
      *
      * @param {string} video_id - the video id.
      * @param {string} [sort_by] - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
-     * @return {Promise.<{ page_count: number; comment_count: number; items: object[]; }>}
+     * @returns {Promise.<{ page_count: number, comment_count: number, items: object[] }>}
      */
     getComments(video_id: string, sort_by?: string): Promise<{
         page_count: number;
@@ -156,31 +147,60 @@ declare class Innertube {
     }>;
     /**
      * Retrieves contents for a given channel. (WIP)
+     *
      * @param {string} id - channel id
-     * @return {Promise<Channel>}
+     * @returns {Promise.<{ title: string, description: string, metadata: object, content: object }>}
      */
     getChannel(id: string): Promise<Channel>;
     /**
      * Retrieves watch history.
-     * @returns {Promise.<{ items: { date: string; videos: object[] }[] }>}
+     *
+     * @returns {Promise.<{ items: Array.<{ date: string, videos: object[] }>}>}
      */
     getHistory(): Promise<{
-        items: {
+        items: Array<{
             date: string;
             videos: object[];
-        }[];
+        }>;
     }>;
     /**
-     * Retrieves YouTube's home feed (aka recommendations).
-     * @returns {Promise<HomeFeed>}
+     * Retrieves home feed (aka recommendations).
+     *
+     * @returns {Promise.<{ videos: Array.<{ id: string, title: string, description: string, channel: string, metadata: object }>}>}
      */
-    getHomeFeed(): Promise<HomeFeed>;
+    getHomeFeed(): Promise<{
+        videos: Array<{
+            id: string;
+            title: string;
+            description: string;
+            channel: string;
+            metadata: object;
+        }>;
+    }>;
     /**
      * Retrieves trending content.
      *
-     * @returns {Promise<Trending>}
+     * @returns {Promise.<{ now: { content: Array.<{ title: string, videos: object[] }> },
+     * music: { getVideos: Promise.<Array.<object>> }, gaming: { getVideos: Promise.<Array.<object>> },
+     * movies: { getVideos: Promise.<Array.<object>> } }>}
      */
-    getTrending(): Promise<Trending>;
+    getTrending(): Promise<{
+        now: {
+            content: Array<{
+                title: string;
+                videos: object[];
+            }>;
+        };
+        music: {
+            getVideos: Promise<Array<object>>;
+        };
+        gaming: {
+            getVideos: Promise<Array<object>>;
+        };
+        movies: {
+            getVideos: Promise<Array<object>>;
+        };
+    }>;
     /**
      * @todo finish this
      * WIP
@@ -188,20 +208,22 @@ declare class Innertube {
     getLibrary(): Promise<any>;
     /**
      * Retrieves subscriptions feed.
-     * @returns {Promise.<{ items: { date: string; videos: object[] }[] }>}
+     *
+     * @returns {Promise.<{ items: Array.<{ date: string, videos: object[] }>}>}
      */
     getSubscriptionsFeed(): Promise<{
-        items: {
+        items: Array<{
             date: string;
             videos: object[];
-        }[];
+        }>;
     }>;
     /**
      * Retrieves notifications.
-     * @returns {Promise.<{ items: { title: string; sent_time: string; channel_name: string; channel_thumbnail: object; video_thumbnail: object; video_url: string; read: boolean; notification_id: string }[] }>}
+     *
+     * @returns {Promise.<{ items: Array.<{ title: string, sent_time: string, channel_name: string, channel_thumbnail: object, video_thumbnail: object, video_url: string, read: boolean, notification_id: string }>}>}
      */
     getNotifications(): Promise<{
-        items: {
+        items: Array<{
             title: string;
             sent_time: string;
             channel_name: string;
@@ -210,10 +232,11 @@ declare class Innertube {
             video_url: string;
             read: boolean;
             notification_id: string;
-        }[];
+        }>;
     }>;
     /**
      * Retrieves unseen notifications count.
+     *
      * @returns {Promise.<number>}
      */
     getUnseenNotificationsCount(): Promise<number>;
@@ -230,10 +253,9 @@ declare class Innertube {
      * @param {string} playlist_id - the id of the playlist.
      * @param {object} options - `YOUTUBE` | `YTMUSIC`
      * @param {string} options.client - client used to parse the playlist, can be: `YTMUSIC` | `YOUTUBE`
-     *
      * @returns {Promise.<
-     *  { title: string; description: string; total_items: string; last_updated: string; views: string; items: [] } |
-     *  { title: string; description: string; total_items: number; duration: string; year: string; items: [] }>}
+     *  { title: string, description: string, total_items: string, last_updated: string, views: string, items: object[] } |
+     *  { title: string, description: string, total_items: number, duration: string, year: string, items: object[] }>}
      */
     getPlaylist(playlist_id: string, options?: {
         client: string;
@@ -243,14 +265,14 @@ declare class Innertube {
         total_items: string;
         last_updated: string;
         views: string;
-        items: [];
+        items: object[];
     } | {
         title: string;
         description: string;
         total_items: number;
         duration: string;
         year: string;
-        items: [];
+        items: object[];
     }>;
     /**
      * An alternative to {@link download}.
@@ -261,8 +283,7 @@ declare class Innertube {
      * @param {string} options.quality - video quality; 360p, 720p, 1080p, etc...
      * @param {string} options.type - download type, can be: video, audio or videoandaudio
      * @param {string} options.format - file format
-     *
-     * @returns {Promise.<{ selected_format: object; formats: object[] }>}
+     * @returns {Promise.<{ selected_format: object, formats: object[] }>}
      */
     getStreamingData(video_id: string, options?: {
         quality: string;
@@ -283,8 +304,7 @@ declare class Innertube {
      * @param {object} [options.range] - download range, indicates which bytes should be downloaded.
      * @param {number} options.range.start - the beginning of the range.
      * @param {number} options.range.end - the end of the range.
-     *
-     * @return {Stream.PassThrough}
+     * @returns {Stream.PassThrough}
      */
     download(video_id: string, options?: {
         quality?: string;
