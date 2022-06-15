@@ -5,7 +5,6 @@ const Innertube = require('..');
 const session = await new Innertube();
 
 const channel = await session.getChannel('UCX6OQ3DkcsbYNE6H8uQQuVA');
-const home = await channel.getHome();
 
 console.log('Viewing channel:', channel.title);
 console.log('Family Safe:', channel.metadata.is_family_safe);
