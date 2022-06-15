@@ -4,7 +4,7 @@ declare class PlayerMicroformat {
     type: string;
     title: Text;
     description: Text;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     embed: {
         iframe_url: any;
         flash_url: any;
@@ -28,3 +28,4 @@ declare class PlayerMicroformat {
     available_countries: any;
 }
 import Text = require("./Text");
+import Thumbnail = require("./Thumbnail");

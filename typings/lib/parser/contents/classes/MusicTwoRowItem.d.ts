@@ -22,9 +22,10 @@ declare class MusicTwoRowItem {
         endpoint: any;
     };
     artists: any;
-    thumbnail: any;
+    thumbnail: Thumbnail[];
     thumbnail_overlay: any;
     menu: any;
 }
 import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");
+import Thumbnail = require("./Thumbnail");

@@ -5,7 +5,7 @@ declare class PlayerAnnotationsExpanded {
     featured_channel: {
         start_time_ms: any;
         end_time_ms: any;
-        watermark: any;
+        watermark: Thumbnail[];
         channel_name: any;
         endpoint: NavigationEndpoint;
         subscribe_button: any;
@@ -13,4 +13,5 @@ declare class PlayerAnnotationsExpanded {
     allow_swipe_dismiss: any;
     annotation_id: any;
 }
+import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");

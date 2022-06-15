@@ -4,5 +4,6 @@ declare class MusicCarouselShelfBasicHeader {
     type: string;
     strapline: any;
     title: any;
-    thumbnail: any;
+    thumbnail: Thumbnail[];
 }
+import Thumbnail = require("./Thumbnail");

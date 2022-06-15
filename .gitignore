@@ -50,3 +50,7 @@ jspm_packages/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# pnpm
+.pnpm-debug.log*
+pnpm-lock.yaml

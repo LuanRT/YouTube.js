@@ -7,7 +7,6 @@ declare class Search {
      * @param {object} args
      * @param {boolean} args.is_continuation
      * @param {boolean} args.is_filtered
-     * @function Object() { [native code] }
      */
     constructor(response: object, actions: import('../../core/Actions'), args?: {
         is_continuation: boolean;

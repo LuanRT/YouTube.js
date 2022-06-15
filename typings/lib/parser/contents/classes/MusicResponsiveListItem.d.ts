@@ -3,16 +3,13 @@ declare class MusicResponsiveListItem {
     constructor(data: any);
     type: string;
     endpoint: NavigationEndpoint;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     badges: any;
     menu: any;
     overlay: any;
     id: any;
     title: any;
     duration: {
-        text: any;
-        seconds: number;
-    } | {
         text: any;
         seconds: number;
     };
@@ -27,14 +24,6 @@ declare class MusicResponsiveListItem {
         name: any;
         channel_id: any;
         endpoint: any;
-    } | {
-        name: any;
-        channel_id: any;
-        endpoint: any;
-    } | {
-        name: any;
-        channel_id: any;
-        endpoint: any;
     };
     name: any;
     subscribers: any;
@@ -43,3 +32,4 @@ declare class MusicResponsiveListItem {
     #private;
 }
 import NavigationEndpoint = require("./NavigationEndpoint");
+import Thumbnail = require("./Thumbnail");

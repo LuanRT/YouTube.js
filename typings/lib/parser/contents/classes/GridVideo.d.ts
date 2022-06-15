@@ -4,8 +4,9 @@ declare class GridVideo {
     type: string;
     id: any;
     title: Text;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     thumbnail_overlays: any;
+    rich_thumbnail: any;
     published: Text;
     duration: string | Text;
     author: Author;
@@ -15,5 +16,6 @@ declare class GridVideo {
     menu: any;
 }
 import Text = require("./Text");
+import Thumbnail = require("./Thumbnail");
 import Author = require("./Author");
 import NavigationEndpoint = require("./NavigationEndpoint");

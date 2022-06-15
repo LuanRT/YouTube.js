@@ -128,7 +128,7 @@ declare class Innertube {
         metadata: object;
     }>;
     /**
-     * Retrieves comments for a given video.
+     * Retrieves comments for a video.
      *
      * @param {string} video_id - the video id.
      * @param {string} [sort_by] - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
@@ -143,14 +143,9 @@ declare class Innertube {
      * Retrieves contents for a given channel. (WIP)
      *
      * @param {string} id - channel id
-     * @returns {Promise.<{ title: string, description: string, metadata: object, content: object }>}
+     * @returns {Promise<Channel>}
      */
-    getChannel(id: string): Promise<{
-        title: string;
-        description: string;
-        metadata: object;
-        content: object;
-    }>;
+    getChannel(id: string): Promise<Channel>;
     /**
      * Retrieves watch history.
      *
@@ -163,43 +158,17 @@ declare class Innertube {
         }>;
     }>;
     /**
-     * Retrieves home feed (aka recommendations).
+     * Retrieves YouTube's home feed (aka recommendations).
      *
-     * @returns {Promise.<{ videos: Array.<{ id: string, title: string, description: string, channel: string, metadata: object }>}>}
+     * @returns {Promise<FilterableFeed>}
      */
-    getHomeFeed(): Promise<{
-        videos: Array<{
-            id: string;
-            title: string;
-            description: string;
-            channel: string;
-            metadata: object;
-        }>;
-    }>;
+    getHomeFeed(): Promise<FilterableFeed>;
     /**
      * Retrieves trending content.
      *
-     * @returns {Promise.<{ now: { content: Array.<{ title: string, videos: object[] }> },
-     * music: { getVideos: Promise.<Array.<object>> }, gaming: { getVideos: Promise.<Array.<object>> },
-     * movies: { getVideos: Promise.<Array.<object>> } }>}
+     * @returns {Promise<TabbedFeed>}
      */
-    getTrending(): Promise<{
-        now: {
-            content: Array<{
-                title: string;
-                videos: object[];
-            }>;
-        };
-        music: {
-            getVideos: Promise<Array<object>>;
-        };
-        gaming: {
-            getVideos: Promise<Array<object>>;
-        };
-        movies: {
-            getVideos: Promise<Array<object>>;
-        };
-    }>;
+    getTrending(): Promise<TabbedFeed>;
     /**
      * @todo finish this
      * WIP
@@ -314,6 +283,7 @@ declare class Innertube {
             end: number;
         };
     }): Stream.PassThrough;
+    getPlayer(): any;
     /** @readonly */
     readonly get axios(): any;
     #private;
@@ -328,4 +298,7 @@ import InteractionManager = require("./core/InteractionManager");
 import YTMusic = require("./core/Music");
 import VideoInfo = require("./parser/youtube/VideoInfo");
 import Search = require("./parser/youtube/Search");
+import Channel = require("./parser/youtube/Channel");
+import FilterableFeed = require("./core/FilterableFeed");
+import TabbedFeed = require("./core/TabbedFeed");
 import Stream = require("stream");

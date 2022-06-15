@@ -4,7 +4,7 @@ declare class MerchandiseItem {
     type: string;
     title: any;
     description: any;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     price: any;
     vendor_name: any;
     button_text: any;
@@ -14,4 +14,5 @@ declare class MerchandiseItem {
     region_format: any;
     endpoint: NavigationEndpoint;
 }
+import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");

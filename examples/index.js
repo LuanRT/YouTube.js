@@ -5,6 +5,9 @@ const Innertube = require('..');
 const creds_path = './yt_oauth_creds.json';
 const creds = fs.existsSync(creds_path) && JSON.parse(fs.readFileSync(creds_path).toString()) || {};
 
+/**
+ *
+ */
 async function start() {
   const youtube = await new Innertube();
   

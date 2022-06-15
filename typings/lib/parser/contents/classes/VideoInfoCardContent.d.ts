@@ -5,9 +5,10 @@ declare class VideoInfoCardContent {
     title: Text;
     channel_name: Text;
     view_count: Text;
-    video_thumbnails: any;
+    video_thumbnails: Thumbnail[];
     duration: Text;
     endpoint: NavigationEndpoint;
 }
 import Text = require("./Text");
+import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");

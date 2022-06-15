@@ -5,7 +5,8 @@ declare class PlayerErrorMessage {
     subreason: Text;
     reason: Text;
     proceed_button: any;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     icon_type: any;
 }
 import Text = require("./Text");
+import Thumbnail = require("./Thumbnail");

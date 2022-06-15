@@ -9,7 +9,7 @@ declare class PlayerOverlayAutoplay {
     prefer_immediate_redirect: any;
     count_down_secs_for_fullscreen: any;
     published: Text;
-    background: any;
+    background: Thumbnail[];
     thumbnail_overlays: any;
     author: Author;
     cancel_button: any;
@@ -17,4 +17,5 @@ declare class PlayerOverlayAutoplay {
     close_button: any;
 }
 import Text = require("./Text");
+import Thumbnail = require("./Thumbnail");
 import Author = require("./Author");

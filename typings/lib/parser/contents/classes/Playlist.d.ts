@@ -5,7 +5,7 @@ declare class Playlist {
     id: any;
     title: Text;
     author: Text | PlaylistAuthor;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     video_count: Text;
     video_count_short: Text;
     first_videos: any;
@@ -17,4 +17,5 @@ declare class Playlist {
 }
 import Text = require("./Text");
 import PlaylistAuthor = require("./PlaylistAuthor");
+import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");
