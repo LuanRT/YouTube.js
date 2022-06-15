@@ -6,8 +6,9 @@ declare class EndScreenPlaylist {
     title: Text;
     author: Text;
     endpoint: NavigationEndpoint;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     video_count: Text;
 }
 import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");
+import Thumbnail = require("./Thumbnail");

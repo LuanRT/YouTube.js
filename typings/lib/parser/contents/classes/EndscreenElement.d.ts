@@ -3,8 +3,8 @@ declare class EndscreenElement {
     constructor(data: any);
     type: string;
     style: any;
-    image: any;
-    icon: any;
+    image: Thumbnail[];
+    icon: Thumbnail[];
     metadata: Text;
     call_to_action: Text;
     hovercard_button: any;
@@ -20,5 +20,6 @@ declare class EndscreenElement {
     end_ms: any;
     id: any;
 }
+import Thumbnail = require("./Thumbnail");
 import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");

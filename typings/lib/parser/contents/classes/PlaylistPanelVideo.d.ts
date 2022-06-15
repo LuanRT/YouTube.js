@@ -3,7 +3,7 @@ declare class PlaylistPanelVideo {
     constructor(data: any);
     type: string;
     title: Text;
-    thumbnail: any;
+    thumbnail: Thumbnail[];
     endpoint: NavigationEndpoint;
     selected: any;
     video_id: any;
@@ -24,4 +24,5 @@ declare class PlaylistPanelVideo {
     set_video_id: any;
 }
 import Text = require("./Text");
+import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");

@@ -13,8 +13,11 @@ declare class Library {
     sections: any;
     get page(): {
         contents: any;
+        contents_memo: Map<any, any>;
         on_response_received_actions: any;
+        on_response_received_actions_memo: Map<any, any>;
         on_response_received_endpoints: any;
+        on_response_received_endpoints_memo: Map<any, any>;
         on_response_received_commands: any;
         continuation_contents: any;
         metadata: any;

@@ -6,7 +6,7 @@ declare class PlaylistVideo {
     index: Text;
     title: Text;
     author: PlaylistAuthor;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     set_video_id: any;
     endpoint: NavigationEndpoint;
     is_playable: any;
@@ -17,4 +17,5 @@ declare class PlaylistVideo {
 }
 import Text = require("./Text");
 import PlaylistAuthor = require("./PlaylistAuthor");
+import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");

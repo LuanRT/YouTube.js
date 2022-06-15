@@ -1,50 +1,55 @@
 export = Feed;
 declare class Feed {
-    constructor(session: any, data: any, already_parsed?: boolean);
+    /**
+     * Get all videos on a given page via memo
+     *
+     * @param {*} page
+     * @param memo
+     * @returns {Array<import('../parser/contents/classes/Video') | import('../parser/contents/classes/GridVideo') | import('../parser/contents/classes/CompactVideo') | import('../parser/contents/classes/PlaylistVideo') | import('../parser/contents/classes/PlaylistPanelVideo') | import('../parser/contents/classes/WatchCardCompactVideo')>}
+     */
+    static getVideosFromMemo(memo: any): Array<import('../parser/contents/classes/Video') | import('../parser/contents/classes/GridVideo') | import('../parser/contents/classes/CompactVideo') | import('../parser/contents/classes/PlaylistVideo') | import('../parser/contents/classes/PlaylistPanelVideo') | import('../parser/contents/classes/WatchCardCompactVideo')>;
+    /**
+     * Get all playlists on a given page via memo
+     *
+     * @param {*} page
+     * @param memo
+     * @returns {Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>}
+     */
+    static getPlaylistsFromMemo(memo: any): Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>;
+    constructor(actions: any, data: any, already_parsed?: boolean);
+    memo: any;
     /**
      * Get the original page data
      */
     get page(): any;
-    get session(): import("../Innertube");
+    get actions(): import("../core/Actions");
     /**
      * Get all the videos in the feed
-     * @returns {Array<import('../parser/contents/Video') | import('../parser/contents/GridVideo') | import('../parser/contents/CompactVideo') | import('../parser/contents/PlaylistVideo') | import('../parser/contents/PlaylistPanelVideo')>}
      */
-    getVideos(): Array<import('../parser/contents/Video') | import('../parser/contents/GridVideo') | import('../parser/contents/CompactVideo') | import('../parser/contents/PlaylistVideo') | import('../parser/contents/PlaylistPanelVideo')>;
+    get videos(): (import("../parser/contents/classes/PlaylistPanelVideo") | import("../parser/contents/classes/CompactVideo") | import("../parser/contents/classes/Video") | import("../parser/contents/classes/GridVideo") | import("../parser/contents/classes/PlaylistVideo") | import("../parser/contents/classes/WatchCardCompactVideo"))[];
     /**
      * Get all playlists in the feed
-     * @returns {Array<import('../parser/contents/Playlist') | import('../parser/contents/GridPlaylist')>}
+     *
+     * @returns {Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>}
      */
-    getPlaylists(): Array<import('../parser/contents/Playlist') | import('../parser/contents/GridPlaylist')>;
+    get playlists(): (import("../parser/contents/classes/Playlist") | import("../parser/contents/classes/GridPlaylist"))[];
     /**
      * Get all the community posts in the feed
-     * @returns {import('../parser/contents/BackstagePost')[]}
+     *
+     * @returns {import('../parser/contents/classes/BackstagePost')[]}
      */
-    getBackstagePosts(): import('../parser/contents/BackstagePost')[];
+    get backstage_posts(): import("../parser/contents/classes/BackstagePost")[];
     /**
      * Get all the channels in the feed
+     *
      * @returns {Array<import('../parser/contents/Channel') | import('../parser/contents/GridChannel')>}
      */
-    getChannels(): Array<import('../parser/contents/Channel') | import('../parser/contents/GridChannel')>;
-    /**
-     * Get unified list of videos
-     * @returns {SimpleVideo[]}
-     */
-    get videos(): SimpleVideo[];
-    /**
-     * Get unified list of playlists
-     * @returns {SimplePlaylist[]}
-     */
-    get playlists(): SimplePlaylist[];
-    get channels(): (import("../parser/contents/Channel") | import("../parser/contents/GridChannel"))[];
-    /**
-     * Get a list of community posts
-     */
-    get backstage_posts(): import("../parser/contents/BackstagePost")[];
+    get channels(): any[];
     get has_continuation(): boolean;
     getContinuationData(): any;
+    get shelves(): any;
+    getShelf(title: any): any;
+    get shelf_content(): any;
     getContinuation(): Promise<Feed>;
     #private;
 }
-import SimpleVideo = require("./VideoItem");
-import SimplePlaylist = require("./PlaylistItem");

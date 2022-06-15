@@ -1,25 +1,23 @@
 export = Search;
 /** @namespace */
-declare class Search {
+declare class Search extends Feed {
     /**
      * @param {object} response - API response.
      * @param {import('../../core/Actions')} actions
-     * @param {object} [args]
-     * @param {boolean} [args.is_continuation]
+     * @param {object} [already_parsed = false] - already parsed response.
      */
-    constructor(response: object, actions: import('../../core/Actions'), args?: {
-        is_continuation?: boolean;
-    });
+    constructor(actions: import('../../core/Actions'), data: any, already_parsed?: object);
     /** @type {object[]} */
     results: object[];
     refinements: any;
     estimated_results: any;
-    /** @type {{ sections: { title: string, items: object[] }[] }} */
-    sections: {
-        sections: {
-            title: string;
-            items: object[];
-        }[];
+    watch_card: {
+        /** @type {import('../contents/classes/UniversalWatchCard')} */
+        header: import('../contents/classes/UniversalWatchCard');
+        /** @type {import('../contents/classes/WatchCardHeroVideo')} */
+        call_to_action: import('../contents/classes/WatchCardHeroVideo');
+        /** @type {import('../contents/classes/WatchCardSectionSequence')[]} */
+        sections: import('../contents/classes/WatchCardSectionSequence')[];
     };
     refinement_cards: {
         /** @type {import('../contents/classes/RichListHeader')} */
@@ -28,26 +26,13 @@ declare class Search {
         cards: import('../contents/classes/SearchRefinementCard');
     };
     /**
-     * Retrieves next batch of results.
-     *
-     * @returns {Promise.<Search>}
-     */
-    getContinuation(): Promise<Search>;
-    /**
-     * Applies given refinement card and returns a new {@link Search} object.
+     * Applies given refinement card and returns a new {@link Feed} object.
      *
      * @param {import('../contents/classes/SearchRefinementCard') | string} card - refinement card object or query
-     * @returns {Promise.<Search>}
+     * @returns {Promise.<Feed>}
      */
-    selectRefinementCard(card: import('../contents/classes/SearchRefinementCard') | string): Promise<Search>;
-    /** @type {boolean} */
-    get has_continuation(): boolean;
+    selectRefinementCard(card: import('../contents/classes/SearchRefinementCard') | string): Promise<Feed>;
     /** @type {string[]} */
     get refinement_card_queries(): string[];
-    /** @type {import('../contents/classes/Video')[]} */
-    get videos(): import("../contents/classes/Video")[];
-    /** @type {import('../contents/classes/Playlist')[]} */
-    get playlists(): import("../contents/classes/Playlist")[];
-    get page(): any;
-    #private;
 }
+import Feed = require("../../core/Feed");

@@ -7,7 +7,8 @@ declare class GridPlaylist {
     author: PlaylistAuthor;
     badges: any;
     endpoint: NavigationEndpoint;
-    thumbnails: any;
+    view_playlist: NavigatableText;
+    thumbnails: Thumbnail[];
     sidebar_thumbnails: any[];
     video_count: Text;
     video_count_short_text: Text;
@@ -15,3 +16,5 @@ declare class GridPlaylist {
 import Text = require("./Text");
 import PlaylistAuthor = require("./PlaylistAuthor");
 import NavigationEndpoint = require("./NavigationEndpoint");
+import NavigatableText = require("./NavigatableText");
+import Thumbnail = require("./Thumbnail");

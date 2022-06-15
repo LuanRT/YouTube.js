@@ -2,8 +2,9 @@ export = ChannelThumbnailWithLink;
 declare class ChannelThumbnailWithLink {
     constructor(data: any);
     type: string;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     endpoint: NavigationEndpoint;
     label: any;
 }
+import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");

@@ -123,8 +123,11 @@ declare class VideoInfo {
     get filters(): string[];
     get page(): {
         contents: any;
+        contents_memo: Map<any, any>;
         on_response_received_actions: any;
+        on_response_received_actions_memo: Map<any, any>;
         on_response_received_endpoints: any;
+        on_response_received_endpoints_memo: Map<any, any>;
         on_response_received_commands: any;
         continuation_contents: any;
         metadata: any;
@@ -140,7 +143,9 @@ declare class VideoInfo {
             error_screen: any;
             embeddable: boolean;
             reason: string;
-        };
+        }; /**
+         * @type {import('../contents/classes/CardCollection')}
+         */
         streaming_data: {
             expires: Date;
             formats: import("../contents/classes/Format")[];
@@ -154,6 +159,14 @@ declare class VideoInfo {
         storyboards: any;
         endscreen: import("../contents/classes/Endscreen");
         cards: import("../contents/classes/CardCollection");
+    }[];
+    /**
+     * Get songs used in the video.
+     *
+     * @returns {{ [key: string]: import('../parser/contents/Text')[] }[]}
+     */
+    get music_tracks(): {
+        [key: string]: any[];
     }[];
     #private;
 }

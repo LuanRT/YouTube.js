@@ -73,7 +73,7 @@ describe('YouTube.js Tests', () => {
     
     it('Should retrieve trending content', async () => {
       const trending = await this.session.getTrending();
-      expect(trending.now.content[0].videos.length).toBeLessThanOrEqual(100);
+      expect(trending.videos.length).toBeGreaterThan(0);
     }); 
     
     it('Should retrieve video info', async () => {

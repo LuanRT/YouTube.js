@@ -128,12 +128,6 @@ declare class Innertube {
         metadata: object;
     }>;
     /**
-     * This is temorary, will replace getDetails() in the future.
-     * @param {*} video_id
-     * @returns
-     */
-    _getDetails(video_id: any): Promise<Video>;
-    /**
      * Retrieves comments for a video.
      *
      * @param {string} video_id - the video id.
@@ -149,7 +143,7 @@ declare class Innertube {
      * Retrieves contents for a given channel. (WIP)
      *
      * @param {string} id - channel id
-     * @returns {Promise.<{ title: string, description: string, metadata: object, content: object }>}
+     * @returns {Promise<Channel>}
      */
     getChannel(id: string): Promise<Channel>;
     /**
@@ -164,43 +158,17 @@ declare class Innertube {
         }>;
     }>;
     /**
-     * Retrieves home feed (aka recommendations).
+     * Retrieves YouTube's home feed (aka recommendations).
      *
-     * @returns {Promise.<{ videos: Array.<{ id: string, title: string, description: string, channel: string, metadata: object }>}>}
+     * @returns {Promise<FilterableFeed>}
      */
-    getHomeFeed(): Promise<{
-        videos: Array<{
-            id: string;
-            title: string;
-            description: string;
-            channel: string;
-            metadata: object;
-        }>;
-    }>;
+    getHomeFeed(): Promise<FilterableFeed>;
     /**
      * Retrieves trending content.
      *
-     * @returns {Promise.<{ now: { content: Array.<{ title: string, videos: object[] }> },
-     * music: { getVideos: Promise.<Array.<object>> }, gaming: { getVideos: Promise.<Array.<object>> },
-     * movies: { getVideos: Promise.<Array.<object>> } }>}
+     * @returns {Promise<TabbedFeed>}
      */
-    getTrending(): Promise<{
-        now: {
-            content: Array<{
-                title: string;
-                videos: object[];
-            }>;
-        };
-        music: {
-            getVideos: Promise<Array<object>>;
-        };
-        gaming: {
-            getVideos: Promise<Array<object>>;
-        };
-        movies: {
-            getVideos: Promise<Array<object>>;
-        };
-    }>;
+    getTrending(): Promise<TabbedFeed>;
     /**
      * @todo finish this
      * WIP
@@ -330,8 +298,7 @@ import InteractionManager = require("./core/InteractionManager");
 import YTMusic = require("./core/Music");
 import VideoInfo = require("./parser/youtube/VideoInfo");
 import Search = require("./parser/youtube/Search");
-import Video = require("./core/Video");
-import Channel = require("./core/Channel");
-import HomeFeed = require("./core/HomeFeed");
-import { Trending } from "./core/Trending";
+import Channel = require("./parser/youtube/Channel");
+import FilterableFeed = require("./core/FilterableFeed");
+import TabbedFeed = require("./core/TabbedFeed");
 import Stream = require("stream");

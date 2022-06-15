@@ -4,7 +4,7 @@ declare class EndScreenVideo {
     type: string;
     id: any;
     title: Text;
-    thumbnails: any;
+    thumbnails: Thumbnail[];
     thumbnail_overlays: any;
     author: Author;
     endpoint: NavigationEndpoint;
@@ -15,5 +15,6 @@ declare class EndScreenVideo {
     };
 }
 import Text = require("./Text");
+import Thumbnail = require("./Thumbnail");
 import Author = require("./Author");
 import NavigationEndpoint = require("./NavigationEndpoint");
