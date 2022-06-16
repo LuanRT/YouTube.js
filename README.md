@@ -50,6 +50,8 @@
  
 </div>
 
+> Warning: <br/><br/> We're currently in the process of rewriting some parts of the library to improve performance, maintainability and quality. While this might take a little while, most of this documentation will no longer be valid after v2 (see [#65](https://github.com/LuanRT/YouTube.js/issues/65)).
+
 ___
 
 <!-- TABLE OF CONTENTS -->
