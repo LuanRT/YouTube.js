@@ -54,3 +54,11 @@ jspm_packages/
 # pnpm
 .pnpm-debug.log*
 pnpm-lock.yaml
+
+# Downloaded assets
+*.mp4
+*.webm
+*.mkv
+
+# Temporary files for testing
+tmp/
