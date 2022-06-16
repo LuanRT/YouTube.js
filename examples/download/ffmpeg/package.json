@@ -1,0 +1,6 @@
+{
+  "license": "MIT",
+  "dependencies": {
+    "ffmpeg-static": "^5.0.0"
+  }
+}
