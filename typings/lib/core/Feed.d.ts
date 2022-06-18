@@ -3,19 +3,17 @@ declare class Feed {
     /**
      * Get all videos on a given page via memo
      *
-     * @param {*} page
-     * @param memo
+     * @param {Map<string, any[]>} memo
      * @returns {Array<import('../parser/contents/classes/Video') | import('../parser/contents/classes/GridVideo') | import('../parser/contents/classes/CompactVideo') | import('../parser/contents/classes/PlaylistVideo') | import('../parser/contents/classes/PlaylistPanelVideo') | import('../parser/contents/classes/WatchCardCompactVideo')>}
      */
-    static getVideosFromMemo(memo: any): Array<import('../parser/contents/classes/Video') | import('../parser/contents/classes/GridVideo') | import('../parser/contents/classes/CompactVideo') | import('../parser/contents/classes/PlaylistVideo') | import('../parser/contents/classes/PlaylistPanelVideo') | import('../parser/contents/classes/WatchCardCompactVideo')>;
+    static getVideosFromMemo(memo: Map<string, any[]>): Array<import('../parser/contents/classes/Video') | import('../parser/contents/classes/GridVideo') | import('../parser/contents/classes/CompactVideo') | import('../parser/contents/classes/PlaylistVideo') | import('../parser/contents/classes/PlaylistPanelVideo') | import('../parser/contents/classes/WatchCardCompactVideo')>;
     /**
      * Get all playlists on a given page via memo
      *
-     * @param {*} page
-     * @param memo
+     * @param {Map<string, any[]>} memo
      * @returns {Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>}
      */
-    static getPlaylistsFromMemo(memo: any): Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>;
+    static getPlaylistsFromMemo(memo: Map<string, any[]>): Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>;
     constructor(actions: any, data: any, already_parsed?: boolean);
     memo: any;
     /**
@@ -26,7 +24,7 @@ declare class Feed {
     /**
      * Get all the videos in the feed
      */
-    get videos(): (import("../parser/contents/classes/PlaylistPanelVideo") | import("../parser/contents/classes/CompactVideo") | import("../parser/contents/classes/Video") | import("../parser/contents/classes/GridVideo") | import("../parser/contents/classes/PlaylistVideo") | import("../parser/contents/classes/WatchCardCompactVideo"))[];
+    get videos(): (import("../parser/contents/classes/Video") | import("../parser/contents/classes/GridVideo") | import("../parser/contents/classes/CompactVideo") | import("../parser/contents/classes/PlaylistVideo") | import("../parser/contents/classes/PlaylistPanelVideo") | import("../parser/contents/classes/WatchCardCompactVideo"))[];
     /**
      * Get all playlists in the feed
      *

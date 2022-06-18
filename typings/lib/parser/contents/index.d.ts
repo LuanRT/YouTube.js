@@ -1,9 +1,9 @@
 export = Parser;
 declare class Parser {
-    static "__#9@#memo": Map<any, any>;
-    static "__#9@#clearMemo"(): void;
-    static "__#9@#createMemo"(): void;
-    static "__#9@#addToMemo"(classname: any, result: any): Map<any, any>;
+    static "__#8@#memo": Map<any, any>;
+    static "__#8@#clearMemo"(): void;
+    static "__#8@#createMemo"(): void;
+    static "__#8@#addToMemo"(classname: any, result: any): Map<any, any>;
     static parseResponse(data: any): {
         contents: any;
         contents_memo: Map<any, any>;
@@ -12,6 +12,7 @@ declare class Parser {
         on_response_received_endpoints: any;
         on_response_received_endpoints_memo: Map<any, any>;
         on_response_received_commands: any;
+        on_response_received_commands_memo: Map<any, any>;
         /** @type {*} */
         continuation_contents: any;
         metadata: any;

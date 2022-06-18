@@ -2,11 +2,11 @@ export = Search;
 /** @namespace */
 declare class Search extends Feed {
     /**
-     * @param {object} response - API response.
      * @param {import('../../core/Actions')} actions
-     * @param {object} [already_parsed = false] - already parsed response.
+     * @param {object} data - API response data.
+     * @param {boolean} [already_parsed] - already parsed response.
      */
-    constructor(actions: import('../../core/Actions'), data: any, already_parsed?: object);
+    constructor(actions: import('../../core/Actions'), data: object, already_parsed?: boolean);
     /** @type {object[]} */
     results: object[];
     refinements: any;
@@ -26,7 +26,7 @@ declare class Search extends Feed {
         cards: import('../contents/classes/SearchRefinementCard');
     };
     /**
-     * Applies given refinement card and returns a new {@link Feed} object.
+     * Applies given refinement card and returns a new {@link Search} object.
      *
      * @param {import('../contents/classes/SearchRefinementCard') | string} card - refinement card object or query
      * @returns {Promise.<Feed>}
@@ -34,5 +34,11 @@ declare class Search extends Feed {
     selectRefinementCard(card: import('../contents/classes/SearchRefinementCard') | string): Promise<Feed>;
     /** @type {string[]} */
     get refinement_card_queries(): string[];
+    /**
+     * Retrieves next batch of results.
+     *
+     * @returns {Promise.<Search>}
+     */
+    getContinuation(): Promise<Search>;
 }
 import Feed = require("../../core/Feed");

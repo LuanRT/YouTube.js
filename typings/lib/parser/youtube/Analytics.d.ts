@@ -14,6 +14,7 @@ declare class Analytics {
         on_response_received_endpoints: any;
         on_response_received_endpoints_memo: Map<any, any>;
         on_response_received_commands: any;
+        on_response_received_commands_memo: Map<any, any>;
         continuation_contents: any;
         metadata: any;
         header: any;

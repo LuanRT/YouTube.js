@@ -17,11 +17,23 @@ declare class Music {
         type?: string;
     }): Promise<Search>;
     /**
-     * Retrieves YouTube Music home feed.
+     * Retrieves the home feed.
      *
      * @returns {Promise.<HomeFeed>}
      */
     getHomeFeed(): Promise<HomeFeed>;
+    /**
+     * Retrieves the Explore feed.
+     *
+     * @returns {Promise.<Explore>}
+     */
+    getExplore(): Promise<Explore>;
+    /**
+     * Retrieves the Library.
+     *
+     * @returns {Promise.<Library>}
+     */
+    getLibrary(): Promise<Library>;
     /**
      * Retrieves song lyrics.
      *
@@ -46,7 +58,7 @@ declare class Music {
         /** @type {boolean} */
         is_editable: boolean;
         /** @type {import('../parser/contents/classes/PlaylistPanelVideo')[]} */
-        items: import('../parser/contents/classes/PlaylistPanelVideo')[];
+        contents: import('../parser/contents/classes/PlaylistPanelVideo')[];
     }>;
     /**
      * Retrieves related content.
@@ -54,11 +66,8 @@ declare class Music {
      * @param {string} video_id
      */
     getRelated(video_id: string): Promise<{
-        /** @type {Array.<{ header: import('../parser/contents/classes/MusicCarouselShelfBasicHeader'), items: object[] }>} */
-        sections: {
-            header: import('../parser/contents/classes/MusicCarouselShelfBasicHeader');
-            items: object[];
-        }[];
+        /** @type {import('../parser/contents/classes/MusicCarouselShelf')[]} */
+        sections: import('../parser/contents/classes/MusicCarouselShelf')[];
         /** @type {string} */
         info: string;
     }>;
@@ -66,3 +75,5 @@ declare class Music {
 }
 import Search = require("../parser/ytmusic/Search");
 import HomeFeed = require("../parser/ytmusic/HomeFeed");
+import Explore = require("../parser/ytmusic/Explore");
+import Library = require("../parser/ytmusic/Library");

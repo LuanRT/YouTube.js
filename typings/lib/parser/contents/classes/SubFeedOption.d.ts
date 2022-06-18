@@ -1,9 +1,9 @@
-export = ReelShelf;
-declare class ReelShelf {
-    constructor(item: any);
+export = SubFeedOption;
+declare class SubFeedOption {
+    constructor(data: any);
     type: string;
-    title: Text;
-    items: any;
+    name: Text;
+    is_selected: any;
     endpoint: NavigationEndpoint;
 }
 import Text = require("./Text");

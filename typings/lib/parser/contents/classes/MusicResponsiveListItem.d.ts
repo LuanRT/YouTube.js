@@ -12,6 +12,9 @@ declare class MusicResponsiveListItem {
     duration: {
         text: any;
         seconds: number;
+    } | {
+        text: any;
+        seconds: number;
     };
     album: {
         id: any;
@@ -21,6 +24,14 @@ declare class MusicResponsiveListItem {
     artists: any;
     views: any;
     author: {
+        name: any;
+        channel_id: any;
+        endpoint: any;
+    } | {
+        name: any;
+        channel_id: any;
+        endpoint: any;
+    } | {
         name: any;
         channel_id: any;
         endpoint: any;

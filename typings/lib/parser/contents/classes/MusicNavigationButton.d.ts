@@ -1,9 +1,8 @@
-export = ChipCloudChip;
-declare class ChipCloudChip {
+export = MusicNavigationButton;
+declare class MusicNavigationButton {
     constructor(data: any);
     type: string;
-    is_selected: any;
+    button_text: any;
     endpoint: NavigationEndpoint;
-    text: any;
 }
 import NavigationEndpoint = require("./NavigationEndpoint");

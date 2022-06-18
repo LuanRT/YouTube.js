@@ -9,7 +9,7 @@ declare class Playlist extends Feed {
     /**
      * @alias videos
      */
-    get items(): (import("../contents/classes/PlaylistPanelVideo") | import("../contents/classes/CompactVideo") | import("../contents/classes/Video") | import("../contents/classes/GridVideo") | import("../contents/classes/PlaylistVideo") | import("../contents/classes/WatchCardCompactVideo"))[];
+    get items(): (import("../contents/classes/Video") | import("../contents/classes/GridVideo") | import("../contents/classes/CompactVideo") | import("../contents/classes/PlaylistVideo") | import("../contents/classes/PlaylistPanelVideo") | import("../contents/classes/WatchCardCompactVideo"))[];
     #private;
 }
 import Feed = require("../../core/Feed");

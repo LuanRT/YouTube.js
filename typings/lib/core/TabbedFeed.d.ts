@@ -4,7 +4,7 @@ declare class TabbedFeed extends Feed {
     /**
      *
      * @param {string} title title of the tab to get
-     * @returns
+     * @returns {Promise<TabbedFeed>}
      */
     getTab(title: string): Promise<TabbedFeed>;
     get title(): any;

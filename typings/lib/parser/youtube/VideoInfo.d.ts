@@ -5,33 +5,13 @@ declare class VideoInfo {
      * @param {object} data - API response.
      * @param {import('../../core/Actions')} actions
      * @param {import('../../core/Player')} player
+     * @param {string} cpn - Client Playback Nonce
      */
-    constructor(data: object, actions: import('../../core/Actions'), player: import('../../core/Player'));
+    constructor(data: object, actions: import('../../core/Actions'), player: import('../../core/Player'), cpn: string);
     /**
      * @type {import('../contents/classes/VideoDetails')}
      */
     basic_info: import('../contents/classes/VideoDetails');
-    /**
-     * @type {import('../contents/classes/VideoPrimaryInfo')}
-     */
-    primary_info: import('../contents/classes/VideoPrimaryInfo');
-    /**
-     * @type {import('../contents/classes/VideoSecondaryInfo')}
-     */
-    secondary_info: import('../contents/classes/VideoSecondaryInfo');
-    /**
-     * @type {import('../contents/classes/MerchandiseShelf')}
-     */
-    merchandise: import('../contents/classes/MerchandiseShelf');
-    /**
-     * @type {import('../contents/classes/ChipCloud')}
-     */
-    related_chip_cloud: import('../contents/classes/ChipCloud');
-    watch_next_feed: any;
-    /**
-     * @type {import('../contents/classes/PlayerOverlay')}
-     */
-    player_overlays: import('../contents/classes/PlayerOverlay');
     streaming_data: {
         expires: Date;
         formats: import("../contents/classes/Format")[];
@@ -65,6 +45,27 @@ declare class VideoInfo {
      * @type {import('../contents/classes/CardCollection')}
      */
     cards: import('../contents/classes/CardCollection');
+    /**
+     * @type {import('../contents/classes/VideoPrimaryInfo')}
+     */
+    primary_info: import('../contents/classes/VideoPrimaryInfo');
+    /**
+     * @type {import('../contents/classes/VideoSecondaryInfo')}
+     */
+    secondary_info: import('../contents/classes/VideoSecondaryInfo');
+    /**
+     * @type {import('../contents/classes/MerchandiseShelf')}
+     */
+    merchandise: import('../contents/classes/MerchandiseShelf');
+    /**
+     * @type {import('../contents/classes/ChipCloud')}
+     */
+    related_chip_cloud: import('../contents/classes/ChipCloud');
+    watch_next_feed: any;
+    /**
+     * @type {import('../contents/classes/PlayerOverlay')}
+     */
+    player_overlays: import('../contents/classes/PlayerOverlay');
     /**
      * @type {import('../contents/classes/CommentsEntryPointHeader')}
      */
@@ -129,6 +130,7 @@ declare class VideoInfo {
         on_response_received_endpoints: any;
         on_response_received_endpoints_memo: Map<any, any>;
         on_response_received_commands: any;
+        on_response_received_commands_memo: Map<any, any>;
         continuation_contents: any;
         metadata: any;
         header: any;
@@ -143,9 +145,7 @@ declare class VideoInfo {
             error_screen: any;
             embeddable: boolean;
             reason: string;
-        }; /**
-         * @type {import('../contents/classes/CardCollection')}
-         */
+        };
         streaming_data: {
             expires: Date;
             formats: import("../contents/classes/Format")[];
@@ -162,11 +162,30 @@ declare class VideoInfo {
     }[];
     /**
      * Get songs used in the video.
-     *
-     * @returns {{ [key: string]: import('../parser/contents/Text')[] }[]}
      */
-    get music_tracks(): {
-        [key: string]: any[];
-    }[];
+    get music_tracks(): {}[];
+    chooseFormat(options: any): import("../contents/classes/Format");
+    /**
+     *
+     * @param {object} options - download options.
+     * @param {string} [options.quality] - video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
+     * @param {string} [options.type] - download type, can be: video, audio or videoandaudio
+     * @param {string} [options.format] - file format, use 'any' to download any format.
+     * @param {object} [options.range] - download range, indicates which bytes should be downloaded.
+     * @param {number} options.range.start - the beginning of the range.
+     * @param {number} options.range.end - the end of the range.
+     * @param {PassThrough} [_stream]
+     * @returns {PassThrough}
+     */
+    download(options?: {
+        quality?: string;
+        type?: string;
+        format?: string;
+        range?: {
+            start: number;
+            end: number;
+        };
+    }, _stream?: PassThrough): PassThrough;
     #private;
 }
+import { PassThrough } from "stream";

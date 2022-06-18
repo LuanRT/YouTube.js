@@ -6,8 +6,9 @@ declare class AnalyticsVideo {
     metadata: {
         views: any;
         published: any;
-        thumbnails: any;
+        thumbnails: Thumbnail[];
         duration: any;
         is_short: any;
     };
 }
+import Thumbnail = require("./Thumbnail");

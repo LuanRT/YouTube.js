@@ -3,19 +3,8 @@ export = Library;
 declare class Library {
     /**
      * @param {object} response - API response.
-     * @param {import('../../core/Actions')} actions
      */
-    constructor(response: object, actions: import('../../core/Actions'));
-    profile: {
-        stats: any;
-        user_info: any;
-    };
-    sections: any;
-    get history(): any;
-    get watch_later(): any;
-    get liked_videos(): any;
-    get playlists(): any;
-    get clips(): any;
+    constructor(response: object);
     get page(): {
         contents: any;
         contents_memo: Map<any, any>;

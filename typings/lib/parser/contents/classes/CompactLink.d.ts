@@ -1,8 +1,9 @@
-export = WatchCardHeroVideo;
-declare class WatchCardHeroVideo {
-    constructor(item: any);
+export = CompactLink;
+declare class CompactLink {
+    constructor(data: any);
     type: string;
+    title: any;
     endpoint: NavigationEndpoint;
-    collage: any;
+    style: any;
 }
 import NavigationEndpoint = require("./NavigationEndpoint");

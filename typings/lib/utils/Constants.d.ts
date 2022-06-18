@@ -1,10 +1,16 @@
 export namespace URLS {
     const YT_BASE: string;
-    const YT_BASE_API: string;
-    const YT_STUDIO_BASE_API: string;
+    const YT_MUSIC_BASE: string;
     const YT_SUGGESTIONS: string;
-    const YT_MUSIC: string;
-    const YT_MUSIC_BASE_API: string;
+    namespace API {
+        const BASE: string;
+        const PRODUCTION: string;
+        const STAGING: string;
+        const RELEASE: string;
+        const TEST: string;
+        const CAMI: string;
+        const UYTFE: string;
+    }
 }
 export namespace OAUTH {
     const SCOPE: string;

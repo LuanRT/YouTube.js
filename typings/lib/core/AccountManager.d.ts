@@ -163,13 +163,6 @@ declare class AccountManager {
      * @returns {Promise.<Analytics>}
      */
     getAnalytics(): Promise<Analytics>;
-    /**
-     * Returns the account's library.
-     *
-     * @returns {Promise.<Library>}
-     */
-    getLibrary(): Promise<Library>;
     #private;
 }
 import Analytics = require("../parser/youtube/Analytics");
-import Library = require("../parser/youtube/Library");

@@ -1,21 +1,12 @@
-export = Library;
+export = Explore;
 /** @namespace */
-declare class Library {
+declare class Explore {
     /**
      * @param {object} response - API response.
-     * @param {import('../../core/Actions')} actions
      */
-    constructor(response: object, actions: import('../../core/Actions'));
-    profile: {
-        stats: any;
-        user_info: any;
-    };
+    constructor(response: object);
+    top_buttons: any;
     sections: any;
-    get history(): any;
-    get watch_later(): any;
-    get liked_videos(): any;
-    get playlists(): any;
-    get clips(): any;
     get page(): {
         contents: any;
         contents_memo: Map<any, any>;

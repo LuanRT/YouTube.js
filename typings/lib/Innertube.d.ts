@@ -76,26 +76,19 @@ declare class Innertube {
         status_code: number;
     }>;
     /**
-     * Retrieves search suggestions for a given query.
-     *
-     * @param {string} query - the search query.
-     * @param {object} [options] - search options.
-     * @param {string} [options.client='YOUTUBE'] - client used to retrieve search suggestions, can be: `YOUTUBE` or `YTMUSIC`.
-     * @returns {Promise.<{ query: string, results: string[] }>}
-     */
-    getSearchSuggestions(query: string, options?: {
-        client?: string;
-    }): Promise<{
-        query: string;
-        results: string[];
-    }>;
-    /**
      * Retrieves video info.
      *
      * @param {string} video_id
      * @returns {Promise.<VideoInfo>}
      */
     getInfo(video_id: string): Promise<VideoInfo>;
+    /**
+     * Retrieves basic video info.
+     *
+     * @param {string} video_id
+     * @returns {Promise.<VideoInfo>}
+     */
+    getBasicInfo(video_id: string): Promise<VideoInfo>;
     /**
      * Searches a given query.
      *
@@ -113,6 +106,20 @@ declare class Innertube {
         duration?: string;
         sort_by?: string;
     }): Promise<Search>;
+    /**
+     * Retrieves search suggestions for a given query.
+     *
+     * @param {string} query - the search query.
+     * @param {object} [options] - search options.
+     * @param {string} [options.client='YOUTUBE'] - client used to retrieve search suggestions, can be: `YOUTUBE` or `YTMUSIC`.
+     * @returns {Promise.<{ query: string, results: string[] }>}
+     */
+    getSearchSuggestions(query: string, options?: {
+        client?: string;
+    }): Promise<{
+        query: string;
+        results: string[];
+    }>;
     /**
      * Retrieves video info.
      *
@@ -140,40 +147,30 @@ declare class Innertube {
         items: object[];
     }>;
     /**
-     * Retrieves contents for a given channel. (WIP)
-     *
-     * @param {string} id - channel id
-     * @returns {Promise<Channel>}
-     */
-    getChannel(id: string): Promise<Channel>;
-    /**
-     * Retrieves watch history.
-     *
-     * @returns {Promise.<{ items: Array.<{ date: string, videos: object[] }>}>}
-     */
-    getHistory(): Promise<{
-        items: Array<{
-            date: string;
-            videos: object[];
-        }>;
-    }>;
-    /**
      * Retrieves YouTube's home feed (aka recommendations).
      *
      * @returns {Promise<FilterableFeed>}
      */
     getHomeFeed(): Promise<FilterableFeed>;
     /**
+     * Returns the account's library.
+     *
+     * @returns {Promise.<Library>}
+     */
+    getLibrary(): Promise<Library>;
+    /**
+     * Retrieves watch history.
+     * Which can also be achieved through {@link getLibrary()}.
+     *
+     * @returns {Promise.<History>}
+     */
+    getHistory(): Promise<History>;
+    /**
      * Retrieves trending content.
      *
      * @returns {Promise<TabbedFeed>}
      */
     getTrending(): Promise<TabbedFeed>;
-    /**
-     * @todo finish this
-     * WIP
-     */
-    getLibrary(): Promise<any>;
     /**
      * Retrieves subscriptions feed.
      *
@@ -185,6 +182,13 @@ declare class Innertube {
             videos: object[];
         }>;
     }>;
+    /**
+     * Retrieves contents for a given channel. (WIP)
+     *
+     * @param {string} id - channel id
+     * @returns {Promise<Channel>}
+     */
+    getChannel(id: string): Promise<Channel>;
     /**
      * Retrieves notifications.
      *
@@ -208,13 +212,6 @@ declare class Innertube {
      * @returns {Promise.<number>}
      */
     getUnseenNotificationsCount(): Promise<number>;
-    /**
-     * Retrieves lyrics for a given song if available.
-     *
-     * @param {string} video_id
-     * @returns {Promise.<string>}
-     */
-    getLyrics(video_id: string): Promise<string>;
     /**
      * Retrieves the contents of a given playlist.
      *
@@ -251,16 +248,13 @@ declare class Innertube {
      * @param {string} options.quality - video quality; 360p, 720p, 1080p, etc...
      * @param {string} options.type - download type, can be: video, audio or videoandaudio
      * @param {string} options.format - file format
-     * @returns {Promise.<{ selected_format: object, formats: object[] }>}
+     * @returns {Promise.<object>}
      */
     getStreamingData(video_id: string, options?: {
         quality: string;
         type: string;
         format: string;
-    }): Promise<{
-        selected_format: object;
-        formats: object[];
-    }>;
+    }): Promise<object>;
     /**
      * Downloads a given video. If you only need the direct download link take a look at {@link getStreamingData}.
      *
@@ -272,7 +266,7 @@ declare class Innertube {
      * @param {object} [options.range] - download range, indicates which bytes should be downloaded.
      * @param {number} options.range.start - the beginning of the range.
      * @param {number} options.range.end - the end of the range.
-     * @returns {Stream.PassThrough}
+     * @returns {PassThrough}
      */
     download(video_id: string, options?: {
         quality?: string;
@@ -282,7 +276,7 @@ declare class Innertube {
             start: number;
             end: number;
         };
-    }): Stream.PassThrough;
+    }): PassThrough;
     getPlayer(): any;
     /** @readonly */
     readonly get axios(): any;
@@ -298,7 +292,9 @@ import InteractionManager = require("./core/InteractionManager");
 import YTMusic = require("./core/Music");
 import VideoInfo = require("./parser/youtube/VideoInfo");
 import Search = require("./parser/youtube/Search");
-import Channel = require("./parser/youtube/Channel");
 import FilterableFeed = require("./core/FilterableFeed");
+import Library = require("./parser/youtube/Library");
+import History = require("./parser/youtube/History");
 import TabbedFeed = require("./core/TabbedFeed");
-import Stream = require("stream");
+import Channel = require("./parser/youtube/Channel");
+import { PassThrough } from "stream";
