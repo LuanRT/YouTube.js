@@ -37,9 +37,17 @@ declare class Music {
     /**
      * Retrieves artist's info & content.
      *
-     * @param {string} id
+     * @param {string} artist_id
+     * @returns {Promise.<Artist>}
      */
-    getArtist(artist_id: any): Promise<Artist>;
+    getArtist(artist_id: string): Promise<Artist>;
+    /**
+     * Retrieves album.
+     *
+     * @param {string} album_id
+     * @returns {Promise.<Album>}
+     */
+    getAlbum(album_id: string): Promise<Album>;
     /**
      * Retrieves song lyrics.
      *
@@ -84,3 +92,4 @@ import HomeFeed = require("../parser/ytmusic/HomeFeed");
 import Explore = require("../parser/ytmusic/Explore");
 import Library = require("../parser/ytmusic/Library");
 import Artist = require("../parser/ytmusic/Artist");
+import Album = require("../parser/ytmusic/Album");
