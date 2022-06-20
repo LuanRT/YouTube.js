@@ -2,11 +2,11 @@ export = MusicShelf;
 declare class MusicShelf {
     constructor(data: any);
     type: string;
-    title: Text;
+    title: any;
     contents: any;
     endpoint: NavigationEndpoint;
     continuation: any;
     bottom_text: Text;
 }
-import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");
+import Text = require("./Text");

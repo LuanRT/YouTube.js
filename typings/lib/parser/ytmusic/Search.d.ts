@@ -54,7 +54,6 @@ declare class Search {
     get artists(): import("../contents/classes/MusicResponsiveListItem")[];
     /** @type {import('../contents/classes/MusicResponsiveListItem')[]} */
     get playlists(): import("../contents/classes/MusicResponsiveListItem")[];
-    /** @type {import('../contents/classes/MusicResponsiveListItem')[]} */
-    get page(): import("../contents/classes/MusicResponsiveListItem")[];
+    get page(): any;
     #private;
 }
