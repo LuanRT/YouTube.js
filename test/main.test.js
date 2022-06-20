@@ -2,8 +2,8 @@
 
 const Fs = require('fs');
 const Innertube = require('..');
-const NToken = require('../lib/deciphers/NToken');
-const Signature = require('../lib/deciphers/Signature');
+const { default: NToken } = require('../lib/deciphers/NToken');
+const { default: Signature} = require('../lib/deciphers/Signature');
 const Constants = require('./constants');
 
 describe('YouTube.js Tests', () => { 
@@ -89,12 +89,12 @@ describe('YouTube.js Tests', () => {
   
   describe('Deciphers', () => {
     it('Should decipher signature', () => {
-      const result = new Signature(Constants.DECIPHERS.SIG.ORIGINAL_URL, Constants.DECIPHERS.SIG.ALGORITHM).decipher();
+      const result = Signature.fromSourceCode(Constants.DECIPHERS.SIG.ALGORITHM).decipher(Constants.DECIPHERS.SIG.ORIGINAL_URL);
       expect(result).toEqual(Constants.DECIPHERS.SIG.DECIPHERED_URL);
     });
     
     it('Should decipher ntoken', () => {
-      const result = new NToken(Constants.DECIPHERS.N.ALGORITHM, Constants.DECIPHERS.N.ORIGINAL_TOKEN).transform();
+      const result = NToken.fromSourceCode(Constants.DECIPHERS.N.ALGORITHM).transform(Constants.DECIPHERS.N.ORIGINAL_TOKEN);
       expect(result).toEqual(Constants.DECIPHERS.N.DECIPHERED_TOKEN);
     });
   });
