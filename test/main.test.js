@@ -68,7 +68,7 @@ describe('YouTube.js Tests', () => {
   describe('General', () => {
     it('Should retrieve home feed', async () => {
       const homefeed = await this.session.getHomeFeed();
-      expect(homefeed.videos.length).toBeLessThanOrEqual(30);
+      expect(homefeed.videos.length).toBeLessThanOrEqual(40);
     });
     
     it('Should retrieve trending content', async () => {
