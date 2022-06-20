@@ -4,5 +4,5 @@ declare class HorizontalList {
     type: string;
     visible_item_count: any;
     items: any;
-    contents: any;
+    get contents(): any;
 }

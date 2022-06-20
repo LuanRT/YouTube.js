@@ -2,8 +2,7 @@ export = TabbedFeed;
 declare class TabbedFeed extends Feed {
     get tabs(): any[];
     /**
-     *
-     * @param {string} title title of the tab to get
+     * @param {string} title
      * @returns {Promise<TabbedFeed>}
      */
     getTab(title: string): Promise<TabbedFeed>;

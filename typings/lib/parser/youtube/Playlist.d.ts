@@ -1,11 +1,8 @@
 export = Playlist;
 declare class Playlist extends Feed {
-    primary_info: any;
-    get title(): any;
-    get description(): any;
-    get total_items(): any;
-    get views(): any;
-    get last_updated(): any;
+    info: any;
+    menu: any;
+    endpoint: any;
     /**
      * @alias videos
      */

@@ -37,6 +37,9 @@ declare class NavigationEndpoint {
         };
         params: any;
     };
+    perform_comment_action: {
+        action: any;
+    };
     offline_video: {
         video_id: any;
         on_add_command: {

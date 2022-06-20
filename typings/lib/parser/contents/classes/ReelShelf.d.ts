@@ -5,7 +5,7 @@ declare class ReelShelf {
     title: Text;
     items: any;
     endpoint: NavigationEndpoint;
-    contents: any;
+    get contents(): any;
 }
 import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");

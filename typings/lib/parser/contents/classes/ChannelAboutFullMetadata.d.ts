@@ -3,15 +3,17 @@ declare class ChannelAboutFullMetadata {
     constructor(data: any);
     type: string;
     id: any;
+    name: Text;
+    avatar: Thumbnail[];
     canonical_channel_url: any;
-    author: Author;
     views: Text;
     joined: Text;
     description: Text;
     email_reveal: NavigationEndpoint;
     can_reveal_email: boolean;
     country: Text;
+    buttons: any;
 }
-import Author = require("./Author");
 import Text = require("./Text");
+import Thumbnail = require("./Thumbnail");
 import NavigationEndpoint = require("./NavigationEndpoint");

@@ -1,27 +1,14 @@
 export = Author;
 declare class Author {
     constructor(item: any, badges: any, thumbs: any);
-    /**
-     * @type {import('./MetadataBadge')[]}
-     */
-    badges: import('./MetadataBadge')[];
-    /**
-     * @type {Thumbnail[]}
-     */
+    id: any;
+    name: any;
     thumbnails: Thumbnail[];
-    get url(): any;
-    set name(arg: any);
-    get name(): any;
-    get endpoint(): import("./NavigationEndpoint");
-    get id(): any;
-    /**
-     * @type {boolean}
-     */
-    get is_verified(): boolean;
-    /**
-     * @type {boolean}
-     */
-    get is_verified_artist(): boolean;
+    endpoint: any;
+    badges: any;
+    is_verified: any;
+    is_verified_artist: any;
+    url: string;
     /**
      * @type {Thumbnail | undefined}
      */

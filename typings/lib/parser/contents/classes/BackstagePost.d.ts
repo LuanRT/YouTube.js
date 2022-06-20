@@ -5,11 +5,17 @@ declare class BackstagePost {
     id: any;
     author: Author;
     content: Text;
-    published_at: Text;
+    published: Text;
+    poll_status: any;
+    vote_status: any;
     likes: Text;
+    menu: any;
     actions: any;
+    vote_button: any;
+    surface: any;
+    endpoint: NavigationEndpoint;
     attachment: any;
-    get endpoint(): any;
 }
 import Author = require("./Author");
 import Text = require("./Text");
+import NavigationEndpoint = require("./NavigationEndpoint");

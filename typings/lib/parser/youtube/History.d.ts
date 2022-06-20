@@ -1,16 +1,19 @@
 export = History;
 /** @namespace */
-declare class History {
+declare class History extends Feed {
     /**
-     * @param {object} page - parsed data.
      * @param {import('../../core/Actions')} actions
-     * @param {boolean} is_continuation
+     * @param {object} data - parsed data.
+     * @param {boolean} already_parsed
      */
-    constructor(page: object, actions: import('../../core/Actions'), is_continuation: boolean);
-    feed_actions: any;
+    constructor(actions: import('../../core/Actions'), data: object, already_parsed?: boolean);
     sections: any;
+    feed_actions: any;
+    /**
+     * Retrieves next batch of contents.
+     *
+     * @returns {Promise.<History>}
+     */
     getContinuation(): Promise<History>;
-    get has_continuation(): boolean;
-    get page(): any;
-    #private;
 }
+import Feed = require("../../core/Feed");

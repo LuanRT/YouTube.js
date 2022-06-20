@@ -216,29 +216,9 @@ declare class Innertube {
      * Retrieves the contents of a given playlist.
      *
      * @param {string} playlist_id - the id of the playlist.
-     * @param {object} options - `YOUTUBE` | `YTMUSIC`
-     * @param {string} options.client - client used to parse the playlist, can be: `YTMUSIC` | `YOUTUBE`
-     * @returns {Promise.<
-     *  { title: string, description: string, total_items: string, last_updated: string, views: string, items: object[] } |
-     *  { title: string, description: string, total_items: number, duration: string, year: string, items: object[] }>}
+     * @returns {Promise.<Playlist>}
      */
-    getPlaylist(playlist_id: string, options?: {
-        client: string;
-    }): Promise<{
-        title: string;
-        description: string;
-        total_items: string;
-        last_updated: string;
-        views: string;
-        items: object[];
-    } | {
-        title: string;
-        description: string;
-        total_items: number;
-        duration: string;
-        year: string;
-        items: object[];
-    }>;
+    getPlaylist(playlist_id: string): Promise<Playlist>;
     /**
      * An alternative to {@link download}.
      * Returns deciphered streaming data.
@@ -297,4 +277,5 @@ import Library = require("./parser/youtube/Library");
 import History = require("./parser/youtube/History");
 import TabbedFeed = require("./core/TabbedFeed");
 import Channel = require("./parser/youtube/Channel");
+import Playlist = require("./parser/youtube/Playlist");
 import { PassThrough } from "stream";

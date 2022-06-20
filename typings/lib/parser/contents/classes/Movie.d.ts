@@ -1,23 +1,25 @@
-export = PlaylistVideo;
-declare class PlaylistVideo {
+export = Movie;
+declare class Movie {
     constructor(data: any);
     type: string;
     id: any;
-    index: Text;
     title: Text;
-    author: PlaylistAuthor;
+    description_snippet: Text;
+    top_metadata_items: Text;
     thumbnails: Thumbnail[];
     thumbnail_overlays: any;
-    set_video_id: any;
-    endpoint: NavigationEndpoint;
-    is_playable: any;
-    menu: any;
+    author: Author;
     duration: {
         text: any;
         seconds: number;
     };
+    endpoint: NavigationEndpoint;
+    badges: any;
+    use_vertical_poster: any;
+    show_action_menu: any;
+    menu: any;
 }
 import Text = require("./Text");
-import PlaylistAuthor = require("./PlaylistAuthor");
 import Thumbnail = require("./Thumbnail");
+import Author = require("./Author");
 import NavigationEndpoint = require("./NavigationEndpoint");

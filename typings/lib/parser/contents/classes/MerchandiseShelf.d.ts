@@ -5,5 +5,5 @@ declare class MerchandiseShelf {
     title: any;
     menu: any;
     items: any;
-    contents: any;
+    get contents(): any;
 }

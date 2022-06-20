@@ -7,7 +7,13 @@ declare class FilterableFeed extends Feed {
      */
     get filter_chips(): any[];
     get filters(): any[];
-    getFilteredFeed(name: any): Promise<Feed>;
+    /**
+     * Applies given filter and returns a new {@link Feed} object.
+     *
+     * @param {string | import('../parser/contents/classes/ChipCloudChip')} filter
+     * @returns {Promise.<Feed>}
+     */
+    getFilteredFeed(filter: string | import('../parser/contents/classes/ChipCloudChip')): Promise<Feed>;
     #private;
 }
 import Feed = require("./Feed");

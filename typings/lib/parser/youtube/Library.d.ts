@@ -10,7 +10,13 @@ declare class Library {
         stats: any;
         user_info: any;
     };
-    sections: any;
+    /** @type {{ type: string, title: import('../contents/classes/Text'), contents: object[], getAll: Promise.<Playlist | History | Feed> }[] } */
+    sections: {
+        type: string;
+        title: import('../contents/classes/Text');
+        contents: object[];
+        getAll: Promise<Playlist | History | Feed>;
+    }[];
     get history(): any;
     get watch_later(): any;
     get liked_videos(): any;
@@ -56,3 +62,6 @@ declare class Library {
     };
     #private;
 }
+import Playlist = require("./Playlist");
+import History = require("./History");
+import Feed = require("../../core/Feed");

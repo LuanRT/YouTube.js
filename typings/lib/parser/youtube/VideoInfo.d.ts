@@ -129,14 +129,18 @@ declare class VideoInfo {
         on_response_received_actions_memo: Map<any, any>;
         on_response_received_endpoints: any;
         on_response_received_endpoints_memo: Map<any, any>;
-        on_response_received_commands: any;
+        on_response_received_commands: any; /**
+         * @type {import('../contents/classes/VideoPrimaryInfo')}
+         */
         on_response_received_commands_memo: Map<any, any>;
         continuation_contents: any;
         metadata: any;
         header: any;
         microformat: import("../contents/classes/PlayerMicroformat");
         sidebar: any;
-        overlay: any;
+        overlay: any; /**
+         * @type {import('../contents/classes/ChipCloud')}
+         */
         refinements: any;
         estimated_results: any;
         player_overlays: any;

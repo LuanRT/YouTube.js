@@ -9,6 +9,7 @@ declare class EndScreenVideo {
     author: Author;
     endpoint: NavigationEndpoint;
     short_view_count_text: Text;
+    badges: any;
     duration: {
         text: any;
         seconds: any;

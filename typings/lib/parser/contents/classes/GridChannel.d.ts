@@ -5,8 +5,9 @@ declare class GridChannel {
     id: any;
     author: Author;
     subscribers: Text;
-    videos: Text;
+    video_count: Text;
     endpoint: NavigationEndpoint;
+    subscribe_button: any;
 }
 import Author = require("./Author");
 import Text = require("./Text");
