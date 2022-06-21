@@ -3,6 +3,7 @@ declare class MusicResponsiveListItem {
     constructor(data: any);
     type: string;
     endpoint: NavigationEndpoint;
+    index: Text;
     thumbnails: Thumbnail[];
     badges: any;
     menu: any;
@@ -43,4 +44,5 @@ declare class MusicResponsiveListItem {
     #private;
 }
 import NavigationEndpoint = require("./NavigationEndpoint");
+import Text = require("./Text");
 import Thumbnail = require("./Thumbnail");
