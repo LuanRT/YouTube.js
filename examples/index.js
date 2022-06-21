@@ -82,7 +82,7 @@ async function start() {
   });
 
   stream.on('info', (info) => {
-    console.info('[DOWNLOADER]', `Downloading ${info.video_details.title} by ${info.video_details.metadata.channel_name}`);
+    console.info('[DOWNLOADER]', `Downloading ${info.title} by ${info.basic_info.channel.name}`);
   });
 
   stream.on('end', () => {
