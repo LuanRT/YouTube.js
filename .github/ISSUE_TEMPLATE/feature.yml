@@ -1,0 +1,33 @@
+name: Feature request
+description: Use this template to suggest new features
+labels: [enhancement]
+body:
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Describe your suggestion    
+      placeholder: How would it work?
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-details
+    attributes:
+      label: Other details
+      placeholder: |
+        Additional details and attachments.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I am running the latest version.
+          required: true
+        - label: I checked the documentation and found no answer.
+          required: true      
+        - label: I have searched the existing issues and made sure this is not a duplicate.
+          required: true        
+        - label: I have provided sufficient information.
+          required: true
