@@ -15,7 +15,9 @@ declare class Analytics {
         on_response_received_endpoints_memo: Map<any, any>;
         on_response_received_commands: any;
         on_response_received_commands_memo: Map<any, any>;
+        continuation: any;
         continuation_contents: any;
+        actions: any;
         metadata: any;
         header: any;
         microformat: import("../contents/classes/PlayerMicroformat");

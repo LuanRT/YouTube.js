@@ -1,6 +1,7 @@
 export = Player;
 /** @namespace */
 declare class Player {
+    static get LIBRARY_VERSION(): number;
     /**
      * Represents the YouTube Web player script.
      *
@@ -9,6 +10,7 @@ declare class Player {
      */
     constructor(id: string, axios: AxiosInstance);
     init(): Promise<Player>;
+    decipher(url: any, signature_cipher: any, cipher: any): string;
     /**
      * Js player url.
      *
@@ -23,20 +25,6 @@ declare class Player {
      * @returns {string}
      */
     readonly get sts(): string;
-    /**
-     * N-Token decipher algorithm.
-     *
-     * @readonly
-     * @returns {string}
-     */
-    readonly get ntoken_decipher(): string;
-    /**
-     * Signature decipher algorithm.
-     *
-     * @readonly
-     * @returns {string}
-     */
-    readonly get signature_decipher(): string;
     /**
      * Checks if the player script is cached.
      *

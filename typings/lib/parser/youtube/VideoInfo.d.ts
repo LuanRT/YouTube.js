@@ -71,6 +71,10 @@ declare class VideoInfo {
      */
     comments_entry_point_header: import('../contents/classes/CommentsEntryPointHeader');
     /**
+     * @type {import('../contents/classes/LiveChat')}
+     */
+    livechat: import('../contents/classes/LiveChat');
+    /**
      * Applies given filter to the watch next feed.
      *
      * @param {string} name
@@ -120,8 +124,16 @@ declare class VideoInfo {
         status_code: number;
         data: object;
     }>;
+    /**
+     * Retrieves Live Chat if available.
+     *
+     * @param {string} [mode] - livechat mode
+     * @returns {Promise.<LiveChat>}
+     */
+    getLiveChat(mode?: string): Promise<LiveChat>;
     /** @type {string[]} */
     get filters(): string[];
+    get actions(): import("../../core/Actions");
     get page(): {
         contents: any;
         contents_memo: Map<any, any>;
@@ -129,18 +141,16 @@ declare class VideoInfo {
         on_response_received_actions_memo: Map<any, any>;
         on_response_received_endpoints: any;
         on_response_received_endpoints_memo: Map<any, any>;
-        on_response_received_commands: any; /**
-         * @type {import('../contents/classes/VideoPrimaryInfo')}
-         */
+        on_response_received_commands: any;
         on_response_received_commands_memo: Map<any, any>;
+        continuation: any;
         continuation_contents: any;
+        actions: any;
         metadata: any;
         header: any;
         microformat: import("../contents/classes/PlayerMicroformat");
         sidebar: any;
-        overlay: any; /**
-         * @type {import('../contents/classes/ChipCloud')}
-         */
+        overlay: any;
         refinements: any;
         estimated_results: any;
         player_overlays: any;
@@ -192,4 +202,5 @@ declare class VideoInfo {
     }, _stream?: PassThrough): PassThrough;
     #private;
 }
+import LiveChat = require("./LiveChat");
 import { PassThrough } from "stream";

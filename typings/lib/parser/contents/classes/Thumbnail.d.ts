@@ -3,10 +3,10 @@ declare class Thumbnail {
     /**
      * Get thumbnails from response object
      *
-     * @param {*} response response object
+     * @param {object} data - response object
      * @returns {Thumbnail[]} sorted array of thumbnails
      */
-    static fromResponse({ thumbnails }: any): Thumbnail[];
+    static fromResponse(data: object): Thumbnail[];
     constructor({ url, width, height }: {
         url: any;
         width: any;

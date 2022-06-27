@@ -12,6 +12,7 @@ declare class Album {
     url: string;
     /** @type {import('../contents/classes/MusicResponsiveListItem')[]} */
     contents: import('../contents/classes/MusicResponsiveListItem')[];
+    sections: any;
     get page(): {
         contents: any;
         contents_memo: Map<any, any>;
@@ -21,7 +22,9 @@ declare class Album {
         on_response_received_endpoints_memo: Map<any, any>;
         on_response_received_commands: any;
         on_response_received_commands_memo: Map<any, any>;
+        continuation: any;
         continuation_contents: any;
+        actions: any;
         metadata: any;
         header: any;
         microformat: import("../contents/classes/PlayerMicroformat");

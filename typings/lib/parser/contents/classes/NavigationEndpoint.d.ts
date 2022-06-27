@@ -69,5 +69,11 @@ declare class NavigationEndpoint {
     get_report_form: {
         params: any;
     };
+    live_chat_item_context_menu: {
+        params: any;
+    };
+    send_live_chat_vote: {
+        params: any;
+    };
     call(actions: any, client: any): Promise<any>;
 }
