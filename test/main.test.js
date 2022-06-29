@@ -70,8 +70,8 @@ describe('YouTube.js Tests', () => {
     }); 
     
     it('Should retrieve video info', async () => {
-      const details = await this.session.getDetails(Constants.VIDEOS[0].ID);
-      expect(details.id).toBe(Constants.VIDEOS[0].ID);
+      const info = await this.session.getInfo(Constants.VIDEOS[0].ID);
+      expect(info.basic_info.id).toBe(Constants.VIDEOS[0].ID);
     }); 
     
     it('Should download video', async () => {
