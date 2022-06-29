@@ -37,6 +37,11 @@ declare class MusicResponsiveListItem {
         channel_id: any;
         endpoint: any;
     };
+    authors: {
+        name: any;
+        channel_id: any;
+        endpoint: any;
+    }[];
     name: any;
     subscribers: any;
     year: any;
