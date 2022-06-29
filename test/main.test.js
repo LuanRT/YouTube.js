@@ -53,22 +53,15 @@ describe('YouTube.js Tests', () => {
     });
   });
   
-  describe('Playlists', () => {
+  describe('General', () => {
     it('Should retrieve playlist with YouTube', async () => {
       const playlist = await this.session.getPlaylist('PLLw0AzOz95FU7w2juhPECP9NyGhbZmz_t', { client: 'YOUTUBE' });
       expect(playlist.items.length).toBeLessThanOrEqual(100);
     });
     
-    it('Should retrieve playlist with YouTube Music', async () => {
-      const playlist = await this.session.getPlaylist('PLLw0AzOz95FU7w2juhPECP9NyGhbZmz_t', { client: 'YTMUSIC' });
-      expect(playlist.items.length).toBeLessThanOrEqual(100);
-    });
-  });
-  
-  describe('General', () => {
     it('Should retrieve home feed', async () => {
       const homefeed = await this.session.getHomeFeed();
-      expect(homefeed.videos.length).toBeLessThanOrEqual(40);
+      expect(homefeed.videos.length).toBeGreaterThan(0);
     });
     
     it('Should retrieve trending content', async () => {
@@ -77,8 +70,8 @@ describe('YouTube.js Tests', () => {
     }); 
     
     it('Should retrieve video info', async () => {
-      const details = await this.session.getDetails(Constants.VIDEOS[0].ID);
-      expect(details.id).toBe(Constants.VIDEOS[0].ID);
+      const info = await this.session.getInfo(Constants.VIDEOS[0].ID);
+      expect(info.basic_info.id).toBe(Constants.VIDEOS[0].ID);
     }); 
     
     it('Should download video', async () => {

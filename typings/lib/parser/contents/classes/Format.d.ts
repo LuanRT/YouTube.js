@@ -30,5 +30,11 @@ declare class Format {
     loudness_db: any;
     has_audio: boolean;
     has_video: boolean;
-    decipher(player: any): string;
+    /**
+     * Decipher the streaming url of the format.
+     *
+     * @param {import('../../../core/Player')} player
+     * @returns {string} Deciphered URL for downloading
+     */
+    decipher(player: import('../../../core/Player')): string;
 }

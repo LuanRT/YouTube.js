@@ -1,9 +1,12 @@
 {
   "name": "youtubei.js",
-  "version": "1.4.3",
+  "version": "2.0.0",
   "description": "A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
   "main": "index.js",
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
+  "contributors": [
+    "Wykerd (https://github.com/wykerd/)"
+  ],
   "funding": "https://ko-fi.com/luanrt",
   "license": "MIT",
   "engines": {
@@ -11,8 +14,8 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint ./",
-    "lint:fix": "eslint --fix ./",
+    "lint": "eslint ./lib",
+    "lint:fix": "eslint --fix ./lib",
     "build:types": "npx tsc"
   },
   "types": "./typings/index.d.ts",
