@@ -23,6 +23,7 @@ rules:
 
   quotes: [error, single] 
   
+  jsdoc/newline-after-description: 'off'
   jsdoc/require-returns-description: 'off'
   jsdoc/require-param-description: 'off'
   jsdoc/no-undefined-types: 'off'
