@@ -15,7 +15,7 @@ body:
           3. You get it..
     validations:
       required: true
-
+  
   - type: textarea
     id: failure-logs
     attributes:
