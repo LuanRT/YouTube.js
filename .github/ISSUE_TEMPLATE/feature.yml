@@ -6,7 +6,7 @@ body:
   - type: textarea
     id: feature-description
     attributes:
-      label: Describe your suggestion    
+      label: Describe your suggestion
       placeholder: How would it work?
     validations:
       required: true
@@ -26,8 +26,8 @@ body:
         - label: I am running the latest version.
           required: true
         - label: I checked the documentation and found no answer.
-          required: true      
+          required: true
         - label: I have searched the existing issues and made sure this is not a duplicate.
-          required: true        
+          required: true
         - label: I have provided sufficient information.
           required: true
