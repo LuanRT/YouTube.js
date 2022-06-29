@@ -6,4 +6,4 @@ declare class UpdateViewershipAction {
     extra_short_view_count: Text;
     is_live: any;
 }
-import Text = require("../../Text");
+import Text = require("../Text");

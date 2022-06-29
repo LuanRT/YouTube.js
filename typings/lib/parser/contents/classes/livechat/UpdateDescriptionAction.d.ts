@@ -4,4 +4,4 @@ declare class UpdateDescriptionAction {
     type: string;
     description: Text;
 }
-import Text = require("../../Text");
+import Text = require("../Text");

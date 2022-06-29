@@ -121,20 +121,6 @@ declare class Innertube {
         results: string[];
     }>;
     /**
-     * Retrieves video info.
-     *
-     * @deprecated do not use this, it is slow and inefficient.
-     * Use {@link getInfo} instead.
-     * @param {string} video_id - the video id.
-     * @returns {Promise.<{ title: string, description: string, thumbnail: any[], metadata: object }>}
-     */
-    getDetails(video_id: string): Promise<{
-        title: string;
-        description: string;
-        thumbnail: any[];
-        metadata: object;
-    }>;
-    /**
      * Retrieves comments for a video.
      *
      * @param {string} video_id - the video id.

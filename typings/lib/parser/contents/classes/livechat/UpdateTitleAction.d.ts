@@ -4,4 +4,4 @@ declare class UpdateTitleAction {
     type: string;
     title: Text;
 }
-import Text = require("../../Text");
+import Text = require("../Text");
