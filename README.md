@@ -1153,7 +1153,7 @@ import Innertube from 'youtubei.js';
 const youtube = await new Innertube();
 
 const creds_path = './yt_oauth_creds.json'; 
-const creds = fs.existsSync(creds_path) && JSON.parse(fs.readFileSync(creds_path).toString()) || {};
+const creds = fs.existsSync(creds_path) ? JSON.parse(fs.readFileSync(creds_path).toString()) : {};
 
 youtube.ev.on('auth', (data) => {
   switch (data.status) {
