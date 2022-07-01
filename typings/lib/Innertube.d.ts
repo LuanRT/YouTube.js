@@ -125,13 +125,9 @@ declare class Innertube {
      *
      * @param {string} video_id - the video id.
      * @param {string} [sort_by] - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
-     * @returns {Promise.<{ page_count: number, comment_count: number, items: object[] }>}
+     * @returns {Promise.<Comments>}
      */
-    getComments(video_id: string, sort_by?: string): Promise<{
-        page_count: number;
-        comment_count: number;
-        items: object[];
-    }>;
+    getComments(video_id: string, sort_by?: string): Promise<Comments>;
     /**
      * Retrieves YouTube's home feed (aka recommendations).
      *
@@ -258,6 +254,7 @@ import InteractionManager = require("./core/InteractionManager");
 import YTMusic = require("./core/Music");
 import VideoInfo = require("./parser/youtube/VideoInfo");
 import Search = require("./parser/youtube/Search");
+import Comments = require("./parser/youtube/Comments");
 import FilterableFeed = require("./core/FilterableFeed");
 import Library = require("./parser/youtube/Library");
 import History = require("./parser/youtube/History");

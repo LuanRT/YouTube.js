@@ -19,8 +19,8 @@ declare class Parser {
     /**
      * Parses the `contents` property of the response.
      *
-     * @param {object} data
-     * @param {string} module
+     * @param {object} data - contents to be parsed.
+     * @param {string} module - a folder for specific DA classes.
      * @returns {*}
      */
     static parse(data: object, module: string): any;

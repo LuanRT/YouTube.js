@@ -115,7 +115,6 @@ declare class VideoInfo {
     }>;
     /**
      * Retrieves Live Chat if available.
-     *
      * @param {string} [mode] - livechat mode
      * @returns {Promise.<LiveChat>}
      */

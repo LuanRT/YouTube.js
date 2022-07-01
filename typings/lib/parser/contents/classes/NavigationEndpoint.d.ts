@@ -2,6 +2,8 @@ export = NavigationEndpoint;
 declare class NavigationEndpoint {
     constructor(data: any);
     type: string;
+    payload: any;
+    dialog: any;
     metadata: {};
     browse: {
         id: any;
@@ -75,5 +77,11 @@ declare class NavigationEndpoint {
     send_live_chat_vote: {
         params: any;
     };
+    /**
+     * Calls the endpoint. (This is an experiment and may replace {@link call()} in the future.).
+     * @param {import('../../../core/Actions')} actions
+     * @param {object} args
+     */
+    callTest(actions: import('../../../core/Actions'), args?: object): Promise<any>;
     call(actions: any, client: any): Promise<any>;
 }
