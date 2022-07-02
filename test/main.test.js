@@ -37,19 +37,22 @@ describe('YouTube.js Tests', () => {
   
   describe('Comments', () => {
     it('Should retrieve comments', async () => {
-      this.comments = await this.session.getComments(Constants.VIDEOS[1].ID);
-      expect(this.comments.items.length).toBeLessThanOrEqual(20);
+      this.threads = await this.session.getComments(Constants.VIDEOS[1].ID);
+      expect(this.threads.contents.length).toBeGreaterThan(0);
     });
     
-    it('Should retrieve comment thread continuation', async () => {
-      const next = await this.comments.getContinuation();
-      expect(next.items.length).toBeLessThanOrEqual(20);
+    it('Should retrieve next batch of comments', async () => {
+      const next = await this.threads.getContinuation();
+      expect(next.contents.length).toBeGreaterThan(0);
     });
     
     it('Should retrieve comment replies', async () => {
-      const top_comment = this.comments.items[0];
-      const replies = await top_comment.getReplies();
-      expect(replies.items.length).toBeLessThanOrEqual(10);
+      const comment = this.comments.contents[0].comment;
+      
+      const thread = await first_thread.getReplies();
+ 
+      expect(thread.comment.comment_id).toBe(comment.comment_id);
+      expect(thread.replies.length).toBeLessThanOrEqual(10);
     });
   });
   
