@@ -4,7 +4,7 @@ const session = await new Innertube();
 
 const comments = await session.getComments('a-rqu-hjobc');
 
-console.info(`This video has ${comments.header.comments_count.toString()}`);
+console.info(`This video has ${comments.header.comments_count.toString()} comments.`);
 
 for (const thread of comments.contents) {
   const comment = thread.comment;
