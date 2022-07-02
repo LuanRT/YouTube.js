@@ -20,7 +20,7 @@ describe('YouTube.js Tests', () => {
     
     it('Should search on YouTube Music', async () => {
       const search = await this.session.music.search(Constants.VIDEOS[1].QUERY);
-      expect(search.songs.length).toBeLessThanOrEqual(3);
+      expect(search.songs.contents.length).toBeLessThanOrEqual(3);
     });
     
     it('Should retrieve YouTube search suggestions', async () => {
