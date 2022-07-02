@@ -49,7 +49,7 @@ describe('YouTube.js Tests', () => {
     it('Should retrieve comment replies', async () => {
       const comment = this.threads.contents[0].comment;
       
-      const thread = await first_thread.getReplies();
+      const thread = await comment.getReplies();
  
       expect(thread.comment.comment_id).toBe(comment.comment_id);
       expect(thread.replies.length).toBeLessThanOrEqual(10);
