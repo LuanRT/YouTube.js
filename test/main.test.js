@@ -51,7 +51,7 @@ describe('YouTube.js Tests', () => {
       
       const thread = await comment.getReplies();
  
-      expect(thread.comment.comment_id).toBe(comment.comment_id);
+      expect(thread.comment_id).toBe(comment.comment_id);
       expect(thread.replies.length).toBeLessThanOrEqual(10);
     });
   });
