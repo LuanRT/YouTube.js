@@ -54,3 +54,33 @@ rules:
   no-useless-concat: error
   no-useless-escape: error
   no-useless-return: error
+  no-else-return: error
+  no-lonely-if: error
+  no-undef-init: error
+  no-unneeded-ternary: error
+  no-var: error
+  no-multi-spaces: error
+  no-multiple-empty-lines: ["error", { "max": 2, "maxEOF": 0 }]
+  no-tabs: error
+  no-trailing-spaces: error
+ 
+  brace-style: error
+  new-parens: error
+  space-infix-ops: error
+  template-curly-spacing: error
+  wrap-regex: error
+  capitalized-comments: error
+  prefer-template: error
+
+  keyword-spacing: ["error", { "before": true } ]
+  strict: ["error", "global"]
+  array-bracket-spacing: ["error", "always"]
+  arrow-parens: ["error", "always"]
+  comma-dangle: ["error", "never"]
+  comma-spacing: ["error", { "before": false, "after": true }]
+  computed-property-spacing: ["error", "never"]
+  func-call-spacing: ["error", "never"]
+  indent: ["error", 2, { "SwitchCase": 1 }]
+  key-spacing: ["error", { "beforeColon": false }]
+  semi: ["error", "always"]
+  operator-assignment: ["error", "always"]
