@@ -24,6 +24,9 @@ declare class MusicResponsiveListItem {
     };
     artists: any;
     views: any;
+    authors: any;
+    name: any;
+    subscribers: any;
     author: {
         name: any;
         channel_id: any;
@@ -32,18 +35,7 @@ declare class MusicResponsiveListItem {
         name: any;
         channel_id: any;
         endpoint: any;
-    } | {
-        name: any;
-        channel_id: any;
-        endpoint: any;
     };
-    authors: {
-        name: any;
-        channel_id: any;
-        endpoint: any;
-    }[];
-    name: any;
-    subscribers: any;
     year: any;
     item_count: number;
     #private;

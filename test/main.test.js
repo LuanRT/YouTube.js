@@ -13,16 +13,15 @@ describe('YouTube.js Tests', () => {
   
   describe('Search', () => {
     it('Should search on YouTube', async () => {
-      const search = await this.session.search(Constants.VIDEOS[0].QUERY, { client: 'YOUTUBE' });
+      const search = await this.session.search(Constants.VIDEOS[0].QUERY);
       expect(search.results.length).toBeLessThanOrEqual(30);
     });
     
-    /*
+    
     it('Should search on YouTube Music', async () => {
-      const search = await this.session.search(Constants.VIDEOS[1].QUERY, { client: 'YTMUSIC' });
-      expect(search.results.songs.length).toBeLessThanOrEqual(3);
+      const search = await this.session.music.search(Constants.VIDEOS[1].QUERY);
+      expect(search.songs.contents.length).toBeLessThanOrEqual(3);
     });
-    */
     
     it('Should retrieve YouTube search suggestions', async () => {
       const suggestions = await this.session.getSearchSuggestions(Constants.VIDEOS[0].QUERY, { client: 'YOUTUBE' });
@@ -37,19 +36,22 @@ describe('YouTube.js Tests', () => {
   
   describe('Comments', () => {
     it('Should retrieve comments', async () => {
-      this.comments = await this.session.getComments(Constants.VIDEOS[1].ID);
-      expect(this.comments.items.length).toBeLessThanOrEqual(20);
+      this.threads = await this.session.getComments(Constants.VIDEOS[1].ID);
+      expect(this.threads.contents.length).toBeGreaterThan(0);
     });
     
-    it('Should retrieve comment thread continuation', async () => {
-      const next = await this.comments.getContinuation();
-      expect(next.items.length).toBeLessThanOrEqual(20);
+    it('Should retrieve next batch of comments', async () => {
+      const next = await this.threads.getContinuation();
+      expect(next.contents.length).toBeGreaterThan(0);
     });
     
     it('Should retrieve comment replies', async () => {
-      const top_comment = this.comments.items[0];
-      const replies = await top_comment.getReplies();
-      expect(replies.items.length).toBeLessThanOrEqual(10);
+      const comment = this.threads.contents[0];
+      
+      const thread = await comment.getReplies();
+ 
+      expect(thread.comment_id).toBe(comment.comment_id);
+      expect(thread.replies.length).toBeLessThanOrEqual(10);
     });
   });
   

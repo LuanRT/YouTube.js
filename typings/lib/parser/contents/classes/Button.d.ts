@@ -5,7 +5,7 @@ declare class Button {
     text: any;
     label: any;
     tooltip: any;
-    icon_type: any;
+    iconType: any;
     endpoint: NavigationEndpoint;
 }
 import NavigationEndpoint = require("./NavigationEndpoint");

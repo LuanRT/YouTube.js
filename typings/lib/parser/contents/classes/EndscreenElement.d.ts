@@ -3,14 +3,14 @@ declare class EndscreenElement {
     constructor(data: any);
     type: string;
     style: any;
+    title: Text;
+    endpoint: NavigationEndpoint;
     image: Thumbnail[];
     icon: Thumbnail[];
     metadata: Text;
     call_to_action: Text;
     hovercard_button: any;
     is_subscribe: any;
-    title: Text;
-    endpoint: NavigationEndpoint;
     thumbnail_overlays: any;
     left: any;
     width: any;
@@ -20,6 +20,6 @@ declare class EndscreenElement {
     end_ms: any;
     id: any;
 }
-import Thumbnail = require("./Thumbnail");
 import Text = require("./Text");
 import NavigationEndpoint = require("./NavigationEndpoint");
+import Thumbnail = require("./Thumbnail");
