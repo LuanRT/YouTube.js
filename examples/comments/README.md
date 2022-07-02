@@ -17,9 +17,9 @@ const threads = await session.getComments(VIDEO_ID);
 
 <a name="commentthread"></a>
 ### contents
-A list of comment threads. **Note:** More about comment threads [**here**](./CommentThread).
+A list of comment threads. **Note:** More about comment threads [**here**](./CommentThread.md).
 
-**Type:** [`CommentThread[]`](tree/main/lib/parser/contents/classes/CommentThread.js)
+**Type:** [`CommentThread[]`](../../lib/parser/contents/classes/CommentThread.js)
 
 <a name="comment"></a>
 ### comment(text)
