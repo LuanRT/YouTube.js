@@ -12,7 +12,7 @@ A `CommentThread` represents a top-level comment and its replies.
 
 <a name="comment"></a>
 ### comment
-The top-level comment.
+The top-level comment. **Note:** More about `Comment` [here](./Comment.md).
 
 **Type:** [`Comment`](../../lib/parser/contents/classes/Comment.js)
 

@@ -42,3 +42,6 @@ Retrieves next batch of comment threads.
 Returns original InnerTube response (sanitized).
 
 **Returns:** `Promise.<object>`
+
+## Example
+See [`index.js`]('./index.js').
