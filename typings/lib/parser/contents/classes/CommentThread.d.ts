@@ -7,17 +7,20 @@ declare class CommentThread {
     /** @type {boolean} */
     is_moderated_elq_comment: boolean;
     /**
-    * Retrieves replies to this comment thread.
-    * @returns {Promise.<CommentThread>}
-    */
+     * Retrieves replies to this comment thread.
+     * @returns {Promise.<CommentThread>}
+     */
     getReplies(): Promise<CommentThread>;
     replies: any;
     /**
-    * Retrieves next batch of replies.
-    * @returns {Promise.<CommentThread>}
-    */
+     * Retrieves next batch of replies.
+     * @returns {Promise.<CommentThread>}
+     */
     getContinuation(): Promise<CommentThread>;
-    /** @private */
+    /**
+     * @param {import('../../../core/Actions')} actions
+     * @private
+     */
     private setActions;
     #private;
 }

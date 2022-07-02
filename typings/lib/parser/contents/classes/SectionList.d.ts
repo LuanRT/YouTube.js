@@ -5,4 +5,5 @@ declare class SectionList {
     target_id: any;
     contents: any;
     continuation: any;
+    header: any;
 }

@@ -1,5 +1,5 @@
 export = VideoInfo;
-/** namespace */
+/** Namespace */
 declare class VideoInfo {
     /**
      * @param {object} data - API response.

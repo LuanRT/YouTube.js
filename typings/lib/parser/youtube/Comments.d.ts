@@ -3,8 +3,8 @@ declare class Comments {
     constructor(actions: any, data: any, already_parsed?: boolean);
     /** @type {import('../contents/classes/CommentsHeader')} */
     header: import('../contents/classes/CommentsHeader');
-    /** @type {import('../contents/classes/CommentsThread')} */
-    contents: any;
+    /** @type {import('../contents/classes/CommentThread')[]} */
+    contents: import('../contents/classes/CommentThread')[];
     /**
      * Creates a top-level comment.
      * @param {string} text
