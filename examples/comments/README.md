@@ -2,7 +2,7 @@
 YouTube.js has full support for comments, including comment actions such as liking, disliking, replying etc.
 
 ## Usage
-Get a [`Comments`](tree/main/lib/parser/contents/youtube/Comments.js) instance:
+Get a [`Comments`](../../lib/parser/contents/youtube/Comments.js) instance:
 
 ```js
 const threads = await session.getComments(VIDEO_ID);
@@ -35,7 +35,7 @@ Posts a top-level comment.
 ### getContinuation()
 Retrieves next batch of comment threads.
 
-**Returns:** [`Promise.<Comments>`](tree/main/lib/parser/youtube/Comments.js)
+**Returns:** [`Promise.<Comments>`](../../lib/parser/youtube/Comments.js)
 
 <a name="page"></a>
 ### page
