@@ -13,16 +13,15 @@ describe('YouTube.js Tests', () => {
   
   describe('Search', () => {
     it('Should search on YouTube', async () => {
-      const search = await this.session.search(Constants.VIDEOS[0].QUERY, { client: 'YOUTUBE' });
+      const search = await this.session.search(Constants.VIDEOS[0].QUERY);
       expect(search.results.length).toBeLessThanOrEqual(30);
     });
     
-    /*
+    
     it('Should search on YouTube Music', async () => {
-      const search = await this.session.search(Constants.VIDEOS[1].QUERY, { client: 'YTMUSIC' });
-      expect(search.results.songs.length).toBeLessThanOrEqual(3);
+      const search = await this.session.music.search(Constants.VIDEOS[1].QUERY);
+      expect(search.songs.length).toBeLessThanOrEqual(3);
     });
-    */
     
     it('Should retrieve YouTube search suggestions', async () => {
       const suggestions = await this.session.getSearchSuggestions(Constants.VIDEOS[0].QUERY, { client: 'YOUTUBE' });
