@@ -1,6 +1,6 @@
 ## Live Chat
 
-The library's Live Chat parser and poller were highly based on YouTube's original compiled code, this makes it behave in a similar if not identical way to YouTube's Live Chat. Here you can do all sorts of funny things, ex; track messages, donations, polls, and much more.
+The library's Live Chat parser and poller were heavily based on YouTube's original compiled code, this makes it behave in a similar if not identical way to YouTube's Live Chat. Here you can do all sorts of funny things, ex; track messages, donations, polls, and much more.
 
 ## Usage 
 
