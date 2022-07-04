@@ -3,18 +3,10 @@ export = SessionBuilder;
 declare class SessionBuilder {
     /**
      * @param {object} config
-     * @param {object} [config.proxy]
-     * @param {object} [config.http_agent]
-     * @param {object} [config.https_agent]
+     * @param {object} request
      */
-    constructor(config: {
-        proxy?: object;
-        http_agent?: object;
-        https_agent?: object;
-    });
+    constructor(config: object, request: object);
     build(): Promise<SessionBuilder>;
-    /** @readonly */
-    readonly get axios(): typeof Axios;
     /** @readonly */
     readonly get key(): any;
     /** @readonly */
@@ -29,4 +21,3 @@ declare class SessionBuilder {
     readonly get player(): any;
     #private;
 }
-import Axios = require("axios");

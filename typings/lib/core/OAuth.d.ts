@@ -1,62 +1,47 @@
 export = OAuth;
-/** @namespace */
 declare class OAuth {
     /**
      * @param {EventEmitter} ev
-     * @param {AxiosInstance} axios
+     * @param {AxiosInstance} request
      */
-    constructor(ev: EventEmitter, axios: AxiosInstance);
+    constructor(ev: EventEmitter, request: AxiosInstance);
     /**
      * Starts the auth flow in case no valid credentials are available.
-     *
-     * @param {object} auth_info
-     * @param {string} auth_info.access_token
-     * @param {string} auth_info.refresh_token
-     * @param {Date} auth_info.expires_in
-     * @returns {Promise.<void>}
+     * @param {object} credentials
+     * @param {string} credentials.access_token
+     * @param {string} credentials.refresh_token
+     * @param {Date} credentials.expires_in
      */
-    init(auth_info: {
+    init(credentials: {
         access_token: string;
         refresh_token: string;
         expires_in: Date;
-    }): Promise<void>;
-    client_id: string;
-    client_secret: string;
+    }): void;
     /**
      * Refreshes the access token if necessary.
-     *
      * @returns {Promise.<void>}
      */
-    checkTokenValidity(): Promise<void>;
+    checkAccessTokenValidity(): Promise<void>;
     /**
-     * Revokes access token (note that the refresh token will also be revoked).
-     *
-     * @returns {Promise.<void>}
+     * Revokes credentials.
+     * @returns {Promise.<{ success: boolean, status_code: number }>}
      */
-    revokeAccessToken(): Promise<void>;
+    revokeCredentials(): Promise<{
+        success: boolean;
+        status_code: number;
+    }>;
     /**
-     * Returns the access token.
-     *
-     * @returns {string}
+     * @returns {{ access_token: string, refresh_token: string, expires: Date }}
      */
-    getAccessToken(): string;
+    get credentials(): {
+        access_token: string;
+        refresh_token: string;
+        expires: Date;
+    };
     /**
-     * Returns the refresh token.
-     *
-     * @returns {string}
+     * Validates the credentials.
+     * @returns {boolean}
      */
-    getRefreshToken(): string;
-    /**
-     * Checks if the auth info format is valid.
-     *
-     * @returns {boolean} true | false
-     */
-    isValidAuthInfo(): boolean;
-    /**
-     * Checks access token validity.
-     *
-     * @returns {boolean} true | false
-     */
-    shouldRefreshToken(): boolean;
+    validateCredentials(): boolean;
     #private;
 }
