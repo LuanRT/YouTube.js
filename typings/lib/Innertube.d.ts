@@ -1,4 +1,5 @@
 export = Innertube;
+/** @namespace */
 declare class Innertube {
     /**
      * @example
@@ -30,12 +31,18 @@ declare class Innertube {
         http_ent?: object;
         https_agent?: object;
     };
-    key: any;
-    version: any;
-    context: any;
+    /** @type {string} */
+    key: string;
+    /** @type {string} */
+    version: string;
+    /** @type {object} */
+    context: object;
+    /** @type {boolean} */
     logged_in: boolean;
-    player_url: any;
-    sts: any;
+    /** @type {number} */
+    sts: number;
+    /** @type {string} */
+    player_url: string;
     /**
      * @fires Innertube#auth - fired when signing in to an account.
      * @fires Innertube#update-credentials - fired when the access token is no longer valid.
@@ -43,8 +50,6 @@ declare class Innertube {
      */
     ev: EventEmitter;
     oauth: OAuth;
-    auth_apisid: any;
-    request: Request;
     actions: Actions;
     account: AccountManager;
     playlist: PlaylistManager;
@@ -53,19 +58,17 @@ declare class Innertube {
     /**
      * Signs in to a google account.
      *
-     * @param {object} auth_info
-     * @param {string} auth_info.access_token - Token used to sign in.
-     * @param {string} auth_info.refresh_token - Token used to get a new access token.
-     * @param {Date} auth_info.expires - Access token's expiration date, which is usually 24hrs-ish.
+     * @param {object} credentials
+     * @param {string} credentials.access_token - Token used to sign in.
+     * @param {string} credentials.refresh_token - Token used to get a new access token.
+     * @param {Date} credentials.expires - Access token's expiration date, which is usually 24hrs-ish.
      * @returns {Promise.<void>}
      */
-    signIn(auth_info?: {
+    signIn(credentials?: {
         access_token: string;
         refresh_token: string;
         expires: Date;
     }): Promise<void>;
-    access_token: string;
-    refresh_token: string;
     /**
      * Signs out of an account.
      *
@@ -241,12 +244,11 @@ declare class Innertube {
     }): PassThrough;
     getPlayer(): any;
     /** @readonly */
-    readonly get axios(): any;
+    readonly get request(): any;
     #private;
 }
 import EventEmitter = require("events");
 import OAuth = require("./core/OAuth");
-import Request = require("./utils/Request");
 import Actions = require("./core/Actions");
 import AccountManager = require("./core/AccountManager");
 import PlaylistManager = require("./core/PlaylistManager");

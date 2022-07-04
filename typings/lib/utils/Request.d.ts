@@ -1,11 +1,13 @@
 export = Request;
-/** @namespace */
 declare class Request {
+    constructor(config: any);
+    config: any;
+    setSession(session: any): void;
     /**
-     * @param {import('../Innertube')} session
+     * Returns the axios instance.
+     * @returns {Axios.AxiosInstance}
      */
-    constructor(session: import('../Innertube'));
-    session: import("../Innertube");
-    instance: any;
+    get instance(): Axios.AxiosInstance;
     #private;
 }
+import Axios = require("axios");

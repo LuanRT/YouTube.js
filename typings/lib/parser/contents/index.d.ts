@@ -1,9 +1,9 @@
 export = Parser;
 declare class Parser {
-    static "__#5@#memo": Map<any, any>;
-    static "__#5@#clearMemo"(): void;
-    static "__#5@#createMemo"(): void;
-    static "__#5@#addToMemo"(classname: any, result: any): Map<any, any>;
+    static "__#6@#memo": Map<any, any>;
+    static "__#6@#clearMemo"(): void;
+    static "__#6@#createMemo"(): void;
+    static "__#6@#addToMemo"(classname: any, result: any): Map<any, any>;
     /**
      * Parses InnerTube response.
      *
