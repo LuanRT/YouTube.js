@@ -1,4 +1,4 @@
-import Innertube from '../..';
+import Innertube from 'youtubei.js';
 
 const session = await new Innertube();
 

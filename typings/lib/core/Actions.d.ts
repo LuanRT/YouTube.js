@@ -318,5 +318,11 @@ declare class Actions {
         status_code: number;
         data: object;
     }>;
+    /**
+     * Executes an API call.
+     * @param {string} action - endpoint
+     * @param {object} args - call arguments
+     */
+    execute(action: string, args: object): Promise<any>;
     #private;
 }

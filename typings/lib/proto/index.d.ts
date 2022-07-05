@@ -63,7 +63,7 @@ declare class Proto {
         sort_by: string;
     }): string;
     /**
-     * Encodes replies thread parameters.
+     * Encodes comment replies parameters.
      *
      * @param {string} video_id
      * @param {string} comment_id

@@ -16,16 +16,14 @@ export namespace OAUTH {
     const SCOPE: string;
     const GRANT_TYPE: string;
     const MODEL_NAME: string;
-    namespace HEADERS {
-        const headers: {
-            accept: string;
-            origin: string;
-            'user-agent': string;
-            'content-type': string;
-            referer: string;
-            'accept-language': string;
-        };
-    }
+    const HEADERS: {
+        accept: string;
+        origin: string;
+        'user-agent': string;
+        'content-type': string;
+        referer: string;
+        'accept-language': string;
+    };
     namespace REGEX {
         const AUTH_SCRIPT: RegExp;
         const CLIENT_IDENTITY: RegExp;

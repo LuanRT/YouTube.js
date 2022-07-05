@@ -4,6 +4,6 @@ declare class Parser {
     data: any;
     session: any;
     args: {};
-    parse(): any;
+    parse(): {};
     #private;
 }

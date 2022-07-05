@@ -14,6 +14,8 @@ export class MissingParamError extends InnertubeError {
 }
 export class NoStreamingDataError extends InnertubeError {
 }
+export class OAuthError extends InnertubeError {
+}
 /**
  * Utility to help access deep properties of an object.
  *

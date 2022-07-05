@@ -2,7 +2,7 @@ export = CommentActionButtons;
 declare class CommentActionButtons {
     constructor(data: any);
     type: string;
-    like: any;
-    reply: any;
-    dislike: any;
+    like_button: any;
+    dislike_button: any;
+    reply_button: any;
 }

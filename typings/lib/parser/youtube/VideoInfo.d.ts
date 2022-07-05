@@ -1,5 +1,5 @@
 export = VideoInfo;
-/** namespace */
+/** Namespace */
 declare class VideoInfo {
     /**
      * @param {object} data - API response.
@@ -115,7 +115,6 @@ declare class VideoInfo {
     }>;
     /**
      * Retrieves Live Chat if available.
-     *
      * @param {string} [mode] - livechat mode
      * @returns {Promise.<LiveChat>}
      */

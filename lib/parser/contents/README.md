@@ -1,22 +1,119 @@
 # Parser
 
-Sanitizes and standardizes InnerTube responses while maintaining the integrity of the data. Also [drastically improves](https://github.com/LuanRT/YouTube.js/blob/main/lib/parser/youtube/Library.js#L41) how API calls are made and handled. This clever approach was initially implemented and suggested by [Wykerd](https://github.com/Wykerd) (See #44).
+Sanitizes and standardizes InnerTube responses while maintaining the integrity of the data. Also [drastically improves](https://github.com/LuanRT/YouTube.js/blob/main/lib/parser/youtube/Library.js#L41) how API calls are made and handled. 
 
-Note: 
+**Note:**
 This will eventually replace the old parser.
 
-## Methods
+## API
 
-#### parse(data: object)
+* Parser
+  * [.parse](#parse) ⇒ `function`
+  * [.parseResponse](#parseresponse) ⇒ `function`
+
+<a name="parse"></a>
+#### parse(data)
 
 Responsible for parsing specifically the `contents` property of the response object.
 
-##### Arguments
-  * `data` - the `contents` property.
+| Param | Type | Description |
+| --- | --- | --- |
+| data | `object` | The contents property |
 
-#### parseResponse(data: object)
+**Returns:** `object`
+
+<a name="parseresponse"></a>
+#### parseResponse(data)
 
 Unlike `parse`, this can be used to parse the entire response object.
 
-##### Arguments
-  * `data` - raw response from InnerTube.
+| Param | Type | Description |
+| --- | --- | --- |
+| data | `object` | Raw InnerTube response |
+
+**Returns:** `object`
+
+## How it works
+
+If you decompile a YouTube client and analize it for a while you will notice that it has classes named `protos/youtube/api/innertube/MusicItemRenderer`, `protos/youtube/api/innertube/SectionListRenderer`, and so on and so on. 
+
+These classes are used to parse objects from the response (which consists of protobuf messages) and build requests. The website works in a similar way, the difference is that it uses plain JSON (likely converted from protobuf server-side, hence the weird structure of the response).
+
+Here we're taking a very similar approach, the parser goes through all the renderers and parses their inner element(s). The final result is a nicely structured JSON, and on top of that it also parses navigation endpoints which allows us to make an API call with all required parameters in one line and even emulate client actions (eg; clicking a button).
+
+Here is your average, arguably ugly InnerTube response:
+<details>
+<summary>Click to see</summary>
+<p>
+
+```js
+{
+  sidebar: {
+    playlistSidebarRenderer: {
+      items: [
+        {
+          playlistSidebarPrimaryInfoRenderer: {
+            title: {
+              simpleText: '..'
+            },
+            description: {
+              runs: [
+                {
+                  text: '..'
+                },
+                //....
+              ]
+            },
+            stats: [
+              {
+                simpleText: '..'
+              },
+              {
+                runs: [
+                  {
+                    text: '..'
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+</p>
+</details> 
+
+And what we get after parsing it:
+<details>
+<summary>Click to see</summary>
+<p>
+
+```js
+{
+  sidebar: {
+    type: 'PlaylistSidebar',
+    contents: [
+      {
+        type: 'PlaylistSidebarPrimaryInfo',
+        title: { text: '..' },
+        description: { text: '..' },
+        stats: [
+          {
+            text: '..'
+          },
+          {
+            text: '..'
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+</p>
+</details> 
