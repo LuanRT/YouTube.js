@@ -46,137 +46,6 @@ var __privateMethod = (obj, member, method) => {
   return method;
 };
 
-// lib/utils/Constants.js
-var require_Constants = __commonJS({
-  "lib/utils/Constants.js"(exports2, module2) {
-    "use strict";
-    module2.exports = {
-      URLS: {
-        YT_BASE: "https://www.youtube.com",
-        YT_MUSIC_BASE: "https://music.youtube.com",
-        YT_SUGGESTIONS: "https://suggestqueries.google.com/complete/",
-        API: {
-          BASE: "https://youtubei.googleapis.com",
-          PRODUCTION: "https://youtubei.googleapis.com/youtubei/",
-          STAGING: "https://green-youtubei.sandbox.googleapis.com/youtubei/",
-          RELEASE: "https://release-youtubei.sandbox.googleapis.com/youtubei/",
-          TEST: "https://test-youtubei.sandbox.googleapis.com/youtubei/",
-          CAMI: "http://cami-youtubei.sandbox.googleapis.com/youtubei/",
-          UYTFE: "https://uytfe.sandbox.google.com/youtubei/"
-        }
-      },
-      OAUTH: {
-        SCOPE: "http://gdata.youtube.com https://www.googleapis.com/auth/youtube-paid-content",
-        GRANT_TYPE: "http://oauth.net/grant_type/device/1.0",
-        MODEL_NAME: "ytlr::",
-        HEADERS: {
-          headers: {
-            "accept": "*/*",
-            "origin": "https://www.youtube.com",
-            "user-agent": "Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version",
-            "content-type": "application/json",
-            "referer": "https://www.youtube.com/tv",
-            "accept-language": "en-US"
-          }
-        },
-        REGEX: {
-          AUTH_SCRIPT: /<script id="base-js" src="(.*?)" nonce=".*?"><\/script>/,
-          CLIENT_IDENTITY: /.+?={};var .+?={clientId:"(?<id>.+?)",.+?:"(?<secret>.+?)"},/
-        }
-      },
-      CLIENTS: {
-        WEB: {
-          NAME: "WEB"
-        },
-        YTMUSIC: {
-          NAME: "WEB_REMIX",
-          VERSION: "1.20211213.00.00"
-        },
-        ANDROID: {
-          NAME: "ANDROID",
-          VERSION: "17.17.32"
-        }
-      },
-      STREAM_HEADERS: {
-        "accept": "*/*",
-        "connection": "keep-alive",
-        "origin": "https://www.youtube.com",
-        "referer": "https://www.youtube.com",
-        "DNT": "?1"
-      },
-      INNERTUBE_HEADERS_BASE: {
-        "accept": "*/*",
-        "accept-encoding": "gzip, deflate",
-        "content-type": "application/json"
-      },
-      METADATA_KEYS: [
-        "embed",
-        "view_count",
-        "average_rating",
-        "allow_ratings",
-        "length_seconds",
-        "channel_id",
-        "channel_url",
-        "external_channel_id",
-        "is_live_content",
-        "is_family_safe",
-        "is_unlisted",
-        "is_private",
-        "has_ypc_metadata",
-        "category",
-        "owner_channel_name",
-        "publish_date",
-        "upload_date",
-        "keywords",
-        "available_countries",
-        "owner_profile_url"
-      ],
-      BLACKLISTED_KEYS: [
-        "is_owner_viewing",
-        "is_unplugged_corpus",
-        "is_crawlable",
-        "author"
-      ],
-      ACCOUNT_SETTINGS: {
-        SUBSCRIPTIONS: "NOTIFICATION_SUBSCRIPTION_NOTIFICATIONS",
-        RECOMMENDED_VIDEOS: "NOTIFICATION_RECOMMENDATION_WEB_CONTROL",
-        CHANNEL_ACTIVITY: "NOTIFICATION_COMMENT_WEB_CONTROL",
-        COMMENT_REPLIES: "NOTIFICATION_COMMENT_REPLY_OTHER_WEB_CONTROL",
-        USER_MENTION: "NOTIFICATION_USER_MENTION_WEB_CONTROL",
-        SHARED_CONTENT: "NOTIFICATION_RETUBING_WEB_CONTROL",
-        PLAYLISTS_PRIVACY: "PRIVACY_DISCOVERABLE_SAVED_PLAYLISTS",
-        SUBSCRIPTIONS_PRIVACY: "PRIVACY_DISCOVERABLE_SUBSCRIPTIONS"
-      },
-      BASE64_DIALECT: {
-        NORMAL: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".split(""),
-        REVERSE: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_".split("")
-      },
-      SIG_REGEX: {
-        ACTIONS: /;.{2}\.(?<name>.{2})\(.*?,(?<param>.*?)\)/g,
-        FUNCTIONS: /(?<name>.{2}):function\(.*?\){(.*?)}/g
-      },
-      NTOKEN_REGEX: {
-        CALLS: /c\[(.*?)\]\((.+?)\)/g,
-        PLACEHOLDERS: /c\[(.*?)\]=c/g,
-        FUNCTIONS: /d\.push\(e\)|d\.reverse\(\)|d\[0\]\)\[0\]\)|f=d\[0];d\[0\]|d\.length;d\.splice\(e,1\)|function\(\){for\(var|function\(d,e,f\){var|function\(d\){for\(var|reverse\(\)\.forEach|unshift\(d\.pop\(\)\)|function\(d,e\){for\(var f/
-      },
-      FUNCS: {
-        PUSH: "d.push(e)",
-        REVERSE_1: "d.reverse()",
-        REVERSE_2: "function(d){for(var",
-        SPLICE: "d.length;d.splice(e,1)",
-        SWAP0_1: "d[0])[0])",
-        SWAP0_2: "f=d[0];d[0]",
-        ROTATE_1: "reverse().forEach",
-        ROTATE_2: "unshift(d.pop())",
-        BASE64_DIA: "function(){for(var",
-        TRANSLATE_1: "function(d,e){for(var f",
-        TRANSLATE_2: "function(d,e,f){var"
-      }
-    };
-  }
-});
-
 // node_modules/uuid/dist/esm-browser/rng.js
 function rng() {
   if (!getRandomValues) {
@@ -705,3571 +574,132 @@ var init_esm_browser = __esm({
   }
 });
 
-// lib/core/OAuth.js
-var require_OAuth = __commonJS({
-  "lib/core/OAuth.js"(exports2, module2) {
+// lib/utils/Constants.js
+var require_Constants = __commonJS({
+  "lib/utils/Constants.js"(exports2, module2) {
     "use strict";
-    var Constants = require_Constants();
-    var Uuid = (init_esm_browser(), __toCommonJS(esm_browser_exports));
-    var OAuth2 = class {
-      #axios;
-      #oauth_code_url = `${Constants.URLS.YT_BASE}/o/oauth2/device/code`;
-      #oauth_token_url = `${Constants.URLS.YT_BASE}/o/oauth2/token`;
-      #oauth_revoke_url = `${Constants.URLS.YT_BASE}/o/oauth2/revoke`;
-      #auth_info = {};
-      #polling_interval = 5;
-      #ev = null;
-      constructor(ev, axios) {
-        this.#ev = ev;
-        this.#axios = axios;
-      }
-      async init(auth_info) {
-        this.#auth_info = auth_info;
-        if (!auth_info.access_token) {
-          this.#requestUserCode();
-        }
-      }
-      async #requestUserCode() {
-        const identity = await this.#getClientIdentity();
-        this.client_id = identity.id;
-        this.client_secret = identity.secret;
-        const data = {
-          client_id: this.client_id,
-          scope: Constants.OAUTH.SCOPE,
-          device_id: Uuid.v4(),
-          model_name: Constants.OAUTH.MODEL_NAME
-        };
-        const response = await this.#axios.post(this.#oauth_code_url, JSON.stringify(data), Constants.OAUTH.HEADERS).catch((error) => error);
-        if (response instanceof Error)
-          return this.#ev.emit("auth", { error: "Could not obtain user code.", status: "FAILED" });
-        this.#ev.emit("auth", {
-          code: response.data.user_code,
-          status: "AUTHORIZATION_PENDING",
-          expires_in: response.data.expires_in,
-          verification_url: response.data.verification_url
-        });
-        this.#polling_interval = response.data.interval;
-        this.#waitForAuth(response.data.device_code);
-      }
-      #waitForAuth(device_code) {
-        const data = {
-          client_id: this.client_id,
-          client_secret: this.client_secret,
-          code: device_code,
-          grant_type: Constants.OAUTH.GRANT_TYPE
-        };
-        setTimeout(async () => {
-          const response = await this.#axios.post(this.#oauth_token_url, JSON.stringify(data), Constants.OAUTH.HEADERS).catch((error) => error);
-          if (response instanceof Error)
-            return this.#ev.emit("auth", { error: "Could not get authentication token.", status: "FAILED" });
-          if (response.data.error) {
-            switch (response.data.error) {
-              case "slow_down":
-              case "authorization_pending":
-                this.#waitForAuth(device_code);
-                break;
-              case "access_denied":
-                this.#ev.emit("auth", {
-                  error: "Access was denied.",
-                  status: "ACCESS_DENIED"
-                });
-                break;
-              case "expired_token":
-                this.#ev.emit("auth", {
-                  error: "The user code has expired, requesting a new one.",
-                  status: "DEVICE_CODE_EXPIRED"
-                });
-                this.#requestUserCode();
-                break;
-              default:
-            }
-          } else {
-            const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
-            const credentials = {
-              access_token: response.data.access_token,
-              refresh_token: response.data.refresh_token,
-              expires: expiration_date
-            };
-            this.#auth_info = credentials;
-            this.#ev.emit("auth", {
-              credentials,
-              status: "SUCCESS"
-            });
-          }
-        }, 1e3 * this.#polling_interval);
-      }
-      async checkTokenValidity() {
-        if (this.shouldRefreshToken()) {
-          await this.#refreshAccessToken();
-        }
-      }
-      async #refreshAccessToken() {
-        const identity = await this.#getClientIdentity();
-        const data = {
-          client_id: identity.id,
-          client_secret: identity.secret,
-          refresh_token: this.#auth_info.refresh_token,
-          grant_type: "refresh_token"
-        };
-        const response = await this.#axios.post(this.#oauth_token_url, JSON.stringify(data), Constants.OAUTH.HEADERS).catch((error) => error);
-        if (response instanceof Error)
-          return this.#ev.emit("update-credentials", {
-            error: "Could not refresh access token.",
-            status: "FAILED"
-          });
-        const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
-        const credentials = {
-          access_token: response.data.access_token,
-          refresh_token: response.data.refresh_token || this.#auth_info.refresh_token,
-          expires: expiration_date
-        };
-        this.#auth_info = credentials;
-        this.#ev.emit("update-credentials", {
-          credentials,
-          status: "SUCCESS"
-        });
-      }
-      async revokeAccessToken() {
-        const response = await this.#axios.post(`${this.#oauth_revoke_url}?token=${this.getAccessToken()}`, Constants.OAUTH.HEADERS).catch((error) => error);
-        return {
-          success: !(response instanceof Error),
-          status_code: response.status || 0
-        };
-      }
-      async #getClientIdentity() {
-        const yttv_response = await this.#axios.get(`${Constants.URLS.YT_BASE}/tv`, Constants.OAUTH.HEADERS).catch((error) => error);
-        if (yttv_response instanceof Error)
-          throw new Error(`Could not extract client identity: ${yttv_response.message}`);
-        const url_body = Constants.OAUTH.REGEX.AUTH_SCRIPT.exec(yttv_response.data)[1];
-        const script_url = `${Constants.URLS.YT_BASE}/${url_body}`;
-        const response = await this.#axios.get(script_url).catch((error) => error);
-        if (response instanceof Error)
-          throw new Error(`Could not extract client identity: ${response.message}`);
-        const client_identity = response.data.replace(/\n/g, "").match(Constants.OAUTH.REGEX.CLIENT_IDENTITY);
-        return client_identity.groups;
-      }
-      getAccessToken() {
-        return this.#auth_info.access_token;
-      }
-      getRefreshToken() {
-        return this.#auth_info.refresh_token;
-      }
-      isValidAuthInfo() {
-        return this.#auth_info.hasOwnProperty("access_token") && this.#auth_info.hasOwnProperty("refresh_token") && this.#auth_info.hasOwnProperty("expires");
-      }
-      shouldRefreshToken() {
-        const timestamp = new Date(this.#auth_info.expires).getTime();
-        return new Date().getTime() > timestamp;
-      }
-    };
-    module2.exports = OAuth2;
-  }
-});
-
-// node_modules/varint/encode.js
-var require_encode = __commonJS({
-  "node_modules/varint/encode.js"(exports2, module2) {
-    module2.exports = encode;
-    var MSB = 128;
-    var REST = 127;
-    var MSBALL = ~REST;
-    var INT = Math.pow(2, 31);
-    function encode(num, out, offset) {
-      out = out || [];
-      offset = offset || 0;
-      var oldOffset = offset;
-      while (num >= INT) {
-        out[offset++] = num & 255 | MSB;
-        num /= 128;
-      }
-      while (num & MSBALL) {
-        out[offset++] = num & 255 | MSB;
-        num >>>= 7;
-      }
-      out[offset] = num | 0;
-      encode.bytes = offset - oldOffset + 1;
-      return out;
-    }
-  }
-});
-
-// node_modules/varint/decode.js
-var require_decode = __commonJS({
-  "node_modules/varint/decode.js"(exports2, module2) {
-    module2.exports = read;
-    var MSB = 128;
-    var REST = 127;
-    function read(buf, offset) {
-      var res = 0, offset = offset || 0, shift = 0, counter = offset, b, l = buf.length;
-      do {
-        if (counter >= l) {
-          read.bytes = 0;
-          throw new RangeError("Could not decode varint");
-        }
-        b = buf[counter++];
-        res += shift < 28 ? (b & REST) << shift : (b & REST) * Math.pow(2, shift);
-        shift += 7;
-      } while (b >= MSB);
-      read.bytes = counter - offset;
-      return res;
-    }
-  }
-});
-
-// node_modules/varint/length.js
-var require_length = __commonJS({
-  "node_modules/varint/length.js"(exports2, module2) {
-    var N1 = Math.pow(2, 7);
-    var N2 = Math.pow(2, 14);
-    var N3 = Math.pow(2, 21);
-    var N4 = Math.pow(2, 28);
-    var N5 = Math.pow(2, 35);
-    var N6 = Math.pow(2, 42);
-    var N7 = Math.pow(2, 49);
-    var N8 = Math.pow(2, 56);
-    var N9 = Math.pow(2, 63);
-    module2.exports = function(value) {
-      return value < N1 ? 1 : value < N2 ? 2 : value < N3 ? 3 : value < N4 ? 4 : value < N5 ? 5 : value < N6 ? 6 : value < N7 ? 7 : value < N8 ? 8 : value < N9 ? 9 : 10;
-    };
-  }
-});
-
-// node_modules/varint/index.js
-var require_varint = __commonJS({
-  "node_modules/varint/index.js"(exports2, module2) {
     module2.exports = {
-      encode: require_encode(),
-      decode: require_decode(),
-      encodingLength: require_length()
-    };
-  }
-});
-
-// node_modules/signed-varint/index.js
-var require_signed_varint = __commonJS({
-  "node_modules/signed-varint/index.js"(exports2) {
-    var varint = require_varint();
-    exports2.encode = function encode(v, b, o) {
-      v = v >= 0 ? v * 2 : v * -2 - 1;
-      var r = varint.encode(v, b, o);
-      encode.bytes = varint.encode.bytes;
-      return r;
-    };
-    exports2.decode = function decode(b, o) {
-      var v = varint.decode(b, o);
-      decode.bytes = varint.decode.bytes;
-      return v & 1 ? (v + 1) / -2 : v / 2;
-    };
-    exports2.encodingLength = function(v) {
-      return varint.encodingLength(v >= 0 ? v * 2 : v * -2 - 1);
-    };
-  }
-});
-
-// node_modules/protocol-buffers-encodings/index.js
-var require_protocol_buffers_encodings = __commonJS({
-  "node_modules/protocol-buffers-encodings/index.js"(exports2) {
-    var varint = require_varint();
-    var svarint = require_signed_varint();
-    exports2.make = encoder;
-    exports2.name = function(enc) {
-      var keys = Object.keys(exports2);
-      for (var i = 0; i < keys.length; i++) {
-        if (exports2[keys[i]] === enc)
-          return keys[i];
-      }
-      return null;
-    };
-    exports2.skip = function(type, buffer, offset) {
-      switch (type) {
-        case 0:
-          varint.decode(buffer, offset);
-          return offset + varint.decode.bytes;
-        case 1:
-          return offset + 8;
-        case 2:
-          var len = varint.decode(buffer, offset);
-          return offset + varint.decode.bytes + len;
-        case 3:
-        case 4:
-          throw new Error("Groups are not supported");
-        case 5:
-          return offset + 4;
-      }
-      throw new Error("Unknown wire type: " + type);
-    };
-    exports2.bytes = encoder(2, function encode(val, buffer, offset) {
-      var oldOffset = offset;
-      var len = bufferLength(val);
-      varint.encode(len, buffer, offset);
-      offset += varint.encode.bytes;
-      if (Buffer.isBuffer(val))
-        val.copy(buffer, offset);
-      else
-        buffer.write(val, offset, len);
-      offset += len;
-      encode.bytes = offset - oldOffset;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var oldOffset = offset;
-      var len = varint.decode(buffer, offset);
-      offset += varint.decode.bytes;
-      var val = buffer.slice(offset, offset + len);
-      offset += val.length;
-      decode.bytes = offset - oldOffset;
-      return val;
-    }, function encodingLength(val) {
-      var len = bufferLength(val);
-      return varint.encodingLength(len) + len;
-    });
-    exports2.string = encoder(2, function encode(val, buffer, offset) {
-      var oldOffset = offset;
-      var len = Buffer.byteLength(val);
-      varint.encode(len, buffer, offset, "utf-8");
-      offset += varint.encode.bytes;
-      buffer.write(val, offset, len);
-      offset += len;
-      encode.bytes = offset - oldOffset;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var oldOffset = offset;
-      var len = varint.decode(buffer, offset);
-      offset += varint.decode.bytes;
-      var val = buffer.toString("utf-8", offset, offset + len);
-      offset += len;
-      decode.bytes = offset - oldOffset;
-      return val;
-    }, function encodingLength(val) {
-      var len = Buffer.byteLength(val);
-      return varint.encodingLength(len) + len;
-    });
-    exports2.bool = encoder(0, function encode(val, buffer, offset) {
-      buffer[offset] = val ? 1 : 0;
-      encode.bytes = 1;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var bool = buffer[offset] > 0;
-      decode.bytes = 1;
-      return bool;
-    }, function encodingLength() {
-      return 1;
-    });
-    exports2.int32 = encoder(0, function encode(val, buffer, offset) {
-      varint.encode(val < 0 ? val + 4294967296 : val, buffer, offset);
-      encode.bytes = varint.encode.bytes;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var val = varint.decode(buffer, offset);
-      decode.bytes = varint.decode.bytes;
-      return val > 2147483647 ? val - 4294967296 : val;
-    }, function encodingLength(val) {
-      return varint.encodingLength(val < 0 ? val + 4294967296 : val);
-    });
-    exports2.int64 = encoder(0, function encode(val, buffer, offset) {
-      if (val < 0) {
-        var last = offset + 9;
-        varint.encode(val * -1, buffer, offset);
-        offset += varint.encode.bytes - 1;
-        buffer[offset] = buffer[offset] | 128;
-        while (offset < last - 1) {
-          offset++;
-          buffer[offset] = 255;
-        }
-        buffer[last] = 1;
-        encode.bytes = 10;
-      } else {
-        varint.encode(val, buffer, offset);
-        encode.bytes = varint.encode.bytes;
-      }
-      return buffer;
-    }, function decode(buffer, offset) {
-      var val = varint.decode(buffer, offset);
-      if (val >= Math.pow(2, 63)) {
-        var limit = 9;
-        while (buffer[offset + limit - 1] === 255)
-          limit--;
-        limit = limit || 9;
-        var subset = Buffer.allocUnsafe(limit);
-        buffer.copy(subset, 0, offset, offset + limit);
-        subset[limit - 1] = subset[limit - 1] & 127;
-        val = -1 * varint.decode(subset, 0);
-        decode.bytes = 10;
-      } else {
-        decode.bytes = varint.decode.bytes;
-      }
-      return val;
-    }, function encodingLength(val) {
-      return val < 0 ? 10 : varint.encodingLength(val);
-    });
-    exports2.sint32 = exports2.sint64 = encoder(0, svarint.encode, svarint.decode, svarint.encodingLength);
-    exports2.uint32 = exports2.uint64 = exports2.enum = exports2.varint = encoder(0, varint.encode, varint.decode, varint.encodingLength);
-    exports2.fixed64 = exports2.sfixed64 = encoder(1, function encode(val, buffer, offset) {
-      val.copy(buffer, offset);
-      encode.bytes = 8;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var val = buffer.slice(offset, offset + 8);
-      decode.bytes = 8;
-      return val;
-    }, function encodingLength() {
-      return 8;
-    });
-    exports2.double = encoder(1, function encode(val, buffer, offset) {
-      buffer.writeDoubleLE(val, offset);
-      encode.bytes = 8;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var val = buffer.readDoubleLE(offset);
-      decode.bytes = 8;
-      return val;
-    }, function encodingLength() {
-      return 8;
-    });
-    exports2.fixed32 = encoder(5, function encode(val, buffer, offset) {
-      buffer.writeUInt32LE(val, offset);
-      encode.bytes = 4;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var val = buffer.readUInt32LE(offset);
-      decode.bytes = 4;
-      return val;
-    }, function encodingLength() {
-      return 4;
-    });
-    exports2.sfixed32 = encoder(5, function encode(val, buffer, offset) {
-      buffer.writeInt32LE(val, offset);
-      encode.bytes = 4;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var val = buffer.readInt32LE(offset);
-      decode.bytes = 4;
-      return val;
-    }, function encodingLength() {
-      return 4;
-    });
-    exports2.float = encoder(5, function encode(val, buffer, offset) {
-      buffer.writeFloatLE(val, offset);
-      encode.bytes = 4;
-      return buffer;
-    }, function decode(buffer, offset) {
-      var val = buffer.readFloatLE(offset);
-      decode.bytes = 4;
-      return val;
-    }, function encodingLength() {
-      return 4;
-    });
-    function encoder(type, encode, decode, encodingLength) {
-      encode.bytes = decode.bytes = 0;
-      return {
-        type,
-        encode,
-        decode,
-        encodingLength
-      };
-    }
-    function bufferLength(val) {
-      return Buffer.isBuffer(val) ? val.length : Buffer.byteLength(val);
-    }
-  }
-});
-
-// lib/proto/messages.js
-var require_messages = __commonJS({
-  "lib/proto/messages.js"(exports2) {
-    var encodings = require_protocol_buffers_encodings();
-    var varint = encodings.varint;
-    var skip = encodings.skip;
-    var VisitorData = exports2.VisitorData = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var ChannelAnalytics = exports2.ChannelAnalytics = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var InnertubePayload = exports2.InnertubePayload = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var SoundInfoParams = exports2.SoundInfoParams = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var NotificationPreferences = exports2.NotificationPreferences = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var LiveMessageParams = exports2.LiveMessageParams = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var GetCommentsSectionParams = exports2.GetCommentsSectionParams = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var CreateCommentParams = exports2.CreateCommentParams = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var CreateCommentReplyParams = exports2.CreateCommentReplyParams = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var PeformCommentActionParams = exports2.PeformCommentActionParams = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var MusicSearchFilter = exports2.MusicSearchFilter = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    var SearchFilter = exports2.SearchFilter = {
-      buffer: true,
-      encodingLength: null,
-      encode: null,
-      decode: null
-    };
-    defineVisitorData();
-    defineChannelAnalytics();
-    defineInnertubePayload();
-    defineSoundInfoParams();
-    defineNotificationPreferences();
-    defineLiveMessageParams();
-    defineGetCommentsSectionParams();
-    defineCreateCommentParams();
-    defineCreateCommentReplyParams();
-    definePeformCommentActionParams();
-    defineMusicSearchFilter();
-    defineSearchFilter();
-    function defineVisitorData() {
-      VisitorData.encodingLength = encodingLength;
-      VisitorData.encode = encode;
-      VisitorData.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.id)) {
-          var len = encodings.string.encodingLength(obj.id);
-          length += 1 + len;
-        }
-        if (defined(obj.timestamp)) {
-          var len = encodings.int32.encodingLength(obj.timestamp);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.id)) {
-          buf[offset++] = 10;
-          encodings.string.encode(obj.id, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        if (defined(obj.timestamp)) {
-          buf[offset++] = 40;
-          encodings.int32.encode(obj.timestamp, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          id: "",
-          timestamp: 0
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 1:
-              obj.id = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            case 5:
-              obj.timestamp = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineChannelAnalytics() {
-      var Params = ChannelAnalytics.Params = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineParams();
-      function defineParams() {
-        Params.encodingLength = encodingLength2;
-        Params.encode = encode2;
-        Params.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.channel_id)) {
-            var len = encodings.string.encodingLength(obj.channel_id);
-            length += 2 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.channel_id)) {
-            buf[offset++] = 202;
-            buf[offset++] = 62;
-            encodings.string.encode(obj.channel_id, buf, offset);
-            offset += encodings.string.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            channel_id: ""
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 1001:
-                obj.channel_id = encodings.string.decode(buf, offset);
-                offset += encodings.string.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      ChannelAnalytics.encodingLength = encodingLength;
-      ChannelAnalytics.encode = encode;
-      ChannelAnalytics.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.params)) {
-          var len = Params.encodingLength(obj.params);
-          length += varint.encodingLength(len);
-          length += 2 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.params)) {
-          buf[offset++] = 130;
-          buf[offset++] = 2;
-          varint.encode(Params.encodingLength(obj.params), buf, offset);
-          offset += varint.encode.bytes;
-          Params.encode(obj.params, buf, offset);
-          offset += Params.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          params: null
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 32:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.params = Params.decode(buf, offset, offset + len);
-              offset += Params.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineInnertubePayload() {
-      var Context = InnertubePayload.Context = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineContext();
-      function defineContext() {
-        var Client = Context.Client = {
-          buffer: true,
-          encodingLength: null,
-          encode: null,
-          decode: null
-        };
-        defineClient();
-        function defineClient() {
-          Client.encodingLength = encodingLength3;
-          Client.encode = encode3;
-          Client.decode = decode3;
-          function encodingLength3(obj) {
-            var length = 0;
-            if (defined(obj.unkparam)) {
-              var len = encodings.int32.encodingLength(obj.unkparam);
-              length += 2 + len;
-            }
-            if (defined(obj.client_version)) {
-              var len = encodings.string.encodingLength(obj.client_version);
-              length += 2 + len;
-            }
-            if (defined(obj.client_name)) {
-              var len = encodings.string.encodingLength(obj.client_name);
-              length += 2 + len;
-            }
-            return length;
-          }
-          function encode3(obj, buf, offset) {
-            if (!offset)
-              offset = 0;
-            if (!buf)
-              buf = Buffer.allocUnsafe(encodingLength3(obj));
-            var oldOffset = offset;
-            if (defined(obj.unkparam)) {
-              buf[offset++] = 128;
-              buf[offset++] = 1;
-              encodings.int32.encode(obj.unkparam, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            if (defined(obj.client_version)) {
-              buf[offset++] = 138;
-              buf[offset++] = 1;
-              encodings.string.encode(obj.client_version, buf, offset);
-              offset += encodings.string.encode.bytes;
-            }
-            if (defined(obj.client_name)) {
-              buf[offset++] = 146;
-              buf[offset++] = 1;
-              encodings.string.encode(obj.client_name, buf, offset);
-              offset += encodings.string.encode.bytes;
-            }
-            encode3.bytes = offset - oldOffset;
-            return buf;
-          }
-          function decode3(buf, offset, end) {
-            if (!offset)
-              offset = 0;
-            if (!end)
-              end = buf.length;
-            if (!(end <= buf.length && offset <= buf.length))
-              throw new Error("Decoded message is not valid");
-            var oldOffset = offset;
-            var obj = {
-              unkparam: 0,
-              client_version: "",
-              client_name: ""
-            };
-            while (true) {
-              if (end <= offset) {
-                decode3.bytes = offset - oldOffset;
-                return obj;
-              }
-              var prefix = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              var tag = prefix >> 3;
-              switch (tag) {
-                case 16:
-                  obj.unkparam = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                case 17:
-                  obj.client_version = encodings.string.decode(buf, offset);
-                  offset += encodings.string.decode.bytes;
-                  break;
-                case 18:
-                  obj.client_name = encodings.string.decode(buf, offset);
-                  offset += encodings.string.decode.bytes;
-                  break;
-                default:
-                  offset = skip(prefix & 7, buf, offset);
-              }
-            }
-          }
-        }
-        Context.encodingLength = encodingLength2;
-        Context.encode = encode2;
-        Context.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.client)) {
-            var len = Client.encodingLength(obj.client);
-            length += varint.encodingLength(len);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.client)) {
-            buf[offset++] = 10;
-            varint.encode(Client.encodingLength(obj.client), buf, offset);
-            offset += varint.encode.bytes;
-            Client.encode(obj.client, buf, offset);
-            offset += Client.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            client: null
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 1:
-                var len = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                obj.client = Client.decode(buf, offset, offset + len);
-                offset += Client.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      InnertubePayload.encodingLength = encodingLength;
-      InnertubePayload.encode = encode;
-      InnertubePayload.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.context)) {
-          var len = Context.encodingLength(obj.context);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        if (defined(obj.target)) {
-          var len = encodings.string.encodingLength(obj.target);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.context)) {
-          buf[offset++] = 10;
-          varint.encode(Context.encodingLength(obj.context), buf, offset);
-          offset += varint.encode.bytes;
-          Context.encode(obj.context, buf, offset);
-          offset += Context.encode.bytes;
-        }
-        if (defined(obj.target)) {
-          buf[offset++] = 18;
-          encodings.string.encode(obj.target, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          context: null,
-          target: ""
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 1:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.context = Context.decode(buf, offset, offset + len);
-              offset += Context.decode.bytes;
-              break;
-            case 2:
-              obj.target = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineSoundInfoParams() {
-      var Sound = SoundInfoParams.Sound = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineSound();
-      function defineSound() {
-        var Params = Sound.Params = {
-          buffer: true,
-          encodingLength: null,
-          encode: null,
-          decode: null
-        };
-        defineParams();
-        function defineParams() {
-          var Ids = Params.Ids = {
-            buffer: true,
-            encodingLength: null,
-            encode: null,
-            decode: null
-          };
-          defineIds();
-          function defineIds() {
-            Ids.encodingLength = encodingLength4;
-            Ids.encode = encode4;
-            Ids.decode = decode4;
-            function encodingLength4(obj) {
-              var length = 0;
-              if (defined(obj.id_1)) {
-                var len = encodings.string.encodingLength(obj.id_1);
-                length += 1 + len;
-              }
-              if (defined(obj.id_2)) {
-                var len = encodings.string.encodingLength(obj.id_2);
-                length += 1 + len;
-              }
-              if (defined(obj.id_3)) {
-                var len = encodings.string.encodingLength(obj.id_3);
-                length += 1 + len;
-              }
-              return length;
-            }
-            function encode4(obj, buf, offset) {
-              if (!offset)
-                offset = 0;
-              if (!buf)
-                buf = Buffer.allocUnsafe(encodingLength4(obj));
-              var oldOffset = offset;
-              if (defined(obj.id_1)) {
-                buf[offset++] = 10;
-                encodings.string.encode(obj.id_1, buf, offset);
-                offset += encodings.string.encode.bytes;
-              }
-              if (defined(obj.id_2)) {
-                buf[offset++] = 18;
-                encodings.string.encode(obj.id_2, buf, offset);
-                offset += encodings.string.encode.bytes;
-              }
-              if (defined(obj.id_3)) {
-                buf[offset++] = 26;
-                encodings.string.encode(obj.id_3, buf, offset);
-                offset += encodings.string.encode.bytes;
-              }
-              encode4.bytes = offset - oldOffset;
-              return buf;
-            }
-            function decode4(buf, offset, end) {
-              if (!offset)
-                offset = 0;
-              if (!end)
-                end = buf.length;
-              if (!(end <= buf.length && offset <= buf.length))
-                throw new Error("Decoded message is not valid");
-              var oldOffset = offset;
-              var obj = {
-                id_1: "",
-                id_2: "",
-                id_3: ""
-              };
-              while (true) {
-                if (end <= offset) {
-                  decode4.bytes = offset - oldOffset;
-                  return obj;
-                }
-                var prefix = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                var tag = prefix >> 3;
-                switch (tag) {
-                  case 1:
-                    obj.id_1 = encodings.string.decode(buf, offset);
-                    offset += encodings.string.decode.bytes;
-                    break;
-                  case 2:
-                    obj.id_2 = encodings.string.decode(buf, offset);
-                    offset += encodings.string.decode.bytes;
-                    break;
-                  case 3:
-                    obj.id_3 = encodings.string.decode(buf, offset);
-                    offset += encodings.string.decode.bytes;
-                    break;
-                  default:
-                    offset = skip(prefix & 7, buf, offset);
-                }
-              }
-            }
-          }
-          Params.encodingLength = encodingLength3;
-          Params.encode = encode3;
-          Params.decode = decode3;
-          function encodingLength3(obj) {
-            var length = 0;
-            if (defined(obj.ids)) {
-              var len = Ids.encodingLength(obj.ids);
-              length += varint.encodingLength(len);
-              length += 1 + len;
-            }
-            return length;
-          }
-          function encode3(obj, buf, offset) {
-            if (!offset)
-              offset = 0;
-            if (!buf)
-              buf = Buffer.allocUnsafe(encodingLength3(obj));
-            var oldOffset = offset;
-            if (defined(obj.ids)) {
-              buf[offset++] = 18;
-              varint.encode(Ids.encodingLength(obj.ids), buf, offset);
-              offset += varint.encode.bytes;
-              Ids.encode(obj.ids, buf, offset);
-              offset += Ids.encode.bytes;
-            }
-            encode3.bytes = offset - oldOffset;
-            return buf;
-          }
-          function decode3(buf, offset, end) {
-            if (!offset)
-              offset = 0;
-            if (!end)
-              end = buf.length;
-            if (!(end <= buf.length && offset <= buf.length))
-              throw new Error("Decoded message is not valid");
-            var oldOffset = offset;
-            var obj = {
-              ids: null
-            };
-            while (true) {
-              if (end <= offset) {
-                decode3.bytes = offset - oldOffset;
-                return obj;
-              }
-              var prefix = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              var tag = prefix >> 3;
-              switch (tag) {
-                case 2:
-                  var len = varint.decode(buf, offset);
-                  offset += varint.decode.bytes;
-                  obj.ids = Ids.decode(buf, offset, offset + len);
-                  offset += Ids.decode.bytes;
-                  break;
-                default:
-                  offset = skip(prefix & 7, buf, offset);
-              }
-            }
-          }
-        }
-        Sound.encodingLength = encodingLength2;
-        Sound.encode = encode2;
-        Sound.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.params)) {
-            var len = Params.encodingLength(obj.params);
-            length += varint.encodingLength(len);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.params)) {
-            buf[offset++] = 10;
-            varint.encode(Params.encodingLength(obj.params), buf, offset);
-            offset += varint.encode.bytes;
-            Params.encode(obj.params, buf, offset);
-            offset += Params.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            params: null
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 1:
-                var len = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                obj.params = Params.decode(buf, offset, offset + len);
-                offset += Params.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      SoundInfoParams.encodingLength = encodingLength;
-      SoundInfoParams.encode = encode;
-      SoundInfoParams.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.sound)) {
-          var len = Sound.encodingLength(obj.sound);
-          length += varint.encodingLength(len);
-          length += 2 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.sound)) {
-          buf[offset++] = 242;
-          buf[offset++] = 5;
-          varint.encode(Sound.encodingLength(obj.sound), buf, offset);
-          offset += varint.encode.bytes;
-          Sound.encode(obj.sound, buf, offset);
-          offset += Sound.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          sound: null
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 94:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.sound = Sound.decode(buf, offset, offset + len);
-              offset += Sound.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineNotificationPreferences() {
-      var Preference = NotificationPreferences.Preference = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      definePreference();
-      function definePreference() {
-        Preference.encodingLength = encodingLength2;
-        Preference.encode = encode2;
-        Preference.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.index)) {
-            var len = encodings.int32.encodingLength(obj.index);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.index)) {
-            buf[offset++] = 8;
-            encodings.int32.encode(obj.index, buf, offset);
-            offset += encodings.int32.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            index: 0
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 1:
-                obj.index = encodings.int32.decode(buf, offset);
-                offset += encodings.int32.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      NotificationPreferences.encodingLength = encodingLength;
-      NotificationPreferences.encode = encode;
-      NotificationPreferences.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.channel_id)) {
-          var len = encodings.string.encodingLength(obj.channel_id);
-          length += 1 + len;
-        }
-        if (defined(obj.pref_id)) {
-          var len = Preference.encodingLength(obj.pref_id);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        if (defined(obj.number_0)) {
-          var len = encodings.int32.encodingLength(obj.number_0);
-          length += 1 + len;
-        }
-        if (defined(obj.number_1)) {
-          var len = encodings.int32.encodingLength(obj.number_1);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.channel_id)) {
-          buf[offset++] = 10;
-          encodings.string.encode(obj.channel_id, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        if (defined(obj.pref_id)) {
-          buf[offset++] = 18;
-          varint.encode(Preference.encodingLength(obj.pref_id), buf, offset);
-          offset += varint.encode.bytes;
-          Preference.encode(obj.pref_id, buf, offset);
-          offset += Preference.encode.bytes;
-        }
-        if (defined(obj.number_0)) {
-          buf[offset++] = 24;
-          encodings.int32.encode(obj.number_0, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        if (defined(obj.number_1)) {
-          buf[offset++] = 32;
-          encodings.int32.encode(obj.number_1, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          channel_id: "",
-          pref_id: null,
-          number_0: 0,
-          number_1: 0
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 1:
-              obj.channel_id = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            case 2:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.pref_id = Preference.decode(buf, offset, offset + len);
-              offset += Preference.decode.bytes;
-              break;
-            case 3:
-              obj.number_0 = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            case 4:
-              obj.number_1 = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineLiveMessageParams() {
-      var Params = LiveMessageParams.Params = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineParams();
-      function defineParams() {
-        var Ids = Params.Ids = {
-          buffer: true,
-          encodingLength: null,
-          encode: null,
-          decode: null
-        };
-        defineIds();
-        function defineIds() {
-          Ids.encodingLength = encodingLength3;
-          Ids.encode = encode3;
-          Ids.decode = decode3;
-          function encodingLength3(obj) {
-            var length = 0;
-            if (defined(obj.channel_id)) {
-              var len = encodings.string.encodingLength(obj.channel_id);
-              length += 1 + len;
-            }
-            if (defined(obj.video_id)) {
-              var len = encodings.string.encodingLength(obj.video_id);
-              length += 1 + len;
-            }
-            return length;
-          }
-          function encode3(obj, buf, offset) {
-            if (!offset)
-              offset = 0;
-            if (!buf)
-              buf = Buffer.allocUnsafe(encodingLength3(obj));
-            var oldOffset = offset;
-            if (defined(obj.channel_id)) {
-              buf[offset++] = 10;
-              encodings.string.encode(obj.channel_id, buf, offset);
-              offset += encodings.string.encode.bytes;
-            }
-            if (defined(obj.video_id)) {
-              buf[offset++] = 18;
-              encodings.string.encode(obj.video_id, buf, offset);
-              offset += encodings.string.encode.bytes;
-            }
-            encode3.bytes = offset - oldOffset;
-            return buf;
-          }
-          function decode3(buf, offset, end) {
-            if (!offset)
-              offset = 0;
-            if (!end)
-              end = buf.length;
-            if (!(end <= buf.length && offset <= buf.length))
-              throw new Error("Decoded message is not valid");
-            var oldOffset = offset;
-            var obj = {
-              channel_id: "",
-              video_id: ""
-            };
-            while (true) {
-              if (end <= offset) {
-                decode3.bytes = offset - oldOffset;
-                return obj;
-              }
-              var prefix = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              var tag = prefix >> 3;
-              switch (tag) {
-                case 1:
-                  obj.channel_id = encodings.string.decode(buf, offset);
-                  offset += encodings.string.decode.bytes;
-                  break;
-                case 2:
-                  obj.video_id = encodings.string.decode(buf, offset);
-                  offset += encodings.string.decode.bytes;
-                  break;
-                default:
-                  offset = skip(prefix & 7, buf, offset);
-              }
-            }
-          }
-        }
-        Params.encodingLength = encodingLength2;
-        Params.encode = encode2;
-        Params.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.ids)) {
-            var len = Ids.encodingLength(obj.ids);
-            length += varint.encodingLength(len);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.ids)) {
-            buf[offset++] = 42;
-            varint.encode(Ids.encodingLength(obj.ids), buf, offset);
-            offset += varint.encode.bytes;
-            Ids.encode(obj.ids, buf, offset);
-            offset += Ids.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            ids: null
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 5:
-                var len = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                obj.ids = Ids.decode(buf, offset, offset + len);
-                offset += Ids.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      LiveMessageParams.encodingLength = encodingLength;
-      LiveMessageParams.encode = encode;
-      LiveMessageParams.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.params)) {
-          var len = Params.encodingLength(obj.params);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        if (defined(obj.number_0)) {
-          var len = encodings.int32.encodingLength(obj.number_0);
-          length += 1 + len;
-        }
-        if (defined(obj.number_1)) {
-          var len = encodings.int32.encodingLength(obj.number_1);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.params)) {
-          buf[offset++] = 10;
-          varint.encode(Params.encodingLength(obj.params), buf, offset);
-          offset += varint.encode.bytes;
-          Params.encode(obj.params, buf, offset);
-          offset += Params.encode.bytes;
-        }
-        if (defined(obj.number_0)) {
-          buf[offset++] = 16;
-          encodings.int32.encode(obj.number_0, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        if (defined(obj.number_1)) {
-          buf[offset++] = 24;
-          encodings.int32.encode(obj.number_1, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          params: null,
-          number_0: 0,
-          number_1: 0
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 1:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.params = Params.decode(buf, offset, offset + len);
-              offset += Params.decode.bytes;
-              break;
-            case 2:
-              obj.number_0 = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            case 3:
-              obj.number_1 = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineGetCommentsSectionParams() {
-      var Context = GetCommentsSectionParams.Context = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      var Params = GetCommentsSectionParams.Params = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineContext();
-      defineParams();
-      function defineContext() {
-        Context.encodingLength = encodingLength2;
-        Context.encode = encode2;
-        Context.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.video_id)) {
-            var len = encodings.string.encodingLength(obj.video_id);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.video_id)) {
-            buf[offset++] = 18;
-            encodings.string.encode(obj.video_id, buf, offset);
-            offset += encodings.string.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            video_id: ""
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 2:
-                obj.video_id = encodings.string.decode(buf, offset);
-                offset += encodings.string.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      function defineParams() {
-        var Options = Params.Options = {
-          buffer: true,
-          encodingLength: null,
-          encode: null,
-          decode: null
-        };
-        var RepliesOptions = Params.RepliesOptions = {
-          buffer: true,
-          encodingLength: null,
-          encode: null,
-          decode: null
-        };
-        defineOptions();
-        defineRepliesOptions();
-        function defineOptions() {
-          Options.encodingLength = encodingLength3;
-          Options.encode = encode3;
-          Options.decode = decode3;
-          function encodingLength3(obj) {
-            var length = 0;
-            if (defined(obj.video_id)) {
-              var len = encodings.string.encodingLength(obj.video_id);
-              length += 1 + len;
-            }
-            if (defined(obj.sort_by)) {
-              var len = encodings.int32.encodingLength(obj.sort_by);
-              length += 1 + len;
-            }
-            if (defined(obj.type)) {
-              var len = encodings.int32.encodingLength(obj.type);
-              length += 1 + len;
-            }
-            return length;
-          }
-          function encode3(obj, buf, offset) {
-            if (!offset)
-              offset = 0;
-            if (!buf)
-              buf = Buffer.allocUnsafe(encodingLength3(obj));
-            var oldOffset = offset;
-            if (defined(obj.video_id)) {
-              buf[offset++] = 34;
-              encodings.string.encode(obj.video_id, buf, offset);
-              offset += encodings.string.encode.bytes;
-            }
-            if (defined(obj.sort_by)) {
-              buf[offset++] = 48;
-              encodings.int32.encode(obj.sort_by, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            if (defined(obj.type)) {
-              buf[offset++] = 120;
-              encodings.int32.encode(obj.type, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            encode3.bytes = offset - oldOffset;
-            return buf;
-          }
-          function decode3(buf, offset, end) {
-            if (!offset)
-              offset = 0;
-            if (!end)
-              end = buf.length;
-            if (!(end <= buf.length && offset <= buf.length))
-              throw new Error("Decoded message is not valid");
-            var oldOffset = offset;
-            var obj = {
-              video_id: "",
-              sort_by: 0,
-              type: 0
-            };
-            while (true) {
-              if (end <= offset) {
-                decode3.bytes = offset - oldOffset;
-                return obj;
-              }
-              var prefix = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              var tag = prefix >> 3;
-              switch (tag) {
-                case 4:
-                  obj.video_id = encodings.string.decode(buf, offset);
-                  offset += encodings.string.decode.bytes;
-                  break;
-                case 6:
-                  obj.sort_by = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                case 15:
-                  obj.type = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                default:
-                  offset = skip(prefix & 7, buf, offset);
-              }
-            }
-          }
-        }
-        function defineRepliesOptions() {
-          var UnkOpts = RepliesOptions.UnkOpts = {
-            buffer: true,
-            encodingLength: null,
-            encode: null,
-            decode: null
-          };
-          defineUnkOpts();
-          function defineUnkOpts() {
-            UnkOpts.encodingLength = encodingLength4;
-            UnkOpts.encode = encode4;
-            UnkOpts.decode = decode4;
-            function encodingLength4(obj) {
-              var length = 0;
-              if (defined(obj.unk_param)) {
-                var len = encodings.int32.encodingLength(obj.unk_param);
-                length += 1 + len;
-              }
-              return length;
-            }
-            function encode4(obj, buf, offset) {
-              if (!offset)
-                offset = 0;
-              if (!buf)
-                buf = Buffer.allocUnsafe(encodingLength4(obj));
-              var oldOffset = offset;
-              if (defined(obj.unk_param)) {
-                buf[offset++] = 8;
-                encodings.int32.encode(obj.unk_param, buf, offset);
-                offset += encodings.int32.encode.bytes;
-              }
-              encode4.bytes = offset - oldOffset;
-              return buf;
-            }
-            function decode4(buf, offset, end) {
-              if (!offset)
-                offset = 0;
-              if (!end)
-                end = buf.length;
-              if (!(end <= buf.length && offset <= buf.length))
-                throw new Error("Decoded message is not valid");
-              var oldOffset = offset;
-              var obj = {
-                unk_param: 0
-              };
-              while (true) {
-                if (end <= offset) {
-                  decode4.bytes = offset - oldOffset;
-                  return obj;
-                }
-                var prefix = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                var tag = prefix >> 3;
-                switch (tag) {
-                  case 1:
-                    obj.unk_param = encodings.int32.decode(buf, offset);
-                    offset += encodings.int32.decode.bytes;
-                    break;
-                  default:
-                    offset = skip(prefix & 7, buf, offset);
-                }
-              }
-            }
-          }
-          RepliesOptions.encodingLength = encodingLength3;
-          RepliesOptions.encode = encode3;
-          RepliesOptions.decode = decode3;
-          function encodingLength3(obj) {
-            var length = 0;
-            if (defined(obj.comment_id)) {
-              var len = encodings.string.encodingLength(obj.comment_id);
-              length += 1 + len;
-            }
-            if (defined(obj.unkopts)) {
-              var len = UnkOpts.encodingLength(obj.unkopts);
-              length += varint.encodingLength(len);
-              length += 1 + len;
-            }
-            if (defined(obj.channel_id)) {
-              var len = encodings.string.encodingLength(obj.channel_id);
-              length += 1 + len;
-            }
-            if (defined(obj.video_id)) {
-              var len = encodings.string.encodingLength(obj.video_id);
-              length += 1 + len;
-            }
-            if (defined(obj.unk_param_1)) {
-              var len = encodings.int32.encodingLength(obj.unk_param_1);
-              length += 1 + len;
-            }
-            if (defined(obj.unk_param_2)) {
-              var len = encodings.int32.encodingLength(obj.unk_param_2);
-              length += 1 + len;
-            }
-            return length;
-          }
-          function encode3(obj, buf, offset) {
-            if (!offset)
-              offset = 0;
-            if (!buf)
-              buf = Buffer.allocUnsafe(encodingLength3(obj));
-            var oldOffset = offset;
-            if (defined(obj.comment_id)) {
-              buf[offset++] = 18;
-              encodings.string.encode(obj.comment_id, buf, offset);
-              offset += encodings.string.encode.bytes;
-            }
-            if (defined(obj.unkopts)) {
-              buf[offset++] = 34;
-              varint.encode(UnkOpts.encodingLength(obj.unkopts), buf, offset);
-              offset += varint.encode.bytes;
-              UnkOpts.encode(obj.unkopts, buf, offset);
-              offset += UnkOpts.encode.bytes;
-            }
-            if (defined(obj.channel_id)) {
-              buf[offset++] = 42;
-              encodings.string.encode(obj.channel_id, buf, offset);
-              offset += encodings.string.encode.bytes;
-            }
-            if (defined(obj.video_id)) {
-              buf[offset++] = 50;
-              encodings.string.encode(obj.video_id, buf, offset);
-              offset += encodings.string.encode.bytes;
-            }
-            if (defined(obj.unk_param_1)) {
-              buf[offset++] = 64;
-              encodings.int32.encode(obj.unk_param_1, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            if (defined(obj.unk_param_2)) {
-              buf[offset++] = 72;
-              encodings.int32.encode(obj.unk_param_2, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            encode3.bytes = offset - oldOffset;
-            return buf;
-          }
-          function decode3(buf, offset, end) {
-            if (!offset)
-              offset = 0;
-            if (!end)
-              end = buf.length;
-            if (!(end <= buf.length && offset <= buf.length))
-              throw new Error("Decoded message is not valid");
-            var oldOffset = offset;
-            var obj = {
-              comment_id: "",
-              unkopts: null,
-              channel_id: "",
-              video_id: "",
-              unk_param_1: 0,
-              unk_param_2: 0
-            };
-            while (true) {
-              if (end <= offset) {
-                decode3.bytes = offset - oldOffset;
-                return obj;
-              }
-              var prefix = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              var tag = prefix >> 3;
-              switch (tag) {
-                case 2:
-                  obj.comment_id = encodings.string.decode(buf, offset);
-                  offset += encodings.string.decode.bytes;
-                  break;
-                case 4:
-                  var len = varint.decode(buf, offset);
-                  offset += varint.decode.bytes;
-                  obj.unkopts = UnkOpts.decode(buf, offset, offset + len);
-                  offset += UnkOpts.decode.bytes;
-                  break;
-                case 5:
-                  obj.channel_id = encodings.string.decode(buf, offset);
-                  offset += encodings.string.decode.bytes;
-                  break;
-                case 6:
-                  obj.video_id = encodings.string.decode(buf, offset);
-                  offset += encodings.string.decode.bytes;
-                  break;
-                case 8:
-                  obj.unk_param_1 = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                case 9:
-                  obj.unk_param_2 = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                default:
-                  offset = skip(prefix & 7, buf, offset);
-              }
-            }
-          }
-        }
-        Params.encodingLength = encodingLength2;
-        Params.encode = encode2;
-        Params.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.unk_token)) {
-            var len = encodings.string.encodingLength(obj.unk_token);
-            length += 1 + len;
-          }
-          if (defined(obj.opts)) {
-            var len = Options.encodingLength(obj.opts);
-            length += varint.encodingLength(len);
-            length += 1 + len;
-          }
-          if (defined(obj.replies_opts)) {
-            var len = RepliesOptions.encodingLength(obj.replies_opts);
-            length += varint.encodingLength(len);
-            length += 1 + len;
-          }
-          if (defined(obj.page)) {
-            var len = encodings.int32.encodingLength(obj.page);
-            length += 1 + len;
-          }
-          if (defined(obj.target)) {
-            var len = encodings.string.encodingLength(obj.target);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.unk_token)) {
-            buf[offset++] = 10;
-            encodings.string.encode(obj.unk_token, buf, offset);
-            offset += encodings.string.encode.bytes;
-          }
-          if (defined(obj.opts)) {
-            buf[offset++] = 34;
-            varint.encode(Options.encodingLength(obj.opts), buf, offset);
-            offset += varint.encode.bytes;
-            Options.encode(obj.opts, buf, offset);
-            offset += Options.encode.bytes;
-          }
-          if (defined(obj.replies_opts)) {
-            buf[offset++] = 26;
-            varint.encode(RepliesOptions.encodingLength(obj.replies_opts), buf, offset);
-            offset += varint.encode.bytes;
-            RepliesOptions.encode(obj.replies_opts, buf, offset);
-            offset += RepliesOptions.encode.bytes;
-          }
-          if (defined(obj.page)) {
-            buf[offset++] = 40;
-            encodings.int32.encode(obj.page, buf, offset);
-            offset += encodings.int32.encode.bytes;
-          }
-          if (defined(obj.target)) {
-            buf[offset++] = 66;
-            encodings.string.encode(obj.target, buf, offset);
-            offset += encodings.string.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            unk_token: "",
-            opts: null,
-            replies_opts: null,
-            page: 0,
-            target: ""
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 1:
-                obj.unk_token = encodings.string.decode(buf, offset);
-                offset += encodings.string.decode.bytes;
-                break;
-              case 4:
-                var len = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                obj.opts = Options.decode(buf, offset, offset + len);
-                offset += Options.decode.bytes;
-                break;
-              case 3:
-                var len = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                obj.replies_opts = RepliesOptions.decode(buf, offset, offset + len);
-                offset += RepliesOptions.decode.bytes;
-                break;
-              case 5:
-                obj.page = encodings.int32.decode(buf, offset);
-                offset += encodings.int32.decode.bytes;
-                break;
-              case 8:
-                obj.target = encodings.string.decode(buf, offset);
-                offset += encodings.string.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      GetCommentsSectionParams.encodingLength = encodingLength;
-      GetCommentsSectionParams.encode = encode;
-      GetCommentsSectionParams.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.ctx)) {
-          var len = Context.encodingLength(obj.ctx);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        if (defined(obj.unk_param)) {
-          var len = encodings.int32.encodingLength(obj.unk_param);
-          length += 1 + len;
-        }
-        if (defined(obj.params)) {
-          var len = Params.encodingLength(obj.params);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.ctx)) {
-          buf[offset++] = 18;
-          varint.encode(Context.encodingLength(obj.ctx), buf, offset);
-          offset += varint.encode.bytes;
-          Context.encode(obj.ctx, buf, offset);
-          offset += Context.encode.bytes;
-        }
-        if (defined(obj.unk_param)) {
-          buf[offset++] = 24;
-          encodings.int32.encode(obj.unk_param, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        if (defined(obj.params)) {
-          buf[offset++] = 50;
-          varint.encode(Params.encodingLength(obj.params), buf, offset);
-          offset += varint.encode.bytes;
-          Params.encode(obj.params, buf, offset);
-          offset += Params.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          ctx: null,
-          unk_param: 0,
-          params: null
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 2:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.ctx = Context.decode(buf, offset, offset + len);
-              offset += Context.decode.bytes;
-              break;
-            case 3:
-              obj.unk_param = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            case 6:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.params = Params.decode(buf, offset, offset + len);
-              offset += Params.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineCreateCommentParams() {
-      var Params = CreateCommentParams.Params = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineParams();
-      function defineParams() {
-        Params.encodingLength = encodingLength2;
-        Params.encode = encode2;
-        Params.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.index)) {
-            var len = encodings.int32.encodingLength(obj.index);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.index)) {
-            buf[offset++] = 8;
-            encodings.int32.encode(obj.index, buf, offset);
-            offset += encodings.int32.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            index: 0
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 1:
-                obj.index = encodings.int32.decode(buf, offset);
-                offset += encodings.int32.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      CreateCommentParams.encodingLength = encodingLength;
-      CreateCommentParams.encode = encode;
-      CreateCommentParams.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.video_id)) {
-          var len = encodings.string.encodingLength(obj.video_id);
-          length += 1 + len;
-        }
-        if (defined(obj.params)) {
-          var len = Params.encodingLength(obj.params);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        if (defined(obj.number)) {
-          var len = encodings.int32.encodingLength(obj.number);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.video_id)) {
-          buf[offset++] = 18;
-          encodings.string.encode(obj.video_id, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        if (defined(obj.params)) {
-          buf[offset++] = 42;
-          varint.encode(Params.encodingLength(obj.params), buf, offset);
-          offset += varint.encode.bytes;
-          Params.encode(obj.params, buf, offset);
-          offset += Params.encode.bytes;
-        }
-        if (defined(obj.number)) {
-          buf[offset++] = 80;
-          encodings.int32.encode(obj.number, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          video_id: "",
-          params: null,
-          number: 0
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 2:
-              obj.video_id = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            case 5:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.params = Params.decode(buf, offset, offset + len);
-              offset += Params.decode.bytes;
-              break;
-            case 10:
-              obj.number = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineCreateCommentReplyParams() {
-      var UnknownParams = CreateCommentReplyParams.UnknownParams = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineUnknownParams();
-      function defineUnknownParams() {
-        UnknownParams.encodingLength = encodingLength2;
-        UnknownParams.encode = encode2;
-        UnknownParams.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.unk_num)) {
-            var len = encodings.int32.encodingLength(obj.unk_num);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.unk_num)) {
-            buf[offset++] = 8;
-            encodings.int32.encode(obj.unk_num, buf, offset);
-            offset += encodings.int32.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            unk_num: 0
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 1:
-                obj.unk_num = encodings.int32.decode(buf, offset);
-                offset += encodings.int32.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      CreateCommentReplyParams.encodingLength = encodingLength;
-      CreateCommentReplyParams.encode = encode;
-      CreateCommentReplyParams.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.video_id)) {
-          var len = encodings.string.encodingLength(obj.video_id);
-          length += 1 + len;
-        }
-        if (defined(obj.comment_id)) {
-          var len = encodings.string.encodingLength(obj.comment_id);
-          length += 1 + len;
-        }
-        if (defined(obj.params)) {
-          var len = UnknownParams.encodingLength(obj.params);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        if (defined(obj.unk_num)) {
-          var len = encodings.int32.encodingLength(obj.unk_num);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.video_id)) {
-          buf[offset++] = 18;
-          encodings.string.encode(obj.video_id, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        if (defined(obj.comment_id)) {
-          buf[offset++] = 34;
-          encodings.string.encode(obj.comment_id, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        if (defined(obj.params)) {
-          buf[offset++] = 42;
-          varint.encode(UnknownParams.encodingLength(obj.params), buf, offset);
-          offset += varint.encode.bytes;
-          UnknownParams.encode(obj.params, buf, offset);
-          offset += UnknownParams.encode.bytes;
-        }
-        if (defined(obj.unk_num)) {
-          buf[offset++] = 80;
-          encodings.int32.encode(obj.unk_num, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          video_id: "",
-          comment_id: "",
-          params: null,
-          unk_num: 0
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 2:
-              obj.video_id = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            case 4:
-              obj.comment_id = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            case 5:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.params = UnknownParams.decode(buf, offset, offset + len);
-              offset += UnknownParams.decode.bytes;
-              break;
-            case 10:
-              obj.unk_num = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function definePeformCommentActionParams() {
-      var TranslateCommentParams = PeformCommentActionParams.TranslateCommentParams = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineTranslateCommentParams();
-      function defineTranslateCommentParams() {
-        var Params = TranslateCommentParams.Params = {
-          buffer: true,
-          encodingLength: null,
-          encode: null,
-          decode: null
-        };
-        defineParams();
-        function defineParams() {
-          var Comment = Params.Comment = {
-            buffer: true,
-            encodingLength: null,
-            encode: null,
-            decode: null
-          };
-          defineComment();
-          function defineComment() {
-            Comment.encodingLength = encodingLength4;
-            Comment.encode = encode4;
-            Comment.decode = decode4;
-            function encodingLength4(obj) {
-              var length = 0;
-              if (defined(obj.text)) {
-                var len = encodings.string.encodingLength(obj.text);
-                length += 1 + len;
-              }
-              return length;
-            }
-            function encode4(obj, buf, offset) {
-              if (!offset)
-                offset = 0;
-              if (!buf)
-                buf = Buffer.allocUnsafe(encodingLength4(obj));
-              var oldOffset = offset;
-              if (defined(obj.text)) {
-                buf[offset++] = 10;
-                encodings.string.encode(obj.text, buf, offset);
-                offset += encodings.string.encode.bytes;
-              }
-              encode4.bytes = offset - oldOffset;
-              return buf;
-            }
-            function decode4(buf, offset, end) {
-              if (!offset)
-                offset = 0;
-              if (!end)
-                end = buf.length;
-              if (!(end <= buf.length && offset <= buf.length))
-                throw new Error("Decoded message is not valid");
-              var oldOffset = offset;
-              var obj = {
-                text: ""
-              };
-              while (true) {
-                if (end <= offset) {
-                  decode4.bytes = offset - oldOffset;
-                  return obj;
-                }
-                var prefix = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                var tag = prefix >> 3;
-                switch (tag) {
-                  case 1:
-                    obj.text = encodings.string.decode(buf, offset);
-                    offset += encodings.string.decode.bytes;
-                    break;
-                  default:
-                    offset = skip(prefix & 7, buf, offset);
-                }
-              }
-            }
-          }
-          Params.encodingLength = encodingLength3;
-          Params.encode = encode3;
-          Params.decode = decode3;
-          function encodingLength3(obj) {
-            var length = 0;
-            if (defined(obj.comment)) {
-              var len = Comment.encodingLength(obj.comment);
-              length += varint.encodingLength(len);
-              length += 1 + len;
-            }
-            return length;
-          }
-          function encode3(obj, buf, offset) {
-            if (!offset)
-              offset = 0;
-            if (!buf)
-              buf = Buffer.allocUnsafe(encodingLength3(obj));
-            var oldOffset = offset;
-            if (defined(obj.comment)) {
-              buf[offset++] = 10;
-              varint.encode(Comment.encodingLength(obj.comment), buf, offset);
-              offset += varint.encode.bytes;
-              Comment.encode(obj.comment, buf, offset);
-              offset += Comment.encode.bytes;
-            }
-            encode3.bytes = offset - oldOffset;
-            return buf;
-          }
-          function decode3(buf, offset, end) {
-            if (!offset)
-              offset = 0;
-            if (!end)
-              end = buf.length;
-            if (!(end <= buf.length && offset <= buf.length))
-              throw new Error("Decoded message is not valid");
-            var oldOffset = offset;
-            var obj = {
-              comment: null
-            };
-            while (true) {
-              if (end <= offset) {
-                decode3.bytes = offset - oldOffset;
-                return obj;
-              }
-              var prefix = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              var tag = prefix >> 3;
-              switch (tag) {
-                case 1:
-                  var len = varint.decode(buf, offset);
-                  offset += varint.decode.bytes;
-                  obj.comment = Comment.decode(buf, offset, offset + len);
-                  offset += Comment.decode.bytes;
-                  break;
-                default:
-                  offset = skip(prefix & 7, buf, offset);
-              }
-            }
-          }
-        }
-        TranslateCommentParams.encodingLength = encodingLength2;
-        TranslateCommentParams.encode = encode2;
-        TranslateCommentParams.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.params)) {
-            var len = Params.encodingLength(obj.params);
-            length += varint.encodingLength(len);
-            length += 1 + len;
-          }
-          if (defined(obj.comment_id)) {
-            var len = encodings.string.encodingLength(obj.comment_id);
-            length += 1 + len;
-          }
-          if (defined(obj.target_language)) {
-            var len = encodings.string.encodingLength(obj.target_language);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.params)) {
-            buf[offset++] = 26;
-            varint.encode(Params.encodingLength(obj.params), buf, offset);
-            offset += varint.encode.bytes;
-            Params.encode(obj.params, buf, offset);
-            offset += Params.encode.bytes;
-          }
-          if (defined(obj.comment_id)) {
-            buf[offset++] = 18;
-            encodings.string.encode(obj.comment_id, buf, offset);
-            offset += encodings.string.encode.bytes;
-          }
-          if (defined(obj.target_language)) {
-            buf[offset++] = 34;
-            encodings.string.encode(obj.target_language, buf, offset);
-            offset += encodings.string.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            params: null,
-            comment_id: "",
-            target_language: ""
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 3:
-                var len = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                obj.params = Params.decode(buf, offset, offset + len);
-                offset += Params.decode.bytes;
-                break;
-              case 2:
-                obj.comment_id = encodings.string.decode(buf, offset);
-                offset += encodings.string.decode.bytes;
-                break;
-              case 4:
-                obj.target_language = encodings.string.decode(buf, offset);
-                offset += encodings.string.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      PeformCommentActionParams.encodingLength = encodingLength;
-      PeformCommentActionParams.encode = encode;
-      PeformCommentActionParams.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.type)) {
-          var len = encodings.int32.encodingLength(obj.type);
-          length += 1 + len;
-        }
-        if (defined(obj.comment_id)) {
-          var len = encodings.string.encodingLength(obj.comment_id);
-          length += 1 + len;
-        }
-        if (defined(obj.video_id)) {
-          var len = encodings.string.encodingLength(obj.video_id);
-          length += 1 + len;
-        }
-        if (defined(obj.unk_num)) {
-          var len = encodings.int32.encodingLength(obj.unk_num);
-          length += 1 + len;
-        }
-        if (defined(obj.channel_id)) {
-          var len = encodings.string.encodingLength(obj.channel_id);
-          length += 2 + len;
-        }
-        if (defined(obj.translate_comment_params)) {
-          var len = TranslateCommentParams.encodingLength(obj.translate_comment_params);
-          length += varint.encodingLength(len);
-          length += 2 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.type)) {
-          buf[offset++] = 8;
-          encodings.int32.encode(obj.type, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        if (defined(obj.comment_id)) {
-          buf[offset++] = 26;
-          encodings.string.encode(obj.comment_id, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        if (defined(obj.video_id)) {
-          buf[offset++] = 42;
-          encodings.string.encode(obj.video_id, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        if (defined(obj.unk_num)) {
-          buf[offset++] = 16;
-          encodings.int32.encode(obj.unk_num, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        if (defined(obj.channel_id)) {
-          buf[offset++] = 186;
-          buf[offset++] = 1;
-          encodings.string.encode(obj.channel_id, buf, offset);
-          offset += encodings.string.encode.bytes;
-        }
-        if (defined(obj.translate_comment_params)) {
-          buf[offset++] = 250;
-          buf[offset++] = 1;
-          varint.encode(TranslateCommentParams.encodingLength(obj.translate_comment_params), buf, offset);
-          offset += varint.encode.bytes;
-          TranslateCommentParams.encode(obj.translate_comment_params, buf, offset);
-          offset += TranslateCommentParams.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          type: 0,
-          comment_id: "",
-          video_id: "",
-          unk_num: 0,
-          channel_id: "",
-          translate_comment_params: null
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 1:
-              obj.type = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            case 3:
-              obj.comment_id = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            case 5:
-              obj.video_id = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            case 2:
-              obj.unk_num = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            case 23:
-              obj.channel_id = encodings.string.decode(buf, offset);
-              offset += encodings.string.decode.bytes;
-              break;
-            case 31:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.translate_comment_params = TranslateCommentParams.decode(buf, offset, offset + len);
-              offset += TranslateCommentParams.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineMusicSearchFilter() {
-      var Filters = MusicSearchFilter.Filters = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineFilters();
-      function defineFilters() {
-        var Type = Filters.Type = {
-          buffer: true,
-          encodingLength: null,
-          encode: null,
-          decode: null
-        };
-        defineType();
-        function defineType() {
-          Type.encodingLength = encodingLength3;
-          Type.encode = encode3;
-          Type.decode = decode3;
-          function encodingLength3(obj) {
-            var length = 0;
-            if (defined(obj.all)) {
-              var len = encodings.int32.encodingLength(obj.all);
-              length += 1 + len;
-            }
-            if (defined(obj.song)) {
-              var len = encodings.int32.encodingLength(obj.song);
-              length += 1 + len;
-            }
-            if (defined(obj.video)) {
-              var len = encodings.int32.encodingLength(obj.video);
-              length += 1 + len;
-            }
-            if (defined(obj.album)) {
-              var len = encodings.int32.encodingLength(obj.album);
-              length += 1 + len;
-            }
-            if (defined(obj.artist)) {
-              var len = encodings.int32.encodingLength(obj.artist);
-              length += 1 + len;
-            }
-            if (defined(obj.playlist)) {
-              var len = encodings.int32.encodingLength(obj.playlist);
-              length += 1 + len;
-            }
-            return length;
-          }
-          function encode3(obj, buf, offset) {
-            if (!offset)
-              offset = 0;
-            if (!buf)
-              buf = Buffer.allocUnsafe(encodingLength3(obj));
-            var oldOffset = offset;
-            if (defined(obj.all)) {
-              buf[offset++] = 0;
-              encodings.int32.encode(obj.all, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            if (defined(obj.song)) {
-              buf[offset++] = 8;
-              encodings.int32.encode(obj.song, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            if (defined(obj.video)) {
-              buf[offset++] = 16;
-              encodings.int32.encode(obj.video, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            if (defined(obj.album)) {
-              buf[offset++] = 24;
-              encodings.int32.encode(obj.album, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            if (defined(obj.artist)) {
-              buf[offset++] = 32;
-              encodings.int32.encode(obj.artist, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            if (defined(obj.playlist)) {
-              buf[offset++] = 40;
-              encodings.int32.encode(obj.playlist, buf, offset);
-              offset += encodings.int32.encode.bytes;
-            }
-            encode3.bytes = offset - oldOffset;
-            return buf;
-          }
-          function decode3(buf, offset, end) {
-            if (!offset)
-              offset = 0;
-            if (!end)
-              end = buf.length;
-            if (!(end <= buf.length && offset <= buf.length))
-              throw new Error("Decoded message is not valid");
-            var oldOffset = offset;
-            var obj = {
-              all: 0,
-              song: 0,
-              video: 0,
-              album: 0,
-              artist: 0,
-              playlist: 0
-            };
-            while (true) {
-              if (end <= offset) {
-                decode3.bytes = offset - oldOffset;
-                return obj;
-              }
-              var prefix = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              var tag = prefix >> 3;
-              switch (tag) {
-                case 0:
-                  obj.all = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                case 1:
-                  obj.song = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                case 2:
-                  obj.video = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                case 3:
-                  obj.album = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                case 4:
-                  obj.artist = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                case 5:
-                  obj.playlist = encodings.int32.decode(buf, offset);
-                  offset += encodings.int32.decode.bytes;
-                  break;
-                default:
-                  offset = skip(prefix & 7, buf, offset);
-              }
-            }
-          }
-        }
-        Filters.encodingLength = encodingLength2;
-        Filters.encode = encode2;
-        Filters.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.type)) {
-            var len = Type.encodingLength(obj.type);
-            length += varint.encodingLength(len);
-            length += 2 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.type)) {
-            buf[offset++] = 138;
-            buf[offset++] = 1;
-            varint.encode(Type.encodingLength(obj.type), buf, offset);
-            offset += varint.encode.bytes;
-            Type.encode(obj.type, buf, offset);
-            offset += Type.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            type: null
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 17:
-                var len = varint.decode(buf, offset);
-                offset += varint.decode.bytes;
-                obj.type = Type.decode(buf, offset, offset + len);
-                offset += Type.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      MusicSearchFilter.encodingLength = encodingLength;
-      MusicSearchFilter.encode = encode;
-      MusicSearchFilter.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.filters)) {
-          var len = Filters.encodingLength(obj.filters);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.filters)) {
-          buf[offset++] = 18;
-          varint.encode(Filters.encodingLength(obj.filters), buf, offset);
-          offset += varint.encode.bytes;
-          Filters.encode(obj.filters, buf, offset);
-          offset += Filters.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          filters: null
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 2:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.filters = Filters.decode(buf, offset, offset + len);
-              offset += Filters.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defineSearchFilter() {
-      var Filters = SearchFilter.Filters = {
-        buffer: true,
-        encodingLength: null,
-        encode: null,
-        decode: null
-      };
-      defineFilters();
-      function defineFilters() {
-        Filters.encodingLength = encodingLength2;
-        Filters.encode = encode2;
-        Filters.decode = decode2;
-        function encodingLength2(obj) {
-          var length = 0;
-          if (defined(obj.upload_date)) {
-            var len = encodings.int32.encodingLength(obj.upload_date);
-            length += 1 + len;
-          }
-          if (defined(obj.type)) {
-            var len = encodings.int32.encodingLength(obj.type);
-            length += 1 + len;
-          }
-          if (defined(obj.duration)) {
-            var len = encodings.int32.encodingLength(obj.duration);
-            length += 1 + len;
-          }
-          return length;
-        }
-        function encode2(obj, buf, offset) {
-          if (!offset)
-            offset = 0;
-          if (!buf)
-            buf = Buffer.allocUnsafe(encodingLength2(obj));
-          var oldOffset = offset;
-          if (defined(obj.upload_date)) {
-            buf[offset++] = 8;
-            encodings.int32.encode(obj.upload_date, buf, offset);
-            offset += encodings.int32.encode.bytes;
-          }
-          if (defined(obj.type)) {
-            buf[offset++] = 16;
-            encodings.int32.encode(obj.type, buf, offset);
-            offset += encodings.int32.encode.bytes;
-          }
-          if (defined(obj.duration)) {
-            buf[offset++] = 24;
-            encodings.int32.encode(obj.duration, buf, offset);
-            offset += encodings.int32.encode.bytes;
-          }
-          encode2.bytes = offset - oldOffset;
-          return buf;
-        }
-        function decode2(buf, offset, end) {
-          if (!offset)
-            offset = 0;
-          if (!end)
-            end = buf.length;
-          if (!(end <= buf.length && offset <= buf.length))
-            throw new Error("Decoded message is not valid");
-          var oldOffset = offset;
-          var obj = {
-            upload_date: 0,
-            type: 0,
-            duration: 0
-          };
-          while (true) {
-            if (end <= offset) {
-              decode2.bytes = offset - oldOffset;
-              return obj;
-            }
-            var prefix = varint.decode(buf, offset);
-            offset += varint.decode.bytes;
-            var tag = prefix >> 3;
-            switch (tag) {
-              case 1:
-                obj.upload_date = encodings.int32.decode(buf, offset);
-                offset += encodings.int32.decode.bytes;
-                break;
-              case 2:
-                obj.type = encodings.int32.decode(buf, offset);
-                offset += encodings.int32.decode.bytes;
-                break;
-              case 3:
-                obj.duration = encodings.int32.decode(buf, offset);
-                offset += encodings.int32.decode.bytes;
-                break;
-              default:
-                offset = skip(prefix & 7, buf, offset);
-            }
-          }
-        }
-      }
-      SearchFilter.encodingLength = encodingLength;
-      SearchFilter.encode = encode;
-      SearchFilter.decode = decode;
-      function encodingLength(obj) {
-        var length = 0;
-        if (defined(obj.sort_by)) {
-          var len = encodings.int32.encodingLength(obj.sort_by);
-          length += 1 + len;
-        }
-        if (defined(obj.no_filter)) {
-          var len = encodings.int32.encodingLength(obj.no_filter);
-          length += 2 + len;
-        }
-        if (defined(obj.filters)) {
-          var len = Filters.encodingLength(obj.filters);
-          length += varint.encodingLength(len);
-          length += 1 + len;
-        }
-        return length;
-      }
-      function encode(obj, buf, offset) {
-        if (!offset)
-          offset = 0;
-        if (!buf)
-          buf = Buffer.allocUnsafe(encodingLength(obj));
-        var oldOffset = offset;
-        if (defined(obj.sort_by)) {
-          buf[offset++] = 8;
-          encodings.int32.encode(obj.sort_by, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        if (defined(obj.no_filter)) {
-          buf[offset++] = 152;
-          buf[offset++] = 1;
-          encodings.int32.encode(obj.no_filter, buf, offset);
-          offset += encodings.int32.encode.bytes;
-        }
-        if (defined(obj.filters)) {
-          buf[offset++] = 18;
-          varint.encode(Filters.encodingLength(obj.filters), buf, offset);
-          offset += varint.encode.bytes;
-          Filters.encode(obj.filters, buf, offset);
-          offset += Filters.encode.bytes;
-        }
-        encode.bytes = offset - oldOffset;
-        return buf;
-      }
-      function decode(buf, offset, end) {
-        if (!offset)
-          offset = 0;
-        if (!end)
-          end = buf.length;
-        if (!(end <= buf.length && offset <= buf.length))
-          throw new Error("Decoded message is not valid");
-        var oldOffset = offset;
-        var obj = {
-          sort_by: 0,
-          no_filter: 0,
-          filters: null
-        };
-        while (true) {
-          if (end <= offset) {
-            decode.bytes = offset - oldOffset;
-            return obj;
-          }
-          var prefix = varint.decode(buf, offset);
-          offset += varint.decode.bytes;
-          var tag = prefix >> 3;
-          switch (tag) {
-            case 1:
-              obj.sort_by = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            case 19:
-              obj.no_filter = encodings.int32.decode(buf, offset);
-              offset += encodings.int32.decode.bytes;
-              break;
-            case 2:
-              var len = varint.decode(buf, offset);
-              offset += varint.decode.bytes;
-              obj.filters = Filters.decode(buf, offset, offset + len);
-              offset += Filters.decode.bytes;
-              break;
-            default:
-              offset = skip(prefix & 7, buf, offset);
-          }
-        }
-      }
-    }
-    function defined(val) {
-      return val !== null && val !== void 0 && (typeof val !== "number" || !isNaN(val));
-    }
-  }
-});
-
-// lib/proto/index.js
-var require_proto = __commonJS({
-  "lib/proto/index.js"(exports2, module2) {
-    "use strict";
-    var messages = require_messages();
-    var Proto2 = class {
-      static encodeVisitorData(id, timestamp) {
-        const buf = messages.VisitorData.encode({ id, timestamp });
-        return encodeURIComponent(Buffer.from(buf).toString("base64").replace(/\/|\+/g, "_"));
-      }
-      static encodeChannelAnalyticsParams(channel_id) {
-        const buf = messages.ChannelAnalytics.encode({ params: { channel_id } });
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeSearchFilters(filters) {
-        const upload_date = {
-          all: null,
-          hour: 1,
-          today: 2,
-          week: 3,
-          month: 4,
-          year: 5
-        };
-        const type = {
-          all: null,
-          video: 1,
-          channel: 2,
-          playlist: 3,
-          movie: 4
-        };
-        const duration = {
-          all: null,
-          short: 1,
-          long: 2,
-          medium: 3
-        };
-        const order = {
-          relevance: null,
-          rating: 1,
-          upload_date: 2,
-          view_count: 3
-        };
-        const data = {};
-        if (filters) {
-          data.filters = {};
-        } else {
-          data.no_filter = 0;
-        }
-        if (filters) {
-          if (filters.upload_date && filters.type !== "video")
-            throw new Error("Upload date filter cannot be used with type " + filters.type);
-          if (filters.upload_date) {
-            data.filters.upload_date = upload_date[filters.upload_date];
-          }
-          if (filters.type) {
-            data.filters.type = type[filters.type];
-          }
-          if (filters.duration) {
-            data.filters.duration = duration[filters.duration];
-          }
-          if (filters.sort_by && filters.sort_by !== "relevance") {
-            data.sort_by = order[filters.sort_by];
-          }
-        }
-        const buf = messages.SearchFilter.encode(data);
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeMusicSearchFilters(filters = {}) {
-        const data = { filters: { type: {} } };
-        data.filters.type[filters.type || "all"] = 1;
-        const buf = messages.MusicSearchFilter.encode(data);
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeMessageParams(channel_id, video_id) {
-        const buf = messages.LiveMessageParams.encode({
-          params: { ids: { channel_id, video_id } },
-          number_0: 1,
-          number_1: 4
-        });
-        return Buffer.from(encodeURIComponent(Buffer.from(buf).toString("base64"))).toString("base64");
-      }
-      static encodeCommentsSectionParams(video_id, options = {}) {
-        const sort_options = { TOP_COMMENTS: 0, NEWEST_FIRST: 1 };
-        const buf = messages.GetCommentsSectionParams.encode({
-          ctx: { video_id },
-          unk_param: 6,
-          params: {
-            opts: {
-              video_id,
-              sort_by: sort_options[options.sort_by || "TOP_COMMENTS"],
-              type: options.type || 2
-            },
-            target: "comments-section"
-          }
-        });
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeCommentRepliesParams(video_id, comment_id) {
-        const buf = messages.GetCommentsSectionParams.encode({
-          ctx: { video_id },
-          unk_param: 6,
-          params: {
-            replies_opts: {
-              video_id,
-              comment_id,
-              unkopts: { unk_param: 0 },
-              unk_param_1: 1,
-              unk_param_2: 10,
-              channel_id: " "
-            },
-            target: `comment-replies-item-${comment_id}`
-          }
-        });
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeCommentParams(video_id) {
-        const buf = messages.CreateCommentParams.encode({
-          video_id,
-          params: { index: 0 },
-          number: 7
-        });
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeCommentReplyParams(comment_id, video_id) {
-        const buf = messages.CreateCommentReplyParams.encode({
-          video_id,
-          comment_id,
-          params: { unk_num: 0 },
-          unk_num: 7
-        });
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeCommentActionParams(type, args = {}) {
-        const data = {};
-        data.type = type;
-        data.video_id = args.video_id || "";
-        data.comment_id = args.comment_id || "";
-        data.unk_num = 2;
-        if (args.hasOwnProperty("text")) {
-          args.comment_id && delete data.unk_num;
-          data.translate_comment_params = {
-            params: {
-              comment: {
-                text: args.text
-              }
-            },
-            comment_id: args.comment_id || "",
-            target_language: args.target_language
-          };
-        }
-        const buf = messages.PeformCommentActionParams.encode(data);
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeNotificationPref(channel_id, index) {
-        const buf = messages.NotificationPreferences.encode({
-          channel_id,
-          pref_id: { index },
-          number_0: 0,
-          number_1: 4
-        });
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
-      }
-      static encodeSoundInfoParams(id) {
-        const data = {
-          sound: {
-            params: {
-              ids: {
-                id_1: id,
-                id_2: id,
-                id_3: id
-              }
-            }
-          }
-        };
-        const buf = messages.SoundInfoParams.encode(data);
-        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      URLS: {
+        YT_BASE: "https://www.youtube.com",
+        YT_MUSIC_BASE: "https://music.youtube.com",
+        YT_SUGGESTIONS: "https://suggestqueries.google.com/complete/",
+        API: {
+          BASE: "https://youtubei.googleapis.com",
+          PRODUCTION: "https://youtubei.googleapis.com/youtubei/",
+          STAGING: "https://green-youtubei.sandbox.googleapis.com/youtubei/",
+          RELEASE: "https://release-youtubei.sandbox.googleapis.com/youtubei/",
+          TEST: "https://test-youtubei.sandbox.googleapis.com/youtubei/",
+          CAMI: "http://cami-youtubei.sandbox.googleapis.com/youtubei/",
+          UYTFE: "https://uytfe.sandbox.google.com/youtubei/"
+        }
+      },
+      OAUTH: {
+        SCOPE: "http://gdata.youtube.com https://www.googleapis.com/auth/youtube-paid-content",
+        GRANT_TYPE: "http://oauth.net/grant_type/device/1.0",
+        MODEL_NAME: "ytlr::",
+        HEADERS: {
+          "accept": "*/*",
+          "origin": "https://www.youtube.com",
+          "user-agent": "Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version",
+          "content-type": "application/json",
+          "referer": "https://www.youtube.com/tv",
+          "accept-language": "en-US"
+        },
+        REGEX: {
+          AUTH_SCRIPT: /<script id="base-js" src="(.*?)" nonce=".*?"><\/script>/,
+          CLIENT_IDENTITY: /.+?={};var .+?={clientId:"(?<client_id>.+?)",.+?:"(?<client_secret>.+?)"},/
+        }
+      },
+      CLIENTS: {
+        WEB: {
+          NAME: "WEB"
+        },
+        YTMUSIC: {
+          NAME: "WEB_REMIX",
+          VERSION: "1.20211213.00.00"
+        },
+        ANDROID: {
+          NAME: "ANDROID",
+          VERSION: "17.17.32"
+        }
+      },
+      STREAM_HEADERS: {
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "origin": "https://www.youtube.com",
+        "referer": "https://www.youtube.com",
+        "DNT": "?1"
+      },
+      INNERTUBE_HEADERS_BASE: {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json"
+      },
+      METADATA_KEYS: [
+        "embed",
+        "view_count",
+        "average_rating",
+        "allow_ratings",
+        "length_seconds",
+        "channel_id",
+        "channel_url",
+        "external_channel_id",
+        "is_live_content",
+        "is_family_safe",
+        "is_unlisted",
+        "is_private",
+        "has_ypc_metadata",
+        "category",
+        "owner_channel_name",
+        "publish_date",
+        "upload_date",
+        "keywords",
+        "available_countries",
+        "owner_profile_url"
+      ],
+      BLACKLISTED_KEYS: [
+        "is_owner_viewing",
+        "is_unplugged_corpus",
+        "is_crawlable",
+        "author"
+      ],
+      ACCOUNT_SETTINGS: {
+        SUBSCRIPTIONS: "NOTIFICATION_SUBSCRIPTION_NOTIFICATIONS",
+        RECOMMENDED_VIDEOS: "NOTIFICATION_RECOMMENDATION_WEB_CONTROL",
+        CHANNEL_ACTIVITY: "NOTIFICATION_COMMENT_WEB_CONTROL",
+        COMMENT_REPLIES: "NOTIFICATION_COMMENT_REPLY_OTHER_WEB_CONTROL",
+        USER_MENTION: "NOTIFICATION_USER_MENTION_WEB_CONTROL",
+        SHARED_CONTENT: "NOTIFICATION_RETUBING_WEB_CONTROL",
+        PLAYLISTS_PRIVACY: "PRIVACY_DISCOVERABLE_SAVED_PLAYLISTS",
+        SUBSCRIPTIONS_PRIVACY: "PRIVACY_DISCOVERABLE_SUBSCRIPTIONS"
+      },
+      BASE64_DIALECT: {
+        NORMAL: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".split(""),
+        REVERSE: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_".split("")
+      },
+      SIG_REGEX: {
+        ACTIONS: /;.{2}\.(?<name>.{2})\(.*?,(?<param>.*?)\)/g,
+        FUNCTIONS: /(?<name>.{2}):function\(.*?\){(.*?)}/g
+      },
+      NTOKEN_REGEX: {
+        CALLS: /c\[(.*?)\]\((.+?)\)/g,
+        PLACEHOLDERS: /c\[(.*?)\]=c/g,
+        FUNCTIONS: /d\.push\(e\)|d\.reverse\(\)|d\[0\]\)\[0\]\)|f=d\[0];d\[0\]|d\.length;d\.splice\(e,1\)|function\(\){for\(var|function\(d,e,f\){var|function\(d\){for\(var|reverse\(\)\.forEach|unshift\(d\.pop\(\)\)|function\(d,e\){for\(var f/
+      },
+      FUNCS: {
+        PUSH: "d.push(e)",
+        REVERSE_1: "d.reverse()",
+        REVERSE_2: "function(d){for(var",
+        SPLICE: "d.length;d.splice(e,1)",
+        SWAP0_1: "d[0])[0])",
+        SWAP0_2: "f=d[0];d[0]",
+        ROTATE_1: "reverse().forEach",
+        ROTATE_2: "unshift(d.pop())",
+        BASE64_DIA: "function(){for(var",
+        TRANSLATE_1: "function(d,e){for(var f",
+        TRANSLATE_2: "function(d,e,f){var"
       }
     };
-    module2.exports = Proto2;
   }
 });
 
@@ -21409,7 +17839,6 @@ var require_package = __commonJS({
         lib: "./lib"
       },
       dependencies: {
-        "@isomorphic-git/lightning-fs": "^4.6.0",
         "@stdlib/os-tmpdir": "^0.0.8",
         axios: "^0.21.4",
         buffer: "^6.0.3",
@@ -21474,7 +17903,7 @@ var require_Utils = __commonJS({
     var Crypto = true ? require_lib() : null;
     var UserAgent = require_dist();
     var Flatten = require_flat();
-    var InnertubeError = class extends Error {
+    var InnertubeError2 = class extends Error {
       constructor(message, info) {
         super(message);
         if (info) {
@@ -21484,15 +17913,17 @@ var require_Utils = __commonJS({
         this.version = require_package().version;
       }
     };
-    var ParsingError = class extends InnertubeError {
+    var ParsingError = class extends InnertubeError2 {
     };
-    var DownloadError = class extends InnertubeError {
+    var DownloadError = class extends InnertubeError2 {
     };
-    var MissingParamError = class extends InnertubeError {
+    var MissingParamError = class extends InnertubeError2 {
     };
-    var UnavailableContentError = class extends InnertubeError {
+    var UnavailableContentError = class extends InnertubeError2 {
     };
-    var NoStreamingDataError = class extends InnertubeError {
+    var NoStreamingDataError = class extends InnertubeError2 {
+    };
+    var OAuthError = class extends InnertubeError2 {
     };
     function findNode(obj, key, target, depth, safe = true) {
       const flat_obj = Flatten(obj, { safe, maxDepth: depth || 2 });
@@ -21562,17 +17993,17 @@ var require_Utils = __commonJS({
       const input = [timestamp, sid, youtube].join(" ");
       let gen_hash;
       if (true) {
-        let hash = Crypto.md.sha1.create();
+        const hash = Crypto.md.sha1.create();
         hash.update(input);
         gen_hash = hash.digest().toHex();
       } else {
-        let hash = Crypto.createHash("sha1");
-        let data = hash.update(input, "utf-8");
+        const hash = Crypto.createHash("sha1");
+        const data = hash.update(input, "utf-8");
         gen_hash = data.digest("hex");
       }
       return ["SAPISIDHASH", [timestamp, gen_hash].join("_")].join(" ");
     }
-    function generateRandomString(length) {
+    function generateRandomString2(length) {
       const result = [];
       const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
       for (let i = 0; i < length; i++) {
@@ -21581,7 +18012,7 @@ var require_Utils = __commonJS({
       return result.join("");
     }
     function timeToSeconds(time) {
-      let params = time.split(":");
+      const params = time.split(":");
       switch (params.length) {
         case 1:
           return parseInt(+params[0]);
@@ -21590,7 +18021,7 @@ var require_Utils = __commonJS({
         case 3:
           return parseInt(+params[0] * 3600 + +params[1] * 60 + +params[2]);
         default:
-          throw new TypeError("undefined is not a function");
+          break;
       }
     }
     function camelToSnake(string) {
@@ -21599,7 +18030,7 @@ var require_Utils = __commonJS({
     function isValidClient(client) {
       return ["YOUTUBE", "YTMUSIC"].includes(client);
     }
-    function throwIfMissing(params) {
+    function throwIfMissing2(params) {
       for (const [key, value] of Object.entries(params)) {
         if (!value)
           throw new MissingParamError(`${key} is missing`);
@@ -21608,21 +18039,3606 @@ var require_Utils = __commonJS({
     function refineNTokenData(data) {
       return data.replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)').replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)').replace(/\[function\(d,e,f\)/g, '["function(d,e,f)').replace(/,b,/g, ',"b",').replace(/,b/g, ',"b"').replace(/b,/g, '"b",').replace(/b]/g, '"b"]').replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",').replace(/""/g, "").replace(/length]\)}"/g, "length])}");
     }
-    var errors = { InnertubeError, UnavailableContentError, ParsingError, DownloadError, MissingParamError, NoStreamingDataError };
+    var errors = { InnertubeError: InnertubeError2, UnavailableContentError, ParsingError, DownloadError, MissingParamError, NoStreamingDataError, OAuthError };
     var functions = {
       findNode,
       observe,
       getRandomUserAgent,
       generateSidAuth,
-      generateRandomString,
+      generateRandomString: generateRandomString2,
       getStringBetweenStrings,
       camelToSnake,
       isValidClient,
-      throwIfMissing,
+      throwIfMissing: throwIfMissing2,
       timeToSeconds,
       refineNTokenData
     };
     module2.exports = { ...functions, ...errors };
+  }
+});
+
+// lib/core/OAuth.js
+var require_OAuth = __commonJS({
+  "lib/core/OAuth.js"(exports2, module2) {
+    "use strict";
+    var Uuid = (init_esm_browser(), __toCommonJS(esm_browser_exports));
+    var Constants = require_Constants();
+    var { OAuthError } = require_Utils();
+    var OAuth2 = class {
+      #request;
+      #identity;
+      #credentials = {};
+      #polling_interval = 5;
+      #ev = null;
+      constructor(ev, request) {
+        this.#ev = ev;
+        this.#request = request;
+      }
+      init(credentials) {
+        this.#credentials = credentials;
+        if (!credentials.access_token) {
+          this.#getUserCode();
+        }
+      }
+      async #getUserCode() {
+        this.#identity = await this.#getClientIdentity();
+        const data = {
+          client_id: this.#identity.client_id,
+          scope: Constants.OAUTH.SCOPE,
+          device_id: Uuid.v4(),
+          model_name: Constants.OAUTH.MODEL_NAME
+        };
+        const response = await this.#request({
+          data,
+          url: "/o/oauth2/device/code",
+          baseURL: Constants.URLS.YT_BASE,
+          method: "post"
+        }).catch((err) => err);
+        if (response instanceof Error)
+          return this.#ev.emit("auth", new OAuthError("Could not obtain user code.", response.message));
+        this.#ev.emit("auth", {
+          ...response.data,
+          status: "AUTHORIZATION_PENDING"
+        });
+        this.#polling_interval = response.data.interval;
+        this.#startPolling(response.data.device_code);
+      }
+      #startPolling(device_code) {
+        const poller = setInterval(async () => {
+          const data = {
+            ...this.#identity,
+            code: device_code,
+            grant_type: Constants.OAUTH.GRANT_TYPE
+          };
+          const response = await this.#request({
+            data,
+            url: "/o/oauth2/token",
+            baseURL: Constants.URLS.YT_BASE,
+            method: "post"
+          }).catch((err) => err);
+          if (response instanceof Error)
+            return this.#ev.emit("auth", new OAuthError("Could not obtain user code.", { status: "FAILED", message: response.message }));
+          if (response.data.error) {
+            switch (response.data.error) {
+              case "access_denied":
+                this.#ev.emit("auth", new OAuthError("Access was denied.", { status: "ACCESS_DENIED" }));
+                break;
+              case "expired_token":
+                this.#ev.emit("auth", new OAuthError("The device code has expired, restarting auth flow.", { status: "DEVICE_CODE_EXPIRED" }));
+                clearInterval(poller);
+                this.#getUserCode();
+                break;
+              default:
+                break;
+            }
+            return;
+          }
+          const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
+          this.#credentials = {
+            access_token: response.data.access_token,
+            refresh_token: response.data.refresh_token,
+            expires: expiration_date
+          };
+          this.#ev.emit("auth", {
+            credentials: this.#credentials,
+            status: "SUCCESS"
+          });
+          clearInterval(poller);
+        }, this.#polling_interval * 1e3);
+      }
+      async checkAccessTokenValidity() {
+        const timestamp = new Date(this.#credentials.expires).getTime();
+        if (new Date().getTime() > timestamp) {
+          await this.#refreshAccessToken();
+        }
+      }
+      async #refreshAccessToken() {
+        this.#identity = await this.#getClientIdentity();
+        const data = {
+          ...this.#identity,
+          refresh_token: this.#credentials.refresh_token,
+          grant_type: "refresh_token"
+        };
+        const response = await this.#request({
+          data,
+          url: "/o/oauth2/token",
+          baseURL: Constants.URLS.YT_BASE,
+          method: "post"
+        }).catch((err) => err);
+        if (response instanceof Error)
+          return this.#ev.emit("update-credentials", new OAuthError("Could not refresh access token.", { status: "FAILED" }));
+        const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
+        this.#credentials = {
+          access_token: response.data.access_token,
+          refresh_token: response.data.refresh_token || this.credentials.refresh_token,
+          expires: expiration_date
+        };
+        this.#ev.emit("update-credentials", {
+          credentials: this.#credentials,
+          status: "SUCCESS"
+        });
+      }
+      revokeCredentials() {
+        return this.#request({
+          url: "/o/oauth2/revoke",
+          baseURL: Constants.URLS.YT_BASE,
+          params: { token: this.getAccessToken() },
+          method: "post"
+        });
+      }
+      async #getClientIdentity() {
+        const response = await this.#request({
+          url: "/tv",
+          baseURL: Constants.URLS.YT_BASE,
+          headers: Constants.OAUTH.HEADERS
+        });
+        const url_body = Constants.OAUTH.REGEX.AUTH_SCRIPT.exec(response.data)[1];
+        const script = await this.#request({ url: url_body, baseURL: Constants.URLS.YT_BASE });
+        const client_identity = script.data.replace(/\n/g, "").match(Constants.OAUTH.REGEX.CLIENT_IDENTITY);
+        return client_identity.groups;
+      }
+      get credentials() {
+        return this.#credentials;
+      }
+      validateCredentials() {
+        return this.#credentials.hasOwnProperty("access_token") && this.#credentials.hasOwnProperty("refresh_token") && this.#credentials.hasOwnProperty("expires");
+      }
+    };
+    module2.exports = OAuth2;
+  }
+});
+
+// node_modules/varint/encode.js
+var require_encode = __commonJS({
+  "node_modules/varint/encode.js"(exports2, module2) {
+    module2.exports = encode;
+    var MSB = 128;
+    var REST = 127;
+    var MSBALL = ~REST;
+    var INT = Math.pow(2, 31);
+    function encode(num, out, offset) {
+      out = out || [];
+      offset = offset || 0;
+      var oldOffset = offset;
+      while (num >= INT) {
+        out[offset++] = num & 255 | MSB;
+        num /= 128;
+      }
+      while (num & MSBALL) {
+        out[offset++] = num & 255 | MSB;
+        num >>>= 7;
+      }
+      out[offset] = num | 0;
+      encode.bytes = offset - oldOffset + 1;
+      return out;
+    }
+  }
+});
+
+// node_modules/varint/decode.js
+var require_decode = __commonJS({
+  "node_modules/varint/decode.js"(exports2, module2) {
+    module2.exports = read;
+    var MSB = 128;
+    var REST = 127;
+    function read(buf, offset) {
+      var res = 0, offset = offset || 0, shift = 0, counter = offset, b, l = buf.length;
+      do {
+        if (counter >= l) {
+          read.bytes = 0;
+          throw new RangeError("Could not decode varint");
+        }
+        b = buf[counter++];
+        res += shift < 28 ? (b & REST) << shift : (b & REST) * Math.pow(2, shift);
+        shift += 7;
+      } while (b >= MSB);
+      read.bytes = counter - offset;
+      return res;
+    }
+  }
+});
+
+// node_modules/varint/length.js
+var require_length = __commonJS({
+  "node_modules/varint/length.js"(exports2, module2) {
+    var N1 = Math.pow(2, 7);
+    var N2 = Math.pow(2, 14);
+    var N3 = Math.pow(2, 21);
+    var N4 = Math.pow(2, 28);
+    var N5 = Math.pow(2, 35);
+    var N6 = Math.pow(2, 42);
+    var N7 = Math.pow(2, 49);
+    var N8 = Math.pow(2, 56);
+    var N9 = Math.pow(2, 63);
+    module2.exports = function(value) {
+      return value < N1 ? 1 : value < N2 ? 2 : value < N3 ? 3 : value < N4 ? 4 : value < N5 ? 5 : value < N6 ? 6 : value < N7 ? 7 : value < N8 ? 8 : value < N9 ? 9 : 10;
+    };
+  }
+});
+
+// node_modules/varint/index.js
+var require_varint = __commonJS({
+  "node_modules/varint/index.js"(exports2, module2) {
+    module2.exports = {
+      encode: require_encode(),
+      decode: require_decode(),
+      encodingLength: require_length()
+    };
+  }
+});
+
+// node_modules/signed-varint/index.js
+var require_signed_varint = __commonJS({
+  "node_modules/signed-varint/index.js"(exports2) {
+    var varint = require_varint();
+    exports2.encode = function encode(v, b, o) {
+      v = v >= 0 ? v * 2 : v * -2 - 1;
+      var r = varint.encode(v, b, o);
+      encode.bytes = varint.encode.bytes;
+      return r;
+    };
+    exports2.decode = function decode(b, o) {
+      var v = varint.decode(b, o);
+      decode.bytes = varint.decode.bytes;
+      return v & 1 ? (v + 1) / -2 : v / 2;
+    };
+    exports2.encodingLength = function(v) {
+      return varint.encodingLength(v >= 0 ? v * 2 : v * -2 - 1);
+    };
+  }
+});
+
+// node_modules/protocol-buffers-encodings/index.js
+var require_protocol_buffers_encodings = __commonJS({
+  "node_modules/protocol-buffers-encodings/index.js"(exports2) {
+    var varint = require_varint();
+    var svarint = require_signed_varint();
+    exports2.make = encoder;
+    exports2.name = function(enc) {
+      var keys = Object.keys(exports2);
+      for (var i = 0; i < keys.length; i++) {
+        if (exports2[keys[i]] === enc)
+          return keys[i];
+      }
+      return null;
+    };
+    exports2.skip = function(type, buffer, offset) {
+      switch (type) {
+        case 0:
+          varint.decode(buffer, offset);
+          return offset + varint.decode.bytes;
+        case 1:
+          return offset + 8;
+        case 2:
+          var len = varint.decode(buffer, offset);
+          return offset + varint.decode.bytes + len;
+        case 3:
+        case 4:
+          throw new Error("Groups are not supported");
+        case 5:
+          return offset + 4;
+      }
+      throw new Error("Unknown wire type: " + type);
+    };
+    exports2.bytes = encoder(2, function encode(val, buffer, offset) {
+      var oldOffset = offset;
+      var len = bufferLength(val);
+      varint.encode(len, buffer, offset);
+      offset += varint.encode.bytes;
+      if (Buffer.isBuffer(val))
+        val.copy(buffer, offset);
+      else
+        buffer.write(val, offset, len);
+      offset += len;
+      encode.bytes = offset - oldOffset;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var oldOffset = offset;
+      var len = varint.decode(buffer, offset);
+      offset += varint.decode.bytes;
+      var val = buffer.slice(offset, offset + len);
+      offset += val.length;
+      decode.bytes = offset - oldOffset;
+      return val;
+    }, function encodingLength(val) {
+      var len = bufferLength(val);
+      return varint.encodingLength(len) + len;
+    });
+    exports2.string = encoder(2, function encode(val, buffer, offset) {
+      var oldOffset = offset;
+      var len = Buffer.byteLength(val);
+      varint.encode(len, buffer, offset, "utf-8");
+      offset += varint.encode.bytes;
+      buffer.write(val, offset, len);
+      offset += len;
+      encode.bytes = offset - oldOffset;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var oldOffset = offset;
+      var len = varint.decode(buffer, offset);
+      offset += varint.decode.bytes;
+      var val = buffer.toString("utf-8", offset, offset + len);
+      offset += len;
+      decode.bytes = offset - oldOffset;
+      return val;
+    }, function encodingLength(val) {
+      var len = Buffer.byteLength(val);
+      return varint.encodingLength(len) + len;
+    });
+    exports2.bool = encoder(0, function encode(val, buffer, offset) {
+      buffer[offset] = val ? 1 : 0;
+      encode.bytes = 1;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var bool = buffer[offset] > 0;
+      decode.bytes = 1;
+      return bool;
+    }, function encodingLength() {
+      return 1;
+    });
+    exports2.int32 = encoder(0, function encode(val, buffer, offset) {
+      varint.encode(val < 0 ? val + 4294967296 : val, buffer, offset);
+      encode.bytes = varint.encode.bytes;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var val = varint.decode(buffer, offset);
+      decode.bytes = varint.decode.bytes;
+      return val > 2147483647 ? val - 4294967296 : val;
+    }, function encodingLength(val) {
+      return varint.encodingLength(val < 0 ? val + 4294967296 : val);
+    });
+    exports2.int64 = encoder(0, function encode(val, buffer, offset) {
+      if (val < 0) {
+        var last = offset + 9;
+        varint.encode(val * -1, buffer, offset);
+        offset += varint.encode.bytes - 1;
+        buffer[offset] = buffer[offset] | 128;
+        while (offset < last - 1) {
+          offset++;
+          buffer[offset] = 255;
+        }
+        buffer[last] = 1;
+        encode.bytes = 10;
+      } else {
+        varint.encode(val, buffer, offset);
+        encode.bytes = varint.encode.bytes;
+      }
+      return buffer;
+    }, function decode(buffer, offset) {
+      var val = varint.decode(buffer, offset);
+      if (val >= Math.pow(2, 63)) {
+        var limit = 9;
+        while (buffer[offset + limit - 1] === 255)
+          limit--;
+        limit = limit || 9;
+        var subset = Buffer.allocUnsafe(limit);
+        buffer.copy(subset, 0, offset, offset + limit);
+        subset[limit - 1] = subset[limit - 1] & 127;
+        val = -1 * varint.decode(subset, 0);
+        decode.bytes = 10;
+      } else {
+        decode.bytes = varint.decode.bytes;
+      }
+      return val;
+    }, function encodingLength(val) {
+      return val < 0 ? 10 : varint.encodingLength(val);
+    });
+    exports2.sint32 = exports2.sint64 = encoder(0, svarint.encode, svarint.decode, svarint.encodingLength);
+    exports2.uint32 = exports2.uint64 = exports2.enum = exports2.varint = encoder(0, varint.encode, varint.decode, varint.encodingLength);
+    exports2.fixed64 = exports2.sfixed64 = encoder(1, function encode(val, buffer, offset) {
+      val.copy(buffer, offset);
+      encode.bytes = 8;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var val = buffer.slice(offset, offset + 8);
+      decode.bytes = 8;
+      return val;
+    }, function encodingLength() {
+      return 8;
+    });
+    exports2.double = encoder(1, function encode(val, buffer, offset) {
+      buffer.writeDoubleLE(val, offset);
+      encode.bytes = 8;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var val = buffer.readDoubleLE(offset);
+      decode.bytes = 8;
+      return val;
+    }, function encodingLength() {
+      return 8;
+    });
+    exports2.fixed32 = encoder(5, function encode(val, buffer, offset) {
+      buffer.writeUInt32LE(val, offset);
+      encode.bytes = 4;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var val = buffer.readUInt32LE(offset);
+      decode.bytes = 4;
+      return val;
+    }, function encodingLength() {
+      return 4;
+    });
+    exports2.sfixed32 = encoder(5, function encode(val, buffer, offset) {
+      buffer.writeInt32LE(val, offset);
+      encode.bytes = 4;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var val = buffer.readInt32LE(offset);
+      decode.bytes = 4;
+      return val;
+    }, function encodingLength() {
+      return 4;
+    });
+    exports2.float = encoder(5, function encode(val, buffer, offset) {
+      buffer.writeFloatLE(val, offset);
+      encode.bytes = 4;
+      return buffer;
+    }, function decode(buffer, offset) {
+      var val = buffer.readFloatLE(offset);
+      decode.bytes = 4;
+      return val;
+    }, function encodingLength() {
+      return 4;
+    });
+    function encoder(type, encode, decode, encodingLength) {
+      encode.bytes = decode.bytes = 0;
+      return {
+        type,
+        encode,
+        decode,
+        encodingLength
+      };
+    }
+    function bufferLength(val) {
+      return Buffer.isBuffer(val) ? val.length : Buffer.byteLength(val);
+    }
+  }
+});
+
+// lib/proto/messages.js
+var require_messages = __commonJS({
+  "lib/proto/messages.js"(exports2) {
+    var encodings = require_protocol_buffers_encodings();
+    var varint = encodings.varint;
+    var skip = encodings.skip;
+    var VisitorData = exports2.VisitorData = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var ChannelAnalytics = exports2.ChannelAnalytics = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var InnertubePayload = exports2.InnertubePayload = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var SoundInfoParams = exports2.SoundInfoParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var NotificationPreferences = exports2.NotificationPreferences = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var LiveMessageParams = exports2.LiveMessageParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var GetCommentsSectionParams = exports2.GetCommentsSectionParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var CreateCommentParams = exports2.CreateCommentParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var CreateCommentReplyParams = exports2.CreateCommentReplyParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var PeformCommentActionParams = exports2.PeformCommentActionParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var MusicSearchFilter = exports2.MusicSearchFilter = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var SearchFilter = exports2.SearchFilter = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    defineVisitorData();
+    defineChannelAnalytics();
+    defineInnertubePayload();
+    defineSoundInfoParams();
+    defineNotificationPreferences();
+    defineLiveMessageParams();
+    defineGetCommentsSectionParams();
+    defineCreateCommentParams();
+    defineCreateCommentReplyParams();
+    definePeformCommentActionParams();
+    defineMusicSearchFilter();
+    defineSearchFilter();
+    function defineVisitorData() {
+      VisitorData.encodingLength = encodingLength;
+      VisitorData.encode = encode;
+      VisitorData.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.id)) {
+          var len = encodings.string.encodingLength(obj.id);
+          length += 1 + len;
+        }
+        if (defined(obj.timestamp)) {
+          var len = encodings.int32.encodingLength(obj.timestamp);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.id)) {
+          buf[offset++] = 10;
+          encodings.string.encode(obj.id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.timestamp)) {
+          buf[offset++] = 40;
+          encodings.int32.encode(obj.timestamp, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          id: "",
+          timestamp: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              obj.id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 5:
+              obj.timestamp = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineChannelAnalytics() {
+      var Params = ChannelAnalytics.Params = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineParams();
+      function defineParams() {
+        Params.encodingLength = encodingLength2;
+        Params.encode = encode2;
+        Params.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.channel_id)) {
+            var len = encodings.string.encodingLength(obj.channel_id);
+            length += 2 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.channel_id)) {
+            buf[offset++] = 202;
+            buf[offset++] = 62;
+            encodings.string.encode(obj.channel_id, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            channel_id: ""
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1001:
+                obj.channel_id = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      ChannelAnalytics.encodingLength = encodingLength;
+      ChannelAnalytics.encode = encode;
+      ChannelAnalytics.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.params)) {
+          var len = Params.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 2 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.params)) {
+          buf[offset++] = 130;
+          buf[offset++] = 2;
+          varint.encode(Params.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          Params.encode(obj.params, buf, offset);
+          offset += Params.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          params: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 32:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = Params.decode(buf, offset, offset + len);
+              offset += Params.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineInnertubePayload() {
+      var Context = InnertubePayload.Context = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineContext();
+      function defineContext() {
+        var Client = Context.Client = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineClient();
+        function defineClient() {
+          Client.encodingLength = encodingLength3;
+          Client.encode = encode3;
+          Client.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.unkparam)) {
+              var len = encodings.int32.encodingLength(obj.unkparam);
+              length += 2 + len;
+            }
+            if (defined(obj.client_version)) {
+              var len = encodings.string.encodingLength(obj.client_version);
+              length += 2 + len;
+            }
+            if (defined(obj.client_name)) {
+              var len = encodings.string.encodingLength(obj.client_name);
+              length += 2 + len;
+            }
+            return length;
+          }
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.unkparam)) {
+              buf[offset++] = 128;
+              buf[offset++] = 1;
+              encodings.int32.encode(obj.unkparam, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.client_version)) {
+              buf[offset++] = 138;
+              buf[offset++] = 1;
+              encodings.string.encode(obj.client_version, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.client_name)) {
+              buf[offset++] = 146;
+              buf[offset++] = 1;
+              encodings.string.encode(obj.client_name, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              unkparam: 0,
+              client_version: "",
+              client_name: ""
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 16:
+                  obj.unkparam = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 17:
+                  obj.client_version = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 18:
+                  obj.client_name = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+        }
+        Context.encodingLength = encodingLength2;
+        Context.encode = encode2;
+        Context.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.client)) {
+            var len = Client.encodingLength(obj.client);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.client)) {
+            buf[offset++] = 10;
+            varint.encode(Client.encodingLength(obj.client), buf, offset);
+            offset += varint.encode.bytes;
+            Client.encode(obj.client, buf, offset);
+            offset += Client.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            client: null
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.client = Client.decode(buf, offset, offset + len);
+                offset += Client.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      InnertubePayload.encodingLength = encodingLength;
+      InnertubePayload.encode = encode;
+      InnertubePayload.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.context)) {
+          var len = Context.encodingLength(obj.context);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.target)) {
+          var len = encodings.string.encodingLength(obj.target);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.context)) {
+          buf[offset++] = 10;
+          varint.encode(Context.encodingLength(obj.context), buf, offset);
+          offset += varint.encode.bytes;
+          Context.encode(obj.context, buf, offset);
+          offset += Context.encode.bytes;
+        }
+        if (defined(obj.target)) {
+          buf[offset++] = 18;
+          encodings.string.encode(obj.target, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          context: null,
+          target: ""
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.context = Context.decode(buf, offset, offset + len);
+              offset += Context.decode.bytes;
+              break;
+            case 2:
+              obj.target = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineSoundInfoParams() {
+      var Sound = SoundInfoParams.Sound = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineSound();
+      function defineSound() {
+        var Params = Sound.Params = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineParams();
+        function defineParams() {
+          var Ids = Params.Ids = {
+            buffer: true,
+            encodingLength: null,
+            encode: null,
+            decode: null
+          };
+          defineIds();
+          function defineIds() {
+            Ids.encodingLength = encodingLength4;
+            Ids.encode = encode4;
+            Ids.decode = decode4;
+            function encodingLength4(obj) {
+              var length = 0;
+              if (defined(obj.id_1)) {
+                var len = encodings.string.encodingLength(obj.id_1);
+                length += 1 + len;
+              }
+              if (defined(obj.id_2)) {
+                var len = encodings.string.encodingLength(obj.id_2);
+                length += 1 + len;
+              }
+              if (defined(obj.id_3)) {
+                var len = encodings.string.encodingLength(obj.id_3);
+                length += 1 + len;
+              }
+              return length;
+            }
+            function encode4(obj, buf, offset) {
+              if (!offset)
+                offset = 0;
+              if (!buf)
+                buf = Buffer.allocUnsafe(encodingLength4(obj));
+              var oldOffset = offset;
+              if (defined(obj.id_1)) {
+                buf[offset++] = 10;
+                encodings.string.encode(obj.id_1, buf, offset);
+                offset += encodings.string.encode.bytes;
+              }
+              if (defined(obj.id_2)) {
+                buf[offset++] = 18;
+                encodings.string.encode(obj.id_2, buf, offset);
+                offset += encodings.string.encode.bytes;
+              }
+              if (defined(obj.id_3)) {
+                buf[offset++] = 26;
+                encodings.string.encode(obj.id_3, buf, offset);
+                offset += encodings.string.encode.bytes;
+              }
+              encode4.bytes = offset - oldOffset;
+              return buf;
+            }
+            function decode4(buf, offset, end) {
+              if (!offset)
+                offset = 0;
+              if (!end)
+                end = buf.length;
+              if (!(end <= buf.length && offset <= buf.length))
+                throw new Error("Decoded message is not valid");
+              var oldOffset = offset;
+              var obj = {
+                id_1: "",
+                id_2: "",
+                id_3: ""
+              };
+              while (true) {
+                if (end <= offset) {
+                  decode4.bytes = offset - oldOffset;
+                  return obj;
+                }
+                var prefix = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                var tag = prefix >> 3;
+                switch (tag) {
+                  case 1:
+                    obj.id_1 = encodings.string.decode(buf, offset);
+                    offset += encodings.string.decode.bytes;
+                    break;
+                  case 2:
+                    obj.id_2 = encodings.string.decode(buf, offset);
+                    offset += encodings.string.decode.bytes;
+                    break;
+                  case 3:
+                    obj.id_3 = encodings.string.decode(buf, offset);
+                    offset += encodings.string.decode.bytes;
+                    break;
+                  default:
+                    offset = skip(prefix & 7, buf, offset);
+                }
+              }
+            }
+          }
+          Params.encodingLength = encodingLength3;
+          Params.encode = encode3;
+          Params.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.ids)) {
+              var len = Ids.encodingLength(obj.ids);
+              length += varint.encodingLength(len);
+              length += 1 + len;
+            }
+            return length;
+          }
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.ids)) {
+              buf[offset++] = 18;
+              varint.encode(Ids.encodingLength(obj.ids), buf, offset);
+              offset += varint.encode.bytes;
+              Ids.encode(obj.ids, buf, offset);
+              offset += Ids.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              ids: null
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 2:
+                  var len = varint.decode(buf, offset);
+                  offset += varint.decode.bytes;
+                  obj.ids = Ids.decode(buf, offset, offset + len);
+                  offset += Ids.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+        }
+        Sound.encodingLength = encodingLength2;
+        Sound.encode = encode2;
+        Sound.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.params)) {
+            var len = Params.encodingLength(obj.params);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.params)) {
+            buf[offset++] = 10;
+            varint.encode(Params.encodingLength(obj.params), buf, offset);
+            offset += varint.encode.bytes;
+            Params.encode(obj.params, buf, offset);
+            offset += Params.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            params: null
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.params = Params.decode(buf, offset, offset + len);
+                offset += Params.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      SoundInfoParams.encodingLength = encodingLength;
+      SoundInfoParams.encode = encode;
+      SoundInfoParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.sound)) {
+          var len = Sound.encodingLength(obj.sound);
+          length += varint.encodingLength(len);
+          length += 2 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.sound)) {
+          buf[offset++] = 242;
+          buf[offset++] = 5;
+          varint.encode(Sound.encodingLength(obj.sound), buf, offset);
+          offset += varint.encode.bytes;
+          Sound.encode(obj.sound, buf, offset);
+          offset += Sound.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          sound: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 94:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.sound = Sound.decode(buf, offset, offset + len);
+              offset += Sound.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineNotificationPreferences() {
+      var Preference = NotificationPreferences.Preference = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      definePreference();
+      function definePreference() {
+        Preference.encodingLength = encodingLength2;
+        Preference.encode = encode2;
+        Preference.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.index)) {
+            var len = encodings.int32.encodingLength(obj.index);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.index)) {
+            buf[offset++] = 8;
+            encodings.int32.encode(obj.index, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            index: 0
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.index = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      NotificationPreferences.encodingLength = encodingLength;
+      NotificationPreferences.encode = encode;
+      NotificationPreferences.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.channel_id)) {
+          var len = encodings.string.encodingLength(obj.channel_id);
+          length += 1 + len;
+        }
+        if (defined(obj.pref_id)) {
+          var len = Preference.encodingLength(obj.pref_id);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.number_0)) {
+          var len = encodings.int32.encodingLength(obj.number_0);
+          length += 1 + len;
+        }
+        if (defined(obj.number_1)) {
+          var len = encodings.int32.encodingLength(obj.number_1);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.channel_id)) {
+          buf[offset++] = 10;
+          encodings.string.encode(obj.channel_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.pref_id)) {
+          buf[offset++] = 18;
+          varint.encode(Preference.encodingLength(obj.pref_id), buf, offset);
+          offset += varint.encode.bytes;
+          Preference.encode(obj.pref_id, buf, offset);
+          offset += Preference.encode.bytes;
+        }
+        if (defined(obj.number_0)) {
+          buf[offset++] = 24;
+          encodings.int32.encode(obj.number_0, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.number_1)) {
+          buf[offset++] = 32;
+          encodings.int32.encode(obj.number_1, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          channel_id: "",
+          pref_id: null,
+          number_0: 0,
+          number_1: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              obj.channel_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 2:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.pref_id = Preference.decode(buf, offset, offset + len);
+              offset += Preference.decode.bytes;
+              break;
+            case 3:
+              obj.number_0 = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 4:
+              obj.number_1 = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineLiveMessageParams() {
+      var Params = LiveMessageParams.Params = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineParams();
+      function defineParams() {
+        var Ids = Params.Ids = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineIds();
+        function defineIds() {
+          Ids.encodingLength = encodingLength3;
+          Ids.encode = encode3;
+          Ids.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.channel_id)) {
+              var len = encodings.string.encodingLength(obj.channel_id);
+              length += 1 + len;
+            }
+            if (defined(obj.video_id)) {
+              var len = encodings.string.encodingLength(obj.video_id);
+              length += 1 + len;
+            }
+            return length;
+          }
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.channel_id)) {
+              buf[offset++] = 10;
+              encodings.string.encode(obj.channel_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.video_id)) {
+              buf[offset++] = 18;
+              encodings.string.encode(obj.video_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              channel_id: "",
+              video_id: ""
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 1:
+                  obj.channel_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 2:
+                  obj.video_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+        }
+        Params.encodingLength = encodingLength2;
+        Params.encode = encode2;
+        Params.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.ids)) {
+            var len = Ids.encodingLength(obj.ids);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.ids)) {
+            buf[offset++] = 42;
+            varint.encode(Ids.encodingLength(obj.ids), buf, offset);
+            offset += varint.encode.bytes;
+            Ids.encode(obj.ids, buf, offset);
+            offset += Ids.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            ids: null
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 5:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.ids = Ids.decode(buf, offset, offset + len);
+                offset += Ids.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      LiveMessageParams.encodingLength = encodingLength;
+      LiveMessageParams.encode = encode;
+      LiveMessageParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.params)) {
+          var len = Params.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.number_0)) {
+          var len = encodings.int32.encodingLength(obj.number_0);
+          length += 1 + len;
+        }
+        if (defined(obj.number_1)) {
+          var len = encodings.int32.encodingLength(obj.number_1);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.params)) {
+          buf[offset++] = 10;
+          varint.encode(Params.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          Params.encode(obj.params, buf, offset);
+          offset += Params.encode.bytes;
+        }
+        if (defined(obj.number_0)) {
+          buf[offset++] = 16;
+          encodings.int32.encode(obj.number_0, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.number_1)) {
+          buf[offset++] = 24;
+          encodings.int32.encode(obj.number_1, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          params: null,
+          number_0: 0,
+          number_1: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = Params.decode(buf, offset, offset + len);
+              offset += Params.decode.bytes;
+              break;
+            case 2:
+              obj.number_0 = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 3:
+              obj.number_1 = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineGetCommentsSectionParams() {
+      var Context = GetCommentsSectionParams.Context = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      var Params = GetCommentsSectionParams.Params = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineContext();
+      defineParams();
+      function defineContext() {
+        Context.encodingLength = encodingLength2;
+        Context.encode = encode2;
+        Context.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.video_id)) {
+            var len = encodings.string.encodingLength(obj.video_id);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.video_id)) {
+            buf[offset++] = 18;
+            encodings.string.encode(obj.video_id, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            video_id: ""
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 2:
+                obj.video_id = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      function defineParams() {
+        var Options = Params.Options = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        var RepliesOptions = Params.RepliesOptions = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineOptions();
+        defineRepliesOptions();
+        function defineOptions() {
+          Options.encodingLength = encodingLength3;
+          Options.encode = encode3;
+          Options.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.video_id)) {
+              var len = encodings.string.encodingLength(obj.video_id);
+              length += 1 + len;
+            }
+            if (defined(obj.sort_by)) {
+              var len = encodings.int32.encodingLength(obj.sort_by);
+              length += 1 + len;
+            }
+            if (defined(obj.type)) {
+              var len = encodings.int32.encodingLength(obj.type);
+              length += 1 + len;
+            }
+            return length;
+          }
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.video_id)) {
+              buf[offset++] = 34;
+              encodings.string.encode(obj.video_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.sort_by)) {
+              buf[offset++] = 48;
+              encodings.int32.encode(obj.sort_by, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.type)) {
+              buf[offset++] = 120;
+              encodings.int32.encode(obj.type, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              video_id: "",
+              sort_by: 0,
+              type: 0
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 4:
+                  obj.video_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 6:
+                  obj.sort_by = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 15:
+                  obj.type = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+        }
+        function defineRepliesOptions() {
+          var UnkOpts = RepliesOptions.UnkOpts = {
+            buffer: true,
+            encodingLength: null,
+            encode: null,
+            decode: null
+          };
+          defineUnkOpts();
+          function defineUnkOpts() {
+            UnkOpts.encodingLength = encodingLength4;
+            UnkOpts.encode = encode4;
+            UnkOpts.decode = decode4;
+            function encodingLength4(obj) {
+              var length = 0;
+              if (defined(obj.unk_param)) {
+                var len = encodings.int32.encodingLength(obj.unk_param);
+                length += 1 + len;
+              }
+              return length;
+            }
+            function encode4(obj, buf, offset) {
+              if (!offset)
+                offset = 0;
+              if (!buf)
+                buf = Buffer.allocUnsafe(encodingLength4(obj));
+              var oldOffset = offset;
+              if (defined(obj.unk_param)) {
+                buf[offset++] = 8;
+                encodings.int32.encode(obj.unk_param, buf, offset);
+                offset += encodings.int32.encode.bytes;
+              }
+              encode4.bytes = offset - oldOffset;
+              return buf;
+            }
+            function decode4(buf, offset, end) {
+              if (!offset)
+                offset = 0;
+              if (!end)
+                end = buf.length;
+              if (!(end <= buf.length && offset <= buf.length))
+                throw new Error("Decoded message is not valid");
+              var oldOffset = offset;
+              var obj = {
+                unk_param: 0
+              };
+              while (true) {
+                if (end <= offset) {
+                  decode4.bytes = offset - oldOffset;
+                  return obj;
+                }
+                var prefix = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                var tag = prefix >> 3;
+                switch (tag) {
+                  case 1:
+                    obj.unk_param = encodings.int32.decode(buf, offset);
+                    offset += encodings.int32.decode.bytes;
+                    break;
+                  default:
+                    offset = skip(prefix & 7, buf, offset);
+                }
+              }
+            }
+          }
+          RepliesOptions.encodingLength = encodingLength3;
+          RepliesOptions.encode = encode3;
+          RepliesOptions.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.comment_id)) {
+              var len = encodings.string.encodingLength(obj.comment_id);
+              length += 1 + len;
+            }
+            if (defined(obj.unkopts)) {
+              var len = UnkOpts.encodingLength(obj.unkopts);
+              length += varint.encodingLength(len);
+              length += 1 + len;
+            }
+            if (defined(obj.channel_id)) {
+              var len = encodings.string.encodingLength(obj.channel_id);
+              length += 1 + len;
+            }
+            if (defined(obj.video_id)) {
+              var len = encodings.string.encodingLength(obj.video_id);
+              length += 1 + len;
+            }
+            if (defined(obj.unk_param_1)) {
+              var len = encodings.int32.encodingLength(obj.unk_param_1);
+              length += 1 + len;
+            }
+            if (defined(obj.unk_param_2)) {
+              var len = encodings.int32.encodingLength(obj.unk_param_2);
+              length += 1 + len;
+            }
+            return length;
+          }
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.comment_id)) {
+              buf[offset++] = 18;
+              encodings.string.encode(obj.comment_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.unkopts)) {
+              buf[offset++] = 34;
+              varint.encode(UnkOpts.encodingLength(obj.unkopts), buf, offset);
+              offset += varint.encode.bytes;
+              UnkOpts.encode(obj.unkopts, buf, offset);
+              offset += UnkOpts.encode.bytes;
+            }
+            if (defined(obj.channel_id)) {
+              buf[offset++] = 42;
+              encodings.string.encode(obj.channel_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.video_id)) {
+              buf[offset++] = 50;
+              encodings.string.encode(obj.video_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.unk_param_1)) {
+              buf[offset++] = 64;
+              encodings.int32.encode(obj.unk_param_1, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.unk_param_2)) {
+              buf[offset++] = 72;
+              encodings.int32.encode(obj.unk_param_2, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              comment_id: "",
+              unkopts: null,
+              channel_id: "",
+              video_id: "",
+              unk_param_1: 0,
+              unk_param_2: 0
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 2:
+                  obj.comment_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 4:
+                  var len = varint.decode(buf, offset);
+                  offset += varint.decode.bytes;
+                  obj.unkopts = UnkOpts.decode(buf, offset, offset + len);
+                  offset += UnkOpts.decode.bytes;
+                  break;
+                case 5:
+                  obj.channel_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 6:
+                  obj.video_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 8:
+                  obj.unk_param_1 = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 9:
+                  obj.unk_param_2 = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+        }
+        Params.encodingLength = encodingLength2;
+        Params.encode = encode2;
+        Params.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.unk_token)) {
+            var len = encodings.string.encodingLength(obj.unk_token);
+            length += 1 + len;
+          }
+          if (defined(obj.opts)) {
+            var len = Options.encodingLength(obj.opts);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          if (defined(obj.replies_opts)) {
+            var len = RepliesOptions.encodingLength(obj.replies_opts);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          if (defined(obj.page)) {
+            var len = encodings.int32.encodingLength(obj.page);
+            length += 1 + len;
+          }
+          if (defined(obj.target)) {
+            var len = encodings.string.encodingLength(obj.target);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.unk_token)) {
+            buf[offset++] = 10;
+            encodings.string.encode(obj.unk_token, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          if (defined(obj.opts)) {
+            buf[offset++] = 34;
+            varint.encode(Options.encodingLength(obj.opts), buf, offset);
+            offset += varint.encode.bytes;
+            Options.encode(obj.opts, buf, offset);
+            offset += Options.encode.bytes;
+          }
+          if (defined(obj.replies_opts)) {
+            buf[offset++] = 26;
+            varint.encode(RepliesOptions.encodingLength(obj.replies_opts), buf, offset);
+            offset += varint.encode.bytes;
+            RepliesOptions.encode(obj.replies_opts, buf, offset);
+            offset += RepliesOptions.encode.bytes;
+          }
+          if (defined(obj.page)) {
+            buf[offset++] = 40;
+            encodings.int32.encode(obj.page, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          if (defined(obj.target)) {
+            buf[offset++] = 66;
+            encodings.string.encode(obj.target, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            unk_token: "",
+            opts: null,
+            replies_opts: null,
+            page: 0,
+            target: ""
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.unk_token = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              case 4:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.opts = Options.decode(buf, offset, offset + len);
+                offset += Options.decode.bytes;
+                break;
+              case 3:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.replies_opts = RepliesOptions.decode(buf, offset, offset + len);
+                offset += RepliesOptions.decode.bytes;
+                break;
+              case 5:
+                obj.page = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              case 8:
+                obj.target = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      GetCommentsSectionParams.encodingLength = encodingLength;
+      GetCommentsSectionParams.encode = encode;
+      GetCommentsSectionParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.ctx)) {
+          var len = Context.encodingLength(obj.ctx);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.unk_param)) {
+          var len = encodings.int32.encodingLength(obj.unk_param);
+          length += 1 + len;
+        }
+        if (defined(obj.params)) {
+          var len = Params.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.ctx)) {
+          buf[offset++] = 18;
+          varint.encode(Context.encodingLength(obj.ctx), buf, offset);
+          offset += varint.encode.bytes;
+          Context.encode(obj.ctx, buf, offset);
+          offset += Context.encode.bytes;
+        }
+        if (defined(obj.unk_param)) {
+          buf[offset++] = 24;
+          encodings.int32.encode(obj.unk_param, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.params)) {
+          buf[offset++] = 50;
+          varint.encode(Params.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          Params.encode(obj.params, buf, offset);
+          offset += Params.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          ctx: null,
+          unk_param: 0,
+          params: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 2:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.ctx = Context.decode(buf, offset, offset + len);
+              offset += Context.decode.bytes;
+              break;
+            case 3:
+              obj.unk_param = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 6:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = Params.decode(buf, offset, offset + len);
+              offset += Params.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineCreateCommentParams() {
+      var Params = CreateCommentParams.Params = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineParams();
+      function defineParams() {
+        Params.encodingLength = encodingLength2;
+        Params.encode = encode2;
+        Params.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.index)) {
+            var len = encodings.int32.encodingLength(obj.index);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.index)) {
+            buf[offset++] = 8;
+            encodings.int32.encode(obj.index, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            index: 0
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.index = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      CreateCommentParams.encodingLength = encodingLength;
+      CreateCommentParams.encode = encode;
+      CreateCommentParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.video_id)) {
+          var len = encodings.string.encodingLength(obj.video_id);
+          length += 1 + len;
+        }
+        if (defined(obj.params)) {
+          var len = Params.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.number)) {
+          var len = encodings.int32.encodingLength(obj.number);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.video_id)) {
+          buf[offset++] = 18;
+          encodings.string.encode(obj.video_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.params)) {
+          buf[offset++] = 42;
+          varint.encode(Params.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          Params.encode(obj.params, buf, offset);
+          offset += Params.encode.bytes;
+        }
+        if (defined(obj.number)) {
+          buf[offset++] = 80;
+          encodings.int32.encode(obj.number, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          video_id: "",
+          params: null,
+          number: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 2:
+              obj.video_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 5:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = Params.decode(buf, offset, offset + len);
+              offset += Params.decode.bytes;
+              break;
+            case 10:
+              obj.number = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineCreateCommentReplyParams() {
+      var UnknownParams = CreateCommentReplyParams.UnknownParams = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineUnknownParams();
+      function defineUnknownParams() {
+        UnknownParams.encodingLength = encodingLength2;
+        UnknownParams.encode = encode2;
+        UnknownParams.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.unk_num)) {
+            var len = encodings.int32.encodingLength(obj.unk_num);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.unk_num)) {
+            buf[offset++] = 8;
+            encodings.int32.encode(obj.unk_num, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            unk_num: 0
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.unk_num = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      CreateCommentReplyParams.encodingLength = encodingLength;
+      CreateCommentReplyParams.encode = encode;
+      CreateCommentReplyParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.video_id)) {
+          var len = encodings.string.encodingLength(obj.video_id);
+          length += 1 + len;
+        }
+        if (defined(obj.comment_id)) {
+          var len = encodings.string.encodingLength(obj.comment_id);
+          length += 1 + len;
+        }
+        if (defined(obj.params)) {
+          var len = UnknownParams.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.unk_num)) {
+          var len = encodings.int32.encodingLength(obj.unk_num);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.video_id)) {
+          buf[offset++] = 18;
+          encodings.string.encode(obj.video_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.comment_id)) {
+          buf[offset++] = 34;
+          encodings.string.encode(obj.comment_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.params)) {
+          buf[offset++] = 42;
+          varint.encode(UnknownParams.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          UnknownParams.encode(obj.params, buf, offset);
+          offset += UnknownParams.encode.bytes;
+        }
+        if (defined(obj.unk_num)) {
+          buf[offset++] = 80;
+          encodings.int32.encode(obj.unk_num, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          video_id: "",
+          comment_id: "",
+          params: null,
+          unk_num: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 2:
+              obj.video_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 4:
+              obj.comment_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 5:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = UnknownParams.decode(buf, offset, offset + len);
+              offset += UnknownParams.decode.bytes;
+              break;
+            case 10:
+              obj.unk_num = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function definePeformCommentActionParams() {
+      var TranslateCommentParams = PeformCommentActionParams.TranslateCommentParams = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineTranslateCommentParams();
+      function defineTranslateCommentParams() {
+        var Params = TranslateCommentParams.Params = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineParams();
+        function defineParams() {
+          var Comment = Params.Comment = {
+            buffer: true,
+            encodingLength: null,
+            encode: null,
+            decode: null
+          };
+          defineComment();
+          function defineComment() {
+            Comment.encodingLength = encodingLength4;
+            Comment.encode = encode4;
+            Comment.decode = decode4;
+            function encodingLength4(obj) {
+              var length = 0;
+              if (defined(obj.text)) {
+                var len = encodings.string.encodingLength(obj.text);
+                length += 1 + len;
+              }
+              return length;
+            }
+            function encode4(obj, buf, offset) {
+              if (!offset)
+                offset = 0;
+              if (!buf)
+                buf = Buffer.allocUnsafe(encodingLength4(obj));
+              var oldOffset = offset;
+              if (defined(obj.text)) {
+                buf[offset++] = 10;
+                encodings.string.encode(obj.text, buf, offset);
+                offset += encodings.string.encode.bytes;
+              }
+              encode4.bytes = offset - oldOffset;
+              return buf;
+            }
+            function decode4(buf, offset, end) {
+              if (!offset)
+                offset = 0;
+              if (!end)
+                end = buf.length;
+              if (!(end <= buf.length && offset <= buf.length))
+                throw new Error("Decoded message is not valid");
+              var oldOffset = offset;
+              var obj = {
+                text: ""
+              };
+              while (true) {
+                if (end <= offset) {
+                  decode4.bytes = offset - oldOffset;
+                  return obj;
+                }
+                var prefix = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                var tag = prefix >> 3;
+                switch (tag) {
+                  case 1:
+                    obj.text = encodings.string.decode(buf, offset);
+                    offset += encodings.string.decode.bytes;
+                    break;
+                  default:
+                    offset = skip(prefix & 7, buf, offset);
+                }
+              }
+            }
+          }
+          Params.encodingLength = encodingLength3;
+          Params.encode = encode3;
+          Params.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.comment)) {
+              var len = Comment.encodingLength(obj.comment);
+              length += varint.encodingLength(len);
+              length += 1 + len;
+            }
+            return length;
+          }
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.comment)) {
+              buf[offset++] = 10;
+              varint.encode(Comment.encodingLength(obj.comment), buf, offset);
+              offset += varint.encode.bytes;
+              Comment.encode(obj.comment, buf, offset);
+              offset += Comment.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              comment: null
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 1:
+                  var len = varint.decode(buf, offset);
+                  offset += varint.decode.bytes;
+                  obj.comment = Comment.decode(buf, offset, offset + len);
+                  offset += Comment.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+        }
+        TranslateCommentParams.encodingLength = encodingLength2;
+        TranslateCommentParams.encode = encode2;
+        TranslateCommentParams.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.params)) {
+            var len = Params.encodingLength(obj.params);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          if (defined(obj.comment_id)) {
+            var len = encodings.string.encodingLength(obj.comment_id);
+            length += 1 + len;
+          }
+          if (defined(obj.target_language)) {
+            var len = encodings.string.encodingLength(obj.target_language);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.params)) {
+            buf[offset++] = 26;
+            varint.encode(Params.encodingLength(obj.params), buf, offset);
+            offset += varint.encode.bytes;
+            Params.encode(obj.params, buf, offset);
+            offset += Params.encode.bytes;
+          }
+          if (defined(obj.comment_id)) {
+            buf[offset++] = 18;
+            encodings.string.encode(obj.comment_id, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          if (defined(obj.target_language)) {
+            buf[offset++] = 34;
+            encodings.string.encode(obj.target_language, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            params: null,
+            comment_id: "",
+            target_language: ""
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 3:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.params = Params.decode(buf, offset, offset + len);
+                offset += Params.decode.bytes;
+                break;
+              case 2:
+                obj.comment_id = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              case 4:
+                obj.target_language = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      PeformCommentActionParams.encodingLength = encodingLength;
+      PeformCommentActionParams.encode = encode;
+      PeformCommentActionParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.type)) {
+          var len = encodings.int32.encodingLength(obj.type);
+          length += 1 + len;
+        }
+        if (defined(obj.comment_id)) {
+          var len = encodings.string.encodingLength(obj.comment_id);
+          length += 1 + len;
+        }
+        if (defined(obj.video_id)) {
+          var len = encodings.string.encodingLength(obj.video_id);
+          length += 1 + len;
+        }
+        if (defined(obj.unk_num)) {
+          var len = encodings.int32.encodingLength(obj.unk_num);
+          length += 1 + len;
+        }
+        if (defined(obj.channel_id)) {
+          var len = encodings.string.encodingLength(obj.channel_id);
+          length += 2 + len;
+        }
+        if (defined(obj.translate_comment_params)) {
+          var len = TranslateCommentParams.encodingLength(obj.translate_comment_params);
+          length += varint.encodingLength(len);
+          length += 2 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.type)) {
+          buf[offset++] = 8;
+          encodings.int32.encode(obj.type, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.comment_id)) {
+          buf[offset++] = 26;
+          encodings.string.encode(obj.comment_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.video_id)) {
+          buf[offset++] = 42;
+          encodings.string.encode(obj.video_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.unk_num)) {
+          buf[offset++] = 16;
+          encodings.int32.encode(obj.unk_num, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.channel_id)) {
+          buf[offset++] = 186;
+          buf[offset++] = 1;
+          encodings.string.encode(obj.channel_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.translate_comment_params)) {
+          buf[offset++] = 250;
+          buf[offset++] = 1;
+          varint.encode(TranslateCommentParams.encodingLength(obj.translate_comment_params), buf, offset);
+          offset += varint.encode.bytes;
+          TranslateCommentParams.encode(obj.translate_comment_params, buf, offset);
+          offset += TranslateCommentParams.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          type: 0,
+          comment_id: "",
+          video_id: "",
+          unk_num: 0,
+          channel_id: "",
+          translate_comment_params: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              obj.type = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 3:
+              obj.comment_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 5:
+              obj.video_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 2:
+              obj.unk_num = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 23:
+              obj.channel_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 31:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.translate_comment_params = TranslateCommentParams.decode(buf, offset, offset + len);
+              offset += TranslateCommentParams.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineMusicSearchFilter() {
+      var Filters = MusicSearchFilter.Filters = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineFilters();
+      function defineFilters() {
+        var Type = Filters.Type = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineType();
+        function defineType() {
+          Type.encodingLength = encodingLength3;
+          Type.encode = encode3;
+          Type.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.all)) {
+              var len = encodings.int32.encodingLength(obj.all);
+              length += 1 + len;
+            }
+            if (defined(obj.song)) {
+              var len = encodings.int32.encodingLength(obj.song);
+              length += 1 + len;
+            }
+            if (defined(obj.video)) {
+              var len = encodings.int32.encodingLength(obj.video);
+              length += 1 + len;
+            }
+            if (defined(obj.album)) {
+              var len = encodings.int32.encodingLength(obj.album);
+              length += 1 + len;
+            }
+            if (defined(obj.artist)) {
+              var len = encodings.int32.encodingLength(obj.artist);
+              length += 1 + len;
+            }
+            if (defined(obj.playlist)) {
+              var len = encodings.int32.encodingLength(obj.playlist);
+              length += 1 + len;
+            }
+            return length;
+          }
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.all)) {
+              buf[offset++] = 0;
+              encodings.int32.encode(obj.all, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.song)) {
+              buf[offset++] = 8;
+              encodings.int32.encode(obj.song, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.video)) {
+              buf[offset++] = 16;
+              encodings.int32.encode(obj.video, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.album)) {
+              buf[offset++] = 24;
+              encodings.int32.encode(obj.album, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.artist)) {
+              buf[offset++] = 32;
+              encodings.int32.encode(obj.artist, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.playlist)) {
+              buf[offset++] = 40;
+              encodings.int32.encode(obj.playlist, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              all: 0,
+              song: 0,
+              video: 0,
+              album: 0,
+              artist: 0,
+              playlist: 0
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 0:
+                  obj.all = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 1:
+                  obj.song = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 2:
+                  obj.video = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 3:
+                  obj.album = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 4:
+                  obj.artist = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 5:
+                  obj.playlist = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+        }
+        Filters.encodingLength = encodingLength2;
+        Filters.encode = encode2;
+        Filters.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.type)) {
+            var len = Type.encodingLength(obj.type);
+            length += varint.encodingLength(len);
+            length += 2 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.type)) {
+            buf[offset++] = 138;
+            buf[offset++] = 1;
+            varint.encode(Type.encodingLength(obj.type), buf, offset);
+            offset += varint.encode.bytes;
+            Type.encode(obj.type, buf, offset);
+            offset += Type.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            type: null
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 17:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.type = Type.decode(buf, offset, offset + len);
+                offset += Type.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      MusicSearchFilter.encodingLength = encodingLength;
+      MusicSearchFilter.encode = encode;
+      MusicSearchFilter.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.filters)) {
+          var len = Filters.encodingLength(obj.filters);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.filters)) {
+          buf[offset++] = 18;
+          varint.encode(Filters.encodingLength(obj.filters), buf, offset);
+          offset += varint.encode.bytes;
+          Filters.encode(obj.filters, buf, offset);
+          offset += Filters.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          filters: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 2:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.filters = Filters.decode(buf, offset, offset + len);
+              offset += Filters.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defineSearchFilter() {
+      var Filters = SearchFilter.Filters = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineFilters();
+      function defineFilters() {
+        Filters.encodingLength = encodingLength2;
+        Filters.encode = encode2;
+        Filters.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.upload_date)) {
+            var len = encodings.int32.encodingLength(obj.upload_date);
+            length += 1 + len;
+          }
+          if (defined(obj.type)) {
+            var len = encodings.int32.encodingLength(obj.type);
+            length += 1 + len;
+          }
+          if (defined(obj.duration)) {
+            var len = encodings.int32.encodingLength(obj.duration);
+            length += 1 + len;
+          }
+          return length;
+        }
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.upload_date)) {
+            buf[offset++] = 8;
+            encodings.int32.encode(obj.upload_date, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          if (defined(obj.type)) {
+            buf[offset++] = 16;
+            encodings.int32.encode(obj.type, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          if (defined(obj.duration)) {
+            buf[offset++] = 24;
+            encodings.int32.encode(obj.duration, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            upload_date: 0,
+            type: 0,
+            duration: 0
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.upload_date = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              case 2:
+                obj.type = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              case 3:
+                obj.duration = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+      }
+      SearchFilter.encodingLength = encodingLength;
+      SearchFilter.encode = encode;
+      SearchFilter.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.sort_by)) {
+          var len = encodings.int32.encodingLength(obj.sort_by);
+          length += 1 + len;
+        }
+        if (defined(obj.no_filter)) {
+          var len = encodings.int32.encodingLength(obj.no_filter);
+          length += 2 + len;
+        }
+        if (defined(obj.filters)) {
+          var len = Filters.encodingLength(obj.filters);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        return length;
+      }
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.sort_by)) {
+          buf[offset++] = 8;
+          encodings.int32.encode(obj.sort_by, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.no_filter)) {
+          buf[offset++] = 152;
+          buf[offset++] = 1;
+          encodings.int32.encode(obj.no_filter, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.filters)) {
+          buf[offset++] = 18;
+          varint.encode(Filters.encodingLength(obj.filters), buf, offset);
+          offset += varint.encode.bytes;
+          Filters.encode(obj.filters, buf, offset);
+          offset += Filters.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          sort_by: 0,
+          no_filter: 0,
+          filters: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              obj.sort_by = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 19:
+              obj.no_filter = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 2:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.filters = Filters.decode(buf, offset, offset + len);
+              offset += Filters.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+    }
+    function defined(val) {
+      return val !== null && val !== void 0 && (typeof val !== "number" || !isNaN(val));
+    }
+  }
+});
+
+// lib/proto/index.js
+var require_proto = __commonJS({
+  "lib/proto/index.js"(exports2, module2) {
+    "use strict";
+    var messages = require_messages();
+    var Proto2 = class {
+      static encodeVisitorData(id, timestamp) {
+        const buf = messages.VisitorData.encode({ id, timestamp });
+        return encodeURIComponent(Buffer.from(buf).toString("base64").replace(/\/|\+/g, "_"));
+      }
+      static encodeChannelAnalyticsParams(channel_id) {
+        const buf = messages.ChannelAnalytics.encode({
+          params: {
+            channel_id
+          }
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeSearchFilters(filters) {
+        const upload_date = {
+          all: null,
+          hour: 1,
+          today: 2,
+          week: 3,
+          month: 4,
+          year: 5
+        };
+        const type = {
+          all: null,
+          video: 1,
+          channel: 2,
+          playlist: 3,
+          movie: 4
+        };
+        const duration = {
+          all: null,
+          short: 1,
+          long: 2,
+          medium: 3
+        };
+        const order = {
+          relevance: null,
+          rating: 1,
+          upload_date: 2,
+          view_count: 3
+        };
+        const data = {};
+        if (filters)
+          data.filters = {};
+        else
+          data.no_filter = 0;
+        if (filters) {
+          if (filters.upload_date && filters.type !== "video")
+            throw new Error(`Upload date filter cannot be used with type ${filters.type}`);
+          if (filters.upload_date) {
+            data.filters.upload_date = upload_date[filters.upload_date];
+          }
+          if (filters.type) {
+            data.filters.type = type[filters.type];
+          }
+          if (filters.duration) {
+            data.filters.duration = duration[filters.duration];
+          }
+          if (filters.sort_by && filters.sort_by !== "relevance") {
+            data.sort_by = order[filters.sort_by];
+          }
+        }
+        const buf = messages.SearchFilter.encode(data);
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeMusicSearchFilters(filters = {}) {
+        const data = {
+          filters: {
+            type: {}
+          }
+        };
+        data.filters.type[filters.type || "all"] = 1;
+        const buf = messages.MusicSearchFilter.encode(data);
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeMessageParams(channel_id, video_id) {
+        const buf = messages.LiveMessageParams.encode({
+          params: {
+            ids: {
+              channel_id,
+              video_id
+            }
+          },
+          number_0: 1,
+          number_1: 4
+        });
+        return Buffer.from(encodeURIComponent(Buffer.from(buf).toString("base64"))).toString("base64");
+      }
+      static encodeCommentsSectionParams(video_id, options = {}) {
+        const sort_options = {
+          TOP_COMMENTS: 0,
+          NEWEST_FIRST: 1
+        };
+        const buf = messages.GetCommentsSectionParams.encode({
+          ctx: {
+            video_id
+          },
+          unk_param: 6,
+          params: {
+            opts: {
+              video_id,
+              sort_by: sort_options[options.sort_by || "TOP_COMMENTS"],
+              type: options.type || 2
+            },
+            target: "comments-section"
+          }
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeCommentRepliesParams(video_id, comment_id) {
+        const buf = messages.GetCommentsSectionParams.encode({
+          ctx: {
+            video_id
+          },
+          unk_param: 6,
+          params: {
+            replies_opts: {
+              video_id,
+              comment_id,
+              unkopts: {
+                unk_param: 0
+              },
+              unk_param_1: 1,
+              unk_param_2: 10,
+              channel_id: " "
+            },
+            target: `comment-replies-item-${comment_id}`
+          }
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeCommentParams(video_id) {
+        const buf = messages.CreateCommentParams.encode({
+          video_id,
+          params: {
+            index: 0
+          },
+          number: 7
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeCommentReplyParams(comment_id, video_id) {
+        const buf = messages.CreateCommentReplyParams.encode({
+          video_id,
+          comment_id,
+          params: {
+            unk_num: 0
+          },
+          unk_num: 7
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeCommentActionParams(type, args = {}) {
+        const data = {};
+        data.type = type;
+        data.video_id = args.video_id || "";
+        data.comment_id = args.comment_id || "";
+        data.unk_num = 2;
+        if (args.hasOwnProperty("text")) {
+          args.comment_id && delete data.unk_num;
+          data.translate_comment_params = {
+            params: {
+              comment: {
+                text: args.text
+              }
+            },
+            comment_id: args.comment_id || "",
+            target_language: args.target_language
+          };
+        }
+        const buf = messages.PeformCommentActionParams.encode(data);
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeNotificationPref(channel_id, index) {
+        const buf = messages.NotificationPreferences.encode({
+          channel_id,
+          pref_id: {
+            index
+          },
+          number_0: 0,
+          number_1: 4
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeSoundInfoParams(id) {
+        const data = {
+          sound: {
+            params: {
+              ids: {
+                id_1: id,
+                id_2: id,
+                id_3: id
+              }
+            }
+          }
+        };
+        const buf = messages.SoundInfoParams.encode(data);
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+    };
+    module2.exports = Proto2;
   }
 });
 
@@ -21632,7 +21648,7 @@ var require_Actions = __commonJS({
     "use strict";
     var Uuid = (init_esm_browser(), __toCommonJS(esm_browser_exports));
     var Proto2 = require_proto();
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Constants = require_Constants();
     var Actions2 = class {
       #session;
@@ -21643,7 +21659,7 @@ var require_Actions = __commonJS({
       }
       async browse(id, args = {}) {
         if (this.#needsLogin(id) && !this.#session.logged_in)
-          throw new Utils2.InnertubeError("You are not signed in");
+          throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         if (args.params)
           data.params = args.params;
@@ -21660,14 +21676,14 @@ var require_Actions = __commonJS({
       }
       async engage(action, args = {}) {
         if (!this.#session.logged_in && !args.hasOwnProperty("text"))
-          throw new Utils2.InnertubeError("You are not signed in");
+          throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         switch (action) {
           case "like/like":
           case "like/dislike":
           case "like/removelike":
             data.target = {};
-            data.videoId = args.video_id;
+            data.target.videoId = args.video_id;
             if (args.params) {
               data.params = args.params;
             }
@@ -21695,36 +21711,40 @@ var require_Actions = __commonJS({
                 case "translate":
                   return Proto2.encodeCommentActionParams(22, args);
                 default:
-                  throw new TypeError("undefined is not a function");
+                  break;
               }
             })();
             data.actions = [target_action];
             break;
           default:
-            throw new Utils2.InnertubeError("Action not implemented", action);
+            throw new Utils.InnertubeError("Action not implemented", action);
         }
         const response = await this.#request.post(`/${action}`, data);
         return response;
       }
       async account(action, args = {}) {
         if (!this.#session.logged_in)
-          throw new Utils2.InnertubeError("You are not signed in");
-        const data = { client: args.client };
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          client: args.client
+        };
         switch (action) {
           case "account/set_setting":
-            data.newValue = { boolValue: args.new_value };
+            data.newValue = {
+              boolValue: args.new_value
+            };
             data.settingItemId = args.setting_item_id;
             break;
           case "account/accounts_list":
             break;
           default:
-            throw new Utils2.InnertubeError("Action not implemented", action);
+            throw new Utils.InnertubeError("Action not implemented", action);
         }
         const response = await this.#request.post(`/${action}`, data);
         return response;
       }
       async search(args = {}) {
-        const data = {};
+        const data = { client: args.client };
         if (args.query) {
           data.query = args.query;
         }
@@ -21732,17 +21752,14 @@ var require_Actions = __commonJS({
           data.continuation = args.ctoken;
         }
         if (args.params) {
-          data.params;
+          data.params = args.params;
         }
         if (args.filters) {
           if (args.client == "YTMUSIC") {
-            data.filters = Proto2.encodeMusicSearchFilters(args.filters);
+            data.params = Proto2.encodeMusicSearchFilters(args.filters);
           } else {
-            data.filters = Proto2.encodeSearchFilters(args.filters);
+            data.params = Proto2.encodeSearchFilters(args.filters);
           }
-        }
-        if (args.client) {
-          data.client;
         }
         const response = await this.#request.post("/search", data);
         return response;
@@ -21757,8 +21774,10 @@ var require_Actions = __commonJS({
       }
       async channel(action, args = {}) {
         if (!this.#session.logged_in)
-          throw new Utils2.InnertubeError("You are not signed in");
-        const data = { client: args.client || "ANDROID" };
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          client: args.client || "ANDROID"
+        };
         switch (action) {
           case "channel/edit_name":
             data.givenName = args.new_name;
@@ -21769,14 +21788,14 @@ var require_Actions = __commonJS({
           case "channel/get_profile_editor":
             break;
           default:
-            throw new Utils2.InnertubeError("Action not implemented", action);
+            throw new Utils.InnertubeError("Action not implemented", action);
         }
         const response = await this.#request.post(`/${action}`, data);
         return response;
       }
       async playlist(action, args = {}) {
         if (!this.#session.logged_in)
-          throw new Utils2.InnertubeError("You are not signed in");
+          throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         switch (action) {
           case "playlist/create":
@@ -21801,23 +21820,27 @@ var require_Actions = __commonJS({
                     setVideoId: id
                   };
                 default:
-                  throw new TypeError("undefined is not a function");
+                  break;
               }
             });
             break;
           default:
-            throw new Utils2.InnertubeError("Action not implemented", action);
+            throw new Utils.InnertubeError("Action not implemented", action);
         }
         const response = await this.#request.post(`/${action}`, data);
         return response;
       }
       async notifications(action, args = {}) {
         if (!this.#session.logged_in)
-          throw new Utils2.InnertubeError("You are not signed in");
+          throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         switch (action) {
           case "modify_channel_preference":
-            const pref_types = { PERSONALIZED: 1, ALL: 2, NONE: 3 };
+            const pref_types = {
+              PERSONALIZED: 1,
+              ALL: 2,
+              NONE: 3
+            };
             data.params = Proto2.encodeNotificationPref(args.channel_id, pref_types[args.pref.toUpperCase()]);
             break;
           case "get_notification_menu":
@@ -21831,7 +21854,7 @@ var require_Actions = __commonJS({
           case "get_unseen_count":
             break;
           default:
-            throw new Utils2.InnertubeError("Action not implemented", action);
+            throw new Utils.InnertubeError("Action not implemented", action);
         }
         const response = await this.#request.post(`/notification/${action}`, data);
         return response;
@@ -21847,7 +21870,9 @@ var require_Actions = __commonJS({
             data.params = Proto2.encodeMessageParams(args.channel_id, args.video_id);
             data.clientMessageId = Uuid.v4();
             data.richMessage = {
-              textSegments: [{ text: args.text }]
+              textSegments: [{
+                text: args.text
+              }]
             };
             break;
           case "live_chat/get_item_context_menu":
@@ -21861,7 +21886,7 @@ var require_Actions = __commonJS({
               data.continuation = args.ctoken;
             break;
           default:
-            throw new Utils2.InnertubeError("Action not implemented", action);
+            throw new Utils.InnertubeError("Action not implemented", action);
         }
         const response = await this.#request.post(`/${action}`, data);
         return response;
@@ -21876,7 +21901,7 @@ var require_Actions = __commonJS({
       }
       async geo(action, args = {}) {
         if (!this.#session.logged_in)
-          throw new Utils2.InnertubeError("You are not signed in");
+          throw new Utils.InnertubeError("You are not signed in");
         const data = {
           input: args.input,
           client: "ANDROID"
@@ -21886,7 +21911,7 @@ var require_Actions = __commonJS({
       }
       async flag(action, args) {
         if (!this.#session.logged_in)
-          throw new Utils2.InnertubeError("You are not signed in");
+          throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         switch (action) {
           case "flag/flag":
@@ -21896,7 +21921,7 @@ var require_Actions = __commonJS({
             data.params = args.params;
             break;
           default:
-            throw new Utils2.InnertubeError("Action not implemented", action);
+            throw new Utils.InnertubeError("Action not implemented", action);
         }
         const response = await this.#request.post(`/${action}`, data);
         return response;
@@ -21910,15 +21935,12 @@ var require_Actions = __commonJS({
         return response;
       }
       async next(args = {}) {
-        const data = {};
+        const data = { client: args.client };
         if (args.ctoken) {
-          data.continuation;
+          data.continuation = args.ctoken;
         }
         if (args.video_id) {
-          data.videoId;
-        }
-        if (args.client) {
-          data.client;
+          data.videoId = args.video_id;
         }
         const response = await this.#request.post("/next", data);
         return response;
@@ -21930,7 +21952,7 @@ var require_Actions = __commonJS({
               vis: 0,
               splay: false,
               referer: "https://www.youtube.com",
-              currentUrl: "/watch?v=" + id,
+              currentUrl: `/watch?v=${id}`,
               autonavState: "STATE_OFF",
               signatureTimestamp: this.#session.sts,
               autoCaptionsDefaultOn: false,
@@ -21954,7 +21976,7 @@ var require_Actions = __commonJS({
       }
       async getSearchSuggestions(client, query) {
         if (!["YOUTUBE", "YTMUSIC"].includes(client))
-          throw new Utils2.InnertubeError("Invalid client", client);
+          throw new Utils.InnertubeError("Invalid client", client);
         const response = await {
           YOUTUBE: () => this.#request({
             url: "search",
@@ -21969,19 +21991,37 @@ var require_Actions = __commonJS({
               hl: this.#session.context.client.hl
             }
           }),
-          YTMUSIC: () => this.music("get_search_suggestions", { input: query })
+          YTMUSIC: () => this.music("get_search_suggestions", {
+            input: query
+          })
         }[client]();
         return response;
       }
       async getUserMentionSuggestions(args = {}) {
         if (!this.#session.logged_in)
-          throw new Utils2.InnertubeError("You are not signed in");
+          throw new Utils.InnertubeError("You are not signed in");
         const data = {
           input: args.input,
           client: "ANDROID"
         };
         const response = await this.#request.post("get_user_mention_suggestions", data);
         return response;
+      }
+      async execute(action, args) {
+        const data = { ...args };
+        if (Reflect.has(data, "request"))
+          delete data.request;
+        if (Reflect.has(data, "clientActions"))
+          delete data.clientActions;
+        if (Reflect.has(data, "action")) {
+          data.actions = [data.action];
+          delete data.action;
+        }
+        if (Reflect.has(data, "token")) {
+          data.continuation = data.token;
+          delete data.token;
+        }
+        return this.#request.post(action, data);
       }
       #needsLogin(id) {
         return [
@@ -21995,1277 +22035,6 @@ var require_Actions = __commonJS({
       }
     };
     module2.exports = Actions2;
-  }
-});
-
-// node_modules/axios/lib/helpers/bind.js
-var require_bind = __commonJS({
-  "node_modules/axios/lib/helpers/bind.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function bind(fn, thisArg) {
-      return function wrap() {
-        var args = new Array(arguments.length);
-        for (var i = 0; i < args.length; i++) {
-          args[i] = arguments[i];
-        }
-        return fn.apply(thisArg, args);
-      };
-    };
-  }
-});
-
-// node_modules/axios/lib/utils.js
-var require_utils = __commonJS({
-  "node_modules/axios/lib/utils.js"(exports2, module2) {
-    "use strict";
-    var bind = require_bind();
-    var toString = Object.prototype.toString;
-    function isArray(val) {
-      return toString.call(val) === "[object Array]";
-    }
-    function isUndefined(val) {
-      return typeof val === "undefined";
-    }
-    function isBuffer(val) {
-      return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && typeof val.constructor.isBuffer === "function" && val.constructor.isBuffer(val);
-    }
-    function isArrayBuffer(val) {
-      return toString.call(val) === "[object ArrayBuffer]";
-    }
-    function isFormData(val) {
-      return typeof FormData !== "undefined" && val instanceof FormData;
-    }
-    function isArrayBufferView(val) {
-      var result;
-      if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView) {
-        result = ArrayBuffer.isView(val);
-      } else {
-        result = val && val.buffer && val.buffer instanceof ArrayBuffer;
-      }
-      return result;
-    }
-    function isString(val) {
-      return typeof val === "string";
-    }
-    function isNumber(val) {
-      return typeof val === "number";
-    }
-    function isObject(val) {
-      return val !== null && typeof val === "object";
-    }
-    function isPlainObject(val) {
-      if (toString.call(val) !== "[object Object]") {
-        return false;
-      }
-      var prototype = Object.getPrototypeOf(val);
-      return prototype === null || prototype === Object.prototype;
-    }
-    function isDate(val) {
-      return toString.call(val) === "[object Date]";
-    }
-    function isFile(val) {
-      return toString.call(val) === "[object File]";
-    }
-    function isBlob(val) {
-      return toString.call(val) === "[object Blob]";
-    }
-    function isFunction(val) {
-      return toString.call(val) === "[object Function]";
-    }
-    function isStream(val) {
-      return isObject(val) && isFunction(val.pipe);
-    }
-    function isURLSearchParams(val) {
-      return typeof URLSearchParams !== "undefined" && val instanceof URLSearchParams;
-    }
-    function trim(str) {
-      return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, "");
-    }
-    function isStandardBrowserEnv() {
-      if (typeof navigator !== "undefined" && (navigator.product === "ReactNative" || navigator.product === "NativeScript" || navigator.product === "NS")) {
-        return false;
-      }
-      return typeof window !== "undefined" && typeof document !== "undefined";
-    }
-    function forEach(obj, fn) {
-      if (obj === null || typeof obj === "undefined") {
-        return;
-      }
-      if (typeof obj !== "object") {
-        obj = [obj];
-      }
-      if (isArray(obj)) {
-        for (var i = 0, l = obj.length; i < l; i++) {
-          fn.call(null, obj[i], i, obj);
-        }
-      } else {
-        for (var key in obj) {
-          if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            fn.call(null, obj[key], key, obj);
-          }
-        }
-      }
-    }
-    function merge() {
-      var result = {};
-      function assignValue(val, key) {
-        if (isPlainObject(result[key]) && isPlainObject(val)) {
-          result[key] = merge(result[key], val);
-        } else if (isPlainObject(val)) {
-          result[key] = merge({}, val);
-        } else if (isArray(val)) {
-          result[key] = val.slice();
-        } else {
-          result[key] = val;
-        }
-      }
-      for (var i = 0, l = arguments.length; i < l; i++) {
-        forEach(arguments[i], assignValue);
-      }
-      return result;
-    }
-    function extend(a, b, thisArg) {
-      forEach(b, function assignValue(val, key) {
-        if (thisArg && typeof val === "function") {
-          a[key] = bind(val, thisArg);
-        } else {
-          a[key] = val;
-        }
-      });
-      return a;
-    }
-    function stripBOM(content) {
-      if (content.charCodeAt(0) === 65279) {
-        content = content.slice(1);
-      }
-      return content;
-    }
-    module2.exports = {
-      isArray,
-      isArrayBuffer,
-      isBuffer,
-      isFormData,
-      isArrayBufferView,
-      isString,
-      isNumber,
-      isObject,
-      isPlainObject,
-      isUndefined,
-      isDate,
-      isFile,
-      isBlob,
-      isFunction,
-      isStream,
-      isURLSearchParams,
-      isStandardBrowserEnv,
-      forEach,
-      merge,
-      extend,
-      trim,
-      stripBOM
-    };
-  }
-});
-
-// node_modules/axios/lib/helpers/buildURL.js
-var require_buildURL = __commonJS({
-  "node_modules/axios/lib/helpers/buildURL.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    function encode(val) {
-      return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
-    }
-    module2.exports = function buildURL(url, params, paramsSerializer) {
-      if (!params) {
-        return url;
-      }
-      var serializedParams;
-      if (paramsSerializer) {
-        serializedParams = paramsSerializer(params);
-      } else if (utils.isURLSearchParams(params)) {
-        serializedParams = params.toString();
-      } else {
-        var parts = [];
-        utils.forEach(params, function serialize(val, key) {
-          if (val === null || typeof val === "undefined") {
-            return;
-          }
-          if (utils.isArray(val)) {
-            key = key + "[]";
-          } else {
-            val = [val];
-          }
-          utils.forEach(val, function parseValue(v) {
-            if (utils.isDate(v)) {
-              v = v.toISOString();
-            } else if (utils.isObject(v)) {
-              v = JSON.stringify(v);
-            }
-            parts.push(encode(key) + "=" + encode(v));
-          });
-        });
-        serializedParams = parts.join("&");
-      }
-      if (serializedParams) {
-        var hashmarkIndex = url.indexOf("#");
-        if (hashmarkIndex !== -1) {
-          url = url.slice(0, hashmarkIndex);
-        }
-        url += (url.indexOf("?") === -1 ? "?" : "&") + serializedParams;
-      }
-      return url;
-    };
-  }
-});
-
-// node_modules/axios/lib/core/InterceptorManager.js
-var require_InterceptorManager = __commonJS({
-  "node_modules/axios/lib/core/InterceptorManager.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    function InterceptorManager() {
-      this.handlers = [];
-    }
-    InterceptorManager.prototype.use = function use(fulfilled, rejected, options) {
-      this.handlers.push({
-        fulfilled,
-        rejected,
-        synchronous: options ? options.synchronous : false,
-        runWhen: options ? options.runWhen : null
-      });
-      return this.handlers.length - 1;
-    };
-    InterceptorManager.prototype.eject = function eject(id) {
-      if (this.handlers[id]) {
-        this.handlers[id] = null;
-      }
-    };
-    InterceptorManager.prototype.forEach = function forEach(fn) {
-      utils.forEach(this.handlers, function forEachHandler(h) {
-        if (h !== null) {
-          fn(h);
-        }
-      });
-    };
-    module2.exports = InterceptorManager;
-  }
-});
-
-// node_modules/axios/lib/helpers/normalizeHeaderName.js
-var require_normalizeHeaderName = __commonJS({
-  "node_modules/axios/lib/helpers/normalizeHeaderName.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    module2.exports = function normalizeHeaderName(headers, normalizedName) {
-      utils.forEach(headers, function processHeader(value, name) {
-        if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
-          headers[normalizedName] = value;
-          delete headers[name];
-        }
-      });
-    };
-  }
-});
-
-// node_modules/axios/lib/core/enhanceError.js
-var require_enhanceError = __commonJS({
-  "node_modules/axios/lib/core/enhanceError.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function enhanceError(error, config, code, request, response) {
-      error.config = config;
-      if (code) {
-        error.code = code;
-      }
-      error.request = request;
-      error.response = response;
-      error.isAxiosError = true;
-      error.toJSON = function toJSON() {
-        return {
-          message: this.message,
-          name: this.name,
-          description: this.description,
-          number: this.number,
-          fileName: this.fileName,
-          lineNumber: this.lineNumber,
-          columnNumber: this.columnNumber,
-          stack: this.stack,
-          config: this.config,
-          code: this.code
-        };
-      };
-      return error;
-    };
-  }
-});
-
-// node_modules/axios/lib/core/createError.js
-var require_createError = __commonJS({
-  "node_modules/axios/lib/core/createError.js"(exports2, module2) {
-    "use strict";
-    var enhanceError = require_enhanceError();
-    module2.exports = function createError(message, config, code, request, response) {
-      var error = new Error(message);
-      return enhanceError(error, config, code, request, response);
-    };
-  }
-});
-
-// node_modules/axios/lib/core/settle.js
-var require_settle = __commonJS({
-  "node_modules/axios/lib/core/settle.js"(exports2, module2) {
-    "use strict";
-    var createError = require_createError();
-    module2.exports = function settle(resolve, reject, response) {
-      var validateStatus = response.config.validateStatus;
-      if (!response.status || !validateStatus || validateStatus(response.status)) {
-        resolve(response);
-      } else {
-        reject(createError("Request failed with status code " + response.status, response.config, null, response.request, response));
-      }
-    };
-  }
-});
-
-// node_modules/axios/lib/helpers/cookies.js
-var require_cookies = __commonJS({
-  "node_modules/axios/lib/helpers/cookies.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    module2.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
-      return {
-        write: function write(name, value, expires, path, domain, secure) {
-          var cookie = [];
-          cookie.push(name + "=" + encodeURIComponent(value));
-          if (utils.isNumber(expires)) {
-            cookie.push("expires=" + new Date(expires).toGMTString());
-          }
-          if (utils.isString(path)) {
-            cookie.push("path=" + path);
-          }
-          if (utils.isString(domain)) {
-            cookie.push("domain=" + domain);
-          }
-          if (secure === true) {
-            cookie.push("secure");
-          }
-          document.cookie = cookie.join("; ");
-        },
-        read: function read(name) {
-          var match = document.cookie.match(new RegExp("(^|;\\s*)(" + name + ")=([^;]*)"));
-          return match ? decodeURIComponent(match[3]) : null;
-        },
-        remove: function remove(name) {
-          this.write(name, "", Date.now() - 864e5);
-        }
-      };
-    }() : function nonStandardBrowserEnv() {
-      return {
-        write: function write() {
-        },
-        read: function read() {
-          return null;
-        },
-        remove: function remove() {
-        }
-      };
-    }();
-  }
-});
-
-// node_modules/axios/lib/helpers/isAbsoluteURL.js
-var require_isAbsoluteURL = __commonJS({
-  "node_modules/axios/lib/helpers/isAbsoluteURL.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function isAbsoluteURL(url) {
-      return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
-    };
-  }
-});
-
-// node_modules/axios/lib/helpers/combineURLs.js
-var require_combineURLs = __commonJS({
-  "node_modules/axios/lib/helpers/combineURLs.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function combineURLs(baseURL, relativeURL) {
-      return relativeURL ? baseURL.replace(/\/+$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
-    };
-  }
-});
-
-// node_modules/axios/lib/core/buildFullPath.js
-var require_buildFullPath = __commonJS({
-  "node_modules/axios/lib/core/buildFullPath.js"(exports2, module2) {
-    "use strict";
-    var isAbsoluteURL = require_isAbsoluteURL();
-    var combineURLs = require_combineURLs();
-    module2.exports = function buildFullPath(baseURL, requestedURL) {
-      if (baseURL && !isAbsoluteURL(requestedURL)) {
-        return combineURLs(baseURL, requestedURL);
-      }
-      return requestedURL;
-    };
-  }
-});
-
-// node_modules/axios/lib/helpers/parseHeaders.js
-var require_parseHeaders = __commonJS({
-  "node_modules/axios/lib/helpers/parseHeaders.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    var ignoreDuplicateOf = [
-      "age",
-      "authorization",
-      "content-length",
-      "content-type",
-      "etag",
-      "expires",
-      "from",
-      "host",
-      "if-modified-since",
-      "if-unmodified-since",
-      "last-modified",
-      "location",
-      "max-forwards",
-      "proxy-authorization",
-      "referer",
-      "retry-after",
-      "user-agent"
-    ];
-    module2.exports = function parseHeaders(headers) {
-      var parsed = {};
-      var key;
-      var val;
-      var i;
-      if (!headers) {
-        return parsed;
-      }
-      utils.forEach(headers.split("\n"), function parser(line) {
-        i = line.indexOf(":");
-        key = utils.trim(line.substr(0, i)).toLowerCase();
-        val = utils.trim(line.substr(i + 1));
-        if (key) {
-          if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
-            return;
-          }
-          if (key === "set-cookie") {
-            parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
-          } else {
-            parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
-          }
-        }
-      });
-      return parsed;
-    };
-  }
-});
-
-// node_modules/axios/lib/helpers/isURLSameOrigin.js
-var require_isURLSameOrigin = __commonJS({
-  "node_modules/axios/lib/helpers/isURLSameOrigin.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    module2.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
-      var msie = /(msie|trident)/i.test(navigator.userAgent);
-      var urlParsingNode = document.createElement("a");
-      var originURL;
-      function resolveURL(url) {
-        var href = url;
-        if (msie) {
-          urlParsingNode.setAttribute("href", href);
-          href = urlParsingNode.href;
-        }
-        urlParsingNode.setAttribute("href", href);
-        return {
-          href: urlParsingNode.href,
-          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, "") : "",
-          host: urlParsingNode.host,
-          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, "") : "",
-          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, "") : "",
-          hostname: urlParsingNode.hostname,
-          port: urlParsingNode.port,
-          pathname: urlParsingNode.pathname.charAt(0) === "/" ? urlParsingNode.pathname : "/" + urlParsingNode.pathname
-        };
-      }
-      originURL = resolveURL(window.location.href);
-      return function isURLSameOrigin(requestURL) {
-        var parsed = utils.isString(requestURL) ? resolveURL(requestURL) : requestURL;
-        return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
-      };
-    }() : function nonStandardBrowserEnv() {
-      return function isURLSameOrigin() {
-        return true;
-      };
-    }();
-  }
-});
-
-// node_modules/axios/lib/adapters/xhr.js
-var require_xhr = __commonJS({
-  "node_modules/axios/lib/adapters/xhr.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    var settle = require_settle();
-    var cookies = require_cookies();
-    var buildURL = require_buildURL();
-    var buildFullPath = require_buildFullPath();
-    var parseHeaders = require_parseHeaders();
-    var isURLSameOrigin = require_isURLSameOrigin();
-    var createError = require_createError();
-    module2.exports = function xhrAdapter(config) {
-      return new Promise(function dispatchXhrRequest(resolve, reject) {
-        var requestData = config.data;
-        var requestHeaders = config.headers;
-        var responseType = config.responseType;
-        if (utils.isFormData(requestData)) {
-          delete requestHeaders["Content-Type"];
-        }
-        var request = new XMLHttpRequest();
-        if (config.auth) {
-          var username = config.auth.username || "";
-          var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : "";
-          requestHeaders.Authorization = "Basic " + btoa(username + ":" + password);
-        }
-        var fullPath = buildFullPath(config.baseURL, config.url);
-        request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
-        request.timeout = config.timeout;
-        function onloadend() {
-          if (!request) {
-            return;
-          }
-          var responseHeaders = "getAllResponseHeaders" in request ? parseHeaders(request.getAllResponseHeaders()) : null;
-          var responseData = !responseType || responseType === "text" || responseType === "json" ? request.responseText : request.response;
-          var response = {
-            data: responseData,
-            status: request.status,
-            statusText: request.statusText,
-            headers: responseHeaders,
-            config,
-            request
-          };
-          settle(resolve, reject, response);
-          request = null;
-        }
-        if ("onloadend" in request) {
-          request.onloadend = onloadend;
-        } else {
-          request.onreadystatechange = function handleLoad() {
-            if (!request || request.readyState !== 4) {
-              return;
-            }
-            if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf("file:") === 0)) {
-              return;
-            }
-            setTimeout(onloadend);
-          };
-        }
-        request.onabort = function handleAbort() {
-          if (!request) {
-            return;
-          }
-          reject(createError("Request aborted", config, "ECONNABORTED", request));
-          request = null;
-        };
-        request.onerror = function handleError() {
-          reject(createError("Network Error", config, null, request));
-          request = null;
-        };
-        request.ontimeout = function handleTimeout() {
-          var timeoutErrorMessage = "timeout of " + config.timeout + "ms exceeded";
-          if (config.timeoutErrorMessage) {
-            timeoutErrorMessage = config.timeoutErrorMessage;
-          }
-          reject(createError(timeoutErrorMessage, config, config.transitional && config.transitional.clarifyTimeoutError ? "ETIMEDOUT" : "ECONNABORTED", request));
-          request = null;
-        };
-        if (utils.isStandardBrowserEnv()) {
-          var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : void 0;
-          if (xsrfValue) {
-            requestHeaders[config.xsrfHeaderName] = xsrfValue;
-          }
-        }
-        if ("setRequestHeader" in request) {
-          utils.forEach(requestHeaders, function setRequestHeader(val, key) {
-            if (typeof requestData === "undefined" && key.toLowerCase() === "content-type") {
-              delete requestHeaders[key];
-            } else {
-              request.setRequestHeader(key, val);
-            }
-          });
-        }
-        if (!utils.isUndefined(config.withCredentials)) {
-          request.withCredentials = !!config.withCredentials;
-        }
-        if (responseType && responseType !== "json") {
-          request.responseType = config.responseType;
-        }
-        if (typeof config.onDownloadProgress === "function") {
-          request.addEventListener("progress", config.onDownloadProgress);
-        }
-        if (typeof config.onUploadProgress === "function" && request.upload) {
-          request.upload.addEventListener("progress", config.onUploadProgress);
-        }
-        if (config.cancelToken) {
-          config.cancelToken.promise.then(function onCanceled(cancel) {
-            if (!request) {
-              return;
-            }
-            request.abort();
-            reject(cancel);
-            request = null;
-          });
-        }
-        if (!requestData) {
-          requestData = null;
-        }
-        request.send(requestData);
-      });
-    };
-  }
-});
-
-// node_modules/axios/lib/defaults.js
-var require_defaults = __commonJS({
-  "node_modules/axios/lib/defaults.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    var normalizeHeaderName = require_normalizeHeaderName();
-    var enhanceError = require_enhanceError();
-    var DEFAULT_CONTENT_TYPE = {
-      "Content-Type": "application/x-www-form-urlencoded"
-    };
-    function setContentTypeIfUnset(headers, value) {
-      if (!utils.isUndefined(headers) && utils.isUndefined(headers["Content-Type"])) {
-        headers["Content-Type"] = value;
-      }
-    }
-    function getDefaultAdapter() {
-      var adapter;
-      if (typeof XMLHttpRequest !== "undefined") {
-        adapter = require_xhr();
-      } else if (typeof process !== "undefined" && Object.prototype.toString.call(process) === "[object process]") {
-        adapter = require_xhr();
-      }
-      return adapter;
-    }
-    function stringifySafely(rawValue, parser, encoder) {
-      if (utils.isString(rawValue)) {
-        try {
-          (parser || JSON.parse)(rawValue);
-          return utils.trim(rawValue);
-        } catch (e) {
-          if (e.name !== "SyntaxError") {
-            throw e;
-          }
-        }
-      }
-      return (encoder || JSON.stringify)(rawValue);
-    }
-    var defaults = {
-      transitional: {
-        silentJSONParsing: true,
-        forcedJSONParsing: true,
-        clarifyTimeoutError: false
-      },
-      adapter: getDefaultAdapter(),
-      transformRequest: [function transformRequest(data, headers) {
-        normalizeHeaderName(headers, "Accept");
-        normalizeHeaderName(headers, "Content-Type");
-        if (utils.isFormData(data) || utils.isArrayBuffer(data) || utils.isBuffer(data) || utils.isStream(data) || utils.isFile(data) || utils.isBlob(data)) {
-          return data;
-        }
-        if (utils.isArrayBufferView(data)) {
-          return data.buffer;
-        }
-        if (utils.isURLSearchParams(data)) {
-          setContentTypeIfUnset(headers, "application/x-www-form-urlencoded;charset=utf-8");
-          return data.toString();
-        }
-        if (utils.isObject(data) || headers && headers["Content-Type"] === "application/json") {
-          setContentTypeIfUnset(headers, "application/json");
-          return stringifySafely(data);
-        }
-        return data;
-      }],
-      transformResponse: [function transformResponse(data) {
-        var transitional = this.transitional;
-        var silentJSONParsing = transitional && transitional.silentJSONParsing;
-        var forcedJSONParsing = transitional && transitional.forcedJSONParsing;
-        var strictJSONParsing = !silentJSONParsing && this.responseType === "json";
-        if (strictJSONParsing || forcedJSONParsing && utils.isString(data) && data.length) {
-          try {
-            return JSON.parse(data);
-          } catch (e) {
-            if (strictJSONParsing) {
-              if (e.name === "SyntaxError") {
-                throw enhanceError(e, this, "E_JSON_PARSE");
-              }
-              throw e;
-            }
-          }
-        }
-        return data;
-      }],
-      timeout: 0,
-      xsrfCookieName: "XSRF-TOKEN",
-      xsrfHeaderName: "X-XSRF-TOKEN",
-      maxContentLength: -1,
-      maxBodyLength: -1,
-      validateStatus: function validateStatus(status) {
-        return status >= 200 && status < 300;
-      }
-    };
-    defaults.headers = {
-      common: {
-        "Accept": "application/json, text/plain, */*"
-      }
-    };
-    utils.forEach(["delete", "get", "head"], function forEachMethodNoData(method) {
-      defaults.headers[method] = {};
-    });
-    utils.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
-      defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-    });
-    module2.exports = defaults;
-  }
-});
-
-// node_modules/axios/lib/core/transformData.js
-var require_transformData = __commonJS({
-  "node_modules/axios/lib/core/transformData.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    var defaults = require_defaults();
-    module2.exports = function transformData(data, headers, fns) {
-      var context = this || defaults;
-      utils.forEach(fns, function transform(fn) {
-        data = fn.call(context, data, headers);
-      });
-      return data;
-    };
-  }
-});
-
-// node_modules/axios/lib/cancel/isCancel.js
-var require_isCancel = __commonJS({
-  "node_modules/axios/lib/cancel/isCancel.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function isCancel(value) {
-      return !!(value && value.__CANCEL__);
-    };
-  }
-});
-
-// node_modules/axios/lib/core/dispatchRequest.js
-var require_dispatchRequest = __commonJS({
-  "node_modules/axios/lib/core/dispatchRequest.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    var transformData = require_transformData();
-    var isCancel = require_isCancel();
-    var defaults = require_defaults();
-    function throwIfCancellationRequested(config) {
-      if (config.cancelToken) {
-        config.cancelToken.throwIfRequested();
-      }
-    }
-    module2.exports = function dispatchRequest(config) {
-      throwIfCancellationRequested(config);
-      config.headers = config.headers || {};
-      config.data = transformData.call(config, config.data, config.headers, config.transformRequest);
-      config.headers = utils.merge(config.headers.common || {}, config.headers[config.method] || {}, config.headers);
-      utils.forEach(["delete", "get", "head", "post", "put", "patch", "common"], function cleanHeaderConfig(method) {
-        delete config.headers[method];
-      });
-      var adapter = config.adapter || defaults.adapter;
-      return adapter(config).then(function onAdapterResolution(response) {
-        throwIfCancellationRequested(config);
-        response.data = transformData.call(config, response.data, response.headers, config.transformResponse);
-        return response;
-      }, function onAdapterRejection(reason) {
-        if (!isCancel(reason)) {
-          throwIfCancellationRequested(config);
-          if (reason && reason.response) {
-            reason.response.data = transformData.call(config, reason.response.data, reason.response.headers, config.transformResponse);
-          }
-        }
-        return Promise.reject(reason);
-      });
-    };
-  }
-});
-
-// node_modules/axios/lib/core/mergeConfig.js
-var require_mergeConfig = __commonJS({
-  "node_modules/axios/lib/core/mergeConfig.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    module2.exports = function mergeConfig(config1, config2) {
-      config2 = config2 || {};
-      var config = {};
-      var valueFromConfig2Keys = ["url", "method", "data"];
-      var mergeDeepPropertiesKeys = ["headers", "auth", "proxy", "params"];
-      var defaultToConfig2Keys = [
-        "baseURL",
-        "transformRequest",
-        "transformResponse",
-        "paramsSerializer",
-        "timeout",
-        "timeoutMessage",
-        "withCredentials",
-        "adapter",
-        "responseType",
-        "xsrfCookieName",
-        "xsrfHeaderName",
-        "onUploadProgress",
-        "onDownloadProgress",
-        "decompress",
-        "maxContentLength",
-        "maxBodyLength",
-        "maxRedirects",
-        "transport",
-        "httpAgent",
-        "httpsAgent",
-        "cancelToken",
-        "socketPath",
-        "responseEncoding"
-      ];
-      var directMergeKeys = ["validateStatus"];
-      function getMergedValue(target, source) {
-        if (utils.isPlainObject(target) && utils.isPlainObject(source)) {
-          return utils.merge(target, source);
-        } else if (utils.isPlainObject(source)) {
-          return utils.merge({}, source);
-        } else if (utils.isArray(source)) {
-          return source.slice();
-        }
-        return source;
-      }
-      function mergeDeepProperties(prop) {
-        if (!utils.isUndefined(config2[prop])) {
-          config[prop] = getMergedValue(config1[prop], config2[prop]);
-        } else if (!utils.isUndefined(config1[prop])) {
-          config[prop] = getMergedValue(void 0, config1[prop]);
-        }
-      }
-      utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
-        if (!utils.isUndefined(config2[prop])) {
-          config[prop] = getMergedValue(void 0, config2[prop]);
-        }
-      });
-      utils.forEach(mergeDeepPropertiesKeys, mergeDeepProperties);
-      utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
-        if (!utils.isUndefined(config2[prop])) {
-          config[prop] = getMergedValue(void 0, config2[prop]);
-        } else if (!utils.isUndefined(config1[prop])) {
-          config[prop] = getMergedValue(void 0, config1[prop]);
-        }
-      });
-      utils.forEach(directMergeKeys, function merge(prop) {
-        if (prop in config2) {
-          config[prop] = getMergedValue(config1[prop], config2[prop]);
-        } else if (prop in config1) {
-          config[prop] = getMergedValue(void 0, config1[prop]);
-        }
-      });
-      var axiosKeys = valueFromConfig2Keys.concat(mergeDeepPropertiesKeys).concat(defaultToConfig2Keys).concat(directMergeKeys);
-      var otherKeys = Object.keys(config1).concat(Object.keys(config2)).filter(function filterAxiosKeys(key) {
-        return axiosKeys.indexOf(key) === -1;
-      });
-      utils.forEach(otherKeys, mergeDeepProperties);
-      return config;
-    };
-  }
-});
-
-// node_modules/axios/package.json
-var require_package2 = __commonJS({
-  "node_modules/axios/package.json"(exports2, module2) {
-    module2.exports = {
-      name: "axios",
-      version: "0.21.4",
-      description: "Promise based HTTP client for the browser and node.js",
-      main: "index.js",
-      scripts: {
-        test: "grunt test",
-        start: "node ./sandbox/server.js",
-        build: "NODE_ENV=production grunt build",
-        preversion: "npm test",
-        version: "npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json",
-        postversion: "git push && git push --tags",
-        examples: "node ./examples/server.js",
-        coveralls: "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-        fix: "eslint --fix lib/**/*.js"
-      },
-      repository: {
-        type: "git",
-        url: "https://github.com/axios/axios.git"
-      },
-      keywords: [
-        "xhr",
-        "http",
-        "ajax",
-        "promise",
-        "node"
-      ],
-      author: "Matt Zabriskie",
-      license: "MIT",
-      bugs: {
-        url: "https://github.com/axios/axios/issues"
-      },
-      homepage: "https://axios-http.com",
-      devDependencies: {
-        coveralls: "^3.0.0",
-        "es6-promise": "^4.2.4",
-        grunt: "^1.3.0",
-        "grunt-banner": "^0.6.0",
-        "grunt-cli": "^1.2.0",
-        "grunt-contrib-clean": "^1.1.0",
-        "grunt-contrib-watch": "^1.0.0",
-        "grunt-eslint": "^23.0.0",
-        "grunt-karma": "^4.0.0",
-        "grunt-mocha-test": "^0.13.3",
-        "grunt-ts": "^6.0.0-beta.19",
-        "grunt-webpack": "^4.0.2",
-        "istanbul-instrumenter-loader": "^1.0.0",
-        "jasmine-core": "^2.4.1",
-        karma: "^6.3.2",
-        "karma-chrome-launcher": "^3.1.0",
-        "karma-firefox-launcher": "^2.1.0",
-        "karma-jasmine": "^1.1.1",
-        "karma-jasmine-ajax": "^0.1.13",
-        "karma-safari-launcher": "^1.0.0",
-        "karma-sauce-launcher": "^4.3.6",
-        "karma-sinon": "^1.0.5",
-        "karma-sourcemap-loader": "^0.3.8",
-        "karma-webpack": "^4.0.2",
-        "load-grunt-tasks": "^3.5.2",
-        minimist: "^1.2.0",
-        mocha: "^8.2.1",
-        sinon: "^4.5.0",
-        "terser-webpack-plugin": "^4.2.3",
-        typescript: "^4.0.5",
-        "url-search-params": "^0.10.0",
-        webpack: "^4.44.2",
-        "webpack-dev-server": "^3.11.0"
-      },
-      browser: {
-        "./lib/adapters/http.js": "./lib/adapters/xhr.js"
-      },
-      jsdelivr: "dist/axios.min.js",
-      unpkg: "dist/axios.min.js",
-      typings: "./index.d.ts",
-      dependencies: {
-        "follow-redirects": "^1.14.0"
-      },
-      bundlesize: [
-        {
-          path: "./dist/axios.min.js",
-          threshold: "5kB"
-        }
-      ]
-    };
-  }
-});
-
-// node_modules/axios/lib/helpers/validator.js
-var require_validator = __commonJS({
-  "node_modules/axios/lib/helpers/validator.js"(exports2, module2) {
-    "use strict";
-    var pkg = require_package2();
-    var validators = {};
-    ["object", "boolean", "number", "function", "string", "symbol"].forEach(function(type, i) {
-      validators[type] = function validator(thing) {
-        return typeof thing === type || "a" + (i < 1 ? "n " : " ") + type;
-      };
-    });
-    var deprecatedWarnings = {};
-    var currentVerArr = pkg.version.split(".");
-    function isOlderVersion(version2, thanVersion) {
-      var pkgVersionArr = thanVersion ? thanVersion.split(".") : currentVerArr;
-      var destVer = version2.split(".");
-      for (var i = 0; i < 3; i++) {
-        if (pkgVersionArr[i] > destVer[i]) {
-          return true;
-        } else if (pkgVersionArr[i] < destVer[i]) {
-          return false;
-        }
-      }
-      return false;
-    }
-    validators.transitional = function transitional(validator, version2, message) {
-      var isDeprecated = version2 && isOlderVersion(version2);
-      function formatMessage(opt, desc) {
-        return "[Axios v" + pkg.version + "] Transitional option '" + opt + "'" + desc + (message ? ". " + message : "");
-      }
-      return function(value, opt, opts) {
-        if (validator === false) {
-          throw new Error(formatMessage(opt, " has been removed in " + version2));
-        }
-        if (isDeprecated && !deprecatedWarnings[opt]) {
-          deprecatedWarnings[opt] = true;
-          console.warn(formatMessage(opt, " has been deprecated since v" + version2 + " and will be removed in the near future"));
-        }
-        return validator ? validator(value, opt, opts) : true;
-      };
-    };
-    function assertOptions(options, schema, allowUnknown) {
-      if (typeof options !== "object") {
-        throw new TypeError("options must be an object");
-      }
-      var keys = Object.keys(options);
-      var i = keys.length;
-      while (i-- > 0) {
-        var opt = keys[i];
-        var validator = schema[opt];
-        if (validator) {
-          var value = options[opt];
-          var result = value === void 0 || validator(value, opt, options);
-          if (result !== true) {
-            throw new TypeError("option " + opt + " must be " + result);
-          }
-          continue;
-        }
-        if (allowUnknown !== true) {
-          throw Error("Unknown option " + opt);
-        }
-      }
-    }
-    module2.exports = {
-      isOlderVersion,
-      assertOptions,
-      validators
-    };
-  }
-});
-
-// node_modules/axios/lib/core/Axios.js
-var require_Axios = __commonJS({
-  "node_modules/axios/lib/core/Axios.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    var buildURL = require_buildURL();
-    var InterceptorManager = require_InterceptorManager();
-    var dispatchRequest = require_dispatchRequest();
-    var mergeConfig = require_mergeConfig();
-    var validator = require_validator();
-    var validators = validator.validators;
-    function Axios(instanceConfig) {
-      this.defaults = instanceConfig;
-      this.interceptors = {
-        request: new InterceptorManager(),
-        response: new InterceptorManager()
-      };
-    }
-    Axios.prototype.request = function request(config) {
-      if (typeof config === "string") {
-        config = arguments[1] || {};
-        config.url = arguments[0];
-      } else {
-        config = config || {};
-      }
-      config = mergeConfig(this.defaults, config);
-      if (config.method) {
-        config.method = config.method.toLowerCase();
-      } else if (this.defaults.method) {
-        config.method = this.defaults.method.toLowerCase();
-      } else {
-        config.method = "get";
-      }
-      var transitional = config.transitional;
-      if (transitional !== void 0) {
-        validator.assertOptions(transitional, {
-          silentJSONParsing: validators.transitional(validators.boolean, "1.0.0"),
-          forcedJSONParsing: validators.transitional(validators.boolean, "1.0.0"),
-          clarifyTimeoutError: validators.transitional(validators.boolean, "1.0.0")
-        }, false);
-      }
-      var requestInterceptorChain = [];
-      var synchronousRequestInterceptors = true;
-      this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-        if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config) === false) {
-          return;
-        }
-        synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
-        requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
-      });
-      var responseInterceptorChain = [];
-      this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-        responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
-      });
-      var promise;
-      if (!synchronousRequestInterceptors) {
-        var chain = [dispatchRequest, void 0];
-        Array.prototype.unshift.apply(chain, requestInterceptorChain);
-        chain = chain.concat(responseInterceptorChain);
-        promise = Promise.resolve(config);
-        while (chain.length) {
-          promise = promise.then(chain.shift(), chain.shift());
-        }
-        return promise;
-      }
-      var newConfig = config;
-      while (requestInterceptorChain.length) {
-        var onFulfilled = requestInterceptorChain.shift();
-        var onRejected = requestInterceptorChain.shift();
-        try {
-          newConfig = onFulfilled(newConfig);
-        } catch (error) {
-          onRejected(error);
-          break;
-        }
-      }
-      try {
-        promise = dispatchRequest(newConfig);
-      } catch (error) {
-        return Promise.reject(error);
-      }
-      while (responseInterceptorChain.length) {
-        promise = promise.then(responseInterceptorChain.shift(), responseInterceptorChain.shift());
-      }
-      return promise;
-    };
-    Axios.prototype.getUri = function getUri(config) {
-      config = mergeConfig(this.defaults, config);
-      return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, "");
-    };
-    utils.forEach(["delete", "get", "head", "options"], function forEachMethodNoData(method) {
-      Axios.prototype[method] = function(url, config) {
-        return this.request(mergeConfig(config || {}, {
-          method,
-          url,
-          data: (config || {}).data
-        }));
-      };
-    });
-    utils.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
-      Axios.prototype[method] = function(url, data, config) {
-        return this.request(mergeConfig(config || {}, {
-          method,
-          url,
-          data
-        }));
-      };
-    });
-    module2.exports = Axios;
-  }
-});
-
-// node_modules/axios/lib/cancel/Cancel.js
-var require_Cancel = __commonJS({
-  "node_modules/axios/lib/cancel/Cancel.js"(exports2, module2) {
-    "use strict";
-    function Cancel(message) {
-      this.message = message;
-    }
-    Cancel.prototype.toString = function toString() {
-      return "Cancel" + (this.message ? ": " + this.message : "");
-    };
-    Cancel.prototype.__CANCEL__ = true;
-    module2.exports = Cancel;
-  }
-});
-
-// node_modules/axios/lib/cancel/CancelToken.js
-var require_CancelToken = __commonJS({
-  "node_modules/axios/lib/cancel/CancelToken.js"(exports2, module2) {
-    "use strict";
-    var Cancel = require_Cancel();
-    function CancelToken(executor) {
-      if (typeof executor !== "function") {
-        throw new TypeError("executor must be a function.");
-      }
-      var resolvePromise;
-      this.promise = new Promise(function promiseExecutor(resolve) {
-        resolvePromise = resolve;
-      });
-      var token = this;
-      executor(function cancel(message) {
-        if (token.reason) {
-          return;
-        }
-        token.reason = new Cancel(message);
-        resolvePromise(token.reason);
-      });
-    }
-    CancelToken.prototype.throwIfRequested = function throwIfRequested() {
-      if (this.reason) {
-        throw this.reason;
-      }
-    };
-    CancelToken.source = function source() {
-      var cancel;
-      var token = new CancelToken(function executor(c) {
-        cancel = c;
-      });
-      return {
-        token,
-        cancel
-      };
-    };
-    module2.exports = CancelToken;
-  }
-});
-
-// node_modules/axios/lib/helpers/spread.js
-var require_spread = __commonJS({
-  "node_modules/axios/lib/helpers/spread.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function spread(callback) {
-      return function wrap(arr) {
-        return callback.apply(null, arr);
-      };
-    };
-  }
-});
-
-// node_modules/axios/lib/helpers/isAxiosError.js
-var require_isAxiosError = __commonJS({
-  "node_modules/axios/lib/helpers/isAxiosError.js"(exports2, module2) {
-    "use strict";
-    module2.exports = function isAxiosError(payload) {
-      return typeof payload === "object" && payload.isAxiosError === true;
-    };
-  }
-});
-
-// node_modules/axios/lib/axios.js
-var require_axios = __commonJS({
-  "node_modules/axios/lib/axios.js"(exports2, module2) {
-    "use strict";
-    var utils = require_utils();
-    var bind = require_bind();
-    var Axios = require_Axios();
-    var mergeConfig = require_mergeConfig();
-    var defaults = require_defaults();
-    function createInstance(defaultConfig) {
-      var context = new Axios(defaultConfig);
-      var instance = bind(Axios.prototype.request, context);
-      utils.extend(instance, Axios.prototype, context);
-      utils.extend(instance, context);
-      return instance;
-    }
-    var axios = createInstance(defaults);
-    axios.Axios = Axios;
-    axios.create = function create(instanceConfig) {
-      return createInstance(mergeConfig(axios.defaults, instanceConfig));
-    };
-    axios.Cancel = require_Cancel();
-    axios.CancelToken = require_CancelToken();
-    axios.isCancel = require_isCancel();
-    axios.all = function all(promises) {
-      return Promise.all(promises);
-    };
-    axios.spread = require_spread();
-    axios.isAxiosError = require_isAxiosError();
-    module2.exports = axios;
-    module2.exports.default = axios;
-  }
-});
-
-// node_modules/axios/index.js
-var require_axios2 = __commonJS({
-  "node_modules/axios/index.js"(exports2, module2) {
-    module2.exports = require_axios();
   }
 });
 
@@ -23642,7 +22411,7 @@ var require_Signature = __commonJS({
             case SignatureOperation.SWAP:
               {
                 const index = action[1];
-                let orig_arr = signature[0];
+                const orig_arr = signature[0];
                 signature[0] = signature[index % signature.length];
                 signature[index % signature.length] = orig_arr;
               }
@@ -23693,7 +22462,7 @@ var require_Signature = __commonJS({
       }
       static getFunctions(sc) {
         let func;
-        let functions = [];
+        const functions = [];
         while ((func = SIG_REGEX.FUNCTIONS.exec(sc)) !== null) {
           if (func[0].includes("reverse")) {
             functions[0] = func[1];
@@ -23829,7 +22598,7 @@ var require_NToken = __commonJS({
         const transformations = transformation_data.map((el) => {
           if (el != null && typeof el != "number") {
             const is_reverse_base64 = el.includes("case 65:");
-            let opcode = OP_LOOKUP[NToken.getFunc(el)?.[0]];
+            const opcode = OP_LOOKUP[NToken.getFunc(el)?.[0]];
             if (opcode) {
               el = [
                 NTokenTransformOpType.FUNC,
@@ -23867,7 +22636,7 @@ var require_NToken = __commonJS({
         }
       }
       transform(n) {
-        let n_token = n.split("");
+        const n_token = n.split("");
         const transformer = this.getTransformerClone();
         try {
           transformer[1].forEach(([index, param_index]) => {
@@ -23875,7 +22644,9 @@ var require_NToken = __commonJS({
             this.evaluate(transformer[0][index], n_token, transformer)(param_index[0] !== void 0 && this.evaluate(transformer[0][param_index[0]], n_token, transformer), param_index[1] !== void 0 && this.evaluate(transformer[0][param_index[1]], n_token, transformer), base64_dia);
           });
         } catch (err) {
-          console.error(new Error("Could not transform n-token, download may be throttled.\nOriginal Token:" + n + "Error:\n" + err));
+          console.error(new Error(`Could not transform n-token, download may be throttled.
+Original Token:${n}Error:
+${err}`));
           return n;
         }
         return n_token.join("");
@@ -24057,12 +22828,12 @@ var require_Player = __commonJS({
     "use strict";
     var tmpdir = require_lib3();
     var Cache = true ? require_BrowserCache() : null;
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Constants = require_Constants();
     var { default: Signature } = require_Signature();
     var { default: NToken } = require_NToken();
     var Player = class {
-      #axios;
+      #request;
       #player_id;
       #player_url;
       #player_path;
@@ -24070,11 +22841,11 @@ var require_Player = __commonJS({
       #signature;
       #signature_timestamp;
       #cache_dir;
-      constructor(id, axios) {
+      constructor(id, request) {
         this.#player_id = id;
-        this.#axios = axios;
+        this.#request = request;
         this.#cache_dir = `${tmpdir()}/yt-cache`;
-        this.#player_url = Constants.URLS.YT_BASE + "/s/player/" + this.#player_id + "/player_ias.vflset/en_US/base.js";
+        this.#player_url = `${Constants.URLS.YT_BASE}/s/player/${this.#player_id}/player_ias.vflset/en_US/base.js`;
         this.#player_path = `${this.#cache_dir}/${this.#player_id}.bin`;
       }
       async init() {
@@ -24092,11 +22863,7 @@ var require_Player = __commonJS({
             return this;
           }
         }
-        const response = await this.#axios.get(this.#player_url, {
-          headers: { "content-type": "text/javascript", "user-agent": Utils2.getRandomUserAgent("desktop").userAgent }
-        }).catch((error) => error);
-        if (response instanceof Error)
-          throw new Utils2.InnertubeError("Could not download js player", { player_id: this.#player_id });
+        const response = await this.#request.get(this.#player_url, { headers: { "content-type": "text/javascript" } });
         this.#signature_timestamp = this.#extractSigTimestamp(response.data);
         const signature_decipher_sc = this.#extractSigDecipherSc(response.data);
         const ntoken_decipher_sc = this.#extractNTokenSc(response.data);
@@ -24120,7 +22887,7 @@ var require_Player = __commonJS({
       }
       decipher(url, signature_cipher, cipher) {
         url = url || signature_cipher || cipher;
-        Utils2.throwIfMissing({ url });
+        Utils.throwIfMissing({ url });
         const args = new URLSearchParams(url);
         const url_components = new URL(args.get("url") || url);
         url_components.searchParams.set("ratebypass", "yes");
@@ -24144,15 +22911,15 @@ var require_Player = __commonJS({
         return 1;
       }
       #extractSigTimestamp(data) {
-        return parseInt(Utils2.getStringBetweenStrings(data, "signatureTimestamp:", ","));
+        return parseInt(Utils.getStringBetweenStrings(data, "signatureTimestamp:", ","));
       }
       #extractSigDecipherSc(data) {
-        const sig_alg_sc = Utils2.getStringBetweenStrings(data, "this.audioTracks};var", "};");
-        const sig_data = Utils2.getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+        const sig_alg_sc = Utils.getStringBetweenStrings(data, "this.audioTracks};var", "};");
+        const sig_data = Utils.getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
         return sig_alg_sc + sig_data;
       }
       #extractNTokenSc(data) {
-        return `var b=a.split("")${Utils2.getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
+        return `var b=a.split("")${Utils.getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
       }
       async isCached() {
         return await Cache.exists(this.#player_path);
@@ -24166,15 +22933,14 @@ var require_Player = __commonJS({
 var require_SessionBuilder = __commonJS({
   "lib/core/SessionBuilder.js"(exports2, module2) {
     "use strict";
-    var Axios = require_axios2();
     var Player = require_Player();
     var Proto2 = require_proto();
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Constants = require_Constants();
     var UserAgent = require_dist();
     var SessionBuilder2 = class {
-      #axios;
       #config;
+      #request;
       #key;
       #client_name;
       #client_version;
@@ -24182,13 +22948,9 @@ var require_SessionBuilder = __commonJS({
       #remote_host;
       #context;
       #player;
-      constructor(config) {
+      constructor(config, request) {
         this.#config = config;
-        this.#axios = Axios.create({
-          proxy: this.#config.proxy,
-          httpAgent: this.#config.http_agent,
-          httpsAgent: this.#config.https_agent
-        });
+        this.#request = request;
       }
       async build() {
         const data = await Promise.all([
@@ -24201,13 +22963,13 @@ var require_SessionBuilder = __commonJS({
         this.#client_name = Constants.CLIENTS.WEB.NAME;
         this.#client_version = ytcfg[0][0][16];
         this.#remote_host = ytcfg[0][0][3];
-        this.#player = await new Player(data[1], this.#axios).init();
+        this.#player = await new Player(data[1], this.#request).init();
         this.#context = this.#buildContext();
         return this;
       }
       #buildContext() {
         const user_agent = new UserAgent({ deviceCategory: "desktop" });
-        const id = Utils2.generateRandomString(11);
+        const id = Utils.generateRandomString(11);
         const timestamp = Math.floor(Date.now() / 1e3);
         const visitor_data = Proto2.encodeVisitorData(id, timestamp);
         const context = {
@@ -24229,25 +22991,12 @@ var require_SessionBuilder = __commonJS({
         return context;
       }
       async #getYtConfig() {
-        const response = await this.axios.get(`${Constants.URLS.YT_BASE}/sw.js_data`).catch((err) => err);
-        if (response instanceof Error)
-          throw new Utils2.InnertubeError("Could not retrieve configuration data", {
-            status_code: response?.response?.status || 0,
-            message: response.message
-          });
+        const response = await this.#request.get(`${Constants.URLS.YT_BASE}/sw.js_data`);
         return JSON.parse(response.data.replace(")]}'", ""));
       }
       async #getPlayerId() {
-        const response = await this.axios.get(`${Constants.URLS.YT_BASE}/iframe_api`).catch((err) => err);
-        if (response instanceof Error)
-          throw new Utils2.InnertubeError("Could not retrieve js player id", {
-            status_code: response?.response?.status || 0,
-            message: response.message
-          });
-        return Utils2.getStringBetweenStrings(response.data, "player\\/", "\\/");
-      }
-      get axios() {
-        return this.#axios;
+        const response = await this.#request.get(`${Constants.URLS.YT_BASE}/iframe_api`);
+        return Utils.getStringBetweenStrings(response.data, "player\\/", "\\/");
       }
       get key() {
         return this.#key;
@@ -24319,6 +23068,7 @@ var require_Format = __commonJS({
 // lib/parser/contents/classes/Thumbnail.js
 var require_Thumbnail = __commonJS({
   "lib/parser/contents/classes/Thumbnail.js"(exports2, module2) {
+    "use strict";
     var Thumbnail = class {
       url;
       width;
@@ -24458,6 +23208,11 @@ var require_NavigationEndpoint = __commonJS({
     var NavigationEndpoint = class {
       type = "NavigationEndpoint";
       constructor(data) {
+        const name = Object.keys(data || {}).find((item) => item.endsWith("Endpoint") || item.endsWith("Command"));
+        this.payload = data?.[name] || {};
+        if (Reflect.has(this.payload, "dialog")) {
+          this.dialog = Parser.parse(this.payload.dialog);
+        }
         if (data?.serviceEndpoint) {
           data = data.serviceEndpoint;
         }
@@ -24594,6 +23349,15 @@ var require_NavigationEndpoint = __commonJS({
           };
         }
       }
+      async callTest(actions, args = { parse: true, params: {} }) {
+        if (!actions)
+          throw new Error("An active caller must be provided");
+        const response = await actions.execute(this.metadata.api_url, { ...this.payload, ...args.params });
+        if (args.parse) {
+          return Parser.parseResponse(response.data);
+        }
+        return response;
+      }
       async call(actions, client) {
         if (!actions)
           throw new Error("An active caller must be provided");
@@ -24612,7 +23376,7 @@ var require_NavigationEndpoint = __commonJS({
               return Parser.parseResponse(response.data);
             }
             default:
-              throw new Error(this.continuation.request + " not implemented");
+              throw new Error(`${this.continuation.request} not implemented`);
           }
         }
         if (this.search) {
@@ -24620,11 +23384,7 @@ var require_NavigationEndpoint = __commonJS({
           return Parser.parseResponse(response.data);
         }
         if (this.browse) {
-          const args = { client };
-          if (this.browse.params) {
-            args.params = this.browse.params;
-          }
-          const response = await actions.browse(this.browse.id, args);
+          const response = await actions.browse(this.browse.id, { ...this.browse, client });
           return Parser.parseResponse(response.data);
         }
         if (this.like) {
@@ -24736,7 +23496,7 @@ var require_Author = __commonJS({
         this.badges = Array.isArray(badges) ? Parser.parse(badges) : [];
         this.is_verified = this.badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED") || null;
         this.is_verified_artist = this.badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST") || null;
-        this.url = this.#nav_text.runs?.[0].endpoint.browse && `${Constants.URLS.YT_BASE}${this.#nav_text.runs[0].endpoint.browse?.base_url || "/u/" + this.#nav_text.runs[0].endpoint.browse?.id}` || `${Constants.URLS.YT_BASE}${this.#nav_text.endpoint?.browse?.base_url || "/u/" + this.#nav_text.endpoint?.browse?.id}` || null;
+        this.url = this.#nav_text.runs?.[0].endpoint.browse && `${Constants.URLS.YT_BASE}${this.#nav_text.runs[0].endpoint.browse?.base_url || `/u/${this.#nav_text.runs[0].endpoint.browse?.id}`}` || `${Constants.URLS.YT_BASE}${this.#nav_text.endpoint?.browse?.base_url || `/u/${this.#nav_text.endpoint?.browse?.id}`}` || null;
       }
       get best_thumbnail() {
         return this.thumbnails[0];
@@ -24749,6 +23509,7 @@ var require_Author = __commonJS({
 // lib/parser/contents/classes/BackstageImage.js
 var require_BackstageImage = __commonJS({
   "lib/parser/contents/classes/BackstageImage.js"(exports2, module2) {
+    "use strict";
     var Thumbnail = require_Thumbnail();
     var BackstageImage = class {
       type = "BackstageImage";
@@ -24796,6 +23557,7 @@ var require_BackstagePost = __commonJS({
 // lib/parser/contents/classes/BackstagePostThread.js
 var require_BackstagePostThread = __commonJS({
   "lib/parser/contents/classes/BackstagePostThread.js"(exports2, module2) {
+    "use strict";
     var Parser = require_contents();
     var BackstagePostThread = class {
       type = "BackstagePostThread";
@@ -24841,7 +23603,7 @@ var require_Button = __commonJS({
         if (data.icon?.iconType) {
           this.iconType = data.icon?.iconType;
         }
-        this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint || data.command);
       }
     };
     module2.exports = Button;
@@ -24938,6 +23700,7 @@ var require_CardCollection = __commonJS({
 // lib/parser/contents/classes/Channel.js
 var require_Channel = __commonJS({
   "lib/parser/contents/classes/Channel.js"(exports2, module2) {
+    "use strict";
     var Author = require_Author();
     var NavigationEndpoint = require_NavigationEndpoint();
     var Text = require_Text();
@@ -25032,6 +23795,7 @@ var require_ChannelHeaderLinks = __commonJS({
 // lib/parser/contents/classes/ChannelMetadata.js
 var require_ChannelMetadata = __commonJS({
   "lib/parser/contents/classes/ChannelMetadata.js"(exports2, module2) {
+    "use strict";
     var Thumbnail = require_Thumbnail();
     var ChannelMetadata = class {
       type = "ChannelMetadata";
@@ -25090,6 +23854,7 @@ var require_ChannelThumbnailWithLink = __commonJS({
 // lib/parser/contents/classes/ChannelVideoPlayer.js
 var require_ChannelVideoPlayer = __commonJS({
   "lib/parser/contents/classes/ChannelVideoPlayer.js"(exports2, module2) {
+    "use strict";
     var Text = require_Text();
     var ChannelVideoPlayer = class {
       type = "ChannelVideoPlayer";
@@ -25110,7 +23875,7 @@ var require_ChildVideo = __commonJS({
   "lib/parser/contents/classes/ChildVideo.js"(exports2, module2) {
     "use strict";
     var NavigationEndpoint = require_NavigationEndpoint();
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Text = require_Text();
     var ChildVideo = class {
       type = "ChildVideo";
@@ -25119,7 +23884,7 @@ var require_ChildVideo = __commonJS({
         this.title = new Text(data.title);
         this.duration = {
           text: data.lengthText.simpleText,
-          seconds: Utils2.timeToSeconds(data.lengthText.simpleText)
+          seconds: Utils.timeToSeconds(data.lengthText.simpleText)
         };
         this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
       }
@@ -25149,8 +23914,9 @@ var require_ChipCloud = __commonJS({
 // lib/parser/contents/classes/ChipCloudChip.js
 var require_ChipCloudChip = __commonJS({
   "lib/parser/contents/classes/ChipCloudChip.js"(exports2, module2) {
-    var NavigationEndpoint = require_NavigationEndpoint();
+    "use strict";
     var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
     var ChipCloudChip = class {
       type = "ChipCloudChip";
       constructor(data) {
@@ -25166,6 +23932,7 @@ var require_ChipCloudChip = __commonJS({
 // lib/parser/contents/classes/CollageHeroImage.js
 var require_CollageHeroImage = __commonJS({
   "lib/parser/contents/classes/CollageHeroImage.js"(exports2, module2) {
+    "use strict";
     var NavigationEndpoint = require_NavigationEndpoint();
     var Thumbnail = require_Thumbnail();
     var CollageHeroImage = class {
@@ -25181,19 +23948,186 @@ var require_CollageHeroImage = __commonJS({
   }
 });
 
-// lib/parser/contents/classes/CommentActionButtons.js
+// lib/parser/contents/classes/Comment.js
+var require_Comment = __commonJS({
+  "lib/parser/contents/classes/Comment.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var Author = require_Author();
+    var Proto2 = require_proto();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var Comment = class {
+      type = "Comment";
+      #actions;
+      constructor(data) {
+        this.content = new Text(data.contentText);
+        this.published = new Text(data.publishedTimeText);
+        this.author_is_channel_owner = data.authorIsChannelOwner;
+        this.current_user_reply_thumbnail = Thumbnail.fromResponse(data.currentUserReplyThumbnail);
+        this.author_badge = Parser.parse(data.authorCommentBadge, "comments");
+        this.author = new Author({
+          ...data.authorText,
+          navigationEndpoint: data.authorEndpoint
+        }, this.author_badge ? [{
+          metadataBadgeRenderer: this.author_badge?.orig_badge
+        }] : null, data.authorThumbnail);
+        this.action_menu = Parser.parse(data.actionMenu);
+        this.action_buttons = Parser.parse(data.actionButtons, "comments");
+        this.comment_id = data.commentId;
+        this.vote_status = data.voteStatus;
+        this.vote_count = {
+          text: data.voteCount ? data.voteCount.accessibility.accessibilityData?.label.replace(/\D/g, "") : "0",
+          short_text: data.voteCount ? new Text(data.voteCount).toString() : "0"
+        };
+        this.reply_count = data.replyCount || 0;
+        this.is_liked = this.action_buttons.like_button.is_toggled;
+        this.is_disliked = this.action_buttons.dislike_button.is_toggled;
+        this.is_pinned = !!data.pinnedCommentBadge;
+      }
+      async like() {
+        const button = this.action_buttons.like_button;
+        if (button.is_toggled)
+          throw new InnertubeError2("This comment is already liked", { comment_id: this.comment_id });
+        const response = await button.endpoint.callTest(this.#actions, { parse: false });
+        return response;
+      }
+      async dislike() {
+        const button = this.action_buttons.dislike_button;
+        if (button.is_toggled)
+          throw new InnertubeError2("This comment is already disliked", { comment_id: this.comment_id });
+        const response = await button.endpoint.callTest(this.#actions, { parse: false });
+        return response;
+      }
+      async reply(text) {
+        if (!this.action_buttons.reply_button)
+          throw new InnertubeError2("Cannot reply to another reply. Try mentioning the user instead.", { comment_id: this.comment_id });
+        const button = this.action_buttons.reply_button;
+        const dialog_button = button.endpoint.dialog.reply_button;
+        const payload = {
+          params: {
+            commentText: text
+          }
+        };
+        const response = await dialog_button.endpoint.callTest(this.#actions, payload);
+        return response;
+      }
+      async translate(target_language) {
+        const text = this.content.toString().replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, "");
+        const payload = {
+          text,
+          target_language,
+          comment_id: this.comment_id
+        };
+        const action = Proto2.encodeCommentActionParams(22, payload);
+        const response = await this.#actions.execute("comment/perform_comment_action", { action, client: "ANDROID" });
+        const mutations = response.data.frameworkUpdates.entityBatchUpdate.mutations;
+        const content = mutations[0].payload.commentEntityPayload.translatedContent.content;
+        return { ...response, content };
+      }
+      setActions(actions) {
+        this.#actions = actions;
+      }
+    };
+    module2.exports = Comment;
+  }
+});
+
+// lib/parser/contents/classes/CommentReplyDialog.js
+var require_CommentReplyDialog = __commonJS({
+  "lib/parser/contents/classes/CommentReplyDialog.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var Text = require_Text();
+    var CommentReplyDialog = class {
+      type = "CommentReplyDialog";
+      constructor(data) {
+        this.reply_button = Parser.parse(data.replyButton);
+        this.cancel_button = Parser.parse(data.cancelButton);
+        this.author_thumbnail = Thumbnail.fromResponse(data.authorThumbnail);
+        this.placeholder = new Text(data.placeholderText);
+        this.error_message = new Text(data.errorMessage);
+      }
+    };
+    module2.exports = CommentReplyDialog;
+  }
+});
+
+// lib/parser/contents/classes/comments/AuthorCommentBadge.js
+var require_AuthorCommentBadge = __commonJS({
+  "lib/parser/contents/classes/comments/AuthorCommentBadge.js"(exports2, module2) {
+    "use strict";
+    var AuthorCommentBadge = class {
+      type = "AuthorCommentBadge";
+      #data;
+      constructor(data) {
+        this.icon_type = data.icon.iconType;
+        this.tooltip = data.iconTooltip;
+        this.tooltip === "Verified" && (this.style = "BADGE_STYLE_TYPE_VERIFIED") && (data.style = "BADGE_STYLE_TYPE_VERIFIED");
+        this.#data = data;
+      }
+      get orig_badge() {
+        return this.#data;
+      }
+    };
+    module2.exports = AuthorCommentBadge;
+  }
+});
+
+// lib/parser/contents/classes/comments/CommentActionButtons.js
 var require_CommentActionButtons = __commonJS({
-  "lib/parser/contents/classes/CommentActionButtons.js"(exports2, module2) {
+  "lib/parser/contents/classes/comments/CommentActionButtons.js"(exports2, module2) {
+    "use strict";
     var Parser = require_contents();
     var CommentActionButtons = class {
       type = "CommentActionButtons";
       constructor(data) {
-        this.like = Parser.parse(data.likeButton);
-        this.reply = Parser.parse(data.replyButton);
-        this.dislike = Parser.parse(data.dislikeButton);
+        this.like_button = Parser.parse(data.likeButton);
+        this.dislike_button = Parser.parse(data.dislikeButton);
+        this.reply_button = Parser.parse(data.replyButton);
       }
     };
     module2.exports = CommentActionButtons;
+  }
+});
+
+// lib/parser/contents/classes/comments/CommentReplies.js
+var require_CommentReplies = __commonJS({
+  "lib/parser/contents/classes/comments/CommentReplies.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var CommentReplies = class {
+      type = "CommentReplies";
+      constructor(data) {
+        this.contents = Parser.parse(data.contents);
+        this.view_replies = Parser.parse(data.viewReplies);
+        this.hide_replies = Parser.parse(data.hideReplies);
+      }
+    };
+    module2.exports = CommentReplies;
+  }
+});
+
+// lib/parser/contents/classes/comments/CommentSimplebox.js
+var require_CommentSimplebox = __commonJS({
+  "lib/parser/contents/classes/comments/CommentSimplebox.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var Text = require_Text();
+    var CommentSimplebox = class {
+      type = "CommentSimplebox";
+      constructor(data) {
+        this.submit_button = Parser.parse(data.submitButton);
+        this.cancel_button = Parser.parse(data.cancelButton);
+        this.author_thumbnails = Thumbnail.fromResponse(data.authorThumbnail);
+        this.placeholder = new Text(data.placeholderText);
+        this.avatar_size = data.avatarSize;
+      }
+    };
+    module2.exports = CommentSimplebox;
   }
 });
 
@@ -25214,6 +24148,83 @@ var require_CommentsEntryPointHeader = __commonJS({
       }
     };
     module2.exports = CommentsEntryPointHeader;
+  }
+});
+
+// lib/parser/contents/classes/CommentsHeader.js
+var require_CommentsHeader = __commonJS({
+  "lib/parser/contents/classes/CommentsHeader.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var CommentsHeader = class {
+      type = "CommentsHeader";
+      constructor(data) {
+        this.title = new Text(data.titleText);
+        this.count = new Text(data.countText);
+        this.comments_count = new Text(data.commentsCount);
+        this.create_renderer = Parser.parse(data.createRenderer, "comments");
+        this.sort_menu = Parser.parse(data.sortMenu);
+        this.custom_emojis = data.customEmojis?.map((emoji) => ({
+          emoji_id: emoji.emojiId,
+          shortcuts: emoji.shortcuts,
+          search_terms: emoji.searchTerms,
+          image: Thumbnail.fromResponse(emoji.image),
+          is_custom_emoji: emoji.isCustomEmoji
+        })) || null;
+      }
+    };
+    module2.exports = CommentsHeader;
+  }
+});
+
+// lib/parser/contents/classes/CommentThread.js
+var require_CommentThread = __commonJS({
+  "lib/parser/contents/classes/CommentThread.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var CommentThread = class {
+      type = "CommentThread";
+      #replies;
+      #actions;
+      #continuation;
+      constructor(data) {
+        this.comment = Parser.parse(data.comment);
+        this.#replies = Parser.parse(data.replies, "comments");
+        this.is_moderated_elq_comment = data.isModeratedElqComment;
+      }
+      async getReplies() {
+        if (!this.#replies)
+          throw new InnertubeError2("This comment has no replies.", { comment_id: this.comment.comment_id });
+        const continuation = this.#replies.contents.get({ type: "ContinuationItem" });
+        const response = await continuation.endpoint.callTest(this.#actions);
+        this.replies = response.on_response_received_endpoints_memo.get("Comment").map((comment) => {
+          comment.setActions(this.#actions);
+          return comment;
+        });
+        this.#continuation = response.on_response_received_endpoints_memo.get("ContinuationItem")?.[0];
+        return this;
+      }
+      async getContinuation() {
+        if (!this.replies)
+          throw new InnertubeError2("Continuation not available.");
+        if (!this.#continuation)
+          throw new InnertubeError2("Continuation not found.");
+        const response = await this.#continuation.button.endpoint.callTest(this.#actions);
+        this.replies = response.on_response_received_endpoints_memo.get("Comment").map((comment) => {
+          comment.setActions(this.#actions);
+          return comment;
+        });
+        this.#continuation = response.on_response_received_endpoints_memo.get("ContinuationItem")?.[0];
+        return this;
+      }
+      setActions(actions) {
+        this.#actions = actions;
+      }
+    };
+    module2.exports = CommentThread;
   }
 });
 
@@ -25319,7 +24330,7 @@ var require_CompactVideo = __commonJS({
     var Parser = require_contents();
     var Text = require_Text();
     var Author = require_Author();
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Thumbnail = require_Thumbnail();
     var NavigationEndpoint = require_NavigationEndpoint();
     var CompactVideo = class {
@@ -25335,7 +24346,7 @@ var require_CompactVideo = __commonJS({
         this.published = new Text(data.publishedTimeText);
         this.duration = {
           text: new Text(data.lengthText).toString(),
-          seconds: Utils2.timeToSeconds(new Text(data.lengthText).toString())
+          seconds: Utils.timeToSeconds(new Text(data.lengthText).toString())
         };
         this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
         this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
@@ -25353,11 +24364,13 @@ var require_CompactVideo = __commonJS({
 var require_ContinuationItem = __commonJS({
   "lib/parser/contents/classes/ContinuationItem.js"(exports2, module2) {
     "use strict";
+    var Parser = require_contents();
     var NavigationEndpoint = require_NavigationEndpoint();
     var ContinuationItem = class {
       type = "ContinuationItem";
       constructor(data) {
         this.trigger = data.trigger;
+        data.button && (this.button = Parser.parse(data.button));
         this.endpoint = new NavigationEndpoint(data.continuationEndpoint);
       }
     };
@@ -25477,6 +24490,8 @@ var require_EndscreenElement = __commonJS({
       type = "EndscreenElement";
       constructor(data) {
         this.style = data.style;
+        this.title = new Text(data.title);
+        this.endpoint = new NavigationEndpoint(data.endpoint);
         if (data.image) {
           this.image = Thumbnail.fromResponse(data.image);
         }
@@ -25495,8 +24510,6 @@ var require_EndscreenElement = __commonJS({
         if (data.isSubscribe) {
           this.is_subscribe = data.isSubscribe;
         }
-        this.title = new Text(data.title);
-        this.endpoint = new NavigationEndpoint(data.endpoint);
         this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
         this.left = data.left;
         this.width = data.width;
@@ -25566,6 +24579,7 @@ var require_EndScreenVideo = __commonJS({
 // lib/parser/contents/classes/ExpandableTab.js
 var require_ExpandableTab = __commonJS({
   "lib/parser/contents/classes/ExpandableTab.js"(exports2, module2) {
+    "use strict";
     var Parser = require_contents();
     var NavigationEndpoint = require_NavigationEndpoint();
     var ExpandableTab = class {
@@ -25602,6 +24616,7 @@ var require_ExpandedShelfContents = __commonJS({
 // lib/parser/contents/classes/FeedFilterChipBar.js
 var require_FeedFilterChipBar = __commonJS({
   "lib/parser/contents/classes/FeedFilterChipBar.js"(exports2, module2) {
+    "use strict";
     var Parser = require_contents();
     var FeedFilterChipBar = class {
       type = "FeedFilterChipBar";
@@ -25758,6 +24773,7 @@ var require_HorizontalCardList = __commonJS({
 // lib/parser/contents/classes/HorizontalList.js
 var require_HorizontalList = __commonJS({
   "lib/parser/contents/classes/HorizontalList.js"(exports2, module2) {
+    "use strict";
     var Parser = require_contents();
     var HorizontalList = class {
       type = "HorizontalList";
@@ -26270,6 +25286,20 @@ var require_MarkChatItemsByAuthorAsDeletedAction = __commonJS({
   }
 });
 
+// lib/parser/contents/classes/livechat/RemoveBannerForLiveChatCommand.js
+var require_RemoveBannerForLiveChatCommand = __commonJS({
+  "lib/parser/contents/classes/livechat/RemoveBannerForLiveChatCommand.js"(exports2, module2) {
+    "use strict";
+    var RemoveBannerForLiveChatCommand = class {
+      type = "RemoveBannerForLiveChatCommand";
+      constructor(data) {
+        this.target_action_id = data.targetActionId;
+      }
+    };
+    module2.exports = RemoveBannerForLiveChatCommand;
+  }
+});
+
 // lib/parser/contents/classes/livechat/ReplaceChatItemAction.js
 var require_ReplaceChatItemAction = __commonJS({
   "lib/parser/contents/classes/livechat/ReplaceChatItemAction.js"(exports2, module2) {
@@ -26435,9 +25465,9 @@ var require_MetadataBadge = __commonJS({
     "use strict";
     var MetadataBadge = class {
       constructor(data) {
-        this.icon_type = data.icon?.iconType || null;
-        this.style = data.style || null;
-        this.tooltip = data.tooltip || null;
+        data.icon && (this.icon_type = data.icon.iconType);
+        data.style && (this.style = data.style);
+        this.tooltip = data.tooltip || data.iconTooltip || null;
       }
     };
     module2.exports = MetadataBadge;
@@ -26726,6 +25756,7 @@ var require_MetadataRowHeader = __commonJS({
 // lib/parser/contents/classes/MicroformatData.js
 var require_MicroformatData = __commonJS({
   "lib/parser/contents/classes/MicroformatData.js"(exports2, module2) {
+    "use strict";
     var Thumbnail = require_Thumbnail();
     var MicroformatData = class {
       type = "MicroformatData";
@@ -26782,7 +25813,7 @@ var require_Movie = __commonJS({
     var Author = require_Author();
     var Thumbnail = require_Thumbnail();
     var NavigationEndpoint = require_NavigationEndpoint();
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Text = require_Text();
     var Movie = class {
       type = "Movie";
@@ -26797,7 +25828,7 @@ var require_Movie = __commonJS({
         this.author = new Author(data.longBylineText, data.ownerBadges, data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer?.thumbnail);
         this.duration = {
           text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
-          seconds: Utils2.timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+          seconds: Utils.timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
         };
         this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
         this.badges = Parser.parse(data.badges);
@@ -26908,11 +25939,13 @@ var require_MusicDetailHeader = __commonJS({
         this.thumbnails = Thumbnail.fromResponse(data.thumbnail.croppedSquareThumbnailRenderer.thumbnail);
         this.badges = Parser.parse(data.subtitleBadges);
         const author = this.subtitle.runs.find((run) => run.endpoint.browse?.id.startsWith("UC"));
-        author && (this.author = {
-          name: author.text,
-          channel_id: author.endpoint.browse.id,
-          endpoint: author.endpoint
-        });
+        if (author) {
+          this.author = {
+            name: author.text,
+            channel_id: author.endpoint.browse.id,
+            endpoint: author.endpoint
+          };
+        }
         this.menu = Parser.parse(data.menu);
       }
     };
@@ -26956,6 +25989,7 @@ var require_MusicImmersiveHeader = __commonJS({
 // lib/parser/contents/classes/MusicInlineBadge.js
 var require_MusicInlineBadge = __commonJS({
   "lib/parser/contents/classes/MusicInlineBadge.js"(exports2, module2) {
+    "use strict";
     var MusicInlineBadge = class {
       type = "MusicInlineBadge";
       constructor(data) {
@@ -27068,7 +26102,7 @@ var require_MusicResponsiveListItem = __commonJS({
     "use strict";
     var Parser = require_contents();
     var Text = require_Text();
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Thumbnail = require_Thumbnail();
     var NavigationEndpoint = require_NavigationEndpoint();
     var MusicResponsiveListItem = class {
@@ -27126,7 +26160,7 @@ var require_MusicResponsiveListItem = __commonJS({
         const duration_text = this.#flex_columns[1].title.runs?.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))?.text || this.#fixed_columns?.[0]?.title?.text;
         duration_text && (this.duration = {
           text: duration_text,
-          seconds: Utils2.timeToSeconds(duration_text)
+          seconds: Utils.timeToSeconds(duration_text)
         });
         const album = this.#flex_columns[1].title.runs?.find((run) => run.endpoint.browse?.id.startsWith("MPR"));
         if (album) {
@@ -27160,7 +26194,7 @@ var require_MusicResponsiveListItem = __commonJS({
         const duration_text = this.#flex_columns[1].title.runs.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))?.text;
         duration_text && (this.duration = {
           text: duration_text,
-          seconds: Utils2.timeToSeconds(duration_text)
+          seconds: Utils.timeToSeconds(duration_text)
         });
       }
       #parseArtist() {
@@ -27305,9 +26339,8 @@ var require_MusicTwoRowItem = __commonJS({
               }));
             }
             this.year = this.subtitle.runs.slice(-1)[0].text;
-            if (isNaN(this.year)) {
+            if (isNaN(this.year))
               delete this.year;
-            }
             break;
           default:
             if (this.subtitle.runs[0].text !== "Song") {
@@ -27318,11 +26351,13 @@ var require_MusicTwoRowItem = __commonJS({
             if (this.type == "video") {
               this.views = this.subtitle.runs.find((run) => run.text.match(/(.*?) views/)).text;
               const author = this.subtitle.runs.find((run) => run.endpoint.browse?.id.startsWith("UC"));
-              author && (this.author = {
-                name: author.text,
-                channel_id: author.endpoint.browse.id,
-                endpoint: author.endpoint
-              });
+              if (author) {
+                this.author = {
+                  name: author.text,
+                  channel_id: author.endpoint.browse.id,
+                  endpoint: author.endpoint
+                };
+              }
             } else {
               const artists2 = this.subtitle.runs.filter((run) => run.endpoint.browse?.id.startsWith("UC"));
               if (artists2) {
@@ -27641,7 +26676,7 @@ var require_PlaylistPanelVideo = __commonJS({
     var Text = require_Text();
     var Thumbnail = require_Thumbnail();
     var NavigationEndpoint = require_NavigationEndpoint();
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var PlaylistPanelVideo = class {
       type = "PlaylistPanelVideo";
       constructor(data) {
@@ -27652,7 +26687,7 @@ var require_PlaylistPanelVideo = __commonJS({
         this.video_id = data.videoId;
         this.duration = {
           text: new Text(data.lengthText).toString(),
-          seconds: Utils2.timeToSeconds(new Text(data.lengthText).toString())
+          seconds: Utils.timeToSeconds(new Text(data.lengthText).toString())
         };
         const album = new Text(data.longBylineText).runs.find((run) => run.endpoint.browse?.id.startsWith("MPR"));
         const artists = new Text(data.longBylineText).runs.filter((run) => run.endpoint.browse?.id.startsWith("UC"));
@@ -27786,6 +26821,7 @@ var require_PlaylistVideoList = __commonJS({
 // lib/parser/contents/classes/PlaylistVideoThumbnail.js
 var require_PlaylistVideoThumbnail = __commonJS({
   "lib/parser/contents/classes/PlaylistVideoThumbnail.js"(exports2, module2) {
+    "use strict";
     var Thumbnail = require_Thumbnail();
     var PlaylistVideoThumbnail = class {
       type = "PlaylistVideoThumbnail";
@@ -27912,6 +26948,7 @@ var require_ProfileColumnUserInfo = __commonJS({
 // lib/parser/contents/classes/ReelItem.js
 var require_ReelItem = __commonJS({
   "lib/parser/contents/classes/ReelItem.js"(exports2, module2) {
+    "use strict";
     var NavigationEndpoint = require_NavigationEndpoint();
     var Text = require_Text();
     var Thumbnail = require_Thumbnail();
@@ -27932,6 +26969,7 @@ var require_ReelItem = __commonJS({
 // lib/parser/contents/classes/ReelShelf.js
 var require_ReelShelf = __commonJS({
   "lib/parser/contents/classes/ReelShelf.js"(exports2, module2) {
+    "use strict";
     var Parser = require_contents();
     var NavigationEndpoint = require_NavigationEndpoint();
     var Text = require_Text();
@@ -27968,6 +27006,7 @@ var require_RelatedChipCloud = __commonJS({
 // lib/parser/contents/classes/RichGrid.js
 var require_RichGrid = __commonJS({
   "lib/parser/contents/classes/RichGrid.js"(exports2, module2) {
+    "use strict";
     var Parser = require_contents();
     var RichGrid = class {
       type = "RichGrid";
@@ -27983,6 +27022,7 @@ var require_RichGrid = __commonJS({
 // lib/parser/contents/classes/RichItem.js
 var require_RichItem = __commonJS({
   "lib/parser/contents/classes/RichItem.js"(exports2, module2) {
+    "use strict";
     var Parser = require_contents();
     var RichItem = class {
       type = "RichItem";
@@ -28630,12 +27670,10 @@ var require_ToggleButton = __commonJS({
         this.is_toggled = data.isToggled;
         this.is_disabled = data.isDisabled;
         this.icon_type = data.defaultIcon.iconType;
-        const acc_label = data.defaultText?.accessibility?.accessibilityData.label || data?.accessibility?.label;
+        const acc_label = data?.defaultText?.accessibility?.accessibilityData.label || data?.accessibilityData?.accessibilityData.label || data?.accessibility?.label;
         if (this.icon_type == "LIKE") {
           this.like_count = parseInt(acc_label.replace(/\D/g, ""));
-          if (this.like_count) {
-            this.short_like_count = new Text(data.defaultText).toString();
-          }
+          this.short_like_count = new Text(data.defaultText).toString();
         }
         this.endpoint = data.defaultServiceEndpoint?.commandExecutorCommand?.commands && new NavigationEndpoint(data.defaultServiceEndpoint.commandExecutorCommand.commands.pop()) || new NavigationEndpoint(data.defaultServiceEndpoint);
         this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
@@ -28809,7 +27847,7 @@ var require_Video = __commonJS({
     var Author = require_Author();
     var Thumbnail = require_Thumbnail();
     var NavigationEndpoint = require_NavigationEndpoint();
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Video = class {
       type = "Video";
       constructor(data) {
@@ -28834,7 +27872,7 @@ var require_Video = __commonJS({
           this.upcoming = new Date(upcoming);
         this.duration = {
           text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
-          seconds: Utils2.timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+          seconds: Utils.timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
         };
         this.show_action_menu = data.showActionMenu;
         this.is_watched = data.isWatched || false;
@@ -28994,6 +28032,7 @@ var require_WatchCardHeroVideo = __commonJS({
 // lib/parser/contents/classes/WatchCardRichHeader.js
 var require_WatchCardRichHeader = __commonJS({
   "lib/parser/contents/classes/WatchCardRichHeader.js"(exports2, module2) {
+    "use strict";
     var Author = require_Author();
     var NavigationEndpoint = require_NavigationEndpoint();
     var Text = require_Text();
@@ -29003,7 +28042,7 @@ var require_WatchCardRichHeader = __commonJS({
         this.title = new Text(data.title);
         this.title_endpoint = new NavigationEndpoint(data.titleNavigationEndpoint);
         this.subtitle = new Text(data.subtitle);
-        this.author = new Author(data, [data.titleBadge], data.avatar);
+        this.author = new Author(data, data.titleBadge ? [data.titleBadge] : null, data.avatar);
         this.author.name = this.title;
         this.style = data.style;
       }
@@ -29061,7 +28100,7 @@ var require_WatchNextTabbedResults = __commonJS({
 // lib/parser/contents/map.js
 var require_map = __commonJS({
   "lib/parser/contents/map.js"(exports2, module2) {
-    var map = { "AnalyticsMainAppKeyMetrics": () => require_AnalyticsMainAppKeyMetrics(), "AnalyticsVideo": () => require_AnalyticsVideo(), "AnalyticsVodCarouselCard": () => require_AnalyticsVodCarouselCard(), "Author": () => require_Author(), "BackstageImage": () => require_BackstageImage(), "BackstagePost": () => require_BackstagePost(), "BackstagePostThread": () => require_BackstagePostThread(), "BrowseFeedActions": () => require_BrowseFeedActions(), "Button": () => require_Button(), "C4TabbedHeader": () => require_C4TabbedHeader(), "CallToActionButton": () => require_CallToActionButton(), "Card": () => require_Card(), "CardCollection": () => require_CardCollection(), "Channel": () => require_Channel(), "ChannelAboutFullMetadata": () => require_ChannelAboutFullMetadata(), "ChannelFeaturedContent": () => require_ChannelFeaturedContent(), "ChannelHeaderLinks": () => require_ChannelHeaderLinks(), "ChannelMetadata": () => require_ChannelMetadata(), "ChannelMobileHeader": () => require_ChannelMobileHeader(), "ChannelThumbnailWithLink": () => require_ChannelThumbnailWithLink(), "ChannelVideoPlayer": () => require_ChannelVideoPlayer(), "ChildVideo": () => require_ChildVideo(), "ChipCloud": () => require_ChipCloud(), "ChipCloudChip": () => require_ChipCloudChip(), "CollageHeroImage": () => require_CollageHeroImage(), "CommentActionButtons": () => require_CommentActionButtons(), "CommentsEntryPointHeader": () => require_CommentsEntryPointHeader(), "CompactLink": () => require_CompactLink(), "CompactMix": () => require_CompactMix(), "CompactPlaylist": () => require_CompactPlaylist(), "CompactVideo": () => require_CompactVideo(), "ContinuationItem": () => require_ContinuationItem(), "CtaGoToCreatorStudio": () => require_CtaGoToCreatorStudio(), "DataModelSection": () => require_DataModelSection(), "DidYouMean": () => require_DidYouMean(), "DownloadButton": () => require_DownloadButton(), "Element": () => require_Element(), "EmergencyOnebox": () => require_EmergencyOnebox(), "EmojiRun": () => require_EmojiRun(), "Endscreen": () => require_Endscreen(), "EndscreenElement": () => require_EndscreenElement(), "EndScreenPlaylist": () => require_EndScreenPlaylist(), "EndScreenVideo": () => require_EndScreenVideo(), "ExpandableTab": () => require_ExpandableTab(), "ExpandedShelfContents": () => require_ExpandedShelfContents(), "FeedFilterChipBar": () => require_FeedFilterChipBar(), "FeedTabbedHeader": () => require_FeedTabbedHeader(), "Format": () => require_Format(), "Grid": () => require_Grid(), "GridChannel": () => require_GridChannel(), "GridPlaylist": () => require_GridPlaylist(), "GridVideo": () => require_GridVideo(), "HorizontalCardList": () => require_HorizontalCardList(), "HorizontalList": () => require_HorizontalList(), "ItemSection": () => require_ItemSection(), "ItemSectionHeader": () => require_ItemSectionHeader(), "LikeButton": () => require_LikeButton(), "LiveChat": () => require_LiveChat(), "livechat/AddBannerToLiveChatCommand": () => require_AddBannerToLiveChatCommand(), "livechat/AddChatItemAction": () => require_AddChatItemAction(), "livechat/AddLiveChatTickerItemAction": () => require_AddLiveChatTickerItemAction(), "livechat/items/LiveChatBanner": () => require_LiveChatBanner(), "livechat/items/LiveChatBannerHeader": () => require_LiveChatBannerHeader(), "livechat/items/LiveChatBannerPoll": () => require_LiveChatBannerPoll(), "livechat/items/LiveChatMembershipItem": () => require_LiveChatMembershipItem(), "livechat/items/LiveChatPaidMessage": () => require_LiveChatPaidMessage(), "livechat/items/LiveChatPaidSticker": () => require_LiveChatPaidSticker(), "livechat/items/LiveChatPlaceholderItem": () => require_LiveChatPlaceholderItem(), "livechat/items/LiveChatTextMessage": () => require_LiveChatTextMessage(), "livechat/items/LiveChatTickerPaidMessageItem": () => require_LiveChatTickerPaidMessageItem(), "livechat/items/LiveChatTickerSponsorItem": () => require_LiveChatTickerSponsorItem(), "livechat/items/LiveChatViewerEngagementMessage": () => require_LiveChatViewerEngagementMessage(), "livechat/items/Poll": () => require_Poll(), "livechat/items/PollHeader": () => require_PollHeader(), "livechat/LiveChatActionPanel": () => require_LiveChatActionPanel(), "livechat/MarkChatItemAsDeletedAction": () => require_MarkChatItemAsDeletedAction(), "livechat/MarkChatItemsByAuthorAsDeletedAction": () => require_MarkChatItemsByAuthorAsDeletedAction(), "livechat/ReplaceChatItemAction": () => require_ReplaceChatItemAction(), "livechat/ReplayChatItemAction": () => require_ReplayChatItemAction(), "livechat/ShowLiveChatActionPanelAction": () => require_ShowLiveChatActionPanelAction(), "livechat/ShowLiveChatTooltipCommand": () => require_ShowLiveChatTooltipCommand(), "livechat/UpdateDateTextAction": () => require_UpdateDateTextAction(), "livechat/UpdateDescriptionAction": () => require_UpdateDescriptionAction(), "livechat/UpdateLiveChatPollAction": () => require_UpdateLiveChatPollAction(), "livechat/UpdateTitleAction": () => require_UpdateTitleAction(), "livechat/UpdateToggleButtonTextAction": () => require_UpdateToggleButtonTextAction(), "livechat/UpdateViewershipAction": () => require_UpdateViewershipAction(), "LiveChatAuthorBadge": () => require_LiveChatAuthorBadge(), "LiveChatHeader": () => require_LiveChatHeader(), "LiveChatItemList": () => require_LiveChatItemList(), "LiveChatMessageInput": () => require_LiveChatMessageInput(), "LiveChatParticipant": () => require_LiveChatParticipant(), "LiveChatParticipantsList": () => require_LiveChatParticipantsList(), "Menu": () => require_Menu(), "MenuNavigationItem": () => require_MenuNavigationItem(), "MenuServiceItem": () => require_MenuServiceItem(), "MenuServiceItemDownload": () => require_MenuServiceItemDownload(), "MerchandiseItem": () => require_MerchandiseItem(), "MerchandiseShelf": () => require_MerchandiseShelf(), "Message": () => require_Message(), "MetadataBadge": () => require_MetadataBadge(), "MetadataRow": () => require_MetadataRow(), "MetadataRowContainer": () => require_MetadataRowContainer(), "MetadataRowHeader": () => require_MetadataRowHeader(), "MicroformatData": () => require_MicroformatData(), "Mix": () => require_Mix(), "Movie": () => require_Movie(), "MovingThumbnail": () => require_MovingThumbnail(), "MusicCarouselShelf": () => require_MusicCarouselShelf(), "MusicCarouselShelfBasicHeader": () => require_MusicCarouselShelfBasicHeader(), "MusicDescriptionShelf": () => require_MusicDescriptionShelf(), "MusicDetailHeader": () => require_MusicDetailHeader(), "MusicHeader": () => require_MusicHeader(), "MusicImmersiveHeader": () => require_MusicImmersiveHeader(), "MusicInlineBadge": () => require_MusicInlineBadge(), "MusicItemThumbnailOverlay": () => require_MusicItemThumbnailOverlay(), "MusicNavigationButton": () => require_MusicNavigationButton(), "MusicPlayButton": () => require_MusicPlayButton(), "MusicPlaylistShelf": () => require_MusicPlaylistShelf(), "MusicQueue": () => require_MusicQueue(), "MusicResponsiveListItem": () => require_MusicResponsiveListItem(), "MusicResponsiveListItemFixedColumn": () => require_MusicResponsiveListItemFixedColumn(), "MusicResponsiveListItemFlexColumn": () => require_MusicResponsiveListItemFlexColumn(), "MusicShelf": () => require_MusicShelf(), "MusicThumbnail": () => require_MusicThumbnail(), "MusicTwoRowItem": () => require_MusicTwoRowItem(), "NavigatableText": () => require_NavigatableText(), "NavigationEndpoint": () => require_NavigationEndpoint(), "PlayerAnnotationsExpanded": () => require_PlayerAnnotationsExpanded(), "PlayerCaptionsTracklist": () => require_PlayerCaptionsTracklist(), "PlayerErrorMessage": () => require_PlayerErrorMessage(), "PlayerLiveStoryboardSpec": () => require_PlayerLiveStoryboardSpec(), "PlayerMicroformat": () => require_PlayerMicroformat(), "PlayerOverlay": () => require_PlayerOverlay(), "PlayerOverlayAutoplay": () => require_PlayerOverlayAutoplay(), "PlayerStoryboardSpec": () => require_PlayerStoryboardSpec(), "Playlist": () => require_Playlist(), "PlaylistAuthor": () => require_PlaylistAuthor(), "PlaylistHeader": () => require_PlaylistHeader(), "PlaylistMetadata": () => require_PlaylistMetadata(), "PlaylistPanel": () => require_PlaylistPanel(), "PlaylistPanelVideo": () => require_PlaylistPanelVideo(), "PlaylistSidebar": () => require_PlaylistSidebar(), "PlaylistSidebarPrimaryInfo": () => require_PlaylistSidebarPrimaryInfo(), "PlaylistSidebarSecondaryInfo": () => require_PlaylistSidebarSecondaryInfo(), "PlaylistVideo": () => require_PlaylistVideo(), "PlaylistVideoList": () => require_PlaylistVideoList(), "PlaylistVideoThumbnail": () => require_PlaylistVideoThumbnail(), "Poll": () => require_Poll2(), "Post": () => require_Post(), "ProfileColumn": () => require_ProfileColumn(), "ProfileColumnStats": () => require_ProfileColumnStats(), "ProfileColumnStatsEntry": () => require_ProfileColumnStatsEntry(), "ProfileColumnUserInfo": () => require_ProfileColumnUserInfo(), "ReelItem": () => require_ReelItem(), "ReelShelf": () => require_ReelShelf(), "RelatedChipCloud": () => require_RelatedChipCloud(), "RichGrid": () => require_RichGrid(), "RichItem": () => require_RichItem(), "RichListHeader": () => require_RichListHeader(), "RichSection": () => require_RichSection(), "RichShelf": () => require_RichShelf(), "SearchBox": () => require_SearchBox(), "SearchRefinementCard": () => require_SearchRefinementCard(), "SecondarySearchContainer": () => require_SecondarySearchContainer(), "SectionList": () => require_SectionList(), "Shelf": () => require_Shelf(), "ShowingResultsFor": () => require_ShowingResultsFor(), "SimpleCardTeaser": () => require_SimpleCardTeaser(), "SingleActionEmergencySupport": () => require_SingleActionEmergencySupport(), "SingleColumnBrowseResults": () => require_SingleColumnBrowseResults(), "SingleColumnMusicWatchNextResults": () => require_SingleColumnMusicWatchNextResults(), "SingleHeroImage": () => require_SingleHeroImage(), "SortFilterSubMenu": () => require_SortFilterSubMenu(), "SubFeedOption": () => require_SubFeedOption(), "SubFeedSelector": () => require_SubFeedSelector(), "SubscribeButton": () => require_SubscribeButton(), "SubscriptionNotificationToggleButton": () => require_SubscriptionNotificationToggleButton(), "Tab": () => require_Tab(), "Tabbed": () => require_Tabbed(), "TabbedSearchResults": () => require_TabbedSearchResults(), "Text": () => require_Text(), "TextHeader": () => require_TextHeader(), "TextRun": () => require_TextRun(), "Thumbnail": () => require_Thumbnail(), "ThumbnailOverlayBottomPanel": () => require_ThumbnailOverlayBottomPanel(), "ThumbnailOverlayEndorsement": () => require_ThumbnailOverlayEndorsement(), "ThumbnailOverlayHoverText": () => require_ThumbnailOverlayHoverText(), "ThumbnailOverlayInlineUnplayable": () => require_ThumbnailOverlayInlineUnplayable(), "ThumbnailOverlayLoadingPreview": () => require_ThumbnailOverlayLoadingPreview(), "ThumbnailOverlayNowPlaying": () => require_ThumbnailOverlayNowPlaying(), "ThumbnailOverlayPinking": () => require_ThumbnailOverlayPinking(), "ThumbnailOverlayPlaybackStatus": () => require_ThumbnailOverlayPlaybackStatus(), "ThumbnailOverlayResumePlayback": () => require_ThumbnailOverlayResumePlayback(), "ThumbnailOverlaySidePanel": () => require_ThumbnailOverlaySidePanel(), "ThumbnailOverlayTimeStatus": () => require_ThumbnailOverlayTimeStatus(), "ThumbnailOverlayToggleButton": () => require_ThumbnailOverlayToggleButton(), "ToggleButton": () => require_ToggleButton(), "ToggleMenuServiceItem": () => require_ToggleMenuServiceItem(), "Tooltip": () => require_Tooltip(), "TwoColumnBrowseResults": () => require_TwoColumnBrowseResults(), "TwoColumnSearchResults": () => require_TwoColumnSearchResults(), "TwoColumnWatchNextResults": () => require_TwoColumnWatchNextResults(), "UniversalWatchCard": () => require_UniversalWatchCard(), "VerticalList": () => require_VerticalList(), "VerticalWatchCardList": () => require_VerticalWatchCardList(), "Video": () => require_Video(), "VideoDetails": () => require_VideoDetails(), "VideoInfoCardContent": () => require_VideoInfoCardContent(), "VideoOwner": () => require_VideoOwner(), "VideoPrimaryInfo": () => require_VideoPrimaryInfo(), "VideoSecondaryInfo": () => require_VideoSecondaryInfo(), "WatchCardCompactVideo": () => require_WatchCardCompactVideo(), "WatchCardHeroVideo": () => require_WatchCardHeroVideo(), "WatchCardRichHeader": () => require_WatchCardRichHeader(), "WatchCardSectionSequence": () => require_WatchCardSectionSequence(), "WatchNextEndScreen": () => require_WatchNextEndScreen(), "WatchNextTabbedResults": () => require_WatchNextTabbedResults() };
+    var map = { "AnalyticsMainAppKeyMetrics": () => require_AnalyticsMainAppKeyMetrics(), "AnalyticsVideo": () => require_AnalyticsVideo(), "AnalyticsVodCarouselCard": () => require_AnalyticsVodCarouselCard(), "Author": () => require_Author(), "BackstageImage": () => require_BackstageImage(), "BackstagePost": () => require_BackstagePost(), "BackstagePostThread": () => require_BackstagePostThread(), "BrowseFeedActions": () => require_BrowseFeedActions(), "Button": () => require_Button(), "C4TabbedHeader": () => require_C4TabbedHeader(), "CallToActionButton": () => require_CallToActionButton(), "Card": () => require_Card(), "CardCollection": () => require_CardCollection(), "Channel": () => require_Channel(), "ChannelAboutFullMetadata": () => require_ChannelAboutFullMetadata(), "ChannelFeaturedContent": () => require_ChannelFeaturedContent(), "ChannelHeaderLinks": () => require_ChannelHeaderLinks(), "ChannelMetadata": () => require_ChannelMetadata(), "ChannelMobileHeader": () => require_ChannelMobileHeader(), "ChannelThumbnailWithLink": () => require_ChannelThumbnailWithLink(), "ChannelVideoPlayer": () => require_ChannelVideoPlayer(), "ChildVideo": () => require_ChildVideo(), "ChipCloud": () => require_ChipCloud(), "ChipCloudChip": () => require_ChipCloudChip(), "CollageHeroImage": () => require_CollageHeroImage(), "Comment": () => require_Comment(), "CommentReplyDialog": () => require_CommentReplyDialog(), "comments/AuthorCommentBadge": () => require_AuthorCommentBadge(), "comments/CommentActionButtons": () => require_CommentActionButtons(), "comments/CommentReplies": () => require_CommentReplies(), "comments/CommentSimplebox": () => require_CommentSimplebox(), "CommentsEntryPointHeader": () => require_CommentsEntryPointHeader(), "CommentsHeader": () => require_CommentsHeader(), "CommentThread": () => require_CommentThread(), "CompactLink": () => require_CompactLink(), "CompactMix": () => require_CompactMix(), "CompactPlaylist": () => require_CompactPlaylist(), "CompactVideo": () => require_CompactVideo(), "ContinuationItem": () => require_ContinuationItem(), "CtaGoToCreatorStudio": () => require_CtaGoToCreatorStudio(), "DataModelSection": () => require_DataModelSection(), "DidYouMean": () => require_DidYouMean(), "DownloadButton": () => require_DownloadButton(), "Element": () => require_Element(), "EmergencyOnebox": () => require_EmergencyOnebox(), "EmojiRun": () => require_EmojiRun(), "Endscreen": () => require_Endscreen(), "EndscreenElement": () => require_EndscreenElement(), "EndScreenPlaylist": () => require_EndScreenPlaylist(), "EndScreenVideo": () => require_EndScreenVideo(), "ExpandableTab": () => require_ExpandableTab(), "ExpandedShelfContents": () => require_ExpandedShelfContents(), "FeedFilterChipBar": () => require_FeedFilterChipBar(), "FeedTabbedHeader": () => require_FeedTabbedHeader(), "Format": () => require_Format(), "Grid": () => require_Grid(), "GridChannel": () => require_GridChannel(), "GridPlaylist": () => require_GridPlaylist(), "GridVideo": () => require_GridVideo(), "HorizontalCardList": () => require_HorizontalCardList(), "HorizontalList": () => require_HorizontalList(), "ItemSection": () => require_ItemSection(), "ItemSectionHeader": () => require_ItemSectionHeader(), "LikeButton": () => require_LikeButton(), "LiveChat": () => require_LiveChat(), "livechat/AddBannerToLiveChatCommand": () => require_AddBannerToLiveChatCommand(), "livechat/AddChatItemAction": () => require_AddChatItemAction(), "livechat/AddLiveChatTickerItemAction": () => require_AddLiveChatTickerItemAction(), "livechat/items/LiveChatBanner": () => require_LiveChatBanner(), "livechat/items/LiveChatBannerHeader": () => require_LiveChatBannerHeader(), "livechat/items/LiveChatBannerPoll": () => require_LiveChatBannerPoll(), "livechat/items/LiveChatMembershipItem": () => require_LiveChatMembershipItem(), "livechat/items/LiveChatPaidMessage": () => require_LiveChatPaidMessage(), "livechat/items/LiveChatPaidSticker": () => require_LiveChatPaidSticker(), "livechat/items/LiveChatPlaceholderItem": () => require_LiveChatPlaceholderItem(), "livechat/items/LiveChatTextMessage": () => require_LiveChatTextMessage(), "livechat/items/LiveChatTickerPaidMessageItem": () => require_LiveChatTickerPaidMessageItem(), "livechat/items/LiveChatTickerSponsorItem": () => require_LiveChatTickerSponsorItem(), "livechat/items/LiveChatViewerEngagementMessage": () => require_LiveChatViewerEngagementMessage(), "livechat/items/Poll": () => require_Poll(), "livechat/items/PollHeader": () => require_PollHeader(), "livechat/LiveChatActionPanel": () => require_LiveChatActionPanel(), "livechat/MarkChatItemAsDeletedAction": () => require_MarkChatItemAsDeletedAction(), "livechat/MarkChatItemsByAuthorAsDeletedAction": () => require_MarkChatItemsByAuthorAsDeletedAction(), "livechat/RemoveBannerForLiveChatCommand": () => require_RemoveBannerForLiveChatCommand(), "livechat/ReplaceChatItemAction": () => require_ReplaceChatItemAction(), "livechat/ReplayChatItemAction": () => require_ReplayChatItemAction(), "livechat/ShowLiveChatActionPanelAction": () => require_ShowLiveChatActionPanelAction(), "livechat/ShowLiveChatTooltipCommand": () => require_ShowLiveChatTooltipCommand(), "livechat/UpdateDateTextAction": () => require_UpdateDateTextAction(), "livechat/UpdateDescriptionAction": () => require_UpdateDescriptionAction(), "livechat/UpdateLiveChatPollAction": () => require_UpdateLiveChatPollAction(), "livechat/UpdateTitleAction": () => require_UpdateTitleAction(), "livechat/UpdateToggleButtonTextAction": () => require_UpdateToggleButtonTextAction(), "livechat/UpdateViewershipAction": () => require_UpdateViewershipAction(), "LiveChatAuthorBadge": () => require_LiveChatAuthorBadge(), "LiveChatHeader": () => require_LiveChatHeader(), "LiveChatItemList": () => require_LiveChatItemList(), "LiveChatMessageInput": () => require_LiveChatMessageInput(), "LiveChatParticipant": () => require_LiveChatParticipant(), "LiveChatParticipantsList": () => require_LiveChatParticipantsList(), "Menu": () => require_Menu(), "MenuNavigationItem": () => require_MenuNavigationItem(), "MenuServiceItem": () => require_MenuServiceItem(), "MenuServiceItemDownload": () => require_MenuServiceItemDownload(), "MerchandiseItem": () => require_MerchandiseItem(), "MerchandiseShelf": () => require_MerchandiseShelf(), "Message": () => require_Message(), "MetadataBadge": () => require_MetadataBadge(), "MetadataRow": () => require_MetadataRow(), "MetadataRowContainer": () => require_MetadataRowContainer(), "MetadataRowHeader": () => require_MetadataRowHeader(), "MicroformatData": () => require_MicroformatData(), "Mix": () => require_Mix(), "Movie": () => require_Movie(), "MovingThumbnail": () => require_MovingThumbnail(), "MusicCarouselShelf": () => require_MusicCarouselShelf(), "MusicCarouselShelfBasicHeader": () => require_MusicCarouselShelfBasicHeader(), "MusicDescriptionShelf": () => require_MusicDescriptionShelf(), "MusicDetailHeader": () => require_MusicDetailHeader(), "MusicHeader": () => require_MusicHeader(), "MusicImmersiveHeader": () => require_MusicImmersiveHeader(), "MusicInlineBadge": () => require_MusicInlineBadge(), "MusicItemThumbnailOverlay": () => require_MusicItemThumbnailOverlay(), "MusicNavigationButton": () => require_MusicNavigationButton(), "MusicPlayButton": () => require_MusicPlayButton(), "MusicPlaylistShelf": () => require_MusicPlaylistShelf(), "MusicQueue": () => require_MusicQueue(), "MusicResponsiveListItem": () => require_MusicResponsiveListItem(), "MusicResponsiveListItemFixedColumn": () => require_MusicResponsiveListItemFixedColumn(), "MusicResponsiveListItemFlexColumn": () => require_MusicResponsiveListItemFlexColumn(), "MusicShelf": () => require_MusicShelf(), "MusicThumbnail": () => require_MusicThumbnail(), "MusicTwoRowItem": () => require_MusicTwoRowItem(), "NavigatableText": () => require_NavigatableText(), "NavigationEndpoint": () => require_NavigationEndpoint(), "PlayerAnnotationsExpanded": () => require_PlayerAnnotationsExpanded(), "PlayerCaptionsTracklist": () => require_PlayerCaptionsTracklist(), "PlayerErrorMessage": () => require_PlayerErrorMessage(), "PlayerLiveStoryboardSpec": () => require_PlayerLiveStoryboardSpec(), "PlayerMicroformat": () => require_PlayerMicroformat(), "PlayerOverlay": () => require_PlayerOverlay(), "PlayerOverlayAutoplay": () => require_PlayerOverlayAutoplay(), "PlayerStoryboardSpec": () => require_PlayerStoryboardSpec(), "Playlist": () => require_Playlist(), "PlaylistAuthor": () => require_PlaylistAuthor(), "PlaylistHeader": () => require_PlaylistHeader(), "PlaylistMetadata": () => require_PlaylistMetadata(), "PlaylistPanel": () => require_PlaylistPanel(), "PlaylistPanelVideo": () => require_PlaylistPanelVideo(), "PlaylistSidebar": () => require_PlaylistSidebar(), "PlaylistSidebarPrimaryInfo": () => require_PlaylistSidebarPrimaryInfo(), "PlaylistSidebarSecondaryInfo": () => require_PlaylistSidebarSecondaryInfo(), "PlaylistVideo": () => require_PlaylistVideo(), "PlaylistVideoList": () => require_PlaylistVideoList(), "PlaylistVideoThumbnail": () => require_PlaylistVideoThumbnail(), "Poll": () => require_Poll2(), "Post": () => require_Post(), "ProfileColumn": () => require_ProfileColumn(), "ProfileColumnStats": () => require_ProfileColumnStats(), "ProfileColumnStatsEntry": () => require_ProfileColumnStatsEntry(), "ProfileColumnUserInfo": () => require_ProfileColumnUserInfo(), "ReelItem": () => require_ReelItem(), "ReelShelf": () => require_ReelShelf(), "RelatedChipCloud": () => require_RelatedChipCloud(), "RichGrid": () => require_RichGrid(), "RichItem": () => require_RichItem(), "RichListHeader": () => require_RichListHeader(), "RichSection": () => require_RichSection(), "RichShelf": () => require_RichShelf(), "SearchBox": () => require_SearchBox(), "SearchRefinementCard": () => require_SearchRefinementCard(), "SecondarySearchContainer": () => require_SecondarySearchContainer(), "SectionList": () => require_SectionList(), "Shelf": () => require_Shelf(), "ShowingResultsFor": () => require_ShowingResultsFor(), "SimpleCardTeaser": () => require_SimpleCardTeaser(), "SingleActionEmergencySupport": () => require_SingleActionEmergencySupport(), "SingleColumnBrowseResults": () => require_SingleColumnBrowseResults(), "SingleColumnMusicWatchNextResults": () => require_SingleColumnMusicWatchNextResults(), "SingleHeroImage": () => require_SingleHeroImage(), "SortFilterSubMenu": () => require_SortFilterSubMenu(), "SubFeedOption": () => require_SubFeedOption(), "SubFeedSelector": () => require_SubFeedSelector(), "SubscribeButton": () => require_SubscribeButton(), "SubscriptionNotificationToggleButton": () => require_SubscriptionNotificationToggleButton(), "Tab": () => require_Tab(), "Tabbed": () => require_Tabbed(), "TabbedSearchResults": () => require_TabbedSearchResults(), "Text": () => require_Text(), "TextHeader": () => require_TextHeader(), "TextRun": () => require_TextRun(), "Thumbnail": () => require_Thumbnail(), "ThumbnailOverlayBottomPanel": () => require_ThumbnailOverlayBottomPanel(), "ThumbnailOverlayEndorsement": () => require_ThumbnailOverlayEndorsement(), "ThumbnailOverlayHoverText": () => require_ThumbnailOverlayHoverText(), "ThumbnailOverlayInlineUnplayable": () => require_ThumbnailOverlayInlineUnplayable(), "ThumbnailOverlayLoadingPreview": () => require_ThumbnailOverlayLoadingPreview(), "ThumbnailOverlayNowPlaying": () => require_ThumbnailOverlayNowPlaying(), "ThumbnailOverlayPinking": () => require_ThumbnailOverlayPinking(), "ThumbnailOverlayPlaybackStatus": () => require_ThumbnailOverlayPlaybackStatus(), "ThumbnailOverlayResumePlayback": () => require_ThumbnailOverlayResumePlayback(), "ThumbnailOverlaySidePanel": () => require_ThumbnailOverlaySidePanel(), "ThumbnailOverlayTimeStatus": () => require_ThumbnailOverlayTimeStatus(), "ThumbnailOverlayToggleButton": () => require_ThumbnailOverlayToggleButton(), "ToggleButton": () => require_ToggleButton(), "ToggleMenuServiceItem": () => require_ToggleMenuServiceItem(), "Tooltip": () => require_Tooltip(), "TwoColumnBrowseResults": () => require_TwoColumnBrowseResults(), "TwoColumnSearchResults": () => require_TwoColumnSearchResults(), "TwoColumnWatchNextResults": () => require_TwoColumnWatchNextResults(), "UniversalWatchCard": () => require_UniversalWatchCard(), "VerticalList": () => require_VerticalList(), "VerticalWatchCardList": () => require_VerticalWatchCardList(), "Video": () => require_Video(), "VideoDetails": () => require_VideoDetails(), "VideoInfoCardContent": () => require_VideoInfoCardContent(), "VideoOwner": () => require_VideoOwner(), "VideoPrimaryInfo": () => require_VideoPrimaryInfo(), "VideoSecondaryInfo": () => require_VideoSecondaryInfo(), "WatchCardCompactVideo": () => require_WatchCardCompactVideo(), "WatchCardHeroVideo": () => require_WatchCardHeroVideo(), "WatchCardRichHeader": () => require_WatchCardRichHeader(), "WatchCardSectionSequence": () => require_WatchCardSectionSequence(), "WatchNextEndScreen": () => require_WatchNextEndScreen(), "WatchNextTabbedResults": () => require_WatchNextTabbedResults() };
     module2.exports = function req(name) {
       const func = map[name];
       if (!func) {
@@ -29078,7 +28117,7 @@ var require_map = __commonJS({
 var require_contents = __commonJS({
   "lib/parser/contents/index.js"(exports2, module2) {
     "use strict";
-    var { InnertubeError, observe } = require_Utils();
+    var { InnertubeError: InnertubeError2, observe } = require_Utils();
     var Format = require_Format();
     var VideoDetails = require_VideoDetails();
     var requireParserClass = require_map();
@@ -29226,45 +28265,46 @@ var require_contents = __commonJS({
         if (!data)
           return null;
         if (Array.isArray(data)) {
-          let results = [];
-          for (let item of data) {
-            const keys = Object.keys(item);
-            const classname = this.sanitizeClassName(keys[0]);
-            if (!this.shouldIgnore(classname)) {
+          const results = [];
+          for (const item of data) {
+            const keys2 = Object.keys(item);
+            const classname2 = this.sanitizeClassName(keys2[0]);
+            if (!this.shouldIgnore(classname2)) {
               try {
-                const path = module3 ? module3 + "/" : "";
-                const TargetClass = requireParserClass(path + classname);
-                const result = new TargetClass(item[keys[0]]);
+                const path = module3 ? `${module3}/` : "";
+                const TargetClass = requireParserClass(path + classname2);
+                const result = new TargetClass(item[keys2[0]]);
                 results.push(result);
-                __privateMethod(this, _addToMemo, addToMemo_fn).call(this, classname, result);
+                __privateMethod(this, _addToMemo, addToMemo_fn).call(this, classname2, result);
               } catch (err) {
-                this.formatError({ classname, classdata: item[keys[0]], err });
+                this.formatError({ classname: classname2, classdata: item[keys2[0]], err });
               }
             }
           }
           return observe(results);
-        } else {
-          const keys = Object.keys(data);
-          const classname = this.sanitizeClassName(keys[0]);
-          if (!this.shouldIgnore(classname)) {
-            try {
-              const path = module3 ? module3 + "/" : "";
-              const TargetClass = requireParserClass(path + classname);
-              const result = new TargetClass(data[keys[0]]);
-              __privateMethod(this, _addToMemo, addToMemo_fn).call(this, classname, result);
-              return result;
-            } catch (err) {
-              this.formatError({ classname, classdata: data[keys[0]], err });
-              return null;
-            }
+        }
+        const keys = Object.keys(data);
+        const classname = this.sanitizeClassName(keys[0]);
+        if (!this.shouldIgnore(classname)) {
+          try {
+            const path = module3 ? `${module3}/` : "";
+            const TargetClass = requireParserClass(path + classname);
+            const result = new TargetClass(data[keys[0]]);
+            __privateMethod(this, _addToMemo, addToMemo_fn).call(this, classname, result);
+            return result;
+          } catch (err) {
+            this.formatError({ classname, classdata: data[keys[0]], err });
+            return null;
           }
         }
       }
       static formatError({ classname, classdata, err }) {
         if (err.code == "MODULE_NOT_FOUND") {
-          return console.warn(new InnertubeError(classname + " not found!\nThis is a bug, please report it at " + require_package().bugs.url, classdata));
+          return console.warn(new InnertubeError2(`${classname} not found!
+This is a bug, please report it at ${require_package().bugs.url}`, classdata));
         }
-        console.warn(new InnertubeError("Something went wrong at " + classname + "!\nThis is a bug, please report it at " + require_package().bugs.url, { stack: err.stack }));
+        console.warn(new InnertubeError2(`Something went wrong at ${classname}!
+This is a bug, please report it at ${require_package().bugs.url}`, { stack: err.stack }));
       }
       static sanitizeClassName(input) {
         return (input.charAt(0).toUpperCase() + input.slice(1)).replace(/Renderer|Model/g, "").replace(/Radio/g, "Mix").trim();
@@ -29272,7 +28312,9 @@ var require_contents = __commonJS({
       static shouldIgnore(classname) {
         return [
           "DisplayAd",
+          "SearchPyv",
           "MealbarPromo",
+          "BackgroundPromo",
           "PromotedSparklesWeb",
           "RunAttestationCommand"
         ].includes(classname);
@@ -29329,7 +28371,7 @@ var require_Analytics = __commonJS({
 var require_AccountManager = __commonJS({
   "lib/core/AccountManager.js"(exports2, module2) {
     "use strict";
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Constants = require_Constants();
     var Analytics = require_Analytics();
     var Proto2 = require_proto();
@@ -29358,17 +28400,17 @@ var require_AccountManager = __commonJS({
         };
       }
       async #setSetting(setting_id, type, new_value) {
-        Utils2.throwIfMissing({ setting_id, type, new_value });
+        Utils.throwIfMissing({ setting_id, type, new_value });
         const values = { ON: true, OFF: false };
         if (!values.hasOwnProperty(new_value))
-          throw new Utils2.InnertubeError("Invalid option", { option: new_value, available_options: Object.keys(values) });
+          throw new Utils.InnertubeError("Invalid option", { option: new_value, available_options: Object.keys(values) });
         const response = await this.#actions.browse(type);
         const contents = (() => {
           switch (type.trim()) {
             case "SPaccount_notifications":
-              return Utils2.findNode(response.data, "contents", "Your preferences", 13, false).options;
+              return Utils.findNode(response.data, "contents", "Your preferences", 13, false).options;
             case "SPaccount_privacy":
-              return Utils2.findNode(response.data, "contents", "settingsSwitchRenderer", 13, false).options;
+              return Utils.findNode(response.data, "contents", "settingsSwitchRenderer", 13, false).options;
             default:
               throw new TypeError("undefined is not a function");
           }
@@ -29383,7 +28425,7 @@ var require_AccountManager = __commonJS({
       }
       async getInfo() {
         const response = await this.#actions.account("account/accounts_list", { client: "ANDROID" });
-        const account_item_section_renderer = Utils2.findNode(response.data, "contents", "accountItem", 8, false);
+        const account_item_section_renderer = Utils.findNode(response.data, "contents", "accountItem", 8, false);
         const profile = account_item_section_renderer.accountItem.serviceEndpoint.signInEndpoint.directSigninUserProfile;
         const name = profile.accountName;
         const email = profile.email;
@@ -29394,7 +28436,7 @@ var require_AccountManager = __commonJS({
       }
       async getTimeWatched() {
         const response = await this.#actions.browse("SPtime_watched", { client: "ANDROID" });
-        const rows = Utils2.findNode(response.data, "contents", "statRowRenderer", 11, false);
+        const rows = Utils.findNode(response.data, "contents", "statRowRenderer", 11, false);
         const stats = rows.map((row) => {
           const renderer = row.statRowRenderer;
           if (renderer) {
@@ -29421,14 +28463,14 @@ var require_AccountManager = __commonJS({
 var require_PlaylistManager = __commonJS({
   "lib/core/PlaylistManager.js"(exports2, module2) {
     "use strict";
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var PlaylistManager2 = class {
       #actions;
       constructor(actions) {
         this.#actions = actions;
       }
       async create(title, video_ids) {
-        Utils2.throwIfMissing({ title, video_ids });
+        Utils.throwIfMissing({ title, video_ids });
         const response = await this.#actions.playlist("playlist/create", { title, ids: video_ids });
         return {
           success: response.success,
@@ -29438,7 +28480,7 @@ var require_PlaylistManager = __commonJS({
         };
       }
       async delete(playlist_id) {
-        Utils2.throwIfMissing({ playlist_id });
+        Utils.throwIfMissing({ playlist_id });
         const response = await this.#actions.playlist("playlist/delete", { playlist_id });
         return {
           playlist_id,
@@ -29448,7 +28490,7 @@ var require_PlaylistManager = __commonJS({
         };
       }
       async addVideos(playlist_id, video_ids) {
-        Utils2.throwIfMissing({ playlist_id, video_ids });
+        Utils.throwIfMissing({ playlist_id, video_ids });
         const response = await this.#actions.playlist("browse/edit_playlist", {
           ids: video_ids,
           action: "ACTION_ADD_VIDEO",
@@ -29462,11 +28504,11 @@ var require_PlaylistManager = __commonJS({
         };
       }
       async removeVideos(playlist_id, video_ids) {
-        Utils2.throwIfMissing({ playlist_id, video_ids });
+        Utils.throwIfMissing({ playlist_id, video_ids });
         const plinfo = await this.#actions.browse(`VL${playlist_id}`);
-        const list = Utils2.findNode(plinfo.data, "contents", "contents", 13, false);
+        const list = Utils.findNode(plinfo.data, "contents", "contents", 13, false);
         if (!list.isEditable)
-          throw new Utils2.InnertubeError("This playlist cannot be edited.", playlist_id);
+          throw new Utils.InnertubeError("This playlist cannot be edited.", playlist_id);
         const videos = list.contents.filter((item) => video_ids.includes(item.playlistVideoRenderer.videoId));
         const set_video_ids = videos.map((video) => video.playlistVideoRenderer.setVideoId);
         const response = await this.#actions.playlist("browse/edit_playlist", {
@@ -29490,44 +28532,44 @@ var require_PlaylistManager = __commonJS({
 var require_InteractionManager = __commonJS({
   "lib/core/InteractionManager.js"(exports2, module2) {
     "use strict";
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var InteractionManager2 = class {
       #actions;
       constructor(actions) {
         this.#actions = actions;
       }
       async like(video_id) {
-        Utils2.throwIfMissing({ video_id });
+        Utils.throwIfMissing({ video_id });
         const action = await this.#actions.engage("like/like", { video_id });
         return action;
       }
       async dislike(video_id) {
-        Utils2.throwIfMissing({ video_id });
+        Utils.throwIfMissing({ video_id });
         const action = await this.#actions.engage("like/dislike", { video_id });
         return action;
       }
       async removeLike(video_id) {
-        Utils2.throwIfMissing({ video_id });
+        Utils.throwIfMissing({ video_id });
         const action = await this.actions.engage("like/removelike", { video_id });
         return action;
       }
       async subscribe(channel_id) {
-        Utils2.throwIfMissing({ channel_id });
+        Utils.throwIfMissing({ channel_id });
         const action = await this.#actions.engage("subscription/subscribe", { channel_id });
         return action;
       }
       async unsubscribe(channel_id) {
-        Utils2.throwIfMissing({ channel_id });
+        Utils.throwIfMissing({ channel_id });
         const action = await this.#actions.engage("subscription/unsubscribe", { channel_id });
         return action;
       }
       async comment(video_id, text) {
-        Utils2.throwIfMissing({ video_id, text });
+        Utils.throwIfMissing({ video_id, text });
         const action = await this.#actions.engage("comment/create_comment", { video_id, text });
         return action;
       }
       async translate(text, target_language, args = {}) {
-        Utils2.throwIfMissing({ text, target_language });
+        Utils.throwIfMissing({ text, target_language });
         const response = await await this.#actions.engage("comment/perform_comment_action", {
           video_id: args.video_id,
           comment_id: args.comment_id,
@@ -29535,7 +28577,7 @@ var require_InteractionManager = __commonJS({
           comment_action: "translate",
           text
         });
-        const translated_content = Utils2.findNode(response.data, "frameworkUpdates", "content", 7, false);
+        const translated_content = Utils.findNode(response.data, "frameworkUpdates", "content", 7, false);
         return {
           success: response.success,
           status_code: response.status_code,
@@ -29544,7 +28586,7 @@ var require_InteractionManager = __commonJS({
         };
       }
       async setNotificationPreferences(channel_id, type) {
-        Utils2.throwIfMissing({ channel_id, type });
+        Utils.throwIfMissing({ channel_id, type });
         const action = await this.#actions.notifications("modify_channel_preference", { channel_id, pref: type || "NONE" });
         return action;
       }
@@ -29553,99 +28595,12 @@ var require_InteractionManager = __commonJS({
   }
 });
 
-// lib/utils/Request.js
-var require_Request = __commonJS({
-  "lib/utils/Request.js"(exports2, module2) {
-    "use strict";
-    var Axios = require_axios2();
-    var Utils2 = require_Utils();
-    var Constants = require_Constants();
-    var Request2 = class {
-      constructor(session) {
-        this.session = session;
-        this.instance = Axios.create({
-          ...session.axios.defaults,
-          baseURL: Constants.URLS.API.PRODUCTION + session.version,
-          headers: Constants.INNERTUBE_HEADERS_BASE,
-          params: { key: session.key, prettyPrint: false },
-          validateStatus: () => true,
-          timeout: 15e3
-        });
-        this.#setupInterceptor();
-        return this.instance;
-      }
-      #setupInterceptor() {
-        this.instance.interceptors.request.use((config) => {
-          const is_json_payload = typeof config.data == "object";
-          config.headers["user-agent"] = Utils2.getRandomUserAgent("desktop").userAgent;
-          config.headers["accept-language"] = `en-${this.session.config.gl || "US"}`;
-          config.headers["x-goog-visitor-id"] = this.session.context.client.visitorData || "";
-          config.headers["x-youtube-client-version"] = this.session.context.client.clientVersion;
-          if (is_json_payload) {
-            config.data = {
-              context: JSON.parse(JSON.stringify(this.session.context)),
-              ...config.data
-            };
-            this.#adjustContext(config.data.context, config.data.client);
-            config.headers["x-youtube-client-version"] = config.data.context.client.clientVersion;
-            config.headers["x-origin"] = config.data.context.client.originalUrl;
-            config.headers["origin"] = config.data.context.client.originalUrl;
-            delete config.data.client;
-          }
-          if (this.session.logged_in) {
-            const cookie = this.session.config.cookie;
-            const token = cookie && this.session.auth_apisid || this.session.access_token;
-            config.headers.cookie = cookie || "";
-            config.headers.authorization = cookie ? token : `Bearer ${token}`;
-            !cookie && delete config.params.key;
-          }
-          this.session.config.debug && console.info("\n", "[" + config.method.toUpperCase() + "]", ">", config.baseURL + config.url, "\n", config?.data, "\n");
-          return config;
-        }, (error) => {
-          throw new Utils2.InnertubeError(error.message, error);
-        });
-        this.instance.interceptors.response.use((res) => {
-          const response = {
-            success: res.status === 200,
-            status_code: res.status,
-            data: res.data
-          };
-          if (res.status !== 200)
-            throw new Utils2.InnertubeError(`Request to ${res.config.url} failed with status code ${res.status} ${res.statusText}`, response);
-          return response;
-        });
-        this.instance.interceptors.response.use(void 0, (error) => {
-          if (error.info)
-            return Promise.reject(error);
-          throw new Utils2.InnertubeError("Could not complete this operation", error.message);
-        });
-      }
-      #adjustContext(ctx, client) {
-        switch (client) {
-          case "YTMUSIC":
-            ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;
-            ctx.client.clientName = Constants.CLIENTS.YTMUSIC.NAME;
-            break;
-          case "ANDROID":
-            ctx.client.clientVersion = Constants.CLIENTS.ANDROID.VERSION;
-            ctx.client.clientFormFactor = "SMALL_FORM_FACTOR";
-            ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
-            break;
-          default:
-            break;
-        }
-      }
-    };
-    module2.exports = Request2;
-  }
-});
-
 // lib/core/Feed.js
 var require_Feed = __commonJS({
   "lib/core/Feed.js"(exports2, module2) {
     "use strict";
     var ResultsParser = require_contents();
-    var { InnertubeError } = require_Utils();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
     var Feed = class {
       #page;
       #continuation;
@@ -29728,9 +28683,9 @@ var require_Feed = __commonJS({
       async getContinuationData() {
         if (this.#continuation) {
           if (this.#continuation.length > 1)
-            throw new InnertubeError("There are too many continuations, you'll need to find the correct one yourself in this.page");
+            throw new InnertubeError2("There are too many continuations, you'll need to find the correct one yourself in this.page");
           if (this.#continuation.length === 0)
-            throw new InnertubeError("There are no continuations");
+            throw new InnertubeError2("There are no continuations");
           const response = await this.#continuation[0].endpoint.call(this.#actions);
           return response;
         }
@@ -29753,7 +28708,7 @@ var require_Search = __commonJS({
   "lib/parser/youtube/Search.js"(exports2, module2) {
     "use strict";
     var Feed = require_Feed();
-    var { InnertubeError } = require_Utils();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
     var Search2 = class extends Feed {
       constructor(actions, data, already_parsed = false) {
         super(actions, data, already_parsed);
@@ -29779,11 +28734,11 @@ var require_Search = __commonJS({
         if (typeof card === "string") {
           target_card = this.refinement_cards.cards.get({ query: card });
           if (!target_card)
-            throw new InnertubeError("Refinement card not found!", { available_cards: this.refinement_card_queries });
+            throw new InnertubeError2("Refinement card not found!", { available_cards: this.refinement_card_queries });
         } else if (card.type === "SearchRefinementCard") {
           target_card = card;
         } else {
-          throw new InnertubeError("Invalid refinement card!");
+          throw new InnertubeError2("Invalid refinement card!");
         }
         const page = await target_card.endpoint.call(this.actions);
         return new Search2(this.actions, page, true);
@@ -34804,6 +33759,1277 @@ var require_stream_browserify = __commonJS({
   }
 });
 
+// node_modules/axios/lib/helpers/bind.js
+var require_bind = __commonJS({
+  "node_modules/axios/lib/helpers/bind.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function bind(fn, thisArg) {
+      return function wrap() {
+        var args = new Array(arguments.length);
+        for (var i = 0; i < args.length; i++) {
+          args[i] = arguments[i];
+        }
+        return fn.apply(thisArg, args);
+      };
+    };
+  }
+});
+
+// node_modules/axios/lib/utils.js
+var require_utils = __commonJS({
+  "node_modules/axios/lib/utils.js"(exports2, module2) {
+    "use strict";
+    var bind = require_bind();
+    var toString = Object.prototype.toString;
+    function isArray(val) {
+      return toString.call(val) === "[object Array]";
+    }
+    function isUndefined(val) {
+      return typeof val === "undefined";
+    }
+    function isBuffer(val) {
+      return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor) && typeof val.constructor.isBuffer === "function" && val.constructor.isBuffer(val);
+    }
+    function isArrayBuffer(val) {
+      return toString.call(val) === "[object ArrayBuffer]";
+    }
+    function isFormData(val) {
+      return typeof FormData !== "undefined" && val instanceof FormData;
+    }
+    function isArrayBufferView(val) {
+      var result;
+      if (typeof ArrayBuffer !== "undefined" && ArrayBuffer.isView) {
+        result = ArrayBuffer.isView(val);
+      } else {
+        result = val && val.buffer && val.buffer instanceof ArrayBuffer;
+      }
+      return result;
+    }
+    function isString(val) {
+      return typeof val === "string";
+    }
+    function isNumber(val) {
+      return typeof val === "number";
+    }
+    function isObject(val) {
+      return val !== null && typeof val === "object";
+    }
+    function isPlainObject(val) {
+      if (toString.call(val) !== "[object Object]") {
+        return false;
+      }
+      var prototype = Object.getPrototypeOf(val);
+      return prototype === null || prototype === Object.prototype;
+    }
+    function isDate(val) {
+      return toString.call(val) === "[object Date]";
+    }
+    function isFile(val) {
+      return toString.call(val) === "[object File]";
+    }
+    function isBlob(val) {
+      return toString.call(val) === "[object Blob]";
+    }
+    function isFunction(val) {
+      return toString.call(val) === "[object Function]";
+    }
+    function isStream(val) {
+      return isObject(val) && isFunction(val.pipe);
+    }
+    function isURLSearchParams(val) {
+      return typeof URLSearchParams !== "undefined" && val instanceof URLSearchParams;
+    }
+    function trim(str) {
+      return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, "");
+    }
+    function isStandardBrowserEnv() {
+      if (typeof navigator !== "undefined" && (navigator.product === "ReactNative" || navigator.product === "NativeScript" || navigator.product === "NS")) {
+        return false;
+      }
+      return typeof window !== "undefined" && typeof document !== "undefined";
+    }
+    function forEach(obj, fn) {
+      if (obj === null || typeof obj === "undefined") {
+        return;
+      }
+      if (typeof obj !== "object") {
+        obj = [obj];
+      }
+      if (isArray(obj)) {
+        for (var i = 0, l = obj.length; i < l; i++) {
+          fn.call(null, obj[i], i, obj);
+        }
+      } else {
+        for (var key in obj) {
+          if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            fn.call(null, obj[key], key, obj);
+          }
+        }
+      }
+    }
+    function merge() {
+      var result = {};
+      function assignValue(val, key) {
+        if (isPlainObject(result[key]) && isPlainObject(val)) {
+          result[key] = merge(result[key], val);
+        } else if (isPlainObject(val)) {
+          result[key] = merge({}, val);
+        } else if (isArray(val)) {
+          result[key] = val.slice();
+        } else {
+          result[key] = val;
+        }
+      }
+      for (var i = 0, l = arguments.length; i < l; i++) {
+        forEach(arguments[i], assignValue);
+      }
+      return result;
+    }
+    function extend(a, b, thisArg) {
+      forEach(b, function assignValue(val, key) {
+        if (thisArg && typeof val === "function") {
+          a[key] = bind(val, thisArg);
+        } else {
+          a[key] = val;
+        }
+      });
+      return a;
+    }
+    function stripBOM(content) {
+      if (content.charCodeAt(0) === 65279) {
+        content = content.slice(1);
+      }
+      return content;
+    }
+    module2.exports = {
+      isArray,
+      isArrayBuffer,
+      isBuffer,
+      isFormData,
+      isArrayBufferView,
+      isString,
+      isNumber,
+      isObject,
+      isPlainObject,
+      isUndefined,
+      isDate,
+      isFile,
+      isBlob,
+      isFunction,
+      isStream,
+      isURLSearchParams,
+      isStandardBrowserEnv,
+      forEach,
+      merge,
+      extend,
+      trim,
+      stripBOM
+    };
+  }
+});
+
+// node_modules/axios/lib/helpers/buildURL.js
+var require_buildURL = __commonJS({
+  "node_modules/axios/lib/helpers/buildURL.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    function encode(val) {
+      return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
+    }
+    module2.exports = function buildURL(url, params, paramsSerializer) {
+      if (!params) {
+        return url;
+      }
+      var serializedParams;
+      if (paramsSerializer) {
+        serializedParams = paramsSerializer(params);
+      } else if (utils.isURLSearchParams(params)) {
+        serializedParams = params.toString();
+      } else {
+        var parts = [];
+        utils.forEach(params, function serialize(val, key) {
+          if (val === null || typeof val === "undefined") {
+            return;
+          }
+          if (utils.isArray(val)) {
+            key = key + "[]";
+          } else {
+            val = [val];
+          }
+          utils.forEach(val, function parseValue(v) {
+            if (utils.isDate(v)) {
+              v = v.toISOString();
+            } else if (utils.isObject(v)) {
+              v = JSON.stringify(v);
+            }
+            parts.push(encode(key) + "=" + encode(v));
+          });
+        });
+        serializedParams = parts.join("&");
+      }
+      if (serializedParams) {
+        var hashmarkIndex = url.indexOf("#");
+        if (hashmarkIndex !== -1) {
+          url = url.slice(0, hashmarkIndex);
+        }
+        url += (url.indexOf("?") === -1 ? "?" : "&") + serializedParams;
+      }
+      return url;
+    };
+  }
+});
+
+// node_modules/axios/lib/core/InterceptorManager.js
+var require_InterceptorManager = __commonJS({
+  "node_modules/axios/lib/core/InterceptorManager.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    function InterceptorManager() {
+      this.handlers = [];
+    }
+    InterceptorManager.prototype.use = function use(fulfilled, rejected, options) {
+      this.handlers.push({
+        fulfilled,
+        rejected,
+        synchronous: options ? options.synchronous : false,
+        runWhen: options ? options.runWhen : null
+      });
+      return this.handlers.length - 1;
+    };
+    InterceptorManager.prototype.eject = function eject(id) {
+      if (this.handlers[id]) {
+        this.handlers[id] = null;
+      }
+    };
+    InterceptorManager.prototype.forEach = function forEach(fn) {
+      utils.forEach(this.handlers, function forEachHandler(h) {
+        if (h !== null) {
+          fn(h);
+        }
+      });
+    };
+    module2.exports = InterceptorManager;
+  }
+});
+
+// node_modules/axios/lib/helpers/normalizeHeaderName.js
+var require_normalizeHeaderName = __commonJS({
+  "node_modules/axios/lib/helpers/normalizeHeaderName.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    module2.exports = function normalizeHeaderName(headers, normalizedName) {
+      utils.forEach(headers, function processHeader(value, name) {
+        if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+          headers[normalizedName] = value;
+          delete headers[name];
+        }
+      });
+    };
+  }
+});
+
+// node_modules/axios/lib/core/enhanceError.js
+var require_enhanceError = __commonJS({
+  "node_modules/axios/lib/core/enhanceError.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function enhanceError(error, config, code, request, response) {
+      error.config = config;
+      if (code) {
+        error.code = code;
+      }
+      error.request = request;
+      error.response = response;
+      error.isAxiosError = true;
+      error.toJSON = function toJSON() {
+        return {
+          message: this.message,
+          name: this.name,
+          description: this.description,
+          number: this.number,
+          fileName: this.fileName,
+          lineNumber: this.lineNumber,
+          columnNumber: this.columnNumber,
+          stack: this.stack,
+          config: this.config,
+          code: this.code
+        };
+      };
+      return error;
+    };
+  }
+});
+
+// node_modules/axios/lib/core/createError.js
+var require_createError = __commonJS({
+  "node_modules/axios/lib/core/createError.js"(exports2, module2) {
+    "use strict";
+    var enhanceError = require_enhanceError();
+    module2.exports = function createError(message, config, code, request, response) {
+      var error = new Error(message);
+      return enhanceError(error, config, code, request, response);
+    };
+  }
+});
+
+// node_modules/axios/lib/core/settle.js
+var require_settle = __commonJS({
+  "node_modules/axios/lib/core/settle.js"(exports2, module2) {
+    "use strict";
+    var createError = require_createError();
+    module2.exports = function settle(resolve, reject, response) {
+      var validateStatus = response.config.validateStatus;
+      if (!response.status || !validateStatus || validateStatus(response.status)) {
+        resolve(response);
+      } else {
+        reject(createError("Request failed with status code " + response.status, response.config, null, response.request, response));
+      }
+    };
+  }
+});
+
+// node_modules/axios/lib/helpers/cookies.js
+var require_cookies = __commonJS({
+  "node_modules/axios/lib/helpers/cookies.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    module2.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
+      return {
+        write: function write(name, value, expires, path, domain, secure) {
+          var cookie = [];
+          cookie.push(name + "=" + encodeURIComponent(value));
+          if (utils.isNumber(expires)) {
+            cookie.push("expires=" + new Date(expires).toGMTString());
+          }
+          if (utils.isString(path)) {
+            cookie.push("path=" + path);
+          }
+          if (utils.isString(domain)) {
+            cookie.push("domain=" + domain);
+          }
+          if (secure === true) {
+            cookie.push("secure");
+          }
+          document.cookie = cookie.join("; ");
+        },
+        read: function read(name) {
+          var match = document.cookie.match(new RegExp("(^|;\\s*)(" + name + ")=([^;]*)"));
+          return match ? decodeURIComponent(match[3]) : null;
+        },
+        remove: function remove(name) {
+          this.write(name, "", Date.now() - 864e5);
+        }
+      };
+    }() : function nonStandardBrowserEnv() {
+      return {
+        write: function write() {
+        },
+        read: function read() {
+          return null;
+        },
+        remove: function remove() {
+        }
+      };
+    }();
+  }
+});
+
+// node_modules/axios/lib/helpers/isAbsoluteURL.js
+var require_isAbsoluteURL = __commonJS({
+  "node_modules/axios/lib/helpers/isAbsoluteURL.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function isAbsoluteURL(url) {
+      return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+    };
+  }
+});
+
+// node_modules/axios/lib/helpers/combineURLs.js
+var require_combineURLs = __commonJS({
+  "node_modules/axios/lib/helpers/combineURLs.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function combineURLs(baseURL, relativeURL) {
+      return relativeURL ? baseURL.replace(/\/+$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
+    };
+  }
+});
+
+// node_modules/axios/lib/core/buildFullPath.js
+var require_buildFullPath = __commonJS({
+  "node_modules/axios/lib/core/buildFullPath.js"(exports2, module2) {
+    "use strict";
+    var isAbsoluteURL = require_isAbsoluteURL();
+    var combineURLs = require_combineURLs();
+    module2.exports = function buildFullPath(baseURL, requestedURL) {
+      if (baseURL && !isAbsoluteURL(requestedURL)) {
+        return combineURLs(baseURL, requestedURL);
+      }
+      return requestedURL;
+    };
+  }
+});
+
+// node_modules/axios/lib/helpers/parseHeaders.js
+var require_parseHeaders = __commonJS({
+  "node_modules/axios/lib/helpers/parseHeaders.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    var ignoreDuplicateOf = [
+      "age",
+      "authorization",
+      "content-length",
+      "content-type",
+      "etag",
+      "expires",
+      "from",
+      "host",
+      "if-modified-since",
+      "if-unmodified-since",
+      "last-modified",
+      "location",
+      "max-forwards",
+      "proxy-authorization",
+      "referer",
+      "retry-after",
+      "user-agent"
+    ];
+    module2.exports = function parseHeaders(headers) {
+      var parsed = {};
+      var key;
+      var val;
+      var i;
+      if (!headers) {
+        return parsed;
+      }
+      utils.forEach(headers.split("\n"), function parser(line) {
+        i = line.indexOf(":");
+        key = utils.trim(line.substr(0, i)).toLowerCase();
+        val = utils.trim(line.substr(i + 1));
+        if (key) {
+          if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+            return;
+          }
+          if (key === "set-cookie") {
+            parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+          } else {
+            parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
+          }
+        }
+      });
+      return parsed;
+    };
+  }
+});
+
+// node_modules/axios/lib/helpers/isURLSameOrigin.js
+var require_isURLSameOrigin = __commonJS({
+  "node_modules/axios/lib/helpers/isURLSameOrigin.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    module2.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
+      var msie = /(msie|trident)/i.test(navigator.userAgent);
+      var urlParsingNode = document.createElement("a");
+      var originURL;
+      function resolveURL(url) {
+        var href = url;
+        if (msie) {
+          urlParsingNode.setAttribute("href", href);
+          href = urlParsingNode.href;
+        }
+        urlParsingNode.setAttribute("href", href);
+        return {
+          href: urlParsingNode.href,
+          protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, "") : "",
+          host: urlParsingNode.host,
+          search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, "") : "",
+          hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, "") : "",
+          hostname: urlParsingNode.hostname,
+          port: urlParsingNode.port,
+          pathname: urlParsingNode.pathname.charAt(0) === "/" ? urlParsingNode.pathname : "/" + urlParsingNode.pathname
+        };
+      }
+      originURL = resolveURL(window.location.href);
+      return function isURLSameOrigin(requestURL) {
+        var parsed = utils.isString(requestURL) ? resolveURL(requestURL) : requestURL;
+        return parsed.protocol === originURL.protocol && parsed.host === originURL.host;
+      };
+    }() : function nonStandardBrowserEnv() {
+      return function isURLSameOrigin() {
+        return true;
+      };
+    }();
+  }
+});
+
+// node_modules/axios/lib/adapters/xhr.js
+var require_xhr = __commonJS({
+  "node_modules/axios/lib/adapters/xhr.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    var settle = require_settle();
+    var cookies = require_cookies();
+    var buildURL = require_buildURL();
+    var buildFullPath = require_buildFullPath();
+    var parseHeaders = require_parseHeaders();
+    var isURLSameOrigin = require_isURLSameOrigin();
+    var createError = require_createError();
+    module2.exports = function xhrAdapter(config) {
+      return new Promise(function dispatchXhrRequest(resolve, reject) {
+        var requestData = config.data;
+        var requestHeaders = config.headers;
+        var responseType = config.responseType;
+        if (utils.isFormData(requestData)) {
+          delete requestHeaders["Content-Type"];
+        }
+        var request = new XMLHttpRequest();
+        if (config.auth) {
+          var username = config.auth.username || "";
+          var password = config.auth.password ? unescape(encodeURIComponent(config.auth.password)) : "";
+          requestHeaders.Authorization = "Basic " + btoa(username + ":" + password);
+        }
+        var fullPath = buildFullPath(config.baseURL, config.url);
+        request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
+        request.timeout = config.timeout;
+        function onloadend() {
+          if (!request) {
+            return;
+          }
+          var responseHeaders = "getAllResponseHeaders" in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+          var responseData = !responseType || responseType === "text" || responseType === "json" ? request.responseText : request.response;
+          var response = {
+            data: responseData,
+            status: request.status,
+            statusText: request.statusText,
+            headers: responseHeaders,
+            config,
+            request
+          };
+          settle(resolve, reject, response);
+          request = null;
+        }
+        if ("onloadend" in request) {
+          request.onloadend = onloadend;
+        } else {
+          request.onreadystatechange = function handleLoad() {
+            if (!request || request.readyState !== 4) {
+              return;
+            }
+            if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf("file:") === 0)) {
+              return;
+            }
+            setTimeout(onloadend);
+          };
+        }
+        request.onabort = function handleAbort() {
+          if (!request) {
+            return;
+          }
+          reject(createError("Request aborted", config, "ECONNABORTED", request));
+          request = null;
+        };
+        request.onerror = function handleError() {
+          reject(createError("Network Error", config, null, request));
+          request = null;
+        };
+        request.ontimeout = function handleTimeout() {
+          var timeoutErrorMessage = "timeout of " + config.timeout + "ms exceeded";
+          if (config.timeoutErrorMessage) {
+            timeoutErrorMessage = config.timeoutErrorMessage;
+          }
+          reject(createError(timeoutErrorMessage, config, config.transitional && config.transitional.clarifyTimeoutError ? "ETIMEDOUT" : "ECONNABORTED", request));
+          request = null;
+        };
+        if (utils.isStandardBrowserEnv()) {
+          var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : void 0;
+          if (xsrfValue) {
+            requestHeaders[config.xsrfHeaderName] = xsrfValue;
+          }
+        }
+        if ("setRequestHeader" in request) {
+          utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+            if (typeof requestData === "undefined" && key.toLowerCase() === "content-type") {
+              delete requestHeaders[key];
+            } else {
+              request.setRequestHeader(key, val);
+            }
+          });
+        }
+        if (!utils.isUndefined(config.withCredentials)) {
+          request.withCredentials = !!config.withCredentials;
+        }
+        if (responseType && responseType !== "json") {
+          request.responseType = config.responseType;
+        }
+        if (typeof config.onDownloadProgress === "function") {
+          request.addEventListener("progress", config.onDownloadProgress);
+        }
+        if (typeof config.onUploadProgress === "function" && request.upload) {
+          request.upload.addEventListener("progress", config.onUploadProgress);
+        }
+        if (config.cancelToken) {
+          config.cancelToken.promise.then(function onCanceled(cancel) {
+            if (!request) {
+              return;
+            }
+            request.abort();
+            reject(cancel);
+            request = null;
+          });
+        }
+        if (!requestData) {
+          requestData = null;
+        }
+        request.send(requestData);
+      });
+    };
+  }
+});
+
+// node_modules/axios/lib/defaults.js
+var require_defaults = __commonJS({
+  "node_modules/axios/lib/defaults.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    var normalizeHeaderName = require_normalizeHeaderName();
+    var enhanceError = require_enhanceError();
+    var DEFAULT_CONTENT_TYPE = {
+      "Content-Type": "application/x-www-form-urlencoded"
+    };
+    function setContentTypeIfUnset(headers, value) {
+      if (!utils.isUndefined(headers) && utils.isUndefined(headers["Content-Type"])) {
+        headers["Content-Type"] = value;
+      }
+    }
+    function getDefaultAdapter() {
+      var adapter;
+      if (typeof XMLHttpRequest !== "undefined") {
+        adapter = require_xhr();
+      } else if (typeof process !== "undefined" && Object.prototype.toString.call(process) === "[object process]") {
+        adapter = require_xhr();
+      }
+      return adapter;
+    }
+    function stringifySafely(rawValue, parser, encoder) {
+      if (utils.isString(rawValue)) {
+        try {
+          (parser || JSON.parse)(rawValue);
+          return utils.trim(rawValue);
+        } catch (e) {
+          if (e.name !== "SyntaxError") {
+            throw e;
+          }
+        }
+      }
+      return (encoder || JSON.stringify)(rawValue);
+    }
+    var defaults = {
+      transitional: {
+        silentJSONParsing: true,
+        forcedJSONParsing: true,
+        clarifyTimeoutError: false
+      },
+      adapter: getDefaultAdapter(),
+      transformRequest: [function transformRequest(data, headers) {
+        normalizeHeaderName(headers, "Accept");
+        normalizeHeaderName(headers, "Content-Type");
+        if (utils.isFormData(data) || utils.isArrayBuffer(data) || utils.isBuffer(data) || utils.isStream(data) || utils.isFile(data) || utils.isBlob(data)) {
+          return data;
+        }
+        if (utils.isArrayBufferView(data)) {
+          return data.buffer;
+        }
+        if (utils.isURLSearchParams(data)) {
+          setContentTypeIfUnset(headers, "application/x-www-form-urlencoded;charset=utf-8");
+          return data.toString();
+        }
+        if (utils.isObject(data) || headers && headers["Content-Type"] === "application/json") {
+          setContentTypeIfUnset(headers, "application/json");
+          return stringifySafely(data);
+        }
+        return data;
+      }],
+      transformResponse: [function transformResponse(data) {
+        var transitional = this.transitional;
+        var silentJSONParsing = transitional && transitional.silentJSONParsing;
+        var forcedJSONParsing = transitional && transitional.forcedJSONParsing;
+        var strictJSONParsing = !silentJSONParsing && this.responseType === "json";
+        if (strictJSONParsing || forcedJSONParsing && utils.isString(data) && data.length) {
+          try {
+            return JSON.parse(data);
+          } catch (e) {
+            if (strictJSONParsing) {
+              if (e.name === "SyntaxError") {
+                throw enhanceError(e, this, "E_JSON_PARSE");
+              }
+              throw e;
+            }
+          }
+        }
+        return data;
+      }],
+      timeout: 0,
+      xsrfCookieName: "XSRF-TOKEN",
+      xsrfHeaderName: "X-XSRF-TOKEN",
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      validateStatus: function validateStatus(status) {
+        return status >= 200 && status < 300;
+      }
+    };
+    defaults.headers = {
+      common: {
+        "Accept": "application/json, text/plain, */*"
+      }
+    };
+    utils.forEach(["delete", "get", "head"], function forEachMethodNoData(method) {
+      defaults.headers[method] = {};
+    });
+    utils.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
+      defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+    });
+    module2.exports = defaults;
+  }
+});
+
+// node_modules/axios/lib/core/transformData.js
+var require_transformData = __commonJS({
+  "node_modules/axios/lib/core/transformData.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    var defaults = require_defaults();
+    module2.exports = function transformData(data, headers, fns) {
+      var context = this || defaults;
+      utils.forEach(fns, function transform(fn) {
+        data = fn.call(context, data, headers);
+      });
+      return data;
+    };
+  }
+});
+
+// node_modules/axios/lib/cancel/isCancel.js
+var require_isCancel = __commonJS({
+  "node_modules/axios/lib/cancel/isCancel.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function isCancel(value) {
+      return !!(value && value.__CANCEL__);
+    };
+  }
+});
+
+// node_modules/axios/lib/core/dispatchRequest.js
+var require_dispatchRequest = __commonJS({
+  "node_modules/axios/lib/core/dispatchRequest.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    var transformData = require_transformData();
+    var isCancel = require_isCancel();
+    var defaults = require_defaults();
+    function throwIfCancellationRequested(config) {
+      if (config.cancelToken) {
+        config.cancelToken.throwIfRequested();
+      }
+    }
+    module2.exports = function dispatchRequest(config) {
+      throwIfCancellationRequested(config);
+      config.headers = config.headers || {};
+      config.data = transformData.call(config, config.data, config.headers, config.transformRequest);
+      config.headers = utils.merge(config.headers.common || {}, config.headers[config.method] || {}, config.headers);
+      utils.forEach(["delete", "get", "head", "post", "put", "patch", "common"], function cleanHeaderConfig(method) {
+        delete config.headers[method];
+      });
+      var adapter = config.adapter || defaults.adapter;
+      return adapter(config).then(function onAdapterResolution(response) {
+        throwIfCancellationRequested(config);
+        response.data = transformData.call(config, response.data, response.headers, config.transformResponse);
+        return response;
+      }, function onAdapterRejection(reason) {
+        if (!isCancel(reason)) {
+          throwIfCancellationRequested(config);
+          if (reason && reason.response) {
+            reason.response.data = transformData.call(config, reason.response.data, reason.response.headers, config.transformResponse);
+          }
+        }
+        return Promise.reject(reason);
+      });
+    };
+  }
+});
+
+// node_modules/axios/lib/core/mergeConfig.js
+var require_mergeConfig = __commonJS({
+  "node_modules/axios/lib/core/mergeConfig.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    module2.exports = function mergeConfig(config1, config2) {
+      config2 = config2 || {};
+      var config = {};
+      var valueFromConfig2Keys = ["url", "method", "data"];
+      var mergeDeepPropertiesKeys = ["headers", "auth", "proxy", "params"];
+      var defaultToConfig2Keys = [
+        "baseURL",
+        "transformRequest",
+        "transformResponse",
+        "paramsSerializer",
+        "timeout",
+        "timeoutMessage",
+        "withCredentials",
+        "adapter",
+        "responseType",
+        "xsrfCookieName",
+        "xsrfHeaderName",
+        "onUploadProgress",
+        "onDownloadProgress",
+        "decompress",
+        "maxContentLength",
+        "maxBodyLength",
+        "maxRedirects",
+        "transport",
+        "httpAgent",
+        "httpsAgent",
+        "cancelToken",
+        "socketPath",
+        "responseEncoding"
+      ];
+      var directMergeKeys = ["validateStatus"];
+      function getMergedValue(target, source) {
+        if (utils.isPlainObject(target) && utils.isPlainObject(source)) {
+          return utils.merge(target, source);
+        } else if (utils.isPlainObject(source)) {
+          return utils.merge({}, source);
+        } else if (utils.isArray(source)) {
+          return source.slice();
+        }
+        return source;
+      }
+      function mergeDeepProperties(prop) {
+        if (!utils.isUndefined(config2[prop])) {
+          config[prop] = getMergedValue(config1[prop], config2[prop]);
+        } else if (!utils.isUndefined(config1[prop])) {
+          config[prop] = getMergedValue(void 0, config1[prop]);
+        }
+      }
+      utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
+        if (!utils.isUndefined(config2[prop])) {
+          config[prop] = getMergedValue(void 0, config2[prop]);
+        }
+      });
+      utils.forEach(mergeDeepPropertiesKeys, mergeDeepProperties);
+      utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
+        if (!utils.isUndefined(config2[prop])) {
+          config[prop] = getMergedValue(void 0, config2[prop]);
+        } else if (!utils.isUndefined(config1[prop])) {
+          config[prop] = getMergedValue(void 0, config1[prop]);
+        }
+      });
+      utils.forEach(directMergeKeys, function merge(prop) {
+        if (prop in config2) {
+          config[prop] = getMergedValue(config1[prop], config2[prop]);
+        } else if (prop in config1) {
+          config[prop] = getMergedValue(void 0, config1[prop]);
+        }
+      });
+      var axiosKeys = valueFromConfig2Keys.concat(mergeDeepPropertiesKeys).concat(defaultToConfig2Keys).concat(directMergeKeys);
+      var otherKeys = Object.keys(config1).concat(Object.keys(config2)).filter(function filterAxiosKeys(key) {
+        return axiosKeys.indexOf(key) === -1;
+      });
+      utils.forEach(otherKeys, mergeDeepProperties);
+      return config;
+    };
+  }
+});
+
+// node_modules/axios/package.json
+var require_package2 = __commonJS({
+  "node_modules/axios/package.json"(exports2, module2) {
+    module2.exports = {
+      name: "axios",
+      version: "0.21.4",
+      description: "Promise based HTTP client for the browser and node.js",
+      main: "index.js",
+      scripts: {
+        test: "grunt test",
+        start: "node ./sandbox/server.js",
+        build: "NODE_ENV=production grunt build",
+        preversion: "npm test",
+        version: "npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json",
+        postversion: "git push && git push --tags",
+        examples: "node ./examples/server.js",
+        coveralls: "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+        fix: "eslint --fix lib/**/*.js"
+      },
+      repository: {
+        type: "git",
+        url: "https://github.com/axios/axios.git"
+      },
+      keywords: [
+        "xhr",
+        "http",
+        "ajax",
+        "promise",
+        "node"
+      ],
+      author: "Matt Zabriskie",
+      license: "MIT",
+      bugs: {
+        url: "https://github.com/axios/axios/issues"
+      },
+      homepage: "https://axios-http.com",
+      devDependencies: {
+        coveralls: "^3.0.0",
+        "es6-promise": "^4.2.4",
+        grunt: "^1.3.0",
+        "grunt-banner": "^0.6.0",
+        "grunt-cli": "^1.2.0",
+        "grunt-contrib-clean": "^1.1.0",
+        "grunt-contrib-watch": "^1.0.0",
+        "grunt-eslint": "^23.0.0",
+        "grunt-karma": "^4.0.0",
+        "grunt-mocha-test": "^0.13.3",
+        "grunt-ts": "^6.0.0-beta.19",
+        "grunt-webpack": "^4.0.2",
+        "istanbul-instrumenter-loader": "^1.0.0",
+        "jasmine-core": "^2.4.1",
+        karma: "^6.3.2",
+        "karma-chrome-launcher": "^3.1.0",
+        "karma-firefox-launcher": "^2.1.0",
+        "karma-jasmine": "^1.1.1",
+        "karma-jasmine-ajax": "^0.1.13",
+        "karma-safari-launcher": "^1.0.0",
+        "karma-sauce-launcher": "^4.3.6",
+        "karma-sinon": "^1.0.5",
+        "karma-sourcemap-loader": "^0.3.8",
+        "karma-webpack": "^4.0.2",
+        "load-grunt-tasks": "^3.5.2",
+        minimist: "^1.2.0",
+        mocha: "^8.2.1",
+        sinon: "^4.5.0",
+        "terser-webpack-plugin": "^4.2.3",
+        typescript: "^4.0.5",
+        "url-search-params": "^0.10.0",
+        webpack: "^4.44.2",
+        "webpack-dev-server": "^3.11.0"
+      },
+      browser: {
+        "./lib/adapters/http.js": "./lib/adapters/xhr.js"
+      },
+      jsdelivr: "dist/axios.min.js",
+      unpkg: "dist/axios.min.js",
+      typings: "./index.d.ts",
+      dependencies: {
+        "follow-redirects": "^1.14.0"
+      },
+      bundlesize: [
+        {
+          path: "./dist/axios.min.js",
+          threshold: "5kB"
+        }
+      ]
+    };
+  }
+});
+
+// node_modules/axios/lib/helpers/validator.js
+var require_validator = __commonJS({
+  "node_modules/axios/lib/helpers/validator.js"(exports2, module2) {
+    "use strict";
+    var pkg = require_package2();
+    var validators = {};
+    ["object", "boolean", "number", "function", "string", "symbol"].forEach(function(type, i) {
+      validators[type] = function validator(thing) {
+        return typeof thing === type || "a" + (i < 1 ? "n " : " ") + type;
+      };
+    });
+    var deprecatedWarnings = {};
+    var currentVerArr = pkg.version.split(".");
+    function isOlderVersion(version2, thanVersion) {
+      var pkgVersionArr = thanVersion ? thanVersion.split(".") : currentVerArr;
+      var destVer = version2.split(".");
+      for (var i = 0; i < 3; i++) {
+        if (pkgVersionArr[i] > destVer[i]) {
+          return true;
+        } else if (pkgVersionArr[i] < destVer[i]) {
+          return false;
+        }
+      }
+      return false;
+    }
+    validators.transitional = function transitional(validator, version2, message) {
+      var isDeprecated = version2 && isOlderVersion(version2);
+      function formatMessage(opt, desc) {
+        return "[Axios v" + pkg.version + "] Transitional option '" + opt + "'" + desc + (message ? ". " + message : "");
+      }
+      return function(value, opt, opts) {
+        if (validator === false) {
+          throw new Error(formatMessage(opt, " has been removed in " + version2));
+        }
+        if (isDeprecated && !deprecatedWarnings[opt]) {
+          deprecatedWarnings[opt] = true;
+          console.warn(formatMessage(opt, " has been deprecated since v" + version2 + " and will be removed in the near future"));
+        }
+        return validator ? validator(value, opt, opts) : true;
+      };
+    };
+    function assertOptions(options, schema, allowUnknown) {
+      if (typeof options !== "object") {
+        throw new TypeError("options must be an object");
+      }
+      var keys = Object.keys(options);
+      var i = keys.length;
+      while (i-- > 0) {
+        var opt = keys[i];
+        var validator = schema[opt];
+        if (validator) {
+          var value = options[opt];
+          var result = value === void 0 || validator(value, opt, options);
+          if (result !== true) {
+            throw new TypeError("option " + opt + " must be " + result);
+          }
+          continue;
+        }
+        if (allowUnknown !== true) {
+          throw Error("Unknown option " + opt);
+        }
+      }
+    }
+    module2.exports = {
+      isOlderVersion,
+      assertOptions,
+      validators
+    };
+  }
+});
+
+// node_modules/axios/lib/core/Axios.js
+var require_Axios = __commonJS({
+  "node_modules/axios/lib/core/Axios.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    var buildURL = require_buildURL();
+    var InterceptorManager = require_InterceptorManager();
+    var dispatchRequest = require_dispatchRequest();
+    var mergeConfig = require_mergeConfig();
+    var validator = require_validator();
+    var validators = validator.validators;
+    function Axios(instanceConfig) {
+      this.defaults = instanceConfig;
+      this.interceptors = {
+        request: new InterceptorManager(),
+        response: new InterceptorManager()
+      };
+    }
+    Axios.prototype.request = function request(config) {
+      if (typeof config === "string") {
+        config = arguments[1] || {};
+        config.url = arguments[0];
+      } else {
+        config = config || {};
+      }
+      config = mergeConfig(this.defaults, config);
+      if (config.method) {
+        config.method = config.method.toLowerCase();
+      } else if (this.defaults.method) {
+        config.method = this.defaults.method.toLowerCase();
+      } else {
+        config.method = "get";
+      }
+      var transitional = config.transitional;
+      if (transitional !== void 0) {
+        validator.assertOptions(transitional, {
+          silentJSONParsing: validators.transitional(validators.boolean, "1.0.0"),
+          forcedJSONParsing: validators.transitional(validators.boolean, "1.0.0"),
+          clarifyTimeoutError: validators.transitional(validators.boolean, "1.0.0")
+        }, false);
+      }
+      var requestInterceptorChain = [];
+      var synchronousRequestInterceptors = true;
+      this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+        if (typeof interceptor.runWhen === "function" && interceptor.runWhen(config) === false) {
+          return;
+        }
+        synchronousRequestInterceptors = synchronousRequestInterceptors && interceptor.synchronous;
+        requestInterceptorChain.unshift(interceptor.fulfilled, interceptor.rejected);
+      });
+      var responseInterceptorChain = [];
+      this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+        responseInterceptorChain.push(interceptor.fulfilled, interceptor.rejected);
+      });
+      var promise;
+      if (!synchronousRequestInterceptors) {
+        var chain = [dispatchRequest, void 0];
+        Array.prototype.unshift.apply(chain, requestInterceptorChain);
+        chain = chain.concat(responseInterceptorChain);
+        promise = Promise.resolve(config);
+        while (chain.length) {
+          promise = promise.then(chain.shift(), chain.shift());
+        }
+        return promise;
+      }
+      var newConfig = config;
+      while (requestInterceptorChain.length) {
+        var onFulfilled = requestInterceptorChain.shift();
+        var onRejected = requestInterceptorChain.shift();
+        try {
+          newConfig = onFulfilled(newConfig);
+        } catch (error) {
+          onRejected(error);
+          break;
+        }
+      }
+      try {
+        promise = dispatchRequest(newConfig);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+      while (responseInterceptorChain.length) {
+        promise = promise.then(responseInterceptorChain.shift(), responseInterceptorChain.shift());
+      }
+      return promise;
+    };
+    Axios.prototype.getUri = function getUri(config) {
+      config = mergeConfig(this.defaults, config);
+      return buildURL(config.url, config.params, config.paramsSerializer).replace(/^\?/, "");
+    };
+    utils.forEach(["delete", "get", "head", "options"], function forEachMethodNoData(method) {
+      Axios.prototype[method] = function(url, config) {
+        return this.request(mergeConfig(config || {}, {
+          method,
+          url,
+          data: (config || {}).data
+        }));
+      };
+    });
+    utils.forEach(["post", "put", "patch"], function forEachMethodWithData(method) {
+      Axios.prototype[method] = function(url, data, config) {
+        return this.request(mergeConfig(config || {}, {
+          method,
+          url,
+          data
+        }));
+      };
+    });
+    module2.exports = Axios;
+  }
+});
+
+// node_modules/axios/lib/cancel/Cancel.js
+var require_Cancel = __commonJS({
+  "node_modules/axios/lib/cancel/Cancel.js"(exports2, module2) {
+    "use strict";
+    function Cancel(message) {
+      this.message = message;
+    }
+    Cancel.prototype.toString = function toString() {
+      return "Cancel" + (this.message ? ": " + this.message : "");
+    };
+    Cancel.prototype.__CANCEL__ = true;
+    module2.exports = Cancel;
+  }
+});
+
+// node_modules/axios/lib/cancel/CancelToken.js
+var require_CancelToken = __commonJS({
+  "node_modules/axios/lib/cancel/CancelToken.js"(exports2, module2) {
+    "use strict";
+    var Cancel = require_Cancel();
+    function CancelToken(executor) {
+      if (typeof executor !== "function") {
+        throw new TypeError("executor must be a function.");
+      }
+      var resolvePromise;
+      this.promise = new Promise(function promiseExecutor(resolve) {
+        resolvePromise = resolve;
+      });
+      var token = this;
+      executor(function cancel(message) {
+        if (token.reason) {
+          return;
+        }
+        token.reason = new Cancel(message);
+        resolvePromise(token.reason);
+      });
+    }
+    CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+      if (this.reason) {
+        throw this.reason;
+      }
+    };
+    CancelToken.source = function source() {
+      var cancel;
+      var token = new CancelToken(function executor(c) {
+        cancel = c;
+      });
+      return {
+        token,
+        cancel
+      };
+    };
+    module2.exports = CancelToken;
+  }
+});
+
+// node_modules/axios/lib/helpers/spread.js
+var require_spread = __commonJS({
+  "node_modules/axios/lib/helpers/spread.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function spread(callback) {
+      return function wrap(arr) {
+        return callback.apply(null, arr);
+      };
+    };
+  }
+});
+
+// node_modules/axios/lib/helpers/isAxiosError.js
+var require_isAxiosError = __commonJS({
+  "node_modules/axios/lib/helpers/isAxiosError.js"(exports2, module2) {
+    "use strict";
+    module2.exports = function isAxiosError(payload) {
+      return typeof payload === "object" && payload.isAxiosError === true;
+    };
+  }
+});
+
+// node_modules/axios/lib/axios.js
+var require_axios = __commonJS({
+  "node_modules/axios/lib/axios.js"(exports2, module2) {
+    "use strict";
+    var utils = require_utils();
+    var bind = require_bind();
+    var Axios = require_Axios();
+    var mergeConfig = require_mergeConfig();
+    var defaults = require_defaults();
+    function createInstance(defaultConfig) {
+      var context = new Axios(defaultConfig);
+      var instance = bind(Axios.prototype.request, context);
+      utils.extend(instance, Axios.prototype, context);
+      utils.extend(instance, context);
+      return instance;
+    }
+    var axios = createInstance(defaults);
+    axios.Axios = Axios;
+    axios.create = function create(instanceConfig) {
+      return createInstance(mergeConfig(axios.defaults, instanceConfig));
+    };
+    axios.Cancel = require_Cancel();
+    axios.CancelToken = require_CancelToken();
+    axios.isCancel = require_isCancel();
+    axios.all = function all(promises) {
+      return Promise.all(promises);
+    };
+    axios.spread = require_spread();
+    axios.isAxiosError = require_isAxiosError();
+    module2.exports = axios;
+    module2.exports.default = axios;
+  }
+});
+
+// node_modules/axios/index.js
+var require_axios2 = __commonJS({
+  "node_modules/axios/index.js"(exports2, module2) {
+    module2.exports = require_axios();
+  }
+});
+
 // lib/parser/youtube/LiveChat.js
 var require_LiveChat2 = __commonJS({
   "lib/parser/youtube/LiveChat.js"(exports2, module2) {
@@ -34867,7 +35093,7 @@ var require_LiveChat2 = __commonJS({
         }, this.#lc_polling_interval_ms);
       }
       async #emitSmoothedActions(actions) {
-        let base = 1e4;
+        const base = 1e4;
         let delay = actions.length < base / 80 ? 1 : 0;
         const emit_delay_ms = delay == 1 ? (delay = base / actions.length, delay *= Math.random() + 0.5, delay = Math.min(1e3, delay), delay = Math.max(80, delay)) : delay = 80;
         for (const action of actions) {
@@ -34922,7 +35148,7 @@ var require_LiveChat2 = __commonJS({
 var require_VideoInfo = __commonJS({
   "lib/parser/youtube/VideoInfo.js"(exports2, module2) {
     "use strict";
-    var { InnertubeError } = require_Utils();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
     var { PassThrough: PassThrough2, Readable } = true ? require_stream_browserify() : null;
     var Axios = require_axios2();
     var Parser = require_contents();
@@ -34943,7 +35169,7 @@ var require_VideoInfo = __commonJS({
         const next = Parser.parseResponse(data[1].data || {});
         this.#page = [info, next];
         if (info.playability_status.status === "ERROR")
-          throw new InnertubeError("This video is unavailable", info.playability_status);
+          throw new InnertubeError2("This video is unavailable", info.playability_status);
         this.basic_info = {
           ...info.video_details,
           ...{
@@ -34981,7 +35207,7 @@ var require_VideoInfo = __commonJS({
       }
       async selectFilter(name) {
         if (!this.filters.includes(name))
-          throw new InnertubeError("Invalid filter", { available_filters: this.filters });
+          throw new InnertubeError2("Invalid filter", { available_filters: this.filters });
         const filter = this.related_chip_cloud.chips.get({ text: name });
         if (filter.is_selected)
           return this;
@@ -35000,27 +35226,27 @@ var require_VideoInfo = __commonJS({
       async like() {
         const button = this.primary_info.menu.top_level_buttons.get({ button_id: "TOGGLE_BUTTON_ID_TYPE_LIKE" });
         if (button.is_toggled)
-          throw new InnertubeError("This video is already liked", { video_id: this.basic_info.id });
+          throw new InnertubeError2("This video is already liked", { video_id: this.basic_info.id });
         const response = await button.endpoint.call(this.#actions);
         return response;
       }
       async dislike() {
         const button = this.primary_info.menu.top_level_buttons.get({ button_id: "TOGGLE_BUTTON_ID_TYPE_DISLIKE" });
         if (button.is_toggled)
-          throw new InnertubeError("This video is already disliked", { video_id: this.basic_info.id });
+          throw new InnertubeError2("This video is already disliked", { video_id: this.basic_info.id });
         const response = await button.endpoint.call(this.#actions);
         return response;
       }
       async removeLike() {
         const button = this.primary_info.menu.top_level_buttons.get({ is_toggled: true });
         if (!button)
-          throw new InnertubeError("This video is not liked/disliked", { video_id: this.basic_info.id });
+          throw new InnertubeError2("This video is not liked/disliked", { video_id: this.basic_info.id });
         const response = await button.toggled_endpoint.call(this.#actions);
         return response;
       }
       async getLiveChat(mode) {
         if (!this.livechat)
-          throw new InnertubeError("Live Chat is not available", { video_id: this.id });
+          throw new InnertubeError2("Live Chat is not available", { video_id: this.id });
         return new LiveChat(this, mode);
       }
       get filters() {
@@ -35061,7 +35287,7 @@ var require_VideoInfo = __commonJS({
         return songs;
       }
       chooseFormat(options) {
-        let formats = [
+        const formats = [
           ...this.streaming_data.formats || [],
           ...this.streaming_data.adaptive_formats || []
         ];
@@ -35084,7 +35310,7 @@ var require_VideoInfo = __commonJS({
           return true;
         });
         if (candidates.length === 0) {
-          throw new InnertubeError("No matching formats found", {
+          throw new InnertubeError2("No matching formats found", {
             options
           });
         }
@@ -35109,11 +35335,11 @@ var require_VideoInfo = __commonJS({
         let cancelled = false;
         (async () => {
           if (this.playability_status === "UNPLAYABLE")
-            return stream.emit("error", new InnertubeError("Video is unplayable", { video: this, error_type: "UNPLAYABLE" }));
+            return stream.emit("error", new InnertubeError2("Video is unplayable", { video: this, error_type: "UNPLAYABLE" }));
           if (this.playability_status === "LOGIN_REQUIRED")
-            return stream.emit("error", new InnertubeError("Video is login required", { video: this, error_type: "LOGIN_REQUIRED" }));
+            return stream.emit("error", new InnertubeError2("Video is login required", { video: this, error_type: "LOGIN_REQUIRED" }));
           if (!this.streaming_data)
-            return stream.emit("error", new InnertubeError("Streaming data not available.", { video: this, error_type: "NO_STREAMING_DATA" }));
+            return stream.emit("error", new InnertubeError2("Streaming data not available.", { video: this, error_type: "NO_STREAMING_DATA" }));
           const opts = {
             quality: "360p",
             type: "videoandaudio",
@@ -35132,11 +35358,10 @@ var require_VideoInfo = __commonJS({
               headers: Constants.STREAM_HEADERS
             }).catch((error) => error);
             if (response instanceof Error) {
-              stream.emit("error", new InnertubeError(response.message, { type: "REQUEST_FAILED" }));
+              stream.emit("error", new InnertubeError2(response.message, { type: "REQUEST_FAILED" }));
               return stream;
-            } else {
-              stream.emit("start");
             }
+            stream.emit("start");
             let downloaded_size = 0;
             if (typeof response.data === "object") {
               response.data.on("data", (chunk) => {
@@ -35156,7 +35381,7 @@ var require_VideoInfo = __commonJS({
                 });
               });
               response.data.on("error", (err) => {
-                cancelled && stream.emit("error", new InnertubeError("The download was cancelled.", { type: "DOWNLOAD_CANCELLED" })) || stream.emit("error", new InnertubeError(err.message, { type: "DOWNLOAD_ABORTED" }));
+                cancelled && stream.emit("error", new InnertubeError2("The download was cancelled.", { type: "DOWNLOAD_CANCELLED" })) || stream.emit("error", new InnertubeError2(err.message, { type: "DOWNLOAD_ABORTED" }));
               });
               response.data.pipe(stream, { end: true });
             } else {
@@ -35192,8 +35417,8 @@ var require_VideoInfo = __commonJS({
               if (typeof response.data === "object") {
                 response.data.on("data", (chunk) => {
                   downloaded_size += chunk.length;
-                  let size = (format.content_length / 1024 / 1024).toFixed(2);
-                  let percentage = Math.floor(downloaded_size / format.content_length * 100);
+                  const size = (format.content_length / 1024 / 1024).toFixed(2);
+                  const percentage = Math.floor(downloaded_size / format.content_length * 100);
                   stream.emit("progress", {
                     size,
                     percentage,
@@ -35243,7 +35468,7 @@ var require_VideoInfo = __commonJS({
 var require_TabbedFeed = __commonJS({
   "lib/core/TabbedFeed.js"(exports2, module2) {
     "use strict";
-    var { InnertubeError } = require_Utils();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
     var Feed = require_Feed();
     var TabbedFeed2 = class extends Feed {
       #tabs;
@@ -35259,7 +35484,7 @@ var require_TabbedFeed = __commonJS({
       async getTab(title) {
         const tab = this.#tabs.find((tab2) => tab2.title.toLowerCase() === title.toLowerCase());
         if (!tab)
-          throw new InnertubeError(`Tab "${title}" not found`);
+          throw new InnertubeError2(`Tab "${title}" not found`);
         if (tab.selected)
           return this;
         const response = await tab.endpoint.call(this.#actions);
@@ -35414,7 +35639,7 @@ var require_Library = __commonJS({
       }
       async #getAll(shelf) {
         if (!shelf.menu?.top_level_buttons)
-          throw new Error("The " + shelf.title.text + " section doesn't have more items");
+          throw new Error(`The ${shelf.title.text} section doesn't have more items`);
         const button = await shelf.menu.top_level_buttons.get({ text: "See all" });
         const page = await button.endpoint.call(this.#actions);
         switch (shelf.icon_type) {
@@ -35451,12 +35676,63 @@ var require_Library = __commonJS({
   }
 });
 
+// lib/parser/youtube/Comments.js
+var require_Comments = __commonJS({
+  "lib/parser/youtube/Comments.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var Comments2 = class {
+      #page;
+      #actions;
+      #continuation;
+      constructor(actions, data, already_parsed = false) {
+        this.#page = already_parsed ? data : Parser.parseResponse(data);
+        this.#actions = actions;
+        const contents = this.#page.on_response_received_endpoints;
+        this.header = contents[0].contents.get({ type: "CommentsHeader" });
+        const threads = contents[1].contents.findAll({ type: "CommentThread" });
+        this.contents = threads.map((thread) => {
+          thread.comment.setActions(this.#actions);
+          thread.setActions(this.#actions);
+          return thread;
+        });
+        this.#continuation = contents[1].contents.get({ type: "ContinuationItem" });
+      }
+      async comment(text) {
+        const button = this.header.create_renderer.submit_button;
+        const payload = {
+          params: {
+            commentText: text
+          },
+          parse: false
+        };
+        const response = await button.endpoint.callTest(this.#actions, payload);
+        return response;
+      }
+      async getContinuation() {
+        if (!this.#continuation)
+          throw new InnertubeError2("Continuation not found");
+        const data = await this.#continuation.endpoint.callTest(this.#actions);
+        const page = Object.assign({}, this.#page);
+        page.on_response_received_endpoints.pop();
+        page.on_response_received_endpoints.push(data.on_response_received_endpoints[0]);
+        return new Comments2(this.#actions, page, true);
+      }
+      get page() {
+        return this.#page;
+      }
+    };
+    module2.exports = Comments2;
+  }
+});
+
 // lib/parser/ytmusic/Search.js
 var require_Search2 = __commonJS({
   "lib/parser/ytmusic/Search.js"(exports2, module2) {
     "use strict";
     var Parser = require_contents();
-    var { observe, InnertubeError } = require_Utils();
+    var { observe, InnertubeError: InnertubeError2 } = require_Utils();
     var Search2 = class {
       #page;
       #actions;
@@ -35486,13 +35762,13 @@ var require_Search2 = __commonJS({
       }
       async #getMore(shelf) {
         if (!shelf.endpoint)
-          throw new InnertubeError(shelf.title + " doesn't have more items");
+          throw new InnertubeError2(`${shelf.title} doesn't have more items`);
         const response = await shelf.endpoint.call(this.#actions, "YTMUSIC");
         return new Search2(response, this.#actions, { is_continuation: true });
       }
       async getContinuation() {
         if (!this.#continuation)
-          throw new InnertubeError("Looks like you've reached the end");
+          throw new InnertubeError2("Looks like you've reached the end");
         const response = await this.#actions.search({ ctoken: this.#continuation, client: "YTMUSIC" });
         const data = response.data.continuationContents.musicShelfContinuation;
         this.results = Parser.parse(data.contents);
@@ -35501,7 +35777,7 @@ var require_Search2 = __commonJS({
       }
       async selectFilter(name) {
         if (!this.filters.includes(name))
-          throw new InnertubeError("Invalid filter", { available_filters: this.filters });
+          throw new InnertubeError2("Invalid filter", { available_filters: this.filters });
         const filter = this.#header.chips.get({ text: name });
         if (filter.is_selected)
           return this;
@@ -35666,7 +35942,7 @@ var require_Music = __commonJS({
     var Library2 = require_Library2();
     var Artist = require_Artist();
     var Album = require_Album();
-    var { InnertubeError, observe } = require_Utils();
+    var { InnertubeError: InnertubeError2, observe } = require_Utils();
     var Music = class {
       #session;
       #actions;
@@ -35692,13 +35968,13 @@ var require_Music = __commonJS({
       }
       async getArtist(artist_id) {
         if (!artist_id.startsWith("UC"))
-          throw new InnertubeError("Invalid artist id", artist_id);
+          throw new InnertubeError2("Invalid artist id", artist_id);
         const response = await this.#actions.browse(artist_id, { client: "YTMUSIC" });
         return new Artist(response, this.#actions);
       }
       async getAlbum(album_id) {
         if (!album_id.startsWith("MPR"))
-          throw new InnertubeError("Invalid album id", album_id);
+          throw new InnertubeError2("Invalid album id", album_id);
         const response = await this.#actions.browse(album_id, { client: "YTMUSIC" });
         return new Album(response, this.#actions);
       }
@@ -35708,9 +35984,9 @@ var require_Music = __commonJS({
         const tab = data.contents.tabs.get({ title: "Lyrics" });
         const page = await tab.endpoint.call(this.#actions, "YTMUSIC");
         if (!page)
-          throw new InnertubeError("Invalid video id");
+          throw new InnertubeError2("Invalid video id");
         if (page.contents.constructor.name === "Message")
-          throw new InnertubeError(page.contents.text, video_id);
+          throw new InnertubeError2(page.contents.text, video_id);
         const description_shelf = page.contents.contents.get({ type: "MusicDescriptionShelf" });
         return {
           text: description_shelf.description.toString(),
@@ -35723,7 +35999,7 @@ var require_Music = __commonJS({
         const tab = data.contents.tabs.get({ title: "Up next" });
         const upnext_content = tab.content.content;
         if (!upnext_content)
-          throw new InnertubeError("Invalid id", video_id);
+          throw new InnertubeError2("Invalid id", video_id);
         return {
           id: upnext_content.playlist_id,
           title: upnext_content.title,
@@ -35737,7 +36013,7 @@ var require_Music = __commonJS({
         const tab = data.contents.tabs.get({ title: "Related" });
         const page = await tab.endpoint.call(this.#actions, "YTMUSIC");
         if (!page)
-          throw new InnertubeError("Invalid video id");
+          throw new InnertubeError2("Invalid video id");
         const shelves = page.contents.contents.findAll({ type: "MusicCarouselShelf" });
         const info = page.contents.contents.get({ type: "MusicDescriptionShelf" });
         return {
@@ -35754,7 +36030,7 @@ var require_Music = __commonJS({
 var require_FilterableFeed = __commonJS({
   "lib/core/FilterableFeed.js"(exports2, module2) {
     "use strict";
-    var { InnertubeError } = require_Utils();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
     var Feed = require_Feed();
     var FilterableFeed2 = class extends Feed {
       #chips;
@@ -35765,9 +36041,9 @@ var require_FilterableFeed = __commonJS({
         if (this.#chips)
           return this.#chips || [];
         if (this.memo.get("FeedFilterChipBar")?.length > 1)
-          throw new InnertubeError("There are too many feed filter chipbars, you'll need to find the correct one yourself in this.page");
+          throw new InnertubeError2("There are too many feed filter chipbars, you'll need to find the correct one yourself in this.page");
         if (this.memo.get("FeedFilterChipBar")?.length === 0)
-          throw new InnertubeError("There are no feed filter chipbars");
+          throw new InnertubeError2("There are no feed filter chipbars");
         this.#chips = this.memo.get("ChipCloudChip") || [];
         return this.#chips || [];
       }
@@ -35778,14 +36054,14 @@ var require_FilterableFeed = __commonJS({
         let target_filter;
         if (typeof filter === "string") {
           if (!this.filters.includes(filter))
-            throw new InnertubeError("Filter not found", {
+            throw new InnertubeError2("Filter not found", {
               available_filters: this.filters
             });
           target_filter = this.filter_chips.find((chip) => chip.text.toString() === filter);
         } else if (filter.type === "ChipCloudChip") {
           target_filter = filter;
         } else {
-          throw new InnertubeError("Invalid filter");
+          throw new InnertubeError2("Invalid filter");
         }
         if (target_filter.is_selected)
           return this;
@@ -35797,11 +36073,127 @@ var require_FilterableFeed = __commonJS({
   }
 });
 
+// lib/utils/Request.js
+var require_Request = __commonJS({
+  "lib/utils/Request.js"(exports2, module2) {
+    "use strict";
+    var Axios = require_axios2();
+    var Constants = require_Constants();
+    var Utils = require_Utils();
+    var Request2 = class {
+      #instance;
+      #session;
+      constructor(config) {
+        this.config = config;
+        this.#instance = Axios.create({
+          proxy: config.proxy,
+          httpAgent: config.http_agent,
+          httpsAgent: config.https_agent,
+          params: { prettyPrint: false },
+          headers: {
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate",
+            "content-type": "application/json",
+            "user-agent": Utils.getRandomUserAgent("desktop").userAgent
+          },
+          validateStatus: () => true,
+          timeout: 15e3
+        });
+        this.#setupRequestInterceptor();
+        this.#setupResponseInterceptor();
+      }
+      #setupRequestInterceptor() {
+        this.#instance.interceptors.request.use(async (config) => {
+          if (this.#session) {
+            const innertube_url = `${Constants.URLS.API.PRODUCTION}${this.#session.version}`;
+            config.baseURL = config.baseURL || innertube_url;
+            config.headers["accept-language"] = `en-${this.#session.config.gl || "US"}`;
+            config.headers["x-goog-visitor-id"] = this.#session.context.client.visitorData || "";
+            config.headers["x-youtube-client-version"] = this.#session.context.client.clientVersion;
+            config.headers["x-origin"] = new URL(config.baseURL).origin;
+            config.headers["origin"] = new URL(config.baseURL).origin;
+            config.params.key = this.#session.key;
+            const is_innertube_req = config.baseURL == innertube_url;
+            if (is_innertube_req && typeof config.data === "object") {
+              config.data = {
+                context: JSON.parse(JSON.stringify(this.#session.context)),
+                ...config.data
+              };
+              this.#adjustContext(config.data.context, config.data.client);
+              config.headers["x-youtube-client-version"] = config.data.context.client.clientVersion;
+              delete config.data.client;
+            }
+            if (this.#session.logged_in && is_innertube_req) {
+              const oauth = this.#session.oauth;
+              if (oauth.validateCredentials()) {
+                await oauth.checkAccessTokenValidity();
+                config.headers.authorization = `Bearer ${oauth.credentials.access_token}`;
+                delete config.params.key;
+              }
+              if (this.config.cookie) {
+                const papisid = Utils.getStringBetweenStrings(this.config.cookie, "PAPISID=", ";");
+                config.headers.authorization = Utils.generateSidAuth(papisid);
+                config.headers.cookie = this.config.cookie;
+              }
+            }
+          }
+          if (this.config.debug) {
+            const url = `${config.baseURL ? `${config.baseURL}` : ""}${config.url}`;
+            console.info("\n", `[${config.method.toUpperCase()}] > ${url}`, "\n", config?.data || "N/A", "\n");
+          }
+          return config;
+        }, (error) => {
+          throw new Utils.InnertubeError(error.message, error);
+        });
+      }
+      #setupResponseInterceptor() {
+        this.#instance.interceptors.response.use((res) => {
+          const response = {
+            success: res.status === 200,
+            status_code: res.status,
+            data: res.data
+          };
+          if (res.status !== 200)
+            throw new Utils.InnertubeError(`Request to ${res.config.url} failed with status code ${res.status}`, response);
+          return response;
+        });
+        this.#instance.interceptors.response.use(void 0, (error) => {
+          if (error.info)
+            return Promise.reject(error);
+          throw new Utils.InnertubeError("Could not complete this operation", error.message);
+        });
+      }
+      #adjustContext(ctx, client) {
+        switch (client) {
+          case "YTMUSIC":
+            ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;
+            ctx.client.clientName = Constants.CLIENTS.YTMUSIC.NAME;
+            break;
+          case "ANDROID":
+            ctx.client.clientVersion = Constants.CLIENTS.ANDROID.VERSION;
+            ctx.client.clientFormFactor = "SMALL_FORM_FACTOR";
+            ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
+            break;
+          default:
+            break;
+        }
+      }
+      setSession(session) {
+        this.#session = session;
+      }
+      get instance() {
+        return this.#instance;
+      }
+    };
+    module2.exports = Request2;
+  }
+});
+
 // lib/parser/youtube/search/VideoResultItem.js
 var require_VideoResultItem = __commonJS({
   "lib/parser/youtube/search/VideoResultItem.js"(exports2, module2) {
     "use strict";
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Constants = require_Constants();
     var VideoResultItem = class {
       static parse(data) {
@@ -35828,7 +36220,7 @@ var require_VideoResultItem = __commonJS({
               },
               thumbnails: renderer?.thumbnail.thumbnails,
               duration: {
-                seconds: Utils2.timeToSeconds(renderer?.lengthText?.simpleText || "0"),
+                seconds: Utils.timeToSeconds(renderer?.lengthText?.simpleText || "0"),
                 simple_text: renderer?.lengthText?.simpleText || "N/A",
                 accessibility_label: renderer?.lengthText?.accessibility?.accessibilityData?.label || "N/A"
               },
@@ -35863,7 +36255,7 @@ var require_SearchSuggestionItem = __commonJS({
 var require_PlaylistItem = __commonJS({
   "lib/parser/youtube/others/PlaylistItem.js"(exports2, module2) {
     "use strict";
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var PlaylistItem = class {
       static parse(data) {
         return data.map((item) => this.parseItem(item)).filter((item) => item);
@@ -35875,7 +36267,7 @@ var require_PlaylistItem = __commonJS({
             title: item?.playlistVideoRenderer?.title?.runs[0]?.text,
             author: item?.playlistVideoRenderer?.shortBylineText?.runs[0]?.text,
             duration: {
-              seconds: Utils2.timeToSeconds(item?.playlistVideoRenderer?.lengthText?.simpleText || "0"),
+              seconds: Utils.timeToSeconds(item?.playlistVideoRenderer?.lengthText?.simpleText || "0"),
               simple_text: item?.playlistVideoRenderer?.lengthText?.simpleText || "N/A",
               accessibility_label: item?.playlistVideoRenderer?.lengthText?.accessibility?.accessibilityData?.label || "N/A"
             },
@@ -35919,7 +36311,7 @@ var require_NotificationItem = __commonJS({
 var require_VideoItem = __commonJS({
   "lib/parser/youtube/others/VideoItem.js"(exports2, module2) {
     "use strict";
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Constants = require_Constants();
     var VideoItem = class {
       static parse(data) {
@@ -35947,7 +36339,7 @@ var require_VideoItem = __commonJS({
               moving_thumbnail: item?.videoRenderer?.richThumbnail?.movingThumbnailRenderer?.movingThumbnailDetails?.thumbnails[0] || {},
               published: item?.videoRenderer?.publishedTimeText?.simpleText || "N/A",
               duration: {
-                seconds: Utils2.timeToSeconds(item?.videoRenderer?.lengthText?.simpleText || "0"),
+                seconds: Utils.timeToSeconds(item?.videoRenderer?.lengthText?.simpleText || "0"),
                 simple_text: item?.videoRenderer?.lengthText?.simpleText || "N/A",
                 accessibility_label: item?.videoRenderer?.lengthText?.accessibility?.accessibilityData?.label || "N/A"
               },
@@ -36063,9 +36455,8 @@ var require_ShelfRenderer = __commonJS({
           return data.runs.map((run) => run.text).join("");
         } else if ("simpleText" in (data || {})) {
           return data.simpleText;
-        } else {
-          return "Others";
         }
+        return "Others";
       }
       static parseItems(data) {
         let items;
@@ -36083,7 +36474,7 @@ var require_ShelfRenderer = __commonJS({
 });
 
 // lib/parser/youtube/others/CommentThread.js
-var require_CommentThread = __commonJS({
+var require_CommentThread2 = __commonJS({
   "lib/parser/youtube/others/CommentThread.js"(exports2, module2) {
     "use strict";
     var Constants = require_Constants();
@@ -36106,7 +36497,7 @@ var require_CommentThread = __commonJS({
               is_reply: !!item.commentRenderer,
               is_liked: like_btn.toggleButtonRenderer.isToggled,
               is_disliked: dislike_btn.toggleButtonRenderer.isToggled,
-              is_pinned: comment.commentRenderer.pinnedCommentBadge ? true : false,
+              is_pinned: !!comment.commentRenderer.pinnedCommentBadge,
               is_channel_owner: comment.commentRenderer.authorIsChannelOwner,
               like_count: parseInt(like_btn?.toggleButtonRenderer?.accessibilityData?.accessibilityData.label.replace(/\D/g, "")),
               reply_count: comment.commentRenderer.replyCount || 0,
@@ -36133,7 +36524,7 @@ var require_youtube = __commonJS({
     var GridPlaylistItem = require_GridPlaylistItem();
     var ChannelMetadata = require_ChannelMetadata2();
     var ShelfRenderer = require_ShelfRenderer();
-    var CommentThread = require_CommentThread();
+    var CommentThread = require_CommentThread2();
     module2.exports = { VideoResultItem, SearchSuggestionItem, PlaylistItem, NotificationItem, VideoItem, GridVideoItem, GridPlaylistItem, ChannelMetadata, ShelfRenderer, CommentThread };
   }
 });
@@ -36341,7 +36732,7 @@ var require_TopResultItem = __commonJS({
 var require_PlaylistItem2 = __commonJS({
   "lib/parser/ytmusic/others/PlaylistItem.js"(exports2, module2) {
     "use strict";
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var PlaylistItem = class {
       static parse(data) {
         return data.map((item) => this.parseItem(item)).filter((item) => item.id);
@@ -36355,7 +36746,7 @@ var require_PlaylistItem2 = __commonJS({
           title: flex_columns[0].musicResponsiveListItemFlexColumnRenderer.text.runs[0].text,
           author: flex_columns[1].musicResponsiveListItemFlexColumnRenderer.text.runs[0].text,
           duration: {
-            seconds: Utils2.timeToSeconds(fixed_columns[0].musicResponsiveListItemFixedColumnRenderer.text.runs[0].text || "0"),
+            seconds: Utils.timeToSeconds(fixed_columns[0].musicResponsiveListItemFixedColumnRenderer.text.runs[0].text || "0"),
             simple_text: fixed_columns[0].musicResponsiveListItemFixedColumnRenderer.text.runs[0].text
           },
           thumbnails: item_renderer.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
@@ -36386,7 +36777,7 @@ var require_ytmusic = __commonJS({
 var require_parser = __commonJS({
   "lib/parser/index.js"(exports2, module2) {
     "use strict";
-    var Utils2 = require_Utils();
+    var Utils = require_Utils();
     var Constants = require_Constants();
     var YTDataItems = require_youtube();
     var YTMusicDataItems = require_ytmusic();
@@ -36449,12 +36840,12 @@ var require_parser = __commonJS({
             })();
             break;
           default:
-            throw new Utils2.InnertubeError("Invalid client");
+            throw new Utils.InnertubeError("Invalid client");
         }
         return processed_data;
       }
       #processSearch() {
-        const contents = Utils2.findNode(this.data, "contents", "contents", 5);
+        const contents = Utils.findNode(this.data, "contents", "contents", 5);
         const processed_data = {};
         const parseItems = (contents2) => {
           const content = contents2[0].itemSectionRenderer.contents;
@@ -36466,7 +36857,7 @@ var require_parser = __commonJS({
             const citem = contents2.find((item) => item.continuationItemRenderer);
             const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
             const response = await this.session.actions.search({ ctoken });
-            const continuation_items = Utils2.findNode(response.data, "onResponseReceivedCommands", "itemSectionRenderer", 4, false);
+            const continuation_items = Utils.findNode(response.data, "onResponseReceivedCommands", "itemSectionRenderer", 4, false);
             return parseItems(continuation_items);
           };
           return processed_data;
@@ -36474,8 +36865,8 @@ var require_parser = __commonJS({
         return parseItems(contents);
       }
       #processMusicSearch() {
-        const tabs = Utils2.findNode(this.data, "contents", "tabs").tabs;
-        const contents = Utils2.findNode(tabs, "0", "contents", 5);
+        const tabs = Utils.findNode(this.data, "contents", "tabs").tabs;
+        const contents = Utils.findNode(tabs, "0", "contents", 5);
         const did_you_mean_item = contents.find((content) => content.itemSectionRenderer);
         const did_you_mean_renderer = did_you_mean_item?.itemSectionRenderer.contents[0].didYouMeanRenderer;
         const processed_data = {
@@ -36520,7 +36911,7 @@ var require_parser = __commonJS({
           last_updated: details.playlistSidebarPrimaryInfoRenderer.stats[2].runs[1]?.text || "N/A",
           views: details.playlistSidebarPrimaryInfoRenderer.stats[1].simpleText
         };
-        const list = Utils2.findNode(this.data, "contents", "contents", 13, false);
+        const list = Utils.findNode(this.data, "contents", "contents", 13, false);
         const items = YTDataItems.PlaylistItem.parse(list.contents);
         return {
           ...metadata,
@@ -36561,7 +36952,7 @@ var require_parser = __commonJS({
           metadata: {}
         };
         mf_raw_data.forEach((entry) => {
-          const key = Utils2.camelToSnake(entry[0]);
+          const key = Utils.camelToSnake(entry[0]);
           if (Constants.METADATA_KEYS.includes(key)) {
             if (key == "view_count") {
               processed_data.metadata[key] = parseInt(entry[1]);
@@ -36577,7 +36968,7 @@ var require_parser = __commonJS({
           }
         });
         dt_raw_data.forEach((entry) => {
-          const key = Utils2.camelToSnake(entry[0]);
+          const key = Utils.camelToSnake(entry[0]);
           if (Constants.BLACKLISTED_KEYS.includes(key))
             return;
           if (Constants.METADATA_KEYS.includes(key)) {
@@ -36586,16 +36977,14 @@ var require_parser = __commonJS({
             } else {
               processed_data.metadata[key] = entry[1];
             }
+          } else if (key == "short_description") {
+            processed_data.description = entry[1];
+          } else if (key == "thumbnail") {
+            processed_data.thumbnail = entry[1].thumbnails.slice(-1)[0];
+          } else if (key == "video_id") {
+            processed_data.id = entry[1];
           } else {
-            if (key == "short_description") {
-              processed_data.description = entry[1];
-            } else if (key == "thumbnail") {
-              processed_data.thumbnail = entry[1].thumbnails.slice(-1)[0];
-            } else if (key == "video_id") {
-              processed_data.id = entry[1];
-            } else {
-              processed_data[key] = entry[1];
-            }
+            processed_data[key] = entry[1];
           }
         });
         if (this.data.continuation) {
@@ -36627,12 +37016,12 @@ var require_parser = __commonJS({
       }
       #processComments() {
         if (!this.data.onResponseReceivedEndpoints)
-          throw new Utils2.UnavailableContentError("Comments section not available", this.args);
-        const header = Utils2.findNode(this.data, "onResponseReceivedEndpoints", "commentsHeaderRenderer", 5, false);
+          throw new Utils.UnavailableContentError("Comments section not available", this.args);
+        const header = Utils.findNode(this.data, "onResponseReceivedEndpoints", "commentsHeaderRenderer", 5, false);
         const comment_count = parseInt(header.commentsHeaderRenderer.countText.runs[0].text.replace(/,/g, ""));
         const page_count = parseInt(comment_count / 20);
         const parseComments = (data) => {
-          const items = Utils2.findNode(data, "onResponseReceivedEndpoints", "commentRenderer", 4, false);
+          const items = Utils.findNode(data, "onResponseReceivedEndpoints", "commentRenderer", 4, false);
           const response = {
             page_count,
             comment_count,
@@ -36645,15 +37034,15 @@ var require_parser = __commonJS({
               comment.dislike = () => this.session.actions.engage("comment/perform_comment_action", { comment_action: "dislike", comment_id: comment.metadata.id, video_id: this.args.video_id });
               comment.reply = (text) => this.session.actions.engage("comment/create_comment_reply", { text, comment_id: comment.metadata.id, video_id: this.args.video_id });
               comment.report = async () => {
-                const payload = Utils2.findNode(item, "commentThreadRenderer", "params", 10, false);
+                const payload = Utils.findNode(item, "commentThreadRenderer", "params", 10, false);
                 const form = await this.session.actions.flag("flag/get_form", { params: payload.params });
-                const action = Utils2.findNode(form, "actions", "flagAction", 13, false);
+                const action = Utils.findNode(form, "actions", "flagAction", 13, false);
                 const flag = await this.session.actions.flag("flag/flag", { action: action.flagAction });
                 return flag;
               };
               comment.getReplies = async () => {
                 if (comment.metadata.reply_count === 0)
-                  throw new Utils2.InnertubeError("This comment has no replies", comment);
+                  throw new Utils.InnertubeError("This comment has no replies", comment);
                 const payload = Proto2.encodeCommentRepliesParams(this.args.video_id, comment.metadata.id);
                 const next = await this.session.actions.next({ ctoken: payload });
                 return parseComments(next.data);
@@ -36666,7 +37055,7 @@ var require_parser = __commonJS({
                   video_id: this.args.video_id,
                   target_language
                 });
-                const translated_content = Utils2.findNode(response2.data, "frameworkUpdates", "content", 7, false);
+                const translated_content = Utils.findNode(response2.data, "frameworkUpdates", "content", 7, false);
                 return {
                   success: response2.success,
                   status_code: response2.status_code,
@@ -36680,9 +37069,9 @@ var require_parser = __commonJS({
           response.getContinuation = async () => {
             const continuation_item = items.find((item) => item.continuationItemRenderer);
             if (!continuation_item)
-              throw new Utils2.InnertubeError("You've reached the end");
+              throw new Utils.InnertubeError("You've reached the end");
             const is_reply = !!continuation_item.continuationItemRenderer.button;
-            const payload = Utils2.findNode(continuation_item, "continuationItemRenderer", "token", is_reply ? 5 : 3);
+            const payload = Utils.findNode(continuation_item, "continuationItemRenderer", "token", is_reply ? 5 : 3);
             const next = await this.session.actions.next({ ctoken: payload.token });
             return parseComments(next.data);
           };
@@ -36691,7 +37080,7 @@ var require_parser = __commonJS({
         return parseComments(this.data);
       }
       #processHomeFeed() {
-        const contents = Utils2.findNode(this.data, "contents", "videoRenderer", 9, false);
+        const contents = Utils.findNode(this.data, "contents", "videoRenderer", 9, false);
         const parseItems = (contents2) => {
           const videos = YTDataItems.VideoItem.parse(contents2);
           const getContinuation = async () => {
@@ -36705,7 +37094,7 @@ var require_parser = __commonJS({
         return parseItems(contents);
       }
       #processLibrary() {
-        const profile_data = Utils2.findNode(this.data, "contents", "profileColumnRenderer", 3);
+        const profile_data = Utils.findNode(this.data, "contents", "profileColumnRenderer", 3);
         const stats_data = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnStatsRenderer);
         const stats_items = stats_data.profileColumnStatsRenderer.items;
         const userinfo = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnUserInfoRenderer);
@@ -36724,7 +37113,7 @@ var require_parser = __commonJS({
         };
       }
       #processSubscriptionFeed() {
-        const contents = Utils2.findNode(this.data, "contents", "contents", 9, false);
+        const contents = Utils.findNode(this.data, "contents", "contents", 9, false);
         const subsfeed = { items: [] };
         const parseItems = (contents2) => {
           contents2.forEach((section) => {
@@ -36743,7 +37132,7 @@ var require_parser = __commonJS({
             const citem = contents2.find((item) => item.continuationItemRenderer);
             const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
             const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
-            const ccontents = Utils2.findNode(response.data, "onResponseReceivedActions", "itemSectionRenderer", 4, false);
+            const ccontents = Utils.findNode(response.data, "onResponseReceivedActions", "itemSectionRenderer", 4, false);
             subsfeed.items = [];
             return parseItems(ccontents);
           };
@@ -36798,7 +37187,7 @@ var require_parser = __commonJS({
       #processNotifications() {
         const contents = this.data.actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[0];
         if (!contents.multiPageMenuNotificationSectionRenderer)
-          throw new Utils2.InnertubeError("No notifications");
+          throw new Utils.InnertubeError("No notifications");
         const parseItems = (items) => {
           const parsed_items = YTDataItems.NotificationItem.parse(items);
           const getContinuation = async () => {
@@ -36812,7 +37201,7 @@ var require_parser = __commonJS({
         return parseItems(contents.multiPageMenuNotificationSectionRenderer.items);
       }
       #processTrending() {
-        const tabs = Utils2.findNode(this.data, "contents", "tabRenderer", 4, false);
+        const tabs = Utils.findNode(this.data, "contents", "tabRenderer", 4, false);
         const categories = {};
         tabs.forEach((tab) => {
           const tab_renderer = tab.tabRenderer;
@@ -36830,10 +37219,10 @@ var require_parser = __commonJS({
             const params = tab_renderer.endpoint.browseEndpoint.params;
             categories[category_title].getVideos = async () => {
               const response = await this.session.actions.browse("FEtrending", { params });
-              const tabs2 = Utils2.findNode(response, "contents", "tabRenderer", 4, false);
+              const tabs2 = Utils.findNode(response, "contents", "tabRenderer", 4, false);
               const tab2 = tabs2.find((tab3) => tab3.tabRenderer.title === tab_renderer.title);
               const contents = tab2.tabRenderer.content.sectionListRenderer.contents;
-              const items = Utils2.findNode(contents, "itemSectionRenderer", "items", 8, false);
+              const items = Utils.findNode(contents, "itemSectionRenderer", "items", 8, false);
               return YTDataItems.VideoItem.parse(items);
             };
           }
@@ -36841,7 +37230,7 @@ var require_parser = __commonJS({
         return categories;
       }
       #processHistory() {
-        const contents = Utils2.findNode(this.data, "contents", "videoRenderer", 9, false);
+        const contents = Utils.findNode(this.data, "contents", "videoRenderer", 9, false);
         const history = { items: [] };
         const parseItems = (contents2) => {
           contents2.forEach((section) => {
@@ -36879,45 +37268,47 @@ var SessionBuilder = require_SessionBuilder();
 var AccountManager = require_AccountManager();
 var PlaylistManager = require_PlaylistManager();
 var InteractionManager = require_InteractionManager();
-var Utils = require_Utils();
-var Request = require_Request();
 var Search = require_Search();
 var VideoInfo = require_VideoInfo();
 var Channel = require_Channel2();
 var Playlist = require_Playlist2();
 var Library = require_Library();
 var History = require_History();
+var Comments = require_Comments();
 var YTMusic = require_Music();
 var FilterableFeed = require_FilterableFeed();
 var TabbedFeed = require_TabbedFeed();
-var OldParser = require_parser();
-var Proto = require_proto();
 var EventEmitter = require_events();
 var { PassThrough } = true ? require_stream_browserify() : null;
+var Request = require_Request();
+var {
+  InnertubeError,
+  throwIfMissing,
+  generateRandomString
+} = require_Utils();
+var OldParser = require_parser();
+var Proto = require_proto();
 var Innertube = class {
-  #axios;
   #player;
+  #request;
   constructor(config) {
     this.config = config || {};
     return this.#init();
   }
   async #init() {
-    const session = await new SessionBuilder(this.config).build();
+    const request = new Request(this.config);
+    const session = await new SessionBuilder(this.config, request.instance).build();
     this.key = session.key;
     this.version = session.api_version;
     this.context = session.context;
-    this.logged_in = false;
-    this.player_url = session.player.url;
+    this.logged_in = !!this.config.cookie;
     this.sts = session.player.sts;
-    this.#axios = session.axios;
+    this.player_url = session.player.url;
     this.#player = session.player;
+    request.setSession(this);
+    this.#request = request.instance;
     this.ev = new EventEmitter();
-    this.oauth = new OAuth(this.ev, session.axios);
-    if (this.config.cookie) {
-      this.auth_apisid = Utils.getStringBetweenStrings(this.config.cookie, "PAPISID=", ";");
-      this.auth_apisid = Utils.generateSidAuth(this.auth_apisid);
-    }
-    this.request = new Request(this);
+    this.oauth = new OAuth(this.ev, request.instance);
     this.actions = new Actions(this);
     this.account = new AccountManager(this.actions);
     this.playlist = new PlaylistManager(this.actions);
@@ -36925,57 +37316,49 @@ var Innertube = class {
     this.music = new YTMusic(this);
     return this;
   }
-  signIn(auth_info = {}) {
+  signIn(credentials = {}) {
     return new Promise(async (resolve) => {
-      this.oauth.init(auth_info);
-      if (this.oauth.isValidAuthInfo()) {
-        await this.oauth.checkTokenValidity();
-        this.#updateCredentials();
-        return resolve();
+      this.oauth.init(credentials);
+      if (this.oauth.validateCredentials()) {
+        await this.oauth.checkAccessTokenValidity();
+        this.logged_in = true;
+        resolve();
       }
       this.ev.on("auth", (data) => {
-        if (data.status === "SUCCESS") {
-          this.#updateCredentials();
+        this.logged_in = true;
+        if (data.status === "SUCCESS")
           resolve();
-        }
       });
     });
   }
-  #updateCredentials() {
-    this.access_token = this.oauth.getAccessToken();
-    this.refresh_token = this.oauth.getRefreshToken();
-    this.logged_in = true;
-  }
   async signOut() {
     if (!this.logged_in)
-      throw new Utils.InnertubeError("You are not signed in");
+      throw new InnertubeError("You are not signed in");
     const response = await this.oauth.revokeAccessToken();
-    if (response.success) {
-      this.logged_in = false;
-    }
+    this.logged_in = false;
     return response;
   }
   async getInfo(video_id) {
-    Utils.throwIfMissing({ video_id });
-    const cpn = Utils.generateRandomString(16);
+    throwIfMissing({ video_id });
+    const cpn = generateRandomString(16);
     const initial_info = this.actions.getVideoInfo(video_id, cpn);
     const continuation = this.actions.next({ video_id });
     const response = await Promise.all([initial_info, continuation]);
     return new VideoInfo(response, this.actions, this.#player, cpn);
   }
   async getBasicInfo(video_id) {
-    Utils.throwIfMissing({ video_id });
-    const cpn = Utils.generateRandomString(16);
+    throwIfMissing({ video_id });
+    const cpn = generateRandomString(16);
     const response = await this.actions.getVideoInfo(video_id, cpn);
     return new VideoInfo([response, {}], this.actions, this.#player, cpn);
   }
   async search(query, filters = {}) {
-    Utils.throwIfMissing({ query });
+    throwIfMissing({ query });
     const response = await this.actions.search({ query, filters });
     return new Search(this.actions, response.data);
   }
   async getSearchSuggestions(query, options = { client: "YOUTUBE" }) {
-    Utils.throwIfMissing({ query });
+    throwIfMissing({ query });
     const response = await this.actions.getSearchSuggestions(options.client, query);
     if (options.client === "YTMUSIC" && !response.data.contents)
       return [];
@@ -36986,17 +37369,12 @@ var Innertube = class {
     return suggestions;
   }
   async getComments(video_id, sort_by) {
-    Utils.throwIfMissing({ video_id });
+    throwIfMissing({ video_id });
     const payload = Proto.encodeCommentsSectionParams(video_id, {
       sort_by: sort_by || "TOP_COMMENTS"
     });
     const response = await this.actions.next({ ctoken: payload });
-    const comments = new OldParser(this, response.data, {
-      video_id,
-      client: "YOUTUBE",
-      data_type: "COMMENTS"
-    }).parse();
-    return comments;
+    return new Comments(this.actions, response.data);
   }
   async getHomeFeed() {
     const response = await this.actions.browse("FEwhat_to_watch");
@@ -37023,7 +37401,7 @@ var Innertube = class {
     return subsfeed;
   }
   async getChannel(id) {
-    Utils.throwIfMissing({ id });
+    throwIfMissing({ id });
     const response = await this.actions.browse(id);
     return new Channel(this.actions, response.data);
   }
@@ -37040,7 +37418,7 @@ var Innertube = class {
     return response.data.unseenCount;
   }
   async getPlaylist(playlist_id) {
-    Utils.throwIfMissing({ playlist_id });
+    throwIfMissing({ playlist_id });
     const response = await this.actions.browse(`VL${playlist_id.replace(/VL/g, "")}`);
     return new Playlist(this.actions, response.data);
   }
@@ -37049,7 +37427,7 @@ var Innertube = class {
     return info.chooseFormat(options);
   }
   download(video_id, options = {}) {
-    Utils.throwIfMissing({ video_id });
+    throwIfMissing({ video_id });
     const stream = new PassThrough();
     (async () => {
       const info = await this.getBasicInfo(video_id);
@@ -37061,8 +37439,8 @@ var Innertube = class {
   getPlayer() {
     return this.#player;
   }
-  get axios() {
-    return this.#axios;
+  get request() {
+    return this.#request;
   }
 };
 module.exports = Innertube;
