@@ -1,1 +1,1 @@
-module.exports = require('./lib/Innertube');
+module.exports = require('./build/index.js');
