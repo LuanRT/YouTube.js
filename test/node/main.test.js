@@ -1,10 +1,10 @@
 'use strict';
 
 const Fs = require('fs');
-const Innertube = require('..');
-const { default: NToken } = require('../lib/deciphers/NToken');
-const { default: Signature} = require('../lib/deciphers/Signature');
-const Constants = require('./constants');
+const Innertube = require('../../index.js');
+const { default: NToken } = require('../../lib/deciphers/NToken');
+const { default: Signature} = require('../../lib/deciphers/Signature');
+const Constants = require('../constants');
 
 describe('YouTube.js Tests', () => { 
   beforeAll(async () => {
@@ -77,7 +77,7 @@ describe('YouTube.js Tests', () => {
     it('Should download video', async () => {
       const result = await download(Constants.VIDEOS[1].ID, this.session);
       expect(result).toBeTruthy();
-    });
+    }, 30000);
   });
   
   describe('Deciphers', () => {

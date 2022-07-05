@@ -14,6 +14,9 @@
     "node": ">=14"
   },
   "scripts": {
+    "test": "npx jest",
+    "test:node": "npm run build:node && npx jest node",
+    "test:browser": "npm run build:browser && npx jest browser",
     "lint": "npx eslint ./lib",
     "lint:fix": "npx eslint --fix ./lib",
     "build:types": "npx tsc",
@@ -49,8 +52,12 @@
     "esbuild": "^0.14.48",
     "eslint": "^8.15.0",
     "eslint-plugin-jsdoc": "^39.3.2",
+    "fake-dom": "^1.0.4",
+    "fake-indexeddb": "^4.0.0",
     "jest": "^28.1.0",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "xhr2": "^0.2.1",
+    "xmlhttprequest-ssl": "^2.0.0"
   },
   "repository": {
     "type": "git",
