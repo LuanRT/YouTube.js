@@ -35,6 +35,7 @@
     "axios": "^0.21.4",
     "flat": "^5.0.2",
     "protocol-buffers-encodings": "^1.1.1",
+    "stream-browserify": "^3.0.0",
     "user-agents": "^1.0.778",
     "uuid": "^8.3.2"
   },
