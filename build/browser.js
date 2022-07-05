@@ -22330,6 +22330,7 @@ var require_build = __commonJS({
 // lib/utils/wrappers/BrowserCache.js
 var require_BrowserCache = __commonJS({
   "lib/utils/wrappers/BrowserCache.js"(exports2, module2) {
+    "use strict";
     var { openDB } = require_build();
     var BrowserCache = class {
       constructor() {

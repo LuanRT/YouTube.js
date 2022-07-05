@@ -5619,6 +5619,7 @@ var require_lib4 = __commonJS({
 // lib/utils/wrappers/NodeCache.js
 var require_NodeCache = __commonJS({
   "lib/utils/wrappers/NodeCache.js"(exports2, module2) {
+    "use strict";
     var fs = require("fs");
     var NodeCache = class {
       constructor() {
@@ -5630,7 +5631,7 @@ var require_NodeCache = __commonJS({
         const parts = key.split("/").slice(0, -1);
         let current = "";
         for (let i = 0; i < parts.length; i++) {
-          current += parts[i] + "/";
+          current += `${parts[i]}/`;
           if (!await this.exists(current)) {
             await fs.promises.mkdir(current);
           }
