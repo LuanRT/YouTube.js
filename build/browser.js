@@ -35367,8 +35367,8 @@ var require_VideoInfo = __commonJS({
             if (typeof response.data === "object") {
               response.data.on("data", (chunk) => {
                 downloaded_size += chunk.length;
-                let size = (response.headers["content-length"] / 1024 / 1024).toFixed(2);
-                let percentage = Math.floor(downloaded_size / response.headers["content-length"] * 100);
+                const size = (format.content_length / 1024 / 1024).toFixed(2);
+                const percentage = Math.floor(downloaded_size / format.content_length * 100);
                 stream.emit("progress", {
                   size,
                   percentage,
