@@ -23,8 +23,9 @@ declare class Player {
     get sts(): string;
     /**
      * Checks if the player script is cached.
-     * @returns {boolean}
+     *
+     * @returns {Promise<boolean>}
      */
-    isCached(): boolean;
+    isCached(): Promise<boolean>;
     #private;
 }

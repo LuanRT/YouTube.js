@@ -1,1 +1,2 @@
-module.exports = require('./build/index.js');
+'use strict';
+module.exports = require('./lib/Innertube.js');

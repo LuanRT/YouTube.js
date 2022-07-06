@@ -18,7 +18,7 @@ declare class Feed {
     /**
      * Get all the videos in the feed
      */
-    get videos(): (import("../parser/contents/classes/Video") | import("../parser/contents/classes/GridVideo") | import("../parser/contents/classes/CompactVideo") | import("../parser/contents/classes/PlaylistVideo") | import("../parser/contents/classes/PlaylistPanelVideo") | import("../parser/contents/classes/WatchCardCompactVideo"))[];
+    get videos(): (import("../parser/contents/classes/CompactVideo") | import("../parser/contents/classes/GridVideo") | import("../parser/contents/classes/PlaylistPanelVideo") | import("../parser/contents/classes/PlaylistVideo") | import("../parser/contents/classes/Video") | import("../parser/contents/classes/WatchCardCompactVideo"))[];
     /**
      * Get all the community posts in the feed
      *

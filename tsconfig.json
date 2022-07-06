@@ -4,12 +4,14 @@
     "emitDeclarationOnly": true,
     "allowJs": true,
     "outDir": "./typings",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "target": "ESNext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "typeRoots": ["./types"],
+    "allowSyntheticDefaultImports": true
   },
   "include": [
-    "./lib/**/*.js",
+    "./lib/Innertube.js",
     "./index.js"
   ],
   "exclude": [

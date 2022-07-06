@@ -7,7 +7,7 @@ module.exports = {
       roots: [ '<rootDir>/test/node' ],
       testMatch: [ '**/*.test.js' ],
       testTimeout: 10000,
-      setupFiles: [],
+      setupFiles: []
     },
     {
       displayName: 'browser',
@@ -17,8 +17,8 @@ module.exports = {
       setupFiles: [
         'fake-indexeddb/auto',
         './scripts/globals.js',
-        'fake-dom',
-      ],
+        'fake-dom'
+      ]
     }
   ]
 };

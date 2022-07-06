@@ -1299,8 +1299,6 @@ var require_package = __commonJS({
       name: "youtubei.js",
       version: "2.0.0",
       description: "A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
-      main: "index.js",
-      browser: "browser.js",
       author: "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
       contributors: [
         "Wykerd (https://github.com/wykerd/)"
@@ -1318,13 +1316,15 @@ var require_package = __commonJS({
         "lint:fix": "npx eslint --fix ./lib",
         "build:types": "npx tsc",
         "build:parser-map": "node ./scripts/build-parser-json.js",
-        "build:general": 'npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js="/* eslint-disable */" --bundle --target=esnext --format=cjs',
-        "build:node": "npm run build:general -- --outfile=./build/index.js --platform=node --define:BROWSER=false",
+        "build:general": 'npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js="/* eslint-disable */" --bundle --target=esnext --format=cjs --sourcemap',
+        "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --define:BROWSER=false",
         "build:node:prod": "npm run build:node -- --minify",
         "build:browser": "npm run build:general -- --outfile=./build/browser.js --platform=browser --define:BROWSER=true",
         "build:browser:prod": "npm run build:browser -- --minify"
       },
-      types: "./typings/index.d.ts",
+      types: "./typings/Innertube.d.ts",
+      main: "./build/node.js",
+      browser: "./build/browser.js",
       directories: {
         test: "./test",
         typings: "./typings",
@@ -17157,3 +17157,4 @@ module.exports = Innertube;
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+//# sourceMappingURL=node.js.map

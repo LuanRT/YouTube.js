@@ -1,7 +1,7 @@
 'use strict';
 
 const Fs = require('fs');
-const Innertube = require('../../index.js');
+const Innertube = require('../../build/node');
 const { default: NToken } = require('../../lib/deciphers/NToken');
 const { default: Signature} = require('../../lib/deciphers/Signature');
 const Constants = require('../constants');
