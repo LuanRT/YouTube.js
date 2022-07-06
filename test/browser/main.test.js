@@ -1,10 +1,16 @@
 'use strict';
 
 const Fs = require('fs');
-const Innertube = require('..');
-const { default: NToken } = require('../lib/deciphers/NToken');
-const { default: Signature} = require('../lib/deciphers/Signature');
-const Constants = require('./constants');
+const Innertube = require('../../build/node');
+const { default: NToken } = require('../../lib/deciphers/NToken');
+const { default: Signature} = require('../../lib/deciphers/Signature');
+const Constants = require('../constants');
+
+// NOTE: 
+// these tests disable the restricted headers in XMLHttpRequest
+// so techinically these tests are not 100% accurate, so they
+// really represent a browser-like environment and not necessarily a browser
+// i.e. electron, where you could disable this restriction
 
 describe('YouTube.js Tests', () => { 
   beforeAll(async () => {
@@ -75,11 +81,14 @@ describe('YouTube.js Tests', () => {
       const info = await this.session.getInfo(Constants.VIDEOS[0].ID);
       expect(info.basic_info.id).toBe(Constants.VIDEOS[0].ID);
     }); 
-    
+
+    /* 
+    // After a lot of testing, I don't think it is possible to download videos in browser
     it('Should download video', async () => {
       const result = await download(Constants.VIDEOS[1].ID, this.session);
       expect(result).toBeTruthy();
-    });
+    }, 30000);
+    */
   });
   
   describe('Deciphers', () => {

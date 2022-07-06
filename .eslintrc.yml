@@ -5,6 +5,8 @@ env:
   es2021: true
   node: true
 extends: [ eslint:recommended, plugin:jsdoc/recommended ]
+globals: 
+  BROWSER: readonly
 settings:
   jsdoc:
     mode: 'typescript'

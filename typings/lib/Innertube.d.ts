@@ -241,13 +241,12 @@ declare class Innertube {
             start: number;
             end: number;
         };
-    }): PassThrough;
+    }): any;
     getPlayer(): any;
     /** @readonly */
     readonly get request(): any;
     #private;
 }
-import EventEmitter = require("events");
 import OAuth = require("./core/OAuth");
 import Actions = require("./core/Actions");
 import AccountManager = require("./core/AccountManager");
@@ -263,4 +262,3 @@ import History = require("./parser/youtube/History");
 import TabbedFeed = require("./core/TabbedFeed");
 import Channel = require("./parser/youtube/Channel");
 import Playlist = require("./parser/youtube/Playlist");
-import { PassThrough } from "stream";

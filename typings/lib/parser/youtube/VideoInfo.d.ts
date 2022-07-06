@@ -137,8 +137,8 @@ declare class VideoInfo {
      * @param {object} [options.range] - download range, indicates which bytes should be downloaded.
      * @param {number} options.range.start - the beginning of the range.
      * @param {number} options.range.end - the end of the range.
-     * @param {PassThrough} [_stream]
-     * @returns {PassThrough}
+     * @param {import('stream').PassThrough} [_stream]
+     * @returns {import('stream').PassThrough}
      */
     download(options?: {
         quality?: string;
@@ -148,8 +148,7 @@ declare class VideoInfo {
             start: number;
             end: number;
         };
-    }, _stream?: PassThrough): PassThrough;
+    }, _stream?: any): any;
     #private;
 }
 import LiveChat = require("./LiveChat");
-import { PassThrough } from "stream";

@@ -4,7 +4,7 @@ declare class LiveChat {
      * @param {import('./VideoInfo')} video_info
      */
     constructor(video_info: import('./VideoInfo'));
-    ev: EventEmitter;
+    ev: any;
     initial_info: any;
     live_metadata: {
         /** @type {import('../contents/classes/livechat/metadata/UpdateTitleAction')} */
@@ -31,4 +31,3 @@ declare class LiveChat {
     sendMessage(text: string): Promise<import('../contents/classes/livechat/AddChatItemAction')[]>;
     #private;
 }
-import EventEmitter = require("events");
