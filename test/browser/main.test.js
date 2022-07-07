@@ -2,8 +2,6 @@
 
 const Fs = require('fs');
 const Innertube = require('../../build/browser');
-const { default: NToken } = require('../../lib/deciphers/NToken');
-const { default: Signature} = require('../../lib/deciphers/Signature');
 const Constants = require('../constants');
 
 /**
@@ -94,6 +92,9 @@ describe('YouTube.js Tests', () => {
   
   // Run decipher tests only on newer versions of node since we're requiring them directly.
   if (process.version.match(/^v(\d+\.\d+)/)[1] > 12) {
+    const { default: NToken } = require('../../lib/deciphers/NToken');
+    const { default: Signature} = require('../../lib/deciphers/Signature');
+
     describe('Deciphers', () => {
       it('Should decipher signature', () => {
         const result = Signature.fromSourceCode(Constants.DECIPHERS.SIG.ALGORITHM).decipher(Constants.DECIPHERS.SIG.ORIGINAL_URL);
