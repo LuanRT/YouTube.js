@@ -10,7 +10,7 @@
   "funding": "https://ko-fi.com/luanrt",
   "license": "MIT",
   "scripts": {
-    "test": "npx jest",
+    "test": "npx jest --verbose",
     "test:node": "npm run build:node && npx jest node",
     "test:browser": "npm run build:browser && npx jest browser",
     "lint": "npx eslint ./lib",
