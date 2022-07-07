@@ -45,8 +45,6 @@
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
   [![Monthly downloads](https://img.shields.io/npm/dm/youtubei.js)][npm]
   [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks]
-  <br>
-  [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][github-sponsors]
 
 </div>
 

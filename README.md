@@ -45,9 +45,7 @@
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
   [![Monthly downloads](https://img.shields.io/npm/dm/youtubei.js)][npm]
   [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks] 
-  <br>
-  [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][github-sponsors]
- 
+
 </div>
 
 > Warning: <br/><br/> We're currently in the process of rewriting some parts of the library to improve performance, maintainability and quality. While this might take a little while, most of this documentation will no longer be valid after v2 (see [#65](https://github.com/LuanRT/YouTube.js/issues/65)).
