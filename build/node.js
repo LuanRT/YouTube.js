@@ -1,10 +1,13800 @@
-"use strict";/* eslint-disable */
-var Xu=Object.defineProperty;var XT=(c,e,t)=>e in c?Xu(c,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):c[e]=t;var n=(c,e)=>Xu(c,"name",{value:e,configurable:!0});var g=(c,e)=>()=>(e||c((e={exports:{}}).exports,e),e.exports);var j=(c,e,t)=>(XT(c,typeof e!="symbol"?e+"":e,t),t),bl=(c,e,t)=>{if(!e.has(c))throw TypeError("Cannot "+t)};var d=(c,e,t)=>(bl(c,e,"read from private field"),t?t.call(c):e.get(c)),T=(c,e,t)=>{if(e.has(c))throw TypeError("Cannot add the same private member more than once");e instanceof WeakSet?e.add(c):e.set(c,t)},C=(c,e,t,i)=>(bl(c,e,"write to private field"),i?i.call(c,t):e.set(c,t),t);var k=(c,e,t)=>(bl(c,e,"access private method"),t);var ee=g((LL,Zu)=>{"use strict";Zu.exports={URLS:{YT_BASE:"https://www.youtube.com",YT_MUSIC_BASE:"https://music.youtube.com",YT_SUGGESTIONS:"https://suggestqueries.google.com/complete/",API:{BASE:"https://youtubei.googleapis.com",PRODUCTION:"https://youtubei.googleapis.com/youtubei/",STAGING:"https://green-youtubei.sandbox.googleapis.com/youtubei/",RELEASE:"https://release-youtubei.sandbox.googleapis.com/youtubei/",TEST:"https://test-youtubei.sandbox.googleapis.com/youtubei/",CAMI:"http://cami-youtubei.sandbox.googleapis.com/youtubei/",UYTFE:"https://uytfe.sandbox.google.com/youtubei/"}},OAUTH:{SCOPE:"http://gdata.youtube.com https://www.googleapis.com/auth/youtube-paid-content",GRANT_TYPE:"http://oauth.net/grant_type/device/1.0",MODEL_NAME:"ytlr::",HEADERS:{accept:"*/*",origin:"https://www.youtube.com","user-agent":"Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version","content-type":"application/json",referer:"https://www.youtube.com/tv","accept-language":"en-US"},REGEX:{AUTH_SCRIPT:/<script id="base-js" src="(.*?)" nonce=".*?"><\/script>/,CLIENT_IDENTITY:/.+?={};var .+?={clientId:"(?<client_id>.+?)",.+?:"(?<client_secret>.+?)"},/}},CLIENTS:{WEB:{NAME:"WEB"},YTMUSIC:{NAME:"WEB_REMIX",VERSION:"1.20211213.00.00"},ANDROID:{NAME:"ANDROID",VERSION:"17.17.32"}},STREAM_HEADERS:{accept:"*/*",connection:"keep-alive",origin:"https://www.youtube.com",referer:"https://www.youtube.com",DNT:"?1"},INNERTUBE_HEADERS_BASE:{accept:"*/*","accept-encoding":"gzip, deflate","content-type":"application/json"},METADATA_KEYS:["embed","view_count","average_rating","allow_ratings","length_seconds","channel_id","channel_url","external_channel_id","is_live_content","is_family_safe","is_unlisted","is_private","has_ypc_metadata","category","owner_channel_name","publish_date","upload_date","keywords","available_countries","owner_profile_url"],BLACKLISTED_KEYS:["is_owner_viewing","is_unplugged_corpus","is_crawlable","author"],ACCOUNT_SETTINGS:{SUBSCRIPTIONS:"NOTIFICATION_SUBSCRIPTION_NOTIFICATIONS",RECOMMENDED_VIDEOS:"NOTIFICATION_RECOMMENDATION_WEB_CONTROL",CHANNEL_ACTIVITY:"NOTIFICATION_COMMENT_WEB_CONTROL",COMMENT_REPLIES:"NOTIFICATION_COMMENT_REPLY_OTHER_WEB_CONTROL",USER_MENTION:"NOTIFICATION_USER_MENTION_WEB_CONTROL",SHARED_CONTENT:"NOTIFICATION_RETUBING_WEB_CONTROL",PLAYLISTS_PRIVACY:"PRIVACY_DISCOVERABLE_SAVED_PLAYLISTS",SUBSCRIPTIONS_PRIVACY:"PRIVACY_DISCOVERABLE_SUBSCRIPTIONS"},BASE64_DIALECT:{NORMAL:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".split(""),REVERSE:"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_".split("")},SIG_REGEX:{ACTIONS:/;.{2}\.(?<name>.{2})\(.*?,(?<param>.*?)\)/g,FUNCTIONS:/(?<name>.{2}):function\(.*?\){(.*?)}/g},NTOKEN_REGEX:{CALLS:/c\[(.*?)\]\((.+?)\)/g,PLACEHOLDERS:/c\[(.*?)\]=c/g,FUNCTIONS:/d\.push\(e\)|d\.reverse\(\)|d\[0\]\)\[0\]\)|f=d\[0];d\[0\]|d\.length;d\.splice\(e,1\)|function\(\){for\(var|function\(d,e,f\){var|function\(d\){for\(var|reverse\(\)\.forEach|unshift\(d\.pop\(\)\)|function\(d,e\){for\(var f/},FUNCS:{PUSH:"d.push(e)",REVERSE_1:"d.reverse()",REVERSE_2:"function(d){for(var",SPLICE:"d.length;d.splice(e,1)",SWAP0_1:"d[0])[0])",SWAP0_2:"f=d[0];d[0]",ROTATE_1:"reverse().forEach",ROTATE_2:"unshift(d.pop())",BASE64_DIA:"function(){for(var",TRANSLATE_1:"function(d,e){for(var f",TRANSLATE_2:"function(d,e,f){var"}}});var zn=g((AL,ZT)=>{ZT.exports={name:"youtubei.js",version:"2.0.0",description:"A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",author:"LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",contributors:["Wykerd (https://github.com/wykerd/)","MasterOfBob777 (https://github.com/MasterOfBob777)"],funding:"https://ko-fi.com/luanrt",license:"MIT",scripts:{test:"npx jest --verbose","test:node":"npm run build:node:prod && npx jest node","test:browser":"npm run build:browser:prod && npx jest browser",lint:"npx eslint ./lib","lint:fix":"npx eslint --fix ./lib","build:types":"npx tsc","build:parser-map":"node ./scripts/build-parser-json.js","build:general":'npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js="/* eslint-disable */" --bundle --target=node12 --keep-names --format=cjs --sourcemap',"build:node":"npm run build:general -- --outfile=./build/node.js --platform=node --external:./node_modules/* --define:BROWSER=false","build:node:prod":"npm run build:node -- --minify","build:browser":"npm run build:general -- --outfile=./build/browser.js --platform=browser --define:BROWSER=true","build:browser:prod":"npm run build:browser -- --minify"},types:"./typings/lib/Innertube.d.ts",main:"./build/node.js",browser:"./build/browser.js",directories:{test:"./test",typings:"./typings",examples:"./examples",lib:"./lib"},dependencies:{axios:"^0.21.4",buffer:"^6.0.3",events:"^3.3.0",flat:"^5.0.2",idb:"^7.0.2","node-forge":"^1.3.1","protocol-buffers-encodings":"^1.1.1","stream-browserify":"^3.0.0","user-agents":"^1.0.778",uuid:"^8.3.2"},devDependencies:{"@types/node":"^17.0.31",esbuild:"^0.14.48",eslint:"^8.15.0","eslint-plugin-jsdoc":"^39.3.2","fake-dom":"^1.0.4","fake-indexeddb":"^4.0.0",jest:"^28.1.0",typescript:"^4.6.4",xhr2:"^0.2.1","xmlhttprequest-ssl":"^2.0.0"},repository:{type:"git",url:"git+https://github.com/LuanRT/YouTube.js.git"},bugs:{url:"https://github.com/LuanRT/YouTube.js/issues"},homepage:"https://github.com/LuanRT/YouTube.js#readme",keywords:["yt","dl","ytdl","youtube","youtubedl","youtube-dl","youtube-downloader","innertube","innertubeapi","unofficial","downloader","livechat","ytmusic","dislike","search","comment","music","like","api"]}});var D=g((kL,th)=>{"use strict";var fT=require("crypto"),fu=require("../node_modules/user-agents/dist/index.js"),jT=require("../node_modules/flat/index.js"),ve=class extends Error{constructor(e,t){super(e),t&&(this.info=t),this.date=new Date,this.version=zn().version}};n(ve,"InnertubeError");var en=class extends ve{};n(en,"ParsingError");var Kn=class extends ve{};n(Kn,"DownloadError");var tn=class extends ve{};n(tn,"MissingParamError");var Qn=class extends ve{};n(Qn,"UnavailableContentError");var Jn=class extends ve{};n(Jn,"NoStreamingDataError");var Xn=class extends ve{};n(Xn,"OAuthError");function eE(c,e,t,i,a=!0){let s=jT(c,{safe:a,maxDepth:i||2}),r=Object.keys(s).find(o=>o.includes(e)&&JSON.stringify(s[o]||"{}").includes(t));if(!r)throw new en(`Expected to find "${e}" with content "${t}" but got ${r}`,{key:e,target:t,data_snippet:`${JSON.stringify(s,null,4).slice(0,300)}..`});return s[r]}n(eE,"findNode");function tE(c){return new Proxy(c,{get(e,t){return t=="get"?(i,a)=>e.find((s,r)=>{let o=ju(i,s);return o&&a&&e.splice(r,1),o}):t=="findAll"?(i,a)=>e.filter((s,r)=>{let o=ju(i,s);return o&&a&&e.splice(r,1),o}):t=="remove"?i=>e.splice(i,1):Reflect.get(...arguments)}})}n(tE,"observe");function ju(c,e){return Reflect.ownKeys(c).some(i=>{var s;let a=((s=e[i])==null?void 0:s.constructor.name)==="Text";return!a&&typeof e[i]=="object"?JSON.stringify(c[i])===JSON.stringify(e[i]):c[i]===(a?e[i].toString():e[i])})}n(ju,"deepCompare");function nE(){let c=process.env,e=process.platform==="win32",t=e?/[^:]\\$/:/.\/$/,i;return e?i=c.TEMP||c.TMP||`${c.SystemRoot||c.windir}\\temp`:i=c.TMPDIR||c.TMP||c.TEMP||"/tmp",t.test(i)&&(i=i.slice(0,-1)),i}n(nE,"getTmpdir");function iE(c,e,t){let i=new RegExp(`${eh(e)}(.*?)${eh(t)}`,"s"),a=c.match(i);return a?a[1]:void 0}n(iE,"getStringBetweenStrings");function eh(c){return c.replace(/[|\\{}()[\]^$+*?.]/g,"\\$&").replace(/-/g,"\\x2d")}n(eh,"escapeStringRegexp");function sE(c){switch(c){case"mobile":return new fu(/Android/).data;case"desktop":return new fu({deviceCategory:"desktop"}).data;default:}}n(sE,"getRandomUserAgent");function rE(c){let e="https://www.youtube.com",t=Math.floor(new Date().getTime()/1e3),i=[t,c,e].join(" "),a;return a=fT.createHash("sha1").update(i,"utf-8").digest("hex"),["SAPISIDHASH",[t,a].join("_")].join(" ")}n(rE,"generateSidAuth");function oE(c){let e=[],t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";for(let i=0;i<c;i++)e.push(t.charAt(Math.floor(Math.random()*t.length)));return e.join("")}n(oE,"generateRandomString");function cE(c){let e=c.split(":");switch(e.length){case 1:return parseInt(+e[0]);case 2:return parseInt(+e[0]*60+ +e[1]);case 3:return parseInt(+e[0]*3600+ +e[1]*60+ +e[2]);default:break}}n(cE,"timeToSeconds");function aE(c){return c[0].toLowerCase()+c.slice(1,c.length).replace(/[A-Z]/g,e=>`_${e.toLowerCase()}`)}n(aE,"camelToSnake");function lE(c){return["YOUTUBE","YTMUSIC"].includes(c)}n(lE,"isValidClient");function uE(c){for(let[e,t]of Object.entries(c))if(!t)throw new tn(`${e} is missing`)}n(uE,"throwIfMissing");function hE(c){return c.replace(/function\(d,e\)/g,'"function(d,e)').replace(/function\(d\)/g,'"function(d)').replace(/function\(\)/g,'"function()').replace(/function\(d,e,f\)/g,'"function(d,e,f)').replace(/\[function\(d,e,f\)/g,'["function(d,e,f)').replace(/,b,/g,',"b",').replace(/,b/g,',"b"').replace(/b,/g,'"b",').replace(/b]/g,'"b"]').replace(/\[b/g,'["b"').replace(/}]/g,'"]').replace(/},/g,'}",').replace(/""/g,"").replace(/length]\)}"/g,"length])}")}n(hE,"refineNTokenData");var dE={InnertubeError:ve,UnavailableContentError:Qn,ParsingError:en,DownloadError:Kn,MissingParamError:tn,NoStreamingDataError:Jn,OAuthError:Xn},pE={findNode:eE,observe:tE,getTmpdir:nE,getRandomUserAgent:sE,generateSidAuth:rE,generateRandomString:oE,getStringBetweenStrings:iE,camelToSnake:aE,isValidClient:lE,throwIfMissing:uE,timeToSeconds:cE,refineNTokenData:hE};th.exports={...pE,...dE}});var rh=g((PL,sh)=>{"use strict";var mE=require("../node_modules/uuid/dist/index.js"),he=ee(),{OAuthError:nn}=D(),be,Ue,se,sn,de,rn,xl,fn,nh,jn,ih,on,Tl,Zn=class{constructor(e,t){T(this,rn);T(this,fn);T(this,jn);T(this,on);T(this,be,void 0);T(this,Ue,void 0);T(this,se,{});T(this,sn,5);T(this,de,null);C(this,de,e),C(this,be,t)}init(e){C(this,se,e),e.access_token||k(this,rn,xl).call(this)}async checkAccessTokenValidity(){let e=new Date(d(this,se).expires).getTime();new Date().getTime()>e&&await k(this,jn,ih).call(this)}revokeCredentials(){return d(this,be).call(this,{url:"/o/oauth2/revoke",baseURL:he.URLS.YT_BASE,params:{token:this.getAccessToken()},method:"post"})}get credentials(){return d(this,se)}validateCredentials(){return d(this,se).hasOwnProperty("access_token")&&d(this,se).hasOwnProperty("refresh_token")&&d(this,se).hasOwnProperty("expires")}};n(Zn,"OAuth"),be=new WeakMap,Ue=new WeakMap,se=new WeakMap,sn=new WeakMap,de=new WeakMap,rn=new WeakSet,xl=n(async function(){C(this,Ue,await k(this,on,Tl).call(this));let e={client_id:d(this,Ue).client_id,scope:he.OAUTH.SCOPE,device_id:mE.v4(),model_name:he.OAUTH.MODEL_NAME},t=await d(this,be).call(this,{data:e,url:"/o/oauth2/device/code",baseURL:he.URLS.YT_BASE,method:"post"}).catch(i=>i);if(t instanceof Error)return d(this,de).emit("auth",new nn("Could not obtain user code.",t.message));d(this,de).emit("auth",{...t.data,status:"AUTHORIZATION_PENDING"}),C(this,sn,t.data.interval),k(this,fn,nh).call(this,t.data.device_code)},"#getUserCode"),fn=new WeakSet,nh=n(function(e){let t=setInterval(async()=>{let i={...d(this,Ue),code:e,grant_type:he.OAUTH.GRANT_TYPE},a=await d(this,be).call(this,{data:i,url:"/o/oauth2/token",baseURL:he.URLS.YT_BASE,method:"post"}).catch(r=>r);if(a instanceof Error)return d(this,de).emit("auth",new nn("Could not obtain user code.",{status:"FAILED",message:a.message}));if(a.data.error){switch(a.data.error){case"access_denied":d(this,de).emit("auth",new nn("Access was denied.",{status:"ACCESS_DENIED"}));break;case"expired_token":d(this,de).emit("auth",new nn("The device code has expired, restarting auth flow.",{status:"DEVICE_CODE_EXPIRED"})),clearInterval(t),k(this,rn,xl).call(this);break;default:break}return}let s=new Date(new Date().getTime()+a.data.expires_in*1e3);C(this,se,{access_token:a.data.access_token,refresh_token:a.data.refresh_token,expires:s}),d(this,de).emit("auth",{credentials:d(this,se),status:"SUCCESS"}),clearInterval(t)},d(this,sn)*1e3)},"#startPolling"),jn=new WeakSet,ih=n(async function(){C(this,Ue,await k(this,on,Tl).call(this));let e={...d(this,Ue),refresh_token:d(this,se).refresh_token,grant_type:"refresh_token"},t=await d(this,be).call(this,{data:e,url:"/o/oauth2/token",baseURL:he.URLS.YT_BASE,method:"post"}).catch(a=>a);if(t instanceof Error)return d(this,de).emit("update-credentials",new nn("Could not refresh access token.",{status:"FAILED"}));let i=new Date(new Date().getTime()+t.data.expires_in*1e3);C(this,se,{access_token:t.data.access_token,refresh_token:t.data.refresh_token||this.credentials.refresh_token,expires:i}),d(this,de).emit("update-credentials",{credentials:d(this,se),status:"SUCCESS"})},"#refreshAccessToken"),on=new WeakSet,Tl=n(async function(){let e=await d(this,be).call(this,{url:"/tv",baseURL:he.URLS.YT_BASE,headers:he.OAUTH.HEADERS}),t=he.OAUTH.REGEX.AUTH_SCRIPT.exec(e.data)[1];return(await d(this,be).call(this,{url:t,baseURL:he.URLS.YT_BASE})).data.replace(/\n/g,"").match(he.OAUTH.REGEX.CLIENT_IDENTITY).groups},"#getClientIdentity");sh.exports=Zn});var oh=g(oe=>{var m=require("../node_modules/protocol-buffers-encodings/index.js"),x=m.varint,V=m.skip,El=oe.VisitorData={buffer:!0,encodingLength:null,encode:null,decode:null},ei=oe.ChannelAnalytics={buffer:!0,encodingLength:null,encode:null,decode:null},ti=oe.InnertubePayload={buffer:!0,encodingLength:null,encode:null,decode:null},ni=oe.SoundInfoParams={buffer:!0,encodingLength:null,encode:null,decode:null},ii=oe.NotificationPreferences={buffer:!0,encodingLength:null,encode:null,decode:null},si=oe.LiveMessageParams={buffer:!0,encodingLength:null,encode:null,decode:null},cn=oe.GetCommentsSectionParams={buffer:!0,encodingLength:null,encode:null,decode:null},ri=oe.CreateCommentParams={buffer:!0,encodingLength:null,encode:null,decode:null},oi=oe.CreateCommentReplyParams={buffer:!0,encodingLength:null,encode:null,decode:null},ci=oe.PeformCommentActionParams={buffer:!0,encodingLength:null,encode:null,decode:null},ai=oe.MusicSearchFilter={buffer:!0,encodingLength:null,encode:null,decode:null},li=oe.SearchFilter={buffer:!0,encodingLength:null,encode:null,decode:null};gE();_E();yE();wE();vE();bE();xE();TE();EE();qE();RE();IE();function gE(){El.encodingLength=c,El.encode=e,El.decode=t;function c(i){var a=0;if(E(i.id)){var s=m.string.encodingLength(i.id);a+=1+s}if(E(i.timestamp)){var s=m.int32.encodingLength(i.timestamp);a+=1+s}return a}n(c,"encodingLength");function e(i,a,s){s||(s=0),a||(a=Buffer.allocUnsafe(c(i)));var r=s;return E(i.id)&&(a[s++]=10,m.string.encode(i.id,a,s),s+=m.string.encode.bytes),E(i.timestamp)&&(a[s++]=40,m.int32.encode(i.timestamp,a,s),s+=m.int32.encode.bytes),e.bytes=s-r,a}n(e,"encode");function t(i,a,s){if(a||(a=0),s||(s=i.length),!(s<=i.length&&a<=i.length))throw new Error("Decoded message is not valid");for(var r=a,o={id:"",timestamp:0};;){if(s<=a)return t.bytes=a-r,o;var h=x.decode(i,a);a+=x.decode.bytes;var l=h>>3;switch(l){case 1:o.id=m.string.decode(i,a),a+=m.string.decode.bytes;break;case 5:o.timestamp=m.int32.decode(i,a),a+=m.int32.decode.bytes;break;default:a=V(h&7,i,a)}}}n(t,"decode")}n(gE,"defineVisitorData");function _E(){var c=ei.Params={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){c.encodingLength=s,c.encode=r,c.decode=o;function s(h){var l=0;if(E(h.channel_id)){var u=m.string.encodingLength(h.channel_id);l+=2+u}return l}n(s,"encodingLength");function r(h,l,u){u||(u=0),l||(l=Buffer.allocUnsafe(s(h)));var p=u;return E(h.channel_id)&&(l[u++]=202,l[u++]=62,m.string.encode(h.channel_id,l,u),u+=m.string.encode.bytes),r.bytes=u-p,l}n(r,"encode");function o(h,l,u){if(l||(l=0),u||(u=h.length),!(u<=h.length&&l<=h.length))throw new Error("Decoded message is not valid");for(var p=l,_={channel_id:""};;){if(u<=l)return o.bytes=l-p,_;var b=x.decode(h,l);l+=x.decode.bytes;var w=b>>3;switch(w){case 1001:_.channel_id=m.string.decode(h,l),l+=m.string.decode.bytes;break;default:l=V(b&7,h,l)}}}n(o,"decode")}n(e,"defineParams"),ei.encodingLength=t,ei.encode=i,ei.decode=a;function t(s){var r=0;if(E(s.params)){var o=c.encodingLength(s.params);r+=x.encodingLength(o),r+=2+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.params)&&(r[o++]=130,r[o++]=2,x.encode(c.encodingLength(s.params),r,o),o+=x.encode.bytes,c.encode(s.params,r,o),o+=c.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={params:null};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 32:var _=x.decode(s,r);r+=x.decode.bytes,l.params=c.decode(s,r,r+_),r+=c.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(_E,"defineChannelAnalytics");function yE(){var c=ti.Context={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){var s=c.Client={buffer:!0,encodingLength:null,encode:null,decode:null};r();function r(){s.encodingLength=u,s.encode=p,s.decode=_;function u(b){var w=0;if(E(b.unkparam)){var y=m.int32.encodingLength(b.unkparam);w+=2+y}if(E(b.client_version)){var y=m.string.encodingLength(b.client_version);w+=2+y}if(E(b.client_name)){var y=m.string.encodingLength(b.client_name);w+=2+y}return w}n(u,"encodingLength");function p(b,w,y){y||(y=0),w||(w=Buffer.allocUnsafe(u(b)));var v=y;return E(b.unkparam)&&(w[y++]=128,w[y++]=1,m.int32.encode(b.unkparam,w,y),y+=m.int32.encode.bytes),E(b.client_version)&&(w[y++]=138,w[y++]=1,m.string.encode(b.client_version,w,y),y+=m.string.encode.bytes),E(b.client_name)&&(w[y++]=146,w[y++]=1,m.string.encode(b.client_name,w,y),y+=m.string.encode.bytes),p.bytes=y-v,w}n(p,"encode");function _(b,w,y){if(w||(w=0),y||(y=b.length),!(y<=b.length&&w<=b.length))throw new Error("Decoded message is not valid");for(var v=w,I={unkparam:0,client_version:"",client_name:""};;){if(y<=w)return _.bytes=w-v,I;var L=x.decode(b,w);w+=x.decode.bytes;var q=L>>3;switch(q){case 16:I.unkparam=m.int32.decode(b,w),w+=m.int32.decode.bytes;break;case 17:I.client_version=m.string.decode(b,w),w+=m.string.decode.bytes;break;case 18:I.client_name=m.string.decode(b,w),w+=m.string.decode.bytes;break;default:w=V(L&7,b,w)}}}n(_,"decode")}n(r,"defineClient"),c.encodingLength=o,c.encode=h,c.decode=l;function o(u){var p=0;if(E(u.client)){var _=s.encodingLength(u.client);p+=x.encodingLength(_),p+=1+_}return p}n(o,"encodingLength");function h(u,p,_){_||(_=0),p||(p=Buffer.allocUnsafe(o(u)));var b=_;return E(u.client)&&(p[_++]=10,x.encode(s.encodingLength(u.client),p,_),_+=x.encode.bytes,s.encode(u.client,p,_),_+=s.encode.bytes),h.bytes=_-b,p}n(h,"encode");function l(u,p,_){if(p||(p=0),_||(_=u.length),!(_<=u.length&&p<=u.length))throw new Error("Decoded message is not valid");for(var b=p,w={client:null};;){if(_<=p)return l.bytes=p-b,w;var y=x.decode(u,p);p+=x.decode.bytes;var v=y>>3;switch(v){case 1:var I=x.decode(u,p);p+=x.decode.bytes,w.client=s.decode(u,p,p+I),p+=s.decode.bytes;break;default:p=V(y&7,u,p)}}}n(l,"decode")}n(e,"defineContext"),ti.encodingLength=t,ti.encode=i,ti.decode=a;function t(s){var r=0;if(E(s.context)){var o=c.encodingLength(s.context);r+=x.encodingLength(o),r+=1+o}if(E(s.target)){var o=m.string.encodingLength(s.target);r+=1+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.context)&&(r[o++]=10,x.encode(c.encodingLength(s.context),r,o),o+=x.encode.bytes,c.encode(s.context,r,o),o+=c.encode.bytes),E(s.target)&&(r[o++]=18,m.string.encode(s.target,r,o),o+=m.string.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={context:null,target:""};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 1:var _=x.decode(s,r);r+=x.decode.bytes,l.context=c.decode(s,r,r+_),r+=c.decode.bytes;break;case 2:l.target=m.string.decode(s,r),r+=m.string.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(yE,"defineInnertubePayload");function wE(){var c=ni.Sound={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){var s=c.Params={buffer:!0,encodingLength:null,encode:null,decode:null};r();function r(){var u=s.Ids={buffer:!0,encodingLength:null,encode:null,decode:null};p();function p(){u.encodingLength=y,u.encode=v,u.decode=I;function y(L){var q=0;if(E(L.id_1)){var S=m.string.encodingLength(L.id_1);q+=1+S}if(E(L.id_2)){var S=m.string.encodingLength(L.id_2);q+=1+S}if(E(L.id_3)){var S=m.string.encodingLength(L.id_3);q+=1+S}return q}n(y,"encodingLength");function v(L,q,S){S||(S=0),q||(q=Buffer.allocUnsafe(y(L)));var P=S;return E(L.id_1)&&(q[S++]=10,m.string.encode(L.id_1,q,S),S+=m.string.encode.bytes),E(L.id_2)&&(q[S++]=18,m.string.encode(L.id_2,q,S),S+=m.string.encode.bytes),E(L.id_3)&&(q[S++]=26,m.string.encode(L.id_3,q,S),S+=m.string.encode.bytes),v.bytes=S-P,q}n(v,"encode");function I(L,q,S){if(q||(q=0),S||(S=L.length),!(S<=L.length&&q<=L.length))throw new Error("Decoded message is not valid");for(var P=q,B={id_1:"",id_2:"",id_3:""};;){if(S<=q)return I.bytes=q-P,B;var U=x.decode(L,q);q+=x.decode.bytes;var F=U>>3;switch(F){case 1:B.id_1=m.string.decode(L,q),q+=m.string.decode.bytes;break;case 2:B.id_2=m.string.decode(L,q),q+=m.string.decode.bytes;break;case 3:B.id_3=m.string.decode(L,q),q+=m.string.decode.bytes;break;default:q=V(U&7,L,q)}}}n(I,"decode")}n(p,"defineIds"),s.encodingLength=_,s.encode=b,s.decode=w;function _(y){var v=0;if(E(y.ids)){var I=u.encodingLength(y.ids);v+=x.encodingLength(I),v+=1+I}return v}n(_,"encodingLength");function b(y,v,I){I||(I=0),v||(v=Buffer.allocUnsafe(_(y)));var L=I;return E(y.ids)&&(v[I++]=18,x.encode(u.encodingLength(y.ids),v,I),I+=x.encode.bytes,u.encode(y.ids,v,I),I+=u.encode.bytes),b.bytes=I-L,v}n(b,"encode");function w(y,v,I){if(v||(v=0),I||(I=y.length),!(I<=y.length&&v<=y.length))throw new Error("Decoded message is not valid");for(var L=v,q={ids:null};;){if(I<=v)return w.bytes=v-L,q;var S=x.decode(y,v);v+=x.decode.bytes;var P=S>>3;switch(P){case 2:var B=x.decode(y,v);v+=x.decode.bytes,q.ids=u.decode(y,v,v+B),v+=u.decode.bytes;break;default:v=V(S&7,y,v)}}}n(w,"decode")}n(r,"defineParams"),c.encodingLength=o,c.encode=h,c.decode=l;function o(u){var p=0;if(E(u.params)){var _=s.encodingLength(u.params);p+=x.encodingLength(_),p+=1+_}return p}n(o,"encodingLength");function h(u,p,_){_||(_=0),p||(p=Buffer.allocUnsafe(o(u)));var b=_;return E(u.params)&&(p[_++]=10,x.encode(s.encodingLength(u.params),p,_),_+=x.encode.bytes,s.encode(u.params,p,_),_+=s.encode.bytes),h.bytes=_-b,p}n(h,"encode");function l(u,p,_){if(p||(p=0),_||(_=u.length),!(_<=u.length&&p<=u.length))throw new Error("Decoded message is not valid");for(var b=p,w={params:null};;){if(_<=p)return l.bytes=p-b,w;var y=x.decode(u,p);p+=x.decode.bytes;var v=y>>3;switch(v){case 1:var I=x.decode(u,p);p+=x.decode.bytes,w.params=s.decode(u,p,p+I),p+=s.decode.bytes;break;default:p=V(y&7,u,p)}}}n(l,"decode")}n(e,"defineSound"),ni.encodingLength=t,ni.encode=i,ni.decode=a;function t(s){var r=0;if(E(s.sound)){var o=c.encodingLength(s.sound);r+=x.encodingLength(o),r+=2+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.sound)&&(r[o++]=242,r[o++]=5,x.encode(c.encodingLength(s.sound),r,o),o+=x.encode.bytes,c.encode(s.sound,r,o),o+=c.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={sound:null};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 94:var _=x.decode(s,r);r+=x.decode.bytes,l.sound=c.decode(s,r,r+_),r+=c.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(wE,"defineSoundInfoParams");function vE(){var c=ii.Preference={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){c.encodingLength=s,c.encode=r,c.decode=o;function s(h){var l=0;if(E(h.index)){var u=m.int32.encodingLength(h.index);l+=1+u}return l}n(s,"encodingLength");function r(h,l,u){u||(u=0),l||(l=Buffer.allocUnsafe(s(h)));var p=u;return E(h.index)&&(l[u++]=8,m.int32.encode(h.index,l,u),u+=m.int32.encode.bytes),r.bytes=u-p,l}n(r,"encode");function o(h,l,u){if(l||(l=0),u||(u=h.length),!(u<=h.length&&l<=h.length))throw new Error("Decoded message is not valid");for(var p=l,_={index:0};;){if(u<=l)return o.bytes=l-p,_;var b=x.decode(h,l);l+=x.decode.bytes;var w=b>>3;switch(w){case 1:_.index=m.int32.decode(h,l),l+=m.int32.decode.bytes;break;default:l=V(b&7,h,l)}}}n(o,"decode")}n(e,"definePreference"),ii.encodingLength=t,ii.encode=i,ii.decode=a;function t(s){var r=0;if(E(s.channel_id)){var o=m.string.encodingLength(s.channel_id);r+=1+o}if(E(s.pref_id)){var o=c.encodingLength(s.pref_id);r+=x.encodingLength(o),r+=1+o}if(E(s.number_0)){var o=m.int32.encodingLength(s.number_0);r+=1+o}if(E(s.number_1)){var o=m.int32.encodingLength(s.number_1);r+=1+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.channel_id)&&(r[o++]=10,m.string.encode(s.channel_id,r,o),o+=m.string.encode.bytes),E(s.pref_id)&&(r[o++]=18,x.encode(c.encodingLength(s.pref_id),r,o),o+=x.encode.bytes,c.encode(s.pref_id,r,o),o+=c.encode.bytes),E(s.number_0)&&(r[o++]=24,m.int32.encode(s.number_0,r,o),o+=m.int32.encode.bytes),E(s.number_1)&&(r[o++]=32,m.int32.encode(s.number_1,r,o),o+=m.int32.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={channel_id:"",pref_id:null,number_0:0,number_1:0};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 1:l.channel_id=m.string.decode(s,r),r+=m.string.decode.bytes;break;case 2:var _=x.decode(s,r);r+=x.decode.bytes,l.pref_id=c.decode(s,r,r+_),r+=c.decode.bytes;break;case 3:l.number_0=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;case 4:l.number_1=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(vE,"defineNotificationPreferences");function bE(){var c=si.Params={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){var s=c.Ids={buffer:!0,encodingLength:null,encode:null,decode:null};r();function r(){s.encodingLength=u,s.encode=p,s.decode=_;function u(b){var w=0;if(E(b.channel_id)){var y=m.string.encodingLength(b.channel_id);w+=1+y}if(E(b.video_id)){var y=m.string.encodingLength(b.video_id);w+=1+y}return w}n(u,"encodingLength");function p(b,w,y){y||(y=0),w||(w=Buffer.allocUnsafe(u(b)));var v=y;return E(b.channel_id)&&(w[y++]=10,m.string.encode(b.channel_id,w,y),y+=m.string.encode.bytes),E(b.video_id)&&(w[y++]=18,m.string.encode(b.video_id,w,y),y+=m.string.encode.bytes),p.bytes=y-v,w}n(p,"encode");function _(b,w,y){if(w||(w=0),y||(y=b.length),!(y<=b.length&&w<=b.length))throw new Error("Decoded message is not valid");for(var v=w,I={channel_id:"",video_id:""};;){if(y<=w)return _.bytes=w-v,I;var L=x.decode(b,w);w+=x.decode.bytes;var q=L>>3;switch(q){case 1:I.channel_id=m.string.decode(b,w),w+=m.string.decode.bytes;break;case 2:I.video_id=m.string.decode(b,w),w+=m.string.decode.bytes;break;default:w=V(L&7,b,w)}}}n(_,"decode")}n(r,"defineIds"),c.encodingLength=o,c.encode=h,c.decode=l;function o(u){var p=0;if(E(u.ids)){var _=s.encodingLength(u.ids);p+=x.encodingLength(_),p+=1+_}return p}n(o,"encodingLength");function h(u,p,_){_||(_=0),p||(p=Buffer.allocUnsafe(o(u)));var b=_;return E(u.ids)&&(p[_++]=42,x.encode(s.encodingLength(u.ids),p,_),_+=x.encode.bytes,s.encode(u.ids,p,_),_+=s.encode.bytes),h.bytes=_-b,p}n(h,"encode");function l(u,p,_){if(p||(p=0),_||(_=u.length),!(_<=u.length&&p<=u.length))throw new Error("Decoded message is not valid");for(var b=p,w={ids:null};;){if(_<=p)return l.bytes=p-b,w;var y=x.decode(u,p);p+=x.decode.bytes;var v=y>>3;switch(v){case 5:var I=x.decode(u,p);p+=x.decode.bytes,w.ids=s.decode(u,p,p+I),p+=s.decode.bytes;break;default:p=V(y&7,u,p)}}}n(l,"decode")}n(e,"defineParams"),si.encodingLength=t,si.encode=i,si.decode=a;function t(s){var r=0;if(E(s.params)){var o=c.encodingLength(s.params);r+=x.encodingLength(o),r+=1+o}if(E(s.number_0)){var o=m.int32.encodingLength(s.number_0);r+=1+o}if(E(s.number_1)){var o=m.int32.encodingLength(s.number_1);r+=1+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.params)&&(r[o++]=10,x.encode(c.encodingLength(s.params),r,o),o+=x.encode.bytes,c.encode(s.params,r,o),o+=c.encode.bytes),E(s.number_0)&&(r[o++]=16,m.int32.encode(s.number_0,r,o),o+=m.int32.encode.bytes),E(s.number_1)&&(r[o++]=24,m.int32.encode(s.number_1,r,o),o+=m.int32.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={params:null,number_0:0,number_1:0};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 1:var _=x.decode(s,r);r+=x.decode.bytes,l.params=c.decode(s,r,r+_),r+=c.decode.bytes;break;case 2:l.number_0=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;case 3:l.number_1=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(bE,"defineLiveMessageParams");function xE(){var c=cn.Context={buffer:!0,encodingLength:null,encode:null,decode:null},e=cn.Params={buffer:!0,encodingLength:null,encode:null,decode:null};t(),i();function t(){c.encodingLength=o,c.encode=h,c.decode=l;function o(u){var p=0;if(E(u.video_id)){var _=m.string.encodingLength(u.video_id);p+=1+_}return p}n(o,"encodingLength");function h(u,p,_){_||(_=0),p||(p=Buffer.allocUnsafe(o(u)));var b=_;return E(u.video_id)&&(p[_++]=18,m.string.encode(u.video_id,p,_),_+=m.string.encode.bytes),h.bytes=_-b,p}n(h,"encode");function l(u,p,_){if(p||(p=0),_||(_=u.length),!(_<=u.length&&p<=u.length))throw new Error("Decoded message is not valid");for(var b=p,w={video_id:""};;){if(_<=p)return l.bytes=p-b,w;var y=x.decode(u,p);p+=x.decode.bytes;var v=y>>3;switch(v){case 2:w.video_id=m.string.decode(u,p),p+=m.string.decode.bytes;break;default:p=V(y&7,u,p)}}}n(l,"decode")}n(t,"defineContext");function i(){var o=e.Options={buffer:!0,encodingLength:null,encode:null,decode:null},h=e.RepliesOptions={buffer:!0,encodingLength:null,encode:null,decode:null};l(),u();function l(){o.encodingLength=w,o.encode=y,o.decode=v;function w(I){var L=0;if(E(I.video_id)){var q=m.string.encodingLength(I.video_id);L+=1+q}if(E(I.sort_by)){var q=m.int32.encodingLength(I.sort_by);L+=1+q}if(E(I.type)){var q=m.int32.encodingLength(I.type);L+=1+q}return L}n(w,"encodingLength");function y(I,L,q){q||(q=0),L||(L=Buffer.allocUnsafe(w(I)));var S=q;return E(I.video_id)&&(L[q++]=34,m.string.encode(I.video_id,L,q),q+=m.string.encode.bytes),E(I.sort_by)&&(L[q++]=48,m.int32.encode(I.sort_by,L,q),q+=m.int32.encode.bytes),E(I.type)&&(L[q++]=120,m.int32.encode(I.type,L,q),q+=m.int32.encode.bytes),y.bytes=q-S,L}n(y,"encode");function v(I,L,q){if(L||(L=0),q||(q=I.length),!(q<=I.length&&L<=I.length))throw new Error("Decoded message is not valid");for(var S=L,P={video_id:"",sort_by:0,type:0};;){if(q<=L)return v.bytes=L-S,P;var B=x.decode(I,L);L+=x.decode.bytes;var U=B>>3;switch(U){case 4:P.video_id=m.string.decode(I,L),L+=m.string.decode.bytes;break;case 6:P.sort_by=m.int32.decode(I,L),L+=m.int32.decode.bytes;break;case 15:P.type=m.int32.decode(I,L),L+=m.int32.decode.bytes;break;default:L=V(B&7,I,L)}}}n(v,"decode")}n(l,"defineOptions");function u(){var w=h.UnkOpts={buffer:!0,encodingLength:null,encode:null,decode:null};y();function y(){w.encodingLength=q,w.encode=S,w.decode=P;function q(B){var U=0;if(E(B.unk_param)){var F=m.int32.encodingLength(B.unk_param);U+=1+F}return U}n(q,"encodingLength");function S(B,U,F){F||(F=0),U||(U=Buffer.allocUnsafe(q(B)));var J=F;return E(B.unk_param)&&(U[F++]=8,m.int32.encode(B.unk_param,U,F),F+=m.int32.encode.bytes),S.bytes=F-J,U}n(S,"encode");function P(B,U,F){if(U||(U=0),F||(F=B.length),!(F<=B.length&&U<=B.length))throw new Error("Decoded message is not valid");for(var J=U,W={unk_param:0};;){if(F<=U)return P.bytes=U-J,W;var Ne=x.decode(B,U);U+=x.decode.bytes;var We=Ne>>3;switch(We){case 1:W.unk_param=m.int32.decode(B,U),U+=m.int32.decode.bytes;break;default:U=V(Ne&7,B,U)}}}n(P,"decode")}n(y,"defineUnkOpts"),h.encodingLength=v,h.encode=I,h.decode=L;function v(q){var S=0;if(E(q.comment_id)){var P=m.string.encodingLength(q.comment_id);S+=1+P}if(E(q.unkopts)){var P=w.encodingLength(q.unkopts);S+=x.encodingLength(P),S+=1+P}if(E(q.channel_id)){var P=m.string.encodingLength(q.channel_id);S+=1+P}if(E(q.video_id)){var P=m.string.encodingLength(q.video_id);S+=1+P}if(E(q.unk_param_1)){var P=m.int32.encodingLength(q.unk_param_1);S+=1+P}if(E(q.unk_param_2)){var P=m.int32.encodingLength(q.unk_param_2);S+=1+P}return S}n(v,"encodingLength");function I(q,S,P){P||(P=0),S||(S=Buffer.allocUnsafe(v(q)));var B=P;return E(q.comment_id)&&(S[P++]=18,m.string.encode(q.comment_id,S,P),P+=m.string.encode.bytes),E(q.unkopts)&&(S[P++]=34,x.encode(w.encodingLength(q.unkopts),S,P),P+=x.encode.bytes,w.encode(q.unkopts,S,P),P+=w.encode.bytes),E(q.channel_id)&&(S[P++]=42,m.string.encode(q.channel_id,S,P),P+=m.string.encode.bytes),E(q.video_id)&&(S[P++]=50,m.string.encode(q.video_id,S,P),P+=m.string.encode.bytes),E(q.unk_param_1)&&(S[P++]=64,m.int32.encode(q.unk_param_1,S,P),P+=m.int32.encode.bytes),E(q.unk_param_2)&&(S[P++]=72,m.int32.encode(q.unk_param_2,S,P),P+=m.int32.encode.bytes),I.bytes=P-B,S}n(I,"encode");function L(q,S,P){if(S||(S=0),P||(P=q.length),!(P<=q.length&&S<=q.length))throw new Error("Decoded message is not valid");for(var B=S,U={comment_id:"",unkopts:null,channel_id:"",video_id:"",unk_param_1:0,unk_param_2:0};;){if(P<=S)return L.bytes=S-B,U;var F=x.decode(q,S);S+=x.decode.bytes;var J=F>>3;switch(J){case 2:U.comment_id=m.string.decode(q,S),S+=m.string.decode.bytes;break;case 4:var W=x.decode(q,S);S+=x.decode.bytes,U.unkopts=w.decode(q,S,S+W),S+=w.decode.bytes;break;case 5:U.channel_id=m.string.decode(q,S),S+=m.string.decode.bytes;break;case 6:U.video_id=m.string.decode(q,S),S+=m.string.decode.bytes;break;case 8:U.unk_param_1=m.int32.decode(q,S),S+=m.int32.decode.bytes;break;case 9:U.unk_param_2=m.int32.decode(q,S),S+=m.int32.decode.bytes;break;default:S=V(F&7,q,S)}}}n(L,"decode")}n(u,"defineRepliesOptions"),e.encodingLength=p,e.encode=_,e.decode=b;function p(w){var y=0;if(E(w.unk_token)){var v=m.string.encodingLength(w.unk_token);y+=1+v}if(E(w.opts)){var v=o.encodingLength(w.opts);y+=x.encodingLength(v),y+=1+v}if(E(w.replies_opts)){var v=h.encodingLength(w.replies_opts);y+=x.encodingLength(v),y+=1+v}if(E(w.page)){var v=m.int32.encodingLength(w.page);y+=1+v}if(E(w.target)){var v=m.string.encodingLength(w.target);y+=1+v}return y}n(p,"encodingLength");function _(w,y,v){v||(v=0),y||(y=Buffer.allocUnsafe(p(w)));var I=v;return E(w.unk_token)&&(y[v++]=10,m.string.encode(w.unk_token,y,v),v+=m.string.encode.bytes),E(w.opts)&&(y[v++]=34,x.encode(o.encodingLength(w.opts),y,v),v+=x.encode.bytes,o.encode(w.opts,y,v),v+=o.encode.bytes),E(w.replies_opts)&&(y[v++]=26,x.encode(h.encodingLength(w.replies_opts),y,v),v+=x.encode.bytes,h.encode(w.replies_opts,y,v),v+=h.encode.bytes),E(w.page)&&(y[v++]=40,m.int32.encode(w.page,y,v),v+=m.int32.encode.bytes),E(w.target)&&(y[v++]=66,m.string.encode(w.target,y,v),v+=m.string.encode.bytes),_.bytes=v-I,y}n(_,"encode");function b(w,y,v){if(y||(y=0),v||(v=w.length),!(v<=w.length&&y<=w.length))throw new Error("Decoded message is not valid");for(var I=y,L={unk_token:"",opts:null,replies_opts:null,page:0,target:""};;){if(v<=y)return b.bytes=y-I,L;var q=x.decode(w,y);y+=x.decode.bytes;var S=q>>3;switch(S){case 1:L.unk_token=m.string.decode(w,y),y+=m.string.decode.bytes;break;case 4:var P=x.decode(w,y);y+=x.decode.bytes,L.opts=o.decode(w,y,y+P),y+=o.decode.bytes;break;case 3:var P=x.decode(w,y);y+=x.decode.bytes,L.replies_opts=h.decode(w,y,y+P),y+=h.decode.bytes;break;case 5:L.page=m.int32.decode(w,y),y+=m.int32.decode.bytes;break;case 8:L.target=m.string.decode(w,y),y+=m.string.decode.bytes;break;default:y=V(q&7,w,y)}}}n(b,"decode")}n(i,"defineParams"),cn.encodingLength=a,cn.encode=s,cn.decode=r;function a(o){var h=0;if(E(o.ctx)){var l=c.encodingLength(o.ctx);h+=x.encodingLength(l),h+=1+l}if(E(o.unk_param)){var l=m.int32.encodingLength(o.unk_param);h+=1+l}if(E(o.params)){var l=e.encodingLength(o.params);h+=x.encodingLength(l),h+=1+l}return h}n(a,"encodingLength");function s(o,h,l){l||(l=0),h||(h=Buffer.allocUnsafe(a(o)));var u=l;return E(o.ctx)&&(h[l++]=18,x.encode(c.encodingLength(o.ctx),h,l),l+=x.encode.bytes,c.encode(o.ctx,h,l),l+=c.encode.bytes),E(o.unk_param)&&(h[l++]=24,m.int32.encode(o.unk_param,h,l),l+=m.int32.encode.bytes),E(o.params)&&(h[l++]=50,x.encode(e.encodingLength(o.params),h,l),l+=x.encode.bytes,e.encode(o.params,h,l),l+=e.encode.bytes),s.bytes=l-u,h}n(s,"encode");function r(o,h,l){if(h||(h=0),l||(l=o.length),!(l<=o.length&&h<=o.length))throw new Error("Decoded message is not valid");for(var u=h,p={ctx:null,unk_param:0,params:null};;){if(l<=h)return r.bytes=h-u,p;var _=x.decode(o,h);h+=x.decode.bytes;var b=_>>3;switch(b){case 2:var w=x.decode(o,h);h+=x.decode.bytes,p.ctx=c.decode(o,h,h+w),h+=c.decode.bytes;break;case 3:p.unk_param=m.int32.decode(o,h),h+=m.int32.decode.bytes;break;case 6:var w=x.decode(o,h);h+=x.decode.bytes,p.params=e.decode(o,h,h+w),h+=e.decode.bytes;break;default:h=V(_&7,o,h)}}}n(r,"decode")}n(xE,"defineGetCommentsSectionParams");function TE(){var c=ri.Params={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){c.encodingLength=s,c.encode=r,c.decode=o;function s(h){var l=0;if(E(h.index)){var u=m.int32.encodingLength(h.index);l+=1+u}return l}n(s,"encodingLength");function r(h,l,u){u||(u=0),l||(l=Buffer.allocUnsafe(s(h)));var p=u;return E(h.index)&&(l[u++]=8,m.int32.encode(h.index,l,u),u+=m.int32.encode.bytes),r.bytes=u-p,l}n(r,"encode");function o(h,l,u){if(l||(l=0),u||(u=h.length),!(u<=h.length&&l<=h.length))throw new Error("Decoded message is not valid");for(var p=l,_={index:0};;){if(u<=l)return o.bytes=l-p,_;var b=x.decode(h,l);l+=x.decode.bytes;var w=b>>3;switch(w){case 1:_.index=m.int32.decode(h,l),l+=m.int32.decode.bytes;break;default:l=V(b&7,h,l)}}}n(o,"decode")}n(e,"defineParams"),ri.encodingLength=t,ri.encode=i,ri.decode=a;function t(s){var r=0;if(E(s.video_id)){var o=m.string.encodingLength(s.video_id);r+=1+o}if(E(s.params)){var o=c.encodingLength(s.params);r+=x.encodingLength(o),r+=1+o}if(E(s.number)){var o=m.int32.encodingLength(s.number);r+=1+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.video_id)&&(r[o++]=18,m.string.encode(s.video_id,r,o),o+=m.string.encode.bytes),E(s.params)&&(r[o++]=42,x.encode(c.encodingLength(s.params),r,o),o+=x.encode.bytes,c.encode(s.params,r,o),o+=c.encode.bytes),E(s.number)&&(r[o++]=80,m.int32.encode(s.number,r,o),o+=m.int32.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={video_id:"",params:null,number:0};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 2:l.video_id=m.string.decode(s,r),r+=m.string.decode.bytes;break;case 5:var _=x.decode(s,r);r+=x.decode.bytes,l.params=c.decode(s,r,r+_),r+=c.decode.bytes;break;case 10:l.number=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(TE,"defineCreateCommentParams");function EE(){var c=oi.UnknownParams={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){c.encodingLength=s,c.encode=r,c.decode=o;function s(h){var l=0;if(E(h.unk_num)){var u=m.int32.encodingLength(h.unk_num);l+=1+u}return l}n(s,"encodingLength");function r(h,l,u){u||(u=0),l||(l=Buffer.allocUnsafe(s(h)));var p=u;return E(h.unk_num)&&(l[u++]=8,m.int32.encode(h.unk_num,l,u),u+=m.int32.encode.bytes),r.bytes=u-p,l}n(r,"encode");function o(h,l,u){if(l||(l=0),u||(u=h.length),!(u<=h.length&&l<=h.length))throw new Error("Decoded message is not valid");for(var p=l,_={unk_num:0};;){if(u<=l)return o.bytes=l-p,_;var b=x.decode(h,l);l+=x.decode.bytes;var w=b>>3;switch(w){case 1:_.unk_num=m.int32.decode(h,l),l+=m.int32.decode.bytes;break;default:l=V(b&7,h,l)}}}n(o,"decode")}n(e,"defineUnknownParams"),oi.encodingLength=t,oi.encode=i,oi.decode=a;function t(s){var r=0;if(E(s.video_id)){var o=m.string.encodingLength(s.video_id);r+=1+o}if(E(s.comment_id)){var o=m.string.encodingLength(s.comment_id);r+=1+o}if(E(s.params)){var o=c.encodingLength(s.params);r+=x.encodingLength(o),r+=1+o}if(E(s.unk_num)){var o=m.int32.encodingLength(s.unk_num);r+=1+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.video_id)&&(r[o++]=18,m.string.encode(s.video_id,r,o),o+=m.string.encode.bytes),E(s.comment_id)&&(r[o++]=34,m.string.encode(s.comment_id,r,o),o+=m.string.encode.bytes),E(s.params)&&(r[o++]=42,x.encode(c.encodingLength(s.params),r,o),o+=x.encode.bytes,c.encode(s.params,r,o),o+=c.encode.bytes),E(s.unk_num)&&(r[o++]=80,m.int32.encode(s.unk_num,r,o),o+=m.int32.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={video_id:"",comment_id:"",params:null,unk_num:0};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 2:l.video_id=m.string.decode(s,r),r+=m.string.decode.bytes;break;case 4:l.comment_id=m.string.decode(s,r),r+=m.string.decode.bytes;break;case 5:var _=x.decode(s,r);r+=x.decode.bytes,l.params=c.decode(s,r,r+_),r+=c.decode.bytes;break;case 10:l.unk_num=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(EE,"defineCreateCommentReplyParams");function qE(){var c=ci.TranslateCommentParams={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){var s=c.Params={buffer:!0,encodingLength:null,encode:null,decode:null};r();function r(){var u=s.Comment={buffer:!0,encodingLength:null,encode:null,decode:null};p();function p(){u.encodingLength=y,u.encode=v,u.decode=I;function y(L){var q=0;if(E(L.text)){var S=m.string.encodingLength(L.text);q+=1+S}return q}n(y,"encodingLength");function v(L,q,S){S||(S=0),q||(q=Buffer.allocUnsafe(y(L)));var P=S;return E(L.text)&&(q[S++]=10,m.string.encode(L.text,q,S),S+=m.string.encode.bytes),v.bytes=S-P,q}n(v,"encode");function I(L,q,S){if(q||(q=0),S||(S=L.length),!(S<=L.length&&q<=L.length))throw new Error("Decoded message is not valid");for(var P=q,B={text:""};;){if(S<=q)return I.bytes=q-P,B;var U=x.decode(L,q);q+=x.decode.bytes;var F=U>>3;switch(F){case 1:B.text=m.string.decode(L,q),q+=m.string.decode.bytes;break;default:q=V(U&7,L,q)}}}n(I,"decode")}n(p,"defineComment"),s.encodingLength=_,s.encode=b,s.decode=w;function _(y){var v=0;if(E(y.comment)){var I=u.encodingLength(y.comment);v+=x.encodingLength(I),v+=1+I}return v}n(_,"encodingLength");function b(y,v,I){I||(I=0),v||(v=Buffer.allocUnsafe(_(y)));var L=I;return E(y.comment)&&(v[I++]=10,x.encode(u.encodingLength(y.comment),v,I),I+=x.encode.bytes,u.encode(y.comment,v,I),I+=u.encode.bytes),b.bytes=I-L,v}n(b,"encode");function w(y,v,I){if(v||(v=0),I||(I=y.length),!(I<=y.length&&v<=y.length))throw new Error("Decoded message is not valid");for(var L=v,q={comment:null};;){if(I<=v)return w.bytes=v-L,q;var S=x.decode(y,v);v+=x.decode.bytes;var P=S>>3;switch(P){case 1:var B=x.decode(y,v);v+=x.decode.bytes,q.comment=u.decode(y,v,v+B),v+=u.decode.bytes;break;default:v=V(S&7,y,v)}}}n(w,"decode")}n(r,"defineParams"),c.encodingLength=o,c.encode=h,c.decode=l;function o(u){var p=0;if(E(u.params)){var _=s.encodingLength(u.params);p+=x.encodingLength(_),p+=1+_}if(E(u.comment_id)){var _=m.string.encodingLength(u.comment_id);p+=1+_}if(E(u.target_language)){var _=m.string.encodingLength(u.target_language);p+=1+_}return p}n(o,"encodingLength");function h(u,p,_){_||(_=0),p||(p=Buffer.allocUnsafe(o(u)));var b=_;return E(u.params)&&(p[_++]=26,x.encode(s.encodingLength(u.params),p,_),_+=x.encode.bytes,s.encode(u.params,p,_),_+=s.encode.bytes),E(u.comment_id)&&(p[_++]=18,m.string.encode(u.comment_id,p,_),_+=m.string.encode.bytes),E(u.target_language)&&(p[_++]=34,m.string.encode(u.target_language,p,_),_+=m.string.encode.bytes),h.bytes=_-b,p}n(h,"encode");function l(u,p,_){if(p||(p=0),_||(_=u.length),!(_<=u.length&&p<=u.length))throw new Error("Decoded message is not valid");for(var b=p,w={params:null,comment_id:"",target_language:""};;){if(_<=p)return l.bytes=p-b,w;var y=x.decode(u,p);p+=x.decode.bytes;var v=y>>3;switch(v){case 3:var I=x.decode(u,p);p+=x.decode.bytes,w.params=s.decode(u,p,p+I),p+=s.decode.bytes;break;case 2:w.comment_id=m.string.decode(u,p),p+=m.string.decode.bytes;break;case 4:w.target_language=m.string.decode(u,p),p+=m.string.decode.bytes;break;default:p=V(y&7,u,p)}}}n(l,"decode")}n(e,"defineTranslateCommentParams"),ci.encodingLength=t,ci.encode=i,ci.decode=a;function t(s){var r=0;if(E(s.type)){var o=m.int32.encodingLength(s.type);r+=1+o}if(E(s.comment_id)){var o=m.string.encodingLength(s.comment_id);r+=1+o}if(E(s.video_id)){var o=m.string.encodingLength(s.video_id);r+=1+o}if(E(s.unk_num)){var o=m.int32.encodingLength(s.unk_num);r+=1+o}if(E(s.channel_id)){var o=m.string.encodingLength(s.channel_id);r+=2+o}if(E(s.translate_comment_params)){var o=c.encodingLength(s.translate_comment_params);r+=x.encodingLength(o),r+=2+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.type)&&(r[o++]=8,m.int32.encode(s.type,r,o),o+=m.int32.encode.bytes),E(s.comment_id)&&(r[o++]=26,m.string.encode(s.comment_id,r,o),o+=m.string.encode.bytes),E(s.video_id)&&(r[o++]=42,m.string.encode(s.video_id,r,o),o+=m.string.encode.bytes),E(s.unk_num)&&(r[o++]=16,m.int32.encode(s.unk_num,r,o),o+=m.int32.encode.bytes),E(s.channel_id)&&(r[o++]=186,r[o++]=1,m.string.encode(s.channel_id,r,o),o+=m.string.encode.bytes),E(s.translate_comment_params)&&(r[o++]=250,r[o++]=1,x.encode(c.encodingLength(s.translate_comment_params),r,o),o+=x.encode.bytes,c.encode(s.translate_comment_params,r,o),o+=c.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={type:0,comment_id:"",video_id:"",unk_num:0,channel_id:"",translate_comment_params:null};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 1:l.type=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;case 3:l.comment_id=m.string.decode(s,r),r+=m.string.decode.bytes;break;case 5:l.video_id=m.string.decode(s,r),r+=m.string.decode.bytes;break;case 2:l.unk_num=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;case 23:l.channel_id=m.string.decode(s,r),r+=m.string.decode.bytes;break;case 31:var _=x.decode(s,r);r+=x.decode.bytes,l.translate_comment_params=c.decode(s,r,r+_),r+=c.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(qE,"definePeformCommentActionParams");function RE(){var c=ai.Filters={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){var s=c.Type={buffer:!0,encodingLength:null,encode:null,decode:null};r();function r(){s.encodingLength=u,s.encode=p,s.decode=_;function u(b){var w=0;if(E(b.all)){var y=m.int32.encodingLength(b.all);w+=1+y}if(E(b.song)){var y=m.int32.encodingLength(b.song);w+=1+y}if(E(b.video)){var y=m.int32.encodingLength(b.video);w+=1+y}if(E(b.album)){var y=m.int32.encodingLength(b.album);w+=1+y}if(E(b.artist)){var y=m.int32.encodingLength(b.artist);w+=1+y}if(E(b.playlist)){var y=m.int32.encodingLength(b.playlist);w+=1+y}return w}n(u,"encodingLength");function p(b,w,y){y||(y=0),w||(w=Buffer.allocUnsafe(u(b)));var v=y;return E(b.all)&&(w[y++]=0,m.int32.encode(b.all,w,y),y+=m.int32.encode.bytes),E(b.song)&&(w[y++]=8,m.int32.encode(b.song,w,y),y+=m.int32.encode.bytes),E(b.video)&&(w[y++]=16,m.int32.encode(b.video,w,y),y+=m.int32.encode.bytes),E(b.album)&&(w[y++]=24,m.int32.encode(b.album,w,y),y+=m.int32.encode.bytes),E(b.artist)&&(w[y++]=32,m.int32.encode(b.artist,w,y),y+=m.int32.encode.bytes),E(b.playlist)&&(w[y++]=40,m.int32.encode(b.playlist,w,y),y+=m.int32.encode.bytes),p.bytes=y-v,w}n(p,"encode");function _(b,w,y){if(w||(w=0),y||(y=b.length),!(y<=b.length&&w<=b.length))throw new Error("Decoded message is not valid");for(var v=w,I={all:0,song:0,video:0,album:0,artist:0,playlist:0};;){if(y<=w)return _.bytes=w-v,I;var L=x.decode(b,w);w+=x.decode.bytes;var q=L>>3;switch(q){case 0:I.all=m.int32.decode(b,w),w+=m.int32.decode.bytes;break;case 1:I.song=m.int32.decode(b,w),w+=m.int32.decode.bytes;break;case 2:I.video=m.int32.decode(b,w),w+=m.int32.decode.bytes;break;case 3:I.album=m.int32.decode(b,w),w+=m.int32.decode.bytes;break;case 4:I.artist=m.int32.decode(b,w),w+=m.int32.decode.bytes;break;case 5:I.playlist=m.int32.decode(b,w),w+=m.int32.decode.bytes;break;default:w=V(L&7,b,w)}}}n(_,"decode")}n(r,"defineType"),c.encodingLength=o,c.encode=h,c.decode=l;function o(u){var p=0;if(E(u.type)){var _=s.encodingLength(u.type);p+=x.encodingLength(_),p+=2+_}return p}n(o,"encodingLength");function h(u,p,_){_||(_=0),p||(p=Buffer.allocUnsafe(o(u)));var b=_;return E(u.type)&&(p[_++]=138,p[_++]=1,x.encode(s.encodingLength(u.type),p,_),_+=x.encode.bytes,s.encode(u.type,p,_),_+=s.encode.bytes),h.bytes=_-b,p}n(h,"encode");function l(u,p,_){if(p||(p=0),_||(_=u.length),!(_<=u.length&&p<=u.length))throw new Error("Decoded message is not valid");for(var b=p,w={type:null};;){if(_<=p)return l.bytes=p-b,w;var y=x.decode(u,p);p+=x.decode.bytes;var v=y>>3;switch(v){case 17:var I=x.decode(u,p);p+=x.decode.bytes,w.type=s.decode(u,p,p+I),p+=s.decode.bytes;break;default:p=V(y&7,u,p)}}}n(l,"decode")}n(e,"defineFilters"),ai.encodingLength=t,ai.encode=i,ai.decode=a;function t(s){var r=0;if(E(s.filters)){var o=c.encodingLength(s.filters);r+=x.encodingLength(o),r+=1+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.filters)&&(r[o++]=18,x.encode(c.encodingLength(s.filters),r,o),o+=x.encode.bytes,c.encode(s.filters,r,o),o+=c.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={filters:null};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 2:var _=x.decode(s,r);r+=x.decode.bytes,l.filters=c.decode(s,r,r+_),r+=c.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(RE,"defineMusicSearchFilter");function IE(){var c=li.Filters={buffer:!0,encodingLength:null,encode:null,decode:null};e();function e(){c.encodingLength=s,c.encode=r,c.decode=o;function s(h){var l=0;if(E(h.upload_date)){var u=m.int32.encodingLength(h.upload_date);l+=1+u}if(E(h.type)){var u=m.int32.encodingLength(h.type);l+=1+u}if(E(h.duration)){var u=m.int32.encodingLength(h.duration);l+=1+u}return l}n(s,"encodingLength");function r(h,l,u){u||(u=0),l||(l=Buffer.allocUnsafe(s(h)));var p=u;return E(h.upload_date)&&(l[u++]=8,m.int32.encode(h.upload_date,l,u),u+=m.int32.encode.bytes),E(h.type)&&(l[u++]=16,m.int32.encode(h.type,l,u),u+=m.int32.encode.bytes),E(h.duration)&&(l[u++]=24,m.int32.encode(h.duration,l,u),u+=m.int32.encode.bytes),r.bytes=u-p,l}n(r,"encode");function o(h,l,u){if(l||(l=0),u||(u=h.length),!(u<=h.length&&l<=h.length))throw new Error("Decoded message is not valid");for(var p=l,_={upload_date:0,type:0,duration:0};;){if(u<=l)return o.bytes=l-p,_;var b=x.decode(h,l);l+=x.decode.bytes;var w=b>>3;switch(w){case 1:_.upload_date=m.int32.decode(h,l),l+=m.int32.decode.bytes;break;case 2:_.type=m.int32.decode(h,l),l+=m.int32.decode.bytes;break;case 3:_.duration=m.int32.decode(h,l),l+=m.int32.decode.bytes;break;default:l=V(b&7,h,l)}}}n(o,"decode")}n(e,"defineFilters"),li.encodingLength=t,li.encode=i,li.decode=a;function t(s){var r=0;if(E(s.sort_by)){var o=m.int32.encodingLength(s.sort_by);r+=1+o}if(E(s.no_filter)){var o=m.int32.encodingLength(s.no_filter);r+=2+o}if(E(s.filters)){var o=c.encodingLength(s.filters);r+=x.encodingLength(o),r+=1+o}return r}n(t,"encodingLength");function i(s,r,o){o||(o=0),r||(r=Buffer.allocUnsafe(t(s)));var h=o;return E(s.sort_by)&&(r[o++]=8,m.int32.encode(s.sort_by,r,o),o+=m.int32.encode.bytes),E(s.no_filter)&&(r[o++]=152,r[o++]=1,m.int32.encode(s.no_filter,r,o),o+=m.int32.encode.bytes),E(s.filters)&&(r[o++]=18,x.encode(c.encodingLength(s.filters),r,o),o+=x.encode.bytes,c.encode(s.filters,r,o),o+=c.encode.bytes),i.bytes=o-h,r}n(i,"encode");function a(s,r,o){if(r||(r=0),o||(o=s.length),!(o<=s.length&&r<=s.length))throw new Error("Decoded message is not valid");for(var h=r,l={sort_by:0,no_filter:0,filters:null};;){if(o<=r)return a.bytes=r-h,l;var u=x.decode(s,r);r+=x.decode.bytes;var p=u>>3;switch(p){case 1:l.sort_by=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;case 19:l.no_filter=m.int32.decode(s,r),r+=m.int32.decode.bytes;break;case 2:var _=x.decode(s,r);r+=x.decode.bytes,l.filters=c.decode(s,r,r+_),r+=c.decode.bytes;break;default:r=V(u&7,s,r)}}}n(a,"decode")}n(IE,"defineSearchFilter");function E(c){return c!=null&&(typeof c!="number"||!isNaN(c))}n(E,"defined")});var He=g((OL,ch)=>{"use strict";var pe=oh(),ui=class{static encodeVisitorData(e,t){let i=pe.VisitorData.encode({id:e,timestamp:t});return encodeURIComponent(Buffer.from(i).toString("base64").replace(/\/|\+/g,"_"))}static encodeChannelAnalyticsParams(e){let t=pe.ChannelAnalytics.encode({params:{channel_id:e}});return encodeURIComponent(Buffer.from(t).toString("base64"))}static encodeSearchFilters(e){let t={all:null,hour:1,today:2,week:3,month:4,year:5},i={all:null,video:1,channel:2,playlist:3,movie:4},a={all:null,short:1,long:2,medium:3},s={relevance:null,rating:1,upload_date:2,view_count:3},r={};if(e?r.filters={}:r.no_filter=0,e){if(e.upload_date&&e.type!=="video")throw new Error(`Upload date filter cannot be used with type ${e.type}`);e.upload_date&&(r.filters.upload_date=t[e.upload_date]),e.type&&(r.filters.type=i[e.type]),e.duration&&(r.filters.duration=a[e.duration]),e.sort_by&&e.sort_by!=="relevance"&&(r.sort_by=s[e.sort_by])}let o=pe.SearchFilter.encode(r);return encodeURIComponent(Buffer.from(o).toString("base64"))}static encodeMusicSearchFilters(e={}){let t={filters:{type:{}}};t.filters.type[e.type||"all"]=1;let i=pe.MusicSearchFilter.encode(t);return encodeURIComponent(Buffer.from(i).toString("base64"))}static encodeMessageParams(e,t){let i=pe.LiveMessageParams.encode({params:{ids:{channel_id:e,video_id:t}},number_0:1,number_1:4});return Buffer.from(encodeURIComponent(Buffer.from(i).toString("base64"))).toString("base64")}static encodeCommentsSectionParams(e,t={}){let i={TOP_COMMENTS:0,NEWEST_FIRST:1},a=pe.GetCommentsSectionParams.encode({ctx:{video_id:e},unk_param:6,params:{opts:{video_id:e,sort_by:i[t.sort_by||"TOP_COMMENTS"],type:t.type||2},target:"comments-section"}});return encodeURIComponent(Buffer.from(a).toString("base64"))}static encodeCommentRepliesParams(e,t){let i=pe.GetCommentsSectionParams.encode({ctx:{video_id:e},unk_param:6,params:{replies_opts:{video_id:e,comment_id:t,unkopts:{unk_param:0},unk_param_1:1,unk_param_2:10,channel_id:" "},target:`comment-replies-item-${t}`}});return encodeURIComponent(Buffer.from(i).toString("base64"))}static encodeCommentParams(e){let t=pe.CreateCommentParams.encode({video_id:e,params:{index:0},number:7});return encodeURIComponent(Buffer.from(t).toString("base64"))}static encodeCommentReplyParams(e,t){let i=pe.CreateCommentReplyParams.encode({video_id:t,comment_id:e,params:{unk_num:0},unk_num:7});return encodeURIComponent(Buffer.from(i).toString("base64"))}static encodeCommentActionParams(e,t={}){let i={};i.type=e,i.video_id=t.video_id||"",i.comment_id=t.comment_id||"",i.unk_num=2,t.hasOwnProperty("text")&&(t.comment_id&&delete i.unk_num,i.translate_comment_params={params:{comment:{text:t.text}},comment_id:t.comment_id||"",target_language:t.target_language});let a=pe.PeformCommentActionParams.encode(i);return encodeURIComponent(Buffer.from(a).toString("base64"))}static encodeNotificationPref(e,t){let i=pe.NotificationPreferences.encode({channel_id:e,pref_id:{index:t},number_0:0,number_1:4});return encodeURIComponent(Buffer.from(i).toString("base64"))}static encodeSoundInfoParams(e){let t={sound:{params:{ids:{id_1:e,id_2:e,id_3:e}}}},i=pe.SoundInfoParams.encode(t);return encodeURIComponent(Buffer.from(i).toString("base64"))}};n(ui,"Proto");ch.exports=ui});var uh=g((UL,lh)=>{"use strict";var SE=require("../node_modules/uuid/dist/index.js"),Ee=He(),X=D(),CE=ee(),te,H,di,ah,hi=class{constructor(e){T(this,di);T(this,te,void 0);T(this,H,void 0);C(this,te,e),C(this,H,e.request)}async browse(e,t={}){if(k(this,di,ah).call(this,e)&&!d(this,te).logged_in)throw new X.InnertubeError("You are not signed in");let i={};return t.params&&(i.params=t.params),t.is_ctoken?i.continuation=e:i.browseId=e,t.client&&(i.client=t.client),await d(this,H).post("/browse",i)}async engage(e,t={}){if(!d(this,te).logged_in&&!t.hasOwnProperty("text"))throw new X.InnertubeError("You are not signed in");let i={};switch(e){case"like/like":case"like/dislike":case"like/removelike":i.target={},i.target.videoId=t.video_id,t.params&&(i.params=t.params);break;case"subscription/subscribe":case"subscription/unsubscribe":i.channelIds=[t.channel_id],i.params=e==="subscription/subscribe"?"EgIIAhgA":"CgIIAhgA";break;case"comment/create_comment":i.commentText=t.text,i.createCommentParams=Ee.encodeCommentParams(t.video_id);break;case"comment/create_comment_reply":i.createReplyParams=Ee.encodeCommentReplyParams(t.comment_id,t.video_id),i.commentText=t.text;break;case"comment/perform_comment_action":let s=(()=>{switch(t.comment_action){case"like":return Ee.encodeCommentActionParams(5,t);case"dislike":return Ee.encodeCommentActionParams(4,t);case"translate":return Ee.encodeCommentActionParams(22,t);default:break}})();i.actions=[s];break;default:throw new X.InnertubeError("Action not implemented",e)}return await d(this,H).post(`/${e}`,i)}async account(e,t={}){if(!d(this,te).logged_in)throw new X.InnertubeError("You are not signed in");let i={client:t.client};switch(e){case"account/set_setting":i.newValue={boolValue:t.new_value},i.settingItemId=t.setting_item_id;break;case"account/accounts_list":break;default:throw new X.InnertubeError("Action not implemented",e)}return await d(this,H).post(`/${e}`,i)}async search(e={}){let t={client:e.client};return e.query&&(t.query=e.query),e.ctoken&&(t.continuation=e.ctoken),e.params&&(t.params=e.params),e.filters&&(e.client=="YTMUSIC"?t.params=Ee.encodeMusicSearchFilters(e.filters):t.params=Ee.encodeSearchFilters(e.filters)),await d(this,H).post("/search",t)}async searchSound(e={}){let t={query:e.query,client:"ANDROID"};return await d(this,H).post("/sfv/search",t)}async channel(e,t={}){if(!d(this,te).logged_in)throw new X.InnertubeError("You are not signed in");let i={client:t.client||"ANDROID"};switch(e){case"channel/edit_name":i.givenName=t.new_name;break;case"channel/edit_description":i.description=t.new_description;break;case"channel/get_profile_editor":break;default:throw new X.InnertubeError("Action not implemented",e)}return await d(this,H).post(`/${e}`,i)}async playlist(e,t={}){if(!d(this,te).logged_in)throw new X.InnertubeError("You are not signed in");let i={};switch(e){case"playlist/create":i.title=t.title,i.videoIds=t.ids;break;case"playlist/delete":i.playlistId=t.playlist_id;break;case"browse/edit_playlist":i.playlistId=t.playlist_id,i.actions=t.ids.map(s=>{switch(t.action){case"ACTION_ADD_VIDEO":return{action:t.action,addedVideoId:s};case"ACTION_REMOVE_VIDEO":return{action:t.action,setVideoId:s};default:break}});break;default:throw new X.InnertubeError("Action not implemented",e)}return await d(this,H).post(`/${e}`,i)}async notifications(e,t={}){if(!d(this,te).logged_in)throw new X.InnertubeError("You are not signed in");let i={};switch(e){case"modify_channel_preference":let s={PERSONALIZED:1,ALL:2,NONE:3};i.params=Ee.encodeNotificationPref(t.channel_id,s[t.pref.toUpperCase()]);break;case"get_notification_menu":i.notificationsMenuRequestType="NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX",t.ctoken&&(i.ctoken=t.ctoken);break;case"record_interactions":i.serializedRecordNotificationInteractionsRequest=t.params;break;case"get_unseen_count":break;default:throw new X.InnertubeError("Action not implemented",e)}return await d(this,H).post(`/notification/${e}`,i)}async livechat(e,t={}){let i={client:t.client};switch(e){case"live_chat/get_live_chat":case"live_chat/get_live_chat_replay":i.continuation=t.ctoken;break;case"live_chat/send_message":i.params=Ee.encodeMessageParams(t.channel_id,t.video_id),i.clientMessageId=SE.v4(),i.richMessage={textSegments:[{text:t.text}]};break;case"live_chat/get_item_context_menu":break;case"live_chat/moderate":i.params=t.params;break;case"updated_metadata":i.videoId=t.video_id,t.ctoken&&(i.continuation=t.ctoken);break;default:throw new X.InnertubeError("Action not implemented",e)}return await d(this,H).post(`/${e}`,i)}async thumbnails(e={}){let t={client:"ANDROID",videoId:e.video_id};return await d(this,H).post("/thumbnails",t)}async geo(e,t={}){if(!d(this,te).logged_in)throw new X.InnertubeError("You are not signed in");let i={input:t.input,client:"ANDROID"};return await d(this,H).post(`/geo/${e}`,i)}async flag(e,t){if(!d(this,te).logged_in)throw new X.InnertubeError("You are not signed in");let i={};switch(e){case"flag/flag":i.action=t.action;break;case"flag/get_form":i.params=t.params;break;default:throw new X.InnertubeError("Action not implemented",e)}return await d(this,H).post(`/${e}`,i)}async music(e,t){let i={input:t.input||"",client:"YTMUSIC"};return await d(this,H).post(`/music/${e}`,i)}async next(e={}){let t={client:e.client};return e.ctoken&&(t.continuation=e.ctoken),e.video_id&&(t.videoId=e.video_id),await d(this,H).post("/next",t)}async getVideoInfo(e,t,i){let a={playbackContext:{contentPlaybackContext:{vis:0,splay:!1,referer:"https://www.youtube.com",currentUrl:`/watch?v=${e}`,autonavState:"STATE_OFF",signatureTimestamp:d(this,te).sts,autoCaptionsDefaultOn:!1,html5Preference:"HTML5_PREF_WANTS",lactMilliseconds:"-1"}},attestationRequest:{omitBotguardData:!0},videoId:e};return i&&(a.client=i),t&&(a.cpn=t),(await d(this,H).post("/player",a)).data}async getSearchSuggestions(e,t){if(!["YOUTUBE","YTMUSIC"].includes(e))throw new X.InnertubeError("Invalid client",e);return await{YOUTUBE:()=>d(this,H).call(this,{url:"search",baseURL:CE.URLS.YT_SUGGESTIONS,params:{q:t,ds:"yt",client:"youtube",xssi:"t",oe:"UTF",gl:d(this,te).context.client.gl,hl:d(this,te).context.client.hl}}),YTMUSIC:()=>this.music("get_search_suggestions",{input:t})}[e]()}async getUserMentionSuggestions(e={}){if(!d(this,te).logged_in)throw new X.InnertubeError("You are not signed in");let t={input:e.input,client:"ANDROID"};return await d(this,H).post("get_user_mention_suggestions",t)}async execute(e,t){let i={...t};return Reflect.has(i,"request")&&delete i.request,Reflect.has(i,"clientActions")&&delete i.clientActions,Reflect.has(i,"action")&&(i.actions=[i.action],delete i.action),Reflect.has(i,"token")&&(i.continuation=i.token,delete i.token),d(this,H).post(e,i)}};n(hi,"Actions"),te=new WeakMap,H=new WeakMap,di=new WeakSet,ah=n(function(e){return["FElibrary","FEhistory","FEsubscriptions","SPaccount_notifications","SPaccount_privacy","SPtime_watched"].includes(e)},"#needsLogin");lh.exports=hi});var dh=g((BL,hh)=>{"use strict";var an=require("fs"),pi=class{async read(e){return(await an.promises.readFile(e)).buffer}async write(e,t){let i=e.split("/").slice(0,-1),a="";for(let s of i)a+=`${s}/`,await this.exists(a)||await an.promises.mkdir(a);return await an.promises.writeFile(e,t)}async exists(e){return await an.promises.stat(e).then(()=>!0).catch(()=>!1)}async remove(e){return await an.promises.rm(e)}};n(pi,"NodeCache");hh.exports=new pi});var mh=g(ql=>{"use strict";var{SIG_REGEX:ph}=ee(),pt=ql.SignatureOperation={REVERSE:0,SPLICE:1,SWAP:2},xe=class{constructor(e){this.action_sequence=e}static fromSourceCode(e){let t,i=[],a=xe.getFunctions(e);for(;(t=ph.ACTIONS.exec(e))!==null;){let s=t.groups;if(!!s)switch(s.name){case a[0]:i.push([pt.REVERSE,0]);break;case a[1]:i.push([pt.SPLICE,parseInt(s.param)]);break;case a[2]:i.push([pt.SWAP,parseInt(s.param)]);break;default:}}return new xe(i)}decipher(e){var a;let i=(a=new URLSearchParams(e).get("s"))==null?void 0:a.split("");if(!i)throw new TypeError("Invalid signature");for(let s of this.action_sequence)switch(s[0]){case pt.REVERSE:i.reverse();break;case pt.SPLICE:i.splice(0,s[1]);break;case pt.SWAP:{let r=s[1],o=i[0];i[0]=i[r%i.length],i[r%i.length]=o}break;default:break}return i.join("")}toJSON(){return[...this.action_sequence]}toArrayBuffer(){let e=new ArrayBuffer(8+this.action_sequence.length*3),t=new DataView(e),i=0;t.setUint32(i,xe.LIBRARY_VERSION,!0),i+=4,t.setUint32(i,this.action_sequence.length,!0),i+=4;for(let a=0;a<this.action_sequence.length;a++)t.setUint8(i,this.action_sequence[a][0]),i+=1,t.setUint16(i,this.action_sequence[a][1],!0),i+=2;return e}static fromArrayBuffer(e){let t=new DataView(e),i=0,a=t.getUint32(i,!0);if(i+=4,a!==xe.LIBRARY_VERSION)throw new TypeError("Invalid library version");let s=t.getUint32(i,!0);i+=4;let r=new Array(s);for(let o=0;o<s;o++)r[o]=[t.getUint8(i),t.getUint16(i+1,!0)],i+=3;return new xe(r)}static getFunctions(e){let t,i=[];for(;(t=ph.FUNCTIONS.exec(e))!==null;)t[0].includes("reverse")?i[0]=t[1]:t[0].includes("splice")?i[1]=t[1]:i[2]=t[1];return i}static get LIBRARY_VERSION(){return 1}};n(xe,"Signature");ql.default=xe});var gh=g(ln=>{"use strict";var{NTOKEN_REGEX:Rl,BASE64_DIALECT:mi}=ee(),Y=ln.NTokenTransformOperation={NO_OP:0,PUSH:1,REVERSE_1:2,REVERSE_2:3,SPLICE:4,SWAP0_1:5,SWAP0_2:6,ROTATE_1:7,ROTATE_2:8,BASE64_DIA:9,TRANSLATE_1:10,TRANSLATE_2:11},z=ln.NTokenTransformOpType={FUNC:0,N_ARR:1,LITERAL:2,REF:3},LE={"d.push(e)":Y.PUSH,"d.reverse()":Y.REVERSE_1,"function(d){for(var":Y.REVERSE_2,"d.length;d.splice(e,1)":Y.SPLICE,"d[0])[0])":Y.SWAP0_1,"f=d[0];d[0]":Y.SWAP0_2,"reverse().forEach":Y.ROTATE_1,"unshift(d.pop())":Y.ROTATE_2,"function(){for(var":Y.BASE64_DIA,"function(d,e){for(var f":Y.TRANSLATE_1,"function(d,e,f){var":Y.TRANSLATE_2},$=class{static translate1(e,t,i){let a=i?mi.REVERSE:mi.NORMAL,s=t.split("");e.forEach((r,o,h)=>{s.push(h[o]=a[(a.indexOf(r)-a.indexOf(s[o])+64)%a.length])})}static translate2(e,t,i){let a=i.length,s=t.split("");e.forEach((r,o,h)=>{s.push(h[o]=i[(i.indexOf(r)-i.indexOf(s[o])+o+a--)%i.length])})}static getBase64Dia(e){return e?mi.REVERSE:mi.NORMAL}static swap0(e,t){let i=e[0];t=(t%e.length+e.length)%e.length,e[0]=e[t],e[t]=i}static rotate(e,t){t=(t%e.length+e.length)%e.length,e.splice(-t).reverse().forEach(i=>e.unshift(i))}static splice(e,t){t=(t%e.length+e.length)%e.length,e.splice(t,1)}static reverse(e){e.reverse()}static push(e,t){Array.isArray(e==null?void 0:e[0])?e.push([z.LITERAL,t]):e.push(t)}};n($,"NTokenTransforms");ln.NTokenTransforms=$;var AE=[{[Y.PUSH]:$.push,[Y.SPLICE]:$.splice,[Y.SWAP0_1]:$.swap0,[Y.SWAP0_2]:$.swap0,[Y.ROTATE_1]:$.rotate,[Y.ROTATE_2]:$.rotate,[Y.REVERSE_1]:$.reverse,[Y.REVERSE_2]:$.reverse,[Y.BASE64_DIA]:()=>$.getBase64Dia(!1),[Y.TRANSLATE_1]:(...c)=>$.translate1.apply(null,[...c,!1]),[Y.TRANSLATE_2]:$.translate2},{[Y.PUSH]:$.push,[Y.SPLICE]:$.splice,[Y.SWAP0_1]:$.swap0,[Y.SWAP0_2]:$.swap0,[Y.ROTATE_1]:$.rotate,[Y.ROTATE_2]:$.rotate,[Y.REVERSE_1]:$.reverse,[Y.REVERSE_2]:$.reverse,[Y.BASE64_DIA]:()=>$.getBase64Dia(!0),[Y.TRANSLATE_1]:(...c)=>$.translate1.apply(null,[...c,!0]),[Y.TRANSLATE_2]:$.translate2}],me=class{constructor(e){this.transformer=e}static fromSourceCode(e){let i=me.getTransformationData(e).map(r=>{var o;if(r!=null&&typeof r!="number"){let h=r.includes("case 65:"),l=LE[(o=me.getFunc(r))==null?void 0:o[0]];l?r=[z.FUNC,l,0+h]:r=="b"?r=[z.N_ARR]:r=[z.LITERAL,r]}else r!=null&&(r=[z.LITERAL,r]);return r});[...e.matchAll(Rl.PLACEHOLDERS)].map(r=>parseInt(r[1])).forEach(r=>i[r]=[z.REF]);let s=[...e.replace(/\n/g,"").match(/try\{(.*?)\}catch/s)[1].matchAll(Rl.CALLS)].map(r=>[parseInt(r[1]),r[2].split(",").map(o=>{var h;return parseInt((h=o.match(/c\[(.*?)\]/))==null?void 0:h[1])})]);return new me([i,s])}evaluate(e,t,i){switch(e[0]){case z.FUNC:return AE[e[2]][e[1]];case z.N_ARR:return t;case z.LITERAL:return e[1];case z.REF:return i[0]}}transform(e){let t=e.split(""),i=this.getTransformerClone();try{i[1].forEach(([a,s])=>{let r=s[2]&&this.evaluate(i[0][s[2]],t,i)();this.evaluate(i[0][a],t,i)(s[0]!==void 0&&this.evaluate(i[0][s[0]],t,i),s[1]!==void 0&&this.evaluate(i[0][s[1]],t,i),r)})}catch(a){return console.error(new Error(`Could not transform n-token, download may be throttled.
-Original Token:${e}Error:
-${a}`)),e}return t.join("")}getTransformerClone(){return[[...this.transformer[0]],[...this.transformer[1]]]}toJSON(){return this.getTransformerClone()}toArrayBuffer(){let e=12;for(let s of this.transformer[0])switch(s[0]){case z.FUNC:e+=2;break;case z.N_ARR:case z.REF:e+=1;break;case z.LITERAL:typeof s[1]=="string"&&(e+=1+4+new TextEncoder().encode(s[1]).byteLength),e+=4+1;break}for(let s of this.transformer[1])e+=2+s[1].length;let t=new ArrayBuffer(e),i=new DataView(t),a=0;i.setUint32(a,me.LIBRARY_VERSION,!0),a+=4,i.setUint32(a,this.transformer[0].length,!0),a+=4,i.setUint32(a,this.transformer[1].length,!0),a+=4;for(let s of this.transformer[0])switch(s[0]){case z.FUNC:{let r=s[0]<<6|s[2];i.setUint8(a,r),a+=1,i.setUint8(a,s[1]),a+=1}break;case z.N_ARR:case z.REF:{let r=s[0]<<6;i.setUint8(a,r),a+=1}break;case z.LITERAL:{let r=typeof s[1]=="string"?1:0,o=s[0]<<6|r;if(i.setUint8(a,o),a+=1,r===0)i.setInt32(a,s[1],!0),a+=4;else{let h=new TextEncoder().encode(s[1]);i.setUint32(a,h.byteLength,!0),a+=4;for(let l=0;l<h.byteLength;l++)i.setUint8(a,h[l]),a+=1}}break}for(let s of this.transformer[1]){i.setUint8(a,s[0]),a+=1,i.setUint8(a,s[1].length),a+=1;for(let r of s[1])i.setUint8(a,r),a+=1}return t}static fromArrayBuffer(e){let t=new DataView(e),i=0,a=t.getUint32(i,!0);if(i+=4,a!==me.LIBRARY_VERSION)throw new TypeError("Invalid library version");let s=t.getUint32(i,!0);i+=4;let r=t.getUint32(i,!0);i+=4;let o=new Array(s);for(let l=0;l<s;l++){let u=t.getUint8(i++),p=u>>6;switch(p){case z.FUNC:{let _=u&1,b=t.getUint8(i++);o[l]=[p,b,_]}break;case z.N_ARR:case z.REF:o[l]=[p];break;case z.LITERAL:if((u&1)===0){let b=t.getInt32(i,!0);i+=4,o[l]=[p,b]}else{let b=t.getUint32(i,!0);i+=4;let w=new Uint8Array(b);for(let y=0;y<b;y++)w[y]=t.getUint8(i++);o[l]=[p,new TextDecoder().decode(w)]}break;default:throw new Error("Invalid opcode")}}let h=new Array(r);for(let l=0;l<r;l++){let u=t.getUint8(i++),p=t.getUint8(i++),_=new Array(p);for(let b=0;b<p;b++)_[b]=t.getUint8(i++);h[l]=[u,_]}return new me([o,h])}static get LIBRARY_VERSION(){return 1}static getFunc(e){return e.match(Rl.FUNCTIONS)}static getTransformationData(e){var i;let t=`[${(i=e.replace(/\n/g,"").match(/c=\[(.*?)\];c/s))==null?void 0:i[1]}]`;return JSON.parse(this.refineNTokenData(t))}static refineNTokenData(e){return e.replace(/function\(d,e\)/g,'"function(d,e)').replace(/function\(d\)/g,'"function(d)').replace(/function\(\)/g,'"function()').replace(/function\(d,e,f\)/g,'"function(d,e,f)').replace(/\[function\(d,e,f\)/g,'["function(d,e,f)').replace(/,b,/g,',"b",').replace(/,b/g,',"b"').replace(/b,/g,'"b",').replace(/b]/g,'"b"]').replace(/\[b/g,'["b"').replace(/}]/g,'"]').replace(/},/g,'}",').replace(/""/g,"").replace(/length]\)}"/g,"length])}")}};n(me,"NToken");ln.default=me});var Th=g((VL,xh)=>{"use strict";var un=dh(),mt=D(),kE=ee(),{default:_h}=mh(),{default:yh}=gh(),hn,gt,_t,ze,Ke,Qe,Je,Xe,_i,wh,yi,vh,wi,bh,vi=class{constructor(e,t){T(this,_i);T(this,yi);T(this,wi);T(this,hn,void 0);T(this,gt,void 0);T(this,_t,void 0);T(this,ze,void 0);T(this,Ke,void 0);T(this,Qe,void 0);T(this,Je,void 0);T(this,Xe,void 0);C(this,gt,e),C(this,hn,t),C(this,Xe,`${mt.getTmpdir()}/yt-cache`),C(this,_t,`${kE.URLS.YT_BASE}/s/player/${d(this,gt)}/player_ias.vflset/en_US/base.js`),C(this,ze,`${d(this,Xe)}/${d(this,gt)}.bin`)}async init(){if(await this.isCached()){let a=await un.read(d(this,ze)),s=new DataView(a);if(s.getUint32(0,!0)==vi.LIBRARY_VERSION){let o=s.getUint32(8,!0),h=a.slice(12,12+o),l=a.slice(12+o);return C(this,Ke,yh.fromArrayBuffer(l)),C(this,Qe,_h.fromArrayBuffer(h)),C(this,Je,s.getUint32(4,!0)),this}}let e=await d(this,hn).get(d(this,_t),{headers:{"content-type":"text/javascript"}});C(this,Je,k(this,_i,wh).call(this,e.data));let t=k(this,yi,vh).call(this,e.data),i=k(this,wi,bh).call(this,e.data);C(this,Qe,_h.fromSourceCode(t)),C(this,Ke,yh.fromSourceCode(i));try{await un.exists(d(this,Xe))&&await un.remove(d(this,Xe),{recursive:!0});let a=d(this,Ke).toArrayBuffer(),s=d(this,Qe).toArrayBuffer(),r=new ArrayBuffer(12+s.byteLength+a.byteLength),o=new DataView(r);o.setUint32(0,vi.LIBRARY_VERSION,!0),o.setUint32(4,d(this,Je),!0),o.setUint32(8,s.byteLength,!0),new Uint8Array(r).set(new Uint8Array(s),12),new Uint8Array(r).set(new Uint8Array(a),12+s.byteLength),await un.write(d(this,ze),new Uint8Array(r))}finally{}return this}decipher(e,t,i){e=e||t||i,mt.throwIfMissing({url:e});let a=new URLSearchParams(e),s=new URL(a.get("url")||e);if(s.searchParams.set("ratebypass","yes"),t||i){let r=d(this,Qe).decipher(e);a.get("sp")?s.searchParams.set(a.get("sp"),r):s.searchParams.set("signature",r)}if(s.searchParams.get("n")){let r=d(this,Ke).transform(s.searchParams.get("n"));s.searchParams.set("n",r)}return s.toString()}get url(){return d(this,_t)}get sts(){return d(this,Je)}static get LIBRARY_VERSION(){return 1}async isCached(){return await un.exists(d(this,ze))}},gi=vi;n(gi,"Player"),hn=new WeakMap,gt=new WeakMap,_t=new WeakMap,ze=new WeakMap,Ke=new WeakMap,Qe=new WeakMap,Je=new WeakMap,Xe=new WeakMap,_i=new WeakSet,wh=n(function(e){return parseInt(mt.getStringBetweenStrings(e,"signatureTimestamp:",","))},"#extractSigTimestamp"),yi=new WeakSet,vh=n(function(e){let t=mt.getStringBetweenStrings(e,"this.audioTracks};var","};"),i=mt.getStringBetweenStrings(e,'function(a){a=a.split("")','return a.join("")}');return t+i},"#extractSigDecipherSc"),wi=new WeakSet,bh=n(function(e){return`var b=a.split("")${mt.getStringBetweenStrings(e,'b=a.split("")','}return b.join("")}')}} return b.join("");`},"#extractNTokenSc");xh.exports=gi});var Ch=g((FL,Sh)=>{"use strict";var PE=Th(),NE=He(),Eh=D(),bi=ee(),OE=require("../node_modules/user-agents/dist/index.js"),dn,Ze,pn,yt,wt,mn,gn,_n,yn,Ti,qh,Ei,Rh,qi,Ih,xi=class{constructor(e,t){T(this,Ti);T(this,Ei);T(this,qi);T(this,dn,void 0);T(this,Ze,void 0);T(this,pn,void 0);T(this,yt,void 0);T(this,wt,void 0);T(this,mn,void 0);T(this,gn,void 0);T(this,_n,void 0);T(this,yn,void 0);C(this,dn,e),C(this,Ze,t)}async build(){let e=await Promise.all([k(this,Ei,Rh).call(this),k(this,qi,Ih).call(this)]),t=e[0][0][2];return C(this,pn,t[1]),C(this,mn,`v${t[0][0][6]}`),C(this,yt,bi.CLIENTS.WEB.NAME),C(this,wt,t[0][0][16]),C(this,gn,t[0][0][3]),C(this,yn,await new PE(e[1],d(this,Ze)).init()),C(this,_n,k(this,Ti,qh).call(this)),this}get key(){return d(this,pn)}get context(){return d(this,_n)}get api_version(){return d(this,mn)}get client_version(){return d(this,wt)}get client_name(){return d(this,yt)}get player(){return d(this,yn)}};n(xi,"SessionBuilder"),dn=new WeakMap,Ze=new WeakMap,pn=new WeakMap,yt=new WeakMap,wt=new WeakMap,mn=new WeakMap,gn=new WeakMap,_n=new WeakMap,yn=new WeakMap,Ti=new WeakSet,qh=n(function(){let e=new OE({deviceCategory:"desktop"}),t=Eh.generateRandomString(11),i=Math.floor(Date.now()/1e3),a=NE.encodeVisitorData(t,i);return{client:{hl:"en",gl:d(this,dn).gl||"US",remoteHost:d(this,gn),deviceMake:e.vendor,deviceModel:e.platform,visitorData:a,userAgent:e.toString(),clientName:d(this,yt),clientVersion:d(this,wt),originalUrl:bi.URLS.API.BASE},user:{lockedSafetyMode:!1},request:{useSsl:!0}}},"#buildContext"),Ei=new WeakSet,Rh=n(async function(){let e=await d(this,Ze).get(`${bi.URLS.YT_BASE}/sw.js_data`);return JSON.parse(e.data.replace(")]}'",""))},"#getYtConfig"),qi=new WeakSet,Ih=n(async function(){let e=await d(this,Ze).get(`${bi.URLS.YT_BASE}/iframe_api`);return Eh.getStringBetweenStrings(e.data,"player\\/","\\/")},"#getPlayerId");Sh.exports=xi});var Il=g((YL,Lh)=>{"use strict";var Ri=class{constructor(e){this.itag=e.itag,this.mime_type=e.mimeType,this.bitrate=e.bitrate,this.average_bitrate=e.averageBitrate,this.width=e.width||null,this.height=e.height||null,this.init_range=e.initRange&&{start:parseInt(e.initRange.start),end:parseInt(e.initRange.end)},this.index_range=e.indexRange&&{start:parseInt(e.indexRange.start),end:parseInt(e.indexRange.end)},this.last_modified=new Date(Math.floor(parseInt(e.lastModified)/1e3)),this.content_length=parseInt(e.contentLength),this.quality=e.quality,this.quality_label=e.qualityLabel||null,this.fps=e.fps||null,this.url=e.url||null,this.cipher=e.cipher||null,this.signature_cipher=e.signatureCipher||null,this.audio_quality=e.audioQuality,this.approx_duration_ms=parseInt(e.approxDurationMs),this.audio_sample_rate=parseInt(e.audioSampleRate),this.audio_channels=e.audioChannels,this.loudness_db=e.loudnessDb,this.has_audio=!!e.audioBitrate||!!e.audioQuality,this.has_video=!!e.qualityLabel}decipher(e){return e.decipher(this.url,this.signature_cipher,this.cipher)}};n(Ri,"Format");Lh.exports=Ri});var O=g(($L,Ah)=>{"use strict";var vt=class{url;width;height;constructor({url:e,width:t,height:i}){this.url=e,this.width=t,this.height=i}static fromResponse(e){if(!(!e||!e.thumbnails))return e.thumbnails.map(t=>new vt(t)).sort((t,i)=>i.width-t.width)}};n(vt,"Thumbnail");Ah.exports=vt});var Sl=g((GL,kh)=>{"use strict";var UE=O(),Ii=class{id;channel_id;title;keywords;short_description;author;constructor(e){this.id=e.videoId,this.channel_id=e.channelId,this.title=e.title,this.duration=parseInt(e.lengthSeconds),this.keywords=e.keywords,this.is_owner_viewing=!!e.isOwnerViewing,this.short_description=e.shortDescription,this.thumbnail=UE.fromResponse(e.thumbnail),this.allow_ratings=!!e.allowRatings,this.view_count=parseInt(e.viewCount),this.author=e.author,this.is_private=!!e.isPrivate,this.is_live_content=!!e.isLiveContent,this.is_crawlable=!!e.isCrawlable}};n(Ii,"VideoDetails");kh.exports=Ii});var Cl=g((WL,Ph)=>{"use strict";var Si=class{type="DataModelSection";constructor(e){this.title=e.title,this.subtitle=e.subtitle,this.metric_value=e.metricValue,this.comparison_indicator=e.comparisonIndicator,this.series_configuration={line_series:{lines_data:e.seriesConfiguration.lineSeries.linesData,domain_axis:e.seriesConfiguration.lineSeries.domainAxis,measure_axis:e.seriesConfiguration.lineSeries.measureAxis}}}};n(Si,"DataModelSection");Ph.exports=Si});var Oh=g((HL,Nh)=>{"use strict";var BE=Cl(),Ci=class{type="AnalyticsMainAppKeyMetrics";constructor(e){this.period=e.cardData.periodLabel;let t=e.cardData.sections[0].analyticsKeyMetricsData;this.sections=t.dataModel.sections.map(i=>new BE(i))}};n(Ci,"AnalyticsMainAppKeyMetrics");Nh.exports=Ci});var Ll=g((zL,Uh)=>{"use strict";var DE=O(),Li=class{type="AnalyticsVideo";constructor(e){this.title=e.videoTitle,this.metadata={views:e.videoDescription.split("\xB7")[0].trim(),published:e.videoDescription.split("\xB7")[1].trim(),thumbnails:DE.fromResponse(e.thumbnailDetails),duration:e.formattedLength,is_short:e.isShort}}};n(Li,"AnalyticsVideo");Uh.exports=Li});var Dh=g((KL,Bh)=>{"use strict";var ME=Ll(),Ai=class{type="AnalyticsVodCarouselCard";constructor(e){this.title=e.title,this.videos=e.videoCarouselData.videos.map(t=>new ME(t))}};n(Ai,"AnalyticsVodCarouselCard");Bh.exports=Ai});var N=g((QL,Mh)=>{"use strict";var fe=R(),ki=class{type="NavigationEndpoint";constructor(e){var i,a,s,r,o,h,l,u,p,_,b,w,y,v,I,L,q,S,P,B,U,F,J;let t=Object.keys(e||{}).find(W=>W.endsWith("Endpoint")||W.endsWith("Command"));if(this.payload=(e==null?void 0:e[t])||{},Reflect.has(this.payload,"dialog")&&(this.dialog=fe.parse(this.payload.dialog)),e!=null&&e.serviceEndpoint&&(e=e.serviceEndpoint),this.metadata={},(a=(i=e==null?void 0:e.commandMetadata)==null?void 0:i.webCommandMetadata)!=null&&a.url&&(this.metadata.url=e.commandMetadata.webCommandMetadata.url),(r=(s=e==null?void 0:e.commandMetadata)==null?void 0:s.webCommandMetadata)!=null&&r.webPageType&&(this.metadata.page_type=e.commandMetadata.webCommandMetadata.webPageType),(h=(o=e==null?void 0:e.commandMetadata)==null?void 0:o.webCommandMetadata)!=null&&h.apiUrl&&(this.metadata.api_url=e.commandMetadata.webCommandMetadata.apiUrl.replace("/youtubei/v1/","")),(u=(l=e==null?void 0:e.commandMetadata)==null?void 0:l.webCommandMetadata)!=null&&u.sendPost&&(this.metadata.send_post=e.commandMetadata.webCommandMetadata.sendPost),e!=null&&e.browseEndpoint){let W=(_=(p=e==null?void 0:e.browseEndpoint)==null?void 0:p.browseEndpointContextSupportedConfigs)==null?void 0:_.browseEndpointContextMusicConfig;this.browse={id:((b=e==null?void 0:e.browseEndpoint)==null?void 0:b.browseId)||null,params:(e==null?void 0:e.browseEndpoint.params)||null,base_url:((w=e==null?void 0:e.browseEndpoint)==null?void 0:w.canonicalBaseUrl)||null,page_type:(W==null?void 0:W.pageType)||null}}if(e!=null&&e.watchEndpoint){let W=(v=(y=e==null?void 0:e.watchEndpoint)==null?void 0:y.watchEndpointMusicSupportedConfigs)==null?void 0:v.watchEndpointMusicConfig;this.watch={video_id:(I=e==null?void 0:e.watchEndpoint)==null?void 0:I.videoId,playlist_id:(e==null?void 0:e.watchEndpoint.playlistId)||null,params:(e==null?void 0:e.watchEndpoint.params)||null,index:(e==null?void 0:e.watchEndpoint.index)||null,supported_onesie_config:(L=e==null?void 0:e.watchEndpoint)==null?void 0:L.watchEndpointSupportedOnesieConfig,music_video_type:(W==null?void 0:W.musicVideoType)||null}}e!=null&&e.searchEndpoint&&(this.search={query:e.searchEndpoint.query,params:e.searchEndpoint.params}),e!=null&&e.subscribeEndpoint&&(this.subscribe={channel_ids:e.subscribeEndpoint.channelIds,params:e.subscribeEndpoint.params}),e!=null&&e.unsubscribeEndpoint&&(this.unsubscribe={channel_ids:e.unsubscribeEndpoint.channelIds,params:e.unsubscribeEndpoint.params}),e!=null&&e.likeEndpoint&&(this.like={status:e.likeEndpoint.status,target:{video_id:e.likeEndpoint.target.videoId,playlist_id:e.likeEndpoint.target.playlistId},params:((q=e.likeEndpoint)==null?void 0:q.removeLikeParams)||((S=e.likeEndpoint)==null?void 0:S.likeParams)||((P=e.likeEndpoint)==null?void 0:P.dislikeParams)}),e!=null&&e.performCommentActionEndpoint&&(this.perform_comment_action={action:e==null?void 0:e.performCommentActionEndpoint.action}),e!=null&&e.offlineVideoEndpoint&&(this.offline_video={video_id:e.offlineVideoEndpoint.videoId,on_add_command:{get_download_action:{video_id:e.offlineVideoEndpoint.videoId,params:e.offlineVideoEndpoint.onAddCommand.getDownloadActionCommand.params}}}),e!=null&&e.continuationCommand&&(this.continuation={request:((B=e==null?void 0:e.continuationCommand)==null?void 0:B.request)||null,token:((U=e==null?void 0:e.continuationCommand)==null?void 0:U.token)||null}),e!=null&&e.feedbackEndpoint&&(this.feedback={token:e.feedbackEndpoint.feedbackToken}),e!=null&&e.watchPlaylistEndpoint&&(this.watch_playlist={playlist_id:(F=e.watchPlaylistEndpoint)==null?void 0:F.playlistId}),e!=null&&e.playlistEditEndpoint&&(this.playlist_edit={playlist_id:e.playlistEditEndpoint.playlistId,actions:e.playlistEditEndpoint.actions.map(W=>({action:W.action,removed_video_id:W.removedVideoId}))}),e!=null&&e.addToPlaylistEndpoint&&(this.add_to_playlist={video_id:e.addToPlaylistEndpoint.videoId}),e!=null&&e.addToPlaylistServiceEndpoint&&(this.add_to_playlist={video_id:e.addToPlaylistServiceEndpoint.videoId}),e!=null&&e.getReportFormEndpoint&&(this.get_report_form={params:e.getReportFormEndpoint.params}),e!=null&&e.liveChatItemContextMenuEndpoint&&(this.live_chat_item_context_menu={params:(J=e==null?void 0:e.liveChatItemContextMenuEndpoint)==null?void 0:J.params}),e!=null&&e.sendLiveChatVoteEndpoint&&(this.send_live_chat_vote={params:e.sendLiveChatVoteEndpoint.params}),e!=null&&e.liveChatItemContextMenuEndpoint&&(this.live_chat_item_context_menu={params:e.liveChatItemContextMenuEndpoint.params})}async callTest(e,t={parse:!0,params:{}}){if(!e)throw new Error("An active caller must be provided");let i=await e.execute(this.metadata.api_url,{...this.payload,...t.params});return t.parse?fe.parseResponse(i.data):i}async call(e,t){if(!e)throw new Error("An active caller must be provided");if(this.continuation)switch(this.continuation.request){case"CONTINUATION_REQUEST_TYPE_BROWSE":{let i=await e.browse(this.continuation.token,{is_ctoken:!0});return fe.parseResponse(i.data)}case"CONTINUATION_REQUEST_TYPE_SEARCH":{let i=await e.search({ctoken:this.continuation.token});return fe.parseResponse(i.data)}case"CONTINUATION_REQUEST_TYPE_WATCH_NEXT":{let i=await e.next({ctoken:this.continuation.token});return fe.parseResponse(i.data)}default:throw new Error(`${this.continuation.request} not implemented`)}if(this.search){let i=await e.search({query:this.search.query,params:this.search.params,client:t});return fe.parseResponse(i.data)}if(this.browse){let i=await e.browse(this.browse.id,{...this.browse,client:t});return fe.parseResponse(i.data)}if(this.like)return await e.engage(this.metadata.api_url,{video_id:this.like.target.video_id,params:this.like.params})}};n(ki,"NavigationEndpoint");Mh.exports=ki});var Al=g((JL,Vh)=>{"use strict";var VE=N(),Pi=class{constructor(e){this.text=e.text,this.endpoint=e.navigationEndpoint?new VE(e.navigationEndpoint):{}}};n(Pi,"TextRun");Vh.exports=Pi});var kl=g((XL,Fh)=>{"use strict";var FE=O(),Ni=class{constructor(e){var t,i,a;this.text=((t=e.emoji)==null?void 0:t.emojiId)||((a=(i=e.emoji)==null?void 0:i.shortcuts)==null?void 0:a[0])||null,this.emoji={emoji_id:e.emoji.emojiId,shortcuts:e.emoji.shortcuts,search_terms:e.emoji.searchTerms,image:FE.fromResponse(e.emoji.image)}}};n(Ni,"EmojiRun");Fh.exports=Ni});var A=g((ZL,Yh)=>{"use strict";var YE=Al(),$E=kl(),Oi=class{text;constructor(e){e!=null&&e.hasOwnProperty("runs")?(this.runs=e.runs.map(t=>t.emoji&&new $E(t)||new YE(t)),this.text=this.runs.map(t=>t.text).join("")):this.text=(e==null?void 0:e.simpleText)||"N/A"}toString(){return this.text}};n(Oi,"Text");Yh.exports=Oi});var Bi=g((fL,$h)=>{"use strict";var GE=A(),Pl=N(),Ui=class extends GE{type="NavigatableText";endpoint;constructor(e){var t,i;super(e),this.endpoint=(i=(t=e.runs)==null?void 0:t[0])!=null&&i.navigationEndpoint?new Pl(e.runs[0].navigationEndpoint):e.navigationEndpoint?new Pl(e.navigationEndpoint):e.titleNavigationEndpoint?new Pl(e.titleNavigationEndpoint):null}toJSON(){return this}};n(Ui,"NavigatableText");$h.exports=Ui});var ne=g((jL,Wh)=>{"use strict";var WE=R(),HE=Bi(),zE=O(),Gh=ee(),re,Di=class{constructor(e,t,i){T(this,re,void 0);var a,s,r,o,h,l,u,p,_,b,w,y,v,I;C(this,re,new HE(e)),this.id=((s=(a=d(this,re).runs)==null?void 0:a[0].endpoint.browse)==null?void 0:s.id)||((o=(r=d(this,re).endpoint)==null?void 0:r.browse)==null?void 0:o.id)||"N/A",this.name=d(this,re).text||"N/A",this.thumbnails=i?zE.fromResponse(i):[],this.endpoint=((h=d(this,re).runs)==null?void 0:h[0].endpoint)||d(this,re).endpoint,this.badges=Array.isArray(t)?WE.parse(t):[],this.is_verified=((l=this.badges)==null?void 0:l.some(L=>L.style=="BADGE_STYLE_TYPE_VERIFIED"))||null,this.is_verified_artist=((u=this.badges)==null?void 0:u.some(L=>L.style=="BADGE_STYLE_TYPE_VERIFIED_ARTIST"))||null,this.url=((p=d(this,re).runs)==null?void 0:p[0].endpoint.browse)&&`${Gh.URLS.YT_BASE}${((_=d(this,re).runs[0].endpoint.browse)==null?void 0:_.base_url)||`/u/${(b=d(this,re).runs[0].endpoint.browse)==null?void 0:b.id}`}`||`${Gh.URLS.YT_BASE}${((y=(w=d(this,re).endpoint)==null?void 0:w.browse)==null?void 0:y.base_url)||`/u/${(I=(v=d(this,re).endpoint)==null?void 0:v.browse)==null?void 0:I.id}`}`||null}get best_thumbnail(){return this.thumbnails[0]}};n(Di,"Author"),re=new WeakMap;Wh.exports=Di});var zh=g((eA,Hh)=>{"use strict";var KE=O(),Mi=class{type="BackstageImage";constructor(e){this.image=KE.fromResponse(e.image)}};n(Mi,"BackstageImage");Hh.exports=Mi});var Ol=g((tA,Kh)=>{"use strict";var Vi=R(),QE=ne(),Nl=A(),JE=N(),Fi=class{type="BackstagePost";constructor(e){this.id=e.postId,this.author=new QE({...e.authorText,navigationEndpoint:e.authorEndpoint},null,e.authorThumbnail),this.content=new Nl(e.contentText,""),this.published=new Nl(e.publishedTimeText),this.poll_status=e.pollStatus,this.vote_status=e.voteStatus,this.likes=new Nl(e.voteCount),this.menu=Vi.parse(e.actionMenu)||null,this.actions=Vi.parse(e.actionButtons),this.vote_button=Vi.parse(e.voteButton),this.surface=e.surface,this.endpoint=new JE(e.navigationEndpoint),this.attachment=Vi.parse(e.backstageAttachment)||null}};n(Fi,"BackstagePost");Kh.exports=Fi});var Jh=g((nA,Qh)=>{"use strict";var XE=R(),Yi=class{type="BackstagePostThread";constructor(e){this.post=XE.parse(e.post)}};n(Yi,"BackstagePostThread");Qh.exports=Yi});var Zh=g((iA,Xh)=>{"use strict";var ZE=R(),$i=class{type="BrowseFeedActions";constructor(e){this.contents=ZE.parse(e.contents)}};n($i,"BrowseFeedActions");Xh.exports=$i});var Wi=g((sA,fh)=>{"use strict";var fE=A(),jE=N(),Gi=class{type="Button";constructor(e){var t,i,a,s;this.text=new fE(e.text).toString(),(t=e.accessibility)!=null&&t.label&&(this.label=(i=e.accessibility)==null?void 0:i.label),e.tooltip&&(this.tooltip=e.tooltip),(a=e.icon)!=null&&a.iconType&&(this.iconType=(s=e.icon)==null?void 0:s.iconType),this.endpoint=new jE(e.navigationEndpoint||e.serviceEndpoint||e.command)}};n(Gi,"Button");fh.exports=Gi});var ed=g((rA,jh)=>{"use strict";var Ul=R(),eq=ne(),Bl=O(),tq=A(),Hi=class{type="C4TabbedHeader";constructor(e){this.author=new eq({simpleText:e.title,navigationEndpoint:e.navigationEndpoint},e.badges,e.avatar),this.banner=e.banner?Bl.fromResponse(e.banner):[],this.tv_banner=e.tvBanner?Bl.fromResponse(e.tvBanner):[],this.mobile_banner=e.mobileBanner?Bl.fromResponse(e.mobileBanner):[],this.subscribers=new tq(e.subscriberCountText),this.sponsor_button=e.sponsorButton&&Ul.parse(e.sponsorButton),this.subscribe_button=e.subscribeButton&&Ul.parse(e.subscribeButton),this.header_links=e.headerLinks&&Ul.parse(e.headerLinks)}};n(Hi,"C4TabbedHeader");jh.exports=Hi});var nd=g((oA,td)=>{"use strict";var nq=A(),zi=class{type="CallToActionButton";constructor(e){this.label=new nq(e.label),this.icon_type=e.icon.iconType,this.style=e.style}};n(zi,"CallToActionButton");td.exports=zi});var rd=g((cA,sd)=>{"use strict";var id=R(),Ki=class{type="Card";constructor(e){this.teaser=id.parse(e.teaser),this.content=id.parse(e.content),this.card_id=e.cardId,this.feature=e.feature,this.cue_ranges=e.cueRanges.map(t=>({start_card_active_ms:t.startCardActiveMs,end_card_active_ms:t.endCardActiveMs,teaser_duration_ms:t.teaserDurationMs,icon_after_teaser_ms:t.iconAfterTeaserMs}))}};n(Ki,"Card");sd.exports=Ki});var cd=g((aA,od)=>{"use strict";var iq=R(),sq=A(),Qi=class{type="CardCollection";constructor(e){this.cards=iq.parse(e.cards),this.header=new sq(e.headerText),this.allow_teaser_dismiss=e.allowTeaserDismiss}};n(Qi,"CardCollection");od.exports=Qi});var ld=g((lA,ad)=>{"use strict";var rq=ne(),oq=N(),Dl=A(),Ji=class{type="Channel";constructor(e){this.id=e.channelId,this.author=new rq({...e.title,navigationEndpoint:e.navigationEndpoint},e.ownerBadges,e.thumbnail),this.subscribers=new Dl(e.subscriberCountText),this.videos=new Dl(e.videoCountText),this.endpoint=new oq(e.navigationEndpoint),this.description_snippet=new Dl(e.descriptionSnippet)}};n(Ji,"Channel");ad.exports=Ji});var hd=g((uA,ud)=>{"use strict";var cq=O(),aq=N(),wn=A(),lq=R(),Xi=class{type="ChannelAboutFullMetadata";constructor(e){this.id=e.channelId,this.name=new wn(e.title),this.avatar=cq.fromResponse(e.avatar),this.canonical_channel_url=e.canonicalChannelUrl,this.views=new wn(e.viewCountText),this.joined=new wn(e.joinedDateText),this.description=new wn(e.description),this.email_reveal=new aq(e.onBusinessEmailRevealClickCommand),this.can_reveal_email=!e.signInForBusinessEmail,this.country=new wn(e.country),this.buttons=lq.parse(e.actionButtons)}};n(Xi,"ChannelAboutFullMetadata");ud.exports=Xi});var pd=g((hA,dd)=>{"use strict";var uq=R(),hq=A(),Zi=class{type="ChannelFeaturedContent";constructor(e){this.title=new hq(e.title),this.items=uq.parse(e.items)}};n(Zi,"ChannelFeaturedContent");dd.exports=Zi});var gd=g((dA,md)=>{"use strict";var dq=N(),pq=A(),mq=O(),vn=class{constructor(e){this.endpoint=new dq(e.navigationEndpoint),this.icon=mq.fromResponse(e.icon),this.title=new pq(e.title)}};n(vn,"HeaderLink");var fi=class{type="ChannelHeaderLinks";constructor(e){var t,i;this.primary=((t=e.primaryLinks)==null?void 0:t.map(a=>new vn(a)))||[],this.secondary=((i=e.secondaryLinks)==null?void 0:i.map(a=>new vn(a)))||[]}};n(fi,"ChannelHeaderLinks");md.exports=fi});var yd=g((pA,_d)=>{"use strict";var gq=O(),ji=class{type="ChannelMetadata";constructor(e){this.title=e.title,this.description=e.description,this.url=e.channelUrl,this.rss_urls=e.rssUrl,this.vanity_channel_url=e.vanityChannelUrl,this.external_id=e.externalId,this.is_family_safe=e.isFamilySafe,this.keywords=e.keywords,this.avatar=gq.fromResponse(e.avatar),this.available_countries=e.availableCountryCodes,this.android_deep_link=e.androidDeepLink,this.android_appindexing_link=e.androidAppindexingLink,this.ios_appindexing_link=e.iosAppindexingLink}};n(ji,"ChannelMetadata");_d.exports=ji});var vd=g((mA,wd)=>{"use strict";var _q=A(),es=class{constructor(e){this.title=new _q(e.title)}};n(es,"ChannelMobileHeader");wd.exports=es});var xd=g((gA,bd)=>{"use strict";var yq=O(),wq=N(),ts=class{type="ChannelThumbnailWithLink";constructor(e){this.thumbnails=yq.fromResponse(e.thumbnail),this.endpoint=new wq(e.navigationEndpoint),this.label=e.accessibility.accessibilityData.label}};n(ts,"ChannelThumbnailWithLink");bd.exports=ts});var Ed=g((_A,Td)=>{"use strict";var ns=A(),is=class{type="ChannelVideoPlayer";constructor(e){this.id=e.videoId,this.title=new ns(e.title,""),this.description=new ns(e.description,""),this.views=new ns(e.viewCountText,""),this.published_at=new ns(e.publishedTimeText,"")}};n(is,"ChannelVideoPlayer");Td.exports=is});var Rd=g((yA,qd)=>{"use strict";var vq=N(),bq=D(),xq=A(),ss=class{type="ChildVideo";constructor(e){this.id=e.videoId,this.title=new xq(e.title),this.duration={text:e.lengthText.simpleText,seconds:bq.timeToSeconds(e.lengthText.simpleText)},this.endpoint=new vq(e.navigationEndpoint)}};n(ss,"ChildVideo");qd.exports=ss});var Sd=g((wA,Id)=>{"use strict";var Ml=R(),rs=class{type="ChipCloud";constructor(e){this.chips=Ml.parse(e.chips),this.next_button=Ml.parse(e.nextButton),this.previous_button=Ml.parse(e.previousButton),this.horizontal_scrollable=e.horizontalScrollable}};n(rs,"ChipCloud");Id.exports=rs});var Ld=g((vA,Cd)=>{"use strict";var Tq=A(),Eq=N(),os=class{type="ChipCloudChip";constructor(e){this.is_selected=e.isSelected,this.endpoint=e.navigationEndpoint&&new Eq(e.navigationEndpoint),this.text=new Tq(e.text).toString()}};n(os,"ChipCloudChip");Cd.exports=os});var kd=g((bA,Ad)=>{"use strict";var qq=N(),Vl=O(),cs=class{type="CollageHeroImage";constructor(e){this.left=Vl.fromResponse(e.leftThumbnail),this.top_right=Vl.fromResponse(e.topRightThumbnail),this.bottom_right=Vl.fromResponse(e.bottomRightThumbnail),this.endpoint=new qq(e.navigationEndpoint)}};n(cs,"CollageHeroImage");Ad.exports=cs});var Nd=g((xA,Pd)=>{"use strict";var Fl=R(),Yl=A(),Rq=O(),Iq=ne(),Sq=He(),{InnertubeError:$l}=D(),Be,as=class{constructor(e){j(this,"type","Comment");T(this,Be,void 0);var t,i;this.content=new Yl(e.contentText),this.published=new Yl(e.publishedTimeText),this.author_is_channel_owner=e.authorIsChannelOwner,this.current_user_reply_thumbnail=Rq.fromResponse(e.currentUserReplyThumbnail),this.author_badge=Fl.parse(e.authorCommentBadge,"comments"),this.author=new Iq({...e.authorText,navigationEndpoint:e.authorEndpoint},this.author_badge?[{metadataBadgeRenderer:(t=this.author_badge)==null?void 0:t.orig_badge}]:null,e.authorThumbnail),this.action_menu=Fl.parse(e.actionMenu),this.action_buttons=Fl.parse(e.actionButtons,"comments"),this.comment_id=e.commentId,this.vote_status=e.voteStatus,this.vote_count={text:e.voteCount?(i=e.voteCount.accessibility.accessibilityData)==null?void 0:i.label.replace(/\D/g,""):"0",short_text:e.voteCount?new Yl(e.voteCount).toString():"0"},this.reply_count=e.replyCount||0,this.is_liked=this.action_buttons.like_button.is_toggled,this.is_disliked=this.action_buttons.dislike_button.is_toggled,this.is_pinned=!!e.pinnedCommentBadge}async like(){let e=this.action_buttons.like_button;if(e.is_toggled)throw new $l("This comment is already liked",{comment_id:this.comment_id});return await e.endpoint.callTest(d(this,Be),{parse:!1})}async dislike(){let e=this.action_buttons.dislike_button;if(e.is_toggled)throw new $l("This comment is already disliked",{comment_id:this.comment_id});return await e.endpoint.callTest(d(this,Be),{parse:!1})}async reply(e){if(!this.action_buttons.reply_button)throw new $l("Cannot reply to another reply. Try mentioning the user instead.",{comment_id:this.comment_id});let i=this.action_buttons.reply_button.endpoint.dialog.reply_button,a={params:{commentText:e}};return await i.endpoint.callTest(d(this,Be),a)}async translate(e){let i={text:this.content.toString().replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu,""),target_language:e,comment_id:this.comment_id},a=Sq.encodeCommentActionParams(22,i),s=await d(this,Be).execute("comment/perform_comment_action",{action:a,client:"ANDROID"}),o=s.data.frameworkUpdates.entityBatchUpdate.mutations[0].payload.commentEntityPayload.translatedContent.content;return{...s,content:o}}setActions(e){C(this,Be,e)}};n(as,"Comment"),Be=new WeakMap;Pd.exports=as});var Dd=g((TA,Bd)=>{"use strict";var Od=R(),Cq=O(),Ud=A(),ls=class{type="CommentReplyDialog";constructor(e){this.reply_button=Od.parse(e.replyButton),this.cancel_button=Od.parse(e.cancelButton),this.author_thumbnail=Cq.fromResponse(e.authorThumbnail),this.placeholder=new Ud(e.placeholderText),this.error_message=new Ud(e.errorMessage)}};n(ls,"CommentReplyDialog");Bd.exports=ls});var Vd=g((EA,Md)=>{"use strict";var bn,us=class{constructor(e){j(this,"type","AuthorCommentBadge");T(this,bn,void 0);this.icon_type=e.icon.iconType,this.tooltip=e.iconTooltip,this.tooltip==="Verified"&&(this.style="BADGE_STYLE_TYPE_VERIFIED")&&(e.style="BADGE_STYLE_TYPE_VERIFIED"),C(this,bn,e)}get orig_badge(){return d(this,bn)}};n(us,"AuthorCommentBadge"),bn=new WeakMap;Md.exports=us});var Yd=g((qA,Fd)=>{"use strict";var Gl=R(),hs=class{type="CommentActionButtons";constructor(e){this.like_button=Gl.parse(e.likeButton),this.dislike_button=Gl.parse(e.dislikeButton),this.reply_button=Gl.parse(e.replyButton)}};n(hs,"CommentActionButtons");Fd.exports=hs});var Gd=g((RA,$d)=>{"use strict";var Wl=R(),ds=class{type="CommentReplies";constructor(e){this.contents=Wl.parse(e.contents),this.view_replies=Wl.parse(e.viewReplies),this.hide_replies=Wl.parse(e.hideReplies)}};n(ds,"CommentReplies");$d.exports=ds});var zd=g((IA,Hd)=>{"use strict";var Wd=R(),Lq=O(),Aq=A(),ps=class{type="CommentSimplebox";constructor(e){this.submit_button=Wd.parse(e.submitButton),this.cancel_button=Wd.parse(e.cancelButton),this.author_thumbnails=Lq.fromResponse(e.authorThumbnail),this.placeholder=new Aq(e.placeholderText),this.avatar_size=e.avatarSize}};n(ps,"CommentSimplebox");Hd.exports=ps});var Qd=g((SA,Kd)=>{"use strict";var ms=A(),kq=O(),gs=class{type="CommentsEntryPointHeader";constructor(e){this.header=new ms(e.headerText),this.comment_count=new ms(e.commentCount),this.teaser_avatar=kq.fromResponse(e.teaserAvatar||e.simpleboxAvatar),this.teaser_content=new ms(e.teaserContent),this.simplebox_placeholder=new ms(e.simpleboxPlaceholder)}};n(gs,"CommentsEntryPointHeader");Kd.exports=gs});var Zd=g((CA,Xd)=>{"use strict";var Jd=R(),Hl=A(),Pq=O(),_s=class{type="CommentsHeader";constructor(e){var t;this.title=new Hl(e.titleText),this.count=new Hl(e.countText),this.comments_count=new Hl(e.commentsCount),this.create_renderer=Jd.parse(e.createRenderer,"comments"),this.sort_menu=Jd.parse(e.sortMenu),this.custom_emojis=((t=e.customEmojis)==null?void 0:t.map(i=>({emoji_id:i.emojiId,shortcuts:i.shortcuts,search_terms:i.searchTerms,image:Pq.fromResponse(i.image),is_custom_emoji:i.isCustomEmoji})))||null}};n(_s,"CommentsHeader");Xd.exports=_s});var ep=g((LA,jd)=>{"use strict";var fd=R(),{InnertubeError:zl}=D(),bt,De,je,ys=class{constructor(e){j(this,"type","CommentThread");T(this,bt,void 0);T(this,De,void 0);T(this,je,void 0);this.comment=fd.parse(e.comment),C(this,bt,fd.parse(e.replies,"comments")),this.is_moderated_elq_comment=e.isModeratedElqComment}async getReplies(){var i;if(!d(this,bt))throw new zl("This comment has no replies.",{comment_id:this.comment.comment_id});let t=await d(this,bt).contents.get({type:"ContinuationItem"}).endpoint.callTest(d(this,De));return this.replies=t.on_response_received_endpoints_memo.get("Comment").map(a=>(a.setActions(d(this,De)),a)),C(this,je,(i=t.on_response_received_endpoints_memo.get("ContinuationItem"))==null?void 0:i[0]),this}async getContinuation(){var t;if(!this.replies)throw new zl("Continuation not available.");if(!d(this,je))throw new zl("Continuation not found.");let e=await d(this,je).button.endpoint.callTest(d(this,De));return this.replies=e.on_response_received_endpoints_memo.get("Comment").map(i=>(i.setActions(d(this,De)),i)),C(this,je,(t=e.on_response_received_endpoints_memo.get("ContinuationItem"))==null?void 0:t[0]),this}setActions(e){C(this,De,e)}};n(ys,"CommentThread"),bt=new WeakMap,De=new WeakMap,je=new WeakMap;jd.exports=ys});var np=g((AA,tp)=>{"use strict";var Nq=A(),Oq=N(),ws=class{type="CompactLink";constructor(e){this.title=new Nq(e.title).toString(),this.endpoint=new Oq(e.navigationEndpoint),this.style=e.style}};n(ws,"CompactLink");tp.exports=ws});var xt=g((kA,ip)=>{"use strict";var Uq=ne(),vs=class extends Uq{constructor(e){super(e),delete this.badges,delete this.is_verified,delete this.is_verified_artist}};n(vs,"PlaylistAuthor");ip.exports=vs});var xn=g((PA,sp)=>{"use strict";var bs=A(),xs=R(),Bq=O(),Dq=N(),Mq=xt(),Ts=class{type="Playlist";constructor(e){var t;this.id=e.playlistId,this.title=new bs(e.title),this.author=(t=e.shortBylineText)!=null&&t.simpleText?new bs(e.shortBylineText):new Mq(e.longBylineText,e.ownerBadges,null),this.thumbnails=Bq.fromResponse(e.thumbnail||{thumbnails:e.thumbnails.map(i=>i.thumbnails).flat(1)}),this.video_count=new bs(e.thumbnailText),this.video_count_short=new bs(e.videoCountShortText),this.first_videos=xs.parse(e.videos)||[],this.share_url=e.shareUrl||null,this.menu=xs.parse(e.menu),this.badges=xs.parse(e.ownerBadges),this.endpoint=new Dq(e.navigationEndpoint),this.thumbnail_overlays=xs.parse(e.thumbnailOverlays)||[]}};n(Ts,"Playlist");sp.exports=Ts});var op=g((NA,rp)=>{"use strict";var Vq=xn(),Es=class extends Vq{type="CompactMix";constructor(e){super(e)}};n(Es,"CompactMix");rp.exports=Es});var ap=g((OA,cp)=>{"use strict";var Fq=xn(),qs=class extends Fq{type="CompactPlaylist";constructor(e){super(e)}};n(qs,"CompactPlaylist");cp.exports=qs});var up=g((UA,lp)=>{"use strict";var Kl=R(),Tt=A(),Yq=ne(),$q=D(),Gq=O(),Wq=N(),Rs=class{type="CompactVideo";constructor(e){this.id=e.videoId,this.thumbnails=Gq.fromResponse(e.thumbnail)||null,this.rich_thumbnail=e.richThumbnail&&Kl.parse(e.richThumbnail),this.title=new Tt(e.title),this.author=new Yq(e.longBylineText,e.ownerBadges,e.channelThumbnail),this.view_count=new Tt(e.viewCountText),this.short_view_count=new Tt(e.shortViewCountText),this.published=new Tt(e.publishedTimeText),this.duration={text:new Tt(e.lengthText).toString(),seconds:$q.timeToSeconds(new Tt(e.lengthText).toString())},this.thumbnail_overlays=Kl.parse(e.thumbnailOverlays),this.endpoint=new Wq(e.navigationEndpoint),this.menu=Kl.parse(e.menu)}get best_thumbnail(){return this.thumbnails[0]}};n(Rs,"CompactVideo");lp.exports=Rs});var dp=g((BA,hp)=>{"use strict";var Hq=R(),zq=N(),Is=class{type="ContinuationItem";constructor(e){this.trigger=e.trigger,e.button&&(this.button=Hq.parse(e.button)),this.endpoint=new zq(e.continuationEndpoint)}};n(Is,"ContinuationItem");hp.exports=Is});var mp=g((DA,pp)=>{"use strict";var Ss=class{type="CtaGoToCreatorStudio";constructor(e){this.title=e.buttonLabel,this.use_new_specs=e.useNewSpecs}};n(Ss,"CtaGoToCreatorStudio");pp.exports=Ss});var _p=g((MA,gp)=>{"use strict";var Kq=A(),Qq=N(),Cs=class{type="DidYouMean";constructor(e){this.corrected_query=new Kq(e.correctedQuery),this.endpoint=new Qq(e.navigationEndpoint)}};n(Cs,"DidYouMean");gp.exports=Cs});var wp=g((VA,yp)=>{"use strict";var Jq=N(),Ls=class{type="DownloadButton";constructor(e){this.style=e.style,this.size=e.size,this.endpoint=new Jq(e.command),this.target_id=e.targetId}};n(Ls,"DownloadButton");yp.exports=Ls});var bp=g((FA,vp)=>{"use strict";var Xq=R(),As=class{type="Element";constructor(e){let t=e.newElement.type.componentType;return Xq.parse(t.model)}};n(As,"Element");vp.exports=As});var Ep=g((YA,Tp)=>{"use strict";var Zq=A(),xp=R(),ks=class{type="EmergencyOnebox";constructor(e){this.title=new Zq(e.title),this.first_option=xp.parse(e.firstOption),this.menu=xp.parse(e.menu)}};n(ks,"EmergencyOnebox");Tp.exports=ks});var Rp=g(($A,qp)=>{"use strict";var fq=R(),Ps=class{type="Endscreen";constructor(e){this.elements=fq.parse(e.elements),this.start_ms=e.startMs}};n(Ps,"Endscreen");qp.exports=Ps});var Lp=g((GA,Cp)=>{"use strict";var Ip=R(),Sp=O(),jq=N(),Ql=A(),Ns=class{type="EndscreenElement";constructor(e){this.style=e.style,this.title=new Ql(e.title),this.endpoint=new jq(e.endpoint),e.image&&(this.image=Sp.fromResponse(e.image)),e.icon&&(this.icon=Sp.fromResponse(e.icon)),e.metadata&&(this.metadata=new Ql(e.metadata)),e.callToAction&&(this.call_to_action=new Ql(e.callToAction)),e.hovercardButton&&(this.hovercard_button=Ip.parse(e.hovercardButton)),e.isSubscribe&&(this.is_subscribe=e.isSubscribe),this.thumbnail_overlays=Ip.parse(e.thumbnailOverlays),this.left=e.left,this.width=e.width,this.top=e.top,this.aspect_ratio=e.aspectRatio,this.start_ms=e.startMs,this.end_ms=e.endMs,this.id=e.id}};n(Ns,"EndscreenElement");Cp.exports=Ns});var kp=g((WA,Ap)=>{"use strict";var Jl=A(),eR=O(),tR=N(),Os=class{type="EndScreenPlaylist";constructor(e){this.id=e.playlistId,this.title=new Jl(e.title),this.author=new Jl(e.longBylineText),this.endpoint=new tR(e.navigationEndpoint),this.thumbnails=eR.fromResponse(e.thumbnail),this.video_count=new Jl(e.videoCountText)}};n(Os,"EndScreenPlaylist");Ap.exports=Os});var Op=g((HA,Np)=>{"use strict";var Pp=R(),Xl=A(),nR=ne(),iR=O(),sR=N(),Us=class{type="EndScreenVideo";constructor(e){this.id=e.videoId,this.title=new Xl(e.title),this.thumbnails=iR.fromResponse(e.thumbnail),this.thumbnail_overlays=Pp.parse(e.thumbnailOverlays),this.author=new nR(e.shortBylineText,e.ownerBadges),this.endpoint=new sR(e.navigationEndpoint),this.short_view_count_text=new Xl(e.shortViewCountText),this.badges=Pp.parse(e.badges),this.duration={text:new Xl(e.lengthText).toString(),seconds:e.lengthInSeconds}}};n(Us,"EndScreenVideo");Np.exports=Us});var Bp=g((zA,Up)=>{"use strict";var rR=R(),oR=N(),Bs=class{type="ExpandableTab";constructor(e){this.title=e.title,this.endpoint=new oR(e.endpoint),this.selected=e.selected,this.content=e.content?rR.parse(e.content):null}};n(Bs,"ExpandableTab");Up.exports=Bs});var Mp=g((KA,Dp)=>{"use strict";var cR=R(),Ds=class{type="ExpandedShelfContents";constructor(e){this.items=cR.parse(e.items)}get contents(){return this.items}};n(Ds,"ExpandedShelfContents");Dp.exports=Ds});var Fp=g((QA,Vp)=>{"use strict";var aR=R(),Ms=class{type="FeedFilterChipBar";constructor(e){this.contents=aR.parse(e.contents)}};n(Ms,"FeedFilterChipBar");Vp.exports=Ms});var $p=g((JA,Yp)=>{"use strict";var lR=A(),Vs=class{constructor(e){this.title=new lR(e.title)}};n(Vs,"FeedTabbedHeader");Yp.exports=Vs});var Wp=g((XA,Gp)=>{"use strict";var uR=R(),Fs=class{type="Grid";constructor(e){this.items=uR.parse(e.items),this.is_collapsible=e.isCollapsible,this.visible_row_count=e.visibleRowCount,this.target_id=e.targetId}get contents(){return this.items}};n(Fs,"Grid");Gp.exports=Fs});var Kp=g((ZA,zp)=>{"use strict";var hR=ne(),dR=R(),pR=N(),Hp=A(),Ys=class{type="GridChannel";constructor(e){this.id=e.channelId,this.author=new hR({...e.title,navigationEndpoint:e.navigationEndpoint},e.ownerBadges,e.thumbnail),this.subscribers=new Hp(e.subscriberCountText),this.video_count=new Hp(e.videoCountText),this.endpoint=new pR(e.navigationEndpoint),this.subscribe_button=dR.parse(e.subscribeButton)}};n(Ys,"GridChannel");zp.exports=Ys});var Zp=g((fA,Xp)=>{"use strict";var Zl=A(),Qp=R(),Jp=O(),mR=xt(),gR=N(),_R=Bi(),$s=class{type="GridPlaylist";constructor(e){var t;this.id=e.playlistId,this.title=new Zl(e.title),e.shortBylineText&&(this.author=new mR(e.shortBylineText,e.ownerBadges)),this.badges=Qp.parse(e.ownerBadges),this.endpoint=new gR(e.navigationEndpoint),this.view_playlist=new _R(e.viewPlaylistText),this.thumbnails=Jp.fromResponse(e.thumbnail),this.thumbnail_renderer=Qp.parse(e.thumbnailRenderer),this.sidebar_thumbnails=[].concat(...((t=e.sidebarThumbnails)==null?void 0:t.map(i=>Jp.fromResponse(i)))||[])||null,this.video_count=new Zl(e.thumbnailText),this.video_count_short_text=new Zl(e.videoCountShortText)}};n($s,"GridPlaylist");Xp.exports=$s});var jp=g((jA,fp)=>{"use strict";var fl=R(),Et=A(),yR=O(),wR=N(),vR=ne(),Gs=class{type="GridVideo";constructor(e){var i;let t=(i=e.thumbnailOverlays.find(a=>a.hasOwnProperty("thumbnailOverlayTimeStatusRenderer")))==null?void 0:i.thumbnailOverlayTimeStatusRenderer;this.id=e.videoId,this.title=new Et(e.title),this.thumbnails=yR.fromResponse(e.thumbnail),this.thumbnail_overlays=fl.parse(e.thumbnailOverlays),this.rich_thumbnail=e.richThumbnail&&fl.parse(e.richThumbnail),this.published=new Et(e.publishedTimeText),this.duration=e.lengthText?new Et(e.lengthText):t!=null&&t.text?new Et(t.text):"",this.author=e.shortBylineText&&new vR(e.shortBylineText,e.ownerBadges),this.views=new Et(e.viewCountText),this.short_view_count=new Et(e.shortViewCountText),this.endpoint=new wR(e.navigationEndpoint),this.menu=fl.parse(e.menu)}};n(Gs,"GridVideo");fp.exports=Gs});var tm=g((ek,em)=>{"use strict";var Ws=R(),Hs=class{type="HorizontalCardList";constructor(e){this.cards=Ws.parse(e.cards),this.header=Ws.parse(e.header),this.previous_button=Ws.parse(e.previousButton),this.next_button=Ws.parse(e.nextButton)}};n(Hs,"HorizontalCardList");em.exports=Hs});var im=g((tk,nm)=>{"use strict";var bR=R(),zs=class{type="HorizontalList";constructor(e){this.visible_item_count=e.visibleItemCount,this.items=bR.parse(e.items)}get contents(){return this.items}};n(zs,"HorizontalList");nm.exports=zs});var om=g((nk,rm)=>{"use strict";var sm=R(),Ks=class{type="ItemSection";constructor(e){this.header=sm.parse(e.header),this.contents=sm.parse(e.contents),(e.targetId||e.sectionIdentifier)&&(this.target_id=(e==null?void 0:e.target_id)||(e==null?void 0:e.sectionIdentifier))}};n(Ks,"ItemSection");rm.exports=Ks});var am=g((ik,cm)=>{"use strict";var xR=A(),Qs=class{constructor(e){this.title=new xR(e.title)}};n(Qs,"ItemSectionHeader");cm.exports=Qs});var um=g((sk,lm)=>{"use strict";var TR=N(),Js=class{type="LikeButton";constructor(e){var t;this.target={video_id:e.target.videoId},this.like_status=e.likeStatus,this.likes_allowed=e.likesAllowed,e.serviceEndpoints&&(this.endpoints=(t=e.serviceEndpoints)==null?void 0:t.map(i=>new TR(i)))}};n(Js,"LikeButton");lm.exports=Js});var dm=g((rk,hm)=>{"use strict";var ER=R(),Tn=A(),Xs=class{type="LiveChat";constructor(e){var t,i;this.header=ER.parse(e.header),this.initial_display_state=e.initialDisplayState,this.continuation=(i=(t=e.continuations[0])==null?void 0:t.reloadContinuationData)==null?void 0:i.continuation,this.client_messages={reconnect_message:new Tn(e.clientMessages.reconnectMessage),unable_to_reconnect_message:new Tn(e.clientMessages.unableToReconnectMessage),fatal_error:new Tn(e.clientMessages.fatalError),reconnected_message:new Tn(e.clientMessages.reconnectedMessage),generic_error:new Tn(e.clientMessages.genericError)},this.is_replay=e.isReplay||!1}};n(Xs,"LiveChat");hm.exports=Xs});var mm=g((ok,pm)=>{"use strict";var qR=R(),Zs=class{constructor(e){return qR.parse(e.bannerRenderer,"livechat/items")}};n(Zs,"AddBannerToLiveChatCommand");pm.exports=Zs});var _m=g((ck,gm)=>{"use strict";var RR=R(),fs=class{type="AddChatItemAction";constructor(e){this.item=RR.parse(e.item,"livechat/items"),this.client_id=e.clientId||null}};n(fs,"AddChatItemAction");gm.exports=fs});var wm=g((ak,ym)=>{"use strict";var IR=R(),js=class{type="AddLiveChatTickerItemAction";constructor(e){this.item=IR.parse(e.item,"livechat/items"),this.duration_sec=e.durationSec}};n(js,"AddLiveChatTickerItemAction");ym.exports=js});var xm=g((lk,bm)=>{"use strict";var vm=R(),er=class{type="LiveChatBanner";constructor(e){this.header=vm.parse(e.header,"livechat/items"),this.contents=vm.parse(e.contents,"livechat/items"),this.action_id=e.actionId,this.viewer_is_creator=e.viewerIsCreator,this.target_id=e.targetId,this.is_stackable=e.isStackable,this.background_type=e.backgroundType}};n(er,"LiveChatBanner");bm.exports=er});var Em=g((uk,Tm)=>{"use strict";var SR=R(),CR=A(),tr=class{type="LiveChatBannerHeader";constructor(e){this.text=new CR(e.text).toString(),this.icon_type=e.icon.iconType,this.context_menu_button=SR.parse(e.contextMenuButton)}};n(tr,"LiveChatBannerHeader");Tm.exports=tr});var Im=g((hk,Rm)=>{"use strict";var LR=R(),qm=A(),AR=O(),nr=class{type="LiveChatBannerPoll";constructor(e){this.poll_question=new qm(e.pollQuestion),this.author_photo=AR.fromResponse(e.authorPhoto),this.choices=e.pollChoices.map(t=>({option_id:t.pollOptionId,text:new qm(t.text).toString()})),this.collapsed_state_entity_key=e.collapsedStateEntityKey,this.live_chat_poll_state_entity_key=e.liveChatPollStateEntityKey,this.context_menu_button=LR.parse(e.contextMenuButton)}};n(nr,"LiveChatBannerPoll");Rm.exports=nr});var Lm=g((dk,Cm)=>{"use strict";var kR=R(),Sm=A(),PR=O(),NR=N(),ir=class{type="LiveChatMembershipItem";constructor(e){this.id=e.id,this.timestamp=Math.floor(parseInt(e.timestampUsec)/1e3),this.header_subtext=new Sm(e.headerSubtext),this.author={id:e.authorExternalChannelId,name:new Sm(e==null?void 0:e.authorName),thumbnails:PR.fromResponse(e.authorPhoto),badges:kR.parse(e.authorBadges)},this.menu_endpoint=new NR(e.contextMenuEndpoint)}};n(ir,"LiveChatMembershipItem");Cm.exports=ir});var Pm=g((pk,km)=>{"use strict";var sr=A(),OR=O(),UR=N(),Am=R(),rr=class{type="LiveChatPaidMessage";constructor(e){this.message=new sr(e.message),this.author={id:e.authorExternalChannelId,name:new sr(e.authorName),thumbnails:OR.fromResponse(e.authorPhoto),badges:Am.parse(e.authorBadges)};let t=Am.parse(e.authorBadges);this.author.badges=t,this.author.is_moderator=(t==null?void 0:t.some(i=>i.icon_type=="MODERATOR"))||null,this.author.is_verified=(t==null?void 0:t.some(i=>i.style=="BADGE_STYLE_TYPE_VERIFIED"))||null,this.author.is_verified_artist=(t==null?void 0:t.some(i=>i.style=="BADGE_STYLE_TYPE_VERIFIED_ARTIST"))||null,this.purchase_amount=new sr(e.purchaseAmountText).toString(),this.menu_endpoint=new UR(e.contextMenuEndpoint),this.timestamp=Math.floor(parseInt(e.timestampUsec)/1e3),this.timestamp_text=new sr(e.timestampText).toString(),this.id=e.id}};n(rr,"LiveChatPaidMessage");km.exports=rr});var Bm=g((mk,Um)=>{"use strict";var BR=R(),DR=N(),Nm=O(),Om=A(),or=class{type="LiveChatPaidSticker";constructor(e){this.id=e.id,this.author={id:e.authorExternalChannelId,name:new Om(e.authorName),thumbnails:Nm.fromResponse(e.authorPhoto),badges:BR.parse(e.authorBadges)},this.sticker=Nm.fromResponse(e.sticker),this.purchase_amount=new Om(e.purchaseAmountText).toString(),this.context_menu=new DR(e.contextMenuEndpoint),this.timestamp=Math.floor(parseInt(e.timestampUsec)/1e3)}};n(or,"LiveChatPaidSticker");Um.exports=or});var Mm=g((gk,Dm)=>{"use strict";var cr=class{type="LiveChatPlaceholderItem";constructor(e){this.id=e.id,this.timestamp=Math.floor(parseInt(e.timestampUsec)/1e3)}};n(cr,"LiveChatPlaceholderItem");Dm.exports=cr});var jl=g((_k,Fm)=>{"use strict";var Vm=A(),MR=O(),VR=N(),FR=R(),ar=class{type="LiveChatTextMessage";constructor(e){this.message=new Vm(e.message),this.author={id:e.authorExternalChannelId,name:new Vm(e.authorName),thumbnails:MR.fromResponse(e.authorPhoto)};let t=FR.parse(e.authorBadges);this.author.badges=t,this.author.is_moderator=(t==null?void 0:t.some(i=>i.icon_type=="MODERATOR"))||null,this.author.is_verified=(t==null?void 0:t.some(i=>i.style=="BADGE_STYLE_TYPE_VERIFIED"))||null,this.author.is_verified_artist=(t==null?void 0:t.some(i=>i.style=="BADGE_STYLE_TYPE_VERIFIED_ARTIST"))||null,this.menu_endpoint=new VR(e.contextMenuEndpoint),this.timestamp=Math.floor(parseInt(e.timestampUsec)/1e3),this.id=e.id}};n(ar,"LiveChatTextMessage");Fm.exports=ar});var $m=g((yk,Ym)=>{"use strict";var YR=A(),$R=O(),GR=N(),eu=R(),lr=class{type="LiveChatTickerPaidMessageItem";constructor(e){this.author={id:e.authorExternalChannelId,thumbnails:$R.fromResponse(e.authorPhoto),badges:eu.parse(e.authorBadges)};let t=eu.parse(e.authorBadges);this.author.badges=t,this.author.is_moderator=(t==null?void 0:t.some(i=>i.icon_type=="MODERATOR"))||null,this.author.is_verified=(t==null?void 0:t.some(i=>i.style=="BADGE_STYLE_TYPE_VERIFIED"))||null,this.author.is_verified_artist=(t==null?void 0:t.some(i=>i.style=="BADGE_STYLE_TYPE_VERIFIED_ARTIST"))||null,this.amount=new YR(e.amount),this.duration_sec=e.durationSec,this.full_duration_sec=e.fullDurationSec,this.show_item=eu.parse(e.showItemEndpoint.showLiveChatItemEndpoint.renderer,"livechat/items"),this.show_item_endpoint=new GR(e.showItemEndpoint),this.id=e.id}};n(lr,"LiveChatTickerPaidMessageItem");Ym.exports=lr});var Hm=g((wk,Wm)=>{"use strict";var Gm=A(),WR=O(),ur=class{type="LiveChatTickerSponsorItem";constructor(e){this.id=e.id,this.detail_text=new Gm(e.detailText).toString(),this.author={id:e.authorExternalChannelId,name:new Gm(e==null?void 0:e.authorName),thumbnails:WR.fromResponse(e.sponsorPhoto)},this.duration_sec=e.durationSec}};n(ur,"LiveChatTickerSponsorItem");Wm.exports=ur});var Km=g((vk,zm)=>{"use strict";var HR=jl(),zR=R(),hr=class extends HR{type="LiveChatViewerEngagementMessage";constructor(e){super(e),delete this.author,delete this.menu_endpoint,this.icon_type=e.icon.iconType,this.action_button=zR.parse(e.actionButton)}};n(hr,"LiveChatViewerEngagementMessage");zm.exports=hr});var Xm=g((bk,Jm)=>{"use strict";var KR=R(),Qm=A(),QR=N(),dr=class{type="Poll";constructor(e){this.header=KR.parse(e.header,"livechat/items"),this.choices=e.choices.map(t=>({text:new Qm(t.text).toString(),selected:t.selected,vote_ratio:t.voteRatio,vote_percentage:new Qm(t.votePercentage).toString(),select_endpoint:new QR(t.selectServiceEndpoint)})),this.live_chat_poll_id=e.liveChatPollId}};n(dr,"Poll");Jm.exports=dr});var jm=g((xk,fm)=>{"use strict";var Zm=A(),JR=O(),XR=R(),pr=class{type="PollHeader";constructor(e){this.poll_question=new Zm(e.pollQuestion),this.thumbnails=JR.fromResponse(e.thumbnail),this.metadata=new Zm(e.metadataText),this.live_chat_poll_type=e.liveChatPollType,this.context_menu_button=XR.parse(e.contextMenuButton)}};n(pr,"PollHeader");fm.exports=pr});var tg=g((Tk,eg)=>{"use strict";var ZR=R(),mr=class{type="LiveChatActionPanel";constructor(e){this.id=e.id,this.contents=ZR.parse(e.contents,"livechat/items"),this.target_id=e.targetId}};n(mr,"LiveChatActionPanel");eg.exports=mr});var ig=g((Ek,ng)=>{"use strict";var fR=A(),gr=class{type="MarkChatItemAsDeletedAction";constructor(e){this.deleted_state_message=new fR(e.deletedStateMessage),this.target_item_id=e.targetItemId}};n(gr,"MarkChatItemAsDeletedAction");ng.exports=gr});var rg=g((qk,sg)=>{"use strict";var jR=A(),_r=class{type="MarkChatItemsByAuthorAsDeletedAction";constructor(e){this.deleted_state_message=new jR(e.deletedStateMessage),this.channel_id=e.externalChannelId}};n(_r,"MarkChatItemsByAuthorAsDeletedAction");sg.exports=_r});var cg=g((Rk,og)=>{"use strict";var yr=class{type="RemoveBannerForLiveChatCommand";constructor(e){this.target_action_id=e.targetActionId}};n(yr,"RemoveBannerForLiveChatCommand");og.exports=yr});var lg=g((Ik,ag)=>{"use strict";var eI=R(),wr=class{constructor(e){this.target_item_id=e.targetItemId,this.replacement_item=eI.parse(e.replacementItem,"livechat/items")}};n(wr,"ReplaceChatItemAction");ag.exports=wr});var hg=g((Sk,ug)=>{"use strict";var tI=R(),vr=class{type="ReplayChatItemAction";constructor(e){var t;this.actions=tI.parse((t=e.actions)==null?void 0:t.map(i=>(delete i.clickTrackingParams,i)),"livechat")||[],this.video_offset_time_msec=e.videoOffsetTimeMsec}};n(vr,"ReplayChatItemAction");ug.exports=vr});var pg=g((Ck,dg)=>{"use strict";var nI=R(),br=class{type="ShowLiveChatActionPanelAction";constructor(e){this.panel_to_show=nI.parse(e.panelToShow,"livechat")}};n(br,"ShowLiveChatActionPanelAction");dg.exports=br});var gg=g((Lk,mg)=>{"use strict";var iI=R(),xr=class{type="ShowLiveChatTooltipCommand";constructor(e){this.tooltip=iI.parse(e.tooltip)}};n(xr,"ShowLiveChatTooltipCommand");mg.exports=xr});var yg=g((Ak,_g)=>{"use strict";var sI=A(),Tr=class{type="UpdateDateTextAction";constructor(e){this.date_text=new sI(e.dateText).toString()}};n(Tr,"UpdateDateTextAction");_g.exports=Tr});var vg=g((kk,wg)=>{"use strict";var rI=A(),Er=class{type="UpdateDescriptionAction";constructor(e){this.description=new rI(e.description)}};n(Er,"UpdateDescriptionAction");wg.exports=Er});var xg=g((Pk,bg)=>{"use strict";var oI=R(),qr=class{type="UpdateLiveChatPollAction";constructor(e){this.poll_to_update=oI.parse(e.pollToUpdate,"livechat/items")}};n(qr,"UpdateLiveChatPollAction");bg.exports=qr});var Eg=g((Nk,Tg)=>{"use strict";var cI=A(),Rr=class{type="UpdateTitleAction";constructor(e){this.title=new cI(e.title)}};n(Rr,"UpdateTitleAction");Tg.exports=Rr});var Ig=g((Ok,Rg)=>{"use strict";var qg=A(),Ir=class{type="UpdateToggleButtonTextAction";constructor(e){this.default_text=new qg(e.defaultText).toString(),this.toggled_text=new qg(e.toggledText).toString(),this.button_id=e.buttonId}};n(Ir,"UpdateToggleButtonTextAction");Rg.exports=Ir});var Lg=g((Uk,Cg)=>{"use strict";var Sg=A(),Sr=class{type="UpdateViewershipAction";constructor(e){let t=e.viewCount.videoViewCountRenderer;this.view_count=new Sg(t.viewCount),this.extra_short_view_count=new Sg(t.extraShortViewCount),this.is_live=t.isLive}};n(Sr,"UpdateViewershipAction");Cg.exports=Sr});var tu=g((Bk,Ag)=>{"use strict";var Cr=class{constructor(e){e.icon&&(this.icon_type=e.icon.iconType),e.style&&(this.style=e.style),this.tooltip=e.tooltip||e.iconTooltip||null}};n(Cr,"MetadataBadge");Ag.exports=Cr});var Pg=g((Dk,kg)=>{"use strict";var aI=tu(),lI=O(),Lr=class extends aI{constructor(e){super(e),this.custom_thumbnail=e.customThumbnail?lI.fromResponse(e.customThumbnail):null}};n(Lr,"LiveChatAuthorBadge");kg.exports=Lr});var Og=g((Mk,Ng)=>{"use strict";var nu=R(),Ar=class{type="LiveChatHeader";constructor(e){this.overflow_menu=nu.parse(e.overflowMenu),this.collapse_button=nu.parse(e.collapseButton),this.view_selector=nu.parse(e.viewSelector)}};n(Ar,"LiveChatHeader");Ng.exports=Ar});var Bg=g((Vk,Ug)=>{"use strict";var uI=R(),kr=class{type="LiveChatItemList";constructor(e){this.max_items_to_display=e.maxItemsToDisplay,this.more_comments_below_button=uI.parse(e.moreCommentsBelowButton)}};n(kr,"LiveChatItemList");Ug.exports=kr});var Mg=g((Fk,Dg)=>{"use strict";var hI=A(),dI=R(),pI=O(),Pr=class{constructor(e){this.author_name=new hI(e.authorName),this.author_photo=pI.fromResponse(e.authorPhoto),this.send_button=dI.parse(e.sendButton),this.target_id=e.targetId}};n(Pr,"LiveChatMessageInput");Dg.exports=Pr});var Fg=g((Yk,Vg)=>{"use strict";var mI=R(),gI=A(),_I=O(),Nr=class{type="LiveChatParticipant";constructor(e){this.name=new gI(e.authorName),this.photo=_I.fromResponse(e.authorPhoto),this.badges=mI.parse(e.authorBadges)}};n(Nr,"LiveChatParticipant");Vg.exports=Nr});var $g=g(($k,Yg)=>{"use strict";var yI=R(),wI=A(),Or=class{type="LiveChatParticipantsList";constructor(e){this.title=new wI(e.title),this.participants=yI.parse(e.participants)}};n(Or,"LiveChatParticipantsList");Yg.exports=Or});var Hg=g((Gk,Wg)=>{"use strict";var Gg=R(),Ur=class{type="Menu";constructor(e){var t,i;this.items=Gg.parse(e.items)||[],this.top_level_buttons=Gg.parse(e.topLevelButtons)||[],this.label=((i=(t=e.accessibility)==null?void 0:t.accessibilityData)==null?void 0:i.label)||null}get contents(){return this.items}};n(Ur,"Menu");Wg.exports=Ur});var Kg=g((Wk,zg)=>{"use strict";var vI=Wi(),Br=class extends vI{type="MenuNavigationItem";constructor(e){super(e)}};n(Br,"MenuNavigationItem");zg.exports=Br});var Jg=g((Hk,Qg)=>{"use strict";var bI=Wi(),Dr=class extends bI{type="MenuServiceItem";constructor(e){super(e)}};n(Dr,"MenuServiceItem");Qg.exports=Dr});var Zg=g((zk,Xg)=>{"use strict";var xI=N(),Mr=class{type="MenuServiceItemDownload";constructor(e){this.has_separator=e.hasSeparator,this.endpoint=new xI(e.navigationEndpoint||e.serviceEndpoint)}};n(Mr,"MenuServiceItemDownload");Xg.exports=Mr});var jg=g((Kk,fg)=>{"use strict";var TI=O(),EI=N(),Vr=class{type="MerchandiseItem";constructor(e){this.title=e.title,this.description=e.description,this.thumbnails=TI.fromResponse(e.thumbnail),this.price=e.price,this.vendor_name=e.vendorName,this.button_text=e.buttonText,this.button_accessibility_text=e.buttonAccessibilityText,this.from_vendor_text=e.fromVendorText,this.additional_fees_text=e.additionalFeesText,this.region_format=e.regionFormat,this.endpoint=new EI(e.buttonCommand)}};n(Vr,"MerchandiseItem");fg.exports=Vr});var n_=g((Qk,t_)=>{"use strict";var e_=R(),Fr=class{type="MerchandiseShelf";constructor(e){this.title=e.title,this.menu=e_.parse(e.actionButton),this.items=e_.parse(e.items)}get contents(){return this.items}};n(Fr,"MerchandiseShelf");t_.exports=Fr});var s_=g((Jk,i_)=>{"use strict";var qI=A(),Yr=class{type="Message";constructor(e){this.text=new qI(e.text).toString()}};n(Yr,"Message");i_.exports=Yr});var c_=g((Xk,o_)=>{"use strict";var r_=A(),$r=class{type="MetadataRow";constructor(e){this.title=new r_(e.title),this.contents=e.contents.map(t=>new r_(t))}};n($r,"MetadataRow");o_.exports=$r});var l_=g((Zk,a_)=>{"use strict";var RI=R(),Gr=class{type="MetadataRowContainer";constructor(e){this.rows=RI.parse(e.rows),this.collapsed_item_count=e.collapsedItemCount}};n(Gr,"MetadataRowContainer");a_.exports=Gr});var h_=g((fk,u_)=>{"use strict";var II=A(),Wr=class{type="MetadataRowHeader";constructor(e){this.content=new II(e.content),this.has_divider_line=e.hasDividerLine}};n(Wr,"MetadataRowHeader");u_.exports=Wr});var p_=g((jk,d_)=>{"use strict";var SI=O(),Hr=class{type="MicroformatData";constructor(e){this.url_canonical=e.urlCanonical,this.title=e.title,this.description=e.description,this.thumbnail=e.thumbnail&&SI.fromResponse(e.thumbnail),this.site_name=e.siteName,this.app_name=e.appName,this.android_package=e.androidPackage,this.ios_app_store_id=e.iosAppStoreId,this.ios_app_arguments=e.iosAppArguments,this.og_type=e.ogType,this.url_applinks_web=e.urlApplinksWeb,this.url_applinks_ios=e.urlApplinksIos,this.url_applinks_android=e.urlApplinksAndroid,this.url_twitter_ios=e.urlTwitterIos,this.url_twitter_android=e.urlTwitterAndroid,this.twitter_card_type=e.twitterCardType,this.twitter_site_handle=e.twitterSiteHandle,this.schema_dot_org_type=e.schemaDotOrgType,this.noindex=e.noindex,this.is_unlisted=e.unlisted,this.is_family_safe=e.familySafe,this.tags=e.tags,this.available_countries=e.availableCountries}};n(Hr,"MicroformatData");d_.exports=Hr});var g_=g((eP,m_)=>{"use strict";var CI=xn(),zr=class extends CI{type="Mix";constructor(e){super(e)}};n(zr,"Mix");m_.exports=zr});var y_=g((tP,__)=>{"use strict";var iu=R(),LI=ne(),AI=O(),kI=N(),PI=D(),et=A(),Kr=class{type="Movie";constructor(e){var i,a,s;let t=((i=e.thumbnailOverlays.find(r=>r.thumbnailOverlayTimeStatusRenderer))==null?void 0:i.thumbnailOverlayTimeStatusRenderer.text)||"N/A";this.id=e.videoId,this.title=new et(e.title),this.description_snippet=e.descriptionSnippet?new et(e.descriptionSnippet,""):null,this.top_metadata_items=new et(e.topMetadataItems),this.thumbnails=AI.fromResponse(e.thumbnail),this.thumbnail_overlays=iu.parse(e.thumbnailOverlays),this.author=new LI(e.longBylineText,e.ownerBadges,(s=(a=e.channelThumbnailSupportedRenderers)==null?void 0:a.channelThumbnailWithLinkRenderer)==null?void 0:s.thumbnail),this.duration={text:e.lengthText?new et(e.lengthText).text:new et(t).text,seconds:PI.timeToSeconds(e.lengthText?new et(e.lengthText).text:new et(t).text)},this.endpoint=new kI(e.navigationEndpoint),this.badges=iu.parse(e.badges),this.use_vertical_poster=e.useVerticalPoster,this.show_action_menu=e.showActionMenu,this.menu=iu.parse(e.menu)}};n(Kr,"Movie");__.exports=Kr});var v_=g((nP,w_)=>{"use strict";var NI=O(),Qr=class{type="MovingThumbnail";constructor(e){var t;return(t=e.movingThumbnailDetails)==null?void 0:t.thumbnails.map(i=>new NI(i)).sort((i,a)=>a.width-i.width)}};n(Qr,"MovingThumbnail");w_.exports=Qr});var T_=g((iP,x_)=>{"use strict";var b_=R(),Jr=class{type="MusicCarouselShelf";constructor(e){this.header=b_.parse(e.header),this.contents=b_.parse(e.contents),e.numItemsPerColumn&&(this.num_items_per_column=e.numItemsPerColumn)}};n(Jr,"MusicCarouselShelf");x_.exports=Jr});var R_=g((sP,q_)=>{"use strict";var E_=A(),OI=O(),Xr=class{type="MusicCarouselShelfBasicHeader";constructor(e){e.strapline&&(this.strapline=new E_(e.strapline).toString()),this.title=new E_(e.title).toString(),e.thumbnail&&(this.thumbnail=OI.fromResponse(e.thumbnail.musicThumbnailRenderer.thumbnail))}};n(Xr,"MusicCarouselShelfBasicHeader");q_.exports=Xr});var C_=g((rP,S_)=>{"use strict";var I_=A(),Zr=class{type="MusicDescriptionShelf";constructor(e){this.description=new I_(e.description),this.max_collapsed_lines&&(this.max_collapsed_lines=e.maxCollapsedLines),this.max_expanded_lines&&(this.max_expanded_lines=e.maxExpandedLines),this.footer=new I_(e.footer)}};n(Zr,"MusicDescriptionShelf");S_.exports=Zr});var k_=g((oP,A_)=>{"use strict";var fr=A(),UI=O(),L_=R(),jr=class{type="MusicDetailHeader";constructor(e){this.title=new fr(e.title),this.description=new fr(e.description),this.subtitle=new fr(e.subtitle),this.second_subtitle=new fr(e.secondSubtitle),this.year=this.subtitle.runs.find(i=>/^[12][0-9]{3}$/.test(i.text)).text,this.song_count=this.second_subtitle.runs[0].text,this.total_duration=this.second_subtitle.runs[2].text,this.thumbnails=UI.fromResponse(e.thumbnail.croppedSquareThumbnailRenderer.thumbnail),this.badges=L_.parse(e.subtitleBadges);let t=this.subtitle.runs.find(i=>{var a;return(a=i.endpoint.browse)==null?void 0:a.id.startsWith("UC")});t&&(this.author={name:t.text,channel_id:t.endpoint.browse.id,endpoint:t.endpoint}),this.menu=L_.parse(e.menu)}};n(jr,"MusicDetailHeader");A_.exports=jr});var N_=g((cP,P_)=>{"use strict";var BI=R(),eo=class{type="MusicHeader";constructor(e){this.header=BI.parse(e.header)}};n(eo,"MusicHeader");P_.exports=eo});var B_=g((aP,U_)=>{"use strict";var O_=A(),DI=R(),to=class{type="MusicImmersiveHeader";constructor(e){this.title=new O_(e.title),this.description=new O_(e.description),this.thumbnails=DI.parse(e.thumbnail)}};n(to,"MusicImmersiveHeader");U_.exports=to});var M_=g((lP,D_)=>{"use strict";var no=class{type="MusicInlineBadge";constructor(e){this.icon_type=e.icon.iconType,this.label=e.accessibilityData.accessibilityData.label}};n(no,"MusicInlineBadge");D_.exports=no});var F_=g((uP,V_)=>{"use strict";var MI=R(),io=class{type="MusicItemThumbnailOverlay";constructor(e){this.content=MI.parse(e.content),this.content_position=e.contentPosition,this.display_style=e.displayStyle}};n(io,"MusicItemThumbnailOverlay");V_.exports=io});var $_=g((hP,Y_)=>{"use strict";var VI=A(),FI=N(),so=class{type="MusicNavigationButton";constructor(e){this.button_text=new VI(e.buttonText).toString(),this.endpoint=new FI(e.navigationEndpoint)}};n(so,"MusicNavigationButton");Y_.exports=so});var W_=g((dP,G_)=>{"use strict";var YI=N(),ro=class{type="MusicPlayButton";constructor(e){var t;this.endpoint=new YI(e.playNavigationEndpoint),this.play_icon_type=e.playIcon.iconType,this.pause_icon_type=e.pauseIcon.iconType,e.accessibilityPlayData&&(this.play_label=e.accessibilityPlayData.accessibilityData.label),e.accessibilityPlayData&&(this.pause_label=(t=e.accessibilityPauseData)==null?void 0:t.accessibilityData.label),this.icon_color=e.iconColor}};n(ro,"MusicPlayButton");G_.exports=ro});var z_=g((pP,H_)=>{"use strict";var $I=R(),En,oo=class{constructor(e){j(this,"type","MusicPlaylistShelf");T(this,En,void 0);this.playlist_id=e.playlistId,this.contents=$I.parse(e.contents),this.collapsed_item_count=e.collapsedItemCount,C(this,En,e.continuations)}get continuation(){var e,t;return(t=(e=d(this,En))==null?void 0:e[0])==null?void 0:t.nextContinuationData}};n(oo,"MusicPlaylistShelf"),En=new WeakMap;H_.exports=oo});var Q_=g((mP,K_)=>{"use strict";var GI=R(),co=class{type="MusicQueue";constructor(e){this.content=GI.parse(e.content)}};n(co,"MusicQueue");K_.exports=co});var iy=g((gP,ny)=>{"use strict";var qn=R(),WI=A(),J_=D(),HI=O(),zI=N(),K,Rn,qt,lo,X_,uo,Z_,ho,f_,po,j_,mo,ey,go,ty,ao=class{constructor(e){T(this,lo);T(this,uo);T(this,ho);T(this,po);T(this,mo);T(this,go);T(this,K,void 0);T(this,Rn,void 0);T(this,qt,void 0);var t,i,a,s;switch(this.type=null,C(this,K,qn.parse(e.flexColumns)),C(this,Rn,qn.parse(e.fixedColumns)),C(this,qt,{video_id:((t=e==null?void 0:e.playlistItemData)==null?void 0:t.videoId)||null,playlist_set_video_id:((i=e==null?void 0:e.playlistItemData)==null?void 0:i.playlistSetVideoId)||null}),this.endpoint=e.navigationEndpoint&&new zI(e.navigationEndpoint)||null,(s=(a=this.endpoint)==null?void 0:a.browse)==null?void 0:s.page_type){case"MUSIC_PAGE_TYPE_ALBUM":this.type="album",k(this,mo,ey).call(this);break;case"MUSIC_PAGE_TYPE_PLAYLIST":this.type="playlist",k(this,go,ty).call(this);break;case"MUSIC_PAGE_TYPE_ARTIST":case"MUSIC_PAGE_TYPE_USER_CHANNEL":this.type="artist",k(this,po,j_).call(this);break;default:k(this,lo,X_).call(this);break}e.index&&(this.index=new WI(e.index)),this.thumbnails=e.thumbnail?HI.fromResponse(e.thumbnail.musicThumbnailRenderer.thumbnail):[],this.badges=qn.parse(e.badges)||[],this.menu=qn.parse(e.menu),this.overlay=qn.parse(e.overlay)}};n(ao,"MusicResponsiveListItem"),K=new WeakMap,Rn=new WeakMap,qt=new WeakMap,lo=new WeakSet,X_=n(function(){var t;((t=d(this,K)[1].title.runs)==null?void 0:t.some(i=>i.text.match(/(.*?) views/)))?(this.type="video",k(this,ho,f_).call(this)):(this.type="song",k(this,uo,Z_).call(this))},"#parseVideoOrSong"),uo=new WeakSet,Z_=n(function(){var a,s,r,o,h,l,u;this.id=d(this,qt).video_id||this.endpoint.watch.video_id,this.title=d(this,K)[0].title.toString();let e=((s=(a=d(this,K)[1].title.runs)==null?void 0:a.find(p=>/^\d+$/.test(p.text.replace(/:/g,""))))==null?void 0:s.text)||((h=(o=(r=d(this,Rn))==null?void 0:r[0])==null?void 0:o.title)==null?void 0:h.text);e&&(this.duration={text:e,seconds:J_.timeToSeconds(e)});let t=(l=d(this,K)[1].title.runs)==null?void 0:l.find(p=>{var _;return(_=p.endpoint.browse)==null?void 0:_.id.startsWith("MPR")});t&&(this.album={id:t.endpoint.browse.id,name:t.text,endpoint:t.endpoint});let i=(u=d(this,K)[1].title.runs)==null?void 0:u.filter(p=>{var _;return(_=p.endpoint.browse)==null?void 0:_.id.startsWith("UC")});i&&(this.artists=i.map(p=>({name:p.text,channel_id:p.endpoint.browse.id,endpoint:p.endpoint})))},"#parseSong"),ho=new WeakSet,f_=n(function(){var i,a;this.id=d(this,qt).video_id,this.title=d(this,K)[0].title.toString(),this.views=d(this,K)[1].title.runs.find(s=>s.text.match(/(.*?) views/)).text;let e=(i=d(this,K)[1].title.runs)==null?void 0:i.filter(s=>{var r;return(r=s.endpoint.browse)==null?void 0:r.id.startsWith("UC")});e&&(this.authors=e.map(s=>({name:s.text,channel_id:s.endpoint.browse.id,endpoint:s.endpoint})));let t=(a=d(this,K)[1].title.runs.find(s=>/^\d+$/.test(s.text.replace(/:/g,""))))==null?void 0:a.text;t&&(this.duration={text:t,seconds:J_.timeToSeconds(t)})},"#parseVideo"),po=new WeakSet,j_=n(function(){var e;this.id=this.endpoint.browse.id,this.name=d(this,K)[0].title.toString(),this.subscribers=((e=d(this,K)[1].title.runs[2])==null?void 0:e.text)||""},"#parseArtist"),mo=new WeakSet,ey=n(function(){this.id=this.endpoint.browse.id,this.title=d(this,K)[0].title.toString();let e=d(this,K)[1].title.runs.find(t=>{var i;return(i=t.endpoint.browse)==null?void 0:i.id.startsWith("UC")});e&&(this.author={name:e.text,channel_id:e.endpoint.browse.id,endpoint:e.endpoint}),this.year=d(this,K)[1].title.runs.find(t=>/^[12][0-9]{3}$/.test(t.text)).text},"#parseAlbum"),go=new WeakSet,ty=n(function(){this.id=this.endpoint.browse.id,this.title=d(this,K)[0].title.toString(),this.item_count=parseInt(d(this,K)[1].title.runs.find(t=>t.text.match(/\d+ (song|songs)/)).text.match(/\d+/g));let e=d(this,K)[1].title.runs.find(t=>{var i;return(i=t.endpoint.browse)==null?void 0:i.id.startsWith("UC")});e&&(this.author={name:e.text,channel_id:e.endpoint.browse.id,endpoint:e.endpoint})},"#parsePlaylist");ny.exports=ao});var ry=g((_P,sy)=>{"use strict";var KI=A(),_o=class{type="musicResponsiveListItemFlexColumnRenderer";constructor(e){this.title=new KI(e.text),this.display_priority=e.displayPriority}};n(_o,"MusicResponsiveListItemFixedColumn");sy.exports=_o});var cy=g((yP,oy)=>{"use strict";var QI=A(),yo=class{type="musicResponsiveListItemFlexColumnRenderer";constructor(e){this.title=new QI(e.text),this.display_priority=e.displayPriority}};n(yo,"MusicResponsiveListItemFlexColumn");oy.exports=yo});var uy=g((wP,ly)=>{"use strict";var JI=R(),ay=A(),XI=N(),wo=class{type="MusicShelf";constructor(e){var t;this.title=new ay(e.title).toString(),this.contents=JI.parse(e.contents),e.bottomEndpoint&&(this.endpoint=new XI(e.bottomEndpoint)),this.continuation&&(this.continuation=(t=e.continuations)==null?void 0:t[0].nextContinuationData.continuation),e.bottomText&&(this.bottom_text=new ay(e.bottomText))}};n(wo,"MusicShelf");ly.exports=wo});var dy=g((vP,hy)=>{"use strict";var ZI=O(),vo=class{type="MusicThumbnail";constructor(e){return ZI.fromResponse(e.thumbnail)}};n(vo,"MusicThumbnail");hy.exports=vo});var gy=g((bP,my)=>{"use strict";var su=R(),py=A(),fI=O(),jI=N(),bo=class{type="MusicTwoRowItem";constructor(e){var t,i,a;switch(this.title=new py(e.title),this.endpoint=new jI(e.navigationEndpoint),this.id=((t=this.endpoint.browse)==null?void 0:t.id)||this.endpoint.watch.video_id,this.subtitle=new py(e.subtitle),this.badges=su.parse(e.subtitleBadges),(i=this.endpoint.browse)==null?void 0:i.page_type){case"MUSIC_PAGE_TYPE_ARTIST":this.type="artist",this.subscribers=this.subtitle.toString();break;case"MUSIC_PAGE_TYPE_PLAYLIST":this.type="playlist",this.item_count=parseInt((a=this.subtitle.runs.find(r=>r.text.match(/\d+ (songs|song)/)))==null?void 0:a.text.match(/\d+/g))||null;break;case"MUSIC_PAGE_TYPE_ALBUM":this.type="album";let s=this.subtitle.runs.filter(r=>{var o;return(o=r.endpoint.browse)==null?void 0:o.id.startsWith("UC")});s&&(this.artists=s.map(r=>({name:r.text,channel_id:r.endpoint.browse.id,endpoint:r.endpoint}))),this.year=this.subtitle.runs.slice(-1)[0].text,isNaN(this.year)&&delete this.year;break;default:if(this.subtitle.runs[0].text!=="Song"?this.type="video":this.type="song",this.type=="video"){this.views=this.subtitle.runs.find(o=>o.text.match(/(.*?) views/)).text;let r=this.subtitle.runs.find(o=>{var h;return(h=o.endpoint.browse)==null?void 0:h.id.startsWith("UC")});r&&(this.author={name:r.text,channel_id:r.endpoint.browse.id,endpoint:r.endpoint})}else{let r=this.subtitle.runs.filter(o=>{var h;return(h=o.endpoint.browse)==null?void 0:h.id.startsWith("UC")});r&&(this.artists=r.map(o=>({name:o.text,channel_id:o.endpoint.browse.id,endpoint:o.endpoint})))}break}this.thumbnail=fI.fromResponse(e.thumbnailRenderer.musicThumbnailRenderer.thumbnail),this.thumbnail_overlay=su.parse(e.thumbnailOverlay),this.menu=su.parse(e.menu)}};n(bo,"MusicTwoRowItem");my.exports=bo});var yy=g((xP,_y)=>{"use strict";var eS=R(),tS=O(),nS=N(),xo=class{type="PlayerAnnotationsExpanded";constructor(e){this.featured_channel={start_time_ms:e.featuredChannel.startTimeMs,end_time_ms:e.featuredChannel.endTimeMs,watermark:tS.fromResponse(e.featuredChannel.watermark),channel_name:e.featuredChannel.channelName,endpoint:new nS(e.featuredChannel.navigationEndpoint),subscribe_button:eS.parse(e.featuredChannel.subscribeButton)},this.allow_swipe_dismiss=e.allowSwipeDismiss,this.annotation_id=e.annotationId}};n(xo,"PlayerAnnotationsExpanded");_y.exports=xo});var by=g((TP,vy)=>{"use strict";var wy=A(),To=class{type="PlayerCaptionsTracklist";constructor(e){this.caption_tracks=e.captionTracks.map(t=>({base_url:t.baseUrl,name:new wy(t.name),vss_id:t.vssId,language_code:t.languageCode,kind:t.kind,is_translatable:t.isTranslatable})),this.audio_tracks=e.audioTracks.map(t=>({caption_track_indices:t.captionTrackIndices})),this.translation_languages=e.translationLanguages.map(t=>({language_code:t.languageCode,language_name:new wy(t.languageName)}))}};n(To,"PlayerCaptionsTracklist");vy.exports=To});var Ey=g((EP,Ty)=>{"use strict";var iS=R(),xy=A(),sS=O(),Eo=class{type="PlayerErrorMessage";constructor(e){this.subreason=new xy(e.subreason),this.reason=new xy(e.reason),this.proceed_button=iS.parse(e.proceedButton),this.thumbnails=sS.fromResponse(e.thumbnail),this.icon_type=e.icon.iconType}};n(Eo,"PlayerErrorMessage");Ty.exports=Eo});var Ry=g((qP,qy)=>{"use strict";var qo=class{type="PlayerLiveStoryboardSpec";constructor(){}};n(qo,"PlayerLiveStoryboardSpec");qy.exports=qo});var Cy=g((RP,Sy)=>{"use strict";var Iy=A(),rS=O(),Ro=class{type="PlayerMicroformat";constructor(e){this.title=new Iy(e.title),this.description=new Iy(e.description),this.thumbnails=rS.fromResponse(e.thumbnail),this.embed={iframe_url:e.embed.iframeUrl,flash_url:e.embed.flashUrl,flash_secure_url:e.embed.flashSecureUrl,width:e.embed.width,height:e.embed.height},this.length_seconds=parseInt(e.lengthSeconds),this.channel={id:e.externalChannelId,name:e.ownerChannelName,url:e.ownerProfileUrl},this.is_family_safe=e.isFamilySafe,this.is_unlisted=e.isUnlisted,this.has_ypc_metadata=e.hasYpcMetadata,this.view_count=parseInt(e.viewCount),this.category=e.category,this.publish_date=e.publishDate,this.upload_date=e.uploadDate,this.available_countries=e.availableCountries}};n(Ro,"PlayerMicroformat");Sy.exports=Ro});var Ay=g((IP,Ly)=>{"use strict";var In=R(),Io=class{type="PlayerOverlay";constructor(e){this.end_screen=In.parse(e.endScreen),this.autoplay=In.parse(e.autoplay),this.share_button=In.parse(e.shareButton),this.add_to_menu=In.parse(e.addToMenu),this.fullscreen_engagement=In.parse(e.fullscreenEngagement)}};n(Io,"PlayerOverlay");Ly.exports=Io});var Py=g((SP,ky)=>{"use strict";var So=R(),Co=A(),oS=ne(),cS=O(),Lo=class{type="PlayerOverlayAutoplay";constructor(e){this.title=new Co(e.title),this.video_id=e.videoId,this.video_title=new Co(e.videoTitle),this.short_view_count=new Co(e.shortViewCountText),this.prefer_immediate_redirect=e.preferImmediateRedirect,this.count_down_secs_for_fullscreen=e.countDownSecsForFullscreen,this.published=new Co(e.publishedTimeText),this.background=cS.fromResponse(e.background),this.thumbnail_overlays=So.parse(e.thumbnailOverlays),this.author=new oS(e.byline),this.cancel_button=So.parse(e.cancelButton),this.next_button=So.parse(e.nextButton),this.close_button=So.parse(e.closeButton)}};n(Lo,"PlayerOverlayAutoplay");ky.exports=Lo});var Oy=g((CP,Ny)=>{"use strict";var Ao=class{type="PlayerStoryboardSpec";constructor(e){let t=e.spec.split("|"),i=new URL(t.shift());this.boards=t.map((a,s)=>{let[r,o,h,l,u,p,_,b]=a.split("#");i.searchParams.set("sigh",b),h=parseInt(h,10),l=parseInt(l,10),u=parseInt(u,10);let w=Math.ceil(h/(l*u));return{template_url:i.toString().replace("$L",s).replace("$N",_),thumbnail_width:parseInt(r,10),thumbnail_height:parseInt(o,10),thumbnail_count:h,interval:parseInt(p,10),columns:l,rows:u,storyboard_count:w}})}};n(Ao,"PlayerStoryboardSpec");Ny.exports=Ao});var By=g((LP,Uy)=>{"use strict";var Rt=A(),aS=xt(),ru=R(),ko=class{type="PlaylistHeader";constructor(e){this.id=e.playlistId,this.title=new Rt(e.title),this.stats=e.stats.map(t=>new Rt(t)),this.brief_stats=e.briefStats.map(t=>new Rt(t)),this.author=new aS({...e.ownerText,navigationEndpoint:e.ownerEndpoint},e.ownerBadges,null),this.description=new Rt(e.descriptionText),this.num_videos=new Rt(e.numVideosText),this.view_count=new Rt(e.viewCountText),this.can_share=e.shareData.canShare,this.can_delete=e.editableDetails.canDelete,this.is_editable=e.isEditable,this.privacy=e.privacy,this.save_button=ru.parse(e.saveButton),this.shuffle_play_button=ru.parse(e.shufflePlayButton),this.menu=ru.parse(e.moreActionsMenu)}};n(ko,"PlaylistHeader");Uy.exports=ko});var My=g((AP,Dy)=>{"use strict";var Po=class{type="PlaylistMetadata";constructor(e){this.title=e.title,this.description=e.description||null}};n(Po,"PlaylistMetadata");Dy.exports=Po});var Fy=g((kP,Vy)=>{"use strict";var lS=R(),uS=A(),No=class{type="PlaylistPanel";constructor(e){var t,i;this.title=e.title,this.title_text=new uS(e.titleText),this.contents=lS.parse(e.contents),this.playlist_id=e.playlistId,this.is_infinite=e.isInfinite,this.continuation=(i=(t=e.continuations[0])==null?void 0:t.nextRadioContinuationData)==null?void 0:i.continuation,this.is_editable=e.isEditable,this.preview_description=e.previewDescription,this.num_items_to_show=e.numItemsToShow}};n(No,"PlaylistPanel");Vy.exports=No});var Gy=g((PP,$y)=>{"use strict";var Yy=R(),tt=A(),hS=O(),dS=N(),pS=D(),Oo=class{type="PlaylistPanelVideo";constructor(e){this.title=new tt(e.title),this.thumbnail=hS.fromResponse(e.thumbnail),this.endpoint=new dS(e.navigationEndpoint),this.selected=e.selected,this.video_id=e.videoId,this.duration={text:new tt(e.lengthText).toString(),seconds:pS.timeToSeconds(new tt(e.lengthText).toString())};let t=new tt(e.longBylineText).runs.find(a=>{var s;return(s=a.endpoint.browse)==null?void 0:s.id.startsWith("MPR")}),i=new tt(e.longBylineText).runs.filter(a=>{var s;return(s=a.endpoint.browse)==null?void 0:s.id.startsWith("UC")});this.author=new tt(e.shortBylineText).toString(),t&&(this.album={id:t.endpoint.browse.id,name:t.text,year:new tt(e.longBylineText).runs.slice(-1)[0].text,endpoint:t.endpoint}),this.artists=i.map(a=>({name:a.text,channel_id:a.endpoint.browse.id,endpoint:a.endpoint})),this.badges=Yy.parse(e.badges),this.menu=Yy.parse(e.menu),this.set_video_id=e.playlistSetVideoId}};n(Oo,"PlaylistPanelVideo");$y.exports=Oo});var Hy=g((NP,Wy)=>{"use strict";var mS=R(),Uo=class{type="PlaylistSidebar";constructor(e){this.items=mS.parse(e.items)}get contents(){return this.items}};n(Uo,"PlaylistSidebar");Wy.exports=Uo});var Qy=g((OP,Ky)=>{"use strict";var zy=R(),gS=N(),ou=A(),Bo=class{type="PlaylistSidebarPrimaryInfo";constructor(e){this.stats=e.stats.map(t=>new ou(t)),this.thumbnail_renderer=zy.parse(e.thumbnailRenderer),this.title=new ou(e.title),this.menu=e.menu&&zy.parse(e.menu),this.endpoint=new gS(e.navigationEndpoint),this.description=new ou(e.description)}};n(Bo,"PlaylistSidebarPrimaryInfo");Ky.exports=Bo});var Zy=g((UP,Xy)=>{"use strict";var Jy=R(),Do=class{type="PlaylistSidebarSecondaryInfo";constructor(e){this.owner=Jy.parse(e.videoOwner)||null,this.button=Jy.parse(e.button)||null}};n(Do,"PlaylistSidebarSecondaryInfo");Xy.exports=Do});var ew=g((BP,jy)=>{"use strict";var cu=A(),fy=R(),_S=O(),yS=xt(),wS=N(),Mo=class{type="PlaylistVideo";constructor(e){this.id=e.videoId,this.index=new cu(e.index),this.title=new cu(e.title),this.author=new yS(e.shortBylineText),this.thumbnails=_S.fromResponse(e.thumbnail),this.thumbnail_overlays=fy.parse(e.thumbnailOverlays),this.set_video_id=e==null?void 0:e.setVideoId,this.endpoint=new wS(e.navigationEndpoint),this.is_playable=e.isPlayable,this.menu=fy.parse(e.menu),this.duration={text:new cu(e.lengthText).text,seconds:parseInt(e.lengthSeconds)}}};n(Mo,"PlaylistVideo");jy.exports=Mo});var nw=g((DP,tw)=>{"use strict";var vS=R(),Vo=class{type="PlaylistVideoList";constructor(e){this.id=e.playlistId,this.is_editable=e.isEditable,this.can_reorder=e.canReorder,this.videos=vS.parse(e.contents)}};n(Vo,"PlaylistVideoList");tw.exports=Vo});var sw=g((MP,iw)=>{"use strict";var bS=O(),Fo=class{type="PlaylistVideoThumbnail";constructor(e){this.thumbnail=bS.fromResponse(e.thumbnail)}};n(Fo,"PlaylistVideoThumbnail");iw.exports=Fo});var cw=g((VP,ow)=>{"use strict";var Yo=A(),xS=O(),rw=N(),$o=class{type="Poll";constructor(e){this.choices=e.choices.map(t=>({text:new Yo(t.text).toString(),select_endpoint:new rw(t.selectServiceEndpoint),deselect_endpoint:new rw(t.deselectServiceEndpoint),vote_ratio_if_selected:t.voteRatioIfSelected,vote_percentage_if_selected:new Yo(t.votePercentageIfSelected),vote_ratio_if_not_selected:t.voteRatioIfSelected,vote_percentage_if_not_selected:new Yo(t.votePercentageIfSelected),image:xS.fromResponse(t.image)})),this.total_votes=new Yo(e.totalVotes),this.poll_type=e.type}};n($o,"Poll");ow.exports=$o});var lw=g((FP,aw)=>{"use strict";var TS=Ol(),Go=class extends TS{type="Post";constructor(e){super(e)}};n(Go,"Post");aw.exports=Go});var hw=g((YP,uw)=>{"use strict";var ES=R(),Wo=class{type="ProfileColumn";constructor(e){this.items=ES.parse(e.items)}get contents(){return this.items}};n(Wo,"ProfileColumn");uw.exports=Wo});var pw=g(($P,dw)=>{"use strict";var qS=R(),Ho=class{type="ProfileColumnStats";constructor(e){this.items=qS.parse(e.items)}get contents(){return this.items}};n(Ho,"ProfileColumnStats");dw.exports=Ho});var _w=g((GP,gw)=>{"use strict";var mw=A(),zo=class{type="ProfileColumnStatsEntry";constructor(e){this.label=new mw(e.label),this.value=new mw(e.value)}};n(zo,"ProfileColumnStatsEntry");gw.exports=zo});var ww=g((WP,yw)=>{"use strict";var RS=A(),IS=O(),Ko=class{type="ProfileColumnUserInfo";constructor(e){this.title=new RS(e.title),this.thumbnails=IS.fromResponse(e.thumbnail)}};n(Ko,"ProfileColumnUserInfo");yw.exports=Ko});var xw=g((HP,bw)=>{"use strict";var SS=N(),vw=A(),CS=O(),Qo=class{type="ReelItem";constructor(e){this.id=e.videoId,this.title=new vw(e.headline,""),this.thumbnails=CS.fromResponse(e.thumbnail),this.views=new vw(e.viewCountText,""),this.endpoint=new SS(e.navigationEndpoint)}};n(Qo,"ReelItem");bw.exports=Qo});var Ew=g((zP,Tw)=>{"use strict";var LS=R(),AS=N(),kS=A(),Jo=class{type="ReelShelf";constructor(e){this.title=new kS(e.title),this.items=LS.parse(e.items),this.endpoint=e.endpoint?new AS(e.endpoint):null}get contents(){return this.items}};n(Jo,"ReelShelf");Tw.exports=Jo});var Rw=g((KP,qw)=>{"use strict";var PS=R(),Xo=class{type="RelatedChipCloud";constructor(e){this.content=PS.parse(e.content)}};n(Xo,"RelatedChipCloud");qw.exports=Xo});var Cw=g((QP,Sw)=>{"use strict";var Iw=R(),Zo=class{type="RichGrid";constructor(e){this.header=Iw.parse(e.header),this.contents=Iw.parse(e.contents)}};n(Zo,"RichGrid");Sw.exports=Zo});var Aw=g((JP,Lw)=>{"use strict";var NS=R(),fo=class{type="RichItem";constructor(e){return NS.parse(e.content)}};n(fo,"RichItem");Lw.exports=fo});var Pw=g((XP,kw)=>{"use strict";var OS=A(),jo=class{constructor(e){this.title=new OS(e.title),this.icon_type=e.icon.iconType}};n(jo,"RichListHeader");kw.exports=jo});var Ow=g((ZP,Nw)=>{"use strict";var US=R(),ec=class{type="RichSection";constructor(e){this.contents=US.parse(e.content)}};n(ec,"RichSection");Nw.exports=ec});var Bw=g((fP,Uw)=>{"use strict";var BS=R(),DS=N(),MS=A(),tc=class{type="RichShelf";constructor(e){this.title=new MS(e.title),this.contents=BS.parse(e.contents),this.endpoint=e.endpoint?new DS(e.endpoint):null}};n(tc,"RichShelf");Uw.exports=tc});var Vw=g((jP,Mw)=>{"use strict";var Dw=R(),VS=A(),FS=N(),nc=class{type="SearchBox";constructor(e){this.endpoint=new FS(e.endpoint),this.search_button=Dw.parse(e.searchButton),this.clear_button=Dw.parse(e.clearButton),this.placeholder_text=new VS(e.placeholderText)}};n(nc,"SearchBox");Mw.exports=nc});var Yw=g((eN,Fw)=>{"use strict";var YS=N(),$S=O(),GS=A(),ic=class{type="SearchRefinementCard";constructor(e){this.thumbnails=$S.fromResponse(e.thumbnail),this.endpoint=new YS(e.searchEndpoint),this.query=new GS(e.query).toString()}};n(ic,"SearchRefinementCard");Fw.exports=ic});var Gw=g((tN,$w)=>{"use strict";var WS=R(),sc=class{type="SecondarySearchContainer";constructor(e){this.contents=WS.parse(e.contents)}};n(sc,"SecondarySearchContainer");$w.exports=sc});var zw=g((nN,Hw)=>{"use strict";var Ww=R(),rc=class{type="SectionList";constructor(e){e.targetId&&(this.target_id=e.targetId),this.contents=Ww.parse(e.contents),e.continuations&&(e.continuations[0].nextContinuationData?this.continuation=e.continuations[0].nextContinuationData.continuation:e.continuations[0].reloadContinuationData&&(this.continuation=e.continuations[0].reloadContinuationData.continuation)),e.header&&(this.header=Ww.parse(e.header))}};n(rc,"SectionList");Hw.exports=rc});var Jw=g((iN,Qw)=>{"use strict";var HS=A(),Kw=R(),zS=N(),oc=class{type="Shelf";constructor(e){var t,i;this.title=new HS(e.title),e.endpoint&&(this.endpoint=new zS(e.endpoint)),this.content=Kw.parse(e.content)||[],(t=e.icon)!=null&&t.iconType&&(this.icon_type=(i=e.icon)==null?void 0:i.iconType),e.menu&&(this.menu=Kw.parse(e.menu))}};n(oc,"Shelf");Qw.exports=oc});var fw=g((sN,Zw)=>{"use strict";var KS=A(),Xw=N(),cc=class{type="ShowingResultsFor";constructor(e){this.corrected_query=new KS(e.correctedQuery),this.endpoint=new Xw(e.correctedQueryEndpoint),this.original_query_endpoint=new Xw(e.originalQueryEndpoint)}};n(cc,"ShowingResultsFor");Zw.exports=cc});var ev=g((rN,jw)=>{"use strict";var QS=A(),ac=class{type="SimpleCardTeaser";constructor(e){this.message=new QS(e.message),this.prominent=e.prominent}};n(ac,"SimpleCardTeaser");jw.exports=ac});var nv=g((oN,tv)=>{"use strict";var au=A(),JS=N(),lc=class{type="SingleActionEmergencySupport";constructor(e){this.action_text=new au(e.actionText),this.nav_text=new au(e.navigationText),this.details=new au(e.detailsText),this.icon_type=e.icon.iconType,this.endpoint=new JS(e.navigationEndpoint)}};n(lc,"SingleActionEmergencySupport");tv.exports=lc});var sv=g((cN,iv)=>{"use strict";var XS=R(),uc=class{type="SingleColumnBrowseResults";constructor(e){this.tabs=XS.parse(e.tabs)}};n(uc,"SingleColumnBrowseResults");iv.exports=uc});var ov=g((aN,rv)=>{"use strict";var ZS=R(),hc=class{type="SingleColumnMusicWatchNextResults";constructor(e){return ZS.parse(e)}};n(hc,"SingleColumnMusicWatchNextResults");rv.exports=hc});var av=g((lN,cv)=>{"use strict";var fS=O(),dc=class{type="SingleHeroImage";constructor(e){this.thumbnails=new fS(e.thumbnail).thumbnails,this.style=e.style}};n(dc,"SingleHeroImage");cv.exports=dc});var uv=g((uN,lv)=>{"use strict";var{observe:jS}=D(),pc=class{type="SortFilterSubMenu";constructor(e){this.sub_menu_items=jS(e.subMenuItems.map(t=>{var i;return{title:t.title,selected:t.selected,continuation:(i=t.continuation)==null?void 0:i.reloadContinuationData.continuation,subtitle:t.subtitle}})),this.label=e.accessibility.accessibilityData.label}};n(pc,"SortFilterSubMenu");lv.exports=pc});var dv=g((hN,hv)=>{"use strict";var eC=A(),tC=N(),mc=class{type="SubFeedOption";constructor(e){this.name=new eC(e.name),this.is_selected=e.isSelected,this.endpoint=new tC(e.navigationEndpoint)}};n(mc,"SubFeedOption");hv.exports=mc});var mv=g((dN,pv)=>{"use strict";var nC=R(),iC=A(),gc=class{type="SubFeedSelector";constructor(e){this.title=new iC(e.title),this.options=nC.parse(e.options)}};n(gc,"SubFeedSelector");pv.exports=gc});var _v=g((pN,gv)=>{"use strict";var sC=R(),lu=A(),rC=N(),_c=class{type="SubscribeButton";constructor(e){var t,i;this.title=new lu(e.buttonText),this.subscribed=e.subscribed,this.enabled=e.enabled,this.type=e.type,this.channel_id=e.channelId,this.show_preferences=e.showPreferences,this.subscribed_text=new lu(e.subscribedButtonText),this.unsubscribed_text=new lu(e.unsubscribedButtonText),this.notification_preference_button=sC.parse(e.notificationPreferenceButton),this.endpoint=new rC(((t=e.serviceEndpoints)==null?void 0:t[0])||((i=e.onSubscribeEndpoints)==null?void 0:i[0]))}};n(_c,"SubscribeButton");gv.exports=_c});var wv=g((mN,yv)=>{"use strict";var oC=R(),yc=class{type="SubscriptionNotificationToggleButton";constructor(e){this.states=e.states.map(t=>({id:t.stateId,next_id:t.nextStateId,state:oC.parse(t.state)})),this.current_state_id=e.currentStateId,this.target_id=e.targetId}};n(yc,"SubscriptionNotificationToggleButton");yv.exports=yc});var bv=g((gN,vv)=>{"use strict";var cC=R(),aC=N(),wc=class{type="Tab";constructor(e){this.title=e.title||"N/A",this.selected=e.selected||!1,this.endpoint=new aC(e.endpoint),this.content=cC.parse(e.content)}};n(wc,"Tab");vv.exports=wc});var Tv=g((_N,xv)=>{"use strict";var lC=R(),vc=class{type="Tabbed";constructor(e){return lC.parse(e)}};n(vc,"Tabbed");xv.exports=vc});var qv=g((yN,Ev)=>{"use strict";var uC=R(),Sn,bc=class{constructor(e){j(this,"type","TabbedSearchResults");T(this,Sn,void 0);C(this,Sn,e)}get tabs(){return uC.parse(d(this,Sn).tabs)}};n(bc,"TabbedSearchResults"),Sn=new WeakMap;Ev.exports=bc});var Iv=g((wN,Rv)=>{"use strict";var hC=A(),xc=class{type="TextHeader";constructor(e){this.title=new hC(e.title),this.style=e.style}};n(xc,"TextHeader");Rv.exports=xc});var Cv=g((vN,Sv)=>{"use strict";var Tc=class{type="ThumbnailOverlayBottomPanel";constructor(e){this.type=e.icon.iconType}};n(Tc,"ThumbnailOverlayBottomPanel");Sv.exports=Tc});var Av=g((bN,Lv)=>{"use strict";var dC=A(),Ec=class{type="ThumbnailOverlayEndorsement";constructor(e){this.text=new dC(e.text).toString()}};n(Ec,"ThumbnailOverlayEndorsement");Lv.exports=Ec});var Pv=g((xN,kv)=>{"use strict";var pC=A(),qc=class{type="ThumbnailOverlayHoverText";constructor(e){this.text=new pC(e.text),this.type=e.icon.iconType}};n(qc,"ThumbnailOverlayHoverText");kv.exports=qc});var Ov=g((TN,Nv)=>{"use strict";var mC=A(),Rc=class{type="ThumbnailOverlayInlineUnplayable";constructor(e){this.text=new mC(e.text).toString(),this.icon_type=e.icon.iconType}};n(Rc,"ThumbnailOverlayInlineUnplayable");Nv.exports=Rc});var Bv=g((EN,Uv)=>{"use strict";var gC=A(),Ic=class{type="ThumbnailOverlayLoadingPreview";constructor(e){this.text=new gC(e.text)}};n(Ic,"ThumbnailOverlayLoadingPreview");Uv.exports=Ic});var Mv=g((qN,Dv)=>{"use strict";var _C=A(),Sc=class{type="ThumbnailOverlayNowPlaying";constructor(e){this.text=new _C(e.text).text}};n(Sc,"ThumbnailOverlayNowPlaying");Dv.exports=Sc});var Fv=g((RN,Vv)=>{"use strict";var Cc=class{type="ThumbnailOverlayPinking";constructor(e){this.hack=e.hack}};n(Cc,"ThumbnailOverlayPinking");Vv.exports=Cc});var $v=g((IN,Yv)=>{"use strict";var yC=A(),Lc=class{type="ThumbnailOverlayPlaybackStatus";constructor(e){this.text=e.texts.map(t=>new yC(t))[0].toString()}};n(Lc,"ThumbnailOverlayPlaybackStatus");Yv.exports=Lc});var Wv=g((SN,Gv)=>{"use strict";var Ac=class{type="ThumbnailOverlayResumePlayback";constructor(e){this.percent_duration_watched=e.percentDurationWatched}};n(Ac,"ThumbnailOverlayResumePlayback");Gv.exports=Ac});var zv=g((CN,Hv)=>{"use strict";var wC=A(),kc=class{type="ThumbnailOverlaySidePanel";constructor(e){this.text=new wC(e.text),this.type=e.icon.iconType}};n(kc,"ThumbnailOverlaySidePanel");Hv.exports=kc});var Qv=g((LN,Kv)=>{"use strict";var vC=A(),Pc=class{type="ThumbnailOverlayTimeStatus";constructor(e){this.text=new vC(e.text).text}};n(Pc,"ThumbnailOverlayTimeStatus");Kv.exports=Pc});var Zv=g((AN,Xv)=>{"use strict";var Jv=N(),Nc=class{type="ThumbnailOverlayToggleButton";constructor(e){this.is_toggled=e.isToggled||null,this.icon_type={toggled:e.toggledIcon.iconType,untoggled:e.untoggledIcon.iconType},this.tooltip={toggled:e.toggledTooltip,untoggled:e.untoggledTooltip},this.toggled_endpoint=new Jv(e.toggledServiceEndpoint),this.untoggled_endpoint=new Jv(e.untoggledServiceEndpoint)}};n(Nc,"ThumbnailOverlayToggleButton");Xv.exports=Nc});var jv=g((kN,fv)=>{"use strict";var uu=A(),hu=N(),Oc=class{type="ToggleButton";constructor(e){var i,a,s,r,o,h,l,u;this.text=new uu(e.defaultText),this.toggled_text=new uu(e.toggledText),this.tooltip=e.defaultTooltip,this.toggled_tooltip=e.toggledTooltip,this.is_toggled=e.isToggled,this.is_disabled=e.isDisabled,this.icon_type=e.defaultIcon.iconType;let t=((a=(i=e==null?void 0:e.defaultText)==null?void 0:i.accessibility)==null?void 0:a.accessibilityData.label)||((s=e==null?void 0:e.accessibilityData)==null?void 0:s.accessibilityData.label)||((r=e==null?void 0:e.accessibility)==null?void 0:r.label);this.icon_type=="LIKE"&&(this.like_count=parseInt(t.replace(/\D/g,"")),this.short_like_count=new uu(e.defaultText).toString()),this.endpoint=((h=(o=e.defaultServiceEndpoint)==null?void 0:o.commandExecutorCommand)==null?void 0:h.commands)&&new hu(e.defaultServiceEndpoint.commandExecutorCommand.commands.pop())||new hu(e.defaultServiceEndpoint),this.toggled_endpoint=new hu(e.toggledServiceEndpoint),this.button_id=((u=(l=e.toggleButtonSupportedData)==null?void 0:l.toggleButtonIdData)==null?void 0:u.id)||null,this.target_id=e.targetId||null}};n(Oc,"ToggleButton");fv.exports=Oc});var nb=g((PN,tb)=>{"use strict";var eb=A(),bC=N(),Uc=class{type="ToggleMenuServiceItem";constructor(e){this.text=new eb(e.defaultText),this.toggled_text=new eb(e.toggledText),this.icon_type=e.defaultIcon.iconType,this.toggled_icon_type=e.toggledIcon.iconType,this.endpoint=new bC(e.toggledServiceEndpoint)}};n(Uc,"ToggleMenuServiceItem");tb.exports=Uc});var sb=g((NN,ib)=>{"use strict";var xC=A(),du=N(),Bc=class{type="Tooltip";constructor(e){this.promo_config={promo_id:e.promoConfig.promoId,impression_endpoints:e.promoConfig.impressionEndpoints.map(t=>new du(t)),accept:new du(e.promoConfig.acceptCommand),dismiss:new du(e.promoConfig.dismissCommand)},this.target_id=e.targetId,this.details=new xC(e.detailsText),this.suggested_position=e.suggestedPosition.type,this.dismiss_stratedy=e.dismissStrategy.type,this.dwell_time_ms=parseInt(e.dwellTimeMs)}};n(Bc,"Tooltip");ib.exports=Bc});var pu=g((ON,ob)=>{"use strict";var rb=R(),Dc=class{type="TwoColumnBrowseResults";constructor(e){this.tabs=rb.parse(e.tabs),this.secondary_contents=rb.parse(e.secondaryContents)}};n(Dc,"TwoColumnBrowseResults");ob.exports=Dc});var lb=g((UN,ab)=>{"use strict";var cb=R(),Mc=class{type="TwoColumnSearchResults";constructor(e){this.primary_contents=cb.parse(e.primaryContents),this.secondary_contents=cb.parse(e.secondaryContents)}};n(Mc,"TwoColumnSearchResults");ab.exports=Mc});var hb=g((BN,ub)=>{"use strict";var mu=R(),Vc=class{type="TwoColumnWatchNextResults";constructor(e){var t,i;this.results=mu.parse((t=e.results)==null?void 0:t.results.contents),this.secondary_results=mu.parse((i=e.secondaryResults)==null?void 0:i.secondaryResults.results),this.conversation_bar=mu.parse(e==null?void 0:e.conversationBar)}};n(Vc,"TwoColumnWatchNextResults");ub.exports=Vc});var pb=g((DN,db)=>{"use strict";var gu=R(),Fc=class{type="UniversalWatchCard";constructor(e){this.header=gu.parse(e.header),this.call_to_action=gu.parse(e.callToAction),this.sections=gu.parse(e.sections)}};n(Fc,"UniversalWatchCard");db.exports=Fc});var gb=g((MN,mb)=>{"use strict";var TC=R(),EC=A(),Yc=class{type="VerticalList";constructor(e){this.items=TC.parse(e.items),this.collapsed_item_count=e.collapsedItemCount,this.collapsed_state_button_text=new EC(e.collapsedStateButtonText)}get contents(){return this.items}};n(Yc,"VerticalList");mb.exports=Yc});var yb=g((VN,_b)=>{"use strict";var qC=R(),RC=A(),IC=N(),$c=class{type="VerticalWatchCardList";constructor(e){this.items=qC.parse(e.items),this.contents=this.items,this.view_all_text=new RC(e.viewAllText),this.view_all_endpoint=new IC(e.viewAllEndpoint)}};n($c,"VerticalWatchCardList");_b.exports=$c});var vb=g((FN,wb)=>{"use strict";var _u=R(),ge=A(),SC=ne(),CC=O(),LC=N(),AC=D(),Gc=class{type="Video";constructor(e){var a,s,r,o;let t=((a=e.thumbnailOverlays.find(h=>h.thumbnailOverlayTimeStatusRenderer))==null?void 0:a.thumbnailOverlayTimeStatusRenderer.text)||"N/A";this.id=e.videoId,this.title=new ge(e.title),this.description_snippet=e.descriptionSnippet?new ge(e.descriptionSnippet,""):null,this.snippets=((s=e.detailedMetadataSnippets)==null?void 0:s.map(h=>({text:new ge(h.snippetText),hover_text:new ge(h.snippetHoverText)})))||[],this.thumbnails=CC.fromResponse(e.thumbnail),this.thumbnail_overlays=_u.parse(e.thumbnailOverlays),this.rich_thumbnail=e.richThumbnail&&_u.parse(e.richThumbnail),this.author=new SC(e.ownerText,e.ownerBadges,(o=(r=e.channelThumbnailSupportedRenderers)==null?void 0:r.channelThumbnailWithLinkRenderer)==null?void 0:o.thumbnail),this.endpoint=new LC(e.navigationEndpoint),this.published=new ge(e.publishedTimeText),this.view_count_text=new ge(e.viewCountText),this.short_view_count_text=new ge(e.shortViewCountText);let i=e.upcomingEventData&&Number(`${e.upcomingEventData.startTime}000`);i&&(this.upcoming=new Date(i)),this.duration={text:e.lengthText?new ge(e.lengthText).text:new ge(t).text,seconds:AC.timeToSeconds(e.lengthText?new ge(e.lengthText).text:new ge(t).text)},this.show_action_menu=e.showActionMenu,this.is_watched=e.isWatched||!1,this.menu=_u.parse(e.menu)}get description(){var e;return this.snippets.length>0?this.snippets.map(t=>t.text.toString()).join(""):((e=this.description_snippet)==null?void 0:e.toString())||""}get is_live(){return this.badges.some(e=>e.style==="BADGE_STYLE_TYPE_LIVE_NOW")}get is_upcoming(){return this.upcoming&&this.upcoming>new Date}get has_captions(){return this.badges.some(e=>e.label==="CC")}get best_thumbnail(){return this.thumbnails[0]}};n(Gc,"Video");wb.exports=Gc});var xb=g((YN,bb)=>{"use strict";var Wc=A(),kC=O(),PC=N(),Hc=class{type="VideoInfoCardContent";constructor(e){this.title=new Wc(e.videoTitle),this.channel_name=new Wc(e.channelName),this.view_count=new Wc(e.viewCountText),this.video_thumbnails=kC.fromResponse(e.videoThumbnail),this.duration=new Wc(e.lengthString),this.endpoint=new PC(e.action)}};n(Hc,"VideoInfoCardContent");bb.exports=Hc});var Eb=g(($N,Tb)=>{"use strict";var NC=A(),OC=ne(),zc=class{type="VideoOwner";constructor(e){this.subscription_button=e.subscriptionButton||null,this.subscriber_count=new NC(e.subscriberCountText),this.author=new OC({...e.title,navigationEndpoint:e.navigationEndpoint},e.badges,e.thumbnail)}};n(zc,"VideoOwner");Tb.exports=zc});var Rb=g((GN,qb)=>{"use strict";var UC=R(),Cn=A(),Kc=class{type="VideoPrimaryInfo";constructor(e){this.title=new Cn(e.title),this.super_title_link=new Cn(e.superTitleLink),this.view_count=new Cn(e.viewCount.videoViewCountRenderer.viewCount),this.short_view_count=new Cn(e.viewCount.videoViewCountRenderer.shortViewCount),this.published=new Cn(e.dateText),this.menu=UC.parse(e.videoActions)}};n(Kc,"VideoPrimaryInfo");qb.exports=Kc});var Sb=g((WN,Ib)=>{"use strict";var yu=R(),BC=A(),Qc=class{type="VideoSecondaryInfo";constructor(e){this.owner=yu.parse(e.owner),this.description=new BC(e.description),this.subscribe_button=yu.parse(e.subscribeButton),this.metadata=yu.parse(e.metadataRowContainer),this.show_more_text=e.showMoreText,this.show_less_text=e.showLessText,this.default_expanded=e.defaultExpanded,this.description_collapsed_lines=e.descriptionCollapsedLines}};n(Qc,"VideoSecondaryInfo");Ib.exports=Qc});var Lb=g((HN,Cb)=>{"use strict";var wu=A(),{timeToSeconds:DC}=D(),Jc=class{type="WatchCardCompactVideo";constructor(e){this.title=new wu(e.title),this.subtitle=new wu(e.subtitle),this.duration={text:new wu(e.lengthText).toString(),seconds:DC(e.lengthText.simpleText)},this.style=e.style}};n(Jc,"WatchCardCompactVideo");Cb.exports=Jc});var Pb=g((zN,kb)=>{"use strict";var Ab=R(),MC=N(),Xc=class{type="WatchCardHeroVideo";constructor(e){this.endpoint=new MC(e.navigationEndpoint),this.call_to_action_button=Ab.parse(e.callToActionButton),this.hero_image=Ab.parse(e.heroImage),this.label=e.accessibility.accessibilityData.label}};n(Xc,"WatchCardHeroVideo");kb.exports=Xc});var Ub=g((KN,Ob)=>{"use strict";var VC=ne(),FC=N(),Nb=A(),Zc=class{type="WatchCardRichHeader";constructor(e){this.title=new Nb(e.title),this.title_endpoint=new FC(e.titleNavigationEndpoint),this.subtitle=new Nb(e.subtitle),this.author=new VC(e,e.titleBadge?[e.titleBadge]:null,e.avatar),this.author.name=this.title,this.style=e.style}};n(Zc,"WatchCardRichHeader");Ob.exports=Zc});var Db=g((QN,Bb)=>{"use strict";var YC=R(),fc=class{type="WatchCardSectionSequence";constructor(e){this.lists=YC.parse(e.lists)}};n(fc,"WatchCardSectionSequence");Bb.exports=fc});var Vb=g((JN,Mb)=>{"use strict";var $C=R(),GC=A(),jc=class{constructor(e){this.results=$C.parse(e.results),this.title=new GC(e.title).toString()}};n(jc,"WatchNextEndScreen");Mb.exports=jc});var Yb=g((XN,Fb)=>{"use strict";var WC=pu(),ea=class extends WC{type="WatchNextTabbedResults";constructor(e){super(e)}};n(ea,"WatchNextTabbedResults");Fb.exports=ea});var Gb=g((ZN,$b)=>{var HC={AnalyticsMainAppKeyMetrics:()=>Oh(),AnalyticsVideo:()=>Ll(),AnalyticsVodCarouselCard:()=>Dh(),Author:()=>ne(),BackstageImage:()=>zh(),BackstagePost:()=>Ol(),BackstagePostThread:()=>Jh(),BrowseFeedActions:()=>Zh(),Button:()=>Wi(),C4TabbedHeader:()=>ed(),CallToActionButton:()=>nd(),Card:()=>rd(),CardCollection:()=>cd(),Channel:()=>ld(),ChannelAboutFullMetadata:()=>hd(),ChannelFeaturedContent:()=>pd(),ChannelHeaderLinks:()=>gd(),ChannelMetadata:()=>yd(),ChannelMobileHeader:()=>vd(),ChannelThumbnailWithLink:()=>xd(),ChannelVideoPlayer:()=>Ed(),ChildVideo:()=>Rd(),ChipCloud:()=>Sd(),ChipCloudChip:()=>Ld(),CollageHeroImage:()=>kd(),Comment:()=>Nd(),CommentReplyDialog:()=>Dd(),"comments/AuthorCommentBadge":()=>Vd(),"comments/CommentActionButtons":()=>Yd(),"comments/CommentReplies":()=>Gd(),"comments/CommentSimplebox":()=>zd(),CommentsEntryPointHeader:()=>Qd(),CommentsHeader:()=>Zd(),CommentThread:()=>ep(),CompactLink:()=>np(),CompactMix:()=>op(),CompactPlaylist:()=>ap(),CompactVideo:()=>up(),ContinuationItem:()=>dp(),CtaGoToCreatorStudio:()=>mp(),DataModelSection:()=>Cl(),DidYouMean:()=>_p(),DownloadButton:()=>wp(),Element:()=>bp(),EmergencyOnebox:()=>Ep(),EmojiRun:()=>kl(),Endscreen:()=>Rp(),EndscreenElement:()=>Lp(),EndScreenPlaylist:()=>kp(),EndScreenVideo:()=>Op(),ExpandableTab:()=>Bp(),ExpandedShelfContents:()=>Mp(),FeedFilterChipBar:()=>Fp(),FeedTabbedHeader:()=>$p(),Format:()=>Il(),Grid:()=>Wp(),GridChannel:()=>Kp(),GridPlaylist:()=>Zp(),GridVideo:()=>jp(),HorizontalCardList:()=>tm(),HorizontalList:()=>im(),ItemSection:()=>om(),ItemSectionHeader:()=>am(),LikeButton:()=>um(),LiveChat:()=>dm(),"livechat/AddBannerToLiveChatCommand":()=>mm(),"livechat/AddChatItemAction":()=>_m(),"livechat/AddLiveChatTickerItemAction":()=>wm(),"livechat/items/LiveChatBanner":()=>xm(),"livechat/items/LiveChatBannerHeader":()=>Em(),"livechat/items/LiveChatBannerPoll":()=>Im(),"livechat/items/LiveChatMembershipItem":()=>Lm(),"livechat/items/LiveChatPaidMessage":()=>Pm(),"livechat/items/LiveChatPaidSticker":()=>Bm(),"livechat/items/LiveChatPlaceholderItem":()=>Mm(),"livechat/items/LiveChatTextMessage":()=>jl(),"livechat/items/LiveChatTickerPaidMessageItem":()=>$m(),"livechat/items/LiveChatTickerSponsorItem":()=>Hm(),"livechat/items/LiveChatViewerEngagementMessage":()=>Km(),"livechat/items/Poll":()=>Xm(),"livechat/items/PollHeader":()=>jm(),"livechat/LiveChatActionPanel":()=>tg(),"livechat/MarkChatItemAsDeletedAction":()=>ig(),"livechat/MarkChatItemsByAuthorAsDeletedAction":()=>rg(),"livechat/RemoveBannerForLiveChatCommand":()=>cg(),"livechat/ReplaceChatItemAction":()=>lg(),"livechat/ReplayChatItemAction":()=>hg(),"livechat/ShowLiveChatActionPanelAction":()=>pg(),"livechat/ShowLiveChatTooltipCommand":()=>gg(),"livechat/UpdateDateTextAction":()=>yg(),"livechat/UpdateDescriptionAction":()=>vg(),"livechat/UpdateLiveChatPollAction":()=>xg(),"livechat/UpdateTitleAction":()=>Eg(),"livechat/UpdateToggleButtonTextAction":()=>Ig(),"livechat/UpdateViewershipAction":()=>Lg(),LiveChatAuthorBadge:()=>Pg(),LiveChatHeader:()=>Og(),LiveChatItemList:()=>Bg(),LiveChatMessageInput:()=>Mg(),LiveChatParticipant:()=>Fg(),LiveChatParticipantsList:()=>$g(),Menu:()=>Hg(),MenuNavigationItem:()=>Kg(),MenuServiceItem:()=>Jg(),MenuServiceItemDownload:()=>Zg(),MerchandiseItem:()=>jg(),MerchandiseShelf:()=>n_(),Message:()=>s_(),MetadataBadge:()=>tu(),MetadataRow:()=>c_(),MetadataRowContainer:()=>l_(),MetadataRowHeader:()=>h_(),MicroformatData:()=>p_(),Mix:()=>g_(),Movie:()=>y_(),MovingThumbnail:()=>v_(),MusicCarouselShelf:()=>T_(),MusicCarouselShelfBasicHeader:()=>R_(),MusicDescriptionShelf:()=>C_(),MusicDetailHeader:()=>k_(),MusicHeader:()=>N_(),MusicImmersiveHeader:()=>B_(),MusicInlineBadge:()=>M_(),MusicItemThumbnailOverlay:()=>F_(),MusicNavigationButton:()=>$_(),MusicPlayButton:()=>W_(),MusicPlaylistShelf:()=>z_(),MusicQueue:()=>Q_(),MusicResponsiveListItem:()=>iy(),MusicResponsiveListItemFixedColumn:()=>ry(),MusicResponsiveListItemFlexColumn:()=>cy(),MusicShelf:()=>uy(),MusicThumbnail:()=>dy(),MusicTwoRowItem:()=>gy(),NavigatableText:()=>Bi(),NavigationEndpoint:()=>N(),PlayerAnnotationsExpanded:()=>yy(),PlayerCaptionsTracklist:()=>by(),PlayerErrorMessage:()=>Ey(),PlayerLiveStoryboardSpec:()=>Ry(),PlayerMicroformat:()=>Cy(),PlayerOverlay:()=>Ay(),PlayerOverlayAutoplay:()=>Py(),PlayerStoryboardSpec:()=>Oy(),Playlist:()=>xn(),PlaylistAuthor:()=>xt(),PlaylistHeader:()=>By(),PlaylistMetadata:()=>My(),PlaylistPanel:()=>Fy(),PlaylistPanelVideo:()=>Gy(),PlaylistSidebar:()=>Hy(),PlaylistSidebarPrimaryInfo:()=>Qy(),PlaylistSidebarSecondaryInfo:()=>Zy(),PlaylistVideo:()=>ew(),PlaylistVideoList:()=>nw(),PlaylistVideoThumbnail:()=>sw(),Poll:()=>cw(),Post:()=>lw(),ProfileColumn:()=>hw(),ProfileColumnStats:()=>pw(),ProfileColumnStatsEntry:()=>_w(),ProfileColumnUserInfo:()=>ww(),ReelItem:()=>xw(),ReelShelf:()=>Ew(),RelatedChipCloud:()=>Rw(),RichGrid:()=>Cw(),RichItem:()=>Aw(),RichListHeader:()=>Pw(),RichSection:()=>Ow(),RichShelf:()=>Bw(),SearchBox:()=>Vw(),SearchRefinementCard:()=>Yw(),SecondarySearchContainer:()=>Gw(),SectionList:()=>zw(),Shelf:()=>Jw(),ShowingResultsFor:()=>fw(),SimpleCardTeaser:()=>ev(),SingleActionEmergencySupport:()=>nv(),SingleColumnBrowseResults:()=>sv(),SingleColumnMusicWatchNextResults:()=>ov(),SingleHeroImage:()=>av(),SortFilterSubMenu:()=>uv(),SubFeedOption:()=>dv(),SubFeedSelector:()=>mv(),SubscribeButton:()=>_v(),SubscriptionNotificationToggleButton:()=>wv(),Tab:()=>bv(),Tabbed:()=>Tv(),TabbedSearchResults:()=>qv(),Text:()=>A(),TextHeader:()=>Iv(),TextRun:()=>Al(),Thumbnail:()=>O(),ThumbnailOverlayBottomPanel:()=>Cv(),ThumbnailOverlayEndorsement:()=>Av(),ThumbnailOverlayHoverText:()=>Pv(),ThumbnailOverlayInlineUnplayable:()=>Ov(),ThumbnailOverlayLoadingPreview:()=>Bv(),ThumbnailOverlayNowPlaying:()=>Mv(),ThumbnailOverlayPinking:()=>Fv(),ThumbnailOverlayPlaybackStatus:()=>$v(),ThumbnailOverlayResumePlayback:()=>Wv(),ThumbnailOverlaySidePanel:()=>zv(),ThumbnailOverlayTimeStatus:()=>Qv(),ThumbnailOverlayToggleButton:()=>Zv(),ToggleButton:()=>jv(),ToggleMenuServiceItem:()=>nb(),Tooltip:()=>sb(),TwoColumnBrowseResults:()=>pu(),TwoColumnSearchResults:()=>lb(),TwoColumnWatchNextResults:()=>hb(),UniversalWatchCard:()=>pb(),VerticalList:()=>gb(),VerticalWatchCardList:()=>yb(),Video:()=>vb(),VideoDetails:()=>Sl(),VideoInfoCardContent:()=>xb(),VideoOwner:()=>Eb(),VideoPrimaryInfo:()=>Rb(),VideoSecondaryInfo:()=>Sb(),WatchCardCompactVideo:()=>Lb(),WatchCardHeroVideo:()=>Pb(),WatchCardRichHeader:()=>Ub(),WatchCardSectionSequence:()=>Db(),WatchNextEndScreen:()=>Vb(),WatchNextTabbedResults:()=>Yb()};$b.exports=n(function(e){let t=HC[e];if(!t){let i=new Error("Module not found: "+e);throw i.code="MODULE_NOT_FOUND",i}return t()},"req")});var R=g((fN,zb)=>{"use strict";var{InnertubeError:Wb,observe:vu}=D(),zC=Il(),KC=Sl(),Hb=Gb(),ta=class{type="appendContinuationItemsAction";constructor(e){this.contents=Z.parse(e.continuationItems)}};n(ta,"AppendContinuationItemsAction");var na=class{type="reloadContinuationItemsCommand";constructor(e){this.target_id=e.targetId,this.contents=Z.parse(e.continuationItems)}};n(na,"ReloadContinuationItemsCommand");var ia=class{type="sectionListContinuation";constructor(e){this.contents=Z.parse(e.contents),this.continuation=e.continuations[0].nextContinuationData.continuation}};n(ia,"SectionListContinuation");var kn=class{type="timedContinuationData";constructor(e){this.timeout_ms=e.timeoutMs||e.timeUntilLastMessageMsec,this.token=e.continuation}};n(kn,"TimedContinuation");var sa=class{type="liveChatContinuation";constructor(e){var t,i,a,s,r;this.actions=Z.parse((t=e.actions)==null?void 0:t.map(o=>(delete o.clickTrackingParams,o)),"livechat")||[],this.action_panel=Z.parse(e.actionPanel),this.item_list=Z.parse(e.itemList),this.header=Z.parse(e.header),this.participants_list=Z.parse(e.participantsList),this.popout_message=Z.parse(e.popoutMessage),this.emojis=((i=e.emojis)==null?void 0:i.map(o=>({emoji_id:o.emojiId,shortcuts:o.shortcuts,search_terms:o.searchTerms,image:o.image,is_custom_emoji:o.isCustomEmoji})))||null,this.continuation=new kn(((a=e.continuations)==null?void 0:a[0].timedContinuationData)||((s=e.continuations)==null?void 0:s[0].invalidationContinuationData)||((r=e.continuations)==null?void 0:r[0].liveChatReplayContinuationData)),this.viewer_name=e.viewerName}};n(sa,"LiveChatContinuation");var ce,nt,Ln,it,An,Pn,bu,M=class{static parseResponse(e){var u,p;k(this,it,An).call(this);let t=M.parse(e.contents),i=d(M,ce);k(this,nt,Ln).call(this),k(this,it,An).call(this);let a=e.onResponseReceivedActions?M.parseRR(e.onResponseReceivedActions):null,s=d(M,ce);k(this,nt,Ln).call(this),k(this,it,An).call(this);let r=e.onResponseReceivedEndpoints?M.parseRR(e.onResponseReceivedEndpoints):null,o=d(M,ce);k(this,nt,Ln).call(this),k(this,it,An).call(this);let h=e.onResponseReceivedCommands?M.parseRR(e.onResponseReceivedCommands):null,l=d(M,ce);return k(this,nt,Ln).call(this),{contents:t,contents_memo:i,on_response_received_actions:a,on_response_received_actions_memo:s,on_response_received_endpoints:r,on_response_received_endpoints_memo:o,on_response_received_commands:h,on_response_received_commands_memo:l,continuation:e.continuation?M.parseC(e.continuation):null,continuation_contents:e.continuationContents?M.parseLC(e.continuationContents):null,actions:e.actions&&M.parseLA(e.actions),metadata:M.parse(e.metadata),header:M.parse(e.header),microformat:e.microformat&&M.parse(e.microformat),sidebar:M.parse(e.sidebar),overlay:M.parse(e.overlay),refinements:e.refinements||null,estimated_results:e.estimatedResults||null,player_overlays:M.parse(e.playerOverlays),playability_status:e.playabilityStatus&&{status:e.playabilityStatus.status,error_screen:M.parse(e.playabilityStatus.errorScreen),embeddable:e.playabilityStatus.playableInEmbed||null,reason:e.reason||""},streaming_data:e.streamingData&&{expires:new Date(Date.now()+parseInt(e.streamingData.expiresInSeconds)*1e3),formats:M.parseFormats(e.streamingData.formats),adaptive_formats:M.parseFormats(e.streamingData.adaptiveFormats),dash_manifest_url:((u=e.streamingData)==null?void 0:u.dashManifestUrl)||null,dls_manifest_url:((p=e.streamingData)==null?void 0:p.dashManifestUrl)||null},captions:M.parse(e.captions),video_details:e.videoDetails&&new KC(e.videoDetails),annotations:M.parse(e.annotations),storyboards:M.parse(e.storyboards),endscreen:M.parse(e.endscreen),cards:M.parse(e.cards)}}static parseC(e){if(e.timedContinuationData)return new kn(e.timedContinuationData)}static parseLC(e){if(e.sectionListContinuation)return new ia(e.sectionListContinuation);if(e.liveChatContinuation)return new sa(e.liveChatContinuation)}static parseRR(e){return vu(e.map(t=>{if(t.reloadContinuationItemsCommand)return new na(t.reloadContinuationItemsCommand);if(t.appendContinuationItemsAction)return new ta(t.appendContinuationItemsAction)}).filter(t=>t))}static parseLA(e){return Array.isArray(e)?M.parse(e.map(t=>(delete t.clickTrackingParams,t)),"livechat"):M.parse(e)||null}static parseFormats(e){return vu((e==null?void 0:e.map(t=>new zC(t)))||[])}static parse(e,t){if(!e)return null;if(Array.isArray(e)){let s=[];for(let r of e){let o=Object.keys(r),h=this.sanitizeClassName(o[0]);if(!this.shouldIgnore(h))try{let l=t?`${t}/`:"",u=Hb(l+h),p=new u(r[o[0]]);s.push(p),k(this,Pn,bu).call(this,h,p)}catch(l){this.formatError({classname:h,classdata:r[o[0]],err:l})}}return vu(s)}let i=Object.keys(e),a=this.sanitizeClassName(i[0]);if(!this.shouldIgnore(a))try{let s=t?`${t}/`:"",r=Hb(s+a),o=new r(e[i[0]]);return k(this,Pn,bu).call(this,a,o),o}catch(s){return this.formatError({classname:a,classdata:e[i[0]],err:s}),null}}static formatError({classname:e,classdata:t,err:i}){if(i.code=="MODULE_NOT_FOUND")return console.warn(new Wb(`${e} not found!
-This is a bug, please report it at ${zn().bugs.url}`,t));console.warn(new Wb(`Something went wrong at ${e}!
-This is a bug, please report it at ${zn().bugs.url}`,{stack:i.stack}))}static sanitizeClassName(e){return(e.charAt(0).toUpperCase()+e.slice(1)).replace(/Renderer|Model/g,"").replace(/Radio/g,"Mix").trim()}static shouldIgnore(e){return["DisplayAd","SearchPyv","MealbarPromo","BackgroundPromo","PromotedSparklesWeb","RunAttestationCommand"].includes(e)}},Z=M;n(Z,"Parser"),ce=new WeakMap,nt=new WeakSet,Ln=n(function(){C(M,ce,null)},"#clearMemo"),it=new WeakSet,An=n(function(){C(M,ce,new Map)},"#createMemo"),Pn=new WeakSet,bu=n(function(e,t){if(!!d(M,ce)){if(!d(M,ce).has(e))return d(M,ce).set(e,[t]);d(M,ce).get(e).push(t)}},"#addToMemo"),T(Z,nt),T(Z,it),T(Z,Pn),T(Z,ce,new Map);zb.exports=Z});var Qb=g((jN,Kb)=>{"use strict";var QC=R(),It,ra=class{constructor(e){T(this,It,void 0);C(this,It,QC.parseResponse(e)),this.sections=d(this,It).contents_memo.get("Element")}get page(){return d(this,It)}};n(ra,"Analytics"),It=new WeakMap;Kb.exports=ra});var Xb=g((e1,Jb)=>{"use strict";var St=D(),Me=ee(),JC=Qb(),XC=He(),_e,ye,qe,oa=class{constructor(e){T(this,ye);T(this,_e,void 0);C(this,_e,e),this.channel={editName:t=>d(this,_e).channel("channel/edit_name",{new_name:t}),editDescription:t=>d(this,_e).channel("channel/edit_description",{new_description:t}),getBasicAnalytics:()=>this.getAnalytics()},this.settings={notifications:{setSubscriptions:t=>k(this,ye,qe).call(this,Me.ACCOUNT_SETTINGS.SUBSCRIPTIONS,"SPaccount_notifications",t),setRecommendedVideos:t=>k(this,ye,qe).call(this,Me.ACCOUNT_SETTINGS.RECOMMENDED_VIDEOS,"SPaccount_notifications",t),setChannelActivity:t=>k(this,ye,qe).call(this,Me.ACCOUNT_SETTINGS.CHANNEL_ACTIVITY,"SPaccount_notifications",t),setCommentReplies:t=>k(this,ye,qe).call(this,Me.ACCOUNT_SETTINGS.COMMENT_REPLIES,"SPaccount_notifications",t),setMentions:t=>k(this,ye,qe).call(this,Me.ACCOUNT_SETTINGS.USER_MENTION,"SPaccount_notifications",t),setSharedContent:t=>k(this,ye,qe).call(this,Me.ACCOUNT_SETTINGS.SHARED_CONTENT,"SPaccount_notifications",t)},privacy:{setSubscriptionsPrivate:t=>k(this,ye,qe).call(this,Me.ACCOUNT_SETTINGS.SUBSCRIPTIONS_PRIVACY,"SPaccount_privacy",t),setSavedPlaylistsPrivate:t=>k(this,ye,qe).call(this,Me.ACCOUNT_SETTINGS.PLAYLISTS_PRIVACY,"SPaccount_privacy",t)}}}async getInfo(){let e=await d(this,_e).account("account/accounts_list",{client:"ANDROID"}),t=St.findNode(e.data,"contents","accountItem",8,!1),i=t.accountItem.serviceEndpoint.signInEndpoint.directSigninUserProfile,a=i.accountName,s=i.email,r=i.accountPhoto.thumbnails,o=t.accountItem.accountByline.runs.map(l=>l.text).join(""),h=e.data.contents[0].accountSectionListRenderer.footers[0].accountChannelRenderer.navigationEndpoint.browseEndpoint.browseId;return{name:a,email:s,channel_id:h,subscriber_count:o,photo:r}}async getTimeWatched(){let e=await d(this,_e).browse("SPtime_watched",{client:"ANDROID"});return St.findNode(e.data,"contents","statRowRenderer",11,!1).map(a=>{let s=a.statRowRenderer;if(s)return{title:s.title.runs.map(r=>r.text).join(""),time:s.contents.runs.map(r=>r.text).join("")}}).filter(a=>a)}async getAnalytics(){let e=await this.getInfo(),t=XC.encodeChannelAnalyticsParams(e.channel_id),i=await d(this,_e).browse("FEanalytics_screen",{params:t,client:"ANDROID"});return new JC(i.data)}};n(oa,"AccountManager"),_e=new WeakMap,ye=new WeakSet,qe=n(async function(e,t,i){St.throwIfMissing({setting_id:e,type:t,new_value:i});let a={ON:!0,OFF:!1};if(!a.hasOwnProperty(i))throw new St.InnertubeError("Invalid option",{option:i,available_options:Object.keys(a)});let s=await d(this,_e).browse(t),h=(()=>{switch(t.trim()){case"SPaccount_notifications":return St.findNode(s.data,"contents","Your preferences",13,!1).options;case"SPaccount_privacy":return St.findNode(s.data,"contents","settingsSwitchRenderer",13,!1).options;default:throw new TypeError("undefined is not a function")}})().find(u=>u.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemIdForClient==e).settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemId;return await d(this,_e).account("account/set_setting",{new_value:t=="SPaccount_privacy"?!a[i]:a[i],setting_item_id:h})},"#setSetting");Jb.exports=oa});var fb=g((t1,Zb)=>{"use strict";var Ct=D(),Re,ca=class{constructor(e){T(this,Re,void 0);C(this,Re,e)}async create(e,t){Ct.throwIfMissing({title:e,video_ids:t});let i=await d(this,Re).playlist("playlist/create",{title:e,ids:t});return{success:i.success,status_code:i.status_code,playlist_id:i.data.playlistId,data:i.data}}async delete(e){Ct.throwIfMissing({playlist_id:e});let t=await d(this,Re).playlist("playlist/delete",{playlist_id:e});return{playlist_id:e,success:t.success,status_code:t.status_code,data:t.data}}async addVideos(e,t){Ct.throwIfMissing({playlist_id:e,video_ids:t});let i=await d(this,Re).playlist("browse/edit_playlist",{ids:t,action:"ACTION_ADD_VIDEO",playlist_id:e});return{playlist_id:e,success:i.success,status_code:i.status_code,data:i.data}}async removeVideos(e,t){Ct.throwIfMissing({playlist_id:e,video_ids:t});let i=await d(this,Re).browse(`VL${e}`),a=Ct.findNode(i.data,"contents","contents",13,!1);if(!a.isEditable)throw new Ct.InnertubeError("This playlist cannot be edited.",e);let r=a.contents.filter(h=>t.includes(h.playlistVideoRenderer.videoId)).map(h=>h.playlistVideoRenderer.setVideoId),o=await d(this,Re).playlist("browse/edit_playlist",{ids:r,action:"ACTION_REMOVE_VIDEO",playlist_id:e});return{success:o.success,status_code:o.status_code,playlist_id:e,data:o.data}}};n(ca,"PlaylistManager"),Re=new WeakMap;Zb.exports=ca});var ex=g((n1,jb)=>{"use strict";var Ie=D(),we,aa=class{constructor(e){T(this,we,void 0);C(this,we,e)}async like(e){return Ie.throwIfMissing({video_id:e}),await d(this,we).engage("like/like",{video_id:e})}async dislike(e){return Ie.throwIfMissing({video_id:e}),await d(this,we).engage("like/dislike",{video_id:e})}async removeLike(e){return Ie.throwIfMissing({video_id:e}),await this.actions.engage("like/removelike",{video_id:e})}async subscribe(e){return Ie.throwIfMissing({channel_id:e}),await d(this,we).engage("subscription/subscribe",{channel_id:e})}async unsubscribe(e){return Ie.throwIfMissing({channel_id:e}),await d(this,we).engage("subscription/unsubscribe",{channel_id:e})}async comment(e,t){return Ie.throwIfMissing({video_id:e,text:t}),await d(this,we).engage("comment/create_comment",{video_id:e,text:t})}async translate(e,t,i={}){Ie.throwIfMissing({text:e,target_language:t});let a=await await d(this,we).engage("comment/perform_comment_action",{video_id:i.video_id,comment_id:i.comment_id,target_language:t,comment_action:"translate",text:e}),s=Ie.findNode(a.data,"frameworkUpdates","content",7,!1);return{success:a.success,status_code:a.status_code,translated_content:s.content,data:a.data}}async setNotificationPreferences(e,t){return Ie.throwIfMissing({channel_id:e,type:t}),await d(this,we).notifications("modify_channel_preference",{channel_id:e,pref:t||"NONE"})}};n(aa,"InteractionManager"),we=new WeakMap;jb.exports=aa});var st=g((i1,nx)=>{"use strict";var ZC=R(),{InnertubeError:tx}=D(),f,Se,Lt,ie,Nn=class{constructor(e,t,i=!1){T(this,f,void 0);T(this,Se,void 0);T(this,Lt,void 0);T(this,ie,void 0);t.on_response_received_actions||t.on_response_received_endpoints||i?C(this,f,t):C(this,f,ZC.parseResponse(t)),C(this,ie,d(this,f).on_response_received_commands?d(this,f).on_response_received_commands_memo:d(this,f).on_response_received_endpoints?d(this,f).on_response_received_endpoints_memo:d(this,f).contents?d(this,f).contents_memo:d(this,f).on_response_received_actions?d(this,f).on_response_received_actions_memo:[]),C(this,Lt,e)}static getVideosFromMemo(e){let t=e.get("Video")||[],i=e.get("GridVideo")||[],a=e.get("CompactVideo")||[],s=e.get("PlaylistVideo")||[],r=e.get("PlaylistPanelVideo")||[],o=e.get("WatchCardCompactVideo")||[];return[...t,...i,...a,...s,...r,...o]}static getPlaylistsFromMemo(e){let t=e.get("Playlist")||[],i=e.get("GridPlaylist")||[];return[...t,...i]}get videos(){return Nn.getVideosFromMemo(d(this,ie))}get posts(){return d(this,ie).get("BackstagePost")||d(this,ie).get("Post")||[]}get channels(){let e=d(this,ie).get("Channel")||[],t=d(this,ie).get("GridChannel")||[];return[...e,...t]}get playlists(){return Nn.getPlaylistsFromMemo(d(this,ie))}get memo(){return d(this,ie)}get contents(){var a,s,r,o;let e=(s=(a=d(this,ie).get("Tab"))==null?void 0:a[0])==null?void 0:s.content,t=(r=d(this,ie).get("reloadContinuationItemsCommand"))==null?void 0:r[0],i=(o=d(this,ie).get("appendContinuationItemsAction"))==null?void 0:o[0];return e||t||i}get shelves(){let e=d(this,f).contents_memo.get("Shelf")||[],t=d(this,f).contents_memo.get("RichShelf")||[],i=d(this,f).contents_memo.get("ReelShelf")||[];return[...e,...t,...i]}getShelf(e){return this.shelves.find(t=>t.title.toString()===e)}get secondary_contents(){var e;return(e=this.page.contents)==null?void 0:e.secondary_contents}get actions(){return d(this,Lt)}get page(){return d(this,f)}get has_continuation(){return(d(this,ie).get("ContinuationItem")||[]).length>0}async getContinuationData(){if(d(this,Se)){if(d(this,Se).length>1)throw new tx("There are too many continuations, you'll need to find the correct one yourself in this.page");if(d(this,Se).length===0)throw new tx("There are no continuations");return await d(this,Se)[0].endpoint.call(d(this,Lt))}return C(this,Se,d(this,ie).get("ContinuationItem")),d(this,Se)?this.getContinuationData():null}async getContinuation(){let e=await this.getContinuationData();return new Nn(this.actions,e,!0)}},la=Nn;n(la,"Feed"),f=new WeakMap,Se=new WeakMap,Lt=new WeakMap,ie=new WeakMap;nx.exports=la});var rx=g((s1,sx)=>{"use strict";var fC=st(),{InnertubeError:ix}=D(),rt=class extends fC{constructor(e,t,i=!1){var h,l,u;super(e,t,i);let a=((h=this.page.contents)==null?void 0:h.primary_contents.contents)||this.page.on_response_received_commands[0].contents,s=(u=(l=this.page.contents)==null?void 0:l.secondary_contents)==null?void 0:u.contents;this.results=a.get({type:"ItemSection"}).contents;let r=this.results.get({type:"HorizontalCardList"},!0),o=s==null?void 0:s.get({type:"UniversalWatchCard"});this.refinements=this.page.refinements||[],this.estimated_results=this.page.estimated_results,this.watch_card={header:(o==null?void 0:o.header)||null,call_to_action:(o==null?void 0:o.call_to_action)||null,sections:(o==null?void 0:o.sections)||[]},this.refinement_cards={header:(r==null?void 0:r.header)||null,cards:(r==null?void 0:r.cards)||[]}}async selectRefinementCard(e){let t;if(typeof e=="string"){if(t=this.refinement_cards.cards.get({query:e}),!t)throw new ix("Refinement card not found!",{available_cards:this.refinement_card_queries})}else if(e.type==="SearchRefinementCard")t=e;else throw new ix("Invalid refinement card!");let i=await t.endpoint.call(this.actions);return new rt(this.actions,i,!0)}get refinement_card_queries(){return this.refinement_cards.cards.map(e=>e.query)}async getContinuation(){let e=await this.getContinuationData();return new rt(this.actions,e,!0)}};n(rt,"Search");sx.exports=rt});var lx=g((r1,ax)=>{"use strict";var xu=R(),jC=require("events"),ot,Ce,At,kt,On,Un,Bn,Tu,ha,ox,Dn,Eu,da,cx,ua=class{constructor(e){T(this,Bn);T(this,ha);T(this,Dn);T(this,da);j(this,"ev");T(this,ot,void 0);T(this,Ce,void 0);T(this,At,void 0);T(this,kt,void 0);T(this,On,1e3);T(this,Un,5e3);j(this,"initial_info");j(this,"live_metadata");j(this,"running",!1);j(this,"is_replay",!1);C(this,Ce,e),C(this,ot,e.actions),C(this,At,d(this,Ce).livechat.continuation),this.is_replay=d(this,Ce).livechat.is_replay,this.live_metadata={title:null,description:null,views:null,likes:null,date:null},this.ev=new jC}start(){this.running||(this.running=!0,k(this,Bn,Tu).call(this),k(this,Dn,Eu).call(this))}stop(){this.running=!1}async sendMessage(e){let t=await d(this,ot).livechat("live_chat/send_message",{text:e,video_id:d(this,Ce).basic_info.id,channel_id:d(this,Ce).basic_info.channel_id});return xu.parseResponse(t.data).actions}};n(ua,"LiveChat"),ot=new WeakMap,Ce=new WeakMap,At=new WeakMap,kt=new WeakMap,On=new WeakMap,Un=new WeakMap,Bn=new WeakSet,Tu=n(function(){let e=setTimeout(()=>{(async()=>{let t=this.is_replay?"live_chat/get_live_chat_replay":"live_chat/get_live_chat",i=await d(this,ot).livechat(t,{ctoken:d(this,At)}),s=xu.parseResponse(i.data).continuation_contents;C(this,At,s.continuation.token),C(this,On,s.continuation.timeout_ms),s.header?(this.initial_info=s,this.ev.emit("start",s)):await k(this,ha,ox).call(this,s.actions),clearTimeout(e),this.running&&k(this,Bn,Tu).call(this)})().catch(t=>Promise.reject(t))},d(this,On))},"#pollLivechat"),ha=new WeakSet,ox=n(async function(e){let i=e.length<125?1:0,a=i==1?(i=1e4/e.length,i*=Math.random()+.5,i=Math.min(1e3,i),i=Math.max(80,i)):i=80;for(let s of e)await k(this,da,cx).call(this,a),this.ev.emit("chat-update",s)},"#emitSmoothedActions"),Dn=new WeakSet,Eu=n(function(){let e=setTimeout(()=>{(async()=>{var s,r,o,h,l;let t={video_id:d(this,Ce).basic_info.id};d(this,kt)&&(t.ctoken=d(this,kt));let i=await d(this,ot).livechat("updated_metadata",t),a=xu.parseResponse(i.data);C(this,kt,a.continuation.token),C(this,Un,a.continuation.timeout_ms),this.metadata={title:a.actions.get({type:"UpdateTitleAction"})||((s=this.metadata)==null?void 0:s.title),description:a.actions.get({type:"UpdateDescriptionAction"})||((r=this.metadata)==null?void 0:r.description),views:a.actions.get({type:"UpdateViewershipAction"})||((o=this.metadata)==null?void 0:o.views),likes:a.actions.get({type:"UpdateToggleButtonTextAction"})||((h=this.metadata)==null?void 0:h.likes),date:a.actions.get({type:"UpdateDateTextAction"})||((l=this.metadata)==null?void 0:l.date)},this.ev.emit("metadata-update",this.metadata),clearTimeout(e),this.running&&k(this,Dn,Eu).call(this)})().catch(t=>Promise.reject(t))},d(this,Un))},"#pollMetadata"),da=new WeakSet,cx=n(async function(e){return new Promise(t=>setTimeout(()=>t(),e))},"#wait");ax.exports=ua});var gx=g((o1,mx)=>{"use strict";var{InnertubeError:ae}=D(),{PassThrough:e0,Readable:ux}=require("stream"),qu=require("../node_modules/axios/index.js"),hx=R(),t0=lx(),dx=ee(),px=qu.CancelToken,Mn,Te,Vn,Pt,Nt,pa=class{constructor(e,t,i,a){T(this,Mn,void 0);T(this,Te,void 0);T(this,Vn,void 0);T(this,Pt,void 0);T(this,Nt,void 0);var l,u,p,_,b,w;C(this,Te,t),C(this,Vn,i),C(this,Pt,a);let s=hx.parseResponse(e[0]),r=hx.parseResponse(e[1].data||{});if(C(this,Mn,[s,r]),s.playability_status.status==="ERROR")throw new ae("This video is unavailable",s.playability_status);this.basic_info={...s.video_details,embed:s.microformat.embed,channel:s.microformat.channel,is_unlisted:s.microformat.is_unlisted,is_family_safe:s.microformat.is_family_safe,has_ypc_metadata:s.microformat.has_ypc_metadata},this.streaming_data=s.streaming_data||null,this.playability_status=s.playability_status,this.annotations=s.annotations,this.storyboards=s.storyboards,this.endscreen=s.endscreen,this.captions=s.captions,this.cards=s.cards;let o=(l=r.contents)==null?void 0:l.results,h=(u=r.contents)==null?void 0:u.secondary_results;if(o&&h){this.primary_info=o.get({type:"VideoPrimaryInfo"}),this.secondary_info=o.get({type:"VideoSecondaryInfo"}),this.merchandise=(o==null?void 0:o.get({type:"MerchandiseShelf"}))||null,this.related_chip_cloud=(p=h==null?void 0:h.get({type:"RelatedChipCloud"}))==null?void 0:p.content,this.watch_next_feed=(_=h==null?void 0:h.get({type:"ItemSection"}))==null?void 0:_.contents,C(this,Nt,(b=this.watch_next_feed)==null?void 0:b.pop()),this.player_overlays=r.player_overlays,this.basic_info.like_count=this.primary_info.menu.top_level_buttons.get({icon_type:"LIKE"}).like_count,this.basic_info.is_liked=this.primary_info.menu.top_level_buttons.get({icon_type:"LIKE"}).is_toggled,this.basic_info.is_disliked=this.primary_info.menu.top_level_buttons.get({icon_type:"DISLIKE"}).is_toggled;let y=o.get({target_id:"comments-entry-point"});this.comments_entry_point_header=(y==null?void 0:y.contents.get({type:"CommentsEntryPointHeader"}))||null,this.livechat=((w=r.contents_memo.get("LiveChat"))==null?void 0:w[0])||null}}async selectFilter(e){if(!this.filters.includes(e))throw new ae("Invalid filter",{available_filters:this.filters});let t=this.related_chip_cloud.chips.get({text:e});if(t.is_selected)return this;let a=(await t.endpoint.call(d(this,Te))).on_response_received_endpoints.get({target_id:"watch-next-feed"});return this.watch_next_feed=a.contents,this}async getWatchNextContinuation(){let t=(await d(this,Nt).endpoint.call(d(this,Te))).on_response_received_endpoints.get({type:"appendContinuationItemsAction"});return this.watch_next_feed=t.contents,C(this,Nt,this.watch_next_feed.pop()),this.watch_next_feed}async like(){let e=this.primary_info.menu.top_level_buttons.get({button_id:"TOGGLE_BUTTON_ID_TYPE_LIKE"});if(e.is_toggled)throw new ae("This video is already liked",{video_id:this.basic_info.id});return await e.endpoint.call(d(this,Te))}async dislike(){let e=this.primary_info.menu.top_level_buttons.get({button_id:"TOGGLE_BUTTON_ID_TYPE_DISLIKE"});if(e.is_toggled)throw new ae("This video is already disliked",{video_id:this.basic_info.id});return await e.endpoint.call(d(this,Te))}async removeLike(){let e=this.primary_info.menu.top_level_buttons.get({is_toggled:!0});if(!e)throw new ae("This video is not liked/disliked",{video_id:this.basic_info.id});return await e.toggled_endpoint.call(d(this,Te))}async getLiveChat(e){if(!this.livechat)throw new ae("Live Chat is not available",{video_id:this.id});return new t0(this,e)}get filters(){var e;return((e=this.related_chip_cloud)==null?void 0:e.chips.map(t=>t.text.toString()))||[]}get actions(){return d(this,Te)}get page(){return d(this,Mn)}get music_tracks(){let e=this.secondary_info.metadata;if(!e)return[];let t=[],i={},a=!1;for(let s=0;s<e.rows.length;s++){let r=e.rows[s];if(r.type==="MetadataRowHeader"){r.content.toString().toLowerCase().startsWith("music")&&(a=!0,s++);continue}!a||(i[r.title.toString().toLowerCase().replace(/ /g,"_")]=r.contents,r.has_divider_line&&(t.push(i),i={}))}return a&&t.push(i),t}chooseFormat(e){let t=[...this.streaming_data.formats||[],...this.streaming_data.adaptive_formats||[]],i=e.type.includes("audio"),a=e.type.includes("video"),s=-1,r=["best","bestefficiency"].includes(e.quality),o=e.quality!=="best",h=t.filter(l=>i&&!l.has_audio||a&&!l.has_video||e.format!=="any"&&!l.mime_type.includes(e.format)||!r&&l.quality_label!==e.quality?!1:(s<l.width&&(s=l.width),!0));if(h.length===0)throw new ae("No matching formats found",{options:e});if(r&&a&&(h=h.filter(l=>l.width===s)),i&&!a){let l=h.filter(u=>!u.has_video);l.length>0&&(h=l)}return o?h.sort((l,u)=>l.bitrate-u.bitrate):h.sort((l,u)=>u.bitrate-l.bitrate),h[0]}download(e={},t){let i=t||new e0,a,s=!1;return(async()=>{if(this.playability_status==="UNPLAYABLE")return i.emit("error",new ae("Video is unplayable",{video:this,error_type:"UNPLAYABLE"}));if(this.playability_status==="LOGIN_REQUIRED")return i.emit("error",new ae("Video is login required",{video:this,error_type:"LOGIN_REQUIRED"}));if(!this.streaming_data)return i.emit("error",new ae("Streaming data not available.",{video:this,error_type:"NO_STREAMING_DATA"}));let r={quality:"360p",type:"videoandaudio",format:"mp4",range:void 0,...e},o=this.chooseFormat(r),h=o.decipher(d(this,Vn));if(r.type==="videoandaudio"&&!e.range){let l=await qu.get(`${h}&cpn=${d(this,Pt)}`,{responseType:"stream",cancelToken:new px(n(function(_){a=_},"executor")),headers:dx.STREAM_HEADERS}).catch(p=>p);if(l instanceof Error)return i.emit("error",new ae(l.message,{type:"REQUEST_FAILED"})),i;i.emit("start");let u=0;if(typeof l.data=="object")l.data.on("data",p=>{u+=p.length;let _=(o.content_length/1024/1024).toFixed(2),b=Math.floor(u/o.content_length*100);i.emit("progress",{size:_,percentage:b,chunk_size:p.length,downloaded_size:(u/1024/1024).toFixed(2),raw_data:{chunk_size:p.length,downloaded:u,size:l.headers["content-length"]}})}),l.data.on("error",p=>{s&&i.emit("error",new ae("The download was cancelled.",{type:"DOWNLOAD_CANCELLED"}))||i.emit("error",new ae(p.message,{type:"DOWNLOAD_ABORTED"}))}),l.data.pipe(i,{end:!0});else{let p=new ux;p.push(l.data),p.pipe(i,{end:!0})}}else{let u=e.range?e.range.start:0,p=e.range?e.range.end:10485760,_=0,b=!1;i.emit("start");let w=n(async()=>{(p>=o.content_length||e.range)&&(b=!0),e.range&&(o.content_length=e.range.end);let y=await qu.get(`${h}&cpn=${d(this,Pt)}&range=${u}-${p||""}`,{responseType:"stream",cancelToken:new px(n(function(I){a=I},"executor")),headers:dx.STREAM_HEADERS}).catch(v=>v);if(y instanceof Error)return i.emit("error",{message:y.message,type:"REQUEST_FAILED"}),i;if(typeof y.data=="object")y.data.on("data",v=>{_+=v.length;let I=(o.content_length/1024/1024).toFixed(2),L=Math.floor(_/o.content_length*100);i.emit("progress",{size:I,percentage:L,chunk_size:v.length,downloaded_size:(_/1024/1024).toFixed(2),raw_data:{chunk_size:v.length,downloaded:_,size:y.headers["content-length"]}})}),y.data.on("error",v=>{s&&i.emit("error",{message:"The download was cancelled.",type:"DOWNLOAD_CANCELLED"})||i.emit("error",{message:v.message,type:"DOWNLOAD_ABORTED"})}),y.data.on("end",()=>{!b&&!e.range&&(u=p+1,p+=10485760,w())}),y.data.pipe(i,{end:b});else{let v=new ux;v.push(y.data),v.pipe(i,{end:b})}},"downloadChunk");w()}})().catch(r=>{i.emit("error",r)}),i.cancel=()=>{s=!0,a&&a()},i}};n(pa,"VideoInfo"),Mn=new WeakMap,Te=new WeakMap,Vn=new WeakMap,Pt=new WeakMap,Nt=new WeakMap;mx.exports=pa});var Iu=g((c1,_x)=>{"use strict";var{InnertubeError:n0}=D(),i0=st(),Ot,Ut,Ru=class extends i0{constructor(t,i,a=!1){super(t,i,a);T(this,Ot,void 0);T(this,Ut,void 0);C(this,Ut,t),C(this,Ot,this.page.contents_memo.get("Tab"))}get tabs(){return d(this,Ot).map(t=>t.title.toString())}async getTab(t){let i=d(this,Ot).find(s=>s.title.toLowerCase()===t.toLowerCase());if(!i)throw new n0(`Tab "${t}" not found`);if(i.selected)return this;let a=await i.endpoint.call(d(this,Ut));return new Ru(d(this,Ut),a,!0)}get title(){var t,i;return(i=(t=this.page.contents_memo("Tab"))==null?void 0:t.find(a=>a.selected))==null?void 0:i.title.toString()}},ma=Ru;n(ma,"TabbedFeed"),Ot=new WeakMap,Ut=new WeakMap;_x.exports=ma});var wx=g((a1,yx)=>{"use strict";var s0=Iu(),Su,ct=class extends s0{constructor(t,i,a=!1){super(t,i,a);T(this,Su,void 0);this.header={author:this.page.header.author,subscribers:this.page.header.subscribers.toString(),banner:this.page.header.banner,tv_banner:this.page.header.tv_banner,mobile_banner:this.page.header.mobile_banner,header_links:this.page.header.header_links},this.metadata={...this.page.metadata,...this.page.microformat},this.sponsor_button=this.page.header.sponsor_button||null,this.subscribe_button=this.page.header.subscribe_button||null;let s=this.page.contents.tabs.get({selected:!0});this.current_tab=s}async getVideos(){let t=await this.getTab("Videos");return new ct(this.actions,t.page,!0)}async getPlaylists(){let t=await this.getTab("Playlists");return new ct(this.actions,t.page,!0)}async getHome(){let t=await this.getTab("Home");return new ct(this.actions,t.page,!0)}async getCommunity(){let t=await this.getTab("Community");return new ct(this.actions,t.page,!0)}async getChannels(){let t=await this.getTab("Channels");return new ct(this.actions,t.page,!0)}async getAbout(){var i;return(i=(await this.getTab("About")).memo.get("ChannelAboutFullMetadata"))==null?void 0:i[0]}},ga=ct;n(ga,"Channel"),Su=new WeakMap;yx.exports=ga});var Cu=g((l1,vx)=>{"use strict";var r0=st(),Bt,ya,_a=class extends r0{constructor(t,i,a=!1){super(t,i,a);T(this,Bt);let s=this.page.sidebar.contents.get({type:"PlaylistSidebarPrimaryInfo"}),r=this.page.sidebar.contents.get({type:"PlaylistSidebarSecondaryInfo"});this.info={...this.page.metadata,author:r.owner.author,thumbnails:s.thumbnail_renderer.thumbnail,total_items:k(this,Bt,ya).call(this,0,s),views:k(this,Bt,ya).call(this,1,s),last_updated:k(this,Bt,ya).call(this,2,s),can_share:this.page.header.can_share,can_delete:this.page.header.can_delete,is_editable:this.page.header.is_editable,privacy:this.page.header.privacy},this.menu=s.menu,this.endpoint=s.endpoint}get items(){return this.videos}};n(_a,"Playlist"),Bt=new WeakSet,ya=n(function(t,i){var a;return!i||!i.stats?"N/A":((a=i.stats[t])==null?void 0:a.toString())||"N/A"},"#getStat");vx.exports=_a});var Lu=g((u1,bx)=>{"use strict";var o0=st(),Dt=class extends o0{constructor(e,t,i=!1){var a;super(e,t,i),this.sections=this.memo.get("ItemSection"),this.feed_actions=((a=this.memo.get("BrowseFeedActions"))==null?void 0:a[0])||[]}async getContinuation(){let e=await this.getContinuationData();return new Dt(this.actions,e,!0)}};n(Dt,"History");bx.exports=Dt});var Ex=g((h1,Tx)=>{"use strict";var c0=R(),a0=Lu(),l0=Cu(),u0=st(),{observe:h0}=D(),Ve,Fe,va,xx,wa=class{constructor(e,t){T(this,va);T(this,Ve,void 0);T(this,Fe,void 0);C(this,Ve,t),C(this,Fe,c0.parseResponse(e));let a=d(this,Fe).contents.tabs.get({selected:!0}).content.contents.map(o=>o.contents[0]),s=d(this,Fe).contents.secondary_contents.items.get({type:"ProfileColumnStats"}).items,r=d(this,Fe).contents.secondary_contents.items.get({type:"ProfileColumnUserInfo"});this.profile={stats:s,user_info:r},this.sections=h0(a.map(o=>({type:o.icon_type,title:o.title,contents:o.content.items,getAll:()=>k(this,va,xx).call(this,o)})))}get history(){return this.sections.get({type:"WATCH_HISTORY"})}get watch_later(){return this.sections.get({type:"WATCH_LATER"})}get liked_videos(){return this.sections.get({type:"LIKE"})}get playlists(){return this.sections.get({type:"PLAYLISTS"})}get clips(){return this.sections.get({type:"CONTENT_CUT"})}get page(){return d(this,Fe)}};n(wa,"Library"),Ve=new WeakMap,Fe=new WeakMap,va=new WeakSet,xx=n(async function(e){var a;if(!((a=e.menu)!=null&&a.top_level_buttons))throw new Error(`The ${e.title.text} section doesn't have more items`);let i=await(await e.menu.top_level_buttons.get({text:"See all"})).endpoint.call(d(this,Ve));switch(e.icon_type){case"LIKE":case"WATCH_LATER":return new l0(d(this,Ve),i,!0);case"WATCH_HISTORY":return new a0(d(this,Ve),i,!0);case"CONTENT_CUT":return new u0(d(this,Ve),i,!0);default:}},"#getAll");Tx.exports=wa});var Rx=g((d1,qx)=>{"use strict";var d0=R(),{InnertubeError:p0}=D(),at,Le,Mt,Au=class{constructor(e,t,i=!1){T(this,at,void 0);T(this,Le,void 0);T(this,Mt,void 0);C(this,at,i?t:d0.parseResponse(t)),C(this,Le,e);let a=d(this,at).on_response_received_endpoints;this.header=a[0].contents.get({type:"CommentsHeader"});let s=a[1].contents.findAll({type:"CommentThread"});this.contents=s.map(r=>(r.comment.setActions(d(this,Le)),r.setActions(d(this,Le)),r)),C(this,Mt,a[1].contents.get({type:"ContinuationItem"}))}async comment(e){let t=this.header.create_renderer.submit_button,i={params:{commentText:e},parse:!1};return await t.endpoint.callTest(d(this,Le),i)}async getContinuation(){if(!d(this,Mt))throw new p0("Continuation not found");let e=await d(this,Mt).endpoint.callTest(d(this,Le)),t=Object.assign({},d(this,at));return t.on_response_received_endpoints.pop(),t.on_response_received_endpoints.push(e.on_response_received_endpoints[0]),new Au(d(this,Le),t,!0)}get page(){return d(this,at)}},ba=Au;n(ba,"Comments"),at=new WeakMap,Le=new WeakMap,Mt=new WeakMap;qx.exports=ba});var Lx=g((p1,Cx)=>{"use strict";var Ix=R(),{observe:m0,InnertubeError:ku}=D(),Vt,Ae,Ye,Ft,Ta,Sx,Ea=class{constructor(e,t,i={}){T(this,Ta);T(this,Vt,void 0);T(this,Ae,void 0);T(this,Ye,void 0);T(this,Ft,void 0);C(this,Ae,t),C(this,Vt,i.is_continuation&&e||Ix.parseResponse(e.data));let a=d(this,Vt).contents.tabs.get({selected:!0}),s=a.content.contents,r=s.get({type:"ItemSection"});if(C(this,Ft,a.content.header),this.did_you_mean=(r==null?void 0:r.contents.get({type:"DidYouMean"}))||null,this.showing_results_for=(r==null?void 0:r.contents.get({type:"ShowingResultsFor"}))||null,(!!this.did_you_mean||!!this.showing_results_for)&&s.shift(),i.is_continuation||i.is_filtered){let o=s.get({type:"MusicShelf"});this.results=o.contents,C(this,Ye,o.continuation);return}this.sections=m0(s.map(o=>({title:o.title,contents:o.contents,getMore:()=>k(this,Ta,Sx).call(this,o)})))}async getContinuation(){var i,a,s;if(!d(this,Ye))throw new ku("Looks like you've reached the end");let t=(await d(this,Ae).search({ctoken:d(this,Ye),client:"YTMUSIC"})).data.continuationContents.musicShelfContinuation;return this.results=Ix.parse(t.contents),C(this,Ye,(s=(a=(i=t==null?void 0:t.continuations)==null?void 0:i[0])==null?void 0:a.nextContinuationData)==null?void 0:s.continuation),this}async selectFilter(e){if(!this.filters.includes(e))throw new ku("Invalid filter",{available_filters:this.filters});let t=d(this,Ft).chips.get({text:e});if(t.is_selected)return this;let i=await t.endpoint.call(d(this,Ae),"YTMUSIC");return new Ea(i,d(this,Ae),{is_continuation:!0})}get has_continuation(){return!!d(this,Ye)}get filters(){return d(this,Ft).chips.map(e=>e.text)}get songs(){return this.sections.get({title:"Songs"})}get videos(){return this.sections.get({title:"Videos"})}get albums(){return this.sections.get({title:"Albums"})}get artists(){return this.sections.get({title:"Artists"})}get playlists(){return this.sections.get({title:"Community playlists"})}get page(){return d(this,Vt)}},xa=Ea;n(xa,"Search"),Vt=new WeakMap,Ae=new WeakMap,Ye=new WeakMap,Ft=new WeakMap,Ta=new WeakSet,Sx=n(async function(e){if(!e.endpoint)throw new ku(`${e.title} doesn't have more items`);let t=await e.endpoint.call(d(this,Ae),"YTMUSIC");return new Ea(t,d(this,Ae),{is_continuation:!0})},"#getMore");Cx.exports=xa});var kx=g((m1,Ax)=>{"use strict";var g0=R(),lt,Yt,Fn,Pu=class{constructor(e,t){T(this,lt,void 0);T(this,Yt,void 0);T(this,Fn,void 0);var a,s;C(this,Yt,t),C(this,lt,g0.parseResponse(e.data));let i=d(this,lt).contents.tabs.get({title:"Home"});C(this,Fn,((a=i.content)==null?void 0:a.continuation)||d(this,lt).continuation_contents.continuation),this.sections=((s=i.content)==null?void 0:s.contents)||d(this,lt).continuation_contents.contents}async getContinuation(){let e=await d(this,Yt).browse(d(this,Fn),{is_ctoken:!0,client:"YTMUSIC"});return new Pu(e,d(this,Yt))}},qa=Pu;n(qa,"HomeFeed"),lt=new WeakMap,Yt=new WeakMap,Fn=new WeakMap;Ax.exports=qa});var Nx=g((g1,Px)=>{"use strict";var _0=R(),Yn,Ra=class{constructor(e){T(this,Yn,void 0);C(this,Yn,_0.parseResponse(e.data));let t=this.page.contents.tabs.get({selected:!0});this.top_buttons=t.content.contents.get({type:"Grid"}).items,this.sections=t.content.contents.findAll({type:"MusicCarouselShelf"})}get page(){return d(this,Yn)}};n(Ra,"Explore"),Yn=new WeakMap;Px.exports=Ra});var Ux=g((_1,Ox)=>{"use strict";var y0=R(),$n,Ia=class{constructor(e){T(this,$n,void 0);C(this,$n,y0.parseResponse(e.data))}get page(){return d(this,$n)}};n(Ia,"Library"),$n=new WeakMap;Ox.exports=Ia});var Dx=g((y1,Bx)=>{"use strict";var w0=R(),{observe:v0}=D(),ut,Gn,Sa=class{constructor(e,t){T(this,ut,void 0);T(this,Gn,void 0);C(this,ut,w0.parseResponse(e.data)),C(this,Gn,t),this.header=this.page.header;let i=d(this,ut).contents_memo.get("MusicShelf"),a=d(this,ut).contents_memo.get("MusicCarouselShelf");this.sections=v0([...i,...a])}async getAllSongs(){var i;return((i=(await this.sections.get({type:"MusicShelf"}).endpoint.call(d(this,Gn),"YTMUSIC")).contents_memo.get("MusicPlaylistShelf"))==null?void 0:i[0])||[]}get page(){return d(this,ut)}};n(Sa,"Artist"),ut=new WeakMap,Gn=new WeakMap;Bx.exports=Sa});var Vx=g((w1,Mx)=>{"use strict";var b0=R(),ke,La,Ca=class{constructor(e,t){T(this,ke,void 0);T(this,La,void 0);var i;C(this,ke,b0.parseResponse(e.data)),C(this,La,t),this.header=d(this,ke).header,this.url=d(this,ke).microformat.url_canonical,this.contents=(i=d(this,ke).contents_memo.get("MusicShelf"))==null?void 0:i[0].contents,this.sections=d(this,ke).contents_memo.get("MusicCarouselShelf")||[]}get page(){return d(this,ke)}};n(Ca,"Album"),ke=new WeakMap,La=new WeakMap;Mx.exports=Ca});var Yx=g((v1,Fx)=>{"use strict";var Nu=R(),x0=Lx(),T0=kx(),E0=Nx(),q0=Ux(),R0=Dx(),I0=Vx(),{InnertubeError:$t,observe:S0}=D(),ka,Q,Aa=class{constructor(e){T(this,ka,void 0);T(this,Q,void 0);C(this,ka,e),C(this,Q,e.actions)}async search(e,t){let i=await d(this,Q).search({query:e,filters:t,client:"YTMUSIC"});return new x0(i,d(this,Q),{is_filtered:(t==null?void 0:t.hasOwnProperty("type"))&&t.type!=="all"})}async getHomeFeed(){let e=await d(this,Q).browse("FEmusic_home",{client:"YTMUSIC"});return new T0(e,d(this,Q))}async getExplore(){let e=await d(this,Q).browse("FEmusic_explore",{client:"YTMUSIC"});return new E0(e,d(this,Q))}async getLibrary(){let e=await d(this,Q).browse("FEmusic_liked_albums",{client:"YTMUSIC"});return new q0(e,d(this,Q))}async getArtist(e){if(!e.startsWith("UC"))throw new $t("Invalid artist id",e);let t=await d(this,Q).browse(e,{client:"YTMUSIC"});return new R0(t,d(this,Q))}async getAlbum(e){if(!e.startsWith("MPR"))throw new $t("Invalid album id",e);let t=await d(this,Q).browse(e,{client:"YTMUSIC"});return new I0(t,d(this,Q))}async getLyrics(e){let t=await d(this,Q).next({video_id:e,client:"YTMUSIC"}),s=await Nu.parseResponse(t.data).contents.tabs.get({title:"Lyrics"}).endpoint.call(d(this,Q),"YTMUSIC");if(!s)throw new $t("Invalid video id");if(s.contents.constructor.name==="Message")throw new $t(s.contents.text,e);let r=s.contents.contents.get({type:"MusicDescriptionShelf"});return{text:r.description.toString(),footer:r.footer}}async getUpNext(e){let t=await d(this,Q).next({video_id:e,client:"YTMUSIC"}),s=Nu.parseResponse(t.data).contents.tabs.get({title:"Up next"}).content.content;if(!s)throw new $t("Invalid id",e);return{id:s.playlist_id,title:s.title,is_editable:s.is_editable,contents:S0(s.contents)}}async getRelated(e){let t=await d(this,Q).next({video_id:e,client:"YTMUSIC"}),s=await Nu.parseResponse(t.data).contents.tabs.get({title:"Related"}).endpoint.call(d(this,Q),"YTMUSIC");if(!s)throw new $t("Invalid video id");let r=s.contents.contents.findAll({type:"MusicCarouselShelf"}),o=s.contents.contents.get({type:"MusicDescriptionShelf"});return{sections:r,info:(o==null?void 0:o.description.toString())||""}}};n(Aa,"Music"),ka=new WeakMap,Q=new WeakMap;Fx.exports=Aa});var Wx=g((b1,Gx)=>{"use strict";var{InnertubeError:Pa}=D(),$x=st(),ht,Na=class extends $x{constructor(t,i,a=!1){super(t,i,a);T(this,ht,void 0)}get filter_chips(){var t,i;if(d(this,ht))return d(this,ht)||[];if(((t=this.memo.get("FeedFilterChipBar"))==null?void 0:t.length)>1)throw new Pa("There are too many feed filter chipbars, you'll need to find the correct one yourself in this.page");if(((i=this.memo.get("FeedFilterChipBar"))==null?void 0:i.length)===0)throw new Pa("There are no feed filter chipbars");return C(this,ht,this.memo.get("ChipCloudChip")||[]),d(this,ht)||[]}get filters(){return this.filter_chips.map(t=>t.text.toString())||[]}async getFilteredFeed(t){let i;if(typeof t=="string"){if(!this.filters.includes(t))throw new Pa("Filter not found",{available_filters:this.filters});i=this.filter_chips.find(s=>s.text.toString()===t)}else if(t.type==="ChipCloudChip")i=t;else throw new Pa("Invalid filter");if(i.is_selected)return this;let a=await i.endpoint.call(this.actions);return new $x(this.actions,a,!0)}};n(Na,"FilterableFeed"),ht=new WeakMap;Gx.exports=Na});var Jx=g((x1,Qx)=>{"use strict";var C0=require("../node_modules/axios/index.js"),Wn=ee(),Gt=D(),$e,le,Ua,Hx,Ba,zx,Da,Kx,Oa=class{constructor(e){T(this,Ua);T(this,Ba);T(this,Da);T(this,$e,void 0);T(this,le,void 0);this.config=e,C(this,$e,C0.create({proxy:e.proxy,httpAgent:e.http_agent,httpsAgent:e.https_agent,params:{prettyPrint:!1},headers:{accept:"*/*","accept-encoding":"gzip, deflate","content-type":"application/json","user-agent":Gt.getRandomUserAgent("desktop").userAgent},validateStatus:()=>!0,timeout:15e3})),k(this,Ua,Hx).call(this),k(this,Ba,zx).call(this)}setSession(e){C(this,le,e)}get instance(){return d(this,$e)}};n(Oa,"Request"),$e=new WeakMap,le=new WeakMap,Ua=new WeakSet,Hx=n(function(){d(this,$e).interceptors.request.use(async e=>{if(d(this,le)){let t=`${Wn.URLS.API.PRODUCTION}${d(this,le).version}`;e.baseURL=e.baseURL||t,e.headers["accept-language"]=`en-${d(this,le).config.gl||"US"}`,e.headers["x-goog-visitor-id"]=d(this,le).context.client.visitorData||"",e.headers["x-youtube-client-version"]=d(this,le).context.client.clientVersion,e.headers["x-origin"]=new URL(e.baseURL).origin,e.headers.origin=new URL(e.baseURL).origin,e.params.key=d(this,le).key;let i=e.baseURL==t;if(i&&typeof e.data=="object"&&(e.data={context:JSON.parse(JSON.stringify(d(this,le).context)),...e.data},k(this,Da,Kx).call(this,e.data.context,e.data.client),e.headers["x-youtube-client-version"]=e.data.context.client.clientVersion,delete e.data.client),d(this,le).logged_in&&i){let a=d(this,le).oauth;if(a.validateCredentials()&&(await a.checkAccessTokenValidity(),e.headers.authorization=`Bearer ${a.credentials.access_token}`,delete e.params.key),this.config.cookie){let s=Gt.getStringBetweenStrings(this.config.cookie,"PAPISID=",";");e.headers.authorization=Gt.generateSidAuth(s),e.headers.cookie=this.config.cookie}}}if(this.config.debug){let t=`${e.baseURL?`${e.baseURL}`:""}${e.url}`;console.info(`
-`,`[${e.method.toUpperCase()}] > ${t}`,`
-`,(e==null?void 0:e.data)||"N/A",`
-`)}return e},e=>{throw new Gt.InnertubeError(e.message,e)})},"#setupRequestInterceptor"),Ba=new WeakSet,zx=n(function(){d(this,$e).interceptors.response.use(e=>{let t={success:e.status===200,status_code:e.status,data:e.data};if(e.status!==200)throw new Gt.InnertubeError(`Request to ${e.config.url} failed with status code ${e.status}`,t);return t}),d(this,$e).interceptors.response.use(void 0,e=>{if(e.info)return Promise.reject(e);throw new Gt.InnertubeError("Could not complete this operation",e.message)})},"#setupResponseInterceptor"),Da=new WeakSet,Kx=n(function(e,t){switch(t){case"YTMUSIC":e.client.clientVersion=Wn.CLIENTS.YTMUSIC.VERSION,e.client.clientName=Wn.CLIENTS.YTMUSIC.NAME;break;case"ANDROID":e.client.clientVersion=Wn.CLIENTS.ANDROID.VERSION,e.client.clientFormFactor="SMALL_FORM_FACTOR",e.client.clientName=Wn.CLIENTS.ANDROID.NAME;break;default:break}},"#adjustContext");Qx.exports=Oa});var Zx=g((T1,Xx)=>{"use strict";var L0=D(),A0=ee(),Ma=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t)}static parseItem(e){var i,a,s,r,o,h,l,u,p,_,b,w,y,v,I,L,q,S,P,B,U,F;let t=e.videoRenderer||e.compactVideoRenderer;if(t)return{id:t.videoId,url:`https://youtu.be/${t.videoId}`,title:t.title.runs[0].text,description:t!=null&&t.detailedMetadataSnippets?t==null?void 0:t.detailedMetadataSnippets[0].snippetText.runs.map(J=>J.text).join(""):"N/A",channel:{id:(r=(s=(a=(i=t==null?void 0:t.ownerText)==null?void 0:i.runs[0])==null?void 0:a.navigationEndpoint)==null?void 0:s.browseEndpoint)==null?void 0:r.browseId,name:(h=(o=t==null?void 0:t.ownerText)==null?void 0:o.runs[0])==null?void 0:h.text,url:`${A0.URLS.YT_BASE}${(p=(u=(l=t==null?void 0:t.ownerText)==null?void 0:l.runs[0].navigationEndpoint)==null?void 0:u.browseEndpoint)==null?void 0:p.canonicalBaseUrl}`},metadata:{view_count:((_=t==null?void 0:t.viewCountText)==null?void 0:_.simpleText)||"N/A",short_view_count_text:{simple_text:((b=t==null?void 0:t.shortViewCountText)==null?void 0:b.simpleText)||"N/A",accessibility_label:((v=(y=(w=t==null?void 0:t.shortViewCountText)==null?void 0:w.accessibility)==null?void 0:y.accessibilityData)==null?void 0:v.label)||"N/A"},thumbnails:t==null?void 0:t.thumbnail.thumbnails,duration:{seconds:L0.timeToSeconds(((I=t==null?void 0:t.lengthText)==null?void 0:I.simpleText)||"0"),simple_text:((L=t==null?void 0:t.lengthText)==null?void 0:L.simpleText)||"N/A",accessibility_label:((P=(S=(q=t==null?void 0:t.lengthText)==null?void 0:q.accessibility)==null?void 0:S.accessibilityData)==null?void 0:P.label)||"N/A"},published:((B=t==null?void 0:t.publishedTimeText)==null?void 0:B.simpleText)||"N/A",badges:((U=t==null?void 0:t.badges)==null?void 0:U.map(J=>J.metadataBadgeRenderer.label))||[],owner_badges:((F=t==null?void 0:t.ownerBadges)==null?void 0:F.map(J=>J.metadataBadgeRenderer.tooltip))||[]}}}};n(Ma,"VideoResultItem");Xx.exports=Ma});var jx=g((E1,fx)=>{"use strict";var Va=class{static parse(e){return{query:e[0],results:e[1].map(t=>t[0])}}};n(Va,"SearchSuggestionItem");fx.exports=Va});var tT=g((q1,eT)=>{"use strict";var k0=D(),Fa=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t)}static parseItem(e){var t,i,a,s,r,o,h,l,u,p,_,b,w,y,v,I,L;if(e.playlistVideoRenderer)return{id:(t=e==null?void 0:e.playlistVideoRenderer)==null?void 0:t.videoId,title:(s=(a=(i=e==null?void 0:e.playlistVideoRenderer)==null?void 0:i.title)==null?void 0:a.runs[0])==null?void 0:s.text,author:(h=(o=(r=e==null?void 0:e.playlistVideoRenderer)==null?void 0:r.shortBylineText)==null?void 0:o.runs[0])==null?void 0:h.text,duration:{seconds:k0.timeToSeconds(((u=(l=e==null?void 0:e.playlistVideoRenderer)==null?void 0:l.lengthText)==null?void 0:u.simpleText)||"0"),simple_text:((_=(p=e==null?void 0:e.playlistVideoRenderer)==null?void 0:p.lengthText)==null?void 0:_.simpleText)||"N/A",accessibility_label:((v=(y=(w=(b=e==null?void 0:e.playlistVideoRenderer)==null?void 0:b.lengthText)==null?void 0:w.accessibility)==null?void 0:y.accessibilityData)==null?void 0:v.label)||"N/A"},thumbnails:(L=(I=e==null?void 0:e.playlistVideoRenderer)==null?void 0:I.thumbnail)==null?void 0:L.thumbnails}}};n(Fa,"PlaylistItem");eT.exports=Fa});var iT=g((R1,nT)=>{"use strict";var Ya=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t)}static parseItem(e){var t,i,a,s,r,o,h,l,u,p;if(e.notificationRenderer){let _=e.notificationRenderer;return{title:(t=_==null?void 0:_.shortMessage)==null?void 0:t.simpleText,sent_time:(i=_==null?void 0:_.sentTimeText)==null?void 0:i.simpleText,timestamp:_.notificationId,channel_name:((l=(h=(o=(r=(s=(a=_==null?void 0:_.contextualMenu)==null?void 0:a.menuRenderer)==null?void 0:s.items[1])==null?void 0:r.menuServiceItemRenderer)==null?void 0:o.text)==null?void 0:h.runs[1])==null?void 0:l.text)||"N/A",channel_thumbnail:(u=_==null?void 0:_.thumbnail)==null?void 0:u.thumbnails[0],video_thumbnail:(p=_==null?void 0:_.videoThumbnail)==null?void 0:p.thumbnails[0],video_url:_.navigationEndpoint.watchEndpoint?`https://youtu.be/${_.navigationEndpoint.watchEndpoint.videoId}`:"N/A",read:_.read}}}};n(Ya,"NotificationItem");nT.exports=Ya});var Ou=g((I1,sT)=>{"use strict";var P0=D(),N0=ee(),$a=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t)}static parseItem(e){var t,i,a,s,r,o,h,l,u,p,_,b,w,y,v,I,L,q,S,P,B,U,F,J,W,Ne,We,Wt,Ht,zt,Kt,Qt,Jt,Xt,Zt,ft,Oe,Gu,Wu,Hu,zu,Ku,Qu,Ju;if(e=e.richItemRenderer&&e.richItemRenderer.content.videoRenderer&&e.richItemRenderer.content||e,e.videoRenderer)return{id:e.videoRenderer.videoId,title:e.videoRenderer.title.runs.map(jt=>jt.text).join(" "),description:((a=(i=(t=e==null?void 0:e.videoRenderer)==null?void 0:t.descriptionSnippet)==null?void 0:i.runs[0])==null?void 0:a.text)||"N/A",channel:{id:(l=(h=(o=(r=(s=e==null?void 0:e.videoRenderer)==null?void 0:s.shortBylineText)==null?void 0:r.runs[0])==null?void 0:o.navigationEndpoint)==null?void 0:h.browseEndpoint)==null?void 0:l.browseId,name:((_=(p=(u=e==null?void 0:e.videoRenderer)==null?void 0:u.shortBylineText)==null?void 0:p.runs[0])==null?void 0:_.text)||"N/A",url:`${N0.URLS.YT_BASE}${(I=(v=(y=(w=(b=e==null?void 0:e.videoRenderer)==null?void 0:b.shortBylineText)==null?void 0:w.runs[0])==null?void 0:y.navigationEndpoint)==null?void 0:v.browseEndpoint)==null?void 0:I.canonicalBaseUrl}`},metadata:{view_count:((q=(L=e==null?void 0:e.videoRenderer)==null?void 0:L.viewCountText)==null?void 0:q.simpleText)||"N/A",short_view_count_text:{simple_text:((P=(S=e==null?void 0:e.videoRenderer)==null?void 0:S.shortViewCountText)==null?void 0:P.simpleText)||"N/A",accessibility_label:((J=(F=(U=(B=e==null?void 0:e.videoRenderer)==null?void 0:B.shortViewCountText)==null?void 0:U.accessibility)==null?void 0:F.accessibilityData)==null?void 0:J.label)||"N/A"},thumbnail:((Ne=(W=e==null?void 0:e.videoRenderer)==null?void 0:W.thumbnail)==null?void 0:Ne.thumbnails.slice(-1)[0])||{},moving_thumbnail:((zt=(Ht=(Wt=(We=e==null?void 0:e.videoRenderer)==null?void 0:We.richThumbnail)==null?void 0:Wt.movingThumbnailRenderer)==null?void 0:Ht.movingThumbnailDetails)==null?void 0:zt.thumbnails[0])||{},published:((Qt=(Kt=e==null?void 0:e.videoRenderer)==null?void 0:Kt.publishedTimeText)==null?void 0:Qt.simpleText)||"N/A",duration:{seconds:P0.timeToSeconds(((Xt=(Jt=e==null?void 0:e.videoRenderer)==null?void 0:Jt.lengthText)==null?void 0:Xt.simpleText)||"0"),simple_text:((ft=(Zt=e==null?void 0:e.videoRenderer)==null?void 0:Zt.lengthText)==null?void 0:ft.simpleText)||"N/A",accessibility_label:((Hu=(Wu=(Gu=(Oe=e==null?void 0:e.videoRenderer)==null?void 0:Oe.lengthText)==null?void 0:Gu.accessibility)==null?void 0:Wu.accessibilityData)==null?void 0:Hu.label)||"N/A"},badges:((Ku=(zu=e==null?void 0:e.videoRenderer)==null?void 0:zu.badges)==null?void 0:Ku.map(jt=>jt.metadataBadgeRenderer.label))||[],owner_badges:((Ju=(Qu=e==null?void 0:e.videoRenderer)==null?void 0:Qu.ownerBadges)==null?void 0:Ju.map(jt=>jt.metadataBadgeRenderer.tooltip))||[]}}}};n($a,"VideoItem");sT.exports=$a});var Uu=g((S1,rT)=>{"use strict";var O0=ee(),Ga=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t)}static parseItem(e){var t,i,a,s,r,o,h,l,u,p,_,b,w,y,v,I,L,q,S,P,B,U,F,J,W,Ne,We,Wt,Ht,zt,Kt,Qt,Jt,Xt,Zt,ft;return{id:e.gridVideoRenderer.videoId,title:(a=(i=(t=e==null?void 0:e.gridVideoRenderer)==null?void 0:t.title)==null?void 0:i.runs)==null?void 0:a.map(Oe=>Oe.text).join(" "),channel:{id:(l=(h=(o=(r=(s=e==null?void 0:e.gridVideoRenderer)==null?void 0:s.shortBylineText)==null?void 0:r.runs[0])==null?void 0:o.navigationEndpoint)==null?void 0:h.browseEndpoint)==null?void 0:l.browseId,name:((_=(p=(u=e==null?void 0:e.gridVideoRenderer)==null?void 0:u.shortBylineText)==null?void 0:p.runs[0])==null?void 0:_.text)||"N/A",url:`${O0.URLS.YT_BASE}${(I=(v=(y=(w=(b=e==null?void 0:e.gridVideoRenderer)==null?void 0:b.shortBylineText)==null?void 0:w.runs[0])==null?void 0:y.navigationEndpoint)==null?void 0:v.browseEndpoint)==null?void 0:I.canonicalBaseUrl}`},metadata:{view_count:((q=(L=e==null?void 0:e.gridVideoRenderer)==null?void 0:L.viewCountText)==null?void 0:q.simpleText)||"N/A",short_view_count_text:{simple_text:((P=(S=e==null?void 0:e.gridVideoRenderer)==null?void 0:S.shortViewCountText)==null?void 0:P.simpleText)||"N/A",accessibility_label:((J=(F=(U=(B=e==null?void 0:e.gridVideoRenderer)==null?void 0:B.shortViewCountText)==null?void 0:U.accessibility)==null?void 0:F.accessibilityData)==null?void 0:J.label)||"N/A"},thumbnail:((Ne=(W=e==null?void 0:e.gridVideoRenderer)==null?void 0:W.thumbnail)==null?void 0:Ne.thumbnails.slice(-1)[0])||[],moving_thumbnail:((zt=(Ht=(Wt=(We=e==null?void 0:e.gridVideoRenderer)==null?void 0:We.richThumbnail)==null?void 0:Wt.movingThumbnailRenderer)==null?void 0:Ht.movingThumbnailDetails)==null?void 0:zt.thumbnails[0])||{},published:((Qt=(Kt=e==null?void 0:e.gridVideoRenderer)==null?void 0:Kt.publishedTimeText)==null?void 0:Qt.simpleText)||"N/A",badges:((Xt=(Jt=e==null?void 0:e.gridVideoRenderer)==null?void 0:Jt.badges)==null?void 0:Xt.map(Oe=>Oe.metadataBadgeRenderer.label))||[],owner_badges:((ft=(Zt=e==null?void 0:e.gridVideoRenderer)==null?void 0:Zt.ownerBadges)==null?void 0:ft.map(Oe=>Oe.metadataBadgeRenderer.tooltip))||[]}}}};n(Ga,"GridVideoItem");rT.exports=Ga});var cT=g((C1,oT)=>{"use strict";var Wa=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t)}static parseItem(e){var t,i,a,s,r;return{id:e==null?void 0:e.gridPlaylistRenderer.playlistId,title:(i=(t=e==null?void 0:e.gridPlaylistRenderer.title)==null?void 0:t.runs)==null?void 0:i.map(o=>o.text).join(""),metadata:{thumbnail:((s=(a=e==null?void 0:e.gridPlaylistRenderer.thumbnail)==null?void 0:a.thumbnails)==null?void 0:s.slice(-1)[0])||{},video_count:((r=e==null?void 0:e.gridPlaylistRenderer.videoCountShortText)==null?void 0:r.simpleText)||"N/A"}}}};n(Wa,"GridPlaylistItem");oT.exports=Wa});var lT=g((L1,aT)=>{"use strict";var Ha=class{static parse(e){var t,i,a,s,r,o;return{title:e.channelMetadataRenderer.title,description:e.channelMetadataRenderer.description,metadata:{url:(t=e.channelMetadataRenderer)==null?void 0:t.channelUrl,rss_urls:(i=e.channelMetadataRenderer)==null?void 0:i.rssUrl,vanity_channel_url:(a=e.channelMetadataRenderer)==null?void 0:a.vanityChannelUrl,external_id:(s=e.channelMetadataRenderer)==null?void 0:s.externalId,is_family_safe:(r=e.channelMetadataRenderer)==null?void 0:r.isFamilySafe,keywords:(o=e.channelMetadataRenderer)==null?void 0:o.keywords}}}};n(Ha,"ChannelMetadata");aT.exports=Ha});var hT=g((A1,uT)=>{"use strict";var U0=Ou(),B0=Uu(),za=class{static parse(e){return{title:this.getTitle(e.title),videos:this.parseItems(e.content)}}static getTitle(e){return"runs"in(e||{})?e.runs.map(t=>t.text).join(""):"simpleText"in(e||{})?e.simpleText:"Others"}static parseItems(e){let t;return"expandedShelfContentsRenderer"in e?t=e.expandedShelfContentsRenderer.items:"horizontalListRenderer"in e&&(t=e.horizontalListRenderer.items),"gridVideoRenderer"in t[0]&&B0.parse(t)||U0.parse(t)}};n(za,"ShelfRenderer");uT.exports=za});var pT=g((k1,dT)=>{"use strict";var D0=ee(),Ka=class{static parseItem(e){var t,i,a,s,r,o,h;if(e.commentThreadRenderer||e.commentRenderer){let l=((t=e==null?void 0:e.commentThreadRenderer)==null?void 0:t.comment)||e,u=(a=(i=l.commentRenderer)==null?void 0:i.actionButtons)==null?void 0:a.commentActionButtonsRenderer.likeButton,p=(r=(s=l.commentRenderer)==null?void 0:s.actionButtons)==null?void 0:r.commentActionButtonsRenderer.dislikeButton;return{text:l.commentRenderer.contentText.runs.map(_=>_.text).join(""),author:{name:l.commentRenderer.authorText.simpleText,thumbnails:l.commentRenderer.authorThumbnail.thumbnails,channel_id:l.commentRenderer.authorEndpoint.browseEndpoint.browseId,channel_url:D0.URLS.YT_BASE+l.commentRenderer.authorEndpoint.browseEndpoint.canonicalBaseUrl},metadata:{published:l.commentRenderer.publishedTimeText.runs[0].text,is_reply:!!e.commentRenderer,is_liked:u.toggleButtonRenderer.isToggled,is_disliked:p.toggleButtonRenderer.isToggled,is_pinned:!!l.commentRenderer.pinnedCommentBadge,is_channel_owner:l.commentRenderer.authorIsChannelOwner,like_count:parseInt((h=(o=u==null?void 0:u.toggleButtonRenderer)==null?void 0:o.accessibilityData)==null?void 0:h.accessibilityData.label.replace(/\D/g,"")),reply_count:l.commentRenderer.replyCount||0,id:l.commentRenderer.commentId}}}}};n(Ka,"CommentThread");dT.exports=Ka});var gT=g((P1,mT)=>{"use strict";var M0=Zx(),V0=jx(),F0=tT(),Y0=iT(),$0=Ou(),G0=Uu(),W0=cT(),H0=lT(),z0=hT(),K0=pT();mT.exports={VideoResultItem:M0,SearchSuggestionItem:V0,PlaylistItem:F0,NotificationItem:Y0,VideoItem:$0,GridVideoItem:G0,GridPlaylistItem:W0,ChannelMetadata:H0,ShelfRenderer:z0,CommentThread:K0}});var Bu=g((N1,_T)=>{"use strict";var Qa=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t)}static parseItem(e){var i,a,s,r,o;let t=e.musicResponsiveListItemRenderer;if(t.playlistItemData){let h=(i=t.flexColumns[1])==null?void 0:i.musicResponsiveListItemFlexColumnRenderer.text.runs;h.splice(0,2);let l=h.splice(h.length-4,4);return h=h.filter((u,p)=>!(p%2)),{id:t.playlistItemData.videoId,title:(s=(a=t.flexColumns[0])==null?void 0:a.musicResponsiveListItemFlexColumnRenderer.text.runs[0])==null?void 0:s.text,artist:h.map(u=>u.text),album:(r=l[1])==null?void 0:r.text,duration:(o=l[3])==null?void 0:o.text,thumbnails:t.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails}}}};n(Qa,"SongResultItem");_T.exports=Qa});var Du=g((O1,yT)=>{"use strict";var Ja=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t)}static parseItem(e){var i,a,s,r,o;let t=e.musicResponsiveListItemRenderer;if(t.playlistItemData){let h=(i=t.flexColumns[1])==null?void 0:i.musicResponsiveListItemFlexColumnRenderer.text.runs;h.splice(0,2);let l=h.splice(h.length-4,4);return h=h.filter((u,p)=>!(p%2)),{id:t.playlistItemData.videoId,title:(s=(a=t.flexColumns[0])==null?void 0:a.musicResponsiveListItemFlexColumnRenderer.text.runs[0])==null?void 0:s.text,author:h.map(u=>u.text),views:(r=l[1])==null?void 0:r.text,duration:(o=l[3])==null?void 0:o.text,thumbnails:t==null?void 0:t.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails}}}};n(Ja,"VideoResultItem");yT.exports=Ja});var Mu=g((U1,wT)=>{"use strict";var Xa=class{static parse(e){return e.map(t=>this.parseItem(t))}static parseItem(e){var i,a,s,r,o;let t=e.musicResponsiveListItemRenderer;return{id:t.navigationEndpoint.browseEndpoint.browseId,title:(a=(i=t.flexColumns[0])==null?void 0:i.musicResponsiveListItemFlexColumnRenderer.text.runs[0])==null?void 0:a.text,author:(r=(s=t.flexColumns[1])==null?void 0:s.musicResponsiveListItemFlexColumnRenderer.text.runs[2])==null?void 0:r.text,year:(o=t.flexColumns[1])==null?void 0:o.musicResponsiveListItemFlexColumnRenderer.text.runs.find(h=>/^[12][0-9]{3}$/.test(h.text)).text,thumbnails:t==null?void 0:t.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails,playlistId:t==null?void 0:t.overlay.musicItemThumbnailOverlayRenderer.content.musicPlayButtonRenderer.playNavigationEndpoint.watchPlaylistEndpoint.playlistId}}};n(Xa,"AlbumResultItem");wT.exports=Xa});var Vu=g((B1,vT)=>{"use strict";var Za=class{static parse(e){return e.map(t=>this.parseItem(t))}static parseItem(e){var i,a,s,r;let t=e.musicResponsiveListItemRenderer;return{id:t.navigationEndpoint.browseEndpoint.browseId,name:(a=(i=t.flexColumns[0])==null?void 0:i.musicResponsiveListItemFlexColumnRenderer.text.runs[0])==null?void 0:a.text,subscribers:(r=(s=t.flexColumns[1])==null?void 0:s.musicResponsiveListItemFlexColumnRenderer.text.runs[2])==null?void 0:r.text,thumbnails:t==null?void 0:t.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails}}};n(Za,"ArtistResultItem");vT.exports=Za});var Fu=g((D1,bT)=>{"use strict";var fa=class{static parse(e){return e.map(t=>this.parseItem(t))}static parseItem(e){var a,s,r,o,h,l,u,p,_,b,w,y,v,I;let t=e.musicResponsiveListItemRenderer,i=(h=(o=(r=(s=(a=t==null?void 0:t.overlay)==null?void 0:a.musicItemThumbnailOverlayRenderer)==null?void 0:s.content)==null?void 0:r.musicPlayButtonRenderer)==null?void 0:o.playNavigationEndpoint)==null?void 0:h.watchPlaylistEndpoint;return{id:i==null?void 0:i.playlistId,title:(u=(l=t.flexColumns[0])==null?void 0:l.musicResponsiveListItemFlexColumnRenderer.text.runs[0])==null?void 0:u.text,author:(_=(p=t.flexColumns[1])==null?void 0:p.musicResponsiveListItemFlexColumnRenderer.text.runs[2])==null?void 0:_.text,channel_id:((y=(w=(b=t.flexColumns[1])==null?void 0:b.musicResponsiveListItemFlexColumnRenderer.text.runs[2])==null?void 0:w.navigationEndpoint)==null?void 0:y.browseEndpoint.browseId)||"0",total_items:parseInt((I=(v=t.flexColumns[1])==null?void 0:v.musicResponsiveListItemFlexColumnRenderer.text.runs[4])==null?void 0:I.text.match(/\d+/g))}}};n(fa,"PlaylistResultItem");bT.exports=fa});var TT=g((M1,xT)=>{"use strict";var ja=class{static parse(e){return{query:this.parseItem(e[0]).runs[0].text.trim(),results:e.map(t=>this.parseItem(t).runs.map(i=>i.text).join("").trim())}}static parseItem(e){let t;return e.historySuggestionRenderer?t=e.historySuggestionRenderer.suggestion:t=e.searchSuggestionRenderer.suggestion,t}};n(ja,"MusicSearchSuggestionItem");xT.exports=ja});var RT=g((V1,qT)=>{"use strict";var Q0=Bu(),J0=Du(),ET=Mu(),X0=Vu(),Z0=Fu(),el=class{static parse(e){return e.map(t=>{var o;let s=((o=t.musicResponsiveListItemRenderer.flexColumns[1])==null?void 0:o.musicResponsiveListItemFlexColumnRenderer.text.runs)[0].text.toLowerCase(),r=(()=>{switch(s){case"playlist":return Z0.parseItem(t);case"song":return Q0.parseItem(t);case"video":return J0.parseItem(t);case"artist":return X0.parseItem(t);case"album":return ET.parseItem(t);case"single":return ET.parseItem(t);default:return}})();return r&&(r.type=s),r}).filter(t=>t)}};n(el,"TopResultItem");qT.exports=el});var ST=g((F1,IT)=>{"use strict";var f0=D(),tl=class{static parse(e){return e.map(t=>this.parseItem(t)).filter(t=>t.id)}static parseItem(e){let t=e.musicResponsiveListItemRenderer,i=t.fixedColumns,a=t.flexColumns;return{id:t.playlistItemData&&t.playlistItemData.videoId,title:a[0].musicResponsiveListItemFlexColumnRenderer.text.runs[0].text,author:a[1].musicResponsiveListItemFlexColumnRenderer.text.runs[0].text,duration:{seconds:f0.timeToSeconds(i[0].musicResponsiveListItemFixedColumnRenderer.text.runs[0].text||"0"),simple_text:i[0].musicResponsiveListItemFixedColumnRenderer.text.runs[0].text},thumbnails:t.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails}}};n(tl,"PlaylistItem");IT.exports=tl});var LT=g((Y1,CT)=>{"use strict";var j0=Bu(),eL=Du(),tL=Mu(),nL=Vu(),iL=Fu(),sL=TT(),rL=RT(),oL=ST();CT.exports={SongResultItem:j0,VideoResultItem:eL,AlbumResultItem:tL,ArtistResultItem:nL,PlaylistResultItem:iL,MusicSearchSuggestionItem:sL,TopResultItem:rL,PlaylistItem:oL}});var zT=g(($1,HT)=>{"use strict";var G=D(),Yu=ee(),ue=gT(),Pe=LT(),cL=He(),il,AT,sl,kT,rl,PT,ol,NT,cl,OT,al,UT,ll,BT,ul,DT,hl,MT,dl,VT,pl,FT,ml,YT,gl,$T,_l,GT,yl,WT,nl=class{constructor(e,t,i={}){T(this,il);T(this,sl);T(this,rl);T(this,ol);T(this,cl);T(this,al);T(this,ll);T(this,ul);T(this,hl);T(this,dl);T(this,pl);T(this,ml);T(this,gl);T(this,_l);T(this,yl);this.data=t,this.session=e,this.args=i}parse(){let e=this.args.client,t=this.args.data_type,i;switch(e){case"YOUTUBE":i=(()=>{switch(t){case"SEARCH":return k(this,il,AT).call(this);case"CHANNEL":return k(this,ml,YT).call(this);case"PLAYLIST":return k(this,cl,OT).call(this);case"SUBSFEED":return k(this,pl,FT).call(this);case"HOMEFEED":return k(this,hl,MT).call(this);case"LIBRARY":return k(this,dl,VT).call(this);case"TRENDING":return k(this,_l,GT).call(this);case"HISTORY":return k(this,yl,WT).call(this);case"COMMENTS":return k(this,ul,DT).call(this);case"VIDEO_INFO":return k(this,ll,BT).call(this);case"NOTIFICATIONS":return k(this,gl,$T).call(this);case"SEARCH_SUGGESTIONS":return k(this,rl,PT).call(this);default:throw new TypeError("undefined is not a function")}})();break;case"YTMUSIC":i=(()=>{switch(t){case"SEARCH":return k(this,sl,kT).call(this);case"PLAYLIST":return k(this,al,UT).call(this);case"SEARCH_SUGGESTIONS":return k(this,ol,NT).call(this);default:throw new TypeError("undefined is not a function")}})();break;default:throw new G.InnertubeError("Invalid client")}return i}};n(nl,"Parser"),il=new WeakSet,AT=n(function(){let e=G.findNode(this.data,"contents","contents",5),t={},i=n(a=>{var r,o,h,l,u,p,_;let s=a[0].itemSectionRenderer.contents;return t.query=((h=(o=(r=s[0])==null?void 0:r.showingResultsForRenderer)==null?void 0:o.originalQuery)==null?void 0:h.simpleText)||this.args.query,t.corrected_query=((_=(p=(u=(l=s[0])==null?void 0:l.showingResultsForRenderer)==null?void 0:u.correctedQueryEndpoint)==null?void 0:p.searchEndpoint)==null?void 0:_.query)||"N/A",t.estimated_results=parseInt(this.data.estimatedResults),t.videos=ue.VideoResultItem.parse(s),t.getContinuation=async()=>{let w=a.find(I=>I.continuationItemRenderer).continuationItemRenderer.continuationEndpoint.continuationCommand.token,y=await this.session.actions.search({ctoken:w}),v=G.findNode(y.data,"onResponseReceivedCommands","itemSectionRenderer",4,!1);return i(v)},t},"parseItems");return i(e)},"#processSearch"),sl=new WeakSet,kT=n(function(){let e=G.findNode(this.data,"contents","tabs").tabs,t=G.findNode(e,"0","contents",5),i=t.find(r=>r.itemSectionRenderer),a=i==null?void 0:i.itemSectionRenderer.contents[0].didYouMeanRenderer,s={query:"",corrected_query:"",results:{}};return s.query=this.args.query,s.corrected_query=(a==null?void 0:a.correctedQuery.runs.map(r=>r.text).join(""))||"N/A",t.forEach(r=>{let o=r==null?void 0:r.musicShelfRenderer;if(o){let h=o.title.runs[0].text,l=({["Top result"]:()=>Pe.TopResultItem.parse(o.contents),Songs:()=>Pe.SongResultItem.parse(o.contents),Videos:()=>Pe.VideoResultItem.parse(o.contents),["Featured playlists"]:()=>Pe.PlaylistResultItem.parse(o.contents),["Community playlists"]:()=>Pe.PlaylistResultItem.parse(o.contents),Artists:()=>Pe.ArtistResultItem.parse(o.contents),Albums:()=>Pe.AlbumResultItem.parse(o.contents)}[h]||(()=>{}))();s.results[h.replace(/ /g,"_").toLowerCase()]=l}}),s},"#processMusicSearch"),rl=new WeakSet,PT=n(function(){return ue.SearchSuggestionItem.parse(JSON.parse(this.data.replace(")]}'","")))},"#processSearchSuggestions"),ol=new WeakSet,NT=n(function(){let e=this.data.contents[0].searchSuggestionsSectionRenderer.contents;return Pe.MusicSearchSuggestionItem.parse(e)},"#processMusicSearchSuggestions"),cl=new WeakSet,OT=n(function(){var s,r,o,h;let e=this.data.sidebar.playlistSidebarRenderer.items[0],t={title:this.data.metadata.playlistMetadataRenderer.title,description:((r=(s=e.playlistSidebarPrimaryInfoRenderer)==null?void 0:s.description)==null?void 0:r.simpleText)||"N/A",total_items:((o=e.playlistSidebarPrimaryInfoRenderer.stats[0].runs[0])==null?void 0:o.text)||"N/A",last_updated:((h=e.playlistSidebarPrimaryInfoRenderer.stats[2].runs[1])==null?void 0:h.text)||"N/A",views:e.playlistSidebarPrimaryInfoRenderer.stats[1].simpleText},i=G.findNode(this.data,"contents","contents",13,!1),a=ue.PlaylistItem.parse(i.contents);return{...t,items:a}},"#processPlaylist"),al=new WeakSet,UT=n(function(){var r,o,h,l,u,p;let e=this.data.header.musicDetailHeaderRenderer,t={title:(r=e==null?void 0:e.title)==null?void 0:r.runs[0].text,description:((h=(o=e==null?void 0:e.description)==null?void 0:o.runs)==null?void 0:h.map(_=>_.text).join(""))||"N/A",total_items:parseInt((l=e==null?void 0:e.secondSubtitle)==null?void 0:l.runs[0].text.match(/\d+/g)),duration:(u=e==null?void 0:e.secondSubtitle)==null?void 0:u.runs[2].text,year:(p=e==null?void 0:e.subtitle)==null?void 0:p.runs[4].text},a=this.data.contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].musicPlaylistShelfRenderer.contents,s=Pe.PlaylistItem.parse(a);return{...t,items:s}},"#processMusicPlaylist"),ll=new WeakSet,BT=n(function(){var h,l,u,p,_,b,w;let e=this.data.playabilityStatus;if(e.status=="ERROR")throw new Error(`Could not retrieve video details: ${e.status} - ${e.reason}`);let t=this.data.videoDetails,i=this.data.microformat.playerMicroformatRenderer,a=this.data.streamingData,s=Object.entries(i),r=Object.entries(t),o={id:"",title:"",description:"",thumbnail:[],metadata:{}};if(s.forEach(y=>{let v=G.camelToSnake(y[0]);Yu.METADATA_KEYS.includes(v)?v=="view_count"?o.metadata[v]=parseInt(y[1]):v=="owner_profile_url"?o.metadata.channel_url=y[1]:v=="owner_channel_name"?o.metadata.channel_name=y[1]:o.metadata[v]=y[1]:o[v]=y[1]}),r.forEach(y=>{let v=G.camelToSnake(y[0]);Yu.BLACKLISTED_KEYS.includes(v)||(Yu.METADATA_KEYS.includes(v)?v=="view_count"?o.metadata[v]=parseInt(y[1]):o.metadata[v]=y[1]:v=="short_description"?o.description=y[1]:v=="thumbnail"?o.thumbnail=y[1].thumbnails.slice(-1)[0]:v=="video_id"?o.id=y[1]:o[v]=y[1])}),this.data.continuation){let y=this.data.continuation.contents.twoColumnWatchNextResults.results.results.contents.find(S=>S.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer,v=this.data.continuation.contents.twoColumnWatchNextResults.results.results.contents.find(S=>S.videoSecondaryInfoRenderer).videoSecondaryInfoRenderer,I=y.videoActions.menuRenderer.topLevelButtons.find(S=>S.toggleButtonRenderer.defaultIcon.iconType=="LIKE"),L=y.videoActions.menuRenderer.topLevelButtons.find(S=>S.toggleButtonRenderer.defaultIcon.iconType=="DISLIKE"),q=(l=(h=v.subscribeButton.subscribeButtonRenderer)==null?void 0:h.notificationPreferenceButton)==null?void 0:l.subscriptionNotificationToggleButtonRenderer;o.metadata.is_liked=I.toggleButtonRenderer.isToggled,o.metadata.is_disliked=L.toggleButtonRenderer.isToggled,o.metadata.is_subscribed=((u=v.subscribeButton.subscribeButtonRenderer)==null?void 0:u.subscribed)||!1,o.metadata.subscriber_count=((_=(p=v.owner.videoOwnerRenderer)==null?void 0:p.subscriberCountText)==null?void 0:_.simpleText)||"N/A",o.metadata.current_notification_preference=(q==null?void 0:q.states.find(S=>S.stateId==q.currentStateId).state.buttonRenderer.icon.iconType)||"N/A",o.metadata.publish_date_text=y.dateText.simpleText,o.metadata.allow_ratings&&(o.metadata.likes={count:parseInt(I.toggleButtonRenderer.defaultText.accessibility.accessibilityData.label.replace(/\D/g,"")),short_count_text:I.toggleButtonRenderer.defaultText.simpleText}),o.metadata.owner_badges=((w=(b=v.owner.videoOwnerRenderer)==null?void 0:b.badges)==null?void 0:w.map(S=>S.metadataBadgeRenderer.tooltip))||[]}return a&&a.adaptiveFormats?o.metadata.available_qualities=[...new Set(a.adaptiveFormats.filter(y=>y.qualityLabel).map(y=>y.qualityLabel).sort((y,v)=>+y.replace(/\D/gi,"")-+v.replace(/\D/gi,"")))]:o.metadata.available_qualities=[],o},"#processVideoInfo"),ul=new WeakSet,DT=n(function(){if(!this.data.onResponseReceivedEndpoints)throw new G.UnavailableContentError("Comments section not available",this.args);let e=G.findNode(this.data,"onResponseReceivedEndpoints","commentsHeaderRenderer",5,!1),t=parseInt(e.commentsHeaderRenderer.countText.runs[0].text.replace(/,/g,"")),i=parseInt(t/20),a=n(s=>{let r=G.findNode(s,"onResponseReceivedEndpoints","commentRenderer",4,!1),o={page_count:i,comment_count:t,items:[]};return o.items=r.map(h=>{let l=ue.CommentThread.parseItem(h);if(l)return l.like=()=>this.session.actions.engage("comment/perform_comment_action",{comment_action:"like",comment_id:l.metadata.id,video_id:this.args.video_id}),l.dislike=()=>this.session.actions.engage("comment/perform_comment_action",{comment_action:"dislike",comment_id:l.metadata.id,video_id:this.args.video_id}),l.reply=u=>this.session.actions.engage("comment/create_comment_reply",{text:u,comment_id:l.metadata.id,video_id:this.args.video_id}),l.report=async()=>{let u=G.findNode(h,"commentThreadRenderer","params",10,!1),p=await this.session.actions.flag("flag/get_form",{params:u.params}),_=G.findNode(p,"actions","flagAction",13,!1);return await this.session.actions.flag("flag/flag",{action:_.flagAction})},l.getReplies=async()=>{if(l.metadata.reply_count===0)throw new G.InnertubeError("This comment has no replies",l);let u=cL.encodeCommentRepliesParams(this.args.video_id,l.metadata.id),p=await this.session.actions.next({ctoken:u});return a(p.data)},l.translate=async u=>{let p=await this.session.actions.engage("comment/perform_comment_action",{text:l.text,comment_action:"translate",comment_id:l.metadata.id,video_id:this.args.video_id,target_language:u}),_=G.findNode(p.data,"frameworkUpdates","content",7,!1);return{success:p.success,status_code:p.status_code,translated_content:_.content}},l}).filter(h=>h),o.comment=h=>this.session.actions.engage("comment/create_comment",{video_id:this.args.video_id,text:h}),o.getContinuation=async()=>{let h=r.find(_=>_.continuationItemRenderer);if(!h)throw new G.InnertubeError("You've reached the end");let l=!!h.continuationItemRenderer.button,u=G.findNode(h,"continuationItemRenderer","token",l?5:3),p=await this.session.actions.next({ctoken:u.token});return a(p.data)},o},"parseComments");return a(this.data)},"#processComments"),hl=new WeakSet,MT=n(function(){let e=G.findNode(this.data,"contents","videoRenderer",9,!1),t=n(i=>({videos:ue.VideoItem.parse(i),getContinuation:n(async()=>{let o=i.find(l=>l.continuationItemRenderer).continuationItemRenderer.continuationEndpoint.continuationCommand.token,h=await this.session.actions.browse(o,{is_ctoken:!0});return t(h.data.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems)},"getContinuation")}),"parseItems");return t(e)},"#processHomeFeed"),dl=new WeakSet,VT=n(function(){var o,h,l;let e=G.findNode(this.data,"contents","profileColumnRenderer",3),i=e.profileColumnRenderer.items.find(u=>u.profileColumnStatsRenderer).profileColumnStatsRenderer.items,a=e.profileColumnRenderer.items.find(u=>u.profileColumnUserInfoRenderer),s={};return i.forEach(u=>{let p=u.profileColumnStatsEntryRenderer.label.runs.map(_=>_.text).join("");s[p.toLowerCase()]=parseInt(u.profileColumnStatsEntryRenderer.value.simpleText)}),{profile:{name:(h=(o=a.profileColumnUserInfoRenderer)==null?void 0:o.title)==null?void 0:h.simpleText,thumbnails:(l=a.profileColumnUserInfoRenderer)==null?void 0:l.thumbnail.thumbnails,stats:s}}},"#processLibrary"),pl=new WeakSet,FT=n(function(){let e=G.findNode(this.data,"contents","contents",9,!1),t={items:[]},i=n(a=>(a.forEach(s=>{if(!s.itemSectionRenderer)return;let r=s.itemSectionRenderer.contents[0],o=r.shelfRenderer.title.runs[0].text,h=r.shelfRenderer.content.gridRenderer.items,l=ue.GridVideoItem.parse(h);t.items.push({date:o,videos:l})}),t.getContinuation=async()=>{let r=a.find(l=>l.continuationItemRenderer).continuationItemRenderer.continuationEndpoint.continuationCommand.token,o=await this.session.actions.browse(r,{is_ctoken:!0}),h=G.findNode(o.data,"onResponseReceivedActions","itemSectionRenderer",4,!1);return t.items=[],i(h)},t),"parseItems");return i(e)},"#processSubscriptionFeed"),ml=new WeakSet,YT=n(function(){let e=this.data.contents.twoColumnBrowseResultsRenderer.tabs,t=this.data.metadata,a=e.find(o=>o.tabRenderer.title=="Home").tabRenderer.content.sectionListRenderer.contents,s=[];return a.forEach(o=>{var h;if(o.itemSectionRenderer){let l=o.itemSectionRenderer.contents[0],u=(h=l==null?void 0:l.shelfRenderer)==null?void 0:h.content.horizontalListRenderer;if(!u)return;let p={title:l.shelfRenderer.title.runs[0].text,content:[]};p.content=u.items.map(_=>{if(_.gridVideoRenderer)return ue.GridVideoItem.parseItem(_);if(_.gridPlaylistRenderer)return ue.GridPlaylistItem.parseItem(_)}),s.push(p)}}),{...ue.ChannelMetadata.parse(t),content:{home_page:s,getVideos:()=>{},getPlaylists:()=>{},getCommunity:()=>{},getChannels:()=>{},getAbout:()=>{}}}},"#processChannel"),gl=new WeakSet,$T=n(function(){let e=this.data.actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[0];if(!e.multiPageMenuNotificationSectionRenderer)throw new G.InnertubeError("No notifications");let t=n(i=>({items:ue.NotificationItem.parse(i),getContinuation:n(async()=>{var l,u,p;let r=i.find(_=>_.continuationItemRenderer),o=(p=(u=(l=r==null?void 0:r.continuationItemRenderer)==null?void 0:l.continuationEndpoint)==null?void 0:u.getNotificationMenuEndpoint)==null?void 0:p.ctoken,h=await this.session.actions.notifications("get_notification_menu",{ctoken:o});return t(h.data.actions[0].appendContinuationItemsAction.continuationItems)},"getContinuation")}),"parseItems");return t(e.multiPageMenuNotificationSectionRenderer.items)},"#processNotifications"),_l=new WeakSet,GT=n(function(){let e=G.findNode(this.data,"contents","tabRenderer",4,!1),t={};return e.forEach(i=>{let a=i.tabRenderer,s=a==null?void 0:a.content,r=a.title.toLowerCase();if(t[r]={},s){let o=s.sectionListRenderer.contents;t[r].content=o.map(h=>{let l=h.itemSectionRenderer.contents[0].shelfRenderer;return ue.ShelfRenderer.parse(l)})}else{let o=a.endpoint.browseEndpoint.params;t[r].getVideos=async()=>{let h=await this.session.actions.browse("FEtrending",{params:o}),p=G.findNode(h,"contents","tabRenderer",4,!1).find(b=>b.tabRenderer.title===a.title).tabRenderer.content.sectionListRenderer.contents,_=G.findNode(p,"itemSectionRenderer","items",8,!1);return ue.VideoItem.parse(_)}}}),t},"#processTrending"),yl=new WeakSet,WT=n(function(){let e=G.findNode(this.data,"contents","videoRenderer",9,!1),t={items:[]},i=n(a=>(a.forEach(s=>{if(!s.itemSectionRenderer)return;let r=s.itemSectionRenderer.header.itemSectionHeaderRenderer.title,o=(r==null?void 0:r.simpleText)||(r==null?void 0:r.runs.map(u=>u.text).join("")),h=s.itemSectionRenderer.contents,l=ue.VideoItem.parse(h);t.items.push({date:o,videos:l})}),t.getContinuation=async()=>{let r=a.find(h=>h.continuationItemRenderer).continuationItemRenderer.continuationEndpoint.continuationCommand.token,o=await this.session.actions.browse(r,{is_ctoken:!0});return t.items=[],i(o.data.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems)},t),"parseItems");return i(e)},"#processHistory");HT.exports=nl});var aL=rh(),lL=uh(),uL=Ch(),hL=Xb(),dL=fb(),pL=ex(),mL=rx(),KT=gx(),gL=wx(),_L=Cu(),yL=Ex(),wL=Lu(),vL=Rx(),bL=Yx(),xL=Wx(),TL=Iu(),EL=require("events"),{PassThrough:qL}=require("stream"),RL=Jx(),{InnertubeError:IL,throwIfMissing:Ge,generateRandomString:QT}=D(),$u=zT(),SL=He(),dt,Hn,vl,JT,wl=class{constructor(e){T(this,vl);T(this,dt,void 0);T(this,Hn,void 0);return this.config=e||{},k(this,vl,JT).call(this)}signIn(e={}){return new Promise(async t=>{this.oauth.init(e),this.oauth.validateCredentials()&&(await this.oauth.checkAccessTokenValidity(),this.logged_in=!0,t()),this.ev.on("auth",i=>{this.logged_in=!0,i.status==="SUCCESS"&&t()})})}async signOut(){if(!this.logged_in)throw new IL("You are not signed in");let e=await this.oauth.revokeAccessToken();return this.logged_in=!1,e}async getInfo(e){Ge({video_id:e});let t=QT(16),i=this.actions.getVideoInfo(e,t),a=this.actions.next({video_id:e}),s=await Promise.all([i,a]);return new KT(s,this.actions,d(this,dt),t)}async getBasicInfo(e){Ge({video_id:e});let t=QT(16),i=await this.actions.getVideoInfo(e,t);return new KT([i,{}],this.actions,d(this,dt),t)}async search(e,t={}){Ge({query:e});let i=await this.actions.search({query:e,filters:t});return new mL(this.actions,i.data)}async getSearchSuggestions(e,t={client:"YOUTUBE"}){Ge({query:e});let i=await this.actions.getSearchSuggestions(t.client,e);return t.client==="YTMUSIC"&&!i.data.contents?[]:new $u(this,i.data,{client:t.client,data_type:"SEARCH_SUGGESTIONS"}).parse()}async getComments(e,t){Ge({video_id:e});let i=SL.encodeCommentsSectionParams(e,{sort_by:t||"TOP_COMMENTS"}),a=await this.actions.next({ctoken:i});return new vL(this.actions,a.data)}async getHomeFeed(){let e=await this.actions.browse("FEwhat_to_watch");return new xL(this.actions,e.data)}async getLibrary(){let e=await this.actions.browse("FElibrary");return new yL(e.data,this.actions)}async getHistory(){let e=await this.actions.browse("FEhistory");return new wL(this.actions,e.data)}async getTrending(){let e=await this.actions.browse("FEtrending");return new TL(this.actions,e.data)}async getSubscriptionsFeed(){let e=await this.actions.browse("FEsubscriptions");return new $u(this,e,{client:"YOUTUBE",data_type:"SUBSFEED"}).parse()}async getChannel(e){Ge({id:e});let t=await this.actions.browse(e);return new gL(this.actions,t.data)}async getNotifications(){let e=await this.actions.notifications("get_notification_menu");return new $u(this,e.data,{client:"YOUTUBE",data_type:"NOTIFICATIONS"}).parse()}async getUnseenNotificationsCount(){return(await this.actions.notifications("get_unseen_count")).data.unseenCount}async getPlaylist(e){Ge({playlist_id:e});let t=await this.actions.browse(`VL${e.replace(/VL/g,"")}`);return new _L(this.actions,t.data)}async getStreamingData(e,t={}){return(await this.getBasicInfo(e)).chooseFormat(t)}download(e,t={}){Ge({video_id:e});let i=new qL;return(async()=>{let a=await this.getBasicInfo(e);i.emit("info",a),a.download(t,i)})(),i}getPlayer(){return d(this,dt)}get request(){return d(this,Hn)}};n(wl,"Innertube"),dt=new WeakMap,Hn=new WeakMap,vl=new WeakSet,JT=n(async function(){let e=new RL(this.config),t=await new uL(this.config,e.instance).build();return this.key=t.key,this.version=t.api_version,this.context=t.context,this.logged_in=!!this.config.cookie,this.sts=t.player.sts,this.player_url=t.player.url,C(this,dt,t.player),e.setSession(this),C(this,Hn,e.instance),this.ev=new EL,this.oauth=new aL(this.ev,e.instance),this.actions=new lL(this),this.account=new hL(this.actions),this.playlist=new dL(this.actions),this.interact=new pL(this.actions),this.music=new bL(this),this},"#init");module.exports=wl;
+"use strict";
+/* eslint-disable */
+var __defProp = Object.defineProperty;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __publicField = (obj, key, value) => {
+  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+  return value;
+};
+var __accessCheck = (obj, member, msg) => {
+  if (!member.has(obj))
+    throw TypeError("Cannot " + msg);
+};
+var __privateGet = (obj, member, getter) => {
+  __accessCheck(obj, member, "read from private field");
+  return getter ? getter.call(obj) : member.get(obj);
+};
+var __privateAdd = (obj, member, value) => {
+  if (member.has(obj))
+    throw TypeError("Cannot add the same private member more than once");
+  member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+};
+var __privateSet = (obj, member, value, setter) => {
+  __accessCheck(obj, member, "write to private field");
+  setter ? setter.call(obj, value) : member.set(obj, value);
+  return value;
+};
+var __privateMethod = (obj, member, method) => {
+  __accessCheck(obj, member, "access private method");
+  return method;
+};
+
+// lib/utils/Constants.js
+var require_Constants = __commonJS({
+  "lib/utils/Constants.js"(exports2, module2) {
+    "use strict";
+    module2.exports = {
+      URLS: {
+        YT_BASE: "https://www.youtube.com",
+        YT_MUSIC_BASE: "https://music.youtube.com",
+        YT_SUGGESTIONS: "https://suggestqueries.google.com/complete/",
+        API: {
+          BASE: "https://youtubei.googleapis.com",
+          PRODUCTION: "https://youtubei.googleapis.com/youtubei/",
+          STAGING: "https://green-youtubei.sandbox.googleapis.com/youtubei/",
+          RELEASE: "https://release-youtubei.sandbox.googleapis.com/youtubei/",
+          TEST: "https://test-youtubei.sandbox.googleapis.com/youtubei/",
+          CAMI: "http://cami-youtubei.sandbox.googleapis.com/youtubei/",
+          UYTFE: "https://uytfe.sandbox.google.com/youtubei/"
+        }
+      },
+      OAUTH: {
+        SCOPE: "http://gdata.youtube.com https://www.googleapis.com/auth/youtube-paid-content",
+        GRANT_TYPE: "http://oauth.net/grant_type/device/1.0",
+        MODEL_NAME: "ytlr::",
+        HEADERS: {
+          "accept": "*/*",
+          "origin": "https://www.youtube.com",
+          "user-agent": "Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version",
+          "content-type": "application/json",
+          "referer": "https://www.youtube.com/tv",
+          "accept-language": "en-US"
+        },
+        REGEX: {
+          AUTH_SCRIPT: /<script id="base-js" src="(.*?)" nonce=".*?"><\/script>/,
+          CLIENT_IDENTITY: /.+?={};var .+?={clientId:"(?<client_id>.+?)",.+?:"(?<client_secret>.+?)"},/
+        }
+      },
+      CLIENTS: {
+        WEB: {
+          NAME: "WEB"
+        },
+        YTMUSIC: {
+          NAME: "WEB_REMIX",
+          VERSION: "1.20211213.00.00"
+        },
+        ANDROID: {
+          NAME: "ANDROID",
+          VERSION: "17.17.32"
+        }
+      },
+      STREAM_HEADERS: {
+        "accept": "*/*",
+        "connection": "keep-alive",
+        "origin": "https://www.youtube.com",
+        "referer": "https://www.youtube.com",
+        "DNT": "?1"
+      },
+      INNERTUBE_HEADERS_BASE: {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json"
+      },
+      METADATA_KEYS: [
+        "embed",
+        "view_count",
+        "average_rating",
+        "allow_ratings",
+        "length_seconds",
+        "channel_id",
+        "channel_url",
+        "external_channel_id",
+        "is_live_content",
+        "is_family_safe",
+        "is_unlisted",
+        "is_private",
+        "has_ypc_metadata",
+        "category",
+        "owner_channel_name",
+        "publish_date",
+        "upload_date",
+        "keywords",
+        "available_countries",
+        "owner_profile_url"
+      ],
+      BLACKLISTED_KEYS: [
+        "is_owner_viewing",
+        "is_unplugged_corpus",
+        "is_crawlable",
+        "author"
+      ],
+      ACCOUNT_SETTINGS: {
+        SUBSCRIPTIONS: "NOTIFICATION_SUBSCRIPTION_NOTIFICATIONS",
+        RECOMMENDED_VIDEOS: "NOTIFICATION_RECOMMENDATION_WEB_CONTROL",
+        CHANNEL_ACTIVITY: "NOTIFICATION_COMMENT_WEB_CONTROL",
+        COMMENT_REPLIES: "NOTIFICATION_COMMENT_REPLY_OTHER_WEB_CONTROL",
+        USER_MENTION: "NOTIFICATION_USER_MENTION_WEB_CONTROL",
+        SHARED_CONTENT: "NOTIFICATION_RETUBING_WEB_CONTROL",
+        PLAYLISTS_PRIVACY: "PRIVACY_DISCOVERABLE_SAVED_PLAYLISTS",
+        SUBSCRIPTIONS_PRIVACY: "PRIVACY_DISCOVERABLE_SUBSCRIPTIONS"
+      },
+      BASE64_DIALECT: {
+        NORMAL: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".split(""),
+        REVERSE: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_".split("")
+      },
+      SIG_REGEX: {
+        ACTIONS: /;.{2}\.(?<name>.{2})\(.*?,(?<param>.*?)\)/g,
+        FUNCTIONS: /(?<name>.{2}):function\(.*?\){(.*?)}/g
+      },
+      NTOKEN_REGEX: {
+        CALLS: /c\[(.*?)\]\((.+?)\)/g,
+        PLACEHOLDERS: /c\[(.*?)\]=c/g,
+        FUNCTIONS: /d\.push\(e\)|d\.reverse\(\)|d\[0\]\)\[0\]\)|f=d\[0];d\[0\]|d\.length;d\.splice\(e,1\)|function\(\){for\(var|function\(d,e,f\){var|function\(d\){for\(var|reverse\(\)\.forEach|unshift\(d\.pop\(\)\)|function\(d,e\){for\(var f/
+      },
+      FUNCS: {
+        PUSH: "d.push(e)",
+        REVERSE_1: "d.reverse()",
+        REVERSE_2: "function(d){for(var",
+        SPLICE: "d.length;d.splice(e,1)",
+        SWAP0_1: "d[0])[0])",
+        SWAP0_2: "f=d[0];d[0]",
+        ROTATE_1: "reverse().forEach",
+        ROTATE_2: "unshift(d.pop())",
+        BASE64_DIA: "function(){for(var",
+        TRANSLATE_1: "function(d,e){for(var f",
+        TRANSLATE_2: "function(d,e,f){var"
+      }
+    };
+  }
+});
+
+// package.json
+var require_package = __commonJS({
+  "package.json"(exports2, module2) {
+    module2.exports = {
+      name: "youtubei.js",
+      version: "2.0.0",
+      description: "A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
+      author: "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
+      contributors: [
+        "Wykerd (https://github.com/wykerd/)",
+        "MasterOfBob777 (https://github.com/MasterOfBob777)"
+      ],
+      funding: "https://ko-fi.com/luanrt",
+      license: "MIT",
+      scripts: {
+        test: "npx jest --verbose",
+        "test:node": "npm run build:node:prod && npx jest node",
+        "test:browser": "npm run build:browser:prod && npx jest browser",
+        lint: "npx eslint ./lib",
+        "lint:fix": "npx eslint --fix ./lib",
+        "build:types": "npx tsc",
+        "build:parser-map": "node ./scripts/build-parser-json.js",
+        "build:general": 'npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js="/* eslint-disable */" --bundle --target=node12 --keep-names --format=cjs --sourcemap',
+        "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --external:./node_modules/* --define:BROWSER=false",
+        "build:node:prod": "npm run build:node -- --minify",
+        "build:browser": "npm run build:general -- --outfile=./build/browser.js --platform=browser --define:BROWSER=true",
+        "build:browser:prod": "npm run build:browser -- --minify"
+      },
+      types: "./typings/lib/Innertube.d.ts",
+      main: "./build/node.js",
+      browser: "./build/browser.js",
+      directories: {
+        test: "./test",
+        typings: "./typings",
+        examples: "./examples",
+        lib: "./lib"
+      },
+      dependencies: {
+        axios: "^0.21.4",
+        buffer: "^6.0.3",
+        events: "^3.3.0",
+        flat: "^5.0.2",
+        idb: "^7.0.2",
+        "node-forge": "^1.3.1",
+        "protocol-buffers-encodings": "^1.1.1",
+        "stream-browserify": "^3.0.0",
+        "user-agents": "^1.0.778",
+        uuid: "^8.3.2"
+      },
+      devDependencies: {
+        "@types/node": "^17.0.31",
+        esbuild: "^0.14.48",
+        eslint: "^8.15.0",
+        "eslint-plugin-jsdoc": "^39.3.2",
+        "fake-dom": "^1.0.4",
+        "fake-indexeddb": "^4.0.0",
+        jest: "^28.1.0",
+        typescript: "^4.6.4",
+        xhr2: "^0.2.1",
+        "xmlhttprequest-ssl": "^2.0.0"
+      },
+      repository: {
+        type: "git",
+        url: "git+https://github.com/LuanRT/YouTube.js.git"
+      },
+      bugs: {
+        url: "https://github.com/LuanRT/YouTube.js/issues"
+      },
+      homepage: "https://github.com/LuanRT/YouTube.js#readme",
+      keywords: [
+        "yt",
+        "dl",
+        "ytdl",
+        "youtube",
+        "youtubedl",
+        "youtube-dl",
+        "youtube-downloader",
+        "innertube",
+        "innertubeapi",
+        "unofficial",
+        "downloader",
+        "livechat",
+        "ytmusic",
+        "dislike",
+        "search",
+        "comment",
+        "music",
+        "like",
+        "api"
+      ]
+    };
+  }
+});
+
+// lib/utils/Utils.js
+var require_Utils = __commonJS({
+  "lib/utils/Utils.js"(exports2, module2) {
+    "use strict";
+    var Crypto = false ? null : require("crypto");
+    var UserAgent = require("../node_modules/user-agents/dist/index.js");
+    var Flatten = require("../node_modules/flat/index.js");
+    var InnertubeError2 = class extends Error {
+      constructor(message, info) {
+        super(message);
+        if (info) {
+          this.info = info;
+        }
+        this.date = new Date();
+        this.version = require_package().version;
+      }
+    };
+    __name(InnertubeError2, "InnertubeError");
+    var ParsingError = class extends InnertubeError2 {
+    };
+    __name(ParsingError, "ParsingError");
+    var DownloadError = class extends InnertubeError2 {
+    };
+    __name(DownloadError, "DownloadError");
+    var MissingParamError = class extends InnertubeError2 {
+    };
+    __name(MissingParamError, "MissingParamError");
+    var UnavailableContentError = class extends InnertubeError2 {
+    };
+    __name(UnavailableContentError, "UnavailableContentError");
+    var NoStreamingDataError = class extends InnertubeError2 {
+    };
+    __name(NoStreamingDataError, "NoStreamingDataError");
+    var OAuthError = class extends InnertubeError2 {
+    };
+    __name(OAuthError, "OAuthError");
+    function findNode(obj, key, target, depth, safe = true) {
+      const flat_obj = Flatten(obj, { safe, maxDepth: depth || 2 });
+      const result = Object.keys(flat_obj).find((entry) => entry.includes(key) && JSON.stringify(flat_obj[entry] || "{}").includes(target));
+      if (!result)
+        throw new ParsingError(`Expected to find "${key}" with content "${target}" but got ${result}`, {
+          key,
+          target,
+          data_snippet: `${JSON.stringify(flat_obj, null, 4).slice(0, 300)}..`
+        });
+      return flat_obj[result];
+    }
+    __name(findNode, "findNode");
+    function observe(obj) {
+      return new Proxy(obj, {
+        get(target, prop) {
+          if (prop == "get") {
+            return (rule, del_item) => target.find((obj2, index) => {
+              const match = deepCompare(rule, obj2);
+              if (match && del_item) {
+                target.splice(index, 1);
+              }
+              return match;
+            });
+          }
+          if (prop == "findAll") {
+            return (rule, del_items) => target.filter((obj2, index) => {
+              const match = deepCompare(rule, obj2);
+              if (match && del_items) {
+                target.splice(index, 1);
+              }
+              return match;
+            });
+          }
+          if (prop == "remove") {
+            return (index) => target.splice(index, 1);
+          }
+          return Reflect.get(...arguments);
+        }
+      });
+    }
+    __name(observe, "observe");
+    function deepCompare(obj1, obj2) {
+      const keys = Reflect.ownKeys(obj1);
+      return keys.some((key) => {
+        var _a;
+        const is_text = ((_a = obj2[key]) == null ? void 0 : _a.constructor.name) === "Text";
+        if (!is_text && typeof obj2[key] === "object") {
+          return JSON.stringify(obj1[key]) === JSON.stringify(obj2[key]);
+        }
+        return obj1[key] === (is_text ? obj2[key].toString() : obj2[key]);
+      });
+    }
+    __name(deepCompare, "deepCompare");
+    function getTmpdir() {
+      const env = false ? {} : process.env;
+      const is_windows = process.platform === "win32";
+      const trailing_slash_re = is_windows ? /[^:]\\$/ : /.\/$/;
+      let path;
+      if (is_windows) {
+        path = env.TEMP || env.TMP || `${env.SystemRoot || env.windir}\\temp`;
+      } else {
+        path = env.TMPDIR || env.TMP || env.TEMP || "/tmp";
+      }
+      if (trailing_slash_re.test(path)) {
+        path = path.slice(0, -1);
+      }
+      return path;
+    }
+    __name(getTmpdir, "getTmpdir");
+    function getStringBetweenStrings(data, start_string, end_string) {
+      const regex = new RegExp(`${escapeStringRegexp(start_string)}(.*?)${escapeStringRegexp(end_string)}`, "s");
+      const match = data.match(regex);
+      return match ? match[1] : void 0;
+    }
+    __name(getStringBetweenStrings, "getStringBetweenStrings");
+    function escapeStringRegexp(input) {
+      return input.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&").replace(/-/g, "\\x2d");
+    }
+    __name(escapeStringRegexp, "escapeStringRegexp");
+    function getRandomUserAgent(type) {
+      switch (type) {
+        case "mobile":
+          return new UserAgent(/Android/).data;
+        case "desktop":
+          return new UserAgent({
+            deviceCategory: "desktop"
+          }).data;
+        default:
+      }
+    }
+    __name(getRandomUserAgent, "getRandomUserAgent");
+    function generateSidAuth(sid) {
+      const youtube = "https://www.youtube.com";
+      const timestamp = Math.floor(new Date().getTime() / 1e3);
+      const input = [timestamp, sid, youtube].join(" ");
+      let gen_hash;
+      if (false) {
+        const hash = Crypto.md.sha1.create();
+        hash.update(input);
+        gen_hash = hash.digest().toHex();
+      } else {
+        const hash = Crypto.createHash("sha1");
+        const data = hash.update(input, "utf-8");
+        gen_hash = data.digest("hex");
+      }
+      return ["SAPISIDHASH", [timestamp, gen_hash].join("_")].join(" ");
+    }
+    __name(generateSidAuth, "generateSidAuth");
+    function generateRandomString2(length) {
+      const result = [];
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+      for (let i = 0; i < length; i++) {
+        result.push(alphabet.charAt(Math.floor(Math.random() * alphabet.length)));
+      }
+      return result.join("");
+    }
+    __name(generateRandomString2, "generateRandomString");
+    function timeToSeconds(time) {
+      const params = time.split(":");
+      switch (params.length) {
+        case 1:
+          return parseInt(+params[0]);
+        case 2:
+          return parseInt(+params[0] * 60 + +params[1]);
+        case 3:
+          return parseInt(+params[0] * 3600 + +params[1] * 60 + +params[2]);
+        default:
+          break;
+      }
+    }
+    __name(timeToSeconds, "timeToSeconds");
+    function camelToSnake(string) {
+      return string[0].toLowerCase() + string.slice(1, string.length).replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+    }
+    __name(camelToSnake, "camelToSnake");
+    function isValidClient(client) {
+      return [
+        "YOUTUBE",
+        "YTMUSIC"
+      ].includes(client);
+    }
+    __name(isValidClient, "isValidClient");
+    function throwIfMissing2(params) {
+      for (const [key, value] of Object.entries(params)) {
+        if (!value)
+          throw new MissingParamError(`${key} is missing`);
+      }
+    }
+    __name(throwIfMissing2, "throwIfMissing");
+    function refineNTokenData(data) {
+      return data.replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)').replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)').replace(/\[function\(d,e,f\)/g, '["function(d,e,f)').replace(/,b,/g, ',"b",').replace(/,b/g, ',"b"').replace(/b,/g, '"b",').replace(/b]/g, '"b"]').replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",').replace(/""/g, "").replace(/length]\)}"/g, "length])}");
+    }
+    __name(refineNTokenData, "refineNTokenData");
+    var errors = {
+      InnertubeError: InnertubeError2,
+      UnavailableContentError,
+      ParsingError,
+      DownloadError,
+      MissingParamError,
+      NoStreamingDataError,
+      OAuthError
+    };
+    var functions = {
+      findNode,
+      observe,
+      getTmpdir,
+      getRandomUserAgent,
+      generateSidAuth,
+      generateRandomString: generateRandomString2,
+      getStringBetweenStrings,
+      camelToSnake,
+      isValidClient,
+      throwIfMissing: throwIfMissing2,
+      timeToSeconds,
+      refineNTokenData
+    };
+    module2.exports = {
+      ...functions,
+      ...errors
+    };
+  }
+});
+
+// lib/core/OAuth.js
+var require_OAuth = __commonJS({
+  "lib/core/OAuth.js"(exports2, module2) {
+    "use strict";
+    var Uuid = require("../node_modules/uuid/dist/index.js");
+    var Constants = require_Constants();
+    var { OAuthError } = require_Utils();
+    var _request2, _identity, _credentials, _polling_interval, _ev, _getUserCode, getUserCode_fn, _startPolling, startPolling_fn, _refreshAccessToken, refreshAccessToken_fn, _getClientIdentity, getClientIdentity_fn;
+    var OAuth2 = class {
+      constructor(ev, request) {
+        __privateAdd(this, _getUserCode);
+        __privateAdd(this, _startPolling);
+        __privateAdd(this, _refreshAccessToken);
+        __privateAdd(this, _getClientIdentity);
+        __privateAdd(this, _request2, void 0);
+        __privateAdd(this, _identity, void 0);
+        __privateAdd(this, _credentials, {});
+        __privateAdd(this, _polling_interval, 5);
+        __privateAdd(this, _ev, null);
+        __privateSet(this, _ev, ev);
+        __privateSet(this, _request2, request);
+      }
+      init(credentials) {
+        __privateSet(this, _credentials, credentials);
+        if (!credentials.access_token) {
+          __privateMethod(this, _getUserCode, getUserCode_fn).call(this);
+        }
+      }
+      async checkAccessTokenValidity() {
+        const timestamp = new Date(__privateGet(this, _credentials).expires).getTime();
+        if (new Date().getTime() > timestamp) {
+          await __privateMethod(this, _refreshAccessToken, refreshAccessToken_fn).call(this);
+        }
+      }
+      revokeCredentials() {
+        return __privateGet(this, _request2).call(this, {
+          url: "/o/oauth2/revoke",
+          baseURL: Constants.URLS.YT_BASE,
+          params: { token: this.getAccessToken() },
+          method: "post"
+        });
+      }
+      get credentials() {
+        return __privateGet(this, _credentials);
+      }
+      validateCredentials() {
+        return __privateGet(this, _credentials).hasOwnProperty("access_token") && __privateGet(this, _credentials).hasOwnProperty("refresh_token") && __privateGet(this, _credentials).hasOwnProperty("expires");
+      }
+    };
+    __name(OAuth2, "OAuth");
+    _request2 = new WeakMap();
+    _identity = new WeakMap();
+    _credentials = new WeakMap();
+    _polling_interval = new WeakMap();
+    _ev = new WeakMap();
+    _getUserCode = new WeakSet();
+    getUserCode_fn = /* @__PURE__ */ __name(async function() {
+      __privateSet(this, _identity, await __privateMethod(this, _getClientIdentity, getClientIdentity_fn).call(this));
+      const data = {
+        client_id: __privateGet(this, _identity).client_id,
+        scope: Constants.OAUTH.SCOPE,
+        device_id: Uuid.v4(),
+        model_name: Constants.OAUTH.MODEL_NAME
+      };
+      const response = await __privateGet(this, _request2).call(this, {
+        data,
+        url: "/o/oauth2/device/code",
+        baseURL: Constants.URLS.YT_BASE,
+        method: "post"
+      }).catch((err) => err);
+      if (response instanceof Error)
+        return __privateGet(this, _ev).emit("auth", new OAuthError("Could not obtain user code.", response.message));
+      __privateGet(this, _ev).emit("auth", {
+        ...response.data,
+        status: "AUTHORIZATION_PENDING"
+      });
+      __privateSet(this, _polling_interval, response.data.interval);
+      __privateMethod(this, _startPolling, startPolling_fn).call(this, response.data.device_code);
+    }, "#getUserCode");
+    _startPolling = new WeakSet();
+    startPolling_fn = /* @__PURE__ */ __name(function(device_code) {
+      const poller = setInterval(async () => {
+        const data = {
+          ...__privateGet(this, _identity),
+          code: device_code,
+          grant_type: Constants.OAUTH.GRANT_TYPE
+        };
+        const response = await __privateGet(this, _request2).call(this, {
+          data,
+          url: "/o/oauth2/token",
+          baseURL: Constants.URLS.YT_BASE,
+          method: "post"
+        }).catch((err) => err);
+        if (response instanceof Error)
+          return __privateGet(this, _ev).emit("auth", new OAuthError("Could not obtain user code.", { status: "FAILED", message: response.message }));
+        if (response.data.error) {
+          switch (response.data.error) {
+            case "access_denied":
+              __privateGet(this, _ev).emit("auth", new OAuthError("Access was denied.", { status: "ACCESS_DENIED" }));
+              break;
+            case "expired_token":
+              __privateGet(this, _ev).emit("auth", new OAuthError("The device code has expired, restarting auth flow.", { status: "DEVICE_CODE_EXPIRED" }));
+              clearInterval(poller);
+              __privateMethod(this, _getUserCode, getUserCode_fn).call(this);
+              break;
+            default:
+              break;
+          }
+          return;
+        }
+        const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
+        __privateSet(this, _credentials, {
+          access_token: response.data.access_token,
+          refresh_token: response.data.refresh_token,
+          expires: expiration_date
+        });
+        __privateGet(this, _ev).emit("auth", {
+          credentials: __privateGet(this, _credentials),
+          status: "SUCCESS"
+        });
+        clearInterval(poller);
+      }, __privateGet(this, _polling_interval) * 1e3);
+    }, "#startPolling");
+    _refreshAccessToken = new WeakSet();
+    refreshAccessToken_fn = /* @__PURE__ */ __name(async function() {
+      __privateSet(this, _identity, await __privateMethod(this, _getClientIdentity, getClientIdentity_fn).call(this));
+      const data = {
+        ...__privateGet(this, _identity),
+        refresh_token: __privateGet(this, _credentials).refresh_token,
+        grant_type: "refresh_token"
+      };
+      const response = await __privateGet(this, _request2).call(this, {
+        data,
+        url: "/o/oauth2/token",
+        baseURL: Constants.URLS.YT_BASE,
+        method: "post"
+      }).catch((err) => err);
+      if (response instanceof Error)
+        return __privateGet(this, _ev).emit("update-credentials", new OAuthError("Could not refresh access token.", { status: "FAILED" }));
+      const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
+      __privateSet(this, _credentials, {
+        access_token: response.data.access_token,
+        refresh_token: response.data.refresh_token || this.credentials.refresh_token,
+        expires: expiration_date
+      });
+      __privateGet(this, _ev).emit("update-credentials", {
+        credentials: __privateGet(this, _credentials),
+        status: "SUCCESS"
+      });
+    }, "#refreshAccessToken");
+    _getClientIdentity = new WeakSet();
+    getClientIdentity_fn = /* @__PURE__ */ __name(async function() {
+      const response = await __privateGet(this, _request2).call(this, {
+        url: "/tv",
+        baseURL: Constants.URLS.YT_BASE,
+        headers: Constants.OAUTH.HEADERS
+      });
+      const url_body = Constants.OAUTH.REGEX.AUTH_SCRIPT.exec(response.data)[1];
+      const script = await __privateGet(this, _request2).call(this, { url: url_body, baseURL: Constants.URLS.YT_BASE });
+      const client_identity = script.data.replace(/\n/g, "").match(Constants.OAUTH.REGEX.CLIENT_IDENTITY);
+      return client_identity.groups;
+    }, "#getClientIdentity");
+    module2.exports = OAuth2;
+  }
+});
+
+// lib/proto/messages.js
+var require_messages = __commonJS({
+  "lib/proto/messages.js"(exports2) {
+    var encodings = require("../node_modules/protocol-buffers-encodings/index.js");
+    var varint = encodings.varint;
+    var skip = encodings.skip;
+    var VisitorData = exports2.VisitorData = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var ChannelAnalytics = exports2.ChannelAnalytics = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var InnertubePayload = exports2.InnertubePayload = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var SoundInfoParams = exports2.SoundInfoParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var NotificationPreferences = exports2.NotificationPreferences = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var LiveMessageParams = exports2.LiveMessageParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var GetCommentsSectionParams = exports2.GetCommentsSectionParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var CreateCommentParams = exports2.CreateCommentParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var CreateCommentReplyParams = exports2.CreateCommentReplyParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var PeformCommentActionParams = exports2.PeformCommentActionParams = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var MusicSearchFilter = exports2.MusicSearchFilter = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    var SearchFilter = exports2.SearchFilter = {
+      buffer: true,
+      encodingLength: null,
+      encode: null,
+      decode: null
+    };
+    defineVisitorData();
+    defineChannelAnalytics();
+    defineInnertubePayload();
+    defineSoundInfoParams();
+    defineNotificationPreferences();
+    defineLiveMessageParams();
+    defineGetCommentsSectionParams();
+    defineCreateCommentParams();
+    defineCreateCommentReplyParams();
+    definePeformCommentActionParams();
+    defineMusicSearchFilter();
+    defineSearchFilter();
+    function defineVisitorData() {
+      VisitorData.encodingLength = encodingLength;
+      VisitorData.encode = encode;
+      VisitorData.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.id)) {
+          var len = encodings.string.encodingLength(obj.id);
+          length += 1 + len;
+        }
+        if (defined(obj.timestamp)) {
+          var len = encodings.int32.encodingLength(obj.timestamp);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.id)) {
+          buf[offset++] = 10;
+          encodings.string.encode(obj.id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.timestamp)) {
+          buf[offset++] = 40;
+          encodings.int32.encode(obj.timestamp, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          id: "",
+          timestamp: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              obj.id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 5:
+              obj.timestamp = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineVisitorData, "defineVisitorData");
+    function defineChannelAnalytics() {
+      var Params = ChannelAnalytics.Params = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineParams();
+      function defineParams() {
+        Params.encodingLength = encodingLength2;
+        Params.encode = encode2;
+        Params.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.channel_id)) {
+            var len = encodings.string.encodingLength(obj.channel_id);
+            length += 2 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.channel_id)) {
+            buf[offset++] = 202;
+            buf[offset++] = 62;
+            encodings.string.encode(obj.channel_id, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            channel_id: ""
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1001:
+                obj.channel_id = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineParams, "defineParams");
+      ChannelAnalytics.encodingLength = encodingLength;
+      ChannelAnalytics.encode = encode;
+      ChannelAnalytics.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.params)) {
+          var len = Params.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 2 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.params)) {
+          buf[offset++] = 130;
+          buf[offset++] = 2;
+          varint.encode(Params.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          Params.encode(obj.params, buf, offset);
+          offset += Params.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          params: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 32:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = Params.decode(buf, offset, offset + len);
+              offset += Params.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineChannelAnalytics, "defineChannelAnalytics");
+    function defineInnertubePayload() {
+      var Context = InnertubePayload.Context = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineContext();
+      function defineContext() {
+        var Client = Context.Client = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineClient();
+        function defineClient() {
+          Client.encodingLength = encodingLength3;
+          Client.encode = encode3;
+          Client.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.unkparam)) {
+              var len = encodings.int32.encodingLength(obj.unkparam);
+              length += 2 + len;
+            }
+            if (defined(obj.client_version)) {
+              var len = encodings.string.encodingLength(obj.client_version);
+              length += 2 + len;
+            }
+            if (defined(obj.client_name)) {
+              var len = encodings.string.encodingLength(obj.client_name);
+              length += 2 + len;
+            }
+            return length;
+          }
+          __name(encodingLength3, "encodingLength");
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.unkparam)) {
+              buf[offset++] = 128;
+              buf[offset++] = 1;
+              encodings.int32.encode(obj.unkparam, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.client_version)) {
+              buf[offset++] = 138;
+              buf[offset++] = 1;
+              encodings.string.encode(obj.client_version, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.client_name)) {
+              buf[offset++] = 146;
+              buf[offset++] = 1;
+              encodings.string.encode(obj.client_name, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          __name(encode3, "encode");
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              unkparam: 0,
+              client_version: "",
+              client_name: ""
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 16:
+                  obj.unkparam = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 17:
+                  obj.client_version = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 18:
+                  obj.client_name = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+          __name(decode3, "decode");
+        }
+        __name(defineClient, "defineClient");
+        Context.encodingLength = encodingLength2;
+        Context.encode = encode2;
+        Context.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.client)) {
+            var len = Client.encodingLength(obj.client);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.client)) {
+            buf[offset++] = 10;
+            varint.encode(Client.encodingLength(obj.client), buf, offset);
+            offset += varint.encode.bytes;
+            Client.encode(obj.client, buf, offset);
+            offset += Client.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            client: null
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.client = Client.decode(buf, offset, offset + len);
+                offset += Client.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineContext, "defineContext");
+      InnertubePayload.encodingLength = encodingLength;
+      InnertubePayload.encode = encode;
+      InnertubePayload.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.context)) {
+          var len = Context.encodingLength(obj.context);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.target)) {
+          var len = encodings.string.encodingLength(obj.target);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.context)) {
+          buf[offset++] = 10;
+          varint.encode(Context.encodingLength(obj.context), buf, offset);
+          offset += varint.encode.bytes;
+          Context.encode(obj.context, buf, offset);
+          offset += Context.encode.bytes;
+        }
+        if (defined(obj.target)) {
+          buf[offset++] = 18;
+          encodings.string.encode(obj.target, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          context: null,
+          target: ""
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.context = Context.decode(buf, offset, offset + len);
+              offset += Context.decode.bytes;
+              break;
+            case 2:
+              obj.target = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineInnertubePayload, "defineInnertubePayload");
+    function defineSoundInfoParams() {
+      var Sound = SoundInfoParams.Sound = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineSound();
+      function defineSound() {
+        var Params = Sound.Params = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineParams();
+        function defineParams() {
+          var Ids = Params.Ids = {
+            buffer: true,
+            encodingLength: null,
+            encode: null,
+            decode: null
+          };
+          defineIds();
+          function defineIds() {
+            Ids.encodingLength = encodingLength4;
+            Ids.encode = encode4;
+            Ids.decode = decode4;
+            function encodingLength4(obj) {
+              var length = 0;
+              if (defined(obj.id_1)) {
+                var len = encodings.string.encodingLength(obj.id_1);
+                length += 1 + len;
+              }
+              if (defined(obj.id_2)) {
+                var len = encodings.string.encodingLength(obj.id_2);
+                length += 1 + len;
+              }
+              if (defined(obj.id_3)) {
+                var len = encodings.string.encodingLength(obj.id_3);
+                length += 1 + len;
+              }
+              return length;
+            }
+            __name(encodingLength4, "encodingLength");
+            function encode4(obj, buf, offset) {
+              if (!offset)
+                offset = 0;
+              if (!buf)
+                buf = Buffer.allocUnsafe(encodingLength4(obj));
+              var oldOffset = offset;
+              if (defined(obj.id_1)) {
+                buf[offset++] = 10;
+                encodings.string.encode(obj.id_1, buf, offset);
+                offset += encodings.string.encode.bytes;
+              }
+              if (defined(obj.id_2)) {
+                buf[offset++] = 18;
+                encodings.string.encode(obj.id_2, buf, offset);
+                offset += encodings.string.encode.bytes;
+              }
+              if (defined(obj.id_3)) {
+                buf[offset++] = 26;
+                encodings.string.encode(obj.id_3, buf, offset);
+                offset += encodings.string.encode.bytes;
+              }
+              encode4.bytes = offset - oldOffset;
+              return buf;
+            }
+            __name(encode4, "encode");
+            function decode4(buf, offset, end) {
+              if (!offset)
+                offset = 0;
+              if (!end)
+                end = buf.length;
+              if (!(end <= buf.length && offset <= buf.length))
+                throw new Error("Decoded message is not valid");
+              var oldOffset = offset;
+              var obj = {
+                id_1: "",
+                id_2: "",
+                id_3: ""
+              };
+              while (true) {
+                if (end <= offset) {
+                  decode4.bytes = offset - oldOffset;
+                  return obj;
+                }
+                var prefix = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                var tag = prefix >> 3;
+                switch (tag) {
+                  case 1:
+                    obj.id_1 = encodings.string.decode(buf, offset);
+                    offset += encodings.string.decode.bytes;
+                    break;
+                  case 2:
+                    obj.id_2 = encodings.string.decode(buf, offset);
+                    offset += encodings.string.decode.bytes;
+                    break;
+                  case 3:
+                    obj.id_3 = encodings.string.decode(buf, offset);
+                    offset += encodings.string.decode.bytes;
+                    break;
+                  default:
+                    offset = skip(prefix & 7, buf, offset);
+                }
+              }
+            }
+            __name(decode4, "decode");
+          }
+          __name(defineIds, "defineIds");
+          Params.encodingLength = encodingLength3;
+          Params.encode = encode3;
+          Params.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.ids)) {
+              var len = Ids.encodingLength(obj.ids);
+              length += varint.encodingLength(len);
+              length += 1 + len;
+            }
+            return length;
+          }
+          __name(encodingLength3, "encodingLength");
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.ids)) {
+              buf[offset++] = 18;
+              varint.encode(Ids.encodingLength(obj.ids), buf, offset);
+              offset += varint.encode.bytes;
+              Ids.encode(obj.ids, buf, offset);
+              offset += Ids.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          __name(encode3, "encode");
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              ids: null
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 2:
+                  var len = varint.decode(buf, offset);
+                  offset += varint.decode.bytes;
+                  obj.ids = Ids.decode(buf, offset, offset + len);
+                  offset += Ids.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+          __name(decode3, "decode");
+        }
+        __name(defineParams, "defineParams");
+        Sound.encodingLength = encodingLength2;
+        Sound.encode = encode2;
+        Sound.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.params)) {
+            var len = Params.encodingLength(obj.params);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.params)) {
+            buf[offset++] = 10;
+            varint.encode(Params.encodingLength(obj.params), buf, offset);
+            offset += varint.encode.bytes;
+            Params.encode(obj.params, buf, offset);
+            offset += Params.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            params: null
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.params = Params.decode(buf, offset, offset + len);
+                offset += Params.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineSound, "defineSound");
+      SoundInfoParams.encodingLength = encodingLength;
+      SoundInfoParams.encode = encode;
+      SoundInfoParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.sound)) {
+          var len = Sound.encodingLength(obj.sound);
+          length += varint.encodingLength(len);
+          length += 2 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.sound)) {
+          buf[offset++] = 242;
+          buf[offset++] = 5;
+          varint.encode(Sound.encodingLength(obj.sound), buf, offset);
+          offset += varint.encode.bytes;
+          Sound.encode(obj.sound, buf, offset);
+          offset += Sound.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          sound: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 94:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.sound = Sound.decode(buf, offset, offset + len);
+              offset += Sound.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineSoundInfoParams, "defineSoundInfoParams");
+    function defineNotificationPreferences() {
+      var Preference = NotificationPreferences.Preference = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      definePreference();
+      function definePreference() {
+        Preference.encodingLength = encodingLength2;
+        Preference.encode = encode2;
+        Preference.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.index)) {
+            var len = encodings.int32.encodingLength(obj.index);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.index)) {
+            buf[offset++] = 8;
+            encodings.int32.encode(obj.index, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            index: 0
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.index = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(definePreference, "definePreference");
+      NotificationPreferences.encodingLength = encodingLength;
+      NotificationPreferences.encode = encode;
+      NotificationPreferences.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.channel_id)) {
+          var len = encodings.string.encodingLength(obj.channel_id);
+          length += 1 + len;
+        }
+        if (defined(obj.pref_id)) {
+          var len = Preference.encodingLength(obj.pref_id);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.number_0)) {
+          var len = encodings.int32.encodingLength(obj.number_0);
+          length += 1 + len;
+        }
+        if (defined(obj.number_1)) {
+          var len = encodings.int32.encodingLength(obj.number_1);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.channel_id)) {
+          buf[offset++] = 10;
+          encodings.string.encode(obj.channel_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.pref_id)) {
+          buf[offset++] = 18;
+          varint.encode(Preference.encodingLength(obj.pref_id), buf, offset);
+          offset += varint.encode.bytes;
+          Preference.encode(obj.pref_id, buf, offset);
+          offset += Preference.encode.bytes;
+        }
+        if (defined(obj.number_0)) {
+          buf[offset++] = 24;
+          encodings.int32.encode(obj.number_0, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.number_1)) {
+          buf[offset++] = 32;
+          encodings.int32.encode(obj.number_1, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          channel_id: "",
+          pref_id: null,
+          number_0: 0,
+          number_1: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              obj.channel_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 2:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.pref_id = Preference.decode(buf, offset, offset + len);
+              offset += Preference.decode.bytes;
+              break;
+            case 3:
+              obj.number_0 = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 4:
+              obj.number_1 = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineNotificationPreferences, "defineNotificationPreferences");
+    function defineLiveMessageParams() {
+      var Params = LiveMessageParams.Params = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineParams();
+      function defineParams() {
+        var Ids = Params.Ids = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineIds();
+        function defineIds() {
+          Ids.encodingLength = encodingLength3;
+          Ids.encode = encode3;
+          Ids.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.channel_id)) {
+              var len = encodings.string.encodingLength(obj.channel_id);
+              length += 1 + len;
+            }
+            if (defined(obj.video_id)) {
+              var len = encodings.string.encodingLength(obj.video_id);
+              length += 1 + len;
+            }
+            return length;
+          }
+          __name(encodingLength3, "encodingLength");
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.channel_id)) {
+              buf[offset++] = 10;
+              encodings.string.encode(obj.channel_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.video_id)) {
+              buf[offset++] = 18;
+              encodings.string.encode(obj.video_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          __name(encode3, "encode");
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              channel_id: "",
+              video_id: ""
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 1:
+                  obj.channel_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 2:
+                  obj.video_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+          __name(decode3, "decode");
+        }
+        __name(defineIds, "defineIds");
+        Params.encodingLength = encodingLength2;
+        Params.encode = encode2;
+        Params.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.ids)) {
+            var len = Ids.encodingLength(obj.ids);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.ids)) {
+            buf[offset++] = 42;
+            varint.encode(Ids.encodingLength(obj.ids), buf, offset);
+            offset += varint.encode.bytes;
+            Ids.encode(obj.ids, buf, offset);
+            offset += Ids.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            ids: null
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 5:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.ids = Ids.decode(buf, offset, offset + len);
+                offset += Ids.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineParams, "defineParams");
+      LiveMessageParams.encodingLength = encodingLength;
+      LiveMessageParams.encode = encode;
+      LiveMessageParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.params)) {
+          var len = Params.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.number_0)) {
+          var len = encodings.int32.encodingLength(obj.number_0);
+          length += 1 + len;
+        }
+        if (defined(obj.number_1)) {
+          var len = encodings.int32.encodingLength(obj.number_1);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.params)) {
+          buf[offset++] = 10;
+          varint.encode(Params.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          Params.encode(obj.params, buf, offset);
+          offset += Params.encode.bytes;
+        }
+        if (defined(obj.number_0)) {
+          buf[offset++] = 16;
+          encodings.int32.encode(obj.number_0, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.number_1)) {
+          buf[offset++] = 24;
+          encodings.int32.encode(obj.number_1, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          params: null,
+          number_0: 0,
+          number_1: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = Params.decode(buf, offset, offset + len);
+              offset += Params.decode.bytes;
+              break;
+            case 2:
+              obj.number_0 = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 3:
+              obj.number_1 = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineLiveMessageParams, "defineLiveMessageParams");
+    function defineGetCommentsSectionParams() {
+      var Context = GetCommentsSectionParams.Context = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      var Params = GetCommentsSectionParams.Params = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineContext();
+      defineParams();
+      function defineContext() {
+        Context.encodingLength = encodingLength2;
+        Context.encode = encode2;
+        Context.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.video_id)) {
+            var len = encodings.string.encodingLength(obj.video_id);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.video_id)) {
+            buf[offset++] = 18;
+            encodings.string.encode(obj.video_id, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            video_id: ""
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 2:
+                obj.video_id = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineContext, "defineContext");
+      function defineParams() {
+        var Options = Params.Options = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        var RepliesOptions = Params.RepliesOptions = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineOptions();
+        defineRepliesOptions();
+        function defineOptions() {
+          Options.encodingLength = encodingLength3;
+          Options.encode = encode3;
+          Options.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.video_id)) {
+              var len = encodings.string.encodingLength(obj.video_id);
+              length += 1 + len;
+            }
+            if (defined(obj.sort_by)) {
+              var len = encodings.int32.encodingLength(obj.sort_by);
+              length += 1 + len;
+            }
+            if (defined(obj.type)) {
+              var len = encodings.int32.encodingLength(obj.type);
+              length += 1 + len;
+            }
+            return length;
+          }
+          __name(encodingLength3, "encodingLength");
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.video_id)) {
+              buf[offset++] = 34;
+              encodings.string.encode(obj.video_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.sort_by)) {
+              buf[offset++] = 48;
+              encodings.int32.encode(obj.sort_by, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.type)) {
+              buf[offset++] = 120;
+              encodings.int32.encode(obj.type, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          __name(encode3, "encode");
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              video_id: "",
+              sort_by: 0,
+              type: 0
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 4:
+                  obj.video_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 6:
+                  obj.sort_by = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 15:
+                  obj.type = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+          __name(decode3, "decode");
+        }
+        __name(defineOptions, "defineOptions");
+        function defineRepliesOptions() {
+          var UnkOpts = RepliesOptions.UnkOpts = {
+            buffer: true,
+            encodingLength: null,
+            encode: null,
+            decode: null
+          };
+          defineUnkOpts();
+          function defineUnkOpts() {
+            UnkOpts.encodingLength = encodingLength4;
+            UnkOpts.encode = encode4;
+            UnkOpts.decode = decode4;
+            function encodingLength4(obj) {
+              var length = 0;
+              if (defined(obj.unk_param)) {
+                var len = encodings.int32.encodingLength(obj.unk_param);
+                length += 1 + len;
+              }
+              return length;
+            }
+            __name(encodingLength4, "encodingLength");
+            function encode4(obj, buf, offset) {
+              if (!offset)
+                offset = 0;
+              if (!buf)
+                buf = Buffer.allocUnsafe(encodingLength4(obj));
+              var oldOffset = offset;
+              if (defined(obj.unk_param)) {
+                buf[offset++] = 8;
+                encodings.int32.encode(obj.unk_param, buf, offset);
+                offset += encodings.int32.encode.bytes;
+              }
+              encode4.bytes = offset - oldOffset;
+              return buf;
+            }
+            __name(encode4, "encode");
+            function decode4(buf, offset, end) {
+              if (!offset)
+                offset = 0;
+              if (!end)
+                end = buf.length;
+              if (!(end <= buf.length && offset <= buf.length))
+                throw new Error("Decoded message is not valid");
+              var oldOffset = offset;
+              var obj = {
+                unk_param: 0
+              };
+              while (true) {
+                if (end <= offset) {
+                  decode4.bytes = offset - oldOffset;
+                  return obj;
+                }
+                var prefix = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                var tag = prefix >> 3;
+                switch (tag) {
+                  case 1:
+                    obj.unk_param = encodings.int32.decode(buf, offset);
+                    offset += encodings.int32.decode.bytes;
+                    break;
+                  default:
+                    offset = skip(prefix & 7, buf, offset);
+                }
+              }
+            }
+            __name(decode4, "decode");
+          }
+          __name(defineUnkOpts, "defineUnkOpts");
+          RepliesOptions.encodingLength = encodingLength3;
+          RepliesOptions.encode = encode3;
+          RepliesOptions.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.comment_id)) {
+              var len = encodings.string.encodingLength(obj.comment_id);
+              length += 1 + len;
+            }
+            if (defined(obj.unkopts)) {
+              var len = UnkOpts.encodingLength(obj.unkopts);
+              length += varint.encodingLength(len);
+              length += 1 + len;
+            }
+            if (defined(obj.channel_id)) {
+              var len = encodings.string.encodingLength(obj.channel_id);
+              length += 1 + len;
+            }
+            if (defined(obj.video_id)) {
+              var len = encodings.string.encodingLength(obj.video_id);
+              length += 1 + len;
+            }
+            if (defined(obj.unk_param_1)) {
+              var len = encodings.int32.encodingLength(obj.unk_param_1);
+              length += 1 + len;
+            }
+            if (defined(obj.unk_param_2)) {
+              var len = encodings.int32.encodingLength(obj.unk_param_2);
+              length += 1 + len;
+            }
+            return length;
+          }
+          __name(encodingLength3, "encodingLength");
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.comment_id)) {
+              buf[offset++] = 18;
+              encodings.string.encode(obj.comment_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.unkopts)) {
+              buf[offset++] = 34;
+              varint.encode(UnkOpts.encodingLength(obj.unkopts), buf, offset);
+              offset += varint.encode.bytes;
+              UnkOpts.encode(obj.unkopts, buf, offset);
+              offset += UnkOpts.encode.bytes;
+            }
+            if (defined(obj.channel_id)) {
+              buf[offset++] = 42;
+              encodings.string.encode(obj.channel_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.video_id)) {
+              buf[offset++] = 50;
+              encodings.string.encode(obj.video_id, buf, offset);
+              offset += encodings.string.encode.bytes;
+            }
+            if (defined(obj.unk_param_1)) {
+              buf[offset++] = 64;
+              encodings.int32.encode(obj.unk_param_1, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.unk_param_2)) {
+              buf[offset++] = 72;
+              encodings.int32.encode(obj.unk_param_2, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          __name(encode3, "encode");
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              comment_id: "",
+              unkopts: null,
+              channel_id: "",
+              video_id: "",
+              unk_param_1: 0,
+              unk_param_2: 0
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 2:
+                  obj.comment_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 4:
+                  var len = varint.decode(buf, offset);
+                  offset += varint.decode.bytes;
+                  obj.unkopts = UnkOpts.decode(buf, offset, offset + len);
+                  offset += UnkOpts.decode.bytes;
+                  break;
+                case 5:
+                  obj.channel_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 6:
+                  obj.video_id = encodings.string.decode(buf, offset);
+                  offset += encodings.string.decode.bytes;
+                  break;
+                case 8:
+                  obj.unk_param_1 = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 9:
+                  obj.unk_param_2 = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+          __name(decode3, "decode");
+        }
+        __name(defineRepliesOptions, "defineRepliesOptions");
+        Params.encodingLength = encodingLength2;
+        Params.encode = encode2;
+        Params.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.unk_token)) {
+            var len = encodings.string.encodingLength(obj.unk_token);
+            length += 1 + len;
+          }
+          if (defined(obj.opts)) {
+            var len = Options.encodingLength(obj.opts);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          if (defined(obj.replies_opts)) {
+            var len = RepliesOptions.encodingLength(obj.replies_opts);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          if (defined(obj.page)) {
+            var len = encodings.int32.encodingLength(obj.page);
+            length += 1 + len;
+          }
+          if (defined(obj.target)) {
+            var len = encodings.string.encodingLength(obj.target);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.unk_token)) {
+            buf[offset++] = 10;
+            encodings.string.encode(obj.unk_token, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          if (defined(obj.opts)) {
+            buf[offset++] = 34;
+            varint.encode(Options.encodingLength(obj.opts), buf, offset);
+            offset += varint.encode.bytes;
+            Options.encode(obj.opts, buf, offset);
+            offset += Options.encode.bytes;
+          }
+          if (defined(obj.replies_opts)) {
+            buf[offset++] = 26;
+            varint.encode(RepliesOptions.encodingLength(obj.replies_opts), buf, offset);
+            offset += varint.encode.bytes;
+            RepliesOptions.encode(obj.replies_opts, buf, offset);
+            offset += RepliesOptions.encode.bytes;
+          }
+          if (defined(obj.page)) {
+            buf[offset++] = 40;
+            encodings.int32.encode(obj.page, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          if (defined(obj.target)) {
+            buf[offset++] = 66;
+            encodings.string.encode(obj.target, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            unk_token: "",
+            opts: null,
+            replies_opts: null,
+            page: 0,
+            target: ""
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.unk_token = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              case 4:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.opts = Options.decode(buf, offset, offset + len);
+                offset += Options.decode.bytes;
+                break;
+              case 3:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.replies_opts = RepliesOptions.decode(buf, offset, offset + len);
+                offset += RepliesOptions.decode.bytes;
+                break;
+              case 5:
+                obj.page = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              case 8:
+                obj.target = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineParams, "defineParams");
+      GetCommentsSectionParams.encodingLength = encodingLength;
+      GetCommentsSectionParams.encode = encode;
+      GetCommentsSectionParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.ctx)) {
+          var len = Context.encodingLength(obj.ctx);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.unk_param)) {
+          var len = encodings.int32.encodingLength(obj.unk_param);
+          length += 1 + len;
+        }
+        if (defined(obj.params)) {
+          var len = Params.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.ctx)) {
+          buf[offset++] = 18;
+          varint.encode(Context.encodingLength(obj.ctx), buf, offset);
+          offset += varint.encode.bytes;
+          Context.encode(obj.ctx, buf, offset);
+          offset += Context.encode.bytes;
+        }
+        if (defined(obj.unk_param)) {
+          buf[offset++] = 24;
+          encodings.int32.encode(obj.unk_param, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.params)) {
+          buf[offset++] = 50;
+          varint.encode(Params.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          Params.encode(obj.params, buf, offset);
+          offset += Params.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          ctx: null,
+          unk_param: 0,
+          params: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 2:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.ctx = Context.decode(buf, offset, offset + len);
+              offset += Context.decode.bytes;
+              break;
+            case 3:
+              obj.unk_param = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 6:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = Params.decode(buf, offset, offset + len);
+              offset += Params.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineGetCommentsSectionParams, "defineGetCommentsSectionParams");
+    function defineCreateCommentParams() {
+      var Params = CreateCommentParams.Params = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineParams();
+      function defineParams() {
+        Params.encodingLength = encodingLength2;
+        Params.encode = encode2;
+        Params.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.index)) {
+            var len = encodings.int32.encodingLength(obj.index);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.index)) {
+            buf[offset++] = 8;
+            encodings.int32.encode(obj.index, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            index: 0
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.index = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineParams, "defineParams");
+      CreateCommentParams.encodingLength = encodingLength;
+      CreateCommentParams.encode = encode;
+      CreateCommentParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.video_id)) {
+          var len = encodings.string.encodingLength(obj.video_id);
+          length += 1 + len;
+        }
+        if (defined(obj.params)) {
+          var len = Params.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.number)) {
+          var len = encodings.int32.encodingLength(obj.number);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.video_id)) {
+          buf[offset++] = 18;
+          encodings.string.encode(obj.video_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.params)) {
+          buf[offset++] = 42;
+          varint.encode(Params.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          Params.encode(obj.params, buf, offset);
+          offset += Params.encode.bytes;
+        }
+        if (defined(obj.number)) {
+          buf[offset++] = 80;
+          encodings.int32.encode(obj.number, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          video_id: "",
+          params: null,
+          number: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 2:
+              obj.video_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 5:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = Params.decode(buf, offset, offset + len);
+              offset += Params.decode.bytes;
+              break;
+            case 10:
+              obj.number = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineCreateCommentParams, "defineCreateCommentParams");
+    function defineCreateCommentReplyParams() {
+      var UnknownParams = CreateCommentReplyParams.UnknownParams = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineUnknownParams();
+      function defineUnknownParams() {
+        UnknownParams.encodingLength = encodingLength2;
+        UnknownParams.encode = encode2;
+        UnknownParams.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.unk_num)) {
+            var len = encodings.int32.encodingLength(obj.unk_num);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.unk_num)) {
+            buf[offset++] = 8;
+            encodings.int32.encode(obj.unk_num, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            unk_num: 0
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.unk_num = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineUnknownParams, "defineUnknownParams");
+      CreateCommentReplyParams.encodingLength = encodingLength;
+      CreateCommentReplyParams.encode = encode;
+      CreateCommentReplyParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.video_id)) {
+          var len = encodings.string.encodingLength(obj.video_id);
+          length += 1 + len;
+        }
+        if (defined(obj.comment_id)) {
+          var len = encodings.string.encodingLength(obj.comment_id);
+          length += 1 + len;
+        }
+        if (defined(obj.params)) {
+          var len = UnknownParams.encodingLength(obj.params);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        if (defined(obj.unk_num)) {
+          var len = encodings.int32.encodingLength(obj.unk_num);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.video_id)) {
+          buf[offset++] = 18;
+          encodings.string.encode(obj.video_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.comment_id)) {
+          buf[offset++] = 34;
+          encodings.string.encode(obj.comment_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.params)) {
+          buf[offset++] = 42;
+          varint.encode(UnknownParams.encodingLength(obj.params), buf, offset);
+          offset += varint.encode.bytes;
+          UnknownParams.encode(obj.params, buf, offset);
+          offset += UnknownParams.encode.bytes;
+        }
+        if (defined(obj.unk_num)) {
+          buf[offset++] = 80;
+          encodings.int32.encode(obj.unk_num, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          video_id: "",
+          comment_id: "",
+          params: null,
+          unk_num: 0
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 2:
+              obj.video_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 4:
+              obj.comment_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 5:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.params = UnknownParams.decode(buf, offset, offset + len);
+              offset += UnknownParams.decode.bytes;
+              break;
+            case 10:
+              obj.unk_num = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineCreateCommentReplyParams, "defineCreateCommentReplyParams");
+    function definePeformCommentActionParams() {
+      var TranslateCommentParams = PeformCommentActionParams.TranslateCommentParams = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineTranslateCommentParams();
+      function defineTranslateCommentParams() {
+        var Params = TranslateCommentParams.Params = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineParams();
+        function defineParams() {
+          var Comment = Params.Comment = {
+            buffer: true,
+            encodingLength: null,
+            encode: null,
+            decode: null
+          };
+          defineComment();
+          function defineComment() {
+            Comment.encodingLength = encodingLength4;
+            Comment.encode = encode4;
+            Comment.decode = decode4;
+            function encodingLength4(obj) {
+              var length = 0;
+              if (defined(obj.text)) {
+                var len = encodings.string.encodingLength(obj.text);
+                length += 1 + len;
+              }
+              return length;
+            }
+            __name(encodingLength4, "encodingLength");
+            function encode4(obj, buf, offset) {
+              if (!offset)
+                offset = 0;
+              if (!buf)
+                buf = Buffer.allocUnsafe(encodingLength4(obj));
+              var oldOffset = offset;
+              if (defined(obj.text)) {
+                buf[offset++] = 10;
+                encodings.string.encode(obj.text, buf, offset);
+                offset += encodings.string.encode.bytes;
+              }
+              encode4.bytes = offset - oldOffset;
+              return buf;
+            }
+            __name(encode4, "encode");
+            function decode4(buf, offset, end) {
+              if (!offset)
+                offset = 0;
+              if (!end)
+                end = buf.length;
+              if (!(end <= buf.length && offset <= buf.length))
+                throw new Error("Decoded message is not valid");
+              var oldOffset = offset;
+              var obj = {
+                text: ""
+              };
+              while (true) {
+                if (end <= offset) {
+                  decode4.bytes = offset - oldOffset;
+                  return obj;
+                }
+                var prefix = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                var tag = prefix >> 3;
+                switch (tag) {
+                  case 1:
+                    obj.text = encodings.string.decode(buf, offset);
+                    offset += encodings.string.decode.bytes;
+                    break;
+                  default:
+                    offset = skip(prefix & 7, buf, offset);
+                }
+              }
+            }
+            __name(decode4, "decode");
+          }
+          __name(defineComment, "defineComment");
+          Params.encodingLength = encodingLength3;
+          Params.encode = encode3;
+          Params.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.comment)) {
+              var len = Comment.encodingLength(obj.comment);
+              length += varint.encodingLength(len);
+              length += 1 + len;
+            }
+            return length;
+          }
+          __name(encodingLength3, "encodingLength");
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.comment)) {
+              buf[offset++] = 10;
+              varint.encode(Comment.encodingLength(obj.comment), buf, offset);
+              offset += varint.encode.bytes;
+              Comment.encode(obj.comment, buf, offset);
+              offset += Comment.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          __name(encode3, "encode");
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              comment: null
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 1:
+                  var len = varint.decode(buf, offset);
+                  offset += varint.decode.bytes;
+                  obj.comment = Comment.decode(buf, offset, offset + len);
+                  offset += Comment.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+          __name(decode3, "decode");
+        }
+        __name(defineParams, "defineParams");
+        TranslateCommentParams.encodingLength = encodingLength2;
+        TranslateCommentParams.encode = encode2;
+        TranslateCommentParams.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.params)) {
+            var len = Params.encodingLength(obj.params);
+            length += varint.encodingLength(len);
+            length += 1 + len;
+          }
+          if (defined(obj.comment_id)) {
+            var len = encodings.string.encodingLength(obj.comment_id);
+            length += 1 + len;
+          }
+          if (defined(obj.target_language)) {
+            var len = encodings.string.encodingLength(obj.target_language);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.params)) {
+            buf[offset++] = 26;
+            varint.encode(Params.encodingLength(obj.params), buf, offset);
+            offset += varint.encode.bytes;
+            Params.encode(obj.params, buf, offset);
+            offset += Params.encode.bytes;
+          }
+          if (defined(obj.comment_id)) {
+            buf[offset++] = 18;
+            encodings.string.encode(obj.comment_id, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          if (defined(obj.target_language)) {
+            buf[offset++] = 34;
+            encodings.string.encode(obj.target_language, buf, offset);
+            offset += encodings.string.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            params: null,
+            comment_id: "",
+            target_language: ""
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 3:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.params = Params.decode(buf, offset, offset + len);
+                offset += Params.decode.bytes;
+                break;
+              case 2:
+                obj.comment_id = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              case 4:
+                obj.target_language = encodings.string.decode(buf, offset);
+                offset += encodings.string.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineTranslateCommentParams, "defineTranslateCommentParams");
+      PeformCommentActionParams.encodingLength = encodingLength;
+      PeformCommentActionParams.encode = encode;
+      PeformCommentActionParams.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.type)) {
+          var len = encodings.int32.encodingLength(obj.type);
+          length += 1 + len;
+        }
+        if (defined(obj.comment_id)) {
+          var len = encodings.string.encodingLength(obj.comment_id);
+          length += 1 + len;
+        }
+        if (defined(obj.video_id)) {
+          var len = encodings.string.encodingLength(obj.video_id);
+          length += 1 + len;
+        }
+        if (defined(obj.unk_num)) {
+          var len = encodings.int32.encodingLength(obj.unk_num);
+          length += 1 + len;
+        }
+        if (defined(obj.channel_id)) {
+          var len = encodings.string.encodingLength(obj.channel_id);
+          length += 2 + len;
+        }
+        if (defined(obj.translate_comment_params)) {
+          var len = TranslateCommentParams.encodingLength(obj.translate_comment_params);
+          length += varint.encodingLength(len);
+          length += 2 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.type)) {
+          buf[offset++] = 8;
+          encodings.int32.encode(obj.type, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.comment_id)) {
+          buf[offset++] = 26;
+          encodings.string.encode(obj.comment_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.video_id)) {
+          buf[offset++] = 42;
+          encodings.string.encode(obj.video_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.unk_num)) {
+          buf[offset++] = 16;
+          encodings.int32.encode(obj.unk_num, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.channel_id)) {
+          buf[offset++] = 186;
+          buf[offset++] = 1;
+          encodings.string.encode(obj.channel_id, buf, offset);
+          offset += encodings.string.encode.bytes;
+        }
+        if (defined(obj.translate_comment_params)) {
+          buf[offset++] = 250;
+          buf[offset++] = 1;
+          varint.encode(TranslateCommentParams.encodingLength(obj.translate_comment_params), buf, offset);
+          offset += varint.encode.bytes;
+          TranslateCommentParams.encode(obj.translate_comment_params, buf, offset);
+          offset += TranslateCommentParams.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          type: 0,
+          comment_id: "",
+          video_id: "",
+          unk_num: 0,
+          channel_id: "",
+          translate_comment_params: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              obj.type = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 3:
+              obj.comment_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 5:
+              obj.video_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 2:
+              obj.unk_num = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 23:
+              obj.channel_id = encodings.string.decode(buf, offset);
+              offset += encodings.string.decode.bytes;
+              break;
+            case 31:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.translate_comment_params = TranslateCommentParams.decode(buf, offset, offset + len);
+              offset += TranslateCommentParams.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(definePeformCommentActionParams, "definePeformCommentActionParams");
+    function defineMusicSearchFilter() {
+      var Filters = MusicSearchFilter.Filters = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineFilters();
+      function defineFilters() {
+        var Type = Filters.Type = {
+          buffer: true,
+          encodingLength: null,
+          encode: null,
+          decode: null
+        };
+        defineType();
+        function defineType() {
+          Type.encodingLength = encodingLength3;
+          Type.encode = encode3;
+          Type.decode = decode3;
+          function encodingLength3(obj) {
+            var length = 0;
+            if (defined(obj.all)) {
+              var len = encodings.int32.encodingLength(obj.all);
+              length += 1 + len;
+            }
+            if (defined(obj.song)) {
+              var len = encodings.int32.encodingLength(obj.song);
+              length += 1 + len;
+            }
+            if (defined(obj.video)) {
+              var len = encodings.int32.encodingLength(obj.video);
+              length += 1 + len;
+            }
+            if (defined(obj.album)) {
+              var len = encodings.int32.encodingLength(obj.album);
+              length += 1 + len;
+            }
+            if (defined(obj.artist)) {
+              var len = encodings.int32.encodingLength(obj.artist);
+              length += 1 + len;
+            }
+            if (defined(obj.playlist)) {
+              var len = encodings.int32.encodingLength(obj.playlist);
+              length += 1 + len;
+            }
+            return length;
+          }
+          __name(encodingLength3, "encodingLength");
+          function encode3(obj, buf, offset) {
+            if (!offset)
+              offset = 0;
+            if (!buf)
+              buf = Buffer.allocUnsafe(encodingLength3(obj));
+            var oldOffset = offset;
+            if (defined(obj.all)) {
+              buf[offset++] = 0;
+              encodings.int32.encode(obj.all, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.song)) {
+              buf[offset++] = 8;
+              encodings.int32.encode(obj.song, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.video)) {
+              buf[offset++] = 16;
+              encodings.int32.encode(obj.video, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.album)) {
+              buf[offset++] = 24;
+              encodings.int32.encode(obj.album, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.artist)) {
+              buf[offset++] = 32;
+              encodings.int32.encode(obj.artist, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            if (defined(obj.playlist)) {
+              buf[offset++] = 40;
+              encodings.int32.encode(obj.playlist, buf, offset);
+              offset += encodings.int32.encode.bytes;
+            }
+            encode3.bytes = offset - oldOffset;
+            return buf;
+          }
+          __name(encode3, "encode");
+          function decode3(buf, offset, end) {
+            if (!offset)
+              offset = 0;
+            if (!end)
+              end = buf.length;
+            if (!(end <= buf.length && offset <= buf.length))
+              throw new Error("Decoded message is not valid");
+            var oldOffset = offset;
+            var obj = {
+              all: 0,
+              song: 0,
+              video: 0,
+              album: 0,
+              artist: 0,
+              playlist: 0
+            };
+            while (true) {
+              if (end <= offset) {
+                decode3.bytes = offset - oldOffset;
+                return obj;
+              }
+              var prefix = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              var tag = prefix >> 3;
+              switch (tag) {
+                case 0:
+                  obj.all = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 1:
+                  obj.song = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 2:
+                  obj.video = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 3:
+                  obj.album = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 4:
+                  obj.artist = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                case 5:
+                  obj.playlist = encodings.int32.decode(buf, offset);
+                  offset += encodings.int32.decode.bytes;
+                  break;
+                default:
+                  offset = skip(prefix & 7, buf, offset);
+              }
+            }
+          }
+          __name(decode3, "decode");
+        }
+        __name(defineType, "defineType");
+        Filters.encodingLength = encodingLength2;
+        Filters.encode = encode2;
+        Filters.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.type)) {
+            var len = Type.encodingLength(obj.type);
+            length += varint.encodingLength(len);
+            length += 2 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.type)) {
+            buf[offset++] = 138;
+            buf[offset++] = 1;
+            varint.encode(Type.encodingLength(obj.type), buf, offset);
+            offset += varint.encode.bytes;
+            Type.encode(obj.type, buf, offset);
+            offset += Type.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            type: null
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 17:
+                var len = varint.decode(buf, offset);
+                offset += varint.decode.bytes;
+                obj.type = Type.decode(buf, offset, offset + len);
+                offset += Type.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineFilters, "defineFilters");
+      MusicSearchFilter.encodingLength = encodingLength;
+      MusicSearchFilter.encode = encode;
+      MusicSearchFilter.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.filters)) {
+          var len = Filters.encodingLength(obj.filters);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.filters)) {
+          buf[offset++] = 18;
+          varint.encode(Filters.encodingLength(obj.filters), buf, offset);
+          offset += varint.encode.bytes;
+          Filters.encode(obj.filters, buf, offset);
+          offset += Filters.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          filters: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 2:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.filters = Filters.decode(buf, offset, offset + len);
+              offset += Filters.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineMusicSearchFilter, "defineMusicSearchFilter");
+    function defineSearchFilter() {
+      var Filters = SearchFilter.Filters = {
+        buffer: true,
+        encodingLength: null,
+        encode: null,
+        decode: null
+      };
+      defineFilters();
+      function defineFilters() {
+        Filters.encodingLength = encodingLength2;
+        Filters.encode = encode2;
+        Filters.decode = decode2;
+        function encodingLength2(obj) {
+          var length = 0;
+          if (defined(obj.upload_date)) {
+            var len = encodings.int32.encodingLength(obj.upload_date);
+            length += 1 + len;
+          }
+          if (defined(obj.type)) {
+            var len = encodings.int32.encodingLength(obj.type);
+            length += 1 + len;
+          }
+          if (defined(obj.duration)) {
+            var len = encodings.int32.encodingLength(obj.duration);
+            length += 1 + len;
+          }
+          return length;
+        }
+        __name(encodingLength2, "encodingLength");
+        function encode2(obj, buf, offset) {
+          if (!offset)
+            offset = 0;
+          if (!buf)
+            buf = Buffer.allocUnsafe(encodingLength2(obj));
+          var oldOffset = offset;
+          if (defined(obj.upload_date)) {
+            buf[offset++] = 8;
+            encodings.int32.encode(obj.upload_date, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          if (defined(obj.type)) {
+            buf[offset++] = 16;
+            encodings.int32.encode(obj.type, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          if (defined(obj.duration)) {
+            buf[offset++] = 24;
+            encodings.int32.encode(obj.duration, buf, offset);
+            offset += encodings.int32.encode.bytes;
+          }
+          encode2.bytes = offset - oldOffset;
+          return buf;
+        }
+        __name(encode2, "encode");
+        function decode2(buf, offset, end) {
+          if (!offset)
+            offset = 0;
+          if (!end)
+            end = buf.length;
+          if (!(end <= buf.length && offset <= buf.length))
+            throw new Error("Decoded message is not valid");
+          var oldOffset = offset;
+          var obj = {
+            upload_date: 0,
+            type: 0,
+            duration: 0
+          };
+          while (true) {
+            if (end <= offset) {
+              decode2.bytes = offset - oldOffset;
+              return obj;
+            }
+            var prefix = varint.decode(buf, offset);
+            offset += varint.decode.bytes;
+            var tag = prefix >> 3;
+            switch (tag) {
+              case 1:
+                obj.upload_date = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              case 2:
+                obj.type = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              case 3:
+                obj.duration = encodings.int32.decode(buf, offset);
+                offset += encodings.int32.decode.bytes;
+                break;
+              default:
+                offset = skip(prefix & 7, buf, offset);
+            }
+          }
+        }
+        __name(decode2, "decode");
+      }
+      __name(defineFilters, "defineFilters");
+      SearchFilter.encodingLength = encodingLength;
+      SearchFilter.encode = encode;
+      SearchFilter.decode = decode;
+      function encodingLength(obj) {
+        var length = 0;
+        if (defined(obj.sort_by)) {
+          var len = encodings.int32.encodingLength(obj.sort_by);
+          length += 1 + len;
+        }
+        if (defined(obj.no_filter)) {
+          var len = encodings.int32.encodingLength(obj.no_filter);
+          length += 2 + len;
+        }
+        if (defined(obj.filters)) {
+          var len = Filters.encodingLength(obj.filters);
+          length += varint.encodingLength(len);
+          length += 1 + len;
+        }
+        return length;
+      }
+      __name(encodingLength, "encodingLength");
+      function encode(obj, buf, offset) {
+        if (!offset)
+          offset = 0;
+        if (!buf)
+          buf = Buffer.allocUnsafe(encodingLength(obj));
+        var oldOffset = offset;
+        if (defined(obj.sort_by)) {
+          buf[offset++] = 8;
+          encodings.int32.encode(obj.sort_by, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.no_filter)) {
+          buf[offset++] = 152;
+          buf[offset++] = 1;
+          encodings.int32.encode(obj.no_filter, buf, offset);
+          offset += encodings.int32.encode.bytes;
+        }
+        if (defined(obj.filters)) {
+          buf[offset++] = 18;
+          varint.encode(Filters.encodingLength(obj.filters), buf, offset);
+          offset += varint.encode.bytes;
+          Filters.encode(obj.filters, buf, offset);
+          offset += Filters.encode.bytes;
+        }
+        encode.bytes = offset - oldOffset;
+        return buf;
+      }
+      __name(encode, "encode");
+      function decode(buf, offset, end) {
+        if (!offset)
+          offset = 0;
+        if (!end)
+          end = buf.length;
+        if (!(end <= buf.length && offset <= buf.length))
+          throw new Error("Decoded message is not valid");
+        var oldOffset = offset;
+        var obj = {
+          sort_by: 0,
+          no_filter: 0,
+          filters: null
+        };
+        while (true) {
+          if (end <= offset) {
+            decode.bytes = offset - oldOffset;
+            return obj;
+          }
+          var prefix = varint.decode(buf, offset);
+          offset += varint.decode.bytes;
+          var tag = prefix >> 3;
+          switch (tag) {
+            case 1:
+              obj.sort_by = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 19:
+              obj.no_filter = encodings.int32.decode(buf, offset);
+              offset += encodings.int32.decode.bytes;
+              break;
+            case 2:
+              var len = varint.decode(buf, offset);
+              offset += varint.decode.bytes;
+              obj.filters = Filters.decode(buf, offset, offset + len);
+              offset += Filters.decode.bytes;
+              break;
+            default:
+              offset = skip(prefix & 7, buf, offset);
+          }
+        }
+      }
+      __name(decode, "decode");
+    }
+    __name(defineSearchFilter, "defineSearchFilter");
+    function defined(val) {
+      return val !== null && val !== void 0 && (typeof val !== "number" || !isNaN(val));
+    }
+    __name(defined, "defined");
+  }
+});
+
+// lib/proto/index.js
+var require_proto = __commonJS({
+  "lib/proto/index.js"(exports2, module2) {
+    "use strict";
+    var messages = require_messages();
+    var Proto2 = class {
+      static encodeVisitorData(id, timestamp) {
+        const buf = messages.VisitorData.encode({ id, timestamp });
+        return encodeURIComponent(Buffer.from(buf).toString("base64").replace(/\/|\+/g, "_"));
+      }
+      static encodeChannelAnalyticsParams(channel_id) {
+        const buf = messages.ChannelAnalytics.encode({
+          params: {
+            channel_id
+          }
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeSearchFilters(filters) {
+        const upload_date = {
+          all: null,
+          hour: 1,
+          today: 2,
+          week: 3,
+          month: 4,
+          year: 5
+        };
+        const type = {
+          all: null,
+          video: 1,
+          channel: 2,
+          playlist: 3,
+          movie: 4
+        };
+        const duration = {
+          all: null,
+          short: 1,
+          long: 2,
+          medium: 3
+        };
+        const order = {
+          relevance: null,
+          rating: 1,
+          upload_date: 2,
+          view_count: 3
+        };
+        const data = {};
+        if (filters)
+          data.filters = {};
+        else
+          data.no_filter = 0;
+        if (filters) {
+          if (filters.upload_date && filters.type !== "video")
+            throw new Error(`Upload date filter cannot be used with type ${filters.type}`);
+          if (filters.upload_date) {
+            data.filters.upload_date = upload_date[filters.upload_date];
+          }
+          if (filters.type) {
+            data.filters.type = type[filters.type];
+          }
+          if (filters.duration) {
+            data.filters.duration = duration[filters.duration];
+          }
+          if (filters.sort_by && filters.sort_by !== "relevance") {
+            data.sort_by = order[filters.sort_by];
+          }
+        }
+        const buf = messages.SearchFilter.encode(data);
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeMusicSearchFilters(filters = {}) {
+        const data = {
+          filters: {
+            type: {}
+          }
+        };
+        data.filters.type[filters.type || "all"] = 1;
+        const buf = messages.MusicSearchFilter.encode(data);
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeMessageParams(channel_id, video_id) {
+        const buf = messages.LiveMessageParams.encode({
+          params: {
+            ids: {
+              channel_id,
+              video_id
+            }
+          },
+          number_0: 1,
+          number_1: 4
+        });
+        return Buffer.from(encodeURIComponent(Buffer.from(buf).toString("base64"))).toString("base64");
+      }
+      static encodeCommentsSectionParams(video_id, options = {}) {
+        const sort_options = {
+          TOP_COMMENTS: 0,
+          NEWEST_FIRST: 1
+        };
+        const buf = messages.GetCommentsSectionParams.encode({
+          ctx: {
+            video_id
+          },
+          unk_param: 6,
+          params: {
+            opts: {
+              video_id,
+              sort_by: sort_options[options.sort_by || "TOP_COMMENTS"],
+              type: options.type || 2
+            },
+            target: "comments-section"
+          }
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeCommentRepliesParams(video_id, comment_id) {
+        const buf = messages.GetCommentsSectionParams.encode({
+          ctx: {
+            video_id
+          },
+          unk_param: 6,
+          params: {
+            replies_opts: {
+              video_id,
+              comment_id,
+              unkopts: {
+                unk_param: 0
+              },
+              unk_param_1: 1,
+              unk_param_2: 10,
+              channel_id: " "
+            },
+            target: `comment-replies-item-${comment_id}`
+          }
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeCommentParams(video_id) {
+        const buf = messages.CreateCommentParams.encode({
+          video_id,
+          params: {
+            index: 0
+          },
+          number: 7
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeCommentReplyParams(comment_id, video_id) {
+        const buf = messages.CreateCommentReplyParams.encode({
+          video_id,
+          comment_id,
+          params: {
+            unk_num: 0
+          },
+          unk_num: 7
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeCommentActionParams(type, args = {}) {
+        const data = {};
+        data.type = type;
+        data.video_id = args.video_id || "";
+        data.comment_id = args.comment_id || "";
+        data.unk_num = 2;
+        if (args.hasOwnProperty("text")) {
+          args.comment_id && delete data.unk_num;
+          data.translate_comment_params = {
+            params: {
+              comment: {
+                text: args.text
+              }
+            },
+            comment_id: args.comment_id || "",
+            target_language: args.target_language
+          };
+        }
+        const buf = messages.PeformCommentActionParams.encode(data);
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeNotificationPref(channel_id, index) {
+        const buf = messages.NotificationPreferences.encode({
+          channel_id,
+          pref_id: {
+            index
+          },
+          number_0: 0,
+          number_1: 4
+        });
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+      static encodeSoundInfoParams(id) {
+        const data = {
+          sound: {
+            params: {
+              ids: {
+                id_1: id,
+                id_2: id,
+                id_3: id
+              }
+            }
+          }
+        };
+        const buf = messages.SoundInfoParams.encode(data);
+        return encodeURIComponent(Buffer.from(buf).toString("base64"));
+      }
+    };
+    __name(Proto2, "Proto");
+    module2.exports = Proto2;
+  }
+});
+
+// lib/core/Actions.js
+var require_Actions = __commonJS({
+  "lib/core/Actions.js"(exports2, module2) {
+    "use strict";
+    var Uuid = require("../node_modules/uuid/dist/index.js");
+    var Proto2 = require_proto();
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var _session, _request2, _needsLogin, needsLogin_fn;
+    var Actions2 = class {
+      constructor(session) {
+        __privateAdd(this, _needsLogin);
+        __privateAdd(this, _session, void 0);
+        __privateAdd(this, _request2, void 0);
+        __privateSet(this, _session, session);
+        __privateSet(this, _request2, session.request);
+      }
+      async browse(id, args = {}) {
+        if (__privateMethod(this, _needsLogin, needsLogin_fn).call(this, id) && !__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        if (args.params)
+          data.params = args.params;
+        if (args.is_ctoken) {
+          data.continuation = id;
+        } else {
+          data.browseId = id;
+        }
+        if (args.client) {
+          data.client = args.client;
+        }
+        const response = await __privateGet(this, _request2).post("/browse", data);
+        return response;
+      }
+      async engage(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in && !args.hasOwnProperty("text"))
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        switch (action) {
+          case "like/like":
+          case "like/dislike":
+          case "like/removelike":
+            data.target = {};
+            data.target.videoId = args.video_id;
+            if (args.params) {
+              data.params = args.params;
+            }
+            break;
+          case "subscription/subscribe":
+          case "subscription/unsubscribe":
+            data.channelIds = [args.channel_id];
+            data.params = action === "subscription/subscribe" ? "EgIIAhgA" : "CgIIAhgA";
+            break;
+          case "comment/create_comment":
+            data.commentText = args.text;
+            data.createCommentParams = Proto2.encodeCommentParams(args.video_id);
+            break;
+          case "comment/create_comment_reply":
+            data.createReplyParams = Proto2.encodeCommentReplyParams(args.comment_id, args.video_id);
+            data.commentText = args.text;
+            break;
+          case "comment/perform_comment_action":
+            const target_action = (() => {
+              switch (args.comment_action) {
+                case "like":
+                  return Proto2.encodeCommentActionParams(5, args);
+                case "dislike":
+                  return Proto2.encodeCommentActionParams(4, args);
+                case "translate":
+                  return Proto2.encodeCommentActionParams(22, args);
+                default:
+                  break;
+              }
+            })();
+            data.actions = [target_action];
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async account(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          client: args.client
+        };
+        switch (action) {
+          case "account/set_setting":
+            data.newValue = {
+              boolValue: args.new_value
+            };
+            data.settingItemId = args.setting_item_id;
+            break;
+          case "account/accounts_list":
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async search(args = {}) {
+        const data = { client: args.client };
+        if (args.query) {
+          data.query = args.query;
+        }
+        if (args.ctoken) {
+          data.continuation = args.ctoken;
+        }
+        if (args.params) {
+          data.params = args.params;
+        }
+        if (args.filters) {
+          if (args.client == "YTMUSIC") {
+            data.params = Proto2.encodeMusicSearchFilters(args.filters);
+          } else {
+            data.params = Proto2.encodeSearchFilters(args.filters);
+          }
+        }
+        const response = await __privateGet(this, _request2).post("/search", data);
+        return response;
+      }
+      async searchSound(args = {}) {
+        const data = {
+          query: args.query,
+          client: "ANDROID"
+        };
+        const response = await __privateGet(this, _request2).post("/sfv/search", data);
+        return response;
+      }
+      async channel(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          client: args.client || "ANDROID"
+        };
+        switch (action) {
+          case "channel/edit_name":
+            data.givenName = args.new_name;
+            break;
+          case "channel/edit_description":
+            data.description = args.new_description;
+            break;
+          case "channel/get_profile_editor":
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async playlist(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        switch (action) {
+          case "playlist/create":
+            data.title = args.title;
+            data.videoIds = args.ids;
+            break;
+          case "playlist/delete":
+            data.playlistId = args.playlist_id;
+            break;
+          case "browse/edit_playlist":
+            data.playlistId = args.playlist_id;
+            data.actions = args.ids.map((id) => {
+              switch (args.action) {
+                case "ACTION_ADD_VIDEO":
+                  return {
+                    action: args.action,
+                    addedVideoId: id
+                  };
+                case "ACTION_REMOVE_VIDEO":
+                  return {
+                    action: args.action,
+                    setVideoId: id
+                  };
+                default:
+                  break;
+              }
+            });
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async notifications(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        switch (action) {
+          case "modify_channel_preference":
+            const pref_types = {
+              PERSONALIZED: 1,
+              ALL: 2,
+              NONE: 3
+            };
+            data.params = Proto2.encodeNotificationPref(args.channel_id, pref_types[args.pref.toUpperCase()]);
+            break;
+          case "get_notification_menu":
+            data.notificationsMenuRequestType = "NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX";
+            if (args.ctoken)
+              data.ctoken = args.ctoken;
+            break;
+          case "record_interactions":
+            data.serializedRecordNotificationInteractionsRequest = args.params;
+            break;
+          case "get_unseen_count":
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/notification/${action}`, data);
+        return response;
+      }
+      async livechat(action, args = {}) {
+        const data = { client: args.client };
+        switch (action) {
+          case "live_chat/get_live_chat":
+          case "live_chat/get_live_chat_replay":
+            data.continuation = args.ctoken;
+            break;
+          case "live_chat/send_message":
+            data.params = Proto2.encodeMessageParams(args.channel_id, args.video_id);
+            data.clientMessageId = Uuid.v4();
+            data.richMessage = {
+              textSegments: [{
+                text: args.text
+              }]
+            };
+            break;
+          case "live_chat/get_item_context_menu":
+            break;
+          case "live_chat/moderate":
+            data.params = args.params;
+            break;
+          case "updated_metadata":
+            data.videoId = args.video_id;
+            if (args.ctoken)
+              data.continuation = args.ctoken;
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async thumbnails(args = {}) {
+        const data = {
+          client: "ANDROID",
+          videoId: args.video_id
+        };
+        const response = await __privateGet(this, _request2).post("/thumbnails", data);
+        return response;
+      }
+      async geo(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          input: args.input,
+          client: "ANDROID"
+        };
+        const response = await __privateGet(this, _request2).post(`/geo/${action}`, data);
+        return response;
+      }
+      async flag(action, args) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        switch (action) {
+          case "flag/flag":
+            data.action = args.action;
+            break;
+          case "flag/get_form":
+            data.params = args.params;
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async music(action, args) {
+        const data = {
+          input: args.input || "",
+          client: "YTMUSIC"
+        };
+        const response = await __privateGet(this, _request2).post(`/music/${action}`, data);
+        return response;
+      }
+      async next(args = {}) {
+        const data = { client: args.client };
+        if (args.ctoken) {
+          data.continuation = args.ctoken;
+        }
+        if (args.video_id) {
+          data.videoId = args.video_id;
+        }
+        const response = await __privateGet(this, _request2).post("/next", data);
+        return response;
+      }
+      async getVideoInfo(id, cpn, client) {
+        const data = {
+          playbackContext: {
+            contentPlaybackContext: {
+              vis: 0,
+              splay: false,
+              referer: "https://www.youtube.com",
+              currentUrl: `/watch?v=${id}`,
+              autonavState: "STATE_OFF",
+              signatureTimestamp: __privateGet(this, _session).sts,
+              autoCaptionsDefaultOn: false,
+              html5Preference: "HTML5_PREF_WANTS",
+              lactMilliseconds: "-1"
+            }
+          },
+          attestationRequest: {
+            omitBotguardData: true
+          },
+          videoId: id
+        };
+        if (client) {
+          data.client = client;
+        }
+        if (cpn) {
+          data.cpn = cpn;
+        }
+        const response = await __privateGet(this, _request2).post("/player", data);
+        return response.data;
+      }
+      async getSearchSuggestions(client, query) {
+        if (!["YOUTUBE", "YTMUSIC"].includes(client))
+          throw new Utils.InnertubeError("Invalid client", client);
+        const response = await {
+          YOUTUBE: () => __privateGet(this, _request2).call(this, {
+            url: "search",
+            baseURL: Constants.URLS.YT_SUGGESTIONS,
+            params: {
+              q: query,
+              ds: "yt",
+              client: "youtube",
+              xssi: "t",
+              oe: "UTF",
+              gl: __privateGet(this, _session).context.client.gl,
+              hl: __privateGet(this, _session).context.client.hl
+            }
+          }),
+          YTMUSIC: () => this.music("get_search_suggestions", {
+            input: query
+          })
+        }[client]();
+        return response;
+      }
+      async getUserMentionSuggestions(args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          input: args.input,
+          client: "ANDROID"
+        };
+        const response = await __privateGet(this, _request2).post("get_user_mention_suggestions", data);
+        return response;
+      }
+      async execute(action, args) {
+        const data = { ...args };
+        if (Reflect.has(data, "request"))
+          delete data.request;
+        if (Reflect.has(data, "clientActions"))
+          delete data.clientActions;
+        if (Reflect.has(data, "action")) {
+          data.actions = [data.action];
+          delete data.action;
+        }
+        if (Reflect.has(data, "token")) {
+          data.continuation = data.token;
+          delete data.token;
+        }
+        return __privateGet(this, _request2).post(action, data);
+      }
+    };
+    __name(Actions2, "Actions");
+    _session = new WeakMap();
+    _request2 = new WeakMap();
+    _needsLogin = new WeakSet();
+    needsLogin_fn = /* @__PURE__ */ __name(function(id) {
+      return [
+        "FElibrary",
+        "FEhistory",
+        "FEsubscriptions",
+        "SPaccount_notifications",
+        "SPaccount_privacy",
+        "SPtime_watched"
+      ].includes(id);
+    }, "#needsLogin");
+    module2.exports = Actions2;
+  }
+});
+
+// lib/utils/wrappers/NodeCache.js
+var require_NodeCache = __commonJS({
+  "lib/utils/wrappers/NodeCache.js"(exports2, module2) {
+    "use strict";
+    var fs = require("fs");
+    var NodeCache = class {
+      async read(key) {
+        return (await fs.promises.readFile(key)).buffer;
+      }
+      async write(key, data) {
+        const parts = key.split("/").slice(0, -1);
+        let current = "";
+        for (const part of parts) {
+          current += `${part}/`;
+          if (!await this.exists(current)) {
+            await fs.promises.mkdir(current);
+          }
+        }
+        return await fs.promises.writeFile(key, data);
+      }
+      async exists(key) {
+        return await fs.promises.stat(key).then(() => true).catch(() => false);
+      }
+      async remove(key) {
+        return await fs.promises.rm(key);
+      }
+    };
+    __name(NodeCache, "NodeCache");
+    module2.exports = new NodeCache();
+  }
+});
+
+// lib/deciphers/Signature.js
+var require_Signature = __commonJS({
+  "lib/deciphers/Signature.js"(exports2) {
+    "use strict";
+    var { SIG_REGEX } = require_Constants();
+    var SignatureOperation = exports2.SignatureOperation = {
+      REVERSE: 0,
+      SPLICE: 1,
+      SWAP: 2
+    };
+    var Signature = class {
+      constructor(action_sequence) {
+        this.action_sequence = action_sequence;
+      }
+      static fromSourceCode(sig_decipher_sc) {
+        let actions;
+        const action_sequence = [];
+        const functions = Signature.getFunctions(sig_decipher_sc);
+        while ((actions = SIG_REGEX.ACTIONS.exec(sig_decipher_sc)) !== null) {
+          const action = actions.groups;
+          if (!action)
+            continue;
+          switch (action.name) {
+            case functions[0]:
+              action_sequence.push([SignatureOperation.REVERSE, 0]);
+              break;
+            case functions[1]:
+              action_sequence.push([SignatureOperation.SPLICE, parseInt(action.param)]);
+              break;
+            case functions[2]:
+              action_sequence.push([SignatureOperation.SWAP, parseInt(action.param)]);
+              break;
+            default:
+          }
+        }
+        return new Signature(action_sequence);
+      }
+      decipher(url) {
+        var _a;
+        const args = new URLSearchParams(url);
+        const signature = (_a = args.get("s")) == null ? void 0 : _a.split("");
+        if (!signature)
+          throw new TypeError("Invalid signature");
+        for (const action of this.action_sequence) {
+          switch (action[0]) {
+            case SignatureOperation.REVERSE:
+              signature.reverse();
+              break;
+            case SignatureOperation.SPLICE:
+              signature.splice(0, action[1]);
+              break;
+            case SignatureOperation.SWAP:
+              {
+                const index = action[1];
+                const orig_arr = signature[0];
+                signature[0] = signature[index % signature.length];
+                signature[index % signature.length] = orig_arr;
+              }
+              break;
+            default:
+              break;
+          }
+        }
+        return signature.join("");
+      }
+      toJSON() {
+        return [...this.action_sequence];
+      }
+      toArrayBuffer() {
+        const buffer = new ArrayBuffer(4 + 4 + this.action_sequence.length * (1 + 2));
+        const view = new DataView(buffer);
+        let offset = 0;
+        view.setUint32(offset, Signature.LIBRARY_VERSION, true);
+        offset += 4;
+        view.setUint32(offset, this.action_sequence.length, true);
+        offset += 4;
+        for (let i = 0; i < this.action_sequence.length; i++) {
+          view.setUint8(offset, this.action_sequence[i][0]);
+          offset += 1;
+          view.setUint16(offset, this.action_sequence[i][1], true);
+          offset += 2;
+        }
+        return buffer;
+      }
+      static fromArrayBuffer(buffer) {
+        const view = new DataView(buffer);
+        let offset = 0;
+        const version = view.getUint32(offset, true);
+        offset += 4;
+        if (version !== Signature.LIBRARY_VERSION)
+          throw new TypeError("Invalid library version");
+        const action_sequence_length = view.getUint32(offset, true);
+        offset += 4;
+        const action_sequence = new Array(action_sequence_length);
+        for (let i = 0; i < action_sequence_length; i++) {
+          action_sequence[i] = [
+            view.getUint8(offset),
+            view.getUint16(offset + 1, true)
+          ];
+          offset += 3;
+        }
+        return new Signature(action_sequence);
+      }
+      static getFunctions(sc) {
+        let func;
+        const functions = [];
+        while ((func = SIG_REGEX.FUNCTIONS.exec(sc)) !== null) {
+          if (func[0].includes("reverse")) {
+            functions[0] = func[1];
+          } else if (func[0].includes("splice")) {
+            functions[1] = func[1];
+          } else {
+            functions[2] = func[1];
+          }
+        }
+        return functions;
+      }
+      static get LIBRARY_VERSION() {
+        return 1;
+      }
+    };
+    __name(Signature, "Signature");
+    exports2.default = Signature;
+  }
+});
+
+// lib/deciphers/NToken.js
+var require_NToken = __commonJS({
+  "lib/deciphers/NToken.js"(exports2) {
+    "use strict";
+    var { NTOKEN_REGEX, BASE64_DIALECT } = require_Constants();
+    var NTokenTransformOperation = exports2.NTokenTransformOperation = {
+      NO_OP: 0,
+      PUSH: 1,
+      REVERSE_1: 2,
+      REVERSE_2: 3,
+      SPLICE: 4,
+      SWAP0_1: 5,
+      SWAP0_2: 6,
+      ROTATE_1: 7,
+      ROTATE_2: 8,
+      BASE64_DIA: 9,
+      TRANSLATE_1: 10,
+      TRANSLATE_2: 11
+    };
+    var NTokenTransformOpType = exports2.NTokenTransformOpType = {
+      FUNC: 0,
+      N_ARR: 1,
+      LITERAL: 2,
+      REF: 3
+    };
+    var OP_LOOKUP = {
+      "d.push(e)": NTokenTransformOperation.PUSH,
+      "d.reverse()": NTokenTransformOperation.REVERSE_1,
+      "function(d){for(var": NTokenTransformOperation.REVERSE_2,
+      "d.length;d.splice(e,1)": NTokenTransformOperation.SPLICE,
+      "d[0])[0])": NTokenTransformOperation.SWAP0_1,
+      "f=d[0];d[0]": NTokenTransformOperation.SWAP0_2,
+      "reverse().forEach": NTokenTransformOperation.ROTATE_1,
+      "unshift(d.pop())": NTokenTransformOperation.ROTATE_2,
+      "function(){for(var": NTokenTransformOperation.BASE64_DIA,
+      "function(d,e){for(var f": NTokenTransformOperation.TRANSLATE_1,
+      "function(d,e,f){var": NTokenTransformOperation.TRANSLATE_2
+    };
+    var NTokenTransforms = class {
+      static translate1(arr, token, is_reverse_base64) {
+        const characters = is_reverse_base64 ? BASE64_DIALECT.REVERSE : BASE64_DIALECT.NORMAL;
+        const token_chars = token.split("");
+        arr.forEach((char, index, loc) => {
+          token_chars.push(loc[index] = characters[(characters.indexOf(char) - characters.indexOf(token_chars[index]) + 64) % characters.length]);
+        });
+      }
+      static translate2(arr, token, characters) {
+        let chars_length = characters.length;
+        const token_chars = token.split("");
+        arr.forEach((char, index, loc) => {
+          token_chars.push(loc[index] = characters[(characters.indexOf(char) - characters.indexOf(token_chars[index]) + index + chars_length--) % characters.length]);
+        });
+      }
+      static getBase64Dia(is_reverse_base64) {
+        const characters = is_reverse_base64 ? BASE64_DIALECT.REVERSE : BASE64_DIALECT.NORMAL;
+        return characters;
+      }
+      static swap0(arr, index) {
+        const old_elem = arr[0];
+        index = (index % arr.length + arr.length) % arr.length;
+        arr[0] = arr[index];
+        arr[index] = old_elem;
+      }
+      static rotate(arr, index) {
+        index = (index % arr.length + arr.length) % arr.length;
+        arr.splice(-index).reverse().forEach((el) => arr.unshift(el));
+      }
+      static splice(arr, index) {
+        index = (index % arr.length + arr.length) % arr.length;
+        arr.splice(index, 1);
+      }
+      static reverse(arr) {
+        arr.reverse();
+      }
+      static push(arr, item) {
+        if (Array.isArray(arr == null ? void 0 : arr[0]))
+          arr.push([NTokenTransformOpType.LITERAL, item]);
+        else
+          arr.push(item);
+      }
+    };
+    __name(NTokenTransforms, "NTokenTransforms");
+    exports2.NTokenTransforms = NTokenTransforms;
+    var TRANSFORM_FUNCTIONS = [{
+      [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
+      [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
+      [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
+      [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
+      [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
+      [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
+      [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
+      [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
+      [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(false),
+      [NTokenTransformOperation.TRANSLATE_1]: (...args) => NTokenTransforms.translate1.apply(null, [...args, false]),
+      [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
+    }, {
+      [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
+      [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
+      [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
+      [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
+      [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
+      [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
+      [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
+      [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
+      [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(true),
+      [NTokenTransformOperation.TRANSLATE_1]: (...args) => NTokenTransforms.translate1.apply(null, [...args, true]),
+      [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
+    }];
+    var NToken = class {
+      constructor(transformer) {
+        this.transformer = transformer;
+      }
+      static fromSourceCode(raw) {
+        const transformation_data = NToken.getTransformationData(raw);
+        const transformations = transformation_data.map((el) => {
+          var _a;
+          if (el != null && typeof el != "number") {
+            const is_reverse_base64 = el.includes("case 65:");
+            const opcode = OP_LOOKUP[(_a = NToken.getFunc(el)) == null ? void 0 : _a[0]];
+            if (opcode) {
+              el = [
+                NTokenTransformOpType.FUNC,
+                opcode,
+                0 + is_reverse_base64
+              ];
+            } else if (el == "b") {
+              el = [NTokenTransformOpType.N_ARR];
+            } else {
+              el = [NTokenTransformOpType.LITERAL, el];
+            }
+          } else if (el != null) {
+            el = [NTokenTransformOpType.LITERAL, el];
+          }
+          return el;
+        });
+        const placeholder_indexes = [...raw.matchAll(NTOKEN_REGEX.PLACEHOLDERS)].map((item) => parseInt(item[1]));
+        placeholder_indexes.forEach((i) => transformations[i] = [NTokenTransformOpType.REF]);
+        const function_calls = [...raw.replace(/\n/g, "").match(/try\{(.*?)\}catch/s)[1].matchAll(NTOKEN_REGEX.CALLS)].map((params) => [
+          parseInt(params[1]),
+          params[2].split(",").map((param) => {
+            var _a;
+            return parseInt((_a = param.match(/c\[(.*?)\]/)) == null ? void 0 : _a[1]);
+          })
+        ]);
+        return new NToken([transformations, function_calls]);
+      }
+      evaluate(i, n_token, transformer) {
+        switch (i[0]) {
+          case NTokenTransformOpType.FUNC:
+            return TRANSFORM_FUNCTIONS[i[2]][i[1]];
+          case NTokenTransformOpType.N_ARR:
+            return n_token;
+          case NTokenTransformOpType.LITERAL:
+            return i[1];
+          case NTokenTransformOpType.REF:
+            return transformer[0];
+        }
+      }
+      transform(n) {
+        const n_token = n.split("");
+        const transformer = this.getTransformerClone();
+        try {
+          transformer[1].forEach(([index, param_index]) => {
+            const base64_dia = param_index[2] && this.evaluate(transformer[0][param_index[2]], n_token, transformer)();
+            this.evaluate(transformer[0][index], n_token, transformer)(param_index[0] !== void 0 && this.evaluate(transformer[0][param_index[0]], n_token, transformer), param_index[1] !== void 0 && this.evaluate(transformer[0][param_index[1]], n_token, transformer), base64_dia);
+          });
+        } catch (err) {
+          console.error(new Error(`Could not transform n-token, download may be throttled.
+Original Token:${n}Error:
+${err}`));
+          return n;
+        }
+        return n_token.join("");
+      }
+      getTransformerClone() {
+        return [
+          [...this.transformer[0]],
+          [...this.transformer[1]]
+        ];
+      }
+      toJSON() {
+        return this.getTransformerClone();
+      }
+      toArrayBuffer() {
+        let size = 4 * 3;
+        for (const instruction of this.transformer[0]) {
+          switch (instruction[0]) {
+            case NTokenTransformOpType.FUNC:
+              size += 2;
+              break;
+            case NTokenTransformOpType.N_ARR:
+            case NTokenTransformOpType.REF:
+              size += 1;
+              break;
+            case NTokenTransformOpType.LITERAL:
+              if (typeof instruction[1] === "string")
+                size += 1 + 4 + new TextEncoder().encode(instruction[1]).byteLength;
+              size += 4 + 1;
+              break;
+          }
+        }
+        for (const call of this.transformer[1]) {
+          size += 2 + call[1].length;
+        }
+        const buffer = new ArrayBuffer(size);
+        const view = new DataView(buffer);
+        let offset = 0;
+        view.setUint32(offset, NToken.LIBRARY_VERSION, true);
+        offset += 4;
+        view.setUint32(offset, this.transformer[0].length, true);
+        offset += 4;
+        view.setUint32(offset, this.transformer[1].length, true);
+        offset += 4;
+        for (const instruction of this.transformer[0]) {
+          switch (instruction[0]) {
+            case NTokenTransformOpType.FUNC:
+              {
+                const opcode = instruction[0] << 6 | instruction[2];
+                view.setUint8(offset, opcode);
+                offset += 1;
+                view.setUint8(offset, instruction[1]);
+                offset += 1;
+              }
+              break;
+            case NTokenTransformOpType.N_ARR:
+            case NTokenTransformOpType.REF:
+              {
+                const opcode = instruction[0] << 6;
+                view.setUint8(offset, opcode);
+                offset += 1;
+              }
+              break;
+            case NTokenTransformOpType.LITERAL:
+              {
+                const type = typeof instruction[1] === "string" ? 1 : 0;
+                const opcode = instruction[0] << 6 | type;
+                view.setUint8(offset, opcode);
+                offset += 1;
+                if (type === 0) {
+                  view.setInt32(offset, instruction[1], true);
+                  offset += 4;
+                } else {
+                  const encoded = new TextEncoder().encode(instruction[1]);
+                  view.setUint32(offset, encoded.byteLength, true);
+                  offset += 4;
+                  for (let i = 0; i < encoded.byteLength; i++) {
+                    view.setUint8(offset, encoded[i]);
+                    offset += 1;
+                  }
+                }
+              }
+              break;
+          }
+        }
+        for (const call of this.transformer[1]) {
+          view.setUint8(offset, call[0]);
+          offset += 1;
+          view.setUint8(offset, call[1].length);
+          offset += 1;
+          for (const param of call[1]) {
+            view.setUint8(offset, param);
+            offset += 1;
+          }
+        }
+        return buffer;
+      }
+      static fromArrayBuffer(buffer) {
+        const view = new DataView(buffer);
+        let offset = 0;
+        const version = view.getUint32(offset, true);
+        offset += 4;
+        if (version !== NToken.LIBRARY_VERSION)
+          throw new TypeError("Invalid library version");
+        const transformations_length = view.getUint32(offset, true);
+        offset += 4;
+        const function_calls_length = view.getUint32(offset, true);
+        offset += 4;
+        const transformations = new Array(transformations_length);
+        for (let i = 0; i < transformations_length; i++) {
+          const opcode = view.getUint8(offset++);
+          const op = opcode >> 6;
+          switch (op) {
+            case NTokenTransformOpType.FUNC:
+              {
+                const is_reverse_base64 = opcode & 1;
+                const operation = view.getUint8(offset++);
+                transformations[i] = [op, operation, is_reverse_base64];
+              }
+              break;
+            case NTokenTransformOpType.N_ARR:
+            case NTokenTransformOpType.REF:
+              transformations[i] = [op];
+              break;
+            case NTokenTransformOpType.LITERAL:
+              {
+                const type = opcode & 1;
+                if (type === 0) {
+                  const literal = view.getInt32(offset, true);
+                  offset += 4;
+                  transformations[i] = [op, literal];
+                } else {
+                  const length = view.getUint32(offset, true);
+                  offset += 4;
+                  const literal = new Uint8Array(length);
+                  for (let i2 = 0; i2 < length; i2++) {
+                    literal[i2] = view.getUint8(offset++);
+                  }
+                  transformations[i] = [op, new TextDecoder().decode(literal)];
+                }
+              }
+              break;
+            default:
+              throw new Error("Invalid opcode");
+          }
+        }
+        const function_calls = new Array(function_calls_length);
+        for (let i = 0; i < function_calls_length; i++) {
+          const index = view.getUint8(offset++);
+          const num_params = view.getUint8(offset++);
+          const params = new Array(num_params);
+          for (let j = 0; j < num_params; j++) {
+            params[j] = view.getUint8(offset++);
+          }
+          function_calls[i] = [index, params];
+        }
+        return new NToken([transformations, function_calls]);
+      }
+      static get LIBRARY_VERSION() {
+        return 1;
+      }
+      static getFunc(el) {
+        return el.match(NTOKEN_REGEX.FUNCTIONS);
+      }
+      static getTransformationData(raw) {
+        var _a;
+        const data = `[${(_a = raw.replace(/\n/g, "").match(/c=\[(.*?)\];c/s)) == null ? void 0 : _a[1]}]`;
+        return JSON.parse(this.refineNTokenData(data));
+      }
+      static refineNTokenData(data) {
+        return data.replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)').replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)').replace(/\[function\(d,e,f\)/g, '["function(d,e,f)').replace(/,b,/g, ',"b",').replace(/,b/g, ',"b"').replace(/b,/g, '"b",').replace(/b]/g, '"b"]').replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",').replace(/""/g, "").replace(/length]\)}"/g, "length])}");
+      }
+    };
+    __name(NToken, "NToken");
+    exports2.default = NToken;
+  }
+});
+
+// lib/core/Player.js
+var require_Player = __commonJS({
+  "lib/core/Player.js"(exports2, module2) {
+    "use strict";
+    var Cache = false ? null : require_NodeCache();
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var { default: Signature } = require_Signature();
+    var { default: NToken } = require_NToken();
+    var _request2, _player_id, _player_url, _player_path, _ntoken, _signature, _signature_timestamp, _cache_dir, _extractSigTimestamp, extractSigTimestamp_fn, _extractSigDecipherSc, extractSigDecipherSc_fn, _extractNTokenSc, extractNTokenSc_fn;
+    var _Player = class {
+      constructor(id, request) {
+        __privateAdd(this, _extractSigTimestamp);
+        __privateAdd(this, _extractSigDecipherSc);
+        __privateAdd(this, _extractNTokenSc);
+        __privateAdd(this, _request2, void 0);
+        __privateAdd(this, _player_id, void 0);
+        __privateAdd(this, _player_url, void 0);
+        __privateAdd(this, _player_path, void 0);
+        __privateAdd(this, _ntoken, void 0);
+        __privateAdd(this, _signature, void 0);
+        __privateAdd(this, _signature_timestamp, void 0);
+        __privateAdd(this, _cache_dir, void 0);
+        __privateSet(this, _player_id, id);
+        __privateSet(this, _request2, request);
+        __privateSet(this, _cache_dir, `${Utils.getTmpdir()}/yt-cache`);
+        __privateSet(this, _player_url, `${Constants.URLS.YT_BASE}/s/player/${__privateGet(this, _player_id)}/player_ias.vflset/en_US/base.js`);
+        __privateSet(this, _player_path, `${__privateGet(this, _cache_dir)}/${__privateGet(this, _player_id)}.bin`);
+      }
+      async init() {
+        if (await this.isCached()) {
+          const buffer = await Cache.read(__privateGet(this, _player_path));
+          const view = new DataView(buffer);
+          const version = view.getUint32(0, true);
+          if (version == _Player.LIBRARY_VERSION) {
+            const sig_decipher_len = view.getUint32(8, true);
+            const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
+            const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
+            __privateSet(this, _ntoken, NToken.fromArrayBuffer(ntoken_transform_buf));
+            __privateSet(this, _signature, Signature.fromArrayBuffer(sig_decipher_buf));
+            __privateSet(this, _signature_timestamp, view.getUint32(4, true));
+            return this;
+          }
+        }
+        const response = await __privateGet(this, _request2).get(__privateGet(this, _player_url), { headers: { "content-type": "text/javascript" } });
+        __privateSet(this, _signature_timestamp, __privateMethod(this, _extractSigTimestamp, extractSigTimestamp_fn).call(this, response.data));
+        const signature_decipher_sc = __privateMethod(this, _extractSigDecipherSc, extractSigDecipherSc_fn).call(this, response.data);
+        const ntoken_decipher_sc = __privateMethod(this, _extractNTokenSc, extractNTokenSc_fn).call(this, response.data);
+        __privateSet(this, _signature, Signature.fromSourceCode(signature_decipher_sc));
+        __privateSet(this, _ntoken, NToken.fromSourceCode(ntoken_decipher_sc));
+        try {
+          await Cache.exists(__privateGet(this, _cache_dir)) && await Cache.remove(__privateGet(this, _cache_dir), { recursive: true });
+          const ntoken_buf = __privateGet(this, _ntoken).toArrayBuffer();
+          const sig_decipher_buf = __privateGet(this, _signature).toArrayBuffer();
+          const buffer = new ArrayBuffer(12 + sig_decipher_buf.byteLength + ntoken_buf.byteLength);
+          const view = new DataView(buffer);
+          view.setUint32(0, _Player.LIBRARY_VERSION, true);
+          view.setUint32(4, __privateGet(this, _signature_timestamp), true);
+          view.setUint32(8, sig_decipher_buf.byteLength, true);
+          new Uint8Array(buffer).set(new Uint8Array(sig_decipher_buf), 12);
+          new Uint8Array(buffer).set(new Uint8Array(ntoken_buf), 12 + sig_decipher_buf.byteLength);
+          await Cache.write(__privateGet(this, _player_path), new Uint8Array(buffer));
+        } finally {
+        }
+        return this;
+      }
+      decipher(url, signature_cipher, cipher) {
+        url = url || signature_cipher || cipher;
+        Utils.throwIfMissing({ url });
+        const args = new URLSearchParams(url);
+        const url_components = new URL(args.get("url") || url);
+        url_components.searchParams.set("ratebypass", "yes");
+        if (signature_cipher || cipher) {
+          const signature = __privateGet(this, _signature).decipher(url);
+          args.get("sp") ? url_components.searchParams.set(args.get("sp"), signature) : url_components.searchParams.set("signature", signature);
+        }
+        if (url_components.searchParams.get("n")) {
+          const ntoken = __privateGet(this, _ntoken).transform(url_components.searchParams.get("n"));
+          url_components.searchParams.set("n", ntoken);
+        }
+        return url_components.toString();
+      }
+      get url() {
+        return __privateGet(this, _player_url);
+      }
+      get sts() {
+        return __privateGet(this, _signature_timestamp);
+      }
+      static get LIBRARY_VERSION() {
+        return 1;
+      }
+      async isCached() {
+        return await Cache.exists(__privateGet(this, _player_path));
+      }
+    };
+    var Player = _Player;
+    __name(Player, "Player");
+    _request2 = new WeakMap();
+    _player_id = new WeakMap();
+    _player_url = new WeakMap();
+    _player_path = new WeakMap();
+    _ntoken = new WeakMap();
+    _signature = new WeakMap();
+    _signature_timestamp = new WeakMap();
+    _cache_dir = new WeakMap();
+    _extractSigTimestamp = new WeakSet();
+    extractSigTimestamp_fn = /* @__PURE__ */ __name(function(data) {
+      return parseInt(Utils.getStringBetweenStrings(data, "signatureTimestamp:", ","));
+    }, "#extractSigTimestamp");
+    _extractSigDecipherSc = new WeakSet();
+    extractSigDecipherSc_fn = /* @__PURE__ */ __name(function(data) {
+      const sig_alg_sc = Utils.getStringBetweenStrings(data, "this.audioTracks};var", "};");
+      const sig_data = Utils.getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+      return sig_alg_sc + sig_data;
+    }, "#extractSigDecipherSc");
+    _extractNTokenSc = new WeakSet();
+    extractNTokenSc_fn = /* @__PURE__ */ __name(function(data) {
+      return `var b=a.split("")${Utils.getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
+    }, "#extractNTokenSc");
+    module2.exports = Player;
+  }
+});
+
+// lib/core/SessionBuilder.js
+var require_SessionBuilder = __commonJS({
+  "lib/core/SessionBuilder.js"(exports2, module2) {
+    "use strict";
+    var Player = require_Player();
+    var Proto2 = require_proto();
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var UserAgent = require("../node_modules/user-agents/dist/index.js");
+    var _config, _request2, _key, _client_name, _client_version, _api_version, _remote_host, _context, _player2, _buildContext, buildContext_fn, _getYtConfig, getYtConfig_fn, _getPlayerId, getPlayerId_fn;
+    var SessionBuilder2 = class {
+      constructor(config, request) {
+        __privateAdd(this, _buildContext);
+        __privateAdd(this, _getYtConfig);
+        __privateAdd(this, _getPlayerId);
+        __privateAdd(this, _config, void 0);
+        __privateAdd(this, _request2, void 0);
+        __privateAdd(this, _key, void 0);
+        __privateAdd(this, _client_name, void 0);
+        __privateAdd(this, _client_version, void 0);
+        __privateAdd(this, _api_version, void 0);
+        __privateAdd(this, _remote_host, void 0);
+        __privateAdd(this, _context, void 0);
+        __privateAdd(this, _player2, void 0);
+        __privateSet(this, _config, config);
+        __privateSet(this, _request2, request);
+      }
+      async build() {
+        const data = await Promise.all([
+          __privateMethod(this, _getYtConfig, getYtConfig_fn).call(this),
+          __privateMethod(this, _getPlayerId, getPlayerId_fn).call(this)
+        ]);
+        const ytcfg = data[0][0][2];
+        __privateSet(this, _key, ytcfg[1]);
+        __privateSet(this, _api_version, `v${ytcfg[0][0][6]}`);
+        __privateSet(this, _client_name, Constants.CLIENTS.WEB.NAME);
+        __privateSet(this, _client_version, ytcfg[0][0][16]);
+        __privateSet(this, _remote_host, ytcfg[0][0][3]);
+        __privateSet(this, _player2, await new Player(data[1], __privateGet(this, _request2)).init());
+        __privateSet(this, _context, __privateMethod(this, _buildContext, buildContext_fn).call(this));
+        return this;
+      }
+      get key() {
+        return __privateGet(this, _key);
+      }
+      get context() {
+        return __privateGet(this, _context);
+      }
+      get api_version() {
+        return __privateGet(this, _api_version);
+      }
+      get client_version() {
+        return __privateGet(this, _client_version);
+      }
+      get client_name() {
+        return __privateGet(this, _client_name);
+      }
+      get player() {
+        return __privateGet(this, _player2);
+      }
+    };
+    __name(SessionBuilder2, "SessionBuilder");
+    _config = new WeakMap();
+    _request2 = new WeakMap();
+    _key = new WeakMap();
+    _client_name = new WeakMap();
+    _client_version = new WeakMap();
+    _api_version = new WeakMap();
+    _remote_host = new WeakMap();
+    _context = new WeakMap();
+    _player2 = new WeakMap();
+    _buildContext = new WeakSet();
+    buildContext_fn = /* @__PURE__ */ __name(function() {
+      const user_agent = new UserAgent({ deviceCategory: "desktop" });
+      const id = Utils.generateRandomString(11);
+      const timestamp = Math.floor(Date.now() / 1e3);
+      const visitor_data = Proto2.encodeVisitorData(id, timestamp);
+      const context = {
+        client: {
+          hl: "en",
+          gl: __privateGet(this, _config).gl || "US",
+          remoteHost: __privateGet(this, _remote_host),
+          deviceMake: user_agent.vendor,
+          deviceModel: user_agent.platform,
+          visitorData: visitor_data,
+          userAgent: user_agent.toString(),
+          clientName: __privateGet(this, _client_name),
+          clientVersion: __privateGet(this, _client_version),
+          originalUrl: Constants.URLS.API.BASE
+        },
+        user: { lockedSafetyMode: false },
+        request: { useSsl: true }
+      };
+      return context;
+    }, "#buildContext");
+    _getYtConfig = new WeakSet();
+    getYtConfig_fn = /* @__PURE__ */ __name(async function() {
+      const response = await __privateGet(this, _request2).get(`${Constants.URLS.YT_BASE}/sw.js_data`);
+      return JSON.parse(response.data.replace(")]}'", ""));
+    }, "#getYtConfig");
+    _getPlayerId = new WeakSet();
+    getPlayerId_fn = /* @__PURE__ */ __name(async function() {
+      const response = await __privateGet(this, _request2).get(`${Constants.URLS.YT_BASE}/iframe_api`);
+      return Utils.getStringBetweenStrings(response.data, "player\\/", "\\/");
+    }, "#getPlayerId");
+    module2.exports = SessionBuilder2;
+  }
+});
+
+// lib/parser/contents/classes/Format.js
+var require_Format = __commonJS({
+  "lib/parser/contents/classes/Format.js"(exports2, module2) {
+    "use strict";
+    var Format = class {
+      constructor(data) {
+        this.itag = data.itag;
+        this.mime_type = data.mimeType;
+        this.bitrate = data.bitrate;
+        this.average_bitrate = data.averageBitrate;
+        this.width = data.width || null;
+        this.height = data.height || null;
+        this.init_range = data.initRange && {
+          start: parseInt(data.initRange.start),
+          end: parseInt(data.initRange.end)
+        };
+        this.index_range = data.indexRange && {
+          start: parseInt(data.indexRange.start),
+          end: parseInt(data.indexRange.end)
+        };
+        this.last_modified = new Date(Math.floor(parseInt(data.lastModified) / 1e3));
+        this.content_length = parseInt(data.contentLength);
+        this.quality = data.quality;
+        this.quality_label = data.qualityLabel || null;
+        this.fps = data.fps || null;
+        this.url = data.url || null;
+        this.cipher = data.cipher || null;
+        this.signature_cipher = data.signatureCipher || null;
+        this.audio_quality = data.audioQuality;
+        this.approx_duration_ms = parseInt(data.approxDurationMs);
+        this.audio_sample_rate = parseInt(data.audioSampleRate);
+        this.audio_channels = data.audioChannels;
+        this.loudness_db = data.loudnessDb;
+        this.has_audio = !!data.audioBitrate || !!data.audioQuality;
+        this.has_video = !!data.qualityLabel;
+      }
+      decipher(player) {
+        return player.decipher(this.url, this.signature_cipher, this.cipher);
+      }
+    };
+    __name(Format, "Format");
+    module2.exports = Format;
+  }
+});
+
+// lib/parser/contents/classes/Thumbnail.js
+var require_Thumbnail = __commonJS({
+  "lib/parser/contents/classes/Thumbnail.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = class {
+      url;
+      width;
+      height;
+      constructor({ url, width, height }) {
+        this.url = url;
+        this.width = width;
+        this.height = height;
+      }
+      static fromResponse(data) {
+        if (!data || !data.thumbnails)
+          return;
+        return data.thumbnails.map((x) => new Thumbnail(x)).sort((a, b) => b.width - a.width);
+      }
+    };
+    __name(Thumbnail, "Thumbnail");
+    module2.exports = Thumbnail;
+  }
+});
+
+// lib/parser/contents/classes/VideoDetails.js
+var require_VideoDetails = __commonJS({
+  "lib/parser/contents/classes/VideoDetails.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var VideoDetails = class {
+      id;
+      channel_id;
+      title;
+      keywords;
+      short_description;
+      author;
+      constructor(data) {
+        this.id = data.videoId;
+        this.channel_id = data.channelId;
+        this.title = data.title;
+        this.duration = parseInt(data.lengthSeconds);
+        this.keywords = data.keywords;
+        this.is_owner_viewing = !!data.isOwnerViewing;
+        this.short_description = data.shortDescription;
+        this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
+        this.allow_ratings = !!data.allowRatings;
+        this.view_count = parseInt(data.viewCount);
+        this.author = data.author;
+        this.is_private = !!data.isPrivate;
+        this.is_live_content = !!data.isLiveContent;
+        this.is_crawlable = !!data.isCrawlable;
+      }
+    };
+    __name(VideoDetails, "VideoDetails");
+    module2.exports = VideoDetails;
+  }
+});
+
+// lib/parser/contents/classes/DataModelSection.js
+var require_DataModelSection = __commonJS({
+  "lib/parser/contents/classes/DataModelSection.js"(exports2, module2) {
+    "use strict";
+    var DataModelSection = class {
+      type = "DataModelSection";
+      constructor(data) {
+        this.title = data.title;
+        this.subtitle = data.subtitle;
+        this.metric_value = data.metricValue;
+        this.comparison_indicator = data.comparisonIndicator;
+        this.series_configuration = {
+          line_series: {
+            lines_data: data.seriesConfiguration.lineSeries.linesData,
+            domain_axis: data.seriesConfiguration.lineSeries.domainAxis,
+            measure_axis: data.seriesConfiguration.lineSeries.measureAxis
+          }
+        };
+      }
+    };
+    __name(DataModelSection, "DataModelSection");
+    module2.exports = DataModelSection;
+  }
+});
+
+// lib/parser/contents/classes/AnalyticsMainAppKeyMetrics.js
+var require_AnalyticsMainAppKeyMetrics = __commonJS({
+  "lib/parser/contents/classes/AnalyticsMainAppKeyMetrics.js"(exports2, module2) {
+    "use strict";
+    var DataModelSection = require_DataModelSection();
+    var AnalyticsMainAppKeyMetrics = class {
+      type = "AnalyticsMainAppKeyMetrics";
+      constructor(data) {
+        this.period = data.cardData.periodLabel;
+        const metrics_data = data.cardData.sections[0].analyticsKeyMetricsData;
+        this.sections = metrics_data.dataModel.sections.map((section) => new DataModelSection(section));
+      }
+    };
+    __name(AnalyticsMainAppKeyMetrics, "AnalyticsMainAppKeyMetrics");
+    module2.exports = AnalyticsMainAppKeyMetrics;
+  }
+});
+
+// lib/parser/contents/classes/AnalyticsVideo.js
+var require_AnalyticsVideo = __commonJS({
+  "lib/parser/contents/classes/AnalyticsVideo.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var AnalyticsVideo = class {
+      type = "AnalyticsVideo";
+      constructor(data) {
+        this.title = data.videoTitle;
+        this.metadata = {
+          views: data.videoDescription.split("\xB7")[0].trim(),
+          published: data.videoDescription.split("\xB7")[1].trim(),
+          thumbnails: Thumbnail.fromResponse(data.thumbnailDetails),
+          duration: data.formattedLength,
+          is_short: data.isShort
+        };
+      }
+    };
+    __name(AnalyticsVideo, "AnalyticsVideo");
+    module2.exports = AnalyticsVideo;
+  }
+});
+
+// lib/parser/contents/classes/AnalyticsVodCarouselCard.js
+var require_AnalyticsVodCarouselCard = __commonJS({
+  "lib/parser/contents/classes/AnalyticsVodCarouselCard.js"(exports2, module2) {
+    "use strict";
+    var Video = require_AnalyticsVideo();
+    var AnalyticsVodCarouselCard = class {
+      type = "AnalyticsVodCarouselCard";
+      constructor(data) {
+        this.title = data.title;
+        this.videos = data.videoCarouselData.videos.map((video) => new Video(video));
+      }
+    };
+    __name(AnalyticsVodCarouselCard, "AnalyticsVodCarouselCard");
+    module2.exports = AnalyticsVodCarouselCard;
+  }
+});
+
+// lib/parser/contents/classes/NavigationEndpoint.js
+var require_NavigationEndpoint = __commonJS({
+  "lib/parser/contents/classes/NavigationEndpoint.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = class {
+      type = "NavigationEndpoint";
+      constructor(data) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w;
+        const name = Object.keys(data || {}).find((item) => item.endsWith("Endpoint") || item.endsWith("Command"));
+        this.payload = (data == null ? void 0 : data[name]) || {};
+        if (Reflect.has(this.payload, "dialog")) {
+          this.dialog = Parser.parse(this.payload.dialog);
+        }
+        if (data == null ? void 0 : data.serviceEndpoint) {
+          data = data.serviceEndpoint;
+        }
+        this.metadata = {};
+        if ((_b = (_a = data == null ? void 0 : data.commandMetadata) == null ? void 0 : _a.webCommandMetadata) == null ? void 0 : _b.url) {
+          this.metadata.url = data.commandMetadata.webCommandMetadata.url;
+        }
+        if ((_d = (_c = data == null ? void 0 : data.commandMetadata) == null ? void 0 : _c.webCommandMetadata) == null ? void 0 : _d.webPageType) {
+          this.metadata.page_type = data.commandMetadata.webCommandMetadata.webPageType;
+        }
+        if ((_f = (_e = data == null ? void 0 : data.commandMetadata) == null ? void 0 : _e.webCommandMetadata) == null ? void 0 : _f.apiUrl) {
+          this.metadata.api_url = data.commandMetadata.webCommandMetadata.apiUrl.replace("/youtubei/v1/", "");
+        }
+        if ((_h = (_g = data == null ? void 0 : data.commandMetadata) == null ? void 0 : _g.webCommandMetadata) == null ? void 0 : _h.sendPost) {
+          this.metadata.send_post = data.commandMetadata.webCommandMetadata.sendPost;
+        }
+        if (data == null ? void 0 : data.browseEndpoint) {
+          const configs = (_j = (_i = data == null ? void 0 : data.browseEndpoint) == null ? void 0 : _i.browseEndpointContextSupportedConfigs) == null ? void 0 : _j.browseEndpointContextMusicConfig;
+          this.browse = {
+            id: ((_k = data == null ? void 0 : data.browseEndpoint) == null ? void 0 : _k.browseId) || null,
+            params: (data == null ? void 0 : data.browseEndpoint.params) || null,
+            base_url: ((_l = data == null ? void 0 : data.browseEndpoint) == null ? void 0 : _l.canonicalBaseUrl) || null,
+            page_type: (configs == null ? void 0 : configs.pageType) || null
+          };
+        }
+        if (data == null ? void 0 : data.watchEndpoint) {
+          const configs = (_n = (_m = data == null ? void 0 : data.watchEndpoint) == null ? void 0 : _m.watchEndpointMusicSupportedConfigs) == null ? void 0 : _n.watchEndpointMusicConfig;
+          this.watch = {
+            video_id: (_o = data == null ? void 0 : data.watchEndpoint) == null ? void 0 : _o.videoId,
+            playlist_id: (data == null ? void 0 : data.watchEndpoint.playlistId) || null,
+            params: (data == null ? void 0 : data.watchEndpoint.params) || null,
+            index: (data == null ? void 0 : data.watchEndpoint.index) || null,
+            supported_onesie_config: (_p = data == null ? void 0 : data.watchEndpoint) == null ? void 0 : _p.watchEndpointSupportedOnesieConfig,
+            music_video_type: (configs == null ? void 0 : configs.musicVideoType) || null
+          };
+        }
+        if (data == null ? void 0 : data.searchEndpoint) {
+          this.search = {
+            query: data.searchEndpoint.query,
+            params: data.searchEndpoint.params
+          };
+        }
+        if (data == null ? void 0 : data.subscribeEndpoint) {
+          this.subscribe = {
+            channel_ids: data.subscribeEndpoint.channelIds,
+            params: data.subscribeEndpoint.params
+          };
+        }
+        if (data == null ? void 0 : data.unsubscribeEndpoint) {
+          this.unsubscribe = {
+            channel_ids: data.unsubscribeEndpoint.channelIds,
+            params: data.unsubscribeEndpoint.params
+          };
+        }
+        if (data == null ? void 0 : data.likeEndpoint) {
+          this.like = {
+            status: data.likeEndpoint.status,
+            target: {
+              video_id: data.likeEndpoint.target.videoId,
+              playlist_id: data.likeEndpoint.target.playlistId
+            },
+            params: ((_q = data.likeEndpoint) == null ? void 0 : _q.removeLikeParams) || ((_r = data.likeEndpoint) == null ? void 0 : _r.likeParams) || ((_s = data.likeEndpoint) == null ? void 0 : _s.dislikeParams)
+          };
+        }
+        if (data == null ? void 0 : data.performCommentActionEndpoint) {
+          this.perform_comment_action = {
+            action: data == null ? void 0 : data.performCommentActionEndpoint.action
+          };
+        }
+        if (data == null ? void 0 : data.offlineVideoEndpoint) {
+          this.offline_video = {
+            video_id: data.offlineVideoEndpoint.videoId,
+            on_add_command: {
+              get_download_action: {
+                video_id: data.offlineVideoEndpoint.videoId,
+                params: data.offlineVideoEndpoint.onAddCommand.getDownloadActionCommand.params
+              }
+            }
+          };
+        }
+        if (data == null ? void 0 : data.continuationCommand) {
+          this.continuation = {
+            request: ((_t = data == null ? void 0 : data.continuationCommand) == null ? void 0 : _t.request) || null,
+            token: ((_u = data == null ? void 0 : data.continuationCommand) == null ? void 0 : _u.token) || null
+          };
+        }
+        if (data == null ? void 0 : data.feedbackEndpoint) {
+          this.feedback = {
+            token: data.feedbackEndpoint.feedbackToken
+          };
+        }
+        if (data == null ? void 0 : data.watchPlaylistEndpoint) {
+          this.watch_playlist = {
+            playlist_id: (_v = data.watchPlaylistEndpoint) == null ? void 0 : _v.playlistId
+          };
+        }
+        if (data == null ? void 0 : data.playlistEditEndpoint) {
+          this.playlist_edit = {
+            playlist_id: data.playlistEditEndpoint.playlistId,
+            actions: data.playlistEditEndpoint.actions.map((item) => ({
+              action: item.action,
+              removed_video_id: item.removedVideoId
+            }))
+          };
+        }
+        if (data == null ? void 0 : data.addToPlaylistEndpoint) {
+          this.add_to_playlist = {
+            video_id: data.addToPlaylistEndpoint.videoId
+          };
+        }
+        if (data == null ? void 0 : data.addToPlaylistServiceEndpoint) {
+          this.add_to_playlist = {
+            video_id: data.addToPlaylistServiceEndpoint.videoId
+          };
+        }
+        if (data == null ? void 0 : data.getReportFormEndpoint) {
+          this.get_report_form = {
+            params: data.getReportFormEndpoint.params
+          };
+        }
+        if (data == null ? void 0 : data.liveChatItemContextMenuEndpoint) {
+          this.live_chat_item_context_menu = {
+            params: (_w = data == null ? void 0 : data.liveChatItemContextMenuEndpoint) == null ? void 0 : _w.params
+          };
+        }
+        if (data == null ? void 0 : data.sendLiveChatVoteEndpoint) {
+          this.send_live_chat_vote = {
+            params: data.sendLiveChatVoteEndpoint.params
+          };
+        }
+        if (data == null ? void 0 : data.liveChatItemContextMenuEndpoint) {
+          this.live_chat_item_context_menu = {
+            params: data.liveChatItemContextMenuEndpoint.params
+          };
+        }
+      }
+      async callTest(actions, args = { parse: true, params: {} }) {
+        if (!actions)
+          throw new Error("An active caller must be provided");
+        const response = await actions.execute(this.metadata.api_url, { ...this.payload, ...args.params });
+        if (args.parse) {
+          return Parser.parseResponse(response.data);
+        }
+        return response;
+      }
+      async call(actions, client) {
+        if (!actions)
+          throw new Error("An active caller must be provided");
+        if (this.continuation) {
+          switch (this.continuation.request) {
+            case "CONTINUATION_REQUEST_TYPE_BROWSE": {
+              const response = await actions.browse(this.continuation.token, { is_ctoken: true });
+              return Parser.parseResponse(response.data);
+            }
+            case "CONTINUATION_REQUEST_TYPE_SEARCH": {
+              const response = await actions.search({ ctoken: this.continuation.token });
+              return Parser.parseResponse(response.data);
+            }
+            case "CONTINUATION_REQUEST_TYPE_WATCH_NEXT": {
+              const response = await actions.next({ ctoken: this.continuation.token });
+              return Parser.parseResponse(response.data);
+            }
+            default:
+              throw new Error(`${this.continuation.request} not implemented`);
+          }
+        }
+        if (this.search) {
+          const response = await actions.search({ query: this.search.query, params: this.search.params, client });
+          return Parser.parseResponse(response.data);
+        }
+        if (this.browse) {
+          const response = await actions.browse(this.browse.id, { ...this.browse, client });
+          return Parser.parseResponse(response.data);
+        }
+        if (this.like) {
+          const response = await actions.engage(this.metadata.api_url, { video_id: this.like.target.video_id, params: this.like.params });
+          return response;
+        }
+      }
+    };
+    __name(NavigationEndpoint, "NavigationEndpoint");
+    module2.exports = NavigationEndpoint;
+  }
+});
+
+// lib/parser/contents/classes/TextRun.js
+var require_TextRun = __commonJS({
+  "lib/parser/contents/classes/TextRun.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var TextRun = class {
+      constructor(data) {
+        this.text = data.text;
+        this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : {};
+      }
+    };
+    __name(TextRun, "TextRun");
+    module2.exports = TextRun;
+  }
+});
+
+// lib/parser/contents/classes/EmojiRun.js
+var require_EmojiRun = __commonJS({
+  "lib/parser/contents/classes/EmojiRun.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var EmojiRun = class {
+      constructor(data) {
+        var _a, _b, _c;
+        this.text = ((_a = data.emoji) == null ? void 0 : _a.emojiId) || ((_c = (_b = data.emoji) == null ? void 0 : _b.shortcuts) == null ? void 0 : _c[0]) || null;
+        this.emoji = {
+          emoji_id: data.emoji.emojiId,
+          shortcuts: data.emoji.shortcuts,
+          search_terms: data.emoji.searchTerms,
+          image: Thumbnail.fromResponse(data.emoji.image)
+        };
+      }
+    };
+    __name(EmojiRun, "EmojiRun");
+    module2.exports = EmojiRun;
+  }
+});
+
+// lib/parser/contents/classes/Text.js
+var require_Text = __commonJS({
+  "lib/parser/contents/classes/Text.js"(exports2, module2) {
+    "use strict";
+    var TextRun = require_TextRun();
+    var EmojiRun = require_EmojiRun();
+    var Text = class {
+      text;
+      constructor(data) {
+        if (data == null ? void 0 : data.hasOwnProperty("runs")) {
+          this.runs = data.runs.map((run) => run.emoji && new EmojiRun(run) || new TextRun(run));
+          this.text = this.runs.map((run) => run.text).join("");
+        } else {
+          this.text = (data == null ? void 0 : data.simpleText) || "N/A";
+        }
+      }
+      toString() {
+        return this.text;
+      }
+    };
+    __name(Text, "Text");
+    module2.exports = Text;
+  }
+});
+
+// lib/parser/contents/classes/NavigatableText.js
+var require_NavigatableText = __commonJS({
+  "lib/parser/contents/classes/NavigatableText.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var NavigatableText = class extends Text {
+      type = "NavigatableText";
+      endpoint;
+      constructor(node) {
+        var _a, _b;
+        super(node);
+        this.endpoint = ((_b = (_a = node.runs) == null ? void 0 : _a[0]) == null ? void 0 : _b.navigationEndpoint) ? new NavigationEndpoint(node.runs[0].navigationEndpoint) : node.navigationEndpoint ? new NavigationEndpoint(node.navigationEndpoint) : node.titleNavigationEndpoint ? new NavigationEndpoint(node.titleNavigationEndpoint) : null;
+      }
+      toJSON() {
+        return this;
+      }
+    };
+    __name(NavigatableText, "NavigatableText");
+    module2.exports = NavigatableText;
+  }
+});
+
+// lib/parser/contents/classes/Author.js
+var require_Author = __commonJS({
+  "lib/parser/contents/classes/Author.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigatableText = require_NavigatableText();
+    var Thumbnail = require_Thumbnail();
+    var Constants = require_Constants();
+    var _nav_text;
+    var Author = class {
+      constructor(item, badges, thumbs) {
+        __privateAdd(this, _nav_text, void 0);
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
+        __privateSet(this, _nav_text, new NavigatableText(item));
+        this.id = ((_b = (_a = __privateGet(this, _nav_text).runs) == null ? void 0 : _a[0].endpoint.browse) == null ? void 0 : _b.id) || ((_d = (_c = __privateGet(this, _nav_text).endpoint) == null ? void 0 : _c.browse) == null ? void 0 : _d.id) || "N/A";
+        this.name = __privateGet(this, _nav_text).text || "N/A";
+        this.thumbnails = thumbs ? Thumbnail.fromResponse(thumbs) : [];
+        this.endpoint = ((_e = __privateGet(this, _nav_text).runs) == null ? void 0 : _e[0].endpoint) || __privateGet(this, _nav_text).endpoint;
+        this.badges = Array.isArray(badges) ? Parser.parse(badges) : [];
+        this.is_verified = ((_f = this.badges) == null ? void 0 : _f.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED")) || null;
+        this.is_verified_artist = ((_g = this.badges) == null ? void 0 : _g.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST")) || null;
+        this.url = ((_h = __privateGet(this, _nav_text).runs) == null ? void 0 : _h[0].endpoint.browse) && `${Constants.URLS.YT_BASE}${((_i = __privateGet(this, _nav_text).runs[0].endpoint.browse) == null ? void 0 : _i.base_url) || `/u/${(_j = __privateGet(this, _nav_text).runs[0].endpoint.browse) == null ? void 0 : _j.id}`}` || `${Constants.URLS.YT_BASE}${((_l = (_k = __privateGet(this, _nav_text).endpoint) == null ? void 0 : _k.browse) == null ? void 0 : _l.base_url) || `/u/${(_n = (_m = __privateGet(this, _nav_text).endpoint) == null ? void 0 : _m.browse) == null ? void 0 : _n.id}`}` || null;
+      }
+      get best_thumbnail() {
+        return this.thumbnails[0];
+      }
+    };
+    __name(Author, "Author");
+    _nav_text = new WeakMap();
+    module2.exports = Author;
+  }
+});
+
+// lib/parser/contents/classes/BackstageImage.js
+var require_BackstageImage = __commonJS({
+  "lib/parser/contents/classes/BackstageImage.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var BackstageImage = class {
+      type = "BackstageImage";
+      constructor(data) {
+        this.image = Thumbnail.fromResponse(data.image);
+      }
+    };
+    __name(BackstageImage, "BackstageImage");
+    module2.exports = BackstageImage;
+  }
+});
+
+// lib/parser/contents/classes/BackstagePost.js
+var require_BackstagePost = __commonJS({
+  "lib/parser/contents/classes/BackstagePost.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Author = require_Author();
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var BackstagePost = class {
+      type = "BackstagePost";
+      constructor(data) {
+        this.id = data.postId;
+        this.author = new Author({
+          ...data.authorText,
+          navigationEndpoint: data.authorEndpoint
+        }, null, data.authorThumbnail);
+        this.content = new Text(data.contentText, "");
+        this.published = new Text(data.publishedTimeText);
+        this.poll_status = data.pollStatus;
+        this.vote_status = data.voteStatus;
+        this.likes = new Text(data.voteCount);
+        this.menu = Parser.parse(data.actionMenu) || null;
+        this.actions = Parser.parse(data.actionButtons);
+        this.vote_button = Parser.parse(data.voteButton);
+        this.surface = data.surface;
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.attachment = Parser.parse(data.backstageAttachment) || null;
+      }
+    };
+    __name(BackstagePost, "BackstagePost");
+    module2.exports = BackstagePost;
+  }
+});
+
+// lib/parser/contents/classes/BackstagePostThread.js
+var require_BackstagePostThread = __commonJS({
+  "lib/parser/contents/classes/BackstagePostThread.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var BackstagePostThread = class {
+      type = "BackstagePostThread";
+      constructor(data) {
+        this.post = Parser.parse(data.post);
+      }
+    };
+    __name(BackstagePostThread, "BackstagePostThread");
+    module2.exports = BackstagePostThread;
+  }
+});
+
+// lib/parser/contents/classes/BrowseFeedActions.js
+var require_BrowseFeedActions = __commonJS({
+  "lib/parser/contents/classes/BrowseFeedActions.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var BrowseFeedActions = class {
+      type = "BrowseFeedActions";
+      constructor(data) {
+        this.contents = Parser.parse(data.contents);
+      }
+    };
+    __name(BrowseFeedActions, "BrowseFeedActions");
+    module2.exports = BrowseFeedActions;
+  }
+});
+
+// lib/parser/contents/classes/Button.js
+var require_Button = __commonJS({
+  "lib/parser/contents/classes/Button.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Button = class {
+      type = "Button";
+      constructor(data) {
+        var _a, _b, _c, _d;
+        this.text = new Text(data.text).toString();
+        if ((_a = data.accessibility) == null ? void 0 : _a.label) {
+          this.label = (_b = data.accessibility) == null ? void 0 : _b.label;
+        }
+        if (data.tooltip) {
+          this.tooltip = data.tooltip;
+        }
+        if ((_c = data.icon) == null ? void 0 : _c.iconType) {
+          this.iconType = (_d = data.icon) == null ? void 0 : _d.iconType;
+        }
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint || data.command);
+      }
+    };
+    __name(Button, "Button");
+    module2.exports = Button;
+  }
+});
+
+// lib/parser/contents/classes/C4TabbedHeader.js
+var require_C4TabbedHeader = __commonJS({
+  "lib/parser/contents/classes/C4TabbedHeader.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Author = require_Author();
+    var Thumbnail = require_Thumbnail();
+    var Text = require_Text();
+    var C4TabbedHeader = class {
+      type = "C4TabbedHeader";
+      constructor(data) {
+        this.author = new Author({
+          simpleText: data.title,
+          navigationEndpoint: data.navigationEndpoint
+        }, data.badges, data.avatar);
+        this.banner = data.banner ? Thumbnail.fromResponse(data.banner) : [];
+        this.tv_banner = data.tvBanner ? Thumbnail.fromResponse(data.tvBanner) : [];
+        this.mobile_banner = data.mobileBanner ? Thumbnail.fromResponse(data.mobileBanner) : [];
+        this.subscribers = new Text(data.subscriberCountText);
+        this.sponsor_button = data.sponsorButton && Parser.parse(data.sponsorButton);
+        this.subscribe_button = data.subscribeButton && Parser.parse(data.subscribeButton);
+        this.header_links = data.headerLinks && Parser.parse(data.headerLinks);
+      }
+    };
+    __name(C4TabbedHeader, "C4TabbedHeader");
+    module2.exports = C4TabbedHeader;
+  }
+});
+
+// lib/parser/contents/classes/CallToActionButton.js
+var require_CallToActionButton = __commonJS({
+  "lib/parser/contents/classes/CallToActionButton.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var CallToActionButton = class {
+      type = "CallToActionButton";
+      constructor(data) {
+        this.label = new Text(data.label);
+        this.icon_type = data.icon.iconType;
+        this.style = data.style;
+      }
+    };
+    __name(CallToActionButton, "CallToActionButton");
+    module2.exports = CallToActionButton;
+  }
+});
+
+// lib/parser/contents/classes/Card.js
+var require_Card = __commonJS({
+  "lib/parser/contents/classes/Card.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Card = class {
+      type = "Card";
+      constructor(data) {
+        this.teaser = Parser.parse(data.teaser);
+        this.content = Parser.parse(data.content);
+        this.card_id = data.cardId;
+        this.feature = data.feature;
+        this.cue_ranges = data.cueRanges.map((cr) => ({
+          start_card_active_ms: cr.startCardActiveMs,
+          end_card_active_ms: cr.endCardActiveMs,
+          teaser_duration_ms: cr.teaserDurationMs,
+          icon_after_teaser_ms: cr.iconAfterTeaserMs
+        }));
+      }
+    };
+    __name(Card, "Card");
+    module2.exports = Card;
+  }
+});
+
+// lib/parser/contents/classes/CardCollection.js
+var require_CardCollection = __commonJS({
+  "lib/parser/contents/classes/CardCollection.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var CardCollection = class {
+      type = "CardCollection";
+      constructor(data) {
+        this.cards = Parser.parse(data.cards);
+        this.header = new Text(data.headerText);
+        this.allow_teaser_dismiss = data.allowTeaserDismiss;
+      }
+    };
+    __name(CardCollection, "CardCollection");
+    module2.exports = CardCollection;
+  }
+});
+
+// lib/parser/contents/classes/Channel.js
+var require_Channel = __commonJS({
+  "lib/parser/contents/classes/Channel.js"(exports2, module2) {
+    "use strict";
+    var Author = require_Author();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var Channel2 = class {
+      type = "Channel";
+      constructor(data) {
+        this.id = data.channelId;
+        this.author = new Author({
+          ...data.title,
+          navigationEndpoint: data.navigationEndpoint
+        }, data.ownerBadges, data.thumbnail);
+        this.subscribers = new Text(data.subscriberCountText);
+        this.videos = new Text(data.videoCountText);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.description_snippet = new Text(data.descriptionSnippet);
+      }
+    };
+    __name(Channel2, "Channel");
+    module2.exports = Channel2;
+  }
+});
+
+// lib/parser/contents/classes/ChannelAboutFullMetadata.js
+var require_ChannelAboutFullMetadata = __commonJS({
+  "lib/parser/contents/classes/ChannelAboutFullMetadata.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var Parser = require_contents();
+    var ChannelAboutFullMetadata = class {
+      type = "ChannelAboutFullMetadata";
+      constructor(data) {
+        this.id = data.channelId;
+        this.name = new Text(data.title);
+        this.avatar = Thumbnail.fromResponse(data.avatar);
+        this.canonical_channel_url = data.canonicalChannelUrl;
+        this.views = new Text(data.viewCountText);
+        this.joined = new Text(data.joinedDateText);
+        this.description = new Text(data.description);
+        this.email_reveal = new NavigationEndpoint(data.onBusinessEmailRevealClickCommand);
+        this.can_reveal_email = !data.signInForBusinessEmail;
+        this.country = new Text(data.country);
+        this.buttons = Parser.parse(data.actionButtons);
+      }
+    };
+    __name(ChannelAboutFullMetadata, "ChannelAboutFullMetadata");
+    module2.exports = ChannelAboutFullMetadata;
+  }
+});
+
+// lib/parser/contents/classes/ChannelFeaturedContent.js
+var require_ChannelFeaturedContent = __commonJS({
+  "lib/parser/contents/classes/ChannelFeaturedContent.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var ChannelFeaturedContent = class {
+      type = "ChannelFeaturedContent";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.items = Parser.parse(data.items);
+      }
+    };
+    __name(ChannelFeaturedContent, "ChannelFeaturedContent");
+    module2.exports = ChannelFeaturedContent;
+  }
+});
+
+// lib/parser/contents/classes/ChannelHeaderLinks.js
+var require_ChannelHeaderLinks = __commonJS({
+  "lib/parser/contents/classes/ChannelHeaderLinks.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var HeaderLink = class {
+      constructor(data) {
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.icon = Thumbnail.fromResponse(data.icon);
+        this.title = new Text(data.title);
+      }
+    };
+    __name(HeaderLink, "HeaderLink");
+    var ChannelHeaderLinks = class {
+      type = "ChannelHeaderLinks";
+      constructor(data) {
+        var _a, _b;
+        this.primary = ((_a = data.primaryLinks) == null ? void 0 : _a.map((link) => new HeaderLink(link))) || [];
+        this.secondary = ((_b = data.secondaryLinks) == null ? void 0 : _b.map((link) => new HeaderLink(link))) || [];
+      }
+    };
+    __name(ChannelHeaderLinks, "ChannelHeaderLinks");
+    module2.exports = ChannelHeaderLinks;
+  }
+});
+
+// lib/parser/contents/classes/ChannelMetadata.js
+var require_ChannelMetadata = __commonJS({
+  "lib/parser/contents/classes/ChannelMetadata.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var ChannelMetadata = class {
+      type = "ChannelMetadata";
+      constructor(data) {
+        this.title = data.title;
+        this.description = data.description;
+        this.url = data.channelUrl;
+        this.rss_urls = data.rssUrl;
+        this.vanity_channel_url = data.vanityChannelUrl;
+        this.external_id = data.externalId;
+        this.is_family_safe = data.isFamilySafe;
+        this.keywords = data.keywords;
+        this.avatar = Thumbnail.fromResponse(data.avatar);
+        this.available_countries = data.availableCountryCodes;
+        this.android_deep_link = data.androidDeepLink;
+        this.android_appindexing_link = data.androidAppindexingLink;
+        this.ios_appindexing_link = data.iosAppindexingLink;
+      }
+    };
+    __name(ChannelMetadata, "ChannelMetadata");
+    module2.exports = ChannelMetadata;
+  }
+});
+
+// lib/parser/contents/classes/ChannelMobileHeader.js
+var require_ChannelMobileHeader = __commonJS({
+  "lib/parser/contents/classes/ChannelMobileHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ChannelMobileHeader = class {
+      constructor(data) {
+        this.title = new Text(data.title);
+      }
+    };
+    __name(ChannelMobileHeader, "ChannelMobileHeader");
+    module2.exports = ChannelMobileHeader;
+  }
+});
+
+// lib/parser/contents/classes/ChannelThumbnailWithLink.js
+var require_ChannelThumbnailWithLink = __commonJS({
+  "lib/parser/contents/classes/ChannelThumbnailWithLink.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var ChannelThumbnailWithLink = class {
+      type = "ChannelThumbnailWithLink";
+      constructor(data) {
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.label = data.accessibility.accessibilityData.label;
+      }
+    };
+    __name(ChannelThumbnailWithLink, "ChannelThumbnailWithLink");
+    module2.exports = ChannelThumbnailWithLink;
+  }
+});
+
+// lib/parser/contents/classes/ChannelVideoPlayer.js
+var require_ChannelVideoPlayer = __commonJS({
+  "lib/parser/contents/classes/ChannelVideoPlayer.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ChannelVideoPlayer = class {
+      type = "ChannelVideoPlayer";
+      constructor(data) {
+        this.id = data.videoId;
+        this.title = new Text(data.title, "");
+        this.description = new Text(data.description, "");
+        this.views = new Text(data.viewCountText, "");
+        this.published_at = new Text(data.publishedTimeText, "");
+      }
+    };
+    __name(ChannelVideoPlayer, "ChannelVideoPlayer");
+    module2.exports = ChannelVideoPlayer;
+  }
+});
+
+// lib/parser/contents/classes/ChildVideo.js
+var require_ChildVideo = __commonJS({
+  "lib/parser/contents/classes/ChildVideo.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Utils = require_Utils();
+    var Text = require_Text();
+    var ChildVideo = class {
+      type = "ChildVideo";
+      constructor(data) {
+        this.id = data.videoId;
+        this.title = new Text(data.title);
+        this.duration = {
+          text: data.lengthText.simpleText,
+          seconds: Utils.timeToSeconds(data.lengthText.simpleText)
+        };
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+      }
+    };
+    __name(ChildVideo, "ChildVideo");
+    module2.exports = ChildVideo;
+  }
+});
+
+// lib/parser/contents/classes/ChipCloud.js
+var require_ChipCloud = __commonJS({
+  "lib/parser/contents/classes/ChipCloud.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ChipCloud = class {
+      type = "ChipCloud";
+      constructor(data) {
+        this.chips = Parser.parse(data.chips);
+        this.next_button = Parser.parse(data.nextButton);
+        this.previous_button = Parser.parse(data.previousButton);
+        this.horizontal_scrollable = data.horizontalScrollable;
+      }
+    };
+    __name(ChipCloud, "ChipCloud");
+    module2.exports = ChipCloud;
+  }
+});
+
+// lib/parser/contents/classes/ChipCloudChip.js
+var require_ChipCloudChip = __commonJS({
+  "lib/parser/contents/classes/ChipCloudChip.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var ChipCloudChip = class {
+      type = "ChipCloudChip";
+      constructor(data) {
+        this.is_selected = data.isSelected;
+        this.endpoint = data.navigationEndpoint && new NavigationEndpoint(data.navigationEndpoint);
+        this.text = new Text(data.text).toString();
+      }
+    };
+    __name(ChipCloudChip, "ChipCloudChip");
+    module2.exports = ChipCloudChip;
+  }
+});
+
+// lib/parser/contents/classes/CollageHeroImage.js
+var require_CollageHeroImage = __commonJS({
+  "lib/parser/contents/classes/CollageHeroImage.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Thumbnail = require_Thumbnail();
+    var CollageHeroImage = class {
+      type = "CollageHeroImage";
+      constructor(data) {
+        this.left = Thumbnail.fromResponse(data.leftThumbnail);
+        this.top_right = Thumbnail.fromResponse(data.topRightThumbnail);
+        this.bottom_right = Thumbnail.fromResponse(data.bottomRightThumbnail);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+      }
+    };
+    __name(CollageHeroImage, "CollageHeroImage");
+    module2.exports = CollageHeroImage;
+  }
+});
+
+// lib/parser/contents/classes/Comment.js
+var require_Comment = __commonJS({
+  "lib/parser/contents/classes/Comment.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var Author = require_Author();
+    var Proto2 = require_proto();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var _actions;
+    var Comment = class {
+      constructor(data) {
+        __publicField(this, "type", "Comment");
+        __privateAdd(this, _actions, void 0);
+        var _a, _b;
+        this.content = new Text(data.contentText);
+        this.published = new Text(data.publishedTimeText);
+        this.author_is_channel_owner = data.authorIsChannelOwner;
+        this.current_user_reply_thumbnail = Thumbnail.fromResponse(data.currentUserReplyThumbnail);
+        this.author_badge = Parser.parse(data.authorCommentBadge, "comments");
+        this.author = new Author({
+          ...data.authorText,
+          navigationEndpoint: data.authorEndpoint
+        }, this.author_badge ? [{
+          metadataBadgeRenderer: (_a = this.author_badge) == null ? void 0 : _a.orig_badge
+        }] : null, data.authorThumbnail);
+        this.action_menu = Parser.parse(data.actionMenu);
+        this.action_buttons = Parser.parse(data.actionButtons, "comments");
+        this.comment_id = data.commentId;
+        this.vote_status = data.voteStatus;
+        this.vote_count = {
+          text: data.voteCount ? (_b = data.voteCount.accessibility.accessibilityData) == null ? void 0 : _b.label.replace(/\D/g, "") : "0",
+          short_text: data.voteCount ? new Text(data.voteCount).toString() : "0"
+        };
+        this.reply_count = data.replyCount || 0;
+        this.is_liked = this.action_buttons.like_button.is_toggled;
+        this.is_disliked = this.action_buttons.dislike_button.is_toggled;
+        this.is_pinned = !!data.pinnedCommentBadge;
+      }
+      async like() {
+        const button = this.action_buttons.like_button;
+        if (button.is_toggled)
+          throw new InnertubeError2("This comment is already liked", { comment_id: this.comment_id });
+        const response = await button.endpoint.callTest(__privateGet(this, _actions), { parse: false });
+        return response;
+      }
+      async dislike() {
+        const button = this.action_buttons.dislike_button;
+        if (button.is_toggled)
+          throw new InnertubeError2("This comment is already disliked", { comment_id: this.comment_id });
+        const response = await button.endpoint.callTest(__privateGet(this, _actions), { parse: false });
+        return response;
+      }
+      async reply(text) {
+        if (!this.action_buttons.reply_button)
+          throw new InnertubeError2("Cannot reply to another reply. Try mentioning the user instead.", { comment_id: this.comment_id });
+        const button = this.action_buttons.reply_button;
+        const dialog_button = button.endpoint.dialog.reply_button;
+        const payload = {
+          params: {
+            commentText: text
+          }
+        };
+        const response = await dialog_button.endpoint.callTest(__privateGet(this, _actions), payload);
+        return response;
+      }
+      async translate(target_language) {
+        const text = this.content.toString().replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, "");
+        const payload = {
+          text,
+          target_language,
+          comment_id: this.comment_id
+        };
+        const action = Proto2.encodeCommentActionParams(22, payload);
+        const response = await __privateGet(this, _actions).execute("comment/perform_comment_action", { action, client: "ANDROID" });
+        const mutations = response.data.frameworkUpdates.entityBatchUpdate.mutations;
+        const content = mutations[0].payload.commentEntityPayload.translatedContent.content;
+        return { ...response, content };
+      }
+      setActions(actions) {
+        __privateSet(this, _actions, actions);
+      }
+    };
+    __name(Comment, "Comment");
+    _actions = new WeakMap();
+    module2.exports = Comment;
+  }
+});
+
+// lib/parser/contents/classes/CommentReplyDialog.js
+var require_CommentReplyDialog = __commonJS({
+  "lib/parser/contents/classes/CommentReplyDialog.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var Text = require_Text();
+    var CommentReplyDialog = class {
+      type = "CommentReplyDialog";
+      constructor(data) {
+        this.reply_button = Parser.parse(data.replyButton);
+        this.cancel_button = Parser.parse(data.cancelButton);
+        this.author_thumbnail = Thumbnail.fromResponse(data.authorThumbnail);
+        this.placeholder = new Text(data.placeholderText);
+        this.error_message = new Text(data.errorMessage);
+      }
+    };
+    __name(CommentReplyDialog, "CommentReplyDialog");
+    module2.exports = CommentReplyDialog;
+  }
+});
+
+// lib/parser/contents/classes/comments/AuthorCommentBadge.js
+var require_AuthorCommentBadge = __commonJS({
+  "lib/parser/contents/classes/comments/AuthorCommentBadge.js"(exports2, module2) {
+    "use strict";
+    var _data;
+    var AuthorCommentBadge = class {
+      constructor(data) {
+        __publicField(this, "type", "AuthorCommentBadge");
+        __privateAdd(this, _data, void 0);
+        this.icon_type = data.icon.iconType;
+        this.tooltip = data.iconTooltip;
+        this.tooltip === "Verified" && (this.style = "BADGE_STYLE_TYPE_VERIFIED") && (data.style = "BADGE_STYLE_TYPE_VERIFIED");
+        __privateSet(this, _data, data);
+      }
+      get orig_badge() {
+        return __privateGet(this, _data);
+      }
+    };
+    __name(AuthorCommentBadge, "AuthorCommentBadge");
+    _data = new WeakMap();
+    module2.exports = AuthorCommentBadge;
+  }
+});
+
+// lib/parser/contents/classes/comments/CommentActionButtons.js
+var require_CommentActionButtons = __commonJS({
+  "lib/parser/contents/classes/comments/CommentActionButtons.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var CommentActionButtons = class {
+      type = "CommentActionButtons";
+      constructor(data) {
+        this.like_button = Parser.parse(data.likeButton);
+        this.dislike_button = Parser.parse(data.dislikeButton);
+        this.reply_button = Parser.parse(data.replyButton);
+      }
+    };
+    __name(CommentActionButtons, "CommentActionButtons");
+    module2.exports = CommentActionButtons;
+  }
+});
+
+// lib/parser/contents/classes/comments/CommentReplies.js
+var require_CommentReplies = __commonJS({
+  "lib/parser/contents/classes/comments/CommentReplies.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var CommentReplies = class {
+      type = "CommentReplies";
+      constructor(data) {
+        this.contents = Parser.parse(data.contents);
+        this.view_replies = Parser.parse(data.viewReplies);
+        this.hide_replies = Parser.parse(data.hideReplies);
+      }
+    };
+    __name(CommentReplies, "CommentReplies");
+    module2.exports = CommentReplies;
+  }
+});
+
+// lib/parser/contents/classes/comments/CommentSimplebox.js
+var require_CommentSimplebox = __commonJS({
+  "lib/parser/contents/classes/comments/CommentSimplebox.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var Text = require_Text();
+    var CommentSimplebox = class {
+      type = "CommentSimplebox";
+      constructor(data) {
+        this.submit_button = Parser.parse(data.submitButton);
+        this.cancel_button = Parser.parse(data.cancelButton);
+        this.author_thumbnails = Thumbnail.fromResponse(data.authorThumbnail);
+        this.placeholder = new Text(data.placeholderText);
+        this.avatar_size = data.avatarSize;
+      }
+    };
+    __name(CommentSimplebox, "CommentSimplebox");
+    module2.exports = CommentSimplebox;
+  }
+});
+
+// lib/parser/contents/classes/CommentsEntryPointHeader.js
+var require_CommentsEntryPointHeader = __commonJS({
+  "lib/parser/contents/classes/CommentsEntryPointHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var CommentsEntryPointHeader = class {
+      type = "CommentsEntryPointHeader";
+      constructor(data) {
+        this.header = new Text(data.headerText);
+        this.comment_count = new Text(data.commentCount);
+        this.teaser_avatar = Thumbnail.fromResponse(data.teaserAvatar || data.simpleboxAvatar);
+        this.teaser_content = new Text(data.teaserContent);
+        this.simplebox_placeholder = new Text(data.simpleboxPlaceholder);
+      }
+    };
+    __name(CommentsEntryPointHeader, "CommentsEntryPointHeader");
+    module2.exports = CommentsEntryPointHeader;
+  }
+});
+
+// lib/parser/contents/classes/CommentsHeader.js
+var require_CommentsHeader = __commonJS({
+  "lib/parser/contents/classes/CommentsHeader.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var CommentsHeader = class {
+      type = "CommentsHeader";
+      constructor(data) {
+        var _a;
+        this.title = new Text(data.titleText);
+        this.count = new Text(data.countText);
+        this.comments_count = new Text(data.commentsCount);
+        this.create_renderer = Parser.parse(data.createRenderer, "comments");
+        this.sort_menu = Parser.parse(data.sortMenu);
+        this.custom_emojis = ((_a = data.customEmojis) == null ? void 0 : _a.map((emoji) => ({
+          emoji_id: emoji.emojiId,
+          shortcuts: emoji.shortcuts,
+          search_terms: emoji.searchTerms,
+          image: Thumbnail.fromResponse(emoji.image),
+          is_custom_emoji: emoji.isCustomEmoji
+        }))) || null;
+      }
+    };
+    __name(CommentsHeader, "CommentsHeader");
+    module2.exports = CommentsHeader;
+  }
+});
+
+// lib/parser/contents/classes/CommentThread.js
+var require_CommentThread = __commonJS({
+  "lib/parser/contents/classes/CommentThread.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var _replies, _actions, _continuation;
+    var CommentThread = class {
+      constructor(data) {
+        __publicField(this, "type", "CommentThread");
+        __privateAdd(this, _replies, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _continuation, void 0);
+        this.comment = Parser.parse(data.comment);
+        __privateSet(this, _replies, Parser.parse(data.replies, "comments"));
+        this.is_moderated_elq_comment = data.isModeratedElqComment;
+      }
+      async getReplies() {
+        var _a;
+        if (!__privateGet(this, _replies))
+          throw new InnertubeError2("This comment has no replies.", { comment_id: this.comment.comment_id });
+        const continuation = __privateGet(this, _replies).contents.get({ type: "ContinuationItem" });
+        const response = await continuation.endpoint.callTest(__privateGet(this, _actions));
+        this.replies = response.on_response_received_endpoints_memo.get("Comment").map((comment) => {
+          comment.setActions(__privateGet(this, _actions));
+          return comment;
+        });
+        __privateSet(this, _continuation, (_a = response.on_response_received_endpoints_memo.get("ContinuationItem")) == null ? void 0 : _a[0]);
+        return this;
+      }
+      async getContinuation() {
+        var _a;
+        if (!this.replies)
+          throw new InnertubeError2("Continuation not available.");
+        if (!__privateGet(this, _continuation))
+          throw new InnertubeError2("Continuation not found.");
+        const response = await __privateGet(this, _continuation).button.endpoint.callTest(__privateGet(this, _actions));
+        this.replies = response.on_response_received_endpoints_memo.get("Comment").map((comment) => {
+          comment.setActions(__privateGet(this, _actions));
+          return comment;
+        });
+        __privateSet(this, _continuation, (_a = response.on_response_received_endpoints_memo.get("ContinuationItem")) == null ? void 0 : _a[0]);
+        return this;
+      }
+      setActions(actions) {
+        __privateSet(this, _actions, actions);
+      }
+    };
+    __name(CommentThread, "CommentThread");
+    _replies = new WeakMap();
+    _actions = new WeakMap();
+    _continuation = new WeakMap();
+    module2.exports = CommentThread;
+  }
+});
+
+// lib/parser/contents/classes/CompactLink.js
+var require_CompactLink = __commonJS({
+  "lib/parser/contents/classes/CompactLink.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var CompactLink = class {
+      type = "CompactLink";
+      constructor(data) {
+        this.title = new Text(data.title).toString();
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.style = data.style;
+      }
+    };
+    __name(CompactLink, "CompactLink");
+    module2.exports = CompactLink;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistAuthor.js
+var require_PlaylistAuthor = __commonJS({
+  "lib/parser/contents/classes/PlaylistAuthor.js"(exports2, module2) {
+    "use strict";
+    var Author = require_Author();
+    var PlaylistAuthor = class extends Author {
+      constructor(data) {
+        super(data);
+        delete this.badges;
+        delete this.is_verified;
+        delete this.is_verified_artist;
+      }
+    };
+    __name(PlaylistAuthor, "PlaylistAuthor");
+    module2.exports = PlaylistAuthor;
+  }
+});
+
+// lib/parser/contents/classes/Playlist.js
+var require_Playlist = __commonJS({
+  "lib/parser/contents/classes/Playlist.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var PlaylistAuthor = require_PlaylistAuthor();
+    var Playlist2 = class {
+      type = "Playlist";
+      constructor(data) {
+        var _a;
+        this.id = data.playlistId;
+        this.title = new Text(data.title);
+        this.author = ((_a = data.shortBylineText) == null ? void 0 : _a.simpleText) ? new Text(data.shortBylineText) : new PlaylistAuthor(data.longBylineText, data.ownerBadges, null);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail || { thumbnails: data.thumbnails.map((th) => th.thumbnails).flat(1) });
+        this.video_count = new Text(data.thumbnailText);
+        this.video_count_short = new Text(data.videoCountShortText);
+        this.first_videos = Parser.parse(data.videos) || [];
+        this.share_url = data.shareUrl || null;
+        this.menu = Parser.parse(data.menu);
+        this.badges = Parser.parse(data.ownerBadges);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays) || [];
+      }
+    };
+    __name(Playlist2, "Playlist");
+    module2.exports = Playlist2;
+  }
+});
+
+// lib/parser/contents/classes/CompactMix.js
+var require_CompactMix = __commonJS({
+  "lib/parser/contents/classes/CompactMix.js"(exports2, module2) {
+    "use strict";
+    var Playlist2 = require_Playlist();
+    var CompactMix = class extends Playlist2 {
+      type = "CompactMix";
+      constructor(data) {
+        super(data);
+      }
+    };
+    __name(CompactMix, "CompactMix");
+    module2.exports = CompactMix;
+  }
+});
+
+// lib/parser/contents/classes/CompactPlaylist.js
+var require_CompactPlaylist = __commonJS({
+  "lib/parser/contents/classes/CompactPlaylist.js"(exports2, module2) {
+    "use strict";
+    var Playlist2 = require_Playlist();
+    var CompactPlaylist = class extends Playlist2 {
+      type = "CompactPlaylist";
+      constructor(data) {
+        super(data);
+      }
+    };
+    __name(CompactPlaylist, "CompactPlaylist");
+    module2.exports = CompactPlaylist;
+  }
+});
+
+// lib/parser/contents/classes/CompactVideo.js
+var require_CompactVideo = __commonJS({
+  "lib/parser/contents/classes/CompactVideo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Author = require_Author();
+    var Utils = require_Utils();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var CompactVideo = class {
+      type = "CompactVideo";
+      constructor(data) {
+        this.id = data.videoId;
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail) || null;
+        this.rich_thumbnail = data.richThumbnail && Parser.parse(data.richThumbnail);
+        this.title = new Text(data.title);
+        this.author = new Author(data.longBylineText, data.ownerBadges, data.channelThumbnail);
+        this.view_count = new Text(data.viewCountText);
+        this.short_view_count = new Text(data.shortViewCountText);
+        this.published = new Text(data.publishedTimeText);
+        this.duration = {
+          text: new Text(data.lengthText).toString(),
+          seconds: Utils.timeToSeconds(new Text(data.lengthText).toString())
+        };
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.menu = Parser.parse(data.menu);
+      }
+      get best_thumbnail() {
+        return this.thumbnails[0];
+      }
+    };
+    __name(CompactVideo, "CompactVideo");
+    module2.exports = CompactVideo;
+  }
+});
+
+// lib/parser/contents/classes/ContinuationItem.js
+var require_ContinuationItem = __commonJS({
+  "lib/parser/contents/classes/ContinuationItem.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var ContinuationItem = class {
+      type = "ContinuationItem";
+      constructor(data) {
+        this.trigger = data.trigger;
+        data.button && (this.button = Parser.parse(data.button));
+        this.endpoint = new NavigationEndpoint(data.continuationEndpoint);
+      }
+    };
+    __name(ContinuationItem, "ContinuationItem");
+    module2.exports = ContinuationItem;
+  }
+});
+
+// lib/parser/contents/classes/CtaGoToCreatorStudio.js
+var require_CtaGoToCreatorStudio = __commonJS({
+  "lib/parser/contents/classes/CtaGoToCreatorStudio.js"(exports2, module2) {
+    "use strict";
+    var CtaGoToCreatorStudio = class {
+      type = "CtaGoToCreatorStudio";
+      constructor(data) {
+        this.title = data.buttonLabel;
+        this.use_new_specs = data.useNewSpecs;
+      }
+    };
+    __name(CtaGoToCreatorStudio, "CtaGoToCreatorStudio");
+    module2.exports = CtaGoToCreatorStudio;
+  }
+});
+
+// lib/parser/contents/classes/DidYouMean.js
+var require_DidYouMean = __commonJS({
+  "lib/parser/contents/classes/DidYouMean.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var DidYouMean = class {
+      type = "DidYouMean";
+      constructor(data) {
+        this.corrected_query = new Text(data.correctedQuery);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+      }
+    };
+    __name(DidYouMean, "DidYouMean");
+    module2.exports = DidYouMean;
+  }
+});
+
+// lib/parser/contents/classes/DownloadButton.js
+var require_DownloadButton = __commonJS({
+  "lib/parser/contents/classes/DownloadButton.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var DownloadButton = class {
+      type = "DownloadButton";
+      constructor(data) {
+        this.style = data.style;
+        this.size = data.size;
+        this.endpoint = new NavigationEndpoint(data.command);
+        this.target_id = data.targetId;
+      }
+    };
+    __name(DownloadButton, "DownloadButton");
+    module2.exports = DownloadButton;
+  }
+});
+
+// lib/parser/contents/classes/Element.js
+var require_Element = __commonJS({
+  "lib/parser/contents/classes/Element.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Element = class {
+      type = "Element";
+      constructor(data) {
+        const type = data.newElement.type.componentType;
+        return Parser.parse(type.model);
+      }
+    };
+    __name(Element, "Element");
+    module2.exports = Element;
+  }
+});
+
+// lib/parser/contents/classes/EmergencyOnebox.js
+var require_EmergencyOnebox = __commonJS({
+  "lib/parser/contents/classes/EmergencyOnebox.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Parser = require_contents();
+    var EmergencyOnebox = class {
+      type = "EmergencyOnebox";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.first_option = Parser.parse(data.firstOption);
+        this.menu = Parser.parse(data.menu);
+      }
+    };
+    __name(EmergencyOnebox, "EmergencyOnebox");
+    module2.exports = EmergencyOnebox;
+  }
+});
+
+// lib/parser/contents/classes/Endscreen.js
+var require_Endscreen = __commonJS({
+  "lib/parser/contents/classes/Endscreen.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Endscreen = class {
+      type = "Endscreen";
+      constructor(data) {
+        this.elements = Parser.parse(data.elements);
+        this.start_ms = data.startMs;
+      }
+    };
+    __name(Endscreen, "Endscreen");
+    module2.exports = Endscreen;
+  }
+});
+
+// lib/parser/contents/classes/EndscreenElement.js
+var require_EndscreenElement = __commonJS({
+  "lib/parser/contents/classes/EndscreenElement.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var EndscreenElement = class {
+      type = "EndscreenElement";
+      constructor(data) {
+        this.style = data.style;
+        this.title = new Text(data.title);
+        this.endpoint = new NavigationEndpoint(data.endpoint);
+        if (data.image) {
+          this.image = Thumbnail.fromResponse(data.image);
+        }
+        if (data.icon) {
+          this.icon = Thumbnail.fromResponse(data.icon);
+        }
+        if (data.metadata) {
+          this.metadata = new Text(data.metadata);
+        }
+        if (data.callToAction) {
+          this.call_to_action = new Text(data.callToAction);
+        }
+        if (data.hovercardButton) {
+          this.hovercard_button = Parser.parse(data.hovercardButton);
+        }
+        if (data.isSubscribe) {
+          this.is_subscribe = data.isSubscribe;
+        }
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+        this.left = data.left;
+        this.width = data.width;
+        this.top = data.top;
+        this.aspect_ratio = data.aspectRatio;
+        this.start_ms = data.startMs;
+        this.end_ms = data.endMs;
+        this.id = data.id;
+      }
+    };
+    __name(EndscreenElement, "EndscreenElement");
+    module2.exports = EndscreenElement;
+  }
+});
+
+// lib/parser/contents/classes/EndScreenPlaylist.js
+var require_EndScreenPlaylist = __commonJS({
+  "lib/parser/contents/classes/EndScreenPlaylist.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var EndScreenPlaylist = class {
+      type = "EndScreenPlaylist";
+      constructor(data) {
+        this.id = data.playlistId;
+        this.title = new Text(data.title);
+        this.author = new Text(data.longBylineText);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.video_count = new Text(data.videoCountText);
+      }
+    };
+    __name(EndScreenPlaylist, "EndScreenPlaylist");
+    module2.exports = EndScreenPlaylist;
+  }
+});
+
+// lib/parser/contents/classes/EndScreenVideo.js
+var require_EndScreenVideo = __commonJS({
+  "lib/parser/contents/classes/EndScreenVideo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Author = require_Author();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var EndScreenVideo = class {
+      type = "EndScreenVideo";
+      constructor(data) {
+        this.id = data.videoId;
+        this.title = new Text(data.title);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+        this.author = new Author(data.shortBylineText, data.ownerBadges);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.short_view_count_text = new Text(data.shortViewCountText);
+        this.badges = Parser.parse(data.badges);
+        this.duration = {
+          text: new Text(data.lengthText).toString(),
+          seconds: data.lengthInSeconds
+        };
+      }
+    };
+    __name(EndScreenVideo, "EndScreenVideo");
+    module2.exports = EndScreenVideo;
+  }
+});
+
+// lib/parser/contents/classes/ExpandableTab.js
+var require_ExpandableTab = __commonJS({
+  "lib/parser/contents/classes/ExpandableTab.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var ExpandableTab = class {
+      type = "ExpandableTab";
+      constructor(data) {
+        this.title = data.title;
+        this.endpoint = new NavigationEndpoint(data.endpoint);
+        this.selected = data.selected;
+        this.content = data.content ? Parser.parse(data.content) : null;
+      }
+    };
+    __name(ExpandableTab, "ExpandableTab");
+    module2.exports = ExpandableTab;
+  }
+});
+
+// lib/parser/contents/classes/ExpandedShelfContents.js
+var require_ExpandedShelfContents = __commonJS({
+  "lib/parser/contents/classes/ExpandedShelfContents.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ExpandedShelfContents = class {
+      type = "ExpandedShelfContents";
+      constructor(data) {
+        this.items = Parser.parse(data.items);
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(ExpandedShelfContents, "ExpandedShelfContents");
+    module2.exports = ExpandedShelfContents;
+  }
+});
+
+// lib/parser/contents/classes/FeedFilterChipBar.js
+var require_FeedFilterChipBar = __commonJS({
+  "lib/parser/contents/classes/FeedFilterChipBar.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var FeedFilterChipBar = class {
+      type = "FeedFilterChipBar";
+      constructor(data) {
+        this.contents = Parser.parse(data.contents);
+      }
+    };
+    __name(FeedFilterChipBar, "FeedFilterChipBar");
+    module2.exports = FeedFilterChipBar;
+  }
+});
+
+// lib/parser/contents/classes/FeedTabbedHeader.js
+var require_FeedTabbedHeader = __commonJS({
+  "lib/parser/contents/classes/FeedTabbedHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var FeedTabbedHeader = class {
+      constructor(data) {
+        this.title = new Text(data.title);
+      }
+    };
+    __name(FeedTabbedHeader, "FeedTabbedHeader");
+    module2.exports = FeedTabbedHeader;
+  }
+});
+
+// lib/parser/contents/classes/Grid.js
+var require_Grid = __commonJS({
+  "lib/parser/contents/classes/Grid.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Grid = class {
+      type = "Grid";
+      constructor(data) {
+        this.items = Parser.parse(data.items);
+        this.is_collapsible = data.isCollapsible;
+        this.visible_row_count = data.visibleRowCount;
+        this.target_id = data.targetId;
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(Grid, "Grid");
+    module2.exports = Grid;
+  }
+});
+
+// lib/parser/contents/classes/GridChannel.js
+var require_GridChannel = __commonJS({
+  "lib/parser/contents/classes/GridChannel.js"(exports2, module2) {
+    "use strict";
+    var Author = require_Author();
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var GridChannel = class {
+      type = "GridChannel";
+      constructor(data) {
+        this.id = data.channelId;
+        this.author = new Author({
+          ...data.title,
+          navigationEndpoint: data.navigationEndpoint
+        }, data.ownerBadges, data.thumbnail);
+        this.subscribers = new Text(data.subscriberCountText);
+        this.video_count = new Text(data.videoCountText);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.subscribe_button = Parser.parse(data.subscribeButton);
+      }
+    };
+    __name(GridChannel, "GridChannel");
+    module2.exports = GridChannel;
+  }
+});
+
+// lib/parser/contents/classes/GridPlaylist.js
+var require_GridPlaylist = __commonJS({
+  "lib/parser/contents/classes/GridPlaylist.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var PlaylistAuthor = require_PlaylistAuthor();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var NavigatableText = require_NavigatableText();
+    var GridPlaylist = class {
+      type = "GridPlaylist";
+      constructor(data) {
+        var _a;
+        this.id = data.playlistId;
+        this.title = new Text(data.title);
+        if (data.shortBylineText) {
+          this.author = new PlaylistAuthor(data.shortBylineText, data.ownerBadges);
+        }
+        this.badges = Parser.parse(data.ownerBadges);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.view_playlist = new NavigatableText(data.viewPlaylistText);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.thumbnail_renderer = Parser.parse(data.thumbnailRenderer);
+        this.sidebar_thumbnails = [].concat(...((_a = data.sidebarThumbnails) == null ? void 0 : _a.map((thumbnail) => Thumbnail.fromResponse(thumbnail))) || []) || null;
+        this.video_count = new Text(data.thumbnailText);
+        this.video_count_short_text = new Text(data.videoCountShortText);
+      }
+    };
+    __name(GridPlaylist, "GridPlaylist");
+    module2.exports = GridPlaylist;
+  }
+});
+
+// lib/parser/contents/classes/GridVideo.js
+var require_GridVideo = __commonJS({
+  "lib/parser/contents/classes/GridVideo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Author = require_Author();
+    var GridVideo = class {
+      type = "GridVideo";
+      constructor(data) {
+        var _a;
+        const length_alt = (_a = data.thumbnailOverlays.find((overlay) => overlay.hasOwnProperty("thumbnailOverlayTimeStatusRenderer"))) == null ? void 0 : _a.thumbnailOverlayTimeStatusRenderer;
+        this.id = data.videoId;
+        this.title = new Text(data.title);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+        this.rich_thumbnail = data.richThumbnail && Parser.parse(data.richThumbnail);
+        this.published = new Text(data.publishedTimeText);
+        this.duration = data.lengthText ? new Text(data.lengthText) : (length_alt == null ? void 0 : length_alt.text) ? new Text(length_alt.text) : "";
+        this.author = data.shortBylineText && new Author(data.shortBylineText, data.ownerBadges);
+        this.views = new Text(data.viewCountText);
+        this.short_view_count = new Text(data.shortViewCountText);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.menu = Parser.parse(data.menu);
+      }
+    };
+    __name(GridVideo, "GridVideo");
+    module2.exports = GridVideo;
+  }
+});
+
+// lib/parser/contents/classes/SearchSuggestion.js
+var require_SearchSuggestion = __commonJS({
+  "lib/parser/contents/classes/SearchSuggestion.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var SearchSuggestion = class {
+      type = "SearchSuggestion";
+      constructor(data) {
+        this.suggestion = new Text(data.suggestion);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.icon_type = data.icon.iconType;
+        if (data.serviceEndpoint) {
+          this.service_endpoint = new NavigationEndpoint(data.serviceEndpoint);
+        }
+      }
+    };
+    __name(SearchSuggestion, "SearchSuggestion");
+    module2.exports = SearchSuggestion;
+  }
+});
+
+// lib/parser/contents/classes/HistorySuggestion.js
+var require_HistorySuggestion = __commonJS({
+  "lib/parser/contents/classes/HistorySuggestion.js"(exports2, module2) {
+    "use strict";
+    var SearchSuggestion = require_SearchSuggestion();
+    var HistorySuggestion = class extends SearchSuggestion {
+      type = "HistorySuggestion";
+      constructor(data) {
+        super(data);
+      }
+    };
+    __name(HistorySuggestion, "HistorySuggestion");
+    module2.exports = HistorySuggestion;
+  }
+});
+
+// lib/parser/contents/classes/HorizontalCardList.js
+var require_HorizontalCardList = __commonJS({
+  "lib/parser/contents/classes/HorizontalCardList.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var HorizontalCardList = class {
+      type = "HorizontalCardList";
+      constructor(data) {
+        this.cards = Parser.parse(data.cards);
+        this.header = Parser.parse(data.header);
+        this.previous_button = Parser.parse(data.previousButton);
+        this.next_button = Parser.parse(data.nextButton);
+      }
+    };
+    __name(HorizontalCardList, "HorizontalCardList");
+    module2.exports = HorizontalCardList;
+  }
+});
+
+// lib/parser/contents/classes/HorizontalList.js
+var require_HorizontalList = __commonJS({
+  "lib/parser/contents/classes/HorizontalList.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var HorizontalList = class {
+      type = "HorizontalList";
+      constructor(data) {
+        this.visible_item_count = data.visibleItemCount;
+        this.items = Parser.parse(data.items);
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(HorizontalList, "HorizontalList");
+    module2.exports = HorizontalList;
+  }
+});
+
+// lib/parser/contents/classes/ItemSection.js
+var require_ItemSection = __commonJS({
+  "lib/parser/contents/classes/ItemSection.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ItemSection = class {
+      type = "ItemSection";
+      constructor(data) {
+        this.header = Parser.parse(data.header);
+        this.contents = Parser.parse(data.contents);
+        if (data.targetId || data.sectionIdentifier) {
+          this.target_id = (data == null ? void 0 : data.target_id) || (data == null ? void 0 : data.sectionIdentifier);
+        }
+      }
+    };
+    __name(ItemSection, "ItemSection");
+    module2.exports = ItemSection;
+  }
+});
+
+// lib/parser/contents/classes/ItemSectionHeader.js
+var require_ItemSectionHeader = __commonJS({
+  "lib/parser/contents/classes/ItemSectionHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ItemSectionHeader = class {
+      constructor(data) {
+        this.title = new Text(data.title);
+      }
+    };
+    __name(ItemSectionHeader, "ItemSectionHeader");
+    module2.exports = ItemSectionHeader;
+  }
+});
+
+// lib/parser/contents/classes/LikeButton.js
+var require_LikeButton = __commonJS({
+  "lib/parser/contents/classes/LikeButton.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var LikeButton = class {
+      type = "LikeButton";
+      constructor(data) {
+        var _a;
+        this.target = {
+          video_id: data.target.videoId
+        };
+        this.like_status = data.likeStatus;
+        this.likes_allowed = data.likesAllowed;
+        if (data.serviceEndpoints) {
+          this.endpoints = (_a = data.serviceEndpoints) == null ? void 0 : _a.map((endpoint) => new NavigationEndpoint(endpoint));
+        }
+      }
+    };
+    __name(LikeButton, "LikeButton");
+    module2.exports = LikeButton;
+  }
+});
+
+// lib/parser/contents/classes/LiveChat.js
+var require_LiveChat = __commonJS({
+  "lib/parser/contents/classes/LiveChat.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var LiveChat = class {
+      type = "LiveChat";
+      constructor(data) {
+        var _a, _b;
+        this.header = Parser.parse(data.header);
+        this.initial_display_state = data.initialDisplayState;
+        this.continuation = (_b = (_a = data.continuations[0]) == null ? void 0 : _a.reloadContinuationData) == null ? void 0 : _b.continuation;
+        this.client_messages = {
+          reconnect_message: new Text(data.clientMessages.reconnectMessage),
+          unable_to_reconnect_message: new Text(data.clientMessages.unableToReconnectMessage),
+          fatal_error: new Text(data.clientMessages.fatalError),
+          reconnected_message: new Text(data.clientMessages.reconnectedMessage),
+          generic_error: new Text(data.clientMessages.genericError)
+        };
+        this.is_replay = data.isReplay || false;
+      }
+    };
+    __name(LiveChat, "LiveChat");
+    module2.exports = LiveChat;
+  }
+});
+
+// lib/parser/contents/classes/livechat/AddBannerToLiveChatCommand.js
+var require_AddBannerToLiveChatCommand = __commonJS({
+  "lib/parser/contents/classes/livechat/AddBannerToLiveChatCommand.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var AddBannerToLiveChatCommand = class {
+      constructor(data) {
+        return Parser.parse(data.bannerRenderer, "livechat/items");
+      }
+    };
+    __name(AddBannerToLiveChatCommand, "AddBannerToLiveChatCommand");
+    module2.exports = AddBannerToLiveChatCommand;
+  }
+});
+
+// lib/parser/contents/classes/livechat/AddChatItemAction.js
+var require_AddChatItemAction = __commonJS({
+  "lib/parser/contents/classes/livechat/AddChatItemAction.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var AddChatItemAction = class {
+      type = "AddChatItemAction";
+      constructor(data) {
+        this.item = Parser.parse(data.item, "livechat/items");
+        this.client_id = data.clientId || null;
+      }
+    };
+    __name(AddChatItemAction, "AddChatItemAction");
+    module2.exports = AddChatItemAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/AddLiveChatTickerItemAction.js
+var require_AddLiveChatTickerItemAction = __commonJS({
+  "lib/parser/contents/classes/livechat/AddLiveChatTickerItemAction.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var AddLiveChatTickerItemAction = class {
+      type = "AddLiveChatTickerItemAction";
+      constructor(data) {
+        this.item = Parser.parse(data.item, "livechat/items");
+        this.duration_sec = data.durationSec;
+      }
+    };
+    __name(AddLiveChatTickerItemAction, "AddLiveChatTickerItemAction");
+    module2.exports = AddLiveChatTickerItemAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatBanner.js
+var require_LiveChatBanner = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatBanner.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var LiveChatBanner = class {
+      type = "LiveChatBanner";
+      constructor(data) {
+        this.header = Parser.parse(data.header, "livechat/items");
+        this.contents = Parser.parse(data.contents, "livechat/items");
+        this.action_id = data.actionId;
+        this.viewer_is_creator = data.viewerIsCreator;
+        this.target_id = data.targetId;
+        this.is_stackable = data.isStackable;
+        this.background_type = data.backgroundType;
+      }
+    };
+    __name(LiveChatBanner, "LiveChatBanner");
+    module2.exports = LiveChatBanner;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatBannerHeader.js
+var require_LiveChatBannerHeader = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatBannerHeader.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var LiveChatBannerHeader = class {
+      type = "LiveChatBannerHeader";
+      constructor(data) {
+        this.text = new Text(data.text).toString();
+        this.icon_type = data.icon.iconType;
+        this.context_menu_button = Parser.parse(data.contextMenuButton);
+      }
+    };
+    __name(LiveChatBannerHeader, "LiveChatBannerHeader");
+    module2.exports = LiveChatBannerHeader;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatBannerPoll.js
+var require_LiveChatBannerPoll = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatBannerPoll.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var LiveChatBannerPoll = class {
+      type = "LiveChatBannerPoll";
+      constructor(data) {
+        this.poll_question = new Text(data.pollQuestion);
+        this.author_photo = Thumbnail.fromResponse(data.authorPhoto);
+        this.choices = data.pollChoices.map((choice) => ({
+          option_id: choice.pollOptionId,
+          text: new Text(choice.text).toString()
+        }));
+        this.collapsed_state_entity_key = data.collapsedStateEntityKey;
+        this.live_chat_poll_state_entity_key = data.liveChatPollStateEntityKey;
+        this.context_menu_button = Parser.parse(data.contextMenuButton);
+      }
+    };
+    __name(LiveChatBannerPoll, "LiveChatBannerPoll");
+    module2.exports = LiveChatBannerPoll;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatMembershipItem.js
+var require_LiveChatMembershipItem = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatMembershipItem.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var LiveChatMembershipItem = class {
+      type = "LiveChatMembershipItem";
+      constructor(data) {
+        this.id = data.id;
+        this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1e3);
+        this.header_subtext = new Text(data.headerSubtext);
+        this.author = {
+          id: data.authorExternalChannelId,
+          name: new Text(data == null ? void 0 : data.authorName),
+          thumbnails: Thumbnail.fromResponse(data.authorPhoto),
+          badges: Parser.parse(data.authorBadges)
+        };
+        this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
+      }
+    };
+    __name(LiveChatMembershipItem, "LiveChatMembershipItem");
+    module2.exports = LiveChatMembershipItem;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatPaidMessage.js
+var require_LiveChatPaidMessage = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatPaidMessage.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Parser = require_contents();
+    var LiveChatPaidMessage = class {
+      type = "LiveChatPaidMessage";
+      constructor(data) {
+        this.message = new Text(data.message);
+        this.author = {
+          id: data.authorExternalChannelId,
+          name: new Text(data.authorName),
+          thumbnails: Thumbnail.fromResponse(data.authorPhoto),
+          badges: Parser.parse(data.authorBadges)
+        };
+        const badges = Parser.parse(data.authorBadges);
+        this.author.badges = badges;
+        this.author.is_moderator = (badges == null ? void 0 : badges.some((badge) => badge.icon_type == "MODERATOR")) || null;
+        this.author.is_verified = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED")) || null;
+        this.author.is_verified_artist = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST")) || null;
+        this.purchase_amount = new Text(data.purchaseAmountText).toString();
+        this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
+        this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1e3);
+        this.timestamp_text = new Text(data.timestampText).toString();
+        this.id = data.id;
+      }
+    };
+    __name(LiveChatPaidMessage, "LiveChatPaidMessage");
+    module2.exports = LiveChatPaidMessage;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatPaidSticker.js
+var require_LiveChatPaidSticker = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatPaidSticker.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Thumbnail = require_Thumbnail();
+    var Text = require_Text();
+    var LiveChatPaidSticker = class {
+      type = "LiveChatPaidSticker";
+      constructor(data) {
+        this.id = data.id;
+        this.author = {
+          id: data.authorExternalChannelId,
+          name: new Text(data.authorName),
+          thumbnails: Thumbnail.fromResponse(data.authorPhoto),
+          badges: Parser.parse(data.authorBadges)
+        };
+        this.sticker = Thumbnail.fromResponse(data.sticker);
+        this.purchase_amount = new Text(data.purchaseAmountText).toString();
+        this.context_menu = new NavigationEndpoint(data.contextMenuEndpoint);
+        this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1e3);
+      }
+    };
+    __name(LiveChatPaidSticker, "LiveChatPaidSticker");
+    module2.exports = LiveChatPaidSticker;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatPlaceholderItem.js
+var require_LiveChatPlaceholderItem = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatPlaceholderItem.js"(exports2, module2) {
+    "use strict";
+    var LiveChatPlaceholderItem = class {
+      type = "LiveChatPlaceholderItem";
+      constructor(data) {
+        this.id = data.id;
+        this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1e3);
+      }
+    };
+    __name(LiveChatPlaceholderItem, "LiveChatPlaceholderItem");
+    module2.exports = LiveChatPlaceholderItem;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatTextMessage.js
+var require_LiveChatTextMessage = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatTextMessage.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Parser = require_contents();
+    var LiveChatTextMessage = class {
+      type = "LiveChatTextMessage";
+      constructor(data) {
+        this.message = new Text(data.message);
+        this.author = {
+          id: data.authorExternalChannelId,
+          name: new Text(data.authorName),
+          thumbnails: Thumbnail.fromResponse(data.authorPhoto)
+        };
+        const badges = Parser.parse(data.authorBadges);
+        this.author.badges = badges;
+        this.author.is_moderator = (badges == null ? void 0 : badges.some((badge) => badge.icon_type == "MODERATOR")) || null;
+        this.author.is_verified = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED")) || null;
+        this.author.is_verified_artist = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST")) || null;
+        this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
+        this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1e3);
+        this.id = data.id;
+      }
+    };
+    __name(LiveChatTextMessage, "LiveChatTextMessage");
+    module2.exports = LiveChatTextMessage;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatTickerPaidMessageItem.js
+var require_LiveChatTickerPaidMessageItem = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatTickerPaidMessageItem.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Parser = require_contents();
+    var LiveChatTickerPaidMessageItem = class {
+      type = "LiveChatTickerPaidMessageItem";
+      constructor(data) {
+        this.author = {
+          id: data.authorExternalChannelId,
+          thumbnails: Thumbnail.fromResponse(data.authorPhoto),
+          badges: Parser.parse(data.authorBadges)
+        };
+        const badges = Parser.parse(data.authorBadges);
+        this.author.badges = badges;
+        this.author.is_moderator = (badges == null ? void 0 : badges.some((badge) => badge.icon_type == "MODERATOR")) || null;
+        this.author.is_verified = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED")) || null;
+        this.author.is_verified_artist = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST")) || null;
+        this.amount = new Text(data.amount);
+        this.duration_sec = data.durationSec;
+        this.full_duration_sec = data.fullDurationSec;
+        this.show_item = Parser.parse(data.showItemEndpoint.showLiveChatItemEndpoint.renderer, "livechat/items");
+        this.show_item_endpoint = new NavigationEndpoint(data.showItemEndpoint);
+        this.id = data.id;
+      }
+    };
+    __name(LiveChatTickerPaidMessageItem, "LiveChatTickerPaidMessageItem");
+    module2.exports = LiveChatTickerPaidMessageItem;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatTickerSponsorItem.js
+var require_LiveChatTickerSponsorItem = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatTickerSponsorItem.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var LiveChatTickerSponsorItem = class {
+      type = "LiveChatTickerSponsorItem";
+      constructor(data) {
+        this.id = data.id;
+        this.detail_text = new Text(data.detailText).toString();
+        this.author = {
+          id: data.authorExternalChannelId,
+          name: new Text(data == null ? void 0 : data.authorName),
+          thumbnails: Thumbnail.fromResponse(data.sponsorPhoto)
+        };
+        this.duration_sec = data.durationSec;
+      }
+    };
+    __name(LiveChatTickerSponsorItem, "LiveChatTickerSponsorItem");
+    module2.exports = LiveChatTickerSponsorItem;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/LiveChatViewerEngagementMessage.js
+var require_LiveChatViewerEngagementMessage = __commonJS({
+  "lib/parser/contents/classes/livechat/items/LiveChatViewerEngagementMessage.js"(exports2, module2) {
+    "use strict";
+    var LiveChatTextMessage = require_LiveChatTextMessage();
+    var Parser = require_contents();
+    var LiveChatViewerEngagementMessage = class extends LiveChatTextMessage {
+      type = "LiveChatViewerEngagementMessage";
+      constructor(data) {
+        super(data);
+        delete this.author;
+        delete this.menu_endpoint;
+        this.icon_type = data.icon.iconType;
+        this.action_button = Parser.parse(data.actionButton);
+      }
+    };
+    __name(LiveChatViewerEngagementMessage, "LiveChatViewerEngagementMessage");
+    module2.exports = LiveChatViewerEngagementMessage;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/Poll.js
+var require_Poll = __commonJS({
+  "lib/parser/contents/classes/livechat/items/Poll.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Poll = class {
+      type = "Poll";
+      constructor(data) {
+        this.header = Parser.parse(data.header, "livechat/items");
+        this.choices = data.choices.map((choice) => ({
+          text: new Text(choice.text).toString(),
+          selected: choice.selected,
+          vote_ratio: choice.voteRatio,
+          vote_percentage: new Text(choice.votePercentage).toString(),
+          select_endpoint: new NavigationEndpoint(choice.selectServiceEndpoint)
+        }));
+        this.live_chat_poll_id = data.liveChatPollId;
+      }
+    };
+    __name(Poll, "Poll");
+    module2.exports = Poll;
+  }
+});
+
+// lib/parser/contents/classes/livechat/items/PollHeader.js
+var require_PollHeader = __commonJS({
+  "lib/parser/contents/classes/livechat/items/PollHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var Parser = require_contents();
+    var PollHeader = class {
+      type = "PollHeader";
+      constructor(data) {
+        this.poll_question = new Text(data.pollQuestion);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.metadata = new Text(data.metadataText);
+        this.live_chat_poll_type = data.liveChatPollType;
+        this.context_menu_button = Parser.parse(data.contextMenuButton);
+      }
+    };
+    __name(PollHeader, "PollHeader");
+    module2.exports = PollHeader;
+  }
+});
+
+// lib/parser/contents/classes/livechat/LiveChatActionPanel.js
+var require_LiveChatActionPanel = __commonJS({
+  "lib/parser/contents/classes/livechat/LiveChatActionPanel.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var LiveChatActionPanel = class {
+      type = "LiveChatActionPanel";
+      constructor(data) {
+        this.id = data.id;
+        this.contents = Parser.parse(data.contents, "livechat/items");
+        this.target_id = data.targetId;
+      }
+    };
+    __name(LiveChatActionPanel, "LiveChatActionPanel");
+    module2.exports = LiveChatActionPanel;
+  }
+});
+
+// lib/parser/contents/classes/livechat/MarkChatItemAsDeletedAction.js
+var require_MarkChatItemAsDeletedAction = __commonJS({
+  "lib/parser/contents/classes/livechat/MarkChatItemAsDeletedAction.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var MarkChatItemAsDeletedAction = class {
+      type = "MarkChatItemAsDeletedAction";
+      constructor(data) {
+        this.deleted_state_message = new Text(data.deletedStateMessage);
+        this.target_item_id = data.targetItemId;
+      }
+    };
+    __name(MarkChatItemAsDeletedAction, "MarkChatItemAsDeletedAction");
+    module2.exports = MarkChatItemAsDeletedAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/MarkChatItemsByAuthorAsDeletedAction.js
+var require_MarkChatItemsByAuthorAsDeletedAction = __commonJS({
+  "lib/parser/contents/classes/livechat/MarkChatItemsByAuthorAsDeletedAction.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var MarkChatItemsByAuthorAsDeletedAction = class {
+      type = "MarkChatItemsByAuthorAsDeletedAction";
+      constructor(data) {
+        this.deleted_state_message = new Text(data.deletedStateMessage);
+        this.channel_id = data.externalChannelId;
+      }
+    };
+    __name(MarkChatItemsByAuthorAsDeletedAction, "MarkChatItemsByAuthorAsDeletedAction");
+    module2.exports = MarkChatItemsByAuthorAsDeletedAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/RemoveBannerForLiveChatCommand.js
+var require_RemoveBannerForLiveChatCommand = __commonJS({
+  "lib/parser/contents/classes/livechat/RemoveBannerForLiveChatCommand.js"(exports2, module2) {
+    "use strict";
+    var RemoveBannerForLiveChatCommand = class {
+      type = "RemoveBannerForLiveChatCommand";
+      constructor(data) {
+        this.target_action_id = data.targetActionId;
+      }
+    };
+    __name(RemoveBannerForLiveChatCommand, "RemoveBannerForLiveChatCommand");
+    module2.exports = RemoveBannerForLiveChatCommand;
+  }
+});
+
+// lib/parser/contents/classes/livechat/ReplaceChatItemAction.js
+var require_ReplaceChatItemAction = __commonJS({
+  "lib/parser/contents/classes/livechat/ReplaceChatItemAction.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ReplaceChatItemAction = class {
+      constructor(data) {
+        this.target_item_id = data.targetItemId;
+        this.replacement_item = Parser.parse(data.replacementItem, "livechat/items");
+      }
+    };
+    __name(ReplaceChatItemAction, "ReplaceChatItemAction");
+    module2.exports = ReplaceChatItemAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/ReplayChatItemAction.js
+var require_ReplayChatItemAction = __commonJS({
+  "lib/parser/contents/classes/livechat/ReplayChatItemAction.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ReplayChatItemAction = class {
+      type = "ReplayChatItemAction";
+      constructor(data) {
+        var _a;
+        this.actions = Parser.parse((_a = data.actions) == null ? void 0 : _a.map((action) => {
+          delete action.clickTrackingParams;
+          return action;
+        }), "livechat") || [];
+        this.video_offset_time_msec = data.videoOffsetTimeMsec;
+      }
+    };
+    __name(ReplayChatItemAction, "ReplayChatItemAction");
+    module2.exports = ReplayChatItemAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/ShowLiveChatActionPanelAction.js
+var require_ShowLiveChatActionPanelAction = __commonJS({
+  "lib/parser/contents/classes/livechat/ShowLiveChatActionPanelAction.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ShowLiveChatActionPanelAction = class {
+      type = "ShowLiveChatActionPanelAction";
+      constructor(data) {
+        this.panel_to_show = Parser.parse(data.panelToShow, "livechat");
+      }
+    };
+    __name(ShowLiveChatActionPanelAction, "ShowLiveChatActionPanelAction");
+    module2.exports = ShowLiveChatActionPanelAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/ShowLiveChatTooltipCommand.js
+var require_ShowLiveChatTooltipCommand = __commonJS({
+  "lib/parser/contents/classes/livechat/ShowLiveChatTooltipCommand.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ShowLiveChatTooltipCommand = class {
+      type = "ShowLiveChatTooltipCommand";
+      constructor(data) {
+        this.tooltip = Parser.parse(data.tooltip);
+      }
+    };
+    __name(ShowLiveChatTooltipCommand, "ShowLiveChatTooltipCommand");
+    module2.exports = ShowLiveChatTooltipCommand;
+  }
+});
+
+// lib/parser/contents/classes/livechat/UpdateDateTextAction.js
+var require_UpdateDateTextAction = __commonJS({
+  "lib/parser/contents/classes/livechat/UpdateDateTextAction.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var UpdateDateTextAction = class {
+      type = "UpdateDateTextAction";
+      constructor(data) {
+        this.date_text = new Text(data.dateText).toString();
+      }
+    };
+    __name(UpdateDateTextAction, "UpdateDateTextAction");
+    module2.exports = UpdateDateTextAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/UpdateDescriptionAction.js
+var require_UpdateDescriptionAction = __commonJS({
+  "lib/parser/contents/classes/livechat/UpdateDescriptionAction.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var UpdateDescriptionAction = class {
+      type = "UpdateDescriptionAction";
+      constructor(data) {
+        this.description = new Text(data.description);
+      }
+    };
+    __name(UpdateDescriptionAction, "UpdateDescriptionAction");
+    module2.exports = UpdateDescriptionAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/UpdateLiveChatPollAction.js
+var require_UpdateLiveChatPollAction = __commonJS({
+  "lib/parser/contents/classes/livechat/UpdateLiveChatPollAction.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var UpdateLiveChatPollAction = class {
+      type = "UpdateLiveChatPollAction";
+      constructor(data) {
+        this.poll_to_update = Parser.parse(data.pollToUpdate, "livechat/items");
+      }
+    };
+    __name(UpdateLiveChatPollAction, "UpdateLiveChatPollAction");
+    module2.exports = UpdateLiveChatPollAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/UpdateTitleAction.js
+var require_UpdateTitleAction = __commonJS({
+  "lib/parser/contents/classes/livechat/UpdateTitleAction.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var UpdateTitleAction = class {
+      type = "UpdateTitleAction";
+      constructor(data) {
+        this.title = new Text(data.title);
+      }
+    };
+    __name(UpdateTitleAction, "UpdateTitleAction");
+    module2.exports = UpdateTitleAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/UpdateToggleButtonTextAction.js
+var require_UpdateToggleButtonTextAction = __commonJS({
+  "lib/parser/contents/classes/livechat/UpdateToggleButtonTextAction.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var UpdateToggleButtonTextAction = class {
+      type = "UpdateToggleButtonTextAction";
+      constructor(data) {
+        this.default_text = new Text(data.defaultText).toString();
+        this.toggled_text = new Text(data.toggledText).toString();
+        this.button_id = data.buttonId;
+      }
+    };
+    __name(UpdateToggleButtonTextAction, "UpdateToggleButtonTextAction");
+    module2.exports = UpdateToggleButtonTextAction;
+  }
+});
+
+// lib/parser/contents/classes/livechat/UpdateViewershipAction.js
+var require_UpdateViewershipAction = __commonJS({
+  "lib/parser/contents/classes/livechat/UpdateViewershipAction.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var UpdateViewershipAction = class {
+      type = "UpdateViewershipAction";
+      constructor(data) {
+        const view_count_renderer = data.viewCount.videoViewCountRenderer;
+        this.view_count = new Text(view_count_renderer.viewCount);
+        this.extra_short_view_count = new Text(view_count_renderer.extraShortViewCount);
+        this.is_live = view_count_renderer.isLive;
+      }
+    };
+    __name(UpdateViewershipAction, "UpdateViewershipAction");
+    module2.exports = UpdateViewershipAction;
+  }
+});
+
+// lib/parser/contents/classes/MetadataBadge.js
+var require_MetadataBadge = __commonJS({
+  "lib/parser/contents/classes/MetadataBadge.js"(exports2, module2) {
+    "use strict";
+    var MetadataBadge = class {
+      constructor(data) {
+        data.icon && (this.icon_type = data.icon.iconType);
+        data.style && (this.style = data.style);
+        this.tooltip = data.tooltip || data.iconTooltip || null;
+      }
+    };
+    __name(MetadataBadge, "MetadataBadge");
+    module2.exports = MetadataBadge;
+  }
+});
+
+// lib/parser/contents/classes/LiveChatAuthorBadge.js
+var require_LiveChatAuthorBadge = __commonJS({
+  "lib/parser/contents/classes/LiveChatAuthorBadge.js"(exports2, module2) {
+    "use strict";
+    var MetadataBadge = require_MetadataBadge();
+    var Thumbnail = require_Thumbnail();
+    var LiveChatAuthorBadge = class extends MetadataBadge {
+      constructor(data) {
+        super(data);
+        this.custom_thumbnail = data.customThumbnail ? Thumbnail.fromResponse(data.customThumbnail) : null;
+      }
+    };
+    __name(LiveChatAuthorBadge, "LiveChatAuthorBadge");
+    module2.exports = LiveChatAuthorBadge;
+  }
+});
+
+// lib/parser/contents/classes/LiveChatHeader.js
+var require_LiveChatHeader = __commonJS({
+  "lib/parser/contents/classes/LiveChatHeader.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var LiveChatHeader = class {
+      type = "LiveChatHeader";
+      constructor(data) {
+        this.overflow_menu = Parser.parse(data.overflowMenu);
+        this.collapse_button = Parser.parse(data.collapseButton);
+        this.view_selector = Parser.parse(data.viewSelector);
+      }
+    };
+    __name(LiveChatHeader, "LiveChatHeader");
+    module2.exports = LiveChatHeader;
+  }
+});
+
+// lib/parser/contents/classes/LiveChatItemList.js
+var require_LiveChatItemList = __commonJS({
+  "lib/parser/contents/classes/LiveChatItemList.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var LiveChatItemList = class {
+      type = "LiveChatItemList";
+      constructor(data) {
+        this.max_items_to_display = data.maxItemsToDisplay;
+        this.more_comments_below_button = Parser.parse(data.moreCommentsBelowButton);
+      }
+    };
+    __name(LiveChatItemList, "LiveChatItemList");
+    module2.exports = LiveChatItemList;
+  }
+});
+
+// lib/parser/contents/classes/LiveChatMessageInput.js
+var require_LiveChatMessageInput = __commonJS({
+  "lib/parser/contents/classes/LiveChatMessageInput.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var LiveChatMessageInput = class {
+      constructor(data) {
+        this.author_name = new Text(data.authorName);
+        this.author_photo = Thumbnail.fromResponse(data.authorPhoto);
+        this.send_button = Parser.parse(data.sendButton);
+        this.target_id = data.targetId;
+      }
+    };
+    __name(LiveChatMessageInput, "LiveChatMessageInput");
+    module2.exports = LiveChatMessageInput;
+  }
+});
+
+// lib/parser/contents/classes/LiveChatParticipant.js
+var require_LiveChatParticipant = __commonJS({
+  "lib/parser/contents/classes/LiveChatParticipant.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var LiveChatParticipant = class {
+      type = "LiveChatParticipant";
+      constructor(data) {
+        this.name = new Text(data.authorName);
+        this.photo = Thumbnail.fromResponse(data.authorPhoto);
+        this.badges = Parser.parse(data.authorBadges);
+      }
+    };
+    __name(LiveChatParticipant, "LiveChatParticipant");
+    module2.exports = LiveChatParticipant;
+  }
+});
+
+// lib/parser/contents/classes/LiveChatParticipantsList.js
+var require_LiveChatParticipantsList = __commonJS({
+  "lib/parser/contents/classes/LiveChatParticipantsList.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var LiveChatParticipantsList = class {
+      type = "LiveChatParticipantsList";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.participants = Parser.parse(data.participants);
+      }
+    };
+    __name(LiveChatParticipantsList, "LiveChatParticipantsList");
+    module2.exports = LiveChatParticipantsList;
+  }
+});
+
+// lib/parser/contents/classes/Menu.js
+var require_Menu = __commonJS({
+  "lib/parser/contents/classes/Menu.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Menu = class {
+      type = "Menu";
+      constructor(data) {
+        var _a, _b;
+        this.items = Parser.parse(data.items) || [];
+        this.top_level_buttons = Parser.parse(data.topLevelButtons) || [];
+        this.label = ((_b = (_a = data.accessibility) == null ? void 0 : _a.accessibilityData) == null ? void 0 : _b.label) || null;
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(Menu, "Menu");
+    module2.exports = Menu;
+  }
+});
+
+// lib/parser/contents/classes/MenuNavigationItem.js
+var require_MenuNavigationItem = __commonJS({
+  "lib/parser/contents/classes/MenuNavigationItem.js"(exports2, module2) {
+    "use strict";
+    var Button = require_Button();
+    var MenuNavigationItem = class extends Button {
+      type = "MenuNavigationItem";
+      constructor(data) {
+        super(data);
+      }
+    };
+    __name(MenuNavigationItem, "MenuNavigationItem");
+    module2.exports = MenuNavigationItem;
+  }
+});
+
+// lib/parser/contents/classes/MenuServiceItem.js
+var require_MenuServiceItem = __commonJS({
+  "lib/parser/contents/classes/MenuServiceItem.js"(exports2, module2) {
+    "use strict";
+    var Button = require_Button();
+    var MenuServiceItem = class extends Button {
+      type = "MenuServiceItem";
+      constructor(data) {
+        super(data);
+      }
+    };
+    __name(MenuServiceItem, "MenuServiceItem");
+    module2.exports = MenuServiceItem;
+  }
+});
+
+// lib/parser/contents/classes/MenuServiceItemDownload.js
+var require_MenuServiceItemDownload = __commonJS({
+  "lib/parser/contents/classes/MenuServiceItemDownload.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var MenuServiceItemDownload = class {
+      type = "MenuServiceItemDownload";
+      constructor(data) {
+        this.has_separator = data.hasSeparator;
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint);
+      }
+    };
+    __name(MenuServiceItemDownload, "MenuServiceItemDownload");
+    module2.exports = MenuServiceItemDownload;
+  }
+});
+
+// lib/parser/contents/classes/MerchandiseItem.js
+var require_MerchandiseItem = __commonJS({
+  "lib/parser/contents/classes/MerchandiseItem.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var MerchandiseItem = class {
+      type = "MerchandiseItem";
+      constructor(data) {
+        this.title = data.title;
+        this.description = data.description;
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.price = data.price;
+        this.vendor_name = data.vendorName;
+        this.button_text = data.buttonText;
+        this.button_accessibility_text = data.buttonAccessibilityText;
+        this.from_vendor_text = data.fromVendorText;
+        this.additional_fees_text = data.additionalFeesText;
+        this.region_format = data.regionFormat;
+        this.endpoint = new NavigationEndpoint(data.buttonCommand);
+      }
+    };
+    __name(MerchandiseItem, "MerchandiseItem");
+    module2.exports = MerchandiseItem;
+  }
+});
+
+// lib/parser/contents/classes/MerchandiseShelf.js
+var require_MerchandiseShelf = __commonJS({
+  "lib/parser/contents/classes/MerchandiseShelf.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var MerchandiseShelf = class {
+      type = "MerchandiseShelf";
+      constructor(data) {
+        this.title = data.title;
+        this.menu = Parser.parse(data.actionButton);
+        this.items = Parser.parse(data.items);
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(MerchandiseShelf, "MerchandiseShelf");
+    module2.exports = MerchandiseShelf;
+  }
+});
+
+// lib/parser/contents/classes/Message.js
+var require_Message = __commonJS({
+  "lib/parser/contents/classes/Message.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Message = class {
+      type = "Message";
+      constructor(data) {
+        this.text = new Text(data.text).toString();
+      }
+    };
+    __name(Message, "Message");
+    module2.exports = Message;
+  }
+});
+
+// lib/parser/contents/classes/MetadataRow.js
+var require_MetadataRow = __commonJS({
+  "lib/parser/contents/classes/MetadataRow.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var MetadataRow = class {
+      type = "MetadataRow";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.contents = data.contents.map((content) => new Text(content));
+      }
+    };
+    __name(MetadataRow, "MetadataRow");
+    module2.exports = MetadataRow;
+  }
+});
+
+// lib/parser/contents/classes/MetadataRowContainer.js
+var require_MetadataRowContainer = __commonJS({
+  "lib/parser/contents/classes/MetadataRowContainer.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var MetadataRowContainer = class {
+      type = "MetadataRowContainer";
+      constructor(data) {
+        this.rows = Parser.parse(data.rows);
+        this.collapsed_item_count = data.collapsedItemCount;
+      }
+    };
+    __name(MetadataRowContainer, "MetadataRowContainer");
+    module2.exports = MetadataRowContainer;
+  }
+});
+
+// lib/parser/contents/classes/MetadataRowHeader.js
+var require_MetadataRowHeader = __commonJS({
+  "lib/parser/contents/classes/MetadataRowHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var MetadataRowHeader = class {
+      type = "MetadataRowHeader";
+      constructor(data) {
+        this.content = new Text(data.content);
+        this.has_divider_line = data.hasDividerLine;
+      }
+    };
+    __name(MetadataRowHeader, "MetadataRowHeader");
+    module2.exports = MetadataRowHeader;
+  }
+});
+
+// lib/parser/contents/classes/MicroformatData.js
+var require_MicroformatData = __commonJS({
+  "lib/parser/contents/classes/MicroformatData.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var MicroformatData = class {
+      type = "MicroformatData";
+      constructor(data) {
+        this.url_canonical = data.urlCanonical;
+        this.title = data.title;
+        this.description = data.description;
+        this.thumbnail = data.thumbnail && Thumbnail.fromResponse(data.thumbnail);
+        this.site_name = data.siteName;
+        this.app_name = data.appName;
+        this.android_package = data.androidPackage;
+        this.ios_app_store_id = data.iosAppStoreId;
+        this.ios_app_arguments = data.iosAppArguments;
+        this.og_type = data.ogType;
+        this.url_applinks_web = data.urlApplinksWeb;
+        this.url_applinks_ios = data.urlApplinksIos;
+        this.url_applinks_android = data.urlApplinksAndroid;
+        this.url_twitter_ios = data.urlTwitterIos;
+        this.url_twitter_android = data.urlTwitterAndroid;
+        this.twitter_card_type = data.twitterCardType;
+        this.twitter_site_handle = data.twitterSiteHandle;
+        this.schema_dot_org_type = data.schemaDotOrgType;
+        this.noindex = data.noindex;
+        this.is_unlisted = data.unlisted;
+        this.is_family_safe = data.familySafe;
+        this.tags = data.tags;
+        this.available_countries = data.availableCountries;
+      }
+    };
+    __name(MicroformatData, "MicroformatData");
+    module2.exports = MicroformatData;
+  }
+});
+
+// lib/parser/contents/classes/Mix.js
+var require_Mix = __commonJS({
+  "lib/parser/contents/classes/Mix.js"(exports2, module2) {
+    "use strict";
+    var Playlist2 = require_Playlist();
+    var Mix = class extends Playlist2 {
+      type = "Mix";
+      constructor(data) {
+        super(data);
+      }
+    };
+    __name(Mix, "Mix");
+    module2.exports = Mix;
+  }
+});
+
+// lib/parser/contents/classes/Movie.js
+var require_Movie = __commonJS({
+  "lib/parser/contents/classes/Movie.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Author = require_Author();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Utils = require_Utils();
+    var Text = require_Text();
+    var Movie = class {
+      type = "Movie";
+      constructor(data) {
+        var _a, _b, _c;
+        const overlay_time_status = ((_a = data.thumbnailOverlays.find((overlay) => overlay.thumbnailOverlayTimeStatusRenderer)) == null ? void 0 : _a.thumbnailOverlayTimeStatusRenderer.text) || "N/A";
+        this.id = data.videoId;
+        this.title = new Text(data.title);
+        this.description_snippet = data.descriptionSnippet ? new Text(data.descriptionSnippet, "") : null;
+        this.top_metadata_items = new Text(data.topMetadataItems);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+        this.author = new Author(data.longBylineText, data.ownerBadges, (_c = (_b = data.channelThumbnailSupportedRenderers) == null ? void 0 : _b.channelThumbnailWithLinkRenderer) == null ? void 0 : _c.thumbnail);
+        this.duration = {
+          text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
+          seconds: Utils.timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+        };
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.badges = Parser.parse(data.badges);
+        this.use_vertical_poster = data.useVerticalPoster;
+        this.show_action_menu = data.showActionMenu;
+        this.menu = Parser.parse(data.menu);
+      }
+    };
+    __name(Movie, "Movie");
+    module2.exports = Movie;
+  }
+});
+
+// lib/parser/contents/classes/MovingThumbnail.js
+var require_MovingThumbnail = __commonJS({
+  "lib/parser/contents/classes/MovingThumbnail.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var MovingThumbnail = class {
+      type = "MovingThumbnail";
+      constructor(data) {
+        var _a;
+        return (_a = data.movingThumbnailDetails) == null ? void 0 : _a.thumbnails.map((thumbnail) => new Thumbnail(thumbnail)).sort((a, b) => b.width - a.width);
+      }
+    };
+    __name(MovingThumbnail, "MovingThumbnail");
+    module2.exports = MovingThumbnail;
+  }
+});
+
+// lib/parser/contents/classes/MusicCarouselShelf.js
+var require_MusicCarouselShelf = __commonJS({
+  "lib/parser/contents/classes/MusicCarouselShelf.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var MusicCarouselShelf = class {
+      type = "MusicCarouselShelf";
+      constructor(data) {
+        this.header = Parser.parse(data.header);
+        this.contents = Parser.parse(data.contents);
+        if (data.numItemsPerColumn) {
+          this.num_items_per_column = data.numItemsPerColumn;
+        }
+      }
+    };
+    __name(MusicCarouselShelf, "MusicCarouselShelf");
+    module2.exports = MusicCarouselShelf;
+  }
+});
+
+// lib/parser/contents/classes/MusicCarouselShelfBasicHeader.js
+var require_MusicCarouselShelfBasicHeader = __commonJS({
+  "lib/parser/contents/classes/MusicCarouselShelfBasicHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var MusicCarouselShelfBasicHeader = class {
+      type = "MusicCarouselShelfBasicHeader";
+      constructor(data) {
+        if (data.strapline) {
+          this.strapline = new Text(data.strapline).toString();
+        }
+        this.title = new Text(data.title).toString();
+        if (data.thumbnail) {
+          this.thumbnail = Thumbnail.fromResponse(data.thumbnail.musicThumbnailRenderer.thumbnail);
+        }
+      }
+    };
+    __name(MusicCarouselShelfBasicHeader, "MusicCarouselShelfBasicHeader");
+    module2.exports = MusicCarouselShelfBasicHeader;
+  }
+});
+
+// lib/parser/contents/classes/MusicDescriptionShelf.js
+var require_MusicDescriptionShelf = __commonJS({
+  "lib/parser/contents/classes/MusicDescriptionShelf.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var MusicDescriptionShelf = class {
+      type = "MusicDescriptionShelf";
+      constructor(data) {
+        this.description = new Text(data.description);
+        if (this.max_collapsed_lines) {
+          this.max_collapsed_lines = data.maxCollapsedLines;
+        }
+        if (this.max_expanded_lines) {
+          this.max_expanded_lines = data.maxExpandedLines;
+        }
+        this.footer = new Text(data.footer);
+      }
+    };
+    __name(MusicDescriptionShelf, "MusicDescriptionShelf");
+    module2.exports = MusicDescriptionShelf;
+  }
+});
+
+// lib/parser/contents/classes/MusicDetailHeader.js
+var require_MusicDetailHeader = __commonJS({
+  "lib/parser/contents/classes/MusicDetailHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var Parser = require_contents();
+    var MusicDetailHeader = class {
+      type = "MusicDetailHeader";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.description = new Text(data.description);
+        this.subtitle = new Text(data.subtitle);
+        this.second_subtitle = new Text(data.secondSubtitle);
+        this.year = this.subtitle.runs.find((run) => /^[12][0-9]{3}$/.test(run.text)).text;
+        this.song_count = this.second_subtitle.runs[0].text;
+        this.total_duration = this.second_subtitle.runs[2].text;
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail.croppedSquareThumbnailRenderer.thumbnail);
+        this.badges = Parser.parse(data.subtitleBadges);
+        const author = this.subtitle.runs.find((run) => {
+          var _a;
+          return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("UC");
+        });
+        if (author) {
+          this.author = {
+            name: author.text,
+            channel_id: author.endpoint.browse.id,
+            endpoint: author.endpoint
+          };
+        }
+        this.menu = Parser.parse(data.menu);
+      }
+    };
+    __name(MusicDetailHeader, "MusicDetailHeader");
+    module2.exports = MusicDetailHeader;
+  }
+});
+
+// lib/parser/contents/classes/MusicHeader.js
+var require_MusicHeader = __commonJS({
+  "lib/parser/contents/classes/MusicHeader.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var MusicHeader = class {
+      type = "MusicHeader";
+      constructor(data) {
+        this.header = Parser.parse(data.header);
+      }
+    };
+    __name(MusicHeader, "MusicHeader");
+    module2.exports = MusicHeader;
+  }
+});
+
+// lib/parser/contents/classes/MusicImmersiveHeader.js
+var require_MusicImmersiveHeader = __commonJS({
+  "lib/parser/contents/classes/MusicImmersiveHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Parser = require_contents();
+    var MusicImmersiveHeader = class {
+      type = "MusicImmersiveHeader";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.description = new Text(data.description);
+        this.thumbnails = Parser.parse(data.thumbnail);
+      }
+    };
+    __name(MusicImmersiveHeader, "MusicImmersiveHeader");
+    module2.exports = MusicImmersiveHeader;
+  }
+});
+
+// lib/parser/contents/classes/MusicInlineBadge.js
+var require_MusicInlineBadge = __commonJS({
+  "lib/parser/contents/classes/MusicInlineBadge.js"(exports2, module2) {
+    "use strict";
+    var MusicInlineBadge = class {
+      type = "MusicInlineBadge";
+      constructor(data) {
+        this.icon_type = data.icon.iconType;
+        this.label = data.accessibilityData.accessibilityData.label;
+      }
+    };
+    __name(MusicInlineBadge, "MusicInlineBadge");
+    module2.exports = MusicInlineBadge;
+  }
+});
+
+// lib/parser/contents/classes/MusicItemThumbnailOverlay.js
+var require_MusicItemThumbnailOverlay = __commonJS({
+  "lib/parser/contents/classes/MusicItemThumbnailOverlay.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var MusicItemThumbnailOverlay = class {
+      type = "MusicItemThumbnailOverlay";
+      constructor(data) {
+        this.content = Parser.parse(data.content);
+        this.content_position = data.contentPosition;
+        this.display_style = data.displayStyle;
+      }
+    };
+    __name(MusicItemThumbnailOverlay, "MusicItemThumbnailOverlay");
+    module2.exports = MusicItemThumbnailOverlay;
+  }
+});
+
+// lib/parser/contents/classes/MusicNavigationButton.js
+var require_MusicNavigationButton = __commonJS({
+  "lib/parser/contents/classes/MusicNavigationButton.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var MusicNavigationButton = class {
+      type = "MusicNavigationButton";
+      constructor(data) {
+        this.button_text = new Text(data.buttonText).toString();
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+      }
+    };
+    __name(MusicNavigationButton, "MusicNavigationButton");
+    module2.exports = MusicNavigationButton;
+  }
+});
+
+// lib/parser/contents/classes/MusicPlayButton.js
+var require_MusicPlayButton = __commonJS({
+  "lib/parser/contents/classes/MusicPlayButton.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var MusicPlayButton = class {
+      type = "MusicPlayButton";
+      constructor(data) {
+        var _a;
+        this.endpoint = new NavigationEndpoint(data.playNavigationEndpoint);
+        this.play_icon_type = data.playIcon.iconType;
+        this.pause_icon_type = data.pauseIcon.iconType;
+        if (data.accessibilityPlayData) {
+          this.play_label = data.accessibilityPlayData.accessibilityData.label;
+        }
+        if (data.accessibilityPlayData) {
+          this.pause_label = (_a = data.accessibilityPauseData) == null ? void 0 : _a.accessibilityData.label;
+        }
+        this.icon_color = data.iconColor;
+      }
+    };
+    __name(MusicPlayButton, "MusicPlayButton");
+    module2.exports = MusicPlayButton;
+  }
+});
+
+// lib/parser/contents/classes/MusicPlaylistShelf.js
+var require_MusicPlaylistShelf = __commonJS({
+  "lib/parser/contents/classes/MusicPlaylistShelf.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var _continuations;
+    var MusicPlaylistShelf = class {
+      constructor(data) {
+        __publicField(this, "type", "MusicPlaylistShelf");
+        __privateAdd(this, _continuations, void 0);
+        this.playlist_id = data.playlistId;
+        this.contents = Parser.parse(data.contents);
+        this.collapsed_item_count = data.collapsedItemCount;
+        __privateSet(this, _continuations, data.continuations);
+      }
+      get continuation() {
+        var _a, _b;
+        return (_b = (_a = __privateGet(this, _continuations)) == null ? void 0 : _a[0]) == null ? void 0 : _b.nextContinuationData;
+      }
+    };
+    __name(MusicPlaylistShelf, "MusicPlaylistShelf");
+    _continuations = new WeakMap();
+    module2.exports = MusicPlaylistShelf;
+  }
+});
+
+// lib/parser/contents/classes/MusicQueue.js
+var require_MusicQueue = __commonJS({
+  "lib/parser/contents/classes/MusicQueue.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var MusicQueue = class {
+      type = "MusicQueue";
+      constructor(data) {
+        this.content = Parser.parse(data.content);
+      }
+    };
+    __name(MusicQueue, "MusicQueue");
+    module2.exports = MusicQueue;
+  }
+});
+
+// lib/parser/contents/classes/MusicResponsiveListItem.js
+var require_MusicResponsiveListItem = __commonJS({
+  "lib/parser/contents/classes/MusicResponsiveListItem.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Utils = require_Utils();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var _flex_columns, _fixed_columns, _playlist_item_data, _parseVideoOrSong, parseVideoOrSong_fn, _parseSong, parseSong_fn, _parseVideo, parseVideo_fn, _parseArtist, parseArtist_fn, _parseAlbum, parseAlbum_fn, _parsePlaylist, parsePlaylist_fn;
+    var MusicResponsiveListItem = class {
+      constructor(data) {
+        __privateAdd(this, _parseVideoOrSong);
+        __privateAdd(this, _parseSong);
+        __privateAdd(this, _parseVideo);
+        __privateAdd(this, _parseArtist);
+        __privateAdd(this, _parseAlbum);
+        __privateAdd(this, _parsePlaylist);
+        __privateAdd(this, _flex_columns, void 0);
+        __privateAdd(this, _fixed_columns, void 0);
+        __privateAdd(this, _playlist_item_data, void 0);
+        var _a, _b, _c, _d;
+        this.type = null;
+        __privateSet(this, _flex_columns, Parser.parse(data.flexColumns));
+        __privateSet(this, _fixed_columns, Parser.parse(data.fixedColumns));
+        __privateSet(this, _playlist_item_data, {
+          video_id: ((_a = data == null ? void 0 : data.playlistItemData) == null ? void 0 : _a.videoId) || null,
+          playlist_set_video_id: ((_b = data == null ? void 0 : data.playlistItemData) == null ? void 0 : _b.playlistSetVideoId) || null
+        });
+        this.endpoint = data.navigationEndpoint && new NavigationEndpoint(data.navigationEndpoint) || null;
+        switch ((_d = (_c = this.endpoint) == null ? void 0 : _c.browse) == null ? void 0 : _d.page_type) {
+          case "MUSIC_PAGE_TYPE_ALBUM":
+            this.type = "album";
+            __privateMethod(this, _parseAlbum, parseAlbum_fn).call(this);
+            break;
+          case "MUSIC_PAGE_TYPE_PLAYLIST":
+            this.type = "playlist";
+            __privateMethod(this, _parsePlaylist, parsePlaylist_fn).call(this);
+            break;
+          case "MUSIC_PAGE_TYPE_ARTIST":
+          case "MUSIC_PAGE_TYPE_USER_CHANNEL":
+            this.type = "artist";
+            __privateMethod(this, _parseArtist, parseArtist_fn).call(this);
+            break;
+          default:
+            __privateMethod(this, _parseVideoOrSong, parseVideoOrSong_fn).call(this);
+            break;
+        }
+        if (data.index) {
+          this.index = new Text(data.index);
+        }
+        this.thumbnails = data.thumbnail ? Thumbnail.fromResponse(data.thumbnail.musicThumbnailRenderer.thumbnail) : [];
+        this.badges = Parser.parse(data.badges) || [];
+        this.menu = Parser.parse(data.menu);
+        this.overlay = Parser.parse(data.overlay);
+      }
+    };
+    __name(MusicResponsiveListItem, "MusicResponsiveListItem");
+    _flex_columns = new WeakMap();
+    _fixed_columns = new WeakMap();
+    _playlist_item_data = new WeakMap();
+    _parseVideoOrSong = new WeakSet();
+    parseVideoOrSong_fn = /* @__PURE__ */ __name(function() {
+      var _a;
+      const is_video = (_a = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _a.some((run) => run.text.match(/(.*?) views/));
+      if (is_video) {
+        this.type = "video";
+        __privateMethod(this, _parseVideo, parseVideo_fn).call(this);
+      } else {
+        this.type = "song";
+        __privateMethod(this, _parseSong, parseSong_fn).call(this);
+      }
+    }, "#parseVideoOrSong");
+    _parseSong = new WeakSet();
+    parseSong_fn = /* @__PURE__ */ __name(function() {
+      var _a, _b, _c, _d, _e, _f, _g;
+      this.id = __privateGet(this, _playlist_item_data).video_id || this.endpoint.watch.video_id;
+      this.title = __privateGet(this, _flex_columns)[0].title.toString();
+      const duration_text = ((_b = (_a = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _a.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))) == null ? void 0 : _b.text) || ((_e = (_d = (_c = __privateGet(this, _fixed_columns)) == null ? void 0 : _c[0]) == null ? void 0 : _d.title) == null ? void 0 : _e.text);
+      duration_text && (this.duration = {
+        text: duration_text,
+        seconds: Utils.timeToSeconds(duration_text)
+      });
+      const album = (_f = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _f.find((run) => {
+        var _a2;
+        return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("MPR");
+      });
+      if (album) {
+        this.album = {
+          id: album.endpoint.browse.id,
+          name: album.text,
+          endpoint: album.endpoint
+        };
+      }
+      const artists = (_g = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _g.filter((run) => {
+        var _a2;
+        return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+      });
+      if (artists) {
+        this.artists = artists.map((artist) => ({
+          name: artist.text,
+          channel_id: artist.endpoint.browse.id,
+          endpoint: artist.endpoint
+        }));
+      }
+    }, "#parseSong");
+    _parseVideo = new WeakSet();
+    parseVideo_fn = /* @__PURE__ */ __name(function() {
+      var _a, _b;
+      this.id = __privateGet(this, _playlist_item_data).video_id;
+      this.title = __privateGet(this, _flex_columns)[0].title.toString();
+      this.views = __privateGet(this, _flex_columns)[1].title.runs.find((run) => run.text.match(/(.*?) views/)).text;
+      const authors = (_a = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _a.filter((run) => {
+        var _a2;
+        return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+      });
+      if (authors) {
+        this.authors = authors.map((author) => ({
+          name: author.text,
+          channel_id: author.endpoint.browse.id,
+          endpoint: author.endpoint
+        }));
+      }
+      const duration_text = (_b = __privateGet(this, _flex_columns)[1].title.runs.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))) == null ? void 0 : _b.text;
+      duration_text && (this.duration = {
+        text: duration_text,
+        seconds: Utils.timeToSeconds(duration_text)
+      });
+    }, "#parseVideo");
+    _parseArtist = new WeakSet();
+    parseArtist_fn = /* @__PURE__ */ __name(function() {
+      var _a;
+      this.id = this.endpoint.browse.id;
+      this.name = __privateGet(this, _flex_columns)[0].title.toString();
+      this.subscribers = ((_a = __privateGet(this, _flex_columns)[1].title.runs[2]) == null ? void 0 : _a.text) || "";
+    }, "#parseArtist");
+    _parseAlbum = new WeakSet();
+    parseAlbum_fn = /* @__PURE__ */ __name(function() {
+      this.id = this.endpoint.browse.id;
+      this.title = __privateGet(this, _flex_columns)[0].title.toString();
+      const author = __privateGet(this, _flex_columns)[1].title.runs.find((run) => {
+        var _a;
+        return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("UC");
+      });
+      author && (this.author = {
+        name: author.text,
+        channel_id: author.endpoint.browse.id,
+        endpoint: author.endpoint
+      });
+      this.year = __privateGet(this, _flex_columns)[1].title.runs.find((run) => /^[12][0-9]{3}$/.test(run.text)).text;
+    }, "#parseAlbum");
+    _parsePlaylist = new WeakSet();
+    parsePlaylist_fn = /* @__PURE__ */ __name(function() {
+      this.id = this.endpoint.browse.id;
+      this.title = __privateGet(this, _flex_columns)[0].title.toString();
+      this.item_count = parseInt(__privateGet(this, _flex_columns)[1].title.runs.find((run) => run.text.match(/\d+ (song|songs)/)).text.match(/\d+/g));
+      const author = __privateGet(this, _flex_columns)[1].title.runs.find((run) => {
+        var _a;
+        return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("UC");
+      });
+      author && (this.author = {
+        name: author.text,
+        channel_id: author.endpoint.browse.id,
+        endpoint: author.endpoint
+      });
+    }, "#parsePlaylist");
+    module2.exports = MusicResponsiveListItem;
+  }
+});
+
+// lib/parser/contents/classes/MusicResponsiveListItemFixedColumn.js
+var require_MusicResponsiveListItemFixedColumn = __commonJS({
+  "lib/parser/contents/classes/MusicResponsiveListItemFixedColumn.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var MusicResponsiveListItemFixedColumn = class {
+      type = "musicResponsiveListItemFlexColumnRenderer";
+      constructor(data) {
+        this.title = new Text(data.text);
+        this.display_priority = data.displayPriority;
+      }
+    };
+    __name(MusicResponsiveListItemFixedColumn, "MusicResponsiveListItemFixedColumn");
+    module2.exports = MusicResponsiveListItemFixedColumn;
+  }
+});
+
+// lib/parser/contents/classes/MusicResponsiveListItemFlexColumn.js
+var require_MusicResponsiveListItemFlexColumn = __commonJS({
+  "lib/parser/contents/classes/MusicResponsiveListItemFlexColumn.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var MusicResponsiveListItemFlexColumn = class {
+      type = "musicResponsiveListItemFlexColumnRenderer";
+      constructor(data) {
+        this.title = new Text(data.text);
+        this.display_priority = data.displayPriority;
+      }
+    };
+    __name(MusicResponsiveListItemFlexColumn, "MusicResponsiveListItemFlexColumn");
+    module2.exports = MusicResponsiveListItemFlexColumn;
+  }
+});
+
+// lib/parser/contents/classes/MusicShelf.js
+var require_MusicShelf = __commonJS({
+  "lib/parser/contents/classes/MusicShelf.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var MusicShelf = class {
+      type = "MusicShelf";
+      constructor(data) {
+        var _a;
+        this.title = new Text(data.title).toString();
+        this.contents = Parser.parse(data.contents);
+        if (data.bottomEndpoint) {
+          this.endpoint = new NavigationEndpoint(data.bottomEndpoint);
+        }
+        if (data.continuations) {
+          this.continuation = (_a = data.continuations) == null ? void 0 : _a[0].nextContinuationData.continuation;
+        }
+        if (data.bottomText) {
+          this.bottom_text = new Text(data.bottomText);
+        }
+      }
+    };
+    __name(MusicShelf, "MusicShelf");
+    module2.exports = MusicShelf;
+  }
+});
+
+// lib/parser/contents/classes/MusicThumbnail.js
+var require_MusicThumbnail = __commonJS({
+  "lib/parser/contents/classes/MusicThumbnail.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var MusicThumbnail = class {
+      type = "MusicThumbnail";
+      constructor(data) {
+        return Thumbnail.fromResponse(data.thumbnail);
+      }
+    };
+    __name(MusicThumbnail, "MusicThumbnail");
+    module2.exports = MusicThumbnail;
+  }
+});
+
+// lib/parser/contents/classes/MusicTwoRowItem.js
+var require_MusicTwoRowItem = __commonJS({
+  "lib/parser/contents/classes/MusicTwoRowItem.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var MusicTwoRowItem = class {
+      type = "MusicTwoRowItem";
+      constructor(data) {
+        var _a, _b, _c;
+        this.title = new Text(data.title);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.id = ((_a = this.endpoint.browse) == null ? void 0 : _a.id) || this.endpoint.watch.video_id;
+        this.subtitle = new Text(data.subtitle);
+        this.badges = Parser.parse(data.subtitleBadges);
+        switch ((_b = this.endpoint.browse) == null ? void 0 : _b.page_type) {
+          case "MUSIC_PAGE_TYPE_ARTIST":
+            this.type = "artist";
+            this.subscribers = this.subtitle.toString();
+            break;
+          case "MUSIC_PAGE_TYPE_PLAYLIST":
+            this.type = "playlist";
+            this.item_count = parseInt((_c = this.subtitle.runs.find((run) => run.text.match(/\d+ (songs|song)/))) == null ? void 0 : _c.text.match(/\d+/g)) || null;
+            break;
+          case "MUSIC_PAGE_TYPE_ALBUM":
+            this.type = "album";
+            const artists = this.subtitle.runs.filter((run) => {
+              var _a2;
+              return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+            });
+            if (artists) {
+              this.artists = artists.map((artist) => ({
+                name: artist.text,
+                channel_id: artist.endpoint.browse.id,
+                endpoint: artist.endpoint
+              }));
+            }
+            this.year = this.subtitle.runs.slice(-1)[0].text;
+            if (isNaN(this.year))
+              delete this.year;
+            break;
+          default:
+            if (this.subtitle.runs[0].text !== "Song") {
+              this.type = "video";
+            } else {
+              this.type = "song";
+            }
+            if (this.type == "video") {
+              this.views = this.subtitle.runs.find((run) => run.text.match(/(.*?) views/)).text;
+              const author = this.subtitle.runs.find((run) => {
+                var _a2;
+                return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+              });
+              if (author) {
+                this.author = {
+                  name: author.text,
+                  channel_id: author.endpoint.browse.id,
+                  endpoint: author.endpoint
+                };
+              }
+            } else {
+              const artists2 = this.subtitle.runs.filter((run) => {
+                var _a2;
+                return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+              });
+              if (artists2) {
+                this.artists = artists2.map((artist) => ({
+                  name: artist.text,
+                  channel_id: artist.endpoint.browse.id,
+                  endpoint: artist.endpoint
+                }));
+              }
+            }
+            break;
+        }
+        this.thumbnail = Thumbnail.fromResponse(data.thumbnailRenderer.musicThumbnailRenderer.thumbnail);
+        this.thumbnail_overlay = Parser.parse(data.thumbnailOverlay);
+        this.menu = Parser.parse(data.menu);
+      }
+    };
+    __name(MusicTwoRowItem, "MusicTwoRowItem");
+    module2.exports = MusicTwoRowItem;
+  }
+});
+
+// lib/parser/contents/classes/PlayerAnnotationsExpanded.js
+var require_PlayerAnnotationsExpanded = __commonJS({
+  "lib/parser/contents/classes/PlayerAnnotationsExpanded.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var PlayerAnnotationsExpanded = class {
+      type = "PlayerAnnotationsExpanded";
+      constructor(data) {
+        this.featured_channel = {
+          start_time_ms: data.featuredChannel.startTimeMs,
+          end_time_ms: data.featuredChannel.endTimeMs,
+          watermark: Thumbnail.fromResponse(data.featuredChannel.watermark),
+          channel_name: data.featuredChannel.channelName,
+          endpoint: new NavigationEndpoint(data.featuredChannel.navigationEndpoint),
+          subscribe_button: Parser.parse(data.featuredChannel.subscribeButton)
+        };
+        this.allow_swipe_dismiss = data.allowSwipeDismiss;
+        this.annotation_id = data.annotationId;
+      }
+    };
+    __name(PlayerAnnotationsExpanded, "PlayerAnnotationsExpanded");
+    module2.exports = PlayerAnnotationsExpanded;
+  }
+});
+
+// lib/parser/contents/classes/PlayerCaptionsTracklist.js
+var require_PlayerCaptionsTracklist = __commonJS({
+  "lib/parser/contents/classes/PlayerCaptionsTracklist.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var PlayerCaptionsTracklist = class {
+      type = "PlayerCaptionsTracklist";
+      constructor(data) {
+        this.caption_tracks = data.captionTracks.map((ct) => ({
+          base_url: ct.baseUrl,
+          name: new Text(ct.name),
+          vss_id: ct.vssId,
+          language_code: ct.languageCode,
+          kind: ct.kind,
+          is_translatable: ct.isTranslatable
+        }));
+        this.audio_tracks = data.audioTracks.map((at) => ({
+          caption_track_indices: at.captionTrackIndices
+        }));
+        this.translation_languages = data.translationLanguages.map((tl) => ({
+          language_code: tl.languageCode,
+          language_name: new Text(tl.languageName)
+        }));
+      }
+    };
+    __name(PlayerCaptionsTracklist, "PlayerCaptionsTracklist");
+    module2.exports = PlayerCaptionsTracklist;
+  }
+});
+
+// lib/parser/contents/classes/PlayerErrorMessage.js
+var require_PlayerErrorMessage = __commonJS({
+  "lib/parser/contents/classes/PlayerErrorMessage.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var PlayerErrorMessage = class {
+      type = "PlayerErrorMessage";
+      constructor(data) {
+        this.subreason = new Text(data.subreason);
+        this.reason = new Text(data.reason);
+        this.proceed_button = Parser.parse(data.proceedButton);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.icon_type = data.icon.iconType;
+      }
+    };
+    __name(PlayerErrorMessage, "PlayerErrorMessage");
+    module2.exports = PlayerErrorMessage;
+  }
+});
+
+// lib/parser/contents/classes/PlayerLiveStoryboardSpec.js
+var require_PlayerLiveStoryboardSpec = __commonJS({
+  "lib/parser/contents/classes/PlayerLiveStoryboardSpec.js"(exports2, module2) {
+    "use strict";
+    var PlayerLiveStoryboardSpec = class {
+      type = "PlayerLiveStoryboardSpec";
+      constructor() {
+      }
+    };
+    __name(PlayerLiveStoryboardSpec, "PlayerLiveStoryboardSpec");
+    module2.exports = PlayerLiveStoryboardSpec;
+  }
+});
+
+// lib/parser/contents/classes/PlayerMicroformat.js
+var require_PlayerMicroformat = __commonJS({
+  "lib/parser/contents/classes/PlayerMicroformat.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var PlayerMicroformat = class {
+      type = "PlayerMicroformat";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.description = new Text(data.description);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.embed = {
+          iframe_url: data.embed.iframeUrl,
+          flash_url: data.embed.flashUrl,
+          flash_secure_url: data.embed.flashSecureUrl,
+          width: data.embed.width,
+          height: data.embed.height
+        };
+        this.length_seconds = parseInt(data.lengthSeconds);
+        this.channel = {
+          id: data.externalChannelId,
+          name: data.ownerChannelName,
+          url: data.ownerProfileUrl
+        };
+        this.is_family_safe = data.isFamilySafe;
+        this.is_unlisted = data.isUnlisted;
+        this.has_ypc_metadata = data.hasYpcMetadata;
+        this.view_count = parseInt(data.viewCount);
+        this.category = data.category;
+        this.publish_date = data.publishDate;
+        this.upload_date = data.uploadDate;
+        this.available_countries = data.availableCountries;
+      }
+    };
+    __name(PlayerMicroformat, "PlayerMicroformat");
+    module2.exports = PlayerMicroformat;
+  }
+});
+
+// lib/parser/contents/classes/PlayerOverlay.js
+var require_PlayerOverlay = __commonJS({
+  "lib/parser/contents/classes/PlayerOverlay.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var PlayerOverlay = class {
+      type = "PlayerOverlay";
+      constructor(data) {
+        this.end_screen = Parser.parse(data.endScreen);
+        this.autoplay = Parser.parse(data.autoplay);
+        this.share_button = Parser.parse(data.shareButton);
+        this.add_to_menu = Parser.parse(data.addToMenu);
+        this.fullscreen_engagement = Parser.parse(data.fullscreenEngagement);
+      }
+    };
+    __name(PlayerOverlay, "PlayerOverlay");
+    module2.exports = PlayerOverlay;
+  }
+});
+
+// lib/parser/contents/classes/PlayerOverlayAutoplay.js
+var require_PlayerOverlayAutoplay = __commonJS({
+  "lib/parser/contents/classes/PlayerOverlayAutoplay.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Author = require_Author();
+    var Thumbnail = require_Thumbnail();
+    var PlayerOverlayAutoplay = class {
+      type = "PlayerOverlayAutoplay";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.video_id = data.videoId;
+        this.video_title = new Text(data.videoTitle);
+        this.short_view_count = new Text(data.shortViewCountText);
+        this.prefer_immediate_redirect = data.preferImmediateRedirect;
+        this.count_down_secs_for_fullscreen = data.countDownSecsForFullscreen;
+        this.published = new Text(data.publishedTimeText);
+        this.background = Thumbnail.fromResponse(data.background);
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+        this.author = new Author(data.byline);
+        this.cancel_button = Parser.parse(data.cancelButton);
+        this.next_button = Parser.parse(data.nextButton);
+        this.close_button = Parser.parse(data.closeButton);
+      }
+    };
+    __name(PlayerOverlayAutoplay, "PlayerOverlayAutoplay");
+    module2.exports = PlayerOverlayAutoplay;
+  }
+});
+
+// lib/parser/contents/classes/PlayerStoryboardSpec.js
+var require_PlayerStoryboardSpec = __commonJS({
+  "lib/parser/contents/classes/PlayerStoryboardSpec.js"(exports2, module2) {
+    "use strict";
+    var PlayerStoryboardSpec = class {
+      type = "PlayerStoryboardSpec";
+      constructor(data) {
+        const parts = data.spec.split("|");
+        const url = new URL(parts.shift());
+        this.boards = parts.map((part, i) => {
+          let [
+            thumbnail_width,
+            thumbnail_height,
+            thumbnail_count,
+            columns,
+            rows,
+            interval,
+            name,
+            sigh
+          ] = part.split("#");
+          url.searchParams.set("sigh", sigh);
+          thumbnail_count = parseInt(thumbnail_count, 10);
+          columns = parseInt(columns, 10);
+          rows = parseInt(rows, 10);
+          const storyboard_count = Math.ceil(thumbnail_count / (columns * rows));
+          return {
+            template_url: url.toString().replace("$L", i).replace("$N", name),
+            thumbnail_width: parseInt(thumbnail_width, 10),
+            thumbnail_height: parseInt(thumbnail_height, 10),
+            thumbnail_count,
+            interval: parseInt(interval, 10),
+            columns,
+            rows,
+            storyboard_count
+          };
+        });
+      }
+    };
+    __name(PlayerStoryboardSpec, "PlayerStoryboardSpec");
+    module2.exports = PlayerStoryboardSpec;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistHeader.js
+var require_PlaylistHeader = __commonJS({
+  "lib/parser/contents/classes/PlaylistHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var PlaylistAuthor = require_PlaylistAuthor();
+    var Parser = require_contents();
+    var PlaylistHeader = class {
+      type = "PlaylistHeader";
+      constructor(data) {
+        this.id = data.playlistId;
+        this.title = new Text(data.title);
+        this.stats = data.stats.map((stat) => new Text(stat));
+        this.brief_stats = data.briefStats.map((stat) => new Text(stat));
+        this.author = new PlaylistAuthor({ ...data.ownerText, navigationEndpoint: data.ownerEndpoint }, data.ownerBadges, null);
+        this.description = new Text(data.descriptionText);
+        this.num_videos = new Text(data.numVideosText);
+        this.view_count = new Text(data.viewCountText);
+        this.can_share = data.shareData.canShare;
+        this.can_delete = data.editableDetails.canDelete;
+        this.is_editable = data.isEditable;
+        this.privacy = data.privacy;
+        this.save_button = Parser.parse(data.saveButton);
+        this.shuffle_play_button = Parser.parse(data.shufflePlayButton);
+        this.menu = Parser.parse(data.moreActionsMenu);
+      }
+    };
+    __name(PlaylistHeader, "PlaylistHeader");
+    module2.exports = PlaylistHeader;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistMetadata.js
+var require_PlaylistMetadata = __commonJS({
+  "lib/parser/contents/classes/PlaylistMetadata.js"(exports2, module2) {
+    "use strict";
+    var PlaylistMetadata = class {
+      type = "PlaylistMetadata";
+      constructor(data) {
+        this.title = data.title;
+        this.description = data.description || null;
+      }
+    };
+    __name(PlaylistMetadata, "PlaylistMetadata");
+    module2.exports = PlaylistMetadata;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistPanel.js
+var require_PlaylistPanel = __commonJS({
+  "lib/parser/contents/classes/PlaylistPanel.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var PlaylistPanel = class {
+      type = "PlaylistPanel";
+      constructor(data) {
+        var _a, _b;
+        this.title = data.title;
+        this.title_text = new Text(data.titleText);
+        this.contents = Parser.parse(data.contents);
+        this.playlist_id = data.playlistId;
+        this.is_infinite = data.isInfinite;
+        this.continuation = (_b = (_a = data.continuations[0]) == null ? void 0 : _a.nextRadioContinuationData) == null ? void 0 : _b.continuation;
+        this.is_editable = data.isEditable;
+        this.preview_description = data.previewDescription;
+        this.num_items_to_show = data.numItemsToShow;
+      }
+    };
+    __name(PlaylistPanel, "PlaylistPanel");
+    module2.exports = PlaylistPanel;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistPanelVideo.js
+var require_PlaylistPanelVideo = __commonJS({
+  "lib/parser/contents/classes/PlaylistPanelVideo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Utils = require_Utils();
+    var PlaylistPanelVideo = class {
+      type = "PlaylistPanelVideo";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.selected = data.selected;
+        this.video_id = data.videoId;
+        this.duration = {
+          text: new Text(data.lengthText).toString(),
+          seconds: Utils.timeToSeconds(new Text(data.lengthText).toString())
+        };
+        const album = new Text(data.longBylineText).runs.find((run) => {
+          var _a;
+          return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("MPR");
+        });
+        const artists = new Text(data.longBylineText).runs.filter((run) => {
+          var _a;
+          return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("UC");
+        });
+        this.author = new Text(data.shortBylineText).toString();
+        album && (this.album = {
+          id: album.endpoint.browse.id,
+          name: album.text,
+          year: new Text(data.longBylineText).runs.slice(-1)[0].text,
+          endpoint: album.endpoint
+        });
+        this.artists = artists.map((artist) => ({
+          name: artist.text,
+          channel_id: artist.endpoint.browse.id,
+          endpoint: artist.endpoint
+        }));
+        this.badges = Parser.parse(data.badges);
+        this.menu = Parser.parse(data.menu);
+        this.set_video_id = data.playlistSetVideoId;
+      }
+    };
+    __name(PlaylistPanelVideo, "PlaylistPanelVideo");
+    module2.exports = PlaylistPanelVideo;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistSidebar.js
+var require_PlaylistSidebar = __commonJS({
+  "lib/parser/contents/classes/PlaylistSidebar.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var PlaylistSidebar = class {
+      type = "PlaylistSidebar";
+      constructor(data) {
+        this.items = Parser.parse(data.items);
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(PlaylistSidebar, "PlaylistSidebar");
+    module2.exports = PlaylistSidebar;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistSidebarPrimaryInfo.js
+var require_PlaylistSidebarPrimaryInfo = __commonJS({
+  "lib/parser/contents/classes/PlaylistSidebarPrimaryInfo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var PlaylistSidebarPrimaryInfo = class {
+      type = "PlaylistSidebarPrimaryInfo";
+      constructor(data) {
+        this.stats = data.stats.map((stat) => new Text(stat));
+        this.thumbnail_renderer = Parser.parse(data.thumbnailRenderer);
+        this.title = new Text(data.title);
+        this.menu = data.menu && Parser.parse(data.menu);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.description = new Text(data.description);
+      }
+    };
+    __name(PlaylistSidebarPrimaryInfo, "PlaylistSidebarPrimaryInfo");
+    module2.exports = PlaylistSidebarPrimaryInfo;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistSidebarSecondaryInfo.js
+var require_PlaylistSidebarSecondaryInfo = __commonJS({
+  "lib/parser/contents/classes/PlaylistSidebarSecondaryInfo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var PlaylistSidebarSecondaryInfo = class {
+      type = "PlaylistSidebarSecondaryInfo";
+      constructor(data) {
+        this.owner = Parser.parse(data.videoOwner) || null;
+        this.button = Parser.parse(data.button) || null;
+      }
+    };
+    __name(PlaylistSidebarSecondaryInfo, "PlaylistSidebarSecondaryInfo");
+    module2.exports = PlaylistSidebarSecondaryInfo;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistVideo.js
+var require_PlaylistVideo = __commonJS({
+  "lib/parser/contents/classes/PlaylistVideo.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Parser = require_contents();
+    var Thumbnail = require_Thumbnail();
+    var PlaylistAuthor = require_PlaylistAuthor();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var PlaylistVideo = class {
+      type = "PlaylistVideo";
+      constructor(data) {
+        this.id = data.videoId;
+        this.index = new Text(data.index);
+        this.title = new Text(data.title);
+        this.author = new PlaylistAuthor(data.shortBylineText);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+        this.set_video_id = data == null ? void 0 : data.setVideoId;
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.is_playable = data.isPlayable;
+        this.menu = Parser.parse(data.menu);
+        this.duration = {
+          text: new Text(data.lengthText).text,
+          seconds: parseInt(data.lengthSeconds)
+        };
+      }
+    };
+    __name(PlaylistVideo, "PlaylistVideo");
+    module2.exports = PlaylistVideo;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistVideoList.js
+var require_PlaylistVideoList = __commonJS({
+  "lib/parser/contents/classes/PlaylistVideoList.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var PlaylistVideoList = class {
+      type = "PlaylistVideoList";
+      constructor(data) {
+        this.id = data.playlistId;
+        this.is_editable = data.isEditable;
+        this.can_reorder = data.canReorder;
+        this.videos = Parser.parse(data.contents);
+      }
+    };
+    __name(PlaylistVideoList, "PlaylistVideoList");
+    module2.exports = PlaylistVideoList;
+  }
+});
+
+// lib/parser/contents/classes/PlaylistVideoThumbnail.js
+var require_PlaylistVideoThumbnail = __commonJS({
+  "lib/parser/contents/classes/PlaylistVideoThumbnail.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var PlaylistVideoThumbnail = class {
+      type = "PlaylistVideoThumbnail";
+      constructor(data) {
+        this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
+      }
+    };
+    __name(PlaylistVideoThumbnail, "PlaylistVideoThumbnail");
+    module2.exports = PlaylistVideoThumbnail;
+  }
+});
+
+// lib/parser/contents/classes/Poll.js
+var require_Poll2 = __commonJS({
+  "lib/parser/contents/classes/Poll.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Poll = class {
+      type = "Poll";
+      constructor(data) {
+        this.choices = data.choices.map((choice) => ({
+          text: new Text(choice.text).toString(),
+          select_endpoint: new NavigationEndpoint(choice.selectServiceEndpoint),
+          deselect_endpoint: new NavigationEndpoint(choice.deselectServiceEndpoint),
+          vote_ratio_if_selected: choice.voteRatioIfSelected,
+          vote_percentage_if_selected: new Text(choice.votePercentageIfSelected),
+          vote_ratio_if_not_selected: choice.voteRatioIfSelected,
+          vote_percentage_if_not_selected: new Text(choice.votePercentageIfSelected),
+          image: Thumbnail.fromResponse(choice.image)
+        }));
+        this.total_votes = new Text(data.totalVotes);
+        this.poll_type = data.type;
+      }
+    };
+    __name(Poll, "Poll");
+    module2.exports = Poll;
+  }
+});
+
+// lib/parser/contents/classes/Post.js
+var require_Post = __commonJS({
+  "lib/parser/contents/classes/Post.js"(exports2, module2) {
+    "use strict";
+    var BackstagePost = require_BackstagePost();
+    var Post = class extends BackstagePost {
+      type = "Post";
+      constructor(data) {
+        super(data);
+      }
+    };
+    __name(Post, "Post");
+    module2.exports = Post;
+  }
+});
+
+// lib/parser/contents/classes/ProfileColumn.js
+var require_ProfileColumn = __commonJS({
+  "lib/parser/contents/classes/ProfileColumn.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ProfileColumn = class {
+      type = "ProfileColumn";
+      constructor(data) {
+        this.items = Parser.parse(data.items);
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(ProfileColumn, "ProfileColumn");
+    module2.exports = ProfileColumn;
+  }
+});
+
+// lib/parser/contents/classes/ProfileColumnStats.js
+var require_ProfileColumnStats = __commonJS({
+  "lib/parser/contents/classes/ProfileColumnStats.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var ProfileColumnStats = class {
+      type = "ProfileColumnStats";
+      constructor(data) {
+        this.items = Parser.parse(data.items);
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(ProfileColumnStats, "ProfileColumnStats");
+    module2.exports = ProfileColumnStats;
+  }
+});
+
+// lib/parser/contents/classes/ProfileColumnStatsEntry.js
+var require_ProfileColumnStatsEntry = __commonJS({
+  "lib/parser/contents/classes/ProfileColumnStatsEntry.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ProfileColumnStatsEntry = class {
+      type = "ProfileColumnStatsEntry";
+      constructor(data) {
+        this.label = new Text(data.label);
+        this.value = new Text(data.value);
+      }
+    };
+    __name(ProfileColumnStatsEntry, "ProfileColumnStatsEntry");
+    module2.exports = ProfileColumnStatsEntry;
+  }
+});
+
+// lib/parser/contents/classes/ProfileColumnUserInfo.js
+var require_ProfileColumnUserInfo = __commonJS({
+  "lib/parser/contents/classes/ProfileColumnUserInfo.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var ProfileColumnUserInfo = class {
+      type = "ProfileColumnUserInfo";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+      }
+    };
+    __name(ProfileColumnUserInfo, "ProfileColumnUserInfo");
+    module2.exports = ProfileColumnUserInfo;
+  }
+});
+
+// lib/parser/contents/classes/ReelItem.js
+var require_ReelItem = __commonJS({
+  "lib/parser/contents/classes/ReelItem.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var ReelItem = class {
+      type = "ReelItem";
+      constructor(data) {
+        this.id = data.videoId;
+        this.title = new Text(data.headline, "");
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.views = new Text(data.viewCountText, "");
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+      }
+    };
+    __name(ReelItem, "ReelItem");
+    module2.exports = ReelItem;
+  }
+});
+
+// lib/parser/contents/classes/ReelShelf.js
+var require_ReelShelf = __commonJS({
+  "lib/parser/contents/classes/ReelShelf.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var ReelShelf = class {
+      type = "ReelShelf";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.items = Parser.parse(data.items);
+        this.endpoint = data.endpoint ? new NavigationEndpoint(data.endpoint) : null;
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(ReelShelf, "ReelShelf");
+    module2.exports = ReelShelf;
+  }
+});
+
+// lib/parser/contents/classes/RelatedChipCloud.js
+var require_RelatedChipCloud = __commonJS({
+  "lib/parser/contents/classes/RelatedChipCloud.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var RelatedChipCloud = class {
+      type = "RelatedChipCloud";
+      constructor(data) {
+        this.content = Parser.parse(data.content);
+      }
+    };
+    __name(RelatedChipCloud, "RelatedChipCloud");
+    module2.exports = RelatedChipCloud;
+  }
+});
+
+// lib/parser/contents/classes/RichGrid.js
+var require_RichGrid = __commonJS({
+  "lib/parser/contents/classes/RichGrid.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var RichGrid = class {
+      type = "RichGrid";
+      constructor(data) {
+        this.header = Parser.parse(data.header);
+        this.contents = Parser.parse(data.contents);
+      }
+    };
+    __name(RichGrid, "RichGrid");
+    module2.exports = RichGrid;
+  }
+});
+
+// lib/parser/contents/classes/RichItem.js
+var require_RichItem = __commonJS({
+  "lib/parser/contents/classes/RichItem.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var RichItem = class {
+      type = "RichItem";
+      constructor(data) {
+        return Parser.parse(data.content);
+      }
+    };
+    __name(RichItem, "RichItem");
+    module2.exports = RichItem;
+  }
+});
+
+// lib/parser/contents/classes/RichListHeader.js
+var require_RichListHeader = __commonJS({
+  "lib/parser/contents/classes/RichListHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var RichListHeader = class {
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.icon_type = data.icon.iconType;
+      }
+    };
+    __name(RichListHeader, "RichListHeader");
+    module2.exports = RichListHeader;
+  }
+});
+
+// lib/parser/contents/classes/RichSection.js
+var require_RichSection = __commonJS({
+  "lib/parser/contents/classes/RichSection.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var RichSection = class {
+      type = "RichSection";
+      constructor(data) {
+        this.contents = Parser.parse(data.content);
+      }
+    };
+    __name(RichSection, "RichSection");
+    module2.exports = RichSection;
+  }
+});
+
+// lib/parser/contents/classes/RichShelf.js
+var require_RichShelf = __commonJS({
+  "lib/parser/contents/classes/RichShelf.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var RichShelf = class {
+      type = "RichShelf";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.contents = Parser.parse(data.contents);
+        this.endpoint = data.endpoint ? new NavigationEndpoint(data.endpoint) : null;
+      }
+    };
+    __name(RichShelf, "RichShelf");
+    module2.exports = RichShelf;
+  }
+});
+
+// lib/parser/contents/classes/SearchBox.js
+var require_SearchBox = __commonJS({
+  "lib/parser/contents/classes/SearchBox.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var SearchBox = class {
+      type = "SearchBox";
+      constructor(data) {
+        this.endpoint = new NavigationEndpoint(data.endpoint);
+        this.search_button = Parser.parse(data.searchButton);
+        this.clear_button = Parser.parse(data.clearButton);
+        this.placeholder_text = new Text(data.placeholderText);
+      }
+    };
+    __name(SearchBox, "SearchBox");
+    module2.exports = SearchBox;
+  }
+});
+
+// lib/parser/contents/classes/SearchRefinementCard.js
+var require_SearchRefinementCard = __commonJS({
+  "lib/parser/contents/classes/SearchRefinementCard.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Thumbnail = require_Thumbnail();
+    var Text = require_Text();
+    var SearchRefinementCard = class {
+      type = "SearchRefinementCard";
+      constructor(data) {
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.endpoint = new NavigationEndpoint(data.searchEndpoint);
+        this.query = new Text(data.query).toString();
+      }
+    };
+    __name(SearchRefinementCard, "SearchRefinementCard");
+    module2.exports = SearchRefinementCard;
+  }
+});
+
+// lib/parser/contents/classes/SearchSuggestionsSection.js
+var require_SearchSuggestionsSection = __commonJS({
+  "lib/parser/contents/classes/SearchSuggestionsSection.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var SearchSuggestionsSection = class {
+      type = "SearchSuggestionsSection";
+      constructor(data) {
+        this.contents = Parser.parse(data.contents);
+      }
+    };
+    __name(SearchSuggestionsSection, "SearchSuggestionsSection");
+    module2.exports = SearchSuggestionsSection;
+  }
+});
+
+// lib/parser/contents/classes/SecondarySearchContainer.js
+var require_SecondarySearchContainer = __commonJS({
+  "lib/parser/contents/classes/SecondarySearchContainer.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var SecondarySearchContainer = class {
+      type = "SecondarySearchContainer";
+      constructor(data) {
+        this.contents = Parser.parse(data.contents);
+      }
+    };
+    __name(SecondarySearchContainer, "SecondarySearchContainer");
+    module2.exports = SecondarySearchContainer;
+  }
+});
+
+// lib/parser/contents/classes/SectionList.js
+var require_SectionList = __commonJS({
+  "lib/parser/contents/classes/SectionList.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var SectionList = class {
+      type = "SectionList";
+      constructor(data) {
+        if (data.targetId) {
+          this.target_id = data.targetId;
+        }
+        this.contents = Parser.parse(data.contents);
+        if (data.continuations) {
+          if (data.continuations[0].nextContinuationData) {
+            this.continuation = data.continuations[0].nextContinuationData.continuation;
+          } else if (data.continuations[0].reloadContinuationData) {
+            this.continuation = data.continuations[0].reloadContinuationData.continuation;
+          }
+        }
+        if (data.header) {
+          this.header = Parser.parse(data.header);
+        }
+      }
+    };
+    __name(SectionList, "SectionList");
+    module2.exports = SectionList;
+  }
+});
+
+// lib/parser/contents/classes/Shelf.js
+var require_Shelf = __commonJS({
+  "lib/parser/contents/classes/Shelf.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Shelf = class {
+      type = "Shelf";
+      constructor(data) {
+        var _a, _b;
+        this.title = new Text(data.title);
+        if (data.endpoint) {
+          this.endpoint = new NavigationEndpoint(data.endpoint);
+        }
+        this.content = Parser.parse(data.content) || [];
+        if ((_a = data.icon) == null ? void 0 : _a.iconType) {
+          this.icon_type = (_b = data.icon) == null ? void 0 : _b.iconType;
+        }
+        if (data.menu) {
+          this.menu = Parser.parse(data.menu);
+        }
+      }
+    };
+    __name(Shelf, "Shelf");
+    module2.exports = Shelf;
+  }
+});
+
+// lib/parser/contents/classes/ShowingResultsFor.js
+var require_ShowingResultsFor = __commonJS({
+  "lib/parser/contents/classes/ShowingResultsFor.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var ShowingResultsFor = class {
+      type = "ShowingResultsFor";
+      constructor(data) {
+        this.corrected_query = new Text(data.correctedQuery);
+        this.endpoint = new NavigationEndpoint(data.correctedQueryEndpoint);
+        this.original_query_endpoint = new NavigationEndpoint(data.originalQueryEndpoint);
+      }
+    };
+    __name(ShowingResultsFor, "ShowingResultsFor");
+    module2.exports = ShowingResultsFor;
+  }
+});
+
+// lib/parser/contents/classes/SimpleCardTeaser.js
+var require_SimpleCardTeaser = __commonJS({
+  "lib/parser/contents/classes/SimpleCardTeaser.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var SimpleCardTeaser = class {
+      type = "SimpleCardTeaser";
+      constructor(data) {
+        this.message = new Text(data.message);
+        this.prominent = data.prominent;
+      }
+    };
+    __name(SimpleCardTeaser, "SimpleCardTeaser");
+    module2.exports = SimpleCardTeaser;
+  }
+});
+
+// lib/parser/contents/classes/SingleActionEmergencySupport.js
+var require_SingleActionEmergencySupport = __commonJS({
+  "lib/parser/contents/classes/SingleActionEmergencySupport.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var SingleActionEmergencySupport = class {
+      type = "SingleActionEmergencySupport";
+      constructor(data) {
+        this.action_text = new Text(data.actionText);
+        this.nav_text = new Text(data.navigationText);
+        this.details = new Text(data.detailsText);
+        this.icon_type = data.icon.iconType;
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+      }
+    };
+    __name(SingleActionEmergencySupport, "SingleActionEmergencySupport");
+    module2.exports = SingleActionEmergencySupport;
+  }
+});
+
+// lib/parser/contents/classes/SingleColumnBrowseResults.js
+var require_SingleColumnBrowseResults = __commonJS({
+  "lib/parser/contents/classes/SingleColumnBrowseResults.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var SingleColumnBrowseResults = class {
+      type = "SingleColumnBrowseResults";
+      constructor(data) {
+        this.tabs = Parser.parse(data.tabs);
+      }
+    };
+    __name(SingleColumnBrowseResults, "SingleColumnBrowseResults");
+    module2.exports = SingleColumnBrowseResults;
+  }
+});
+
+// lib/parser/contents/classes/SingleColumnMusicWatchNextResults.js
+var require_SingleColumnMusicWatchNextResults = __commonJS({
+  "lib/parser/contents/classes/SingleColumnMusicWatchNextResults.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var SingleColumnMusicWatchNextResults = class {
+      type = "SingleColumnMusicWatchNextResults";
+      constructor(data) {
+        return Parser.parse(data);
+      }
+    };
+    __name(SingleColumnMusicWatchNextResults, "SingleColumnMusicWatchNextResults");
+    module2.exports = SingleColumnMusicWatchNextResults;
+  }
+});
+
+// lib/parser/contents/classes/SingleHeroImage.js
+var require_SingleHeroImage = __commonJS({
+  "lib/parser/contents/classes/SingleHeroImage.js"(exports2, module2) {
+    "use strict";
+    var Thumbnail = require_Thumbnail();
+    var SingleHeroImage = class {
+      type = "SingleHeroImage";
+      constructor(data) {
+        this.thumbnails = new Thumbnail(data.thumbnail).thumbnails;
+        this.style = data.style;
+      }
+    };
+    __name(SingleHeroImage, "SingleHeroImage");
+    module2.exports = SingleHeroImage;
+  }
+});
+
+// lib/parser/contents/classes/SortFilterSubMenu.js
+var require_SortFilterSubMenu = __commonJS({
+  "lib/parser/contents/classes/SortFilterSubMenu.js"(exports2, module2) {
+    "use strict";
+    var { observe } = require_Utils();
+    var SortFilterSubMenu = class {
+      type = "SortFilterSubMenu";
+      constructor(data) {
+        this.sub_menu_items = observe(data.subMenuItems.map((item) => {
+          var _a;
+          return {
+            title: item.title,
+            selected: item.selected,
+            continuation: (_a = item.continuation) == null ? void 0 : _a.reloadContinuationData.continuation,
+            subtitle: item.subtitle
+          };
+        }));
+        this.label = data.accessibility.accessibilityData.label;
+      }
+    };
+    __name(SortFilterSubMenu, "SortFilterSubMenu");
+    module2.exports = SortFilterSubMenu;
+  }
+});
+
+// lib/parser/contents/classes/SubFeedOption.js
+var require_SubFeedOption = __commonJS({
+  "lib/parser/contents/classes/SubFeedOption.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var SubFeedOption = class {
+      type = "SubFeedOption";
+      constructor(data) {
+        this.name = new Text(data.name);
+        this.is_selected = data.isSelected;
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+      }
+    };
+    __name(SubFeedOption, "SubFeedOption");
+    module2.exports = SubFeedOption;
+  }
+});
+
+// lib/parser/contents/classes/SubFeedSelector.js
+var require_SubFeedSelector = __commonJS({
+  "lib/parser/contents/classes/SubFeedSelector.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var SubFeedSelector = class {
+      type = "SubFeedSelector";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.options = Parser.parse(data.options);
+      }
+    };
+    __name(SubFeedSelector, "SubFeedSelector");
+    module2.exports = SubFeedSelector;
+  }
+});
+
+// lib/parser/contents/classes/SubscribeButton.js
+var require_SubscribeButton = __commonJS({
+  "lib/parser/contents/classes/SubscribeButton.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var SubscribeButton = class {
+      type = "SubscribeButton";
+      constructor(data) {
+        var _a, _b;
+        this.title = new Text(data.buttonText);
+        this.subscribed = data.subscribed;
+        this.enabled = data.enabled;
+        this.type = data.type;
+        this.channel_id = data.channelId;
+        this.show_preferences = data.showPreferences;
+        this.subscribed_text = new Text(data.subscribedButtonText);
+        this.unsubscribed_text = new Text(data.unsubscribedButtonText);
+        this.notification_preference_button = Parser.parse(data.notificationPreferenceButton);
+        this.endpoint = new NavigationEndpoint(((_a = data.serviceEndpoints) == null ? void 0 : _a[0]) || ((_b = data.onSubscribeEndpoints) == null ? void 0 : _b[0]));
+      }
+    };
+    __name(SubscribeButton, "SubscribeButton");
+    module2.exports = SubscribeButton;
+  }
+});
+
+// lib/parser/contents/classes/SubscriptionNotificationToggleButton.js
+var require_SubscriptionNotificationToggleButton = __commonJS({
+  "lib/parser/contents/classes/SubscriptionNotificationToggleButton.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var SubscriptionNotificationToggleButton = class {
+      type = "SubscriptionNotificationToggleButton";
+      constructor(data) {
+        this.states = data.states.map((state) => ({
+          id: state.stateId,
+          next_id: state.nextStateId,
+          state: Parser.parse(state.state)
+        }));
+        this.current_state_id = data.currentStateId;
+        this.target_id = data.targetId;
+      }
+    };
+    __name(SubscriptionNotificationToggleButton, "SubscriptionNotificationToggleButton");
+    module2.exports = SubscriptionNotificationToggleButton;
+  }
+});
+
+// lib/parser/contents/classes/Tab.js
+var require_Tab = __commonJS({
+  "lib/parser/contents/classes/Tab.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Tab = class {
+      type = "Tab";
+      constructor(data) {
+        this.title = data.title || "N/A";
+        this.selected = data.selected || false;
+        this.endpoint = new NavigationEndpoint(data.endpoint);
+        this.content = Parser.parse(data.content);
+      }
+    };
+    __name(Tab, "Tab");
+    module2.exports = Tab;
+  }
+});
+
+// lib/parser/contents/classes/Tabbed.js
+var require_Tabbed = __commonJS({
+  "lib/parser/contents/classes/Tabbed.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Tabbed = class {
+      type = "Tabbed";
+      constructor(data) {
+        return Parser.parse(data);
+      }
+    };
+    __name(Tabbed, "Tabbed");
+    module2.exports = Tabbed;
+  }
+});
+
+// lib/parser/contents/classes/TabbedSearchResults.js
+var require_TabbedSearchResults = __commonJS({
+  "lib/parser/contents/classes/TabbedSearchResults.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var TabbedSearchResults = class {
+      type = "TabbedSearchResults";
+      constructor(data) {
+        this.tabs = Parser.parse(data.tabs);
+      }
+    };
+    __name(TabbedSearchResults, "TabbedSearchResults");
+    module2.exports = TabbedSearchResults;
+  }
+});
+
+// lib/parser/contents/classes/TextHeader.js
+var require_TextHeader = __commonJS({
+  "lib/parser/contents/classes/TextHeader.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var TextHeader = class {
+      type = "TextHeader";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.style = data.style;
+      }
+    };
+    __name(TextHeader, "TextHeader");
+    module2.exports = TextHeader;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayBottomPanel.js
+var require_ThumbnailOverlayBottomPanel = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayBottomPanel.js"(exports2, module2) {
+    "use strict";
+    var ThumbnailOverlayBottomPanel = class {
+      type = "ThumbnailOverlayBottomPanel";
+      constructor(data) {
+        this.type = data.icon.iconType;
+      }
+    };
+    __name(ThumbnailOverlayBottomPanel, "ThumbnailOverlayBottomPanel");
+    module2.exports = ThumbnailOverlayBottomPanel;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayEndorsement.js
+var require_ThumbnailOverlayEndorsement = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayEndorsement.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ThumbnailOverlayEndorsement = class {
+      type = "ThumbnailOverlayEndorsement";
+      constructor(data) {
+        this.text = new Text(data.text).toString();
+      }
+    };
+    __name(ThumbnailOverlayEndorsement, "ThumbnailOverlayEndorsement");
+    module2.exports = ThumbnailOverlayEndorsement;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayHoverText.js
+var require_ThumbnailOverlayHoverText = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayHoverText.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ThumbnailOverlayHoverText = class {
+      type = "ThumbnailOverlayHoverText";
+      constructor(data) {
+        this.text = new Text(data.text);
+        this.type = data.icon.iconType;
+      }
+    };
+    __name(ThumbnailOverlayHoverText, "ThumbnailOverlayHoverText");
+    module2.exports = ThumbnailOverlayHoverText;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayInlineUnplayable.js
+var require_ThumbnailOverlayInlineUnplayable = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayInlineUnplayable.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ThumbnailOverlayInlineUnplayable = class {
+      type = "ThumbnailOverlayInlineUnplayable";
+      constructor(data) {
+        this.text = new Text(data.text).toString();
+        this.icon_type = data.icon.iconType;
+      }
+    };
+    __name(ThumbnailOverlayInlineUnplayable, "ThumbnailOverlayInlineUnplayable");
+    module2.exports = ThumbnailOverlayInlineUnplayable;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayLoadingPreview.js
+var require_ThumbnailOverlayLoadingPreview = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayLoadingPreview.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ThumbnailOverlayLoadingPreview = class {
+      type = "ThumbnailOverlayLoadingPreview";
+      constructor(data) {
+        this.text = new Text(data.text);
+      }
+    };
+    __name(ThumbnailOverlayLoadingPreview, "ThumbnailOverlayLoadingPreview");
+    module2.exports = ThumbnailOverlayLoadingPreview;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayNowPlaying.js
+var require_ThumbnailOverlayNowPlaying = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayNowPlaying.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ThumbnailOverlayNowPlaying = class {
+      type = "ThumbnailOverlayNowPlaying";
+      constructor(data) {
+        this.text = new Text(data.text).text;
+      }
+    };
+    __name(ThumbnailOverlayNowPlaying, "ThumbnailOverlayNowPlaying");
+    module2.exports = ThumbnailOverlayNowPlaying;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayPinking.js
+var require_ThumbnailOverlayPinking = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayPinking.js"(exports2, module2) {
+    "use strict";
+    var ThumbnailOverlayPinking = class {
+      type = "ThumbnailOverlayPinking";
+      constructor(data) {
+        this.hack = data.hack;
+      }
+    };
+    __name(ThumbnailOverlayPinking, "ThumbnailOverlayPinking");
+    module2.exports = ThumbnailOverlayPinking;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayPlaybackStatus.js
+var require_ThumbnailOverlayPlaybackStatus = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayPlaybackStatus.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ThumbnailOverlayPlaybackStatus = class {
+      type = "ThumbnailOverlayPlaybackStatus";
+      constructor(data) {
+        this.text = data.texts.map((text) => new Text(text))[0].toString();
+      }
+    };
+    __name(ThumbnailOverlayPlaybackStatus, "ThumbnailOverlayPlaybackStatus");
+    module2.exports = ThumbnailOverlayPlaybackStatus;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayResumePlayback.js
+var require_ThumbnailOverlayResumePlayback = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayResumePlayback.js"(exports2, module2) {
+    "use strict";
+    var ThumbnailOverlayResumePlayback = class {
+      type = "ThumbnailOverlayResumePlayback";
+      constructor(data) {
+        this.percent_duration_watched = data.percentDurationWatched;
+      }
+    };
+    __name(ThumbnailOverlayResumePlayback, "ThumbnailOverlayResumePlayback");
+    module2.exports = ThumbnailOverlayResumePlayback;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlaySidePanel.js
+var require_ThumbnailOverlaySidePanel = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlaySidePanel.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ThumbnailOverlaySidePanel = class {
+      type = "ThumbnailOverlaySidePanel";
+      constructor(data) {
+        this.text = new Text(data.text);
+        this.type = data.icon.iconType;
+      }
+    };
+    __name(ThumbnailOverlaySidePanel, "ThumbnailOverlaySidePanel");
+    module2.exports = ThumbnailOverlaySidePanel;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayTimeStatus.js
+var require_ThumbnailOverlayTimeStatus = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayTimeStatus.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var ThumbnailOverlayTimeStatus = class {
+      type = "ThumbnailOverlayTimeStatus";
+      constructor(data) {
+        this.text = new Text(data.text).text;
+      }
+    };
+    __name(ThumbnailOverlayTimeStatus, "ThumbnailOverlayTimeStatus");
+    module2.exports = ThumbnailOverlayTimeStatus;
+  }
+});
+
+// lib/parser/contents/classes/ThumbnailOverlayToggleButton.js
+var require_ThumbnailOverlayToggleButton = __commonJS({
+  "lib/parser/contents/classes/ThumbnailOverlayToggleButton.js"(exports2, module2) {
+    "use strict";
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var ThumbnailOverlayToggleButton = class {
+      type = "ThumbnailOverlayToggleButton";
+      constructor(data) {
+        this.is_toggled = data.isToggled || null;
+        this.icon_type = {
+          toggled: data.toggledIcon.iconType,
+          untoggled: data.untoggledIcon.iconType
+        };
+        this.tooltip = {
+          toggled: data.toggledTooltip,
+          untoggled: data.untoggledTooltip
+        };
+        this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
+        this.untoggled_endpoint = new NavigationEndpoint(data.untoggledServiceEndpoint);
+      }
+    };
+    __name(ThumbnailOverlayToggleButton, "ThumbnailOverlayToggleButton");
+    module2.exports = ThumbnailOverlayToggleButton;
+  }
+});
+
+// lib/parser/contents/classes/ToggleButton.js
+var require_ToggleButton = __commonJS({
+  "lib/parser/contents/classes/ToggleButton.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var ToggleButton = class {
+      type = "ToggleButton";
+      constructor(data) {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
+        this.text = new Text(data.defaultText);
+        this.toggled_text = new Text(data.toggledText);
+        this.tooltip = data.defaultTooltip;
+        this.toggled_tooltip = data.toggledTooltip;
+        this.is_toggled = data.isToggled;
+        this.is_disabled = data.isDisabled;
+        this.icon_type = data.defaultIcon.iconType;
+        const acc_label = ((_b = (_a = data == null ? void 0 : data.defaultText) == null ? void 0 : _a.accessibility) == null ? void 0 : _b.accessibilityData.label) || ((_c = data == null ? void 0 : data.accessibilityData) == null ? void 0 : _c.accessibilityData.label) || ((_d = data == null ? void 0 : data.accessibility) == null ? void 0 : _d.label);
+        if (this.icon_type == "LIKE") {
+          this.like_count = parseInt(acc_label.replace(/\D/g, ""));
+          this.short_like_count = new Text(data.defaultText).toString();
+        }
+        this.endpoint = ((_f = (_e = data.defaultServiceEndpoint) == null ? void 0 : _e.commandExecutorCommand) == null ? void 0 : _f.commands) && new NavigationEndpoint(data.defaultServiceEndpoint.commandExecutorCommand.commands.pop()) || new NavigationEndpoint(data.defaultServiceEndpoint);
+        this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
+        this.button_id = ((_h = (_g = data.toggleButtonSupportedData) == null ? void 0 : _g.toggleButtonIdData) == null ? void 0 : _h.id) || null;
+        this.target_id = data.targetId || null;
+      }
+    };
+    __name(ToggleButton, "ToggleButton");
+    module2.exports = ToggleButton;
+  }
+});
+
+// lib/parser/contents/classes/ToggleMenuServiceItem.js
+var require_ToggleMenuServiceItem = __commonJS({
+  "lib/parser/contents/classes/ToggleMenuServiceItem.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var ToggleMenuServiceItem = class {
+      type = "ToggleMenuServiceItem";
+      constructor(data) {
+        this.text = new Text(data.defaultText);
+        this.toggled_text = new Text(data.toggledText);
+        this.icon_type = data.defaultIcon.iconType;
+        this.toggled_icon_type = data.toggledIcon.iconType;
+        this.endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
+      }
+    };
+    __name(ToggleMenuServiceItem, "ToggleMenuServiceItem");
+    module2.exports = ToggleMenuServiceItem;
+  }
+});
+
+// lib/parser/contents/classes/Tooltip.js
+var require_Tooltip = __commonJS({
+  "lib/parser/contents/classes/Tooltip.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Tooltip = class {
+      type = "Tooltip";
+      constructor(data) {
+        this.promo_config = {
+          promo_id: data.promoConfig.promoId,
+          impression_endpoints: data.promoConfig.impressionEndpoints.map((endpoint) => new NavigationEndpoint(endpoint)),
+          accept: new NavigationEndpoint(data.promoConfig.acceptCommand),
+          dismiss: new NavigationEndpoint(data.promoConfig.dismissCommand)
+        };
+        this.target_id = data.targetId;
+        this.details = new Text(data.detailsText);
+        this.suggested_position = data.suggestedPosition.type;
+        this.dismiss_stratedy = data.dismissStrategy.type;
+        this.dwell_time_ms = parseInt(data.dwellTimeMs);
+      }
+    };
+    __name(Tooltip, "Tooltip");
+    module2.exports = Tooltip;
+  }
+});
+
+// lib/parser/contents/classes/TwoColumnBrowseResults.js
+var require_TwoColumnBrowseResults = __commonJS({
+  "lib/parser/contents/classes/TwoColumnBrowseResults.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var TwoColumnBrowseResults = class {
+      type = "TwoColumnBrowseResults";
+      constructor(data) {
+        this.tabs = Parser.parse(data.tabs);
+        this.secondary_contents = Parser.parse(data.secondaryContents);
+      }
+    };
+    __name(TwoColumnBrowseResults, "TwoColumnBrowseResults");
+    module2.exports = TwoColumnBrowseResults;
+  }
+});
+
+// lib/parser/contents/classes/TwoColumnSearchResults.js
+var require_TwoColumnSearchResults = __commonJS({
+  "lib/parser/contents/classes/TwoColumnSearchResults.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var TwoColumnSearchResults = class {
+      type = "TwoColumnSearchResults";
+      constructor(data) {
+        this.primary_contents = Parser.parse(data.primaryContents);
+        this.secondary_contents = Parser.parse(data.secondaryContents);
+      }
+    };
+    __name(TwoColumnSearchResults, "TwoColumnSearchResults");
+    module2.exports = TwoColumnSearchResults;
+  }
+});
+
+// lib/parser/contents/classes/TwoColumnWatchNextResults.js
+var require_TwoColumnWatchNextResults = __commonJS({
+  "lib/parser/contents/classes/TwoColumnWatchNextResults.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var TwoColumnWatchNextResults = class {
+      type = "TwoColumnWatchNextResults";
+      constructor(data) {
+        var _a, _b;
+        this.results = Parser.parse((_a = data.results) == null ? void 0 : _a.results.contents);
+        this.secondary_results = Parser.parse((_b = data.secondaryResults) == null ? void 0 : _b.secondaryResults.results);
+        this.conversation_bar = Parser.parse(data == null ? void 0 : data.conversationBar);
+      }
+    };
+    __name(TwoColumnWatchNextResults, "TwoColumnWatchNextResults");
+    module2.exports = TwoColumnWatchNextResults;
+  }
+});
+
+// lib/parser/contents/classes/UniversalWatchCard.js
+var require_UniversalWatchCard = __commonJS({
+  "lib/parser/contents/classes/UniversalWatchCard.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var UniversalWatchCard = class {
+      type = "UniversalWatchCard";
+      constructor(data) {
+        this.header = Parser.parse(data.header);
+        this.call_to_action = Parser.parse(data.callToAction);
+        this.sections = Parser.parse(data.sections);
+      }
+    };
+    __name(UniversalWatchCard, "UniversalWatchCard");
+    module2.exports = UniversalWatchCard;
+  }
+});
+
+// lib/parser/contents/classes/VerticalList.js
+var require_VerticalList = __commonJS({
+  "lib/parser/contents/classes/VerticalList.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var VerticalList = class {
+      type = "VerticalList";
+      constructor(data) {
+        this.items = Parser.parse(data.items);
+        this.collapsed_item_count = data.collapsedItemCount;
+        this.collapsed_state_button_text = new Text(data.collapsedStateButtonText);
+      }
+      get contents() {
+        return this.items;
+      }
+    };
+    __name(VerticalList, "VerticalList");
+    module2.exports = VerticalList;
+  }
+});
+
+// lib/parser/contents/classes/VerticalWatchCardList.js
+var require_VerticalWatchCardList = __commonJS({
+  "lib/parser/contents/classes/VerticalWatchCardList.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var VerticalWatchCardList = class {
+      type = "VerticalWatchCardList";
+      constructor(data) {
+        this.items = Parser.parse(data.items);
+        this.contents = this.items;
+        this.view_all_text = new Text(data.viewAllText);
+        this.view_all_endpoint = new NavigationEndpoint(data.viewAllEndpoint);
+      }
+    };
+    __name(VerticalWatchCardList, "VerticalWatchCardList");
+    module2.exports = VerticalWatchCardList;
+  }
+});
+
+// lib/parser/contents/classes/Video.js
+var require_Video = __commonJS({
+  "lib/parser/contents/classes/Video.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var Author = require_Author();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Utils = require_Utils();
+    var Video = class {
+      type = "Video";
+      constructor(data) {
+        var _a, _b, _c, _d;
+        const overlay_time_status = ((_a = data.thumbnailOverlays.find((overlay) => overlay.thumbnailOverlayTimeStatusRenderer)) == null ? void 0 : _a.thumbnailOverlayTimeStatusRenderer.text) || "N/A";
+        this.id = data.videoId;
+        this.title = new Text(data.title);
+        this.description_snippet = data.descriptionSnippet ? new Text(data.descriptionSnippet, "") : null;
+        this.snippets = ((_b = data.detailedMetadataSnippets) == null ? void 0 : _b.map((snippet) => ({
+          text: new Text(snippet.snippetText),
+          hover_text: new Text(snippet.snippetHoverText)
+        }))) || [];
+        this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+        this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+        this.rich_thumbnail = data.richThumbnail && Parser.parse(data.richThumbnail);
+        this.author = new Author(data.ownerText, data.ownerBadges, (_d = (_c = data.channelThumbnailSupportedRenderers) == null ? void 0 : _c.channelThumbnailWithLinkRenderer) == null ? void 0 : _d.thumbnail);
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.published = new Text(data.publishedTimeText);
+        this.view_count_text = new Text(data.viewCountText);
+        this.short_view_count_text = new Text(data.shortViewCountText);
+        const upcoming = data.upcomingEventData && Number(`${data.upcomingEventData.startTime}000`);
+        if (upcoming)
+          this.upcoming = new Date(upcoming);
+        this.duration = {
+          text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
+          seconds: Utils.timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+        };
+        this.show_action_menu = data.showActionMenu;
+        this.is_watched = data.isWatched || false;
+        this.menu = Parser.parse(data.menu);
+      }
+      get description() {
+        var _a;
+        if (this.snippets.length > 0) {
+          return this.snippets.map((snip) => snip.text.toString()).join("");
+        }
+        return ((_a = this.description_snippet) == null ? void 0 : _a.toString()) || "";
+      }
+      get is_live() {
+        return this.badges.some((badge) => badge.style === "BADGE_STYLE_TYPE_LIVE_NOW");
+      }
+      get is_upcoming() {
+        return this.upcoming && this.upcoming > new Date();
+      }
+      get has_captions() {
+        return this.badges.some((badge) => badge.label === "CC");
+      }
+      get best_thumbnail() {
+        return this.thumbnails[0];
+      }
+    };
+    __name(Video, "Video");
+    module2.exports = Video;
+  }
+});
+
+// lib/parser/contents/classes/VideoInfoCardContent.js
+var require_VideoInfoCardContent = __commonJS({
+  "lib/parser/contents/classes/VideoInfoCardContent.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Thumbnail = require_Thumbnail();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var VideoInfoCardContent = class {
+      type = "VideoInfoCardContent";
+      constructor(data) {
+        this.title = new Text(data.videoTitle);
+        this.channel_name = new Text(data.channelName);
+        this.view_count = new Text(data.viewCountText);
+        this.video_thumbnails = Thumbnail.fromResponse(data.videoThumbnail);
+        this.duration = new Text(data.lengthString);
+        this.endpoint = new NavigationEndpoint(data.action);
+      }
+    };
+    __name(VideoInfoCardContent, "VideoInfoCardContent");
+    module2.exports = VideoInfoCardContent;
+  }
+});
+
+// lib/parser/contents/classes/VideoOwner.js
+var require_VideoOwner = __commonJS({
+  "lib/parser/contents/classes/VideoOwner.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var Author = require_Author();
+    var VideoOwner = class {
+      type = "VideoOwner";
+      constructor(data) {
+        this.subscription_button = data.subscriptionButton || null;
+        this.subscriber_count = new Text(data.subscriberCountText);
+        this.author = new Author({
+          ...data.title,
+          navigationEndpoint: data.navigationEndpoint
+        }, data.badges, data.thumbnail);
+      }
+    };
+    __name(VideoOwner, "VideoOwner");
+    module2.exports = VideoOwner;
+  }
+});
+
+// lib/parser/contents/classes/VideoPrimaryInfo.js
+var require_VideoPrimaryInfo = __commonJS({
+  "lib/parser/contents/classes/VideoPrimaryInfo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var VideoPrimaryInfo = class {
+      type = "VideoPrimaryInfo";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.super_title_link = new Text(data.superTitleLink);
+        this.view_count = new Text(data.viewCount.videoViewCountRenderer.viewCount);
+        this.short_view_count = new Text(data.viewCount.videoViewCountRenderer.shortViewCount);
+        this.published = new Text(data.dateText);
+        this.menu = Parser.parse(data.videoActions);
+      }
+    };
+    __name(VideoPrimaryInfo, "VideoPrimaryInfo");
+    module2.exports = VideoPrimaryInfo;
+  }
+});
+
+// lib/parser/contents/classes/VideoSecondaryInfo.js
+var require_VideoSecondaryInfo = __commonJS({
+  "lib/parser/contents/classes/VideoSecondaryInfo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var VideoSecondaryInfo = class {
+      type = "VideoSecondaryInfo";
+      constructor(data) {
+        this.owner = Parser.parse(data.owner);
+        this.description = new Text(data.description);
+        this.subscribe_button = Parser.parse(data.subscribeButton);
+        this.metadata = Parser.parse(data.metadataRowContainer);
+        this.show_more_text = data.showMoreText;
+        this.show_less_text = data.showLessText;
+        this.default_expanded = data.defaultExpanded;
+        this.description_collapsed_lines = data.descriptionCollapsedLines;
+      }
+    };
+    __name(VideoSecondaryInfo, "VideoSecondaryInfo");
+    module2.exports = VideoSecondaryInfo;
+  }
+});
+
+// lib/parser/contents/classes/WatchCardCompactVideo.js
+var require_WatchCardCompactVideo = __commonJS({
+  "lib/parser/contents/classes/WatchCardCompactVideo.js"(exports2, module2) {
+    "use strict";
+    var Text = require_Text();
+    var { timeToSeconds } = require_Utils();
+    var WatchCardCompactVideo = class {
+      type = "WatchCardCompactVideo";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.subtitle = new Text(data.subtitle);
+        this.duration = {
+          text: new Text(data.lengthText).toString(),
+          seconds: timeToSeconds(data.lengthText.simpleText)
+        };
+        this.style = data.style;
+      }
+    };
+    __name(WatchCardCompactVideo, "WatchCardCompactVideo");
+    module2.exports = WatchCardCompactVideo;
+  }
+});
+
+// lib/parser/contents/classes/WatchCardHeroVideo.js
+var require_WatchCardHeroVideo = __commonJS({
+  "lib/parser/contents/classes/WatchCardHeroVideo.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var WatchCardHeroVideo = class {
+      type = "WatchCardHeroVideo";
+      constructor(data) {
+        this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+        this.call_to_action_button = Parser.parse(data.callToActionButton);
+        this.hero_image = Parser.parse(data.heroImage);
+        this.label = data.accessibility.accessibilityData.label;
+      }
+    };
+    __name(WatchCardHeroVideo, "WatchCardHeroVideo");
+    module2.exports = WatchCardHeroVideo;
+  }
+});
+
+// lib/parser/contents/classes/WatchCardRichHeader.js
+var require_WatchCardRichHeader = __commonJS({
+  "lib/parser/contents/classes/WatchCardRichHeader.js"(exports2, module2) {
+    "use strict";
+    var Author = require_Author();
+    var NavigationEndpoint = require_NavigationEndpoint();
+    var Text = require_Text();
+    var WatchCardRichHeader = class {
+      type = "WatchCardRichHeader";
+      constructor(data) {
+        this.title = new Text(data.title);
+        this.title_endpoint = new NavigationEndpoint(data.titleNavigationEndpoint);
+        this.subtitle = new Text(data.subtitle);
+        this.author = new Author(data, data.titleBadge ? [data.titleBadge] : null, data.avatar);
+        this.author.name = this.title;
+        this.style = data.style;
+      }
+    };
+    __name(WatchCardRichHeader, "WatchCardRichHeader");
+    module2.exports = WatchCardRichHeader;
+  }
+});
+
+// lib/parser/contents/classes/WatchCardSectionSequence.js
+var require_WatchCardSectionSequence = __commonJS({
+  "lib/parser/contents/classes/WatchCardSectionSequence.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var WatchCardSectionSequence = class {
+      type = "WatchCardSectionSequence";
+      constructor(data) {
+        this.lists = Parser.parse(data.lists);
+      }
+    };
+    __name(WatchCardSectionSequence, "WatchCardSectionSequence");
+    module2.exports = WatchCardSectionSequence;
+  }
+});
+
+// lib/parser/contents/classes/WatchNextEndScreen.js
+var require_WatchNextEndScreen = __commonJS({
+  "lib/parser/contents/classes/WatchNextEndScreen.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Text = require_Text();
+    var WatchNextEndScreen = class {
+      constructor(data) {
+        this.results = Parser.parse(data.results);
+        this.title = new Text(data.title).toString();
+      }
+    };
+    __name(WatchNextEndScreen, "WatchNextEndScreen");
+    module2.exports = WatchNextEndScreen;
+  }
+});
+
+// lib/parser/contents/classes/WatchNextTabbedResults.js
+var require_WatchNextTabbedResults = __commonJS({
+  "lib/parser/contents/classes/WatchNextTabbedResults.js"(exports2, module2) {
+    "use strict";
+    var TwoColumnBrowseResults = require_TwoColumnBrowseResults();
+    var WatchNextTabbedResults = class extends TwoColumnBrowseResults {
+      type = "WatchNextTabbedResults";
+      constructor(data) {
+        super(data);
+      }
+    };
+    __name(WatchNextTabbedResults, "WatchNextTabbedResults");
+    module2.exports = WatchNextTabbedResults;
+  }
+});
+
+// lib/parser/contents/map.js
+var require_map = __commonJS({
+  "lib/parser/contents/map.js"(exports2, module2) {
+    var map = { "AnalyticsMainAppKeyMetrics": () => require_AnalyticsMainAppKeyMetrics(), "AnalyticsVideo": () => require_AnalyticsVideo(), "AnalyticsVodCarouselCard": () => require_AnalyticsVodCarouselCard(), "Author": () => require_Author(), "BackstageImage": () => require_BackstageImage(), "BackstagePost": () => require_BackstagePost(), "BackstagePostThread": () => require_BackstagePostThread(), "BrowseFeedActions": () => require_BrowseFeedActions(), "Button": () => require_Button(), "C4TabbedHeader": () => require_C4TabbedHeader(), "CallToActionButton": () => require_CallToActionButton(), "Card": () => require_Card(), "CardCollection": () => require_CardCollection(), "Channel": () => require_Channel(), "ChannelAboutFullMetadata": () => require_ChannelAboutFullMetadata(), "ChannelFeaturedContent": () => require_ChannelFeaturedContent(), "ChannelHeaderLinks": () => require_ChannelHeaderLinks(), "ChannelMetadata": () => require_ChannelMetadata(), "ChannelMobileHeader": () => require_ChannelMobileHeader(), "ChannelThumbnailWithLink": () => require_ChannelThumbnailWithLink(), "ChannelVideoPlayer": () => require_ChannelVideoPlayer(), "ChildVideo": () => require_ChildVideo(), "ChipCloud": () => require_ChipCloud(), "ChipCloudChip": () => require_ChipCloudChip(), "CollageHeroImage": () => require_CollageHeroImage(), "Comment": () => require_Comment(), "CommentReplyDialog": () => require_CommentReplyDialog(), "comments/AuthorCommentBadge": () => require_AuthorCommentBadge(), "comments/CommentActionButtons": () => require_CommentActionButtons(), "comments/CommentReplies": () => require_CommentReplies(), "comments/CommentSimplebox": () => require_CommentSimplebox(), "CommentsEntryPointHeader": () => require_CommentsEntryPointHeader(), "CommentsHeader": () => require_CommentsHeader(), "CommentThread": () => require_CommentThread(), "CompactLink": () => require_CompactLink(), "CompactMix": () => require_CompactMix(), "CompactPlaylist": () => require_CompactPlaylist(), "CompactVideo": () => require_CompactVideo(), "ContinuationItem": () => require_ContinuationItem(), "CtaGoToCreatorStudio": () => require_CtaGoToCreatorStudio(), "DataModelSection": () => require_DataModelSection(), "DidYouMean": () => require_DidYouMean(), "DownloadButton": () => require_DownloadButton(), "Element": () => require_Element(), "EmergencyOnebox": () => require_EmergencyOnebox(), "EmojiRun": () => require_EmojiRun(), "Endscreen": () => require_Endscreen(), "EndscreenElement": () => require_EndscreenElement(), "EndScreenPlaylist": () => require_EndScreenPlaylist(), "EndScreenVideo": () => require_EndScreenVideo(), "ExpandableTab": () => require_ExpandableTab(), "ExpandedShelfContents": () => require_ExpandedShelfContents(), "FeedFilterChipBar": () => require_FeedFilterChipBar(), "FeedTabbedHeader": () => require_FeedTabbedHeader(), "Format": () => require_Format(), "Grid": () => require_Grid(), "GridChannel": () => require_GridChannel(), "GridPlaylist": () => require_GridPlaylist(), "GridVideo": () => require_GridVideo(), "HistorySuggestion": () => require_HistorySuggestion(), "HorizontalCardList": () => require_HorizontalCardList(), "HorizontalList": () => require_HorizontalList(), "ItemSection": () => require_ItemSection(), "ItemSectionHeader": () => require_ItemSectionHeader(), "LikeButton": () => require_LikeButton(), "LiveChat": () => require_LiveChat(), "livechat/AddBannerToLiveChatCommand": () => require_AddBannerToLiveChatCommand(), "livechat/AddChatItemAction": () => require_AddChatItemAction(), "livechat/AddLiveChatTickerItemAction": () => require_AddLiveChatTickerItemAction(), "livechat/items/LiveChatBanner": () => require_LiveChatBanner(), "livechat/items/LiveChatBannerHeader": () => require_LiveChatBannerHeader(), "livechat/items/LiveChatBannerPoll": () => require_LiveChatBannerPoll(), "livechat/items/LiveChatMembershipItem": () => require_LiveChatMembershipItem(), "livechat/items/LiveChatPaidMessage": () => require_LiveChatPaidMessage(), "livechat/items/LiveChatPaidSticker": () => require_LiveChatPaidSticker(), "livechat/items/LiveChatPlaceholderItem": () => require_LiveChatPlaceholderItem(), "livechat/items/LiveChatTextMessage": () => require_LiveChatTextMessage(), "livechat/items/LiveChatTickerPaidMessageItem": () => require_LiveChatTickerPaidMessageItem(), "livechat/items/LiveChatTickerSponsorItem": () => require_LiveChatTickerSponsorItem(), "livechat/items/LiveChatViewerEngagementMessage": () => require_LiveChatViewerEngagementMessage(), "livechat/items/Poll": () => require_Poll(), "livechat/items/PollHeader": () => require_PollHeader(), "livechat/LiveChatActionPanel": () => require_LiveChatActionPanel(), "livechat/MarkChatItemAsDeletedAction": () => require_MarkChatItemAsDeletedAction(), "livechat/MarkChatItemsByAuthorAsDeletedAction": () => require_MarkChatItemsByAuthorAsDeletedAction(), "livechat/RemoveBannerForLiveChatCommand": () => require_RemoveBannerForLiveChatCommand(), "livechat/ReplaceChatItemAction": () => require_ReplaceChatItemAction(), "livechat/ReplayChatItemAction": () => require_ReplayChatItemAction(), "livechat/ShowLiveChatActionPanelAction": () => require_ShowLiveChatActionPanelAction(), "livechat/ShowLiveChatTooltipCommand": () => require_ShowLiveChatTooltipCommand(), "livechat/UpdateDateTextAction": () => require_UpdateDateTextAction(), "livechat/UpdateDescriptionAction": () => require_UpdateDescriptionAction(), "livechat/UpdateLiveChatPollAction": () => require_UpdateLiveChatPollAction(), "livechat/UpdateTitleAction": () => require_UpdateTitleAction(), "livechat/UpdateToggleButtonTextAction": () => require_UpdateToggleButtonTextAction(), "livechat/UpdateViewershipAction": () => require_UpdateViewershipAction(), "LiveChatAuthorBadge": () => require_LiveChatAuthorBadge(), "LiveChatHeader": () => require_LiveChatHeader(), "LiveChatItemList": () => require_LiveChatItemList(), "LiveChatMessageInput": () => require_LiveChatMessageInput(), "LiveChatParticipant": () => require_LiveChatParticipant(), "LiveChatParticipantsList": () => require_LiveChatParticipantsList(), "Menu": () => require_Menu(), "MenuNavigationItem": () => require_MenuNavigationItem(), "MenuServiceItem": () => require_MenuServiceItem(), "MenuServiceItemDownload": () => require_MenuServiceItemDownload(), "MerchandiseItem": () => require_MerchandiseItem(), "MerchandiseShelf": () => require_MerchandiseShelf(), "Message": () => require_Message(), "MetadataBadge": () => require_MetadataBadge(), "MetadataRow": () => require_MetadataRow(), "MetadataRowContainer": () => require_MetadataRowContainer(), "MetadataRowHeader": () => require_MetadataRowHeader(), "MicroformatData": () => require_MicroformatData(), "Mix": () => require_Mix(), "Movie": () => require_Movie(), "MovingThumbnail": () => require_MovingThumbnail(), "MusicCarouselShelf": () => require_MusicCarouselShelf(), "MusicCarouselShelfBasicHeader": () => require_MusicCarouselShelfBasicHeader(), "MusicDescriptionShelf": () => require_MusicDescriptionShelf(), "MusicDetailHeader": () => require_MusicDetailHeader(), "MusicHeader": () => require_MusicHeader(), "MusicImmersiveHeader": () => require_MusicImmersiveHeader(), "MusicInlineBadge": () => require_MusicInlineBadge(), "MusicItemThumbnailOverlay": () => require_MusicItemThumbnailOverlay(), "MusicNavigationButton": () => require_MusicNavigationButton(), "MusicPlayButton": () => require_MusicPlayButton(), "MusicPlaylistShelf": () => require_MusicPlaylistShelf(), "MusicQueue": () => require_MusicQueue(), "MusicResponsiveListItem": () => require_MusicResponsiveListItem(), "MusicResponsiveListItemFixedColumn": () => require_MusicResponsiveListItemFixedColumn(), "MusicResponsiveListItemFlexColumn": () => require_MusicResponsiveListItemFlexColumn(), "MusicShelf": () => require_MusicShelf(), "MusicThumbnail": () => require_MusicThumbnail(), "MusicTwoRowItem": () => require_MusicTwoRowItem(), "NavigatableText": () => require_NavigatableText(), "NavigationEndpoint": () => require_NavigationEndpoint(), "PlayerAnnotationsExpanded": () => require_PlayerAnnotationsExpanded(), "PlayerCaptionsTracklist": () => require_PlayerCaptionsTracklist(), "PlayerErrorMessage": () => require_PlayerErrorMessage(), "PlayerLiveStoryboardSpec": () => require_PlayerLiveStoryboardSpec(), "PlayerMicroformat": () => require_PlayerMicroformat(), "PlayerOverlay": () => require_PlayerOverlay(), "PlayerOverlayAutoplay": () => require_PlayerOverlayAutoplay(), "PlayerStoryboardSpec": () => require_PlayerStoryboardSpec(), "Playlist": () => require_Playlist(), "PlaylistAuthor": () => require_PlaylistAuthor(), "PlaylistHeader": () => require_PlaylistHeader(), "PlaylistMetadata": () => require_PlaylistMetadata(), "PlaylistPanel": () => require_PlaylistPanel(), "PlaylistPanelVideo": () => require_PlaylistPanelVideo(), "PlaylistSidebar": () => require_PlaylistSidebar(), "PlaylistSidebarPrimaryInfo": () => require_PlaylistSidebarPrimaryInfo(), "PlaylistSidebarSecondaryInfo": () => require_PlaylistSidebarSecondaryInfo(), "PlaylistVideo": () => require_PlaylistVideo(), "PlaylistVideoList": () => require_PlaylistVideoList(), "PlaylistVideoThumbnail": () => require_PlaylistVideoThumbnail(), "Poll": () => require_Poll2(), "Post": () => require_Post(), "ProfileColumn": () => require_ProfileColumn(), "ProfileColumnStats": () => require_ProfileColumnStats(), "ProfileColumnStatsEntry": () => require_ProfileColumnStatsEntry(), "ProfileColumnUserInfo": () => require_ProfileColumnUserInfo(), "ReelItem": () => require_ReelItem(), "ReelShelf": () => require_ReelShelf(), "RelatedChipCloud": () => require_RelatedChipCloud(), "RichGrid": () => require_RichGrid(), "RichItem": () => require_RichItem(), "RichListHeader": () => require_RichListHeader(), "RichSection": () => require_RichSection(), "RichShelf": () => require_RichShelf(), "SearchBox": () => require_SearchBox(), "SearchRefinementCard": () => require_SearchRefinementCard(), "SearchSuggestion": () => require_SearchSuggestion(), "SearchSuggestionsSection": () => require_SearchSuggestionsSection(), "SecondarySearchContainer": () => require_SecondarySearchContainer(), "SectionList": () => require_SectionList(), "Shelf": () => require_Shelf(), "ShowingResultsFor": () => require_ShowingResultsFor(), "SimpleCardTeaser": () => require_SimpleCardTeaser(), "SingleActionEmergencySupport": () => require_SingleActionEmergencySupport(), "SingleColumnBrowseResults": () => require_SingleColumnBrowseResults(), "SingleColumnMusicWatchNextResults": () => require_SingleColumnMusicWatchNextResults(), "SingleHeroImage": () => require_SingleHeroImage(), "SortFilterSubMenu": () => require_SortFilterSubMenu(), "SubFeedOption": () => require_SubFeedOption(), "SubFeedSelector": () => require_SubFeedSelector(), "SubscribeButton": () => require_SubscribeButton(), "SubscriptionNotificationToggleButton": () => require_SubscriptionNotificationToggleButton(), "Tab": () => require_Tab(), "Tabbed": () => require_Tabbed(), "TabbedSearchResults": () => require_TabbedSearchResults(), "Text": () => require_Text(), "TextHeader": () => require_TextHeader(), "TextRun": () => require_TextRun(), "Thumbnail": () => require_Thumbnail(), "ThumbnailOverlayBottomPanel": () => require_ThumbnailOverlayBottomPanel(), "ThumbnailOverlayEndorsement": () => require_ThumbnailOverlayEndorsement(), "ThumbnailOverlayHoverText": () => require_ThumbnailOverlayHoverText(), "ThumbnailOverlayInlineUnplayable": () => require_ThumbnailOverlayInlineUnplayable(), "ThumbnailOverlayLoadingPreview": () => require_ThumbnailOverlayLoadingPreview(), "ThumbnailOverlayNowPlaying": () => require_ThumbnailOverlayNowPlaying(), "ThumbnailOverlayPinking": () => require_ThumbnailOverlayPinking(), "ThumbnailOverlayPlaybackStatus": () => require_ThumbnailOverlayPlaybackStatus(), "ThumbnailOverlayResumePlayback": () => require_ThumbnailOverlayResumePlayback(), "ThumbnailOverlaySidePanel": () => require_ThumbnailOverlaySidePanel(), "ThumbnailOverlayTimeStatus": () => require_ThumbnailOverlayTimeStatus(), "ThumbnailOverlayToggleButton": () => require_ThumbnailOverlayToggleButton(), "ToggleButton": () => require_ToggleButton(), "ToggleMenuServiceItem": () => require_ToggleMenuServiceItem(), "Tooltip": () => require_Tooltip(), "TwoColumnBrowseResults": () => require_TwoColumnBrowseResults(), "TwoColumnSearchResults": () => require_TwoColumnSearchResults(), "TwoColumnWatchNextResults": () => require_TwoColumnWatchNextResults(), "UniversalWatchCard": () => require_UniversalWatchCard(), "VerticalList": () => require_VerticalList(), "VerticalWatchCardList": () => require_VerticalWatchCardList(), "Video": () => require_Video(), "VideoDetails": () => require_VideoDetails(), "VideoInfoCardContent": () => require_VideoInfoCardContent(), "VideoOwner": () => require_VideoOwner(), "VideoPrimaryInfo": () => require_VideoPrimaryInfo(), "VideoSecondaryInfo": () => require_VideoSecondaryInfo(), "WatchCardCompactVideo": () => require_WatchCardCompactVideo(), "WatchCardHeroVideo": () => require_WatchCardHeroVideo(), "WatchCardRichHeader": () => require_WatchCardRichHeader(), "WatchCardSectionSequence": () => require_WatchCardSectionSequence(), "WatchNextEndScreen": () => require_WatchNextEndScreen(), "WatchNextTabbedResults": () => require_WatchNextTabbedResults() };
+    module2.exports = /* @__PURE__ */ __name(function req(name) {
+      const func = map[name];
+      if (!func) {
+        const error = new Error("Module not found: " + name);
+        error.code = "MODULE_NOT_FOUND";
+        throw error;
+      }
+      return func();
+    }, "req");
+  }
+});
+
+// lib/parser/contents/index.js
+var require_contents = __commonJS({
+  "lib/parser/contents/index.js"(exports2, module2) {
+    "use strict";
+    var { InnertubeError: InnertubeError2, observe } = require_Utils();
+    var Format = require_Format();
+    var VideoDetails = require_VideoDetails();
+    var requireParserClass = require_map();
+    var AppendContinuationItemsAction = class {
+      type = "appendContinuationItemsAction";
+      constructor(data) {
+        this.contents = Parser.parse(data.continuationItems);
+      }
+    };
+    __name(AppendContinuationItemsAction, "AppendContinuationItemsAction");
+    var ReloadContinuationItemsCommand = class {
+      type = "reloadContinuationItemsCommand";
+      constructor(data) {
+        this.target_id = data.targetId;
+        this.contents = Parser.parse(data.continuationItems);
+      }
+    };
+    __name(ReloadContinuationItemsCommand, "ReloadContinuationItemsCommand");
+    var SectionListContinuation = class {
+      type = "sectionListContinuation";
+      constructor(data) {
+        this.contents = Parser.parse(data.contents);
+        this.continuation = data.continuations[0].nextContinuationData.continuation;
+      }
+    };
+    __name(SectionListContinuation, "SectionListContinuation");
+    var TimedContinuation = class {
+      type = "timedContinuationData";
+      constructor(data) {
+        this.timeout_ms = data.timeoutMs || data.timeUntilLastMessageMsec;
+        this.token = data.continuation;
+      }
+    };
+    __name(TimedContinuation, "TimedContinuation");
+    var LiveChatContinuation = class {
+      type = "liveChatContinuation";
+      constructor(data) {
+        var _a, _b, _c, _d, _e;
+        this.actions = Parser.parse((_a = data.actions) == null ? void 0 : _a.map((action) => {
+          delete action.clickTrackingParams;
+          return action;
+        }), "livechat") || [];
+        this.action_panel = Parser.parse(data.actionPanel);
+        this.item_list = Parser.parse(data.itemList);
+        this.header = Parser.parse(data.header);
+        this.participants_list = Parser.parse(data.participantsList);
+        this.popout_message = Parser.parse(data.popoutMessage);
+        this.emojis = ((_b = data.emojis) == null ? void 0 : _b.map((emoji) => ({
+          emoji_id: emoji.emojiId,
+          shortcuts: emoji.shortcuts,
+          search_terms: emoji.searchTerms,
+          image: emoji.image,
+          is_custom_emoji: emoji.isCustomEmoji
+        }))) || null;
+        this.continuation = new TimedContinuation(((_c = data.continuations) == null ? void 0 : _c[0].timedContinuationData) || ((_d = data.continuations) == null ? void 0 : _d[0].invalidationContinuationData) || ((_e = data.continuations) == null ? void 0 : _e[0].liveChatReplayContinuationData));
+        this.viewer_name = data.viewerName;
+      }
+    };
+    __name(LiveChatContinuation, "LiveChatContinuation");
+    var _memo, _clearMemo, clearMemo_fn, _createMemo, createMemo_fn, _addToMemo, addToMemo_fn;
+    var _Parser = class {
+      static parseResponse(data) {
+        var _a, _b;
+        __privateMethod(this, _createMemo, createMemo_fn).call(this);
+        const contents = _Parser.parse(data.contents);
+        const contents_memo = __privateGet(_Parser, _memo);
+        __privateMethod(this, _clearMemo, clearMemo_fn).call(this);
+        __privateMethod(this, _createMemo, createMemo_fn).call(this);
+        const on_response_received_actions = data.onResponseReceivedActions ? _Parser.parseRR(data.onResponseReceivedActions) : null;
+        const on_response_received_actions_memo = __privateGet(_Parser, _memo);
+        __privateMethod(this, _clearMemo, clearMemo_fn).call(this);
+        __privateMethod(this, _createMemo, createMemo_fn).call(this);
+        const on_response_received_endpoints = data.onResponseReceivedEndpoints ? _Parser.parseRR(data.onResponseReceivedEndpoints) : null;
+        const on_response_received_endpoints_memo = __privateGet(_Parser, _memo);
+        __privateMethod(this, _clearMemo, clearMemo_fn).call(this);
+        __privateMethod(this, _createMemo, createMemo_fn).call(this);
+        const on_response_received_commands = data.onResponseReceivedCommands ? _Parser.parseRR(data.onResponseReceivedCommands) : null;
+        const on_response_received_commands_memo = __privateGet(_Parser, _memo);
+        __privateMethod(this, _clearMemo, clearMemo_fn).call(this);
+        return {
+          contents,
+          contents_memo,
+          on_response_received_actions,
+          on_response_received_actions_memo,
+          on_response_received_endpoints,
+          on_response_received_endpoints_memo,
+          on_response_received_commands,
+          on_response_received_commands_memo,
+          continuation: data.continuation ? _Parser.parseC(data.continuation) : null,
+          continuation_contents: data.continuationContents ? _Parser.parseLC(data.continuationContents) : null,
+          actions: data.actions && _Parser.parseLA(data.actions),
+          metadata: _Parser.parse(data.metadata),
+          header: _Parser.parse(data.header),
+          microformat: data.microformat && _Parser.parse(data.microformat),
+          sidebar: _Parser.parse(data.sidebar),
+          overlay: _Parser.parse(data.overlay),
+          refinements: data.refinements || null,
+          estimated_results: data.estimatedResults || null,
+          player_overlays: _Parser.parse(data.playerOverlays),
+          playability_status: data.playabilityStatus && {
+            status: data.playabilityStatus.status,
+            error_screen: _Parser.parse(data.playabilityStatus.errorScreen),
+            embeddable: data.playabilityStatus.playableInEmbed || null,
+            reason: data.reason || ""
+          },
+          streaming_data: data.streamingData && {
+            expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1e3),
+            formats: _Parser.parseFormats(data.streamingData.formats),
+            adaptive_formats: _Parser.parseFormats(data.streamingData.adaptiveFormats),
+            dash_manifest_url: ((_a = data.streamingData) == null ? void 0 : _a.dashManifestUrl) || null,
+            dls_manifest_url: ((_b = data.streamingData) == null ? void 0 : _b.dashManifestUrl) || null
+          },
+          captions: _Parser.parse(data.captions),
+          video_details: data.videoDetails && new VideoDetails(data.videoDetails),
+          annotations: _Parser.parse(data.annotations),
+          storyboards: _Parser.parse(data.storyboards),
+          endscreen: _Parser.parse(data.endscreen),
+          cards: _Parser.parse(data.cards)
+        };
+      }
+      static parseC(data) {
+        if (data.timedContinuationData)
+          return new TimedContinuation(data.timedContinuationData);
+      }
+      static parseLC(data) {
+        if (data.sectionListContinuation)
+          return new SectionListContinuation(data.sectionListContinuation);
+        if (data.liveChatContinuation)
+          return new LiveChatContinuation(data.liveChatContinuation);
+      }
+      static parseRR(actions) {
+        return observe(actions.map((action) => {
+          if (action.reloadContinuationItemsCommand)
+            return new ReloadContinuationItemsCommand(action.reloadContinuationItemsCommand);
+          if (action.appendContinuationItemsAction)
+            return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
+        }).filter((item) => item));
+      }
+      static parseLA(data) {
+        if (Array.isArray(data)) {
+          return _Parser.parse(data.map((action) => {
+            delete action.clickTrackingParams;
+            return action;
+          }), "livechat");
+        }
+        return _Parser.parse(data) || null;
+      }
+      static parseFormats(formats) {
+        return observe((formats == null ? void 0 : formats.map((format) => new Format(format))) || []);
+      }
+      static parse(data, module3) {
+        if (!data)
+          return null;
+        if (Array.isArray(data)) {
+          const results = [];
+          for (const item of data) {
+            const keys2 = Object.keys(item);
+            const classname2 = this.sanitizeClassName(keys2[0]);
+            if (!this.shouldIgnore(classname2)) {
+              try {
+                const path = module3 ? `${module3}/` : "";
+                const TargetClass = requireParserClass(path + classname2);
+                const result = new TargetClass(item[keys2[0]]);
+                results.push(result);
+                __privateMethod(this, _addToMemo, addToMemo_fn).call(this, classname2, result);
+              } catch (err) {
+                this.formatError({ classname: classname2, classdata: item[keys2[0]], err });
+              }
+            }
+          }
+          return observe(results);
+        }
+        const keys = Object.keys(data);
+        const classname = this.sanitizeClassName(keys[0]);
+        if (!this.shouldIgnore(classname)) {
+          try {
+            const path = module3 ? `${module3}/` : "";
+            const TargetClass = requireParserClass(path + classname);
+            const result = new TargetClass(data[keys[0]]);
+            __privateMethod(this, _addToMemo, addToMemo_fn).call(this, classname, result);
+            return result;
+          } catch (err) {
+            this.formatError({ classname, classdata: data[keys[0]], err });
+            return null;
+          }
+        }
+      }
+      static formatError({ classname, classdata, err }) {
+        if (err.code == "MODULE_NOT_FOUND") {
+          return console.warn(new InnertubeError2(`${classname} not found!
+This is a bug, please report it at ${require_package().bugs.url}`, classdata));
+        }
+        console.warn(new InnertubeError2(`Something went wrong at ${classname}!
+This is a bug, please report it at ${require_package().bugs.url}`, { stack: err.stack }));
+      }
+      static sanitizeClassName(input) {
+        return (input.charAt(0).toUpperCase() + input.slice(1)).replace(/Renderer|Model/g, "").replace(/Radio/g, "Mix").trim();
+      }
+      static shouldIgnore(classname) {
+        return [
+          "DisplayAd",
+          "SearchPyv",
+          "MealbarPromo",
+          "BackgroundPromo",
+          "PromotedSparklesWeb",
+          "RunAttestationCommand"
+        ].includes(classname);
+      }
+    };
+    var Parser = _Parser;
+    __name(Parser, "Parser");
+    _memo = new WeakMap();
+    _clearMemo = new WeakSet();
+    clearMemo_fn = /* @__PURE__ */ __name(function() {
+      __privateSet(_Parser, _memo, null);
+    }, "#clearMemo");
+    _createMemo = new WeakSet();
+    createMemo_fn = /* @__PURE__ */ __name(function() {
+      __privateSet(_Parser, _memo, /* @__PURE__ */ new Map());
+    }, "#createMemo");
+    _addToMemo = new WeakSet();
+    addToMemo_fn = /* @__PURE__ */ __name(function(classname, result) {
+      if (!__privateGet(_Parser, _memo))
+        return;
+      if (!__privateGet(_Parser, _memo).has(classname))
+        return __privateGet(_Parser, _memo).set(classname, [result]);
+      __privateGet(_Parser, _memo).get(classname).push(result);
+    }, "#addToMemo");
+    __privateAdd(Parser, _clearMemo);
+    __privateAdd(Parser, _createMemo);
+    __privateAdd(Parser, _addToMemo);
+    __privateAdd(Parser, _memo, /* @__PURE__ */ new Map());
+    module2.exports = Parser;
+  }
+});
+
+// lib/parser/youtube/Analytics.js
+var require_Analytics = __commonJS({
+  "lib/parser/youtube/Analytics.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var _page;
+    var Analytics = class {
+      constructor(response) {
+        __privateAdd(this, _page, void 0);
+        __privateSet(this, _page, Parser.parseResponse(response));
+        this.sections = __privateGet(this, _page).contents_memo.get("Element");
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    __name(Analytics, "Analytics");
+    _page = new WeakMap();
+    module2.exports = Analytics;
+  }
+});
+
+// lib/core/AccountManager.js
+var require_AccountManager = __commonJS({
+  "lib/core/AccountManager.js"(exports2, module2) {
+    "use strict";
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var Analytics = require_Analytics();
+    var Proto2 = require_proto();
+    var _actions, _setSetting, setSetting_fn;
+    var AccountManager2 = class {
+      constructor(actions) {
+        __privateAdd(this, _setSetting);
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _actions, actions);
+        this.channel = {
+          editName: (new_name) => __privateGet(this, _actions).channel("channel/edit_name", { new_name }),
+          editDescription: (new_description) => __privateGet(this, _actions).channel("channel/edit_description", { new_description }),
+          getBasicAnalytics: () => this.getAnalytics()
+        };
+        this.settings = {
+          notifications: {
+            setSubscriptions: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS, "SPaccount_notifications", option),
+            setRecommendedVideos: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.RECOMMENDED_VIDEOS, "SPaccount_notifications", option),
+            setChannelActivity: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.CHANNEL_ACTIVITY, "SPaccount_notifications", option),
+            setCommentReplies: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.COMMENT_REPLIES, "SPaccount_notifications", option),
+            setMentions: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.USER_MENTION, "SPaccount_notifications", option),
+            setSharedContent: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.SHARED_CONTENT, "SPaccount_notifications", option)
+          },
+          privacy: {
+            setSubscriptionsPrivate: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS_PRIVACY, "SPaccount_privacy", option),
+            setSavedPlaylistsPrivate: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.PLAYLISTS_PRIVACY, "SPaccount_privacy", option)
+          }
+        };
+      }
+      async getInfo() {
+        const response = await __privateGet(this, _actions).account("account/accounts_list", { client: "ANDROID" });
+        const account_item_section_renderer = Utils.findNode(response.data, "contents", "accountItem", 8, false);
+        const profile = account_item_section_renderer.accountItem.serviceEndpoint.signInEndpoint.directSigninUserProfile;
+        const name = profile.accountName;
+        const email = profile.email;
+        const photo = profile.accountPhoto.thumbnails;
+        const subscriber_count = account_item_section_renderer.accountItem.accountByline.runs.map((run) => run.text).join("");
+        const channel_id = response.data.contents[0].accountSectionListRenderer.footers[0].accountChannelRenderer.navigationEndpoint.browseEndpoint.browseId;
+        return { name, email, channel_id, subscriber_count, photo };
+      }
+      async getTimeWatched() {
+        const response = await __privateGet(this, _actions).browse("SPtime_watched", { client: "ANDROID" });
+        const rows = Utils.findNode(response.data, "contents", "statRowRenderer", 11, false);
+        const stats = rows.map((row) => {
+          const renderer = row.statRowRenderer;
+          if (renderer) {
+            return {
+              title: renderer.title.runs.map((run) => run.text).join(""),
+              time: renderer.contents.runs.map((run) => run.text).join("")
+            };
+          }
+        }).filter((stat) => stat);
+        return stats;
+      }
+      async getAnalytics() {
+        const info = await this.getInfo();
+        const params = Proto2.encodeChannelAnalyticsParams(info.channel_id);
+        const response = await __privateGet(this, _actions).browse("FEanalytics_screen", { params, client: "ANDROID" });
+        return new Analytics(response.data);
+      }
+    };
+    __name(AccountManager2, "AccountManager");
+    _actions = new WeakMap();
+    _setSetting = new WeakSet();
+    setSetting_fn = /* @__PURE__ */ __name(async function(setting_id, type, new_value) {
+      Utils.throwIfMissing({ setting_id, type, new_value });
+      const values = { ON: true, OFF: false };
+      if (!values.hasOwnProperty(new_value))
+        throw new Utils.InnertubeError("Invalid option", { option: new_value, available_options: Object.keys(values) });
+      const response = await __privateGet(this, _actions).browse(type);
+      const contents = (() => {
+        switch (type.trim()) {
+          case "SPaccount_notifications":
+            return Utils.findNode(response.data, "contents", "Your preferences", 13, false).options;
+          case "SPaccount_privacy":
+            return Utils.findNode(response.data, "contents", "settingsSwitchRenderer", 13, false).options;
+          default:
+            throw new TypeError("undefined is not a function");
+        }
+      })();
+      const option = contents.find((option2) => option2.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemIdForClient == setting_id);
+      const setting_item_id = option.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemId;
+      const set_setting = await __privateGet(this, _actions).account("account/set_setting", {
+        new_value: type == "SPaccount_privacy" ? !values[new_value] : values[new_value],
+        setting_item_id
+      });
+      return set_setting;
+    }, "#setSetting");
+    module2.exports = AccountManager2;
+  }
+});
+
+// lib/core/PlaylistManager.js
+var require_PlaylistManager = __commonJS({
+  "lib/core/PlaylistManager.js"(exports2, module2) {
+    "use strict";
+    var Utils = require_Utils();
+    var _actions;
+    var PlaylistManager2 = class {
+      constructor(actions) {
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _actions, actions);
+      }
+      async create(title, video_ids) {
+        Utils.throwIfMissing({ title, video_ids });
+        const response = await __privateGet(this, _actions).playlist("playlist/create", { title, ids: video_ids });
+        return {
+          success: response.success,
+          status_code: response.status_code,
+          playlist_id: response.data.playlistId,
+          data: response.data
+        };
+      }
+      async delete(playlist_id) {
+        Utils.throwIfMissing({ playlist_id });
+        const response = await __privateGet(this, _actions).playlist("playlist/delete", { playlist_id });
+        return {
+          playlist_id,
+          success: response.success,
+          status_code: response.status_code,
+          data: response.data
+        };
+      }
+      async addVideos(playlist_id, video_ids) {
+        Utils.throwIfMissing({ playlist_id, video_ids });
+        const response = await __privateGet(this, _actions).playlist("browse/edit_playlist", {
+          ids: video_ids,
+          action: "ACTION_ADD_VIDEO",
+          playlist_id
+        });
+        return {
+          playlist_id,
+          success: response.success,
+          status_code: response.status_code,
+          data: response.data
+        };
+      }
+      async removeVideos(playlist_id, video_ids) {
+        Utils.throwIfMissing({ playlist_id, video_ids });
+        const plinfo = await __privateGet(this, _actions).browse(`VL${playlist_id}`);
+        const list = Utils.findNode(plinfo.data, "contents", "contents", 13, false);
+        if (!list.isEditable)
+          throw new Utils.InnertubeError("This playlist cannot be edited.", playlist_id);
+        const videos = list.contents.filter((item) => video_ids.includes(item.playlistVideoRenderer.videoId));
+        const set_video_ids = videos.map((video) => video.playlistVideoRenderer.setVideoId);
+        const response = await __privateGet(this, _actions).playlist("browse/edit_playlist", {
+          ids: set_video_ids,
+          action: "ACTION_REMOVE_VIDEO",
+          playlist_id
+        });
+        return {
+          success: response.success,
+          status_code: response.status_code,
+          playlist_id,
+          data: response.data
+        };
+      }
+    };
+    __name(PlaylistManager2, "PlaylistManager");
+    _actions = new WeakMap();
+    module2.exports = PlaylistManager2;
+  }
+});
+
+// lib/core/InteractionManager.js
+var require_InteractionManager = __commonJS({
+  "lib/core/InteractionManager.js"(exports2, module2) {
+    "use strict";
+    var Utils = require_Utils();
+    var _actions;
+    var InteractionManager2 = class {
+      constructor(actions) {
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _actions, actions);
+      }
+      async like(video_id) {
+        Utils.throwIfMissing({ video_id });
+        const action = await __privateGet(this, _actions).engage("like/like", { video_id });
+        return action;
+      }
+      async dislike(video_id) {
+        Utils.throwIfMissing({ video_id });
+        const action = await __privateGet(this, _actions).engage("like/dislike", { video_id });
+        return action;
+      }
+      async removeLike(video_id) {
+        Utils.throwIfMissing({ video_id });
+        const action = await this.actions.engage("like/removelike", { video_id });
+        return action;
+      }
+      async subscribe(channel_id) {
+        Utils.throwIfMissing({ channel_id });
+        const action = await __privateGet(this, _actions).engage("subscription/subscribe", { channel_id });
+        return action;
+      }
+      async unsubscribe(channel_id) {
+        Utils.throwIfMissing({ channel_id });
+        const action = await __privateGet(this, _actions).engage("subscription/unsubscribe", { channel_id });
+        return action;
+      }
+      async comment(video_id, text) {
+        Utils.throwIfMissing({ video_id, text });
+        const action = await __privateGet(this, _actions).engage("comment/create_comment", { video_id, text });
+        return action;
+      }
+      async translate(text, target_language, args = {}) {
+        Utils.throwIfMissing({ text, target_language });
+        const response = await await __privateGet(this, _actions).engage("comment/perform_comment_action", {
+          video_id: args.video_id,
+          comment_id: args.comment_id,
+          target_language,
+          comment_action: "translate",
+          text
+        });
+        const translated_content = Utils.findNode(response.data, "frameworkUpdates", "content", 7, false);
+        return {
+          success: response.success,
+          status_code: response.status_code,
+          translated_content: translated_content.content,
+          data: response.data
+        };
+      }
+      async setNotificationPreferences(channel_id, type) {
+        Utils.throwIfMissing({ channel_id, type });
+        const action = await __privateGet(this, _actions).notifications("modify_channel_preference", { channel_id, pref: type || "NONE" });
+        return action;
+      }
+    };
+    __name(InteractionManager2, "InteractionManager");
+    _actions = new WeakMap();
+    module2.exports = InteractionManager2;
+  }
+});
+
+// lib/core/Feed.js
+var require_Feed = __commonJS({
+  "lib/core/Feed.js"(exports2, module2) {
+    "use strict";
+    var ResultsParser = require_contents();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var _page, _continuation, _actions, _memo;
+    var _Feed = class {
+      constructor(actions, data, already_parsed = false) {
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _continuation, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _memo, void 0);
+        if (data.on_response_received_actions || data.on_response_received_endpoints || already_parsed) {
+          __privateSet(this, _page, data);
+        } else {
+          __privateSet(this, _page, ResultsParser.parseResponse(data));
+        }
+        __privateSet(this, _memo, __privateGet(this, _page).on_response_received_commands ? __privateGet(this, _page).on_response_received_commands_memo : __privateGet(this, _page).on_response_received_endpoints ? __privateGet(this, _page).on_response_received_endpoints_memo : __privateGet(this, _page).contents ? __privateGet(this, _page).contents_memo : __privateGet(this, _page).on_response_received_actions ? __privateGet(this, _page).on_response_received_actions_memo : []);
+        __privateSet(this, _actions, actions);
+      }
+      static getVideosFromMemo(memo) {
+        const videos = memo.get("Video") || [];
+        const grid_videos = memo.get("GridVideo") || [];
+        const compact_videos = memo.get("CompactVideo") || [];
+        const playlist_videos = memo.get("PlaylistVideo") || [];
+        const playlist_panel_videos = memo.get("PlaylistPanelVideo") || [];
+        const watch_card_compact_videos = memo.get("WatchCardCompactVideo") || [];
+        return [
+          ...videos,
+          ...grid_videos,
+          ...compact_videos,
+          ...playlist_videos,
+          ...playlist_panel_videos,
+          ...watch_card_compact_videos
+        ];
+      }
+      static getPlaylistsFromMemo(memo) {
+        const playlists = memo.get("Playlist") || [];
+        const grid_playlists = memo.get("GridPlaylist") || [];
+        return [...playlists, ...grid_playlists];
+      }
+      get videos() {
+        return _Feed.getVideosFromMemo(__privateGet(this, _memo));
+      }
+      get posts() {
+        return __privateGet(this, _memo).get("BackstagePost") || __privateGet(this, _memo).get("Post") || [];
+      }
+      get channels() {
+        const channels = __privateGet(this, _memo).get("Channel") || [];
+        const grid_channels = __privateGet(this, _memo).get("GridChannel") || [];
+        return [...channels, ...grid_channels];
+      }
+      get playlists() {
+        return _Feed.getPlaylistsFromMemo(__privateGet(this, _memo));
+      }
+      get memo() {
+        return __privateGet(this, _memo);
+      }
+      get contents() {
+        var _a, _b, _c, _d;
+        const tab_content = (_b = (_a = __privateGet(this, _memo).get("Tab")) == null ? void 0 : _a[0]) == null ? void 0 : _b.content;
+        const reload_continuation_items = (_c = __privateGet(this, _memo).get("reloadContinuationItemsCommand")) == null ? void 0 : _c[0];
+        const append_continuation_items = (_d = __privateGet(this, _memo).get("appendContinuationItemsAction")) == null ? void 0 : _d[0];
+        return tab_content || reload_continuation_items || append_continuation_items;
+      }
+      get shelves() {
+        const shelf = __privateGet(this, _page).contents_memo.get("Shelf") || [];
+        const rich_shelf = __privateGet(this, _page).contents_memo.get("RichShelf") || [];
+        const reel_shelf = __privateGet(this, _page).contents_memo.get("ReelShelf") || [];
+        return [...shelf, ...rich_shelf, ...reel_shelf];
+      }
+      getShelf(title) {
+        return this.shelves.find((shelf) => shelf.title.toString() === title);
+      }
+      get secondary_contents() {
+        var _a;
+        return (_a = this.page.contents) == null ? void 0 : _a.secondary_contents;
+      }
+      get actions() {
+        return __privateGet(this, _actions);
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+      get has_continuation() {
+        return (__privateGet(this, _memo).get("ContinuationItem") || []).length > 0;
+      }
+      async getContinuationData() {
+        if (__privateGet(this, _continuation)) {
+          if (__privateGet(this, _continuation).length > 1)
+            throw new InnertubeError2("There are too many continuations, you'll need to find the correct one yourself in this.page");
+          if (__privateGet(this, _continuation).length === 0)
+            throw new InnertubeError2("There are no continuations");
+          const response = await __privateGet(this, _continuation)[0].endpoint.call(__privateGet(this, _actions));
+          return response;
+        }
+        __privateSet(this, _continuation, __privateGet(this, _memo).get("ContinuationItem"));
+        if (__privateGet(this, _continuation))
+          return this.getContinuationData();
+        return null;
+      }
+      async getContinuation() {
+        const continuation_data = await this.getContinuationData();
+        return new _Feed(this.actions, continuation_data, true);
+      }
+    };
+    var Feed = _Feed;
+    __name(Feed, "Feed");
+    _page = new WeakMap();
+    _continuation = new WeakMap();
+    _actions = new WeakMap();
+    _memo = new WeakMap();
+    module2.exports = Feed;
+  }
+});
+
+// lib/parser/youtube/Search.js
+var require_Search = __commonJS({
+  "lib/parser/youtube/Search.js"(exports2, module2) {
+    "use strict";
+    var Feed = require_Feed();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var Search2 = class extends Feed {
+      constructor(actions, data, already_parsed = false) {
+        var _a, _b, _c;
+        super(actions, data, already_parsed);
+        const contents = ((_a = this.page.contents) == null ? void 0 : _a.primary_contents.contents) || this.page.on_response_received_commands[0].contents;
+        const secondary_contents = (_c = (_b = this.page.contents) == null ? void 0 : _b.secondary_contents) == null ? void 0 : _c.contents;
+        this.results = contents.get({ type: "ItemSection" }).contents;
+        const card_list = this.results.get({ type: "HorizontalCardList" }, true);
+        const universal_watch_card = secondary_contents == null ? void 0 : secondary_contents.get({ type: "UniversalWatchCard" });
+        this.refinements = this.page.refinements || [];
+        this.estimated_results = this.page.estimated_results;
+        this.watch_card = {
+          header: (universal_watch_card == null ? void 0 : universal_watch_card.header) || null,
+          call_to_action: (universal_watch_card == null ? void 0 : universal_watch_card.call_to_action) || null,
+          sections: (universal_watch_card == null ? void 0 : universal_watch_card.sections) || []
+        };
+        this.refinement_cards = {
+          header: (card_list == null ? void 0 : card_list.header) || null,
+          cards: (card_list == null ? void 0 : card_list.cards) || []
+        };
+      }
+      async selectRefinementCard(card) {
+        let target_card;
+        if (typeof card === "string") {
+          target_card = this.refinement_cards.cards.get({ query: card });
+          if (!target_card)
+            throw new InnertubeError2("Refinement card not found!", { available_cards: this.refinement_card_queries });
+        } else if (card.type === "SearchRefinementCard") {
+          target_card = card;
+        } else {
+          throw new InnertubeError2("Invalid refinement card!");
+        }
+        const page = await target_card.endpoint.call(this.actions);
+        return new Search2(this.actions, page, true);
+      }
+      get refinement_card_queries() {
+        return this.refinement_cards.cards.map((card) => card.query);
+      }
+      async getContinuation() {
+        const continuation = await this.getContinuationData();
+        return new Search2(this.actions, continuation, true);
+      }
+    };
+    __name(Search2, "Search");
+    module2.exports = Search2;
+  }
+});
+
+// lib/parser/youtube/LiveChat.js
+var require_LiveChat2 = __commonJS({
+  "lib/parser/youtube/LiveChat.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var EventEmitter2 = require("events");
+    var _actions, _video_info, _continuation, _mcontinuation, _lc_polling_interval_ms, _md_polling_interval_ms, _pollLivechat, pollLivechat_fn, _emitSmoothedActions, emitSmoothedActions_fn, _pollMetadata, pollMetadata_fn, _wait, wait_fn;
+    var LiveChat = class {
+      constructor(video_info) {
+        __privateAdd(this, _pollLivechat);
+        __privateAdd(this, _emitSmoothedActions);
+        __privateAdd(this, _pollMetadata);
+        __privateAdd(this, _wait);
+        __publicField(this, "ev");
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _video_info, void 0);
+        __privateAdd(this, _continuation, void 0);
+        __privateAdd(this, _mcontinuation, void 0);
+        __privateAdd(this, _lc_polling_interval_ms, 1e3);
+        __privateAdd(this, _md_polling_interval_ms, 5e3);
+        __publicField(this, "initial_info");
+        __publicField(this, "live_metadata");
+        __publicField(this, "running", false);
+        __publicField(this, "is_replay", false);
+        __privateSet(this, _video_info, video_info);
+        __privateSet(this, _actions, video_info.actions);
+        __privateSet(this, _continuation, __privateGet(this, _video_info).livechat.continuation);
+        this.is_replay = __privateGet(this, _video_info).livechat.is_replay;
+        this.live_metadata = {
+          title: null,
+          description: null,
+          views: null,
+          likes: null,
+          date: null
+        };
+        this.ev = new EventEmitter2();
+      }
+      start() {
+        if (!this.running) {
+          this.running = true;
+          __privateMethod(this, _pollLivechat, pollLivechat_fn).call(this);
+          __privateMethod(this, _pollMetadata, pollMetadata_fn).call(this);
+        }
+      }
+      stop() {
+        this.running = false;
+      }
+      async sendMessage(text) {
+        const response = await __privateGet(this, _actions).livechat("live_chat/send_message", {
+          text,
+          ...{
+            video_id: __privateGet(this, _video_info).basic_info.id,
+            channel_id: __privateGet(this, _video_info).basic_info.channel_id
+          }
+        });
+        const data = Parser.parseResponse(response.data);
+        return data.actions;
+      }
+    };
+    __name(LiveChat, "LiveChat");
+    _actions = new WeakMap();
+    _video_info = new WeakMap();
+    _continuation = new WeakMap();
+    _mcontinuation = new WeakMap();
+    _lc_polling_interval_ms = new WeakMap();
+    _md_polling_interval_ms = new WeakMap();
+    _pollLivechat = new WeakSet();
+    pollLivechat_fn = /* @__PURE__ */ __name(function() {
+      const lc_poller = setTimeout(() => {
+        (async () => {
+          const endpoint = this.is_replay ? "live_chat/get_live_chat_replay" : "live_chat/get_live_chat";
+          const response = await __privateGet(this, _actions).livechat(endpoint, { ctoken: __privateGet(this, _continuation) });
+          const data = Parser.parseResponse(response.data);
+          const contents = data.continuation_contents;
+          __privateSet(this, _continuation, contents.continuation.token);
+          __privateSet(this, _lc_polling_interval_ms, contents.continuation.timeout_ms);
+          if (contents.header) {
+            this.initial_info = contents;
+            this.ev.emit("start", contents);
+          } else {
+            await __privateMethod(this, _emitSmoothedActions, emitSmoothedActions_fn).call(this, contents.actions);
+          }
+          clearTimeout(lc_poller);
+          this.running && __privateMethod(this, _pollLivechat, pollLivechat_fn).call(this);
+        })().catch((err) => Promise.reject(err));
+      }, __privateGet(this, _lc_polling_interval_ms));
+    }, "#pollLivechat");
+    _emitSmoothedActions = new WeakSet();
+    emitSmoothedActions_fn = /* @__PURE__ */ __name(async function(actions) {
+      const base = 1e4;
+      let delay = actions.length < base / 80 ? 1 : 0;
+      const emit_delay_ms = delay == 1 ? (delay = base / actions.length, delay *= Math.random() + 0.5, delay = Math.min(1e3, delay), delay = Math.max(80, delay)) : delay = 80;
+      for (const action of actions) {
+        await __privateMethod(this, _wait, wait_fn).call(this, emit_delay_ms);
+        this.ev.emit("chat-update", action);
+      }
+    }, "#emitSmoothedActions");
+    _pollMetadata = new WeakSet();
+    pollMetadata_fn = /* @__PURE__ */ __name(function() {
+      const md_poller = setTimeout(() => {
+        (async () => {
+          var _a, _b, _c, _d, _e;
+          const payload = { video_id: __privateGet(this, _video_info).basic_info.id };
+          if (__privateGet(this, _mcontinuation)) {
+            payload.ctoken = __privateGet(this, _mcontinuation);
+          }
+          const response = await __privateGet(this, _actions).livechat("updated_metadata", payload);
+          const data = Parser.parseResponse(response.data);
+          __privateSet(this, _mcontinuation, data.continuation.token);
+          __privateSet(this, _md_polling_interval_ms, data.continuation.timeout_ms);
+          this.metadata = {
+            title: data.actions.get({ type: "UpdateTitleAction" }) || ((_a = this.metadata) == null ? void 0 : _a.title),
+            description: data.actions.get({ type: "UpdateDescriptionAction" }) || ((_b = this.metadata) == null ? void 0 : _b.description),
+            views: data.actions.get({ type: "UpdateViewershipAction" }) || ((_c = this.metadata) == null ? void 0 : _c.views),
+            likes: data.actions.get({ type: "UpdateToggleButtonTextAction" }) || ((_d = this.metadata) == null ? void 0 : _d.likes),
+            date: data.actions.get({ type: "UpdateDateTextAction" }) || ((_e = this.metadata) == null ? void 0 : _e.date)
+          };
+          this.ev.emit("metadata-update", this.metadata);
+          clearTimeout(md_poller);
+          this.running && __privateMethod(this, _pollMetadata, pollMetadata_fn).call(this);
+        })().catch((err) => Promise.reject(err));
+      }, __privateGet(this, _md_polling_interval_ms));
+    }, "#pollMetadata");
+    _wait = new WeakSet();
+    wait_fn = /* @__PURE__ */ __name(async function(ms) {
+      return new Promise((resolve) => setTimeout(() => resolve(), ms));
+    }, "#wait");
+    module2.exports = LiveChat;
+  }
+});
+
+// lib/parser/youtube/VideoInfo.js
+var require_VideoInfo = __commonJS({
+  "lib/parser/youtube/VideoInfo.js"(exports2, module2) {
+    "use strict";
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var { PassThrough: PassThrough2, Readable } = false ? null : require("stream");
+    var Axios = require("../node_modules/axios/index.js");
+    var Parser = require_contents();
+    var LiveChat = require_LiveChat2();
+    var Constants = require_Constants();
+    var CancelToken = Axios.CancelToken;
+    var _page, _actions, _player2, _cpn, _watch_next_continuation;
+    var VideoInfo2 = class {
+      constructor(data, actions, player, cpn) {
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _player2, void 0);
+        __privateAdd(this, _cpn, void 0);
+        __privateAdd(this, _watch_next_continuation, void 0);
+        var _a, _b, _c, _d, _e, _f;
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _player2, player);
+        __privateSet(this, _cpn, cpn);
+        const info = Parser.parseResponse(data[0]);
+        const next = Parser.parseResponse(data[1].data || {});
+        __privateSet(this, _page, [info, next]);
+        if (info.playability_status.status === "ERROR")
+          throw new InnertubeError2("This video is unavailable", info.playability_status);
+        this.basic_info = {
+          ...info.video_details,
+          ...{
+            embed: info.microformat.embed,
+            channel: info.microformat.channel,
+            is_unlisted: info.microformat.is_unlisted,
+            is_family_safe: info.microformat.is_family_safe,
+            has_ypc_metadata: info.microformat.has_ypc_metadata
+          }
+        };
+        this.streaming_data = info.streaming_data || null;
+        this.playability_status = info.playability_status;
+        this.annotations = info.annotations;
+        this.storyboards = info.storyboards;
+        this.endscreen = info.endscreen;
+        this.captions = info.captions;
+        this.cards = info.cards;
+        const results = (_a = next.contents) == null ? void 0 : _a.results;
+        const secondary_results = (_b = next.contents) == null ? void 0 : _b.secondary_results;
+        if (results && secondary_results) {
+          this.primary_info = results.get({ type: "VideoPrimaryInfo" });
+          this.secondary_info = results.get({ type: "VideoSecondaryInfo" });
+          this.merchandise = (results == null ? void 0 : results.get({ type: "MerchandiseShelf" })) || null;
+          this.related_chip_cloud = (_c = secondary_results == null ? void 0 : secondary_results.get({ type: "RelatedChipCloud" })) == null ? void 0 : _c.content;
+          this.watch_next_feed = (_d = secondary_results == null ? void 0 : secondary_results.get({ type: "ItemSection" })) == null ? void 0 : _d.contents;
+          __privateSet(this, _watch_next_continuation, (_e = this.watch_next_feed) == null ? void 0 : _e.pop());
+          this.player_overlays = next.player_overlays;
+          this.basic_info.like_count = this.primary_info.menu.top_level_buttons.get({ icon_type: "LIKE" }).like_count;
+          this.basic_info.is_liked = this.primary_info.menu.top_level_buttons.get({ icon_type: "LIKE" }).is_toggled;
+          this.basic_info.is_disliked = this.primary_info.menu.top_level_buttons.get({ icon_type: "DISLIKE" }).is_toggled;
+          const comments_entry_point = results.get({ target_id: "comments-entry-point" });
+          this.comments_entry_point_header = (comments_entry_point == null ? void 0 : comments_entry_point.contents.get({ type: "CommentsEntryPointHeader" })) || null;
+          this.livechat = ((_f = next.contents_memo.get("LiveChat")) == null ? void 0 : _f[0]) || null;
+        }
+      }
+      async selectFilter(name) {
+        if (!this.filters.includes(name))
+          throw new InnertubeError2("Invalid filter", { available_filters: this.filters });
+        const filter = this.related_chip_cloud.chips.get({ text: name });
+        if (filter.is_selected)
+          return this;
+        const response = await filter.endpoint.call(__privateGet(this, _actions));
+        const data = response.on_response_received_endpoints.get({ target_id: "watch-next-feed" });
+        this.watch_next_feed = data.contents;
+        return this;
+      }
+      async getWatchNextContinuation() {
+        const response = await __privateGet(this, _watch_next_continuation).endpoint.call(__privateGet(this, _actions));
+        const data = response.on_response_received_endpoints.get({ type: "appendContinuationItemsAction" });
+        this.watch_next_feed = data.contents;
+        __privateSet(this, _watch_next_continuation, this.watch_next_feed.pop());
+        return this.watch_next_feed;
+      }
+      async like() {
+        const button = this.primary_info.menu.top_level_buttons.get({ button_id: "TOGGLE_BUTTON_ID_TYPE_LIKE" });
+        if (button.is_toggled)
+          throw new InnertubeError2("This video is already liked", { video_id: this.basic_info.id });
+        const response = await button.endpoint.call(__privateGet(this, _actions));
+        return response;
+      }
+      async dislike() {
+        const button = this.primary_info.menu.top_level_buttons.get({ button_id: "TOGGLE_BUTTON_ID_TYPE_DISLIKE" });
+        if (button.is_toggled)
+          throw new InnertubeError2("This video is already disliked", { video_id: this.basic_info.id });
+        const response = await button.endpoint.call(__privateGet(this, _actions));
+        return response;
+      }
+      async removeLike() {
+        const button = this.primary_info.menu.top_level_buttons.get({ is_toggled: true });
+        if (!button)
+          throw new InnertubeError2("This video is not liked/disliked", { video_id: this.basic_info.id });
+        const response = await button.toggled_endpoint.call(__privateGet(this, _actions));
+        return response;
+      }
+      async getLiveChat(mode) {
+        if (!this.livechat)
+          throw new InnertubeError2("Live Chat is not available", { video_id: this.id });
+        return new LiveChat(this, mode);
+      }
+      get filters() {
+        var _a;
+        return ((_a = this.related_chip_cloud) == null ? void 0 : _a.chips.map((chip) => chip.text.toString())) || [];
+      }
+      get actions() {
+        return __privateGet(this, _actions);
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+      get music_tracks() {
+        const metadata = this.secondary_info.metadata;
+        if (!metadata)
+          return [];
+        const songs = [];
+        let current_song = {};
+        let is_music_section = false;
+        for (let i = 0; i < metadata.rows.length; i++) {
+          const row = metadata.rows[i];
+          if (row.type === "MetadataRowHeader") {
+            if (row.content.toString().toLowerCase().startsWith("music")) {
+              is_music_section = true;
+              i++;
+            }
+            continue;
+          }
+          if (!is_music_section)
+            continue;
+          current_song[row.title.toString().toLowerCase().replace(/ /g, "_")] = row.contents;
+          if (row.has_divider_line) {
+            songs.push(current_song);
+            current_song = {};
+          }
+        }
+        if (is_music_section)
+          songs.push(current_song);
+        return songs;
+      }
+      chooseFormat(options) {
+        const formats = [
+          ...this.streaming_data.formats || [],
+          ...this.streaming_data.adaptive_formats || []
+        ];
+        const requires_audio = options.type.includes("audio");
+        const requires_video = options.type.includes("video");
+        let best_width = -1;
+        const is_best = ["best", "bestefficiency"].includes(options.quality);
+        const use_most_efficient = options.quality !== "best";
+        let candidates = formats.filter((format) => {
+          if (requires_audio && !format.has_audio)
+            return false;
+          if (requires_video && !format.has_video)
+            return false;
+          if (options.format !== "any" && !format.mime_type.includes(options.format))
+            return false;
+          if (!is_best && format.quality_label !== options.quality)
+            return false;
+          if (best_width < format.width)
+            best_width = format.width;
+          return true;
+        });
+        if (candidates.length === 0) {
+          throw new InnertubeError2("No matching formats found", {
+            options
+          });
+        }
+        if (is_best && requires_video)
+          candidates = candidates.filter((format) => format.width === best_width);
+        if (requires_audio && !requires_video) {
+          const audio_only = candidates.filter((format) => !format.has_video);
+          if (audio_only.length > 0) {
+            candidates = audio_only;
+          }
+        }
+        if (use_most_efficient) {
+          candidates.sort((a, b) => a.bitrate - b.bitrate);
+        } else {
+          candidates.sort((a, b) => b.bitrate - a.bitrate);
+        }
+        return candidates[0];
+      }
+      download(options = {}, _stream) {
+        const stream = _stream ? _stream : new PassThrough2();
+        let cancel;
+        let cancelled = false;
+        (async () => {
+          if (this.playability_status === "UNPLAYABLE")
+            return stream.emit("error", new InnertubeError2("Video is unplayable", { video: this, error_type: "UNPLAYABLE" }));
+          if (this.playability_status === "LOGIN_REQUIRED")
+            return stream.emit("error", new InnertubeError2("Video is login required", { video: this, error_type: "LOGIN_REQUIRED" }));
+          if (!this.streaming_data)
+            return stream.emit("error", new InnertubeError2("Streaming data not available.", { video: this, error_type: "NO_STREAMING_DATA" }));
+          const opts = {
+            quality: "360p",
+            type: "videoandaudio",
+            format: "mp4",
+            range: void 0,
+            ...options
+          };
+          const format = this.chooseFormat(opts);
+          const format_url = format.decipher(__privateGet(this, _player2));
+          if (opts.type === "videoandaudio" && !options.range) {
+            const response = await Axios.get(`${format_url}&cpn=${__privateGet(this, _cpn)}`, {
+              responseType: "stream",
+              cancelToken: new CancelToken(/* @__PURE__ */ __name(function executor(c) {
+                cancel = c;
+              }, "executor")),
+              headers: Constants.STREAM_HEADERS
+            }).catch((error) => error);
+            if (response instanceof Error) {
+              stream.emit("error", new InnertubeError2(response.message, { type: "REQUEST_FAILED" }));
+              return stream;
+            }
+            stream.emit("start");
+            let downloaded_size = 0;
+            if (typeof response.data === "object") {
+              response.data.on("data", (chunk) => {
+                downloaded_size += chunk.length;
+                const size = (response.headers["content-length"] / 1024 / 1024).toFixed(2);
+                const percentage = Math.floor(downloaded_size / response.headers["content-length"] * 100);
+                stream.emit("progress", {
+                  size,
+                  percentage,
+                  chunk_size: chunk.length,
+                  downloaded_size: (downloaded_size / 1024 / 1024).toFixed(2),
+                  raw_data: {
+                    chunk_size: chunk.length,
+                    downloaded: downloaded_size,
+                    size: response.headers["content-length"]
+                  }
+                });
+              });
+              response.data.on("error", (err) => {
+                cancelled && stream.emit("error", new InnertubeError2("The download was cancelled.", { type: "DOWNLOAD_CANCELLED" })) || stream.emit("error", new InnertubeError2(err.message, { type: "DOWNLOAD_ABORTED" }));
+              });
+              response.data.pipe(stream, { end: true });
+            } else {
+              const readable = new Readable();
+              readable.push(response.data);
+              readable.pipe(stream, { end: true });
+            }
+          } else {
+            const chunk_size = 1048576 * 10;
+            let chunk_start = options.range ? options.range.start : 0;
+            let chunk_end = options.range ? options.range.end : chunk_size;
+            let downloaded_size = 0;
+            let must_end = false;
+            stream.emit("start");
+            const downloadChunk = /* @__PURE__ */ __name(async () => {
+              if (chunk_end >= format.content_length || options.range) {
+                must_end = true;
+              }
+              if (options.range) {
+                format.content_length = options.range.end;
+              }
+              const response = await Axios.get(`${format_url}&cpn=${__privateGet(this, _cpn)}&range=${chunk_start}-${chunk_end || ""}`, {
+                responseType: "stream",
+                cancelToken: new CancelToken(/* @__PURE__ */ __name(function executor(c) {
+                  cancel = c;
+                }, "executor")),
+                headers: Constants.STREAM_HEADERS
+              }).catch((error) => error);
+              if (response instanceof Error) {
+                stream.emit("error", { message: response.message, type: "REQUEST_FAILED" });
+                return stream;
+              }
+              if (typeof response.data === "object") {
+                response.data.on("data", (chunk) => {
+                  downloaded_size += chunk.length;
+                  const size = (response.headers["content-length"] / 1024 / 1024).toFixed(2);
+                  const percentage = Math.floor(downloaded_size / response.headers["content-length"] * 100);
+                  stream.emit("progress", {
+                    size,
+                    percentage,
+                    chunk_size: chunk.length,
+                    downloaded_size: (downloaded_size / 1024 / 1024).toFixed(2),
+                    raw_data: {
+                      chunk_size: chunk.length,
+                      downloaded: downloaded_size,
+                      size: response.headers["content-length"]
+                    }
+                  });
+                });
+                response.data.on("error", (err) => {
+                  cancelled && stream.emit("error", { message: "The download was cancelled.", type: "DOWNLOAD_CANCELLED" }) || stream.emit("error", { message: err.message, type: "DOWNLOAD_ABORTED" });
+                });
+                response.data.on("end", () => {
+                  if (!must_end && !options.range) {
+                    chunk_start = chunk_end + 1;
+                    chunk_end += chunk_size;
+                    downloadChunk();
+                  }
+                });
+                response.data.pipe(stream, { end: must_end });
+              } else {
+                const readable = new Readable();
+                readable.push(response.data);
+                readable.pipe(stream, { end: must_end });
+              }
+            }, "downloadChunk");
+            downloadChunk();
+          }
+        })().catch((err) => {
+          stream.emit("error", err);
+        });
+        stream.cancel = () => {
+          cancelled = true;
+          cancel && cancel();
+        };
+        return stream;
+      }
+    };
+    __name(VideoInfo2, "VideoInfo");
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    _player2 = new WeakMap();
+    _cpn = new WeakMap();
+    _watch_next_continuation = new WeakMap();
+    module2.exports = VideoInfo2;
+  }
+});
+
+// lib/core/TabbedFeed.js
+var require_TabbedFeed = __commonJS({
+  "lib/core/TabbedFeed.js"(exports2, module2) {
+    "use strict";
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var Feed = require_Feed();
+    var _tabs, _actions;
+    var _TabbedFeed = class extends Feed {
+      constructor(actions, data, already_parsed = false) {
+        super(actions, data, already_parsed);
+        __privateAdd(this, _tabs, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _tabs, this.page.contents_memo.get("Tab"));
+      }
+      get tabs() {
+        return __privateGet(this, _tabs).map((tab) => tab.title.toString());
+      }
+      async getTab(title) {
+        const tab = __privateGet(this, _tabs).find((tab2) => tab2.title.toLowerCase() === title.toLowerCase());
+        if (!tab)
+          throw new InnertubeError2(`Tab "${title}" not found`);
+        if (tab.selected)
+          return this;
+        const response = await tab.endpoint.call(__privateGet(this, _actions));
+        return new _TabbedFeed(__privateGet(this, _actions), response, true);
+      }
+      get title() {
+        var _a, _b;
+        return (_b = (_a = this.page.contents_memo("Tab")) == null ? void 0 : _a.find((tab) => tab.selected)) == null ? void 0 : _b.title.toString();
+      }
+    };
+    var TabbedFeed2 = _TabbedFeed;
+    __name(TabbedFeed2, "TabbedFeed");
+    _tabs = new WeakMap();
+    _actions = new WeakMap();
+    module2.exports = TabbedFeed2;
+  }
+});
+
+// lib/parser/youtube/Channel.js
+var require_Channel2 = __commonJS({
+  "lib/parser/youtube/Channel.js"(exports2, module2) {
+    "use strict";
+    var TabbedFeed2 = require_TabbedFeed();
+    var _tab;
+    var _Channel = class extends TabbedFeed2 {
+      constructor(actions, data, already_parsed = false) {
+        super(actions, data, already_parsed);
+        __privateAdd(this, _tab, void 0);
+        this.header = {
+          author: this.page.header.author,
+          subscribers: this.page.header.subscribers.toString(),
+          banner: this.page.header.banner,
+          tv_banner: this.page.header.tv_banner,
+          mobile_banner: this.page.header.mobile_banner,
+          header_links: this.page.header.header_links
+        };
+        this.metadata = { ...this.page.metadata, ...this.page.microformat };
+        this.sponsor_button = this.page.header.sponsor_button || null;
+        this.subscribe_button = this.page.header.subscribe_button || null;
+        const tab = this.page.contents.tabs.get({ selected: true });
+        this.current_tab = tab;
+      }
+      async getVideos() {
+        const tab = await this.getTab("Videos");
+        return new _Channel(this.actions, tab.page, true);
+      }
+      async getPlaylists() {
+        const tab = await this.getTab("Playlists");
+        return new _Channel(this.actions, tab.page, true);
+      }
+      async getHome() {
+        const tab = await this.getTab("Home");
+        return new _Channel(this.actions, tab.page, true);
+      }
+      async getCommunity() {
+        const tab = await this.getTab("Community");
+        return new _Channel(this.actions, tab.page, true);
+      }
+      async getChannels() {
+        const tab = await this.getTab("Channels");
+        return new _Channel(this.actions, tab.page, true);
+      }
+      async getAbout() {
+        var _a;
+        const tab = await this.getTab("About");
+        return (_a = tab.memo.get("ChannelAboutFullMetadata")) == null ? void 0 : _a[0];
+      }
+    };
+    var Channel2 = _Channel;
+    __name(Channel2, "Channel");
+    _tab = new WeakMap();
+    module2.exports = Channel2;
+  }
+});
+
+// lib/parser/youtube/Playlist.js
+var require_Playlist2 = __commonJS({
+  "lib/parser/youtube/Playlist.js"(exports2, module2) {
+    "use strict";
+    var Feed = require_Feed();
+    var _getStat, getStat_fn;
+    var Playlist2 = class extends Feed {
+      constructor(actions, data, already_parsed = false) {
+        super(actions, data, already_parsed);
+        __privateAdd(this, _getStat);
+        const primary_info = this.page.sidebar.contents.get({ type: "PlaylistSidebarPrimaryInfo" });
+        const secondary_info = this.page.sidebar.contents.get({ type: "PlaylistSidebarSecondaryInfo" });
+        this.info = {
+          ...this.page.metadata,
+          ...{
+            author: secondary_info.owner.author,
+            thumbnails: primary_info.thumbnail_renderer.thumbnail,
+            total_items: __privateMethod(this, _getStat, getStat_fn).call(this, 0, primary_info),
+            views: __privateMethod(this, _getStat, getStat_fn).call(this, 1, primary_info),
+            last_updated: __privateMethod(this, _getStat, getStat_fn).call(this, 2, primary_info),
+            can_share: this.page.header.can_share,
+            can_delete: this.page.header.can_delete,
+            is_editable: this.page.header.is_editable,
+            privacy: this.page.header.privacy
+          }
+        };
+        this.menu = primary_info.menu;
+        this.endpoint = primary_info.endpoint;
+      }
+      get items() {
+        return this.videos;
+      }
+    };
+    __name(Playlist2, "Playlist");
+    _getStat = new WeakSet();
+    getStat_fn = /* @__PURE__ */ __name(function(index, primary_info) {
+      var _a;
+      if (!primary_info || !primary_info.stats)
+        return "N/A";
+      return ((_a = primary_info.stats[index]) == null ? void 0 : _a.toString()) || "N/A";
+    }, "#getStat");
+    module2.exports = Playlist2;
+  }
+});
+
+// lib/parser/youtube/History.js
+var require_History = __commonJS({
+  "lib/parser/youtube/History.js"(exports2, module2) {
+    "use strict";
+    var Feed = require_Feed();
+    var History2 = class extends Feed {
+      constructor(actions, data, already_parsed = false) {
+        var _a;
+        super(actions, data, already_parsed);
+        this.sections = this.memo.get("ItemSection");
+        this.feed_actions = ((_a = this.memo.get("BrowseFeedActions")) == null ? void 0 : _a[0]) || [];
+      }
+      async getContinuation() {
+        const continuation = await this.getContinuationData();
+        return new History2(this.actions, continuation, true);
+      }
+    };
+    __name(History2, "History");
+    module2.exports = History2;
+  }
+});
+
+// lib/parser/youtube/Library.js
+var require_Library = __commonJS({
+  "lib/parser/youtube/Library.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var History2 = require_History();
+    var Playlist2 = require_Playlist2();
+    var Feed = require_Feed();
+    var { observe } = require_Utils();
+    var _actions, _page, _getAll, getAll_fn;
+    var Library2 = class {
+      constructor(response, actions) {
+        __privateAdd(this, _getAll);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _page, void 0);
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _page, Parser.parseResponse(response));
+        const tab = __privateGet(this, _page).contents.tabs.get({ selected: true });
+        const shelves = tab.content.contents.map((section) => section.contents[0]);
+        const stats = __privateGet(this, _page).contents.secondary_contents.items.get({ type: "ProfileColumnStats" }).items;
+        const user_info = __privateGet(this, _page).contents.secondary_contents.items.get({ type: "ProfileColumnUserInfo" });
+        this.profile = { stats, user_info };
+        this.sections = observe(shelves.map((shelf) => ({
+          type: shelf.icon_type,
+          title: shelf.title,
+          contents: shelf.content.items,
+          getAll: () => __privateMethod(this, _getAll, getAll_fn).call(this, shelf)
+        })));
+      }
+      get history() {
+        return this.sections.get({ type: "WATCH_HISTORY" });
+      }
+      get watch_later() {
+        return this.sections.get({ type: "WATCH_LATER" });
+      }
+      get liked_videos() {
+        return this.sections.get({ type: "LIKE" });
+      }
+      get playlists() {
+        return this.sections.get({ type: "PLAYLISTS" });
+      }
+      get clips() {
+        return this.sections.get({ type: "CONTENT_CUT" });
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    __name(Library2, "Library");
+    _actions = new WeakMap();
+    _page = new WeakMap();
+    _getAll = new WeakSet();
+    getAll_fn = /* @__PURE__ */ __name(async function(shelf) {
+      var _a;
+      if (!((_a = shelf.menu) == null ? void 0 : _a.top_level_buttons))
+        throw new Error(`The ${shelf.title.text} section doesn't have more items`);
+      const button = await shelf.menu.top_level_buttons.get({ text: "See all" });
+      const page = await button.endpoint.call(__privateGet(this, _actions));
+      switch (shelf.icon_type) {
+        case "LIKE":
+        case "WATCH_LATER":
+          return new Playlist2(__privateGet(this, _actions), page, true);
+        case "WATCH_HISTORY":
+          return new History2(__privateGet(this, _actions), page, true);
+        case "CONTENT_CUT":
+          return new Feed(__privateGet(this, _actions), page, true);
+        default:
+      }
+    }, "#getAll");
+    module2.exports = Library2;
+  }
+});
+
+// lib/parser/youtube/Comments.js
+var require_Comments = __commonJS({
+  "lib/parser/youtube/Comments.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var _page, _actions, _continuation;
+    var _Comments = class {
+      constructor(actions, data, already_parsed = false) {
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _continuation, void 0);
+        __privateSet(this, _page, already_parsed ? data : Parser.parseResponse(data));
+        __privateSet(this, _actions, actions);
+        const contents = __privateGet(this, _page).on_response_received_endpoints;
+        this.header = contents[0].contents.get({ type: "CommentsHeader" });
+        const threads = contents[1].contents.findAll({ type: "CommentThread" });
+        this.contents = threads.map((thread) => {
+          thread.comment.setActions(__privateGet(this, _actions));
+          thread.setActions(__privateGet(this, _actions));
+          return thread;
+        });
+        __privateSet(this, _continuation, contents[1].contents.get({ type: "ContinuationItem" }));
+      }
+      async comment(text) {
+        const button = this.header.create_renderer.submit_button;
+        const payload = {
+          params: {
+            commentText: text
+          },
+          parse: false
+        };
+        const response = await button.endpoint.callTest(__privateGet(this, _actions), payload);
+        return response;
+      }
+      async getContinuation() {
+        if (!__privateGet(this, _continuation))
+          throw new InnertubeError2("Continuation not found");
+        const data = await __privateGet(this, _continuation).endpoint.callTest(__privateGet(this, _actions));
+        const page = Object.assign({}, __privateGet(this, _page));
+        page.on_response_received_endpoints.pop();
+        page.on_response_received_endpoints.push(data.on_response_received_endpoints[0]);
+        return new _Comments(__privateGet(this, _actions), page, true);
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    var Comments2 = _Comments;
+    __name(Comments2, "Comments");
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    _continuation = new WeakMap();
+    module2.exports = Comments2;
+  }
+});
+
+// lib/parser/ytmusic/Search.js
+var require_Search2 = __commonJS({
+  "lib/parser/ytmusic/Search.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var { observe, InnertubeError: InnertubeError2 } = require_Utils();
+    var _page, _actions, _continuation, _header, _getMore, getMore_fn;
+    var _Search = class {
+      constructor(response, actions, args = {}) {
+        __privateAdd(this, _getMore);
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _continuation, void 0);
+        __privateAdd(this, _header, void 0);
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _page, args.is_continuation && response || Parser.parseResponse(response.data));
+        const tab = __privateGet(this, _page).contents.tabs.get({ selected: true });
+        const shelves = tab.content.contents;
+        const item_section = shelves.get({ type: "ItemSection" });
+        __privateSet(this, _header, tab.content.header);
+        this.did_you_mean = (item_section == null ? void 0 : item_section.contents.get({ type: "DidYouMean" })) || null;
+        this.showing_results_for = (item_section == null ? void 0 : item_section.contents.get({ type: "ShowingResultsFor" })) || null;
+        (!!this.did_you_mean || !!this.showing_results_for) && shelves.shift();
+        if (args.is_continuation || args.is_filtered) {
+          const shelf = shelves.get({ type: "MusicShelf" });
+          this.results = shelf.contents;
+          __privateSet(this, _continuation, shelf.continuation);
+          return;
+        }
+        this.sections = observe(shelves.map((shelf) => ({
+          title: shelf.title,
+          contents: shelf.contents,
+          getMore: () => __privateMethod(this, _getMore, getMore_fn).call(this, shelf)
+        })));
+      }
+      async getContinuation() {
+        var _a, _b, _c;
+        if (!__privateGet(this, _continuation))
+          throw new InnertubeError2("Looks like you've reached the end");
+        const response = await __privateGet(this, _actions).search({ ctoken: __privateGet(this, _continuation), client: "YTMUSIC" });
+        const data = response.data.continuationContents.musicShelfContinuation;
+        this.results = Parser.parse(data.contents);
+        __privateSet(this, _continuation, (_c = (_b = (_a = data == null ? void 0 : data.continuations) == null ? void 0 : _a[0]) == null ? void 0 : _b.nextContinuationData) == null ? void 0 : _c.continuation);
+        return this;
+      }
+      async selectFilter(name) {
+        if (!this.filters.includes(name))
+          throw new InnertubeError2("Invalid filter", { available_filters: this.filters });
+        const filter = __privateGet(this, _header).chips.get({ text: name });
+        if (filter.is_selected)
+          return this;
+        const response = await filter.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
+        return new _Search(response, __privateGet(this, _actions), { is_continuation: true });
+      }
+      get has_continuation() {
+        return !!__privateGet(this, _continuation);
+      }
+      get filters() {
+        return __privateGet(this, _header).chips.map((chip) => chip.text);
+      }
+      get songs() {
+        return this.sections.get({ title: "Songs" });
+      }
+      get videos() {
+        return this.sections.get({ title: "Videos" });
+      }
+      get albums() {
+        return this.sections.get({ title: "Albums" });
+      }
+      get artists() {
+        return this.sections.get({ title: "Artists" });
+      }
+      get playlists() {
+        return this.sections.get({ title: "Community playlists" });
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    var Search2 = _Search;
+    __name(Search2, "Search");
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    _continuation = new WeakMap();
+    _header = new WeakMap();
+    _getMore = new WeakSet();
+    getMore_fn = /* @__PURE__ */ __name(async function(shelf) {
+      if (!shelf.endpoint)
+        throw new InnertubeError2(`${shelf.title} doesn't have more items`);
+      const response = await shelf.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
+      return new _Search(response, __privateGet(this, _actions), { is_continuation: true });
+    }, "#getMore");
+    module2.exports = Search2;
+  }
+});
+
+// lib/parser/ytmusic/HomeFeed.js
+var require_HomeFeed = __commonJS({
+  "lib/parser/ytmusic/HomeFeed.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var _page, _actions, _continuation;
+    var _HomeFeed = class {
+      constructor(response, actions) {
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _continuation, void 0);
+        var _a, _b;
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _page, Parser.parseResponse(response.data));
+        const tab = __privateGet(this, _page).contents.tabs.get({ title: "Home" });
+        __privateSet(this, _continuation, ((_a = tab.content) == null ? void 0 : _a.continuation) || __privateGet(this, _page).continuation_contents.continuation);
+        this.sections = ((_b = tab.content) == null ? void 0 : _b.contents) || __privateGet(this, _page).continuation_contents.contents;
+      }
+      async getContinuation() {
+        const response = await __privateGet(this, _actions).browse(__privateGet(this, _continuation), { is_ctoken: true, client: "YTMUSIC" });
+        return new _HomeFeed(response, __privateGet(this, _actions));
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    var HomeFeed = _HomeFeed;
+    __name(HomeFeed, "HomeFeed");
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    _continuation = new WeakMap();
+    module2.exports = HomeFeed;
+  }
+});
+
+// lib/parser/ytmusic/Explore.js
+var require_Explore = __commonJS({
+  "lib/parser/ytmusic/Explore.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var _page;
+    var Explore = class {
+      constructor(response) {
+        __privateAdd(this, _page, void 0);
+        __privateSet(this, _page, Parser.parseResponse(response.data));
+        const tab = this.page.contents.tabs.get({ selected: true });
+        this.top_buttons = tab.content.contents.get({ type: "Grid" }).items;
+        this.sections = tab.content.contents.findAll({ type: "MusicCarouselShelf" });
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    __name(Explore, "Explore");
+    _page = new WeakMap();
+    module2.exports = Explore;
+  }
+});
+
+// lib/parser/ytmusic/Library.js
+var require_Library2 = __commonJS({
+  "lib/parser/ytmusic/Library.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var _page;
+    var Library2 = class {
+      constructor(response) {
+        __privateAdd(this, _page, void 0);
+        __privateSet(this, _page, Parser.parseResponse(response.data));
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    __name(Library2, "Library");
+    _page = new WeakMap();
+    module2.exports = Library2;
+  }
+});
+
+// lib/parser/ytmusic/Artist.js
+var require_Artist = __commonJS({
+  "lib/parser/ytmusic/Artist.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var { observe } = require_Utils();
+    var _page, _actions;
+    var Artist = class {
+      constructor(response, actions) {
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _page, Parser.parseResponse(response.data));
+        __privateSet(this, _actions, actions);
+        this.header = this.page.header;
+        const music_shelf = __privateGet(this, _page).contents_memo.get("MusicShelf");
+        const music_carousel_shelf = __privateGet(this, _page).contents_memo.get("MusicCarouselShelf");
+        this.sections = observe([...music_shelf, ...music_carousel_shelf]);
+      }
+      async getAllSongs() {
+        var _a;
+        const shelf = this.sections.get({ type: "MusicShelf" });
+        const page = await shelf.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
+        return ((_a = page.contents_memo.get("MusicPlaylistShelf")) == null ? void 0 : _a[0]) || [];
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    __name(Artist, "Artist");
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    module2.exports = Artist;
+  }
+});
+
+// lib/parser/ytmusic/Album.js
+var require_Album = __commonJS({
+  "lib/parser/ytmusic/Album.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var _page, _actions;
+    var Album = class {
+      constructor(response, actions) {
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        var _a;
+        __privateSet(this, _page, Parser.parseResponse(response.data));
+        __privateSet(this, _actions, actions);
+        this.header = __privateGet(this, _page).header;
+        this.url = __privateGet(this, _page).microformat.url_canonical;
+        this.contents = (_a = __privateGet(this, _page).contents_memo.get("MusicShelf")) == null ? void 0 : _a[0].contents;
+        this.sections = __privateGet(this, _page).contents_memo.get("MusicCarouselShelf") || [];
+      }
+      get page() {
+        return __privateGet(this, _page);
+      }
+    };
+    __name(Album, "Album");
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    module2.exports = Album;
+  }
+});
+
+// lib/core/Music.js
+var require_Music = __commonJS({
+  "lib/core/Music.js"(exports2, module2) {
+    "use strict";
+    var Parser = require_contents();
+    var Search2 = require_Search2();
+    var HomeFeed = require_HomeFeed();
+    var Explore = require_Explore();
+    var Library2 = require_Library2();
+    var Artist = require_Artist();
+    var Album = require_Album();
+    var { InnertubeError: InnertubeError2, observe } = require_Utils();
+    var _session, _actions;
+    var Music = class {
+      constructor(session) {
+        __privateAdd(this, _session, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _session, session);
+        __privateSet(this, _actions, session.actions);
+      }
+      async search(query, filters) {
+        const response = await __privateGet(this, _actions).search({ query, filters, client: "YTMUSIC" });
+        return new Search2(response, __privateGet(this, _actions), { is_filtered: (filters == null ? void 0 : filters.hasOwnProperty("type")) && filters.type !== "all" });
+      }
+      async getHomeFeed() {
+        const response = await __privateGet(this, _actions).browse("FEmusic_home", { client: "YTMUSIC" });
+        return new HomeFeed(response, __privateGet(this, _actions));
+      }
+      async getExplore() {
+        const response = await __privateGet(this, _actions).browse("FEmusic_explore", { client: "YTMUSIC" });
+        return new Explore(response, __privateGet(this, _actions));
+      }
+      async getLibrary() {
+        const response = await __privateGet(this, _actions).browse("FEmusic_liked_albums", { client: "YTMUSIC" });
+        return new Library2(response, __privateGet(this, _actions));
+      }
+      async getArtist(artist_id) {
+        if (!artist_id.startsWith("UC"))
+          throw new InnertubeError2("Invalid artist id", artist_id);
+        const response = await __privateGet(this, _actions).browse(artist_id, { client: "YTMUSIC" });
+        return new Artist(response, __privateGet(this, _actions));
+      }
+      async getAlbum(album_id) {
+        if (!album_id.startsWith("MPR"))
+          throw new InnertubeError2("Invalid album id", album_id);
+        const response = await __privateGet(this, _actions).browse(album_id, { client: "YTMUSIC" });
+        return new Album(response, __privateGet(this, _actions));
+      }
+      async getLyrics(video_id) {
+        const response = await __privateGet(this, _actions).next({ video_id, client: "YTMUSIC" });
+        const data = Parser.parseResponse(response.data);
+        const tab = data.contents.tabs.get({ title: "Lyrics" });
+        const page = await tab.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
+        if (!page)
+          throw new InnertubeError2("Invalid video id");
+        if (page.contents.constructor.name === "Message")
+          throw new InnertubeError2(page.contents.text, video_id);
+        const description_shelf = page.contents.contents.get({ type: "MusicDescriptionShelf" });
+        return {
+          text: description_shelf.description.toString(),
+          footer: description_shelf.footer
+        };
+      }
+      async getUpNext(video_id) {
+        const response = await __privateGet(this, _actions).next({ video_id, client: "YTMUSIC" });
+        const data = Parser.parseResponse(response.data);
+        const tab = data.contents.tabs.get({ title: "Up next" });
+        const upnext_content = tab.content.content;
+        if (!upnext_content)
+          throw new InnertubeError2("Invalid id", video_id);
+        return {
+          id: upnext_content.playlist_id,
+          title: upnext_content.title,
+          is_editable: upnext_content.is_editable,
+          contents: observe(upnext_content.contents)
+        };
+      }
+      async getRelated(video_id) {
+        const response = await __privateGet(this, _actions).next({ video_id, client: "YTMUSIC" });
+        const data = Parser.parseResponse(response.data);
+        const tab = data.contents.tabs.get({ title: "Related" });
+        const page = await tab.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
+        if (!page)
+          throw new InnertubeError2("Invalid video id");
+        const shelves = page.contents.contents.findAll({ type: "MusicCarouselShelf" });
+        const info = page.contents.contents.get({ type: "MusicDescriptionShelf" });
+        return {
+          sections: shelves,
+          info: (info == null ? void 0 : info.description.toString()) || ""
+        };
+      }
+      async getSearchSuggestions(query) {
+        var _a;
+        const payload = { input: query, client: "YTMUSIC" };
+        const response = await __privateGet(this, _actions).execute("/music/get_search_suggestions", payload);
+        const data = Parser.parseResponse(response.data);
+        const search_suggestions_section = (_a = data.contents_memo.get("SearchSuggestionsSection")) == null ? void 0 : _a[0];
+        return (search_suggestions_section == null ? void 0 : search_suggestions_section.contents) || [];
+      }
+    };
+    __name(Music, "Music");
+    _session = new WeakMap();
+    _actions = new WeakMap();
+    module2.exports = Music;
+  }
+});
+
+// lib/core/FilterableFeed.js
+var require_FilterableFeed = __commonJS({
+  "lib/core/FilterableFeed.js"(exports2, module2) {
+    "use strict";
+    var { InnertubeError: InnertubeError2 } = require_Utils();
+    var Feed = require_Feed();
+    var _chips;
+    var FilterableFeed2 = class extends Feed {
+      constructor(actions, data, already_parsed = false) {
+        super(actions, data, already_parsed);
+        __privateAdd(this, _chips, void 0);
+      }
+      get filter_chips() {
+        var _a, _b;
+        if (__privateGet(this, _chips))
+          return __privateGet(this, _chips) || [];
+        if (((_a = this.memo.get("FeedFilterChipBar")) == null ? void 0 : _a.length) > 1)
+          throw new InnertubeError2("There are too many feed filter chipbars, you'll need to find the correct one yourself in this.page");
+        if (((_b = this.memo.get("FeedFilterChipBar")) == null ? void 0 : _b.length) === 0)
+          throw new InnertubeError2("There are no feed filter chipbars");
+        __privateSet(this, _chips, this.memo.get("ChipCloudChip") || []);
+        return __privateGet(this, _chips) || [];
+      }
+      get filters() {
+        return this.filter_chips.map((chip) => chip.text.toString()) || [];
+      }
+      async getFilteredFeed(filter) {
+        let target_filter;
+        if (typeof filter === "string") {
+          if (!this.filters.includes(filter))
+            throw new InnertubeError2("Filter not found", {
+              available_filters: this.filters
+            });
+          target_filter = this.filter_chips.find((chip) => chip.text.toString() === filter);
+        } else if (filter.type === "ChipCloudChip") {
+          target_filter = filter;
+        } else {
+          throw new InnertubeError2("Invalid filter");
+        }
+        if (target_filter.is_selected)
+          return this;
+        const response = await target_filter.endpoint.call(this.actions);
+        return new Feed(this.actions, response, true);
+      }
+    };
+    __name(FilterableFeed2, "FilterableFeed");
+    _chips = new WeakMap();
+    module2.exports = FilterableFeed2;
+  }
+});
+
+// lib/utils/Request.js
+var require_Request = __commonJS({
+  "lib/utils/Request.js"(exports2, module2) {
+    "use strict";
+    var Axios = require("../node_modules/axios/index.js");
+    var Constants = require_Constants();
+    var Utils = require_Utils();
+    var _instance, _session, _setupRequestInterceptor, setupRequestInterceptor_fn, _setupResponseInterceptor, setupResponseInterceptor_fn, _adjustContext, adjustContext_fn;
+    var Request2 = class {
+      constructor(config) {
+        __privateAdd(this, _setupRequestInterceptor);
+        __privateAdd(this, _setupResponseInterceptor);
+        __privateAdd(this, _adjustContext);
+        __privateAdd(this, _instance, void 0);
+        __privateAdd(this, _session, void 0);
+        this.config = config;
+        __privateSet(this, _instance, Axios.create({
+          proxy: config.proxy,
+          httpAgent: config.http_agent,
+          httpsAgent: config.https_agent,
+          params: { prettyPrint: false },
+          headers: {
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate",
+            "content-type": "application/json",
+            "user-agent": Utils.getRandomUserAgent("desktop").userAgent
+          },
+          validateStatus: () => true,
+          timeout: 15e3
+        }));
+        __privateMethod(this, _setupRequestInterceptor, setupRequestInterceptor_fn).call(this);
+        __privateMethod(this, _setupResponseInterceptor, setupResponseInterceptor_fn).call(this);
+      }
+      setSession(session) {
+        __privateSet(this, _session, session);
+      }
+      get instance() {
+        return __privateGet(this, _instance);
+      }
+    };
+    __name(Request2, "Request");
+    _instance = new WeakMap();
+    _session = new WeakMap();
+    _setupRequestInterceptor = new WeakSet();
+    setupRequestInterceptor_fn = /* @__PURE__ */ __name(function() {
+      __privateGet(this, _instance).interceptors.request.use(async (config) => {
+        if (__privateGet(this, _session)) {
+          const innertube_url = `${Constants.URLS.API.PRODUCTION}${__privateGet(this, _session).version}`;
+          config.baseURL = config.baseURL || innertube_url;
+          config.headers["accept-language"] = `en-${__privateGet(this, _session).config.gl || "US"}`;
+          config.headers["x-goog-visitor-id"] = __privateGet(this, _session).context.client.visitorData || "";
+          config.headers["x-youtube-client-version"] = __privateGet(this, _session).context.client.clientVersion;
+          config.headers["x-origin"] = new URL(config.baseURL).origin;
+          config.headers["origin"] = new URL(config.baseURL).origin;
+          config.params.key = __privateGet(this, _session).key;
+          const is_innertube_req = config.baseURL == innertube_url;
+          if (is_innertube_req && typeof config.data === "object") {
+            config.data = {
+              context: JSON.parse(JSON.stringify(__privateGet(this, _session).context)),
+              ...config.data
+            };
+            __privateMethod(this, _adjustContext, adjustContext_fn).call(this, config.data.context, config.data.client);
+            config.headers["x-youtube-client-version"] = config.data.context.client.clientVersion;
+            delete config.data.client;
+          }
+          if (__privateGet(this, _session).logged_in && is_innertube_req) {
+            const oauth = __privateGet(this, _session).oauth;
+            if (oauth.validateCredentials()) {
+              await oauth.checkAccessTokenValidity();
+              config.headers.authorization = `Bearer ${oauth.credentials.access_token}`;
+              delete config.params.key;
+            }
+            if (this.config.cookie) {
+              const papisid = Utils.getStringBetweenStrings(this.config.cookie, "PAPISID=", ";");
+              config.headers.authorization = Utils.generateSidAuth(papisid);
+              config.headers.cookie = this.config.cookie;
+            }
+          }
+        }
+        if (this.config.debug) {
+          const url = `${config.baseURL ? `${config.baseURL}` : ""}${config.url}`;
+          console.info("\n", `[${config.method.toUpperCase()}] > ${url}`, "\n", (config == null ? void 0 : config.data) || "N/A", "\n");
+        }
+        return config;
+      }, (error) => {
+        throw new Utils.InnertubeError(error.message, error);
+      });
+    }, "#setupRequestInterceptor");
+    _setupResponseInterceptor = new WeakSet();
+    setupResponseInterceptor_fn = /* @__PURE__ */ __name(function() {
+      __privateGet(this, _instance).interceptors.response.use((res) => {
+        const response = {
+          success: res.status === 200,
+          status_code: res.status,
+          data: res.data
+        };
+        if (res.status !== 200)
+          throw new Utils.InnertubeError(`Request to ${res.config.url} failed with status code ${res.status}`, response);
+        return response;
+      });
+      __privateGet(this, _instance).interceptors.response.use(void 0, (error) => {
+        if (error.info)
+          return Promise.reject(error);
+        throw new Utils.InnertubeError("Could not complete this operation", error.message);
+      });
+    }, "#setupResponseInterceptor");
+    _adjustContext = new WeakSet();
+    adjustContext_fn = /* @__PURE__ */ __name(function(ctx, client) {
+      switch (client) {
+        case "YTMUSIC":
+          ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;
+          ctx.client.clientName = Constants.CLIENTS.YTMUSIC.NAME;
+          break;
+        case "ANDROID":
+          ctx.client.clientVersion = Constants.CLIENTS.ANDROID.VERSION;
+          ctx.client.clientFormFactor = "SMALL_FORM_FACTOR";
+          ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
+          break;
+        default:
+          break;
+      }
+    }, "#adjustContext");
+    module2.exports = Request2;
+  }
+});
+
+// lib/parser/youtube/search/VideoResultItem.js
+var require_VideoResultItem = __commonJS({
+  "lib/parser/youtube/search/VideoResultItem.js"(exports2, module2) {
+    "use strict";
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var VideoResultItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item);
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v;
+        const renderer = item.videoRenderer || item.compactVideoRenderer;
+        if (renderer)
+          return {
+            id: renderer.videoId,
+            url: `https://youtu.be/${renderer.videoId}`,
+            title: renderer.title.runs[0].text,
+            description: (renderer == null ? void 0 : renderer.detailedMetadataSnippets) ? renderer == null ? void 0 : renderer.detailedMetadataSnippets[0].snippetText.runs.map((item2) => item2.text).join("") : "N/A",
+            channel: {
+              id: (_d = (_c = (_b = (_a = renderer == null ? void 0 : renderer.ownerText) == null ? void 0 : _a.runs[0]) == null ? void 0 : _b.navigationEndpoint) == null ? void 0 : _c.browseEndpoint) == null ? void 0 : _d.browseId,
+              name: (_f = (_e = renderer == null ? void 0 : renderer.ownerText) == null ? void 0 : _e.runs[0]) == null ? void 0 : _f.text,
+              url: `${Constants.URLS.YT_BASE}${(_i = (_h = (_g = renderer == null ? void 0 : renderer.ownerText) == null ? void 0 : _g.runs[0].navigationEndpoint) == null ? void 0 : _h.browseEndpoint) == null ? void 0 : _i.canonicalBaseUrl}`
+            },
+            metadata: {
+              view_count: ((_j = renderer == null ? void 0 : renderer.viewCountText) == null ? void 0 : _j.simpleText) || "N/A",
+              short_view_count_text: {
+                simple_text: ((_k = renderer == null ? void 0 : renderer.shortViewCountText) == null ? void 0 : _k.simpleText) || "N/A",
+                accessibility_label: ((_n = (_m = (_l = renderer == null ? void 0 : renderer.shortViewCountText) == null ? void 0 : _l.accessibility) == null ? void 0 : _m.accessibilityData) == null ? void 0 : _n.label) || "N/A"
+              },
+              thumbnails: renderer == null ? void 0 : renderer.thumbnail.thumbnails,
+              duration: {
+                seconds: Utils.timeToSeconds(((_o = renderer == null ? void 0 : renderer.lengthText) == null ? void 0 : _o.simpleText) || "0"),
+                simple_text: ((_p = renderer == null ? void 0 : renderer.lengthText) == null ? void 0 : _p.simpleText) || "N/A",
+                accessibility_label: ((_s = (_r = (_q = renderer == null ? void 0 : renderer.lengthText) == null ? void 0 : _q.accessibility) == null ? void 0 : _r.accessibilityData) == null ? void 0 : _s.label) || "N/A"
+              },
+              published: ((_t = renderer == null ? void 0 : renderer.publishedTimeText) == null ? void 0 : _t.simpleText) || "N/A",
+              badges: ((_u = renderer == null ? void 0 : renderer.badges) == null ? void 0 : _u.map((item2) => item2.metadataBadgeRenderer.label)) || [],
+              owner_badges: ((_v = renderer == null ? void 0 : renderer.ownerBadges) == null ? void 0 : _v.map((item2) => item2.metadataBadgeRenderer.tooltip)) || []
+            }
+          };
+      }
+    };
+    __name(VideoResultItem, "VideoResultItem");
+    module2.exports = VideoResultItem;
+  }
+});
+
+// lib/parser/youtube/search/SearchSuggestionItem.js
+var require_SearchSuggestionItem = __commonJS({
+  "lib/parser/youtube/search/SearchSuggestionItem.js"(exports2, module2) {
+    "use strict";
+    var SearchSuggestionItem = class {
+      static parse(data) {
+        return {
+          query: data[0],
+          results: data[1].map((res) => res[0])
+        };
+      }
+    };
+    __name(SearchSuggestionItem, "SearchSuggestionItem");
+    module2.exports = SearchSuggestionItem;
+  }
+});
+
+// lib/parser/youtube/others/PlaylistItem.js
+var require_PlaylistItem = __commonJS({
+  "lib/parser/youtube/others/PlaylistItem.js"(exports2, module2) {
+    "use strict";
+    var Utils = require_Utils();
+    var PlaylistItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item);
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q;
+        if (item.playlistVideoRenderer)
+          return {
+            id: (_a = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _a.videoId,
+            title: (_d = (_c = (_b = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _b.title) == null ? void 0 : _c.runs[0]) == null ? void 0 : _d.text,
+            author: (_g = (_f = (_e = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _e.shortBylineText) == null ? void 0 : _f.runs[0]) == null ? void 0 : _g.text,
+            duration: {
+              seconds: Utils.timeToSeconds(((_i = (_h = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _h.lengthText) == null ? void 0 : _i.simpleText) || "0"),
+              simple_text: ((_k = (_j = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _j.lengthText) == null ? void 0 : _k.simpleText) || "N/A",
+              accessibility_label: ((_o = (_n = (_m = (_l = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _l.lengthText) == null ? void 0 : _m.accessibility) == null ? void 0 : _n.accessibilityData) == null ? void 0 : _o.label) || "N/A"
+            },
+            thumbnails: (_q = (_p = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _p.thumbnail) == null ? void 0 : _q.thumbnails
+          };
+      }
+    };
+    __name(PlaylistItem, "PlaylistItem");
+    module2.exports = PlaylistItem;
+  }
+});
+
+// lib/parser/youtube/others/NotificationItem.js
+var require_NotificationItem = __commonJS({
+  "lib/parser/youtube/others/NotificationItem.js"(exports2, module2) {
+    "use strict";
+    var NotificationItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item);
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j;
+        if (item.notificationRenderer) {
+          const notification = item.notificationRenderer;
+          return {
+            title: (_a = notification == null ? void 0 : notification.shortMessage) == null ? void 0 : _a.simpleText,
+            sent_time: (_b = notification == null ? void 0 : notification.sentTimeText) == null ? void 0 : _b.simpleText,
+            timestamp: notification.notificationId,
+            channel_name: ((_h = (_g = (_f = (_e = (_d = (_c = notification == null ? void 0 : notification.contextualMenu) == null ? void 0 : _c.menuRenderer) == null ? void 0 : _d.items[1]) == null ? void 0 : _e.menuServiceItemRenderer) == null ? void 0 : _f.text) == null ? void 0 : _g.runs[1]) == null ? void 0 : _h.text) || "N/A",
+            channel_thumbnail: (_i = notification == null ? void 0 : notification.thumbnail) == null ? void 0 : _i.thumbnails[0],
+            video_thumbnail: (_j = notification == null ? void 0 : notification.videoThumbnail) == null ? void 0 : _j.thumbnails[0],
+            video_url: notification.navigationEndpoint.watchEndpoint ? `https://youtu.be/${notification.navigationEndpoint.watchEndpoint.videoId}` : "N/A",
+            read: notification.read
+          };
+        }
+      }
+    };
+    __name(NotificationItem, "NotificationItem");
+    module2.exports = NotificationItem;
+  }
+});
+
+// lib/parser/youtube/others/VideoItem.js
+var require_VideoItem = __commonJS({
+  "lib/parser/youtube/others/VideoItem.js"(exports2, module2) {
+    "use strict";
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var VideoItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item);
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R;
+        item = item.richItemRenderer && item.richItemRenderer.content.videoRenderer && item.richItemRenderer.content || item;
+        if (item.videoRenderer)
+          return {
+            id: item.videoRenderer.videoId,
+            title: item.videoRenderer.title.runs.map((run) => run.text).join(" "),
+            description: ((_c = (_b = (_a = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _a.descriptionSnippet) == null ? void 0 : _b.runs[0]) == null ? void 0 : _c.text) || "N/A",
+            channel: {
+              id: (_h = (_g = (_f = (_e = (_d = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _d.shortBylineText) == null ? void 0 : _e.runs[0]) == null ? void 0 : _f.navigationEndpoint) == null ? void 0 : _g.browseEndpoint) == null ? void 0 : _h.browseId,
+              name: ((_k = (_j = (_i = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _i.shortBylineText) == null ? void 0 : _j.runs[0]) == null ? void 0 : _k.text) || "N/A",
+              url: `${Constants.URLS.YT_BASE}${(_p = (_o = (_n = (_m = (_l = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _l.shortBylineText) == null ? void 0 : _m.runs[0]) == null ? void 0 : _n.navigationEndpoint) == null ? void 0 : _o.browseEndpoint) == null ? void 0 : _p.canonicalBaseUrl}`
+            },
+            metadata: {
+              view_count: ((_r = (_q = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _q.viewCountText) == null ? void 0 : _r.simpleText) || "N/A",
+              short_view_count_text: {
+                simple_text: ((_t = (_s = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _s.shortViewCountText) == null ? void 0 : _t.simpleText) || "N/A",
+                accessibility_label: ((_x = (_w = (_v = (_u = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _u.shortViewCountText) == null ? void 0 : _v.accessibility) == null ? void 0 : _w.accessibilityData) == null ? void 0 : _x.label) || "N/A"
+              },
+              thumbnail: ((_z = (_y = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _y.thumbnail) == null ? void 0 : _z.thumbnails.slice(-1)[0]) || {},
+              moving_thumbnail: ((_D = (_C = (_B = (_A = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _A.richThumbnail) == null ? void 0 : _B.movingThumbnailRenderer) == null ? void 0 : _C.movingThumbnailDetails) == null ? void 0 : _D.thumbnails[0]) || {},
+              published: ((_F = (_E = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _E.publishedTimeText) == null ? void 0 : _F.simpleText) || "N/A",
+              duration: {
+                seconds: Utils.timeToSeconds(((_H = (_G = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _G.lengthText) == null ? void 0 : _H.simpleText) || "0"),
+                simple_text: ((_J = (_I = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _I.lengthText) == null ? void 0 : _J.simpleText) || "N/A",
+                accessibility_label: ((_N = (_M = (_L = (_K = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _K.lengthText) == null ? void 0 : _L.accessibility) == null ? void 0 : _M.accessibilityData) == null ? void 0 : _N.label) || "N/A"
+              },
+              badges: ((_P = (_O = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _O.badges) == null ? void 0 : _P.map((badge) => badge.metadataBadgeRenderer.label)) || [],
+              owner_badges: ((_R = (_Q = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _Q.ownerBadges) == null ? void 0 : _R.map((badge) => badge.metadataBadgeRenderer.tooltip)) || []
+            }
+          };
+      }
+    };
+    __name(VideoItem, "VideoItem");
+    module2.exports = VideoItem;
+  }
+});
+
+// lib/parser/youtube/others/GridVideoItem.js
+var require_GridVideoItem = __commonJS({
+  "lib/parser/youtube/others/GridVideoItem.js"(exports2, module2) {
+    "use strict";
+    var Constants = require_Constants();
+    var GridVideoItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item);
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J;
+        return {
+          id: item.gridVideoRenderer.videoId,
+          title: (_c = (_b = (_a = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _a.title) == null ? void 0 : _b.runs) == null ? void 0 : _c.map((run) => run.text).join(" "),
+          channel: {
+            id: (_h = (_g = (_f = (_e = (_d = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _d.shortBylineText) == null ? void 0 : _e.runs[0]) == null ? void 0 : _f.navigationEndpoint) == null ? void 0 : _g.browseEndpoint) == null ? void 0 : _h.browseId,
+            name: ((_k = (_j = (_i = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _i.shortBylineText) == null ? void 0 : _j.runs[0]) == null ? void 0 : _k.text) || "N/A",
+            url: `${Constants.URLS.YT_BASE}${(_p = (_o = (_n = (_m = (_l = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _l.shortBylineText) == null ? void 0 : _m.runs[0]) == null ? void 0 : _n.navigationEndpoint) == null ? void 0 : _o.browseEndpoint) == null ? void 0 : _p.canonicalBaseUrl}`
+          },
+          metadata: {
+            view_count: ((_r = (_q = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _q.viewCountText) == null ? void 0 : _r.simpleText) || "N/A",
+            short_view_count_text: {
+              simple_text: ((_t = (_s = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _s.shortViewCountText) == null ? void 0 : _t.simpleText) || "N/A",
+              accessibility_label: ((_x = (_w = (_v = (_u = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _u.shortViewCountText) == null ? void 0 : _v.accessibility) == null ? void 0 : _w.accessibilityData) == null ? void 0 : _x.label) || "N/A"
+            },
+            thumbnail: ((_z = (_y = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _y.thumbnail) == null ? void 0 : _z.thumbnails.slice(-1)[0]) || [],
+            moving_thumbnail: ((_D = (_C = (_B = (_A = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _A.richThumbnail) == null ? void 0 : _B.movingThumbnailRenderer) == null ? void 0 : _C.movingThumbnailDetails) == null ? void 0 : _D.thumbnails[0]) || {},
+            published: ((_F = (_E = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _E.publishedTimeText) == null ? void 0 : _F.simpleText) || "N/A",
+            badges: ((_H = (_G = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _G.badges) == null ? void 0 : _H.map((badge) => badge.metadataBadgeRenderer.label)) || [],
+            owner_badges: ((_J = (_I = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _I.ownerBadges) == null ? void 0 : _J.map((badge) => badge.metadataBadgeRenderer.tooltip)) || []
+          }
+        };
+      }
+    };
+    __name(GridVideoItem, "GridVideoItem");
+    module2.exports = GridVideoItem;
+  }
+});
+
+// lib/parser/youtube/others/GridPlaylistItem.js
+var require_GridPlaylistItem = __commonJS({
+  "lib/parser/youtube/others/GridPlaylistItem.js"(exports2, module2) {
+    "use strict";
+    var GridPlaylistItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item);
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e;
+        return {
+          id: item == null ? void 0 : item.gridPlaylistRenderer.playlistId,
+          title: (_b = (_a = item == null ? void 0 : item.gridPlaylistRenderer.title) == null ? void 0 : _a.runs) == null ? void 0 : _b.map((run) => run.text).join(""),
+          metadata: {
+            thumbnail: ((_d = (_c = item == null ? void 0 : item.gridPlaylistRenderer.thumbnail) == null ? void 0 : _c.thumbnails) == null ? void 0 : _d.slice(-1)[0]) || {},
+            video_count: ((_e = item == null ? void 0 : item.gridPlaylistRenderer.videoCountShortText) == null ? void 0 : _e.simpleText) || "N/A"
+          }
+        };
+      }
+    };
+    __name(GridPlaylistItem, "GridPlaylistItem");
+    module2.exports = GridPlaylistItem;
+  }
+});
+
+// lib/parser/youtube/others/ChannelMetadata.js
+var require_ChannelMetadata2 = __commonJS({
+  "lib/parser/youtube/others/ChannelMetadata.js"(exports2, module2) {
+    "use strict";
+    var ChannelMetadata = class {
+      static parse(data) {
+        var _a, _b, _c, _d, _e, _f;
+        return {
+          title: data.channelMetadataRenderer.title,
+          description: data.channelMetadataRenderer.description,
+          metadata: {
+            url: (_a = data.channelMetadataRenderer) == null ? void 0 : _a.channelUrl,
+            rss_urls: (_b = data.channelMetadataRenderer) == null ? void 0 : _b.rssUrl,
+            vanity_channel_url: (_c = data.channelMetadataRenderer) == null ? void 0 : _c.vanityChannelUrl,
+            external_id: (_d = data.channelMetadataRenderer) == null ? void 0 : _d.externalId,
+            is_family_safe: (_e = data.channelMetadataRenderer) == null ? void 0 : _e.isFamilySafe,
+            keywords: (_f = data.channelMetadataRenderer) == null ? void 0 : _f.keywords
+          }
+        };
+      }
+    };
+    __name(ChannelMetadata, "ChannelMetadata");
+    module2.exports = ChannelMetadata;
+  }
+});
+
+// lib/parser/youtube/others/ShelfRenderer.js
+var require_ShelfRenderer = __commonJS({
+  "lib/parser/youtube/others/ShelfRenderer.js"(exports2, module2) {
+    "use strict";
+    var VideoItem = require_VideoItem();
+    var GridVideoItem = require_GridVideoItem();
+    var ShelfRenderer = class {
+      static parse(data) {
+        return {
+          title: this.getTitle(data.title),
+          videos: this.parseItems(data.content)
+        };
+      }
+      static getTitle(data) {
+        if ("runs" in (data || {})) {
+          return data.runs.map((run) => run.text).join("");
+        } else if ("simpleText" in (data || {})) {
+          return data.simpleText;
+        }
+        return "Others";
+      }
+      static parseItems(data) {
+        let items;
+        if ("expandedShelfContentsRenderer" in data) {
+          items = data.expandedShelfContentsRenderer.items;
+        } else if ("horizontalListRenderer" in data) {
+          items = data.horizontalListRenderer.items;
+        }
+        const videos = "gridVideoRenderer" in items[0] && GridVideoItem.parse(items) || VideoItem.parse(items);
+        return videos;
+      }
+    };
+    __name(ShelfRenderer, "ShelfRenderer");
+    module2.exports = ShelfRenderer;
+  }
+});
+
+// lib/parser/youtube/others/CommentThread.js
+var require_CommentThread2 = __commonJS({
+  "lib/parser/youtube/others/CommentThread.js"(exports2, module2) {
+    "use strict";
+    var Constants = require_Constants();
+    var CommentThread = class {
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g;
+        if (item.commentThreadRenderer || item.commentRenderer) {
+          const comment = ((_a = item == null ? void 0 : item.commentThreadRenderer) == null ? void 0 : _a.comment) || item;
+          const like_btn = (_c = (_b = comment.commentRenderer) == null ? void 0 : _b.actionButtons) == null ? void 0 : _c.commentActionButtonsRenderer.likeButton;
+          const dislike_btn = (_e = (_d = comment.commentRenderer) == null ? void 0 : _d.actionButtons) == null ? void 0 : _e.commentActionButtonsRenderer.dislikeButton;
+          return {
+            text: comment.commentRenderer.contentText.runs.map((run) => run.text).join(""),
+            author: {
+              name: comment.commentRenderer.authorText.simpleText,
+              thumbnails: comment.commentRenderer.authorThumbnail.thumbnails,
+              channel_id: comment.commentRenderer.authorEndpoint.browseEndpoint.browseId,
+              channel_url: Constants.URLS.YT_BASE + comment.commentRenderer.authorEndpoint.browseEndpoint.canonicalBaseUrl
+            },
+            metadata: {
+              published: comment.commentRenderer.publishedTimeText.runs[0].text,
+              is_reply: !!item.commentRenderer,
+              is_liked: like_btn.toggleButtonRenderer.isToggled,
+              is_disliked: dislike_btn.toggleButtonRenderer.isToggled,
+              is_pinned: !!comment.commentRenderer.pinnedCommentBadge,
+              is_channel_owner: comment.commentRenderer.authorIsChannelOwner,
+              like_count: parseInt((_g = (_f = like_btn == null ? void 0 : like_btn.toggleButtonRenderer) == null ? void 0 : _f.accessibilityData) == null ? void 0 : _g.accessibilityData.label.replace(/\D/g, "")),
+              reply_count: comment.commentRenderer.replyCount || 0,
+              id: comment.commentRenderer.commentId
+            }
+          };
+        }
+      }
+    };
+    __name(CommentThread, "CommentThread");
+    module2.exports = CommentThread;
+  }
+});
+
+// lib/parser/youtube/index.js
+var require_youtube = __commonJS({
+  "lib/parser/youtube/index.js"(exports2, module2) {
+    "use strict";
+    var VideoResultItem = require_VideoResultItem();
+    var SearchSuggestionItem = require_SearchSuggestionItem();
+    var PlaylistItem = require_PlaylistItem();
+    var NotificationItem = require_NotificationItem();
+    var VideoItem = require_VideoItem();
+    var GridVideoItem = require_GridVideoItem();
+    var GridPlaylistItem = require_GridPlaylistItem();
+    var ChannelMetadata = require_ChannelMetadata2();
+    var ShelfRenderer = require_ShelfRenderer();
+    var CommentThread = require_CommentThread2();
+    module2.exports = { VideoResultItem, SearchSuggestionItem, PlaylistItem, NotificationItem, VideoItem, GridVideoItem, GridPlaylistItem, ChannelMetadata, ShelfRenderer, CommentThread };
+  }
+});
+
+// lib/parser/ytmusic/search/SongResultItem.js
+var require_SongResultItem = __commonJS({
+  "lib/parser/ytmusic/search/SongResultItem.js"(exports2, module2) {
+    "use strict";
+    var SongResultItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item);
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e;
+        const list_item = item.musicResponsiveListItemRenderer;
+        if (list_item.playlistItemData) {
+          let artists = (_a = list_item.flexColumns[1]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs;
+          artists.splice(0, 2);
+          const meta = artists.splice(artists.length - 4, 4);
+          artists = artists.filter((artist, index) => !(index % 2));
+          return {
+            id: list_item.playlistItemData.videoId,
+            title: (_c = (_b = list_item.flexColumns[0]) == null ? void 0 : _b.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _c.text,
+            artist: artists.map((artist) => artist.text),
+            album: (_d = meta[1]) == null ? void 0 : _d.text,
+            duration: (_e = meta[3]) == null ? void 0 : _e.text,
+            thumbnails: list_item.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
+          };
+        }
+      }
+    };
+    __name(SongResultItem, "SongResultItem");
+    module2.exports = SongResultItem;
+  }
+});
+
+// lib/parser/ytmusic/search/VideoResultItem.js
+var require_VideoResultItem2 = __commonJS({
+  "lib/parser/ytmusic/search/VideoResultItem.js"(exports2, module2) {
+    "use strict";
+    var VideoResultItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item);
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e;
+        const list_item = item.musicResponsiveListItemRenderer;
+        if (list_item.playlistItemData) {
+          let authors = (_a = list_item.flexColumns[1]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs;
+          authors.splice(0, 2);
+          const meta = authors.splice(authors.length - 4, 4);
+          authors = authors.filter((author, index) => !(index % 2));
+          return {
+            id: list_item.playlistItemData.videoId,
+            title: (_c = (_b = list_item.flexColumns[0]) == null ? void 0 : _b.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _c.text,
+            author: authors.map((author) => author.text),
+            views: (_d = meta[1]) == null ? void 0 : _d.text,
+            duration: (_e = meta[3]) == null ? void 0 : _e.text,
+            thumbnails: list_item == null ? void 0 : list_item.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
+          };
+        }
+      }
+    };
+    __name(VideoResultItem, "VideoResultItem");
+    module2.exports = VideoResultItem;
+  }
+});
+
+// lib/parser/ytmusic/search/AlbumResultItem.js
+var require_AlbumResultItem = __commonJS({
+  "lib/parser/ytmusic/search/AlbumResultItem.js"(exports2, module2) {
+    "use strict";
+    var AlbumResultItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item));
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e;
+        const list_item = item.musicResponsiveListItemRenderer;
+        return {
+          id: list_item.navigationEndpoint.browseEndpoint.browseId,
+          title: (_b = (_a = list_item.flexColumns[0]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _b.text,
+          author: (_d = (_c = list_item.flexColumns[1]) == null ? void 0 : _c.musicResponsiveListItemFlexColumnRenderer.text.runs[2]) == null ? void 0 : _d.text,
+          year: (_e = list_item.flexColumns[1]) == null ? void 0 : _e.musicResponsiveListItemFlexColumnRenderer.text.runs.find((run) => /^[12][0-9]{3}$/.test(run.text)).text,
+          thumbnails: list_item == null ? void 0 : list_item.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails,
+          playlistId: list_item == null ? void 0 : list_item.overlay.musicItemThumbnailOverlayRenderer.content.musicPlayButtonRenderer.playNavigationEndpoint.watchPlaylistEndpoint.playlistId
+        };
+      }
+    };
+    __name(AlbumResultItem, "AlbumResultItem");
+    module2.exports = AlbumResultItem;
+  }
+});
+
+// lib/parser/ytmusic/search/ArtistResultItem.js
+var require_ArtistResultItem = __commonJS({
+  "lib/parser/ytmusic/search/ArtistResultItem.js"(exports2, module2) {
+    "use strict";
+    var ArtistResultItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item));
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d;
+        const list_item = item.musicResponsiveListItemRenderer;
+        return {
+          id: list_item.navigationEndpoint.browseEndpoint.browseId,
+          name: (_b = (_a = list_item.flexColumns[0]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _b.text,
+          subscribers: (_d = (_c = list_item.flexColumns[1]) == null ? void 0 : _c.musicResponsiveListItemFlexColumnRenderer.text.runs[2]) == null ? void 0 : _d.text,
+          thumbnails: list_item == null ? void 0 : list_item.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
+        };
+      }
+    };
+    __name(ArtistResultItem, "ArtistResultItem");
+    module2.exports = ArtistResultItem;
+  }
+});
+
+// lib/parser/ytmusic/search/PlaylistResultItem.js
+var require_PlaylistResultItem = __commonJS({
+  "lib/parser/ytmusic/search/PlaylistResultItem.js"(exports2, module2) {
+    "use strict";
+    var PlaylistResultItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item));
+      }
+      static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
+        const list_item = item.musicResponsiveListItemRenderer;
+        const watch_playlist_endpoint = (_e = (_d = (_c = (_b = (_a = list_item == null ? void 0 : list_item.overlay) == null ? void 0 : _a.musicItemThumbnailOverlayRenderer) == null ? void 0 : _b.content) == null ? void 0 : _c.musicPlayButtonRenderer) == null ? void 0 : _d.playNavigationEndpoint) == null ? void 0 : _e.watchPlaylistEndpoint;
+        return {
+          id: watch_playlist_endpoint == null ? void 0 : watch_playlist_endpoint.playlistId,
+          title: (_g = (_f = list_item.flexColumns[0]) == null ? void 0 : _f.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _g.text,
+          author: (_i = (_h = list_item.flexColumns[1]) == null ? void 0 : _h.musicResponsiveListItemFlexColumnRenderer.text.runs[2]) == null ? void 0 : _i.text,
+          channel_id: ((_l = (_k = (_j = list_item.flexColumns[1]) == null ? void 0 : _j.musicResponsiveListItemFlexColumnRenderer.text.runs[2]) == null ? void 0 : _k.navigationEndpoint) == null ? void 0 : _l.browseEndpoint.browseId) || "0",
+          total_items: parseInt((_n = (_m = list_item.flexColumns[1]) == null ? void 0 : _m.musicResponsiveListItemFlexColumnRenderer.text.runs[4]) == null ? void 0 : _n.text.match(/\d+/g))
+        };
+      }
+    };
+    __name(PlaylistResultItem, "PlaylistResultItem");
+    module2.exports = PlaylistResultItem;
+  }
+});
+
+// lib/parser/ytmusic/search/MusicSearchSuggestionItem.js
+var require_MusicSearchSuggestionItem = __commonJS({
+  "lib/parser/ytmusic/search/MusicSearchSuggestionItem.js"(exports2, module2) {
+    "use strict";
+    var MusicSearchSuggestionItem = class {
+      static parse(data) {
+        return {
+          query: this.parseItem(data[0]).runs[0].text.trim(),
+          results: data.map((item) => this.parseItem(item).runs.map((run) => run.text).join("").trim())
+        };
+      }
+      static parseItem(item) {
+        let suggestion;
+        if (item.historySuggestionRenderer) {
+          suggestion = item.historySuggestionRenderer.suggestion;
+        } else {
+          suggestion = item.searchSuggestionRenderer.suggestion;
+        }
+        return suggestion;
+      }
+    };
+    __name(MusicSearchSuggestionItem, "MusicSearchSuggestionItem");
+    module2.exports = MusicSearchSuggestionItem;
+  }
+});
+
+// lib/parser/ytmusic/search/TopResultItem.js
+var require_TopResultItem = __commonJS({
+  "lib/parser/ytmusic/search/TopResultItem.js"(exports2, module2) {
+    "use strict";
+    var SongResultItem = require_SongResultItem();
+    var VideoResultItem = require_VideoResultItem2();
+    var AlbumResultItem = require_AlbumResultItem();
+    var ArtistResultItem = require_ArtistResultItem();
+    var PlaylistResultItem = require_PlaylistResultItem();
+    var TopResultItem = class {
+      static parse(data) {
+        return data.map((item) => {
+          var _a;
+          const list_item = item.musicResponsiveListItemRenderer;
+          const runs = (_a = list_item.flexColumns[1]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs;
+          const type = runs[0].text.toLowerCase();
+          const parsed_item = (() => {
+            switch (type) {
+              case "playlist":
+                return PlaylistResultItem.parseItem(item);
+              case "song":
+                return SongResultItem.parseItem(item);
+              case "video":
+                return VideoResultItem.parseItem(item);
+              case "artist":
+                return ArtistResultItem.parseItem(item);
+              case "album":
+                return AlbumResultItem.parseItem(item);
+              case "single":
+                return AlbumResultItem.parseItem(item);
+              default:
+                return void 0;
+            }
+          })();
+          if (parsed_item) {
+            parsed_item.type = type;
+          }
+          return parsed_item;
+        }).filter((item) => item);
+      }
+    };
+    __name(TopResultItem, "TopResultItem");
+    module2.exports = TopResultItem;
+  }
+});
+
+// lib/parser/ytmusic/others/PlaylistItem.js
+var require_PlaylistItem2 = __commonJS({
+  "lib/parser/ytmusic/others/PlaylistItem.js"(exports2, module2) {
+    "use strict";
+    var Utils = require_Utils();
+    var PlaylistItem = class {
+      static parse(data) {
+        return data.map((item) => this.parseItem(item)).filter((item) => item.id);
+      }
+      static parseItem(item) {
+        const item_renderer = item.musicResponsiveListItemRenderer;
+        const fixed_columns = item_renderer.fixedColumns;
+        const flex_columns = item_renderer.flexColumns;
+        return {
+          id: item_renderer.playlistItemData && item_renderer.playlistItemData.videoId,
+          title: flex_columns[0].musicResponsiveListItemFlexColumnRenderer.text.runs[0].text,
+          author: flex_columns[1].musicResponsiveListItemFlexColumnRenderer.text.runs[0].text,
+          duration: {
+            seconds: Utils.timeToSeconds(fixed_columns[0].musicResponsiveListItemFixedColumnRenderer.text.runs[0].text || "0"),
+            simple_text: fixed_columns[0].musicResponsiveListItemFixedColumnRenderer.text.runs[0].text
+          },
+          thumbnails: item_renderer.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
+        };
+      }
+    };
+    __name(PlaylistItem, "PlaylistItem");
+    module2.exports = PlaylistItem;
+  }
+});
+
+// lib/parser/ytmusic/index.js
+var require_ytmusic = __commonJS({
+  "lib/parser/ytmusic/index.js"(exports2, module2) {
+    "use strict";
+    var SongResultItem = require_SongResultItem();
+    var VideoResultItem = require_VideoResultItem2();
+    var AlbumResultItem = require_AlbumResultItem();
+    var ArtistResultItem = require_ArtistResultItem();
+    var PlaylistResultItem = require_PlaylistResultItem();
+    var MusicSearchSuggestionItem = require_MusicSearchSuggestionItem();
+    var TopResultItem = require_TopResultItem();
+    var PlaylistItem = require_PlaylistItem2();
+    module2.exports = { SongResultItem, VideoResultItem, AlbumResultItem, ArtistResultItem, PlaylistResultItem, MusicSearchSuggestionItem, TopResultItem, PlaylistItem };
+  }
+});
+
+// lib/parser/index.js
+var require_parser = __commonJS({
+  "lib/parser/index.js"(exports2, module2) {
+    "use strict";
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var YTDataItems = require_youtube();
+    var YTMusicDataItems = require_ytmusic();
+    var Proto2 = require_proto();
+    var _processSearch, processSearch_fn, _processMusicSearch, processMusicSearch_fn, _processSearchSuggestions, processSearchSuggestions_fn, _processMusicSearchSuggestions, processMusicSearchSuggestions_fn, _processPlaylist, processPlaylist_fn, _processMusicPlaylist, processMusicPlaylist_fn, _processVideoInfo, processVideoInfo_fn, _processComments, processComments_fn, _processHomeFeed, processHomeFeed_fn, _processLibrary, processLibrary_fn, _processSubscriptionFeed, processSubscriptionFeed_fn, _processChannel, processChannel_fn, _processNotifications, processNotifications_fn, _processTrending, processTrending_fn, _processHistory, processHistory_fn;
+    var Parser = class {
+      constructor(session, data, args = {}) {
+        __privateAdd(this, _processSearch);
+        __privateAdd(this, _processMusicSearch);
+        __privateAdd(this, _processSearchSuggestions);
+        __privateAdd(this, _processMusicSearchSuggestions);
+        __privateAdd(this, _processPlaylist);
+        __privateAdd(this, _processMusicPlaylist);
+        __privateAdd(this, _processVideoInfo);
+        __privateAdd(this, _processComments);
+        __privateAdd(this, _processHomeFeed);
+        __privateAdd(this, _processLibrary);
+        __privateAdd(this, _processSubscriptionFeed);
+        __privateAdd(this, _processChannel);
+        __privateAdd(this, _processNotifications);
+        __privateAdd(this, _processTrending);
+        __privateAdd(this, _processHistory);
+        this.data = data;
+        this.session = session;
+        this.args = args;
+      }
+      parse() {
+        const client = this.args.client;
+        const data_type = this.args.data_type;
+        let processed_data;
+        switch (client) {
+          case "YOUTUBE":
+            processed_data = (() => {
+              switch (data_type) {
+                case "SEARCH":
+                  return __privateMethod(this, _processSearch, processSearch_fn).call(this);
+                case "CHANNEL":
+                  return __privateMethod(this, _processChannel, processChannel_fn).call(this);
+                case "PLAYLIST":
+                  return __privateMethod(this, _processPlaylist, processPlaylist_fn).call(this);
+                case "SUBSFEED":
+                  return __privateMethod(this, _processSubscriptionFeed, processSubscriptionFeed_fn).call(this);
+                case "HOMEFEED":
+                  return __privateMethod(this, _processHomeFeed, processHomeFeed_fn).call(this);
+                case "LIBRARY":
+                  return __privateMethod(this, _processLibrary, processLibrary_fn).call(this);
+                case "TRENDING":
+                  return __privateMethod(this, _processTrending, processTrending_fn).call(this);
+                case "HISTORY":
+                  return __privateMethod(this, _processHistory, processHistory_fn).call(this);
+                case "COMMENTS":
+                  return __privateMethod(this, _processComments, processComments_fn).call(this);
+                case "VIDEO_INFO":
+                  return __privateMethod(this, _processVideoInfo, processVideoInfo_fn).call(this);
+                case "NOTIFICATIONS":
+                  return __privateMethod(this, _processNotifications, processNotifications_fn).call(this);
+                case "SEARCH_SUGGESTIONS":
+                  return __privateMethod(this, _processSearchSuggestions, processSearchSuggestions_fn).call(this);
+                default:
+                  throw new TypeError("undefined is not a function");
+              }
+            })();
+            break;
+          case "YTMUSIC":
+            processed_data = (() => {
+              switch (data_type) {
+                case "SEARCH":
+                  return __privateMethod(this, _processMusicSearch, processMusicSearch_fn).call(this);
+                case "PLAYLIST":
+                  return __privateMethod(this, _processMusicPlaylist, processMusicPlaylist_fn).call(this);
+                case "SEARCH_SUGGESTIONS":
+                  return __privateMethod(this, _processMusicSearchSuggestions, processMusicSearchSuggestions_fn).call(this);
+                default:
+                  throw new TypeError("undefined is not a function");
+              }
+            })();
+            break;
+          default:
+            throw new Utils.InnertubeError("Invalid client");
+        }
+        return processed_data;
+      }
+    };
+    __name(Parser, "Parser");
+    _processSearch = new WeakSet();
+    processSearch_fn = /* @__PURE__ */ __name(function() {
+      const contents = Utils.findNode(this.data, "contents", "contents", 5);
+      const processed_data = {};
+      const parseItems = /* @__PURE__ */ __name((contents2) => {
+        var _a, _b, _c, _d, _e, _f, _g;
+        const content = contents2[0].itemSectionRenderer.contents;
+        processed_data.query = ((_c = (_b = (_a = content[0]) == null ? void 0 : _a.showingResultsForRenderer) == null ? void 0 : _b.originalQuery) == null ? void 0 : _c.simpleText) || this.args.query;
+        processed_data.corrected_query = ((_g = (_f = (_e = (_d = content[0]) == null ? void 0 : _d.showingResultsForRenderer) == null ? void 0 : _e.correctedQueryEndpoint) == null ? void 0 : _f.searchEndpoint) == null ? void 0 : _g.query) || "N/A";
+        processed_data.estimated_results = parseInt(this.data.estimatedResults);
+        processed_data.videos = YTDataItems.VideoResultItem.parse(content);
+        processed_data.getContinuation = async () => {
+          const citem = contents2.find((item) => item.continuationItemRenderer);
+          const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+          const response = await this.session.actions.search({ ctoken });
+          const continuation_items = Utils.findNode(response.data, "onResponseReceivedCommands", "itemSectionRenderer", 4, false);
+          return parseItems(continuation_items);
+        };
+        return processed_data;
+      }, "parseItems");
+      return parseItems(contents);
+    }, "#processSearch");
+    _processMusicSearch = new WeakSet();
+    processMusicSearch_fn = /* @__PURE__ */ __name(function() {
+      const tabs = Utils.findNode(this.data, "contents", "tabs").tabs;
+      const contents = Utils.findNode(tabs, "0", "contents", 5);
+      const did_you_mean_item = contents.find((content) => content.itemSectionRenderer);
+      const did_you_mean_renderer = did_you_mean_item == null ? void 0 : did_you_mean_item.itemSectionRenderer.contents[0].didYouMeanRenderer;
+      const processed_data = {
+        query: "",
+        corrected_query: "",
+        results: {}
+      };
+      processed_data.query = this.args.query;
+      processed_data.corrected_query = (did_you_mean_renderer == null ? void 0 : did_you_mean_renderer.correctedQuery.runs.map((run) => run.text).join("")) || "N/A";
+      contents.forEach((content) => {
+        const section = content == null ? void 0 : content.musicShelfRenderer;
+        if (section) {
+          const section_title = section.title.runs[0].text;
+          const section_items = ({
+            ["Top result"]: () => YTMusicDataItems.TopResultItem.parse(section.contents),
+            ["Songs"]: () => YTMusicDataItems.SongResultItem.parse(section.contents),
+            ["Videos"]: () => YTMusicDataItems.VideoResultItem.parse(section.contents),
+            ["Featured playlists"]: () => YTMusicDataItems.PlaylistResultItem.parse(section.contents),
+            ["Community playlists"]: () => YTMusicDataItems.PlaylistResultItem.parse(section.contents),
+            ["Artists"]: () => YTMusicDataItems.ArtistResultItem.parse(section.contents),
+            ["Albums"]: () => YTMusicDataItems.AlbumResultItem.parse(section.contents)
+          }[section_title] || (() => {
+          }))();
+          processed_data.results[section_title.replace(/ /g, "_").toLowerCase()] = section_items;
+        }
+      });
+      return processed_data;
+    }, "#processMusicSearch");
+    _processSearchSuggestions = new WeakSet();
+    processSearchSuggestions_fn = /* @__PURE__ */ __name(function() {
+      return YTDataItems.SearchSuggestionItem.parse(JSON.parse(this.data.replace(")]}'", "")));
+    }, "#processSearchSuggestions");
+    _processMusicSearchSuggestions = new WeakSet();
+    processMusicSearchSuggestions_fn = /* @__PURE__ */ __name(function() {
+      const contents = this.data.contents[0].searchSuggestionsSectionRenderer.contents;
+      return YTMusicDataItems.MusicSearchSuggestionItem.parse(contents);
+    }, "#processMusicSearchSuggestions");
+    _processPlaylist = new WeakSet();
+    processPlaylist_fn = /* @__PURE__ */ __name(function() {
+      var _a, _b, _c, _d;
+      const details = this.data.sidebar.playlistSidebarRenderer.items[0];
+      const metadata = {
+        title: this.data.metadata.playlistMetadataRenderer.title,
+        description: ((_b = (_a = details.playlistSidebarPrimaryInfoRenderer) == null ? void 0 : _a.description) == null ? void 0 : _b.simpleText) || "N/A",
+        total_items: ((_c = details.playlistSidebarPrimaryInfoRenderer.stats[0].runs[0]) == null ? void 0 : _c.text) || "N/A",
+        last_updated: ((_d = details.playlistSidebarPrimaryInfoRenderer.stats[2].runs[1]) == null ? void 0 : _d.text) || "N/A",
+        views: details.playlistSidebarPrimaryInfoRenderer.stats[1].simpleText
+      };
+      const list = Utils.findNode(this.data, "contents", "contents", 13, false);
+      const items = YTDataItems.PlaylistItem.parse(list.contents);
+      return {
+        ...metadata,
+        items
+      };
+    }, "#processPlaylist");
+    _processMusicPlaylist = new WeakSet();
+    processMusicPlaylist_fn = /* @__PURE__ */ __name(function() {
+      var _a, _b, _c, _d, _e, _f;
+      const details = this.data.header.musicDetailHeaderRenderer;
+      const metadata = {
+        title: (_a = details == null ? void 0 : details.title) == null ? void 0 : _a.runs[0].text,
+        description: ((_c = (_b = details == null ? void 0 : details.description) == null ? void 0 : _b.runs) == null ? void 0 : _c.map((run) => run.text).join("")) || "N/A",
+        total_items: parseInt((_d = details == null ? void 0 : details.secondSubtitle) == null ? void 0 : _d.runs[0].text.match(/\d+/g)),
+        duration: (_e = details == null ? void 0 : details.secondSubtitle) == null ? void 0 : _e.runs[2].text,
+        year: (_f = details == null ? void 0 : details.subtitle) == null ? void 0 : _f.runs[4].text
+      };
+      const contents = this.data.contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents;
+      const playlist_content = contents[0].musicPlaylistShelfRenderer.contents;
+      const items = YTMusicDataItems.PlaylistItem.parse(playlist_content);
+      return {
+        ...metadata,
+        items
+      };
+    }, "#processMusicPlaylist");
+    _processVideoInfo = new WeakSet();
+    processVideoInfo_fn = /* @__PURE__ */ __name(function() {
+      var _a, _b, _c, _d, _e, _f, _g;
+      const playability_status = this.data.playabilityStatus;
+      if (playability_status.status == "ERROR")
+        throw new Error(`Could not retrieve video details: ${playability_status.status} - ${playability_status.reason}`);
+      const details = this.data.videoDetails;
+      const microformat = this.data.microformat.playerMicroformatRenderer;
+      const streaming_data = this.data.streamingData;
+      const mf_raw_data = Object.entries(microformat);
+      const dt_raw_data = Object.entries(details);
+      const processed_data = {
+        id: "",
+        title: "",
+        description: "",
+        thumbnail: [],
+        metadata: {}
+      };
+      mf_raw_data.forEach((entry) => {
+        const key = Utils.camelToSnake(entry[0]);
+        if (Constants.METADATA_KEYS.includes(key)) {
+          if (key == "view_count") {
+            processed_data.metadata[key] = parseInt(entry[1]);
+          } else if (key == "owner_profile_url") {
+            processed_data.metadata.channel_url = entry[1];
+          } else if (key == "owner_channel_name") {
+            processed_data.metadata.channel_name = entry[1];
+          } else {
+            processed_data.metadata[key] = entry[1];
+          }
+        } else {
+          processed_data[key] = entry[1];
+        }
+      });
+      dt_raw_data.forEach((entry) => {
+        const key = Utils.camelToSnake(entry[0]);
+        if (Constants.BLACKLISTED_KEYS.includes(key))
+          return;
+        if (Constants.METADATA_KEYS.includes(key)) {
+          if (key == "view_count") {
+            processed_data.metadata[key] = parseInt(entry[1]);
+          } else {
+            processed_data.metadata[key] = entry[1];
+          }
+        } else if (key == "short_description") {
+          processed_data.description = entry[1];
+        } else if (key == "thumbnail") {
+          processed_data.thumbnail = entry[1].thumbnails.slice(-1)[0];
+        } else if (key == "video_id") {
+          processed_data.id = entry[1];
+        } else {
+          processed_data[key] = entry[1];
+        }
+      });
+      if (this.data.continuation) {
+        const primary_info_renderer = this.data.continuation.contents.twoColumnWatchNextResults.results.results.contents.find((item) => item.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer;
+        const secondary_info_renderer = this.data.continuation.contents.twoColumnWatchNextResults.results.results.contents.find((item) => item.videoSecondaryInfoRenderer).videoSecondaryInfoRenderer;
+        const like_btn = primary_info_renderer.videoActions.menuRenderer.topLevelButtons.find((item) => item.toggleButtonRenderer.defaultIcon.iconType == "LIKE");
+        const dislike_btn = primary_info_renderer.videoActions.menuRenderer.topLevelButtons.find((item) => item.toggleButtonRenderer.defaultIcon.iconType == "DISLIKE");
+        const notification_toggle_btn = (_b = (_a = secondary_info_renderer.subscribeButton.subscribeButtonRenderer) == null ? void 0 : _a.notificationPreferenceButton) == null ? void 0 : _b.subscriptionNotificationToggleButtonRenderer;
+        processed_data.metadata.is_liked = like_btn.toggleButtonRenderer.isToggled;
+        processed_data.metadata.is_disliked = dislike_btn.toggleButtonRenderer.isToggled;
+        processed_data.metadata.is_subscribed = ((_c = secondary_info_renderer.subscribeButton.subscribeButtonRenderer) == null ? void 0 : _c.subscribed) || false;
+        processed_data.metadata.subscriber_count = ((_e = (_d = secondary_info_renderer.owner.videoOwnerRenderer) == null ? void 0 : _d.subscriberCountText) == null ? void 0 : _e.simpleText) || "N/A";
+        processed_data.metadata.current_notification_preference = (notification_toggle_btn == null ? void 0 : notification_toggle_btn.states.find((state) => state.stateId == notification_toggle_btn.currentStateId).state.buttonRenderer.icon.iconType) || "N/A";
+        processed_data.metadata.publish_date_text = primary_info_renderer.dateText.simpleText;
+        if (processed_data.metadata.allow_ratings) {
+          processed_data.metadata.likes = {
+            count: parseInt(like_btn.toggleButtonRenderer.defaultText.accessibility.accessibilityData.label.replace(/\D/g, "")),
+            short_count_text: like_btn.toggleButtonRenderer.defaultText.simpleText
+          };
+        }
+        processed_data.metadata.owner_badges = ((_g = (_f = secondary_info_renderer.owner.videoOwnerRenderer) == null ? void 0 : _f.badges) == null ? void 0 : _g.map((badge) => badge.metadataBadgeRenderer.tooltip)) || [];
+      }
+      if (streaming_data && streaming_data.adaptiveFormats) {
+        processed_data.metadata.available_qualities = [...new Set(streaming_data.adaptiveFormats.filter((v) => v.qualityLabel).map((v) => v.qualityLabel).sort((a, b) => +a.replace(/\D/gi, "") - +b.replace(/\D/gi, "")))];
+      } else {
+        processed_data.metadata.available_qualities = [];
+      }
+      return processed_data;
+    }, "#processVideoInfo");
+    _processComments = new WeakSet();
+    processComments_fn = /* @__PURE__ */ __name(function() {
+      if (!this.data.onResponseReceivedEndpoints)
+        throw new Utils.UnavailableContentError("Comments section not available", this.args);
+      const header = Utils.findNode(this.data, "onResponseReceivedEndpoints", "commentsHeaderRenderer", 5, false);
+      const comment_count = parseInt(header.commentsHeaderRenderer.countText.runs[0].text.replace(/,/g, ""));
+      const page_count = parseInt(comment_count / 20);
+      const parseComments = /* @__PURE__ */ __name((data) => {
+        const items = Utils.findNode(data, "onResponseReceivedEndpoints", "commentRenderer", 4, false);
+        const response = {
+          page_count,
+          comment_count,
+          items: []
+        };
+        response.items = items.map((item) => {
+          const comment = YTDataItems.CommentThread.parseItem(item);
+          if (comment) {
+            comment.like = () => this.session.actions.engage("comment/perform_comment_action", { comment_action: "like", comment_id: comment.metadata.id, video_id: this.args.video_id });
+            comment.dislike = () => this.session.actions.engage("comment/perform_comment_action", { comment_action: "dislike", comment_id: comment.metadata.id, video_id: this.args.video_id });
+            comment.reply = (text) => this.session.actions.engage("comment/create_comment_reply", { text, comment_id: comment.metadata.id, video_id: this.args.video_id });
+            comment.report = async () => {
+              const payload = Utils.findNode(item, "commentThreadRenderer", "params", 10, false);
+              const form = await this.session.actions.flag("flag/get_form", { params: payload.params });
+              const action = Utils.findNode(form, "actions", "flagAction", 13, false);
+              const flag = await this.session.actions.flag("flag/flag", { action: action.flagAction });
+              return flag;
+            };
+            comment.getReplies = async () => {
+              if (comment.metadata.reply_count === 0)
+                throw new Utils.InnertubeError("This comment has no replies", comment);
+              const payload = Proto2.encodeCommentRepliesParams(this.args.video_id, comment.metadata.id);
+              const next = await this.session.actions.next({ ctoken: payload });
+              return parseComments(next.data);
+            };
+            comment.translate = async (target_language) => {
+              const response2 = await this.session.actions.engage("comment/perform_comment_action", {
+                text: comment.text,
+                comment_action: "translate",
+                comment_id: comment.metadata.id,
+                video_id: this.args.video_id,
+                target_language
+              });
+              const translated_content = Utils.findNode(response2.data, "frameworkUpdates", "content", 7, false);
+              return {
+                success: response2.success,
+                status_code: response2.status_code,
+                translated_content: translated_content.content
+              };
+            };
+            return comment;
+          }
+        }).filter((c) => c);
+        response.comment = (text) => this.session.actions.engage("comment/create_comment", { video_id: this.args.video_id, text });
+        response.getContinuation = async () => {
+          const continuation_item = items.find((item) => item.continuationItemRenderer);
+          if (!continuation_item)
+            throw new Utils.InnertubeError("You've reached the end");
+          const is_reply = !!continuation_item.continuationItemRenderer.button;
+          const payload = Utils.findNode(continuation_item, "continuationItemRenderer", "token", is_reply ? 5 : 3);
+          const next = await this.session.actions.next({ ctoken: payload.token });
+          return parseComments(next.data);
+        };
+        return response;
+      }, "parseComments");
+      return parseComments(this.data);
+    }, "#processComments");
+    _processHomeFeed = new WeakSet();
+    processHomeFeed_fn = /* @__PURE__ */ __name(function() {
+      const contents = Utils.findNode(this.data, "contents", "videoRenderer", 9, false);
+      const parseItems = /* @__PURE__ */ __name((contents2) => {
+        const videos = YTDataItems.VideoItem.parse(contents2);
+        const getContinuation = /* @__PURE__ */ __name(async () => {
+          const citem = contents2.find((item) => item.continuationItemRenderer);
+          const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+          const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
+          return parseItems(response.data.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems);
+        }, "getContinuation");
+        return { videos, getContinuation };
+      }, "parseItems");
+      return parseItems(contents);
+    }, "#processHomeFeed");
+    _processLibrary = new WeakSet();
+    processLibrary_fn = /* @__PURE__ */ __name(function() {
+      var _a, _b, _c;
+      const profile_data = Utils.findNode(this.data, "contents", "profileColumnRenderer", 3);
+      const stats_data = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnStatsRenderer);
+      const stats_items = stats_data.profileColumnStatsRenderer.items;
+      const userinfo = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnUserInfoRenderer);
+      const stats = {};
+      stats_items.forEach((item) => {
+        const label = item.profileColumnStatsEntryRenderer.label.runs.map((run) => run.text).join("");
+        stats[label.toLowerCase()] = parseInt(item.profileColumnStatsEntryRenderer.value.simpleText);
+      });
+      const profile = {
+        name: (_b = (_a = userinfo.profileColumnUserInfoRenderer) == null ? void 0 : _a.title) == null ? void 0 : _b.simpleText,
+        thumbnails: (_c = userinfo.profileColumnUserInfoRenderer) == null ? void 0 : _c.thumbnail.thumbnails,
+        stats
+      };
+      return {
+        profile
+      };
+    }, "#processLibrary");
+    _processSubscriptionFeed = new WeakSet();
+    processSubscriptionFeed_fn = /* @__PURE__ */ __name(function() {
+      const contents = Utils.findNode(this.data, "contents", "contents", 9, false);
+      const subsfeed = { items: [] };
+      const parseItems = /* @__PURE__ */ __name((contents2) => {
+        contents2.forEach((section) => {
+          if (!section.itemSectionRenderer)
+            return;
+          const section_contents = section.itemSectionRenderer.contents[0];
+          const section_title = section_contents.shelfRenderer.title.runs[0].text;
+          const section_items = section_contents.shelfRenderer.content.gridRenderer.items;
+          const items = YTDataItems.GridVideoItem.parse(section_items);
+          subsfeed.items.push({
+            date: section_title,
+            videos: items
+          });
+        });
+        subsfeed.getContinuation = async () => {
+          const citem = contents2.find((item) => item.continuationItemRenderer);
+          const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+          const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
+          const ccontents = Utils.findNode(response.data, "onResponseReceivedActions", "itemSectionRenderer", 4, false);
+          subsfeed.items = [];
+          return parseItems(ccontents);
+        };
+        return subsfeed;
+      }, "parseItems");
+      return parseItems(contents);
+    }, "#processSubscriptionFeed");
+    _processChannel = new WeakSet();
+    processChannel_fn = /* @__PURE__ */ __name(function() {
+      const tabs = this.data.contents.twoColumnBrowseResultsRenderer.tabs;
+      const metadata = this.data.metadata;
+      const home_tab = tabs.find((tab) => tab.tabRenderer.title == "Home");
+      const home_contents = home_tab.tabRenderer.content.sectionListRenderer.contents;
+      const home_shelves = [];
+      home_contents.forEach((content) => {
+        var _a;
+        if (content.itemSectionRenderer) {
+          const contents = content.itemSectionRenderer.contents[0];
+          const list = (_a = contents == null ? void 0 : contents.shelfRenderer) == null ? void 0 : _a.content.horizontalListRenderer;
+          if (!list)
+            return;
+          const shelf = {
+            title: contents.shelfRenderer.title.runs[0].text,
+            content: []
+          };
+          shelf.content = list.items.map((item) => {
+            if (item.gridVideoRenderer) {
+              return YTDataItems.GridVideoItem.parseItem(item);
+            } else if (item.gridPlaylistRenderer) {
+              return YTDataItems.GridPlaylistItem.parseItem(item);
+            }
+          });
+          home_shelves.push(shelf);
+        }
+      });
+      const ch_info = YTDataItems.ChannelMetadata.parse(metadata);
+      return {
+        ...ch_info,
+        content: {
+          home_page: home_shelves,
+          getVideos: () => {
+          },
+          getPlaylists: () => {
+          },
+          getCommunity: () => {
+          },
+          getChannels: () => {
+          },
+          getAbout: () => {
+          }
+        }
+      };
+    }, "#processChannel");
+    _processNotifications = new WeakSet();
+    processNotifications_fn = /* @__PURE__ */ __name(function() {
+      const contents = this.data.actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[0];
+      if (!contents.multiPageMenuNotificationSectionRenderer)
+        throw new Utils.InnertubeError("No notifications");
+      const parseItems = /* @__PURE__ */ __name((items) => {
+        const parsed_items = YTDataItems.NotificationItem.parse(items);
+        const getContinuation = /* @__PURE__ */ __name(async () => {
+          var _a, _b, _c;
+          const citem = items.find((item) => item.continuationItemRenderer);
+          const ctoken = (_c = (_b = (_a = citem == null ? void 0 : citem.continuationItemRenderer) == null ? void 0 : _a.continuationEndpoint) == null ? void 0 : _b.getNotificationMenuEndpoint) == null ? void 0 : _c.ctoken;
+          const response = await this.session.actions.notifications("get_notification_menu", { ctoken });
+          return parseItems(response.data.actions[0].appendContinuationItemsAction.continuationItems);
+        }, "getContinuation");
+        return { items: parsed_items, getContinuation };
+      }, "parseItems");
+      return parseItems(contents.multiPageMenuNotificationSectionRenderer.items);
+    }, "#processNotifications");
+    _processTrending = new WeakSet();
+    processTrending_fn = /* @__PURE__ */ __name(function() {
+      const tabs = Utils.findNode(this.data, "contents", "tabRenderer", 4, false);
+      const categories = {};
+      tabs.forEach((tab) => {
+        const tab_renderer = tab.tabRenderer;
+        const tab_content = tab_renderer == null ? void 0 : tab_renderer.content;
+        const category_title = tab_renderer.title.toLowerCase();
+        categories[category_title] = {};
+        if (tab_content) {
+          const contents = tab_content.sectionListRenderer.contents;
+          categories[category_title].content = contents.map((content) => {
+            const shelf = content.itemSectionRenderer.contents[0].shelfRenderer;
+            const parsed_shelf = YTDataItems.ShelfRenderer.parse(shelf);
+            return parsed_shelf;
+          });
+        } else {
+          const params = tab_renderer.endpoint.browseEndpoint.params;
+          categories[category_title].getVideos = async () => {
+            const response = await this.session.actions.browse("FEtrending", { params });
+            const tabs2 = Utils.findNode(response, "contents", "tabRenderer", 4, false);
+            const tab2 = tabs2.find((tab3) => tab3.tabRenderer.title === tab_renderer.title);
+            const contents = tab2.tabRenderer.content.sectionListRenderer.contents;
+            const items = Utils.findNode(contents, "itemSectionRenderer", "items", 8, false);
+            return YTDataItems.VideoItem.parse(items);
+          };
+        }
+      });
+      return categories;
+    }, "#processTrending");
+    _processHistory = new WeakSet();
+    processHistory_fn = /* @__PURE__ */ __name(function() {
+      const contents = Utils.findNode(this.data, "contents", "videoRenderer", 9, false);
+      const history = { items: [] };
+      const parseItems = /* @__PURE__ */ __name((contents2) => {
+        contents2.forEach((section) => {
+          if (!section.itemSectionRenderer)
+            return;
+          const header = section.itemSectionRenderer.header.itemSectionHeaderRenderer.title;
+          const section_title = (header == null ? void 0 : header.simpleText) || (header == null ? void 0 : header.runs.map((run) => run.text).join(""));
+          const contents3 = section.itemSectionRenderer.contents;
+          const section_items = YTDataItems.VideoItem.parse(contents3);
+          history.items.push({
+            date: section_title,
+            videos: section_items
+          });
+        });
+        history.getContinuation = async () => {
+          const citem = contents2.find((item) => item.continuationItemRenderer);
+          const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+          const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
+          history.items = [];
+          return parseItems(response.data.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems);
+        };
+        return history;
+      }, "parseItems");
+      return parseItems(contents);
+    }, "#processHistory");
+    module2.exports = Parser;
+  }
+});
+
+// lib/Innertube.js
+var OAuth = require_OAuth();
+var Actions = require_Actions();
+var SessionBuilder = require_SessionBuilder();
+var AccountManager = require_AccountManager();
+var PlaylistManager = require_PlaylistManager();
+var InteractionManager = require_InteractionManager();
+var Search = require_Search();
+var VideoInfo = require_VideoInfo();
+var Channel = require_Channel2();
+var Playlist = require_Playlist2();
+var Library = require_Library();
+var History = require_History();
+var Comments = require_Comments();
+var YTMusic = require_Music();
+var FilterableFeed = require_FilterableFeed();
+var TabbedFeed = require_TabbedFeed();
+var EventEmitter = require("events");
+var { PassThrough } = false ? null : require("stream");
+var Request = require_Request();
+var {
+  InnertubeError,
+  throwIfMissing,
+  generateRandomString
+} = require_Utils();
+var OldParser = require_parser();
+var Proto = require_proto();
+var _player, _request, _init, init_fn;
+var Innertube = class {
+  constructor(config) {
+    __privateAdd(this, _init);
+    __privateAdd(this, _player, void 0);
+    __privateAdd(this, _request, void 0);
+    this.config = config || {};
+    return __privateMethod(this, _init, init_fn).call(this);
+  }
+  signIn(credentials = {}) {
+    return new Promise(async (resolve) => {
+      this.oauth.init(credentials);
+      if (this.oauth.validateCredentials()) {
+        await this.oauth.checkAccessTokenValidity();
+        this.logged_in = true;
+        resolve();
+      }
+      this.ev.on("auth", (data) => {
+        this.logged_in = true;
+        if (data.status === "SUCCESS")
+          resolve();
+      });
+    });
+  }
+  async signOut() {
+    if (!this.logged_in)
+      throw new InnertubeError("You are not signed in");
+    const response = await this.oauth.revokeAccessToken();
+    this.logged_in = false;
+    return response;
+  }
+  async getInfo(video_id) {
+    throwIfMissing({ video_id });
+    const cpn = generateRandomString(16);
+    const initial_info = this.actions.getVideoInfo(video_id, cpn);
+    const continuation = this.actions.next({ video_id });
+    const response = await Promise.all([initial_info, continuation]);
+    return new VideoInfo(response, this.actions, __privateGet(this, _player), cpn);
+  }
+  async getBasicInfo(video_id) {
+    throwIfMissing({ video_id });
+    const cpn = generateRandomString(16);
+    const response = await this.actions.getVideoInfo(video_id, cpn);
+    return new VideoInfo([response, {}], this.actions, __privateGet(this, _player), cpn);
+  }
+  async search(query, filters = {}) {
+    throwIfMissing({ query });
+    const response = await this.actions.search({ query, filters });
+    return new Search(this.actions, response.data);
+  }
+  async getSearchSuggestions(query, options = { client: "YOUTUBE" }) {
+    throwIfMissing({ query });
+    const response = await this.actions.getSearchSuggestions(options.client, query);
+    if (options.client === "YTMUSIC" && !response.data.contents)
+      return [];
+    const suggestions = new OldParser(this, response.data, {
+      client: options.client,
+      data_type: "SEARCH_SUGGESTIONS"
+    }).parse();
+    return suggestions;
+  }
+  async getComments(video_id, sort_by) {
+    throwIfMissing({ video_id });
+    const payload = Proto.encodeCommentsSectionParams(video_id, {
+      sort_by: sort_by || "TOP_COMMENTS"
+    });
+    const response = await this.actions.next({ ctoken: payload });
+    return new Comments(this.actions, response.data);
+  }
+  async getHomeFeed() {
+    const response = await this.actions.browse("FEwhat_to_watch");
+    return new FilterableFeed(this.actions, response.data);
+  }
+  async getLibrary() {
+    const response = await this.actions.browse("FElibrary");
+    return new Library(response.data, this.actions);
+  }
+  async getHistory() {
+    const response = await this.actions.browse("FEhistory");
+    return new History(this.actions, response.data);
+  }
+  async getTrending() {
+    const response = await this.actions.browse("FEtrending");
+    return new TabbedFeed(this.actions, response.data);
+  }
+  async getSubscriptionsFeed() {
+    const response = await this.actions.browse("FEsubscriptions");
+    const subsfeed = new OldParser(this, response, {
+      client: "YOUTUBE",
+      data_type: "SUBSFEED"
+    }).parse();
+    return subsfeed;
+  }
+  async getChannel(id) {
+    throwIfMissing({ id });
+    const response = await this.actions.browse(id);
+    return new Channel(this.actions, response.data);
+  }
+  async getNotifications() {
+    const response = await this.actions.notifications("get_notification_menu");
+    const notifications = new OldParser(this, response.data, {
+      client: "YOUTUBE",
+      data_type: "NOTIFICATIONS"
+    }).parse();
+    return notifications;
+  }
+  async getUnseenNotificationsCount() {
+    const response = await this.actions.notifications("get_unseen_count");
+    return response.data.unseenCount;
+  }
+  async getPlaylist(playlist_id) {
+    throwIfMissing({ playlist_id });
+    const response = await this.actions.browse(`VL${playlist_id.replace(/VL/g, "")}`);
+    return new Playlist(this.actions, response.data);
+  }
+  async getStreamingData(video_id, options = {}) {
+    const info = await this.getBasicInfo(video_id);
+    return info.chooseFormat(options);
+  }
+  download(video_id, options = {}) {
+    throwIfMissing({ video_id });
+    const stream = new PassThrough();
+    (async () => {
+      const info = await this.getBasicInfo(video_id);
+      stream.emit("info", info);
+      info.download(options, stream);
+    })();
+    return stream;
+  }
+  getPlayer() {
+    return __privateGet(this, _player);
+  }
+  get request() {
+    return __privateGet(this, _request);
+  }
+};
+__name(Innertube, "Innertube");
+_player = new WeakMap();
+_request = new WeakMap();
+_init = new WeakSet();
+init_fn = /* @__PURE__ */ __name(async function() {
+  const request = new Request(this.config);
+  const session = await new SessionBuilder(this.config, request.instance).build();
+  this.key = session.key;
+  this.version = session.api_version;
+  this.context = session.context;
+  this.logged_in = !!this.config.cookie;
+  this.sts = session.player.sts;
+  this.player_url = session.player.url;
+  __privateSet(this, _player, session.player);
+  request.setSession(this);
+  __privateSet(this, _request, request.instance);
+  this.ev = new EventEmitter();
+  this.oauth = new OAuth(this.ev, request.instance);
+  this.actions = new Actions(this);
+  this.account = new AccountManager(this.actions);
+  this.playlist = new PlaylistManager(this.actions);
+  this.interact = new InteractionManager(this.actions);
+  this.music = new YTMusic(this);
+  return this;
+}, "#init");
+module.exports = Innertube;
 //# sourceMappingURL=node.js.map
