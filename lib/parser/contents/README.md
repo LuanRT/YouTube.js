@@ -35,11 +35,11 @@ Unlike `parse`, this can be used to parse the entire response object.
 
 ## How it works
 
-If you decompile a YouTube client and analize it for a while you will notice that it has classes named `protos/youtube/api/innertube/MusicItemRenderer`, `protos/youtube/api/innertube/SectionListRenderer`, and so on and so on. 
+If you decompile a YouTube client and analize it for a while you will notice that it has classes named `protos/youtube/api/innertube/MusicItemRenderer`, `protos/youtube/api/innertube/SectionListRenderer`, etc. 
 
-These classes are used to parse objects from the response (which consists of protobuf messages) and build requests. The website works in a similar way, the difference is that it uses plain JSON (likely converted from protobuf server-side, hence the weird structure of the response).
+These classes are used to parse objects from the response (which consists of protobuf messages) and also build requests. The website works in a similar way, the difference is that it uses plain JSON (likely converted from protobuf server-side, hence the weird structure of the response).
 
-Here we're taking a very similar approach, the parser goes through all the renderers and parses their inner element(s). The final result is a nicely structured JSON, and on top of that it also parses navigation endpoints which allows us to make an API call with all required parameters in one line and even emulate client actions (eg; clicking a button).
+Here we're taking a similar approach, the parser goes through all the renderers and parses their inner element(s). The final result is a nicely structured JSON, and on top of that it also parses navigation endpoints which allows us to make an API call with all required parameters in one line and even emulate client actions (eg; clicking a button).
 
 Here is your average, arguably ugly InnerTube response:
 <details>
