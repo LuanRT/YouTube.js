@@ -4,6 +4,7 @@ var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __esm = (fn, res) => function __init() {
   return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
 };
@@ -23,6 +24,10 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var __publicField = (obj, key, value) => {
+  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+  return value;
+};
 var __accessCheck = (obj, member, msg) => {
   if (!member.has(obj))
     throw TypeError("Cannot " + msg);
@@ -4201,7 +4206,7 @@ var require_md5 = __commonJS({
     forge.md.md5 = forge.md.algorithms.md5 = md52;
     md52.create = function() {
       if (!_initialized) {
-        _init();
+        _init2();
       }
       var _state = null;
       var _input = forge.util.createBuffer();
@@ -4284,7 +4289,7 @@ var require_md5 = __commonJS({
     var _r = null;
     var _k = null;
     var _initialized = false;
-    function _init() {
+    function _init2() {
       _padding = String.fromCharCode(128);
       _padding += forge.util.fillString(String.fromCharCode(0), 64);
       _g = [
@@ -5000,7 +5005,7 @@ var require_sha256 = __commonJS({
     forge.md.sha256 = forge.md.algorithms.sha256 = sha256;
     sha256.create = function() {
       if (!_initialized) {
-        _init();
+        _init2();
       }
       var _state = null;
       var _input = forge.util.createBuffer();
@@ -5097,7 +5102,7 @@ var require_sha256 = __commonJS({
     var _padding = null;
     var _initialized = false;
     var _k = null;
-    function _init() {
+    function _init2() {
       _padding = String.fromCharCode(128);
       _padding += forge.util.fillString(String.fromCharCode(0), 64);
       _k = [
@@ -7343,7 +7348,7 @@ var require_sha1 = __commonJS({
     forge.md.sha1 = forge.md.algorithms.sha1 = sha12;
     sha12.create = function() {
       if (!_initialized) {
-        _init();
+        _init2();
       }
       var _state = null;
       var _input = forge.util.createBuffer();
@@ -7430,7 +7435,7 @@ var require_sha1 = __commonJS({
     };
     var _padding = null;
     var _initialized = false;
-    function _init() {
+    function _init2() {
       _padding = String.fromCharCode(128);
       _padding += forge.util.fillString(String.fromCharCode(0), 64);
       _initialized = true;
@@ -14584,7 +14589,7 @@ var require_sha512 = __commonJS({
     forge.md["sha512/224"] = forge.md.algorithms["sha512/224"] = forge.sha512.sha224;
     sha512.create = function(algorithm) {
       if (!_initialized) {
-        _init();
+        _init2();
       }
       if (typeof algorithm === "undefined") {
         algorithm = "SHA-512";
@@ -14698,7 +14703,7 @@ var require_sha512 = __commonJS({
     var _initialized = false;
     var _k = null;
     var _states = null;
-    function _init() {
+    function _init2() {
       _padding = String.fromCharCode(128);
       _padding += forge.util.fillString(String.fromCharCode(0), 128);
       _k = [
@@ -17814,15 +17819,15 @@ var require_package = __commonJS({
       funding: "https://ko-fi.com/luanrt",
       license: "MIT",
       scripts: {
-        test: "npx jest",
+        test: "npx jest --verbose",
         "test:node": "npm run build:node && npx jest node",
         "test:browser": "npm run build:browser && npx jest browser",
         lint: "npx eslint ./lib",
         "lint:fix": "npx eslint --fix ./lib",
         "build:types": "npx tsc",
         "build:parser-map": "node ./scripts/build-parser-json.js",
-        "build:general": 'npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js="/* eslint-disable */" --bundle --target=esnext --format=cjs --sourcemap',
-        "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --external:./node_modules/* --target=node12 --define:BROWSER=false",
+        "build:general": 'npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js="/* eslint-disable */" --bundle --target=node12 --format=cjs --sourcemap',
+        "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --external:./node_modules/* --define:BROWSER=false",
         "build:node:prod": "npm run build:node -- --minify",
         "build:browser": "npm run build:general -- --outfile=./build/browser.js --platform=browser --define:BROWSER=true",
         "build:browser:prod": "npm run build:browser -- --minify"
@@ -17926,7 +17931,11 @@ var require_Utils = __commonJS({
       const flat_obj = Flatten(obj, { safe, maxDepth: depth || 2 });
       const result = Object.keys(flat_obj).find((entry) => entry.includes(key) && JSON.stringify(flat_obj[entry] || "{}").includes(target));
       if (!result)
-        throw new ParsingError(`Expected to find "${key}" with content "${target}" but got ${result}`, { key, target, data_snippet: `${JSON.stringify(flat_obj, null, 4).slice(0, 300)}..` });
+        throw new ParsingError(`Expected to find "${key}" with content "${target}" but got ${result}`, {
+          key,
+          target,
+          data_snippet: `${JSON.stringify(flat_obj, null, 4).slice(0, 300)}..`
+        });
       return flat_obj[result];
     }
     function observe(obj) {
@@ -17960,7 +17969,8 @@ var require_Utils = __commonJS({
     function deepCompare(obj1, obj2) {
       const keys = Reflect.ownKeys(obj1);
       return keys.some((key) => {
-        const is_text = obj2[key]?.constructor.name === "Text";
+        var _a;
+        const is_text = ((_a = obj2[key]) == null ? void 0 : _a.constructor.name) === "Text";
         if (!is_text && typeof obj2[key] === "object") {
           return JSON.stringify(obj1[key]) === JSON.stringify(obj2[key]);
         }
@@ -17973,7 +17983,7 @@ var require_Utils = __commonJS({
       const trailing_slash_re = is_windows ? /[^:]\\$/ : /.\/$/;
       let path;
       if (is_windows) {
-        path = env.TEMP || env.TMP || (env.SystemRoot || env.windir) + "\\temp";
+        path = env.TEMP || env.TMP || `${env.SystemRoot || env.windir}\\temp`;
       } else {
         path = env.TMPDIR || env.TMP || env.TEMP || "/tmp";
       }
@@ -17995,7 +18005,9 @@ var require_Utils = __commonJS({
         case "mobile":
           return new UserAgent(/Android/).data;
         case "desktop":
-          return new UserAgent({ deviceCategory: "desktop" }).data;
+          return new UserAgent({
+            deviceCategory: "desktop"
+          }).data;
         default:
       }
     }
@@ -18040,7 +18052,10 @@ var require_Utils = __commonJS({
       return string[0].toLowerCase() + string.slice(1, string.length).replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
     }
     function isValidClient(client) {
-      return ["YOUTUBE", "YTMUSIC"].includes(client);
+      return [
+        "YOUTUBE",
+        "YTMUSIC"
+      ].includes(client);
     }
     function throwIfMissing2(params) {
       for (const [key, value] of Object.entries(params)) {
@@ -18051,7 +18066,15 @@ var require_Utils = __commonJS({
     function refineNTokenData(data) {
       return data.replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)').replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)').replace(/\[function\(d,e,f\)/g, '["function(d,e,f)').replace(/,b,/g, ',"b",').replace(/,b/g, ',"b"').replace(/b,/g, '"b",').replace(/b]/g, '"b"]').replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",').replace(/""/g, "").replace(/length]\)}"/g, "length])}");
     }
-    var errors = { InnertubeError: InnertubeError2, UnavailableContentError, ParsingError, DownloadError, MissingParamError, NoStreamingDataError, OAuthError };
+    var errors = {
+      InnertubeError: InnertubeError2,
+      UnavailableContentError,
+      ParsingError,
+      DownloadError,
+      MissingParamError,
+      NoStreamingDataError,
+      OAuthError
+    };
     var functions = {
       findNode,
       observe,
@@ -18066,7 +18089,10 @@ var require_Utils = __commonJS({
       timeToSeconds,
       refineNTokenData
     };
-    module2.exports = { ...functions, ...errors };
+    module2.exports = {
+      ...functions,
+      ...errors
+    };
   }
 });
 
@@ -18077,145 +18103,159 @@ var require_OAuth = __commonJS({
     var Uuid = (init_esm_browser(), __toCommonJS(esm_browser_exports));
     var Constants = require_Constants();
     var { OAuthError } = require_Utils();
+    var _request2, _identity, _credentials, _polling_interval, _ev, _getUserCode, getUserCode_fn, _startPolling, startPolling_fn, _refreshAccessToken, refreshAccessToken_fn, _getClientIdentity, getClientIdentity_fn;
     var OAuth2 = class {
-      #request;
-      #identity;
-      #credentials = {};
-      #polling_interval = 5;
-      #ev = null;
       constructor(ev, request) {
-        this.#ev = ev;
-        this.#request = request;
+        __privateAdd(this, _getUserCode);
+        __privateAdd(this, _startPolling);
+        __privateAdd(this, _refreshAccessToken);
+        __privateAdd(this, _getClientIdentity);
+        __privateAdd(this, _request2, void 0);
+        __privateAdd(this, _identity, void 0);
+        __privateAdd(this, _credentials, {});
+        __privateAdd(this, _polling_interval, 5);
+        __privateAdd(this, _ev, null);
+        __privateSet(this, _ev, ev);
+        __privateSet(this, _request2, request);
       }
       init(credentials) {
-        this.#credentials = credentials;
+        __privateSet(this, _credentials, credentials);
         if (!credentials.access_token) {
-          this.#getUserCode();
+          __privateMethod(this, _getUserCode, getUserCode_fn).call(this);
         }
-      }
-      async #getUserCode() {
-        this.#identity = await this.#getClientIdentity();
-        const data = {
-          client_id: this.#identity.client_id,
-          scope: Constants.OAUTH.SCOPE,
-          device_id: Uuid.v4(),
-          model_name: Constants.OAUTH.MODEL_NAME
-        };
-        const response = await this.#request({
-          data,
-          url: "/o/oauth2/device/code",
-          baseURL: Constants.URLS.YT_BASE,
-          method: "post"
-        }).catch((err) => err);
-        if (response instanceof Error)
-          return this.#ev.emit("auth", new OAuthError("Could not obtain user code.", response.message));
-        this.#ev.emit("auth", {
-          ...response.data,
-          status: "AUTHORIZATION_PENDING"
-        });
-        this.#polling_interval = response.data.interval;
-        this.#startPolling(response.data.device_code);
-      }
-      #startPolling(device_code) {
-        const poller = setInterval(async () => {
-          const data = {
-            ...this.#identity,
-            code: device_code,
-            grant_type: Constants.OAUTH.GRANT_TYPE
-          };
-          const response = await this.#request({
-            data,
-            url: "/o/oauth2/token",
-            baseURL: Constants.URLS.YT_BASE,
-            method: "post"
-          }).catch((err) => err);
-          if (response instanceof Error)
-            return this.#ev.emit("auth", new OAuthError("Could not obtain user code.", { status: "FAILED", message: response.message }));
-          if (response.data.error) {
-            switch (response.data.error) {
-              case "access_denied":
-                this.#ev.emit("auth", new OAuthError("Access was denied.", { status: "ACCESS_DENIED" }));
-                break;
-              case "expired_token":
-                this.#ev.emit("auth", new OAuthError("The device code has expired, restarting auth flow.", { status: "DEVICE_CODE_EXPIRED" }));
-                clearInterval(poller);
-                this.#getUserCode();
-                break;
-              default:
-                break;
-            }
-            return;
-          }
-          const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
-          this.#credentials = {
-            access_token: response.data.access_token,
-            refresh_token: response.data.refresh_token,
-            expires: expiration_date
-          };
-          this.#ev.emit("auth", {
-            credentials: this.#credentials,
-            status: "SUCCESS"
-          });
-          clearInterval(poller);
-        }, this.#polling_interval * 1e3);
       }
       async checkAccessTokenValidity() {
-        const timestamp = new Date(this.#credentials.expires).getTime();
+        const timestamp = new Date(__privateGet(this, _credentials).expires).getTime();
         if (new Date().getTime() > timestamp) {
-          await this.#refreshAccessToken();
+          await __privateMethod(this, _refreshAccessToken, refreshAccessToken_fn).call(this);
         }
       }
-      async #refreshAccessToken() {
-        this.#identity = await this.#getClientIdentity();
-        const data = {
-          ...this.#identity,
-          refresh_token: this.#credentials.refresh_token,
-          grant_type: "refresh_token"
-        };
-        const response = await this.#request({
-          data,
-          url: "/o/oauth2/token",
-          baseURL: Constants.URLS.YT_BASE,
-          method: "post"
-        }).catch((err) => err);
-        if (response instanceof Error)
-          return this.#ev.emit("update-credentials", new OAuthError("Could not refresh access token.", { status: "FAILED" }));
-        const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
-        this.#credentials = {
-          access_token: response.data.access_token,
-          refresh_token: response.data.refresh_token || this.credentials.refresh_token,
-          expires: expiration_date
-        };
-        this.#ev.emit("update-credentials", {
-          credentials: this.#credentials,
-          status: "SUCCESS"
-        });
-      }
       revokeCredentials() {
-        return this.#request({
+        return __privateGet(this, _request2).call(this, {
           url: "/o/oauth2/revoke",
           baseURL: Constants.URLS.YT_BASE,
           params: { token: this.getAccessToken() },
           method: "post"
         });
       }
-      async #getClientIdentity() {
-        const response = await this.#request({
-          url: "/tv",
-          baseURL: Constants.URLS.YT_BASE,
-          headers: Constants.OAUTH.HEADERS
-        });
-        const url_body = Constants.OAUTH.REGEX.AUTH_SCRIPT.exec(response.data)[1];
-        const script = await this.#request({ url: url_body, baseURL: Constants.URLS.YT_BASE });
-        const client_identity = script.data.replace(/\n/g, "").match(Constants.OAUTH.REGEX.CLIENT_IDENTITY);
-        return client_identity.groups;
-      }
       get credentials() {
-        return this.#credentials;
+        return __privateGet(this, _credentials);
       }
       validateCredentials() {
-        return this.#credentials.hasOwnProperty("access_token") && this.#credentials.hasOwnProperty("refresh_token") && this.#credentials.hasOwnProperty("expires");
+        return __privateGet(this, _credentials).hasOwnProperty("access_token") && __privateGet(this, _credentials).hasOwnProperty("refresh_token") && __privateGet(this, _credentials).hasOwnProperty("expires");
       }
+    };
+    _request2 = new WeakMap();
+    _identity = new WeakMap();
+    _credentials = new WeakMap();
+    _polling_interval = new WeakMap();
+    _ev = new WeakMap();
+    _getUserCode = new WeakSet();
+    getUserCode_fn = async function() {
+      __privateSet(this, _identity, await __privateMethod(this, _getClientIdentity, getClientIdentity_fn).call(this));
+      const data = {
+        client_id: __privateGet(this, _identity).client_id,
+        scope: Constants.OAUTH.SCOPE,
+        device_id: Uuid.v4(),
+        model_name: Constants.OAUTH.MODEL_NAME
+      };
+      const response = await __privateGet(this, _request2).call(this, {
+        data,
+        url: "/o/oauth2/device/code",
+        baseURL: Constants.URLS.YT_BASE,
+        method: "post"
+      }).catch((err) => err);
+      if (response instanceof Error)
+        return __privateGet(this, _ev).emit("auth", new OAuthError("Could not obtain user code.", response.message));
+      __privateGet(this, _ev).emit("auth", {
+        ...response.data,
+        status: "AUTHORIZATION_PENDING"
+      });
+      __privateSet(this, _polling_interval, response.data.interval);
+      __privateMethod(this, _startPolling, startPolling_fn).call(this, response.data.device_code);
+    };
+    _startPolling = new WeakSet();
+    startPolling_fn = function(device_code) {
+      const poller = setInterval(async () => {
+        const data = {
+          ...__privateGet(this, _identity),
+          code: device_code,
+          grant_type: Constants.OAUTH.GRANT_TYPE
+        };
+        const response = await __privateGet(this, _request2).call(this, {
+          data,
+          url: "/o/oauth2/token",
+          baseURL: Constants.URLS.YT_BASE,
+          method: "post"
+        }).catch((err) => err);
+        if (response instanceof Error)
+          return __privateGet(this, _ev).emit("auth", new OAuthError("Could not obtain user code.", { status: "FAILED", message: response.message }));
+        if (response.data.error) {
+          switch (response.data.error) {
+            case "access_denied":
+              __privateGet(this, _ev).emit("auth", new OAuthError("Access was denied.", { status: "ACCESS_DENIED" }));
+              break;
+            case "expired_token":
+              __privateGet(this, _ev).emit("auth", new OAuthError("The device code has expired, restarting auth flow.", { status: "DEVICE_CODE_EXPIRED" }));
+              clearInterval(poller);
+              __privateMethod(this, _getUserCode, getUserCode_fn).call(this);
+              break;
+            default:
+              break;
+          }
+          return;
+        }
+        const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
+        __privateSet(this, _credentials, {
+          access_token: response.data.access_token,
+          refresh_token: response.data.refresh_token,
+          expires: expiration_date
+        });
+        __privateGet(this, _ev).emit("auth", {
+          credentials: __privateGet(this, _credentials),
+          status: "SUCCESS"
+        });
+        clearInterval(poller);
+      }, __privateGet(this, _polling_interval) * 1e3);
+    };
+    _refreshAccessToken = new WeakSet();
+    refreshAccessToken_fn = async function() {
+      __privateSet(this, _identity, await __privateMethod(this, _getClientIdentity, getClientIdentity_fn).call(this));
+      const data = {
+        ...__privateGet(this, _identity),
+        refresh_token: __privateGet(this, _credentials).refresh_token,
+        grant_type: "refresh_token"
+      };
+      const response = await __privateGet(this, _request2).call(this, {
+        data,
+        url: "/o/oauth2/token",
+        baseURL: Constants.URLS.YT_BASE,
+        method: "post"
+      }).catch((err) => err);
+      if (response instanceof Error)
+        return __privateGet(this, _ev).emit("update-credentials", new OAuthError("Could not refresh access token.", { status: "FAILED" }));
+      const expiration_date = new Date(new Date().getTime() + response.data.expires_in * 1e3);
+      __privateSet(this, _credentials, {
+        access_token: response.data.access_token,
+        refresh_token: response.data.refresh_token || this.credentials.refresh_token,
+        expires: expiration_date
+      });
+      __privateGet(this, _ev).emit("update-credentials", {
+        credentials: __privateGet(this, _credentials),
+        status: "SUCCESS"
+      });
+    };
+    _getClientIdentity = new WeakSet();
+    getClientIdentity_fn = async function() {
+      const response = await __privateGet(this, _request2).call(this, {
+        url: "/tv",
+        baseURL: Constants.URLS.YT_BASE,
+        headers: Constants.OAUTH.HEADERS
+      });
+      const url_body = Constants.OAUTH.REGEX.AUTH_SCRIPT.exec(response.data)[1];
+      const script = await __privateGet(this, _request2).call(this, { url: url_body, baseURL: Constants.URLS.YT_BASE });
+      const client_identity = script.data.replace(/\n/g, "").match(Constants.OAUTH.REGEX.CLIENT_IDENTITY);
+      return client_identity.groups;
     };
     module2.exports = OAuth2;
   }
@@ -21663,15 +21703,17 @@ var require_Actions = __commonJS({
     var Proto2 = require_proto();
     var Utils = require_Utils();
     var Constants = require_Constants();
+    var _session, _request2, _needsLogin, needsLogin_fn;
     var Actions2 = class {
-      #session;
-      #request;
       constructor(session) {
-        this.#session = session;
-        this.#request = session.request;
+        __privateAdd(this, _needsLogin);
+        __privateAdd(this, _session, void 0);
+        __privateAdd(this, _request2, void 0);
+        __privateSet(this, _session, session);
+        __privateSet(this, _request2, session.request);
       }
       async browse(id, args = {}) {
-        if (this.#needsLogin(id) && !this.#session.logged_in)
+        if (__privateMethod(this, _needsLogin, needsLogin_fn).call(this, id) && !__privateGet(this, _session).logged_in)
           throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         if (args.params)
@@ -21684,11 +21726,11 @@ var require_Actions = __commonJS({
         if (args.client) {
           data.client = args.client;
         }
-        const response = await this.#request.post("/browse", data);
+        const response = await __privateGet(this, _request2).post("/browse", data);
         return response;
       }
       async engage(action, args = {}) {
-        if (!this.#session.logged_in && !args.hasOwnProperty("text"))
+        if (!__privateGet(this, _session).logged_in && !args.hasOwnProperty("text"))
           throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         switch (action) {
@@ -21732,11 +21774,11 @@ var require_Actions = __commonJS({
           default:
             throw new Utils.InnertubeError("Action not implemented", action);
         }
-        const response = await this.#request.post(`/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
         return response;
       }
       async account(action, args = {}) {
-        if (!this.#session.logged_in)
+        if (!__privateGet(this, _session).logged_in)
           throw new Utils.InnertubeError("You are not signed in");
         const data = {
           client: args.client
@@ -21753,7 +21795,7 @@ var require_Actions = __commonJS({
           default:
             throw new Utils.InnertubeError("Action not implemented", action);
         }
-        const response = await this.#request.post(`/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
         return response;
       }
       async search(args = {}) {
@@ -21774,7 +21816,7 @@ var require_Actions = __commonJS({
             data.params = Proto2.encodeSearchFilters(args.filters);
           }
         }
-        const response = await this.#request.post("/search", data);
+        const response = await __privateGet(this, _request2).post("/search", data);
         return response;
       }
       async searchSound(args = {}) {
@@ -21782,11 +21824,11 @@ var require_Actions = __commonJS({
           query: args.query,
           client: "ANDROID"
         };
-        const response = await this.#request.post("/sfv/search", data);
+        const response = await __privateGet(this, _request2).post("/sfv/search", data);
         return response;
       }
       async channel(action, args = {}) {
-        if (!this.#session.logged_in)
+        if (!__privateGet(this, _session).logged_in)
           throw new Utils.InnertubeError("You are not signed in");
         const data = {
           client: args.client || "ANDROID"
@@ -21803,11 +21845,11 @@ var require_Actions = __commonJS({
           default:
             throw new Utils.InnertubeError("Action not implemented", action);
         }
-        const response = await this.#request.post(`/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
         return response;
       }
       async playlist(action, args = {}) {
-        if (!this.#session.logged_in)
+        if (!__privateGet(this, _session).logged_in)
           throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         switch (action) {
@@ -21840,11 +21882,11 @@ var require_Actions = __commonJS({
           default:
             throw new Utils.InnertubeError("Action not implemented", action);
         }
-        const response = await this.#request.post(`/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
         return response;
       }
       async notifications(action, args = {}) {
-        if (!this.#session.logged_in)
+        if (!__privateGet(this, _session).logged_in)
           throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         switch (action) {
@@ -21869,7 +21911,7 @@ var require_Actions = __commonJS({
           default:
             throw new Utils.InnertubeError("Action not implemented", action);
         }
-        const response = await this.#request.post(`/notification/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/notification/${action}`, data);
         return response;
       }
       async livechat(action, args = {}) {
@@ -21901,7 +21943,7 @@ var require_Actions = __commonJS({
           default:
             throw new Utils.InnertubeError("Action not implemented", action);
         }
-        const response = await this.#request.post(`/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
         return response;
       }
       async thumbnails(args = {}) {
@@ -21909,21 +21951,21 @@ var require_Actions = __commonJS({
           client: "ANDROID",
           videoId: args.video_id
         };
-        const response = await this.#request.post("/thumbnails", data);
+        const response = await __privateGet(this, _request2).post("/thumbnails", data);
         return response;
       }
       async geo(action, args = {}) {
-        if (!this.#session.logged_in)
+        if (!__privateGet(this, _session).logged_in)
           throw new Utils.InnertubeError("You are not signed in");
         const data = {
           input: args.input,
           client: "ANDROID"
         };
-        const response = await this.#request.post(`/geo/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/geo/${action}`, data);
         return response;
       }
       async flag(action, args) {
-        if (!this.#session.logged_in)
+        if (!__privateGet(this, _session).logged_in)
           throw new Utils.InnertubeError("You are not signed in");
         const data = {};
         switch (action) {
@@ -21936,7 +21978,7 @@ var require_Actions = __commonJS({
           default:
             throw new Utils.InnertubeError("Action not implemented", action);
         }
-        const response = await this.#request.post(`/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
         return response;
       }
       async music(action, args) {
@@ -21944,7 +21986,7 @@ var require_Actions = __commonJS({
           input: args.input || "",
           client: "YTMUSIC"
         };
-        const response = await this.#request.post(`/music/${action}`, data);
+        const response = await __privateGet(this, _request2).post(`/music/${action}`, data);
         return response;
       }
       async next(args = {}) {
@@ -21955,7 +21997,7 @@ var require_Actions = __commonJS({
         if (args.video_id) {
           data.videoId = args.video_id;
         }
-        const response = await this.#request.post("/next", data);
+        const response = await __privateGet(this, _request2).post("/next", data);
         return response;
       }
       async getVideoInfo(id, cpn, client) {
@@ -21967,7 +22009,7 @@ var require_Actions = __commonJS({
               referer: "https://www.youtube.com",
               currentUrl: `/watch?v=${id}`,
               autonavState: "STATE_OFF",
-              signatureTimestamp: this.#session.sts,
+              signatureTimestamp: __privateGet(this, _session).sts,
               autoCaptionsDefaultOn: false,
               html5Preference: "HTML5_PREF_WANTS",
               lactMilliseconds: "-1"
@@ -21984,14 +22026,14 @@ var require_Actions = __commonJS({
         if (cpn) {
           data.cpn = cpn;
         }
-        const response = await this.#request.post("/player", data);
+        const response = await __privateGet(this, _request2).post("/player", data);
         return response.data;
       }
       async getSearchSuggestions(client, query) {
         if (!["YOUTUBE", "YTMUSIC"].includes(client))
           throw new Utils.InnertubeError("Invalid client", client);
         const response = await {
-          YOUTUBE: () => this.#request({
+          YOUTUBE: () => __privateGet(this, _request2).call(this, {
             url: "search",
             baseURL: Constants.URLS.YT_SUGGESTIONS,
             params: {
@@ -22000,8 +22042,8 @@ var require_Actions = __commonJS({
               client: "youtube",
               xssi: "t",
               oe: "UTF",
-              gl: this.#session.context.client.gl,
-              hl: this.#session.context.client.hl
+              gl: __privateGet(this, _session).context.client.gl,
+              hl: __privateGet(this, _session).context.client.hl
             }
           }),
           YTMUSIC: () => this.music("get_search_suggestions", {
@@ -22011,13 +22053,13 @@ var require_Actions = __commonJS({
         return response;
       }
       async getUserMentionSuggestions(args = {}) {
-        if (!this.#session.logged_in)
+        if (!__privateGet(this, _session).logged_in)
           throw new Utils.InnertubeError("You are not signed in");
         const data = {
           input: args.input,
           client: "ANDROID"
         };
-        const response = await this.#request.post("get_user_mention_suggestions", data);
+        const response = await __privateGet(this, _request2).post("get_user_mention_suggestions", data);
         return response;
       }
       async execute(action, args) {
@@ -22034,18 +22076,21 @@ var require_Actions = __commonJS({
           data.continuation = data.token;
           delete data.token;
         }
-        return this.#request.post(action, data);
+        return __privateGet(this, _request2).post(action, data);
       }
-      #needsLogin(id) {
-        return [
-          "FElibrary",
-          "FEhistory",
-          "FEsubscriptions",
-          "SPaccount_notifications",
-          "SPaccount_privacy",
-          "SPtime_watched"
-        ].includes(id);
-      }
+    };
+    _session = new WeakMap();
+    _request2 = new WeakMap();
+    _needsLogin = new WeakSet();
+    needsLogin_fn = function(id) {
+      return [
+        "FElibrary",
+        "FEhistory",
+        "FEsubscriptions",
+        "SPaccount_notifications",
+        "SPaccount_privacy",
+        "SPtime_watched"
+      ].includes(id);
     };
     module2.exports = Actions2;
   }
@@ -22345,8 +22390,9 @@ var require_Signature = __commonJS({
         return new Signature(action_sequence);
       }
       decipher(url) {
+        var _a;
         const args = new URLSearchParams(url);
-        const signature = args.get("s")?.split("");
+        const signature = (_a = args.get("s")) == null ? void 0 : _a.split("");
         if (!signature)
           throw new TypeError("Invalid signature");
         for (const action of this.action_sequence) {
@@ -22506,7 +22552,7 @@ var require_NToken = __commonJS({
         arr.reverse();
       }
       static push(arr, item) {
-        if (Array.isArray(arr?.[0]))
+        if (Array.isArray(arr == null ? void 0 : arr[0]))
           arr.push([NTokenTransformOpType.LITERAL, item]);
         else
           arr.push(item);
@@ -22545,9 +22591,10 @@ var require_NToken = __commonJS({
       static fromSourceCode(raw) {
         const transformation_data = NToken.getTransformationData(raw);
         const transformations = transformation_data.map((el) => {
+          var _a;
           if (el != null && typeof el != "number") {
             const is_reverse_base64 = el.includes("case 65:");
-            const opcode = OP_LOOKUP[NToken.getFunc(el)?.[0]];
+            const opcode = OP_LOOKUP[(_a = NToken.getFunc(el)) == null ? void 0 : _a[0]];
             if (opcode) {
               el = [
                 NTokenTransformOpType.FUNC,
@@ -22568,7 +22615,10 @@ var require_NToken = __commonJS({
         placeholder_indexes.forEach((i) => transformations[i] = [NTokenTransformOpType.REF]);
         const function_calls = [...raw.replace(/\n/g, "").match(/try\{(.*?)\}catch/s)[1].matchAll(NTOKEN_REGEX.CALLS)].map((params) => [
           parseInt(params[1]),
-          params[2].split(",").map((param) => parseInt(param.match(/c\[(.*?)\]/)?.[1]))
+          params[2].split(",").map((param) => {
+            var _a;
+            return parseInt((_a = param.match(/c\[(.*?)\]/)) == null ? void 0 : _a[1]);
+          })
         ]);
         return new NToken([transformations, function_calls]);
       }
@@ -22760,7 +22810,8 @@ ${err}`));
         return el.match(NTOKEN_REGEX.FUNCTIONS);
       }
       static getTransformationData(raw) {
-        const data = `[${raw.replace(/\n/g, "").match(/c=\[(.*?)\];c/s)?.[1]}]`;
+        var _a;
+        const data = `[${(_a = raw.replace(/\n/g, "").match(/c=\[(.*?)\];c/s)) == null ? void 0 : _a[1]}]`;
         return JSON.parse(this.refineNTokenData(data));
       }
       static refineNTokenData(data) {
@@ -22780,55 +22831,59 @@ var require_Player = __commonJS({
     var Constants = require_Constants();
     var { default: Signature } = require_Signature();
     var { default: NToken } = require_NToken();
-    var Player = class {
-      #request;
-      #player_id;
-      #player_url;
-      #player_path;
-      #ntoken;
-      #signature;
-      #signature_timestamp;
-      #cache_dir;
+    var _request2, _player_id, _player_url, _player_path, _ntoken, _signature, _signature_timestamp, _cache_dir, _extractSigTimestamp, extractSigTimestamp_fn, _extractSigDecipherSc, extractSigDecipherSc_fn, _extractNTokenSc, extractNTokenSc_fn;
+    var _Player = class {
       constructor(id, request) {
-        this.#player_id = id;
-        this.#request = request;
-        this.#cache_dir = `${Utils.getTmpdir()}/yt-cache`;
-        this.#player_url = `${Constants.URLS.YT_BASE}/s/player/${this.#player_id}/player_ias.vflset/en_US/base.js`;
-        this.#player_path = `${this.#cache_dir}/${this.#player_id}.bin`;
+        __privateAdd(this, _extractSigTimestamp);
+        __privateAdd(this, _extractSigDecipherSc);
+        __privateAdd(this, _extractNTokenSc);
+        __privateAdd(this, _request2, void 0);
+        __privateAdd(this, _player_id, void 0);
+        __privateAdd(this, _player_url, void 0);
+        __privateAdd(this, _player_path, void 0);
+        __privateAdd(this, _ntoken, void 0);
+        __privateAdd(this, _signature, void 0);
+        __privateAdd(this, _signature_timestamp, void 0);
+        __privateAdd(this, _cache_dir, void 0);
+        __privateSet(this, _player_id, id);
+        __privateSet(this, _request2, request);
+        __privateSet(this, _cache_dir, `${Utils.getTmpdir()}/yt-cache`);
+        __privateSet(this, _player_url, `${Constants.URLS.YT_BASE}/s/player/${__privateGet(this, _player_id)}/player_ias.vflset/en_US/base.js`);
+        __privateSet(this, _player_path, `${__privateGet(this, _cache_dir)}/${__privateGet(this, _player_id)}.bin`);
       }
       async init() {
         if (await this.isCached()) {
-          const buffer = await Cache.read(this.#player_path);
+          const buffer = await Cache.read(__privateGet(this, _player_path));
           const view = new DataView(buffer);
           const version2 = view.getUint32(0, true);
-          if (version2 == Player.LIBRARY_VERSION) {
+          if (version2 == _Player.LIBRARY_VERSION) {
             const sig_decipher_len = view.getUint32(8, true);
             const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
             const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
-            this.#ntoken = NToken.fromArrayBuffer(ntoken_transform_buf);
-            this.#signature = Signature.fromArrayBuffer(sig_decipher_buf);
-            this.#signature_timestamp = view.getUint32(4, true);
+            __privateSet(this, _ntoken, NToken.fromArrayBuffer(ntoken_transform_buf));
+            __privateSet(this, _signature, Signature.fromArrayBuffer(sig_decipher_buf));
+            __privateSet(this, _signature_timestamp, view.getUint32(4, true));
             return this;
           }
         }
-        const response = await this.#request.get(this.#player_url, { headers: { "content-type": "text/javascript" } });
-        this.#signature_timestamp = this.#extractSigTimestamp(response.data);
-        const signature_decipher_sc = this.#extractSigDecipherSc(response.data);
-        const ntoken_decipher_sc = this.#extractNTokenSc(response.data);
-        this.#signature = Signature.fromSourceCode(signature_decipher_sc);
-        this.#ntoken = NToken.fromSourceCode(ntoken_decipher_sc);
+        const response = await __privateGet(this, _request2).get(__privateGet(this, _player_url), { headers: { "content-type": "text/javascript" } });
+        __privateSet(this, _signature_timestamp, __privateMethod(this, _extractSigTimestamp, extractSigTimestamp_fn).call(this, response.data));
+        const signature_decipher_sc = __privateMethod(this, _extractSigDecipherSc, extractSigDecipherSc_fn).call(this, response.data);
+        const ntoken_decipher_sc = __privateMethod(this, _extractNTokenSc, extractNTokenSc_fn).call(this, response.data);
+        __privateSet(this, _signature, Signature.fromSourceCode(signature_decipher_sc));
+        __privateSet(this, _ntoken, NToken.fromSourceCode(ntoken_decipher_sc));
         try {
-          await Cache.exists(this.#cache_dir) && await Cache.remove(this.#cache_dir, { recursive: true });
-          const ntoken_buf = this.#ntoken.toArrayBuffer();
-          const sig_decipher_buf = this.#signature.toArrayBuffer();
+          await Cache.exists(__privateGet(this, _cache_dir)) && await Cache.remove(__privateGet(this, _cache_dir), { recursive: true });
+          const ntoken_buf = __privateGet(this, _ntoken).toArrayBuffer();
+          const sig_decipher_buf = __privateGet(this, _signature).toArrayBuffer();
           const buffer = new ArrayBuffer(12 + sig_decipher_buf.byteLength + ntoken_buf.byteLength);
           const view = new DataView(buffer);
-          view.setUint32(0, Player.LIBRARY_VERSION, true);
-          view.setUint32(4, this.#signature_timestamp, true);
+          view.setUint32(0, _Player.LIBRARY_VERSION, true);
+          view.setUint32(4, __privateGet(this, _signature_timestamp), true);
           view.setUint32(8, sig_decipher_buf.byteLength, true);
           new Uint8Array(buffer).set(new Uint8Array(sig_decipher_buf), 12);
           new Uint8Array(buffer).set(new Uint8Array(ntoken_buf), 12 + sig_decipher_buf.byteLength);
-          await Cache.write(this.#player_path, new Uint8Array(buffer));
+          await Cache.write(__privateGet(this, _player_path), new Uint8Array(buffer));
         } finally {
         }
         return this;
@@ -22840,38 +22895,50 @@ var require_Player = __commonJS({
         const url_components = new URL(args.get("url") || url);
         url_components.searchParams.set("ratebypass", "yes");
         if (signature_cipher || cipher) {
-          const signature = this.#signature.decipher(url);
+          const signature = __privateGet(this, _signature).decipher(url);
           args.get("sp") ? url_components.searchParams.set(args.get("sp"), signature) : url_components.searchParams.set("signature", signature);
         }
         if (url_components.searchParams.get("n")) {
-          const ntoken = this.#ntoken.transform(url_components.searchParams.get("n"));
+          const ntoken = __privateGet(this, _ntoken).transform(url_components.searchParams.get("n"));
           url_components.searchParams.set("n", ntoken);
         }
         return url_components.toString();
       }
       get url() {
-        return this.#player_url;
+        return __privateGet(this, _player_url);
       }
       get sts() {
-        return this.#signature_timestamp;
+        return __privateGet(this, _signature_timestamp);
       }
       static get LIBRARY_VERSION() {
         return 1;
       }
-      #extractSigTimestamp(data) {
-        return parseInt(Utils.getStringBetweenStrings(data, "signatureTimestamp:", ","));
-      }
-      #extractSigDecipherSc(data) {
-        const sig_alg_sc = Utils.getStringBetweenStrings(data, "this.audioTracks};var", "};");
-        const sig_data = Utils.getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
-        return sig_alg_sc + sig_data;
-      }
-      #extractNTokenSc(data) {
-        return `var b=a.split("")${Utils.getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
-      }
       async isCached() {
-        return await Cache.exists(this.#player_path);
+        return await Cache.exists(__privateGet(this, _player_path));
       }
+    };
+    var Player = _Player;
+    _request2 = new WeakMap();
+    _player_id = new WeakMap();
+    _player_url = new WeakMap();
+    _player_path = new WeakMap();
+    _ntoken = new WeakMap();
+    _signature = new WeakMap();
+    _signature_timestamp = new WeakMap();
+    _cache_dir = new WeakMap();
+    _extractSigTimestamp = new WeakSet();
+    extractSigTimestamp_fn = function(data) {
+      return parseInt(Utils.getStringBetweenStrings(data, "signatureTimestamp:", ","));
+    };
+    _extractSigDecipherSc = new WeakSet();
+    extractSigDecipherSc_fn = function(data) {
+      const sig_alg_sc = Utils.getStringBetweenStrings(data, "this.audioTracks};var", "};");
+      const sig_data = Utils.getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+      return sig_alg_sc + sig_data;
+    };
+    _extractNTokenSc = new WeakSet();
+    extractNTokenSc_fn = function(data) {
+      return `var b=a.split("")${Utils.getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
     };
     module2.exports = Player;
   }
@@ -22886,84 +22953,100 @@ var require_SessionBuilder = __commonJS({
     var Utils = require_Utils();
     var Constants = require_Constants();
     var UserAgent = require_dist();
+    var _config, _request2, _key, _client_name, _client_version, _api_version, _remote_host, _context, _player2, _buildContext, buildContext_fn, _getYtConfig, getYtConfig_fn, _getPlayerId, getPlayerId_fn;
     var SessionBuilder2 = class {
-      #config;
-      #request;
-      #key;
-      #client_name;
-      #client_version;
-      #api_version;
-      #remote_host;
-      #context;
-      #player;
       constructor(config, request) {
-        this.#config = config;
-        this.#request = request;
+        __privateAdd(this, _buildContext);
+        __privateAdd(this, _getYtConfig);
+        __privateAdd(this, _getPlayerId);
+        __privateAdd(this, _config, void 0);
+        __privateAdd(this, _request2, void 0);
+        __privateAdd(this, _key, void 0);
+        __privateAdd(this, _client_name, void 0);
+        __privateAdd(this, _client_version, void 0);
+        __privateAdd(this, _api_version, void 0);
+        __privateAdd(this, _remote_host, void 0);
+        __privateAdd(this, _context, void 0);
+        __privateAdd(this, _player2, void 0);
+        __privateSet(this, _config, config);
+        __privateSet(this, _request2, request);
       }
       async build() {
         const data = await Promise.all([
-          this.#getYtConfig(),
-          this.#getPlayerId()
+          __privateMethod(this, _getYtConfig, getYtConfig_fn).call(this),
+          __privateMethod(this, _getPlayerId, getPlayerId_fn).call(this)
         ]);
         const ytcfg = data[0][0][2];
-        this.#key = ytcfg[1];
-        this.#api_version = `v${ytcfg[0][0][6]}`;
-        this.#client_name = Constants.CLIENTS.WEB.NAME;
-        this.#client_version = ytcfg[0][0][16];
-        this.#remote_host = ytcfg[0][0][3];
-        this.#player = await new Player(data[1], this.#request).init();
-        this.#context = this.#buildContext();
+        __privateSet(this, _key, ytcfg[1]);
+        __privateSet(this, _api_version, `v${ytcfg[0][0][6]}`);
+        __privateSet(this, _client_name, Constants.CLIENTS.WEB.NAME);
+        __privateSet(this, _client_version, ytcfg[0][0][16]);
+        __privateSet(this, _remote_host, ytcfg[0][0][3]);
+        __privateSet(this, _player2, await new Player(data[1], __privateGet(this, _request2)).init());
+        __privateSet(this, _context, __privateMethod(this, _buildContext, buildContext_fn).call(this));
         return this;
       }
-      #buildContext() {
-        const user_agent = new UserAgent({ deviceCategory: "desktop" });
-        const id = Utils.generateRandomString(11);
-        const timestamp = Math.floor(Date.now() / 1e3);
-        const visitor_data = Proto2.encodeVisitorData(id, timestamp);
-        const context = {
-          client: {
-            hl: "en",
-            gl: this.#config.gl || "US",
-            remoteHost: this.#remote_host,
-            deviceMake: user_agent.vendor,
-            deviceModel: user_agent.platform,
-            visitorData: visitor_data,
-            userAgent: user_agent.toString(),
-            clientName: this.#client_name,
-            clientVersion: this.#client_version,
-            originalUrl: Constants.URLS.API.BASE
-          },
-          user: { lockedSafetyMode: false },
-          request: { useSsl: true }
-        };
-        return context;
-      }
-      async #getYtConfig() {
-        const response = await this.#request.get(`${Constants.URLS.YT_BASE}/sw.js_data`);
-        return JSON.parse(response.data.replace(")]}'", ""));
-      }
-      async #getPlayerId() {
-        const response = await this.#request.get(`${Constants.URLS.YT_BASE}/iframe_api`);
-        return Utils.getStringBetweenStrings(response.data, "player\\/", "\\/");
-      }
       get key() {
-        return this.#key;
+        return __privateGet(this, _key);
       }
       get context() {
-        return this.#context;
+        return __privateGet(this, _context);
       }
       get api_version() {
-        return this.#api_version;
+        return __privateGet(this, _api_version);
       }
       get client_version() {
-        return this.#client_version;
+        return __privateGet(this, _client_version);
       }
       get client_name() {
-        return this.#client_name;
+        return __privateGet(this, _client_name);
       }
       get player() {
-        return this.#player;
+        return __privateGet(this, _player2);
       }
+    };
+    _config = new WeakMap();
+    _request2 = new WeakMap();
+    _key = new WeakMap();
+    _client_name = new WeakMap();
+    _client_version = new WeakMap();
+    _api_version = new WeakMap();
+    _remote_host = new WeakMap();
+    _context = new WeakMap();
+    _player2 = new WeakMap();
+    _buildContext = new WeakSet();
+    buildContext_fn = function() {
+      const user_agent = new UserAgent({ deviceCategory: "desktop" });
+      const id = Utils.generateRandomString(11);
+      const timestamp = Math.floor(Date.now() / 1e3);
+      const visitor_data = Proto2.encodeVisitorData(id, timestamp);
+      const context = {
+        client: {
+          hl: "en",
+          gl: __privateGet(this, _config).gl || "US",
+          remoteHost: __privateGet(this, _remote_host),
+          deviceMake: user_agent.vendor,
+          deviceModel: user_agent.platform,
+          visitorData: visitor_data,
+          userAgent: user_agent.toString(),
+          clientName: __privateGet(this, _client_name),
+          clientVersion: __privateGet(this, _client_version),
+          originalUrl: Constants.URLS.API.BASE
+        },
+        user: { lockedSafetyMode: false },
+        request: { useSsl: true }
+      };
+      return context;
+    };
+    _getYtConfig = new WeakSet();
+    getYtConfig_fn = async function() {
+      const response = await __privateGet(this, _request2).get(`${Constants.URLS.YT_BASE}/sw.js_data`);
+      return JSON.parse(response.data.replace(")]}'", ""));
+    };
+    _getPlayerId = new WeakSet();
+    getPlayerId_fn = async function() {
+      const response = await __privateGet(this, _request2).get(`${Constants.URLS.YT_BASE}/iframe_api`);
+      return Utils.getStringBetweenStrings(response.data, "player\\/", "\\/");
     };
     module2.exports = SessionBuilder2;
   }
@@ -23156,81 +23239,82 @@ var require_NavigationEndpoint = __commonJS({
     var NavigationEndpoint = class {
       type = "NavigationEndpoint";
       constructor(data) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w;
         const name = Object.keys(data || {}).find((item) => item.endsWith("Endpoint") || item.endsWith("Command"));
-        this.payload = data?.[name] || {};
+        this.payload = (data == null ? void 0 : data[name]) || {};
         if (Reflect.has(this.payload, "dialog")) {
           this.dialog = Parser.parse(this.payload.dialog);
         }
-        if (data?.serviceEndpoint) {
+        if (data == null ? void 0 : data.serviceEndpoint) {
           data = data.serviceEndpoint;
         }
         this.metadata = {};
-        if (data?.commandMetadata?.webCommandMetadata?.url) {
+        if ((_b = (_a = data == null ? void 0 : data.commandMetadata) == null ? void 0 : _a.webCommandMetadata) == null ? void 0 : _b.url) {
           this.metadata.url = data.commandMetadata.webCommandMetadata.url;
         }
-        if (data?.commandMetadata?.webCommandMetadata?.webPageType) {
+        if ((_d = (_c = data == null ? void 0 : data.commandMetadata) == null ? void 0 : _c.webCommandMetadata) == null ? void 0 : _d.webPageType) {
           this.metadata.page_type = data.commandMetadata.webCommandMetadata.webPageType;
         }
-        if (data?.commandMetadata?.webCommandMetadata?.apiUrl) {
+        if ((_f = (_e = data == null ? void 0 : data.commandMetadata) == null ? void 0 : _e.webCommandMetadata) == null ? void 0 : _f.apiUrl) {
           this.metadata.api_url = data.commandMetadata.webCommandMetadata.apiUrl.replace("/youtubei/v1/", "");
         }
-        if (data?.commandMetadata?.webCommandMetadata?.sendPost) {
+        if ((_h = (_g = data == null ? void 0 : data.commandMetadata) == null ? void 0 : _g.webCommandMetadata) == null ? void 0 : _h.sendPost) {
           this.metadata.send_post = data.commandMetadata.webCommandMetadata.sendPost;
         }
-        if (data?.browseEndpoint) {
-          const configs = data?.browseEndpoint?.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig;
+        if (data == null ? void 0 : data.browseEndpoint) {
+          const configs = (_j = (_i = data == null ? void 0 : data.browseEndpoint) == null ? void 0 : _i.browseEndpointContextSupportedConfigs) == null ? void 0 : _j.browseEndpointContextMusicConfig;
           this.browse = {
-            id: data?.browseEndpoint?.browseId || null,
-            params: data?.browseEndpoint.params || null,
-            base_url: data?.browseEndpoint?.canonicalBaseUrl || null,
-            page_type: configs?.pageType || null
+            id: ((_k = data == null ? void 0 : data.browseEndpoint) == null ? void 0 : _k.browseId) || null,
+            params: (data == null ? void 0 : data.browseEndpoint.params) || null,
+            base_url: ((_l = data == null ? void 0 : data.browseEndpoint) == null ? void 0 : _l.canonicalBaseUrl) || null,
+            page_type: (configs == null ? void 0 : configs.pageType) || null
           };
         }
-        if (data?.watchEndpoint) {
-          const configs = data?.watchEndpoint?.watchEndpointMusicSupportedConfigs?.watchEndpointMusicConfig;
+        if (data == null ? void 0 : data.watchEndpoint) {
+          const configs = (_n = (_m = data == null ? void 0 : data.watchEndpoint) == null ? void 0 : _m.watchEndpointMusicSupportedConfigs) == null ? void 0 : _n.watchEndpointMusicConfig;
           this.watch = {
-            video_id: data?.watchEndpoint?.videoId,
-            playlist_id: data?.watchEndpoint.playlistId || null,
-            params: data?.watchEndpoint.params || null,
-            index: data?.watchEndpoint.index || null,
-            supported_onesie_config: data?.watchEndpoint?.watchEndpointSupportedOnesieConfig,
-            music_video_type: configs?.musicVideoType || null
+            video_id: (_o = data == null ? void 0 : data.watchEndpoint) == null ? void 0 : _o.videoId,
+            playlist_id: (data == null ? void 0 : data.watchEndpoint.playlistId) || null,
+            params: (data == null ? void 0 : data.watchEndpoint.params) || null,
+            index: (data == null ? void 0 : data.watchEndpoint.index) || null,
+            supported_onesie_config: (_p = data == null ? void 0 : data.watchEndpoint) == null ? void 0 : _p.watchEndpointSupportedOnesieConfig,
+            music_video_type: (configs == null ? void 0 : configs.musicVideoType) || null
           };
         }
-        if (data?.searchEndpoint) {
+        if (data == null ? void 0 : data.searchEndpoint) {
           this.search = {
             query: data.searchEndpoint.query,
             params: data.searchEndpoint.params
           };
         }
-        if (data?.subscribeEndpoint) {
+        if (data == null ? void 0 : data.subscribeEndpoint) {
           this.subscribe = {
             channel_ids: data.subscribeEndpoint.channelIds,
             params: data.subscribeEndpoint.params
           };
         }
-        if (data?.unsubscribeEndpoint) {
+        if (data == null ? void 0 : data.unsubscribeEndpoint) {
           this.unsubscribe = {
             channel_ids: data.unsubscribeEndpoint.channelIds,
             params: data.unsubscribeEndpoint.params
           };
         }
-        if (data?.likeEndpoint) {
+        if (data == null ? void 0 : data.likeEndpoint) {
           this.like = {
             status: data.likeEndpoint.status,
             target: {
               video_id: data.likeEndpoint.target.videoId,
               playlist_id: data.likeEndpoint.target.playlistId
             },
-            params: data.likeEndpoint?.removeLikeParams || data.likeEndpoint?.likeParams || data.likeEndpoint?.dislikeParams
+            params: ((_q = data.likeEndpoint) == null ? void 0 : _q.removeLikeParams) || ((_r = data.likeEndpoint) == null ? void 0 : _r.likeParams) || ((_s = data.likeEndpoint) == null ? void 0 : _s.dislikeParams)
           };
         }
-        if (data?.performCommentActionEndpoint) {
+        if (data == null ? void 0 : data.performCommentActionEndpoint) {
           this.perform_comment_action = {
-            action: data?.performCommentActionEndpoint.action
+            action: data == null ? void 0 : data.performCommentActionEndpoint.action
           };
         }
-        if (data?.offlineVideoEndpoint) {
+        if (data == null ? void 0 : data.offlineVideoEndpoint) {
           this.offline_video = {
             video_id: data.offlineVideoEndpoint.videoId,
             on_add_command: {
@@ -23241,23 +23325,23 @@ var require_NavigationEndpoint = __commonJS({
             }
           };
         }
-        if (data?.continuationCommand) {
+        if (data == null ? void 0 : data.continuationCommand) {
           this.continuation = {
-            request: data?.continuationCommand?.request || null,
-            token: data?.continuationCommand?.token || null
+            request: ((_t = data == null ? void 0 : data.continuationCommand) == null ? void 0 : _t.request) || null,
+            token: ((_u = data == null ? void 0 : data.continuationCommand) == null ? void 0 : _u.token) || null
           };
         }
-        if (data?.feedbackEndpoint) {
+        if (data == null ? void 0 : data.feedbackEndpoint) {
           this.feedback = {
             token: data.feedbackEndpoint.feedbackToken
           };
         }
-        if (data?.watchPlaylistEndpoint) {
+        if (data == null ? void 0 : data.watchPlaylistEndpoint) {
           this.watch_playlist = {
-            playlist_id: data.watchPlaylistEndpoint?.playlistId
+            playlist_id: (_v = data.watchPlaylistEndpoint) == null ? void 0 : _v.playlistId
           };
         }
-        if (data?.playlistEditEndpoint) {
+        if (data == null ? void 0 : data.playlistEditEndpoint) {
           this.playlist_edit = {
             playlist_id: data.playlistEditEndpoint.playlistId,
             actions: data.playlistEditEndpoint.actions.map((item) => ({
@@ -23266,32 +23350,32 @@ var require_NavigationEndpoint = __commonJS({
             }))
           };
         }
-        if (data?.addToPlaylistEndpoint) {
+        if (data == null ? void 0 : data.addToPlaylistEndpoint) {
           this.add_to_playlist = {
             video_id: data.addToPlaylistEndpoint.videoId
           };
         }
-        if (data?.addToPlaylistServiceEndpoint) {
+        if (data == null ? void 0 : data.addToPlaylistServiceEndpoint) {
           this.add_to_playlist = {
             video_id: data.addToPlaylistServiceEndpoint.videoId
           };
         }
-        if (data?.getReportFormEndpoint) {
+        if (data == null ? void 0 : data.getReportFormEndpoint) {
           this.get_report_form = {
             params: data.getReportFormEndpoint.params
           };
         }
-        if (data?.liveChatItemContextMenuEndpoint) {
+        if (data == null ? void 0 : data.liveChatItemContextMenuEndpoint) {
           this.live_chat_item_context_menu = {
-            params: data?.liveChatItemContextMenuEndpoint?.params
+            params: (_w = data == null ? void 0 : data.liveChatItemContextMenuEndpoint) == null ? void 0 : _w.params
           };
         }
-        if (data?.sendLiveChatVoteEndpoint) {
+        if (data == null ? void 0 : data.sendLiveChatVoteEndpoint) {
           this.send_live_chat_vote = {
             params: data.sendLiveChatVoteEndpoint.params
           };
         }
-        if (data?.liveChatItemContextMenuEndpoint) {
+        if (data == null ? void 0 : data.liveChatItemContextMenuEndpoint) {
           this.live_chat_item_context_menu = {
             params: data.liveChatItemContextMenuEndpoint.params
           };
@@ -23367,7 +23451,8 @@ var require_EmojiRun = __commonJS({
     var Thumbnail = require_Thumbnail();
     var EmojiRun = class {
       constructor(data) {
-        this.text = data.emoji?.emojiId || data.emoji?.shortcuts?.[0] || null;
+        var _a, _b, _c;
+        this.text = ((_a = data.emoji) == null ? void 0 : _a.emojiId) || ((_c = (_b = data.emoji) == null ? void 0 : _b.shortcuts) == null ? void 0 : _c[0]) || null;
         this.emoji = {
           emoji_id: data.emoji.emojiId,
           shortcuts: data.emoji.shortcuts,
@@ -23389,11 +23474,11 @@ var require_Text = __commonJS({
     var Text = class {
       text;
       constructor(data) {
-        if (data?.hasOwnProperty("runs")) {
+        if (data == null ? void 0 : data.hasOwnProperty("runs")) {
           this.runs = data.runs.map((run) => run.emoji && new EmojiRun(run) || new TextRun(run));
           this.text = this.runs.map((run) => run.text).join("");
         } else {
-          this.text = data?.simpleText || "N/A";
+          this.text = (data == null ? void 0 : data.simpleText) || "N/A";
         }
       }
       toString() {
@@ -23414,8 +23499,9 @@ var require_NavigatableText = __commonJS({
       type = "NavigatableText";
       endpoint;
       constructor(node) {
+        var _a, _b;
         super(node);
-        this.endpoint = node.runs?.[0]?.navigationEndpoint ? new NavigationEndpoint(node.runs[0].navigationEndpoint) : node.navigationEndpoint ? new NavigationEndpoint(node.navigationEndpoint) : node.titleNavigationEndpoint ? new NavigationEndpoint(node.titleNavigationEndpoint) : null;
+        this.endpoint = ((_b = (_a = node.runs) == null ? void 0 : _a[0]) == null ? void 0 : _b.navigationEndpoint) ? new NavigationEndpoint(node.runs[0].navigationEndpoint) : node.navigationEndpoint ? new NavigationEndpoint(node.navigationEndpoint) : node.titleNavigationEndpoint ? new NavigationEndpoint(node.titleNavigationEndpoint) : null;
       }
       toJSON() {
         return this;
@@ -23433,23 +23519,26 @@ var require_Author = __commonJS({
     var NavigatableText = require_NavigatableText();
     var Thumbnail = require_Thumbnail();
     var Constants = require_Constants();
+    var _nav_text;
     var Author = class {
-      #nav_text;
       constructor(item, badges, thumbs) {
-        this.#nav_text = new NavigatableText(item);
-        this.id = this.#nav_text.runs?.[0].endpoint.browse?.id || this.#nav_text.endpoint?.browse?.id || "N/A";
-        this.name = this.#nav_text.text || "N/A";
+        __privateAdd(this, _nav_text, void 0);
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
+        __privateSet(this, _nav_text, new NavigatableText(item));
+        this.id = ((_b = (_a = __privateGet(this, _nav_text).runs) == null ? void 0 : _a[0].endpoint.browse) == null ? void 0 : _b.id) || ((_d = (_c = __privateGet(this, _nav_text).endpoint) == null ? void 0 : _c.browse) == null ? void 0 : _d.id) || "N/A";
+        this.name = __privateGet(this, _nav_text).text || "N/A";
         this.thumbnails = thumbs ? Thumbnail.fromResponse(thumbs) : [];
-        this.endpoint = this.#nav_text.runs?.[0].endpoint || this.#nav_text.endpoint;
+        this.endpoint = ((_e = __privateGet(this, _nav_text).runs) == null ? void 0 : _e[0].endpoint) || __privateGet(this, _nav_text).endpoint;
         this.badges = Array.isArray(badges) ? Parser.parse(badges) : [];
-        this.is_verified = this.badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED") || null;
-        this.is_verified_artist = this.badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST") || null;
-        this.url = this.#nav_text.runs?.[0].endpoint.browse && `${Constants.URLS.YT_BASE}${this.#nav_text.runs[0].endpoint.browse?.base_url || `/u/${this.#nav_text.runs[0].endpoint.browse?.id}`}` || `${Constants.URLS.YT_BASE}${this.#nav_text.endpoint?.browse?.base_url || `/u/${this.#nav_text.endpoint?.browse?.id}`}` || null;
+        this.is_verified = ((_f = this.badges) == null ? void 0 : _f.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED")) || null;
+        this.is_verified_artist = ((_g = this.badges) == null ? void 0 : _g.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST")) || null;
+        this.url = ((_h = __privateGet(this, _nav_text).runs) == null ? void 0 : _h[0].endpoint.browse) && `${Constants.URLS.YT_BASE}${((_i = __privateGet(this, _nav_text).runs[0].endpoint.browse) == null ? void 0 : _i.base_url) || `/u/${(_j = __privateGet(this, _nav_text).runs[0].endpoint.browse) == null ? void 0 : _j.id}`}` || `${Constants.URLS.YT_BASE}${((_l = (_k = __privateGet(this, _nav_text).endpoint) == null ? void 0 : _k.browse) == null ? void 0 : _l.base_url) || `/u/${(_n = (_m = __privateGet(this, _nav_text).endpoint) == null ? void 0 : _m.browse) == null ? void 0 : _n.id}`}` || null;
       }
       get best_thumbnail() {
         return this.thumbnails[0];
       }
     };
+    _nav_text = new WeakMap();
     module2.exports = Author;
   }
 });
@@ -23541,15 +23630,16 @@ var require_Button = __commonJS({
     var Button = class {
       type = "Button";
       constructor(data) {
+        var _a, _b, _c, _d;
         this.text = new Text(data.text).toString();
-        if (data.accessibility?.label) {
-          this.label = data.accessibility?.label;
+        if ((_a = data.accessibility) == null ? void 0 : _a.label) {
+          this.label = (_b = data.accessibility) == null ? void 0 : _b.label;
         }
         if (data.tooltip) {
           this.tooltip = data.tooltip;
         }
-        if (data.icon?.iconType) {
-          this.iconType = data.icon?.iconType;
+        if ((_c = data.icon) == null ? void 0 : _c.iconType) {
+          this.iconType = (_d = data.icon) == null ? void 0 : _d.iconType;
         }
         this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint || data.command);
       }
@@ -23732,8 +23822,9 @@ var require_ChannelHeaderLinks = __commonJS({
     var ChannelHeaderLinks = class {
       type = "ChannelHeaderLinks";
       constructor(data) {
-        this.primary = data.primaryLinks?.map((link) => new HeaderLink(link)) || [];
-        this.secondary = data.secondaryLinks?.map((link) => new HeaderLink(link)) || [];
+        var _a, _b;
+        this.primary = ((_a = data.primaryLinks) == null ? void 0 : _a.map((link) => new HeaderLink(link))) || [];
+        this.secondary = ((_b = data.secondaryLinks) == null ? void 0 : _b.map((link) => new HeaderLink(link))) || [];
       }
     };
     module2.exports = ChannelHeaderLinks;
@@ -23906,10 +23997,12 @@ var require_Comment = __commonJS({
     var Author = require_Author();
     var Proto2 = require_proto();
     var { InnertubeError: InnertubeError2 } = require_Utils();
+    var _actions;
     var Comment = class {
-      type = "Comment";
-      #actions;
       constructor(data) {
+        __publicField(this, "type", "Comment");
+        __privateAdd(this, _actions, void 0);
+        var _a, _b;
         this.content = new Text(data.contentText);
         this.published = new Text(data.publishedTimeText);
         this.author_is_channel_owner = data.authorIsChannelOwner;
@@ -23919,14 +24012,14 @@ var require_Comment = __commonJS({
           ...data.authorText,
           navigationEndpoint: data.authorEndpoint
         }, this.author_badge ? [{
-          metadataBadgeRenderer: this.author_badge?.orig_badge
+          metadataBadgeRenderer: (_a = this.author_badge) == null ? void 0 : _a.orig_badge
         }] : null, data.authorThumbnail);
         this.action_menu = Parser.parse(data.actionMenu);
         this.action_buttons = Parser.parse(data.actionButtons, "comments");
         this.comment_id = data.commentId;
         this.vote_status = data.voteStatus;
         this.vote_count = {
-          text: data.voteCount ? data.voteCount.accessibility.accessibilityData?.label.replace(/\D/g, "") : "0",
+          text: data.voteCount ? (_b = data.voteCount.accessibility.accessibilityData) == null ? void 0 : _b.label.replace(/\D/g, "") : "0",
           short_text: data.voteCount ? new Text(data.voteCount).toString() : "0"
         };
         this.reply_count = data.replyCount || 0;
@@ -23938,14 +24031,14 @@ var require_Comment = __commonJS({
         const button = this.action_buttons.like_button;
         if (button.is_toggled)
           throw new InnertubeError2("This comment is already liked", { comment_id: this.comment_id });
-        const response = await button.endpoint.callTest(this.#actions, { parse: false });
+        const response = await button.endpoint.callTest(__privateGet(this, _actions), { parse: false });
         return response;
       }
       async dislike() {
         const button = this.action_buttons.dislike_button;
         if (button.is_toggled)
           throw new InnertubeError2("This comment is already disliked", { comment_id: this.comment_id });
-        const response = await button.endpoint.callTest(this.#actions, { parse: false });
+        const response = await button.endpoint.callTest(__privateGet(this, _actions), { parse: false });
         return response;
       }
       async reply(text) {
@@ -23958,7 +24051,7 @@ var require_Comment = __commonJS({
             commentText: text
           }
         };
-        const response = await dialog_button.endpoint.callTest(this.#actions, payload);
+        const response = await dialog_button.endpoint.callTest(__privateGet(this, _actions), payload);
         return response;
       }
       async translate(target_language) {
@@ -23969,15 +24062,16 @@ var require_Comment = __commonJS({
           comment_id: this.comment_id
         };
         const action = Proto2.encodeCommentActionParams(22, payload);
-        const response = await this.#actions.execute("comment/perform_comment_action", { action, client: "ANDROID" });
+        const response = await __privateGet(this, _actions).execute("comment/perform_comment_action", { action, client: "ANDROID" });
         const mutations = response.data.frameworkUpdates.entityBatchUpdate.mutations;
         const content = mutations[0].payload.commentEntityPayload.translatedContent.content;
         return { ...response, content };
       }
       setActions(actions) {
-        this.#actions = actions;
+        __privateSet(this, _actions, actions);
       }
     };
+    _actions = new WeakMap();
     module2.exports = Comment;
   }
 });
@@ -24007,19 +24101,21 @@ var require_CommentReplyDialog = __commonJS({
 var require_AuthorCommentBadge = __commonJS({
   "lib/parser/contents/classes/comments/AuthorCommentBadge.js"(exports2, module2) {
     "use strict";
+    var _data;
     var AuthorCommentBadge = class {
-      type = "AuthorCommentBadge";
-      #data;
       constructor(data) {
+        __publicField(this, "type", "AuthorCommentBadge");
+        __privateAdd(this, _data, void 0);
         this.icon_type = data.icon.iconType;
         this.tooltip = data.iconTooltip;
         this.tooltip === "Verified" && (this.style = "BADGE_STYLE_TYPE_VERIFIED") && (data.style = "BADGE_STYLE_TYPE_VERIFIED");
-        this.#data = data;
+        __privateSet(this, _data, data);
       }
       get orig_badge() {
-        return this.#data;
+        return __privateGet(this, _data);
       }
     };
+    _data = new WeakMap();
     module2.exports = AuthorCommentBadge;
   }
 });
@@ -24109,18 +24205,19 @@ var require_CommentsHeader = __commonJS({
     var CommentsHeader = class {
       type = "CommentsHeader";
       constructor(data) {
+        var _a;
         this.title = new Text(data.titleText);
         this.count = new Text(data.countText);
         this.comments_count = new Text(data.commentsCount);
         this.create_renderer = Parser.parse(data.createRenderer, "comments");
         this.sort_menu = Parser.parse(data.sortMenu);
-        this.custom_emojis = data.customEmojis?.map((emoji) => ({
+        this.custom_emojis = ((_a = data.customEmojis) == null ? void 0 : _a.map((emoji) => ({
           emoji_id: emoji.emojiId,
           shortcuts: emoji.shortcuts,
           search_terms: emoji.searchTerms,
           image: Thumbnail.fromResponse(emoji.image),
           is_custom_emoji: emoji.isCustomEmoji
-        })) || null;
+        }))) || null;
       }
     };
     module2.exports = CommentsHeader;
@@ -24133,45 +24230,51 @@ var require_CommentThread = __commonJS({
     "use strict";
     var Parser = require_contents();
     var { InnertubeError: InnertubeError2 } = require_Utils();
+    var _replies, _actions, _continuation;
     var CommentThread = class {
-      type = "CommentThread";
-      #replies;
-      #actions;
-      #continuation;
       constructor(data) {
+        __publicField(this, "type", "CommentThread");
+        __privateAdd(this, _replies, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _continuation, void 0);
         this.comment = Parser.parse(data.comment);
-        this.#replies = Parser.parse(data.replies, "comments");
+        __privateSet(this, _replies, Parser.parse(data.replies, "comments"));
         this.is_moderated_elq_comment = data.isModeratedElqComment;
       }
       async getReplies() {
-        if (!this.#replies)
+        var _a;
+        if (!__privateGet(this, _replies))
           throw new InnertubeError2("This comment has no replies.", { comment_id: this.comment.comment_id });
-        const continuation = this.#replies.contents.get({ type: "ContinuationItem" });
-        const response = await continuation.endpoint.callTest(this.#actions);
+        const continuation = __privateGet(this, _replies).contents.get({ type: "ContinuationItem" });
+        const response = await continuation.endpoint.callTest(__privateGet(this, _actions));
         this.replies = response.on_response_received_endpoints_memo.get("Comment").map((comment) => {
-          comment.setActions(this.#actions);
+          comment.setActions(__privateGet(this, _actions));
           return comment;
         });
-        this.#continuation = response.on_response_received_endpoints_memo.get("ContinuationItem")?.[0];
+        __privateSet(this, _continuation, (_a = response.on_response_received_endpoints_memo.get("ContinuationItem")) == null ? void 0 : _a[0]);
         return this;
       }
       async getContinuation() {
+        var _a;
         if (!this.replies)
           throw new InnertubeError2("Continuation not available.");
-        if (!this.#continuation)
+        if (!__privateGet(this, _continuation))
           throw new InnertubeError2("Continuation not found.");
-        const response = await this.#continuation.button.endpoint.callTest(this.#actions);
+        const response = await __privateGet(this, _continuation).button.endpoint.callTest(__privateGet(this, _actions));
         this.replies = response.on_response_received_endpoints_memo.get("Comment").map((comment) => {
-          comment.setActions(this.#actions);
+          comment.setActions(__privateGet(this, _actions));
           return comment;
         });
-        this.#continuation = response.on_response_received_endpoints_memo.get("ContinuationItem")?.[0];
+        __privateSet(this, _continuation, (_a = response.on_response_received_endpoints_memo.get("ContinuationItem")) == null ? void 0 : _a[0]);
         return this;
       }
       setActions(actions) {
-        this.#actions = actions;
+        __privateSet(this, _actions, actions);
       }
     };
+    _replies = new WeakMap();
+    _actions = new WeakMap();
+    _continuation = new WeakMap();
     module2.exports = CommentThread;
   }
 });
@@ -24223,9 +24326,10 @@ var require_Playlist = __commonJS({
     var Playlist2 = class {
       type = "Playlist";
       constructor(data) {
+        var _a;
         this.id = data.playlistId;
         this.title = new Text(data.title);
-        this.author = data.shortBylineText?.simpleText ? new Text(data.shortBylineText) : new PlaylistAuthor(data.longBylineText, data.ownerBadges, null);
+        this.author = ((_a = data.shortBylineText) == null ? void 0 : _a.simpleText) ? new Text(data.shortBylineText) : new PlaylistAuthor(data.longBylineText, data.ownerBadges, null);
         this.thumbnails = Thumbnail.fromResponse(data.thumbnail || { thumbnails: data.thumbnails.map((th) => th.thumbnails).flat(1) });
         this.video_count = new Text(data.thumbnailText);
         this.video_count_short = new Text(data.videoCountShortText);
@@ -24650,6 +24754,7 @@ var require_GridPlaylist = __commonJS({
     var GridPlaylist = class {
       type = "GridPlaylist";
       constructor(data) {
+        var _a;
         this.id = data.playlistId;
         this.title = new Text(data.title);
         if (data.shortBylineText) {
@@ -24660,7 +24765,7 @@ var require_GridPlaylist = __commonJS({
         this.view_playlist = new NavigatableText(data.viewPlaylistText);
         this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
         this.thumbnail_renderer = Parser.parse(data.thumbnailRenderer);
-        this.sidebar_thumbnails = [].concat(...data.sidebarThumbnails?.map((thumbnail) => Thumbnail.fromResponse(thumbnail)) || []) || null;
+        this.sidebar_thumbnails = [].concat(...((_a = data.sidebarThumbnails) == null ? void 0 : _a.map((thumbnail) => Thumbnail.fromResponse(thumbnail))) || []) || null;
         this.video_count = new Text(data.thumbnailText);
         this.video_count_short_text = new Text(data.videoCountShortText);
       }
@@ -24681,14 +24786,15 @@ var require_GridVideo = __commonJS({
     var GridVideo = class {
       type = "GridVideo";
       constructor(data) {
-        const length_alt = data.thumbnailOverlays.find((overlay) => overlay.hasOwnProperty("thumbnailOverlayTimeStatusRenderer"))?.thumbnailOverlayTimeStatusRenderer;
+        var _a;
+        const length_alt = (_a = data.thumbnailOverlays.find((overlay) => overlay.hasOwnProperty("thumbnailOverlayTimeStatusRenderer"))) == null ? void 0 : _a.thumbnailOverlayTimeStatusRenderer;
         this.id = data.videoId;
         this.title = new Text(data.title);
         this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
         this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
         this.rich_thumbnail = data.richThumbnail && Parser.parse(data.richThumbnail);
         this.published = new Text(data.publishedTimeText);
-        this.duration = data.lengthText ? new Text(data.lengthText) : length_alt?.text ? new Text(length_alt.text) : "";
+        this.duration = data.lengthText ? new Text(data.lengthText) : (length_alt == null ? void 0 : length_alt.text) ? new Text(length_alt.text) : "";
         this.author = data.shortBylineText && new Author(data.shortBylineText, data.ownerBadges);
         this.views = new Text(data.viewCountText);
         this.short_view_count = new Text(data.shortViewCountText);
@@ -24748,7 +24854,7 @@ var require_ItemSection = __commonJS({
         this.header = Parser.parse(data.header);
         this.contents = Parser.parse(data.contents);
         if (data.targetId || data.sectionIdentifier) {
-          this.target_id = data?.target_id || data?.sectionIdentifier;
+          this.target_id = (data == null ? void 0 : data.target_id) || (data == null ? void 0 : data.sectionIdentifier);
         }
       }
     };
@@ -24778,13 +24884,14 @@ var require_LikeButton = __commonJS({
     var LikeButton = class {
       type = "LikeButton";
       constructor(data) {
+        var _a;
         this.target = {
           video_id: data.target.videoId
         };
         this.like_status = data.likeStatus;
         this.likes_allowed = data.likesAllowed;
         if (data.serviceEndpoints) {
-          this.endpoints = data.serviceEndpoints?.map((endpoint) => new NavigationEndpoint(endpoint));
+          this.endpoints = (_a = data.serviceEndpoints) == null ? void 0 : _a.map((endpoint) => new NavigationEndpoint(endpoint));
         }
       }
     };
@@ -24801,9 +24908,10 @@ var require_LiveChat = __commonJS({
     var LiveChat = class {
       type = "LiveChat";
       constructor(data) {
+        var _a, _b;
         this.header = Parser.parse(data.header);
         this.initial_display_state = data.initialDisplayState;
-        this.continuation = data.continuations[0]?.reloadContinuationData?.continuation;
+        this.continuation = (_b = (_a = data.continuations[0]) == null ? void 0 : _a.reloadContinuationData) == null ? void 0 : _b.continuation;
         this.client_messages = {
           reconnect_message: new Text(data.clientMessages.reconnectMessage),
           unable_to_reconnect_message: new Text(data.clientMessages.unableToReconnectMessage),
@@ -24944,7 +25052,7 @@ var require_LiveChatMembershipItem = __commonJS({
         this.header_subtext = new Text(data.headerSubtext);
         this.author = {
           id: data.authorExternalChannelId,
-          name: new Text(data?.authorName),
+          name: new Text(data == null ? void 0 : data.authorName),
           thumbnails: Thumbnail.fromResponse(data.authorPhoto),
           badges: Parser.parse(data.authorBadges)
         };
@@ -24975,9 +25083,9 @@ var require_LiveChatPaidMessage = __commonJS({
         };
         const badges = Parser.parse(data.authorBadges);
         this.author.badges = badges;
-        this.author.is_moderator = badges?.some((badge) => badge.icon_type == "MODERATOR") || null;
-        this.author.is_verified = badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED") || null;
-        this.author.is_verified_artist = badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST") || null;
+        this.author.is_moderator = (badges == null ? void 0 : badges.some((badge) => badge.icon_type == "MODERATOR")) || null;
+        this.author.is_verified = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED")) || null;
+        this.author.is_verified_artist = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST")) || null;
         this.purchase_amount = new Text(data.purchaseAmountText).toString();
         this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
         this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1e3);
@@ -25051,9 +25159,9 @@ var require_LiveChatTextMessage = __commonJS({
         };
         const badges = Parser.parse(data.authorBadges);
         this.author.badges = badges;
-        this.author.is_moderator = badges?.some((badge) => badge.icon_type == "MODERATOR") || null;
-        this.author.is_verified = badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED") || null;
-        this.author.is_verified_artist = badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST") || null;
+        this.author.is_moderator = (badges == null ? void 0 : badges.some((badge) => badge.icon_type == "MODERATOR")) || null;
+        this.author.is_verified = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED")) || null;
+        this.author.is_verified_artist = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST")) || null;
         this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
         this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1e3);
         this.id = data.id;
@@ -25081,9 +25189,9 @@ var require_LiveChatTickerPaidMessageItem = __commonJS({
         };
         const badges = Parser.parse(data.authorBadges);
         this.author.badges = badges;
-        this.author.is_moderator = badges?.some((badge) => badge.icon_type == "MODERATOR") || null;
-        this.author.is_verified = badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED") || null;
-        this.author.is_verified_artist = badges?.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST") || null;
+        this.author.is_moderator = (badges == null ? void 0 : badges.some((badge) => badge.icon_type == "MODERATOR")) || null;
+        this.author.is_verified = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED")) || null;
+        this.author.is_verified_artist = (badges == null ? void 0 : badges.some((badge) => badge.style == "BADGE_STYLE_TYPE_VERIFIED_ARTIST")) || null;
         this.amount = new Text(data.amount);
         this.duration_sec = data.durationSec;
         this.full_duration_sec = data.fullDurationSec;
@@ -25109,7 +25217,7 @@ var require_LiveChatTickerSponsorItem = __commonJS({
         this.detail_text = new Text(data.detailText).toString();
         this.author = {
           id: data.authorExternalChannelId,
-          name: new Text(data?.authorName),
+          name: new Text(data == null ? void 0 : data.authorName),
           thumbnails: Thumbnail.fromResponse(data.sponsorPhoto)
         };
         this.duration_sec = data.durationSec;
@@ -25271,7 +25379,8 @@ var require_ReplayChatItemAction = __commonJS({
     var ReplayChatItemAction = class {
       type = "ReplayChatItemAction";
       constructor(data) {
-        this.actions = Parser.parse(data.actions?.map((action) => {
+        var _a;
+        this.actions = Parser.parse((_a = data.actions) == null ? void 0 : _a.map((action) => {
           delete action.clickTrackingParams;
           return action;
         }), "livechat") || [];
@@ -25534,9 +25643,10 @@ var require_Menu = __commonJS({
     var Menu = class {
       type = "Menu";
       constructor(data) {
+        var _a, _b;
         this.items = Parser.parse(data.items) || [];
         this.top_level_buttons = Parser.parse(data.topLevelButtons) || [];
-        this.label = data.accessibility?.accessibilityData?.label || null;
+        this.label = ((_b = (_a = data.accessibility) == null ? void 0 : _a.accessibilityData) == null ? void 0 : _b.label) || null;
       }
       get contents() {
         return this.items;
@@ -25766,14 +25876,15 @@ var require_Movie = __commonJS({
     var Movie = class {
       type = "Movie";
       constructor(data) {
-        const overlay_time_status = data.thumbnailOverlays.find((overlay) => overlay.thumbnailOverlayTimeStatusRenderer)?.thumbnailOverlayTimeStatusRenderer.text || "N/A";
+        var _a, _b, _c;
+        const overlay_time_status = ((_a = data.thumbnailOverlays.find((overlay) => overlay.thumbnailOverlayTimeStatusRenderer)) == null ? void 0 : _a.thumbnailOverlayTimeStatusRenderer.text) || "N/A";
         this.id = data.videoId;
         this.title = new Text(data.title);
         this.description_snippet = data.descriptionSnippet ? new Text(data.descriptionSnippet, "") : null;
         this.top_metadata_items = new Text(data.topMetadataItems);
         this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
         this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
-        this.author = new Author(data.longBylineText, data.ownerBadges, data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer?.thumbnail);
+        this.author = new Author(data.longBylineText, data.ownerBadges, (_c = (_b = data.channelThumbnailSupportedRenderers) == null ? void 0 : _b.channelThumbnailWithLinkRenderer) == null ? void 0 : _c.thumbnail);
         this.duration = {
           text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
           seconds: Utils.timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
@@ -25797,7 +25908,8 @@ var require_MovingThumbnail = __commonJS({
     var MovingThumbnail = class {
       type = "MovingThumbnail";
       constructor(data) {
-        return data.movingThumbnailDetails?.thumbnails.map((thumbnail) => new Thumbnail(thumbnail)).sort((a, b) => b.width - a.width);
+        var _a;
+        return (_a = data.movingThumbnailDetails) == null ? void 0 : _a.thumbnails.map((thumbnail) => new Thumbnail(thumbnail)).sort((a, b) => b.width - a.width);
       }
     };
     module2.exports = MovingThumbnail;
@@ -25886,7 +25998,10 @@ var require_MusicDetailHeader = __commonJS({
         this.total_duration = this.second_subtitle.runs[2].text;
         this.thumbnails = Thumbnail.fromResponse(data.thumbnail.croppedSquareThumbnailRenderer.thumbnail);
         this.badges = Parser.parse(data.subtitleBadges);
-        const author = this.subtitle.runs.find((run) => run.endpoint.browse?.id.startsWith("UC"));
+        const author = this.subtitle.runs.find((run) => {
+          var _a;
+          return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("UC");
+        });
         if (author) {
           this.author = {
             name: author.text,
@@ -25991,6 +26106,7 @@ var require_MusicPlayButton = __commonJS({
     var MusicPlayButton = class {
       type = "MusicPlayButton";
       constructor(data) {
+        var _a;
         this.endpoint = new NavigationEndpoint(data.playNavigationEndpoint);
         this.play_icon_type = data.playIcon.iconType;
         this.pause_icon_type = data.pauseIcon.iconType;
@@ -25998,7 +26114,7 @@ var require_MusicPlayButton = __commonJS({
           this.play_label = data.accessibilityPlayData.accessibilityData.label;
         }
         if (data.accessibilityPlayData) {
-          this.pause_label = data.accessibilityPauseData?.accessibilityData.label;
+          this.pause_label = (_a = data.accessibilityPauseData) == null ? void 0 : _a.accessibilityData.label;
         }
         this.icon_color = data.iconColor;
       }
@@ -26012,19 +26128,22 @@ var require_MusicPlaylistShelf = __commonJS({
   "lib/parser/contents/classes/MusicPlaylistShelf.js"(exports2, module2) {
     "use strict";
     var Parser = require_contents();
+    var _continuations;
     var MusicPlaylistShelf = class {
-      type = "MusicPlaylistShelf";
-      #continuations;
       constructor(data) {
+        __publicField(this, "type", "MusicPlaylistShelf");
+        __privateAdd(this, _continuations, void 0);
         this.playlist_id = data.playlistId;
         this.contents = Parser.parse(data.contents);
         this.collapsed_item_count = data.collapsedItemCount;
-        this.#continuations = data.continuations;
+        __privateSet(this, _continuations, data.continuations);
       }
       get continuation() {
-        return this.#continuations?.[0]?.nextContinuationData;
+        var _a, _b;
+        return (_b = (_a = __privateGet(this, _continuations)) == null ? void 0 : _a[0]) == null ? void 0 : _b.nextContinuationData;
       }
     };
+    _continuations = new WeakMap();
     module2.exports = MusicPlaylistShelf;
   }
 });
@@ -26053,35 +26172,43 @@ var require_MusicResponsiveListItem = __commonJS({
     var Utils = require_Utils();
     var Thumbnail = require_Thumbnail();
     var NavigationEndpoint = require_NavigationEndpoint();
+    var _flex_columns, _fixed_columns, _playlist_item_data, _parseVideoOrSong, parseVideoOrSong_fn, _parseSong, parseSong_fn, _parseVideo, parseVideo_fn, _parseArtist, parseArtist_fn, _parseAlbum, parseAlbum_fn, _parsePlaylist, parsePlaylist_fn;
     var MusicResponsiveListItem = class {
-      #flex_columns;
-      #fixed_columns;
-      #playlist_item_data;
       constructor(data) {
+        __privateAdd(this, _parseVideoOrSong);
+        __privateAdd(this, _parseSong);
+        __privateAdd(this, _parseVideo);
+        __privateAdd(this, _parseArtist);
+        __privateAdd(this, _parseAlbum);
+        __privateAdd(this, _parsePlaylist);
+        __privateAdd(this, _flex_columns, void 0);
+        __privateAdd(this, _fixed_columns, void 0);
+        __privateAdd(this, _playlist_item_data, void 0);
+        var _a, _b, _c, _d;
         this.type = null;
-        this.#flex_columns = Parser.parse(data.flexColumns);
-        this.#fixed_columns = Parser.parse(data.fixedColumns);
-        this.#playlist_item_data = {
-          video_id: data?.playlistItemData?.videoId || null,
-          playlist_set_video_id: data?.playlistItemData?.playlistSetVideoId || null
-        };
+        __privateSet(this, _flex_columns, Parser.parse(data.flexColumns));
+        __privateSet(this, _fixed_columns, Parser.parse(data.fixedColumns));
+        __privateSet(this, _playlist_item_data, {
+          video_id: ((_a = data == null ? void 0 : data.playlistItemData) == null ? void 0 : _a.videoId) || null,
+          playlist_set_video_id: ((_b = data == null ? void 0 : data.playlistItemData) == null ? void 0 : _b.playlistSetVideoId) || null
+        });
         this.endpoint = data.navigationEndpoint && new NavigationEndpoint(data.navigationEndpoint) || null;
-        switch (this.endpoint?.browse?.page_type) {
+        switch ((_d = (_c = this.endpoint) == null ? void 0 : _c.browse) == null ? void 0 : _d.page_type) {
           case "MUSIC_PAGE_TYPE_ALBUM":
             this.type = "album";
-            this.#parseAlbum();
+            __privateMethod(this, _parseAlbum, parseAlbum_fn).call(this);
             break;
           case "MUSIC_PAGE_TYPE_PLAYLIST":
             this.type = "playlist";
-            this.#parsePlaylist();
+            __privateMethod(this, _parsePlaylist, parsePlaylist_fn).call(this);
             break;
           case "MUSIC_PAGE_TYPE_ARTIST":
           case "MUSIC_PAGE_TYPE_USER_CHANNEL":
             this.type = "artist";
-            this.#parseArtist();
+            __privateMethod(this, _parseArtist, parseArtist_fn).call(this);
             break;
           default:
-            this.#parseVideoOrSong();
+            __privateMethod(this, _parseVideoOrSong, parseVideoOrSong_fn).call(this);
             break;
         }
         if (data.index) {
@@ -26092,86 +26219,114 @@ var require_MusicResponsiveListItem = __commonJS({
         this.menu = Parser.parse(data.menu);
         this.overlay = Parser.parse(data.overlay);
       }
-      #parseVideoOrSong() {
-        const is_video = this.#flex_columns[1].title.runs?.some((run) => run.text.match(/(.*?) views/));
-        if (is_video) {
-          this.type = "video";
-          this.#parseVideo();
-        } else {
-          this.type = "song";
-          this.#parseSong();
-        }
+    };
+    _flex_columns = new WeakMap();
+    _fixed_columns = new WeakMap();
+    _playlist_item_data = new WeakMap();
+    _parseVideoOrSong = new WeakSet();
+    parseVideoOrSong_fn = function() {
+      var _a;
+      const is_video = (_a = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _a.some((run) => run.text.match(/(.*?) views/));
+      if (is_video) {
+        this.type = "video";
+        __privateMethod(this, _parseVideo, parseVideo_fn).call(this);
+      } else {
+        this.type = "song";
+        __privateMethod(this, _parseSong, parseSong_fn).call(this);
       }
-      #parseSong() {
-        this.id = this.#playlist_item_data.video_id || this.endpoint.watch.video_id;
-        this.title = this.#flex_columns[0].title.toString();
-        const duration_text = this.#flex_columns[1].title.runs?.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))?.text || this.#fixed_columns?.[0]?.title?.text;
-        duration_text && (this.duration = {
-          text: duration_text,
-          seconds: Utils.timeToSeconds(duration_text)
-        });
-        const album = this.#flex_columns[1].title.runs?.find((run) => run.endpoint.browse?.id.startsWith("MPR"));
-        if (album) {
-          this.album = {
-            id: album.endpoint.browse.id,
-            name: album.text,
-            endpoint: album.endpoint
-          };
-        }
-        const artists = this.#flex_columns[1].title.runs?.filter((run) => run.endpoint.browse?.id.startsWith("UC"));
-        if (artists) {
-          this.artists = artists.map((artist) => ({
-            name: artist.text,
-            channel_id: artist.endpoint.browse.id,
-            endpoint: artist.endpoint
-          }));
-        }
+    };
+    _parseSong = new WeakSet();
+    parseSong_fn = function() {
+      var _a, _b, _c, _d, _e, _f, _g;
+      this.id = __privateGet(this, _playlist_item_data).video_id || this.endpoint.watch.video_id;
+      this.title = __privateGet(this, _flex_columns)[0].title.toString();
+      const duration_text = ((_b = (_a = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _a.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))) == null ? void 0 : _b.text) || ((_e = (_d = (_c = __privateGet(this, _fixed_columns)) == null ? void 0 : _c[0]) == null ? void 0 : _d.title) == null ? void 0 : _e.text);
+      duration_text && (this.duration = {
+        text: duration_text,
+        seconds: Utils.timeToSeconds(duration_text)
+      });
+      const album = (_f = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _f.find((run) => {
+        var _a2;
+        return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("MPR");
+      });
+      if (album) {
+        this.album = {
+          id: album.endpoint.browse.id,
+          name: album.text,
+          endpoint: album.endpoint
+        };
       }
-      #parseVideo() {
-        this.id = this.#playlist_item_data.video_id;
-        this.title = this.#flex_columns[0].title.toString();
-        this.views = this.#flex_columns[1].title.runs.find((run) => run.text.match(/(.*?) views/)).text;
-        const authors = this.#flex_columns[1].title.runs?.filter((run) => run.endpoint.browse?.id.startsWith("UC"));
-        if (authors) {
-          this.authors = authors.map((author) => ({
-            name: author.text,
-            channel_id: author.endpoint.browse.id,
-            endpoint: author.endpoint
-          }));
-        }
-        const duration_text = this.#flex_columns[1].title.runs.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))?.text;
-        duration_text && (this.duration = {
-          text: duration_text,
-          seconds: Utils.timeToSeconds(duration_text)
-        });
+      const artists = (_g = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _g.filter((run) => {
+        var _a2;
+        return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+      });
+      if (artists) {
+        this.artists = artists.map((artist) => ({
+          name: artist.text,
+          channel_id: artist.endpoint.browse.id,
+          endpoint: artist.endpoint
+        }));
       }
-      #parseArtist() {
-        this.id = this.endpoint.browse.id;
-        this.name = this.#flex_columns[0].title.toString();
-        this.subscribers = this.#flex_columns[1].title.runs[2]?.text || "";
-      }
-      #parseAlbum() {
-        this.id = this.endpoint.browse.id;
-        this.title = this.#flex_columns[0].title.toString();
-        const author = this.#flex_columns[1].title.runs.find((run) => run.endpoint.browse?.id.startsWith("UC"));
-        author && (this.author = {
+    };
+    _parseVideo = new WeakSet();
+    parseVideo_fn = function() {
+      var _a, _b;
+      this.id = __privateGet(this, _playlist_item_data).video_id;
+      this.title = __privateGet(this, _flex_columns)[0].title.toString();
+      this.views = __privateGet(this, _flex_columns)[1].title.runs.find((run) => run.text.match(/(.*?) views/)).text;
+      const authors = (_a = __privateGet(this, _flex_columns)[1].title.runs) == null ? void 0 : _a.filter((run) => {
+        var _a2;
+        return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+      });
+      if (authors) {
+        this.authors = authors.map((author) => ({
           name: author.text,
           channel_id: author.endpoint.browse.id,
           endpoint: author.endpoint
-        });
-        this.year = this.#flex_columns[1].title.runs.find((run) => /^[12][0-9]{3}$/.test(run.text)).text;
+        }));
       }
-      #parsePlaylist() {
-        this.id = this.endpoint.browse.id;
-        this.title = this.#flex_columns[0].title.toString();
-        this.item_count = parseInt(this.#flex_columns[1].title.runs.find((run) => run.text.match(/\d+ (song|songs)/)).text.match(/\d+/g));
-        const author = this.#flex_columns[1].title.runs.find((run) => run.endpoint.browse?.id.startsWith("UC"));
-        author && (this.author = {
-          name: author.text,
-          channel_id: author.endpoint.browse.id,
-          endpoint: author.endpoint
-        });
-      }
+      const duration_text = (_b = __privateGet(this, _flex_columns)[1].title.runs.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))) == null ? void 0 : _b.text;
+      duration_text && (this.duration = {
+        text: duration_text,
+        seconds: Utils.timeToSeconds(duration_text)
+      });
+    };
+    _parseArtist = new WeakSet();
+    parseArtist_fn = function() {
+      var _a;
+      this.id = this.endpoint.browse.id;
+      this.name = __privateGet(this, _flex_columns)[0].title.toString();
+      this.subscribers = ((_a = __privateGet(this, _flex_columns)[1].title.runs[2]) == null ? void 0 : _a.text) || "";
+    };
+    _parseAlbum = new WeakSet();
+    parseAlbum_fn = function() {
+      this.id = this.endpoint.browse.id;
+      this.title = __privateGet(this, _flex_columns)[0].title.toString();
+      const author = __privateGet(this, _flex_columns)[1].title.runs.find((run) => {
+        var _a;
+        return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("UC");
+      });
+      author && (this.author = {
+        name: author.text,
+        channel_id: author.endpoint.browse.id,
+        endpoint: author.endpoint
+      });
+      this.year = __privateGet(this, _flex_columns)[1].title.runs.find((run) => /^[12][0-9]{3}$/.test(run.text)).text;
+    };
+    _parsePlaylist = new WeakSet();
+    parsePlaylist_fn = function() {
+      this.id = this.endpoint.browse.id;
+      this.title = __privateGet(this, _flex_columns)[0].title.toString();
+      this.item_count = parseInt(__privateGet(this, _flex_columns)[1].title.runs.find((run) => run.text.match(/\d+ (song|songs)/)).text.match(/\d+/g));
+      const author = __privateGet(this, _flex_columns)[1].title.runs.find((run) => {
+        var _a;
+        return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("UC");
+      });
+      author && (this.author = {
+        name: author.text,
+        channel_id: author.endpoint.browse.id,
+        endpoint: author.endpoint
+      });
     };
     module2.exports = MusicResponsiveListItem;
   }
@@ -26219,13 +26374,14 @@ var require_MusicShelf = __commonJS({
     var MusicShelf = class {
       type = "MusicShelf";
       constructor(data) {
+        var _a;
         this.title = new Text(data.title).toString();
         this.contents = Parser.parse(data.contents);
         if (data.bottomEndpoint) {
           this.endpoint = new NavigationEndpoint(data.bottomEndpoint);
         }
         if (this.continuation) {
-          this.continuation = data.continuations?.[0].nextContinuationData.continuation;
+          this.continuation = (_a = data.continuations) == null ? void 0 : _a[0].nextContinuationData.continuation;
         }
         if (data.bottomText) {
           this.bottom_text = new Text(data.bottomText);
@@ -26262,23 +26418,27 @@ var require_MusicTwoRowItem = __commonJS({
     var MusicTwoRowItem = class {
       type = "MusicTwoRowItem";
       constructor(data) {
+        var _a, _b, _c;
         this.title = new Text(data.title);
         this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-        this.id = this.endpoint.browse?.id || this.endpoint.watch.video_id;
+        this.id = ((_a = this.endpoint.browse) == null ? void 0 : _a.id) || this.endpoint.watch.video_id;
         this.subtitle = new Text(data.subtitle);
         this.badges = Parser.parse(data.subtitleBadges);
-        switch (this.endpoint.browse?.page_type) {
+        switch ((_b = this.endpoint.browse) == null ? void 0 : _b.page_type) {
           case "MUSIC_PAGE_TYPE_ARTIST":
             this.type = "artist";
             this.subscribers = this.subtitle.toString();
             break;
           case "MUSIC_PAGE_TYPE_PLAYLIST":
             this.type = "playlist";
-            this.item_count = parseInt(this.subtitle.runs.find((run) => run.text.match(/\d+ (songs|song)/))?.text.match(/\d+/g)) || null;
+            this.item_count = parseInt((_c = this.subtitle.runs.find((run) => run.text.match(/\d+ (songs|song)/))) == null ? void 0 : _c.text.match(/\d+/g)) || null;
             break;
           case "MUSIC_PAGE_TYPE_ALBUM":
             this.type = "album";
-            const artists = this.subtitle.runs.filter((run) => run.endpoint.browse?.id.startsWith("UC"));
+            const artists = this.subtitle.runs.filter((run) => {
+              var _a2;
+              return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+            });
             if (artists) {
               this.artists = artists.map((artist) => ({
                 name: artist.text,
@@ -26298,7 +26458,10 @@ var require_MusicTwoRowItem = __commonJS({
             }
             if (this.type == "video") {
               this.views = this.subtitle.runs.find((run) => run.text.match(/(.*?) views/)).text;
-              const author = this.subtitle.runs.find((run) => run.endpoint.browse?.id.startsWith("UC"));
+              const author = this.subtitle.runs.find((run) => {
+                var _a2;
+                return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+              });
               if (author) {
                 this.author = {
                   name: author.text,
@@ -26307,7 +26470,10 @@ var require_MusicTwoRowItem = __commonJS({
                 };
               }
             } else {
-              const artists2 = this.subtitle.runs.filter((run) => run.endpoint.browse?.id.startsWith("UC"));
+              const artists2 = this.subtitle.runs.filter((run) => {
+                var _a2;
+                return (_a2 = run.endpoint.browse) == null ? void 0 : _a2.id.startsWith("UC");
+              });
               if (artists2) {
                 this.artists = artists2.map((artist) => ({
                   name: artist.text,
@@ -26601,12 +26767,13 @@ var require_PlaylistPanel = __commonJS({
     var PlaylistPanel = class {
       type = "PlaylistPanel";
       constructor(data) {
+        var _a, _b;
         this.title = data.title;
         this.title_text = new Text(data.titleText);
         this.contents = Parser.parse(data.contents);
         this.playlist_id = data.playlistId;
         this.is_infinite = data.isInfinite;
-        this.continuation = data.continuations[0]?.nextRadioContinuationData?.continuation;
+        this.continuation = (_b = (_a = data.continuations[0]) == null ? void 0 : _a.nextRadioContinuationData) == null ? void 0 : _b.continuation;
         this.is_editable = data.isEditable;
         this.preview_description = data.previewDescription;
         this.num_items_to_show = data.numItemsToShow;
@@ -26637,8 +26804,14 @@ var require_PlaylistPanelVideo = __commonJS({
           text: new Text(data.lengthText).toString(),
           seconds: Utils.timeToSeconds(new Text(data.lengthText).toString())
         };
-        const album = new Text(data.longBylineText).runs.find((run) => run.endpoint.browse?.id.startsWith("MPR"));
-        const artists = new Text(data.longBylineText).runs.filter((run) => run.endpoint.browse?.id.startsWith("UC"));
+        const album = new Text(data.longBylineText).runs.find((run) => {
+          var _a;
+          return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("MPR");
+        });
+        const artists = new Text(data.longBylineText).runs.filter((run) => {
+          var _a;
+          return (_a = run.endpoint.browse) == null ? void 0 : _a.id.startsWith("UC");
+        });
         this.author = new Text(data.shortBylineText).toString();
         album && (this.album = {
           id: album.endpoint.browse.id,
@@ -26734,7 +26907,7 @@ var require_PlaylistVideo = __commonJS({
         this.author = new PlaylistAuthor(data.shortBylineText);
         this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
         this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
-        this.set_video_id = data?.setVideoId;
+        this.set_video_id = data == null ? void 0 : data.setVideoId;
         this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
         this.is_playable = data.isPlayable;
         this.menu = Parser.parse(data.menu);
@@ -27123,13 +27296,14 @@ var require_Shelf = __commonJS({
     var Shelf = class {
       type = "Shelf";
       constructor(data) {
+        var _a, _b;
         this.title = new Text(data.title);
         if (data.endpoint) {
           this.endpoint = new NavigationEndpoint(data.endpoint);
         }
         this.content = Parser.parse(data.content) || [];
-        if (data.icon?.iconType) {
-          this.icon_type = data.icon?.iconType;
+        if ((_a = data.icon) == null ? void 0 : _a.iconType) {
+          this.icon_type = (_b = data.icon) == null ? void 0 : _b.iconType;
         }
         if (data.menu) {
           this.menu = Parser.parse(data.menu);
@@ -27248,12 +27422,15 @@ var require_SortFilterSubMenu = __commonJS({
     var SortFilterSubMenu = class {
       type = "SortFilterSubMenu";
       constructor(data) {
-        this.sub_menu_items = observe(data.subMenuItems.map((item) => ({
-          title: item.title,
-          selected: item.selected,
-          continuation: item.continuation?.reloadContinuationData.continuation,
-          subtitle: item.subtitle
-        })));
+        this.sub_menu_items = observe(data.subMenuItems.map((item) => {
+          var _a;
+          return {
+            title: item.title,
+            selected: item.selected,
+            continuation: (_a = item.continuation) == null ? void 0 : _a.reloadContinuationData.continuation,
+            subtitle: item.subtitle
+          };
+        }));
         this.label = data.accessibility.accessibilityData.label;
       }
     };
@@ -27306,6 +27483,7 @@ var require_SubscribeButton = __commonJS({
     var SubscribeButton = class {
       type = "SubscribeButton";
       constructor(data) {
+        var _a, _b;
         this.title = new Text(data.buttonText);
         this.subscribed = data.subscribed;
         this.enabled = data.enabled;
@@ -27315,7 +27493,7 @@ var require_SubscribeButton = __commonJS({
         this.subscribed_text = new Text(data.subscribedButtonText);
         this.unsubscribed_text = new Text(data.unsubscribedButtonText);
         this.notification_preference_button = Parser.parse(data.notificationPreferenceButton);
-        this.endpoint = new NavigationEndpoint(data.serviceEndpoints?.[0] || data.onSubscribeEndpoints?.[0]);
+        this.endpoint = new NavigationEndpoint(((_a = data.serviceEndpoints) == null ? void 0 : _a[0]) || ((_b = data.onSubscribeEndpoints) == null ? void 0 : _b[0]));
       }
     };
     module2.exports = SubscribeButton;
@@ -27382,16 +27560,18 @@ var require_TabbedSearchResults = __commonJS({
   "lib/parser/contents/classes/TabbedSearchResults.js"(exports2, module2) {
     "use strict";
     var Parser = require_contents();
+    var _data;
     var TabbedSearchResults = class {
-      type = "TabbedSearchResults";
-      #data;
       constructor(data) {
-        this.#data = data;
+        __publicField(this, "type", "TabbedSearchResults");
+        __privateAdd(this, _data, void 0);
+        __privateSet(this, _data, data);
       }
       get tabs() {
-        return Parser.parse(this.#data.tabs);
+        return Parser.parse(__privateGet(this, _data).tabs);
       }
     };
+    _data = new WeakMap();
     module2.exports = TabbedSearchResults;
   }
 });
@@ -27611,6 +27791,7 @@ var require_ToggleButton = __commonJS({
     var ToggleButton = class {
       type = "ToggleButton";
       constructor(data) {
+        var _a, _b, _c, _d, _e, _f, _g, _h;
         this.text = new Text(data.defaultText);
         this.toggled_text = new Text(data.toggledText);
         this.tooltip = data.defaultTooltip;
@@ -27618,14 +27799,14 @@ var require_ToggleButton = __commonJS({
         this.is_toggled = data.isToggled;
         this.is_disabled = data.isDisabled;
         this.icon_type = data.defaultIcon.iconType;
-        const acc_label = data?.defaultText?.accessibility?.accessibilityData.label || data?.accessibilityData?.accessibilityData.label || data?.accessibility?.label;
+        const acc_label = ((_b = (_a = data == null ? void 0 : data.defaultText) == null ? void 0 : _a.accessibility) == null ? void 0 : _b.accessibilityData.label) || ((_c = data == null ? void 0 : data.accessibilityData) == null ? void 0 : _c.accessibilityData.label) || ((_d = data == null ? void 0 : data.accessibility) == null ? void 0 : _d.label);
         if (this.icon_type == "LIKE") {
           this.like_count = parseInt(acc_label.replace(/\D/g, ""));
           this.short_like_count = new Text(data.defaultText).toString();
         }
-        this.endpoint = data.defaultServiceEndpoint?.commandExecutorCommand?.commands && new NavigationEndpoint(data.defaultServiceEndpoint.commandExecutorCommand.commands.pop()) || new NavigationEndpoint(data.defaultServiceEndpoint);
+        this.endpoint = ((_f = (_e = data.defaultServiceEndpoint) == null ? void 0 : _e.commandExecutorCommand) == null ? void 0 : _f.commands) && new NavigationEndpoint(data.defaultServiceEndpoint.commandExecutorCommand.commands.pop()) || new NavigationEndpoint(data.defaultServiceEndpoint);
         this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
-        this.button_id = data.toggleButtonSupportedData?.toggleButtonIdData?.id || null;
+        this.button_id = ((_h = (_g = data.toggleButtonSupportedData) == null ? void 0 : _g.toggleButtonIdData) == null ? void 0 : _h.id) || null;
         this.target_id = data.targetId || null;
       }
     };
@@ -27719,9 +27900,10 @@ var require_TwoColumnWatchNextResults = __commonJS({
     var TwoColumnWatchNextResults = class {
       type = "TwoColumnWatchNextResults";
       constructor(data) {
-        this.results = Parser.parse(data.results?.results.contents);
-        this.secondary_results = Parser.parse(data.secondaryResults?.secondaryResults.results);
-        this.conversation_bar = Parser.parse(data?.conversationBar);
+        var _a, _b;
+        this.results = Parser.parse((_a = data.results) == null ? void 0 : _a.results.contents);
+        this.secondary_results = Parser.parse((_b = data.secondaryResults) == null ? void 0 : _b.secondaryResults.results);
+        this.conversation_bar = Parser.parse(data == null ? void 0 : data.conversationBar);
       }
     };
     module2.exports = TwoColumnWatchNextResults;
@@ -27799,18 +27981,19 @@ var require_Video = __commonJS({
     var Video = class {
       type = "Video";
       constructor(data) {
-        const overlay_time_status = data.thumbnailOverlays.find((overlay) => overlay.thumbnailOverlayTimeStatusRenderer)?.thumbnailOverlayTimeStatusRenderer.text || "N/A";
+        var _a, _b, _c, _d;
+        const overlay_time_status = ((_a = data.thumbnailOverlays.find((overlay) => overlay.thumbnailOverlayTimeStatusRenderer)) == null ? void 0 : _a.thumbnailOverlayTimeStatusRenderer.text) || "N/A";
         this.id = data.videoId;
         this.title = new Text(data.title);
         this.description_snippet = data.descriptionSnippet ? new Text(data.descriptionSnippet, "") : null;
-        this.snippets = data.detailedMetadataSnippets?.map((snippet) => ({
+        this.snippets = ((_b = data.detailedMetadataSnippets) == null ? void 0 : _b.map((snippet) => ({
           text: new Text(snippet.snippetText),
           hover_text: new Text(snippet.snippetHoverText)
-        })) || [];
+        }))) || [];
         this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
         this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
         this.rich_thumbnail = data.richThumbnail && Parser.parse(data.richThumbnail);
-        this.author = new Author(data.ownerText, data.ownerBadges, data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer?.thumbnail);
+        this.author = new Author(data.ownerText, data.ownerBadges, (_d = (_c = data.channelThumbnailSupportedRenderers) == null ? void 0 : _c.channelThumbnailWithLinkRenderer) == null ? void 0 : _d.thumbnail);
         this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
         this.published = new Text(data.publishedTimeText);
         this.view_count_text = new Text(data.viewCountText);
@@ -27827,10 +28010,11 @@ var require_Video = __commonJS({
         this.menu = Parser.parse(data.menu);
       }
       get description() {
+        var _a;
         if (this.snippets.length > 0) {
           return this.snippets.map((snip) => snip.text.toString()).join("");
         }
-        return this.description_snippet?.toString() || "";
+        return ((_a = this.description_snippet) == null ? void 0 : _a.toString()) || "";
       }
       get is_live() {
         return this.badges.some((badge) => badge.style === "BADGE_STYLE_TYPE_LIVE_NOW");
@@ -28099,7 +28283,8 @@ var require_contents = __commonJS({
     var LiveChatContinuation = class {
       type = "liveChatContinuation";
       constructor(data) {
-        this.actions = Parser.parse(data.actions?.map((action) => {
+        var _a, _b, _c, _d, _e;
+        this.actions = Parser.parse((_a = data.actions) == null ? void 0 : _a.map((action) => {
           delete action.clickTrackingParams;
           return action;
         }), "livechat") || [];
@@ -28108,20 +28293,21 @@ var require_contents = __commonJS({
         this.header = Parser.parse(data.header);
         this.participants_list = Parser.parse(data.participantsList);
         this.popout_message = Parser.parse(data.popoutMessage);
-        this.emojis = data.emojis?.map((emoji) => ({
+        this.emojis = ((_b = data.emojis) == null ? void 0 : _b.map((emoji) => ({
           emoji_id: emoji.emojiId,
           shortcuts: emoji.shortcuts,
           search_terms: emoji.searchTerms,
           image: emoji.image,
           is_custom_emoji: emoji.isCustomEmoji
-        })) || null;
-        this.continuation = new TimedContinuation(data.continuations?.[0].timedContinuationData || data.continuations?.[0].invalidationContinuationData || data.continuations?.[0].liveChatReplayContinuationData);
+        }))) || null;
+        this.continuation = new TimedContinuation(((_c = data.continuations) == null ? void 0 : _c[0].timedContinuationData) || ((_d = data.continuations) == null ? void 0 : _d[0].invalidationContinuationData) || ((_e = data.continuations) == null ? void 0 : _e[0].liveChatReplayContinuationData));
         this.viewer_name = data.viewerName;
       }
     };
     var _memo, _clearMemo, clearMemo_fn, _createMemo, createMemo_fn, _addToMemo, addToMemo_fn;
     var _Parser = class {
       static parseResponse(data) {
+        var _a, _b;
         __privateMethod(this, _createMemo, createMemo_fn).call(this);
         const contents = _Parser.parse(data.contents);
         const contents_memo = __privateGet(_Parser, _memo);
@@ -28168,8 +28354,8 @@ var require_contents = __commonJS({
             expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1e3),
             formats: _Parser.parseFormats(data.streamingData.formats),
             adaptive_formats: _Parser.parseFormats(data.streamingData.adaptiveFormats),
-            dash_manifest_url: data.streamingData?.dashManifestUrl || null,
-            dls_manifest_url: data.streamingData?.dashManifestUrl || null
+            dash_manifest_url: ((_a = data.streamingData) == null ? void 0 : _a.dashManifestUrl) || null,
+            dls_manifest_url: ((_b = data.streamingData) == null ? void 0 : _b.dashManifestUrl) || null
           },
           captions: _Parser.parse(data.captions),
           video_details: data.videoDetails && new VideoDetails(data.videoDetails),
@@ -28207,7 +28393,7 @@ var require_contents = __commonJS({
         return _Parser.parse(data) || null;
       }
       static parseFormats(formats) {
-        return observe(formats?.map((format) => new Format(format)) || []);
+        return observe((formats == null ? void 0 : formats.map((format) => new Format(format))) || []);
       }
       static parse(data, module3) {
         if (!data)
@@ -28299,16 +28485,18 @@ var require_Analytics = __commonJS({
   "lib/parser/youtube/Analytics.js"(exports2, module2) {
     "use strict";
     var Parser = require_contents();
+    var _page;
     var Analytics = class {
-      #page;
       constructor(response) {
-        this.#page = Parser.parseResponse(response);
-        this.sections = this.#page.contents_memo.get("Element");
+        __privateAdd(this, _page, void 0);
+        __privateSet(this, _page, Parser.parseResponse(response));
+        this.sections = __privateGet(this, _page).contents_memo.get("Element");
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
     };
+    _page = new WeakMap();
     module2.exports = Analytics;
   }
 });
@@ -28321,56 +28509,34 @@ var require_AccountManager = __commonJS({
     var Constants = require_Constants();
     var Analytics = require_Analytics();
     var Proto2 = require_proto();
+    var _actions, _setSetting, setSetting_fn;
     var AccountManager2 = class {
-      #actions;
       constructor(actions) {
-        this.#actions = actions;
+        __privateAdd(this, _setSetting);
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _actions, actions);
         this.channel = {
-          editName: (new_name) => this.#actions.channel("channel/edit_name", { new_name }),
-          editDescription: (new_description) => this.#actions.channel("channel/edit_description", { new_description }),
+          editName: (new_name) => __privateGet(this, _actions).channel("channel/edit_name", { new_name }),
+          editDescription: (new_description) => __privateGet(this, _actions).channel("channel/edit_description", { new_description }),
           getBasicAnalytics: () => this.getAnalytics()
         };
         this.settings = {
           notifications: {
-            setSubscriptions: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS, "SPaccount_notifications", option),
-            setRecommendedVideos: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.RECOMMENDED_VIDEOS, "SPaccount_notifications", option),
-            setChannelActivity: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.CHANNEL_ACTIVITY, "SPaccount_notifications", option),
-            setCommentReplies: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.COMMENT_REPLIES, "SPaccount_notifications", option),
-            setMentions: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.USER_MENTION, "SPaccount_notifications", option),
-            setSharedContent: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SHARED_CONTENT, "SPaccount_notifications", option)
+            setSubscriptions: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS, "SPaccount_notifications", option),
+            setRecommendedVideos: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.RECOMMENDED_VIDEOS, "SPaccount_notifications", option),
+            setChannelActivity: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.CHANNEL_ACTIVITY, "SPaccount_notifications", option),
+            setCommentReplies: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.COMMENT_REPLIES, "SPaccount_notifications", option),
+            setMentions: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.USER_MENTION, "SPaccount_notifications", option),
+            setSharedContent: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.SHARED_CONTENT, "SPaccount_notifications", option)
           },
           privacy: {
-            setSubscriptionsPrivate: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS_PRIVACY, "SPaccount_privacy", option),
-            setSavedPlaylistsPrivate: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.PLAYLISTS_PRIVACY, "SPaccount_privacy", option)
+            setSubscriptionsPrivate: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS_PRIVACY, "SPaccount_privacy", option),
+            setSavedPlaylistsPrivate: (option) => __privateMethod(this, _setSetting, setSetting_fn).call(this, Constants.ACCOUNT_SETTINGS.PLAYLISTS_PRIVACY, "SPaccount_privacy", option)
           }
         };
       }
-      async #setSetting(setting_id, type, new_value) {
-        Utils.throwIfMissing({ setting_id, type, new_value });
-        const values = { ON: true, OFF: false };
-        if (!values.hasOwnProperty(new_value))
-          throw new Utils.InnertubeError("Invalid option", { option: new_value, available_options: Object.keys(values) });
-        const response = await this.#actions.browse(type);
-        const contents = (() => {
-          switch (type.trim()) {
-            case "SPaccount_notifications":
-              return Utils.findNode(response.data, "contents", "Your preferences", 13, false).options;
-            case "SPaccount_privacy":
-              return Utils.findNode(response.data, "contents", "settingsSwitchRenderer", 13, false).options;
-            default:
-              throw new TypeError("undefined is not a function");
-          }
-        })();
-        const option = contents.find((option2) => option2.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemIdForClient == setting_id);
-        const setting_item_id = option.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemId;
-        const set_setting = await this.#actions.account("account/set_setting", {
-          new_value: type == "SPaccount_privacy" ? !values[new_value] : values[new_value],
-          setting_item_id
-        });
-        return set_setting;
-      }
       async getInfo() {
-        const response = await this.#actions.account("account/accounts_list", { client: "ANDROID" });
+        const response = await __privateGet(this, _actions).account("account/accounts_list", { client: "ANDROID" });
         const account_item_section_renderer = Utils.findNode(response.data, "contents", "accountItem", 8, false);
         const profile = account_item_section_renderer.accountItem.serviceEndpoint.signInEndpoint.directSigninUserProfile;
         const name = profile.accountName;
@@ -28381,7 +28547,7 @@ var require_AccountManager = __commonJS({
         return { name, email, channel_id, subscriber_count, photo };
       }
       async getTimeWatched() {
-        const response = await this.#actions.browse("SPtime_watched", { client: "ANDROID" });
+        const response = await __privateGet(this, _actions).browse("SPtime_watched", { client: "ANDROID" });
         const rows = Utils.findNode(response.data, "contents", "statRowRenderer", 11, false);
         const stats = rows.map((row) => {
           const renderer = row.statRowRenderer;
@@ -28397,9 +28563,35 @@ var require_AccountManager = __commonJS({
       async getAnalytics() {
         const info = await this.getInfo();
         const params = Proto2.encodeChannelAnalyticsParams(info.channel_id);
-        const response = await this.#actions.browse("FEanalytics_screen", { params, client: "ANDROID" });
+        const response = await __privateGet(this, _actions).browse("FEanalytics_screen", { params, client: "ANDROID" });
         return new Analytics(response.data);
       }
+    };
+    _actions = new WeakMap();
+    _setSetting = new WeakSet();
+    setSetting_fn = async function(setting_id, type, new_value) {
+      Utils.throwIfMissing({ setting_id, type, new_value });
+      const values = { ON: true, OFF: false };
+      if (!values.hasOwnProperty(new_value))
+        throw new Utils.InnertubeError("Invalid option", { option: new_value, available_options: Object.keys(values) });
+      const response = await __privateGet(this, _actions).browse(type);
+      const contents = (() => {
+        switch (type.trim()) {
+          case "SPaccount_notifications":
+            return Utils.findNode(response.data, "contents", "Your preferences", 13, false).options;
+          case "SPaccount_privacy":
+            return Utils.findNode(response.data, "contents", "settingsSwitchRenderer", 13, false).options;
+          default:
+            throw new TypeError("undefined is not a function");
+        }
+      })();
+      const option = contents.find((option2) => option2.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemIdForClient == setting_id);
+      const setting_item_id = option.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemId;
+      const set_setting = await __privateGet(this, _actions).account("account/set_setting", {
+        new_value: type == "SPaccount_privacy" ? !values[new_value] : values[new_value],
+        setting_item_id
+      });
+      return set_setting;
     };
     module2.exports = AccountManager2;
   }
@@ -28410,14 +28602,15 @@ var require_PlaylistManager = __commonJS({
   "lib/core/PlaylistManager.js"(exports2, module2) {
     "use strict";
     var Utils = require_Utils();
+    var _actions;
     var PlaylistManager2 = class {
-      #actions;
       constructor(actions) {
-        this.#actions = actions;
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _actions, actions);
       }
       async create(title, video_ids) {
         Utils.throwIfMissing({ title, video_ids });
-        const response = await this.#actions.playlist("playlist/create", { title, ids: video_ids });
+        const response = await __privateGet(this, _actions).playlist("playlist/create", { title, ids: video_ids });
         return {
           success: response.success,
           status_code: response.status_code,
@@ -28427,7 +28620,7 @@ var require_PlaylistManager = __commonJS({
       }
       async delete(playlist_id) {
         Utils.throwIfMissing({ playlist_id });
-        const response = await this.#actions.playlist("playlist/delete", { playlist_id });
+        const response = await __privateGet(this, _actions).playlist("playlist/delete", { playlist_id });
         return {
           playlist_id,
           success: response.success,
@@ -28437,7 +28630,7 @@ var require_PlaylistManager = __commonJS({
       }
       async addVideos(playlist_id, video_ids) {
         Utils.throwIfMissing({ playlist_id, video_ids });
-        const response = await this.#actions.playlist("browse/edit_playlist", {
+        const response = await __privateGet(this, _actions).playlist("browse/edit_playlist", {
           ids: video_ids,
           action: "ACTION_ADD_VIDEO",
           playlist_id
@@ -28451,13 +28644,13 @@ var require_PlaylistManager = __commonJS({
       }
       async removeVideos(playlist_id, video_ids) {
         Utils.throwIfMissing({ playlist_id, video_ids });
-        const plinfo = await this.#actions.browse(`VL${playlist_id}`);
+        const plinfo = await __privateGet(this, _actions).browse(`VL${playlist_id}`);
         const list = Utils.findNode(plinfo.data, "contents", "contents", 13, false);
         if (!list.isEditable)
           throw new Utils.InnertubeError("This playlist cannot be edited.", playlist_id);
         const videos = list.contents.filter((item) => video_ids.includes(item.playlistVideoRenderer.videoId));
         const set_video_ids = videos.map((video) => video.playlistVideoRenderer.setVideoId);
-        const response = await this.#actions.playlist("browse/edit_playlist", {
+        const response = await __privateGet(this, _actions).playlist("browse/edit_playlist", {
           ids: set_video_ids,
           action: "ACTION_REMOVE_VIDEO",
           playlist_id
@@ -28470,6 +28663,7 @@ var require_PlaylistManager = __commonJS({
         };
       }
     };
+    _actions = new WeakMap();
     module2.exports = PlaylistManager2;
   }
 });
@@ -28479,19 +28673,20 @@ var require_InteractionManager = __commonJS({
   "lib/core/InteractionManager.js"(exports2, module2) {
     "use strict";
     var Utils = require_Utils();
+    var _actions;
     var InteractionManager2 = class {
-      #actions;
       constructor(actions) {
-        this.#actions = actions;
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _actions, actions);
       }
       async like(video_id) {
         Utils.throwIfMissing({ video_id });
-        const action = await this.#actions.engage("like/like", { video_id });
+        const action = await __privateGet(this, _actions).engage("like/like", { video_id });
         return action;
       }
       async dislike(video_id) {
         Utils.throwIfMissing({ video_id });
-        const action = await this.#actions.engage("like/dislike", { video_id });
+        const action = await __privateGet(this, _actions).engage("like/dislike", { video_id });
         return action;
       }
       async removeLike(video_id) {
@@ -28501,22 +28696,22 @@ var require_InteractionManager = __commonJS({
       }
       async subscribe(channel_id) {
         Utils.throwIfMissing({ channel_id });
-        const action = await this.#actions.engage("subscription/subscribe", { channel_id });
+        const action = await __privateGet(this, _actions).engage("subscription/subscribe", { channel_id });
         return action;
       }
       async unsubscribe(channel_id) {
         Utils.throwIfMissing({ channel_id });
-        const action = await this.#actions.engage("subscription/unsubscribe", { channel_id });
+        const action = await __privateGet(this, _actions).engage("subscription/unsubscribe", { channel_id });
         return action;
       }
       async comment(video_id, text) {
         Utils.throwIfMissing({ video_id, text });
-        const action = await this.#actions.engage("comment/create_comment", { video_id, text });
+        const action = await __privateGet(this, _actions).engage("comment/create_comment", { video_id, text });
         return action;
       }
       async translate(text, target_language, args = {}) {
         Utils.throwIfMissing({ text, target_language });
-        const response = await await this.#actions.engage("comment/perform_comment_action", {
+        const response = await await __privateGet(this, _actions).engage("comment/perform_comment_action", {
           video_id: args.video_id,
           comment_id: args.comment_id,
           target_language,
@@ -28533,10 +28728,11 @@ var require_InteractionManager = __commonJS({
       }
       async setNotificationPreferences(channel_id, type) {
         Utils.throwIfMissing({ channel_id, type });
-        const action = await this.#actions.notifications("modify_channel_preference", { channel_id, pref: type || "NONE" });
+        const action = await __privateGet(this, _actions).notifications("modify_channel_preference", { channel_id, pref: type || "NONE" });
         return action;
       }
     };
+    _actions = new WeakMap();
     module2.exports = InteractionManager2;
   }
 });
@@ -28547,19 +28743,20 @@ var require_Feed = __commonJS({
     "use strict";
     var ResultsParser = require_contents();
     var { InnertubeError: InnertubeError2 } = require_Utils();
-    var Feed = class {
-      #page;
-      #continuation;
-      #actions;
-      #memo;
+    var _page, _continuation, _actions, _memo;
+    var _Feed = class {
       constructor(actions, data, already_parsed = false) {
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _continuation, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _memo, void 0);
         if (data.on_response_received_actions || data.on_response_received_endpoints || already_parsed) {
-          this.#page = data;
+          __privateSet(this, _page, data);
         } else {
-          this.#page = ResultsParser.parseResponse(data);
+          __privateSet(this, _page, ResultsParser.parseResponse(data));
         }
-        this.#memo = this.#page.on_response_received_commands ? this.#page.on_response_received_commands_memo : this.#page.on_response_received_endpoints ? this.#page.on_response_received_endpoints_memo : this.#page.contents ? this.#page.contents_memo : this.#page.on_response_received_actions ? this.#page.on_response_received_actions_memo : [];
-        this.#actions = actions;
+        __privateSet(this, _memo, __privateGet(this, _page).on_response_received_commands ? __privateGet(this, _page).on_response_received_commands_memo : __privateGet(this, _page).on_response_received_endpoints ? __privateGet(this, _page).on_response_received_endpoints_memo : __privateGet(this, _page).contents ? __privateGet(this, _page).contents_memo : __privateGet(this, _page).on_response_received_actions ? __privateGet(this, _page).on_response_received_actions_memo : []);
+        __privateSet(this, _actions, actions);
       }
       static getVideosFromMemo(memo) {
         const videos = memo.get("Video") || [];
@@ -28583,68 +28780,75 @@ var require_Feed = __commonJS({
         return [...playlists, ...grid_playlists];
       }
       get videos() {
-        return Feed.getVideosFromMemo(this.#memo);
+        return _Feed.getVideosFromMemo(__privateGet(this, _memo));
       }
       get posts() {
-        return this.#memo.get("BackstagePost") || this.#memo.get("Post") || [];
+        return __privateGet(this, _memo).get("BackstagePost") || __privateGet(this, _memo).get("Post") || [];
       }
       get channels() {
-        const channels = this.#memo.get("Channel") || [];
-        const grid_channels = this.#memo.get("GridChannel") || [];
+        const channels = __privateGet(this, _memo).get("Channel") || [];
+        const grid_channels = __privateGet(this, _memo).get("GridChannel") || [];
         return [...channels, ...grid_channels];
       }
       get playlists() {
-        return Feed.getPlaylistsFromMemo(this.#memo);
+        return _Feed.getPlaylistsFromMemo(__privateGet(this, _memo));
       }
       get memo() {
-        return this.#memo;
+        return __privateGet(this, _memo);
       }
       get contents() {
-        const tab_content = this.#memo.get("Tab")?.[0]?.content;
-        const reload_continuation_items = this.#memo.get("reloadContinuationItemsCommand")?.[0];
-        const append_continuation_items = this.#memo.get("appendContinuationItemsAction")?.[0];
+        var _a, _b, _c, _d;
+        const tab_content = (_b = (_a = __privateGet(this, _memo).get("Tab")) == null ? void 0 : _a[0]) == null ? void 0 : _b.content;
+        const reload_continuation_items = (_c = __privateGet(this, _memo).get("reloadContinuationItemsCommand")) == null ? void 0 : _c[0];
+        const append_continuation_items = (_d = __privateGet(this, _memo).get("appendContinuationItemsAction")) == null ? void 0 : _d[0];
         return tab_content || reload_continuation_items || append_continuation_items;
       }
       get shelves() {
-        const shelf = this.#page.contents_memo.get("Shelf") || [];
-        const rich_shelf = this.#page.contents_memo.get("RichShelf") || [];
-        const reel_shelf = this.#page.contents_memo.get("ReelShelf") || [];
+        const shelf = __privateGet(this, _page).contents_memo.get("Shelf") || [];
+        const rich_shelf = __privateGet(this, _page).contents_memo.get("RichShelf") || [];
+        const reel_shelf = __privateGet(this, _page).contents_memo.get("ReelShelf") || [];
         return [...shelf, ...rich_shelf, ...reel_shelf];
       }
       getShelf(title) {
         return this.shelves.find((shelf) => shelf.title.toString() === title);
       }
       get secondary_contents() {
-        return this.page.contents?.secondary_contents;
+        var _a;
+        return (_a = this.page.contents) == null ? void 0 : _a.secondary_contents;
       }
       get actions() {
-        return this.#actions;
+        return __privateGet(this, _actions);
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
       get has_continuation() {
-        return (this.#memo.get("ContinuationItem") || []).length > 0;
+        return (__privateGet(this, _memo).get("ContinuationItem") || []).length > 0;
       }
       async getContinuationData() {
-        if (this.#continuation) {
-          if (this.#continuation.length > 1)
+        if (__privateGet(this, _continuation)) {
+          if (__privateGet(this, _continuation).length > 1)
             throw new InnertubeError2("There are too many continuations, you'll need to find the correct one yourself in this.page");
-          if (this.#continuation.length === 0)
+          if (__privateGet(this, _continuation).length === 0)
             throw new InnertubeError2("There are no continuations");
-          const response = await this.#continuation[0].endpoint.call(this.#actions);
+          const response = await __privateGet(this, _continuation)[0].endpoint.call(__privateGet(this, _actions));
           return response;
         }
-        this.#continuation = this.#memo.get("ContinuationItem");
-        if (this.#continuation)
+        __privateSet(this, _continuation, __privateGet(this, _memo).get("ContinuationItem"));
+        if (__privateGet(this, _continuation))
           return this.getContinuationData();
         return null;
       }
       async getContinuation() {
         const continuation_data = await this.getContinuationData();
-        return new Feed(this.actions, continuation_data, true);
+        return new _Feed(this.actions, continuation_data, true);
       }
     };
+    var Feed = _Feed;
+    _page = new WeakMap();
+    _continuation = new WeakMap();
+    _actions = new WeakMap();
+    _memo = new WeakMap();
     module2.exports = Feed;
   }
 });
@@ -28657,22 +28861,23 @@ var require_Search = __commonJS({
     var { InnertubeError: InnertubeError2 } = require_Utils();
     var Search2 = class extends Feed {
       constructor(actions, data, already_parsed = false) {
+        var _a, _b, _c;
         super(actions, data, already_parsed);
-        const contents = this.page.contents?.primary_contents.contents || this.page.on_response_received_commands[0].contents;
-        const secondary_contents = this.page.contents?.secondary_contents?.contents;
+        const contents = ((_a = this.page.contents) == null ? void 0 : _a.primary_contents.contents) || this.page.on_response_received_commands[0].contents;
+        const secondary_contents = (_c = (_b = this.page.contents) == null ? void 0 : _b.secondary_contents) == null ? void 0 : _c.contents;
         this.results = contents.get({ type: "ItemSection" }).contents;
         const card_list = this.results.get({ type: "HorizontalCardList" }, true);
-        const universal_watch_card = secondary_contents?.get({ type: "UniversalWatchCard" });
+        const universal_watch_card = secondary_contents == null ? void 0 : secondary_contents.get({ type: "UniversalWatchCard" });
         this.refinements = this.page.refinements || [];
         this.estimated_results = this.page.estimated_results;
         this.watch_card = {
-          header: universal_watch_card?.header || null,
-          call_to_action: universal_watch_card?.call_to_action || null,
-          sections: universal_watch_card?.sections || []
+          header: (universal_watch_card == null ? void 0 : universal_watch_card.header) || null,
+          call_to_action: (universal_watch_card == null ? void 0 : universal_watch_card.call_to_action) || null,
+          sections: (universal_watch_card == null ? void 0 : universal_watch_card.sections) || []
         };
         this.refinement_cards = {
-          header: card_list?.header || null,
-          cards: card_list?.cards || []
+          header: (card_list == null ? void 0 : card_list.header) || null,
+          cards: (card_list == null ? void 0 : card_list.cards) || []
         };
       }
       async selectRefinementCard(card) {
@@ -34982,23 +35187,28 @@ var require_LiveChat2 = __commonJS({
     "use strict";
     var Parser = require_contents();
     var EventEmitter2 = require_events();
+    var _actions, _video_info, _continuation, _mcontinuation, _lc_polling_interval_ms, _md_polling_interval_ms, _pollLivechat, pollLivechat_fn, _emitSmoothedActions, emitSmoothedActions_fn, _pollMetadata, pollMetadata_fn, _wait, wait_fn;
     var LiveChat = class {
-      ev;
-      #actions;
-      #video_info;
-      #continuation;
-      #mcontinuation;
-      #lc_polling_interval_ms = 1e3;
-      #md_polling_interval_ms = 5e3;
-      initial_info;
-      live_metadata;
-      running = false;
-      is_replay = false;
       constructor(video_info) {
-        this.#video_info = video_info;
-        this.#actions = video_info.actions;
-        this.#continuation = this.#video_info.livechat.continuation;
-        this.is_replay = this.#video_info.livechat.is_replay;
+        __privateAdd(this, _pollLivechat);
+        __privateAdd(this, _emitSmoothedActions);
+        __privateAdd(this, _pollMetadata);
+        __privateAdd(this, _wait);
+        __publicField(this, "ev");
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _video_info, void 0);
+        __privateAdd(this, _continuation, void 0);
+        __privateAdd(this, _mcontinuation, void 0);
+        __privateAdd(this, _lc_polling_interval_ms, 1e3);
+        __privateAdd(this, _md_polling_interval_ms, 5e3);
+        __publicField(this, "initial_info");
+        __publicField(this, "live_metadata");
+        __publicField(this, "running", false);
+        __publicField(this, "is_replay", false);
+        __privateSet(this, _video_info, video_info);
+        __privateSet(this, _actions, video_info.actions);
+        __privateSet(this, _continuation, __privateGet(this, _video_info).livechat.continuation);
+        this.is_replay = __privateGet(this, _video_info).livechat.is_replay;
         this.live_metadata = {
           title: null,
           description: null,
@@ -35011,80 +35221,91 @@ var require_LiveChat2 = __commonJS({
       start() {
         if (!this.running) {
           this.running = true;
-          this.#pollLivechat();
-          this.#pollMetadata();
+          __privateMethod(this, _pollLivechat, pollLivechat_fn).call(this);
+          __privateMethod(this, _pollMetadata, pollMetadata_fn).call(this);
         }
       }
       stop() {
         this.running = false;
       }
-      #pollLivechat() {
-        const lc_poller = setTimeout(() => {
-          (async () => {
-            const endpoint = this.is_replay ? "live_chat/get_live_chat_replay" : "live_chat/get_live_chat";
-            const response = await this.#actions.livechat(endpoint, { ctoken: this.#continuation });
-            const data = Parser.parseResponse(response.data);
-            const contents = data.continuation_contents;
-            this.#continuation = contents.continuation.token;
-            this.#lc_polling_interval_ms = contents.continuation.timeout_ms;
-            if (contents.header) {
-              this.initial_info = contents;
-              this.ev.emit("start", contents);
-            } else {
-              await this.#emitSmoothedActions(contents.actions);
-            }
-            clearTimeout(lc_poller);
-            this.running && this.#pollLivechat();
-          })().catch((err) => Promise.reject(err));
-        }, this.#lc_polling_interval_ms);
-      }
-      async #emitSmoothedActions(actions) {
-        const base = 1e4;
-        let delay = actions.length < base / 80 ? 1 : 0;
-        const emit_delay_ms = delay == 1 ? (delay = base / actions.length, delay *= Math.random() + 0.5, delay = Math.min(1e3, delay), delay = Math.max(80, delay)) : delay = 80;
-        for (const action of actions) {
-          await this.#wait(emit_delay_ms);
-          this.ev.emit("chat-update", action);
-        }
-      }
-      #pollMetadata() {
-        const md_poller = setTimeout(() => {
-          (async () => {
-            const payload = { video_id: this.#video_info.basic_info.id };
-            if (this.#mcontinuation) {
-              payload.ctoken = this.#mcontinuation;
-            }
-            const response = await this.#actions.livechat("updated_metadata", payload);
-            const data = Parser.parseResponse(response.data);
-            this.#mcontinuation = data.continuation.token;
-            this.#md_polling_interval_ms = data.continuation.timeout_ms;
-            this.metadata = {
-              title: data.actions.get({ type: "UpdateTitleAction" }) || this.metadata?.title,
-              description: data.actions.get({ type: "UpdateDescriptionAction" }) || this.metadata?.description,
-              views: data.actions.get({ type: "UpdateViewershipAction" }) || this.metadata?.views,
-              likes: data.actions.get({ type: "UpdateToggleButtonTextAction" }) || this.metadata?.likes,
-              date: data.actions.get({ type: "UpdateDateTextAction" }) || this.metadata?.date
-            };
-            this.ev.emit("metadata-update", this.metadata);
-            clearTimeout(md_poller);
-            this.running && this.#pollMetadata();
-          })().catch((err) => Promise.reject(err));
-        }, this.#md_polling_interval_ms);
-      }
       async sendMessage(text) {
-        const response = await this.#actions.livechat("live_chat/send_message", {
+        const response = await __privateGet(this, _actions).livechat("live_chat/send_message", {
           text,
           ...{
-            video_id: this.#video_info.basic_info.id,
-            channel_id: this.#video_info.basic_info.channel_id
+            video_id: __privateGet(this, _video_info).basic_info.id,
+            channel_id: __privateGet(this, _video_info).basic_info.channel_id
           }
         });
         const data = Parser.parseResponse(response.data);
         return data.actions;
       }
-      async #wait(ms) {
-        return new Promise((resolve) => setTimeout(() => resolve(), ms));
+    };
+    _actions = new WeakMap();
+    _video_info = new WeakMap();
+    _continuation = new WeakMap();
+    _mcontinuation = new WeakMap();
+    _lc_polling_interval_ms = new WeakMap();
+    _md_polling_interval_ms = new WeakMap();
+    _pollLivechat = new WeakSet();
+    pollLivechat_fn = function() {
+      const lc_poller = setTimeout(() => {
+        (async () => {
+          const endpoint = this.is_replay ? "live_chat/get_live_chat_replay" : "live_chat/get_live_chat";
+          const response = await __privateGet(this, _actions).livechat(endpoint, { ctoken: __privateGet(this, _continuation) });
+          const data = Parser.parseResponse(response.data);
+          const contents = data.continuation_contents;
+          __privateSet(this, _continuation, contents.continuation.token);
+          __privateSet(this, _lc_polling_interval_ms, contents.continuation.timeout_ms);
+          if (contents.header) {
+            this.initial_info = contents;
+            this.ev.emit("start", contents);
+          } else {
+            await __privateMethod(this, _emitSmoothedActions, emitSmoothedActions_fn).call(this, contents.actions);
+          }
+          clearTimeout(lc_poller);
+          this.running && __privateMethod(this, _pollLivechat, pollLivechat_fn).call(this);
+        })().catch((err) => Promise.reject(err));
+      }, __privateGet(this, _lc_polling_interval_ms));
+    };
+    _emitSmoothedActions = new WeakSet();
+    emitSmoothedActions_fn = async function(actions) {
+      const base = 1e4;
+      let delay = actions.length < base / 80 ? 1 : 0;
+      const emit_delay_ms = delay == 1 ? (delay = base / actions.length, delay *= Math.random() + 0.5, delay = Math.min(1e3, delay), delay = Math.max(80, delay)) : delay = 80;
+      for (const action of actions) {
+        await __privateMethod(this, _wait, wait_fn).call(this, emit_delay_ms);
+        this.ev.emit("chat-update", action);
       }
+    };
+    _pollMetadata = new WeakSet();
+    pollMetadata_fn = function() {
+      const md_poller = setTimeout(() => {
+        (async () => {
+          var _a, _b, _c, _d, _e;
+          const payload = { video_id: __privateGet(this, _video_info).basic_info.id };
+          if (__privateGet(this, _mcontinuation)) {
+            payload.ctoken = __privateGet(this, _mcontinuation);
+          }
+          const response = await __privateGet(this, _actions).livechat("updated_metadata", payload);
+          const data = Parser.parseResponse(response.data);
+          __privateSet(this, _mcontinuation, data.continuation.token);
+          __privateSet(this, _md_polling_interval_ms, data.continuation.timeout_ms);
+          this.metadata = {
+            title: data.actions.get({ type: "UpdateTitleAction" }) || ((_a = this.metadata) == null ? void 0 : _a.title),
+            description: data.actions.get({ type: "UpdateDescriptionAction" }) || ((_b = this.metadata) == null ? void 0 : _b.description),
+            views: data.actions.get({ type: "UpdateViewershipAction" }) || ((_c = this.metadata) == null ? void 0 : _c.views),
+            likes: data.actions.get({ type: "UpdateToggleButtonTextAction" }) || ((_d = this.metadata) == null ? void 0 : _d.likes),
+            date: data.actions.get({ type: "UpdateDateTextAction" }) || ((_e = this.metadata) == null ? void 0 : _e.date)
+          };
+          this.ev.emit("metadata-update", this.metadata);
+          clearTimeout(md_poller);
+          this.running && __privateMethod(this, _pollMetadata, pollMetadata_fn).call(this);
+        })().catch((err) => Promise.reject(err));
+      }, __privateGet(this, _md_polling_interval_ms));
+    };
+    _wait = new WeakSet();
+    wait_fn = async function(ms) {
+      return new Promise((resolve) => setTimeout(() => resolve(), ms));
     };
     module2.exports = LiveChat;
   }
@@ -35101,19 +35322,21 @@ var require_VideoInfo = __commonJS({
     var LiveChat = require_LiveChat2();
     var Constants = require_Constants();
     var CancelToken = Axios.CancelToken;
+    var _page, _actions, _player2, _cpn, _watch_next_continuation;
     var VideoInfo2 = class {
-      #page;
-      #actions;
-      #player;
-      #cpn;
-      #watch_next_continuation;
       constructor(data, actions, player, cpn) {
-        this.#actions = actions;
-        this.#player = player;
-        this.#cpn = cpn;
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _player2, void 0);
+        __privateAdd(this, _cpn, void 0);
+        __privateAdd(this, _watch_next_continuation, void 0);
+        var _a, _b, _c, _d, _e, _f;
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _player2, player);
+        __privateSet(this, _cpn, cpn);
         const info = Parser.parseResponse(data[0]);
         const next = Parser.parseResponse(data[1].data || {});
-        this.#page = [info, next];
+        __privateSet(this, _page, [info, next]);
         if (info.playability_status.status === "ERROR")
           throw new InnertubeError2("This video is unavailable", info.playability_status);
         this.basic_info = {
@@ -35133,22 +35356,22 @@ var require_VideoInfo = __commonJS({
         this.endscreen = info.endscreen;
         this.captions = info.captions;
         this.cards = info.cards;
-        const results = next.contents?.results;
-        const secondary_results = next.contents?.secondary_results;
+        const results = (_a = next.contents) == null ? void 0 : _a.results;
+        const secondary_results = (_b = next.contents) == null ? void 0 : _b.secondary_results;
         if (results && secondary_results) {
           this.primary_info = results.get({ type: "VideoPrimaryInfo" });
           this.secondary_info = results.get({ type: "VideoSecondaryInfo" });
-          this.merchandise = results?.get({ type: "MerchandiseShelf" }) || null;
-          this.related_chip_cloud = secondary_results?.get({ type: "RelatedChipCloud" })?.content;
-          this.watch_next_feed = secondary_results?.get({ type: "ItemSection" })?.contents;
-          this.#watch_next_continuation = this.watch_next_feed?.pop();
+          this.merchandise = (results == null ? void 0 : results.get({ type: "MerchandiseShelf" })) || null;
+          this.related_chip_cloud = (_c = secondary_results == null ? void 0 : secondary_results.get({ type: "RelatedChipCloud" })) == null ? void 0 : _c.content;
+          this.watch_next_feed = (_d = secondary_results == null ? void 0 : secondary_results.get({ type: "ItemSection" })) == null ? void 0 : _d.contents;
+          __privateSet(this, _watch_next_continuation, (_e = this.watch_next_feed) == null ? void 0 : _e.pop());
           this.player_overlays = next.player_overlays;
           this.basic_info.like_count = this.primary_info.menu.top_level_buttons.get({ icon_type: "LIKE" }).like_count;
           this.basic_info.is_liked = this.primary_info.menu.top_level_buttons.get({ icon_type: "LIKE" }).is_toggled;
           this.basic_info.is_disliked = this.primary_info.menu.top_level_buttons.get({ icon_type: "DISLIKE" }).is_toggled;
           const comments_entry_point = results.get({ target_id: "comments-entry-point" });
-          this.comments_entry_point_header = comments_entry_point?.contents.get({ type: "CommentsEntryPointHeader" }) || null;
-          this.livechat = next.contents_memo.get("LiveChat")?.[0] || null;
+          this.comments_entry_point_header = (comments_entry_point == null ? void 0 : comments_entry_point.contents.get({ type: "CommentsEntryPointHeader" })) || null;
+          this.livechat = ((_f = next.contents_memo.get("LiveChat")) == null ? void 0 : _f[0]) || null;
         }
       }
       async selectFilter(name) {
@@ -35157,37 +35380,37 @@ var require_VideoInfo = __commonJS({
         const filter = this.related_chip_cloud.chips.get({ text: name });
         if (filter.is_selected)
           return this;
-        const response = await filter.endpoint.call(this.#actions);
+        const response = await filter.endpoint.call(__privateGet(this, _actions));
         const data = response.on_response_received_endpoints.get({ target_id: "watch-next-feed" });
         this.watch_next_feed = data.contents;
         return this;
       }
       async getWatchNextContinuation() {
-        const response = await this.#watch_next_continuation.endpoint.call(this.#actions);
+        const response = await __privateGet(this, _watch_next_continuation).endpoint.call(__privateGet(this, _actions));
         const data = response.on_response_received_endpoints.get({ type: "appendContinuationItemsAction" });
         this.watch_next_feed = data.contents;
-        this.#watch_next_continuation = this.watch_next_feed.pop();
+        __privateSet(this, _watch_next_continuation, this.watch_next_feed.pop());
         return this.watch_next_feed;
       }
       async like() {
         const button = this.primary_info.menu.top_level_buttons.get({ button_id: "TOGGLE_BUTTON_ID_TYPE_LIKE" });
         if (button.is_toggled)
           throw new InnertubeError2("This video is already liked", { video_id: this.basic_info.id });
-        const response = await button.endpoint.call(this.#actions);
+        const response = await button.endpoint.call(__privateGet(this, _actions));
         return response;
       }
       async dislike() {
         const button = this.primary_info.menu.top_level_buttons.get({ button_id: "TOGGLE_BUTTON_ID_TYPE_DISLIKE" });
         if (button.is_toggled)
           throw new InnertubeError2("This video is already disliked", { video_id: this.basic_info.id });
-        const response = await button.endpoint.call(this.#actions);
+        const response = await button.endpoint.call(__privateGet(this, _actions));
         return response;
       }
       async removeLike() {
         const button = this.primary_info.menu.top_level_buttons.get({ is_toggled: true });
         if (!button)
           throw new InnertubeError2("This video is not liked/disliked", { video_id: this.basic_info.id });
-        const response = await button.toggled_endpoint.call(this.#actions);
+        const response = await button.toggled_endpoint.call(__privateGet(this, _actions));
         return response;
       }
       async getLiveChat(mode) {
@@ -35196,13 +35419,14 @@ var require_VideoInfo = __commonJS({
         return new LiveChat(this, mode);
       }
       get filters() {
-        return this.related_chip_cloud?.chips.map((chip) => chip.text.toString()) || [];
+        var _a;
+        return ((_a = this.related_chip_cloud) == null ? void 0 : _a.chips.map((chip) => chip.text.toString())) || [];
       }
       get actions() {
-        return this.#actions;
+        return __privateGet(this, _actions);
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
       get music_tracks() {
         const metadata = this.secondary_info.metadata;
@@ -35294,9 +35518,9 @@ var require_VideoInfo = __commonJS({
             ...options
           };
           const format = this.chooseFormat(opts);
-          const format_url = format.decipher(this.#player);
+          const format_url = format.decipher(__privateGet(this, _player2));
           if (opts.type === "videoandaudio" && !options.range) {
-            const response = await Axios.get(`${format_url}&cpn=${this.#cpn}`, {
+            const response = await Axios.get(`${format_url}&cpn=${__privateGet(this, _cpn)}`, {
               responseType: "stream",
               cancelToken: new CancelToken(function executor(c) {
                 cancel = c;
@@ -35349,7 +35573,7 @@ var require_VideoInfo = __commonJS({
               if (options.range) {
                 format.content_length = options.range.end;
               }
-              const response = await Axios.get(`${format_url}&cpn=${this.#cpn}&range=${chunk_start}-${chunk_end || ""}`, {
+              const response = await Axios.get(`${format_url}&cpn=${__privateGet(this, _cpn)}&range=${chunk_start}-${chunk_end || ""}`, {
                 responseType: "stream",
                 cancelToken: new CancelToken(function executor(c) {
                   cancel = c;
@@ -35406,6 +35630,11 @@ var require_VideoInfo = __commonJS({
         return stream;
       }
     };
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    _player2 = new WeakMap();
+    _cpn = new WeakMap();
+    _watch_next_continuation = new WeakMap();
     module2.exports = VideoInfo2;
   }
 });
@@ -35416,30 +35645,35 @@ var require_TabbedFeed = __commonJS({
     "use strict";
     var { InnertubeError: InnertubeError2 } = require_Utils();
     var Feed = require_Feed();
-    var TabbedFeed2 = class extends Feed {
-      #tabs;
-      #actions;
+    var _tabs, _actions;
+    var _TabbedFeed = class extends Feed {
       constructor(actions, data, already_parsed = false) {
         super(actions, data, already_parsed);
-        this.#actions = actions;
-        this.#tabs = this.page.contents_memo.get("Tab");
+        __privateAdd(this, _tabs, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _tabs, this.page.contents_memo.get("Tab"));
       }
       get tabs() {
-        return this.#tabs.map((tab) => tab.title.toString());
+        return __privateGet(this, _tabs).map((tab) => tab.title.toString());
       }
       async getTab(title) {
-        const tab = this.#tabs.find((tab2) => tab2.title.toLowerCase() === title.toLowerCase());
+        const tab = __privateGet(this, _tabs).find((tab2) => tab2.title.toLowerCase() === title.toLowerCase());
         if (!tab)
           throw new InnertubeError2(`Tab "${title}" not found`);
         if (tab.selected)
           return this;
-        const response = await tab.endpoint.call(this.#actions);
-        return new TabbedFeed2(this.#actions, response, true);
+        const response = await tab.endpoint.call(__privateGet(this, _actions));
+        return new _TabbedFeed(__privateGet(this, _actions), response, true);
       }
       get title() {
-        return this.page.contents_memo("Tab")?.find((tab) => tab.selected)?.title.toString();
+        var _a, _b;
+        return (_b = (_a = this.page.contents_memo("Tab")) == null ? void 0 : _a.find((tab) => tab.selected)) == null ? void 0 : _b.title.toString();
       }
     };
+    var TabbedFeed2 = _TabbedFeed;
+    _tabs = new WeakMap();
+    _actions = new WeakMap();
     module2.exports = TabbedFeed2;
   }
 });
@@ -35449,10 +35683,11 @@ var require_Channel2 = __commonJS({
   "lib/parser/youtube/Channel.js"(exports2, module2) {
     "use strict";
     var TabbedFeed2 = require_TabbedFeed();
-    var Channel2 = class extends TabbedFeed2 {
-      #tab;
+    var _tab;
+    var _Channel = class extends TabbedFeed2 {
       constructor(actions, data, already_parsed = false) {
         super(actions, data, already_parsed);
+        __privateAdd(this, _tab, void 0);
         this.header = {
           author: this.page.header.author,
           subscribers: this.page.header.subscribers.toString(),
@@ -35469,29 +35704,32 @@ var require_Channel2 = __commonJS({
       }
       async getVideos() {
         const tab = await this.getTab("Videos");
-        return new Channel2(this.actions, tab.page, true);
+        return new _Channel(this.actions, tab.page, true);
       }
       async getPlaylists() {
         const tab = await this.getTab("Playlists");
-        return new Channel2(this.actions, tab.page, true);
+        return new _Channel(this.actions, tab.page, true);
       }
       async getHome() {
         const tab = await this.getTab("Home");
-        return new Channel2(this.actions, tab.page, true);
+        return new _Channel(this.actions, tab.page, true);
       }
       async getCommunity() {
         const tab = await this.getTab("Community");
-        return new Channel2(this.actions, tab.page, true);
+        return new _Channel(this.actions, tab.page, true);
       }
       async getChannels() {
         const tab = await this.getTab("Channels");
-        return new Channel2(this.actions, tab.page, true);
+        return new _Channel(this.actions, tab.page, true);
       }
       async getAbout() {
+        var _a;
         const tab = await this.getTab("About");
-        return tab.memo.get("ChannelAboutFullMetadata")?.[0];
+        return (_a = tab.memo.get("ChannelAboutFullMetadata")) == null ? void 0 : _a[0];
       }
     };
+    var Channel2 = _Channel;
+    _tab = new WeakMap();
     module2.exports = Channel2;
   }
 });
@@ -35501,9 +35739,11 @@ var require_Playlist2 = __commonJS({
   "lib/parser/youtube/Playlist.js"(exports2, module2) {
     "use strict";
     var Feed = require_Feed();
+    var _getStat, getStat_fn;
     var Playlist2 = class extends Feed {
       constructor(actions, data, already_parsed = false) {
         super(actions, data, already_parsed);
+        __privateAdd(this, _getStat);
         const primary_info = this.page.sidebar.contents.get({ type: "PlaylistSidebarPrimaryInfo" });
         const secondary_info = this.page.sidebar.contents.get({ type: "PlaylistSidebarSecondaryInfo" });
         this.info = {
@@ -35511,9 +35751,9 @@ var require_Playlist2 = __commonJS({
           ...{
             author: secondary_info.owner.author,
             thumbnails: primary_info.thumbnail_renderer.thumbnail,
-            total_items: this.#getStat(0, primary_info),
-            views: this.#getStat(1, primary_info),
-            last_updated: this.#getStat(2, primary_info),
+            total_items: __privateMethod(this, _getStat, getStat_fn).call(this, 0, primary_info),
+            views: __privateMethod(this, _getStat, getStat_fn).call(this, 1, primary_info),
+            last_updated: __privateMethod(this, _getStat, getStat_fn).call(this, 2, primary_info),
             can_share: this.page.header.can_share,
             can_delete: this.page.header.can_delete,
             is_editable: this.page.header.is_editable,
@@ -35523,14 +35763,16 @@ var require_Playlist2 = __commonJS({
         this.menu = primary_info.menu;
         this.endpoint = primary_info.endpoint;
       }
-      #getStat(index, primary_info) {
-        if (!primary_info || !primary_info.stats)
-          return "N/A";
-        return primary_info.stats[index]?.toString() || "N/A";
-      }
       get items() {
         return this.videos;
       }
+    };
+    _getStat = new WeakSet();
+    getStat_fn = function(index, primary_info) {
+      var _a;
+      if (!primary_info || !primary_info.stats)
+        return "N/A";
+      return ((_a = primary_info.stats[index]) == null ? void 0 : _a.toString()) || "N/A";
     };
     module2.exports = Playlist2;
   }
@@ -35543,9 +35785,10 @@ var require_History = __commonJS({
     var Feed = require_Feed();
     var History2 = class extends Feed {
       constructor(actions, data, already_parsed = false) {
+        var _a;
         super(actions, data, already_parsed);
         this.sections = this.memo.get("ItemSection");
-        this.feed_actions = this.memo.get("BrowseFeedActions")?.[0] || [];
+        this.feed_actions = ((_a = this.memo.get("BrowseFeedActions")) == null ? void 0 : _a[0]) || [];
       }
       async getContinuation() {
         const continuation = await this.getContinuationData();
@@ -35565,39 +35808,25 @@ var require_Library = __commonJS({
     var Playlist2 = require_Playlist2();
     var Feed = require_Feed();
     var { observe } = require_Utils();
+    var _actions, _page, _getAll, getAll_fn;
     var Library2 = class {
-      #actions;
-      #page;
       constructor(response, actions) {
-        this.#actions = actions;
-        this.#page = Parser.parseResponse(response);
-        const tab = this.#page.contents.tabs.get({ selected: true });
+        __privateAdd(this, _getAll);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _page, void 0);
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _page, Parser.parseResponse(response));
+        const tab = __privateGet(this, _page).contents.tabs.get({ selected: true });
         const shelves = tab.content.contents.map((section) => section.contents[0]);
-        const stats = this.#page.contents.secondary_contents.items.get({ type: "ProfileColumnStats" }).items;
-        const user_info = this.#page.contents.secondary_contents.items.get({ type: "ProfileColumnUserInfo" });
+        const stats = __privateGet(this, _page).contents.secondary_contents.items.get({ type: "ProfileColumnStats" }).items;
+        const user_info = __privateGet(this, _page).contents.secondary_contents.items.get({ type: "ProfileColumnUserInfo" });
         this.profile = { stats, user_info };
         this.sections = observe(shelves.map((shelf) => ({
           type: shelf.icon_type,
           title: shelf.title,
           contents: shelf.content.items,
-          getAll: () => this.#getAll(shelf)
+          getAll: () => __privateMethod(this, _getAll, getAll_fn).call(this, shelf)
         })));
-      }
-      async #getAll(shelf) {
-        if (!shelf.menu?.top_level_buttons)
-          throw new Error(`The ${shelf.title.text} section doesn't have more items`);
-        const button = await shelf.menu.top_level_buttons.get({ text: "See all" });
-        const page = await button.endpoint.call(this.#actions);
-        switch (shelf.icon_type) {
-          case "LIKE":
-          case "WATCH_LATER":
-            return new Playlist2(this.#actions, page, true);
-          case "WATCH_HISTORY":
-            return new History2(this.#actions, page, true);
-          case "CONTENT_CUT":
-            return new Feed(this.#actions, page, true);
-          default:
-        }
       }
       get history() {
         return this.sections.get({ type: "WATCH_HISTORY" });
@@ -35615,7 +35844,27 @@ var require_Library = __commonJS({
         return this.sections.get({ type: "CONTENT_CUT" });
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
+      }
+    };
+    _actions = new WeakMap();
+    _page = new WeakMap();
+    _getAll = new WeakSet();
+    getAll_fn = async function(shelf) {
+      var _a;
+      if (!((_a = shelf.menu) == null ? void 0 : _a.top_level_buttons))
+        throw new Error(`The ${shelf.title.text} section doesn't have more items`);
+      const button = await shelf.menu.top_level_buttons.get({ text: "See all" });
+      const page = await button.endpoint.call(__privateGet(this, _actions));
+      switch (shelf.icon_type) {
+        case "LIKE":
+        case "WATCH_LATER":
+          return new Playlist2(__privateGet(this, _actions), page, true);
+        case "WATCH_HISTORY":
+          return new History2(__privateGet(this, _actions), page, true);
+        case "CONTENT_CUT":
+          return new Feed(__privateGet(this, _actions), page, true);
+        default:
       }
     };
     module2.exports = Library2;
@@ -35628,22 +35877,23 @@ var require_Comments = __commonJS({
     "use strict";
     var Parser = require_contents();
     var { InnertubeError: InnertubeError2 } = require_Utils();
-    var Comments2 = class {
-      #page;
-      #actions;
-      #continuation;
+    var _page, _actions, _continuation;
+    var _Comments = class {
       constructor(actions, data, already_parsed = false) {
-        this.#page = already_parsed ? data : Parser.parseResponse(data);
-        this.#actions = actions;
-        const contents = this.#page.on_response_received_endpoints;
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _continuation, void 0);
+        __privateSet(this, _page, already_parsed ? data : Parser.parseResponse(data));
+        __privateSet(this, _actions, actions);
+        const contents = __privateGet(this, _page).on_response_received_endpoints;
         this.header = contents[0].contents.get({ type: "CommentsHeader" });
         const threads = contents[1].contents.findAll({ type: "CommentThread" });
         this.contents = threads.map((thread) => {
-          thread.comment.setActions(this.#actions);
-          thread.setActions(this.#actions);
+          thread.comment.setActions(__privateGet(this, _actions));
+          thread.setActions(__privateGet(this, _actions));
           return thread;
         });
-        this.#continuation = contents[1].contents.get({ type: "ContinuationItem" });
+        __privateSet(this, _continuation, contents[1].contents.get({ type: "ContinuationItem" }));
       }
       async comment(text) {
         const button = this.header.create_renderer.submit_button;
@@ -35653,22 +35903,26 @@ var require_Comments = __commonJS({
           },
           parse: false
         };
-        const response = await button.endpoint.callTest(this.#actions, payload);
+        const response = await button.endpoint.callTest(__privateGet(this, _actions), payload);
         return response;
       }
       async getContinuation() {
-        if (!this.#continuation)
+        if (!__privateGet(this, _continuation))
           throw new InnertubeError2("Continuation not found");
-        const data = await this.#continuation.endpoint.callTest(this.#actions);
-        const page = Object.assign({}, this.#page);
+        const data = await __privateGet(this, _continuation).endpoint.callTest(__privateGet(this, _actions));
+        const page = Object.assign({}, __privateGet(this, _page));
         page.on_response_received_endpoints.pop();
         page.on_response_received_endpoints.push(data.on_response_received_endpoints[0]);
-        return new Comments2(this.#actions, page, true);
+        return new _Comments(__privateGet(this, _actions), page, true);
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
     };
+    var Comments2 = _Comments;
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    _continuation = new WeakMap();
     module2.exports = Comments2;
   }
 });
@@ -35679,62 +35933,59 @@ var require_Search2 = __commonJS({
     "use strict";
     var Parser = require_contents();
     var { observe, InnertubeError: InnertubeError2 } = require_Utils();
-    var Search2 = class {
-      #page;
-      #actions;
-      #continuation;
-      #header;
+    var _page, _actions, _continuation, _header, _getMore, getMore_fn;
+    var _Search = class {
       constructor(response, actions, args = {}) {
-        this.#actions = actions;
-        this.#page = args.is_continuation && response || Parser.parseResponse(response.data);
-        const tab = this.#page.contents.tabs.get({ selected: true });
+        __privateAdd(this, _getMore);
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _continuation, void 0);
+        __privateAdd(this, _header, void 0);
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _page, args.is_continuation && response || Parser.parseResponse(response.data));
+        const tab = __privateGet(this, _page).contents.tabs.get({ selected: true });
         const shelves = tab.content.contents;
         const item_section = shelves.get({ type: "ItemSection" });
-        this.#header = tab.content.header;
-        this.did_you_mean = item_section?.contents.get({ type: "DidYouMean" }) || null;
-        this.showing_results_for = item_section?.contents.get({ type: "ShowingResultsFor" }) || null;
+        __privateSet(this, _header, tab.content.header);
+        this.did_you_mean = (item_section == null ? void 0 : item_section.contents.get({ type: "DidYouMean" })) || null;
+        this.showing_results_for = (item_section == null ? void 0 : item_section.contents.get({ type: "ShowingResultsFor" })) || null;
         (!!this.did_you_mean || !!this.showing_results_for) && shelves.shift();
         if (args.is_continuation || args.is_filtered) {
           const shelf = shelves.get({ type: "MusicShelf" });
           this.results = shelf.contents;
-          this.#continuation = shelf.continuation;
+          __privateSet(this, _continuation, shelf.continuation);
           return;
         }
         this.sections = observe(shelves.map((shelf) => ({
           title: shelf.title,
           contents: shelf.contents,
-          getMore: () => this.#getMore(shelf)
+          getMore: () => __privateMethod(this, _getMore, getMore_fn).call(this, shelf)
         })));
       }
-      async #getMore(shelf) {
-        if (!shelf.endpoint)
-          throw new InnertubeError2(`${shelf.title} doesn't have more items`);
-        const response = await shelf.endpoint.call(this.#actions, "YTMUSIC");
-        return new Search2(response, this.#actions, { is_continuation: true });
-      }
       async getContinuation() {
-        if (!this.#continuation)
+        var _a, _b, _c;
+        if (!__privateGet(this, _continuation))
           throw new InnertubeError2("Looks like you've reached the end");
-        const response = await this.#actions.search({ ctoken: this.#continuation, client: "YTMUSIC" });
+        const response = await __privateGet(this, _actions).search({ ctoken: __privateGet(this, _continuation), client: "YTMUSIC" });
         const data = response.data.continuationContents.musicShelfContinuation;
         this.results = Parser.parse(data.contents);
-        this.#continuation = data?.continuations?.[0]?.nextContinuationData?.continuation;
+        __privateSet(this, _continuation, (_c = (_b = (_a = data == null ? void 0 : data.continuations) == null ? void 0 : _a[0]) == null ? void 0 : _b.nextContinuationData) == null ? void 0 : _c.continuation);
         return this;
       }
       async selectFilter(name) {
         if (!this.filters.includes(name))
           throw new InnertubeError2("Invalid filter", { available_filters: this.filters });
-        const filter = this.#header.chips.get({ text: name });
+        const filter = __privateGet(this, _header).chips.get({ text: name });
         if (filter.is_selected)
           return this;
-        const response = await filter.endpoint.call(this.#actions, "YTMUSIC");
-        return new Search2(response, this.#actions, { is_continuation: true });
+        const response = await filter.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
+        return new _Search(response, __privateGet(this, _actions), { is_continuation: true });
       }
       get has_continuation() {
-        return !!this.#continuation;
+        return !!__privateGet(this, _continuation);
       }
       get filters() {
-        return this.#header.chips.map((chip) => chip.text);
+        return __privateGet(this, _header).chips.map((chip) => chip.text);
       }
       get songs() {
         return this.sections.get({ title: "Songs" });
@@ -35752,8 +36003,20 @@ var require_Search2 = __commonJS({
         return this.sections.get({ title: "Community playlists" });
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
+    };
+    var Search2 = _Search;
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    _continuation = new WeakMap();
+    _header = new WeakMap();
+    _getMore = new WeakSet();
+    getMore_fn = async function(shelf) {
+      if (!shelf.endpoint)
+        throw new InnertubeError2(`${shelf.title} doesn't have more items`);
+      const response = await shelf.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
+      return new _Search(response, __privateGet(this, _actions), { is_continuation: true });
     };
     module2.exports = Search2;
   }
@@ -35764,22 +36027,28 @@ var require_HomeFeed = __commonJS({
   "lib/parser/ytmusic/HomeFeed.js"(exports2, module2) {
     "use strict";
     var Parser = require_contents();
-    var HomeFeed = class {
-      #page;
-      #actions;
-      #continuation;
+    var _page, _actions, _continuation;
+    var _HomeFeed = class {
       constructor(response, actions) {
-        this.#actions = actions;
-        this.#page = Parser.parseResponse(response.data);
-        const tab = this.#page.contents.tabs.get({ title: "Home" });
-        this.#continuation = tab.content?.continuation || this.#page.continuation_contents.continuation;
-        this.sections = tab.content?.contents || this.#page.continuation_contents.contents;
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateAdd(this, _continuation, void 0);
+        var _a, _b;
+        __privateSet(this, _actions, actions);
+        __privateSet(this, _page, Parser.parseResponse(response.data));
+        const tab = __privateGet(this, _page).contents.tabs.get({ title: "Home" });
+        __privateSet(this, _continuation, ((_a = tab.content) == null ? void 0 : _a.continuation) || __privateGet(this, _page).continuation_contents.continuation);
+        this.sections = ((_b = tab.content) == null ? void 0 : _b.contents) || __privateGet(this, _page).continuation_contents.contents;
       }
       async getContinuation() {
-        const response = await this.#actions.browse(this.#continuation, { is_ctoken: true, client: "YTMUSIC" });
-        return new HomeFeed(response, this.#actions);
+        const response = await __privateGet(this, _actions).browse(__privateGet(this, _continuation), { is_ctoken: true, client: "YTMUSIC" });
+        return new _HomeFeed(response, __privateGet(this, _actions));
       }
     };
+    var HomeFeed = _HomeFeed;
+    _page = new WeakMap();
+    _actions = new WeakMap();
+    _continuation = new WeakMap();
     module2.exports = HomeFeed;
   }
 });
@@ -35789,18 +36058,20 @@ var require_Explore = __commonJS({
   "lib/parser/ytmusic/Explore.js"(exports2, module2) {
     "use strict";
     var Parser = require_contents();
+    var _page;
     var Explore = class {
-      #page;
       constructor(response) {
-        this.#page = Parser.parseResponse(response.data);
+        __privateAdd(this, _page, void 0);
+        __privateSet(this, _page, Parser.parseResponse(response.data));
         const tab = this.page.contents.tabs.get({ selected: true });
         this.top_buttons = tab.content.contents.get({ type: "Grid" }).items;
         this.sections = tab.content.contents.findAll({ type: "MusicCarouselShelf" });
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
     };
+    _page = new WeakMap();
     module2.exports = Explore;
   }
 });
@@ -35810,15 +36081,17 @@ var require_Library2 = __commonJS({
   "lib/parser/ytmusic/Library.js"(exports2, module2) {
     "use strict";
     var Parser = require_contents();
+    var _page;
     var Library2 = class {
-      #page;
       constructor(response) {
-        this.#page = Parser.parseResponse(response.data);
+        __privateAdd(this, _page, void 0);
+        __privateSet(this, _page, Parser.parseResponse(response.data));
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
     };
+    _page = new WeakMap();
     module2.exports = Library2;
   }
 });
@@ -35829,26 +36102,30 @@ var require_Artist = __commonJS({
     "use strict";
     var Parser = require_contents();
     var { observe } = require_Utils();
+    var _page, _actions;
     var Artist = class {
-      #page;
-      #actions;
       constructor(response, actions) {
-        this.#page = Parser.parseResponse(response.data);
-        this.#actions = actions;
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _page, Parser.parseResponse(response.data));
+        __privateSet(this, _actions, actions);
         this.header = this.page.header;
-        const music_shelf = this.#page.contents_memo.get("MusicShelf");
-        const music_carousel_shelf = this.#page.contents_memo.get("MusicCarouselShelf");
+        const music_shelf = __privateGet(this, _page).contents_memo.get("MusicShelf");
+        const music_carousel_shelf = __privateGet(this, _page).contents_memo.get("MusicCarouselShelf");
         this.sections = observe([...music_shelf, ...music_carousel_shelf]);
       }
       async getAllSongs() {
+        var _a;
         const shelf = this.sections.get({ type: "MusicShelf" });
-        const page = await shelf.endpoint.call(this.#actions, "YTMUSIC");
-        return page.contents_memo.get("MusicPlaylistShelf")?.[0] || [];
+        const page = await shelf.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
+        return ((_a = page.contents_memo.get("MusicPlaylistShelf")) == null ? void 0 : _a[0]) || [];
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
     };
+    _page = new WeakMap();
+    _actions = new WeakMap();
     module2.exports = Artist;
   }
 });
@@ -35858,21 +36135,25 @@ var require_Album = __commonJS({
   "lib/parser/ytmusic/Album.js"(exports2, module2) {
     "use strict";
     var Parser = require_contents();
+    var _page, _actions;
     var Album = class {
-      #page;
-      #actions;
       constructor(response, actions) {
-        this.#page = Parser.parseResponse(response.data);
-        this.#actions = actions;
-        this.header = this.#page.header;
-        this.url = this.#page.microformat.url_canonical;
-        this.contents = this.#page.contents_memo.get("MusicShelf")?.[0].contents;
-        this.sections = this.#page.contents_memo.get("MusicCarouselShelf") || [];
+        __privateAdd(this, _page, void 0);
+        __privateAdd(this, _actions, void 0);
+        var _a;
+        __privateSet(this, _page, Parser.parseResponse(response.data));
+        __privateSet(this, _actions, actions);
+        this.header = __privateGet(this, _page).header;
+        this.url = __privateGet(this, _page).microformat.url_canonical;
+        this.contents = (_a = __privateGet(this, _page).contents_memo.get("MusicShelf")) == null ? void 0 : _a[0].contents;
+        this.sections = __privateGet(this, _page).contents_memo.get("MusicCarouselShelf") || [];
       }
       get page() {
-        return this.#page;
+        return __privateGet(this, _page);
       }
     };
+    _page = new WeakMap();
+    _actions = new WeakMap();
     module2.exports = Album;
   }
 });
@@ -35889,46 +36170,47 @@ var require_Music = __commonJS({
     var Artist = require_Artist();
     var Album = require_Album();
     var { InnertubeError: InnertubeError2, observe } = require_Utils();
+    var _session, _actions;
     var Music = class {
-      #session;
-      #actions;
       constructor(session) {
-        this.#session = session;
-        this.#actions = session.actions;
+        __privateAdd(this, _session, void 0);
+        __privateAdd(this, _actions, void 0);
+        __privateSet(this, _session, session);
+        __privateSet(this, _actions, session.actions);
       }
       async search(query, filters) {
-        const response = await this.#actions.search({ query, filters, client: "YTMUSIC" });
-        return new Search2(response, this.#actions, { is_filtered: filters?.hasOwnProperty("type") && filters.type !== "all" });
+        const response = await __privateGet(this, _actions).search({ query, filters, client: "YTMUSIC" });
+        return new Search2(response, __privateGet(this, _actions), { is_filtered: (filters == null ? void 0 : filters.hasOwnProperty("type")) && filters.type !== "all" });
       }
       async getHomeFeed() {
-        const response = await this.#actions.browse("FEmusic_home", { client: "YTMUSIC" });
-        return new HomeFeed(response, this.#actions);
+        const response = await __privateGet(this, _actions).browse("FEmusic_home", { client: "YTMUSIC" });
+        return new HomeFeed(response, __privateGet(this, _actions));
       }
       async getExplore() {
-        const response = await this.#actions.browse("FEmusic_explore", { client: "YTMUSIC" });
-        return new Explore(response, this.#actions);
+        const response = await __privateGet(this, _actions).browse("FEmusic_explore", { client: "YTMUSIC" });
+        return new Explore(response, __privateGet(this, _actions));
       }
       async getLibrary() {
-        const response = await this.#actions.browse("FEmusic_liked_albums", { client: "YTMUSIC" });
-        return new Library2(response, this.#actions);
+        const response = await __privateGet(this, _actions).browse("FEmusic_liked_albums", { client: "YTMUSIC" });
+        return new Library2(response, __privateGet(this, _actions));
       }
       async getArtist(artist_id) {
         if (!artist_id.startsWith("UC"))
           throw new InnertubeError2("Invalid artist id", artist_id);
-        const response = await this.#actions.browse(artist_id, { client: "YTMUSIC" });
-        return new Artist(response, this.#actions);
+        const response = await __privateGet(this, _actions).browse(artist_id, { client: "YTMUSIC" });
+        return new Artist(response, __privateGet(this, _actions));
       }
       async getAlbum(album_id) {
         if (!album_id.startsWith("MPR"))
           throw new InnertubeError2("Invalid album id", album_id);
-        const response = await this.#actions.browse(album_id, { client: "YTMUSIC" });
-        return new Album(response, this.#actions);
+        const response = await __privateGet(this, _actions).browse(album_id, { client: "YTMUSIC" });
+        return new Album(response, __privateGet(this, _actions));
       }
       async getLyrics(video_id) {
-        const response = await this.#actions.next({ video_id, client: "YTMUSIC" });
+        const response = await __privateGet(this, _actions).next({ video_id, client: "YTMUSIC" });
         const data = Parser.parseResponse(response.data);
         const tab = data.contents.tabs.get({ title: "Lyrics" });
-        const page = await tab.endpoint.call(this.#actions, "YTMUSIC");
+        const page = await tab.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
         if (!page)
           throw new InnertubeError2("Invalid video id");
         if (page.contents.constructor.name === "Message")
@@ -35940,7 +36222,7 @@ var require_Music = __commonJS({
         };
       }
       async getUpNext(video_id) {
-        const response = await this.#actions.next({ video_id, client: "YTMUSIC" });
+        const response = await __privateGet(this, _actions).next({ video_id, client: "YTMUSIC" });
         const data = Parser.parseResponse(response.data);
         const tab = data.contents.tabs.get({ title: "Up next" });
         const upnext_content = tab.content.content;
@@ -35954,20 +36236,22 @@ var require_Music = __commonJS({
         };
       }
       async getRelated(video_id) {
-        const response = await this.#actions.next({ video_id, client: "YTMUSIC" });
+        const response = await __privateGet(this, _actions).next({ video_id, client: "YTMUSIC" });
         const data = Parser.parseResponse(response.data);
         const tab = data.contents.tabs.get({ title: "Related" });
-        const page = await tab.endpoint.call(this.#actions, "YTMUSIC");
+        const page = await tab.endpoint.call(__privateGet(this, _actions), "YTMUSIC");
         if (!page)
           throw new InnertubeError2("Invalid video id");
         const shelves = page.contents.contents.findAll({ type: "MusicCarouselShelf" });
         const info = page.contents.contents.get({ type: "MusicDescriptionShelf" });
         return {
           sections: shelves,
-          info: info?.description.toString() || ""
+          info: (info == null ? void 0 : info.description.toString()) || ""
         };
       }
     };
+    _session = new WeakMap();
+    _actions = new WeakMap();
     module2.exports = Music;
   }
 });
@@ -35978,20 +36262,22 @@ var require_FilterableFeed = __commonJS({
     "use strict";
     var { InnertubeError: InnertubeError2 } = require_Utils();
     var Feed = require_Feed();
+    var _chips;
     var FilterableFeed2 = class extends Feed {
-      #chips;
       constructor(actions, data, already_parsed = false) {
         super(actions, data, already_parsed);
+        __privateAdd(this, _chips, void 0);
       }
       get filter_chips() {
-        if (this.#chips)
-          return this.#chips || [];
-        if (this.memo.get("FeedFilterChipBar")?.length > 1)
+        var _a, _b;
+        if (__privateGet(this, _chips))
+          return __privateGet(this, _chips) || [];
+        if (((_a = this.memo.get("FeedFilterChipBar")) == null ? void 0 : _a.length) > 1)
           throw new InnertubeError2("There are too many feed filter chipbars, you'll need to find the correct one yourself in this.page");
-        if (this.memo.get("FeedFilterChipBar")?.length === 0)
+        if (((_b = this.memo.get("FeedFilterChipBar")) == null ? void 0 : _b.length) === 0)
           throw new InnertubeError2("There are no feed filter chipbars");
-        this.#chips = this.memo.get("ChipCloudChip") || [];
-        return this.#chips || [];
+        __privateSet(this, _chips, this.memo.get("ChipCloudChip") || []);
+        return __privateGet(this, _chips) || [];
       }
       get filters() {
         return this.filter_chips.map((chip) => chip.text.toString()) || [];
@@ -36015,6 +36301,7 @@ var require_FilterableFeed = __commonJS({
         return new Feed(this.actions, response, true);
       }
     };
+    _chips = new WeakMap();
     module2.exports = FilterableFeed2;
   }
 });
@@ -36026,12 +36313,16 @@ var require_Request = __commonJS({
     var Axios = require_axios2();
     var Constants = require_Constants();
     var Utils = require_Utils();
+    var _instance, _session, _setupRequestInterceptor, setupRequestInterceptor_fn, _setupResponseInterceptor, setupResponseInterceptor_fn, _adjustContext, adjustContext_fn;
     var Request2 = class {
-      #instance;
-      #session;
       constructor(config) {
+        __privateAdd(this, _setupRequestInterceptor);
+        __privateAdd(this, _setupResponseInterceptor);
+        __privateAdd(this, _adjustContext);
+        __privateAdd(this, _instance, void 0);
+        __privateAdd(this, _session, void 0);
         this.config = config;
-        this.#instance = Axios.create({
+        __privateSet(this, _instance, Axios.create({
           proxy: config.proxy,
           httpAgent: config.http_agent,
           httpsAgent: config.https_agent,
@@ -36044,91 +36335,96 @@ var require_Request = __commonJS({
           },
           validateStatus: () => true,
           timeout: 15e3
-        });
-        this.#setupRequestInterceptor();
-        this.#setupResponseInterceptor();
-      }
-      #setupRequestInterceptor() {
-        this.#instance.interceptors.request.use(async (config) => {
-          if (this.#session) {
-            const innertube_url = `${Constants.URLS.API.PRODUCTION}${this.#session.version}`;
-            config.baseURL = config.baseURL || innertube_url;
-            config.headers["accept-language"] = `en-${this.#session.config.gl || "US"}`;
-            config.headers["x-goog-visitor-id"] = this.#session.context.client.visitorData || "";
-            config.headers["x-youtube-client-version"] = this.#session.context.client.clientVersion;
-            config.headers["x-origin"] = new URL(config.baseURL).origin;
-            config.headers["origin"] = new URL(config.baseURL).origin;
-            config.params.key = this.#session.key;
-            const is_innertube_req = config.baseURL == innertube_url;
-            if (is_innertube_req && typeof config.data === "object") {
-              config.data = {
-                context: JSON.parse(JSON.stringify(this.#session.context)),
-                ...config.data
-              };
-              this.#adjustContext(config.data.context, config.data.client);
-              config.headers["x-youtube-client-version"] = config.data.context.client.clientVersion;
-              delete config.data.client;
-            }
-            if (this.#session.logged_in && is_innertube_req) {
-              const oauth = this.#session.oauth;
-              if (oauth.validateCredentials()) {
-                await oauth.checkAccessTokenValidity();
-                config.headers.authorization = `Bearer ${oauth.credentials.access_token}`;
-                delete config.params.key;
-              }
-              if (this.config.cookie) {
-                const papisid = Utils.getStringBetweenStrings(this.config.cookie, "PAPISID=", ";");
-                config.headers.authorization = Utils.generateSidAuth(papisid);
-                config.headers.cookie = this.config.cookie;
-              }
-            }
-          }
-          if (this.config.debug) {
-            const url = `${config.baseURL ? `${config.baseURL}` : ""}${config.url}`;
-            console.info("\n", `[${config.method.toUpperCase()}] > ${url}`, "\n", config?.data || "N/A", "\n");
-          }
-          return config;
-        }, (error) => {
-          throw new Utils.InnertubeError(error.message, error);
-        });
-      }
-      #setupResponseInterceptor() {
-        this.#instance.interceptors.response.use((res) => {
-          const response = {
-            success: res.status === 200,
-            status_code: res.status,
-            data: res.data
-          };
-          if (res.status !== 200)
-            throw new Utils.InnertubeError(`Request to ${res.config.url} failed with status code ${res.status}`, response);
-          return response;
-        });
-        this.#instance.interceptors.response.use(void 0, (error) => {
-          if (error.info)
-            return Promise.reject(error);
-          throw new Utils.InnertubeError("Could not complete this operation", error.message);
-        });
-      }
-      #adjustContext(ctx, client) {
-        switch (client) {
-          case "YTMUSIC":
-            ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;
-            ctx.client.clientName = Constants.CLIENTS.YTMUSIC.NAME;
-            break;
-          case "ANDROID":
-            ctx.client.clientVersion = Constants.CLIENTS.ANDROID.VERSION;
-            ctx.client.clientFormFactor = "SMALL_FORM_FACTOR";
-            ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
-            break;
-          default:
-            break;
-        }
+        }));
+        __privateMethod(this, _setupRequestInterceptor, setupRequestInterceptor_fn).call(this);
+        __privateMethod(this, _setupResponseInterceptor, setupResponseInterceptor_fn).call(this);
       }
       setSession(session) {
-        this.#session = session;
+        __privateSet(this, _session, session);
       }
       get instance() {
-        return this.#instance;
+        return __privateGet(this, _instance);
+      }
+    };
+    _instance = new WeakMap();
+    _session = new WeakMap();
+    _setupRequestInterceptor = new WeakSet();
+    setupRequestInterceptor_fn = function() {
+      __privateGet(this, _instance).interceptors.request.use(async (config) => {
+        if (__privateGet(this, _session)) {
+          const innertube_url = `${Constants.URLS.API.PRODUCTION}${__privateGet(this, _session).version}`;
+          config.baseURL = config.baseURL || innertube_url;
+          config.headers["accept-language"] = `en-${__privateGet(this, _session).config.gl || "US"}`;
+          config.headers["x-goog-visitor-id"] = __privateGet(this, _session).context.client.visitorData || "";
+          config.headers["x-youtube-client-version"] = __privateGet(this, _session).context.client.clientVersion;
+          config.headers["x-origin"] = new URL(config.baseURL).origin;
+          config.headers["origin"] = new URL(config.baseURL).origin;
+          config.params.key = __privateGet(this, _session).key;
+          const is_innertube_req = config.baseURL == innertube_url;
+          if (is_innertube_req && typeof config.data === "object") {
+            config.data = {
+              context: JSON.parse(JSON.stringify(__privateGet(this, _session).context)),
+              ...config.data
+            };
+            __privateMethod(this, _adjustContext, adjustContext_fn).call(this, config.data.context, config.data.client);
+            config.headers["x-youtube-client-version"] = config.data.context.client.clientVersion;
+            delete config.data.client;
+          }
+          if (__privateGet(this, _session).logged_in && is_innertube_req) {
+            const oauth = __privateGet(this, _session).oauth;
+            if (oauth.validateCredentials()) {
+              await oauth.checkAccessTokenValidity();
+              config.headers.authorization = `Bearer ${oauth.credentials.access_token}`;
+              delete config.params.key;
+            }
+            if (this.config.cookie) {
+              const papisid = Utils.getStringBetweenStrings(this.config.cookie, "PAPISID=", ";");
+              config.headers.authorization = Utils.generateSidAuth(papisid);
+              config.headers.cookie = this.config.cookie;
+            }
+          }
+        }
+        if (this.config.debug) {
+          const url = `${config.baseURL ? `${config.baseURL}` : ""}${config.url}`;
+          console.info("\n", `[${config.method.toUpperCase()}] > ${url}`, "\n", (config == null ? void 0 : config.data) || "N/A", "\n");
+        }
+        return config;
+      }, (error) => {
+        throw new Utils.InnertubeError(error.message, error);
+      });
+    };
+    _setupResponseInterceptor = new WeakSet();
+    setupResponseInterceptor_fn = function() {
+      __privateGet(this, _instance).interceptors.response.use((res) => {
+        const response = {
+          success: res.status === 200,
+          status_code: res.status,
+          data: res.data
+        };
+        if (res.status !== 200)
+          throw new Utils.InnertubeError(`Request to ${res.config.url} failed with status code ${res.status}`, response);
+        return response;
+      });
+      __privateGet(this, _instance).interceptors.response.use(void 0, (error) => {
+        if (error.info)
+          return Promise.reject(error);
+        throw new Utils.InnertubeError("Could not complete this operation", error.message);
+      });
+    };
+    _adjustContext = new WeakSet();
+    adjustContext_fn = function(ctx, client) {
+      switch (client) {
+        case "YTMUSIC":
+          ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;
+          ctx.client.clientName = Constants.CLIENTS.YTMUSIC.NAME;
+          break;
+        case "ANDROID":
+          ctx.client.clientVersion = Constants.CLIENTS.ANDROID.VERSION;
+          ctx.client.clientFormFactor = "SMALL_FORM_FACTOR";
+          ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
+          break;
+        default:
+          break;
       }
     };
     module2.exports = Request2;
@@ -36146,33 +36442,34 @@ var require_VideoResultItem = __commonJS({
         return data.map((item) => this.parseItem(item)).filter((item) => item);
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v;
         const renderer = item.videoRenderer || item.compactVideoRenderer;
         if (renderer)
           return {
             id: renderer.videoId,
             url: `https://youtu.be/${renderer.videoId}`,
             title: renderer.title.runs[0].text,
-            description: renderer?.detailedMetadataSnippets ? renderer?.detailedMetadataSnippets[0].snippetText.runs.map((item2) => item2.text).join("") : "N/A",
+            description: (renderer == null ? void 0 : renderer.detailedMetadataSnippets) ? renderer == null ? void 0 : renderer.detailedMetadataSnippets[0].snippetText.runs.map((item2) => item2.text).join("") : "N/A",
             channel: {
-              id: renderer?.ownerText?.runs[0]?.navigationEndpoint?.browseEndpoint?.browseId,
-              name: renderer?.ownerText?.runs[0]?.text,
-              url: `${Constants.URLS.YT_BASE}${renderer?.ownerText?.runs[0].navigationEndpoint?.browseEndpoint?.canonicalBaseUrl}`
+              id: (_d = (_c = (_b = (_a = renderer == null ? void 0 : renderer.ownerText) == null ? void 0 : _a.runs[0]) == null ? void 0 : _b.navigationEndpoint) == null ? void 0 : _c.browseEndpoint) == null ? void 0 : _d.browseId,
+              name: (_f = (_e = renderer == null ? void 0 : renderer.ownerText) == null ? void 0 : _e.runs[0]) == null ? void 0 : _f.text,
+              url: `${Constants.URLS.YT_BASE}${(_i = (_h = (_g = renderer == null ? void 0 : renderer.ownerText) == null ? void 0 : _g.runs[0].navigationEndpoint) == null ? void 0 : _h.browseEndpoint) == null ? void 0 : _i.canonicalBaseUrl}`
             },
             metadata: {
-              view_count: renderer?.viewCountText?.simpleText || "N/A",
+              view_count: ((_j = renderer == null ? void 0 : renderer.viewCountText) == null ? void 0 : _j.simpleText) || "N/A",
               short_view_count_text: {
-                simple_text: renderer?.shortViewCountText?.simpleText || "N/A",
-                accessibility_label: renderer?.shortViewCountText?.accessibility?.accessibilityData?.label || "N/A"
+                simple_text: ((_k = renderer == null ? void 0 : renderer.shortViewCountText) == null ? void 0 : _k.simpleText) || "N/A",
+                accessibility_label: ((_n = (_m = (_l = renderer == null ? void 0 : renderer.shortViewCountText) == null ? void 0 : _l.accessibility) == null ? void 0 : _m.accessibilityData) == null ? void 0 : _n.label) || "N/A"
               },
-              thumbnails: renderer?.thumbnail.thumbnails,
+              thumbnails: renderer == null ? void 0 : renderer.thumbnail.thumbnails,
               duration: {
-                seconds: Utils.timeToSeconds(renderer?.lengthText?.simpleText || "0"),
-                simple_text: renderer?.lengthText?.simpleText || "N/A",
-                accessibility_label: renderer?.lengthText?.accessibility?.accessibilityData?.label || "N/A"
+                seconds: Utils.timeToSeconds(((_o = renderer == null ? void 0 : renderer.lengthText) == null ? void 0 : _o.simpleText) || "0"),
+                simple_text: ((_p = renderer == null ? void 0 : renderer.lengthText) == null ? void 0 : _p.simpleText) || "N/A",
+                accessibility_label: ((_s = (_r = (_q = renderer == null ? void 0 : renderer.lengthText) == null ? void 0 : _q.accessibility) == null ? void 0 : _r.accessibilityData) == null ? void 0 : _s.label) || "N/A"
               },
-              published: renderer?.publishedTimeText?.simpleText || "N/A",
-              badges: renderer?.badges?.map((item2) => item2.metadataBadgeRenderer.label) || [],
-              owner_badges: renderer?.ownerBadges?.map((item2) => item2.metadataBadgeRenderer.tooltip) || []
+              published: ((_t = renderer == null ? void 0 : renderer.publishedTimeText) == null ? void 0 : _t.simpleText) || "N/A",
+              badges: ((_u = renderer == null ? void 0 : renderer.badges) == null ? void 0 : _u.map((item2) => item2.metadataBadgeRenderer.label)) || [],
+              owner_badges: ((_v = renderer == null ? void 0 : renderer.ownerBadges) == null ? void 0 : _v.map((item2) => item2.metadataBadgeRenderer.tooltip)) || []
             }
           };
       }
@@ -36207,17 +36504,18 @@ var require_PlaylistItem = __commonJS({
         return data.map((item) => this.parseItem(item)).filter((item) => item);
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q;
         if (item.playlistVideoRenderer)
           return {
-            id: item?.playlistVideoRenderer?.videoId,
-            title: item?.playlistVideoRenderer?.title?.runs[0]?.text,
-            author: item?.playlistVideoRenderer?.shortBylineText?.runs[0]?.text,
+            id: (_a = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _a.videoId,
+            title: (_d = (_c = (_b = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _b.title) == null ? void 0 : _c.runs[0]) == null ? void 0 : _d.text,
+            author: (_g = (_f = (_e = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _e.shortBylineText) == null ? void 0 : _f.runs[0]) == null ? void 0 : _g.text,
             duration: {
-              seconds: Utils.timeToSeconds(item?.playlistVideoRenderer?.lengthText?.simpleText || "0"),
-              simple_text: item?.playlistVideoRenderer?.lengthText?.simpleText || "N/A",
-              accessibility_label: item?.playlistVideoRenderer?.lengthText?.accessibility?.accessibilityData?.label || "N/A"
+              seconds: Utils.timeToSeconds(((_i = (_h = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _h.lengthText) == null ? void 0 : _i.simpleText) || "0"),
+              simple_text: ((_k = (_j = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _j.lengthText) == null ? void 0 : _k.simpleText) || "N/A",
+              accessibility_label: ((_o = (_n = (_m = (_l = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _l.lengthText) == null ? void 0 : _m.accessibility) == null ? void 0 : _n.accessibilityData) == null ? void 0 : _o.label) || "N/A"
             },
-            thumbnails: item?.playlistVideoRenderer?.thumbnail?.thumbnails
+            thumbnails: (_q = (_p = item == null ? void 0 : item.playlistVideoRenderer) == null ? void 0 : _p.thumbnail) == null ? void 0 : _q.thumbnails
           };
       }
     };
@@ -36234,15 +36532,16 @@ var require_NotificationItem = __commonJS({
         return data.map((item) => this.parseItem(item)).filter((item) => item);
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j;
         if (item.notificationRenderer) {
           const notification = item.notificationRenderer;
           return {
-            title: notification?.shortMessage?.simpleText,
-            sent_time: notification?.sentTimeText?.simpleText,
+            title: (_a = notification == null ? void 0 : notification.shortMessage) == null ? void 0 : _a.simpleText,
+            sent_time: (_b = notification == null ? void 0 : notification.sentTimeText) == null ? void 0 : _b.simpleText,
             timestamp: notification.notificationId,
-            channel_name: notification?.contextualMenu?.menuRenderer?.items[1]?.menuServiceItemRenderer?.text?.runs[1]?.text || "N/A",
-            channel_thumbnail: notification?.thumbnail?.thumbnails[0],
-            video_thumbnail: notification?.videoThumbnail?.thumbnails[0],
+            channel_name: ((_h = (_g = (_f = (_e = (_d = (_c = notification == null ? void 0 : notification.contextualMenu) == null ? void 0 : _c.menuRenderer) == null ? void 0 : _d.items[1]) == null ? void 0 : _e.menuServiceItemRenderer) == null ? void 0 : _f.text) == null ? void 0 : _g.runs[1]) == null ? void 0 : _h.text) || "N/A",
+            channel_thumbnail: (_i = notification == null ? void 0 : notification.thumbnail) == null ? void 0 : _i.thumbnails[0],
+            video_thumbnail: (_j = notification == null ? void 0 : notification.videoThumbnail) == null ? void 0 : _j.thumbnails[0],
             video_url: notification.navigationEndpoint.watchEndpoint ? `https://youtu.be/${notification.navigationEndpoint.watchEndpoint.videoId}` : "N/A",
             read: notification.read
           };
@@ -36264,33 +36563,34 @@ var require_VideoItem = __commonJS({
         return data.map((item) => this.parseItem(item)).filter((item) => item);
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R;
         item = item.richItemRenderer && item.richItemRenderer.content.videoRenderer && item.richItemRenderer.content || item;
         if (item.videoRenderer)
           return {
             id: item.videoRenderer.videoId,
             title: item.videoRenderer.title.runs.map((run) => run.text).join(" "),
-            description: item?.videoRenderer?.descriptionSnippet?.runs[0]?.text || "N/A",
+            description: ((_c = (_b = (_a = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _a.descriptionSnippet) == null ? void 0 : _b.runs[0]) == null ? void 0 : _c.text) || "N/A",
             channel: {
-              id: item?.videoRenderer?.shortBylineText?.runs[0]?.navigationEndpoint?.browseEndpoint?.browseId,
-              name: item?.videoRenderer?.shortBylineText?.runs[0]?.text || "N/A",
-              url: `${Constants.URLS.YT_BASE}${item?.videoRenderer?.shortBylineText?.runs[0]?.navigationEndpoint?.browseEndpoint?.canonicalBaseUrl}`
+              id: (_h = (_g = (_f = (_e = (_d = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _d.shortBylineText) == null ? void 0 : _e.runs[0]) == null ? void 0 : _f.navigationEndpoint) == null ? void 0 : _g.browseEndpoint) == null ? void 0 : _h.browseId,
+              name: ((_k = (_j = (_i = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _i.shortBylineText) == null ? void 0 : _j.runs[0]) == null ? void 0 : _k.text) || "N/A",
+              url: `${Constants.URLS.YT_BASE}${(_p = (_o = (_n = (_m = (_l = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _l.shortBylineText) == null ? void 0 : _m.runs[0]) == null ? void 0 : _n.navigationEndpoint) == null ? void 0 : _o.browseEndpoint) == null ? void 0 : _p.canonicalBaseUrl}`
             },
             metadata: {
-              view_count: item?.videoRenderer?.viewCountText?.simpleText || "N/A",
+              view_count: ((_r = (_q = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _q.viewCountText) == null ? void 0 : _r.simpleText) || "N/A",
               short_view_count_text: {
-                simple_text: item?.videoRenderer?.shortViewCountText?.simpleText || "N/A",
-                accessibility_label: item?.videoRenderer?.shortViewCountText?.accessibility?.accessibilityData?.label || "N/A"
+                simple_text: ((_t = (_s = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _s.shortViewCountText) == null ? void 0 : _t.simpleText) || "N/A",
+                accessibility_label: ((_x = (_w = (_v = (_u = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _u.shortViewCountText) == null ? void 0 : _v.accessibility) == null ? void 0 : _w.accessibilityData) == null ? void 0 : _x.label) || "N/A"
               },
-              thumbnail: item?.videoRenderer?.thumbnail?.thumbnails.slice(-1)[0] || {},
-              moving_thumbnail: item?.videoRenderer?.richThumbnail?.movingThumbnailRenderer?.movingThumbnailDetails?.thumbnails[0] || {},
-              published: item?.videoRenderer?.publishedTimeText?.simpleText || "N/A",
+              thumbnail: ((_z = (_y = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _y.thumbnail) == null ? void 0 : _z.thumbnails.slice(-1)[0]) || {},
+              moving_thumbnail: ((_D = (_C = (_B = (_A = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _A.richThumbnail) == null ? void 0 : _B.movingThumbnailRenderer) == null ? void 0 : _C.movingThumbnailDetails) == null ? void 0 : _D.thumbnails[0]) || {},
+              published: ((_F = (_E = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _E.publishedTimeText) == null ? void 0 : _F.simpleText) || "N/A",
               duration: {
-                seconds: Utils.timeToSeconds(item?.videoRenderer?.lengthText?.simpleText || "0"),
-                simple_text: item?.videoRenderer?.lengthText?.simpleText || "N/A",
-                accessibility_label: item?.videoRenderer?.lengthText?.accessibility?.accessibilityData?.label || "N/A"
+                seconds: Utils.timeToSeconds(((_H = (_G = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _G.lengthText) == null ? void 0 : _H.simpleText) || "0"),
+                simple_text: ((_J = (_I = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _I.lengthText) == null ? void 0 : _J.simpleText) || "N/A",
+                accessibility_label: ((_N = (_M = (_L = (_K = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _K.lengthText) == null ? void 0 : _L.accessibility) == null ? void 0 : _M.accessibilityData) == null ? void 0 : _N.label) || "N/A"
               },
-              badges: item?.videoRenderer?.badges?.map((badge) => badge.metadataBadgeRenderer.label) || [],
-              owner_badges: item?.videoRenderer?.ownerBadges?.map((badge) => badge.metadataBadgeRenderer.tooltip) || []
+              badges: ((_P = (_O = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _O.badges) == null ? void 0 : _P.map((badge) => badge.metadataBadgeRenderer.label)) || [],
+              owner_badges: ((_R = (_Q = item == null ? void 0 : item.videoRenderer) == null ? void 0 : _Q.ownerBadges) == null ? void 0 : _R.map((badge) => badge.metadataBadgeRenderer.tooltip)) || []
             }
           };
       }
@@ -36309,25 +36609,26 @@ var require_GridVideoItem = __commonJS({
         return data.map((item) => this.parseItem(item)).filter((item) => item);
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J;
         return {
           id: item.gridVideoRenderer.videoId,
-          title: item?.gridVideoRenderer?.title?.runs?.map((run) => run.text).join(" "),
+          title: (_c = (_b = (_a = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _a.title) == null ? void 0 : _b.runs) == null ? void 0 : _c.map((run) => run.text).join(" "),
           channel: {
-            id: item?.gridVideoRenderer?.shortBylineText?.runs[0]?.navigationEndpoint?.browseEndpoint?.browseId,
-            name: item?.gridVideoRenderer?.shortBylineText?.runs[0]?.text || "N/A",
-            url: `${Constants.URLS.YT_BASE}${item?.gridVideoRenderer?.shortBylineText?.runs[0]?.navigationEndpoint?.browseEndpoint?.canonicalBaseUrl}`
+            id: (_h = (_g = (_f = (_e = (_d = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _d.shortBylineText) == null ? void 0 : _e.runs[0]) == null ? void 0 : _f.navigationEndpoint) == null ? void 0 : _g.browseEndpoint) == null ? void 0 : _h.browseId,
+            name: ((_k = (_j = (_i = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _i.shortBylineText) == null ? void 0 : _j.runs[0]) == null ? void 0 : _k.text) || "N/A",
+            url: `${Constants.URLS.YT_BASE}${(_p = (_o = (_n = (_m = (_l = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _l.shortBylineText) == null ? void 0 : _m.runs[0]) == null ? void 0 : _n.navigationEndpoint) == null ? void 0 : _o.browseEndpoint) == null ? void 0 : _p.canonicalBaseUrl}`
           },
           metadata: {
-            view_count: item?.gridVideoRenderer?.viewCountText?.simpleText || "N/A",
+            view_count: ((_r = (_q = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _q.viewCountText) == null ? void 0 : _r.simpleText) || "N/A",
             short_view_count_text: {
-              simple_text: item?.gridVideoRenderer?.shortViewCountText?.simpleText || "N/A",
-              accessibility_label: item?.gridVideoRenderer?.shortViewCountText?.accessibility?.accessibilityData?.label || "N/A"
+              simple_text: ((_t = (_s = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _s.shortViewCountText) == null ? void 0 : _t.simpleText) || "N/A",
+              accessibility_label: ((_x = (_w = (_v = (_u = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _u.shortViewCountText) == null ? void 0 : _v.accessibility) == null ? void 0 : _w.accessibilityData) == null ? void 0 : _x.label) || "N/A"
             },
-            thumbnail: item?.gridVideoRenderer?.thumbnail?.thumbnails.slice(-1)[0] || [],
-            moving_thumbnail: item?.gridVideoRenderer?.richThumbnail?.movingThumbnailRenderer?.movingThumbnailDetails?.thumbnails[0] || {},
-            published: item?.gridVideoRenderer?.publishedTimeText?.simpleText || "N/A",
-            badges: item?.gridVideoRenderer?.badges?.map((badge) => badge.metadataBadgeRenderer.label) || [],
-            owner_badges: item?.gridVideoRenderer?.ownerBadges?.map((badge) => badge.metadataBadgeRenderer.tooltip) || []
+            thumbnail: ((_z = (_y = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _y.thumbnail) == null ? void 0 : _z.thumbnails.slice(-1)[0]) || [],
+            moving_thumbnail: ((_D = (_C = (_B = (_A = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _A.richThumbnail) == null ? void 0 : _B.movingThumbnailRenderer) == null ? void 0 : _C.movingThumbnailDetails) == null ? void 0 : _D.thumbnails[0]) || {},
+            published: ((_F = (_E = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _E.publishedTimeText) == null ? void 0 : _F.simpleText) || "N/A",
+            badges: ((_H = (_G = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _G.badges) == null ? void 0 : _H.map((badge) => badge.metadataBadgeRenderer.label)) || [],
+            owner_badges: ((_J = (_I = item == null ? void 0 : item.gridVideoRenderer) == null ? void 0 : _I.ownerBadges) == null ? void 0 : _J.map((badge) => badge.metadataBadgeRenderer.tooltip)) || []
           }
         };
       }
@@ -36345,12 +36646,13 @@ var require_GridPlaylistItem = __commonJS({
         return data.map((item) => this.parseItem(item)).filter((item) => item);
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e;
         return {
-          id: item?.gridPlaylistRenderer.playlistId,
-          title: item?.gridPlaylistRenderer.title?.runs?.map((run) => run.text).join(""),
+          id: item == null ? void 0 : item.gridPlaylistRenderer.playlistId,
+          title: (_b = (_a = item == null ? void 0 : item.gridPlaylistRenderer.title) == null ? void 0 : _a.runs) == null ? void 0 : _b.map((run) => run.text).join(""),
           metadata: {
-            thumbnail: item?.gridPlaylistRenderer.thumbnail?.thumbnails?.slice(-1)[0] || {},
-            video_count: item?.gridPlaylistRenderer.videoCountShortText?.simpleText || "N/A"
+            thumbnail: ((_d = (_c = item == null ? void 0 : item.gridPlaylistRenderer.thumbnail) == null ? void 0 : _c.thumbnails) == null ? void 0 : _d.slice(-1)[0]) || {},
+            video_count: ((_e = item == null ? void 0 : item.gridPlaylistRenderer.videoCountShortText) == null ? void 0 : _e.simpleText) || "N/A"
           }
         };
       }
@@ -36365,16 +36667,17 @@ var require_ChannelMetadata2 = __commonJS({
     "use strict";
     var ChannelMetadata = class {
       static parse(data) {
+        var _a, _b, _c, _d, _e, _f;
         return {
           title: data.channelMetadataRenderer.title,
           description: data.channelMetadataRenderer.description,
           metadata: {
-            url: data.channelMetadataRenderer?.channelUrl,
-            rss_urls: data.channelMetadataRenderer?.rssUrl,
-            vanity_channel_url: data.channelMetadataRenderer?.vanityChannelUrl,
-            external_id: data.channelMetadataRenderer?.externalId,
-            is_family_safe: data.channelMetadataRenderer?.isFamilySafe,
-            keywords: data.channelMetadataRenderer?.keywords
+            url: (_a = data.channelMetadataRenderer) == null ? void 0 : _a.channelUrl,
+            rss_urls: (_b = data.channelMetadataRenderer) == null ? void 0 : _b.rssUrl,
+            vanity_channel_url: (_c = data.channelMetadataRenderer) == null ? void 0 : _c.vanityChannelUrl,
+            external_id: (_d = data.channelMetadataRenderer) == null ? void 0 : _d.externalId,
+            is_family_safe: (_e = data.channelMetadataRenderer) == null ? void 0 : _e.isFamilySafe,
+            keywords: (_f = data.channelMetadataRenderer) == null ? void 0 : _f.keywords
           }
         };
       }
@@ -36426,10 +36729,11 @@ var require_CommentThread2 = __commonJS({
     var Constants = require_Constants();
     var CommentThread = class {
       static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g;
         if (item.commentThreadRenderer || item.commentRenderer) {
-          const comment = item?.commentThreadRenderer?.comment || item;
-          const like_btn = comment.commentRenderer?.actionButtons?.commentActionButtonsRenderer.likeButton;
-          const dislike_btn = comment.commentRenderer?.actionButtons?.commentActionButtonsRenderer.dislikeButton;
+          const comment = ((_a = item == null ? void 0 : item.commentThreadRenderer) == null ? void 0 : _a.comment) || item;
+          const like_btn = (_c = (_b = comment.commentRenderer) == null ? void 0 : _b.actionButtons) == null ? void 0 : _c.commentActionButtonsRenderer.likeButton;
+          const dislike_btn = (_e = (_d = comment.commentRenderer) == null ? void 0 : _d.actionButtons) == null ? void 0 : _e.commentActionButtonsRenderer.dislikeButton;
           return {
             text: comment.commentRenderer.contentText.runs.map((run) => run.text).join(""),
             author: {
@@ -36445,7 +36749,7 @@ var require_CommentThread2 = __commonJS({
               is_disliked: dislike_btn.toggleButtonRenderer.isToggled,
               is_pinned: !!comment.commentRenderer.pinnedCommentBadge,
               is_channel_owner: comment.commentRenderer.authorIsChannelOwner,
-              like_count: parseInt(like_btn?.toggleButtonRenderer?.accessibilityData?.accessibilityData.label.replace(/\D/g, "")),
+              like_count: parseInt((_g = (_f = like_btn == null ? void 0 : like_btn.toggleButtonRenderer) == null ? void 0 : _f.accessibilityData) == null ? void 0 : _g.accessibilityData.label.replace(/\D/g, "")),
               reply_count: comment.commentRenderer.replyCount || 0,
               id: comment.commentRenderer.commentId
             }
@@ -36484,18 +36788,19 @@ var require_SongResultItem = __commonJS({
         return data.map((item) => this.parseItem(item)).filter((item) => item);
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e;
         const list_item = item.musicResponsiveListItemRenderer;
         if (list_item.playlistItemData) {
-          let artists = list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs;
+          let artists = (_a = list_item.flexColumns[1]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs;
           artists.splice(0, 2);
           const meta = artists.splice(artists.length - 4, 4);
           artists = artists.filter((artist, index) => !(index % 2));
           return {
             id: list_item.playlistItemData.videoId,
-            title: list_item.flexColumns[0]?.musicResponsiveListItemFlexColumnRenderer.text.runs[0]?.text,
+            title: (_c = (_b = list_item.flexColumns[0]) == null ? void 0 : _b.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _c.text,
             artist: artists.map((artist) => artist.text),
-            album: meta[1]?.text,
-            duration: meta[3]?.text,
+            album: (_d = meta[1]) == null ? void 0 : _d.text,
+            duration: (_e = meta[3]) == null ? void 0 : _e.text,
             thumbnails: list_item.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
           };
         }
@@ -36514,19 +36819,20 @@ var require_VideoResultItem2 = __commonJS({
         return data.map((item) => this.parseItem(item)).filter((item) => item);
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e;
         const list_item = item.musicResponsiveListItemRenderer;
         if (list_item.playlistItemData) {
-          let authors = list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs;
+          let authors = (_a = list_item.flexColumns[1]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs;
           authors.splice(0, 2);
           const meta = authors.splice(authors.length - 4, 4);
           authors = authors.filter((author, index) => !(index % 2));
           return {
             id: list_item.playlistItemData.videoId,
-            title: list_item.flexColumns[0]?.musicResponsiveListItemFlexColumnRenderer.text.runs[0]?.text,
+            title: (_c = (_b = list_item.flexColumns[0]) == null ? void 0 : _b.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _c.text,
             author: authors.map((author) => author.text),
-            views: meta[1]?.text,
-            duration: meta[3]?.text,
-            thumbnails: list_item?.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
+            views: (_d = meta[1]) == null ? void 0 : _d.text,
+            duration: (_e = meta[3]) == null ? void 0 : _e.text,
+            thumbnails: list_item == null ? void 0 : list_item.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
           };
         }
       }
@@ -36544,14 +36850,15 @@ var require_AlbumResultItem = __commonJS({
         return data.map((item) => this.parseItem(item));
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e;
         const list_item = item.musicResponsiveListItemRenderer;
         return {
           id: list_item.navigationEndpoint.browseEndpoint.browseId,
-          title: list_item.flexColumns[0]?.musicResponsiveListItemFlexColumnRenderer.text.runs[0]?.text,
-          author: list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs[2]?.text,
-          year: list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs.find((run) => /^[12][0-9]{3}$/.test(run.text)).text,
-          thumbnails: list_item?.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails,
-          playlistId: list_item?.overlay.musicItemThumbnailOverlayRenderer.content.musicPlayButtonRenderer.playNavigationEndpoint.watchPlaylistEndpoint.playlistId
+          title: (_b = (_a = list_item.flexColumns[0]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _b.text,
+          author: (_d = (_c = list_item.flexColumns[1]) == null ? void 0 : _c.musicResponsiveListItemFlexColumnRenderer.text.runs[2]) == null ? void 0 : _d.text,
+          year: (_e = list_item.flexColumns[1]) == null ? void 0 : _e.musicResponsiveListItemFlexColumnRenderer.text.runs.find((run) => /^[12][0-9]{3}$/.test(run.text)).text,
+          thumbnails: list_item == null ? void 0 : list_item.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails,
+          playlistId: list_item == null ? void 0 : list_item.overlay.musicItemThumbnailOverlayRenderer.content.musicPlayButtonRenderer.playNavigationEndpoint.watchPlaylistEndpoint.playlistId
         };
       }
     };
@@ -36568,12 +36875,13 @@ var require_ArtistResultItem = __commonJS({
         return data.map((item) => this.parseItem(item));
       }
       static parseItem(item) {
+        var _a, _b, _c, _d;
         const list_item = item.musicResponsiveListItemRenderer;
         return {
           id: list_item.navigationEndpoint.browseEndpoint.browseId,
-          name: list_item.flexColumns[0]?.musicResponsiveListItemFlexColumnRenderer.text.runs[0]?.text,
-          subscribers: list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs[2]?.text,
-          thumbnails: list_item?.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
+          name: (_b = (_a = list_item.flexColumns[0]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _b.text,
+          subscribers: (_d = (_c = list_item.flexColumns[1]) == null ? void 0 : _c.musicResponsiveListItemFlexColumnRenderer.text.runs[2]) == null ? void 0 : _d.text,
+          thumbnails: list_item == null ? void 0 : list_item.thumbnail.musicThumbnailRenderer.thumbnail.thumbnails
         };
       }
     };
@@ -36590,14 +36898,15 @@ var require_PlaylistResultItem = __commonJS({
         return data.map((item) => this.parseItem(item));
       }
       static parseItem(item) {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
         const list_item = item.musicResponsiveListItemRenderer;
-        const watch_playlist_endpoint = list_item?.overlay?.musicItemThumbnailOverlayRenderer?.content?.musicPlayButtonRenderer?.playNavigationEndpoint?.watchPlaylistEndpoint;
+        const watch_playlist_endpoint = (_e = (_d = (_c = (_b = (_a = list_item == null ? void 0 : list_item.overlay) == null ? void 0 : _a.musicItemThumbnailOverlayRenderer) == null ? void 0 : _b.content) == null ? void 0 : _c.musicPlayButtonRenderer) == null ? void 0 : _d.playNavigationEndpoint) == null ? void 0 : _e.watchPlaylistEndpoint;
         return {
-          id: watch_playlist_endpoint?.playlistId,
-          title: list_item.flexColumns[0]?.musicResponsiveListItemFlexColumnRenderer.text.runs[0]?.text,
-          author: list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs[2]?.text,
-          channel_id: list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs[2]?.navigationEndpoint?.browseEndpoint.browseId || "0",
-          total_items: parseInt(list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs[4]?.text.match(/\d+/g))
+          id: watch_playlist_endpoint == null ? void 0 : watch_playlist_endpoint.playlistId,
+          title: (_g = (_f = list_item.flexColumns[0]) == null ? void 0 : _f.musicResponsiveListItemFlexColumnRenderer.text.runs[0]) == null ? void 0 : _g.text,
+          author: (_i = (_h = list_item.flexColumns[1]) == null ? void 0 : _h.musicResponsiveListItemFlexColumnRenderer.text.runs[2]) == null ? void 0 : _i.text,
+          channel_id: ((_l = (_k = (_j = list_item.flexColumns[1]) == null ? void 0 : _j.musicResponsiveListItemFlexColumnRenderer.text.runs[2]) == null ? void 0 : _k.navigationEndpoint) == null ? void 0 : _l.browseEndpoint.browseId) || "0",
+          total_items: parseInt((_n = (_m = list_item.flexColumns[1]) == null ? void 0 : _m.musicResponsiveListItemFlexColumnRenderer.text.runs[4]) == null ? void 0 : _n.text.match(/\d+/g))
         };
       }
     };
@@ -36642,8 +36951,9 @@ var require_TopResultItem = __commonJS({
     var TopResultItem = class {
       static parse(data) {
         return data.map((item) => {
+          var _a;
           const list_item = item.musicResponsiveListItemRenderer;
-          const runs = list_item.flexColumns[1]?.musicResponsiveListItemFlexColumnRenderer.text.runs;
+          const runs = (_a = list_item.flexColumns[1]) == null ? void 0 : _a.musicResponsiveListItemFlexColumnRenderer.text.runs;
           const type = runs[0].text.toLowerCase();
           const parsed_item = (() => {
             switch (type) {
@@ -36728,8 +37038,24 @@ var require_parser = __commonJS({
     var YTDataItems = require_youtube();
     var YTMusicDataItems = require_ytmusic();
     var Proto2 = require_proto();
+    var _processSearch, processSearch_fn, _processMusicSearch, processMusicSearch_fn, _processSearchSuggestions, processSearchSuggestions_fn, _processMusicSearchSuggestions, processMusicSearchSuggestions_fn, _processPlaylist, processPlaylist_fn, _processMusicPlaylist, processMusicPlaylist_fn, _processVideoInfo, processVideoInfo_fn, _processComments, processComments_fn, _processHomeFeed, processHomeFeed_fn, _processLibrary, processLibrary_fn, _processSubscriptionFeed, processSubscriptionFeed_fn, _processChannel, processChannel_fn, _processNotifications, processNotifications_fn, _processTrending, processTrending_fn, _processHistory, processHistory_fn;
     var Parser = class {
       constructor(session, data, args = {}) {
+        __privateAdd(this, _processSearch);
+        __privateAdd(this, _processMusicSearch);
+        __privateAdd(this, _processSearchSuggestions);
+        __privateAdd(this, _processMusicSearchSuggestions);
+        __privateAdd(this, _processPlaylist);
+        __privateAdd(this, _processMusicPlaylist);
+        __privateAdd(this, _processVideoInfo);
+        __privateAdd(this, _processComments);
+        __privateAdd(this, _processHomeFeed);
+        __privateAdd(this, _processLibrary);
+        __privateAdd(this, _processSubscriptionFeed);
+        __privateAdd(this, _processChannel);
+        __privateAdd(this, _processNotifications);
+        __privateAdd(this, _processTrending);
+        __privateAdd(this, _processHistory);
         this.data = data;
         this.session = session;
         this.args = args;
@@ -36743,29 +37069,29 @@ var require_parser = __commonJS({
             processed_data = (() => {
               switch (data_type) {
                 case "SEARCH":
-                  return this.#processSearch();
+                  return __privateMethod(this, _processSearch, processSearch_fn).call(this);
                 case "CHANNEL":
-                  return this.#processChannel();
+                  return __privateMethod(this, _processChannel, processChannel_fn).call(this);
                 case "PLAYLIST":
-                  return this.#processPlaylist();
+                  return __privateMethod(this, _processPlaylist, processPlaylist_fn).call(this);
                 case "SUBSFEED":
-                  return this.#processSubscriptionFeed();
+                  return __privateMethod(this, _processSubscriptionFeed, processSubscriptionFeed_fn).call(this);
                 case "HOMEFEED":
-                  return this.#processHomeFeed();
+                  return __privateMethod(this, _processHomeFeed, processHomeFeed_fn).call(this);
                 case "LIBRARY":
-                  return this.#processLibrary();
+                  return __privateMethod(this, _processLibrary, processLibrary_fn).call(this);
                 case "TRENDING":
-                  return this.#processTrending();
+                  return __privateMethod(this, _processTrending, processTrending_fn).call(this);
                 case "HISTORY":
-                  return this.#processHistory();
+                  return __privateMethod(this, _processHistory, processHistory_fn).call(this);
                 case "COMMENTS":
-                  return this.#processComments();
+                  return __privateMethod(this, _processComments, processComments_fn).call(this);
                 case "VIDEO_INFO":
-                  return this.#processVideoInfo();
+                  return __privateMethod(this, _processVideoInfo, processVideoInfo_fn).call(this);
                 case "NOTIFICATIONS":
-                  return this.#processNotifications();
+                  return __privateMethod(this, _processNotifications, processNotifications_fn).call(this);
                 case "SEARCH_SUGGESTIONS":
-                  return this.#processSearchSuggestions();
+                  return __privateMethod(this, _processSearchSuggestions, processSearchSuggestions_fn).call(this);
                 default:
                   throw new TypeError("undefined is not a function");
               }
@@ -36775,11 +37101,11 @@ var require_parser = __commonJS({
             processed_data = (() => {
               switch (data_type) {
                 case "SEARCH":
-                  return this.#processMusicSearch();
+                  return __privateMethod(this, _processMusicSearch, processMusicSearch_fn).call(this);
                 case "PLAYLIST":
-                  return this.#processMusicPlaylist();
+                  return __privateMethod(this, _processMusicPlaylist, processMusicPlaylist_fn).call(this);
                 case "SEARCH_SUGGESTIONS":
-                  return this.#processMusicSearchSuggestions();
+                  return __privateMethod(this, _processMusicSearchSuggestions, processMusicSearchSuggestions_fn).call(this);
                 default:
                   throw new TypeError("undefined is not a function");
               }
@@ -36790,418 +37116,440 @@ var require_parser = __commonJS({
         }
         return processed_data;
       }
-      #processSearch() {
-        const contents = Utils.findNode(this.data, "contents", "contents", 5);
-        const processed_data = {};
-        const parseItems = (contents2) => {
-          const content = contents2[0].itemSectionRenderer.contents;
-          processed_data.query = content[0]?.showingResultsForRenderer?.originalQuery?.simpleText || this.args.query;
-          processed_data.corrected_query = content[0]?.showingResultsForRenderer?.correctedQueryEndpoint?.searchEndpoint?.query || "N/A";
-          processed_data.estimated_results = parseInt(this.data.estimatedResults);
-          processed_data.videos = YTDataItems.VideoResultItem.parse(content);
-          processed_data.getContinuation = async () => {
-            const citem = contents2.find((item) => item.continuationItemRenderer);
-            const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
-            const response = await this.session.actions.search({ ctoken });
-            const continuation_items = Utils.findNode(response.data, "onResponseReceivedCommands", "itemSectionRenderer", 4, false);
-            return parseItems(continuation_items);
-          };
-          return processed_data;
+    };
+    _processSearch = new WeakSet();
+    processSearch_fn = function() {
+      const contents = Utils.findNode(this.data, "contents", "contents", 5);
+      const processed_data = {};
+      const parseItems = (contents2) => {
+        var _a, _b, _c, _d, _e, _f, _g;
+        const content = contents2[0].itemSectionRenderer.contents;
+        processed_data.query = ((_c = (_b = (_a = content[0]) == null ? void 0 : _a.showingResultsForRenderer) == null ? void 0 : _b.originalQuery) == null ? void 0 : _c.simpleText) || this.args.query;
+        processed_data.corrected_query = ((_g = (_f = (_e = (_d = content[0]) == null ? void 0 : _d.showingResultsForRenderer) == null ? void 0 : _e.correctedQueryEndpoint) == null ? void 0 : _f.searchEndpoint) == null ? void 0 : _g.query) || "N/A";
+        processed_data.estimated_results = parseInt(this.data.estimatedResults);
+        processed_data.videos = YTDataItems.VideoResultItem.parse(content);
+        processed_data.getContinuation = async () => {
+          const citem = contents2.find((item) => item.continuationItemRenderer);
+          const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+          const response = await this.session.actions.search({ ctoken });
+          const continuation_items = Utils.findNode(response.data, "onResponseReceivedCommands", "itemSectionRenderer", 4, false);
+          return parseItems(continuation_items);
         };
-        return parseItems(contents);
-      }
-      #processMusicSearch() {
-        const tabs = Utils.findNode(this.data, "contents", "tabs").tabs;
-        const contents = Utils.findNode(tabs, "0", "contents", 5);
-        const did_you_mean_item = contents.find((content) => content.itemSectionRenderer);
-        const did_you_mean_renderer = did_you_mean_item?.itemSectionRenderer.contents[0].didYouMeanRenderer;
-        const processed_data = {
-          query: "",
-          corrected_query: "",
-          results: {}
-        };
-        processed_data.query = this.args.query;
-        processed_data.corrected_query = did_you_mean_renderer?.correctedQuery.runs.map((run) => run.text).join("") || "N/A";
-        contents.forEach((content) => {
-          const section = content?.musicShelfRenderer;
-          if (section) {
-            const section_title = section.title.runs[0].text;
-            const section_items = ({
-              ["Top result"]: () => YTMusicDataItems.TopResultItem.parse(section.contents),
-              ["Songs"]: () => YTMusicDataItems.SongResultItem.parse(section.contents),
-              ["Videos"]: () => YTMusicDataItems.VideoResultItem.parse(section.contents),
-              ["Featured playlists"]: () => YTMusicDataItems.PlaylistResultItem.parse(section.contents),
-              ["Community playlists"]: () => YTMusicDataItems.PlaylistResultItem.parse(section.contents),
-              ["Artists"]: () => YTMusicDataItems.ArtistResultItem.parse(section.contents),
-              ["Albums"]: () => YTMusicDataItems.AlbumResultItem.parse(section.contents)
-            }[section_title] || (() => {
-            }))();
-            processed_data.results[section_title.replace(/ /g, "_").toLowerCase()] = section_items;
-          }
-        });
         return processed_data;
-      }
-      #processSearchSuggestions() {
-        return YTDataItems.SearchSuggestionItem.parse(JSON.parse(this.data.replace(")]}'", "")));
-      }
-      #processMusicSearchSuggestions() {
-        const contents = this.data.contents[0].searchSuggestionsSectionRenderer.contents;
-        return YTMusicDataItems.MusicSearchSuggestionItem.parse(contents);
-      }
-      #processPlaylist() {
-        const details = this.data.sidebar.playlistSidebarRenderer.items[0];
-        const metadata = {
-          title: this.data.metadata.playlistMetadataRenderer.title,
-          description: details.playlistSidebarPrimaryInfoRenderer?.description?.simpleText || "N/A",
-          total_items: details.playlistSidebarPrimaryInfoRenderer.stats[0].runs[0]?.text || "N/A",
-          last_updated: details.playlistSidebarPrimaryInfoRenderer.stats[2].runs[1]?.text || "N/A",
-          views: details.playlistSidebarPrimaryInfoRenderer.stats[1].simpleText
-        };
-        const list = Utils.findNode(this.data, "contents", "contents", 13, false);
-        const items = YTDataItems.PlaylistItem.parse(list.contents);
-        return {
-          ...metadata,
-          items
-        };
-      }
-      #processMusicPlaylist() {
-        const details = this.data.header.musicDetailHeaderRenderer;
-        const metadata = {
-          title: details?.title?.runs[0].text,
-          description: details?.description?.runs?.map((run) => run.text).join("") || "N/A",
-          total_items: parseInt(details?.secondSubtitle?.runs[0].text.match(/\d+/g)),
-          duration: details?.secondSubtitle?.runs[2].text,
-          year: details?.subtitle?.runs[4].text
-        };
-        const contents = this.data.contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents;
-        const playlist_content = contents[0].musicPlaylistShelfRenderer.contents;
-        const items = YTMusicDataItems.PlaylistItem.parse(playlist_content);
-        return {
-          ...metadata,
-          items
-        };
-      }
-      #processVideoInfo() {
-        const playability_status = this.data.playabilityStatus;
-        if (playability_status.status == "ERROR")
-          throw new Error(`Could not retrieve video details: ${playability_status.status} - ${playability_status.reason}`);
-        const details = this.data.videoDetails;
-        const microformat = this.data.microformat.playerMicroformatRenderer;
-        const streaming_data = this.data.streamingData;
-        const mf_raw_data = Object.entries(microformat);
-        const dt_raw_data = Object.entries(details);
-        const processed_data = {
-          id: "",
-          title: "",
-          description: "",
-          thumbnail: [],
-          metadata: {}
-        };
-        mf_raw_data.forEach((entry) => {
-          const key = Utils.camelToSnake(entry[0]);
-          if (Constants.METADATA_KEYS.includes(key)) {
-            if (key == "view_count") {
-              processed_data.metadata[key] = parseInt(entry[1]);
-            } else if (key == "owner_profile_url") {
-              processed_data.metadata.channel_url = entry[1];
-            } else if (key == "owner_channel_name") {
-              processed_data.metadata.channel_name = entry[1];
-            } else {
-              processed_data.metadata[key] = entry[1];
-            }
-          } else {
-            processed_data[key] = entry[1];
-          }
-        });
-        dt_raw_data.forEach((entry) => {
-          const key = Utils.camelToSnake(entry[0]);
-          if (Constants.BLACKLISTED_KEYS.includes(key))
-            return;
-          if (Constants.METADATA_KEYS.includes(key)) {
-            if (key == "view_count") {
-              processed_data.metadata[key] = parseInt(entry[1]);
-            } else {
-              processed_data.metadata[key] = entry[1];
-            }
-          } else if (key == "short_description") {
-            processed_data.description = entry[1];
-          } else if (key == "thumbnail") {
-            processed_data.thumbnail = entry[1].thumbnails.slice(-1)[0];
-          } else if (key == "video_id") {
-            processed_data.id = entry[1];
-          } else {
-            processed_data[key] = entry[1];
-          }
-        });
-        if (this.data.continuation) {
-          const primary_info_renderer = this.data.continuation.contents.twoColumnWatchNextResults.results.results.contents.find((item) => item.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer;
-          const secondary_info_renderer = this.data.continuation.contents.twoColumnWatchNextResults.results.results.contents.find((item) => item.videoSecondaryInfoRenderer).videoSecondaryInfoRenderer;
-          const like_btn = primary_info_renderer.videoActions.menuRenderer.topLevelButtons.find((item) => item.toggleButtonRenderer.defaultIcon.iconType == "LIKE");
-          const dislike_btn = primary_info_renderer.videoActions.menuRenderer.topLevelButtons.find((item) => item.toggleButtonRenderer.defaultIcon.iconType == "DISLIKE");
-          const notification_toggle_btn = secondary_info_renderer.subscribeButton.subscribeButtonRenderer?.notificationPreferenceButton?.subscriptionNotificationToggleButtonRenderer;
-          processed_data.metadata.is_liked = like_btn.toggleButtonRenderer.isToggled;
-          processed_data.metadata.is_disliked = dislike_btn.toggleButtonRenderer.isToggled;
-          processed_data.metadata.is_subscribed = secondary_info_renderer.subscribeButton.subscribeButtonRenderer?.subscribed || false;
-          processed_data.metadata.subscriber_count = secondary_info_renderer.owner.videoOwnerRenderer?.subscriberCountText?.simpleText || "N/A";
-          processed_data.metadata.current_notification_preference = notification_toggle_btn?.states.find((state) => state.stateId == notification_toggle_btn.currentStateId).state.buttonRenderer.icon.iconType || "N/A";
-          processed_data.metadata.publish_date_text = primary_info_renderer.dateText.simpleText;
-          if (processed_data.metadata.allow_ratings) {
-            processed_data.metadata.likes = {
-              count: parseInt(like_btn.toggleButtonRenderer.defaultText.accessibility.accessibilityData.label.replace(/\D/g, "")),
-              short_count_text: like_btn.toggleButtonRenderer.defaultText.simpleText
-            };
-          }
-          processed_data.metadata.owner_badges = secondary_info_renderer.owner.videoOwnerRenderer?.badges?.map((badge) => badge.metadataBadgeRenderer.tooltip) || [];
+      };
+      return parseItems(contents);
+    };
+    _processMusicSearch = new WeakSet();
+    processMusicSearch_fn = function() {
+      const tabs = Utils.findNode(this.data, "contents", "tabs").tabs;
+      const contents = Utils.findNode(tabs, "0", "contents", 5);
+      const did_you_mean_item = contents.find((content) => content.itemSectionRenderer);
+      const did_you_mean_renderer = did_you_mean_item == null ? void 0 : did_you_mean_item.itemSectionRenderer.contents[0].didYouMeanRenderer;
+      const processed_data = {
+        query: "",
+        corrected_query: "",
+        results: {}
+      };
+      processed_data.query = this.args.query;
+      processed_data.corrected_query = (did_you_mean_renderer == null ? void 0 : did_you_mean_renderer.correctedQuery.runs.map((run) => run.text).join("")) || "N/A";
+      contents.forEach((content) => {
+        const section = content == null ? void 0 : content.musicShelfRenderer;
+        if (section) {
+          const section_title = section.title.runs[0].text;
+          const section_items = ({
+            ["Top result"]: () => YTMusicDataItems.TopResultItem.parse(section.contents),
+            ["Songs"]: () => YTMusicDataItems.SongResultItem.parse(section.contents),
+            ["Videos"]: () => YTMusicDataItems.VideoResultItem.parse(section.contents),
+            ["Featured playlists"]: () => YTMusicDataItems.PlaylistResultItem.parse(section.contents),
+            ["Community playlists"]: () => YTMusicDataItems.PlaylistResultItem.parse(section.contents),
+            ["Artists"]: () => YTMusicDataItems.ArtistResultItem.parse(section.contents),
+            ["Albums"]: () => YTMusicDataItems.AlbumResultItem.parse(section.contents)
+          }[section_title] || (() => {
+          }))();
+          processed_data.results[section_title.replace(/ /g, "_").toLowerCase()] = section_items;
         }
-        if (streaming_data && streaming_data.adaptiveFormats) {
-          processed_data.metadata.available_qualities = [...new Set(streaming_data.adaptiveFormats.filter((v) => v.qualityLabel).map((v) => v.qualityLabel).sort((a, b) => +a.replace(/\D/gi, "") - +b.replace(/\D/gi, "")))];
+      });
+      return processed_data;
+    };
+    _processSearchSuggestions = new WeakSet();
+    processSearchSuggestions_fn = function() {
+      return YTDataItems.SearchSuggestionItem.parse(JSON.parse(this.data.replace(")]}'", "")));
+    };
+    _processMusicSearchSuggestions = new WeakSet();
+    processMusicSearchSuggestions_fn = function() {
+      const contents = this.data.contents[0].searchSuggestionsSectionRenderer.contents;
+      return YTMusicDataItems.MusicSearchSuggestionItem.parse(contents);
+    };
+    _processPlaylist = new WeakSet();
+    processPlaylist_fn = function() {
+      var _a, _b, _c, _d;
+      const details = this.data.sidebar.playlistSidebarRenderer.items[0];
+      const metadata = {
+        title: this.data.metadata.playlistMetadataRenderer.title,
+        description: ((_b = (_a = details.playlistSidebarPrimaryInfoRenderer) == null ? void 0 : _a.description) == null ? void 0 : _b.simpleText) || "N/A",
+        total_items: ((_c = details.playlistSidebarPrimaryInfoRenderer.stats[0].runs[0]) == null ? void 0 : _c.text) || "N/A",
+        last_updated: ((_d = details.playlistSidebarPrimaryInfoRenderer.stats[2].runs[1]) == null ? void 0 : _d.text) || "N/A",
+        views: details.playlistSidebarPrimaryInfoRenderer.stats[1].simpleText
+      };
+      const list = Utils.findNode(this.data, "contents", "contents", 13, false);
+      const items = YTDataItems.PlaylistItem.parse(list.contents);
+      return {
+        ...metadata,
+        items
+      };
+    };
+    _processMusicPlaylist = new WeakSet();
+    processMusicPlaylist_fn = function() {
+      var _a, _b, _c, _d, _e, _f;
+      const details = this.data.header.musicDetailHeaderRenderer;
+      const metadata = {
+        title: (_a = details == null ? void 0 : details.title) == null ? void 0 : _a.runs[0].text,
+        description: ((_c = (_b = details == null ? void 0 : details.description) == null ? void 0 : _b.runs) == null ? void 0 : _c.map((run) => run.text).join("")) || "N/A",
+        total_items: parseInt((_d = details == null ? void 0 : details.secondSubtitle) == null ? void 0 : _d.runs[0].text.match(/\d+/g)),
+        duration: (_e = details == null ? void 0 : details.secondSubtitle) == null ? void 0 : _e.runs[2].text,
+        year: (_f = details == null ? void 0 : details.subtitle) == null ? void 0 : _f.runs[4].text
+      };
+      const contents = this.data.contents.singleColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents;
+      const playlist_content = contents[0].musicPlaylistShelfRenderer.contents;
+      const items = YTMusicDataItems.PlaylistItem.parse(playlist_content);
+      return {
+        ...metadata,
+        items
+      };
+    };
+    _processVideoInfo = new WeakSet();
+    processVideoInfo_fn = function() {
+      var _a, _b, _c, _d, _e, _f, _g;
+      const playability_status = this.data.playabilityStatus;
+      if (playability_status.status == "ERROR")
+        throw new Error(`Could not retrieve video details: ${playability_status.status} - ${playability_status.reason}`);
+      const details = this.data.videoDetails;
+      const microformat = this.data.microformat.playerMicroformatRenderer;
+      const streaming_data = this.data.streamingData;
+      const mf_raw_data = Object.entries(microformat);
+      const dt_raw_data = Object.entries(details);
+      const processed_data = {
+        id: "",
+        title: "",
+        description: "",
+        thumbnail: [],
+        metadata: {}
+      };
+      mf_raw_data.forEach((entry) => {
+        const key = Utils.camelToSnake(entry[0]);
+        if (Constants.METADATA_KEYS.includes(key)) {
+          if (key == "view_count") {
+            processed_data.metadata[key] = parseInt(entry[1]);
+          } else if (key == "owner_profile_url") {
+            processed_data.metadata.channel_url = entry[1];
+          } else if (key == "owner_channel_name") {
+            processed_data.metadata.channel_name = entry[1];
+          } else {
+            processed_data.metadata[key] = entry[1];
+          }
         } else {
-          processed_data.metadata.available_qualities = [];
+          processed_data[key] = entry[1];
         }
-        return processed_data;
-      }
-      #processComments() {
-        if (!this.data.onResponseReceivedEndpoints)
-          throw new Utils.UnavailableContentError("Comments section not available", this.args);
-        const header = Utils.findNode(this.data, "onResponseReceivedEndpoints", "commentsHeaderRenderer", 5, false);
-        const comment_count = parseInt(header.commentsHeaderRenderer.countText.runs[0].text.replace(/,/g, ""));
-        const page_count = parseInt(comment_count / 20);
-        const parseComments = (data) => {
-          const items = Utils.findNode(data, "onResponseReceivedEndpoints", "commentRenderer", 4, false);
-          const response = {
-            page_count,
-            comment_count,
-            items: []
-          };
-          response.items = items.map((item) => {
-            const comment = YTDataItems.CommentThread.parseItem(item);
-            if (comment) {
-              comment.like = () => this.session.actions.engage("comment/perform_comment_action", { comment_action: "like", comment_id: comment.metadata.id, video_id: this.args.video_id });
-              comment.dislike = () => this.session.actions.engage("comment/perform_comment_action", { comment_action: "dislike", comment_id: comment.metadata.id, video_id: this.args.video_id });
-              comment.reply = (text) => this.session.actions.engage("comment/create_comment_reply", { text, comment_id: comment.metadata.id, video_id: this.args.video_id });
-              comment.report = async () => {
-                const payload = Utils.findNode(item, "commentThreadRenderer", "params", 10, false);
-                const form = await this.session.actions.flag("flag/get_form", { params: payload.params });
-                const action = Utils.findNode(form, "actions", "flagAction", 13, false);
-                const flag = await this.session.actions.flag("flag/flag", { action: action.flagAction });
-                return flag;
-              };
-              comment.getReplies = async () => {
-                if (comment.metadata.reply_count === 0)
-                  throw new Utils.InnertubeError("This comment has no replies", comment);
-                const payload = Proto2.encodeCommentRepliesParams(this.args.video_id, comment.metadata.id);
-                const next = await this.session.actions.next({ ctoken: payload });
-                return parseComments(next.data);
-              };
-              comment.translate = async (target_language) => {
-                const response2 = await this.session.actions.engage("comment/perform_comment_action", {
-                  text: comment.text,
-                  comment_action: "translate",
-                  comment_id: comment.metadata.id,
-                  video_id: this.args.video_id,
-                  target_language
-                });
-                const translated_content = Utils.findNode(response2.data, "frameworkUpdates", "content", 7, false);
-                return {
-                  success: response2.success,
-                  status_code: response2.status_code,
-                  translated_content: translated_content.content
-                };
-              };
-              return comment;
-            }
-          }).filter((c) => c);
-          response.comment = (text) => this.session.actions.engage("comment/create_comment", { video_id: this.args.video_id, text });
-          response.getContinuation = async () => {
-            const continuation_item = items.find((item) => item.continuationItemRenderer);
-            if (!continuation_item)
-              throw new Utils.InnertubeError("You've reached the end");
-            const is_reply = !!continuation_item.continuationItemRenderer.button;
-            const payload = Utils.findNode(continuation_item, "continuationItemRenderer", "token", is_reply ? 5 : 3);
-            const next = await this.session.actions.next({ ctoken: payload.token });
-            return parseComments(next.data);
-          };
-          return response;
-        };
-        return parseComments(this.data);
-      }
-      #processHomeFeed() {
-        const contents = Utils.findNode(this.data, "contents", "videoRenderer", 9, false);
-        const parseItems = (contents2) => {
-          const videos = YTDataItems.VideoItem.parse(contents2);
-          const getContinuation = async () => {
-            const citem = contents2.find((item) => item.continuationItemRenderer);
-            const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
-            const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
-            return parseItems(response.data.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems);
-          };
-          return { videos, getContinuation };
-        };
-        return parseItems(contents);
-      }
-      #processLibrary() {
-        const profile_data = Utils.findNode(this.data, "contents", "profileColumnRenderer", 3);
-        const stats_data = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnStatsRenderer);
-        const stats_items = stats_data.profileColumnStatsRenderer.items;
-        const userinfo = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnUserInfoRenderer);
-        const stats = {};
-        stats_items.forEach((item) => {
-          const label = item.profileColumnStatsEntryRenderer.label.runs.map((run) => run.text).join("");
-          stats[label.toLowerCase()] = parseInt(item.profileColumnStatsEntryRenderer.value.simpleText);
-        });
-        const profile = {
-          name: userinfo.profileColumnUserInfoRenderer?.title?.simpleText,
-          thumbnails: userinfo.profileColumnUserInfoRenderer?.thumbnail.thumbnails,
-          stats
-        };
-        return {
-          profile
-        };
-      }
-      #processSubscriptionFeed() {
-        const contents = Utils.findNode(this.data, "contents", "contents", 9, false);
-        const subsfeed = { items: [] };
-        const parseItems = (contents2) => {
-          contents2.forEach((section) => {
-            if (!section.itemSectionRenderer)
-              return;
-            const section_contents = section.itemSectionRenderer.contents[0];
-            const section_title = section_contents.shelfRenderer.title.runs[0].text;
-            const section_items = section_contents.shelfRenderer.content.gridRenderer.items;
-            const items = YTDataItems.GridVideoItem.parse(section_items);
-            subsfeed.items.push({
-              date: section_title,
-              videos: items
-            });
-          });
-          subsfeed.getContinuation = async () => {
-            const citem = contents2.find((item) => item.continuationItemRenderer);
-            const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
-            const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
-            const ccontents = Utils.findNode(response.data, "onResponseReceivedActions", "itemSectionRenderer", 4, false);
-            subsfeed.items = [];
-            return parseItems(ccontents);
-          };
-          return subsfeed;
-        };
-        return parseItems(contents);
-      }
-      #processChannel() {
-        const tabs = this.data.contents.twoColumnBrowseResultsRenderer.tabs;
-        const metadata = this.data.metadata;
-        const home_tab = tabs.find((tab) => tab.tabRenderer.title == "Home");
-        const home_contents = home_tab.tabRenderer.content.sectionListRenderer.contents;
-        const home_shelves = [];
-        home_contents.forEach((content) => {
-          if (content.itemSectionRenderer) {
-            const contents = content.itemSectionRenderer.contents[0];
-            const list = contents?.shelfRenderer?.content.horizontalListRenderer;
-            if (!list)
-              return;
-            const shelf = {
-              title: contents.shelfRenderer.title.runs[0].text,
-              content: []
-            };
-            shelf.content = list.items.map((item) => {
-              if (item.gridVideoRenderer) {
-                return YTDataItems.GridVideoItem.parseItem(item);
-              } else if (item.gridPlaylistRenderer) {
-                return YTDataItems.GridPlaylistItem.parseItem(item);
-              }
-            });
-            home_shelves.push(shelf);
-          }
-        });
-        const ch_info = YTDataItems.ChannelMetadata.parse(metadata);
-        return {
-          ...ch_info,
-          content: {
-            home_page: home_shelves,
-            getVideos: () => {
-            },
-            getPlaylists: () => {
-            },
-            getCommunity: () => {
-            },
-            getChannels: () => {
-            },
-            getAbout: () => {
-            }
-          }
-        };
-      }
-      #processNotifications() {
-        const contents = this.data.actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[0];
-        if (!contents.multiPageMenuNotificationSectionRenderer)
-          throw new Utils.InnertubeError("No notifications");
-        const parseItems = (items) => {
-          const parsed_items = YTDataItems.NotificationItem.parse(items);
-          const getContinuation = async () => {
-            const citem = items.find((item) => item.continuationItemRenderer);
-            const ctoken = citem?.continuationItemRenderer?.continuationEndpoint?.getNotificationMenuEndpoint?.ctoken;
-            const response = await this.session.actions.notifications("get_notification_menu", { ctoken });
-            return parseItems(response.data.actions[0].appendContinuationItemsAction.continuationItems);
-          };
-          return { items: parsed_items, getContinuation };
-        };
-        return parseItems(contents.multiPageMenuNotificationSectionRenderer.items);
-      }
-      #processTrending() {
-        const tabs = Utils.findNode(this.data, "contents", "tabRenderer", 4, false);
-        const categories = {};
-        tabs.forEach((tab) => {
-          const tab_renderer = tab.tabRenderer;
-          const tab_content = tab_renderer?.content;
-          const category_title = tab_renderer.title.toLowerCase();
-          categories[category_title] = {};
-          if (tab_content) {
-            const contents = tab_content.sectionListRenderer.contents;
-            categories[category_title].content = contents.map((content) => {
-              const shelf = content.itemSectionRenderer.contents[0].shelfRenderer;
-              const parsed_shelf = YTDataItems.ShelfRenderer.parse(shelf);
-              return parsed_shelf;
-            });
+      });
+      dt_raw_data.forEach((entry) => {
+        const key = Utils.camelToSnake(entry[0]);
+        if (Constants.BLACKLISTED_KEYS.includes(key))
+          return;
+        if (Constants.METADATA_KEYS.includes(key)) {
+          if (key == "view_count") {
+            processed_data.metadata[key] = parseInt(entry[1]);
           } else {
-            const params = tab_renderer.endpoint.browseEndpoint.params;
-            categories[category_title].getVideos = async () => {
-              const response = await this.session.actions.browse("FEtrending", { params });
-              const tabs2 = Utils.findNode(response, "contents", "tabRenderer", 4, false);
-              const tab2 = tabs2.find((tab3) => tab3.tabRenderer.title === tab_renderer.title);
-              const contents = tab2.tabRenderer.content.sectionListRenderer.contents;
-              const items = Utils.findNode(contents, "itemSectionRenderer", "items", 8, false);
-              return YTDataItems.VideoItem.parse(items);
-            };
+            processed_data.metadata[key] = entry[1];
           }
-        });
-        return categories;
-      }
-      #processHistory() {
-        const contents = Utils.findNode(this.data, "contents", "videoRenderer", 9, false);
-        const history = { items: [] };
-        const parseItems = (contents2) => {
-          contents2.forEach((section) => {
-            if (!section.itemSectionRenderer)
-              return;
-            const header = section.itemSectionRenderer.header.itemSectionHeaderRenderer.title;
-            const section_title = header?.simpleText || header?.runs.map((run) => run.text).join("");
-            const contents3 = section.itemSectionRenderer.contents;
-            const section_items = YTDataItems.VideoItem.parse(contents3);
-            history.items.push({
-              date: section_title,
-              videos: section_items
-            });
-          });
-          history.getContinuation = async () => {
-            const citem = contents2.find((item) => item.continuationItemRenderer);
-            const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
-            const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
-            history.items = [];
-            return parseItems(response.data.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems);
+        } else if (key == "short_description") {
+          processed_data.description = entry[1];
+        } else if (key == "thumbnail") {
+          processed_data.thumbnail = entry[1].thumbnails.slice(-1)[0];
+        } else if (key == "video_id") {
+          processed_data.id = entry[1];
+        } else {
+          processed_data[key] = entry[1];
+        }
+      });
+      if (this.data.continuation) {
+        const primary_info_renderer = this.data.continuation.contents.twoColumnWatchNextResults.results.results.contents.find((item) => item.videoPrimaryInfoRenderer).videoPrimaryInfoRenderer;
+        const secondary_info_renderer = this.data.continuation.contents.twoColumnWatchNextResults.results.results.contents.find((item) => item.videoSecondaryInfoRenderer).videoSecondaryInfoRenderer;
+        const like_btn = primary_info_renderer.videoActions.menuRenderer.topLevelButtons.find((item) => item.toggleButtonRenderer.defaultIcon.iconType == "LIKE");
+        const dislike_btn = primary_info_renderer.videoActions.menuRenderer.topLevelButtons.find((item) => item.toggleButtonRenderer.defaultIcon.iconType == "DISLIKE");
+        const notification_toggle_btn = (_b = (_a = secondary_info_renderer.subscribeButton.subscribeButtonRenderer) == null ? void 0 : _a.notificationPreferenceButton) == null ? void 0 : _b.subscriptionNotificationToggleButtonRenderer;
+        processed_data.metadata.is_liked = like_btn.toggleButtonRenderer.isToggled;
+        processed_data.metadata.is_disliked = dislike_btn.toggleButtonRenderer.isToggled;
+        processed_data.metadata.is_subscribed = ((_c = secondary_info_renderer.subscribeButton.subscribeButtonRenderer) == null ? void 0 : _c.subscribed) || false;
+        processed_data.metadata.subscriber_count = ((_e = (_d = secondary_info_renderer.owner.videoOwnerRenderer) == null ? void 0 : _d.subscriberCountText) == null ? void 0 : _e.simpleText) || "N/A";
+        processed_data.metadata.current_notification_preference = (notification_toggle_btn == null ? void 0 : notification_toggle_btn.states.find((state) => state.stateId == notification_toggle_btn.currentStateId).state.buttonRenderer.icon.iconType) || "N/A";
+        processed_data.metadata.publish_date_text = primary_info_renderer.dateText.simpleText;
+        if (processed_data.metadata.allow_ratings) {
+          processed_data.metadata.likes = {
+            count: parseInt(like_btn.toggleButtonRenderer.defaultText.accessibility.accessibilityData.label.replace(/\D/g, "")),
+            short_count_text: like_btn.toggleButtonRenderer.defaultText.simpleText
           };
-          return history;
-        };
-        return parseItems(contents);
+        }
+        processed_data.metadata.owner_badges = ((_g = (_f = secondary_info_renderer.owner.videoOwnerRenderer) == null ? void 0 : _f.badges) == null ? void 0 : _g.map((badge) => badge.metadataBadgeRenderer.tooltip)) || [];
       }
+      if (streaming_data && streaming_data.adaptiveFormats) {
+        processed_data.metadata.available_qualities = [...new Set(streaming_data.adaptiveFormats.filter((v) => v.qualityLabel).map((v) => v.qualityLabel).sort((a, b) => +a.replace(/\D/gi, "") - +b.replace(/\D/gi, "")))];
+      } else {
+        processed_data.metadata.available_qualities = [];
+      }
+      return processed_data;
+    };
+    _processComments = new WeakSet();
+    processComments_fn = function() {
+      if (!this.data.onResponseReceivedEndpoints)
+        throw new Utils.UnavailableContentError("Comments section not available", this.args);
+      const header = Utils.findNode(this.data, "onResponseReceivedEndpoints", "commentsHeaderRenderer", 5, false);
+      const comment_count = parseInt(header.commentsHeaderRenderer.countText.runs[0].text.replace(/,/g, ""));
+      const page_count = parseInt(comment_count / 20);
+      const parseComments = (data) => {
+        const items = Utils.findNode(data, "onResponseReceivedEndpoints", "commentRenderer", 4, false);
+        const response = {
+          page_count,
+          comment_count,
+          items: []
+        };
+        response.items = items.map((item) => {
+          const comment = YTDataItems.CommentThread.parseItem(item);
+          if (comment) {
+            comment.like = () => this.session.actions.engage("comment/perform_comment_action", { comment_action: "like", comment_id: comment.metadata.id, video_id: this.args.video_id });
+            comment.dislike = () => this.session.actions.engage("comment/perform_comment_action", { comment_action: "dislike", comment_id: comment.metadata.id, video_id: this.args.video_id });
+            comment.reply = (text) => this.session.actions.engage("comment/create_comment_reply", { text, comment_id: comment.metadata.id, video_id: this.args.video_id });
+            comment.report = async () => {
+              const payload = Utils.findNode(item, "commentThreadRenderer", "params", 10, false);
+              const form = await this.session.actions.flag("flag/get_form", { params: payload.params });
+              const action = Utils.findNode(form, "actions", "flagAction", 13, false);
+              const flag = await this.session.actions.flag("flag/flag", { action: action.flagAction });
+              return flag;
+            };
+            comment.getReplies = async () => {
+              if (comment.metadata.reply_count === 0)
+                throw new Utils.InnertubeError("This comment has no replies", comment);
+              const payload = Proto2.encodeCommentRepliesParams(this.args.video_id, comment.metadata.id);
+              const next = await this.session.actions.next({ ctoken: payload });
+              return parseComments(next.data);
+            };
+            comment.translate = async (target_language) => {
+              const response2 = await this.session.actions.engage("comment/perform_comment_action", {
+                text: comment.text,
+                comment_action: "translate",
+                comment_id: comment.metadata.id,
+                video_id: this.args.video_id,
+                target_language
+              });
+              const translated_content = Utils.findNode(response2.data, "frameworkUpdates", "content", 7, false);
+              return {
+                success: response2.success,
+                status_code: response2.status_code,
+                translated_content: translated_content.content
+              };
+            };
+            return comment;
+          }
+        }).filter((c) => c);
+        response.comment = (text) => this.session.actions.engage("comment/create_comment", { video_id: this.args.video_id, text });
+        response.getContinuation = async () => {
+          const continuation_item = items.find((item) => item.continuationItemRenderer);
+          if (!continuation_item)
+            throw new Utils.InnertubeError("You've reached the end");
+          const is_reply = !!continuation_item.continuationItemRenderer.button;
+          const payload = Utils.findNode(continuation_item, "continuationItemRenderer", "token", is_reply ? 5 : 3);
+          const next = await this.session.actions.next({ ctoken: payload.token });
+          return parseComments(next.data);
+        };
+        return response;
+      };
+      return parseComments(this.data);
+    };
+    _processHomeFeed = new WeakSet();
+    processHomeFeed_fn = function() {
+      const contents = Utils.findNode(this.data, "contents", "videoRenderer", 9, false);
+      const parseItems = (contents2) => {
+        const videos = YTDataItems.VideoItem.parse(contents2);
+        const getContinuation = async () => {
+          const citem = contents2.find((item) => item.continuationItemRenderer);
+          const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+          const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
+          return parseItems(response.data.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems);
+        };
+        return { videos, getContinuation };
+      };
+      return parseItems(contents);
+    };
+    _processLibrary = new WeakSet();
+    processLibrary_fn = function() {
+      var _a, _b, _c;
+      const profile_data = Utils.findNode(this.data, "contents", "profileColumnRenderer", 3);
+      const stats_data = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnStatsRenderer);
+      const stats_items = stats_data.profileColumnStatsRenderer.items;
+      const userinfo = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnUserInfoRenderer);
+      const stats = {};
+      stats_items.forEach((item) => {
+        const label = item.profileColumnStatsEntryRenderer.label.runs.map((run) => run.text).join("");
+        stats[label.toLowerCase()] = parseInt(item.profileColumnStatsEntryRenderer.value.simpleText);
+      });
+      const profile = {
+        name: (_b = (_a = userinfo.profileColumnUserInfoRenderer) == null ? void 0 : _a.title) == null ? void 0 : _b.simpleText,
+        thumbnails: (_c = userinfo.profileColumnUserInfoRenderer) == null ? void 0 : _c.thumbnail.thumbnails,
+        stats
+      };
+      return {
+        profile
+      };
+    };
+    _processSubscriptionFeed = new WeakSet();
+    processSubscriptionFeed_fn = function() {
+      const contents = Utils.findNode(this.data, "contents", "contents", 9, false);
+      const subsfeed = { items: [] };
+      const parseItems = (contents2) => {
+        contents2.forEach((section) => {
+          if (!section.itemSectionRenderer)
+            return;
+          const section_contents = section.itemSectionRenderer.contents[0];
+          const section_title = section_contents.shelfRenderer.title.runs[0].text;
+          const section_items = section_contents.shelfRenderer.content.gridRenderer.items;
+          const items = YTDataItems.GridVideoItem.parse(section_items);
+          subsfeed.items.push({
+            date: section_title,
+            videos: items
+          });
+        });
+        subsfeed.getContinuation = async () => {
+          const citem = contents2.find((item) => item.continuationItemRenderer);
+          const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+          const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
+          const ccontents = Utils.findNode(response.data, "onResponseReceivedActions", "itemSectionRenderer", 4, false);
+          subsfeed.items = [];
+          return parseItems(ccontents);
+        };
+        return subsfeed;
+      };
+      return parseItems(contents);
+    };
+    _processChannel = new WeakSet();
+    processChannel_fn = function() {
+      const tabs = this.data.contents.twoColumnBrowseResultsRenderer.tabs;
+      const metadata = this.data.metadata;
+      const home_tab = tabs.find((tab) => tab.tabRenderer.title == "Home");
+      const home_contents = home_tab.tabRenderer.content.sectionListRenderer.contents;
+      const home_shelves = [];
+      home_contents.forEach((content) => {
+        var _a;
+        if (content.itemSectionRenderer) {
+          const contents = content.itemSectionRenderer.contents[0];
+          const list = (_a = contents == null ? void 0 : contents.shelfRenderer) == null ? void 0 : _a.content.horizontalListRenderer;
+          if (!list)
+            return;
+          const shelf = {
+            title: contents.shelfRenderer.title.runs[0].text,
+            content: []
+          };
+          shelf.content = list.items.map((item) => {
+            if (item.gridVideoRenderer) {
+              return YTDataItems.GridVideoItem.parseItem(item);
+            } else if (item.gridPlaylistRenderer) {
+              return YTDataItems.GridPlaylistItem.parseItem(item);
+            }
+          });
+          home_shelves.push(shelf);
+        }
+      });
+      const ch_info = YTDataItems.ChannelMetadata.parse(metadata);
+      return {
+        ...ch_info,
+        content: {
+          home_page: home_shelves,
+          getVideos: () => {
+          },
+          getPlaylists: () => {
+          },
+          getCommunity: () => {
+          },
+          getChannels: () => {
+          },
+          getAbout: () => {
+          }
+        }
+      };
+    };
+    _processNotifications = new WeakSet();
+    processNotifications_fn = function() {
+      const contents = this.data.actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[0];
+      if (!contents.multiPageMenuNotificationSectionRenderer)
+        throw new Utils.InnertubeError("No notifications");
+      const parseItems = (items) => {
+        const parsed_items = YTDataItems.NotificationItem.parse(items);
+        const getContinuation = async () => {
+          var _a, _b, _c;
+          const citem = items.find((item) => item.continuationItemRenderer);
+          const ctoken = (_c = (_b = (_a = citem == null ? void 0 : citem.continuationItemRenderer) == null ? void 0 : _a.continuationEndpoint) == null ? void 0 : _b.getNotificationMenuEndpoint) == null ? void 0 : _c.ctoken;
+          const response = await this.session.actions.notifications("get_notification_menu", { ctoken });
+          return parseItems(response.data.actions[0].appendContinuationItemsAction.continuationItems);
+        };
+        return { items: parsed_items, getContinuation };
+      };
+      return parseItems(contents.multiPageMenuNotificationSectionRenderer.items);
+    };
+    _processTrending = new WeakSet();
+    processTrending_fn = function() {
+      const tabs = Utils.findNode(this.data, "contents", "tabRenderer", 4, false);
+      const categories = {};
+      tabs.forEach((tab) => {
+        const tab_renderer = tab.tabRenderer;
+        const tab_content = tab_renderer == null ? void 0 : tab_renderer.content;
+        const category_title = tab_renderer.title.toLowerCase();
+        categories[category_title] = {};
+        if (tab_content) {
+          const contents = tab_content.sectionListRenderer.contents;
+          categories[category_title].content = contents.map((content) => {
+            const shelf = content.itemSectionRenderer.contents[0].shelfRenderer;
+            const parsed_shelf = YTDataItems.ShelfRenderer.parse(shelf);
+            return parsed_shelf;
+          });
+        } else {
+          const params = tab_renderer.endpoint.browseEndpoint.params;
+          categories[category_title].getVideos = async () => {
+            const response = await this.session.actions.browse("FEtrending", { params });
+            const tabs2 = Utils.findNode(response, "contents", "tabRenderer", 4, false);
+            const tab2 = tabs2.find((tab3) => tab3.tabRenderer.title === tab_renderer.title);
+            const contents = tab2.tabRenderer.content.sectionListRenderer.contents;
+            const items = Utils.findNode(contents, "itemSectionRenderer", "items", 8, false);
+            return YTDataItems.VideoItem.parse(items);
+          };
+        }
+      });
+      return categories;
+    };
+    _processHistory = new WeakSet();
+    processHistory_fn = function() {
+      const contents = Utils.findNode(this.data, "contents", "videoRenderer", 9, false);
+      const history = { items: [] };
+      const parseItems = (contents2) => {
+        contents2.forEach((section) => {
+          if (!section.itemSectionRenderer)
+            return;
+          const header = section.itemSectionRenderer.header.itemSectionHeaderRenderer.title;
+          const section_title = (header == null ? void 0 : header.simpleText) || (header == null ? void 0 : header.runs.map((run) => run.text).join(""));
+          const contents3 = section.itemSectionRenderer.contents;
+          const section_items = YTDataItems.VideoItem.parse(contents3);
+          history.items.push({
+            date: section_title,
+            videos: section_items
+          });
+        });
+        history.getContinuation = async () => {
+          const citem = contents2.find((item) => item.continuationItemRenderer);
+          const ctoken = citem.continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+          const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
+          history.items = [];
+          return parseItems(response.data.onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems);
+        };
+        return history;
+      };
+      return parseItems(contents);
     };
     module2.exports = Parser;
   }
@@ -37234,33 +37582,14 @@ var {
 } = require_Utils();
 var OldParser = require_parser();
 var Proto = require_proto();
+var _player, _request, _init, init_fn;
 var Innertube = class {
-  #player;
-  #request;
   constructor(config) {
+    __privateAdd(this, _init);
+    __privateAdd(this, _player, void 0);
+    __privateAdd(this, _request, void 0);
     this.config = config || {};
-    return this.#init();
-  }
-  async #init() {
-    const request = new Request(this.config);
-    const session = await new SessionBuilder(this.config, request.instance).build();
-    this.key = session.key;
-    this.version = session.api_version;
-    this.context = session.context;
-    this.logged_in = !!this.config.cookie;
-    this.sts = session.player.sts;
-    this.player_url = session.player.url;
-    this.#player = session.player;
-    request.setSession(this);
-    this.#request = request.instance;
-    this.ev = new EventEmitter();
-    this.oauth = new OAuth(this.ev, request.instance);
-    this.actions = new Actions(this);
-    this.account = new AccountManager(this.actions);
-    this.playlist = new PlaylistManager(this.actions);
-    this.interact = new InteractionManager(this.actions);
-    this.music = new YTMusic(this);
-    return this;
+    return __privateMethod(this, _init, init_fn).call(this);
   }
   signIn(credentials = {}) {
     return new Promise(async (resolve) => {
@@ -37290,13 +37619,13 @@ var Innertube = class {
     const initial_info = this.actions.getVideoInfo(video_id, cpn);
     const continuation = this.actions.next({ video_id });
     const response = await Promise.all([initial_info, continuation]);
-    return new VideoInfo(response, this.actions, this.#player, cpn);
+    return new VideoInfo(response, this.actions, __privateGet(this, _player), cpn);
   }
   async getBasicInfo(video_id) {
     throwIfMissing({ video_id });
     const cpn = generateRandomString(16);
     const response = await this.actions.getVideoInfo(video_id, cpn);
-    return new VideoInfo([response, {}], this.actions, this.#player, cpn);
+    return new VideoInfo([response, {}], this.actions, __privateGet(this, _player), cpn);
   }
   async search(query, filters = {}) {
     throwIfMissing({ query });
@@ -37383,11 +37712,35 @@ var Innertube = class {
     return stream;
   }
   getPlayer() {
-    return this.#player;
+    return __privateGet(this, _player);
   }
   get request() {
-    return this.#request;
+    return __privateGet(this, _request);
   }
+};
+_player = new WeakMap();
+_request = new WeakMap();
+_init = new WeakSet();
+init_fn = async function() {
+  const request = new Request(this.config);
+  const session = await new SessionBuilder(this.config, request.instance).build();
+  this.key = session.key;
+  this.version = session.api_version;
+  this.context = session.context;
+  this.logged_in = !!this.config.cookie;
+  this.sts = session.player.sts;
+  this.player_url = session.player.url;
+  __privateSet(this, _player, session.player);
+  request.setSession(this);
+  __privateSet(this, _request, request.instance);
+  this.ev = new EventEmitter();
+  this.oauth = new OAuth(this.ev, request.instance);
+  this.actions = new Actions(this);
+  this.account = new AccountManager(this.actions);
+  this.playlist = new PlaylistManager(this.actions);
+  this.interact = new InteractionManager(this.actions);
+  this.music = new YTMusic(this);
+  return this;
 };
 module.exports = Innertube;
 /*!
