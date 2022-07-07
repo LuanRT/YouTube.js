@@ -4,13 +4,11 @@
   "description": "A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
   "contributors": [
-    "Wykerd (https://github.com/wykerd/)"
+    "Wykerd (https://github.com/wykerd/)",
+    "MasterOfBob777 (https://github.com/MasterOfBob777)"
   ],
   "funding": "https://ko-fi.com/luanrt",
   "license": "MIT",
-  "engines": {
-    "node": ">=14"
-  },
   "scripts": {
     "test": "npx jest",
     "test:node": "npm run build:node && npx jest node",
@@ -20,7 +18,7 @@
     "build:types": "npx tsc",
     "build:parser-map": "node ./scripts/build-parser-json.js",
     "build:general": "npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js=\"/* eslint-disable */\" --bundle --target=esnext --format=cjs --sourcemap",
-    "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --define:BROWSER=false",
+    "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --external:./node_modules/* --target=node12 --define:BROWSER=false",
     "build:node:prod": "npm run build:node -- --minify",
     "build:browser": "npm run build:general -- --outfile=./build/browser.js --platform=browser --define:BROWSER=true",
     "build:browser:prod": "npm run build:browser -- --minify"
@@ -35,7 +33,6 @@
     "lib": "./lib"
   },
   "dependencies": {
-    "@stdlib/os-tmpdir": "^0.0.8",
     "axios": "^0.21.4",
     "buffer": "^6.0.3",
     "events": "^3.3.0",
