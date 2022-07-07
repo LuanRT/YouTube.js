@@ -3907,1145 +3907,6 @@ var require_proto = __commonJS({
   }
 });
 
-// lib/core/Actions.js
-var require_Actions = __commonJS({
-  "lib/core/Actions.js"(exports2, module2) {
-    "use strict";
-    var Uuid = require("../node_modules/uuid/dist/index.js");
-    var Proto2 = require_proto();
-    var Utils = require_Utils();
-    var Constants = require_Constants();
-    var _session, _request2, _needsLogin, needsLogin_fn;
-    var Actions2 = class {
-      constructor(session) {
-        __privateAdd(this, _needsLogin);
-        __privateAdd(this, _session, void 0);
-        __privateAdd(this, _request2, void 0);
-        __privateSet(this, _session, session);
-        __privateSet(this, _request2, session.request);
-      }
-      async browse(id, args = {}) {
-        if (__privateMethod(this, _needsLogin, needsLogin_fn).call(this, id) && !__privateGet(this, _session).logged_in)
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {};
-        if (args.params)
-          data.params = args.params;
-        if (args.is_ctoken) {
-          data.continuation = id;
-        } else {
-          data.browseId = id;
-        }
-        if (args.client) {
-          data.client = args.client;
-        }
-        const response = await __privateGet(this, _request2).post("/browse", data);
-        return response;
-      }
-      async engage(action, args = {}) {
-        if (!__privateGet(this, _session).logged_in && !args.hasOwnProperty("text"))
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {};
-        switch (action) {
-          case "like/like":
-          case "like/dislike":
-          case "like/removelike":
-            data.target = {};
-            data.target.videoId = args.video_id;
-            if (args.params) {
-              data.params = args.params;
-            }
-            break;
-          case "subscription/subscribe":
-          case "subscription/unsubscribe":
-            data.channelIds = [args.channel_id];
-            data.params = action === "subscription/subscribe" ? "EgIIAhgA" : "CgIIAhgA";
-            break;
-          case "comment/create_comment":
-            data.commentText = args.text;
-            data.createCommentParams = Proto2.encodeCommentParams(args.video_id);
-            break;
-          case "comment/create_comment_reply":
-            data.createReplyParams = Proto2.encodeCommentReplyParams(args.comment_id, args.video_id);
-            data.commentText = args.text;
-            break;
-          case "comment/perform_comment_action":
-            const target_action = (() => {
-              switch (args.comment_action) {
-                case "like":
-                  return Proto2.encodeCommentActionParams(5, args);
-                case "dislike":
-                  return Proto2.encodeCommentActionParams(4, args);
-                case "translate":
-                  return Proto2.encodeCommentActionParams(22, args);
-                default:
-                  break;
-              }
-            })();
-            data.actions = [target_action];
-            break;
-          default:
-            throw new Utils.InnertubeError("Action not implemented", action);
-        }
-        const response = await __privateGet(this, _request2).post(`/${action}`, data);
-        return response;
-      }
-      async account(action, args = {}) {
-        if (!__privateGet(this, _session).logged_in)
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {
-          client: args.client
-        };
-        switch (action) {
-          case "account/set_setting":
-            data.newValue = {
-              boolValue: args.new_value
-            };
-            data.settingItemId = args.setting_item_id;
-            break;
-          case "account/accounts_list":
-            break;
-          default:
-            throw new Utils.InnertubeError("Action not implemented", action);
-        }
-        const response = await __privateGet(this, _request2).post(`/${action}`, data);
-        return response;
-      }
-      async search(args = {}) {
-        const data = { client: args.client };
-        if (args.query) {
-          data.query = args.query;
-        }
-        if (args.ctoken) {
-          data.continuation = args.ctoken;
-        }
-        if (args.params) {
-          data.params = args.params;
-        }
-        if (args.filters) {
-          if (args.client == "YTMUSIC") {
-            data.params = Proto2.encodeMusicSearchFilters(args.filters);
-          } else {
-            data.params = Proto2.encodeSearchFilters(args.filters);
-          }
-        }
-        const response = await __privateGet(this, _request2).post("/search", data);
-        return response;
-      }
-      async searchSound(args = {}) {
-        const data = {
-          query: args.query,
-          client: "ANDROID"
-        };
-        const response = await __privateGet(this, _request2).post("/sfv/search", data);
-        return response;
-      }
-      async channel(action, args = {}) {
-        if (!__privateGet(this, _session).logged_in)
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {
-          client: args.client || "ANDROID"
-        };
-        switch (action) {
-          case "channel/edit_name":
-            data.givenName = args.new_name;
-            break;
-          case "channel/edit_description":
-            data.description = args.new_description;
-            break;
-          case "channel/get_profile_editor":
-            break;
-          default:
-            throw new Utils.InnertubeError("Action not implemented", action);
-        }
-        const response = await __privateGet(this, _request2).post(`/${action}`, data);
-        return response;
-      }
-      async playlist(action, args = {}) {
-        if (!__privateGet(this, _session).logged_in)
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {};
-        switch (action) {
-          case "playlist/create":
-            data.title = args.title;
-            data.videoIds = args.ids;
-            break;
-          case "playlist/delete":
-            data.playlistId = args.playlist_id;
-            break;
-          case "browse/edit_playlist":
-            data.playlistId = args.playlist_id;
-            data.actions = args.ids.map((id) => {
-              switch (args.action) {
-                case "ACTION_ADD_VIDEO":
-                  return {
-                    action: args.action,
-                    addedVideoId: id
-                  };
-                case "ACTION_REMOVE_VIDEO":
-                  return {
-                    action: args.action,
-                    setVideoId: id
-                  };
-                default:
-                  break;
-              }
-            });
-            break;
-          default:
-            throw new Utils.InnertubeError("Action not implemented", action);
-        }
-        const response = await __privateGet(this, _request2).post(`/${action}`, data);
-        return response;
-      }
-      async notifications(action, args = {}) {
-        if (!__privateGet(this, _session).logged_in)
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {};
-        switch (action) {
-          case "modify_channel_preference":
-            const pref_types = {
-              PERSONALIZED: 1,
-              ALL: 2,
-              NONE: 3
-            };
-            data.params = Proto2.encodeNotificationPref(args.channel_id, pref_types[args.pref.toUpperCase()]);
-            break;
-          case "get_notification_menu":
-            data.notificationsMenuRequestType = "NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX";
-            if (args.ctoken)
-              data.ctoken = args.ctoken;
-            break;
-          case "record_interactions":
-            data.serializedRecordNotificationInteractionsRequest = args.params;
-            break;
-          case "get_unseen_count":
-            break;
-          default:
-            throw new Utils.InnertubeError("Action not implemented", action);
-        }
-        const response = await __privateGet(this, _request2).post(`/notification/${action}`, data);
-        return response;
-      }
-      async livechat(action, args = {}) {
-        const data = { client: args.client };
-        switch (action) {
-          case "live_chat/get_live_chat":
-          case "live_chat/get_live_chat_replay":
-            data.continuation = args.ctoken;
-            break;
-          case "live_chat/send_message":
-            data.params = Proto2.encodeMessageParams(args.channel_id, args.video_id);
-            data.clientMessageId = Uuid.v4();
-            data.richMessage = {
-              textSegments: [{
-                text: args.text
-              }]
-            };
-            break;
-          case "live_chat/get_item_context_menu":
-            break;
-          case "live_chat/moderate":
-            data.params = args.params;
-            break;
-          case "updated_metadata":
-            data.videoId = args.video_id;
-            if (args.ctoken)
-              data.continuation = args.ctoken;
-            break;
-          default:
-            throw new Utils.InnertubeError("Action not implemented", action);
-        }
-        const response = await __privateGet(this, _request2).post(`/${action}`, data);
-        return response;
-      }
-      async thumbnails(args = {}) {
-        const data = {
-          client: "ANDROID",
-          videoId: args.video_id
-        };
-        const response = await __privateGet(this, _request2).post("/thumbnails", data);
-        return response;
-      }
-      async geo(action, args = {}) {
-        if (!__privateGet(this, _session).logged_in)
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {
-          input: args.input,
-          client: "ANDROID"
-        };
-        const response = await __privateGet(this, _request2).post(`/geo/${action}`, data);
-        return response;
-      }
-      async flag(action, args) {
-        if (!__privateGet(this, _session).logged_in)
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {};
-        switch (action) {
-          case "flag/flag":
-            data.action = args.action;
-            break;
-          case "flag/get_form":
-            data.params = args.params;
-            break;
-          default:
-            throw new Utils.InnertubeError("Action not implemented", action);
-        }
-        const response = await __privateGet(this, _request2).post(`/${action}`, data);
-        return response;
-      }
-      async music(action, args) {
-        const data = {
-          input: args.input || "",
-          client: "YTMUSIC"
-        };
-        const response = await __privateGet(this, _request2).post(`/music/${action}`, data);
-        return response;
-      }
-      async next(args = {}) {
-        const data = { client: args.client };
-        if (args.ctoken) {
-          data.continuation = args.ctoken;
-        }
-        if (args.video_id) {
-          data.videoId = args.video_id;
-        }
-        const response = await __privateGet(this, _request2).post("/next", data);
-        return response;
-      }
-      async getVideoInfo(id, cpn, client) {
-        const data = {
-          playbackContext: {
-            contentPlaybackContext: {
-              vis: 0,
-              splay: false,
-              referer: "https://www.youtube.com",
-              currentUrl: `/watch?v=${id}`,
-              autonavState: "STATE_OFF",
-              signatureTimestamp: __privateGet(this, _session).sts,
-              autoCaptionsDefaultOn: false,
-              html5Preference: "HTML5_PREF_WANTS",
-              lactMilliseconds: "-1"
-            }
-          },
-          attestationRequest: {
-            omitBotguardData: true
-          },
-          videoId: id
-        };
-        if (client) {
-          data.client = client;
-        }
-        if (cpn) {
-          data.cpn = cpn;
-        }
-        const response = await __privateGet(this, _request2).post("/player", data);
-        return response.data;
-      }
-      async getSearchSuggestions(client, query) {
-        if (!["YOUTUBE", "YTMUSIC"].includes(client))
-          throw new Utils.InnertubeError("Invalid client", client);
-        const response = await {
-          YOUTUBE: () => __privateGet(this, _request2).call(this, {
-            url: "search",
-            baseURL: Constants.URLS.YT_SUGGESTIONS,
-            params: {
-              q: query,
-              ds: "yt",
-              client: "youtube",
-              xssi: "t",
-              oe: "UTF",
-              gl: __privateGet(this, _session).context.client.gl,
-              hl: __privateGet(this, _session).context.client.hl
-            }
-          }),
-          YTMUSIC: () => this.music("get_search_suggestions", {
-            input: query
-          })
-        }[client]();
-        return response;
-      }
-      async getUserMentionSuggestions(args = {}) {
-        if (!__privateGet(this, _session).logged_in)
-          throw new Utils.InnertubeError("You are not signed in");
-        const data = {
-          input: args.input,
-          client: "ANDROID"
-        };
-        const response = await __privateGet(this, _request2).post("get_user_mention_suggestions", data);
-        return response;
-      }
-      async execute(action, args) {
-        const data = { ...args };
-        if (Reflect.has(data, "request"))
-          delete data.request;
-        if (Reflect.has(data, "clientActions"))
-          delete data.clientActions;
-        if (Reflect.has(data, "action")) {
-          data.actions = [data.action];
-          delete data.action;
-        }
-        if (Reflect.has(data, "token")) {
-          data.continuation = data.token;
-          delete data.token;
-        }
-        return __privateGet(this, _request2).post(action, data);
-      }
-    };
-    __name(Actions2, "Actions");
-    _session = new WeakMap();
-    _request2 = new WeakMap();
-    _needsLogin = new WeakSet();
-    needsLogin_fn = /* @__PURE__ */ __name(function(id) {
-      return [
-        "FElibrary",
-        "FEhistory",
-        "FEsubscriptions",
-        "SPaccount_notifications",
-        "SPaccount_privacy",
-        "SPtime_watched"
-      ].includes(id);
-    }, "#needsLogin");
-    module2.exports = Actions2;
-  }
-});
-
-// lib/utils/wrappers/NodeCache.js
-var require_NodeCache = __commonJS({
-  "lib/utils/wrappers/NodeCache.js"(exports2, module2) {
-    "use strict";
-    var fs = require("fs");
-    var NodeCache = class {
-      async read(key) {
-        return (await fs.promises.readFile(key)).buffer;
-      }
-      async write(key, data) {
-        const parts = key.split("/").slice(0, -1);
-        let current = "";
-        for (const part of parts) {
-          current += `${part}/`;
-          if (!await this.exists(current)) {
-            await fs.promises.mkdir(current);
-          }
-        }
-        return await fs.promises.writeFile(key, data);
-      }
-      async exists(key) {
-        return await fs.promises.stat(key).then(() => true).catch(() => false);
-      }
-      async remove(key) {
-        return await fs.promises.rm(key);
-      }
-    };
-    __name(NodeCache, "NodeCache");
-    module2.exports = new NodeCache();
-  }
-});
-
-// lib/deciphers/Signature.js
-var require_Signature = __commonJS({
-  "lib/deciphers/Signature.js"(exports2) {
-    "use strict";
-    var { SIG_REGEX } = require_Constants();
-    var SignatureOperation = exports2.SignatureOperation = {
-      REVERSE: 0,
-      SPLICE: 1,
-      SWAP: 2
-    };
-    var Signature = class {
-      constructor(action_sequence) {
-        this.action_sequence = action_sequence;
-      }
-      static fromSourceCode(sig_decipher_sc) {
-        let actions;
-        const action_sequence = [];
-        const functions = Signature.getFunctions(sig_decipher_sc);
-        while ((actions = SIG_REGEX.ACTIONS.exec(sig_decipher_sc)) !== null) {
-          const action = actions.groups;
-          if (!action)
-            continue;
-          switch (action.name) {
-            case functions[0]:
-              action_sequence.push([SignatureOperation.REVERSE, 0]);
-              break;
-            case functions[1]:
-              action_sequence.push([SignatureOperation.SPLICE, parseInt(action.param)]);
-              break;
-            case functions[2]:
-              action_sequence.push([SignatureOperation.SWAP, parseInt(action.param)]);
-              break;
-            default:
-          }
-        }
-        return new Signature(action_sequence);
-      }
-      decipher(url) {
-        var _a;
-        const args = new URLSearchParams(url);
-        const signature = (_a = args.get("s")) == null ? void 0 : _a.split("");
-        if (!signature)
-          throw new TypeError("Invalid signature");
-        for (const action of this.action_sequence) {
-          switch (action[0]) {
-            case SignatureOperation.REVERSE:
-              signature.reverse();
-              break;
-            case SignatureOperation.SPLICE:
-              signature.splice(0, action[1]);
-              break;
-            case SignatureOperation.SWAP:
-              {
-                const index = action[1];
-                const orig_arr = signature[0];
-                signature[0] = signature[index % signature.length];
-                signature[index % signature.length] = orig_arr;
-              }
-              break;
-            default:
-              break;
-          }
-        }
-        return signature.join("");
-      }
-      toJSON() {
-        return [...this.action_sequence];
-      }
-      toArrayBuffer() {
-        const buffer = new ArrayBuffer(4 + 4 + this.action_sequence.length * (1 + 2));
-        const view = new DataView(buffer);
-        let offset = 0;
-        view.setUint32(offset, Signature.LIBRARY_VERSION, true);
-        offset += 4;
-        view.setUint32(offset, this.action_sequence.length, true);
-        offset += 4;
-        for (let i = 0; i < this.action_sequence.length; i++) {
-          view.setUint8(offset, this.action_sequence[i][0]);
-          offset += 1;
-          view.setUint16(offset, this.action_sequence[i][1], true);
-          offset += 2;
-        }
-        return buffer;
-      }
-      static fromArrayBuffer(buffer) {
-        const view = new DataView(buffer);
-        let offset = 0;
-        const version = view.getUint32(offset, true);
-        offset += 4;
-        if (version !== Signature.LIBRARY_VERSION)
-          throw new TypeError("Invalid library version");
-        const action_sequence_length = view.getUint32(offset, true);
-        offset += 4;
-        const action_sequence = new Array(action_sequence_length);
-        for (let i = 0; i < action_sequence_length; i++) {
-          action_sequence[i] = [
-            view.getUint8(offset),
-            view.getUint16(offset + 1, true)
-          ];
-          offset += 3;
-        }
-        return new Signature(action_sequence);
-      }
-      static getFunctions(sc) {
-        let func;
-        const functions = [];
-        while ((func = SIG_REGEX.FUNCTIONS.exec(sc)) !== null) {
-          if (func[0].includes("reverse")) {
-            functions[0] = func[1];
-          } else if (func[0].includes("splice")) {
-            functions[1] = func[1];
-          } else {
-            functions[2] = func[1];
-          }
-        }
-        return functions;
-      }
-      static get LIBRARY_VERSION() {
-        return 1;
-      }
-    };
-    __name(Signature, "Signature");
-    exports2.default = Signature;
-  }
-});
-
-// lib/deciphers/NToken.js
-var require_NToken = __commonJS({
-  "lib/deciphers/NToken.js"(exports2) {
-    "use strict";
-    var { NTOKEN_REGEX, BASE64_DIALECT } = require_Constants();
-    var NTokenTransformOperation = exports2.NTokenTransformOperation = {
-      NO_OP: 0,
-      PUSH: 1,
-      REVERSE_1: 2,
-      REVERSE_2: 3,
-      SPLICE: 4,
-      SWAP0_1: 5,
-      SWAP0_2: 6,
-      ROTATE_1: 7,
-      ROTATE_2: 8,
-      BASE64_DIA: 9,
-      TRANSLATE_1: 10,
-      TRANSLATE_2: 11
-    };
-    var NTokenTransformOpType = exports2.NTokenTransformOpType = {
-      FUNC: 0,
-      N_ARR: 1,
-      LITERAL: 2,
-      REF: 3
-    };
-    var OP_LOOKUP = {
-      "d.push(e)": NTokenTransformOperation.PUSH,
-      "d.reverse()": NTokenTransformOperation.REVERSE_1,
-      "function(d){for(var": NTokenTransformOperation.REVERSE_2,
-      "d.length;d.splice(e,1)": NTokenTransformOperation.SPLICE,
-      "d[0])[0])": NTokenTransformOperation.SWAP0_1,
-      "f=d[0];d[0]": NTokenTransformOperation.SWAP0_2,
-      "reverse().forEach": NTokenTransformOperation.ROTATE_1,
-      "unshift(d.pop())": NTokenTransformOperation.ROTATE_2,
-      "function(){for(var": NTokenTransformOperation.BASE64_DIA,
-      "function(d,e){for(var f": NTokenTransformOperation.TRANSLATE_1,
-      "function(d,e,f){var": NTokenTransformOperation.TRANSLATE_2
-    };
-    var NTokenTransforms = class {
-      static translate1(arr, token, is_reverse_base64) {
-        const characters = is_reverse_base64 ? BASE64_DIALECT.REVERSE : BASE64_DIALECT.NORMAL;
-        const token_chars = token.split("");
-        arr.forEach((char, index, loc) => {
-          token_chars.push(loc[index] = characters[(characters.indexOf(char) - characters.indexOf(token_chars[index]) + 64) % characters.length]);
-        });
-      }
-      static translate2(arr, token, characters) {
-        let chars_length = characters.length;
-        const token_chars = token.split("");
-        arr.forEach((char, index, loc) => {
-          token_chars.push(loc[index] = characters[(characters.indexOf(char) - characters.indexOf(token_chars[index]) + index + chars_length--) % characters.length]);
-        });
-      }
-      static getBase64Dia(is_reverse_base64) {
-        const characters = is_reverse_base64 ? BASE64_DIALECT.REVERSE : BASE64_DIALECT.NORMAL;
-        return characters;
-      }
-      static swap0(arr, index) {
-        const old_elem = arr[0];
-        index = (index % arr.length + arr.length) % arr.length;
-        arr[0] = arr[index];
-        arr[index] = old_elem;
-      }
-      static rotate(arr, index) {
-        index = (index % arr.length + arr.length) % arr.length;
-        arr.splice(-index).reverse().forEach((el) => arr.unshift(el));
-      }
-      static splice(arr, index) {
-        index = (index % arr.length + arr.length) % arr.length;
-        arr.splice(index, 1);
-      }
-      static reverse(arr) {
-        arr.reverse();
-      }
-      static push(arr, item) {
-        if (Array.isArray(arr == null ? void 0 : arr[0]))
-          arr.push([NTokenTransformOpType.LITERAL, item]);
-        else
-          arr.push(item);
-      }
-    };
-    __name(NTokenTransforms, "NTokenTransforms");
-    exports2.NTokenTransforms = NTokenTransforms;
-    var TRANSFORM_FUNCTIONS = [{
-      [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
-      [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
-      [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
-      [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
-      [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
-      [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
-      [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
-      [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
-      [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(false),
-      [NTokenTransformOperation.TRANSLATE_1]: (...args) => NTokenTransforms.translate1.apply(null, [...args, false]),
-      [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
-    }, {
-      [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
-      [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
-      [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
-      [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
-      [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
-      [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
-      [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
-      [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
-      [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(true),
-      [NTokenTransformOperation.TRANSLATE_1]: (...args) => NTokenTransforms.translate1.apply(null, [...args, true]),
-      [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
-    }];
-    var NToken = class {
-      constructor(transformer) {
-        this.transformer = transformer;
-      }
-      static fromSourceCode(raw) {
-        const transformation_data = NToken.getTransformationData(raw);
-        const transformations = transformation_data.map((el) => {
-          var _a;
-          if (el != null && typeof el != "number") {
-            const is_reverse_base64 = el.includes("case 65:");
-            const opcode = OP_LOOKUP[(_a = NToken.getFunc(el)) == null ? void 0 : _a[0]];
-            if (opcode) {
-              el = [
-                NTokenTransformOpType.FUNC,
-                opcode,
-                0 + is_reverse_base64
-              ];
-            } else if (el == "b") {
-              el = [NTokenTransformOpType.N_ARR];
-            } else {
-              el = [NTokenTransformOpType.LITERAL, el];
-            }
-          } else if (el != null) {
-            el = [NTokenTransformOpType.LITERAL, el];
-          }
-          return el;
-        });
-        const placeholder_indexes = [...raw.matchAll(NTOKEN_REGEX.PLACEHOLDERS)].map((item) => parseInt(item[1]));
-        placeholder_indexes.forEach((i) => transformations[i] = [NTokenTransformOpType.REF]);
-        const function_calls = [...raw.replace(/\n/g, "").match(/try\{(.*?)\}catch/s)[1].matchAll(NTOKEN_REGEX.CALLS)].map((params) => [
-          parseInt(params[1]),
-          params[2].split(",").map((param) => {
-            var _a;
-            return parseInt((_a = param.match(/c\[(.*?)\]/)) == null ? void 0 : _a[1]);
-          })
-        ]);
-        return new NToken([transformations, function_calls]);
-      }
-      evaluate(i, n_token, transformer) {
-        switch (i[0]) {
-          case NTokenTransformOpType.FUNC:
-            return TRANSFORM_FUNCTIONS[i[2]][i[1]];
-          case NTokenTransformOpType.N_ARR:
-            return n_token;
-          case NTokenTransformOpType.LITERAL:
-            return i[1];
-          case NTokenTransformOpType.REF:
-            return transformer[0];
-        }
-      }
-      transform(n) {
-        const n_token = n.split("");
-        const transformer = this.getTransformerClone();
-        try {
-          transformer[1].forEach(([index, param_index]) => {
-            const base64_dia = param_index[2] && this.evaluate(transformer[0][param_index[2]], n_token, transformer)();
-            this.evaluate(transformer[0][index], n_token, transformer)(param_index[0] !== void 0 && this.evaluate(transformer[0][param_index[0]], n_token, transformer), param_index[1] !== void 0 && this.evaluate(transformer[0][param_index[1]], n_token, transformer), base64_dia);
-          });
-        } catch (err) {
-          console.error(new Error(`Could not transform n-token, download may be throttled.
-Original Token:${n}Error:
-${err}`));
-          return n;
-        }
-        return n_token.join("");
-      }
-      getTransformerClone() {
-        return [
-          [...this.transformer[0]],
-          [...this.transformer[1]]
-        ];
-      }
-      toJSON() {
-        return this.getTransformerClone();
-      }
-      toArrayBuffer() {
-        let size = 4 * 3;
-        for (const instruction of this.transformer[0]) {
-          switch (instruction[0]) {
-            case NTokenTransformOpType.FUNC:
-              size += 2;
-              break;
-            case NTokenTransformOpType.N_ARR:
-            case NTokenTransformOpType.REF:
-              size += 1;
-              break;
-            case NTokenTransformOpType.LITERAL:
-              if (typeof instruction[1] === "string")
-                size += 1 + 4 + new TextEncoder().encode(instruction[1]).byteLength;
-              size += 4 + 1;
-              break;
-          }
-        }
-        for (const call of this.transformer[1]) {
-          size += 2 + call[1].length;
-        }
-        const buffer = new ArrayBuffer(size);
-        const view = new DataView(buffer);
-        let offset = 0;
-        view.setUint32(offset, NToken.LIBRARY_VERSION, true);
-        offset += 4;
-        view.setUint32(offset, this.transformer[0].length, true);
-        offset += 4;
-        view.setUint32(offset, this.transformer[1].length, true);
-        offset += 4;
-        for (const instruction of this.transformer[0]) {
-          switch (instruction[0]) {
-            case NTokenTransformOpType.FUNC:
-              {
-                const opcode = instruction[0] << 6 | instruction[2];
-                view.setUint8(offset, opcode);
-                offset += 1;
-                view.setUint8(offset, instruction[1]);
-                offset += 1;
-              }
-              break;
-            case NTokenTransformOpType.N_ARR:
-            case NTokenTransformOpType.REF:
-              {
-                const opcode = instruction[0] << 6;
-                view.setUint8(offset, opcode);
-                offset += 1;
-              }
-              break;
-            case NTokenTransformOpType.LITERAL:
-              {
-                const type = typeof instruction[1] === "string" ? 1 : 0;
-                const opcode = instruction[0] << 6 | type;
-                view.setUint8(offset, opcode);
-                offset += 1;
-                if (type === 0) {
-                  view.setInt32(offset, instruction[1], true);
-                  offset += 4;
-                } else {
-                  const encoded = new TextEncoder().encode(instruction[1]);
-                  view.setUint32(offset, encoded.byteLength, true);
-                  offset += 4;
-                  for (let i = 0; i < encoded.byteLength; i++) {
-                    view.setUint8(offset, encoded[i]);
-                    offset += 1;
-                  }
-                }
-              }
-              break;
-          }
-        }
-        for (const call of this.transformer[1]) {
-          view.setUint8(offset, call[0]);
-          offset += 1;
-          view.setUint8(offset, call[1].length);
-          offset += 1;
-          for (const param of call[1]) {
-            view.setUint8(offset, param);
-            offset += 1;
-          }
-        }
-        return buffer;
-      }
-      static fromArrayBuffer(buffer) {
-        const view = new DataView(buffer);
-        let offset = 0;
-        const version = view.getUint32(offset, true);
-        offset += 4;
-        if (version !== NToken.LIBRARY_VERSION)
-          throw new TypeError("Invalid library version");
-        const transformations_length = view.getUint32(offset, true);
-        offset += 4;
-        const function_calls_length = view.getUint32(offset, true);
-        offset += 4;
-        const transformations = new Array(transformations_length);
-        for (let i = 0; i < transformations_length; i++) {
-          const opcode = view.getUint8(offset++);
-          const op = opcode >> 6;
-          switch (op) {
-            case NTokenTransformOpType.FUNC:
-              {
-                const is_reverse_base64 = opcode & 1;
-                const operation = view.getUint8(offset++);
-                transformations[i] = [op, operation, is_reverse_base64];
-              }
-              break;
-            case NTokenTransformOpType.N_ARR:
-            case NTokenTransformOpType.REF:
-              transformations[i] = [op];
-              break;
-            case NTokenTransformOpType.LITERAL:
-              {
-                const type = opcode & 1;
-                if (type === 0) {
-                  const literal = view.getInt32(offset, true);
-                  offset += 4;
-                  transformations[i] = [op, literal];
-                } else {
-                  const length = view.getUint32(offset, true);
-                  offset += 4;
-                  const literal = new Uint8Array(length);
-                  for (let i2 = 0; i2 < length; i2++) {
-                    literal[i2] = view.getUint8(offset++);
-                  }
-                  transformations[i] = [op, new TextDecoder().decode(literal)];
-                }
-              }
-              break;
-            default:
-              throw new Error("Invalid opcode");
-          }
-        }
-        const function_calls = new Array(function_calls_length);
-        for (let i = 0; i < function_calls_length; i++) {
-          const index = view.getUint8(offset++);
-          const num_params = view.getUint8(offset++);
-          const params = new Array(num_params);
-          for (let j = 0; j < num_params; j++) {
-            params[j] = view.getUint8(offset++);
-          }
-          function_calls[i] = [index, params];
-        }
-        return new NToken([transformations, function_calls]);
-      }
-      static get LIBRARY_VERSION() {
-        return 1;
-      }
-      static getFunc(el) {
-        return el.match(NTOKEN_REGEX.FUNCTIONS);
-      }
-      static getTransformationData(raw) {
-        var _a;
-        const data = `[${(_a = raw.replace(/\n/g, "").match(/c=\[(.*?)\];c/s)) == null ? void 0 : _a[1]}]`;
-        return JSON.parse(this.refineNTokenData(data));
-      }
-      static refineNTokenData(data) {
-        return data.replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)').replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)').replace(/\[function\(d,e,f\)/g, '["function(d,e,f)').replace(/,b,/g, ',"b",').replace(/,b/g, ',"b"').replace(/b,/g, '"b",').replace(/b]/g, '"b"]').replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",').replace(/""/g, "").replace(/length]\)}"/g, "length])}");
-      }
-    };
-    __name(NToken, "NToken");
-    exports2.default = NToken;
-  }
-});
-
-// lib/core/Player.js
-var require_Player = __commonJS({
-  "lib/core/Player.js"(exports2, module2) {
-    "use strict";
-    var Cache = false ? null : require_NodeCache();
-    var Utils = require_Utils();
-    var Constants = require_Constants();
-    var { default: Signature } = require_Signature();
-    var { default: NToken } = require_NToken();
-    var _request2, _player_id, _player_url, _player_path, _ntoken, _signature, _signature_timestamp, _cache_dir, _extractSigTimestamp, extractSigTimestamp_fn, _extractSigDecipherSc, extractSigDecipherSc_fn, _extractNTokenSc, extractNTokenSc_fn;
-    var _Player = class {
-      constructor(id, request) {
-        __privateAdd(this, _extractSigTimestamp);
-        __privateAdd(this, _extractSigDecipherSc);
-        __privateAdd(this, _extractNTokenSc);
-        __privateAdd(this, _request2, void 0);
-        __privateAdd(this, _player_id, void 0);
-        __privateAdd(this, _player_url, void 0);
-        __privateAdd(this, _player_path, void 0);
-        __privateAdd(this, _ntoken, void 0);
-        __privateAdd(this, _signature, void 0);
-        __privateAdd(this, _signature_timestamp, void 0);
-        __privateAdd(this, _cache_dir, void 0);
-        __privateSet(this, _player_id, id);
-        __privateSet(this, _request2, request);
-        __privateSet(this, _cache_dir, `${Utils.getTmpdir()}/yt-cache`);
-        __privateSet(this, _player_url, `${Constants.URLS.YT_BASE}/s/player/${__privateGet(this, _player_id)}/player_ias.vflset/en_US/base.js`);
-        __privateSet(this, _player_path, `${__privateGet(this, _cache_dir)}/${__privateGet(this, _player_id)}.bin`);
-      }
-      async init() {
-        if (await this.isCached()) {
-          const buffer = await Cache.read(__privateGet(this, _player_path));
-          const view = new DataView(buffer);
-          const version = view.getUint32(0, true);
-          if (version == _Player.LIBRARY_VERSION) {
-            const sig_decipher_len = view.getUint32(8, true);
-            const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
-            const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
-            __privateSet(this, _ntoken, NToken.fromArrayBuffer(ntoken_transform_buf));
-            __privateSet(this, _signature, Signature.fromArrayBuffer(sig_decipher_buf));
-            __privateSet(this, _signature_timestamp, view.getUint32(4, true));
-            return this;
-          }
-        }
-        const response = await __privateGet(this, _request2).get(__privateGet(this, _player_url), { headers: { "content-type": "text/javascript" } });
-        __privateSet(this, _signature_timestamp, __privateMethod(this, _extractSigTimestamp, extractSigTimestamp_fn).call(this, response.data));
-        const signature_decipher_sc = __privateMethod(this, _extractSigDecipherSc, extractSigDecipherSc_fn).call(this, response.data);
-        const ntoken_decipher_sc = __privateMethod(this, _extractNTokenSc, extractNTokenSc_fn).call(this, response.data);
-        __privateSet(this, _signature, Signature.fromSourceCode(signature_decipher_sc));
-        __privateSet(this, _ntoken, NToken.fromSourceCode(ntoken_decipher_sc));
-        try {
-          await Cache.exists(__privateGet(this, _cache_dir)) && await Cache.remove(__privateGet(this, _cache_dir), { recursive: true });
-          const ntoken_buf = __privateGet(this, _ntoken).toArrayBuffer();
-          const sig_decipher_buf = __privateGet(this, _signature).toArrayBuffer();
-          const buffer = new ArrayBuffer(12 + sig_decipher_buf.byteLength + ntoken_buf.byteLength);
-          const view = new DataView(buffer);
-          view.setUint32(0, _Player.LIBRARY_VERSION, true);
-          view.setUint32(4, __privateGet(this, _signature_timestamp), true);
-          view.setUint32(8, sig_decipher_buf.byteLength, true);
-          new Uint8Array(buffer).set(new Uint8Array(sig_decipher_buf), 12);
-          new Uint8Array(buffer).set(new Uint8Array(ntoken_buf), 12 + sig_decipher_buf.byteLength);
-          await Cache.write(__privateGet(this, _player_path), new Uint8Array(buffer));
-        } finally {
-        }
-        return this;
-      }
-      decipher(url, signature_cipher, cipher) {
-        url = url || signature_cipher || cipher;
-        Utils.throwIfMissing({ url });
-        const args = new URLSearchParams(url);
-        const url_components = new URL(args.get("url") || url);
-        url_components.searchParams.set("ratebypass", "yes");
-        if (signature_cipher || cipher) {
-          const signature = __privateGet(this, _signature).decipher(url);
-          args.get("sp") ? url_components.searchParams.set(args.get("sp"), signature) : url_components.searchParams.set("signature", signature);
-        }
-        if (url_components.searchParams.get("n")) {
-          const ntoken = __privateGet(this, _ntoken).transform(url_components.searchParams.get("n"));
-          url_components.searchParams.set("n", ntoken);
-        }
-        return url_components.toString();
-      }
-      get url() {
-        return __privateGet(this, _player_url);
-      }
-      get sts() {
-        return __privateGet(this, _signature_timestamp);
-      }
-      static get LIBRARY_VERSION() {
-        return 1;
-      }
-      async isCached() {
-        return await Cache.exists(__privateGet(this, _player_path));
-      }
-    };
-    var Player = _Player;
-    __name(Player, "Player");
-    _request2 = new WeakMap();
-    _player_id = new WeakMap();
-    _player_url = new WeakMap();
-    _player_path = new WeakMap();
-    _ntoken = new WeakMap();
-    _signature = new WeakMap();
-    _signature_timestamp = new WeakMap();
-    _cache_dir = new WeakMap();
-    _extractSigTimestamp = new WeakSet();
-    extractSigTimestamp_fn = /* @__PURE__ */ __name(function(data) {
-      return parseInt(Utils.getStringBetweenStrings(data, "signatureTimestamp:", ","));
-    }, "#extractSigTimestamp");
-    _extractSigDecipherSc = new WeakSet();
-    extractSigDecipherSc_fn = /* @__PURE__ */ __name(function(data) {
-      const sig_alg_sc = Utils.getStringBetweenStrings(data, "this.audioTracks};var", "};");
-      const sig_data = Utils.getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
-      return sig_alg_sc + sig_data;
-    }, "#extractSigDecipherSc");
-    _extractNTokenSc = new WeakSet();
-    extractNTokenSc_fn = /* @__PURE__ */ __name(function(data) {
-      return `var b=a.split("")${Utils.getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
-    }, "#extractNTokenSc");
-    module2.exports = Player;
-  }
-});
-
-// lib/core/SessionBuilder.js
-var require_SessionBuilder = __commonJS({
-  "lib/core/SessionBuilder.js"(exports2, module2) {
-    "use strict";
-    var Player = require_Player();
-    var Proto2 = require_proto();
-    var Utils = require_Utils();
-    var Constants = require_Constants();
-    var UserAgent = require("../node_modules/user-agents/dist/index.js");
-    var _config, _request2, _key, _client_name, _client_version, _api_version, _remote_host, _context, _player2, _buildContext, buildContext_fn, _getYtConfig, getYtConfig_fn, _getPlayerId, getPlayerId_fn;
-    var SessionBuilder2 = class {
-      constructor(config, request) {
-        __privateAdd(this, _buildContext);
-        __privateAdd(this, _getYtConfig);
-        __privateAdd(this, _getPlayerId);
-        __privateAdd(this, _config, void 0);
-        __privateAdd(this, _request2, void 0);
-        __privateAdd(this, _key, void 0);
-        __privateAdd(this, _client_name, void 0);
-        __privateAdd(this, _client_version, void 0);
-        __privateAdd(this, _api_version, void 0);
-        __privateAdd(this, _remote_host, void 0);
-        __privateAdd(this, _context, void 0);
-        __privateAdd(this, _player2, void 0);
-        __privateSet(this, _config, config);
-        __privateSet(this, _request2, request);
-      }
-      async build() {
-        const data = await Promise.all([
-          __privateMethod(this, _getYtConfig, getYtConfig_fn).call(this),
-          __privateMethod(this, _getPlayerId, getPlayerId_fn).call(this)
-        ]);
-        const ytcfg = data[0][0][2];
-        __privateSet(this, _key, ytcfg[1]);
-        __privateSet(this, _api_version, `v${ytcfg[0][0][6]}`);
-        __privateSet(this, _client_name, Constants.CLIENTS.WEB.NAME);
-        __privateSet(this, _client_version, ytcfg[0][0][16]);
-        __privateSet(this, _remote_host, ytcfg[0][0][3]);
-        __privateSet(this, _player2, await new Player(data[1], __privateGet(this, _request2)).init());
-        __privateSet(this, _context, __privateMethod(this, _buildContext, buildContext_fn).call(this));
-        return this;
-      }
-      get key() {
-        return __privateGet(this, _key);
-      }
-      get context() {
-        return __privateGet(this, _context);
-      }
-      get api_version() {
-        return __privateGet(this, _api_version);
-      }
-      get client_version() {
-        return __privateGet(this, _client_version);
-      }
-      get client_name() {
-        return __privateGet(this, _client_name);
-      }
-      get player() {
-        return __privateGet(this, _player2);
-      }
-    };
-    __name(SessionBuilder2, "SessionBuilder");
-    _config = new WeakMap();
-    _request2 = new WeakMap();
-    _key = new WeakMap();
-    _client_name = new WeakMap();
-    _client_version = new WeakMap();
-    _api_version = new WeakMap();
-    _remote_host = new WeakMap();
-    _context = new WeakMap();
-    _player2 = new WeakMap();
-    _buildContext = new WeakSet();
-    buildContext_fn = /* @__PURE__ */ __name(function() {
-      const user_agent = new UserAgent({ deviceCategory: "desktop" });
-      const id = Utils.generateRandomString(11);
-      const timestamp = Math.floor(Date.now() / 1e3);
-      const visitor_data = Proto2.encodeVisitorData(id, timestamp);
-      const context = {
-        client: {
-          hl: "en",
-          gl: __privateGet(this, _config).gl || "US",
-          remoteHost: __privateGet(this, _remote_host),
-          deviceMake: user_agent.vendor,
-          deviceModel: user_agent.platform,
-          visitorData: visitor_data,
-          userAgent: user_agent.toString(),
-          clientName: __privateGet(this, _client_name),
-          clientVersion: __privateGet(this, _client_version),
-          originalUrl: Constants.URLS.API.BASE
-        },
-        user: { lockedSafetyMode: false },
-        request: { useSsl: true }
-      };
-      return context;
-    }, "#buildContext");
-    _getYtConfig = new WeakSet();
-    getYtConfig_fn = /* @__PURE__ */ __name(async function() {
-      const response = await __privateGet(this, _request2).get(`${Constants.URLS.YT_BASE}/sw.js_data`);
-      return JSON.parse(response.data.replace(")]}'", ""));
-    }, "#getYtConfig");
-    _getPlayerId = new WeakSet();
-    getPlayerId_fn = /* @__PURE__ */ __name(async function() {
-      const response = await __privateGet(this, _request2).get(`${Constants.URLS.YT_BASE}/iframe_api`);
-      return Utils.getStringBetweenStrings(response.data, "player\\/", "\\/");
-    }, "#getPlayerId");
-    module2.exports = SessionBuilder2;
-  }
-});
-
 // lib/parser/contents/classes/Format.js
 var require_Format = __commonJS({
   "lib/parser/contents/classes/Format.js"(exports2, module2) {
@@ -10755,6 +9616,1152 @@ This is a bug, please report it at ${require_package().bugs.url}`, { stack: err.
   }
 });
 
+// lib/core/Actions.js
+var require_Actions = __commonJS({
+  "lib/core/Actions.js"(exports2, module2) {
+    "use strict";
+    var Uuid = require("../node_modules/uuid/dist/index.js");
+    var Proto2 = require_proto();
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var Parser = require_contents();
+    var _session, _request2, _needsLogin, needsLogin_fn;
+    var Actions2 = class {
+      constructor(session) {
+        __privateAdd(this, _needsLogin);
+        __privateAdd(this, _session, void 0);
+        __privateAdd(this, _request2, void 0);
+        __privateSet(this, _session, session);
+        __privateSet(this, _request2, session.request);
+      }
+      async browse(id, args = {}) {
+        if (__privateMethod(this, _needsLogin, needsLogin_fn).call(this, id) && !__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        if (args.params)
+          data.params = args.params;
+        if (args.is_ctoken) {
+          data.continuation = id;
+        } else {
+          data.browseId = id;
+        }
+        if (args.client) {
+          data.client = args.client;
+        }
+        const response = await __privateGet(this, _request2).post("/browse", data);
+        return response;
+      }
+      async engage(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in && !args.hasOwnProperty("text"))
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        switch (action) {
+          case "like/like":
+          case "like/dislike":
+          case "like/removelike":
+            data.target = {};
+            data.target.videoId = args.video_id;
+            if (args.params) {
+              data.params = args.params;
+            }
+            break;
+          case "subscription/subscribe":
+          case "subscription/unsubscribe":
+            data.channelIds = [args.channel_id];
+            data.params = action === "subscription/subscribe" ? "EgIIAhgA" : "CgIIAhgA";
+            break;
+          case "comment/create_comment":
+            data.commentText = args.text;
+            data.createCommentParams = Proto2.encodeCommentParams(args.video_id);
+            break;
+          case "comment/create_comment_reply":
+            data.createReplyParams = Proto2.encodeCommentReplyParams(args.comment_id, args.video_id);
+            data.commentText = args.text;
+            break;
+          case "comment/perform_comment_action":
+            const target_action = (() => {
+              switch (args.comment_action) {
+                case "like":
+                  return Proto2.encodeCommentActionParams(5, args);
+                case "dislike":
+                  return Proto2.encodeCommentActionParams(4, args);
+                case "translate":
+                  return Proto2.encodeCommentActionParams(22, args);
+                default:
+                  break;
+              }
+            })();
+            data.actions = [target_action];
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async account(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          client: args.client
+        };
+        switch (action) {
+          case "account/set_setting":
+            data.newValue = {
+              boolValue: args.new_value
+            };
+            data.settingItemId = args.setting_item_id;
+            break;
+          case "account/accounts_list":
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async search(args = {}) {
+        const data = { client: args.client };
+        if (args.query) {
+          data.query = args.query;
+        }
+        if (args.ctoken) {
+          data.continuation = args.ctoken;
+        }
+        if (args.params) {
+          data.params = args.params;
+        }
+        if (args.filters) {
+          if (args.client == "YTMUSIC") {
+            data.params = Proto2.encodeMusicSearchFilters(args.filters);
+          } else {
+            data.params = Proto2.encodeSearchFilters(args.filters);
+          }
+        }
+        const response = await __privateGet(this, _request2).post("/search", data);
+        return response;
+      }
+      async searchSound(args = {}) {
+        const data = {
+          query: args.query,
+          client: "ANDROID"
+        };
+        const response = await __privateGet(this, _request2).post("/sfv/search", data);
+        return response;
+      }
+      async channel(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          client: args.client || "ANDROID"
+        };
+        switch (action) {
+          case "channel/edit_name":
+            data.givenName = args.new_name;
+            break;
+          case "channel/edit_description":
+            data.description = args.new_description;
+            break;
+          case "channel/get_profile_editor":
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async playlist(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        switch (action) {
+          case "playlist/create":
+            data.title = args.title;
+            data.videoIds = args.ids;
+            break;
+          case "playlist/delete":
+            data.playlistId = args.playlist_id;
+            break;
+          case "browse/edit_playlist":
+            data.playlistId = args.playlist_id;
+            data.actions = args.ids.map((id) => {
+              switch (args.action) {
+                case "ACTION_ADD_VIDEO":
+                  return {
+                    action: args.action,
+                    addedVideoId: id
+                  };
+                case "ACTION_REMOVE_VIDEO":
+                  return {
+                    action: args.action,
+                    setVideoId: id
+                  };
+                default:
+                  break;
+              }
+            });
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async notifications(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        switch (action) {
+          case "modify_channel_preference":
+            const pref_types = {
+              PERSONALIZED: 1,
+              ALL: 2,
+              NONE: 3
+            };
+            data.params = Proto2.encodeNotificationPref(args.channel_id, pref_types[args.pref.toUpperCase()]);
+            break;
+          case "get_notification_menu":
+            data.notificationsMenuRequestType = "NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX";
+            if (args.ctoken)
+              data.ctoken = args.ctoken;
+            break;
+          case "record_interactions":
+            data.serializedRecordNotificationInteractionsRequest = args.params;
+            break;
+          case "get_unseen_count":
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/notification/${action}`, data);
+        return response;
+      }
+      async livechat(action, args = {}) {
+        const data = { client: args.client };
+        switch (action) {
+          case "live_chat/get_live_chat":
+          case "live_chat/get_live_chat_replay":
+            data.continuation = args.ctoken;
+            break;
+          case "live_chat/send_message":
+            data.params = Proto2.encodeMessageParams(args.channel_id, args.video_id);
+            data.clientMessageId = Uuid.v4();
+            data.richMessage = {
+              textSegments: [{
+                text: args.text
+              }]
+            };
+            break;
+          case "live_chat/get_item_context_menu":
+            break;
+          case "live_chat/moderate":
+            data.params = args.params;
+            break;
+          case "updated_metadata":
+            data.videoId = args.video_id;
+            if (args.ctoken)
+              data.continuation = args.ctoken;
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async thumbnails(args = {}) {
+        const data = {
+          client: "ANDROID",
+          videoId: args.video_id
+        };
+        const response = await __privateGet(this, _request2).post("/thumbnails", data);
+        return response;
+      }
+      async geo(action, args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          input: args.input,
+          client: "ANDROID"
+        };
+        const response = await __privateGet(this, _request2).post(`/geo/${action}`, data);
+        return response;
+      }
+      async flag(action, args) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {};
+        switch (action) {
+          case "flag/flag":
+            data.action = args.action;
+            break;
+          case "flag/get_form":
+            data.params = args.params;
+            break;
+          default:
+            throw new Utils.InnertubeError("Action not implemented", action);
+        }
+        const response = await __privateGet(this, _request2).post(`/${action}`, data);
+        return response;
+      }
+      async music(action, args) {
+        const data = {
+          input: args.input || "",
+          client: "YTMUSIC"
+        };
+        const response = await __privateGet(this, _request2).post(`/music/${action}`, data);
+        return response;
+      }
+      async next(args = {}) {
+        const data = { client: args.client };
+        if (args.ctoken) {
+          data.continuation = args.ctoken;
+        }
+        if (args.video_id) {
+          data.videoId = args.video_id;
+        }
+        const response = await __privateGet(this, _request2).post("/next", data);
+        return response;
+      }
+      async getVideoInfo(id, cpn, client) {
+        const data = {
+          playbackContext: {
+            contentPlaybackContext: {
+              vis: 0,
+              splay: false,
+              referer: "https://www.youtube.com",
+              currentUrl: `/watch?v=${id}`,
+              autonavState: "STATE_OFF",
+              signatureTimestamp: __privateGet(this, _session).sts,
+              autoCaptionsDefaultOn: false,
+              html5Preference: "HTML5_PREF_WANTS",
+              lactMilliseconds: "-1"
+            }
+          },
+          attestationRequest: {
+            omitBotguardData: true
+          },
+          videoId: id
+        };
+        if (client) {
+          data.client = client;
+        }
+        if (cpn) {
+          data.cpn = cpn;
+        }
+        const response = await __privateGet(this, _request2).post("/player", data);
+        return response.data;
+      }
+      async getSearchSuggestions(client, query) {
+        if (!["YOUTUBE", "YTMUSIC"].includes(client))
+          throw new Utils.InnertubeError("Invalid client", client);
+        const response = await {
+          YOUTUBE: () => __privateGet(this, _request2).call(this, {
+            url: "search",
+            baseURL: Constants.URLS.YT_SUGGESTIONS,
+            params: {
+              q: query,
+              ds: "yt",
+              client: "youtube",
+              xssi: "t",
+              oe: "UTF",
+              gl: __privateGet(this, _session).context.client.gl,
+              hl: __privateGet(this, _session).context.client.hl
+            }
+          }),
+          YTMUSIC: () => this.music("get_search_suggestions", {
+            input: query
+          })
+        }[client]();
+        return response;
+      }
+      async getUserMentionSuggestions(args = {}) {
+        if (!__privateGet(this, _session).logged_in)
+          throw new Utils.InnertubeError("You are not signed in");
+        const data = {
+          input: args.input,
+          client: "ANDROID"
+        };
+        const response = await __privateGet(this, _request2).post("get_user_mention_suggestions", data);
+        return response;
+      }
+      async execute(action, args) {
+        const data = { ...args };
+        if (Reflect.has(data, "parse"))
+          delete data.parse;
+        if (Reflect.has(data, "request"))
+          delete data.request;
+        if (Reflect.has(data, "clientActions"))
+          delete data.clientActions;
+        if (Reflect.has(data, "action")) {
+          data.actions = [data.action];
+          delete data.action;
+        }
+        if (Reflect.has(data, "token")) {
+          data.continuation = data.token;
+          delete data.token;
+        }
+        const response = await __privateGet(this, _request2).post(action, data);
+        if (args.parse) {
+          return Parser.parseResponse(response.data);
+        }
+        return response;
+      }
+    };
+    __name(Actions2, "Actions");
+    _session = new WeakMap();
+    _request2 = new WeakMap();
+    _needsLogin = new WeakSet();
+    needsLogin_fn = /* @__PURE__ */ __name(function(id) {
+      return [
+        "FElibrary",
+        "FEhistory",
+        "FEsubscriptions",
+        "SPaccount_notifications",
+        "SPaccount_privacy",
+        "SPtime_watched"
+      ].includes(id);
+    }, "#needsLogin");
+    module2.exports = Actions2;
+  }
+});
+
+// lib/utils/wrappers/NodeCache.js
+var require_NodeCache = __commonJS({
+  "lib/utils/wrappers/NodeCache.js"(exports2, module2) {
+    "use strict";
+    var fs = require("fs");
+    var NodeCache = class {
+      async read(key) {
+        return (await fs.promises.readFile(key)).buffer;
+      }
+      async write(key, data) {
+        const parts = key.split("/").slice(0, -1);
+        let current = "";
+        for (const part of parts) {
+          current += `${part}/`;
+          if (!await this.exists(current)) {
+            await fs.promises.mkdir(current);
+          }
+        }
+        return await fs.promises.writeFile(key, data);
+      }
+      async exists(key) {
+        return await fs.promises.stat(key).then(() => true).catch(() => false);
+      }
+      async remove(key) {
+        return await fs.promises.rm(key);
+      }
+    };
+    __name(NodeCache, "NodeCache");
+    module2.exports = new NodeCache();
+  }
+});
+
+// lib/deciphers/Signature.js
+var require_Signature = __commonJS({
+  "lib/deciphers/Signature.js"(exports2) {
+    "use strict";
+    var { SIG_REGEX } = require_Constants();
+    var SignatureOperation = exports2.SignatureOperation = {
+      REVERSE: 0,
+      SPLICE: 1,
+      SWAP: 2
+    };
+    var Signature = class {
+      constructor(action_sequence) {
+        this.action_sequence = action_sequence;
+      }
+      static fromSourceCode(sig_decipher_sc) {
+        let actions;
+        const action_sequence = [];
+        const functions = Signature.getFunctions(sig_decipher_sc);
+        while ((actions = SIG_REGEX.ACTIONS.exec(sig_decipher_sc)) !== null) {
+          const action = actions.groups;
+          if (!action)
+            continue;
+          switch (action.name) {
+            case functions[0]:
+              action_sequence.push([SignatureOperation.REVERSE, 0]);
+              break;
+            case functions[1]:
+              action_sequence.push([SignatureOperation.SPLICE, parseInt(action.param)]);
+              break;
+            case functions[2]:
+              action_sequence.push([SignatureOperation.SWAP, parseInt(action.param)]);
+              break;
+            default:
+          }
+        }
+        return new Signature(action_sequence);
+      }
+      decipher(url) {
+        var _a;
+        const args = new URLSearchParams(url);
+        const signature = (_a = args.get("s")) == null ? void 0 : _a.split("");
+        if (!signature)
+          throw new TypeError("Invalid signature");
+        for (const action of this.action_sequence) {
+          switch (action[0]) {
+            case SignatureOperation.REVERSE:
+              signature.reverse();
+              break;
+            case SignatureOperation.SPLICE:
+              signature.splice(0, action[1]);
+              break;
+            case SignatureOperation.SWAP:
+              {
+                const index = action[1];
+                const orig_arr = signature[0];
+                signature[0] = signature[index % signature.length];
+                signature[index % signature.length] = orig_arr;
+              }
+              break;
+            default:
+              break;
+          }
+        }
+        return signature.join("");
+      }
+      toJSON() {
+        return [...this.action_sequence];
+      }
+      toArrayBuffer() {
+        const buffer = new ArrayBuffer(4 + 4 + this.action_sequence.length * (1 + 2));
+        const view = new DataView(buffer);
+        let offset = 0;
+        view.setUint32(offset, Signature.LIBRARY_VERSION, true);
+        offset += 4;
+        view.setUint32(offset, this.action_sequence.length, true);
+        offset += 4;
+        for (let i = 0; i < this.action_sequence.length; i++) {
+          view.setUint8(offset, this.action_sequence[i][0]);
+          offset += 1;
+          view.setUint16(offset, this.action_sequence[i][1], true);
+          offset += 2;
+        }
+        return buffer;
+      }
+      static fromArrayBuffer(buffer) {
+        const view = new DataView(buffer);
+        let offset = 0;
+        const version = view.getUint32(offset, true);
+        offset += 4;
+        if (version !== Signature.LIBRARY_VERSION)
+          throw new TypeError("Invalid library version");
+        const action_sequence_length = view.getUint32(offset, true);
+        offset += 4;
+        const action_sequence = new Array(action_sequence_length);
+        for (let i = 0; i < action_sequence_length; i++) {
+          action_sequence[i] = [
+            view.getUint8(offset),
+            view.getUint16(offset + 1, true)
+          ];
+          offset += 3;
+        }
+        return new Signature(action_sequence);
+      }
+      static getFunctions(sc) {
+        let func;
+        const functions = [];
+        while ((func = SIG_REGEX.FUNCTIONS.exec(sc)) !== null) {
+          if (func[0].includes("reverse")) {
+            functions[0] = func[1];
+          } else if (func[0].includes("splice")) {
+            functions[1] = func[1];
+          } else {
+            functions[2] = func[1];
+          }
+        }
+        return functions;
+      }
+      static get LIBRARY_VERSION() {
+        return 1;
+      }
+    };
+    __name(Signature, "Signature");
+    exports2.default = Signature;
+  }
+});
+
+// lib/deciphers/NToken.js
+var require_NToken = __commonJS({
+  "lib/deciphers/NToken.js"(exports2) {
+    "use strict";
+    var { NTOKEN_REGEX, BASE64_DIALECT } = require_Constants();
+    var NTokenTransformOperation = exports2.NTokenTransformOperation = {
+      NO_OP: 0,
+      PUSH: 1,
+      REVERSE_1: 2,
+      REVERSE_2: 3,
+      SPLICE: 4,
+      SWAP0_1: 5,
+      SWAP0_2: 6,
+      ROTATE_1: 7,
+      ROTATE_2: 8,
+      BASE64_DIA: 9,
+      TRANSLATE_1: 10,
+      TRANSLATE_2: 11
+    };
+    var NTokenTransformOpType = exports2.NTokenTransformOpType = {
+      FUNC: 0,
+      N_ARR: 1,
+      LITERAL: 2,
+      REF: 3
+    };
+    var OP_LOOKUP = {
+      "d.push(e)": NTokenTransformOperation.PUSH,
+      "d.reverse()": NTokenTransformOperation.REVERSE_1,
+      "function(d){for(var": NTokenTransformOperation.REVERSE_2,
+      "d.length;d.splice(e,1)": NTokenTransformOperation.SPLICE,
+      "d[0])[0])": NTokenTransformOperation.SWAP0_1,
+      "f=d[0];d[0]": NTokenTransformOperation.SWAP0_2,
+      "reverse().forEach": NTokenTransformOperation.ROTATE_1,
+      "unshift(d.pop())": NTokenTransformOperation.ROTATE_2,
+      "function(){for(var": NTokenTransformOperation.BASE64_DIA,
+      "function(d,e){for(var f": NTokenTransformOperation.TRANSLATE_1,
+      "function(d,e,f){var": NTokenTransformOperation.TRANSLATE_2
+    };
+    var NTokenTransforms = class {
+      static translate1(arr, token, is_reverse_base64) {
+        const characters = is_reverse_base64 ? BASE64_DIALECT.REVERSE : BASE64_DIALECT.NORMAL;
+        const token_chars = token.split("");
+        arr.forEach((char, index, loc) => {
+          token_chars.push(loc[index] = characters[(characters.indexOf(char) - characters.indexOf(token_chars[index]) + 64) % characters.length]);
+        });
+      }
+      static translate2(arr, token, characters) {
+        let chars_length = characters.length;
+        const token_chars = token.split("");
+        arr.forEach((char, index, loc) => {
+          token_chars.push(loc[index] = characters[(characters.indexOf(char) - characters.indexOf(token_chars[index]) + index + chars_length--) % characters.length]);
+        });
+      }
+      static getBase64Dia(is_reverse_base64) {
+        const characters = is_reverse_base64 ? BASE64_DIALECT.REVERSE : BASE64_DIALECT.NORMAL;
+        return characters;
+      }
+      static swap0(arr, index) {
+        const old_elem = arr[0];
+        index = (index % arr.length + arr.length) % arr.length;
+        arr[0] = arr[index];
+        arr[index] = old_elem;
+      }
+      static rotate(arr, index) {
+        index = (index % arr.length + arr.length) % arr.length;
+        arr.splice(-index).reverse().forEach((el) => arr.unshift(el));
+      }
+      static splice(arr, index) {
+        index = (index % arr.length + arr.length) % arr.length;
+        arr.splice(index, 1);
+      }
+      static reverse(arr) {
+        arr.reverse();
+      }
+      static push(arr, item) {
+        if (Array.isArray(arr == null ? void 0 : arr[0]))
+          arr.push([NTokenTransformOpType.LITERAL, item]);
+        else
+          arr.push(item);
+      }
+    };
+    __name(NTokenTransforms, "NTokenTransforms");
+    exports2.NTokenTransforms = NTokenTransforms;
+    var TRANSFORM_FUNCTIONS = [{
+      [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
+      [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
+      [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
+      [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
+      [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
+      [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
+      [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
+      [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
+      [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(false),
+      [NTokenTransformOperation.TRANSLATE_1]: (...args) => NTokenTransforms.translate1.apply(null, [...args, false]),
+      [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
+    }, {
+      [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
+      [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
+      [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
+      [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
+      [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
+      [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
+      [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
+      [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
+      [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(true),
+      [NTokenTransformOperation.TRANSLATE_1]: (...args) => NTokenTransforms.translate1.apply(null, [...args, true]),
+      [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
+    }];
+    var NToken = class {
+      constructor(transformer) {
+        this.transformer = transformer;
+      }
+      static fromSourceCode(raw) {
+        const transformation_data = NToken.getTransformationData(raw);
+        const transformations = transformation_data.map((el) => {
+          var _a;
+          if (el != null && typeof el != "number") {
+            const is_reverse_base64 = el.includes("case 65:");
+            const opcode = OP_LOOKUP[(_a = NToken.getFunc(el)) == null ? void 0 : _a[0]];
+            if (opcode) {
+              el = [
+                NTokenTransformOpType.FUNC,
+                opcode,
+                0 + is_reverse_base64
+              ];
+            } else if (el == "b") {
+              el = [NTokenTransformOpType.N_ARR];
+            } else {
+              el = [NTokenTransformOpType.LITERAL, el];
+            }
+          } else if (el != null) {
+            el = [NTokenTransformOpType.LITERAL, el];
+          }
+          return el;
+        });
+        const placeholder_indexes = [...raw.matchAll(NTOKEN_REGEX.PLACEHOLDERS)].map((item) => parseInt(item[1]));
+        placeholder_indexes.forEach((i) => transformations[i] = [NTokenTransformOpType.REF]);
+        const function_calls = [...raw.replace(/\n/g, "").match(/try\{(.*?)\}catch/s)[1].matchAll(NTOKEN_REGEX.CALLS)].map((params) => [
+          parseInt(params[1]),
+          params[2].split(",").map((param) => {
+            var _a;
+            return parseInt((_a = param.match(/c\[(.*?)\]/)) == null ? void 0 : _a[1]);
+          })
+        ]);
+        return new NToken([transformations, function_calls]);
+      }
+      evaluate(i, n_token, transformer) {
+        switch (i[0]) {
+          case NTokenTransformOpType.FUNC:
+            return TRANSFORM_FUNCTIONS[i[2]][i[1]];
+          case NTokenTransformOpType.N_ARR:
+            return n_token;
+          case NTokenTransformOpType.LITERAL:
+            return i[1];
+          case NTokenTransformOpType.REF:
+            return transformer[0];
+        }
+      }
+      transform(n) {
+        const n_token = n.split("");
+        const transformer = this.getTransformerClone();
+        try {
+          transformer[1].forEach(([index, param_index]) => {
+            const base64_dia = param_index[2] && this.evaluate(transformer[0][param_index[2]], n_token, transformer)();
+            this.evaluate(transformer[0][index], n_token, transformer)(param_index[0] !== void 0 && this.evaluate(transformer[0][param_index[0]], n_token, transformer), param_index[1] !== void 0 && this.evaluate(transformer[0][param_index[1]], n_token, transformer), base64_dia);
+          });
+        } catch (err) {
+          console.error(new Error(`Could not transform n-token, download may be throttled.
+Original Token:${n}Error:
+${err}`));
+          return n;
+        }
+        return n_token.join("");
+      }
+      getTransformerClone() {
+        return [
+          [...this.transformer[0]],
+          [...this.transformer[1]]
+        ];
+      }
+      toJSON() {
+        return this.getTransformerClone();
+      }
+      toArrayBuffer() {
+        let size = 4 * 3;
+        for (const instruction of this.transformer[0]) {
+          switch (instruction[0]) {
+            case NTokenTransformOpType.FUNC:
+              size += 2;
+              break;
+            case NTokenTransformOpType.N_ARR:
+            case NTokenTransformOpType.REF:
+              size += 1;
+              break;
+            case NTokenTransformOpType.LITERAL:
+              if (typeof instruction[1] === "string")
+                size += 1 + 4 + new TextEncoder().encode(instruction[1]).byteLength;
+              size += 4 + 1;
+              break;
+          }
+        }
+        for (const call of this.transformer[1]) {
+          size += 2 + call[1].length;
+        }
+        const buffer = new ArrayBuffer(size);
+        const view = new DataView(buffer);
+        let offset = 0;
+        view.setUint32(offset, NToken.LIBRARY_VERSION, true);
+        offset += 4;
+        view.setUint32(offset, this.transformer[0].length, true);
+        offset += 4;
+        view.setUint32(offset, this.transformer[1].length, true);
+        offset += 4;
+        for (const instruction of this.transformer[0]) {
+          switch (instruction[0]) {
+            case NTokenTransformOpType.FUNC:
+              {
+                const opcode = instruction[0] << 6 | instruction[2];
+                view.setUint8(offset, opcode);
+                offset += 1;
+                view.setUint8(offset, instruction[1]);
+                offset += 1;
+              }
+              break;
+            case NTokenTransformOpType.N_ARR:
+            case NTokenTransformOpType.REF:
+              {
+                const opcode = instruction[0] << 6;
+                view.setUint8(offset, opcode);
+                offset += 1;
+              }
+              break;
+            case NTokenTransformOpType.LITERAL:
+              {
+                const type = typeof instruction[1] === "string" ? 1 : 0;
+                const opcode = instruction[0] << 6 | type;
+                view.setUint8(offset, opcode);
+                offset += 1;
+                if (type === 0) {
+                  view.setInt32(offset, instruction[1], true);
+                  offset += 4;
+                } else {
+                  const encoded = new TextEncoder().encode(instruction[1]);
+                  view.setUint32(offset, encoded.byteLength, true);
+                  offset += 4;
+                  for (let i = 0; i < encoded.byteLength; i++) {
+                    view.setUint8(offset, encoded[i]);
+                    offset += 1;
+                  }
+                }
+              }
+              break;
+          }
+        }
+        for (const call of this.transformer[1]) {
+          view.setUint8(offset, call[0]);
+          offset += 1;
+          view.setUint8(offset, call[1].length);
+          offset += 1;
+          for (const param of call[1]) {
+            view.setUint8(offset, param);
+            offset += 1;
+          }
+        }
+        return buffer;
+      }
+      static fromArrayBuffer(buffer) {
+        const view = new DataView(buffer);
+        let offset = 0;
+        const version = view.getUint32(offset, true);
+        offset += 4;
+        if (version !== NToken.LIBRARY_VERSION)
+          throw new TypeError("Invalid library version");
+        const transformations_length = view.getUint32(offset, true);
+        offset += 4;
+        const function_calls_length = view.getUint32(offset, true);
+        offset += 4;
+        const transformations = new Array(transformations_length);
+        for (let i = 0; i < transformations_length; i++) {
+          const opcode = view.getUint8(offset++);
+          const op = opcode >> 6;
+          switch (op) {
+            case NTokenTransformOpType.FUNC:
+              {
+                const is_reverse_base64 = opcode & 1;
+                const operation = view.getUint8(offset++);
+                transformations[i] = [op, operation, is_reverse_base64];
+              }
+              break;
+            case NTokenTransformOpType.N_ARR:
+            case NTokenTransformOpType.REF:
+              transformations[i] = [op];
+              break;
+            case NTokenTransformOpType.LITERAL:
+              {
+                const type = opcode & 1;
+                if (type === 0) {
+                  const literal = view.getInt32(offset, true);
+                  offset += 4;
+                  transformations[i] = [op, literal];
+                } else {
+                  const length = view.getUint32(offset, true);
+                  offset += 4;
+                  const literal = new Uint8Array(length);
+                  for (let i2 = 0; i2 < length; i2++) {
+                    literal[i2] = view.getUint8(offset++);
+                  }
+                  transformations[i] = [op, new TextDecoder().decode(literal)];
+                }
+              }
+              break;
+            default:
+              throw new Error("Invalid opcode");
+          }
+        }
+        const function_calls = new Array(function_calls_length);
+        for (let i = 0; i < function_calls_length; i++) {
+          const index = view.getUint8(offset++);
+          const num_params = view.getUint8(offset++);
+          const params = new Array(num_params);
+          for (let j = 0; j < num_params; j++) {
+            params[j] = view.getUint8(offset++);
+          }
+          function_calls[i] = [index, params];
+        }
+        return new NToken([transformations, function_calls]);
+      }
+      static get LIBRARY_VERSION() {
+        return 1;
+      }
+      static getFunc(el) {
+        return el.match(NTOKEN_REGEX.FUNCTIONS);
+      }
+      static getTransformationData(raw) {
+        var _a;
+        const data = `[${(_a = raw.replace(/\n/g, "").match(/c=\[(.*?)\];c/s)) == null ? void 0 : _a[1]}]`;
+        return JSON.parse(this.refineNTokenData(data));
+      }
+      static refineNTokenData(data) {
+        return data.replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)').replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)').replace(/\[function\(d,e,f\)/g, '["function(d,e,f)').replace(/,b,/g, ',"b",').replace(/,b/g, ',"b"').replace(/b,/g, '"b",').replace(/b]/g, '"b"]').replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",').replace(/""/g, "").replace(/length]\)}"/g, "length])}");
+      }
+    };
+    __name(NToken, "NToken");
+    exports2.default = NToken;
+  }
+});
+
+// lib/core/Player.js
+var require_Player = __commonJS({
+  "lib/core/Player.js"(exports2, module2) {
+    "use strict";
+    var Cache = false ? null : require_NodeCache();
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var { default: Signature } = require_Signature();
+    var { default: NToken } = require_NToken();
+    var _request2, _player_id, _player_url, _player_path, _ntoken, _signature, _signature_timestamp, _cache_dir, _extractSigTimestamp, extractSigTimestamp_fn, _extractSigDecipherSc, extractSigDecipherSc_fn, _extractNTokenSc, extractNTokenSc_fn;
+    var _Player = class {
+      constructor(id, request) {
+        __privateAdd(this, _extractSigTimestamp);
+        __privateAdd(this, _extractSigDecipherSc);
+        __privateAdd(this, _extractNTokenSc);
+        __privateAdd(this, _request2, void 0);
+        __privateAdd(this, _player_id, void 0);
+        __privateAdd(this, _player_url, void 0);
+        __privateAdd(this, _player_path, void 0);
+        __privateAdd(this, _ntoken, void 0);
+        __privateAdd(this, _signature, void 0);
+        __privateAdd(this, _signature_timestamp, void 0);
+        __privateAdd(this, _cache_dir, void 0);
+        __privateSet(this, _player_id, id);
+        __privateSet(this, _request2, request);
+        __privateSet(this, _cache_dir, `${Utils.getTmpdir()}/yt-cache`);
+        __privateSet(this, _player_url, `${Constants.URLS.YT_BASE}/s/player/${__privateGet(this, _player_id)}/player_ias.vflset/en_US/base.js`);
+        __privateSet(this, _player_path, `${__privateGet(this, _cache_dir)}/${__privateGet(this, _player_id)}.bin`);
+      }
+      async init() {
+        if (await this.isCached()) {
+          const buffer = await Cache.read(__privateGet(this, _player_path));
+          const view = new DataView(buffer);
+          const version = view.getUint32(0, true);
+          if (version == _Player.LIBRARY_VERSION) {
+            const sig_decipher_len = view.getUint32(8, true);
+            const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
+            const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
+            __privateSet(this, _ntoken, NToken.fromArrayBuffer(ntoken_transform_buf));
+            __privateSet(this, _signature, Signature.fromArrayBuffer(sig_decipher_buf));
+            __privateSet(this, _signature_timestamp, view.getUint32(4, true));
+            return this;
+          }
+        }
+        const response = await __privateGet(this, _request2).get(__privateGet(this, _player_url), { headers: { "content-type": "text/javascript" } });
+        __privateSet(this, _signature_timestamp, __privateMethod(this, _extractSigTimestamp, extractSigTimestamp_fn).call(this, response.data));
+        const signature_decipher_sc = __privateMethod(this, _extractSigDecipherSc, extractSigDecipherSc_fn).call(this, response.data);
+        const ntoken_decipher_sc = __privateMethod(this, _extractNTokenSc, extractNTokenSc_fn).call(this, response.data);
+        __privateSet(this, _signature, Signature.fromSourceCode(signature_decipher_sc));
+        __privateSet(this, _ntoken, NToken.fromSourceCode(ntoken_decipher_sc));
+        try {
+          await Cache.exists(__privateGet(this, _cache_dir)) && await Cache.remove(__privateGet(this, _cache_dir), { recursive: true });
+          const ntoken_buf = __privateGet(this, _ntoken).toArrayBuffer();
+          const sig_decipher_buf = __privateGet(this, _signature).toArrayBuffer();
+          const buffer = new ArrayBuffer(12 + sig_decipher_buf.byteLength + ntoken_buf.byteLength);
+          const view = new DataView(buffer);
+          view.setUint32(0, _Player.LIBRARY_VERSION, true);
+          view.setUint32(4, __privateGet(this, _signature_timestamp), true);
+          view.setUint32(8, sig_decipher_buf.byteLength, true);
+          new Uint8Array(buffer).set(new Uint8Array(sig_decipher_buf), 12);
+          new Uint8Array(buffer).set(new Uint8Array(ntoken_buf), 12 + sig_decipher_buf.byteLength);
+          await Cache.write(__privateGet(this, _player_path), new Uint8Array(buffer));
+        } finally {
+        }
+        return this;
+      }
+      decipher(url, signature_cipher, cipher) {
+        url = url || signature_cipher || cipher;
+        Utils.throwIfMissing({ url });
+        const args = new URLSearchParams(url);
+        const url_components = new URL(args.get("url") || url);
+        url_components.searchParams.set("ratebypass", "yes");
+        if (signature_cipher || cipher) {
+          const signature = __privateGet(this, _signature).decipher(url);
+          args.get("sp") ? url_components.searchParams.set(args.get("sp"), signature) : url_components.searchParams.set("signature", signature);
+        }
+        if (url_components.searchParams.get("n")) {
+          const ntoken = __privateGet(this, _ntoken).transform(url_components.searchParams.get("n"));
+          url_components.searchParams.set("n", ntoken);
+        }
+        return url_components.toString();
+      }
+      get url() {
+        return __privateGet(this, _player_url);
+      }
+      get sts() {
+        return __privateGet(this, _signature_timestamp);
+      }
+      static get LIBRARY_VERSION() {
+        return 1;
+      }
+      async isCached() {
+        return await Cache.exists(__privateGet(this, _player_path));
+      }
+    };
+    var Player = _Player;
+    __name(Player, "Player");
+    _request2 = new WeakMap();
+    _player_id = new WeakMap();
+    _player_url = new WeakMap();
+    _player_path = new WeakMap();
+    _ntoken = new WeakMap();
+    _signature = new WeakMap();
+    _signature_timestamp = new WeakMap();
+    _cache_dir = new WeakMap();
+    _extractSigTimestamp = new WeakSet();
+    extractSigTimestamp_fn = /* @__PURE__ */ __name(function(data) {
+      return parseInt(Utils.getStringBetweenStrings(data, "signatureTimestamp:", ","));
+    }, "#extractSigTimestamp");
+    _extractSigDecipherSc = new WeakSet();
+    extractSigDecipherSc_fn = /* @__PURE__ */ __name(function(data) {
+      const sig_alg_sc = Utils.getStringBetweenStrings(data, "this.audioTracks};var", "};");
+      const sig_data = Utils.getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+      return sig_alg_sc + sig_data;
+    }, "#extractSigDecipherSc");
+    _extractNTokenSc = new WeakSet();
+    extractNTokenSc_fn = /* @__PURE__ */ __name(function(data) {
+      return `var b=a.split("")${Utils.getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
+    }, "#extractNTokenSc");
+    module2.exports = Player;
+  }
+});
+
+// lib/core/SessionBuilder.js
+var require_SessionBuilder = __commonJS({
+  "lib/core/SessionBuilder.js"(exports2, module2) {
+    "use strict";
+    var Player = require_Player();
+    var Proto2 = require_proto();
+    var Utils = require_Utils();
+    var Constants = require_Constants();
+    var UserAgent = require("../node_modules/user-agents/dist/index.js");
+    var _config, _request2, _key, _client_name, _client_version, _api_version, _remote_host, _context, _player2, _buildContext, buildContext_fn, _getYtConfig, getYtConfig_fn, _getPlayerId, getPlayerId_fn;
+    var SessionBuilder2 = class {
+      constructor(config, request) {
+        __privateAdd(this, _buildContext);
+        __privateAdd(this, _getYtConfig);
+        __privateAdd(this, _getPlayerId);
+        __privateAdd(this, _config, void 0);
+        __privateAdd(this, _request2, void 0);
+        __privateAdd(this, _key, void 0);
+        __privateAdd(this, _client_name, void 0);
+        __privateAdd(this, _client_version, void 0);
+        __privateAdd(this, _api_version, void 0);
+        __privateAdd(this, _remote_host, void 0);
+        __privateAdd(this, _context, void 0);
+        __privateAdd(this, _player2, void 0);
+        __privateSet(this, _config, config);
+        __privateSet(this, _request2, request);
+      }
+      async build() {
+        const data = await Promise.all([
+          __privateMethod(this, _getYtConfig, getYtConfig_fn).call(this),
+          __privateMethod(this, _getPlayerId, getPlayerId_fn).call(this)
+        ]);
+        const ytcfg = data[0][0][2];
+        __privateSet(this, _key, ytcfg[1]);
+        __privateSet(this, _api_version, `v${ytcfg[0][0][6]}`);
+        __privateSet(this, _client_name, Constants.CLIENTS.WEB.NAME);
+        __privateSet(this, _client_version, ytcfg[0][0][16]);
+        __privateSet(this, _remote_host, ytcfg[0][0][3]);
+        __privateSet(this, _player2, await new Player(data[1], __privateGet(this, _request2)).init());
+        __privateSet(this, _context, __privateMethod(this, _buildContext, buildContext_fn).call(this));
+        return this;
+      }
+      get key() {
+        return __privateGet(this, _key);
+      }
+      get context() {
+        return __privateGet(this, _context);
+      }
+      get api_version() {
+        return __privateGet(this, _api_version);
+      }
+      get client_version() {
+        return __privateGet(this, _client_version);
+      }
+      get client_name() {
+        return __privateGet(this, _client_name);
+      }
+      get player() {
+        return __privateGet(this, _player2);
+      }
+    };
+    __name(SessionBuilder2, "SessionBuilder");
+    _config = new WeakMap();
+    _request2 = new WeakMap();
+    _key = new WeakMap();
+    _client_name = new WeakMap();
+    _client_version = new WeakMap();
+    _api_version = new WeakMap();
+    _remote_host = new WeakMap();
+    _context = new WeakMap();
+    _player2 = new WeakMap();
+    _buildContext = new WeakSet();
+    buildContext_fn = /* @__PURE__ */ __name(function() {
+      const user_agent = new UserAgent({ deviceCategory: "desktop" });
+      const id = Utils.generateRandomString(11);
+      const timestamp = Math.floor(Date.now() / 1e3);
+      const visitor_data = Proto2.encodeVisitorData(id, timestamp);
+      const context = {
+        client: {
+          hl: "en",
+          gl: __privateGet(this, _config).gl || "US",
+          remoteHost: __privateGet(this, _remote_host),
+          deviceMake: user_agent.vendor,
+          deviceModel: user_agent.platform,
+          visitorData: visitor_data,
+          userAgent: user_agent.toString(),
+          clientName: __privateGet(this, _client_name),
+          clientVersion: __privateGet(this, _client_version),
+          originalUrl: Constants.URLS.API.BASE
+        },
+        user: { lockedSafetyMode: false },
+        request: { useSsl: true }
+      };
+      return context;
+    }, "#buildContext");
+    _getYtConfig = new WeakSet();
+    getYtConfig_fn = /* @__PURE__ */ __name(async function() {
+      const response = await __privateGet(this, _request2).get(`${Constants.URLS.YT_BASE}/sw.js_data`);
+      return JSON.parse(response.data.replace(")]}'", ""));
+    }, "#getYtConfig");
+    _getPlayerId = new WeakSet();
+    getPlayerId_fn = /* @__PURE__ */ __name(async function() {
+      const response = await __privateGet(this, _request2).get(`${Constants.URLS.YT_BASE}/iframe_api`);
+      return Utils.getStringBetweenStrings(response.data, "player\\/", "\\/");
+    }, "#getPlayerId");
+    module2.exports = SessionBuilder2;
+  }
+});
+
 // lib/parser/youtube/Analytics.js
 var require_Analytics = __commonJS({
   "lib/parser/youtube/Analytics.js"(exports2, module2) {
@@ -12274,10 +12281,13 @@ var require_Music = __commonJS({
       }
       async getSearchSuggestions(query) {
         var _a;
-        const payload = { input: query, client: "YTMUSIC" };
+        const payload = {
+          parse: true,
+          input: query,
+          client: "YTMUSIC"
+        };
         const response = await __privateGet(this, _actions).execute("/music/get_search_suggestions", payload);
-        const data = Parser.parseResponse(response.data);
-        const search_suggestions_section = (_a = data.contents_memo.get("SearchSuggestionsSection")) == null ? void 0 : _a[0];
+        const search_suggestions_section = (_a = response.contents_memo.get("SearchSuggestionsSection")) == null ? void 0 : _a[0];
         return (search_suggestions_section == null ? void 0 : search_suggestions_section.contents) || [];
       }
     };
