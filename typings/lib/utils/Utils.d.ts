@@ -36,6 +36,11 @@ export function findNode(obj: object, key: string, target: string, depth: number
  */
 export function observe(obj: object): object;
 /**
+ * Returns the os tmpdir.
+ * @returns {string}
+ */
+export function getTmpdir(): string;
+/**
  * Returns a random user agent.
  *
  * @param {string} type - mobile | desktop
