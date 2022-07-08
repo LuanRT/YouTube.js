@@ -1,22 +1,37 @@
 'use strict';
 
 import ResultsParser from '../parser/contents';
-import InnertubeError from '../utils/Utils';
+import { InnertubeError } from '../utils/Utils';
+import type ContinuationItem from '../parser/contents/classes/ContinuationItem';
+import type Actions from '../core/Actions';
+import type Video from '../parser/contents/classes/Video';
+import type GridVideo from '../parser/contents/classes/GridVideo';
+import type CompactVideo from '../parser/contents/classes/CompactVideo'
+import type PlaylistVideo from '../parser/contents/classes/PlaylistVideo';
+import type PlaylistPanelVideo from '../parser/contents/classes/PlaylistPanelVideo';
+import type WatchCardCompactVideo from '../parser/contents/classes/WatchCardCompactVideo';
+import type Playlist from '../parser/contents/classes/Playlist';
+import type GridPlaylist from '../parser/contents/classes/GridPlaylist';
+import type BackstagePost from '../parser/contents/classes/BackstagePost';
+import type Post from '../parser/contents/classes/Post';
+import type Channel from '../parser/contents/classes/Channel';
+import type GridChannel from '../parser/contents/classes/GridChannel';
+import type Shelf from '../parser/contents/classes/Shelf';
+import type RichShelf from '../parser/contents/classes/RichShelf';
+import type ReelShelf from '../parser/contents/classes/ReelShelf';
 
 // TODO: add a way subdivide into sections and return subfeeds?
 
 class Feed {
   #page;
 
-  /** @type {import('../parser/contents/classes/ContinuationItem')[]} */
-  #continuation;
+  #continuation: ContinuationItem[];
 
-  /** @type {import('../core/Actions')} */
-  #actions;
+  #actions: Actions;
 
   #memo;
 
-  constructor(actions, data, already_parsed = false) {
+  constructor(actions: Actions, data, already_parsed = false) {
     if (data.on_response_received_actions || data.on_response_received_endpoints || already_parsed) {
       this.#page = data;
     } else {
@@ -43,10 +58,8 @@ class Feed {
   /**
    * Get all videos on a given page via memo
    *
-   * @param {Map<string, any[]>} memo
-   * @returns {Array<import('../parser/contents/classes/Video') | import('../parser/contents/classes/GridVideo') | import('../parser/contents/classes/CompactVideo') | import('../parser/contents/classes/PlaylistVideo') | import('../parser/contents/classes/PlaylistPanelVideo') | import('../parser/contents/classes/WatchCardCompactVideo')>}
    */
-  static getVideosFromMemo(memo) {
+  static getVideosFromMemo(memo: Map<string, any[]>): Array<Video| GridVideo | CompactVideo | PlaylistVideo | PlaylistPanelVideo | WatchCardCompactVideo> {
     const videos = memo.get('Video') || [];
     const grid_videos = memo.get('GridVideo') || [];
     const compact_videos = memo.get('CompactVideo') || [];
@@ -67,10 +80,10 @@ class Feed {
   /**
    * Get all playlists on a given page via memo
    *
-   * @param {Map<string, any[]>} memo
-   * @returns {Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>}
+   * @param memo
+   * 
    */
-  static getPlaylistsFromMemo(memo) {
+  static getPlaylistsFromMemo(memo: Map<string, any[]>): Array<Playlist | GridPlaylist> {
     const playlists = memo.get('Playlist') || [];
     const grid_playlists = memo.get('GridPlaylist') || [];
     return [ ...playlists, ...grid_playlists ];
@@ -86,18 +99,18 @@ class Feed {
   /**
    * Get all the community posts in the feed
    *
-   * @returns {import('../parser/contents/classes/BackstagePost')[] | import('../parser/contents/classes/Post')[]}
+   * 
    */
-  get posts() {
+  get posts(): BackstagePost[] | Post[] {
     return this.#memo.get('BackstagePost') || this.#memo.get('Post') || [];
   }
 
   /**
    * Get all the channels in the feed
    *
-   * @returns {Array<import('../parser/contents/Channel') | import('../parser/contents/GridChannel')>}
+   * 
    */
-  get channels() {
+  get channels(): Array<Channel | GridChannel> {
     const channels = this.#memo.get('Channel') || [];
     const grid_channels = this.#memo.get('GridChannel') || [];
     return [ ...channels, ...grid_channels ];
@@ -106,9 +119,9 @@ class Feed {
   /**
    * Get all playlists in the feed
    *
-   * @returns {Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>}
+   * 
    */
-  get playlists() {
+  get playlists(): Array<Playlist | GridPlaylist> {
     return Feed.getPlaylistsFromMemo(this.#memo);
   }
 
@@ -119,9 +132,9 @@ class Feed {
   /**
    * Returns contents from the page.
    *
-   * @returns {*}
+   * 
    */
-  get contents() {
+  get contents(): any {
     const tab_content = this.#memo.get('Tab')?.[0]?.content;
     const reload_continuation_items = this.#memo.get('reloadContinuationItemsCommand')?.[0];
     const append_continuation_items = this.#memo.get('appendContinuationItemsAction')?.[0];
@@ -132,9 +145,9 @@ class Feed {
   /**
    * Returns all segments/sections from the page.
    *
-   * @returns {import('../parser/contents/Shelf')[] | import('../parser/contents/RichShelf')[] | import('../parser/contents/ReelShelf')[]}
+   * 
    */
-  get shelves() {
+  get shelves(): Shelf[] | RichShelf[] | ReelShelf[] {
     const shelf = this.#page.contents_memo.get('Shelf') || [];
     const rich_shelf = this.#page.contents_memo.get('RichShelf') || [];
     const reel_shelf = this.#page.contents_memo.get('ReelShelf') || [];
@@ -145,18 +158,18 @@ class Feed {
   /**
    * Finds shelf by title.
    *
-   * @param {string} title
+   * @param title
    */
-  getShelf(title) {
+  getShelf(title: string) {
     return this.shelves.find((shelf) => shelf.title.toString() === title);
   }
 
   /**
    * Returns secondary contents from the page.
    *
-   * @returns {*}
+   * 
    */
-  get secondary_contents() {
+  get secondary_contents(): any {
     return this.page.contents?.secondary_contents;
   }
 
@@ -173,19 +186,16 @@ class Feed {
 
   /**
    * Checks if the feed has continuation.
-   *
-   * @returns {boolean}
    */
-  get has_continuation() {
+  get has_continuation(): boolean {
     return (this.#memo.get('ContinuationItem') || []).length > 0;
   }
 
   /**
    * Retrieves continuation data as it is.
    *
-   * @returns {Promise.<any>}
    */
-  async getContinuationData() {
+  async getContinuationData(): Promise<any> {
     if (this.#continuation) {
       if (this.#continuation.length > 1)
         throw new InnertubeError('There are too many continuations, you\'ll need to find the correct one yourself in this.page');
@@ -207,10 +217,8 @@ class Feed {
 
   /**
    * Retrieves next batch of contents and returns a new {@link Feed} object.
-   *
-   * @returns {Promise.<Feed>}
    */
-  async getContinuation() {
+  async getContinuation(): Promise<Feed> {
     const continuation_data = await this.getContinuationData();
     return new Feed(this.actions, continuation_data, true);
   }
