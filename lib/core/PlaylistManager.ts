@@ -1,34 +1,32 @@
 'use strict';
 
-import Utils from '../utils/Utils';
+import { findNode, InnertubeError, throwIfMissing } from '../utils/Utils';
+import type Actions from './Actions';
+import type { APIResponse } from '../utils/common';
+
+interface PlaylistResponse<T> extends APIResponse<T> {
+  playlist_id: string;
+}
 
 /** @namespace */
 class PlaylistManager {
-  #actions;
+  #actions: Actions;
 
-  /**
-   * @param {import('../Actions')} actions
-   */
-  constructor (actions) {
+  constructor (actions: Actions) {
     this.#actions = actions;
   }
 
   /**
-   * API
-   *
-   * @typedef {{ success: boolean, status_code: number, playlist_id: string, data: object }} Response
-   */
-
-  /**
    * Creates a playlist.
    *
-   * @param {string} title
-   * @param {string[]} video_ids
-   * @returns {Promise.<Response>}
+   * @param title
+   * @param video_ids
+   * 
    */
-  async create(title, video_ids) {
-    Utils.throwIfMissing({ title, video_ids });
+  async create(title: string, video_ids: string[]): Promise<PlaylistResponse<object>> {
+    throwIfMissing({ title, video_ids });
 
+    // TODO: a string[] is passed here when `ids` is a string. type changes might be necessary.
     const response = await this.#actions.playlist('playlist/create', { title, ids: video_ids });
 
     return {
@@ -42,11 +40,11 @@ class PlaylistManager {
   /**
    * Deletes a given playlist.
    *
-   * @param {string} playlist_id
-   * @returns {Promise.<Response>}
+   * @param playlist_id
+   * 
    */
-  async delete(playlist_id) {
-    Utils.throwIfMissing({ playlist_id });
+  async delete(playlist_id: string): Promise<PlaylistResponse<object>> {
+    throwIfMissing({ playlist_id });
 
     const response = await this.#actions.playlist('playlist/delete', { playlist_id });
 
@@ -61,12 +59,12 @@ class PlaylistManager {
   /**
    * Adds videos to a given playlist.
    *
-   * @param {string} playlist_id
-   * @param {Array.<string>} video_ids
-   * @returns {Promise.<Response>}
+   * @param playlist_id
+   * @param video_ids
+   * 
    */
-  async addVideos(playlist_id, video_ids) {
-    Utils.throwIfMissing({ playlist_id, video_ids });
+  async addVideos(playlist_id: string, video_ids: Array<string>): Promise<PlaylistResponse<object>> {
+    throwIfMissing({ playlist_id, video_ids });
 
     const response = await this.#actions.playlist('browse/edit_playlist', {
       ids: video_ids,
@@ -85,17 +83,17 @@ class PlaylistManager {
   /**
    * Removes videos from a given playlist.
    *
-   * @param {string} playlist_id
-   * @param {Array.<string>} video_ids
-   * @returns {Promise.<Response>}
+   * @param playlist_id
+   * @param video_ids
+   * 
    */
-  async removeVideos(playlist_id, video_ids) {
-    Utils.throwIfMissing({ playlist_id, video_ids });
+  async removeVideos(playlist_id: string, video_ids: Array<string>): Promise<PlaylistResponse<object>> {
+    throwIfMissing({ playlist_id, video_ids });
 
     const plinfo = await this.#actions.browse(`VL${playlist_id}`);
 
-    const list = Utils.findNode(plinfo.data, 'contents', 'contents', 13, false);
-    if (!list.isEditable) throw new Utils.InnertubeError('This playlist cannot be edited.', playlist_id);
+    const list = findNode(plinfo.data, 'contents', 'contents', 13, false);
+    if (!list.isEditable) throw new InnertubeError('This playlist cannot be edited.', playlist_id);
 
     const videos = list.contents.filter((item) => video_ids.includes(item.playlistVideoRenderer.videoId));
     const set_video_ids = videos.map((video) => video.playlistVideoRenderer.setVideoId);
