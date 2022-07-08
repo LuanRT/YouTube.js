@@ -1,32 +1,31 @@
 'use strict';
 
-import Utils from '../utils/Utils';
+import type { APIResponse } from '../utils/common';
+import { findNode, throwIfMissing } from '../utils/Utils';
+import type Actions from './Actions';
+
+interface TranslateArgs {
+  video_id?: string;
+  comment_id?: string; 
+}
+
 
 /** @namespace */
 class InteractionManager {
-  #actions;
+  #actions: Actions;
 
-  /**
-   * @param {import('../Actions')} actions
-   */
-  constructor(actions) {
+  constructor(actions: Actions) {
     this.#actions = actions;
   }
 
   /**
-   * API response.
-   *
-   * @typedef {{ success: boolean, status_code: number, data: object }} Response
-   */
-
-  /**
    * Likes a given video.
    *
-   * @param {string} video_id
-   * @returns {Promise.<Response>}
+   * @param video_id
+   * 
    */
-  async like(video_id) {
-    Utils.throwIfMissing({ video_id });
+  async like(video_id: string): Promise<APIResponse<object>> {
+    throwIfMissing({ video_id });
     const action = await this.#actions.engage('like/like', { video_id });
     return action;
   }
@@ -34,11 +33,11 @@ class InteractionManager {
   /**
    * Dislikes a given video.
    *
-   * @param {string} video_id
-   * @returns {Promise.<Response>}
+   * @param video_id
+   * 
    */
-  async dislike(video_id) {
-    Utils.throwIfMissing({ video_id });
+  async dislike(video_id: string): Promise<APIResponse<object>> {
+    throwIfMissing({ video_id });
     const action = await this.#actions.engage('like/dislike', { video_id });
     return action;
   }
@@ -46,23 +45,23 @@ class InteractionManager {
   /**
    * Removes a like/dislike.
    *
-   * @param {string} video_id
-   * @returns {Promise.<Response>}
+   * @param video_id
+   * 
    */
-  async removeLike(video_id) {
-    Utils.throwIfMissing({ video_id });
-    const action = await this.actions.engage('like/removelike', { video_id });
+  async removeLike(video_id: string): Promise<APIResponse<object>> {
+    throwIfMissing({ video_id });
+    const action = await this.#actions.engage('like/removelike', { video_id });
     return action;
   }
 
   /**
    * Subscribes to a given channel.
    *
-   * @param {string} channel_id
-   * @returns {Promise.<Response>}
+   * @param channel_id
+   * 
    */
-  async subscribe(channel_id) {
-    Utils.throwIfMissing({ channel_id });
+  async subscribe(channel_id: string): Promise<APIResponse<object>> {
+    throwIfMissing({ channel_id });
     const action = await this.#actions.engage('subscription/subscribe', { channel_id });
     return action;
   }
@@ -70,11 +69,11 @@ class InteractionManager {
   /**
    * Unsubscribes from a given channel.
    *
-   * @param {string} channel_id
-   * @returns {Promise.<Response>}
+   * @param channel_id
+   * 
    */
-  async unsubscribe(channel_id) {
-    Utils.throwIfMissing({ channel_id });
+  async unsubscribe(channel_id: string): Promise<APIResponse<object>> {
+    throwIfMissing({ channel_id });
     const action = await this.#actions.engage('subscription/unsubscribe', { channel_id });
     return action;
   }
@@ -82,12 +81,12 @@ class InteractionManager {
   /**
    * Posts a comment on a given video.
    *
-   * @param {string} video_id
-   * @param {string} text
-   * @returns {Promise.<Response>}
+   * @param video_id
+   * @param text
+   * 
    */
-  async comment(video_id, text) {
-    Utils.throwIfMissing({ video_id, text });
+  async comment(video_id: string, text: string): Promise<APIResponse<object>> {
+    throwIfMissing({ video_id, text });
     const action = await this.#actions.engage('comment/create_comment', { video_id, text });
     return action;
   }
@@ -95,15 +94,13 @@ class InteractionManager {
   /**
    * Translates a given text using YouTube's comment translate feature.
    *
-   * @param {string} text
-   * @param {string} target_language - an ISO language code
-   * @param {object} [args] - optional arguments
-   * @param {string} [args.video_id]
-   * @param {string} [args.comment_id]
-   * @returns {Promise.<{ success: boolean, status_code: number, translated_content: string, data: object }>}
+   * @param text
+   * @param target_language - an ISO language code
+   * @param args - optional arguments
+   * 
    */
-  async translate(text, target_language, args = {}) {
-    Utils.throwIfMissing({ text, target_language });
+  async translate(text: string, target_language: string, args: TranslateArgs = {}): Promise<{ success: boolean; status_code: number; translated_content: string; data: object; }> {
+    throwIfMissing({ text, target_language });
 
     const response = await await this.#actions.engage('comment/perform_comment_action', {
       video_id: args.video_id,
@@ -113,7 +110,7 @@ class InteractionManager {
       text
     });
 
-    const translated_content = Utils.findNode(response.data, 'frameworkUpdates', 'content', 7, false);
+    const translated_content = findNode(response.data, 'frameworkUpdates', 'content', 7, false);
 
     return {
       success: response.success,
@@ -127,12 +124,12 @@ class InteractionManager {
    * Changes notification preferences for a given channel.
    * Only works with channels you are subscribed to.
    *
-   * @param {string} channel_id
-   * @param {string} type - `PERSONALIZED` | `ALL` | `NONE`
-   * @returns {Promise.<Response>}
+   * @param channel_id
+   * @param type - `PERSONALIZED` | `ALL` | `NONE`
+   * 
    */
-  async setNotificationPreferences(channel_id, type) {
-    Utils.throwIfMissing({ channel_id, type });
+  async setNotificationPreferences(channel_id: string, type: string): Promise<APIResponse<object>> {
+    throwIfMissing({ channel_id, type });
     const action = await this.#actions.notifications('modify_channel_preference', { channel_id, pref: type || 'NONE' });
     return action;
   }
