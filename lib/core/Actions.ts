@@ -616,7 +616,6 @@ class Actions {
       throw new InnertubeError('Invalid client', client);
 
     const response = await ({
-      // NOTE: this is an instance of Request, so something is wrong
       YOUTUBE: () => this.#request({
         url: 'search',
         baseURL: Constants.URLS.YT_SUGGESTIONS,
