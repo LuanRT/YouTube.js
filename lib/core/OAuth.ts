@@ -2,33 +2,35 @@
 
 import Uuid from 'uuid';
 import Constants from '../utils/Constants';
-import OAuthError from '../utils/Utils';
+import { OAuthError } from '../utils/Utils';
+import type Request from '../utils/Request';
+import type EventEmitter from 'events';
+import type { AxiosInstance } from 'axios';
+
+export interface Credentials {
+  access_token?: string;
+  refresh_token?: string;
+  expires_in?: Date;
+}
 
 class OAuth {
-  #request;
+  #request: AxiosInstance;
   #identity;
-  #credentials = {};
+  #credentials: Credentials = {};
 
   #polling_interval = 5;
-  #ev = null;
+  #ev: EventEmitter = null;
 
-  /**
-   * @param {EventEmitter} ev
-   * @param {AxiosInstance} request
-   */
-  constructor(ev, request) {
+  constructor(ev: EventEmitter, request: AxiosInstance) {
     this.#ev = ev;
     this.#request = request;
   }
 
   /**
    * Starts the auth flow in case no valid credentials are available.
-   * @param {object} credentials
-   * @param {string} credentials.access_token
-   * @param {string} credentials.refresh_token
-   * @param {Date} credentials.expires_in
+   * @param credentials
    */
-  init(credentials) {
+  init(credentials: Credentials) {
     this.#credentials = credentials;
     if (!credentials.access_token) {
       this.#getUserCode();
@@ -37,9 +39,9 @@ class OAuth {
 
   /**
    * Asks the server for a user code and verification URL.
-   * @returns {Promise.<void>}
+   * 
    */
-  async #getUserCode() {
+  async #getUserCode(): Promise<void> {
     this.#identity = await this.#getClientIdentity();
 
     const data = {
@@ -71,9 +73,9 @@ class OAuth {
 
   /**
    * Polls the authorization server until access is granted by the user.
-   * @param {string} device_code
+   * @param device_code
    */
-  #startPolling(device_code) {
+  #startPolling(device_code: string) {
     const poller = setInterval(async () => {
       const data = {
         ...this.#identity,
@@ -127,9 +129,9 @@ class OAuth {
 
   /**
    * Refreshes the access token if necessary.
-   * @returns {Promise.<void>}
+   * 
    */
-  async checkAccessTokenValidity() {
+  async checkAccessTokenValidity(): Promise<void> {
     const timestamp = new Date(this.#credentials.expires).getTime();
 
     if (new Date().getTime() > timestamp) {
@@ -139,9 +141,9 @@ class OAuth {
 
   /**
    * Retrieves a new access token using the refresh token.
-   * @returns {Promise.<void>}
+   * 
    */
-  async #refreshAccessToken() {
+  async #refreshAccessToken(): Promise<void> {
     this.#identity = await this.#getClientIdentity();
 
     const data = {
@@ -165,7 +167,7 @@ class OAuth {
     this.#credentials = {
       access_token: response.data.access_token,
       refresh_token: response.data.refresh_token || this.credentials.refresh_token,
-      expires: expiration_date
+      expires_in: expiration_date
     };
 
     this.#ev.emit('update-credentials', {
@@ -176,9 +178,9 @@ class OAuth {
 
   /**
    * Revokes credentials.
-   * @returns {Promise.<{ success: boolean, status_code: number }>}
+   * 
    */
-  revokeCredentials() {
+  revokeCredentials(): Promise<{ success: boolean; status_code: number; }> {
     return this.#request({
       url: '/o/oauth2/revoke',
       baseURL: Constants.URLS.YT_BASE,
@@ -189,9 +191,9 @@ class OAuth {
 
   /**
    * Retrieves client identity from YouTube TV.
-   * @returns {Promise.<{ client_id: string, client_secret: string }>}
+   * 
    */
-  async #getClientIdentity() {
+  async #getClientIdentity(): Promise<{ client_id: string; client_secret: string; }> {
     const response = await this.#request({
       url: '/tv',
       baseURL: Constants.URLS.YT_BASE,
@@ -209,18 +211,15 @@ class OAuth {
     return client_identity.groups;
   }
 
-  /**
-   * @returns {{ access_token: string, refresh_token: string, expires: Date }}
-   */
   get credentials() {
     return this.#credentials;
   }
 
   /**
    * Validates the credentials.
-   * @returns {boolean}
+   * 
    */
-  validateCredentials() {
+  validateCredentials(): boolean {
     return this.#credentials.hasOwnProperty('access_token')
       && this.#credentials.hasOwnProperty('refresh_token')
       && this.#credentials.hasOwnProperty('expires');
