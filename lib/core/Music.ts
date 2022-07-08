@@ -9,11 +9,20 @@ import Artist from '../parser/ytmusic/Artist';
 import Album from '../parser/ytmusic/Album';
 
 import { InnertubeError, observe } from '../utils/Utils'
+import type Innertube from '../Innertube';
+import type Actions from './Actions';
+
+interface YTMusicSearchFilters {
+  /**
+   * all | song | video | album | playlist | artist
+   */
+  type: string;
+}
 
 /** @namespace */
 class Music {
-  #session;
-  #actions;
+  #session: Innertube;
+  #actions: Actions;
 
   /**
    * @param {import('../Innertube')} session
@@ -27,11 +36,11 @@ class Music {
    * Searches on YouTube Music.
    *
    * @param {string} query
-   * @param {object} filters - search filters
-   * @param {string} [filters.type] - all | song | video | album | playlist | artist
+   * @param filters - search filters
    * @returns {Promise.<Search>}
    */
-  async search(query, filters) {
+  async search(query, filters: YTMusicSearchFilters) {
+    // TODO: the types for Actions#search seem to be wrong
     const response = await this.#actions.search({ query, filters, client: 'YTMUSIC' });
     return new Search(response, this.#actions, { is_filtered: filters?.hasOwnProperty('type') && filters.type !== 'all' });
   }
