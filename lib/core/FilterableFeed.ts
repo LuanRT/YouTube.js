@@ -1,24 +1,21 @@
 'use strict';
 
-import InnertubeError from '../utils/Utils';
+import { InnertubeError } from '../utils/Utils';
 import Feed from './Feed';
+import type ChipCloudChip from '../parser/contents/classes/ChipCloudChip';
+import type Actions from './Actions';
 
 class FilterableFeed extends Feed {
-  /**
-   * @type {import('../parser/contents/ChipCloudChip')[]}
-   */
-  #chips;
+  #chips: ChipCloudChip[];
 
-  constructor(actions, data, already_parsed = false) {
+  constructor(actions: Actions, data, already_parsed = false) {
     super(actions, data, already_parsed);
   }
 
   /**
    * Get filters for the feed
-   *
-   * @returns {import('../parser/contents/ChipCloudChip')[]}
    */
-  get filter_chips() {
+  get filter_chips(): ChipCloudChip[] {
     if (this.#chips) return this.#chips || [];
 
     if (this.memo.get('FeedFilterChipBar')?.length > 1)
@@ -38,10 +35,9 @@ class FilterableFeed extends Feed {
   /**
    * Applies given filter and returns a new {@link Feed} object.
    *
-   * @param {string | import('../parser/contents/classes/ChipCloudChip')} filter
-   * @returns {Promise.<Feed>}
+   * @param filter
    */
-  async getFilteredFeed(filter) {
+  async getFilteredFeed(filter: string | ChipCloudChip): Promise<Feed> {
     let target_filter;
 
     if (typeof filter === 'string') {
