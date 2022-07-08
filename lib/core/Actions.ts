@@ -8,26 +8,26 @@ import type Innertube from '../Innertube';
 import type Request from '../utils/Request';
 import type { APIResponse } from '../utils/common';
 
-interface BrowseArgs {
+export interface BrowseArgs {
   params?: string;
   is_ytm?: boolean;
   is_ctoken?: boolean;
   client?: string;
 }
 
-interface EngageArgs {
+export interface EngageArgs {
   video_id?: string;
   channel_id?: string;
   comment_id?: string;
   comment_action?: string;
 }
 
-interface AccountArgs {
+export interface AccountArgs {
   new_value?: string;
   setting_item_id?: string;
 }
 
-interface SearchArgs {
+export interface SearchArgs {
   query?: string;
   options?: {
     period?: string;
@@ -38,29 +38,29 @@ interface SearchArgs {
   ctoken?: string;
 }
 
-interface SoundArgs {
+export interface SoundArgs {
   query?: string;
 }
 
-interface ChannelArgs {
+export interface ChannelArgs {
   new_name?: string;
   new_description?: string;
 }
 
-interface PlaylistArgs {
+export interface PlaylistArgs {
   title?: string;
   ids?: string;
   playlist_id?: string;
   action?: string;
 }
 
-interface NotificationsArgs {
+export interface NotificationsArgs {
   pref?: string;
   channel_id?: string;
   ctoken?: string;
 }
 
-interface LiveChatArgs {
+export interface LiveChatArgs {
   text?: string;
   video_id?: string;
   channel_id?: string;
@@ -68,30 +68,30 @@ interface LiveChatArgs {
   params?: string;
 }
 
-interface ThumbnailArgs {
+export interface ThumbnailArgs {
   video_id?: string;
 }
 
-interface GeoArgs {
+export interface GeoArgs {
   input?: string;
 }
 
-interface FlagArgs {
+export interface FlagArgs {
   action?: string;
   params?: string;
 }
 
-interface MusicArgs {
+export interface MusicArgs {
   input?: string;
 }
 
-interface NextArgs {
+export interface NextArgs {
   video_id?: string;
   ctoken?: string;
   client?: string;
 }
 
-interface UserMentionSuggestionsArgs {
+export interface UserMentionSuggestionsArgs {
   input?: string;
 }
 

@@ -12,7 +12,7 @@ import { InnertubeError, observe } from '../utils/Utils'
 import type Innertube from '../Innertube';
 import type Actions from './Actions';
 
-interface YTMusicSearchFilters {
+export interface YTMusicSearchFilters {
   /**
    * all | song | video | album | playlist | artist
    */

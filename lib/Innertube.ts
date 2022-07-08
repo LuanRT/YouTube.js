@@ -34,7 +34,7 @@ import OldParser from './parser';
 import Proto from './proto';
 import type Player from './core/Player';
 
-interface InnertubeConfig {
+export interface InnertubeConfig {
   gl?: string;
   cookie?: string;
   debug?: boolean;
@@ -43,7 +43,7 @@ interface InnertubeConfig {
   https_agent?: object;
 }
 
-interface SignInCredientials {
+export interface SignInCredientials {
   /**
    * Token used to sign in.
    */
@@ -58,7 +58,7 @@ interface SignInCredientials {
   expires?: Date;
 }
 
-interface SearchFilters {
+export interface SearchFilters {
   /**
    * filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
    */
@@ -77,7 +77,7 @@ interface SearchFilters {
   sort_by?: string;
 }
 
-interface SearchSuggestionOptions {
+export interface SearchSuggestionOptions {
   /**
    * client used to retrieve search suggestions, can be: `YOUTUBE` or `YTMUSIC`.
    * @default "YOUTUBE"
@@ -85,7 +85,7 @@ interface SearchSuggestionOptions {
   client?: string;
 }
 
-interface StreamingDataOptions {
+export interface StreamingDataOptions {
   /**
    * video quality; 360p, 720p, 1080p, etc...
    */
@@ -100,7 +100,7 @@ interface StreamingDataOptions {
   format?: string;
 }
 
-interface DownloadOptions {
+export interface DownloadOptions {
   /**
    * video quality; 360p, 720p, 1080p, etc...
    */
