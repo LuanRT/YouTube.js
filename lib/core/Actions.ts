@@ -685,17 +685,14 @@ class Actions {
   }
 
   #needsLogin(id: string) {
-    switch (id) {
-      case 'FElibrary':
-      case 'FEhistory':
-      case 'FEsubscriptions':
-      case 'SPaccount_notifications':
-      case 'SPaccount_privacy':
-      case 'SPtime_watched':
-        return true;
-      default:
-        return false;
-    }
+    return [
+      'FElibrary',
+      'FEhistory',
+      'FEsubscriptions',
+      'SPaccount_notifications',
+      'SPaccount_privacy',
+      'SPtime_watched'
+    ].includes(id);
   }
 }
 
