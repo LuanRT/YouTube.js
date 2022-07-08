@@ -1,9 +1,9 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Text from './Text';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class MusicTwoRowItem {
   type = 'MusicTwoRowItem';
@@ -88,4 +88,4 @@ class MusicTwoRowItem {
   }
 }
 
-module.exports = MusicTwoRowItem;
+export default MusicTwoRowItem;

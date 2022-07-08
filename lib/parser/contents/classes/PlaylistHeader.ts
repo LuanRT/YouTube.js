@@ -1,8 +1,8 @@
 'use strict';
 
-const Text = require('./Text');
-const PlaylistAuthor = require('./PlaylistAuthor');
-const Parser = require('..');
+import Text from './Text';
+import PlaylistAuthor from './PlaylistAuthor';
+import Parser from '..';
 
 class PlaylistHeader {
   type = 'PlaylistHeader';
@@ -26,4 +26,4 @@ class PlaylistHeader {
   }
 }
 
-module.exports = PlaylistHeader;
+export default PlaylistHeader;

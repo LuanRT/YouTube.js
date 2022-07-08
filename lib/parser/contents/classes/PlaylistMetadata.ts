@@ -10,4 +10,4 @@ class PlaylistMetadata {
   }
 }
 
-module.exports = PlaylistMetadata;
+export default PlaylistMetadata;

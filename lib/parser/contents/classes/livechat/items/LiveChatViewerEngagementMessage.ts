@@ -1,7 +1,7 @@
 'use strict';
 
-const LiveChatTextMessage = require('./LiveChatTextMessage');
-const Parser = require('../../..');
+import LiveChatTextMessage from './LiveChatTextMessage';
+import Parser from '../../..';
 
 class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
   type = 'LiveChatViewerEngagementMessage';
@@ -17,4 +17,4 @@ class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
   }
 }
 
-module.exports = LiveChatViewerEngagementMessage;
+export default LiveChatViewerEngagementMessage;

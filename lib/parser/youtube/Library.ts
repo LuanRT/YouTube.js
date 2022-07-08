@@ -1,10 +1,10 @@
 'use strict';
 
-const Parser = require('../contents');
-const History = require('./History');
-const Playlist = require('./Playlist');
-const Feed = require('../../core/Feed');
-const { observe } = require('../../utils/Utils');
+import Parser from '../contents';
+import History from './History';
+import Playlist from './Playlist';
+import Feed from '../../core/Feed';
+import observe from '../../utils/Utils';
 
 /** @namespace */
 class Library {
@@ -80,4 +80,4 @@ class Library {
   }
 }
 
-module.exports = Library;
+export default Library;

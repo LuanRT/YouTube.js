@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('../Text');
+import Text from '../Text';
 
 class UpdateToggleButtonTextAction {
   type = 'UpdateToggleButtonTextAction';
@@ -12,4 +12,4 @@ class UpdateToggleButtonTextAction {
   }
 }
 
-module.exports = UpdateToggleButtonTextAction;
+export default UpdateToggleButtonTextAction;

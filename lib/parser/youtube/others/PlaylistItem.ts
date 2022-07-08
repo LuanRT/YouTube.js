@@ -1,6 +1,6 @@
 'use strict';
 
-const Utils = require('../../../utils/Utils');
+import Utils from '../../../utils/Utils';
 
 class PlaylistItem {
   static parse(data) {
@@ -23,4 +23,4 @@ class PlaylistItem {
   }
 }
 
-module.exports = PlaylistItem;
+export default PlaylistItem;

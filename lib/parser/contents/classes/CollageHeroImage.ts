@@ -1,7 +1,7 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Thumbnail = require('./Thumbnail');
+import NavigationEndpoint from './NavigationEndpoint';
+import Thumbnail from './Thumbnail';
 
 class CollageHeroImage {
   type = 'CollageHeroImage';
@@ -14,4 +14,4 @@ class CollageHeroImage {
   }
 }
 
-module.exports = CollageHeroImage;
+export default CollageHeroImage;

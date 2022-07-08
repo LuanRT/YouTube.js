@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class BackstageImage {
   type = 'BackstageImage';
@@ -10,4 +10,4 @@ class BackstageImage {
   }
 }
 
-module.exports = BackstageImage;
+export default BackstageImage;

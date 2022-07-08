@@ -1,6 +1,6 @@
 'use strict';
 
-const messages = require('./messages');
+import messages from './messages';
 
 class Proto {
   /**
@@ -319,4 +319,4 @@ class Proto {
   }
 }
 
-module.exports = Proto;
+export default Proto;

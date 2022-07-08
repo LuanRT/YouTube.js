@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class VerticalWatchCardList {
   type = 'VerticalWatchCardList';
@@ -15,4 +15,4 @@ class VerticalWatchCardList {
   }
 }
 
-module.exports = VerticalWatchCardList;
+export default VerticalWatchCardList;

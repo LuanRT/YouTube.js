@@ -1,9 +1,9 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Text = require('./Text');
-const Parser = require('..');
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
+import Text from './Text';
+import Parser from '..';
 
 class ChannelAboutFullMetadata {
   type = 'ChannelAboutFullMetadata';
@@ -23,4 +23,4 @@ class ChannelAboutFullMetadata {
   }
 }
 
-module.exports = ChannelAboutFullMetadata;
+export default ChannelAboutFullMetadata;

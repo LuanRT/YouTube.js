@@ -1,8 +1,8 @@
 'use strict';
 
-const Author = require('./Author');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Text = require('./Text');
+import Author from './Author';
+import NavigationEndpoint from './NavigationEndpoint';
+import Text from './Text';
 
 class WatchCardRichHeader {
   type = 'WatchCardRichHeader';
@@ -17,4 +17,4 @@ class WatchCardRichHeader {
   }
 }
 
-module.exports = WatchCardRichHeader;
+export default WatchCardRichHeader;

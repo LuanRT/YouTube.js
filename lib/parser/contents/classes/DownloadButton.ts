@@ -1,6 +1,6 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
+import NavigationEndpoint from './NavigationEndpoint';
 
 class DownloadButton {
   type = 'DownloadButton';
@@ -13,4 +13,4 @@ class DownloadButton {
   }
 }
 
-module.exports = DownloadButton;
+export default DownloadButton;

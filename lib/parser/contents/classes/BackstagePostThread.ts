@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class BackstagePostThread {
   type = 'BackstagePostThread';
@@ -10,4 +10,4 @@ class BackstagePostThread {
   }
 }
 
-module.exports = BackstagePostThread;
+export default BackstagePostThread;

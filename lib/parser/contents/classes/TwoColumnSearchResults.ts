@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class TwoColumnSearchResults {
   type = 'TwoColumnSearchResults';
@@ -11,4 +11,4 @@ class TwoColumnSearchResults {
   }
 }
 
-module.exports = TwoColumnSearchResults;
+export default TwoColumnSearchResults;

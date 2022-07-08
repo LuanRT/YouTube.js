@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class AddChatItemAction {
   type = 'AddChatItemAction';
@@ -11,4 +11,4 @@ class AddChatItemAction {
   }
 }
 
-module.exports = AddChatItemAction;
+export default AddChatItemAction;

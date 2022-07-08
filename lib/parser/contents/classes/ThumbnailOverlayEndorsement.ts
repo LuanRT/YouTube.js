@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ThumbnailOverlayEndorsement {
   type = 'ThumbnailOverlayEndorsement';
@@ -10,4 +10,4 @@ class ThumbnailOverlayEndorsement {
   }
 }
 
-module.exports = ThumbnailOverlayEndorsement;
+export default ThumbnailOverlayEndorsement;

@@ -27,4 +27,4 @@ class VideoResultItem {
   }
 }
 
-module.exports = VideoResultItem;
+export default VideoResultItem;

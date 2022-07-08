@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class SectionList {
   type = 'SectionList';
@@ -24,4 +24,4 @@ class SectionList {
   }
 }
 
-module.exports = SectionList;
+export default SectionList;

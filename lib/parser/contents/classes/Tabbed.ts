@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class Tabbed {
   type = 'Tabbed';
@@ -10,4 +10,4 @@ class Tabbed {
   }
 }
 
-module.exports = Tabbed;
+export default Tabbed;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ItemSectionHeader {
   constructor(data) {
@@ -8,4 +8,4 @@ class ItemSectionHeader {
   }
 }
 
-module.exports = ItemSectionHeader;
+export default ItemSectionHeader;

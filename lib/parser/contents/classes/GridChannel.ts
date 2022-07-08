@@ -1,9 +1,9 @@
 'use strict';
 
-const Author = require('./Author');
-const Parser = require('..');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Text = require('./Text');
+import Author from './Author';
+import Parser from '..';
+import NavigationEndpoint from './NavigationEndpoint';
+import Text from './Text';
 
 class GridChannel {
   type = 'GridChannel';
@@ -21,4 +21,4 @@ class GridChannel {
   }
 }
 
-module.exports = GridChannel;
+export default GridChannel;

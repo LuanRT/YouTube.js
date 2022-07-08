@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class RichItem {
   type = 'RichItem';
@@ -10,4 +10,4 @@ class RichItem {
   }
 }
 
-module.exports = RichItem;
+export default RichItem;

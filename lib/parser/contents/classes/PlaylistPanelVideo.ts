@@ -1,10 +1,10 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Utils = require('../../../utils/Utils');
+import Parser from '..';
+import Text from './Text';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
+import Utils from '../../../utils/Utils';
 
 class PlaylistPanelVideo {
   type = 'PlaylistPanelVideo';
@@ -45,4 +45,4 @@ class PlaylistPanelVideo {
   }
 }
 
-module.exports = PlaylistPanelVideo;
+export default PlaylistPanelVideo;

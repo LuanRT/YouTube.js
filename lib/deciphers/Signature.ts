@@ -1,6 +1,6 @@
 'use strict';
 
-const { SIG_REGEX } = require('../utils/Constants');
+import SIG_REGEX from '../utils/Constants';;
 
 const SignatureOperation = exports.SignatureOperation = {
   REVERSE: 0,

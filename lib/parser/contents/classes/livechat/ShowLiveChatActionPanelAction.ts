@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class ShowLiveChatActionPanelAction {
   type = 'ShowLiveChatActionPanelAction';
@@ -10,4 +10,4 @@ class ShowLiveChatActionPanelAction {
   }
 }
 
-module.exports = ShowLiveChatActionPanelAction;
+export default ShowLiveChatActionPanelAction;

@@ -1,12 +1,12 @@
 'use strict';
 
-const { InnertubeError } = require('../../utils/Utils');
+import InnertubeError from '../../utils/Utils';
 const { PassThrough, Readable } = BROWSER ? require('stream-browserify') : require('stream');
 
-const Axios = require('axios');
-const Parser = require('../contents');
-const LiveChat = require('./LiveChat');
-const Constants = require('../../utils/Constants');
+import Axios from 'axios';
+import Parser from '../contents';
+import LiveChat from './LiveChat';
+import Constants from '../../utils/Constants';
 const CancelToken = Axios.CancelToken;
 
 /** Namespace */
@@ -526,4 +526,4 @@ class VideoInfo {
   }
 }
 
-module.exports = VideoInfo;
+export default VideoInfo;

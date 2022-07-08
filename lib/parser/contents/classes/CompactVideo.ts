@@ -1,11 +1,11 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Author = require('./Author');
-const Utils = require('../../../utils/Utils');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Text from './Text';
+import Author from './Author';
+import { timeToSeconds } from '../../../utils/Utils';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class CompactVideo {
   type = 'CompactVideo';
@@ -23,7 +23,7 @@ class CompactVideo {
 
     this.duration = {
       text: new Text(data.lengthText).toString(),
-      seconds: Utils.timeToSeconds(new Text(data.lengthText).toString())
+      seconds: timeToSeconds(new Text(data.lengthText).toString())
     };
 
     this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
@@ -36,4 +36,4 @@ class CompactVideo {
   }
 }
 
-module.exports = CompactVideo;
+export default CompactVideo;

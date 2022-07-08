@@ -1,8 +1,8 @@
 'use strict';
 
-const Text = require('./Text');
-const Parser = require('..');
-const Thumbnail = require('./Thumbnail');
+import Text from './Text';
+import Parser from '..';
+import Thumbnail from './Thumbnail';
 
 class LiveChatMessageInput {
   constructor(data) {
@@ -13,4 +13,4 @@ class LiveChatMessageInput {
   }
 }
 
-module.exports = LiveChatMessageInput;
+export default LiveChatMessageInput;

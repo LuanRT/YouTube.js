@@ -1,6 +1,6 @@
 'use strict';
 
-const BackstagePost = require('./BackstagePost');
+import BackstagePost from './BackstagePost';
 
 class Post extends BackstagePost {
   type = 'Post';
@@ -10,4 +10,4 @@ class Post extends BackstagePost {
   }
 }
 
-module.exports = Post;
+export default Post;

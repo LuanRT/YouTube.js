@@ -1,8 +1,8 @@
 'use strict';
 
-const Text = require('../../Text');
-const Thumbnail = require('../../Thumbnail');
-const Parser = require('../../..');
+import Text from '../../Text';
+import Thumbnail from '../../Thumbnail';
+import Parser from '../../..';
 
 class PollHeader {
   type = 'PollHeader';
@@ -16,4 +16,4 @@ class PollHeader {
   }
 }
 
-module.exports = PollHeader;
+export default PollHeader;

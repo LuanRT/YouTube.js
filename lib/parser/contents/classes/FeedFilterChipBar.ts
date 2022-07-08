@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class FeedFilterChipBar {
   type = 'FeedFilterChipBar';
@@ -10,4 +10,4 @@ class FeedFilterChipBar {
   }
 }
 
-module.exports = FeedFilterChipBar;
+export default FeedFilterChipBar;

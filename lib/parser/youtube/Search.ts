@@ -1,7 +1,7 @@
 'use strict';
 
-const Feed = require('../../core/Feed');
-const { InnertubeError } = require('../../utils/Utils');
+import Feed from '../../core/Feed';
+import InnertubeError from '../../utils/Utils';
 
 /** @namespace */
 class Search extends Feed {
@@ -85,4 +85,4 @@ class Search extends Feed {
   }
 }
 
-module.exports = Search;
+export default Search;

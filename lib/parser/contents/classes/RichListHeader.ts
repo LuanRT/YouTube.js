@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class RichListHeader {
   constructor(data) {
@@ -9,4 +9,4 @@ class RichListHeader {
   }
 }
 
-module.exports = RichListHeader;
+export default RichListHeader;

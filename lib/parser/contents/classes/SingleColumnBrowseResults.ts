@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class SingleColumnBrowseResults {
   type = 'SingleColumnBrowseResults';
@@ -10,4 +10,4 @@ class SingleColumnBrowseResults {
   }
 }
 
-module.exports = SingleColumnBrowseResults;
+export default SingleColumnBrowseResults;

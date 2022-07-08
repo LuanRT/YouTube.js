@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('../contents');
-const { observe, InnertubeError } = require('../../utils/Utils');
+import Parser from '../contents';
+import { observe, InnertubeError } from '../../utils/Utils'
 
 /** @namespace */
 class Search {
@@ -144,4 +144,4 @@ class Search {
   }
 }
 
-module.exports = Search;
+export default Search;

@@ -16,4 +16,4 @@ class ArtistResultItem {
   }
 }
 
-module.exports = ArtistResultItem;
+export default ArtistResultItem;

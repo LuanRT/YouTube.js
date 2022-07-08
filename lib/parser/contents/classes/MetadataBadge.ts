@@ -12,4 +12,4 @@ class MetadataBadge {
   }
 }
 
-module.exports = MetadataBadge;
+export default MetadataBadge;

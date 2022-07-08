@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+const CONSTANTS = {
   URLS: {
     YT_BASE: 'https://www.youtube.com',
     YT_MUSIC_BASE: 'https://music.youtube.com',
@@ -109,4 +109,6 @@ module.exports = {
     TRANSLATE_1: 'function(d,e){for(var f',
     TRANSLATE_2: 'function(d,e,f){var'
   }
-};
+} as const;
+
+export default CONSTANTS;

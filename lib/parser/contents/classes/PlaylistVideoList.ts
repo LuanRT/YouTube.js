@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class PlaylistVideoList {
   type = 'PlaylistVideoList';
@@ -13,4 +13,4 @@ class PlaylistVideoList {
   }
 }
 
-module.exports = PlaylistVideoList;
+export default PlaylistVideoList;

@@ -1,9 +1,9 @@
 'use strict';
 
-const Parser = require('..');
-const Author = require('./Author');
-const Thumbnail = require('./Thumbnail');
-const Text = require('./Text');
+import Parser from '..';
+import Author from './Author';
+import Thumbnail from './Thumbnail';
+import Text from './Text';
 
 class C4TabbedHeader {
   type = 'C4TabbedHeader';
@@ -23,4 +23,4 @@ class C4TabbedHeader {
   }
 }
 
-module.exports = C4TabbedHeader;
+export default C4TabbedHeader;

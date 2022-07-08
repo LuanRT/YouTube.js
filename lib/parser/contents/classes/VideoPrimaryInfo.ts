@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
+import Parser from '..';
+import Text from './Text';
 
 class VideoPrimaryInfo {
   type = 'VideoPrimaryInfo';
@@ -16,4 +16,4 @@ class VideoPrimaryInfo {
   }
 }
 
-module.exports = VideoPrimaryInfo;
+export default VideoPrimaryInfo;

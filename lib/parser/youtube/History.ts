@@ -1,6 +1,6 @@
 'use strict';
 
-const Feed = require('../../core/Feed');
+import Feed from '../../core/Feed';
 
 // TODO: make filter actions usable
 
@@ -29,4 +29,4 @@ class History extends Feed {
   }
 }
 
-module.exports = History;
+export default History;

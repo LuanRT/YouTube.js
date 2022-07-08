@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class PlaylistSidebar {
   type = 'PlaylistSidebar';
@@ -15,4 +15,4 @@ class PlaylistSidebar {
   }
 }
 
-module.exports = PlaylistSidebar;
+export default PlaylistSidebar;

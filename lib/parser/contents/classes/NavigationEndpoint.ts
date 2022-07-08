@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 // TODO: refactor this
 
@@ -244,4 +244,4 @@ class NavigationEndpoint {
   }
 }
 
-module.exports = NavigationEndpoint;
+export default NavigationEndpoint;

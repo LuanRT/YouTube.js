@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../contents');
+import Parser from '../contents';
 
 /** @namespace */
 class Explore {
@@ -23,4 +23,4 @@ class Explore {
   }
 }
 
-module.exports = Explore;
+export default Explore;

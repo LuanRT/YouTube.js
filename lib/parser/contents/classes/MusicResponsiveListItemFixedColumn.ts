@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class MusicResponsiveListItemFixedColumn {
   type = 'musicResponsiveListItemFlexColumnRenderer';
@@ -11,4 +11,4 @@ class MusicResponsiveListItemFixedColumn {
   }
 }
 
-module.exports = MusicResponsiveListItemFixedColumn;
+export default MusicResponsiveListItemFixedColumn;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class LiveChatHeader {
   type = 'LiveChatHeader';
@@ -12,4 +12,4 @@ class LiveChatHeader {
   }
 }
 
-module.exports = LiveChatHeader;
+export default LiveChatHeader;

@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
+import Parser from '..';
+import Text from './Text';
 
 class VerticalList {
   type = 'VerticalList';
@@ -18,4 +18,4 @@ class VerticalList {
   }
 }
 
-module.exports = VerticalList;
+export default VerticalList;

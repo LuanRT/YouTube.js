@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class BrowseFeedActions {
   type = 'BrowseFeedActions';
@@ -10,4 +10,4 @@ class BrowseFeedActions {
   }
 }
 
-module.exports = BrowseFeedActions;
+export default BrowseFeedActions;

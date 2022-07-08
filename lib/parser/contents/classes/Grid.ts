@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class Grid {
   type = 'Grid';
@@ -18,4 +18,4 @@ class Grid {
   }
 }
 
-module.exports = Grid;
+export default Grid;

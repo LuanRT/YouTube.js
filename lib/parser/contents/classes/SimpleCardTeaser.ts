@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class SimpleCardTeaser {
   type = 'SimpleCardTeaser';
@@ -11,4 +11,4 @@ class SimpleCardTeaser {
   }
 }
 
-module.exports = SimpleCardTeaser;
+export default SimpleCardTeaser;

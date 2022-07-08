@@ -1,7 +1,7 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class ChannelThumbnailWithLink {
   type = 'ChannelThumbnailWithLink';
@@ -13,4 +13,4 @@ class ChannelThumbnailWithLink {
   }
 }
 
-module.exports = ChannelThumbnailWithLink;
+export default ChannelThumbnailWithLink;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class WatchCardSectionSequence {
   type = 'WatchCardSectionSequence';
@@ -10,4 +10,4 @@ class WatchCardSectionSequence {
   }
 }
 
-module.exports = WatchCardSectionSequence;
+export default WatchCardSectionSequence;

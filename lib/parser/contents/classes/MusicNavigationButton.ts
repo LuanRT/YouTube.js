@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class MusicNavigationButton {
   type = 'MusicNavigationButton';
@@ -12,4 +12,4 @@ class MusicNavigationButton {
   }
 }
 
-module.exports = MusicNavigationButton;
+export default MusicNavigationButton;

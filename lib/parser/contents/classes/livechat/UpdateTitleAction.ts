@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('../Text');
+import Text from '../Text';
 
 class UpdateTitleAction {
   type = 'UpdateTitleAction';
@@ -10,4 +10,4 @@ class UpdateTitleAction {
   }
 }
 
-module.exports = UpdateTitleAction;
+export default UpdateTitleAction;

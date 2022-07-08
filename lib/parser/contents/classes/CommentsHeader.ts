@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
+import Parser from '..';
+import Text from './Text';
+import Thumbnail from './Thumbnail';
 
 class CommentsHeader {
   type = 'CommentsHeader';
@@ -24,4 +24,4 @@ class CommentsHeader {
   }
 }
 
-module.exports = CommentsHeader;
+export default CommentsHeader;

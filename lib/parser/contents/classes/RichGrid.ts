@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class RichGrid {
   type = 'RichGrid';
@@ -13,4 +13,4 @@ class RichGrid {
   }
 }
 
-module.exports = RichGrid;
+export default RichGrid;

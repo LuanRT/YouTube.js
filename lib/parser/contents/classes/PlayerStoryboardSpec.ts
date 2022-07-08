@@ -41,4 +41,4 @@ class PlayerStoryboardSpec {
   }
 }
 
-module.exports = PlayerStoryboardSpec;
+export default PlayerStoryboardSpec;

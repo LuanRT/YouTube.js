@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
+import Text from './Text';
+import Thumbnail from './Thumbnail';
 
 class CommentsEntryPointHeader {
   type = 'CommentsEntryPointHeader';
@@ -15,4 +15,4 @@ class CommentsEntryPointHeader {
   }
 }
 
-module.exports = CommentsEntryPointHeader;
+export default CommentsEntryPointHeader;

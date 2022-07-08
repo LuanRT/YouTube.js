@@ -1,8 +1,8 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
+import NavigationEndpoint from './NavigationEndpoint';
+import Text from './Text';
+import Thumbnail from './Thumbnail';
 
 class HeaderLink {
   constructor(data) {
@@ -21,4 +21,4 @@ class ChannelHeaderLinks {
   }
 }
 
-module.exports = ChannelHeaderLinks;
+export default ChannelHeaderLinks;

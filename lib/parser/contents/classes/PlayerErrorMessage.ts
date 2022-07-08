@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
+import Parser from '..';
+import Text from './Text';
+import Thumbnail from './Thumbnail';
 
 class PlayerErrorMessage {
   type = 'PlayerErrorMessage';
@@ -16,4 +16,4 @@ class PlayerErrorMessage {
   }
 }
 
-module.exports = PlayerErrorMessage;
+export default PlayerErrorMessage;

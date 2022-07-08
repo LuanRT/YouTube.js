@@ -1,11 +1,11 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
-const Author = require('./Author');
-const Proto = require('../../../proto');
-const { InnertubeError } = require('../../../utils/Utils');
+import Parser from '..';
+import Text from './Text';
+import Thumbnail from './Thumbnail';
+import Author from './Author';
+import Proto from '../../../proto';
+import {InnertubeError} from '../../../utils/Utils';
 
 class Comment {
   type = 'Comment';
@@ -133,4 +133,4 @@ class Comment {
   }
 }
 
-module.exports = Comment;
+export default Comment;

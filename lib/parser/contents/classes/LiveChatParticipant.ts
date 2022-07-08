@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
+import Parser from '..';
+import Text from './Text';
+import Thumbnail from './Thumbnail';
 
 class LiveChatParticipant {
   type = 'LiveChatParticipant';
@@ -14,4 +14,4 @@ class LiveChatParticipant {
   }
 }
 
-module.exports = LiveChatParticipant;
+export default LiveChatParticipant;

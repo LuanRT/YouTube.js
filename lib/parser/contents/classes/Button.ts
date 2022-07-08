@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class Button {
   type = 'Button';
@@ -25,4 +25,4 @@ class Button {
   }
 }
 
-module.exports = Button;
+export default Button;

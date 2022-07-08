@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class ToggleButton {
   type = 'ToggleButton';
@@ -37,4 +37,4 @@ class ToggleButton {
   }
 }
 
-module.exports = ToggleButton;
+export default ToggleButton;

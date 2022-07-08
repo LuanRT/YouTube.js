@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class ContinuationItem {
   type = 'ContinuationItem';
@@ -16,4 +16,4 @@ class ContinuationItem {
   }
 }
 
-module.exports = ContinuationItem;
+export default ContinuationItem;

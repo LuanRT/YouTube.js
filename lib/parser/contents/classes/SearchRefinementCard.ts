@@ -1,8 +1,8 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Thumbnail = require('./Thumbnail');
-const Text = require('./Text');
+import NavigationEndpoint from './NavigationEndpoint';
+import Thumbnail from './Thumbnail';
+import Text from './Text';
 
 class SearchRefinementCard {
   type = 'SearchRefinementCard';
@@ -14,4 +14,4 @@ class SearchRefinementCard {
   }
 }
 
-module.exports = SearchRefinementCard;
+export default SearchRefinementCard;

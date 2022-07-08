@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class AnalyticsVideo {
   type = 'AnalyticsVideo';
@@ -17,4 +17,4 @@ class AnalyticsVideo {
   }
 }
 
-module.exports = AnalyticsVideo;
+export default AnalyticsVideo;

@@ -1,11 +1,11 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Author = require('./Author');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Utils = require('../../../utils/Utils');
+import Parser from '..';
+import Text from './Text';
+import Author from './Author';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
+import Utils from '../../../utils/Utils';
 
 class Video {
   type = 'Video';
@@ -87,4 +87,4 @@ class Video {
   }
 }
 
-module.exports = Video;
+export default Video;

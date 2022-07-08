@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class SingleColumnMusicWatchNextResults {
   type = 'SingleColumnMusicWatchNextResults';
@@ -10,4 +10,4 @@ class SingleColumnMusicWatchNextResults {
   }
 }
 
-module.exports = SingleColumnMusicWatchNextResults;
+export default SingleColumnMusicWatchNextResults;

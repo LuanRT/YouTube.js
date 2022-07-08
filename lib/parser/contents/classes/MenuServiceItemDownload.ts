@@ -1,6 +1,6 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
+import NavigationEndpoint from './NavigationEndpoint';
 
 class MenuServiceItemDownload {
   type = 'MenuServiceItemDownload';
@@ -11,4 +11,4 @@ class MenuServiceItemDownload {
   }
 }
 
-module.exports = MenuServiceItemDownload;
+export default MenuServiceItemDownload;

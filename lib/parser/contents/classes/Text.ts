@@ -1,7 +1,7 @@
 'use strict';
 
-const TextRun = require('./TextRun');
-const EmojiRun = require('./EmojiRun');
+import TextRun from './TextRun';
+import EmojiRun from './EmojiRun';
 
 class Text {
   text;
@@ -24,4 +24,4 @@ class Text {
   }
 }
 
-module.exports = Text;
+export default Text;

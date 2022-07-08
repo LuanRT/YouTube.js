@@ -1,7 +1,7 @@
 'use strict';
 
-const ResultsParser = require('../parser/contents');
-const { InnertubeError } = require('../utils/Utils');
+import ResultsParser from '../parser/contents';
+import InnertubeError from '../utils/Utils';
 
 // TODO: add a way subdivide into sections and return subfeeds?
 
@@ -216,4 +216,4 @@ class Feed {
   }
 }
 
-module.exports = Feed;
+export default Feed;

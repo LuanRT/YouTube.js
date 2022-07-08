@@ -1,6 +1,6 @@
 'use strict';
 
-const { openDB } = require('idb');
+import openDB from 'idb';
 
 class BrowserCache {
   constructor() {
@@ -47,4 +47,4 @@ class BrowserCache {
   }
 }
 
-module.exports = new BrowserCache();
+export default new BrowserCache();

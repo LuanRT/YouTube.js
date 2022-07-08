@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
+import Parser from '..';
+import Text from './Text';
 
 class CardCollection {
   type = 'CardCollection';
@@ -13,4 +13,4 @@ class CardCollection {
   }
 }
 
-module.exports = CardCollection;
+export default CardCollection;

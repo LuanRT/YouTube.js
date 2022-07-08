@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class Tab {
   type = 'Tab';
@@ -14,4 +14,4 @@ class Tab {
   }
 }
 
-module.exports = Tab;
+export default Tab;

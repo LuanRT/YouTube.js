@@ -1,7 +1,7 @@
 'use strict';
 
-const Utils = require('../../../utils/Utils');
-const Constants = require('../../../utils/Constants');
+import Utils from '../../../utils/Utils';
+import Constants from '../../../utils/Constants';
 
 class VideoResultItem {
   static parse(data) {
@@ -40,4 +40,4 @@ class VideoResultItem {
   }
 }
 
-module.exports = VideoResultItem;
+export default VideoResultItem;

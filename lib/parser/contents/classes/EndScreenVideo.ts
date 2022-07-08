@@ -1,10 +1,10 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Author = require('./Author');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Text from './Text';
+import Author from './Author';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class EndScreenVideo {
   type = 'EndScreenVideo';
@@ -25,4 +25,4 @@ class EndScreenVideo {
   }
 }
 
-module.exports = EndScreenVideo;
+export default EndScreenVideo;

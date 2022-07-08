@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class SearchBox {
   type = 'SearchBox';
@@ -15,4 +15,4 @@ class SearchBox {
   }
 }
 
-module.exports = SearchBox;
+export default SearchBox;

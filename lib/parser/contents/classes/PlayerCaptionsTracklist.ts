@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class PlayerCaptionsTracklist {
   type = 'PlayerCaptionsTracklist';
@@ -26,4 +26,4 @@ class PlayerCaptionsTracklist {
   }
 }
 
-module.exports = PlayerCaptionsTracklist;
+export default PlayerCaptionsTracklist;

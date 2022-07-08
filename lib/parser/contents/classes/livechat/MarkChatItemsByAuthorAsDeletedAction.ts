@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('../Text');
+import Text from '../Text';
 
 class MarkChatItemsByAuthorAsDeletedAction {
   type = 'MarkChatItemsByAuthorAsDeletedAction';
@@ -11,4 +11,4 @@ class MarkChatItemsByAuthorAsDeletedAction {
   }
 }
 
-module.exports = MarkChatItemsByAuthorAsDeletedAction;
+export default MarkChatItemsByAuthorAsDeletedAction;

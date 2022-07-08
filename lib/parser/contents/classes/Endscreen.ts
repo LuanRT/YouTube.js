@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class Endscreen {
   type = 'Endscreen';
@@ -11,4 +11,4 @@ class Endscreen {
   }
 }
 
-module.exports = Endscreen;
+export default Endscreen;

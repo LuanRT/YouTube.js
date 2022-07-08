@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class PlaylistSidebarSecondaryInfo {
   type = 'PlaylistSidebarSecondaryInfo';
@@ -11,4 +11,4 @@ class PlaylistSidebarSecondaryInfo {
   }
 }
 
-module.exports = PlaylistSidebarSecondaryInfo;
+export default PlaylistSidebarSecondaryInfo;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class SecondarySearchContainer {
   type = 'SecondarySearchContainer';
@@ -10,4 +10,4 @@ class SecondarySearchContainer {
   }
 }
 
-module.exports = SecondarySearchContainer;
+export default SecondarySearchContainer;

@@ -1,10 +1,10 @@
 'use strict';
 
-const Text = require('./Text');
-const Parser = require('..');
-const Thumbnail = require('./Thumbnail');
-const PlaylistAuthor = require('./PlaylistAuthor');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import Parser from '..';
+import Thumbnail from './Thumbnail';
+import PlaylistAuthor from './PlaylistAuthor';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class PlaylistVideo {
   type = 'PlaylistVideo';
@@ -27,4 +27,4 @@ class PlaylistVideo {
   }
 }
 
-module.exports = PlaylistVideo;
+export default PlaylistVideo;

@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class WatchCardHeroVideo {
   type = 'WatchCardHeroVideo';
@@ -14,4 +14,4 @@ class WatchCardHeroVideo {
   }
 }
 
-module.exports = WatchCardHeroVideo;
+export default WatchCardHeroVideo;

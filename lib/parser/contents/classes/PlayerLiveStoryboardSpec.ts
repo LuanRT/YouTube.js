@@ -9,4 +9,4 @@ class PlayerLiveStoryboardSpec {
   }
 }
 
-module.exports = PlayerLiveStoryboardSpec;
+export default PlayerLiveStoryboardSpec;

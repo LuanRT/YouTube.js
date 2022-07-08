@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class MusicHeader {
   type = 'MusicHeader';
@@ -10,4 +10,4 @@ class MusicHeader {
   }
 }
 
-module.exports = MusicHeader;
+export default MusicHeader;

@@ -1,8 +1,8 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Utils = require('../../../utils/Utils');
-const Text = require('./Text');
+import NavigationEndpoint from './NavigationEndpoint';
+import { timeToSeconds } from '../../../utils/Utils';
+import Text from './Text';
 
 class ChildVideo {
   type = 'ChildVideo';
@@ -12,10 +12,10 @@ class ChildVideo {
     this.title = new Text(data.title);
     this.duration = {
       text: data.lengthText.simpleText,
-      seconds: Utils.timeToSeconds(data.lengthText.simpleText)
+      seconds: timeToSeconds(data.lengthText.simpleText)
     };
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
 
-module.exports = ChildVideo;
+export default ChildVideo;

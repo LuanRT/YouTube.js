@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class UniversalWatchCard {
   type = 'UniversalWatchCard';
@@ -12,4 +12,4 @@ class UniversalWatchCard {
   }
 }
 
-module.exports = UniversalWatchCard;
+export default UniversalWatchCard;

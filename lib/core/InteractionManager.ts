@@ -1,6 +1,6 @@
 'use strict';
 
-const Utils = require('../utils/Utils');
+import Utils from '../utils/Utils';
 
 /** @namespace */
 class InteractionManager {
@@ -138,4 +138,4 @@ class InteractionManager {
   }
 }
 
-module.exports = InteractionManager;
+export default InteractionManager;

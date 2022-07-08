@@ -1,9 +1,9 @@
 'use strict';
 
-const Parser = require('..');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Text = require('./Text');
+import Parser from '..';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
+import Text from './Text';
 
 class EndscreenElement {
   type = 'EndscreenElement';
@@ -48,4 +48,4 @@ class EndscreenElement {
   }
 }
 
-module.exports = EndscreenElement;
+export default EndscreenElement;

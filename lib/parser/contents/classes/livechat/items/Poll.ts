@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('../../..');
-const Text = require('../../Text');
-const NavigationEndpoint = require('../../NavigationEndpoint');
+import Parser from '../../..';
+import Text from '../../Text';
+import NavigationEndpoint from '../../NavigationEndpoint';
 
 class Poll {
   type = 'Poll';
@@ -22,4 +22,4 @@ class Poll {
   }
 }
 
-module.exports = Poll;
+export default Poll;

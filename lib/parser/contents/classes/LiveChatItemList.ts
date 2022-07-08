@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class LiveChatItemList {
   type = 'LiveChatItemList';
@@ -11,4 +11,4 @@ class LiveChatItemList {
   }
 }
 
-module.exports = LiveChatItemList;
+export default LiveChatItemList;

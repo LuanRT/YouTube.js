@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('../contents');
-const { InnertubeError } = require('../../utils/Utils');
+import Parser from '../contents';
+import InnertubeError from '../../utils/Utils';
 
 class Comments {
   #page;
@@ -74,4 +74,4 @@ class Comments {
   }
 }
 
-module.exports = Comments;
+export default Comments;

@@ -21,4 +21,4 @@ class MusicSearchSuggestionItem {
   }
 }
 
-module.exports = MusicSearchSuggestionItem;
+export default MusicSearchSuggestionItem;

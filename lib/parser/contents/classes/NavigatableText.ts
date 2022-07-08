@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class NavigatableText extends Text {
   type = 'NavigatableText';
@@ -23,4 +23,4 @@ class NavigatableText extends Text {
   }
 }
 
-module.exports = NavigatableText;
+export default NavigatableText;

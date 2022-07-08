@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class PlayerAnnotationsExpanded {
   type = 'PlayerAnnotationsExpanded';
@@ -21,4 +21,4 @@ class PlayerAnnotationsExpanded {
   }
 }
 
-module.exports = PlayerAnnotationsExpanded;
+export default PlayerAnnotationsExpanded;

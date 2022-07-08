@@ -20,4 +20,4 @@ class PlaylistResultItem {
   }
 }
 
-module.exports = PlaylistResultItem;
+export default PlaylistResultItem;

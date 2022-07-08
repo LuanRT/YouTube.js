@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class FeedTabbedHeader {
   constructor(data) {
@@ -8,4 +8,4 @@ class FeedTabbedHeader {
   }
 }
 
-module.exports = FeedTabbedHeader;
+export default FeedTabbedHeader;

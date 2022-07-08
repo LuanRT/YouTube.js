@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class ReplaceChatItemAction {
   constructor(data) {
@@ -9,4 +9,4 @@ class ReplaceChatItemAction {
   }
 }
 
-module.exports = ReplaceChatItemAction;
+export default ReplaceChatItemAction;

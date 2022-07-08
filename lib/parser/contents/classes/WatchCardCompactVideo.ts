@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const { timeToSeconds } = require('../../../utils/Utils');
+import Text from './Text';
+import timeToSeconds from '../../../utils/Utils';
 
 class WatchCardCompactVideo {
   type = 'WatchCardCompactVideo';
@@ -17,4 +17,4 @@ class WatchCardCompactVideo {
   }
 }
 
-module.exports = WatchCardCompactVideo;
+export default WatchCardCompactVideo;

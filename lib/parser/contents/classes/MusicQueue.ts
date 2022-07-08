@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class MusicQueue {
   type = 'MusicQueue';
@@ -10,4 +10,4 @@ class MusicQueue {
   }
 }
 
-module.exports = MusicQueue;
+export default MusicQueue;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class MusicThumbnail {
   type = 'MusicThumbnail';
@@ -10,4 +10,4 @@ class MusicThumbnail {
   }
 }
 
-module.exports = MusicThumbnail;
+export default MusicThumbnail;

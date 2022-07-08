@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ChannelMobileHeader {
   constructor(data) {
@@ -8,4 +8,4 @@ class ChannelMobileHeader {
   }
 }
 
-module.exports = ChannelMobileHeader;
+export default ChannelMobileHeader;

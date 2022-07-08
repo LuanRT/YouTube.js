@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
+import Parser from '..';
+import Text from './Text';
 
 class PlaylistPanel {
   type = 'PlaylistPanel';
@@ -19,4 +19,4 @@ class PlaylistPanel {
   }
 }
 
-module.exports = PlaylistPanel;
+export default PlaylistPanel;

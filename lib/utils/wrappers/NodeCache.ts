@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs');
+import fs from 'fs';
 
 class NodeCache {
   /**
@@ -50,4 +50,4 @@ class NodeCache {
   }
 }
 
-module.exports = new NodeCache();
+export default new NodeCache();

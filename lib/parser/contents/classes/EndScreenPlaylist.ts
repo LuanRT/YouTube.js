@@ -1,8 +1,8 @@
 'use strict';
 
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class EndScreenPlaylist {
   type = 'EndScreenPlaylist';
@@ -17,4 +17,4 @@ class EndScreenPlaylist {
   }
 }
 
-module.exports = EndScreenPlaylist;
+export default EndScreenPlaylist;

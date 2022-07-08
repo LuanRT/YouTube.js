@@ -1,8 +1,8 @@
 'use strict';
 
-const Author = require('./Author');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Text = require('./Text');
+import Author from './Author';
+import NavigationEndpoint from './NavigationEndpoint';
+import Text from './Text';
 
 class Channel {
   type = 'Channel';
@@ -20,4 +20,4 @@ class Channel {
   }
 }
 
-module.exports = Channel;
+export default Channel;

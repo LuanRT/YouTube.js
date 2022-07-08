@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class CommentReplies {
   type = 'CommentReplies';
@@ -12,4 +12,4 @@ class CommentReplies {
   }
 }
 
-module.exports = CommentReplies;
+export default CommentReplies;

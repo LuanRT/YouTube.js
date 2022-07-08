@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ThumbnailOverlaySidePanel {
   type = 'ThumbnailOverlaySidePanel';
@@ -11,4 +11,4 @@ class ThumbnailOverlaySidePanel {
   }
 }
 
-module.exports = ThumbnailOverlaySidePanel;
+export default ThumbnailOverlaySidePanel;

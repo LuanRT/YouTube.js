@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('../Text');
+import Text from '../Text';
 
 class MarkChatItemAsDeletedAction {
   type = 'MarkChatItemAsDeletedAction';
@@ -11,4 +11,4 @@ class MarkChatItemAsDeletedAction {
   }
 }
 
-module.exports = MarkChatItemAsDeletedAction;
+export default MarkChatItemAsDeletedAction;

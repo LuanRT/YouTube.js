@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class ReplayChatItemAction {
   type = 'ReplayChatItemAction';
@@ -15,4 +15,4 @@ class ReplayChatItemAction {
   }
 }
 
-module.exports = ReplayChatItemAction;
+export default ReplayChatItemAction;

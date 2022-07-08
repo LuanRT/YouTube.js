@@ -1,6 +1,6 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
+import NavigationEndpoint from './NavigationEndpoint';
 
 class LikeButton {
   type = 'LikeButton';
@@ -19,4 +19,4 @@ class LikeButton {
   }
 }
 
-module.exports = LikeButton;
+export default LikeButton;

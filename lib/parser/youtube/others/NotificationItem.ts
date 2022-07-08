@@ -23,4 +23,4 @@ class NotificationItem {
   }
 }
 
-module.exports = NotificationItem;
+export default NotificationItem;

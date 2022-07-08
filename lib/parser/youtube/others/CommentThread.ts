@@ -1,6 +1,6 @@
 'use strict';
 
-const Constants = require('../../../utils/Constants');
+import Constants from '../../../utils/Constants';
 
 class CommentThread {
   static parseItem(item) {
@@ -33,4 +33,4 @@ class CommentThread {
     }
   }
 }
-module.exports = CommentThread;
+export default CommentThread;

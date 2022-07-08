@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('../..');
-const Thumbnail = require('../Thumbnail');
-const Text = require('../Text');
+import Parser from '../..';
+import Thumbnail from '../Thumbnail';
+import Text from '../Text';
 
 class CommentSimplebox {
   type = 'CommentSimplebox';
@@ -16,4 +16,4 @@ class CommentSimplebox {
   }
 }
 
-module.exports = CommentSimplebox;
+export default CommentSimplebox;

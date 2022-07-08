@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class MicroformatData {
   type = 'MicroformatData';
@@ -33,4 +33,4 @@ class MicroformatData {
   }
 }
 
-module.exports = MicroformatData;
+export default MicroformatData;

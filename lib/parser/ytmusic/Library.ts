@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../contents');
+import Parser from '../contents';
 // Const { observe, InnertubeError } = require('../../utils/Utils');
 
 /** @namespace */
@@ -20,4 +20,4 @@ class Library {
   }
 }
 
-module.exports = Library;
+export default Library;

@@ -1,9 +1,9 @@
 'use strict';
 
-const Text = require('../../Text');
-const Thumbnail = require('../../Thumbnail');
-const NavigationEndpoint = require('../../NavigationEndpoint');
-const Parser = require('../../..');
+import Text from '../../Text';
+import Thumbnail from '../../Thumbnail';
+import NavigationEndpoint from '../../NavigationEndpoint';
+import Parser from '../../..';
 
 class LiveChatTextMessage {
   type = 'LiveChatTextMessage';
@@ -31,4 +31,4 @@ class LiveChatTextMessage {
   }
 }
 
-module.exports = LiveChatTextMessage;
+export default LiveChatTextMessage;

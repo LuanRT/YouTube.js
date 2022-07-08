@@ -19,4 +19,4 @@ class AlbumResultItem {
   }
 }
 
-module.exports = AlbumResultItem;
+export default AlbumResultItem;

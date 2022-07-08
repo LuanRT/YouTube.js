@@ -1,6 +1,6 @@
 'use strict';
 
-const Playlist = require('./Playlist');
+import Playlist from './Playlist';
 
 class Mix extends Playlist {
   type = 'Mix';
@@ -10,4 +10,4 @@ class Mix extends Playlist {
   }
 }
 
-module.exports = Mix;
+export default Mix;

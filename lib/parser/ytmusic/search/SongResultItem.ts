@@ -27,4 +27,4 @@ class SongResultItem {
   }
 }
 
-module.exports = SongResultItem;
+export default SongResultItem;

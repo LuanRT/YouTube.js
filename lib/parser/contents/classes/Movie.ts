@@ -1,11 +1,11 @@
 'use strict';
 
-const Parser = require('..');
-const Author = require('./Author');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Utils = require('../../../utils/Utils');
-const Text = require('./Text');
+import Parser from '..';
+import Author from './Author';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
+import { timeToSeconds } from '../../../utils/Utils';
+import Text from './Text';
 
 class Movie {
   type = 'Movie';
@@ -25,7 +25,7 @@ class Movie {
 
     this.duration = {
       text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
-      seconds: Utils.timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+      seconds: timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
     };
 
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
@@ -36,4 +36,4 @@ class Movie {
   }
 }
 
-module.exports = Movie;
+export default Movie;

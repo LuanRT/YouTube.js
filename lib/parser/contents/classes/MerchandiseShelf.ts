@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class MerchandiseShelf {
   type = 'MerchandiseShelf';
@@ -17,4 +17,4 @@ class MerchandiseShelf {
   }
 }
 
-module.exports = MerchandiseShelf;
+export default MerchandiseShelf;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class ChipCloud {
   type = 'ChipCloud';
@@ -13,4 +13,4 @@ class ChipCloud {
   }
 }
 
-module.exports = ChipCloud;
+export default ChipCloud;

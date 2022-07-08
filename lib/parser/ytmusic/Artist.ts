@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('../contents');
-const { observe } = require('../../utils/Utils');
+import Parser from '../contents';
+import {observe} from '../../utils/Utils';
 
 /** @namespace */
 class Artist {
@@ -36,4 +36,4 @@ class Artist {
   }
 }
 
-module.exports = Artist;
+export default Artist;

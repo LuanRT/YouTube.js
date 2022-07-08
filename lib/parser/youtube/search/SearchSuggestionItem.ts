@@ -9,4 +9,4 @@ class SearchSuggestionItem {
   }
 }
 
-module.exports = SearchSuggestionItem;
+export default SearchSuggestionItem;

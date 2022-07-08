@@ -1,6 +1,6 @@
 'use strict';
 
-const Video = require('./AnalyticsVideo');
+import Video from './AnalyticsVideo';
 
 class AnalyticsVodCarouselCard {
   type = 'AnalyticsVodCarouselCard';
@@ -11,4 +11,4 @@ class AnalyticsVodCarouselCard {
   }
 }
 
-module.exports = AnalyticsVodCarouselCard;
+export default AnalyticsVodCarouselCard;

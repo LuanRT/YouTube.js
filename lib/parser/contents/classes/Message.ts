@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class Message {
   type = 'Message';
@@ -10,4 +10,4 @@ class Message {
   }
 }
 
-module.exports = Message;
+export default Message;

@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class ShowingResultsFor {
   type = 'ShowingResultsFor';
@@ -13,4 +13,4 @@ class ShowingResultsFor {
   }
 }
 
-module.exports = ShowingResultsFor;
+export default ShowingResultsFor;

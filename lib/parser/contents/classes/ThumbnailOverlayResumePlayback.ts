@@ -8,4 +8,4 @@ class ThumbnailOverlayResumePlayback {
   }
 }
 
-module.exports = ThumbnailOverlayResumePlayback;
+export default ThumbnailOverlayResumePlayback;

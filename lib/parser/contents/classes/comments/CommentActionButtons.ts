@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class CommentActionButtons {
   type = 'CommentActionButtons';
@@ -12,4 +12,4 @@ class CommentActionButtons {
   }
 }
 
-module.exports = CommentActionButtons;
+export default CommentActionButtons;

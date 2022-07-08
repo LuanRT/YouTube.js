@@ -1,6 +1,6 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
+import NavigationEndpoint from './NavigationEndpoint';
 
 class TextRun {
   constructor(data) {
@@ -9,4 +9,4 @@ class TextRun {
   }
 }
 
-module.exports = TextRun;
+export default TextRun;

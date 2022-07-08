@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
+import Text from './Text';
+import Thumbnail from './Thumbnail';
 
 class ProfileColumnUserInfo {
   type = 'ProfileColumnUserInfo';
@@ -12,4 +12,4 @@ class ProfileColumnUserInfo {
   }
 }
 
-module.exports = ProfileColumnUserInfo;
+export default ProfileColumnUserInfo;

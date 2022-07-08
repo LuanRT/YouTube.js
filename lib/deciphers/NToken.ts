@@ -1,6 +1,6 @@
 'use strict';
 
-const { NTOKEN_REGEX, BASE64_DIALECT } = require('../utils/Constants');
+import { NTOKEN_REGEX, BASE64_DIALECT } from '../utils/Constants';
 
 const NTokenTransformOperation = exports.NTokenTransformOperation = {
   NO_OP: 0,

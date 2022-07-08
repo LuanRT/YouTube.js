@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class EmojiRun {
   constructor(data) {
@@ -17,4 +17,4 @@ class EmojiRun {
   }
 }
 
-module.exports = EmojiRun;
+export default EmojiRun;

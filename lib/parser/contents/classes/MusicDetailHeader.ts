@@ -1,8 +1,8 @@
 'use strict';
 
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
-const Parser = require('..');
+import Text from './Text';
+import Thumbnail from './Thumbnail';
+import Parser from '..';
 
 class MusicDetailHeader {
   type = 'MusicDetailHeader';
@@ -32,4 +32,4 @@ class MusicDetailHeader {
   }
 }
 
-module.exports = MusicDetailHeader;
+export default MusicDetailHeader;

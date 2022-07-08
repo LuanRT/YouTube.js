@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ProfileColumnStatsEntry {
   type = 'ProfileColumnStatsEntry';
@@ -11,4 +11,4 @@ class ProfileColumnStatsEntry {
   }
 }
 
-module.exports = ProfileColumnStatsEntry;
+export default ProfileColumnStatsEntry;

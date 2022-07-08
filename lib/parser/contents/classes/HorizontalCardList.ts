@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class HorizontalCardList {
   type = 'HorizontalCardList';
@@ -13,4 +13,4 @@ class HorizontalCardList {
   }
 }
 
-module.exports = HorizontalCardList;
+export default HorizontalCardList;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ThumbnailOverlayInlineUnplayable {
   type = 'ThumbnailOverlayInlineUnplayable';
@@ -11,4 +11,4 @@ class ThumbnailOverlayInlineUnplayable {
   }
 }
 
-module.exports = ThumbnailOverlayInlineUnplayable;
+export default ThumbnailOverlayInlineUnplayable;

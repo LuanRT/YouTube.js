@@ -1,9 +1,9 @@
 'use strict';
 
-const Utils = require('../utils/Utils');
-const Constants = require('../utils/Constants');
-const Analytics = require('../parser/youtube/Analytics');
-const Proto = require('../proto');
+import Utils from '../utils/Utils';
+import Constants from '../utils/Constants';
+import Analytics from '../parser/youtube/Analytics';
+import Proto from '../proto';
 
 /** @namespace */
 class AccountManager {
@@ -218,4 +218,4 @@ class AccountManager {
   }
 }
 
-module.exports = AccountManager;
+export default AccountManager;

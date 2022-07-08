@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class VideoDetails {
   /**
@@ -46,4 +46,4 @@ class VideoDetails {
   }
 }
 
-module.exports = VideoDetails;
+export default VideoDetails;

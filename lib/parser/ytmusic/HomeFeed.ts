@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../contents');
+import Parser from '../contents';
 
 /** @namespace */
 class HomeFeed {
@@ -35,4 +35,4 @@ class HomeFeed {
   }
 }
 
-module.exports = HomeFeed;
+export default HomeFeed;

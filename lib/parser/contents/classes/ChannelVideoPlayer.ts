@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ChannelVideoPlayer {
   type = 'ChannelVideoPlayer';
@@ -14,4 +14,4 @@ class ChannelVideoPlayer {
   }
 }
 
-module.exports = ChannelVideoPlayer;
+export default ChannelVideoPlayer;

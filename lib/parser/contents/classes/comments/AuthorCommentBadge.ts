@@ -22,4 +22,4 @@ class AuthorCommentBadge {
   }
 }
 
-module.exports = AuthorCommentBadge;
+export default AuthorCommentBadge;

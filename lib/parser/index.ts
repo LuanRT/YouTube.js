@@ -5,11 +5,11 @@
 
 'use strict';
 
-const Utils = require('../utils/Utils');
-const Constants = require('../utils/Constants');
-const YTDataItems = require('./youtube');
-const YTMusicDataItems = require('./ytmusic');
-const Proto = require('../proto');
+import { camelToSnake, findNode, InnertubeError, UnavailableContentError } from '../utils/Utils';
+import Constants from '../utils/Constants';
+import YTDataItems from './youtube';
+import YTMusicDataItems from './ytmusic';
+import Proto from '../proto';
 
 class Parser {
   constructor(session, data, args = {}) {
@@ -74,14 +74,14 @@ class Parser {
         })();
         break;
       default:
-        throw new Utils.InnertubeError('Invalid client');
+        throw new InnertubeError('Invalid client');
     }
 
     return processed_data;
   }
 
   #processSearch() {
-    const contents = Utils.findNode(this.data, 'contents', 'contents', 5);
+    const contents = findNode(this.data, 'contents', 'contents', 5);
 
     const processed_data = {};
 
@@ -100,7 +100,7 @@ class Parser {
 
         const response = await this.session.actions.search({ ctoken });
 
-        const continuation_items = Utils.findNode(response.data, 'onResponseReceivedCommands', 'itemSectionRenderer', 4, false);
+        const continuation_items = findNode(response.data, 'onResponseReceivedCommands', 'itemSectionRenderer', 4, false);
         return parseItems(continuation_items);
       };
 
@@ -111,8 +111,8 @@ class Parser {
   }
 
   #processMusicSearch() {
-    const tabs = Utils.findNode(this.data, 'contents', 'tabs').tabs;
-    const contents = Utils.findNode(tabs, '0', 'contents', 5);
+    const tabs = findNode(this.data, 'contents', 'tabs').tabs;
+    const contents = findNode(tabs, '0', 'contents', 5);
 
     const did_you_mean_item = contents.find((content) => content.itemSectionRenderer);
     const did_you_mean_renderer = did_you_mean_item?.itemSectionRenderer.contents[0].didYouMeanRenderer;
@@ -168,7 +168,7 @@ class Parser {
       views: details.playlistSidebarPrimaryInfoRenderer.stats[1].simpleText
     };
 
-    const list = Utils.findNode(this.data, 'contents', 'contents', 13, false);
+    const list = findNode(this.data, 'contents', 'contents', 13, false);
     const items = YTDataItems.PlaylistItem.parse(list.contents);
 
     return {
@@ -225,7 +225,7 @@ class Parser {
 
     // Extracts most of the metadata
     mf_raw_data.forEach((entry) => {
-      const key = Utils.camelToSnake(entry[0]);
+      const key = camelToSnake(entry[0]);
       if (Constants.METADATA_KEYS.includes(key)) {
         if (key == 'view_count') {
           processed_data.metadata[key] = parseInt(entry[1]);
@@ -243,7 +243,7 @@ class Parser {
 
     // Extracts extra details
     dt_raw_data.forEach((entry) => {
-      const key = Utils.camelToSnake(entry[0]);
+      const key = camelToSnake(entry[0]);
       if (Constants.BLACKLISTED_KEYS.includes(key)) return;
       if (Constants.METADATA_KEYS.includes(key)) {
         if (key == 'view_count') {
@@ -313,14 +313,14 @@ class Parser {
 
   #processComments() {
     if (!this.data.onResponseReceivedEndpoints)
-      throw new Utils.UnavailableContentError('Comments section not available', this.args);
+      throw new UnavailableContentError('Comments section not available', this.args);
 
-    const header = Utils.findNode(this.data, 'onResponseReceivedEndpoints', 'commentsHeaderRenderer', 5, false);
+    const header = findNode(this.data, 'onResponseReceivedEndpoints', 'commentsHeaderRenderer', 5, false);
     const comment_count = parseInt(header.commentsHeaderRenderer.countText.runs[0].text.replace(/,/g, ''));
     const page_count = parseInt(comment_count / 20);
 
     const parseComments = (data) => {
-      const items = Utils.findNode(data, 'onResponseReceivedEndpoints', 'commentRenderer', 4, false);
+      const items = findNode(data, 'onResponseReceivedEndpoints', 'commentRenderer', 4, false);
 
       const response = {
         page_count,
@@ -336,17 +336,17 @@ class Parser {
           comment.reply = (text) => this.session.actions.engage('comment/create_comment_reply', { text, comment_id: comment.metadata.id, video_id: this.args.video_id });
 
           comment.report = async () => {
-            const payload = Utils.findNode(item, 'commentThreadRenderer', 'params', 10, false);
+            const payload = findNode(item, 'commentThreadRenderer', 'params', 10, false);
             const form = await this.session.actions.flag('flag/get_form', { params: payload.params });
 
-            const action = Utils.findNode(form, 'actions', 'flagAction', 13, false);
+            const action = findNode(form, 'actions', 'flagAction', 13, false);
             const flag = await this.session.actions.flag('flag/flag', { action: action.flagAction });
 
             return flag;
           };
 
           comment.getReplies = async () => {
-            if (comment.metadata.reply_count === 0) throw new Utils.InnertubeError('This comment has no replies', comment);
+            if (comment.metadata.reply_count === 0) throw new InnertubeError('This comment has no replies', comment);
             const payload = Proto.encodeCommentRepliesParams(this.args.video_id, comment.metadata.id);
             const next = await this.session.actions.next({ ctoken: payload });
             return parseComments(next.data);
@@ -361,7 +361,7 @@ class Parser {
               target_language
             });
 
-            const translated_content = Utils.findNode(response.data, 'frameworkUpdates', 'content', 7, false);
+            const translated_content = findNode(response.data, 'frameworkUpdates', 'content', 7, false);
 
             return {
               success: response.success,
@@ -378,10 +378,10 @@ class Parser {
 
       response.getContinuation = async () => {
         const continuation_item = items.find((item) => item.continuationItemRenderer);
-        if (!continuation_item) throw new Utils.InnertubeError('You\'ve reached the end');
+        if (!continuation_item) throw new InnertubeError('You\'ve reached the end');
 
         const is_reply = !!continuation_item.continuationItemRenderer.button;
-        const payload = Utils.findNode(continuation_item, 'continuationItemRenderer', 'token', is_reply ? 5 : 3);
+        const payload = findNode(continuation_item, 'continuationItemRenderer', 'token', is_reply ? 5 : 3);
         const next = await this.session.actions.next({ ctoken: payload.token });
 
         return parseComments(next.data);
@@ -394,7 +394,7 @@ class Parser {
   }
 
   #processHomeFeed() {
-    const contents = Utils.findNode(this.data, 'contents', 'videoRenderer', 9, false);
+    const contents = findNode(this.data, 'contents', 'videoRenderer', 9, false);
 
     const parseItems = (contents) => {
       const videos = YTDataItems.VideoItem.parse(contents);
@@ -415,7 +415,7 @@ class Parser {
   }
 
   #processLibrary() { // TODO: Finish this
-    const profile_data = Utils.findNode(this.data, 'contents', 'profileColumnRenderer', 3);
+    const profile_data = findNode(this.data, 'contents', 'profileColumnRenderer', 3);
     const stats_data = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnStatsRenderer);
     const stats_items = stats_data.profileColumnStatsRenderer.items;
     const userinfo = profile_data.profileColumnRenderer.items.find((item) => item.profileColumnUserInfoRenderer);
@@ -433,7 +433,7 @@ class Parser {
       stats
     };
 
-    // Const content = Utils.findNode(this.data, 'contents', 'content', 8, false);
+    // Const content = findNode(this.data, 'contents', 'content', 8, false);
     // Console.info(content[0].itemSectionRenderer.contents[0].shelfRenderer);
 
     return {
@@ -442,7 +442,7 @@ class Parser {
   }
 
   #processSubscriptionFeed() {
-    const contents = Utils.findNode(this.data, 'contents', 'contents', 9, false);
+    const contents = findNode(this.data, 'contents', 'contents', 9, false);
 
     const subsfeed = { items: [] };
 
@@ -468,7 +468,7 @@ class Parser {
 
         const response = await this.session.actions.browse(ctoken, { is_ctoken: true });
 
-        const ccontents = Utils.findNode(response.data, 'onResponseReceivedActions', 'itemSectionRenderer', 4, false);
+        const ccontents = findNode(response.data, 'onResponseReceivedActions', 'itemSectionRenderer', 4, false);
         subsfeed.items = [];
 
         return parseItems(ccontents);
@@ -531,7 +531,7 @@ class Parser {
 
   #processNotifications() {
     const contents = this.data.actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[0];
-    if (!contents.multiPageMenuNotificationSectionRenderer) throw new Utils.InnertubeError('No notifications');
+    if (!contents.multiPageMenuNotificationSectionRenderer) throw new InnertubeError('No notifications');
 
     const parseItems = (items) => {
       const parsed_items = YTDataItems.NotificationItem.parse(items);
@@ -552,7 +552,7 @@ class Parser {
   }
 
   #processTrending() {
-    const tabs = Utils.findNode(this.data, 'contents', 'tabRenderer', 4, false);
+    const tabs = findNode(this.data, 'contents', 'tabRenderer', 4, false);
     const categories = {};
 
     tabs.forEach((tab) => {
@@ -575,11 +575,11 @@ class Parser {
         categories[category_title].getVideos = async () => {
           const response = await this.session.actions.browse('FEtrending', { params });
 
-          const tabs = Utils.findNode(response, 'contents', 'tabRenderer', 4, false);
+          const tabs = findNode(response, 'contents', 'tabRenderer', 4, false);
           const tab = tabs.find((tab) => tab.tabRenderer.title === tab_renderer.title);
 
           const contents = tab.tabRenderer.content.sectionListRenderer.contents;
-          const items = Utils.findNode(contents, 'itemSectionRenderer', 'items', 8, false);
+          const items = findNode(contents, 'itemSectionRenderer', 'items', 8, false);
 
           return YTDataItems.VideoItem.parse(items);
         };
@@ -590,7 +590,7 @@ class Parser {
   }
 
   #processHistory() {
-    const contents = Utils.findNode(this.data, 'contents', 'videoRenderer', 9, false);
+    const contents = findNode(this.data, 'contents', 'videoRenderer', 9, false);
 
     const history = { items: [] };
 
@@ -628,4 +628,4 @@ class Parser {
   }
 }
 
-module.exports = Parser;
+export default Parser;

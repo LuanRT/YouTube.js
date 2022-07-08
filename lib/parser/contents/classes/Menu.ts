@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class Menu {
   type = 'Menu';
@@ -17,4 +17,4 @@ class Menu {
   }
 }
 
-module.exports = Menu;
+export default Menu;

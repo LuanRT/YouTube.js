@@ -9,4 +9,4 @@ class MusicInlineBadge {
   }
 }
 
-module.exports = MusicInlineBadge;
+export default MusicInlineBadge;

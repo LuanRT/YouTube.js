@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class MusicItemThumbnailOverlay {
   type = 'MusicItemThumbnailOverlay';
@@ -12,4 +12,4 @@ class MusicItemThumbnailOverlay {
   }
 }
 
-module.exports = MusicItemThumbnailOverlay;
+export default MusicItemThumbnailOverlay;

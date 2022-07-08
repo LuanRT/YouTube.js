@@ -1,8 +1,8 @@
 'use strict';
 
 // Const Parser = require('../../..');
-const Text = require('../../Text');
-const Thumbnail = require('../../Thumbnail');
+import Text from '../../Text';
+import Thumbnail from '../../Thumbnail';
 
 class LiveChatTickerSponsorItem {
   type = 'LiveChatTickerSponsorItem';
@@ -25,4 +25,4 @@ class LiveChatTickerSponsorItem {
   }
 }
 
-module.exports = LiveChatTickerSponsorItem;
+export default LiveChatTickerSponsorItem;

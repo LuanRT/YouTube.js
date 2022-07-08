@@ -1,6 +1,6 @@
 'use strict';
 
-const Playlist = require('./Playlist');
+import Playlist from './Playlist';
 
 class CompactMix extends Playlist {
   type = 'CompactMix';
@@ -10,4 +10,4 @@ class CompactMix extends Playlist {
   }
 }
 
-module.exports = CompactMix;
+export default CompactMix;

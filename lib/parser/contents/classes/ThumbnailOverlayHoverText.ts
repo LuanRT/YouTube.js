@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ThumbnailOverlayHoverText {
   type = 'ThumbnailOverlayHoverText';
@@ -11,4 +11,4 @@ class ThumbnailOverlayHoverText {
   }
 }
 
-module.exports = ThumbnailOverlayHoverText;
+export default ThumbnailOverlayHoverText;

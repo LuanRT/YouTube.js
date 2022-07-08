@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class TwoColumnWatchNextResults {
   type = 'TwoColumnWatchNextResults';
@@ -12,4 +12,4 @@ class TwoColumnWatchNextResults {
   }
 }
 
-module.exports = TwoColumnWatchNextResults;
+export default TwoColumnWatchNextResults;

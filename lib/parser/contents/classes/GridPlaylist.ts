@@ -1,11 +1,11 @@
 'use strict';
 
-const Text = require('./Text');
-const Parser = require('..');
-const Thumbnail = require('./Thumbnail');
-const PlaylistAuthor = require('./PlaylistAuthor');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const NavigatableText = require('./NavigatableText');
+import Text from './Text';
+import Parser from '..';
+import Thumbnail from './Thumbnail';
+import PlaylistAuthor from './PlaylistAuthor';
+import NavigationEndpoint from './NavigationEndpoint';
+import NavigatableText from './NavigatableText';
 
 class GridPlaylist {
   type = 'GridPlaylist';
@@ -29,4 +29,4 @@ class GridPlaylist {
   }
 }
 
-module.exports = GridPlaylist;
+export default GridPlaylist;

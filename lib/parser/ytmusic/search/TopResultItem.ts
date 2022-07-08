@@ -1,10 +1,10 @@
 'use strict';
 
-const SongResultItem = require('./SongResultItem');
-const VideoResultItem = require('./VideoResultItem');
-const AlbumResultItem = require('./AlbumResultItem');
-const ArtistResultItem = require('./ArtistResultItem');
-const PlaylistResultItem = require('./PlaylistResultItem');
+import SongResultItem from './SongResultItem';
+import VideoResultItem from './VideoResultItem';
+import AlbumResultItem from './AlbumResultItem';
+import ArtistResultItem from './ArtistResultItem';
+import PlaylistResultItem from './PlaylistResultItem';
 
 class TopResultItem {
   static parse(data) {
@@ -42,4 +42,4 @@ class TopResultItem {
   }
 }
 
-module.exports = TopResultItem;
+export default TopResultItem;

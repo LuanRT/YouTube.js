@@ -32,4 +32,4 @@ class Thumbnail {
   }
 }
 
-module.exports = Thumbnail;
+export default Thumbnail;

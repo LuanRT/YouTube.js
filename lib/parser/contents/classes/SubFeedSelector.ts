@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
+import Parser from '..';
+import Text from './Text';
 
 class SubFeedSelector {
   type = 'SubFeedSelector';
@@ -12,4 +12,4 @@ class SubFeedSelector {
   }
 }
 
-module.exports = SubFeedSelector;
+export default SubFeedSelector;

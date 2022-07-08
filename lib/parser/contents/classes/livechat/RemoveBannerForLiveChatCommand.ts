@@ -8,4 +8,4 @@ class RemoveBannerForLiveChatCommand {
   }
 }
 
-module.exports = RemoveBannerForLiveChatCommand;
+export default RemoveBannerForLiveChatCommand;

@@ -1,10 +1,10 @@
 'use strict';
 
-const Player = require('./Player');
-const Proto = require('../proto');
-const Utils = require('../utils/Utils');
-const Constants = require('../utils/Constants');
-const UserAgent = require('user-agents');
+import Player from './Player';
+import Proto from '../proto';
+import Utils from '../utils/Utils';
+import Constants from '../utils/Constants';
+import UserAgent from 'user-agents';
 
 /** @namespace */
 class SessionBuilder {
@@ -129,4 +129,4 @@ class SessionBuilder {
   }
 }
 
-module.exports = SessionBuilder;
+export default SessionBuilder;

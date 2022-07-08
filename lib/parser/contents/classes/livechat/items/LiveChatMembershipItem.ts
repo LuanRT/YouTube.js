@@ -1,9 +1,9 @@
 'use strict';
 
-const Parser = require('../../..');
-const Text = require('../../Text');
-const Thumbnail = require('../../Thumbnail');
-const NavigationEndpoint = require('../../NavigationEndpoint');
+import Parser from '../../..';
+import Text from '../../Text';
+import Thumbnail from '../../Thumbnail';
+import NavigationEndpoint from '../../NavigationEndpoint';
 
 class LiveChatMembershipItem {
   type = 'LiveChatMembershipItem';
@@ -24,4 +24,4 @@ class LiveChatMembershipItem {
   }
 }
 
-module.exports = LiveChatMembershipItem;
+export default LiveChatMembershipItem;

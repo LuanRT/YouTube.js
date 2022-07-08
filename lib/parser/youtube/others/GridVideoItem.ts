@@ -1,6 +1,6 @@
 'use strict';
 
-const Constants = require('../../../utils/Constants');
+import Constants from '../../../utils/Constants';
 
 class GridVideoItem {
   static parse(data) {
@@ -32,4 +32,4 @@ class GridVideoItem {
   }
 }
 
-module.exports = GridVideoItem;
+export default GridVideoItem;

@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class ChipCloudChip {
   type = 'ChipCloudChip';
@@ -14,4 +14,4 @@ class ChipCloudChip {
   }
 }
 
-module.exports = ChipCloudChip;
+export default ChipCloudChip;

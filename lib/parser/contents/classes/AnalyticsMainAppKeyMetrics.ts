@@ -1,6 +1,6 @@
 'use strict';
 
-const DataModelSection = require('./DataModelSection');
+import DataModelSection from './DataModelSection';
 
 class AnalyticsMainAppKeyMetrics {
   type = 'AnalyticsMainAppKeyMetrics';
@@ -14,4 +14,4 @@ class AnalyticsMainAppKeyMetrics {
   }
 }
 
-module.exports = AnalyticsMainAppKeyMetrics;
+export default AnalyticsMainAppKeyMetrics;

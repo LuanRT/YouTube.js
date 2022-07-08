@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class ExpandedShelfContents {
   type = 'ExpandedShelfContents';
@@ -15,4 +15,4 @@ class ExpandedShelfContents {
   }
 }
 
-module.exports = ExpandedShelfContents;
+export default ExpandedShelfContents;

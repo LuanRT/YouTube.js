@@ -1,8 +1,8 @@
 'use strict';
 
-const Axios = require('axios');
-const Constants = require('./Constants');
-const Utils = require('./Utils');
+import Axios from 'axios';
+import Constants from './Constants';
+import Utils from './Utils';
 
 class Request {
   #instance;
@@ -151,4 +151,4 @@ class Request {
   }
 }
 
-module.exports = Request;
+export default Request;

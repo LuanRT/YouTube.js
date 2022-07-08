@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class ProfileColumn {
   type = 'ProfileColumn';
@@ -15,4 +15,4 @@ class ProfileColumn {
   }
 }
 
-module.exports = ProfileColumn;
+export default ProfileColumn;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class AddBannerToLiveChatCommand {
   constructor(data) {
@@ -8,4 +8,4 @@ class AddBannerToLiveChatCommand {
   }
 }
 
-module.exports = AddBannerToLiveChatCommand;
+export default AddBannerToLiveChatCommand;

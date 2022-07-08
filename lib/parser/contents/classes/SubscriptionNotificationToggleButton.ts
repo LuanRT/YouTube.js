@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class SubscriptionNotificationToggleButton {
   type = 'SubscriptionNotificationToggleButton';
@@ -17,4 +17,4 @@ class SubscriptionNotificationToggleButton {
   }
 }
 
-module.exports = SubscriptionNotificationToggleButton;
+export default SubscriptionNotificationToggleButton;

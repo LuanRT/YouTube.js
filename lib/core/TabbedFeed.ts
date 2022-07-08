@@ -1,7 +1,7 @@
 'use strict';
 
-const { InnertubeError } = require('../utils/Utils');
-const Feed = require('./Feed');
+import InnertubeError from '../utils/Utils';
+import Feed from './Feed';
 
 class TabbedFeed extends Feed {
   /**
@@ -39,4 +39,4 @@ class TabbedFeed extends Feed {
   }
 }
 
-module.exports = TabbedFeed;
+export default TabbedFeed;

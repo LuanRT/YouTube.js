@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
+import Parser from '..';
+import Text from './Text';
 
 class WatchNextEndScreen {
   constructor(data) {
@@ -10,4 +10,4 @@ class WatchNextEndScreen {
   }
 }
 
-module.exports = WatchNextEndScreen;
+export default WatchNextEndScreen;

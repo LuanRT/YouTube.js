@@ -1,8 +1,8 @@
 'use strict';
 
-const Uuid = require('uuid');
-const Constants = require('../utils/Constants');
-const { OAuthError } = require('../utils/Utils');
+import Uuid from 'uuid';
+import Constants from '../utils/Constants';
+import OAuthError from '../utils/Utils';
 
 class OAuth {
   #request;
@@ -227,4 +227,4 @@ class OAuth {
   }
 }
 
-module.exports = OAuth;
+export default OAuth;

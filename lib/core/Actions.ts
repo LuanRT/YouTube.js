@@ -1,9 +1,9 @@
 'use strict';
 
-const Uuid = require('uuid');
-const Proto = require('../proto');
-const Utils = require('../utils/Utils');
-const Constants = require('../utils/Constants');
+import Uuid from 'uuid';
+import Proto from '../proto';
+import Utils from '../utils/Utils';
+import Constants from '../utils/Constants';
 
 /** @namespace */
 class Actions {
@@ -656,4 +656,4 @@ class Actions {
   }
 }
 
-module.exports = Actions;
+export default Actions;

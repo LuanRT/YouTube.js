@@ -1,6 +1,6 @@
 'use strict';
 
-const TabbedFeed = require('../../core/TabbedFeed');
+import TabbedFeed from '../../core/TabbedFeed';
 
 class Channel extends TabbedFeed {
   #tab;
@@ -63,4 +63,4 @@ class Channel extends TabbedFeed {
   }
 }
 
-module.exports = Channel;
+export default Channel;

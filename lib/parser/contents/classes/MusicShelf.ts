@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class MusicShelf {
   type = 'MusicShelf';
@@ -26,4 +26,4 @@ class MusicShelf {
   }
 }
 
-module.exports = MusicShelf;
+export default MusicShelf;

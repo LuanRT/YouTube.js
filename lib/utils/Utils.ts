@@ -1,8 +1,8 @@
 'use strict';
 
 const Crypto = BROWSER ? require('node-forge') : require('crypto');
-const UserAgent = require('user-agents');
-const Flatten = require('flat');
+import UserAgent from 'user-agents';
+import Flatten from 'flat';
 
 class InnertubeError extends Error {
   constructor (message, info) {
@@ -316,17 +316,7 @@ function refineNTokenData(data) {
     .replace(/""/g, '').replace(/length]\)}"/g, 'length])}');
 }
 
-const errors = {
-  InnertubeError,
-  UnavailableContentError,
-  ParsingError,
-  DownloadError,
-  MissingParamError,
-  NoStreamingDataError,
-  OAuthError
-};
-
-const functions = {
+export {
   findNode,
   observe,
   getTmpdir,
@@ -338,10 +328,12 @@ const functions = {
   isValidClient,
   throwIfMissing,
   timeToSeconds,
-  refineNTokenData
-};
-
-module.exports = {
-  ...functions,
-  ...errors
+  refineNTokenData,
+  InnertubeError,
+  UnavailableContentError,
+  ParsingError,
+  DownloadError,
+  MissingParamError,
+  NoStreamingDataError,
+  OAuthError
 };

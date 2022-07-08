@@ -1,10 +1,10 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Author = require('./Author');
+import Parser from '..';
+import Text from './Text';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
+import Author from './Author';
 
 class GridVideo {
   type = 'GridVideo';
@@ -27,4 +27,4 @@ class GridVideo {
   }
 }
 
-module.exports = GridVideo;
+export default GridVideo;

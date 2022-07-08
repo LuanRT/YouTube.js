@@ -1,12 +1,21 @@
-'use strict';
+"use strict";
 
-const SongResultItem = require('./search/SongResultItem');
-const VideoResultItem = require('./search/VideoResultItem');
-const AlbumResultItem = require('./search/AlbumResultItem');
-const ArtistResultItem = require('./search/ArtistResultItem');
-const PlaylistResultItem = require('./search/PlaylistResultItem');
-const MusicSearchSuggestionItem = require('./search/MusicSearchSuggestionItem');
-const TopResultItem = require('./search/TopResultItem');
-const PlaylistItem = require('./others/PlaylistItem');
+import SongResultItem from "./search/SongResultItem";
+import VideoResultItem from "./search/VideoResultItem";
+import AlbumResultItem from "./search/AlbumResultItem";
+import ArtistResultItem from "./search/ArtistResultItem";
+import PlaylistResultItem from "./search/PlaylistResultItem";
+import MusicSearchSuggestionItem from "./search/MusicSearchSuggestionItem";
+import TopResultItem from "./search/TopResultItem";
+import PlaylistItem from "./others/PlaylistItem";
 
-module.exports = { SongResultItem, VideoResultItem, AlbumResultItem, ArtistResultItem, PlaylistResultItem, MusicSearchSuggestionItem, TopResultItem, PlaylistItem };
+export default {
+  SongResultItem,
+  VideoResultItem,
+  AlbumResultItem,
+  ArtistResultItem,
+  PlaylistResultItem,
+  MusicSearchSuggestionItem,
+  TopResultItem,
+  PlaylistItem,
+};

@@ -1,6 +1,6 @@
 'use strict';
 
-const Author = require('./Author');
+import Author from './Author';
 
 class PlaylistAuthor extends Author {
   constructor(data) {
@@ -12,4 +12,4 @@ class PlaylistAuthor extends Author {
   }
 }
 
-module.exports = PlaylistAuthor;
+export default PlaylistAuthor;

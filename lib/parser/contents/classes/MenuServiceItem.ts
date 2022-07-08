@@ -1,6 +1,6 @@
 'use strict';
 
-const Button = require('./Button');
+import Button from './Button';
 
 class MenuServiceItem extends Button {
   type = 'MenuServiceItem';
@@ -10,4 +10,4 @@ class MenuServiceItem extends Button {
   }
 }
 
-module.exports = MenuServiceItem;
+export default MenuServiceItem;

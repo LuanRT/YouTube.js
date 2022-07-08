@@ -1,6 +1,6 @@
 'use strict';
 
-const Feed = require('../../core/Feed');
+import Feed from '../../core/Feed';
 
 class Playlist extends Feed {
   constructor(actions, data, already_parsed = false) {
@@ -41,4 +41,4 @@ class Playlist extends Feed {
   }
 }
 
-module.exports = Playlist;
+export default Playlist;

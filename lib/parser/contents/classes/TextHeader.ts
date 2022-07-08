@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class TextHeader {
   type = 'TextHeader';
@@ -11,4 +11,4 @@ class TextHeader {
   }
 }
 
-module.exports = TextHeader;
+export default TextHeader;

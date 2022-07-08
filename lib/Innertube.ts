@@ -1,37 +1,37 @@
 'use strict';
 
-const OAuth = require('./core/OAuth');
-const Actions = require('./core/Actions');
-const SessionBuilder = require('./core/SessionBuilder');
-const AccountManager = require('./core/AccountManager');
-const PlaylistManager = require('./core/PlaylistManager');
-const InteractionManager = require('./core/InteractionManager');
+import OAuth from './core/OAuth';
+import Actions from './core/Actions';
+import SessionBuilder from './core/SessionBuilder';
+import AccountManager from './core/AccountManager';
+import PlaylistManager from './core/PlaylistManager';
+import InteractionManager from './core/InteractionManager';
 
-const Search = require('./parser/youtube/Search');
-const VideoInfo = require('./parser/youtube/VideoInfo');
-const Channel = require('./parser/youtube/Channel');
-const Playlist = require('./parser/youtube/Playlist');
-const Library = require('./parser/youtube/Library');
-const History = require('./parser/youtube/History');
-const Comments = require('./parser/youtube/Comments');
+import Search from './parser/youtube/Search';
+import VideoInfo from './parser/youtube/VideoInfo';
+import Channel from './parser/youtube/Channel';
+import Playlist from './parser/youtube/Playlist';
+import Library from './parser/youtube/Library';
+import History from './parser/youtube/History';
+import Comments from './parser/youtube/Comments';
 
-const YTMusic = require('./core/Music');
-const FilterableFeed = require('./core/FilterableFeed');
-const TabbedFeed = require('./core/TabbedFeed');
+import YTMusic from './core/Music';
+import FilterableFeed from './core/FilterableFeed';
+import TabbedFeed from './core/TabbedFeed'
 
-const EventEmitter = require('events');
+import EventEmitter from 'events';
 const { PassThrough } = BROWSER ? require('stream-browserify') : require('stream');
 
-const Request = require('./utils/Request');
+import Request from './utils/Request';
 
-const {
+import {
   InnertubeError,
   throwIfMissing,
   generateRandomString
-} = require('./utils/Utils');
+} from './utils/Utils';
 
-const OldParser = require('./parser');
-const Proto = require('./proto');
+import OldParser from './parser';
+import Proto from './proto';
 
 /** @namespace */
 class Innertube {
@@ -41,7 +41,7 @@ class Innertube {
   /**
    * @example
    * ```js
-   * const Innertube = require('youtubei.js');
+   * import Innertube from 'youtubei.js';
    * const youtube = await new Innertube();
    * ```
    * @param {object} [config]
@@ -393,4 +393,4 @@ class Innertube {
   }
 }
 
-module.exports = Innertube;
+export Innertube;

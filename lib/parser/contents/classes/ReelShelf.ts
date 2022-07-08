@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Text = require('./Text');
+import Parser from '..';
+import NavigationEndpoint from './NavigationEndpoint';
+import Text from './Text';
 
 class ReelShelf {
   type = 'ReelShelf';
@@ -19,4 +19,4 @@ class ReelShelf {
   }
 }
 
-module.exports = ReelShelf;
+export default ReelShelf;

@@ -19,4 +19,4 @@ class DataModelSection {
   }
 }
 
-module.exports = DataModelSection;
+export default DataModelSection;

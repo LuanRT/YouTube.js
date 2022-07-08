@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class ThumbnailOverlayNowPlaying {
   type = 'ThumbnailOverlayNowPlaying';
@@ -10,4 +10,4 @@ class ThumbnailOverlayNowPlaying {
   }
 }
 
-module.exports = ThumbnailOverlayNowPlaying;
+export default ThumbnailOverlayNowPlaying;

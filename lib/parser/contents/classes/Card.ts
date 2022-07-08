@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class Card {
   type = 'Card';
@@ -21,4 +21,4 @@ class Card {
   }
 }
 
-module.exports = Card;
+export default Card;

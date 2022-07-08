@@ -1,9 +1,9 @@
 'use strict';
 
-const Parser = require('../../..');
-const NavigationEndpoint = require('../../NavigationEndpoint');
-const Thumbnail = require('../../Thumbnail');
-const Text = require('../../Text');
+import Parser from '../../..';
+import NavigationEndpoint from '../../NavigationEndpoint';
+import Thumbnail from '../../Thumbnail';
+import Text from '../../Text';
 
 class LiveChatPaidSticker {
   type = 'LiveChatPaidSticker';
@@ -25,4 +25,4 @@ class LiveChatPaidSticker {
   }
 }
 
-module.exports = LiveChatPaidSticker;
+export default LiveChatPaidSticker;

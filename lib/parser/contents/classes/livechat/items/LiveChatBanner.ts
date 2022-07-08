@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../../..');
+import Parser from '../../..';
 
 class LiveChatBanner {
   type = 'LiveChatBanner';
@@ -16,4 +16,4 @@ class LiveChatBanner {
   }
 }
 
-module.exports = LiveChatBanner;
+export default LiveChatBanner;

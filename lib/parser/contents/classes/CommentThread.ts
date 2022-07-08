@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('..');
-const { InnertubeError } = require('../../../utils/Utils');
+import Parser from '..';
+import {InnertubeError} from '../../../utils/Utils';
 
 class CommentThread {
   type = 'CommentThread';
@@ -71,4 +71,4 @@ class CommentThread {
   }
 }
 
-module.exports = CommentThread;
+export default CommentThread;

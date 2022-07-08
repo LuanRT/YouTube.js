@@ -17,4 +17,4 @@ class GridPlaylistItem {
   }
 }
 
-module.exports = GridPlaylistItem;
+export default GridPlaylistItem;

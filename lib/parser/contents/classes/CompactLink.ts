@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class CompactLink {
   type = 'CompactLink';
@@ -13,4 +13,4 @@ class CompactLink {
   }
 }
 
-module.exports = CompactLink;
+export default CompactLink;

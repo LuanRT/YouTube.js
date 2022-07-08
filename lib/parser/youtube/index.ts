@@ -1,14 +1,25 @@
-'use strict';
+"use strict";
 
-const VideoResultItem = require('./search/VideoResultItem');
-const SearchSuggestionItem = require('./search/SearchSuggestionItem');
-const PlaylistItem = require('./others/PlaylistItem');
-const NotificationItem = require('./others/NotificationItem');
-const VideoItem = require('./others/VideoItem');
-const GridVideoItem = require('./others/GridVideoItem');
-const GridPlaylistItem = require('./others/GridPlaylistItem');
-const ChannelMetadata = require('./others/ChannelMetadata');
-const ShelfRenderer = require('./others/ShelfRenderer');
-const CommentThread = require('./others/CommentThread');
+import VideoResultItem from "./search/VideoResultItem";
+import SearchSuggestionItem from "./search/SearchSuggestionItem";
+import PlaylistItem from "./others/PlaylistItem";
+import NotificationItem from "./others/NotificationItem";
+import VideoItem from "./others/VideoItem";
+import GridVideoItem from "./others/GridVideoItem";
+import GridPlaylistItem from "./others/GridPlaylistItem";
+import ChannelMetadata from "./others/ChannelMetadata";
+import ShelfRenderer from "./others/ShelfRenderer";
+import CommentThread from "./others/CommentThread";
 
-module.exports = { VideoResultItem, SearchSuggestionItem, PlaylistItem, NotificationItem, VideoItem, GridVideoItem, GridPlaylistItem, ChannelMetadata, ShelfRenderer, CommentThread };
+export default {
+  VideoResultItem,
+  SearchSuggestionItem,
+  PlaylistItem,
+  NotificationItem,
+  VideoItem,
+  GridVideoItem,
+  GridPlaylistItem,
+  ChannelMetadata,
+  ShelfRenderer,
+  CommentThread,
+};

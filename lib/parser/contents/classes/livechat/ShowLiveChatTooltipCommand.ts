@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class ShowLiveChatTooltipCommand {
   type = 'ShowLiveChatTooltipCommand';
@@ -10,4 +10,4 @@ class ShowLiveChatTooltipCommand {
   }
 }
 
-module.exports = ShowLiveChatTooltipCommand;
+export default ShowLiveChatTooltipCommand;

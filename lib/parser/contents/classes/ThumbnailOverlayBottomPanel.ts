@@ -8,4 +8,4 @@ class ThumbnailOverlayBottomPanel {
   }
 }
 
-module.exports = ThumbnailOverlayBottomPanel;
+export default ThumbnailOverlayBottomPanel;

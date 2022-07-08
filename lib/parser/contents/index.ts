@@ -1,9 +1,9 @@
 'use strict';
 
-const { InnertubeError, observe } = require('../../utils/Utils');
-const Format = require('./classes/Format');
-const VideoDetails = require('./classes/VideoDetails');
-const requireParserClass = require('./map');
+import { InnertubeError, observe } from '../../utils/Utils'
+import Format from './classes/Format';
+import VideoDetails from './classes/VideoDetails';
+import requireParserClass from './map';
 
 class AppendContinuationItemsAction {
   type = 'appendContinuationItemsAction';
@@ -303,4 +303,4 @@ class Parser {
   }
 }
 
-module.exports = Parser;
+export default Parser;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class PlayerOverlay {
   type = 'PlayerOverlay';
@@ -14,4 +14,4 @@ class PlayerOverlay {
   }
 }
 
-module.exports = PlayerOverlay;
+export default PlayerOverlay;

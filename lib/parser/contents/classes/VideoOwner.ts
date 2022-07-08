@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const Author = require('./Author');
+import Text from './Text';
+import Author from './Author';
 
 class VideoOwner {
   type = 'VideoOwner';
@@ -16,4 +16,4 @@ class VideoOwner {
   }
 }
 
-module.exports = VideoOwner;
+export default VideoOwner;

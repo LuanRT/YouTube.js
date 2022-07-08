@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const Parser = require('..');
+import Text from './Text';
+import Parser from '..';
 
 class MusicImmersiveHeader {
   type = 'MusicImmersiveHeader';
@@ -20,4 +20,4 @@ class MusicImmersiveHeader {
   }
 }
 
-module.exports = MusicImmersiveHeader;
+export default MusicImmersiveHeader;

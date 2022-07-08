@@ -1,10 +1,10 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Utils = require('../../../utils/Utils');
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Text from './Text';
+import { timeToSeconds } from '../../../utils/Utils';
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class MusicResponsiveListItem {
   #flex_columns;
@@ -79,7 +79,7 @@ class MusicResponsiveListItem {
 
     duration_text && (this.duration = {
       text: duration_text,
-      seconds: Utils.timeToSeconds(duration_text)
+      seconds: timeToSeconds(duration_text)
     });
 
     const album = this.#flex_columns[1].title.runs?.find((run) => run.endpoint.browse?.id.startsWith('MPR'));
@@ -123,7 +123,7 @@ class MusicResponsiveListItem {
 
     duration_text && (this.duration = {
       text: duration_text,
-      seconds: Utils.timeToSeconds(duration_text)
+      seconds: timeToSeconds(duration_text)
     });
   }
 
@@ -164,4 +164,4 @@ class MusicResponsiveListItem {
   }
 }
 
-module.exports = MusicResponsiveListItem;
+export default MusicResponsiveListItem;

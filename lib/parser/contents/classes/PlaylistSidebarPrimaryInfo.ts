@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const NavigationEndpoint = require('./NavigationEndpoint');
-const Text = require('./Text');
+import Parser from '..';
+import NavigationEndpoint from './NavigationEndpoint';
+import Text from './Text';
 
 class PlaylistSidebarPrimaryInfo {
   type = 'PlaylistSidebarPrimaryInfo';
@@ -17,4 +17,4 @@ class PlaylistSidebarPrimaryInfo {
   }
 }
 
-module.exports = PlaylistSidebarPrimaryInfo;
+export default PlaylistSidebarPrimaryInfo;

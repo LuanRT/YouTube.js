@@ -9,4 +9,4 @@ class LiveChatPlaceholderItem {
   }
 }
 
-module.exports = LiveChatPlaceholderItem;
+export default LiveChatPlaceholderItem;

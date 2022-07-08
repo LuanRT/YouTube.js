@@ -1,7 +1,7 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Thumbnail from './Thumbnail';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class MerchandiseItem {
   type = 'MerchandiseItem';
@@ -21,4 +21,4 @@ class MerchandiseItem {
   }
 }
 
-module.exports = MerchandiseItem;
+export default MerchandiseItem;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../contents');
+import Parser from '../contents';
 
 /** @namespace */
 class Analytics {
@@ -20,4 +20,4 @@ class Analytics {
   }
 }
 
-module.exports = Analytics;
+export default Analytics;

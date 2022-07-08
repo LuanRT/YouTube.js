@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('../Text');
+import Text from '../Text';
 
 class UpdateDateTextAction {
   type = 'UpdateDateTextAction';
@@ -10,4 +10,4 @@ class UpdateDateTextAction {
   }
 }
 
-module.exports = UpdateDateTextAction;
+export default UpdateDateTextAction;

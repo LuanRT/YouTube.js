@@ -1,7 +1,7 @@
 'use strict';
 
-const { InnertubeError } = require('../utils/Utils');
-const Feed = require('./Feed');
+import InnertubeError from '../utils/Utils';
+import Feed from './Feed';
 
 class FilterableFeed extends Feed {
   /**
@@ -64,4 +64,4 @@ class FilterableFeed extends Feed {
   }
 }
 
-module.exports = FilterableFeed;
+export default FilterableFeed;

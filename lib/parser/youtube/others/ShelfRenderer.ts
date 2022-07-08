@@ -1,7 +1,7 @@
 'use strict';
 
-const VideoItem = require('./VideoItem');
-const GridVideoItem = require('./GridVideoItem');
+import VideoItem from './VideoItem';
+import GridVideoItem from './GridVideoItem';
 
 class ShelfRenderer {
   static parse(data) {
@@ -38,4 +38,4 @@ class ShelfRenderer {
   }
 }
 
-module.exports = ShelfRenderer;
+export default ShelfRenderer;

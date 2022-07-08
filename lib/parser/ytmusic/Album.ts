@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../contents');
+import Parser from '../contents';
 
 /** @namespace */
 class Album {
@@ -31,4 +31,4 @@ class Album {
   }
 }
 
-module.exports = Album;
+export default Album;

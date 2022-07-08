@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class CallToActionButton {
   type = 'CallToActionButton';
@@ -12,4 +12,4 @@ class CallToActionButton {
   }
 }
 
-module.exports = CallToActionButton;
+export default CallToActionButton;

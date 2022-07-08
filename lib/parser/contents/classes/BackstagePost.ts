@@ -1,9 +1,9 @@
 'use strict';
 
-const Parser = require('..');
-const Author = require('./Author');
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Author from './Author';
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class BackstagePost {
   type = 'BackstagePost';
@@ -28,4 +28,4 @@ class BackstagePost {
   }
 }
 
-module.exports = BackstagePost;
+export default BackstagePost;

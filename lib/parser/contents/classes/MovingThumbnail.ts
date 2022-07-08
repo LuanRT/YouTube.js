@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class MovingThumbnail {
   type = 'MovingThumbnail';
@@ -10,4 +10,4 @@ class MovingThumbnail {
   }
 }
 
-module.exports = MovingThumbnail;
+export default MovingThumbnail;

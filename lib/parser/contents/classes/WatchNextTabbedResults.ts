@@ -1,6 +1,6 @@
 'use strict';
 
-const TwoColumnBrowseResults = require('./TwoColumnBrowseResults');
+import TwoColumnBrowseResults from './TwoColumnBrowseResults';
 
 class WatchNextTabbedResults extends TwoColumnBrowseResults {
   type = 'WatchNextTabbedResults';
@@ -10,4 +10,4 @@ class WatchNextTabbedResults extends TwoColumnBrowseResults {
   }
 }
 
-module.exports = WatchNextTabbedResults;
+export default WatchNextTabbedResults;

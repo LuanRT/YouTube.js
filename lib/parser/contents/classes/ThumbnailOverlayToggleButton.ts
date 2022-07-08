@@ -1,6 +1,6 @@
 'use strict';
 
-const NavigationEndpoint = require('./NavigationEndpoint');
+import NavigationEndpoint from './NavigationEndpoint';
 
 class ThumbnailOverlayToggleButton {
   type = 'ThumbnailOverlayToggleButton';
@@ -23,4 +23,4 @@ class ThumbnailOverlayToggleButton {
   }
 }
 
-module.exports = ThumbnailOverlayToggleButton;
+export default ThumbnailOverlayToggleButton;

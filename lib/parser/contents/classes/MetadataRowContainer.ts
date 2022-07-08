@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('..');
+import Parser from '..';
 
 class MetadataRowContainer {
   type = 'MetadataRowContainer';
@@ -11,4 +11,4 @@ class MetadataRowContainer {
   }
 }
 
-module.exports = MetadataRowContainer;
+export default MetadataRowContainer;

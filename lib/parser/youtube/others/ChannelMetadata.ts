@@ -17,4 +17,4 @@ class ChannelMetadata {
   }
 }
 
-module.exports = ChannelMetadata;
+export default ChannelMetadata;

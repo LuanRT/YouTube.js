@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class MusicDescriptionShelf {
   type = 'MusicDescriptionShelf';
@@ -20,4 +20,4 @@ class MusicDescriptionShelf {
   }
 }
 
-module.exports = MusicDescriptionShelf;
+export default MusicDescriptionShelf;

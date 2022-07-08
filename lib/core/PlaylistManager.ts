@@ -1,6 +1,6 @@
 'use strict';
 
-const Utils = require('../utils/Utils');
+import Utils from '../utils/Utils';
 
 /** @namespace */
 class PlaylistManager {
@@ -115,4 +115,4 @@ class PlaylistManager {
   }
 }
 
-module.exports = PlaylistManager;
+export default PlaylistManager;

@@ -1,7 +1,7 @@
 'use strict';
 
-const Text = require('./Text');
-const Parser = require('..');
+import Text from './Text';
+import Parser from '..';
 
 class EmergencyOnebox {
   type = 'EmergencyOnebox';
@@ -13,4 +13,4 @@ class EmergencyOnebox {
   }
 }
 
-module.exports = EmergencyOnebox;
+export default EmergencyOnebox;

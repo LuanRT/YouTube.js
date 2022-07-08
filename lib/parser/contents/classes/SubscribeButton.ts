@@ -1,8 +1,8 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const NavigationEndpoint = require('./NavigationEndpoint');
+import Parser from '..';
+import Text from './Text';
+import NavigationEndpoint from './NavigationEndpoint';
 
 class SubscribeButton {
   type = 'SubscribeButton';
@@ -21,4 +21,4 @@ class SubscribeButton {
   }
 }
 
-module.exports = SubscribeButton;
+export default SubscribeButton;

@@ -10,4 +10,4 @@ class CtaGoToCreatorStudio {
   }
 }
 
-module.exports = CtaGoToCreatorStudio;
+export default CtaGoToCreatorStudio;

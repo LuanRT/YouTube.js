@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class PlaylistVideoThumbnail {
   type = 'PlaylistVideoThumbnail';
@@ -10,4 +10,4 @@ class PlaylistVideoThumbnail {
   }
 }
 
-module.exports = PlaylistVideoThumbnail;
+export default PlaylistVideoThumbnail;

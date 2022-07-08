@@ -1,9 +1,9 @@
 'use strict';
 
-const Parser = require('..');
-const Text = require('./Text');
-const Author = require('./Author');
-const Thumbnail = require('./Thumbnail');
+import Parser from '..';
+import Text from './Text';
+import Author from './Author';
+import Thumbnail from './Thumbnail';
 
 class PlayerOverlayAutoplay {
   type = 'PlayerOverlayAutoplay';
@@ -25,4 +25,4 @@ class PlayerOverlayAutoplay {
   }
 }
 
-module.exports = PlayerOverlayAutoplay;
+export default PlayerOverlayAutoplay;

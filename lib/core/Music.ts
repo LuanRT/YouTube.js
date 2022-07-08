@@ -1,14 +1,14 @@
 'use strict';
 
-const Parser = require('../parser/contents');
-const Search = require('../parser/ytmusic/Search');
-const HomeFeed = require('../parser/ytmusic/HomeFeed');
-const Explore = require('../parser/ytmusic/Explore');
-const Library = require('../parser/ytmusic/Library');
-const Artist = require('../parser/ytmusic/Artist');
-const Album = require('../parser/ytmusic/Album');
+import Parser from '../parser/contents';
+import Search from '../parser/ytmusic/Search';
+import HomeFeed from '../parser/ytmusic/HomeFeed';
+import Explore from '../parser/ytmusic/Explore';
+import Library from '../parser/ytmusic/Library';
+import Artist from '../parser/ytmusic/Artist';
+import Album from '../parser/ytmusic/Album';
 
-const { InnertubeError, observe } = require('../utils/Utils');
+import { InnertubeError, observe } from '../utils/Utils'
 
 /** @namespace */
 class Music {
@@ -169,4 +169,4 @@ class Music {
   }
 }
 
-module.exports = Music;
+export default Music;

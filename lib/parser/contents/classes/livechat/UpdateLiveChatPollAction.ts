@@ -1,6 +1,6 @@
 'use strict';
 
-const Parser = require('../..');
+import Parser from '../..';
 
 class UpdateLiveChatPollAction {
   type = 'UpdateLiveChatPollAction';
@@ -10,4 +10,4 @@ class UpdateLiveChatPollAction {
   }
 }
 
-module.exports = UpdateLiveChatPollAction;
+export default UpdateLiveChatPollAction;

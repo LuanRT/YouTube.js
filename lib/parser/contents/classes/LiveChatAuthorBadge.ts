@@ -1,7 +1,7 @@
 'use strict';
 
-const MetadataBadge = require('./MetadataBadge');
-const Thumbnail = require('./Thumbnail');
+import MetadataBadge from './MetadataBadge';
+import Thumbnail from './Thumbnail';
 
 class LiveChatAuthorBadge extends MetadataBadge {
   constructor(data) {
@@ -10,4 +10,4 @@ class LiveChatAuthorBadge extends MetadataBadge {
   }
 }
 
-module.exports = LiveChatAuthorBadge;
+export default LiveChatAuthorBadge;

@@ -1,7 +1,7 @@
 'use strict';
 
-const Parser = require('../contents');
-const EventEmitter = require('events');
+import Parser from '../contents';
+import EventEmitter from 'events';
 
 class LiveChat {
   ev;
@@ -162,4 +162,4 @@ class LiveChat {
   }
 }
 
-module.exports = LiveChat;
+export default LiveChat;

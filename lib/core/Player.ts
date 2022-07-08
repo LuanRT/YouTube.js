@@ -1,11 +1,11 @@
 'use strict';
 
 const Cache = BROWSER ? require('../utils/wrappers/BrowserCache') : require('../utils/wrappers/NodeCache');
-const Utils = require('../utils/Utils');
-const Constants = require('../utils/Constants');
+import Utils from '../utils/Utils';
+import Constants from '../utils/Constants';
 
-const { default: Signature } = require('../deciphers/Signature');
-const { default: NToken } = require('../deciphers/NToken');
+import Signature from '../deciphers/Signature';
+import NToken from '../deciphers/NToken';
 
 /** @namespace */
 class Player {
@@ -169,4 +169,4 @@ class Player {
   }
 }
 
-module.exports = Player;
+export default Player;

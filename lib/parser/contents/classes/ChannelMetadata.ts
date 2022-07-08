@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class ChannelMetadata {
   type = 'ChannelMetadata';
@@ -22,4 +22,4 @@ class ChannelMetadata {
   }
 }
 
-module.exports = ChannelMetadata;
+export default ChannelMetadata;

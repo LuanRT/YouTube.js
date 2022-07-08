@@ -1,6 +1,6 @@
 'use strict';
 
-const { observe } = require('../../../utils/Utils');
+import observe from '../../../utils/Utils';
 
 class SortFilterSubMenu {
   type = 'SortFilterSubMenu';
@@ -17,4 +17,4 @@ class SortFilterSubMenu {
   }
 }
 
-module.exports = SortFilterSubMenu;
+export default SortFilterSubMenu;

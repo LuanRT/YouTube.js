@@ -1,9 +1,9 @@
 'use strict';
 
-const Parser = require('..');
-const NavigatableText = require('./NavigatableText');
-const Thumbnail = require('./Thumbnail');
-const Constants = require('../../../utils/Constants');
+import Parser from '..';
+import NavigatableText from './NavigatableText';
+import Thumbnail from './Thumbnail';
+import Constants from '../../../utils/Constants';
 
 class Author {
   #nav_text;
@@ -37,4 +37,4 @@ class Author {
   }
 }
 
-module.exports = Author;
+export default Author;

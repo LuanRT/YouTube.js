@@ -1,6 +1,6 @@
 'use strict';
 
-const Text = require('./Text');
+import Text from './Text';
 
 class MetadataRow {
   type = 'MetadataRow';
@@ -11,4 +11,4 @@ class MetadataRow {
   }
 }
 
-module.exports = MetadataRow;
+export default MetadataRow;

@@ -1,6 +1,6 @@
 'use strict';
 
-const Thumbnail = require('./Thumbnail');
+import Thumbnail from './Thumbnail';
 
 class SingleHeroImage {
   type = 'SingleHeroImage';
@@ -11,4 +11,4 @@ class SingleHeroImage {
   }
 }
 
-module.exports = SingleHeroImage;
+export default SingleHeroImage;
