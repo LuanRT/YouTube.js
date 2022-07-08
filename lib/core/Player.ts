@@ -1,11 +1,11 @@
 'use strict';
 
-const Cache = BROWSER ? require('../utils/wrappers/BrowserCache') : require('../utils/wrappers/NodeCache');
-import Utils from '../utils/Utils';
+import { getStringBetweenStrings, getTmpdir, throwIfMissing } from '../utils/Utils';
 import Constants from '../utils/Constants';
-
 import Signature from '../deciphers/Signature';
 import NToken from '../deciphers/NToken';
+import type Request from '../utils/Request';
+const Cache = BROWSER ? require('../utils/wrappers/BrowserCache') : require('../utils/wrappers/NodeCache');
 
 /** @namespace */
 class Player {
@@ -22,13 +22,13 @@ class Player {
   /**
    * Represents the YouTube Web player script.
    *
-   * @param {string} id - the id of the player.
-   * @param {import('../utils/Request')} request
+   * @param id - the id of the player.
+   * @param request
    */
-  constructor(id, request) {
+  constructor(id: string, request: Request) {
     this.#player_id = id;
     this.#request = request;
-    this.#cache_dir = `${Utils.getTmpdir()}/yt-cache`;
+    this.#cache_dir = `${getTmpdir()}/yt-cache`;
     this.#player_url = `${Constants.URLS.YT_BASE}/s/player/${this.#player_id}/player_ias.vflset/en_US/base.js`;
     this.#player_path = `${this.#cache_dir}/${this.#player_id}.bin`;
   }
@@ -88,7 +88,7 @@ class Player {
   decipher(url, signature_cipher, cipher) {
     url = url || signature_cipher || cipher;
 
-    Utils.throwIfMissing({ url });
+    throwIfMissing({ url });
 
     const args = new URLSearchParams(url);
     const url_components = new URL(args.get('url') || url);
@@ -112,17 +112,17 @@ class Player {
 
   /**
    * Js player url.
-   * @returns {string}
+   * 
    */
-  get url() {
+  get url(): string {
     return this.#player_url;
   }
 
   /**
    * Signature timestamp.
-   * @returns {string}
+   * 
    */
-  get sts() {
+  get sts(): string {
     return this.#signature_timestamp;
   }
 
@@ -132,39 +132,39 @@ class Player {
 
   /**
    * Extracts the signature timestamp from the player source code.
-   * @param {*} data
-   * @returns {number}
+   * @param data
+   * 
    */
-  #extractSigTimestamp(data) {
-    return parseInt(Utils.getStringBetweenStrings(data, 'signatureTimestamp:', ','));
+  #extractSigTimestamp(data: any): number {
+    return parseInt(getStringBetweenStrings(data, 'signatureTimestamp:', ','));
   }
 
   /**
    * Extracts the signature decipher algorithm.
-   * @param {*} data
-   * @returns {string}
+   * @param data
+   * 
    */
-  #extractSigDecipherSc(data) {
-    const sig_alg_sc = Utils.getStringBetweenStrings(data, 'this.audioTracks};var', '};');
-    const sig_data = Utils.getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+  #extractSigDecipherSc(data: any): string {
+    const sig_alg_sc = getStringBetweenStrings(data, 'this.audioTracks};var', '};');
+    const sig_data = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
     return sig_alg_sc + sig_data;
   }
 
   /**
    * Extracts the n-token decipher algorithm.
-   * @param {*} data
-   * @returns {string}
+   * @param data
+   * 
    */
-  #extractNTokenSc(data) {
-    return `var b=a.split("")${Utils.getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
+  #extractNTokenSc(data: any): string {
+    return `var b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
   }
 
   /**
    * Checks if the player script is cached.
    *
-   * @returns {Promise<boolean>}
+   * 
    */
-  async isCached() {
+  async isCached(): Promise<boolean> {
     return await Cache.exists(this.#player_path);
   }
 }
