@@ -2,44 +2,121 @@
 
 import Uuid from 'uuid';
 import Proto from '../proto';
-import Utils from '../utils/Utils';
+import { InnertubeError } from '../utils/Utils';
 import Constants from '../utils/Constants';
+import type Innertube from '../Innertube';
+import type Request from '../utils/Request';
+import type { APIResponse } from '../utils/common';
+
+interface BrowseArgs {
+  params?: string;
+  is_ytm?: boolean;
+  is_ctoken?: boolean;
+  client?: string;
+}
+
+interface EngageArgs {
+  video_id?: string;
+  channel_id?: string;
+  comment_id?: string;
+  comment_action?: string;
+}
+
+interface AccountArgs {
+  new_value?: string;
+  setting_item_id?: string;
+}
+
+interface SearchArgs {
+  query?: string;
+  options?: {
+    period?: string;
+    duration?: string;
+    order?: string;
+  };
+  client?: string;
+  ctoken?: string;
+}
+
+interface SoundArgs {
+  query?: string;
+}
+
+interface ChannelArgs {
+  new_name?: string;
+  new_description?: string;
+}
+
+interface PlaylistArgs {
+  title?: string;
+  ids?: string;
+  playlist_id?: string;
+  action?: string;
+}
+
+interface NotificationsArgs {
+  pref?: string;
+  channel_id?: string;
+  ctoken?: string;
+}
+
+interface LiveChatArgs {
+  text?: string;
+  video_id?: string;
+  channel_id?: string;
+  ctoken?: string;
+  params?: string;
+}
+
+interface ThumbnailArgs {
+  video_id?: string;
+}
+
+interface GeoArgs {
+  input?: string;
+}
+
+interface FlagArgs {
+  action?: string;
+  params?: string;
+}
+
+interface MusicArgs {
+  input?: string;
+}
+
+interface NextArgs {
+  video_id?: string;
+  ctoken?: string;
+  client?: string;
+}
+
+interface UserMentionSuggestionsArgs {
+  input?: string;
+}
 
 /** @namespace */
 class Actions {
-  #session;
-  #request;
+  #session: Innertube;
+  #request: Request;
 
-  /**
-   * @param {import('../Innertube')} session
-   */
-  constructor(session) {
+  constructor(session: Innertube) {
     this.#session = session;
     this.#request = session.request;
   }
-
-  /**
-   * API response.
-   *
-   * @typedef {{ success: boolean, status_code: number, data: object }} Response
-   */
 
   /**
    * Covers `/browse` endpoint, mostly used to access
    * YouTube's sections such as the home feed, etc
    * and sometimes to retrieve continuations.
    *
-   * @param {string} id - browseId or a continuation token
-   * @param {object} args - additional arguments
-   * @param {string} [args.params]
-   * @param {boolean} [args.is_ytm]
-   * @param {boolean} [args.is_ctoken]
-   * @param {string} [args.client]
-   * @returns {Promise.<Response>}
+   * @param id - browseId or a continuation token
+   * @param args - additional arguments
+   * 
    */
-  async browse(id, args = {}) {
+  async browse(id: string, args: BrowseArgs = {}): Promise<APIResponse<object>> {
     if (this.#needsLogin(id) && !this.#session.logged_in)
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {};
 
@@ -65,17 +142,13 @@ class Actions {
    * Covers endpoints used to perform direct interactions
    * on YouTube.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.video_id]
-   * @param {string} [args.channel_id]
-   * @param {string} [args.comment_id]
-   * @param {string} [args.comment_action]
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param args
+   * 
    */
-  async engage(action, args = {}) {
+  async engage(action: string, args: EngageArgs = {}): Promise<APIResponse<object>> {
     if (!this.#session.logged_in && !args.hasOwnProperty('text'))
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {};
 
@@ -120,7 +193,7 @@ class Actions {
         data.actions = [ target_action ];
         break;
       default:
-        throw new Utils.InnertubeError('Action not implemented', action);
+        throw new InnertubeError('Action not implemented', action);
     }
 
     const response = await this.#request.post(`/${action}`, data);
@@ -130,15 +203,13 @@ class Actions {
   /**
    * Covers endpoints related to account management.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.new_value]
-   * @param {string} [args.setting_item_id]
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param  args
+   * 
    */
-  async account(action, args = {}) {
+  async account(action: string, args: AccountArgs = {}): Promise<APIResponse<object>> {
     if (!this.#session.logged_in)
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {
       client: args.client
@@ -154,7 +225,7 @@ class Actions {
       case 'account/accounts_list':
         break;
       default:
-        throw new Utils.InnertubeError('Action not implemented', action);
+        throw new InnertubeError('Action not implemented', action);
     }
 
     const response = await this.#request.post(`/${action}`, data);
@@ -164,17 +235,10 @@ class Actions {
   /**
    * Endpoint used for search.
    *
-   * @param {object} args
-   * @param {string} [args.query]
-   * @param {object} [args.options]
-   * @param {string} [args.options.period]
-   * @param {string} [args.options.duration]
-   * @param {string} [args.options.order]
-   * @param {string} [args.client]
-   * @param {string} [args.ctoken]
-   * @returns {Promise.<Response>}
+   * @param args
+   * 
    */
-  async search(args = {}) {
+  async search(args: SearchArgs = {}): Promise<APIResponse<object>> {
     const data = { client: args.client };
 
     if (args.query) {
@@ -206,11 +270,10 @@ class Actions {
   /**
    * Endpoint used fo Shorts' sound search.
    *
-   * @param {object} args
-   * @param {string} args.query
-   * @returns {Promise.<Response>}
+   * @param args
+   * 
    */
-  async searchSound(args = {}) {
+  async searchSound(args: SoundArgs = {}): Promise<APIResponse<object>> {
     const data = {
       query: args.query,
       client: 'ANDROID'
@@ -223,15 +286,13 @@ class Actions {
   /**
    * Channel management endpoints.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.new_name]
-   * @param {string} [args.new_description]
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param args
+   * 
    */
-  async channel(action, args = {}) {
+  async channel(action: string, args: ChannelArgs = {}): Promise<APIResponse<object>> {
     if (!this.#session.logged_in)
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {
       client: args.client || 'ANDROID'
@@ -247,7 +308,7 @@ class Actions {
       case 'channel/get_profile_editor':
         break;
       default:
-        throw new Utils.InnertubeError('Action not implemented', action);
+        throw new InnertubeError('Action not implemented', action);
     }
 
     const response = await this.#request.post(`/${action}`, data);
@@ -258,17 +319,13 @@ class Actions {
   /**
    * Covers endpoints used for playlist management.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.title]
-   * @param {string} [args.ids]
-   * @param {string} [args.playlist_id]
-   * @param {string} [args.action]
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param args
+   * 
    */
-  async playlist(action, args = {}) {
+  async playlist(action: string, args: PlaylistArgs = {}): Promise<APIResponse<object>> {
     if (!this.#session.logged_in)
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {};
 
@@ -300,7 +357,7 @@ class Actions {
         });
         break;
       default:
-        throw new Utils.InnertubeError('Action not implemented', action);
+        throw new InnertubeError('Action not implemented', action);
     }
 
     const response = await this.#request.post(`/${action}`, data);
@@ -311,16 +368,13 @@ class Actions {
   /**
    * Covers endpoints used for notifications management.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.pref]
-   * @param {string} [args.channel_id]
-   * @param {string} [args.ctoken]
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param args
+   * 
    */
-  async notifications(action, args = {}) {
+  async notifications(action: string, args: NotificationsArgs = {}): Promise<APIResponse<object>> {
     if (!this.#session.logged_in)
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {};
 
@@ -343,7 +397,7 @@ class Actions {
       case 'get_unseen_count':
         break;
       default:
-        throw new Utils.InnertubeError('Action not implemented', action);
+        throw new InnertubeError('Action not implemented', action);
     }
 
     const response = await this.#request.post(`/notification/${action}`, data);
@@ -354,16 +408,11 @@ class Actions {
   /**
    * Covers livechat endpoints.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.text]
-   * @param {string} [args.video_id]
-   * @param {string} [args.channel_id]
-   * @param {string} [args.ctoken]
-   * @param {string} [args.params]
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param args
+   * 
    */
-  async livechat(action, args = {}) {
+  async livechat(action: string, args: LiveChatArgs = {}): Promise<APIResponse<object>> {
     const data = { client: args.client };
 
     switch (action) {
@@ -391,7 +440,7 @@ class Actions {
         if (args.ctoken) data.continuation = args.ctoken;
         break;
       default:
-        throw new Utils.InnertubeError('Action not implemented', action);
+        throw new InnertubeError('Action not implemented', action);
     }
 
     const response = await this.#request.post(`/${action}`, data);
@@ -402,11 +451,10 @@ class Actions {
   /**
    * Endpoint used to retrieve video thumbnails.
    *
-   * @param {object} args
-   * @param {string} args.video_id
-   * @returns {Promise.<Response>}
+   * @param args
+   * 
    */
-  async thumbnails(args = {}) {
+  async thumbnails(args: ThumbnailArgs = {}): Promise<APIResponse<object>> {
     const data = {
       client: 'ANDROID',
       videoId: args.video_id
@@ -427,14 +475,13 @@ class Actions {
    * console.info(places.data);
    * ```
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} args.input
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param args
+   * 
    */
-  async geo(action, args = {}) {
+  async geo(action: string, args: GeoArgs = {}): Promise<APIResponse<object>> {
     if (!this.#session.logged_in)
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {
       input: args.input,
@@ -449,15 +496,13 @@ class Actions {
   /**
    * Covers endpoints used to report content.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {object} [args.action]
-   * @param {string} [args.params]
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param args
+   * 
    */
-  async flag(action, args) {
+  async flag(action: string, args: FlagArgs): Promise<APIResponse<object>> {
     if (!this.#session.logged_in)
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {};
 
@@ -469,7 +514,7 @@ class Actions {
         data.params = args.params;
         break;
       default:
-        throw new Utils.InnertubeError('Action not implemented', action);
+        throw new InnertubeError('Action not implemented', action);
     }
 
     const response = await this.#request.post(`/${action}`, data);
@@ -480,12 +525,11 @@ class Actions {
   /**
    * Covers specific YouTube Music endpoints.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.input]
-   * @returns {Promise.<Response>}
+   * @param action
+   * @param args
+   * 
    */
-  async music(action, args) {
+  async music(action: string, args: MusicArgs): Promise<APIResponse<object>> {
     const data = {
       input: args.input || '',
       client: 'YTMUSIC'
@@ -499,13 +543,10 @@ class Actions {
   /**
    * Mostly used for pagination and specific operations.
    *
-   * @param {object} args
-   * @param {string} [args.video_id]
-   * @param {string} [args.ctoken]
-   * @param {string} [args.client]
-   * @returns {Promise.<Response>}
+   * @param args
+   * 
    */
-  async next(args = {}) {
+  async next(args: NextArgs = {}): Promise<APIResponse<object>> {
     const data = { client: args.client };
 
     if (args.ctoken) {
@@ -524,12 +565,12 @@ class Actions {
   /**
    * Used to retrieve video info.
    *
-   * @param {string} id
-   * @param {string} [cpn]
-   * @param {string} [client]
-   * @returns {Promise.<Response>}
+   * @param id
+   * @param [cpn]
+   * @param [client]
+   * 
    */
-  async getVideoInfo(id, cpn, client) {
+  async getVideoInfo(id: string, cpn: string, client: string): Promise<APIResponse<object>> {
     const data = {
       playbackContext: {
         contentPlaybackContext: {
@@ -566,15 +607,16 @@ class Actions {
   /**
    * Covers search suggestion endpoints.
    *
-   * @param {string} client
-   * @param {string} query
-   * @returns {Promise.<Response>}
+   * @param client
+   * @param query
+   * 
    */
-  async getSearchSuggestions(client, query) {
+  async getSearchSuggestions(client: string, query: string): Promise<APIResponse<object>> {
     if (![ 'YOUTUBE', 'YTMUSIC' ].includes(client))
-      throw new Utils.InnertubeError('Invalid client', client);
+      throw new InnertubeError('Invalid client', client);
 
     const response = await ({
+      // NOTE: this is an instance of Request, so something is wrong
       YOUTUBE: () => this.#request({
         url: 'search',
         baseURL: Constants.URLS.YT_SUGGESTIONS,
@@ -599,13 +641,12 @@ class Actions {
   /**
    * Endpoint used to retrieve user mention suggestions.
    *
-   * @param {object} args
-   * @param {string} args.input
-   * @returns {Promise.<Response>}
+   * @param args
+   * 
    */
-  async getUserMentionSuggestions(args = {}) {
+  async getUserMentionSuggestions(args: UserMentionSuggestionsArgs = {}): Promise<APIResponse<object>> {
     if (!this.#session.logged_in)
-      throw new Utils.InnertubeError('You are not signed in');
+      throw new InnertubeError('You are not signed in');
 
     const data = {
       input: args.input,
@@ -619,10 +660,10 @@ class Actions {
 
   /**
    * Executes an API call.
-   * @param {string} action - endpoint
-   * @param {object} args - call arguments
+   * @param action - endpoint
+   * @param args - call arguments
    */
-  async execute(action, args) {
+  async execute(action: string, args: object) {
     const data = { ...args };
 
     if (Reflect.has(data, 'request'))
@@ -644,15 +685,18 @@ class Actions {
     return this.#request.post(action, data);
   }
 
-  #needsLogin(id) {
-    return [
-      'FElibrary',
-      'FEhistory',
-      'FEsubscriptions',
-      'SPaccount_notifications',
-      'SPaccount_privacy',
-      'SPtime_watched'
-    ].includes(id);
+  #needsLogin(id: string) {
+    switch (id) {
+      case 'FElibrary':
+      case 'FEhistory':
+      case 'FEsubscriptions':
+      case 'SPaccount_notifications':
+      case 'SPaccount_privacy':
+      case 'SPtime_watched':
+        return true;
+      default:
+        return false;
+    }
   }
 }
 
