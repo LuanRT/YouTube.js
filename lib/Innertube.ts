@@ -212,8 +212,7 @@ class Innertube {
   async signOut(): Promise<{ success: boolean, status_code: number }> {
     if (!this.logged_in) throw new InnertubeError('You are not signed in');
 
-    // NOTE: this isn't a method? is this supposed to be OAuth#revokeCredentials?
-    const response = await this.oauth.revokeAccessToken();
+    const response = await this.oauth.revokeCredentials();
 
     this.logged_in = false;
 
