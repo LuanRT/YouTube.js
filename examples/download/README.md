@@ -10,7 +10,7 @@ const yt = await new Innertube();
 // Downloading videos returns a Node Stream which you can consume
 const stream = yt.download('VIDEO_ID');
 
-// Alternatively you may want more info before downloading
+// Alternatively, you may want more info before downloading
 const info = await yt.getInfo('VIDEO_ID');
 
 // Then you may request a download stream
@@ -73,4 +73,4 @@ stream.on('start', () => {
 
 ## Aborting Downloads
 
-The download stream may be abotted by calling `stream.cancel()`
+The download stream may be aborted by calling `stream.cancel()`
