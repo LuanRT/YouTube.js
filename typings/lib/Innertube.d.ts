@@ -111,18 +111,9 @@ declare class Innertube {
     }): Promise<Search>;
     /**
      * Retrieves search suggestions for a given query.
-     *
      * @param {string} query - the search query.
-     * @param {object} [options] - search options.
-     * @param {string} [options.client='YOUTUBE'] - client used to retrieve search suggestions, can be: `YOUTUBE` or `YTMUSIC`.
-     * @returns {Promise.<{ query: string, results: string[] }>}
      */
-    getSearchSuggestions(query: string, options?: {
-        client?: string;
-    }): Promise<{
-        query: string;
-        results: string[];
-    }>;
+    getSearchSuggestions(query: string): Promise<any>;
     /**
      * Retrieves comments for a video.
      *
