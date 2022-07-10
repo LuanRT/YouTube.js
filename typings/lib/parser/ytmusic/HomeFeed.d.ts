@@ -14,5 +14,6 @@ declare class HomeFeed {
      * @returns {Promise.<HomeFeed>}
      */
     getContinuation(): Promise<HomeFeed>;
+    get page(): any;
     #private;
 }

@@ -85,6 +85,12 @@ declare class Music {
         /** @type {string} */
         info: string;
     }>;
+    /**
+     * Retrieves search suggestions for the given query.
+     * @param {string} query
+     * @returns {Promise.<import('../parser/contents/classes/SearchSuggestion')[] | import('../parser/contents/classes/HistorySuggestion')[]>}
+     */
+    getSearchSuggestions(query: string): Promise<import('../parser/contents/classes/SearchSuggestion')[] | import('../parser/contents/classes/HistorySuggestion')[]>;
     #private;
 }
 import Search = require("../parser/ytmusic/Search");

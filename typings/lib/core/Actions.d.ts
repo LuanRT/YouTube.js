@@ -322,7 +322,10 @@ declare class Actions {
      * Executes an API call.
      * @param {string} action - endpoint
      * @param {object} args - call arguments
+     * @param {boolean} [args.parse]
      */
-    execute(action: string, args: object): Promise<any>;
+    execute(action: string, args: {
+        parse?: boolean;
+    }): Promise<any>;
     #private;
 }

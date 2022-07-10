@@ -22,13 +22,13 @@ describe('YouTube.js Tests', () => {
     });
     
     it('Should retrieve YouTube search suggestions', async () => {
-      const suggestions = await this.session.getSearchSuggestions(Constants.VIDEOS[0].QUERY, { client: 'YOUTUBE' });
-      expect(suggestions.results.length).toBeLessThanOrEqual(10);
+      const suggestions = await this.session.getSearchSuggestions(Constants.VIDEOS[0].QUERY);
+      expect(suggestions.length).toBeLessThanOrEqual(10);
     });
     
     it('Should retrieve YouTube Music search suggestions', async () => {
-      const suggestions = await this.session.getSearchSuggestions(Constants.VIDEOS[1].QUERY, { client: 'YTMUSIC' });
-      expect(suggestions.results.length).toBeLessThanOrEqual(10);
+      const suggestions = await this.session.music.getSearchSuggestions(Constants.VIDEOS[1].QUERY);
+      expect(suggestions.length).toBeLessThanOrEqual(10);
     });
   });
   
