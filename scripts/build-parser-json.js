@@ -5,17 +5,17 @@ const fs = require('fs');
 
 const json = [ '{' ];
 
-glob.sync('../lib/parser/contents/classes/**/*.js', { cwd: __dirname })
+glob.sync('../lib/parser/classes/**/*.js', { cwd: __dirname })
   .forEach((file) => {
     // Trim path
-    file = file.replace('../lib/parser/contents/classes/', '').replace('.js', '');
+    file = file.replace('../lib/parser/classes/', '').replace('.js', '');
     json.push(`'${file.split('/').pop()}': () => require('./classes/${file}'),`);
   });
 
 json.push('}');
 
 fs.writeFileSync(
-  './lib/parser/contents/map.js',
+  './lib/parser/map.js',
   `// This file was auto generated, do not edit.
 // See ./scripts/build-parser-json.js
 
