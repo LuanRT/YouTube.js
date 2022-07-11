@@ -8,5 +8,5 @@ declare class CommentsEntryPointHeader {
     teaser_content: Text;
     simplebox_placeholder: Text;
 }
-import Text = require("./Text");
-import Thumbnail = require("./Thumbnail");
+import Text = require("../Text");
+import Thumbnail = require("../Thumbnail");

@@ -1,10 +1,10 @@
 export = Comments;
 declare class Comments {
     constructor(actions: any, data: any, already_parsed?: boolean);
-    /** @type {import('../contents/classes/CommentsHeader')} */
-    header: import('../contents/classes/CommentsHeader');
-    /** @type {import('../contents/classes/CommentThread')[]} */
-    contents: import('../contents/classes/CommentThread')[];
+    /** @type {import('../classes/comments/CommentsHeader')} */
+    header: import('../classes/comments/CommentsHeader');
+    /** @type {import('../classes/comments/CommentThread')[]} */
+    contents: import('../classes/comments/CommentThread')[];
     /**
      * Creates a top-level comment.
      * @param {string} text

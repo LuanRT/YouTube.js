@@ -5,4 +5,4 @@ declare class MenuServiceItemDownload {
     has_separator: any;
     endpoint: NavigationEndpoint;
 }
-import NavigationEndpoint = require("./NavigationEndpoint");
+import NavigationEndpoint = require("../NavigationEndpoint");

@@ -9,60 +9,60 @@ declare class VideoInfo {
      */
     constructor(data: object, actions: import('../../core/Actions'), player: import('../../core/Player'), cpn: string);
     /**
-     * @type {import('../contents/classes/VideoDetails')}
+     * @type {import('../classes/VideoDetails')}
      */
-    basic_info: import('../contents/classes/VideoDetails');
+    basic_info: import('../classes/VideoDetails');
     streaming_data: any;
     playability_status: any;
     /**
-     * @type {import('../contents/classes/PlayerAnnotationsExpanded')[]}
+     * @type {import('../classes/PlayerAnnotationsExpanded')[]}
      */
-    annotations: import('../contents/classes/PlayerAnnotationsExpanded')[];
+    annotations: import('../classes/PlayerAnnotationsExpanded')[];
     /**
-     * @type {import('../contents/classes/PlayerStoryboardSpec')}
+     * @type {import('../classes/PlayerStoryboardSpec')}
      */
-    storyboards: import('../contents/classes/PlayerStoryboardSpec');
+    storyboards: import('../classes/PlayerStoryboardSpec');
     /**
-     * @type {import('../contents/classes/Endscreen')}
+     * @type {import('../classes/Endscreen')}
      */
-    endscreen: import('../contents/classes/Endscreen');
+    endscreen: import('../classes/Endscreen');
     /**
-     * @type {import('../contents/classes/PlayerCaptionsTracklist')}
+     * @type {import('../classes/PlayerCaptionsTracklist')}
      */
-    captions: import('../contents/classes/PlayerCaptionsTracklist');
+    captions: import('../classes/PlayerCaptionsTracklist');
     /**
-     * @type {import('../contents/classes/CardCollection')}
+     * @type {import('../classes/CardCollection')}
      */
-    cards: import('../contents/classes/CardCollection');
+    cards: import('../classes/CardCollection');
     /**
-     * @type {import('../contents/classes/VideoPrimaryInfo')}
+     * @type {import('../classes/VideoPrimaryInfo')}
      */
-    primary_info: import('../contents/classes/VideoPrimaryInfo');
+    primary_info: import('../classes/VideoPrimaryInfo');
     /**
-     * @type {import('../contents/classes/VideoSecondaryInfo')}
+     * @type {import('../classes/VideoSecondaryInfo')}
      */
-    secondary_info: import('../contents/classes/VideoSecondaryInfo');
+    secondary_info: import('../classes/VideoSecondaryInfo');
     /**
-     * @type {import('../contents/classes/MerchandiseShelf')}
+     * @type {import('../classes/MerchandiseShelf')}
      */
-    merchandise: import('../contents/classes/MerchandiseShelf');
+    merchandise: import('../classes/MerchandiseShelf');
     /**
-     * @type {import('../contents/classes/ChipCloud')}
+     * @type {import('../classes/ChipCloud')}
      */
-    related_chip_cloud: import('../contents/classes/ChipCloud');
+    related_chip_cloud: import('../classes/ChipCloud');
     watch_next_feed: any;
     /**
-     * @type {import('../contents/classes/PlayerOverlay')}
+     * @type {import('../classes/PlayerOverlay')}
      */
-    player_overlays: import('../contents/classes/PlayerOverlay');
+    player_overlays: import('../classes/PlayerOverlay');
     /**
-     * @type {import('../contents/classes/CommentsEntryPointHeader')}
+     * @type {import('../classes/CommentsEntryPointHeader')}
      */
-    comments_entry_point_header: import('../contents/classes/CommentsEntryPointHeader');
+    comments_entry_point_header: any;
     /**
-     * @type {import('../contents/classes/LiveChat')}
+     * @type {import('../classes/LiveChat')}
      */
-    livechat: import('../contents/classes/LiveChat');
+    livechat: import('../classes/LiveChat');
     /**
      * Applies given filter to the watch next feed.
      *
@@ -70,14 +70,14 @@ declare class VideoInfo {
      * @returns {Promise.<VideoInfo>}
      */
     selectFilter(name: string): Promise<VideoInfo>;
-    /** @typedef {import('../contents/classes/CompactVideo')} CompactVideo */
-    /** @typedef {import('../contents/classes/CompactMix')} CompactMix */
+    /** @typedef {import('../classes/CompactVideo')} CompactVideo */
+    /** @typedef {import('../classes/CompactMix')} CompactMix */
     /**
      * Retrieves watch next feed continuation.
      *
      * @returns {Promise.<CompactVideo[] | CompactMix[]>}
      */
-    getWatchNextContinuation(): Promise<import("../contents/classes/CompactVideo")[] | import("../contents/classes/CompactMix")[]>;
+    getWatchNextContinuation(): Promise<import("../classes/CompactVideo")[] | import("../classes/CompactMix")[]>;
     /**
      * API response.
      *

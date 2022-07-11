@@ -9,4 +9,4 @@ declare class CommentsHeader {
     sort_menu: any;
     custom_emojis: any;
 }
-import Text = require("./Text");
+import Text = require("../Text");

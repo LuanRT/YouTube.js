@@ -12,7 +12,7 @@ declare class Innertube {
      * @param {string} [config.cookie]
      * @param {boolean} [config.debug]
      * @param {object} [config.proxy]
-     * @param {object} [config.http_ent]
+     * @param {object} [config.http_agent]
      * @param {object} [config.https_agent]
      */
     constructor(config?: {
@@ -20,7 +20,7 @@ declare class Innertube {
         cookie?: string;
         debug?: boolean;
         proxy?: object;
-        http_ent?: object;
+        http_agent?: object;
         https_agent?: object;
     });
     config: {
@@ -28,7 +28,7 @@ declare class Innertube {
         cookie?: string;
         debug?: boolean;
         proxy?: object;
-        http_ent?: object;
+        http_agent?: object;
         https_agent?: object;
     };
     /** @type {string} */
@@ -57,7 +57,6 @@ declare class Innertube {
     music: YTMusic;
     /**
      * Signs in to a google account.
-     *
      * @param {object} credentials
      * @param {string} credentials.access_token - Token used to sign in.
      * @param {string} credentials.refresh_token - Token used to get a new access token.
@@ -71,7 +70,6 @@ declare class Innertube {
     }): Promise<void>;
     /**
      * Signs out of an account.
-     *
      * @returns {Promise.<{ success: boolean, status_code: number }>}
      */
     signOut(): Promise<{
@@ -80,21 +78,18 @@ declare class Innertube {
     }>;
     /**
      * Retrieves video info.
-     *
      * @param {string} video_id
      * @returns {Promise.<VideoInfo>}
      */
     getInfo(video_id: string): Promise<VideoInfo>;
     /**
      * Retrieves basic video info.
-     *
      * @param {string} video_id
      * @returns {Promise.<VideoInfo>}
      */
     getBasicInfo(video_id: string): Promise<VideoInfo>;
     /**
      * Searches a given query.
-     *
      * @param {string} query - search query.
      * @param {object} [filters] - search filters.
      * @param {string} [filters.upload_date] - filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
@@ -116,7 +111,6 @@ declare class Innertube {
     getSearchSuggestions(query: string): Promise<any>;
     /**
      * Retrieves comments for a video.
-     *
      * @param {string} video_id - the video id.
      * @param {string} [sort_by] - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
      * @returns {Promise.<Comments>}
@@ -124,73 +118,48 @@ declare class Innertube {
     getComments(video_id: string, sort_by?: string): Promise<Comments>;
     /**
      * Retrieves YouTube's home feed (aka recommendations).
-     *
      * @returns {Promise<FilterableFeed>}
      */
     getHomeFeed(): Promise<FilterableFeed>;
     /**
      * Returns the account's library.
-     *
      * @returns {Promise.<Library>}
      */
     getLibrary(): Promise<Library>;
     /**
      * Retrieves watch history.
-     * Which can also be achieved through {@link getLibrary()}.
-     *
+     * Which can also be achieved with {@link getLibrary()}.
      * @returns {Promise.<History>}
      */
     getHistory(): Promise<History>;
     /**
      * Retrieves trending content.
-     *
      * @returns {Promise<TabbedFeed>}
      */
     getTrending(): Promise<TabbedFeed>;
     /**
      * Retrieves subscriptions feed.
-     *
-     * @returns {Promise.<{ items: Array.<{ date: string, videos: object[] }>}>}
+     * @returns {Promise.<Feed>}
      */
-    getSubscriptionsFeed(): Promise<{
-        items: Array<{
-            date: string;
-            videos: object[];
-        }>;
-    }>;
+    getSubscriptionsFeed(): Promise<Feed>;
     /**
-     * Retrieves contents for a given channel. (WIP)
-     *
+     * Retrieves contents for a given channel.
      * @param {string} id - channel id
      * @returns {Promise<Channel>}
      */
     getChannel(id: string): Promise<Channel>;
     /**
      * Retrieves notifications.
-     *
-     * @returns {Promise.<{ items: Array.<{ title: string, sent_time: string, channel_name: string, channel_thumbnail: object, video_thumbnail: object, video_url: string, read: boolean, notification_id: string }>}>}
+     * @returns {Promise.<NotificationsMenu>}
      */
-    getNotifications(): Promise<{
-        items: Array<{
-            title: string;
-            sent_time: string;
-            channel_name: string;
-            channel_thumbnail: object;
-            video_thumbnail: object;
-            video_url: string;
-            read: boolean;
-            notification_id: string;
-        }>;
-    }>;
+    getNotifications(): Promise<NotificationsMenu>;
     /**
      * Retrieves unseen notifications count.
-     *
      * @returns {Promise.<number>}
      */
     getUnseenNotificationsCount(): Promise<number>;
     /**
      * Retrieves the contents of a given playlist.
-     *
      * @param {string} playlist_id - the id of the playlist.
      * @returns {Promise.<Playlist>}
      */
@@ -251,5 +220,7 @@ import FilterableFeed = require("./core/FilterableFeed");
 import Library = require("./parser/youtube/Library");
 import History = require("./parser/youtube/History");
 import TabbedFeed = require("./core/TabbedFeed");
+import Feed = require("./core/Feed");
 import Channel = require("./parser/youtube/Channel");
+import NotificationsMenu = require("./parser/youtube/NotificationsMenu");
 import Playlist = require("./parser/youtube/Playlist");

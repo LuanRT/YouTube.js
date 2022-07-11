@@ -6,12 +6,12 @@ declare class Album {
      * @param {import('../../core/Actions')} actions
      */
     constructor(response: object, actions: import('../../core/Actions'));
-    /** @type {import('../contents/classes/MusicDetailHeader')[]} */
-    header: import('../contents/classes/MusicDetailHeader')[];
+    /** @type {import('../classes/MusicDetailHeader')[]} */
+    header: import('../classes/MusicDetailHeader')[];
     /** @type {string} */
     url: string;
-    /** @type {import('../contents/classes/MusicResponsiveListItem')[]} */
-    contents: import('../contents/classes/MusicResponsiveListItem')[];
+    /** @type {import('../classes/MusicResponsiveListItem')[]} */
+    contents: import('../classes/MusicResponsiveListItem')[];
     sections: any;
     get page(): any;
     #private;

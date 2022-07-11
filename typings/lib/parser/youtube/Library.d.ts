@@ -10,10 +10,10 @@ declare class Library {
         stats: any;
         user_info: any;
     };
-    /** @type {{ type: string, title: import('../contents/classes/Text'), contents: object[], getAll: Promise.<Playlist | History | Feed> }[] } */
+    /** @type {{ type: string, title: import('../classes/Text'), contents: object[], getAll: Promise.<Playlist | History | Feed> }[] } */
     sections: {
         type: string;
-        title: import('../contents/classes/Text');
+        title: import('../classes/Text');
         contents: object[];
         getAll: Promise<Playlist | History | Feed>;
     }[];

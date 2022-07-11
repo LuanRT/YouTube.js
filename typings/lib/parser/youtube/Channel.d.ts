@@ -21,9 +21,9 @@ declare class Channel extends TabbedFeed {
      * Retrieves the channel about page.
      * Note that this does not return a new {@link Channel} object.
      *
-     * @returns {Promise<import('../parser/contents/ChannelAboutFullMetadata')>}
+     * @returns {Promise<import('../classes/ChannelAboutFullMetadata')>}
      */
-    getAbout(): Promise<any>;
+    getAbout(): Promise<import('../classes/ChannelAboutFullMetadata')>;
     #private;
 }
 import TabbedFeed = require("../../core/TabbedFeed");

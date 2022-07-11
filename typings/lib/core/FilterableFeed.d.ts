@@ -3,17 +3,17 @@ declare class FilterableFeed extends Feed {
     /**
      * Get filters for the feed
      *
-     * @returns {import('../parser/contents/ChipCloudChip')[]}
+     * @returns {import('../parser/classes/ChipCloudChip')[]}
      */
-    get filter_chips(): any[];
+    get filter_chips(): import("../parser/classes/ChipCloudChip")[];
     get filters(): any[];
     /**
      * Applies given filter and returns a new {@link Feed} object.
      *
-     * @param {string | import('../parser/contents/classes/ChipCloudChip')} filter
+     * @param {string | import('../parser/classes/ChipCloudChip')} filter
      * @returns {Promise.<Feed>}
      */
-    getFilteredFeed(filter: string | import('../parser/contents/classes/ChipCloudChip')): Promise<Feed>;
+    getFilteredFeed(filter: string | import('../parser/classes/ChipCloudChip')): Promise<Feed>;
     #private;
 }
 import Feed = require("./Feed");

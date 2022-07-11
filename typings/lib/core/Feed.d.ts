@@ -4,27 +4,27 @@ declare class Feed {
      * Get all videos on a given page via memo
      *
      * @param {Map<string, any[]>} memo
-     * @returns {Array<import('../parser/contents/classes/Video') | import('../parser/contents/classes/GridVideo') | import('../parser/contents/classes/CompactVideo') | import('../parser/contents/classes/PlaylistVideo') | import('../parser/contents/classes/PlaylistPanelVideo') | import('../parser/contents/classes/WatchCardCompactVideo')>}
+     * @returns {Array<import('../parser/classes/Video') | import('../parser/classes/GridVideo') | import('../parser/classes/CompactVideo') | import('../parser/classes/PlaylistVideo') | import('../parser/classes/PlaylistPanelVideo') | import('../parser/classes/WatchCardCompactVideo')>}
      */
-    static getVideosFromMemo(memo: Map<string, any[]>): Array<import('../parser/contents/classes/Video') | import('../parser/contents/classes/GridVideo') | import('../parser/contents/classes/CompactVideo') | import('../parser/contents/classes/PlaylistVideo') | import('../parser/contents/classes/PlaylistPanelVideo') | import('../parser/contents/classes/WatchCardCompactVideo')>;
+    static getVideosFromMemo(memo: Map<string, any[]>): Array<import('../parser/classes/Video') | import('../parser/classes/GridVideo') | import('../parser/classes/CompactVideo') | import('../parser/classes/PlaylistVideo') | import('../parser/classes/PlaylistPanelVideo') | import('../parser/classes/WatchCardCompactVideo')>;
     /**
      * Get all playlists on a given page via memo
      *
      * @param {Map<string, any[]>} memo
-     * @returns {Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>}
+     * @returns {Array<import('../parser/classes/Playlist') | import('../parser/classes/GridPlaylist')>}
      */
-    static getPlaylistsFromMemo(memo: Map<string, any[]>): Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>;
+    static getPlaylistsFromMemo(memo: Map<string, any[]>): Array<import('../parser/classes/Playlist') | import('../parser/classes/GridPlaylist')>;
     constructor(actions: any, data: any, already_parsed?: boolean);
     /**
      * Get all the videos in the feed
      */
-    get videos(): (import("../parser/contents/classes/CompactVideo") | import("../parser/contents/classes/GridVideo") | import("../parser/contents/classes/PlaylistPanelVideo") | import("../parser/contents/classes/PlaylistVideo") | import("../parser/contents/classes/Video") | import("../parser/contents/classes/WatchCardCompactVideo"))[];
+    get videos(): (import("../parser/classes/CompactVideo") | import("../parser/classes/GridVideo") | import("../parser/classes/PlaylistPanelVideo") | import("../parser/classes/PlaylistVideo") | import("../parser/classes/Video") | import("../parser/classes/WatchCardCompactVideo"))[];
     /**
      * Get all the community posts in the feed
      *
-     * @returns {import('../parser/contents/classes/BackstagePost')[] | import('../parser/contents/classes/Post')[]}
+     * @returns {import('../parser/classes/BackstagePost')[] | import('../parser/classes/Post')[]}
      */
-    get posts(): import("../parser/contents/classes/BackstagePost")[] | import("../parser/contents/classes/Post")[];
+    get posts(): import("../parser/classes/BackstagePost")[] | import("../parser/classes/Post")[];
     /**
      * Get all the channels in the feed
      *
@@ -34,9 +34,9 @@ declare class Feed {
     /**
      * Get all playlists in the feed
      *
-     * @returns {Array<import('../parser/contents/classes/Playlist') | import('../parser/contents/classes/GridPlaylist')>}
+     * @returns {Array<import('../parser/classes/Playlist') | import('../parser/classes/GridPlaylist')>}
      */
-    get playlists(): (import("../parser/contents/classes/Playlist") | import("../parser/contents/classes/GridPlaylist"))[];
+    get playlists(): (import("../parser/classes/Playlist") | import("../parser/classes/GridPlaylist"))[];
     get memo(): any;
     /**
      * Returns contents from the page.

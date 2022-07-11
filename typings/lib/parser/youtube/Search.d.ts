@@ -12,26 +12,26 @@ declare class Search extends Feed {
     refinements: any;
     estimated_results: any;
     watch_card: {
-        /** @type {import('../contents/classes/UniversalWatchCard')} */
-        header: import('../contents/classes/UniversalWatchCard');
-        /** @type {import('../contents/classes/WatchCardHeroVideo')} */
-        call_to_action: import('../contents/classes/WatchCardHeroVideo');
-        /** @type {import('../contents/classes/WatchCardSectionSequence')[]} */
-        sections: import('../contents/classes/WatchCardSectionSequence')[];
+        /** @type {import('../classes/UniversalWatchCard')} */
+        header: import('../classes/UniversalWatchCard');
+        /** @type {import('../classes/WatchCardHeroVideo')} */
+        call_to_action: import('../classes/WatchCardHeroVideo');
+        /** @type {import('../classes/WatchCardSectionSequence')[]} */
+        sections: import('../classes/WatchCardSectionSequence')[];
     };
     refinement_cards: {
-        /** @type {import('../contents/classes/RichListHeader')} */
-        header: import('../contents/classes/RichListHeader');
-        /** @type {import('../contents/classes/SearchRefinementCard')} */
-        cards: import('../contents/classes/SearchRefinementCard');
+        /** @type {import('../classes/RichListHeader')} */
+        header: import('../classes/RichListHeader');
+        /** @type {import('../classes/SearchRefinementCard')} */
+        cards: import('../classes/SearchRefinementCard');
     };
     /**
      * Applies given refinement card and returns a new {@link Search} object.
      *
-     * @param {import('../contents/classes/SearchRefinementCard') | string} card - refinement card object or query
+     * @param {import('../classes/SearchRefinementCard') | string} card - refinement card object or query
      * @returns {Promise.<Feed>}
      */
-    selectRefinementCard(card: import('../contents/classes/SearchRefinementCard') | string): Promise<Feed>;
+    selectRefinementCard(card: import('../classes/SearchRefinementCard') | string): Promise<Feed>;
     /** @type {string[]} */
     get refinement_card_queries(): string[];
     /**

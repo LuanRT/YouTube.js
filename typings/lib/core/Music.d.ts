@@ -57,7 +57,7 @@ declare class Music {
         /** @type {string} */
         text: string;
         /** @type {import('../parser/contents/classes/Text')} */
-        footer: import('../parser/contents/classes/Text');
+        footer: any;
     }>;
     /**
      * Retrieves up next.
@@ -72,7 +72,7 @@ declare class Music {
         /** @type {boolean} */
         is_editable: boolean;
         /** @type {import('../parser/contents/classes/PlaylistPanelVideo')[]} */
-        contents: import('../parser/contents/classes/PlaylistPanelVideo')[];
+        contents: any[];
     }>;
     /**
      * Retrieves related content.
@@ -81,7 +81,7 @@ declare class Music {
      */
     getRelated(video_id: string): Promise<{
         /** @type {import('../parser/contents/classes/MusicCarouselShelf')[]} */
-        sections: import('../parser/contents/classes/MusicCarouselShelf')[];
+        sections: any[];
         /** @type {string} */
         info: string;
     }>;
@@ -90,7 +90,7 @@ declare class Music {
      * @param {string} query
      * @returns {Promise.<import('../parser/contents/classes/SearchSuggestion')[] | import('../parser/contents/classes/HistorySuggestion')[]>}
      */
-    getSearchSuggestions(query: string): Promise<import('../parser/contents/classes/SearchSuggestion')[] | import('../parser/contents/classes/HistorySuggestion')[]>;
+    getSearchSuggestions(query: string): Promise<any[] | any[]>;
     #private;
 }
 import Search = require("../parser/ytmusic/Search");

@@ -82,6 +82,6 @@ declare class NavigationEndpoint {
      * @param {import('../../../core/Actions')} actions
      * @param {object} args
      */
-    callTest(actions: import('../../../core/Actions'), args?: object): Promise<any>;
+    callTest(actions: any, args?: object): Promise<any>;
     call(actions: any, client: any): Promise<any>;
 }

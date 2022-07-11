@@ -36,5 +36,5 @@ declare class Format {
      * @param {import('../../../core/Player')} player
      * @returns {string} Deciphered URL for downloading
      */
-    decipher(player: import('../../../core/Player')): string;
+    decipher(player: any): string;
 }

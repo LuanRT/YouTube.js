@@ -6,8 +6,8 @@ declare class HomeFeed {
      * @param {import('../../core/Actions')} actions
      */
     constructor(response: object, actions: import('../../core/Actions'));
-    /** @type {import('../contents/classes/MusicCarouselShelf')[]} */
-    sections: import('../contents/classes/MusicCarouselShelf')[];
+    /** @type {import('../classes/MusicCarouselShelf')[]} */
+    sections: import('../classes/MusicCarouselShelf')[];
     /**
      * Retrieves home feed continuation.
      *

@@ -7,8 +7,8 @@ declare class Artist {
      */
     constructor(response: object, actions: import('../../core/Actions'));
     header: any;
-    /** @type {import('../contents/classes/MusicShelf')[] | import('../contents/classes/MusicCarouselShelf')[]} */
-    sections: import('../contents/classes/MusicShelf')[] | import('../contents/classes/MusicCarouselShelf')[];
+    /** @type {import('../classes/MusicShelf')[] | import('../classes/MusicCarouselShelf')[]} */
+    sections: import('../classes/MusicShelf')[] | import('../classes/MusicCarouselShelf')[];
     getAllSongs(): Promise<any>;
     get page(): any;
     #private;

@@ -8,5 +8,5 @@ declare class CommentReplyDialog {
     placeholder: Text;
     error_message: Text;
 }
-import Thumbnail = require("./Thumbnail");
-import Text = require("./Text");
+import Thumbnail = require("../Thumbnail");
+import Text = require("../Text");

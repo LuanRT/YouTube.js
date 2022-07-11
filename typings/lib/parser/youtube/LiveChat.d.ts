@@ -7,15 +7,15 @@ declare class LiveChat {
     ev: any;
     initial_info: any;
     live_metadata: {
-        /** @type {import('../contents/classes/livechat/metadata/UpdateTitleAction')} */
+        /** @type {import('../classes/livechat/metadata/UpdateTitleAction')} */
         title: any;
-        /** @type {import('../contents/classes/livechat/metadata/UpdateDescriptionAction')} */
+        /** @type {import('../classes/livechat/metadata/UpdateDescriptionAction')} */
         description: any;
-        /** @type {import('../contents/classes/livechat/metadata/UpdateViewershipAction')} */
+        /** @type {import('../classes/livechat/metadata/UpdateViewershipAction')} */
         views: any;
-        /** @type {import('../contents/classes/livechat/metadata/UpdateTitleAction')} */
+        /** @type {import('../classes/livechat/metadata/UpdateTitleAction')} */
         likes: any;
-        /** @type {import('../contents/classes/livechat/metadata/UpdateDateTextAction')} */
+        /** @type {import('../classes/livechat/metadata/UpdateDateTextAction')} */
         date: any;
     };
     running: boolean;
@@ -26,8 +26,8 @@ declare class LiveChat {
     /**
      * Sends a message.
      * @param {string} text
-     * @returns {Promise.<import('../contents/classes/livechat/AddChatItemAction')[]>}
+     * @returns {Promise.<import('../classes/livechat/AddChatItemAction')[]>}
      */
-    sendMessage(text: string): Promise<import('../contents/classes/livechat/AddChatItemAction')[]>;
+    sendMessage(text: string): Promise<import('../classes/livechat/AddChatItemAction')[]>;
     #private;
 }

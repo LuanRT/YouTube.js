@@ -64,6 +64,6 @@ declare class Comment {
     private setActions;
     #private;
 }
-import Text = require("./Text");
-import Thumbnail = require("./Thumbnail");
-import Author = require("./Author");
+import Text = require("../Text");
+import Thumbnail = require("../Thumbnail");
+import Author = require("../Author");
