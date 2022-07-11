@@ -9,7 +9,7 @@ glob.sync('../lib/parser/contents/classes/**/*.js', { cwd: __dirname })
   .forEach((file) => {
     // Trim path
     file = file.replace('../lib/parser/contents/classes/', '').replace('.js', '');
-    json.push(`'${file}': () => require('./classes/${file}'),`);
+    json.push(`'${file.split('/').pop()}': () => require('./classes/${file}'),`);
   });
 
 json.push('}');
