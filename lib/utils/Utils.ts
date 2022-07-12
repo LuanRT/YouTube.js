@@ -31,6 +31,10 @@ export class NoStreamingDataError extends InnertubeError {}
 
 export class OAuthError extends InnertubeError {}
 
+export class PlayerError extends Error {}
+
+export class SessionError extends Error {}
+
 /**
  * Utility to help access deep properties of an object.
  *
@@ -145,13 +149,15 @@ export function escapeStringRegexp(input: string): string {
     return input.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d');
 }
 
+export type DeviceCategory = 'mobile' | 'desktop';
+
 /**
  * Returns a random user agent.
  *
  * @param type - mobile | desktop
  * @returns {object}
  */
-export function getRandomUserAgent(type: 'mobile' | 'desktop') {
+export function getRandomUserAgent(type: DeviceCategory) {
     switch (type) {
         case 'mobile':
             return new UserAgent(/Android/).data;
@@ -312,25 +318,6 @@ export function getRuntime(): Runtime {
     return 'browser';
 }
 
-/**
- * Returns the os tmpdir.
- * @returns {string}
- */
- function getTmpdir(): string {
-    const env = BROWSER ? {} : process.env;
-    const is_windows = process.platform === 'win32';
-    const trailing_slash_re = is_windows ? /[^:]\\$/ : /.\/$/;
-    let path;
-    if (is_windows) {
-        path = env.TEMP || env.TMP ||
-            `${env.SystemRoot || env.windir}\\temp`;
-    }
-    else {
-        path = env.TMPDIR || env.TMP ||
-            env.TEMP || '/tmp';
-    }
-    if (trailing_slash_re.test(path)) {
-        path = path.slice(0, -1);
-    }
-    return path;
+export function isServer() {
+    return ['node', 'deno'].includes(getRuntime());
 }
