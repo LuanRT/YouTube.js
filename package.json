@@ -35,11 +35,11 @@
   "dependencies": {
     "axios": "^0.21.4",
     "buffer": "^6.0.3",
-    "events": "^3.3.0",
     "flat": "^5.0.2",
     "idb": "^7.0.2",
     "protocol-buffers-encodings": "^1.1.1",
     "stream-browserify": "^3.0.0",
+    "undici": "^5.7.0",
     "user-agents": "^1.0.778"
   },
   "devDependencies": {
