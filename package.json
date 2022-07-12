@@ -18,7 +18,7 @@
     "build:types": "npx tsc",
     "build:parser-map": "node ./scripts/build-parser-json.js",
     "build:general": "npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js=\"/* eslint-disable */\" --bundle --target=node12 --keep-names --format=cjs --sourcemap",
-    "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --external:./node_modules/* --define:BROWSER=false",
+    "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --external:axios --external:buffer --external:events --external:flat --external:idb --external:node-forge --external:protocol-buffers-encodings --external:stream-browserify --external:user-agents --external:uuid --define:BROWSER=false",
     "build:node:prod": "npm run build:node -- --minify",
     "build:browser": "npm run build:general -- --outfile=./build/browser.js --platform=browser --define:BROWSER=true",
     "build:browser:prod": "npm run build:browser -- --minify"
