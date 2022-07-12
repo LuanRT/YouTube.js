@@ -153,19 +153,19 @@ export default class Parser {
             continuation_contents: data.continuationContents ? Parser.parseLC(data.continuationContents) : null,
             metadata: Parser.parse(data.metadata),
             header: Parser.parse(data.header),
-            microformat: data.microformat && Parser.parseItem<PlayerMicroformat>(data.microformat, PlayerMicroformat.type),
+            microformat: data.microformat ? Parser.parseItem<PlayerMicroformat>(data.microformat, PlayerMicroformat.type) : undefined,
             sidebar: Parser.parseItem<PlaylistSidebar>(data.sidebar, PlaylistSidebar.type),
             overlay: Parser.parseItem<PlayerOverlay>(data.overlay, PlayerOverlay.type),
             refinements: data.refinements || null,
             estimated_results: data.estimatedResults || null,
             player_overlays: Parser.parse(data.playerOverlays),
-            playability_status: data.playabilityStatus && {
+            playability_status: data.playabilityStatus ? {
                 status: parseFloat(data.playabilityStatus.status),
                 error_screen: Parser.parse(data.playabilityStatus.errorScreen),
                 embeddable: !!data.playabilityStatus.playableInEmbed || false,
                 reason: ''+data.reason || ''
-            },
-            streaming_data: data.streamingData && {
+            } : undefined,
+            streaming_data: data.streamingData ? {
                 expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
                 /** @type {import('./classes/Format')[]} */
                 formats: Parser.parseFormats(data.streamingData.formats),
@@ -173,10 +173,10 @@ export default class Parser {
                 adaptive_formats: Parser.parseFormats(data.streamingData.adaptiveFormats),
                 dash_manifest_url: data.streamingData?.dashManifestUrl || null,
                 dls_manifest_url: data.streamingData?.dashManifestUrl || null
-            },
+            } : undefined,
             captions: Parser.parse(data.captions),
             /** @type {import('./classes/VideoDetails')} */
-            video_details: data.videoDetails && new VideoDetails(data.videoDetails),
+            video_details: data.videoDetails ? new VideoDetails(data.videoDetails) : undefined,
             annotations: Parser.parse(data.annotations),
             storyboards: Parser.parse(data.storyboards),
             /** @type {import('./classes/Endscreen')} */
