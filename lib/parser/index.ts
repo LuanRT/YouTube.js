@@ -7,18 +7,26 @@ import PlayerMicroformat from "./classes/PlayerMicroformat";
 import PlaylistSidebar from "./classes/PlaylistSidebar";
 import PlayerOverlay from "./classes/PlayerOverlay";
 
+export const ParserTypeSymbol = Symbol('youtubei.parsertype');
 export class YTNode {
-
+    static [ParserTypeSymbol] = 'YTNode';
+    type: string;
+    constructor() {
+        this.type = (this.constructor as YTNodeConstructor)[ParserTypeSymbol];
+    }
+    static get type() {
+        return this[ParserTypeSymbol];
+    }
 }
 
 export interface YTNodeConstructor {
     new(data: any): YTNode;
-    get type(): symbol;
+    readonly [ParserTypeSymbol]: string;
+    get type(): string;
 }
 
 class AppendContinuationItemsAction extends YTNode {
-    static #type = Symbol('appendContinuationItemsAction');
-    static get type() { return this.#type };
+    static [ParserTypeSymbol] = 'appendContinuationItemsAction';;
 
     contents: Observed<YTNode[]> | null;
 
@@ -28,8 +36,7 @@ class AppendContinuationItemsAction extends YTNode {
     }
 }
 class ReloadContinuationItemsCommand extends YTNode {
-    static #type = Symbol('reloadContinuationItemsCommand');
-    static get type() { return this.#type }
+    static [ParserTypeSymbol] = 'reloadContinuationItemsCommand';
     target_id: string;
     contents: Observed<YTNode[]> | null;
     constructor(data: any) {
@@ -39,8 +46,7 @@ class ReloadContinuationItemsCommand extends YTNode {
     }
 }
 class SectionListContinuation extends YTNode {
-    static #type = Symbol('sectionListContinuation');
-    static get type() { return this.#type }
+    static [ParserTypeSymbol] = 'sectionListContinuation';
     continuation: string;
     contents: Observed<YTNode[]> | null;
     constructor(data: any) {
@@ -50,8 +56,7 @@ class SectionListContinuation extends YTNode {
     }
 }
 class TimedContinuation extends YTNode {
-    static #type = Symbol('timedContinuationData');
-    static get type() { return this.#type }
+    static [ParserTypeSymbol] = 'timedContinuationData';
     timeout_ms: number; // TODO: is this a number or a string?
     token: string;
     constructor(data: any) {
@@ -61,8 +66,7 @@ class TimedContinuation extends YTNode {
     }
 }
 class LiveChatContinuation extends YTNode {
-    static #type = Symbol('liveChatContinuation');
-    static get type() { return this.#type };
+    static [ParserTypeSymbol] = 'liveChatContinuation';;
     actions: Observed<YTNode[]>;
     action_panel: YTNode | null;
     item_list: YTNode | null;
@@ -216,7 +220,7 @@ export default class Parser {
         return observe(formats?.map((format) => new Format(format)) || []);
     }
 
-    static parseItem<T extends YTNode = YTNode>(data: any, validateType?: symbol | symbol[]) {
+    static parseItem<T extends YTNode = YTNode>(data: any, validateType?: string | string[]) {
         const keys = Object.keys(data);
         const classname = this.sanitizeClassName(keys[0]);
         if (!this.shouldIgnore(classname)) {
@@ -241,12 +245,12 @@ export default class Parser {
         return null;
     }
 
-    static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validateType?: symbol | symbol[]) : Observed<T[]> | null;
-    static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validateType?: symbol | symbol[]) : T | Observed<T[]> | null;
+    static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validateType?: string | string[]) : Observed<T[]> | null;
+    static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validateType?: string | string[]) : T | Observed<T[]> | null;
     /**
      * Parses the `contents` property of the response.
      */
-    static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validateType?: symbol | symbol[]) {
+    static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validateType?: string | string[]) {
         if (!data)
             return null;
         if (Array.isArray(data)) {
