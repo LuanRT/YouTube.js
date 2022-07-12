@@ -11227,7 +11227,7 @@ var require_PlaylistManager = __commonJS({
             action: "ACTION_REMOVE_VIDEO",
             setVideoId: video.set_video_id
           }));
-          if (payload.actions.length < video_ids) {
+          if (payload.actions.length < video_ids.length) {
             const next = await pl.getContinuation();
             return getSetVideoIds(next);
           }
