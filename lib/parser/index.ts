@@ -9,24 +9,20 @@ import PlayerOverlay from "./classes/PlayerOverlay";
 
 export const ParserTypeSymbol = Symbol('youtubei.parsertype');
 export class YTNode {
-    static [ParserTypeSymbol] = 'YTNode';
-    type: string;
+    static readonly type: string = 'YTNode';
+    readonly type: string;
     constructor() {
-        this.type = (this.constructor as YTNodeConstructor)[ParserTypeSymbol];
-    }
-    static get type() {
-        return this[ParserTypeSymbol];
+        this.type = (this.constructor as YTNodeConstructor).type;
     }
 }
 
 export interface YTNodeConstructor {
     new(data: any): YTNode;
-    readonly [ParserTypeSymbol]: string;
-    get type(): string;
+    readonly type: string;
 }
 
 class AppendContinuationItemsAction extends YTNode {
-    static [ParserTypeSymbol] = 'appendContinuationItemsAction';;
+    static readonly type = 'appendContinuationItemsAction';;
 
     contents: Observed<YTNode[]> | null;
 
@@ -36,7 +32,7 @@ class AppendContinuationItemsAction extends YTNode {
     }
 }
 class ReloadContinuationItemsCommand extends YTNode {
-    static [ParserTypeSymbol] = 'reloadContinuationItemsCommand';
+    static readonly type = 'reloadContinuationItemsCommand';
     target_id: string;
     contents: Observed<YTNode[]> | null;
     constructor(data: any) {
@@ -46,7 +42,7 @@ class ReloadContinuationItemsCommand extends YTNode {
     }
 }
 class SectionListContinuation extends YTNode {
-    static [ParserTypeSymbol] = 'sectionListContinuation';
+    static readonly type = 'sectionListContinuation';
     continuation: string;
     contents: Observed<YTNode[]> | null;
     constructor(data: any) {
@@ -56,7 +52,7 @@ class SectionListContinuation extends YTNode {
     }
 }
 class TimedContinuation extends YTNode {
-    static [ParserTypeSymbol] = 'timedContinuationData';
+    static readonly type = 'timedContinuationData';
     timeout_ms: number; // TODO: is this a number or a string?
     token: string;
     constructor(data: any) {
@@ -66,7 +62,7 @@ class TimedContinuation extends YTNode {
     }
 }
 class LiveChatContinuation extends YTNode {
-    static [ParserTypeSymbol] = 'liveChatContinuation';;
+    static readonly type = 'liveChatContinuation';;
     actions: Observed<YTNode[]>;
     action_panel: YTNode | null;
     item_list: YTNode | null;
