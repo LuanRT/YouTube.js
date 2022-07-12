@@ -1,11 +1,47 @@
 import Player from "./Player.js";
 import Proto from "../proto/index.js";
-import Utils from "../utils/Utils.js";
+import { DeviceCategory, generateRandomString, getStringBetweenStrings } from "../utils/Utils.js";
 import Constants from "../utils/Constants.js";
 import UserAgent from "user-agents";
 
-/** @namespace */
-class SessionBuilder {
+export interface ISession {
+    key: string;
+    version: string;
+    deviceCategory: DeviceCategory;
+    context: Context;
+    logged_in: boolean;
+    // TODO:
+    oauth: any //OAuth;
+}
+
+export interface Context {
+    client: {
+        hl: string;
+        gl: string;
+        remoteHost: string;
+        visitorData: string;
+        userAgent: string;
+        clientName: string;
+        clientVersion: string;
+        osName: string;
+        osVersion: string;
+        platform: string;
+        clientFormFactor: string;
+        userInterfaceTheme: string;
+        timeZone: string;
+        browserName: string;
+        browserVersion: string;
+        originalUrl: string;
+    };
+    user: {
+        lockedSafetyMode: false;
+    };
+    request: {
+        useSsl: true;
+    };
+};
+
+export class SessionBuilder {
     #config;
     #request;
     #key;
@@ -44,7 +80,7 @@ class SessionBuilder {
      */
     #buildContext() {
         const user_agent = new UserAgent({ deviceCategory: 'desktop' });
-        const id = Utils.generateRandomString(11);
+        const id = generateRandomString(11);
         const timestamp = Math.floor(Date.now() / 1000);
         const visitor_data = Proto.encodeVisitorData(id, timestamp);
         const context = {
@@ -67,7 +103,6 @@ class SessionBuilder {
     }
     /**
      * Retrieves initial configuration.
-     * @returns {Promise.<object>}
      */
     async #getYtConfig() {
         const response = await this.#request.get(`${Constants.URLS.YT_BASE}/sw.js_data`);
@@ -75,33 +110,32 @@ class SessionBuilder {
     }
     /**
      * Retrieves the YouTube player id.
-     * @returns {Promise.<string>}
      */
     async #getPlayerId() {
         const response = await this.#request.get(`${Constants.URLS.YT_BASE}/iframe_api`);
-        return Utils.getStringBetweenStrings(response.data, 'player\\/', '\\/');
+        return getStringBetweenStrings(response.data, 'player\\/', '\\/');
     }
-    /** @readonly */
+    
     get key() {
         return this.#key;
     }
-    /** @readonly */
+    
     get context() {
         return this.#context;
     }
-    /** @readonly */
+    
     get api_version() {
         return this.#api_version;
     }
-    /** @readonly */
+    
     get client_version() {
         return this.#client_version;
     }
-    /** @readonly */
+    
     get client_name() {
         return this.#client_name;
     }
-    /** @readonly */
+
     get player() {
         return this.#player;
     }

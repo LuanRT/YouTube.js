@@ -49,6 +49,7 @@
     "eslint-plugin-jsdoc": "^39.3.2",
     "fake-dom": "^1.0.4",
     "fake-indexeddb": "^4.0.0",
+    "glob": "^8.0.3",
     "jest": "^28.1.0",
     "typescript": "^4.6.4",
     "xhr2": "^0.2.1",

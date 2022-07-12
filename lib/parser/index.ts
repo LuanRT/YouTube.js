@@ -1,49 +1,89 @@
-import utils from "../utils/Utils.js";
-import Format from "./classes/Format.js";
-import VideoDetails from "./classes/VideoDetails.js";
-import requireParserClass from "./map.js";
+import { InnertubeError, observe, ParsingError, Observed } from "../utils/Utils";
+import Format from "./classes/misc/Format.js";
+import VideoDetails from "./classes/misc/VideoDetails.js";
+import GetParserByName from "./map";
+import package_json from '../../package.json';
+import PlayerMicroformat from "./classes/PlayerMicroformat";
+import PlaylistSidebar from "./classes/PlaylistSidebar";
+import PlayerOverlay from "./classes/PlayerOverlay";
 
-const { InnertubeError, observe } = utils;
-class AppendContinuationItemsAction {
-    type = 'appendContinuationItemsAction';
-    constructor(data) {
-        this.contents = Parser.parse(data.continuationItems);
+export class YTNode {
+
+}
+
+export interface YTNodeConstructor {
+    new(data: any): YTNode;
+    get type(): symbol;
+}
+
+class AppendContinuationItemsAction extends YTNode {
+    static #type = Symbol('appendContinuationItemsAction');
+    static get type() { return this.#type };
+
+    contents: Observed<YTNode[]> | null;
+
+    constructor(data: any) {
+        super();
+        this.contents = Parser.parse(data.continuationItems, true);
     }
 }
-class ReloadContinuationItemsCommand {
-    type = 'reloadContinuationItemsCommand';
-    constructor(data) {
+class ReloadContinuationItemsCommand extends YTNode {
+    static #type = Symbol('reloadContinuationItemsCommand');
+    static get type() { return this.#type }
+    target_id: string;
+    contents: Observed<YTNode[]> | null;
+    constructor(data: any) {
+        super();
         this.target_id = data.targetId;
-        this.contents = Parser.parse(data.continuationItems);
+        this.contents = Parser.parse(data.continuationItems, true);
     }
 }
-class SectionListContinuation {
-    type = 'sectionListContinuation';
-    constructor(data) {
-        this.contents = Parser.parse(data.contents);
+class SectionListContinuation extends YTNode {
+    static #type = Symbol('sectionListContinuation');
+    static get type() { return this.#type }
+    continuation: string;
+    contents: Observed<YTNode[]> | null;
+    constructor(data: any) {
+        super();
+        this.contents = Parser.parse(data.contents, true);
         this.continuation = data.continuations[0].nextContinuationData.continuation;
     }
 }
-class TimedContinuation {
-    type = 'timedContinuationData';
-    constructor(data) {
+class TimedContinuation extends YTNode {
+    static #type = Symbol('timedContinuationData');
+    static get type() { return this.#type }
+    timeout_ms: number; // TODO: is this a number or a string?
+    token: string;
+    constructor(data: any) {
+        super();
         this.timeout_ms = data.timeoutMs || data.timeUntilLastMessageMsec;
         this.token = data.continuation;
     }
 }
-class LiveChatContinuation {
-    type = 'liveChatContinuation';
-    constructor(data) {
-        this.actions = Parser.parse(data.actions?.map((action) => {
+class LiveChatContinuation extends YTNode {
+    static #type = Symbol('liveChatContinuation');
+    static get type() { return this.#type };
+    actions: Observed<YTNode[]>;
+    action_panel: YTNode | null;
+    item_list: YTNode | null;
+    header: YTNode | null;
+    participants_list: YTNode | null;
+    popout_message: YTNode | null;
+    emojis: any[] | null; // TODO: give this an actual type
+    continuation: TimedContinuation;
+    viewer_name: string;
+    constructor(data: any) {
+        super();
+        this.actions = Parser.parse(data.actions?.map((action: any) => {
             delete action.clickTrackingParams;
             return action;
-        })) || [];
-        this.action_panel = Parser.parse(data.actionPanel);
-        this.item_list = Parser.parse(data.itemList);
-        this.header = Parser.parse(data.header);
-        this.participants_list = Parser.parse(data.participantsList);
-        this.popout_message = Parser.parse(data.popoutMessage);
-        this.emojis = data.emojis?.map((emoji) => ({
+        }), true) || observe<YTNode[]>([]);
+        this.action_panel = Parser.parseItem(data.actionPanel);
+        this.item_list = Parser.parseItem(data.itemList);
+        this.header = Parser.parseItem(data.header);
+        this.participants_list = Parser.parseItem(data.participantsList);
+        this.popout_message = Parser.parseItem(data.popoutMessage);
+        this.emojis = data.emojis?.map((emoji: any) => ({
             emoji_id: emoji.emojiId,
             shortcuts: emoji.shortcuts,
             search_terms: emoji.searchTerms,
@@ -56,28 +96,26 @@ class LiveChatContinuation {
         this.viewer_name = data.viewerName;
     }
 }
-class Parser {
-    static #memo = new Map();
+
+export default class Parser {
+    static #memo: Map<string, YTNode[]> | null = null;
     static #clearMemo() {
         Parser.#memo = null;
     }
     static #createMemo() {
         Parser.#memo = new Map();
     }
-    static #addToMemo(classname, result) {
+    static #addToMemo(classname: string, result: YTNode) {
         if (!Parser.#memo)
             return;
         if (!Parser.#memo.has(classname))
             return Parser.#memo.set(classname, [result]);
-        Parser.#memo.get(classname).push(result);
+        Parser.#memo.get(classname)!.push(result);
     }
     /**
      * Parses InnerTube response.
-     *
-     * @param {object} data
-     * @returns {*}
      */
-    static parseResponse(data) {
+    static parseResponse(data: any) {
         // Memoize the response objects by classname
         this.#createMemo();
         const contents = Parser.parse(data.contents);
@@ -111,29 +149,21 @@ class Parser {
             on_response_received_endpoints_memo,
             on_response_received_commands,
             on_response_received_commands_memo,
-            /** @type {*} */
             continuation: data.continuation ? Parser.parseC(data.continuation) : null,
-            /** @type {*} */
             continuation_contents: data.continuationContents ? Parser.parseLC(data.continuationContents) : null,
             metadata: Parser.parse(data.metadata),
             header: Parser.parse(data.header),
-            /** @type {import('./classes/PlayerMicroformat')} */
-            microformat: data.microformat && Parser.parse(data.microformat),
-            /** @type {import('./classes/PlaylistSidebar')} */
-            sidebar: Parser.parse(data.sidebar),
-            /** @type {import('./classes/PlayerOverlay')} */
-            overlay: Parser.parse(data.overlay),
+            microformat: data.microformat && Parser.parseItem<PlayerMicroformat>(data.microformat, PlayerMicroformat.type),
+            sidebar: Parser.parseItem<PlaylistSidebar>(data.sidebar, PlaylistSidebar.type),
+            overlay: Parser.parseItem<PlayerOverlay>(data.overlay, PlayerOverlay.type),
             refinements: data.refinements || null,
             estimated_results: data.estimatedResults || null,
             player_overlays: Parser.parse(data.playerOverlays),
             playability_status: data.playabilityStatus && {
-                /** @type {number} */
-                status: data.playabilityStatus.status,
+                status: parseFloat(data.playabilityStatus.status),
                 error_screen: Parser.parse(data.playabilityStatus.errorScreen),
-                /** @type {boolean} */
-                embeddable: data.playabilityStatus.playableInEmbed || null,
-                /** @type {string} */
-                reason: data.reason || ''
+                embeddable: !!data.playabilityStatus.playableInEmbed || false,
+                reason: ''+data.reason || ''
             },
             streaming_data: data.streamingData && {
                 expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
@@ -155,102 +185,108 @@ class Parser {
             cards: Parser.parse(data.cards)
         };
     }
-    static parseC(data) {
+    static parseC(data: any) {
         if (data.timedContinuationData)
             return new TimedContinuation(data.timedContinuationData);
     }
-    static parseLC(data) {
+    static parseLC(data: any) {
         if (data.sectionListContinuation)
             return new SectionListContinuation(data.sectionListContinuation);
         if (data.liveChatContinuation)
             return new LiveChatContinuation(data.liveChatContinuation);
     }
-    static parseRR(actions) {
-        return observe(actions.map((action) => {
+    static parseRR(actions: any[]) {
+        return observe(actions.map<YTNode | undefined>((action: any) => {
             if (action.reloadContinuationItemsCommand)
                 return new ReloadContinuationItemsCommand(action.reloadContinuationItemsCommand);
             if (action.appendContinuationItemsAction)
                 return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
-        }).filter((item) => item));
+        }).filter((item) => item) as YTNode[]);
     }
-    static parseActions(data) {
+    static parseActions(data: any): YTNode | Observed<YTNode[]> | null {
         if (Array.isArray(data)) {
             return Parser.parse(data.map((action) => {
                 delete action.clickTrackingParams;
                 return action;
             }));
         }
-        return Parser.parse(data) || null;
+        return Parser.parseItem(data) || null;
     }
-    static parseFormats(formats) {
+    static parseFormats(formats: any[]) {
         return observe(formats?.map((format) => new Format(format)) || []);
     }
-    /**
-     * Parses the `contents` property of the response.
-     *
-     * @param {object} data - contents to be parsed.
-     * @returns {*}
-     */
-    static parse(data) {
-        if (!data)
-            return null;
-        if (Array.isArray(data)) {
-            const results = [];
-            for (const item of data) {
-                const keys = Object.keys(item);
-                const classname = this.sanitizeClassName(keys[0]);
-                if (!this.shouldIgnore(classname)) {
-                    try {
-                        const TargetClass = requireParserClass(classname);
-                        const result = new TargetClass(item[keys[0]]);
-                        results.push(result);
-                        this.#addToMemo(classname, result);
-                    }
-                    catch (err) {
-                        this.formatError({ classname, classdata: item[keys[0]], err });
-                    }
-                }
-            }
-            return observe(results);
-        }
+
+    static parseItem<T extends YTNode = YTNode>(data: any, validateType?: symbol | symbol[]) {
         const keys = Object.keys(data);
         const classname = this.sanitizeClassName(keys[0]);
         if (!this.shouldIgnore(classname)) {
             try {
-                const TargetClass = requireParserClass(classname);
+                const TargetClass = GetParserByName(classname);
+                if (validateType) {
+                    if (Array.isArray(validateType)) {
+                        if (!validateType.includes(TargetClass.type))
+                            throw new ParsingError('Type mismatch');
+                    } else if (TargetClass.type !== validateType)
+                        throw new ParsingError('Type mismatch');
+                }
                 const result = new TargetClass(data[keys[0]]);
                 this.#addToMemo(classname, result);
-                return result;
+                return result as T;
             }
             catch (err) {
                 this.formatError({ classname, classdata: data[keys[0]], err });
                 return null;
             }
         }
+        return null;
     }
-    static formatError({ classname, classdata, err }) {
+
+    static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validateType?: symbol | symbol[]) : Observed<T[]> | null;
+    static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validateType?: symbol | symbol[]) : T | Observed<T[]> | null;
+    /**
+     * Parses the `contents` property of the response.
+     */
+    static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validateType?: symbol | symbol[]) {
+        if (!data)
+            return null;
+        if (Array.isArray(data)) {
+            const results: T[] = [];
+            for (const item of data) {
+                const result = this.parseItem<T>(item, validateType);
+                if (result) {
+                    results.push(result);
+                }
+            }
+            return observe<T[]>(results as T[]);
+        } else if (requireArray) {
+            throw new ParsingError('Expected array but got a single item');
+        }
+        return this.parseItem<T>(data, validateType);
+    }
+
+    static formatError({ classname, classdata, err }: { classname: string, classdata: any, err: any }) {
         if (err.code == 'MODULE_NOT_FOUND') {
             return console.warn(new InnertubeError(`${classname} not found!\n` +
-                `This is a bug, please report it at ${require('../../package.json').bugs.url}`, classdata));
+                `This is a bug, please report it at ${package_json.bugs.url}`, classdata));
         }
         console.warn(new InnertubeError(`Something went wrong at ${classname}!\n` +
-            `This is a bug, please report it at ${require('../../package.json').bugs.url}`, { stack: err.stack }));
+            `This is a bug, please report it at ${package_json.bugs.url}`, { stack: err.stack }));
     }
-    static sanitizeClassName(input) {
+    static sanitizeClassName(input: string) {
         return (input.charAt(0).toUpperCase() + input.slice(1))
             .replace(/Renderer|Model/g, '')
             .replace(/Radio/g, 'Mix').trim();
     }
-    static shouldIgnore(classname) {
-        return [
-            'DisplayAd',
-            'SearchPyv',
-            'MealbarPromo',
-            'BackgroundPromo',
-            'PromotedSparklesWeb',
-            'RunAttestationCommand',
-            'StatementBanner'
-        ].includes(classname);
+    static ignore_list = new Set<string>([
+        'DisplayAd',
+        'SearchPyv',
+        'MealbarPromo',
+        'BackgroundPromo',
+        'PromotedSparklesWeb',
+        'RunAttestationCommand',
+        'StatementBanner'
+    ])
+    static shouldIgnore(classname: string) {
+        return this.ignore_list.has(classname);
     }
 }
-export default Parser;

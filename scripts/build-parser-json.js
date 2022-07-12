@@ -1,37 +1,42 @@
-'use strict';
-
 const glob = require('glob');
 const fs = require('fs');
+const path = require('path');
 
-const json = [ '{' ];
+const json = ["{"];
+const import_list = [];
 
-glob.sync('../lib/parser/classes/**/*.js', { cwd: __dirname })
+glob.sync('../lib/parser/classes/**/*.{js,ts}', { cwd: __dirname })
   .forEach((file) => {
+    if (file.includes('/misc/')) return;
     // Trim path
-    file = file.replace('../lib/parser/classes/', '').replace('.js', '');
-    json.push(`'${file.split('/').pop()}': () => require('./classes/${file}'),`);
+    file = file.replace('../lib/parser/classes/', '').replace('.js', '').replace('.ts', '');
+    const import_name = file.split('/').pop();
+    import_list.push(`import { default as ${import_name} } from './classes/${file}';`);
+    json.push(`    ${import_name},`);
   });
 
-json.push('}');
+json.push("}");
 
 fs.writeFileSync(
-  './lib/parser/map.js',
+  path.resolve(__dirname, '../lib/parser/map.ts'),
   `// This file was auto generated, do not edit.
 // See ./scripts/build-parser-json.js
+import { UINodeConstructor } from '.';
 
-/* eslint-disable */
+${import_list.join('\n')}
 
-const map = ${json.join('')};
+const map: Record<string, UINodeConstructor> = ${json.join('\n')};
 
-module.exports = function req(name) {
-  const func = map[name];
+export default function GetParserByName(name: string) {
+  const ParserConstructor = map[name];
  
-  if (!func) {
+  if (!ParserConstructor) {
     const error = new Error('Module not found: ' + name);
-    error.code = 'MODULE_NOT_FOUND';
+    (error as any).code = 'MODULE_NOT_FOUND';
     throw error;
   }
   
-  return func();
-}`
+  return ParserConstructor;
+};
+`
 );
