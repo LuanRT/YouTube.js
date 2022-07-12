@@ -6,60 +6,50 @@ declare class PlaylistManager {
      */
     constructor(actions: any);
     /**
-     * API
-     *
-     * @typedef {{ success: boolean, status_code: number, playlist_id: string, data: object }} Response
-     */
-    /**
      * Creates a playlist.
-     *
      * @param {string} title
      * @param {string[]} video_ids
-     * @returns {Promise.<Response>}
      */
     create(title: string, video_ids: string[]): Promise<{
-        success: boolean;
-        status_code: number;
-        playlist_id: string;
-        data: object;
+        playlist_id: any;
+        data: any;
     }>;
     /**
      * Deletes a given playlist.
-     *
      * @param {string} playlist_id
-     * @returns {Promise.<Response>}
      */
     delete(playlist_id: string): Promise<{
-        success: boolean;
-        status_code: number;
         playlist_id: string;
-        data: object;
+        data: any;
     }>;
     /**
      * Adds videos to a given playlist.
-     *
      * @param {string} playlist_id
      * @param {Array.<string>} video_ids
-     * @returns {Promise.<Response>}
      */
     addVideos(playlist_id: string, video_ids: Array<string>): Promise<{
-        success: boolean;
-        status_code: number;
         playlist_id: string;
-        data: object;
+        action_result: any;
     }>;
     /**
      * Removes videos from a given playlist.
      *
      * @param {string} playlist_id
      * @param {Array.<string>} video_ids
-     * @returns {Promise.<Response>}
      */
     removeVideos(playlist_id: string, video_ids: Array<string>): Promise<{
-        success: boolean;
-        status_code: number;
         playlist_id: string;
-        data: object;
+        action_result: any;
+    }>;
+    /**
+     * Moves a video to a new position within a given playlist.
+     * @param {string} playlist_id
+     * @param {string} moved_video_id
+     * @param {string} predecessor_video_id
+     */
+    moveVideo(playlist_id: string, moved_video_id: string, predecessor_video_id: string): Promise<{
+        playlist_id: string;
+        action_result: any;
     }>;
     #private;
 }
