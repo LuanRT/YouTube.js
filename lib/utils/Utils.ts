@@ -1,41 +1,46 @@
 import UserAgent from "user-agents";
 import Flatten from "flat";
-import crypto from "crypto";
 import { randomUUID } from "crypto";
+import package_json from '../../package.json';
 
-class InnertubeError extends Error {
-    constructor(message, info) {
+const VALID_CLIENTS = new Set(['YOUTUBE', 'YTMUSIC']);
+
+export class InnertubeError extends Error {
+    date: Date;
+    version: string;
+    info?: any;
+
+    constructor(message: string, info?: any) {
         super(message);
         if (info) {
             this.info = info;
         }
         this.date = new Date();
-        this.version = require('../../package.json').version;
+        this.version = package_json.version;
     }
 }
-class ParsingError extends InnertubeError {
-}
-class DownloadError extends InnertubeError {
-}
-class MissingParamError extends InnertubeError {
-}
-class UnavailableContentError extends InnertubeError {
-}
-class NoStreamingDataError extends InnertubeError {
-}
-class OAuthError extends InnertubeError {
-}
+export class ParsingError extends InnertubeError {}
+
+export class DownloadError extends InnertubeError {}
+
+export class MissingParamError extends InnertubeError {}
+
+export class UnavailableContentError extends InnertubeError {}
+
+export class NoStreamingDataError extends InnertubeError {}
+
+export class OAuthError extends InnertubeError {}
+
 /**
  * Utility to help access deep properties of an object.
  *
- * @param {object} obj - the object.
- * @param {string} key - key of the property being accessed.
- * @param {string} target - anything that might be inside of the property.
- * @param {number} depth - maximum number of nested objects to flatten.
- * @param {boolean} safe - if set to true arrays will be preserved.
- * @returns {object|object[]}
+ * @param obj - the object.
+ * @param key - key of the property being accessed.
+ * @param target - anything that might be inside of the property.
+ * @param depth - maximum number of nested objects to flatten.
+ * @param safe - if set to true arrays will be preserved.
  */
-function findNode(obj, key, target, depth, safe = true) {
+export function findNode(obj: object, key: string, target: string, depth: number, safe: boolean = true): object | object[] {
     const flat_obj = Flatten(obj, { safe, maxDepth: depth || 2 });
     const result = Object.keys(flat_obj).find((entry) => entry.includes(key) && JSON.stringify(flat_obj[entry] || '{}').includes(target));
     if (!result)
@@ -44,51 +49,47 @@ function findNode(obj, key, target, depth, safe = true) {
         });
     return flat_obj[result];
 }
+
+export type Observed<T extends object> = T & {
+    /**
+     * Returns the first object to match the rule.
+     */
+    get: (rule: object, del_item?: boolean) => T | undefined;
+    /**
+     * Returns all objects that match the rule.
+     */
+    findAll: (rule: object, del_items?: boolean) => T[];
+    remove: (index: number) => T[];
+};
+
 /**
  * Creates a trap to intercept property access
  * and add utilities to an object.
- *
- * @param {object} obj
- * @returns {object}
  */
-function observe(obj) {
+export function observe<T extends any[]>(obj: T) {
     return new Proxy(obj, {
         get(target, prop) {
             if (prop == 'get') {
-                /**
-                 * Returns the first object to match the rule.
-                 *
-                 * @name get
-                 * @param {object} rule
-                 * @param {boolean} del_item
-                 * @returns {*}
-                 */
-                return (rule, del_item) => target
-                    .find((obj, index) => {
-                    const match = deepCompare(rule, obj);
-                    if (match && del_item) {
-                        target.splice(index, 1);
-                    }
-                    return match;
-                });
+                return (rule: object, del_item?: boolean) => (
+                    target.find((obj, index) => {
+                        const match = deepCompare(rule, obj);
+                        if (match && del_item) {
+                            target.splice(index, 1);
+                        }
+                        return match;
+                    })
+                )
             }
             if (prop == 'findAll') {
-                /**
-                 * Returns all objects that match the rule.
-                 *
-                 * @name findAll
-                 * @param {object} rule
-                 * @param {boolean} del_items
-                 * @returns {*}
-                 */
-                return (rule, del_items) => target
-                    .filter((obj, index) => {
-                    const match = deepCompare(rule, obj);
-                    if (match && del_items) {
-                        target.splice(index, 1);
-                    }
-                    return match;
-                });
+                return (rule: object, del_items: boolean) => (
+                    target.filter((obj, index) => {
+                        const match = deepCompare(rule, obj);
+                        if (match && del_items) {
+                            target.splice(index, 1);
+                        }
+                        return match;
+                    })
+                )
             }
             if (prop == 'remove') {
                 /**
@@ -98,21 +99,21 @@ function observe(obj) {
                  * @param {number} index
                  * @returns {*}
                  */
-                return (index) => target.splice(index, 1);
+                return (index: number): any => target.splice(index, 1);
             }
-            return Reflect.get(...arguments);
+            return Reflect.get(target, prop);
         }
-    });
+    }) as Observed<T>;
 }
+
 /**
  * Compares given objects. May not work correctly for
  * objects with methods.
  *
- * @param {object} obj1
- * @param {object} obj2
- * @returns {boolean}
+ * @param obj1
+ * @param obj2
  */
-function deepCompare(obj1, obj2) {
+function deepCompare(obj1: any, obj2: any) {
     const keys = Reflect.ownKeys(obj1);
     return keys.some((key) => {
         const is_text = obj2[key]?.constructor.name === 'Text';
@@ -122,55 +123,35 @@ function deepCompare(obj1, obj2) {
         return obj1[key] === (is_text ? obj2[key].toString() : obj2[key]);
     });
 }
-/**
- * Returns the os tmpdir.
- * @returns {string}
- */
-function getTmpdir() {
-    const env = BROWSER ? {} : process.env;
-    const is_windows = process.platform === 'win32';
-    const trailing_slash_re = is_windows ? /[^:]\\$/ : /.\/$/;
-    let path;
-    if (is_windows) {
-        path = env.TEMP || env.TMP ||
-            `${env.SystemRoot || env.windir}\\temp`;
-    }
-    else {
-        path = env.TMPDIR || env.TMP ||
-            env.TEMP || '/tmp';
-    }
-    if (trailing_slash_re.test(path)) {
-        path = path.slice(0, -1);
-    }
-    return path;
-}
+
 /**
  * Finds a string between two delimiters.
  *
  * @param {string} data - the data.
  * @param {string} start_string - start string.
  * @param {string} end_string - end string.
- * @returns {string}
  */
-function getStringBetweenStrings(data, start_string, end_string) {
+export function getStringBetweenStrings(data: string, start_string: string, end_string: string) {
     const regex = new RegExp(`${escapeStringRegexp(start_string)}(.*?)${escapeStringRegexp(end_string)}`, 's');
     const match = data.match(regex);
     return match ? match[1] : undefined;
 }
+
 /**
  * @param {string} input
  * @returns {string}
  */
-function escapeStringRegexp(input) {
+export function escapeStringRegexp(input: string): string {
     return input.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d');
 }
+
 /**
  * Returns a random user agent.
  *
- * @param {string} type - mobile | desktop
+ * @param type - mobile | desktop
  * @returns {object}
  */
-function getRandomUserAgent(type) {
+export function getRandomUserAgent(type: 'mobile' | 'desktop') {
     switch (type) {
         case 'mobile':
             return new UserAgent(/Android/).data;
@@ -179,10 +160,12 @@ function getRandomUserAgent(type) {
                 deviceCategory: 'desktop'
             }).data;
         default:
+            throw new TypeError('Invalid user agent type specified');
     }
 }
-async function sha1Hash(str) {
-    const SubtleCrypto = BROWSER ? crypto.subtle : crypto;
+
+export async function sha1Hash(str: string) {
+    const SubtleCrypto =  getRuntime() === 'node' ? (require("crypto").webcrypto as unknown as Crypto).subtle : window.crypto.subtle;
     const byteToHex = [
         "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0a", "0b", "0c", "0d", "0e", "0f",
         "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1a", "1b", "1c", "1d", "1e", "1f",
@@ -201,7 +184,7 @@ async function sha1Hash(str) {
         "e0", "e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9", "ea", "eb", "ec", "ed", "ee", "ef",
         "f0", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "fa", "fb", "fc", "fd", "fe", "ff"
     ];
-    function hex(arrayBuffer) {
+    function hex(arrayBuffer: ArrayBuffer) {
         const buff = new Uint8Array(arrayBuffer);
         const hexOctets = [];
         for (let i = 0; i < buff.length; ++i)
@@ -216,20 +199,21 @@ async function sha1Hash(str) {
  * @param {string} sid - Sid extracted from cookies
  * @returns {Promise<string>}
  */
-async function generateSidAuth(sid) {
+export async function generateSidAuth(sid: string): Promise<string> {
     const youtube = 'https://www.youtube.com';
     const timestamp = Math.floor(new Date().getTime() / 1000);
     const input = [timestamp, sid, youtube].join(' ');
     const gen_hash = await sha1Hash(input);
     return ['SAPISIDHASH', [timestamp, gen_hash].join('_')].join(' ');
 }
+
 /**
  * Generates a random string with the given length.
  *
- * @param {number} length
+ * @param length
  * @returns {string}
  */
-function generateRandomString(length) {
+export function generateRandomString(length: number): string {
     const result = [];
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
     for (let i = 0; i < length; i++) {
@@ -237,63 +221,60 @@ function generateRandomString(length) {
     }
     return result.join('');
 }
+
 /**
  * Converts time (h:m:s) to seconds.
  *
- * @param {string} time
- * @returns {number} seconds
+ * @param time
+ * @returns seconds
  */
-function timeToSeconds(time) {
-    const params = time.split(':');
+export function timeToSeconds(time: string) {
+    const params = time.split(':').map(param => parseInt(param));
     switch (params.length) {
         case 1:
-            return parseInt(+params[0]);
+            return params[0];
         case 2:
-            return parseInt(+params[0] * 60 + +params[1]);
+            return params[0] * 60 + params[1];
         case 3:
-            return parseInt(+params[0] * 3600 + +params[1] * 60 + +params[2]);
+            return params[0] * 3600 + params[1] * 60 + params[2];
         default:
-            break;
+            throw new Error('Invalid time string');
     }
 }
+
 /**
  * Converts strings in camelCase to snake_case.
  *
- * @param {string} string The string in camelCase.
- * @returns {string}
+ * @param string The string in camelCase.
  */
-function camelToSnake(string) {
+export function camelToSnake(string: string) {
     return string[0].toLowerCase() + string.slice(1, string.length).replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 }
+
 /**
  * Checks if a given client is valid.
  *
- * @param {string} client
- * @returns {boolean}
+ * @param client
+ * @returns
  */
-function isValidClient(client) {
-    return ['YOUTUBE',
-        'YTMUSIC'].includes(client);
+export function isValidClient(client: string) {
+    return VALID_CLIENTS.has(client);
 }
+
 /**
  * Throws an error if given parameters are undefined.
- *
- * @param {object} params
- * @returns {void}
  */
-function throwIfMissing(params) {
+export function throwIfMissing(params: object) {
     for (const [key, value] of Object.entries(params)) {
         if (!value)
             throw new MissingParamError(`${key} is missing`);
     }
 }
+
 /**
  * Turns the ntoken transform data into a valid json array
- *
- * @param {string} data
- * @returns {string}
  */
-function refineNTokenData(data) {
+export function refineNTokenData(data: string) {
     return data
         .replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)')
         .replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)')
@@ -302,10 +283,8 @@ function refineNTokenData(data) {
         .replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",')
         .replace(/""/g, '').replace(/length]\)}"/g, 'length])}');
 }
-function isNode() {
-    return (typeof process !== 'undefined') && (process.release.name === 'node');
-}
-function uuidv4() {
+
+export function uuidv4() {
     if (isNode()) {
         return { randomUUID }.randomUUID();
     }
@@ -315,35 +294,43 @@ function uuidv4() {
         }
         else {
             // see https://stackoverflow.com/a/2117523
-            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+            return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, cc => {
+                const c = parseInt(cc);
+                return (c ^ window.crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            });
         }
     }
 }
-const errors = {
-    InnertubeError,
-    UnavailableContentError,
-    ParsingError,
-    DownloadError,
-    MissingParamError,
-    NoStreamingDataError,
-    OAuthError
-};
-const functions = {
-    findNode,
-    observe,
-    getTmpdir,
-    getRandomUserAgent,
-    generateSidAuth,
-    generateRandomString,
-    getStringBetweenStrings,
-    camelToSnake,
-    isValidClient,
-    throwIfMissing,
-    timeToSeconds,
-    refineNTokenData,
-    uuidv4
-};
-export default {
-    ...functions,
-    ...errors
-};
+
+export type Runtime = 'node' | 'deno' | 'browser';
+
+export function getRuntime(): Runtime {
+    if ((typeof process !== 'undefined') && (process.release.name === 'node'))
+        return 'node';
+    if (Reflect.has(globalThis, 'Deno'))
+        return 'deno';
+    return 'browser';
+}
+
+/**
+ * Returns the os tmpdir.
+ * @returns {string}
+ */
+ function getTmpdir(): string {
+    const env = BROWSER ? {} : process.env;
+    const is_windows = process.platform === 'win32';
+    const trailing_slash_re = is_windows ? /[^:]\\$/ : /.\/$/;
+    let path;
+    if (is_windows) {
+        path = env.TEMP || env.TMP ||
+            `${env.SystemRoot || env.windir}\\temp`;
+    }
+    else {
+        path = env.TMPDIR || env.TMP ||
+            env.TEMP || '/tmp';
+    }
+    if (trailing_slash_re.test(path)) {
+        path = path.slice(0, -1);
+    }
+    return path;
+}
