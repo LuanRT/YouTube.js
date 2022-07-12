@@ -139,7 +139,6 @@ import { default as MusicResponsiveListItemFlexColumn } from './classes/MusicRes
 import { default as MusicShelf } from './classes/MusicShelf';
 import { default as MusicThumbnail } from './classes/MusicThumbnail';
 import { default as MusicTwoRowItem } from './classes/MusicTwoRowItem';
-import { default as NavigatableText } from './classes/NavigatableText';
 import { default as NavigationEndpoint } from './classes/NavigationEndpoint';
 import { default as Notification } from './classes/Notification';
 import { default as PlayerAnnotationsExpanded } from './classes/PlayerAnnotationsExpanded';
@@ -151,7 +150,6 @@ import { default as PlayerOverlay } from './classes/PlayerOverlay';
 import { default as PlayerOverlayAutoplay } from './classes/PlayerOverlayAutoplay';
 import { default as PlayerStoryboardSpec } from './classes/PlayerStoryboardSpec';
 import { default as Playlist } from './classes/Playlist';
-import { default as PlaylistAuthor } from './classes/PlaylistAuthor';
 import { default as PlaylistHeader } from './classes/PlaylistHeader';
 import { default as PlaylistInfoCardContent } from './classes/PlaylistInfoCardContent';
 import { default as PlaylistMetadata } from './classes/PlaylistMetadata';
@@ -370,7 +368,6 @@ const map: Record<string, YTNodeConstructor> = {
     MusicShelf,
     MusicThumbnail,
     MusicTwoRowItem,
-    NavigatableText,
     NavigationEndpoint,
     Notification,
     PlayerAnnotationsExpanded,
@@ -382,7 +379,6 @@ const map: Record<string, YTNodeConstructor> = {
     PlayerOverlayAutoplay,
     PlayerStoryboardSpec,
     Playlist,
-    PlaylistAuthor,
     PlaylistHeader,
     PlaylistInfoCardContent,
     PlaylistMetadata,
