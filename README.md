@@ -93,6 +93,8 @@ Innertube is an API used across all YouTube clients, it was created [to simplify
 
 And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workings of the Innertube API!
 
+If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
+
 ### Features
 
 - Search videos, playlists, music, albums, artists, etc.
@@ -105,8 +107,6 @@ And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workin
 - Download videos.
 
 ~ And more!
-
-If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
 
 <!-- GETTING STARTED -->
 ## Getting Started
