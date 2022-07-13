@@ -1,6 +1,6 @@
 import { InnertubeError, ObservedArray } from "../../utils/Utils";
 import Parser, { YTNode } from "../index.js";
-import LiveChat from "./LiveChat.js";
+import LiveChat from "../classes/LiveChat";
 import Constants from "../../utils/Constants.js";
 import Actions from "../../core/Actions";
 import Player from "../../core/Player";
@@ -14,9 +14,6 @@ import ItemSection from "../classes/ItemSection";
 import PlayerOverlay from "../classes/PlayerOverlay";
 import ToggleButton from "../classes/ToggleButton";
 import CommentsEntryPointHeader from "../classes/comments/CommentsEntryPointHeader";
-import MetadataRowHeader from "../classes/MetadataRowHeader";
-import MetadataRow from "../classes/MetadataRow";
-import Text from "../classes/misc/Text";
 import ContinuationItem from "../classes/ContinuationItem";
 
 class VideoInfo {
@@ -40,6 +37,7 @@ class VideoInfo {
     watch_next_feed: ObservedArray<YTNode> | null | undefined;
     player_overlays;
     comments_entry_point_header;
+    livechat;
     /**
      * @param data - API response.
      * @param actions
@@ -103,11 +101,7 @@ class VideoInfo {
             this.basic_info.is_disliked = Parser.cast_response(this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'DISLIKE' }), ToggleButton, false)?.is_toggled;
             const comments_entry_point = Parser.cast_response(results.get({ target_id: 'comments-entry-point' }), ItemSection, false);
             this.comments_entry_point_header = Parser.cast_response(comments_entry_point?.contents?.get({ type: 'CommentsEntryPointHeader' }), CommentsEntryPointHeader, false);
-            /**
-             * @type {import('../classes/LiveChat')}
-             */
-            // TODO: this makes no sense, LiveChat is not in the parsers list
-            // this.livechat = next.contents_memo.getType(LiveChat)?.[0] || null;
+            this.livechat = next.contents_memo.getType(LiveChat)?.[0] || null;
         }
     }
     /**
@@ -285,6 +279,7 @@ class VideoInfo {
         }
         return candidates[0];
     }
+
     /**
      *
      * @param {object} options - download options.
