@@ -1,4 +1,4 @@
-import { InnertubeError, observe, ParsingError, Observed } from "../utils/Utils";
+import { InnertubeError, observe, ParsingError, ObservedArray } from "../utils/Utils";
 import Format from "./classes/misc/Format.js";
 import VideoDetails from "./classes/misc/VideoDetails.js";
 import GetParserByName from "./map";
@@ -6,6 +6,8 @@ import package_json from '../../package.json';
 import PlayerMicroformat from "./classes/PlayerMicroformat";
 import PlaylistSidebar from "./classes/PlaylistSidebar";
 import PlayerOverlay from "./classes/PlayerOverlay";
+import Endscreen from "./classes/Endscreen";
+import CardCollection from "./classes/CardCollection";
 
 export const ParserTypeSymbol = Symbol('youtubei.parsertype');
 export class YTNode {
@@ -16,15 +18,15 @@ export class YTNode {
     }
 }
 
-export interface YTNodeConstructor {
-    new(data: any): YTNode;
+export interface YTNodeConstructor<T extends YTNode = YTNode> {
+    new(data: any): T;
     readonly type: string;
 }
 
 class AppendContinuationItemsAction extends YTNode {
     static readonly type = 'appendContinuationItemsAction';;
 
-    contents: Observed<YTNode[]> | null;
+    contents: ObservedArray<YTNode> | null;
 
     constructor(data: any) {
         super();
@@ -34,7 +36,7 @@ class AppendContinuationItemsAction extends YTNode {
 class ReloadContinuationItemsCommand extends YTNode {
     static readonly type = 'reloadContinuationItemsCommand';
     target_id: string;
-    contents: Observed<YTNode[]> | null;
+    contents: ObservedArray<YTNode> | null;
     constructor(data: any) {
         super();
         this.target_id = data.targetId;
@@ -44,7 +46,7 @@ class ReloadContinuationItemsCommand extends YTNode {
 class SectionListContinuation extends YTNode {
     static readonly type = 'sectionListContinuation';
     continuation: string;
-    contents: Observed<YTNode[]> | null;
+    contents: ObservedArray<YTNode> | null;
     constructor(data: any) {
         super();
         this.contents = Parser.parse(data.contents, true);
@@ -63,7 +65,7 @@ class TimedContinuation extends YTNode {
 }
 class LiveChatContinuation extends YTNode {
     static readonly type = 'liveChatContinuation';;
-    actions: Observed<YTNode[]>;
+    actions: ObservedArray<YTNode>;
     action_panel: YTNode | null;
     item_list: YTNode | null;
     header: YTNode | null;
@@ -77,7 +79,7 @@ class LiveChatContinuation extends YTNode {
         this.actions = Parser.parse(data.actions?.map((action: any) => {
             delete action.clickTrackingParams;
             return action;
-        }), true) || observe<YTNode[]>([]);
+        }), true) || observe<YTNode>([]);
         this.action_panel = Parser.parseItem(data.actionPanel);
         this.item_list = Parser.parseItem(data.itemList);
         this.header = Parser.parseItem(data.header);
@@ -112,12 +114,36 @@ export default class Parser {
             return Parser.#memo.set(classname, [result]);
         Parser.#memo.get(classname)!.push(result);
     }
+
+    static cast_node<T extends YTNode>(node: YTNode, type: YTNodeConstructor<T>) {
+        if (node.type === type.type) {
+            return node as T;
+        }
+        throw new ParsingError(`Expected node of type ${type.type}, got ${node.type}`);
+    }
+
+    static cast_response<T extends YTNode>(response: YTNode | ObservedArray<YTNode> | null | undefined, type: YTNodeConstructor<T>, allow_array?: true) : T | ObservedArray<T[]> | null;
+    static cast_response<T extends YTNode>(response: YTNode | ObservedArray<YTNode> | null | undefined, type: YTNodeConstructor<T>, allow_array: false) : T | null;
+    static cast_response<T extends YTNode>(response: YTNode | ObservedArray<YTNode> | null | undefined, type: YTNodeConstructor<T>, allow_array = true) {
+        if (!response) {
+            return null;
+        }
+    
+        if (Array.isArray(response)) {
+            if (!allow_array) 
+                throw new ParsingError(`Expected node of type ${type.type}, got array`);
+            return response.map((node: YTNode) => Parser.cast_node(node, type));
+        }
+    
+        return Parser.cast_node(response, type);
+    }
     /**
      * Parses InnerTube response.
      */
     static parseResponse(data: any) {
         // Memoize the response objects by classname
         this.#createMemo();
+        // TODO: is this parseItem?
         const contents = Parser.parse(data.contents);
         const contents_memo = Parser.#memo;
         // End of memoization
@@ -153,36 +179,33 @@ export default class Parser {
             continuation_contents: data.continuationContents ? Parser.parseLC(data.continuationContents) : null,
             metadata: Parser.parse(data.metadata),
             header: Parser.parse(data.header),
-            microformat: data.microformat ? Parser.parseItem<PlayerMicroformat>(data.microformat, PlayerMicroformat.type) : undefined,
-            sidebar: Parser.parseItem<PlaylistSidebar>(data.sidebar, PlaylistSidebar.type),
-            overlay: Parser.parseItem<PlayerOverlay>(data.overlay, PlayerOverlay.type),
+            microformat: data.microformat ? Parser.parseItem<PlayerMicroformat>(data.microformat, PlayerMicroformat) : null,
+            sidebar: Parser.parseItem<PlaylistSidebar>(data.sidebar, PlaylistSidebar),
+            overlay: Parser.parseItem<PlayerOverlay>(data.overlay, PlayerOverlay),
             refinements: data.refinements || null,
             estimated_results: data.estimatedResults || null,
             player_overlays: Parser.parse(data.playerOverlays),
             playability_status: data.playabilityStatus ? {
-                status: parseFloat(data.playabilityStatus.status),
+                status: data.playabilityStatus.status as string,
                 error_screen: Parser.parse(data.playabilityStatus.errorScreen),
                 embeddable: !!data.playabilityStatus.playableInEmbed || false,
                 reason: ''+data.reason || ''
             } : undefined,
             streaming_data: data.streamingData ? {
                 expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
-                /** @type {import('./classes/Format')[]} */
                 formats: Parser.parseFormats(data.streamingData.formats),
-                /** @type {import('./classes/Format')[]} */
                 adaptive_formats: Parser.parseFormats(data.streamingData.adaptiveFormats),
                 dash_manifest_url: data.streamingData?.dashManifestUrl || null,
                 dls_manifest_url: data.streamingData?.dashManifestUrl || null
             } : undefined,
+            // TODO: PlayerCaptionsTracklist ?
             captions: Parser.parse(data.captions),
-            /** @type {import('./classes/VideoDetails')} */
             video_details: data.videoDetails ? new VideoDetails(data.videoDetails) : undefined,
-            annotations: Parser.parse(data.annotations),
+            // TODO: might want to type check these two and use parseItem
+            annotations: Parser.parse(data.annotations), 
             storyboards: Parser.parse(data.storyboards),
-            /** @type {import('./classes/Endscreen')} */
-            endscreen: Parser.parse(data.endscreen),
-            /** @type {import('./classes/CardCollection')} */
-            cards: Parser.parse(data.cards)
+            endscreen: Parser.parseItem<Endscreen>(data.endscreen, Endscreen),
+            cards: Parser.parseItem<CardCollection>(data.cards, CardCollection),
         };
     }
     static parseC(data: any) {
@@ -203,7 +226,7 @@ export default class Parser {
                 return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
         }).filter((item) => item) as YTNode[]);
     }
-    static parseActions(data: any): YTNode | Observed<YTNode[]> | null {
+    static parseActions(data: any): YTNode | ObservedArray<YTNode> | null {
         if (Array.isArray(data)) {
             return Parser.parse(data.map((action) => {
                 delete action.clickTrackingParams;
@@ -216,17 +239,17 @@ export default class Parser {
         return observe(formats?.map((format) => new Format(format)) || []);
     }
 
-    static parseItem<T extends YTNode = YTNode>(data: any, validateType?: string | string[]) {
+    static parseItem<T extends YTNode = YTNode>(data: any, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
         const keys = Object.keys(data);
         const classname = this.sanitizeClassName(keys[0]);
         if (!this.shouldIgnore(classname)) {
             try {
                 const TargetClass = GetParserByName(classname);
-                if (validateType) {
-                    if (Array.isArray(validateType)) {
-                        if (!validateType.includes(TargetClass.type))
+                if (validTypes) {
+                    if (Array.isArray(validTypes)) {
+                        if (!validTypes.some(type => type.type === TargetClass.type))
                             throw new ParsingError('Type mismatch');
-                    } else if (TargetClass.type !== validateType)
+                    } else if (TargetClass.type !== validTypes.type)
                         throw new ParsingError('Type mismatch');
                 }
                 const result = new TargetClass(data[keys[0]]);
@@ -241,27 +264,27 @@ export default class Parser {
         return null;
     }
 
-    static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validateType?: string | string[]) : Observed<T[]> | null;
-    static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validateType?: string | string[]) : T | Observed<T[]> | null;
+    static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : ObservedArray<T> | null;
+    static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : T | ObservedArray<T> | null;
     /**
      * Parses the `contents` property of the response.
      */
-    static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validateType?: string | string[]) {
+    static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
         if (!data)
             return null;
         if (Array.isArray(data)) {
             const results: T[] = [];
             for (const item of data) {
-                const result = this.parseItem<T>(item, validateType);
+                const result = this.parseItem<T>(item, validTypes);
                 if (result) {
                     results.push(result);
                 }
             }
-            return observe<T[]>(results as T[]);
+            return observe(results as T[]);
         } else if (requireArray) {
             throw new ParsingError('Expected array but got a single item');
         }
-        return this.parseItem<T>(data, validateType);
+        return this.parseItem<T>(data, validTypes);
     }
 
     static formatError({ classname, classdata, err }: { classname: string, classdata: any, err: any }) {
