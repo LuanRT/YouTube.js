@@ -53,62 +53,6 @@ export function findNode(obj: object, key: string, target: string, depth: number
     return flat_obj[result];
 }
 
-export type ObservedArray<T> = Array<T> & {
-    /**
-     * Returns the first object to match the rule.
-     */
-    get: (rule: object, del_item?: boolean) => T | undefined;
-    /**
-     * Returns all objects that match the rule.
-     */
-    findAll: (rule: object, del_items?: boolean) => T[];
-    remove: (index: number) => T[];
-};
-
-/**
- * Creates a trap to intercept property access
- * and add utilities to an object.
- */
-export function observe<T extends any>(obj: Array<T>) {
-    return new Proxy(obj, {
-        get(target, prop) {
-            if (prop == 'get') {
-                return (rule: object, del_item?: boolean) => (
-                    target.find((obj, index) => {
-                        const match = deepCompare(rule, obj);
-                        if (match && del_item) {
-                            target.splice(index, 1);
-                        }
-                        return match;
-                    })
-                )
-            }
-            if (prop == 'findAll') {
-                return (rule: object, del_items: boolean) => (
-                    target.filter((obj, index) => {
-                        const match = deepCompare(rule, obj);
-                        if (match && del_items) {
-                            target.splice(index, 1);
-                        }
-                        return match;
-                    })
-                )
-            }
-            if (prop == 'remove') {
-                /**
-                 * Removes the item at the given index.
-                 *
-                 * @name remove
-                 * @param {number} index
-                 * @returns {*}
-                 */
-                return (index: number): any => target.splice(index, 1);
-            }
-            return Reflect.get(target, prop);
-        }
-    }) as ObservedArray<T>;
-}
-
 /**
  * Compares given objects. May not work correctly for
  * objects with methods.
@@ -116,7 +60,7 @@ export function observe<T extends any>(obj: Array<T>) {
  * @param obj1
  * @param obj2
  */
-function deepCompare(obj1: any, obj2: any) {
+export function deepCompare(obj1: any, obj2: any) {
     const keys = Reflect.ownKeys(obj1);
     return keys.some((key) => {
         const is_text = obj2[key]?.constructor.name === 'Text';

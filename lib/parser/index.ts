@@ -1,4 +1,4 @@
-import { InnertubeError, observe, ParsingError, ObservedArray } from "../utils/Utils";
+import { InnertubeError, ParsingError } from "../utils/Utils";
 import Format from "./classes/misc/Format.js";
 import VideoDetails from "./classes/misc/VideoDetails.js";
 import GetParserByName from "./map";
@@ -8,28 +8,9 @@ import PlaylistSidebar from "./classes/PlaylistSidebar";
 import PlayerOverlay from "./classes/PlayerOverlay";
 import Endscreen from "./classes/Endscreen";
 import CardCollection from "./classes/CardCollection";
-
-export const ParserTypeSymbol = Symbol('youtubei.parsertype');
-export class YTNode {
-    static readonly type: string = 'YTNode';
-    readonly type: string;
-    constructor() {
-        this.type = (this.constructor as YTNodeConstructor).type;
-    }
-    /**
-     * Check if the node is of the given type.
-     * @param type The type to check
-     * @returns whether the node is of the given type
-     */
-    is<T extends YTNode>(type: YTNodeConstructor<T>): this is T {
-        return this.type === type.type;
-    }
-}
-
-export interface YTNodeConstructor<T extends YTNode = YTNode> {
-    new(data: any): T;
-    readonly type: string;
-}
+import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
+// Re-export the helpers from here.
+export * from './helpers';
 
 class AppendContinuationItemsAction extends YTNode {
     static readonly type = 'appendContinuationItemsAction';;
@@ -107,12 +88,6 @@ class LiveChatContinuation extends YTNode {
     }
 }
 
-export class Memo extends Map<string, YTNode[]> {
-    getType<T extends YTNode>(type: YTNodeConstructor<T>) {
-        return this.get(type.type) as T[];
-    }
-}
-
 export default class Parser {
     static #memo: Memo | null = null;
     static #clearMemo() {
@@ -127,29 +102,6 @@ export default class Parser {
         if (!Parser.#memo.has(classname))
             return Parser.#memo.set(classname, [result]);
         Parser.#memo.get(classname)!.push(result);
-    }
-
-    static cast_node<T extends YTNode>(node: YTNode, type: YTNodeConstructor<T>) {
-        if (node.type === type.type) {
-            return node as T;
-        }
-        throw new ParsingError(`Expected node of type ${type.type}, got ${node.type}`);
-    }
-
-    static cast_response<T extends YTNode>(response: YTNode | ObservedArray<YTNode> | null | undefined, type: YTNodeConstructor<T>, allow_array?: true) : T | ObservedArray<T[]> | null;
-    static cast_response<T extends YTNode>(response: YTNode | ObservedArray<YTNode> | null | undefined, type: YTNodeConstructor<T>, allow_array: false) : T | null;
-    static cast_response<T extends YTNode>(response: YTNode | ObservedArray<YTNode> | null | undefined, type: YTNodeConstructor<T>, allow_array = true) {
-        if (!response) {
-            return null;
-        }
-    
-        if (Array.isArray(response)) {
-            if (!allow_array) 
-                throw new ParsingError(`Expected node of type ${type.type}, got array`);
-            return response.map((node: YTNode) => Parser.cast_node(node, type));
-        }
-    
-        return Parser.cast_node(response, type);
     }
     /**
      * Parses InnerTube response.
@@ -240,17 +192,17 @@ export default class Parser {
                 return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
         }).filter((item) => item) as YTNode[]);
     }
-    static parseActions(data: any): YTNode | ObservedArray<YTNode> | null {
+    static parseActions(data: any) {
         if (Array.isArray(data)) {
             return Parser.parse(data.map((action) => {
                 delete action.clickTrackingParams;
                 return action;
             }));
         }
-        return Parser.parseItem(data) || null;
+        return new SuperParsedResult(Parser.parseItem(data));
     }
     static parseFormats(formats: any[]) {
-        return observe(formats?.map((format) => new Format(format)) || []);
+        return formats?.map((format) => new Format(format)) || [];
     }
 
     static parseItem<T extends YTNode = YTNode>(data: any, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
@@ -278,8 +230,24 @@ export default class Parser {
         return null;
     }
 
+    static parseArray<T extends YTNode = YTNode>(data: any[], validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+        if (Array.isArray(data)) {
+            const results: T[] = [];
+            for (const item of data) {
+                const result = this.parseItem(item, validTypes);
+                if (result) {
+                    results.push(result);
+                }
+            }
+            return observe(results);
+        }  else if (!data) {
+            return observe([] as T[]);
+        }
+        throw new ParsingError('Expected array but got a single item');
+    }
+
     static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : ObservedArray<T> | null;
-    static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : T | ObservedArray<T> | null;
+    static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : SuperParsedResult<T>;
     /**
      * Parses the `contents` property of the response.
      */
@@ -289,16 +257,17 @@ export default class Parser {
         if (Array.isArray(data)) {
             const results: T[] = [];
             for (const item of data) {
-                const result = this.parseItem<T>(item, validTypes);
+                const result = this.parseItem(item, validTypes);
                 if (result) {
                     results.push(result);
                 }
             }
-            return observe(results as T[]);
+            const res = observe(results);
+            return requireArray ? res : new SuperParsedResult(observe(results));
         } else if (requireArray) {
             throw new ParsingError('Expected array but got a single item');
         }
-        return this.parseItem<T>(data, validTypes);
+        return new SuperParsedResult(this.parseItem(data, validTypes));
     }
 
     static formatError({ classname, classdata, err }: { classname: string, classdata: any, err: any }) {
