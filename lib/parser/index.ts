@@ -143,9 +143,9 @@ export default class Parser {
             continuation_contents: data.continuationContents ? Parser.parseLC(data.continuationContents) : null,
             metadata: Parser.parse(data.metadata),
             header: Parser.parse(data.header),
-            microformat: data.microformat ? Parser.parseItem<PlayerMicroformat>(data.microformat, PlayerMicroformat) : null,
-            sidebar: Parser.parseItem<PlaylistSidebar>(data.sidebar, PlaylistSidebar),
-            overlay: Parser.parseItem<PlayerOverlay>(data.overlay, PlayerOverlay),
+            microformat: data.microformat ? Parser.parseItem(data.microformat, PlayerMicroformat) : null,
+            sidebar: Parser.parseItem(data.sidebar),
+            overlay: Parser.parseItem(data.overlay),
             refinements: data.refinements || null,
             estimated_results: data.estimatedResults || null,
             player_overlays: Parser.parse(data.playerOverlays),
@@ -204,6 +204,7 @@ export default class Parser {
     }
 
     static parseItem<T extends YTNode = YTNode>(data: any, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+        if (!data) return null;
         const keys = Object.keys(data);
         const classname = this.sanitizeClassName(keys[0]);
         if (!this.shouldIgnore(classname)) {

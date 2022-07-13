@@ -31,14 +31,13 @@ export default class HTTPClient {
     ) {
         const innertube_url = Constants.URLS.API.PRODUCTION + this.#session.api_version;
         const baseURL = init?.baseURL || innertube_url;
-        const url = 
+        
+        const request_url = 
             typeof input === "string" ?
                 new URL(baseURL + input) :
             input instanceof URL ?
                 input :
                 new URL(input.url, baseURL);
-        
-        const request_url = new URL(baseURL + url.pathname);
 
         const headers = 
             init?.headers || 

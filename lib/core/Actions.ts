@@ -40,6 +40,14 @@ export interface SearchArgs {
     filters?: any // TODO: what is this type??
 }
 
+export interface AxioslikeResponse {
+    success: boolean;
+    status_code: number;
+    data: any;
+};
+
+export type ActionsResponse = Promise<AxioslikeResponse>;
+
 class Actions {
     #session;
     constructor(session: Session) {
@@ -718,5 +726,4 @@ class Actions {
     }
 }
 // TODO: maybe do this inferrance in a more elegant way
-export type ActionsResponse = ReturnType<Actions["search"]>;
 export default Actions;

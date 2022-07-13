@@ -63,7 +63,7 @@ class Innertube extends EventEmitter {
         this.music = new YTMusic(this.session);
         this.actions = this.session.actions;
     }
-    static async create(config: InnertubeConfig) {
+    static async create(config: InnertubeConfig = {}) {
         return new Innertube(config, await Session.create(config));
     }
     /**
@@ -84,7 +84,7 @@ class Innertube extends EventEmitter {
         throwIfMissing({ video_id });
         const cpn = generateRandomString(16);
         const response = await this.actions.getVideoInfo(video_id, cpn);
-        return new VideoInfo([response, {}], this.actions, this.session.player, cpn);
+        return new VideoInfo([response], this.actions, this.session.player, cpn);
     }
     /**
      * Searches a given query.

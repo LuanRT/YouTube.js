@@ -21,7 +21,7 @@ fs.writeFileSync(
   path.resolve(__dirname, '../lib/parser/map.ts'),
   `// This file was auto generated, do not edit.
 // See ./scripts/build-parser-json.js
-import { UINodeConstructor } from '.';
+import { UINodeConstructor } from './helpers';
 
 ${import_list.join('\n')}
 

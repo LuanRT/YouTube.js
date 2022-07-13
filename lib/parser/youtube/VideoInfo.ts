@@ -2,7 +2,7 @@ import { InnertubeError } from "../../utils/Utils";
 import Parser from "../index.js";
 import LiveChat from "../classes/LiveChat";
 import Constants from "../../utils/Constants.js";
-import Actions from "../../core/Actions";
+import Actions, { ActionsResponse, AxioslikeResponse } from "../../core/Actions";
 import Player from "../../core/Player";
 import TwoColumnWatchNextResults from "../classes/TwoColumnWatchNextResults";
 import VideoPrimaryInfo from "../classes/VideoPrimaryInfo";
@@ -72,12 +72,12 @@ class VideoInfo {
      * @param player
      * @param cpn - Client Playback Nonce
      */
-    constructor(data: any, actions: Actions, player: Player, cpn: string) {
+    constructor(data: [AxioslikeResponse, AxioslikeResponse?], actions: Actions, player: Player, cpn: string) {
         this.#actions = actions;
         this.#player = player;
         this.#cpn = cpn;
-        const info = Parser.parseResponse(data[0]);
-        const next = Parser.parseResponse(data[1].data || {});
+        const info = Parser.parseResponse(data[0].data);
+        const next = Parser.parseResponse(data?.[1]?.data || {});
         this.#page = [info, next];
         if (info.playability_status?.status === 'ERROR')
             throw new InnertubeError('This video is unavailable', info.playability_status);
@@ -116,7 +116,7 @@ class VideoInfo {
             this.watch_next_feed = secondary_results?.get({ type: 'ItemSection' })?.as(ItemSection)?.contents;
             if (this.watch_next_feed && Array.isArray(this.watch_next_feed)) 
                 this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
-            this.player_overlays = next.player_overlays.array().filterType(PlayerOverlay);
+            this.player_overlays = next.player_overlays.item().as(PlayerOverlay);
             this.basic_info.like_count = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.like_count;
             this.basic_info.is_liked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.is_toggled;
             this.basic_info.is_disliked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'DISLIKE' })?.as(ToggleButton)?.is_toggled;
