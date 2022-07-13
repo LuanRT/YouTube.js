@@ -185,12 +185,12 @@ export default class Parser {
             return new LiveChatContinuation(data.liveChatContinuation);
     }
     static parseRR(actions: any[]) {
-        return observe(actions.map<YTNode | undefined>((action: any) => {
+        return observe(actions.map((action: any) => {
             if (action.reloadContinuationItemsCommand)
                 return new ReloadContinuationItemsCommand(action.reloadContinuationItemsCommand);
             if (action.appendContinuationItemsAction)
                 return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
-        }).filter((item) => item) as YTNode[]);
+        }).filter((item) => item) as (ReloadContinuationItemsCommand | AppendContinuationItemsAction)[]);
     }
     static parseActions(data: any) {
         if (Array.isArray(data)) {

@@ -16,6 +16,8 @@ import ToggleButton from "../classes/ToggleButton";
 import CommentsEntryPointHeader from "../classes/comments/CommentsEntryPointHeader";
 import ContinuationItem from "../classes/ContinuationItem";
 import LiveChatWrap from './LiveChat';
+import CompactVideo from "../classes/CompactVideo";
+import CompactMix from "../classes/CompactMix";
 
 export interface FormatOptions {
     /**
@@ -125,9 +127,6 @@ class VideoInfo {
     }
     /**
      * Applies given filter to the watch next feed.
-     *
-     * @param {string} name
-     * @returns {Promise.<VideoInfo>}
      */
     async selectFilter(name: string) {
         if (!this.filters.includes(name))
@@ -135,24 +134,22 @@ class VideoInfo {
         const filter = this.related_chip_cloud?.chips?.get({ text: name });
         if (filter?.is_selected)
             return this;
-        const response = await filter?.endpoint?.call(this.#actions);
-        const data = response.on_response_received_endpoints.get({ target_id: 'watch-next-feed' });
-        this.watch_next_feed = data.contents;
+        const response = await filter?.endpoint?.call(this.#actions, undefined, true);
+        const data = response?.on_response_received_endpoints?.get({ target_id: 'watch-next-feed' });
+        this.watch_next_feed = data?.contents;
         return this;
     }
     /** @typedef {import('../classes/CompactVideo')} CompactVideo */
     /** @typedef {import('../classes/CompactMix')} CompactMix */
     /**
      * Retrieves watch next feed continuation.
-     *
-     * @returns {Promise.<CompactVideo[] | CompactMix[]>}
      */
     async getWatchNextContinuation() {
-        const response = await this.#watch_next_continuation?.endpoint.call(this.#actions);
-        const data = response.on_response_received_endpoints.get({ type: 'appendContinuationItemsAction' });
-        this.watch_next_feed = data.contents;
+        const response = await this.#watch_next_continuation?.endpoint.call(this.#actions, undefined, true);
+        const data = response?.on_response_received_endpoints?.get({ type: 'appendContinuationItemsAction' });
+        this.watch_next_feed = data?.contents;
         this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
-        return this.watch_next_feed;
+        return this.watch_next_feed?.filterType<CompactVideo | CompactMix>([CompactVideo, CompactMix]);
     }
     /**
      * API response.
@@ -203,9 +200,11 @@ class VideoInfo {
      * Retrieves Live Chat if available.
      * @param {string} [mode] - livechat mode
      */
-    getLiveChat(mode) {
+    getLiveChat(mode: string) {
         if (!this.livechat)
             throw new InnertubeError('Live Chat is not available', { video_id: this.basic_info.id });
+        // TODO: fix this
+        // @ts-ignore
         return new LiveChatWrap(this, mode);
     }
     get filters() {
@@ -346,7 +345,7 @@ class VideoInfo {
 
             return body;
         }
-        // we need to download in chunks using 'Range' header.
+        // we need to download in chunks.
         else {
             const chunk_size = 1048576 * 10; // 10MB
             let chunk_start = (options.range ? options.range.start : 0);
@@ -367,11 +366,12 @@ class VideoInfo {
                     return new Promise(async (resolve, reject) => {
                         try {
                             cancel = new AbortController();
-                            const response = await fetch(`${format_url}&cpn=${this.#cpn}`, {
+                            const response = await fetch(`${format_url}&cpn=${this.#cpn}&range=${chunk_start}-${chunk_end || ''}`, {
                                 method: 'GET',
                                 headers: {
                                     ...Constants.STREAM_HEADERS,
-                                    Range: `bytes=${chunk_start}-${chunk_end}`
+                                    // XXX: use YouTube's range parameter instead of a Range header.
+                                    // Range: `bytes=${chunk_start}-${chunk_end}`
                                 },
                                 signal: cancel.signal,
                             });
