@@ -1,7 +1,7 @@
 import Proto from "../proto/index.js";
 import { InnertubeError, throwIfMissing, uuidv4 } from "../utils/Utils.js";
 import Constants from "../utils/Constants.js";
-import Parser from "../parser/index.js";
+import Parser, { ParsedResponse } from "../parser/index.js";
 import Session from "./Session.js";
 
 
@@ -669,8 +669,16 @@ class Actions {
      */
     async execute(action: string, args: {
         [key: string]: any;
+        parse: true;
+    }) : Promise<ParsedResponse>;
+    async execute(action: string, args: {
+        [key: string]: any;
+        parse?: false;
+    }) : Promise<ActionsResponse>;
+    async execute(action: string, args: {
+        [key: string]: any;
         parse?: boolean;
-    }) {
+    }): Promise<ParsedResponse | ActionsResponse> {
         const data = { ...args };
         if (Reflect.has(data, 'parse'))
             delete data.parse;
@@ -709,4 +717,6 @@ class Actions {
         ].includes(id);
     }
 }
+// TODO: maybe do this inferrance in a more elegant way
+export type ActionsResponse = ReturnType<Actions["search"]>;
 export default Actions;
