@@ -106,6 +106,8 @@ And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workin
 
 ~ And more!
 
+If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
