@@ -9,8 +9,6 @@ import PlayerOverlay from "./classes/PlayerOverlay";
 import Endscreen from "./classes/Endscreen";
 import CardCollection from "./classes/CardCollection";
 import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
-// Re-export the helpers from here.
-export * from './helpers';
 
 class AppendContinuationItemsAction extends YTNode {
     static readonly type = 'appendContinuationItemsAction';;

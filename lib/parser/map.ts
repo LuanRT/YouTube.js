@@ -1,6 +1,6 @@
 // This file was auto generated, do not edit.
 // See ./scripts/build-parser-json.js
-import { YTNodeConstructor } from '.';
+import { YTNodeConstructor } from './helpers';
 
 import { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction';
 import { default as OpenPopupAction } from './classes/actions/OpenPopupAction';

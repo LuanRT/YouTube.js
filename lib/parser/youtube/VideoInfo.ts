@@ -1,5 +1,5 @@
 import { InnertubeError } from "../../utils/Utils";
-import Parser, { YTNode } from "../index.js";
+import Parser from "../index.js";
 import LiveChat from "../classes/LiveChat";
 import Constants from "../../utils/Constants.js";
 import Actions from "../../core/Actions";

@@ -1,6 +1,6 @@
 import Text from "./misc/Text.js";
 
-import { YTNode } from "..";
+import { YTNode } from "../helpers";
 
 class MetadataRow extends YTNode {
     static type = 'MetadataRow';

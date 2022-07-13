@@ -125,7 +125,7 @@ export default class Session extends EventEmitterLike {
 
         const text = await res.text();
 
-        const data = JSON.parse(text.replace(/^)]}'/, ''));
+        const data = JSON.parse(text.replace(/^\)\]\}'/, ''));
 
         const ytcfg = data[0][2];
 

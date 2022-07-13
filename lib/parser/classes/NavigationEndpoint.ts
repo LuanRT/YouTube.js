@@ -1,7 +1,7 @@
 import Parser, { ParsedResponse } from "../index.js";
 
 // TODO: refactor this
-import { YTNode } from "..";
+import { YTNode } from "../helpers";
 import Actions, { ActionsResponse } from "../../core/Actions.js";
 import { ParsingError } from "../../utils/Utils.js";
 
