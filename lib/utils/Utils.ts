@@ -1,6 +1,5 @@
 import UserAgent from "user-agents";
 import Flatten from "flat";
-import { randomUUID } from "crypto";
 import package_json from '../../package.json';
 
 const VALID_CLIENTS = new Set(['YOUTUBE', 'YTMUSIC']);
@@ -45,7 +44,7 @@ export class SessionError extends Error {}
  * @param safe - if set to true arrays will be preserved.
  */
 export function findNode(obj: object, key: string, target: string, depth: number, safe: boolean = true): object | object[] {
-    const flat_obj = Flatten(obj, { safe, maxDepth: depth || 2 });
+    const flat_obj = Flatten(obj, { safe, maxDepth: depth || 2 }) as any;
     const result = Object.keys(flat_obj).find((entry) => entry.includes(key) && JSON.stringify(flat_obj[entry] || '{}').includes(target));
     if (!result)
         throw new ParsingError(`Expected to find "${key}" with content "${target}" but got ${result}`, {
@@ -54,7 +53,7 @@ export function findNode(obj: object, key: string, target: string, depth: number
     return flat_obj[result];
 }
 
-export type Observed<T extends object> = T & {
+export type ObservedArray<T> = Array<T> & {
     /**
      * Returns the first object to match the rule.
      */
@@ -70,7 +69,7 @@ export type Observed<T extends object> = T & {
  * Creates a trap to intercept property access
  * and add utilities to an object.
  */
-export function observe<T extends any[]>(obj: T) {
+export function observe<T extends any>(obj: Array<T>) {
     return new Proxy(obj, {
         get(target, prop) {
             if (prop == 'get') {
@@ -107,7 +106,7 @@ export function observe<T extends any[]>(obj: T) {
             }
             return Reflect.get(target, prop);
         }
-    }) as Observed<T>;
+    }) as ObservedArray<T>;
 }
 
 /**
@@ -291,8 +290,8 @@ export function refineNTokenData(data: string) {
 }
 
 export function uuidv4() {
-    if (isNode()) {
-        return { randomUUID }.randomUUID();
+    if (getRuntime() === 'node') {
+        return require('crypto').webcrypto.randomUUID();
     }
     else {
         if (globalThis.crypto?.randomUUID()) {

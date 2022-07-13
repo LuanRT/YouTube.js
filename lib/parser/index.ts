@@ -327,3 +327,5 @@ export default class Parser {
         return this.ignore_list.has(classname);
     }
 }
+
+export type ParsedResponse = ReturnType<typeof Parser.parseResponse>;

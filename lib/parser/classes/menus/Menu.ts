@@ -1,13 +1,17 @@
 import Parser from "../../index.js";
 
 import { YTNode } from "../..";
+import { observe } from "../../../utils/Utils.js";
 
 class Menu extends YTNode {
     static type = 'Menu';
-    constructor(data) {
+    items;
+    top_level_buttons;
+    label;
+    constructor(data: any) {
         super();
-        this.items = Parser.parse(data.items) || [];
-        this.top_level_buttons = Parser.parse(data.topLevelButtons) || [];
+        this.items = Parser.parse(data.items, true) || observe([] as YTNode[]);
+        this.top_level_buttons = Parser.parse(data.topLevelButtons, true) || observe([] as YTNode[]);
         this.label = data.accessibility?.accessibilityData?.label || null;
     }
     // XXX: alias for consistency

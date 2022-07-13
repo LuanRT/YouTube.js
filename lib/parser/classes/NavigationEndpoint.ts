@@ -1,7 +1,8 @@
-import Parser from "../index.js";
+import Parser, { ParsedResponse } from "../index.js";
 
 // TODO: refactor this
 import { YTNode } from "..";
+import Actions from "../../core/Actions.js";
 
 class NavigationEndpoint extends YTNode {
     static type = 'NavigationEndpoint';
@@ -166,7 +167,9 @@ class NavigationEndpoint extends YTNode {
         }
         return response;
     }
-    async call(actions, client) {
+    // TODO: replace ReturnType here once Actions is converted to TS
+    // TODO: replace client with an enum or something
+    async call(actions: Actions, client?: string): Promise<ParsedResponse | ReturnType<Actions["search"]> | undefined> {
         if (!actions)
             throw new Error('An active caller must be provided');
         if (this.continuation) {
