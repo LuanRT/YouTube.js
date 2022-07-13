@@ -4,7 +4,7 @@ import AccountManager from "./core/AccountManager.js";
 import PlaylistManager from "./core/PlaylistManager.js";
 import InteractionManager from "./core/InteractionManager.js";
 import Search from "./parser/youtube/Search.js";
-import VideoInfo from "./parser/youtube/VideoInfo.js";
+import VideoInfo, { DownloadOptions, FormatOptions } from "./parser/youtube/VideoInfo.js";
 import Channel from "./parser/youtube/Channel.js";
 import Playlist from "./parser/youtube/Playlist.js";
 import Library from "./parser/youtube/Library.js";
@@ -28,58 +28,70 @@ export interface InnertubeConfig extends SessionOptions {
     https_agent?: object;
 }
 
+export interface SearchFilters {
+    /**
+     * filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
+     */
+    upload_date?: 'any' | 'last_hour' | 'today' | 'this_week' | 'this_month' | 'this_year';
+    /**
+     * filter results by type, can be: any | video | channel | playlist | movie
+     */
+    type?: 'any' | 'video' | 'channel' | 'playlist' | 'movie';
+    /**
+     * filter videos by duration, can be: any | short | medium | long
+     */
+    duration?: 'any' | 'short' | 'medium' | 'long';
+    /**
+     * filter video results by order, can be: relevance | rating | upload_date | view_count
+     */
+    sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count';
+  }
+
 class Innertube extends EventEmitter {
     session;
     account;
     playlist;
     interact;
     music;
+    actions;
     constructor(config: InnertubeConfig, session: Session) {
         super();
         this.session = session;
-        this.account = new AccountManager(this.actions);
-        this.playlist = new PlaylistManager(this.actions);
-        this.interact = new InteractionManager(this.actions);
+        this.account = new AccountManager(this.session.actions);
+        this.playlist = new PlaylistManager(this.session.actions);
+        this.interact = new InteractionManager(this.session.actions);
         this.music = new YTMusic(this.session);
+        this.actions = this.session.actions;
     }
     static async create(config: InnertubeConfig) {
         return new Innertube(config, await Session.create(config));
     }
     /**
      * Retrieves video info.
-     * @param {string} video_id
-     * @returns {Promise.<VideoInfo>}
      */
-    async getInfo(video_id) {
+    async getInfo(video_id: string) {
         throwIfMissing({ video_id });
         const cpn = generateRandomString(16);
         const initial_info = this.actions.getVideoInfo(video_id, cpn);
         const continuation = this.actions.next({ video_id });
         const response = await Promise.all([initial_info, continuation]);
-        return new VideoInfo(response, this.actions, this.#player, cpn);
+        return new VideoInfo(response, this.actions, this.session.player, cpn);
     }
     /**
      * Retrieves basic video info.
-     * @param {string} video_id
-     * @returns {Promise.<VideoInfo>}
      */
-    async getBasicInfo(video_id) {
+    async getBasicInfo(video_id: string) {
         throwIfMissing({ video_id });
         const cpn = generateRandomString(16);
         const response = await this.actions.getVideoInfo(video_id, cpn);
-        return new VideoInfo([response, {}], this.actions, this.#player, cpn);
+        return new VideoInfo([response, {}], this.actions, this.session.player, cpn);
     }
     /**
      * Searches a given query.
-     * @param {string} query - search query.
-     * @param {object} [filters] - search filters.
-     * @param {string} [filters.upload_date] - filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
-     * @param {string} [filters.type] - filter results by type, can be: any | video | channel | playlist | movie
-     * @param {string} [filters.duration] - filter videos by duration, can be: any | short | medium | long
-     * @param {string} [filters.sort_by] - filter video results by order, can be: relevance | rating | upload_date | view_count
-     * @returns {Promise.<Search>}
+     * @param string query - search query.
+     * @param filters - search filters.
      */
-    async search(query, filters = {}) {
+    async search(query: string, filters: SearchFilters = {}) {
         throwIfMissing({ query });
         const response = await this.actions.search({ query, filters });
         return new Search(this.actions, response.data);
@@ -88,32 +100,31 @@ class Innertube extends EventEmitter {
      * Retrieves search suggestions for a given query.
      * @param {string} query - the search query.
      */
-    async getSearchSuggestions(query) {
+    async getSearchSuggestions(query: string): Promise<string[]> {
         throwIfMissing({ query });
-        const response = await this.#request({
-            url: 'search',
-            baseURL: Constants.URLS.YT_SUGGESTIONS,
-            params: {
-                q: query,
-                ds: 'yt',
-                client: 'youtube',
-                xssi: 't',
-                oe: 'UTF',
-                gl: this.context.client.gl,
-                hl: this.context.client.hl
-            }
-        });
-        const data = JSON.parse(response.data.replace(')]}\'', ''));
-        const suggestions = data[1].map((suggestion) => suggestion[0]);
+        const url = new URL(Constants.URLS.YT_SUGGESTIONS + 'search');
+        url.searchParams.set('q', query);
+        url.searchParams.set('hl', this.session.context.client.hl);
+        url.searchParams.set('gl', this.session.context.client.gl);
+        url.searchParams.set('ds', 'yt');
+        url.searchParams.set('client', 'youtube');
+        url.searchParams.set('xssi', 't');
+        url.searchParams.set('oe', 'UTF');
+        
+        const response = await this.session.http.fetch(url);
+
+        const response_data = await response.json();
+
+        const data = JSON.parse(response_data.replace(')]}\'', ''));
+        const suggestions = data[1].map((suggestion: any) => suggestion[0]);
         return suggestions;
     }
     /**
      * Retrieves comments for a video.
-     * @param {string} video_id - the video id.
-     * @param {string} [sort_by] - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
-     * @returns {Promise.<Comments>}
+     * @param video_id - the video id.
+     * @param sort_by - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
      */
-    async getComments(video_id, sort_by) {
+    async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST') {
         throwIfMissing({ video_id });
         const payload = Proto.encodeCommentsSectionParams(video_id, {
             sort_by: sort_by || 'TOP_COMMENTS'
@@ -123,7 +134,6 @@ class Innertube extends EventEmitter {
     }
     /**
      * Retrieves YouTube's home feed (aka recommendations).
-     * @returns {Promise<FilterableFeed>}
      */
     async getHomeFeed() {
         const response = await this.actions.browse('FEwhat_to_watch');
@@ -131,7 +141,6 @@ class Innertube extends EventEmitter {
     }
     /**
      * Returns the account's library.
-     * @returns {Promise.<Library>}
      */
     async getLibrary() {
         const response = await this.actions.browse('FElibrary');
@@ -140,7 +149,6 @@ class Innertube extends EventEmitter {
     /**
      * Retrieves watch history.
      * Which can also be achieved with {@link getLibrary()}.
-     * @returns {Promise.<History>}
      */
     async getHistory() {
         const response = await this.actions.browse('FEhistory');
@@ -156,7 +164,6 @@ class Innertube extends EventEmitter {
     }
     /**
      * Retrieves subscriptions feed.
-     * @returns {Promise.<Feed>}
      */
     async getSubscriptionsFeed() {
         const response = await this.actions.browse('FEsubscriptions');
@@ -164,17 +171,15 @@ class Innertube extends EventEmitter {
     }
     /**
      * Retrieves contents for a given channel.
-     * @param {string} id - channel id
-     * @returns {Promise<Channel>}
+     * @param id - channel id
      */
-    async getChannel(id) {
+    async getChannel(id: string) {
         throwIfMissing({ id });
         const response = await this.actions.browse(id);
         return new Channel(this.actions, response.data);
     }
     /**
      * Retrieves notifications.
-     * @returns {Promise.<NotificationsMenu>}
      */
     async getNotifications() {
         const response = await this.actions.notifications('get_notification_menu');
@@ -182,7 +187,6 @@ class Innertube extends EventEmitter {
     }
     /**
      * Retrieves unseen notifications count.
-     * @returns {Promise.<number>}
      */
     async getUnseenNotificationsCount() {
         const response = await this.actions.notifications('get_unseen_count');
@@ -190,10 +194,9 @@ class Innertube extends EventEmitter {
     }
     /**
      * Retrieves the contents of a given playlist.
-     * @param {string} playlist_id - the id of the playlist.
-     * @returns {Promise.<Playlist>}
+     * @param playlist_id - the id of the playlist.
      */
-    async getPlaylist(playlist_id) {
+    async getPlaylist(playlist_id: string) {
         throwIfMissing({ playlist_id });
         const response = await this.actions.browse(`VL${playlist_id.replace(/VL/g, '')}`);
         return new Playlist(this.actions, response.data);
@@ -202,42 +205,21 @@ class Innertube extends EventEmitter {
      * An alternative to {@link download}.
      * Returns deciphered streaming data.
      *
-     * @param {string} video_id - video id
-     * @param {object} options - download options.
-     * @param {string} options.quality - video quality; 360p, 720p, 1080p, etc...
-     * @param {string} options.type - download type, can be: video, audio or videoandaudio
-     * @param {string} options.format - file format
-     * @returns {Promise.<object>}
+     * @note If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
      */
-    async getStreamingData(video_id, options = {}) {
+    async getStreamingData(video_id: string, options: FormatOptions = {}) {
         const info = await this.getBasicInfo(video_id);
         return info.chooseFormat(options);
     }
     /**
      * Downloads a given video. If you only need the direct download link take a look at {@link getStreamingData}.
-     *
-     * @param {string} video_id - video id
-     * @param {object} options - download options.
-     * @param {string} [options.quality] - video quality; 360p, 720p, 1080p, etc...
-     * @param {string} [options.type] - download type, can be: video, audio or videoandaudio
-     * @param {string} [options.format] - file format
-     * @param {object} [options.range] - download range, indicates which bytes should be downloaded.
-     * @param {number} options.range.start - the beginning of the range.
-     * @param {number} options.range.end - the end of the range.
-     * @returns {PassThrough}
+     * 
+     * @note If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
      */
-    download(video_id, options = {}) {
+    async download(video_id: string, options?: DownloadOptions) {
         throwIfMissing({ video_id });
-        const stream = new PassThrough();
-        (async () => {
-            const info = await this.getBasicInfo(video_id);
-            stream.emit('info', info);
-            info.download(options, stream);
-        })();
-        return stream;
-    }
-    getPlayer() {
-        return this.#player;
+        const info = await this.getBasicInfo(video_id);
+        return info.download(options);
     }
 }
 export default Innertube;

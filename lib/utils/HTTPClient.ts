@@ -3,7 +3,7 @@ import Constants from "./Constants";
 import { generateSidAuth, getRandomUserAgent, getRuntime, getStringBetweenStrings, InnertubeError, isServer } from "./Utils";
 
 export interface HTTPClientInit {
-    baseURL: string;
+    baseURL?: string;
 }
 
 // Polyfill fetch for node
@@ -91,7 +91,7 @@ export default class HTTPClient {
             if (oauth.validateCredentials()) {
                 // Check if the access token is valid to avoid authorization errors.
                 await oauth.checkAccessTokenValidity();
-                request_headers.set('authorization', `Bearer ${oauth.credentials.access_token}`);
+                request_headers.set('authorization', `Bearer ${oauth.credentials!.access_token}`);
                 // Remove API key as it is not required when using oauth.
                 request_url.searchParams.delete("key");
             }
