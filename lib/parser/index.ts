@@ -16,6 +16,14 @@ export class YTNode {
     constructor() {
         this.type = (this.constructor as YTNodeConstructor).type;
     }
+    /**
+     * Check if the node is of the given type.
+     * @param type The type to check
+     * @returns whether the node is of the given type
+     */
+    is<T extends YTNode>(type: YTNodeConstructor<T>): this is T {
+        return this.type === type.type;
+    }
 }
 
 export interface YTNodeConstructor<T extends YTNode = YTNode> {
@@ -99,13 +107,19 @@ class LiveChatContinuation extends YTNode {
     }
 }
 
+export class Memo extends Map<string, YTNode[]> {
+    getType<T extends YTNode>(type: YTNodeConstructor<T>) {
+        return this.get(type.type) as T[];
+    }
+}
+
 export default class Parser {
-    static #memo: Map<string, YTNode[]> | null = null;
+    static #memo: Memo | null = null;
     static #clearMemo() {
         Parser.#memo = null;
     }
     static #createMemo() {
-        Parser.#memo = new Map();
+        Parser.#memo = new Memo();
     }
     static #addToMemo(classname: string, result: YTNode) {
         if (!Parser.#memo)
@@ -145,24 +159,24 @@ export default class Parser {
         this.#createMemo();
         // TODO: is this parseItem?
         const contents = Parser.parse(data.contents);
-        const contents_memo = Parser.#memo;
+        const contents_memo = Parser.#memo!;
         // End of memoization
         this.#clearMemo();
         this.#createMemo();
         const on_response_received_actions = data.onResponseReceivedActions ? Parser.parseRR(data.onResponseReceivedActions) : null;
-        const on_response_received_actions_memo = Parser.#memo;
+        const on_response_received_actions_memo = Parser.#memo!;
         this.#clearMemo();
         this.#createMemo();
         const on_response_received_endpoints = data.onResponseReceivedEndpoints ? Parser.parseRR(data.onResponseReceivedEndpoints) : null;
-        const on_response_received_endpoints_memo = Parser.#memo;
+        const on_response_received_endpoints_memo = Parser.#memo!;
         this.#clearMemo();
         this.#createMemo();
         const on_response_received_commands = data.onResponseReceivedCommands ? Parser.parseRR(data.onResponseReceivedCommands) : null;
-        const on_response_received_commands_memo = Parser.#memo;
+        const on_response_received_commands_memo = Parser.#memo!;
         this.#clearMemo();
         this.#createMemo();
         const actions = data.actions ? Parser.parseActions(data.actions) : null;
-        const actions_memo = Parser.#memo;
+        const actions_memo = Parser.#memo!;
         this.#clearMemo();
         return {
             actions,
