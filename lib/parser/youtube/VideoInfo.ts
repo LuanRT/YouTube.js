@@ -1,4 +1,4 @@
-import { InnertubeError, ObservedArray } from "../../utils/Utils";
+import { InnertubeError } from "../../utils/Utils";
 import Parser, { YTNode } from "../index.js";
 import LiveChat from "../classes/LiveChat";
 import Constants from "../../utils/Constants.js";
@@ -15,6 +15,32 @@ import PlayerOverlay from "../classes/PlayerOverlay";
 import ToggleButton from "../classes/ToggleButton";
 import CommentsEntryPointHeader from "../classes/comments/CommentsEntryPointHeader";
 import ContinuationItem from "../classes/ContinuationItem";
+import LiveChatWrap from './LiveChat';
+
+export interface FormatOptions {
+    /**
+     * video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
+     */
+    quality?: string;
+    /**
+     * download type, can be: video, audio or video+audio
+     */
+    type?: 'video' | 'audio' | 'video+audio';
+    /**
+     * file format, use 'any' to download any format
+     */
+    format?: string;
+}
+
+export interface DownloadOptions extends FormatOptions {
+    /**
+     * download range, indicates which bytes should be downloaded.
+     */
+    range?: {
+        start: number;
+        end: number;
+    }
+}
 
 class VideoInfo {
     #page;
@@ -34,7 +60,7 @@ class VideoInfo {
     secondary_info;
     merchandise;
     related_chip_cloud;
-    watch_next_feed: ObservedArray<YTNode> | null | undefined;
+    watch_next_feed;
     player_overlays;
     comments_entry_point_header;
     livechat;
@@ -77,31 +103,24 @@ class VideoInfo {
         this.endscreen = info.endscreen;
         this.captions = info.captions;
         this.cards = info.cards;
-        const two_col = Parser.cast_response(next.contents, TwoColumnWatchNextResults, false);
-        const results = two_col?.results;
-        const secondary_results = two_col?.secondary_results;
+        const two_col = next.contents.item().as(TwoColumnWatchNextResults);
+        const results = two_col.results;
+        const secondary_results = two_col.secondary_results;
         if (results && secondary_results) {
-            this.primary_info = Parser.cast_response(results.get({ type: 'VideoPrimaryInfo' }), VideoPrimaryInfo, false);
-            this.secondary_info = Parser.cast_response(results.get({ type: 'VideoSecondaryInfo' }), VideoSecondaryInfo, false);
-            this.merchandise = Parser.cast_response(results?.get({ type: 'MerchandiseShelf' }), MerchandiseShelf, false);
-            this.related_chip_cloud = Parser.cast_response(
-                Parser.cast_response(
-                    secondary_results?.get({ type: 'RelatedChipCloud' }), 
-                    RelatedChipCloud, 
-                    false)?.content, 
-                ChipCloud, 
-                false
-            );
-            this.watch_next_feed = Parser.cast_response(secondary_results?.get({ type: 'ItemSection' }), ItemSection, false)?.contents;
+            this.primary_info = results.get({ type: 'VideoPrimaryInfo' })?.as(VideoPrimaryInfo);
+            this.secondary_info = results.get({ type: 'VideoSecondaryInfo' })?.as(VideoSecondaryInfo);
+            this.merchandise = results.get({ type: 'MerchandiseShelf' })?.as(MerchandiseShelf);
+            this.related_chip_cloud = secondary_results?.get({ type: 'RelatedChipCloud' })?.as(RelatedChipCloud)?.content.item().as(ChipCloud);
+            this.watch_next_feed = secondary_results?.get({ type: 'ItemSection' })?.as(ItemSection)?.contents;
             if (this.watch_next_feed && Array.isArray(this.watch_next_feed)) 
-                this.#watch_next_continuation = Parser.cast_response(this.watch_next_feed?.pop(), ContinuationItem, false);
-            this.player_overlays = Parser.cast_response(next.player_overlays, PlayerOverlay);
-            this.basic_info.like_count = Parser.cast_response(this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' }), ToggleButton, false)?.like_count;
-            this.basic_info.is_liked = Parser.cast_response(this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' }), ToggleButton, false)?.is_toggled;
-            this.basic_info.is_disliked = Parser.cast_response(this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'DISLIKE' }), ToggleButton, false)?.is_toggled;
-            const comments_entry_point = Parser.cast_response(results.get({ target_id: 'comments-entry-point' }), ItemSection, false);
-            this.comments_entry_point_header = Parser.cast_response(comments_entry_point?.contents?.get({ type: 'CommentsEntryPointHeader' }), CommentsEntryPointHeader, false);
-            this.livechat = next.contents_memo.getType(LiveChat)?.[0] || null;
+                this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
+            this.player_overlays = next.player_overlays.array().filterType(PlayerOverlay);
+            this.basic_info.like_count = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.like_count;
+            this.basic_info.is_liked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.is_toggled;
+            this.basic_info.is_disliked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'DISLIKE' })?.as(ToggleButton)?.is_toggled;
+            const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
+            this.comments_entry_point_header = comments_entry_point?.contents?.get({ type: 'CommentsEntryPointHeader' })?.as(CommentsEntryPointHeader);
+            this.livechat = next.contents_memo.getType(LiveChat)?.[0];
         }
     }
     /**
@@ -132,7 +151,7 @@ class VideoInfo {
         const response = await this.#watch_next_continuation?.endpoint.call(this.#actions);
         const data = response.on_response_received_endpoints.get({ type: 'appendContinuationItemsAction' });
         this.watch_next_feed = data.contents;
-        this.#watch_next_continuation = Parser.cast_response(this.watch_next_feed?.pop(), ContinuationItem, false);
+        this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
         return this.watch_next_feed;
     }
     /**
@@ -146,7 +165,9 @@ class VideoInfo {
      * @returns {Promise.<Response>}
      */
     async like() {
-        const button = this.primary_info.menu.top_level_buttons.get({ button_id: 'TOGGLE_BUTTON_ID_TYPE_LIKE' });
+        const button = this.primary_info?.menu?.top_level_buttons?.get({ button_id: 'TOGGLE_BUTTON_ID_TYPE_LIKE' })?.as(ToggleButton);
+        if (!button)
+            throw new InnertubeError('Like button not found', { video_id: this.basic_info.id });
         if (button.is_toggled)
             throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
         const response = await button.endpoint.call(this.#actions);
@@ -158,7 +179,9 @@ class VideoInfo {
      * @returns {Promise.<Response>}
      */
     async dislike() {
-        const button = this.primary_info.menu.top_level_buttons.get({ button_id: 'TOGGLE_BUTTON_ID_TYPE_DISLIKE' });
+        const button = this.primary_info?.menu?.top_level_buttons?.get({ button_id: 'TOGGLE_BUTTON_ID_TYPE_DISLIKE' })?.as(ToggleButton);
+        if (!button)
+            throw new InnertubeError('Dislike button not found', { video_id: this.basic_info.id });
         if (button.is_toggled)
             throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
         const response = await button.endpoint.call(this.#actions);
@@ -170,7 +193,7 @@ class VideoInfo {
      * @returns {Promise.<Response>}
      */
     async removeLike() {
-        const button = this.primary_info.menu.top_level_buttons.get({ is_toggled: true });
+        const button = this.primary_info?.menu?.top_level_buttons?.get({ is_toggled: true })?.as(ToggleButton);
         if (!button)
             throw new InnertubeError('This video is not liked/disliked', { video_id: this.basic_info.id });
         const response = await button.toggled_endpoint.call(this.#actions);
@@ -179,12 +202,11 @@ class VideoInfo {
     /**
      * Retrieves Live Chat if available.
      * @param {string} [mode] - livechat mode
-     * @returns {Promise.<LiveChat>}
      */
-    async getLiveChat(mode) {
+    getLiveChat(mode) {
         if (!this.livechat)
-            throw new InnertubeError('Live Chat is not available', { video_id: this.id });
-        return new LiveChat(this, mode);
+            throw new InnertubeError('Live Chat is not available', { video_id: this.basic_info.id });
+        return new LiveChatWrap(this, mode);
     }
     get filters() {
         return this.related_chip_cloud?.chips?.map((chip) => chip.text.toString()) || [];
@@ -233,24 +255,27 @@ class VideoInfo {
         */
        return [];
     }
-    chooseFormat(options) {
+    chooseFormat(options: FormatOptions) {
+        if (!this.streaming_data)
+            throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
         const formats = [
             ...(this.streaming_data.formats || []),
             ...(this.streaming_data.adaptive_formats || [])
         ];
-        const requires_audio = options.type.includes('audio');
-        const requires_video = options.type.includes('video');
+        const requires_audio = options.type ? options.type.includes('audio') : true;
+        const requires_video = options.type ? options.type.includes('quality') : true;
+        const quality = options.quality || '360p';
         let best_width = -1;
-        const is_best = ['best', 'bestefficiency'].includes(options.quality);
-        const use_most_efficient = options.quality !== 'best';
+        const is_best = ['best', 'bestefficiency'].includes(quality);
+        const use_most_efficient = quality !== 'best';
         let candidates = formats.filter((format) => {
             if (requires_audio && !format.has_audio)
                 return false;
             if (requires_video && !format.has_video)
                 return false;
-            if (options.format !== 'any' && !format.mime_type.includes(options.format))
+            if (options.format !== 'any' && !format.mime_type.includes(options.format || 'mp4'))
                 return false;
-            if (!is_best && format.quality_label !== options.quality)
+            if (!is_best && format.quality_label !== quality)
                 return false;
             if (best_width < format.width)
                 best_width = format.width;
@@ -282,26 +307,18 @@ class VideoInfo {
 
     /**
      *
-     * @param {object} options - download options.
-     * @param {string} [options.quality] - video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
-     * @param {string} [options.type] - download type, can be: video, audio or videoandaudio
-     * @param {string} [options.format] - file format, use 'any' to download any format.
-     * @param {object} [options.range] - download range, indicates which bytes should be downloaded.
-     * @param {number} options.range.start - the beginning of the range.
-     * @param {number} options.range.end - the end of the range.
-     * @param {import('stream').PassThrough} [_stream]
-     * @returns {import('stream').PassThrough}
+     * @param options - download options.
      */
-    async download(options = {}, _stream) {
-        if (this.playability_status === 'UNPLAYABLE')
+    async download(options: DownloadOptions = {}) {
+        if (this.playability_status?.status === 'UNPLAYABLE')
             throw new InnertubeError('Video is unplayable', { video: this, error_type: 'UNPLAYABLE' });
-        if (this.playability_status === 'LOGIN_REQUIRED')
+        if (this.playability_status?.status === 'LOGIN_REQUIRED')
             throw new InnertubeError('Video is login required', { video: this, error_type: 'LOGIN_REQUIRED' });
         if (!this.streaming_data)
             throw new InnertubeError('Streaming data not available.', { video: this, error_type: 'NO_STREAMING_DATA' });
-        const opts = {
+        const opts: DownloadOptions = {
             quality: '360p',
-            type: 'videoandaudio',
+            type: 'video+audio',
             format: 'mp4',
             range: undefined,
             ...options
@@ -311,7 +328,7 @@ class VideoInfo {
         const format_url = format.decipher(this.#player);
 
         // If we're not downloading the video in chunks, we just use fetch once.
-        if (opts.type === 'videoandaudio' && !options.range) {
+        if (opts.type === 'video+audio' && !options.range) {
             const response = await fetch(`${format_url}&cpn=${this.#cpn}`, {
                 method: 'GET',
                 headers: Constants.STREAM_HEADERS,
