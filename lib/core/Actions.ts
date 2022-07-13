@@ -9,7 +9,7 @@ class Actions {
     #session;
     #request;
     /**
-     * @param {import('../Innertube')} session
+     * @param {import('../Innertube').default} session
      */
     constructor(session) {
         this.#session = session;

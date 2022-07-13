@@ -1,8 +1,12 @@
 import Player from "./Player.js";
 import Proto from "../proto/index.js";
-import { DeviceCategory, generateRandomString, getRandomUserAgent, SessionError } from "../utils/Utils.js";
+import { DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from "../utils/Utils.js";
 import Constants from "../utils/Constants.js";
 import UniversalCache from "../utils/Cache.js";
+import OAuth, { Credentials } from "./OAuth.js";
+import EventEmitterLike from "../utils/EventEmitterLike.js";
+import HTTPClient from "../utils/HTTPClient.js";
+import Actions from "./Actions.js";
 
 export interface Context {
     client: {
@@ -46,22 +50,58 @@ export interface SessionOptions {
     client_type?: ClientType;
     timezone?: string;
     cache?: UniversalCache;
+    cookie?: string;
 }
 
-export default class Session {
+export default class Session extends EventEmitterLike {
     #api_version;
     #key;
     #context;
     #player;
-    constructor(context: Context, api_key: string, api_version: string, player: Player) {
+    oauth;
+    http;
+    logged_in;
+    actions;
+    constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string) {
+        super();
         this.#context = context;
         this.#key = api_key;
         this.#api_version = api_version;
         this.#player = player;
+        this.http = new HTTPClient(this, cookie);
+        this.actions = new Actions(this);
+        this.oauth = new OAuth(this);
+        this.logged_in = !!cookie;
+    }
+    async signIn(credentials?: Credentials): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            this.once('auth', (data) => {
+                this.logged_in = true;
+                if (data.status === 'SUCCESS')
+                    resolve();
+            });
+            try {
+                await this.oauth.init(credentials);
+                if (this.oauth.validateCredentials()) {
+                    await this.oauth.checkAccessTokenValidity();
+                    this.logged_in = true;
+                    resolve();
+                }
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+    async signOut() {
+        if (!this.logged_in)
+            throw new InnertubeError('You are not signed in');
+        const response = await this.oauth.revokeCredentials();
+        this.logged_in = false;
+        return response;
     }
     static async create(options: SessionOptions = {}) {
         const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone);
-        return new Session(context, api_key, api_version, await Player.create(options.cache));
+        return new Session(context, api_key, api_version, await Player.create(options.cache), options.cookie);
     }
     static async getSessionData(
         lang: string = 'en-US', 

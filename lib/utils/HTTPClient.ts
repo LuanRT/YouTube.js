@@ -1,11 +1,6 @@
-import { Context } from "vm";
-import { ISession } from "../core/SessionBuilder";
+import Session, { Context } from "../core/Session";
 import Constants from "./Constants";
 import { generateSidAuth, getRandomUserAgent, getRuntime, getStringBetweenStrings, InnertubeError, isServer } from "./Utils";
-
-export interface HTTPClientConfiguration {
-    cookie: string;
-}
 
 export interface HTTPClientInit {
     baseURL: string;
@@ -23,22 +18,22 @@ if (getRuntime() === 'node') {
 }
 
 export default class HTTPClient {
-    #session: ISession;
-    #config: HTTPClientConfiguration;
-    constructor(config: HTTPClientConfiguration, session: ISession) {
+    #session: Session;
+    #cookie?: string;
+    constructor(session: Session, cookie?: string) {
         this.#session = session;
-        this.#config = config;
+        this.#cookie = cookie;
     }
 
     async fetch(
         input: URL | Request | string,
         init?: RequestInit & HTTPClientInit,
     ) {
-        const innertube_url = Constants.URLS.API.PRODUCTION + this.#session.version;
+        const innertube_url = Constants.URLS.API.PRODUCTION + this.#session.api_version;
         const baseURL = init?.baseURL || innertube_url;
         const url = 
             typeof input === "string" ?
-                new URL(input, baseURL) :
+                new URL(baseURL + input) :
             input instanceof URL ?
                 input :
                 new URL(input.url, baseURL);
@@ -100,12 +95,12 @@ export default class HTTPClient {
                 // Remove API key as it is not required when using oauth.
                 request_url.searchParams.delete("key");
             }
-            if (this.#config.cookie) {
-                const papisid = getStringBetweenStrings(this.#config.cookie, 'PAPISID=', ';');
+            if (this.#cookie) {
+                const papisid = getStringBetweenStrings(this.#cookie, 'PAPISID=', ';');
                 if (papisid) {
                     request_headers.set('authorization', await generateSidAuth(papisid));
                 }
-                request_headers.set('cookie', this.#config.cookie);
+                request_headers.set('cookie', this.#cookie);
             }
         }
 
@@ -128,7 +123,7 @@ export default class HTTPClient {
         const response = await fetch(request);
 
         // check if 2xx
-        if (response.status >= 200 && response.status < 300) {
+        if (response.ok) {
             return response;
         } else throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, response);
     }

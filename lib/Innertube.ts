@@ -1,6 +1,5 @@
-import OAuth from "./core/OAuth.js";
 import Actions from "./core/Actions.js";
-import SessionBuilder from "./core/SessionBuilder.js";
+import Session, { SessionOptions } from "./core/Session.js";
 import AccountManager from "./core/AccountManager.js";
 import PlaylistManager from "./core/PlaylistManager.js";
 import InteractionManager from "./core/InteractionManager.js";
@@ -17,103 +16,34 @@ import FilterableFeed from "./core/FilterableFeed.js";
 import TabbedFeed from "./core/TabbedFeed.js";
 import Feed from "./core/Feed.js";
 import EventEmitter from "./utils/EventEmitterLike";
-import streamBrowserify from "stream-browserify";
-import stream from "stream";
-import Request from "./utils/Request.js";
 import Constants from "./utils/Constants.js";
-import utils from "./utils/Utils.js";
+import { InnertubeError, throwIfMissing, generateRandomString } from "./utils/Utils.js";
 import Proto from "./proto/index.js";
+import HTTPClient from "./utils/HTTPClient.js";
 
-const { PassThrough } = BROWSER ? streamBrowserify : stream;
-const { InnertubeError, throwIfMissing, generateRandomString } = utils;
-/** @namespace */
-class Innertube {
-    #player;
-    #request;
-    /**
-     * @example
-     * ```js
-     * const Innertube = require('youtubei.js');
-     * const youtube = await new Innertube();
-     * ```
-     * @param {object} [config]
-     * @param {string} [config.gl]
-     * @param {string} [config.cookie]
-     * @param {boolean} [config.debug]
-     * @param {object} [config.proxy]
-     * @param {object} [config.http_agent]
-     * @param {object} [config.https_agent]
-     */
-    constructor(config) {
-        this.config = config || {};
-        return this.#init();
-    }
-    async #init() {
-        const request = new Request(this.config);
-        const session = await new SessionBuilder(this.config, request.instance).build();
-        /** @type {string} */
-        this.key = session.key;
-        /** @type {string} */
-        this.version = session.api_version;
-        /** @type {object} */
-        this.context = session.context;
-        /** @type {boolean} */
-        this.logged_in = !!this.config.cookie;
-        /** @type {number} */
-        this.sts = session.player.sts;
-        /** @type {string} */
-        this.player_url = session.player.url;
-        /** @type {import('./core/Player')} */
-        this.#player = session.player;
-        request.setSession(this);
-        this.#request = request.instance;
-        /**
-         * @fires Innertube#auth - fired when signing in to an account.
-         * @fires Innertube#update-credentials - fired when the access token is no longer valid.
-         * @type {EventEmitter}
-         */
-        this.ev = new EventEmitter();
-        this.oauth = new OAuth(this.ev, request.instance);
-        this.actions = new Actions(this);
+export interface InnertubeConfig extends SessionOptions {
+    debug?: boolean;
+    proxy?: object;
+    http_ent?: object;
+    https_agent?: object;
+}
+
+class Innertube extends EventEmitter {
+    session;
+    account;
+    playlist;
+    interact;
+    music;
+    constructor(config: InnertubeConfig, session: Session) {
+        super();
+        this.session = session;
         this.account = new AccountManager(this.actions);
         this.playlist = new PlaylistManager(this.actions);
         this.interact = new InteractionManager(this.actions);
-        this.music = new YTMusic(this);
-        return this;
+        this.music = new YTMusic(this.session);
     }
-    /**
-     * Signs in to a google account.
-     * @param {object} credentials
-     * @param {string} credentials.access_token - Token used to sign in.
-     * @param {string} credentials.refresh_token - Token used to get a new access token.
-     * @param {Date} credentials.expires - Access token's expiration date, which is usually 24hrs-ish.
-     * @returns {Promise.<void>}
-     */
-    signIn(credentials = {}) {
-        return new Promise(async (resolve) => {
-            this.oauth.init(credentials);
-            if (this.oauth.validateCredentials()) {
-                await this.oauth.checkAccessTokenValidity();
-                this.logged_in = true;
-                resolve();
-            }
-            this.ev.on('auth', (data) => {
-                this.logged_in = true;
-                if (data.status === 'SUCCESS')
-                    resolve();
-            });
-        });
-    }
-    /**
-     * Signs out of an account.
-     * @returns {Promise.<{ success: boolean, status_code: number }>}
-     */
-    async signOut() {
-        if (!this.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const response = await this.oauth.revokeAccessToken();
-        this.logged_in = false;
-        return response;
+    static async create(config: InnertubeConfig) {
+        return new Innertube(config, await Session.create(config));
     }
     /**
      * Retrieves video info.
@@ -308,10 +238,6 @@ class Innertube {
     }
     getPlayer() {
         return this.#player;
-    }
-    /** @readonly */
-    get request() {
-        return this.#request;
     }
 }
 export default Innertube;
