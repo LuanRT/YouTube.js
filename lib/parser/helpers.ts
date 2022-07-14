@@ -163,6 +163,6 @@ export function observe<T extends YTNode>(obj: Array<T>) {
 
 export class Memo extends Map<string, YTNode[]> {
     getType<T extends YTNode>(type: YTNodeConstructor<T>) {
-        return observe(this.get(type.type) as T[]);
+        return observe((this.get(type.type) || []) as T[]);
     }
 }

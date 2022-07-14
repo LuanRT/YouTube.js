@@ -262,7 +262,7 @@ class VideoInfo {
             ...(this.streaming_data.adaptive_formats || [])
         ];
         const requires_audio = options.type ? options.type.includes('audio') : true;
-        const requires_video = options.type ? options.type.includes('quality') : true;
+        const requires_video = options.type ? options.type.includes('video') : true;
         const quality = options.quality || '360p';
         let best_width = -1;
         const is_best = ['best', 'bestefficiency'].includes(quality);
@@ -353,15 +353,19 @@ class VideoInfo {
             let must_end = false;
 
             let cancel: AbortController;
+            let i = 0;
             const readableStream = new ReadableStream<Uint8Array>({
                 start() {},
                 pull: async (controller) => {
+                    console.log('did request chunk', i++, must_end);
                     if (must_end) {
+                        console.log('did close', i++, must_end);
                         controller.close();
                         return;
                     }
                     if ((chunk_end >= format.content_length) || options.range) {
                         must_end = true;
+                        console.log('did want end', i++, must_end, chunk_end, format.content_length)
                     }
                     return new Promise(async (resolve, reject) => {
                         try {

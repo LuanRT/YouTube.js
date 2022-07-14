@@ -45,7 +45,7 @@ export const CLIENTS = {
 };
 export const STREAM_HEADERS = {
     'accept': '*/*',
-    'connection': 'keep-alive',
+    // XXX: undici doesnt like this, 'connection': 'keep-alive',
     'origin': 'https://www.youtube.com',
     'referer': 'https://www.youtube.com',
     'DNT': '?1'
