@@ -129,8 +129,20 @@ export class UnknownPropertyValidator {
     }
 
     any(): any {
+        console.warn('This call is not meant to be used outside of debugging. Please use the specific type getter instead.');
         return this.#value;
     }
+
+    instanceof<T extends object>(type: Constructor<T>): T {
+        if (!(this.#value instanceof type)) {
+            throw new TypeError(`Expected instance of ${type.name}, got ${this.#value.constructor.name}`);
+        }
+        return this.#value;
+    }
+}
+
+export interface Constructor<T> {
+    new (): T;
 }
 
 export interface YTNodeConstructor<T extends YTNode = YTNode> {
@@ -191,6 +203,10 @@ export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
      */
     filterType<R extends YTNode>(validTypes: YTNodeConstructor<R> | YTNodeConstructor<R>[]): ObservedArray<R>;
     /**
+     * Get the first of a specific type
+     */
+    firstOfType<R extends YTNode>(validTypes: YTNodeConstructor<R> | YTNodeConstructor<R>[]): R | undefined;
+    /**
      * This is similar to filter but throws if there's a type mismatch.
      */
     as<R extends YTNode>(validTypes: YTNodeConstructor<R> | YTNodeConstructor<R>[]): ObservedArray<R>;
@@ -241,6 +257,21 @@ export function observe<T extends YTNode>(obj: Array<T>) {
                             return false;
                         }
                     }));
+                }
+            }
+            if (prop == 'firstOfType') {
+                return (validTypes: YTNodeConstructor<T> | YTNodeConstructor<T>[]) => {
+                    return target.find((node: YTNode) => {
+                        if (Array.isArray(validTypes)) {
+                            if (node.isOneOf(validTypes)) 
+                                return true;
+                            return false;
+                        } else {
+                            if (node.is(validTypes)) 
+                                return true;
+                            return false;
+                        }
+                    })!;
                 }
             }
             if (prop == 'as') {

@@ -160,7 +160,7 @@ class Music {
         const page = await tab?.key("endpoint").nodeOfType(NavigationEndpoint).call(this.#actions, 'YTMUSIC', true);
         if (!page)
             throw new InnertubeError('Invalid video id');
-        const shelves = page.contents.item().key("contents").observed().getAll({ type: 'MusicCarouselShelf' }) as MusicCarouselShelf[];
+        const shelves = page.contents.item().key("contents").observed().filterType(MusicCarouselShelf);
         const info = page.contents.item().key("contents").observed().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
         return {
             sections: shelves,
