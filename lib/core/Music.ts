@@ -110,7 +110,7 @@ class Music {
             throw new InnertubeError('Invalid video id');
         if (page.contents.constructor.name === 'Message')
             throw new InnertubeError(page.contents.item().key("text").any(), video_id);
-        const description_shelf = page.contents.item().key("contents").observed().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
+        const description_shelf = page.contents.item().key("contents").parsed().array().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
         return {
             text: description_shelf?.description.toString(),
             footer: description_shelf?.footer
@@ -160,8 +160,8 @@ class Music {
         const page = await tab?.key("endpoint").nodeOfType(NavigationEndpoint).call(this.#actions, 'YTMUSIC', true);
         if (!page)
             throw new InnertubeError('Invalid video id');
-        const shelves = page.contents.item().key("contents").observed().filterType(MusicCarouselShelf);
-        const info = page.contents.item().key("contents").observed().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
+        const shelves = page.contents.item().key("contents").parsed().array().filterType(MusicCarouselShelf);
+        const info = page.contents.item().key("contents").parsed().array().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
         return {
             sections: shelves,
             info: info?.description.toString() || ''
