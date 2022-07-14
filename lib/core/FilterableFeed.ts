@@ -1,12 +1,13 @@
+import ChipCloudChip from "../parser/classes/ChipCloudChip.js";
+import FeedFilterChipBar from "../parser/classes/FeedFilterChipBar.js";
+import { ObservedArray } from "../parser/helpers.js";
 import { InnertubeError } from "../utils/Utils.js";
+import Actions from "./Actions.js";
 import Feed from "./Feed.js";
 
 class FilterableFeed extends Feed {
-    /**
-     * @type {import('../parser/classes/ChipCloudChip')[]}
-     */
-    #chips;
-    constructor(actions, data, already_parsed = false) {
+    #chips?: ObservedArray<ChipCloudChip>;
+    constructor(actions: Actions, data: any, already_parsed = false) {
         super(actions, data, already_parsed);
     }
     /**
@@ -17,11 +18,11 @@ class FilterableFeed extends Feed {
     get filter_chips() {
         if (this.#chips)
             return this.#chips || [];
-        if (this.memo.get('FeedFilterChipBar')?.length > 1)
+        if (this.memo.getType(FeedFilterChipBar)?.length > 1)
             throw new InnertubeError('There are too many feed filter chipbars, you\'ll need to find the correct one yourself in this.page');
-        if (this.memo.get('FeedFilterChipBar')?.length === 0)
+        if (this.memo.getType(FeedFilterChipBar)?.length === 0)
             throw new InnertubeError('There are no feed filter chipbars');
-        this.#chips = this.memo.get('ChipCloudChip') || [];
+        this.#chips = this.memo.getType(ChipCloudChip);
         return this.#chips || [];
     }
     get filters() {
@@ -33,8 +34,8 @@ class FilterableFeed extends Feed {
      * @param {string | import('../parser/classes/ChipCloudChip')} filter
      * @returns {Promise.<Feed>}
      */
-    async getFilteredFeed(filter) {
-        let target_filter;
+    async getFilteredFeed(filter: string | ChipCloudChip) {
+        let target_filter: ChipCloudChip | undefined;
         if (typeof filter === 'string') {
             if (!this.filters.includes(filter))
                 throw new InnertubeError('Filter not found', {
@@ -48,9 +49,11 @@ class FilterableFeed extends Feed {
         else {
             throw new InnertubeError('Invalid filter');
         }
+        if (!target_filter)
+            throw new InnertubeError('Filter not found');
         if (target_filter.is_selected)
             return this;
-        const response = await target_filter.endpoint.call(this.actions);
+        const response = await target_filter.endpoint?.call(this.actions, undefined, true);
         return new Feed(this.actions, response, true);
     }
 }
