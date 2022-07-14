@@ -21,11 +21,11 @@ fs.writeFileSync(
   path.resolve(__dirname, '../lib/parser/map.ts'),
   `// This file was auto generated, do not edit.
 // See ./scripts/build-parser-json.js
-import { UINodeConstructor } from './helpers';
+import { YTNodeConstructor } from './helpers';
 
 ${import_list.join('\n')}
 
-const map: Record<string, UINodeConstructor> = ${json.join('\n')};
+const map: Record<string, YTNodeConstructor> = ${json.join('\n')};
 
 export default function GetParserByName(name: string) {
   const ParserConstructor = map[name];

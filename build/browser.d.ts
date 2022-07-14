@@ -1,2 +1,1 @@
-import Innertube from "..";
-export default Innertube;
+export * from "..";
