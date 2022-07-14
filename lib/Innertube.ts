@@ -113,7 +113,7 @@ class Innertube extends EventEmitter {
         
         const response = await this.session.http.fetch(url);
 
-        const response_data = await response.json();
+        const response_data = await response.text();
 
         const data = JSON.parse(response_data.replace(')]}\'', ''));
         const suggestions = data[1].map((suggestion: any) => suggestion[0]);
