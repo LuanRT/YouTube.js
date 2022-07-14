@@ -357,15 +357,12 @@ class VideoInfo {
             const readableStream = new ReadableStream<Uint8Array>({
                 start() {},
                 pull: async (controller) => {
-                    console.log('did request chunk', i++, must_end);
                     if (must_end) {
-                        console.log('did close', i++, must_end);
                         controller.close();
                         return;
                     }
                     if ((chunk_end >= format.content_length) || options.range) {
                         must_end = true;
-                        console.log('did want end', i++, must_end, chunk_end, format.content_length)
                     }
                     return new Promise(async (resolve, reject) => {
                         try {
