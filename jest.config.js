@@ -16,7 +16,6 @@ module.exports = {
       testTimeout: 10000,
       setupFiles: [
         'fake-indexeddb/auto',
-        './scripts/globals.js',
         'fake-dom'
       ]
     }
