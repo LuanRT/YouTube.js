@@ -1,5 +1,5 @@
 import { InnertubeError } from "../../utils/Utils";
-import Parser from "../index.js";
+import Parser, { ParsedResponse } from "../index.js";
 import LiveChat from "../classes/LiveChat";
 import Constants from "../../utils/Constants.js";
 import Actions, { ActionsResponse, AxioslikeResponse } from "../../core/Actions";
@@ -45,7 +45,7 @@ export interface DownloadOptions extends FormatOptions {
 }
 
 class VideoInfo {
-    #page;
+    #page: [ParsedResponse, ParsedResponse?];
     #actions;
     #player;
     #cpn;

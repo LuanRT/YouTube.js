@@ -10,7 +10,7 @@ import Endscreen from "./classes/Endscreen";
 import CardCollection from "./classes/CardCollection";
 import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
 
-class AppendContinuationItemsAction extends YTNode {
+export class AppendContinuationItemsAction extends YTNode {
     static readonly type = 'appendContinuationItemsAction';;
 
     contents: ObservedArray<YTNode> | null;
@@ -20,7 +20,7 @@ class AppendContinuationItemsAction extends YTNode {
         this.contents = Parser.parse(data.continuationItems, true);
     }
 }
-class ReloadContinuationItemsCommand extends YTNode {
+export class ReloadContinuationItemsCommand extends YTNode {
     static readonly type = 'reloadContinuationItemsCommand';
     target_id: string;
     contents: ObservedArray<YTNode> | null;
@@ -30,7 +30,7 @@ class ReloadContinuationItemsCommand extends YTNode {
         this.contents = Parser.parse(data.continuationItems, true);
     }
 }
-class SectionListContinuation extends YTNode {
+export class SectionListContinuation extends YTNode {
     static readonly type = 'sectionListContinuation';
     continuation: string;
     contents: ObservedArray<YTNode> | null;
@@ -40,7 +40,7 @@ class SectionListContinuation extends YTNode {
         this.continuation = data.continuations[0].nextContinuationData.continuation;
     }
 }
-class TimedContinuation extends YTNode {
+export class TimedContinuation extends YTNode {
     static readonly type = 'timedContinuationData';
     timeout_ms: number; // TODO: is this a number or a string?
     token: string;
@@ -50,7 +50,7 @@ class TimedContinuation extends YTNode {
         this.token = data.continuation;
     }
 }
-class LiveChatContinuation extends YTNode {
+export class LiveChatContinuation extends YTNode {
     static readonly type = 'liveChatContinuation';;
     actions: ObservedArray<YTNode>;
     action_panel: YTNode | null;

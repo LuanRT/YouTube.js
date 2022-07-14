@@ -100,7 +100,7 @@ export type DeviceCategory = 'mobile' | 'desktop';
  * @param type - mobile | desktop
  * @returns {object}
  */
-export function getRandomUserAgent(type: DeviceCategory) {
+export function getRandomUserAgent(type: DeviceCategory): UserAgent["data"] {
     switch (type) {
         case 'mobile':
             return new UserAgent(/Android/).data;
