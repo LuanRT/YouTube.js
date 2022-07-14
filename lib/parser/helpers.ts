@@ -142,7 +142,7 @@ export class UnknownPropertyValidator {
 }
 
 export interface Constructor<T> {
-    new (): T;
+    new (...args: any[]): T;
 }
 
 export interface YTNodeConstructor<T extends YTNode = YTNode> {

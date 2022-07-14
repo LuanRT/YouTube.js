@@ -12,7 +12,6 @@ class Playlist extends Feed {
     endpoint;
     constructor(actions: Actions, data: any, already_parsed = false) {
         super(actions, data, already_parsed);
-        console.log('page sidebar is', this.page.sidebar?.type);
         const primary_info = this.page.sidebar?.key("contents").parsed().array().firstOfType(PlaylistSidebarPrimaryInfo);
         const secondary_info = this.page.sidebar?.key("contents").parsed().array().firstOfType(PlaylistSidebarSecondaryInfo);
         this.info = {
