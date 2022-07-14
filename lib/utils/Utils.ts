@@ -264,3 +264,19 @@ export function getRuntime(): Runtime {
 export function isServer() {
     return ['node', 'deno'].includes(getRuntime());
 }
+
+export async function* streamToIterable(stream: ReadableStream<Uint8Array>) {
+    const reader = stream.getReader();
+    try {
+      while (true) {
+        const {done, value} = await reader.read();
+        if (done) {
+          return;
+          }
+        yield value;
+      }
+    }
+    finally {
+      reader.releaseLock();
+    }
+}

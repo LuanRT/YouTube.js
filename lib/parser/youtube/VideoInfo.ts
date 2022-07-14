@@ -1,4 +1,4 @@
-import { InnertubeError } from "../../utils/Utils";
+import { InnertubeError, streamToIterable } from "../../utils/Utils";
 import Parser, { ParsedResponse } from "../index.js";
 import LiveChat from "../classes/LiveChat";
 import Constants from "../../utils/Constants.js";
@@ -379,22 +379,6 @@ class VideoInfo {
                             const body = response.body;
                             if (!body) {
                                 throw new InnertubeError('Could not get ReadableStream from fetch Response.', { video: this, error_type: 'FETCH_FAILED', response });
-                            }
-
-                            async function* streamToIterable(stream: ReadableStream<Uint8Array>) {
-                                const reader = stream.getReader();
-                                try {
-                                  while (true) {
-                                    const {done, value} = await reader.read();
-                                    if (done) {
-                                      return;
-                                      }
-                                    yield value;
-                                  }
-                                }
-                                finally {
-                                  reader.releaseLock();
-                                }
                             }
 
                             for await (const chunk of streamToIterable(body)) {
