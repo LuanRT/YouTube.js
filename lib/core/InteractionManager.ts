@@ -1,82 +1,55 @@
 import { throwIfMissing, findNode } from "../utils/Utils";
+import Actions from "./Actions";
 
-/** @namespace */
 class InteractionManager {
     #actions;
-    /**
-     * @param {import('../Actions')} actions
-     */
-    constructor(actions) {
+    constructor(actions: Actions) {
         this.#actions = actions;
     }
     /**
-     * API response.
-     *
-     * @typedef {{ success: boolean, status_code: number, data: object }} Response
-     */
-    /**
      * Likes a given video.
-     *
-     * @param {string} video_id
-     * @returns {Promise.<Response>}
      */
-    async like(video_id) {
+    async like(video_id: string) {
         throwIfMissing({ video_id });
         const action = await this.#actions.engage('like/like', { video_id });
         return action;
     }
     /**
      * Dislikes a given video.
-     *
-     * @param {string} video_id
-     * @returns {Promise.<Response>}
      */
-    async dislike(video_id) {
+    async dislike(video_id: string) {
         throwIfMissing({ video_id });
         const action = await this.#actions.engage('like/dislike', { video_id });
         return action;
     }
     /**
      * Removes a like/dislike.
-     *
-     * @param {string} video_id
-     * @returns {Promise.<Response>}
      */
-    async removeLike(video_id) {
+    async removeLike(video_id: string) {
         throwIfMissing({ video_id });
-        const action = await this.actions.engage('like/removelike', { video_id });
+        const action = await this.#actions.engage('like/removelike', { video_id });
         return action;
     }
     /**
      * Subscribes to a given channel.
-     *
-     * @param {string} channel_id
-     * @returns {Promise.<Response>}
      */
-    async subscribe(channel_id) {
+    async subscribe(channel_id: string) {
         throwIfMissing({ channel_id });
         const action = await this.#actions.engage('subscription/subscribe', { channel_id });
         return action;
     }
     /**
      * Unsubscribes from a given channel.
-     *
-     * @param {string} channel_id
-     * @returns {Promise.<Response>}
      */
-    async unsubscribe(channel_id) {
+    async unsubscribe(channel_id: string) {
         throwIfMissing({ channel_id });
         const action = await this.#actions.engage('subscription/unsubscribe', { channel_id });
         return action;
     }
     /**
      * Posts a comment on a given video.
-     *
-     * @param {string} video_id
-     * @param {string} text
-     * @returns {Promise.<Response>}
      */
-    async comment(video_id, text) {
+    async comment(video_id: string, text: string) {
         throwIfMissing({ video_id, text });
         const action = await this.#actions.engage('comment/create_comment', { video_id, text });
         return action;
@@ -89,9 +62,11 @@ class InteractionManager {
      * @param {object} [args] - optional arguments
      * @param {string} [args.video_id]
      * @param {string} [args.comment_id]
-     * @returns {Promise.<{ success: boolean, status_code: number, translated_content: string, data: object }>}
      */
-    async translate(text, target_language, args = {}) {
+    async translate(text: string, target_language: string, args: {
+        video_id?: string;
+        comment_id?: string;
+    } = {}) {
         throwIfMissing({ text, target_language });
         const response = await await this.#actions.engage('comment/perform_comment_action', {
             video_id: args.video_id,
@@ -111,12 +86,8 @@ class InteractionManager {
     /**
      * Changes notification preferences for a given channel.
      * Only works with channels you are subscribed to.
-     *
-     * @param {string} channel_id
-     * @param {string} type - `PERSONALIZED` | `ALL` | `NONE`
-     * @returns {Promise.<Response>}
      */
-    async setNotificationPreferences(channel_id, type) {
+    async setNotificationPreferences(channel_id: string, type: 'PERSONALIZED' | 'ALL' | 'NONE') {
         throwIfMissing({ channel_id, type });
         const action = await this.#actions.notifications('modify_channel_preference', { channel_id, pref: type || 'NONE' });
         return action;
