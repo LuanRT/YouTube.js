@@ -6,6 +6,8 @@ Sanitizes and standardizes InnerTube responses while maintaining the integrity o
 
 * Parser
   * [.parse](#parse) ⇒ `function`
+  * [.parseItem](#parseitem) ⇒ `function`
+  * [.parseArray](#parsearray) ⇒ `function`
   * [.parseResponse](#parseresponse) ⇒ `function`
 
 <a name="parse"></a>
@@ -29,6 +31,8 @@ When `validTypes` is an array, the response will be an array of YTNodes that are
 When `validTypes` is a single type, the response will be an array of YTNodes that are of the type specified.
 
 If you do not specify `requireArray`, the return type of the function will not be known at runtime, and therefore we return the response wrapped in a helper, `SuperParsedResponse`, to gain access to the response.
+
+You may use the `Parser#parseArray` and `Parser#parseItem` methods to parse the response in a deterministic way.
 
 <a name="parseresponse"></a>
 #### parseResponse(data)
