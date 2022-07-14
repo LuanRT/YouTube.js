@@ -30,11 +30,13 @@ export default class HTTPClient {
         init?: RequestInit & HTTPClientInit,
     ) {
         const innertube_url = Constants.URLS.API.PRODUCTION + this.#session.api_version;
-        const baseURL = init?.baseURL || innertube_url;
+        const baseURL = init?.baseURL || innertube_url; 
         
         const request_url = 
             typeof input === "string" ?
-                new URL(baseURL + input) :
+                (!baseURL.endsWith('/') && !input.startsWith('/')) ?
+                    new URL(`${baseURL}/${input}`) :
+                    new URL(baseURL + input) :
             input instanceof URL ?
                 input :
                 new URL(input.url, baseURL);

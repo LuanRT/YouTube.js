@@ -186,7 +186,7 @@ class NavigationEndpoint extends YTNode {
             throw new Error('An active caller must be provided');
         if (!this.metadata.api_url)
             throw new Error('Expected an api_url, but none was found, this is a bug.');
-        const response = await actions.execute(this.metadata.api_url, { ...this.payload, ...args.params });
+        const response = await actions.execute(this.metadata.api_url, { ...this.payload, ...args.params, parse: args.parse });
         return response;
     }
 

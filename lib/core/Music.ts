@@ -27,7 +27,7 @@ class Music {
      */
     async search(query: string, filters: {
         type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
-    }) {
+    } = {}) {
         throwIfMissing({ query });
         const response = await this.#actions.search({ query, filters, client: 'YTMUSIC' });
         return new Search(response, this.#actions, { 

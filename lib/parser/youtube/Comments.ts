@@ -54,7 +54,9 @@ class Comments {
         if (!page.on_response_received_endpoints)
             throw new InnertubeError('Invalid reponse format, missing on_response_received_endpoints');
         page.on_response_received_endpoints.pop();
-        page.on_response_received_endpoints.push(data.on_response_received_endpoints![0]);
+        if (!data.on_response_received_endpoints)
+            throw new InnertubeError('Invalid reponse format, missing on_response_received_endpoints');
+        page.on_response_received_endpoints.push(data.on_response_received_endpoints[0]);
         return new Comments(this.#actions, page, true);
     }
     get page() {
