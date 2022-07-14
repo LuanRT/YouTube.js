@@ -4,20 +4,10 @@ module.exports = {
   projects: [
     {
       displayName: 'node',
-      roots: [ '<rootDir>/test/node' ],
+      roots: [ '<rootDir>/test' ],
       testMatch: [ '**/*.test.js' ],
       testTimeout: 10000,
       setupFiles: []
-    },
-    {
-      displayName: 'browser',
-      roots: [ '<rootDir>/test/browser' ],
-      testMatch: [ '**/*.test.js' ],
-      testTimeout: 10000,
-      setupFiles: [
-        'fake-indexeddb/auto',
-        'fake-dom'
-      ]
     }
   ]
 };

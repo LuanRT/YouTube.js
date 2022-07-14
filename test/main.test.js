@@ -1,9 +1,9 @@
 'use strict';
 
 const Fs = require('fs');
-const { Innertube } = require('../../dist');
-const Constants = require('../constants');
-const { streamToIterable } = require('../../dist/lib/utils/Utils');
+const { Innertube } = require('../dist');
+const Constants = require('./constants');
+const { streamToIterable } = require('../dist/lib/utils/Utils');
 
 describe('YouTube.js Tests', () => { 
   beforeAll(async () => {

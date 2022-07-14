@@ -11,8 +11,6 @@
   "license": "MIT",
   "scripts": {
     "test": "npx jest --verbose",
-    "test:node": "npm run build:node && npx jest node",
-    "test:browser": "npm run build:browser:prod && npx jest browser",
     "lint": "npx eslint ./lib",
     "lint:fix": "npx eslint --fix ./lib",
     "build:node": "tsc",
