@@ -115,8 +115,15 @@ export class UnknownPropertyValidator {
     }
 
     observed(): ObservedArray<YTNode> {
-        if (!this.#value[isObserved]) {
+        if (!this.#value?.[isObserved]) {
             throw new TypeError(`Expected ObservedArray, got ${typeof this.#value}`);
+        }
+        return this.#value;
+    }
+
+    parsed(): SuperParsedResult {
+        if (!(this.#value instanceof SuperParsedResult)) {
+            throw new TypeError(`Expected SuperParsedResult, got ${typeof this.#value}`);
         }
         return this.#value;
     }
