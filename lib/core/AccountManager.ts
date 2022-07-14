@@ -1,45 +1,34 @@
-import { throwIfMissing, findNode } from "../utils/Utils.js";
+import { throwIfMissing, findNode, InnertubeError } from "../utils/Utils.js";
 import Constants from "../utils/Constants.js";
 import Analytics from "../parser/youtube/Analytics.js";
 import Proto from "../proto/index.js";
+import Actions from "./Actions.js";
 
 /** @namespace */
 class AccountManager {
     #actions;
-    /**
-     * @param {import('./Actions').default} actions
-     */
-    constructor(actions) {
+    channel;
+    settings;
+
+    constructor(actions: Actions) {
         this.#actions = actions;
-        /**
-         * API response.
-         *
-         * @typedef {{ success: boolean, status_code: number, data: object }} Response
-         */
-        /** @namespace */
         this.channel = {
             /**
              * Edits channel name.
-             *
-             * @param {string} new_name
-             * @returns {Promise.<Response>}
              */
-            editName: (new_name) => this.#actions.channel('channel/edit_name', { new_name }),
+            editName: (new_name: string) => this.#actions.channel('channel/edit_name', { new_name }),
             /**
              * Edits channel description.
              *
              * @param {string} new_description
              * @returns {Promise.<Response>}
              */
-            editDescription: (new_description) => this.#actions.channel('channel/edit_description', { new_description }),
+            editDescription: (new_description: string) => this.#actions.channel('channel/edit_description', { new_description }),
             /**
              * Retrieves basic channel analytics.
-             *
-             * @borrows getAnalytics as getBasicAnalytics
              */
             getBasicAnalytics: () => this.getAnalytics()
         };
-        /** @namespace */
         this.settings = {
             notifications: {
                 /**
@@ -48,42 +37,42 @@ class AccountManager {
                  * @param {boolean} option - ON | OFF
                  * @returns {Promise.<Response>}
                  */
-                setSubscriptions: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS, 'SPaccount_notifications', option),
+                setSubscriptions: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS, 'SPaccount_notifications', option),
                 /**
                  * Recommended content notifications.
                  *
                  * @param {boolean} option - ON | OFF
                  * @returns {Promise.<Response>}
                  */
-                setRecommendedVideos: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.RECOMMENDED_VIDEOS, 'SPaccount_notifications', option),
+                setRecommendedVideos: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.RECOMMENDED_VIDEOS, 'SPaccount_notifications', option),
                 /**
                  * Notify about activity on your channel.
                  *
                  * @param {boolean} option - ON | OFF
                  * @returns {Promise.<Response>}
                  */
-                setChannelActivity: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.CHANNEL_ACTIVITY, 'SPaccount_notifications', option),
+                setChannelActivity: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.CHANNEL_ACTIVITY, 'SPaccount_notifications', option),
                 /**
                  * Notify about replies to your comments.
                  *
                  * @param {boolean} option - ON | OFF
                  * @returns {Promise.<Response>}
                  */
-                setCommentReplies: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.COMMENT_REPLIES, 'SPaccount_notifications', option),
+                setCommentReplies: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.COMMENT_REPLIES, 'SPaccount_notifications', option),
                 /**
                  * Notify when others mention your channel.
                  *
                  * @param {boolean} option - ON | OFF
                  * @returns {Promise.<Response>}
                  */
-                setMentions: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.USER_MENTION, 'SPaccount_notifications', option),
+                setMentions: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.USER_MENTION, 'SPaccount_notifications', option),
                 /**
                  * Notify when others share your content on their channels.
                  *
                  * @param {boolean} option - ON | OFF
                  * @returns {Promise.<Response>}
                  */
-                setSharedContent: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SHARED_CONTENT, 'SPaccount_notifications', option)
+                setSharedContent: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SHARED_CONTENT, 'SPaccount_notifications', option)
             },
             privacy: {
                 /**
@@ -92,31 +81,22 @@ class AccountManager {
                  * @param {boolean} option - ON | OFF
                  * @returns {Promise.<Response>}
                  */
-                setSubscriptionsPrivate: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS_PRIVACY, 'SPaccount_privacy', option),
+                setSubscriptionsPrivate: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS_PRIVACY, 'SPaccount_privacy', option),
                 /**
                  * If set to true, saved playlists won't appear on your channel.
                  *
                  * @param {boolean} option - ON | OFF
                  * @returns {Promise.<Response>}
                  */
-                setSavedPlaylistsPrivate: (option) => this.#setSetting(Constants.ACCOUNT_SETTINGS.PLAYLISTS_PRIVACY, 'SPaccount_privacy', option)
+                setSavedPlaylistsPrivate: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.PLAYLISTS_PRIVACY, 'SPaccount_privacy', option)
             }
         };
     }
     /**
      * Internal method to perform changes on an account's settings.
-     *
-     * @private
-     * @param {string} setting_id
-     * @param {string} type
-     * @param {string} new_value
-     * @returns {Promise.<Response>}
      */
-    async #setSetting(setting_id, type, new_value) {
+    async #setSetting(setting_id: string, type: string, new_value: boolean) {
         throwIfMissing({ setting_id, type, new_value });
-        const values = { ON: true, OFF: false };
-        if (!values.hasOwnProperty(new_value))
-            throw new InnertubeError('Invalid option', { option: new_value, available_options: Object.keys(values) });
         const response = await this.#actions.browse(type);
         const contents = (() => {
             switch (type.trim()) {
@@ -129,10 +109,10 @@ class AccountManager {
                     throw new TypeError('undefined is not a function');
             }
         })();
-        const option = contents.find((option) => option.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemIdForClient == setting_id);
+        const option = contents.find((option: any) => option.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemIdForClient == setting_id);
         const setting_item_id = option.settingsSwitchRenderer.enableServiceEndpoint.setSettingEndpoint.settingItemId;
         const set_setting = await this.#actions.account('account/set_setting', {
-            new_value: type == 'SPaccount_privacy' ? !values[new_value] : values[new_value],
+            new_value: type == 'SPaccount_privacy' ? !new_value : new_value,
             setting_item_id
         });
         return set_setting;
@@ -149,27 +129,25 @@ class AccountManager {
         const name = profile.accountName;
         const email = profile.email;
         const photo = profile.accountPhoto.thumbnails;
-        const subscriber_count = account_item_section_renderer.accountItem.accountByline.runs.map((run) => run.text).join('');
+        const subscriber_count = account_item_section_renderer.accountItem.accountByline.runs.map((run: any) => run.text).join('');
         const channel_id = response.data.contents[0].accountSectionListRenderer.footers[0].accountChannelRenderer.navigationEndpoint.browseEndpoint.browseId;
         return { name, email, channel_id, subscriber_count, photo };
     }
     /**
      * Retrieves time watched statistics.
-     *
-     * @returns {Promise.<Array.<{ title: string, time: string }>>}
      */
     async getTimeWatched() {
         const response = await this.#actions.browse('SPtime_watched', { client: 'ANDROID' });
-        const rows = findNode(response.data, 'contents', 'statRowRenderer', 11, false);
-        const stats = rows.map((row) => {
+        const rows: any[] = findNode(response.data, 'contents', 'statRowRenderer', 11, false);
+        const stats = rows.map((row: any) => {
             const renderer = row.statRowRenderer;
             if (renderer) {
                 return {
-                    title: renderer.title.runs.map((run) => run.text).join(''),
-                    time: renderer.contents.runs.map((run) => run.text).join('')
+                    title: renderer.title.runs.map((run: any) => run.text).join(''),
+                    time: renderer.contents.runs.map((run: any) => run.text).join('')
                 };
             }
-        }).filter((stat) => stat);
+        }).filter((stat: any) => stat);
         return stats;
     }
     /**

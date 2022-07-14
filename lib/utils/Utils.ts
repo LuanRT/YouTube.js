@@ -43,7 +43,7 @@ export class SessionError extends Error {}
  * @param depth - maximum number of nested objects to flatten.
  * @param safe - if set to true arrays will be preserved.
  */
-export function findNode(obj: object, key: string, target: string, depth: number, safe: boolean = true): object | object[] {
+export function findNode(obj: any, key: string, target: string, depth: number, safe: boolean = true): any | any[] {
     const flat_obj = Flatten(obj, { safe, maxDepth: depth || 2 }) as any;
     const result = Object.keys(flat_obj).find((entry) => entry.includes(key) && JSON.stringify(flat_obj[entry] || '{}').includes(target));
     if (!result)

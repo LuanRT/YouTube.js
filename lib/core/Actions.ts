@@ -22,7 +22,7 @@ export interface EngageArgs {
 }
 
 export interface AccountArgs {
-    new_value?: string;
+    new_value?: string | boolean; // TODO: is this correct?
     setting_item_id?: string;
     client?: string;
 }
