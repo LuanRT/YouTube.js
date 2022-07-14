@@ -4,6 +4,7 @@ import Actions from "../../core/Actions.js";
 import CommentsHeader from "../classes/comments/CommentsHeader.js";
 import CommentThread from "../classes/comments/CommentThread.js";
 import ContinuationItem from "../classes/ContinuationItem.js";
+import NavigationEndpoint from "../classes/NavigationEndpoint.js";
 class Comments {
     #page: ParsedResponse;
     #actions;
@@ -28,16 +29,14 @@ class Comments {
      * Creates a top-level comment.
      */
     async comment(text: string) {
-        // TODO: what is this type
-        // @ts-ignore
-        const button = this.header?.create_renderer?.submit_button;
+        const button = this.header?.create_renderer?.key("submit_button").node();
         const payload = {
             params: {
                 commentText: text
             },
             parse: false
         };
-        const response = await button.endpoint.callTest(this.#actions, payload);
+        const response = await button?.key("endpoint").nodeOfType(NavigationEndpoint).callTest(this.#actions, payload);
         return response;
     }
     /**

@@ -13,6 +13,9 @@ import TabbedSearchResults from "../parser/classes/TabbedSearchResults.js";
 import TwoColumnBrowseResults from "../parser/classes/TwoColumnBrowseResults.js";
 import Tab from "../parser/classes/Tab.js";
 import SearchSuggestionsSection from "../parser/classes/SearchSuggestionsSection.js";
+import NavigationEndpoint from "../parser/classes/NavigationEndpoint.js";
+import MusicDescriptionShelf from "../parser/classes/MusicDescriptionShelf.js";
+import MusicCarouselShelf from "../parser/classes/MusicCarouselShelf.js";
 
 /** @namespace */
 class Music {
@@ -102,19 +105,15 @@ class Music {
         if (!node.isOneOf<SingleColumnBrowseResults | TabbedSearchResults | TwoColumnBrowseResults>([SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults]))
             throw new InnertubeError('Invalid id', video_id);
         const tab = node.tabs.array().get({ title: 'Lyrics' });
-        // @ts-ignore
-        // TODO: what is this type?
-        const page = await tab.endpoint.call(this.#actions, 'YTMUSIC');
+        const page = await tab?.key("endpoint").nodeOfType(NavigationEndpoint).call(this.#actions, 'YTMUSIC', true);
         if (!page)
             throw new InnertubeError('Invalid video id');
         if (page.contents.constructor.name === 'Message')
-            throw new InnertubeError(page.contents.text, video_id);
-        const description_shelf = page.contents.contents.get({ type: 'MusicDescriptionShelf' });
+            throw new InnertubeError(page.contents.item().key("text").any(), video_id);
+        const description_shelf = page.contents.item().key("contents").observed().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
         return {
-            /** @type {string} */
-            text: description_shelf.description.toString(),
-            /** @type {import('../parser/contents/classes/Text')} */
-            footer: description_shelf.footer
+            text: description_shelf?.description.toString(),
+            footer: description_shelf?.footer
         };
     }
     /**
@@ -131,9 +130,7 @@ class Music {
             throw new InnertubeError('Invalid id', video_id);
         const tab = node.tabs.array().get({ title: 'Up next' });
         // TODO: verify this is a Tab
-        // @ts-ignore
-        // TODO: what is the type of this?
-        const upnext_content = tab?.as(Tab).content.item().content;
+        const upnext_content = tab?.as(Tab).content.item().key("content").any();
         if (!upnext_content)
             throw new InnertubeError('Invalid id', video_id);
         return {
@@ -160,17 +157,13 @@ class Music {
         if (!node.isOneOf<SingleColumnBrowseResults | TabbedSearchResults | TwoColumnBrowseResults>([SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults]))
             throw new InnertubeError('Invalid id', video_id);
         const tab = node.tabs.array().get({ title: 'Related' });
-        // @ts-ignore
-        // TODO: what's this type
-        const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
+        const page = await tab?.key("endpoint").nodeOfType(NavigationEndpoint).call(this.#actions, 'YTMUSIC', true);
         if (!page)
             throw new InnertubeError('Invalid video id');
-        const shelves = page.contents.contents.getAll({ type: 'MusicCarouselShelf' });
-        const info = page.contents.contents.get({ type: 'MusicDescriptionShelf' });
+        const shelves = page.contents.item().key("contents").observed().getAll({ type: 'MusicCarouselShelf' }) as MusicCarouselShelf[];
+        const info = page.contents.item().key("contents").observed().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
         return {
-            /** @type {import('../parser/contents/classes/MusicCarouselShelf')[]} */
             sections: shelves,
-            /** @type {string} */
             info: info?.description.toString() || ''
         };
     }

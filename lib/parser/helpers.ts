@@ -127,6 +127,10 @@ export class UnknownPropertyValidator {
         }
         return this.#value;
     }
+
+    any(): any {
+        return this.#value;
+    }
 }
 
 export interface YTNodeConstructor<T extends YTNode = YTNode> {
