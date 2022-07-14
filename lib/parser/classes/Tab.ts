@@ -5,7 +5,11 @@ import { YTNode } from "../helpers";
 
 class Tab extends YTNode {
     static type = 'Tab';
-    constructor(data) {
+    title: string;
+    selected: boolean;
+    endpoint;
+    content;
+    constructor(data: any) {
         super();
         this.title = data.title || 'N/A';
         this.selected = data.selected || false;

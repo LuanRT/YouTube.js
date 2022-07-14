@@ -1,25 +1,20 @@
+import Tab from "../parser/classes/Tab.js";
 import { InnertubeError } from "../utils/Utils.js";
+import Actions from "./Actions.js";
 import Feed from "./Feed.js";
 
 class TabbedFeed extends Feed {
-    /**
-     * @type {import('../parser/contents/classes/Tab')[]}
-     */
     #tabs;
     #actions;
-    constructor(actions, data, already_parsed = false) {
+    constructor(actions: Actions, data: any, already_parsed = false) {
         super(actions, data, already_parsed);
         this.#actions = actions;
-        this.#tabs = this.page.contents_memo.get('Tab');
+        this.#tabs = this.page.contents_memo.getType(Tab);
     }
     get tabs() {
         return this.#tabs.map((tab) => tab.title.toString());
     }
-    /**
-     * @param {string} title
-     * @returns {Promise<TabbedFeed>}
-     */
-    async getTab(title) {
+    async getTab(title: string) {
         const tab = this.#tabs.find((tab) => tab.title.toLowerCase() === title.toLowerCase());
         if (!tab)
             throw new InnertubeError(`Tab "${title}" not found`);
@@ -29,7 +24,7 @@ class TabbedFeed extends Feed {
         return new TabbedFeed(this.#actions, response, true);
     }
     get title() {
-        return this.page.contents_memo('Tab')?.find((tab) => tab.selected)?.title.toString();
+        return this.page.contents_memo.getType(Tab)?.find((tab) => tab.selected)?.title.toString();
     }
 }
 export default TabbedFeed;
