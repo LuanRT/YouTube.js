@@ -19,6 +19,7 @@ export interface EngageArgs {
     comment_action?: string;
     params?: string;
     text?: string;
+    target_language?: string;
 }
 
 export interface AccountArgs {
