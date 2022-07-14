@@ -3,5 +3,5 @@
 Run this example with:
 
 ```
-deno run --allow-net index.ts
+deno run --allow-net --allow-write index.ts
 ```
