@@ -9,6 +9,7 @@ import PlayerOverlay from "./classes/PlayerOverlay";
 import Endscreen from "./classes/Endscreen";
 import CardCollection from "./classes/CardCollection";
 import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
+import MicroformatData from "./classes/MicroformatData";
 
 export class AppendContinuationItemsAction extends YTNode {
     static readonly type = 'appendContinuationItemsAction';;
@@ -143,7 +144,7 @@ export default class Parser {
             continuation_contents: data.continuationContents ? Parser.parseLC(data.continuationContents) : null,
             metadata: Parser.parse(data.metadata),
             header: Parser.parse(data.header),
-            microformat: data.microformat ? Parser.parseItem(data.microformat, PlayerMicroformat) : null,
+            microformat: data.microformat ? Parser.parseItem(data.microformat) : null,
             sidebar: Parser.parseItem(data.sidebar),
             overlay: Parser.parseItem(data.overlay),
             refinements: data.refinements || null,
@@ -213,9 +214,9 @@ export default class Parser {
                 if (validTypes) {
                     if (Array.isArray(validTypes)) {
                         if (!validTypes.some(type => type.type === TargetClass.type))
-                            throw new ParsingError('Type mismatch');
+                            throw new ParsingError('Type mismatch, got ' + classname + ' but expected one of ' + validTypes.map(type => type.type).join(', '));
                     } else if (TargetClass.type !== validTypes.type)
-                        throw new ParsingError('Type mismatch');
+                        throw new ParsingError('Type mismatch, got ' + classname + ' but expected ' + validTypes.type);
                 }
                 const result = new TargetClass(data[keys[0]]);
                 this.#addToMemo(classname, result);

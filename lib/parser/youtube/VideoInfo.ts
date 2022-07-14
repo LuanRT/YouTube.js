@@ -18,6 +18,8 @@ import ContinuationItem from "../classes/ContinuationItem";
 import LiveChatWrap from './LiveChat';
 import CompactVideo from "../classes/CompactVideo";
 import CompactMix from "../classes/CompactMix";
+import PlayerMicroformat from "../classes/PlayerMicroformat";
+import MicroformatData from "../classes/MicroformatData";
 
 export interface FormatOptions {
     /**
@@ -77,10 +79,12 @@ class VideoInfo {
         this.#player = player;
         this.#cpn = cpn;
         const info = Parser.parseResponse(data[0].data);
-        const next = Parser.parseResponse(data?.[1]?.data || {});
+        const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
         this.#page = [info, next];
         if (info.playability_status?.status === 'ERROR')
             throw new InnertubeError('This video is unavailable', info.playability_status);
+        if (!info.microformat?.is(PlayerMicroformat))
+            throw new InnertubeError('Invalid microformat', info.microformat);
         this.basic_info = { // this type is inferred so no need for an explicit type
             ...info.video_details,
             ...{
@@ -105,9 +109,9 @@ class VideoInfo {
         this.endscreen = info.endscreen;
         this.captions = info.captions;
         this.cards = info.cards;
-        const two_col = next.contents.item().as(TwoColumnWatchNextResults);
-        const results = two_col.results;
-        const secondary_results = two_col.secondary_results;
+        const two_col = next?.contents.item().as(TwoColumnWatchNextResults);
+        const results = two_col?.results;
+        const secondary_results = two_col?.secondary_results;
         if (results && secondary_results) {
             this.primary_info = results.get({ type: 'VideoPrimaryInfo' })?.as(VideoPrimaryInfo);
             this.secondary_info = results.get({ type: 'VideoSecondaryInfo' })?.as(VideoSecondaryInfo);
@@ -116,13 +120,13 @@ class VideoInfo {
             this.watch_next_feed = secondary_results?.get({ type: 'ItemSection' })?.as(ItemSection)?.contents;
             if (this.watch_next_feed && Array.isArray(this.watch_next_feed)) 
                 this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
-            this.player_overlays = next.player_overlays.item().as(PlayerOverlay);
+            this.player_overlays = next?.player_overlays.item().as(PlayerOverlay);
             this.basic_info.like_count = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.like_count;
             this.basic_info.is_liked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.is_toggled;
             this.basic_info.is_disliked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'DISLIKE' })?.as(ToggleButton)?.is_toggled;
             const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
             this.comments_entry_point_header = comments_entry_point?.contents?.get({ type: 'CommentsEntryPointHeader' })?.as(CommentsEntryPointHeader);
-            this.livechat = next.contents_memo.getType(LiveChat)?.[0];
+            this.livechat = next?.contents_memo.getType(LiveChat)?.[0];
         }
     }
     /**

@@ -1,12 +1,12 @@
 'use strict';
 
 const Fs = require('fs');
-const Innertube = require('../../build/node');
+const { Innertube } = require('../../dist');
 const Constants = require('../constants');
 
 describe('YouTube.js Tests', () => { 
   beforeAll(async () => {
-    this.session = await new Innertube();
+    this.session = await Innertube.create();
   });
   
   describe('Search', () => {

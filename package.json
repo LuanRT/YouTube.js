@@ -11,20 +11,18 @@
   "license": "MIT",
   "scripts": {
     "test": "npx jest --verbose",
-    "test:node": "npm run build:node:prod && npx jest node",
+    "test:node": "npm run build:node && npx jest node",
     "test:browser": "npm run build:browser:prod && npx jest browser",
     "lint": "npx eslint ./lib",
     "lint:fix": "npx eslint --fix ./lib",
-    "build:types": "npx tsc",
+    "build:node": "tsc",
     "build:parser-map": "node ./scripts/build-parser-json.js",
     "build:general": "npm run build:parser-map && npx esbuild ./lib/Innertube.js --banner:js=\"/* eslint-disable */\" --bundle --target=node12 --keep-names --format=cjs --sourcemap",
-    "build:node": "npm run build:general -- --outfile=./build/node.js --platform=node --external:./node_modules/* --define:BROWSER=false",
-    "build:node:prod": "npm run build:node -- --minify",
     "build:browser": "npm run build:general -- --outfile=./build/browser.js --platform=browser --define:BROWSER=true",
     "build:browser:prod": "npm run build:browser -- --minify"
   },
   "types": "./typings/lib/Innertube.d.ts",
-  "main": "./build/node.js",
+  "main": "./dist/index.js",
   "browser": "./build/browser.js",
   "directories": {
     "test": "./test",
