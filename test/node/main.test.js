@@ -3,6 +3,7 @@
 const Fs = require('fs');
 const { Innertube } = require('../../dist');
 const Constants = require('../constants');
+const { streamToIterable } = require('../../dist/lib/utils/Utils');
 
 describe('YouTube.js Tests', () => { 
   beforeAll(async () => {
@@ -99,14 +100,14 @@ describe('YouTube.js Tests', () => {
   */
 });
 
-function download(id, session) {   
-  let got_video_info = false;
+async function download(id, session) {   
+  // TODO: add back info
+  // let got_video_info = false;
 
-  return new Promise((resolve, reject) => {
-    const stream = session.download(id, { type: 'videoandaudio' });
-    stream.pipe(Fs.createWriteStream(`./${id}.mp4`));
-    stream.on('end', () => resolve(Fs.existsSync(`./${id}.mp4`) && got_video_info));
-    stream.on('info', () => got_video_info = true);
-    stream.on('error', () => resolve(false));
-  });
+  const stream = await session.download(id, { type: 'video+audio' });
+  const file = Fs.createWriteStream(`./${id}.mp4`);
+  for await (const chunk of streamToIterable(stream)) {
+    file.write(chunk);
+  }
+  return Fs.existsSync(`./${id}.mp4`); // && got_video_info;
 }
