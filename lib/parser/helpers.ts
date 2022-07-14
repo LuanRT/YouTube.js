@@ -1,5 +1,6 @@
 import { deepCompare, ParsingError } from '../utils/Utils';
 
+const isObserved = Symbol('ObservedArray.isObserved');
 export class YTNode {
     static readonly type: string = 'YTNode';
     readonly type: string;
@@ -28,6 +29,96 @@ export class YTNode {
      */
     isOneOf<T extends YTNode>(types: YTNodeConstructor<T>[]): this is T {
         return types.some(type => this.is(type));
+    }
+    /**
+     * Check for a key without asserting the type.
+     */
+    hasKey<T extends string, R = any>(key: T): this is this & { [k in T]: R } {
+        return Reflect.has(this, key);
+    }
+    /**
+     * Assert that the node has the given key and return it.
+     */
+    key<T extends string, R = any>(key: T) {
+        if (!this.hasKey<T, R>(key)) {
+            throw new ParsingError(`Missing key ${key}`);
+        }
+        return new UnknownPropertyValidator(this[key]);
+    }
+}
+
+export class UnknownPropertyValidator {
+    #value;
+    constructor (value: any) {
+        this.#value = value;
+    }
+
+    #assertPrimative(type: "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function") {
+        if (typeof this.#value !== type) {
+            throw new TypeError(`Expected ${type}, got ${typeof this.#value}`);
+        }
+        return this.#value;
+    }
+
+    string(): string {
+        return this.#assertPrimative('string');
+    }
+
+    number(): number {
+        return this.#assertPrimative('number');
+    }
+
+    bigint(): bigint {
+        return this.#assertPrimative('bigint');
+    }
+
+    boolean(): boolean {
+        return this.#assertPrimative('boolean');
+    }
+
+    symbol(): symbol {
+        return this.#assertPrimative('symbol');
+    }
+
+    undefined(): undefined {
+        return this.#assertPrimative('undefined');
+    }
+
+    object(): object {
+        return this.#assertPrimative('object');
+    }
+
+    function(): Function {
+        return this.#assertPrimative('function');
+    }
+
+    array(): any[] {
+        if (!Array.isArray(this.#value)) {
+            throw new TypeError(`Expected array, got ${typeof this.#value}`);
+        }
+        return this.#value;
+    }
+
+    node() {
+        if (!(this.#value instanceof YTNode)) {
+            throw new TypeError(`Expected YTNode, got ${this.#value.constructor.name}`);
+        }
+        return this.#value;
+    }
+
+    nodeOfType<T extends YTNode>(type: YTNodeConstructor<T>) {
+        return this.node().as(type);
+    }
+
+    nodeOneOf<T extends YTNode>(types: YTNodeConstructor<T>[]) {
+        return this.node().isOneOf(types);
+    }
+
+    observed(): ObservedArray<YTNode> {
+        if (!this.#value[isObserved]) {
+            throw new TypeError(`Expected ObservedArray, got ${typeof this.#value}`);
+        }
+        return this.#value;
     }
 }
 
@@ -111,6 +202,9 @@ export function observe<T extends YTNode>(obj: Array<T>) {
                         return match;
                     })
                 )
+            }
+            if (prop == isObserved) {
+                return true;
             }
             if (prop == 'getAll') {
                 return (rule: object, del_items: boolean) => (
