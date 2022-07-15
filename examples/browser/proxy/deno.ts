@@ -17,7 +17,7 @@ const handler = async (request: Request): Promise<Response> => {
             headers: new Headers({
                 "Access-Control-Allow-Origin": request.headers.get("origin") || "*",
                 "Access-Control-Allow-Methods": "*",
-                "Access-Control-Allow-Headers":  "Origin, X-Requested-With, Content-Type, Accept, Authorization, x-goog-visitor-id, x-origin, x-youtube-client-version, Accept-Language",
+                "Access-Control-Allow-Headers":  "Origin, X-Requested-With, Content-Type, Accept, Authorization, x-goog-visitor-id, x-origin, x-youtube-client-version, Accept-Language, Range",
                 "Access-Control-Max-Age": "86400",
                 "Access-Control-Allow-Credentials": "true"
             })
@@ -40,9 +40,10 @@ const handler = async (request: Request): Promise<Response> => {
     console.log('url', url.toString());
     console.log('__headers', url.searchParams.get("__headers"));
     const request_headers = new Headers(JSON.parse(url.searchParams.get("__headers") || "{}"));
+    copyHeader("range", request_headers, request.headers);
     request_headers.set('user-agent', request.headers.get('user-agent')!);
     url.searchParams.delete("__headers");
-    console.log('headers', request_headers);
+    console.log('headers', request_headers, request.headers.get('range'));
     const fetchRes = await fetch(url, {
         method: request.method,
         headers: request_headers,

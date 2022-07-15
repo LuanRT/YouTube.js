@@ -1,5 +1,6 @@
 import './style.css'
 import { Innertube } from "../../../../build/browser.js";
+import dashjs from "dashjs";
 
 async function main() {
   const yt = await Innertube.create({
@@ -29,6 +30,19 @@ async function main() {
     
       console.log(video);
       span.textContent = video.basic_info.title || null;
+
+      const dash = video.toDash();
+
+      const uri = "data:application/dash+xml;charset=utf-8;base64," + btoa(dash);
+
+      // create and append video element
+      const video_element = document.createElement('video');
+      video_element.setAttribute('controls', 'true');
+      // use dash.js to parse the manifest
+      const player = dashjs.MediaPlayer().create();
+      player.initialize(video_element, uri, true);
+      // append to dom
+      document.body.appendChild(video_element);
     } catch (error) {
       span.textContent = 'An error occurred (see console)';
       console.error(error);

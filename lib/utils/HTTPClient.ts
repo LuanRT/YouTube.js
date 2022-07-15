@@ -16,6 +16,10 @@ export default class HTTPClient {
         this.#browser_proxy = browser_proxy;
     }
 
+    get browser_proxy() {
+        return this.#browser_proxy ? {...this.#browser_proxy} : undefined;
+    }
+
     async fetch(
         input: URL | Request | string,
         init?: RequestInit & HTTPClientInit,

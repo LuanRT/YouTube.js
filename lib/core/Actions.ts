@@ -54,6 +54,10 @@ class Actions {
     constructor(session: Session) {
         this.#session = session;
     }
+    get session() {
+        return this.#session;
+    }
+
     /**
      * Mimmics the Axios API using Fetch's Response object.
      */

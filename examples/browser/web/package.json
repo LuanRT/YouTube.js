@@ -11,5 +11,8 @@
   "devDependencies": {
     "typescript": "^4.6.4",
     "vite": "^3.0.0"
+  },
+  "dependencies": {
+    "dashjs": "^4.4.0"
   }
 }

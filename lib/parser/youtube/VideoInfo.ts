@@ -1,8 +1,8 @@
-import { InnertubeError, streamToIterable } from "../../utils/Utils";
+import { getStringBetweenStrings, InnertubeError, streamToIterable } from "../../utils/Utils";
 import Parser, { ParsedResponse } from "../index.js";
 import LiveChat from "../classes/LiveChat";
 import Constants from "../../utils/Constants.js";
-import Actions, { ActionsResponse, AxioslikeResponse } from "../../core/Actions";
+import Actions, { AxioslikeResponse } from "../../core/Actions";
 import Player from "../../core/Player";
 import TwoColumnWatchNextResults from "../classes/TwoColumnWatchNextResults";
 import VideoPrimaryInfo from "../classes/VideoPrimaryInfo";
@@ -19,7 +19,9 @@ import LiveChatWrap from './LiveChat';
 import CompactVideo from "../classes/CompactVideo";
 import CompactMix from "../classes/CompactMix";
 import PlayerMicroformat from "../classes/PlayerMicroformat";
-import MicroformatData from "../classes/MicroformatData";
+import Format from "../classes/misc/Format";
+import { create } from "xmlbuilder2";
+import { XMLBuilder } from 'xmlbuilder2/lib/interfaces';
 
 export interface FormatOptions {
     /**
@@ -306,6 +308,143 @@ class VideoInfo {
             candidates.sort((a, b) => b.bitrate - a.bitrate);
         }
         return candidates[0];
+    }
+
+    toDash() {
+        if (!this.streaming_data)
+            throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
+        
+        const { adaptive_formats } = this.streaming_data;
+
+        const length = adaptive_formats[0].approx_duration_ms / 1000;
+
+        const root = create({ version: '1.0', encoding: 'UTF-8' });
+
+        const period = root
+            .ele('MPD', { 
+                xmlns: 'urn:mpeg:dash:schema:mpd:2011',
+                minBufferTime: "PT1.500S", 
+                profiles: "urn:mpeg:dash:profile:isoff-main:2011",
+                type: "static", 
+                mediaPresentationDuration: `PT${length}S` 
+            })
+            .att('xmlns', 'xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+            .att('xsi', 'schemaLocation', 'urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd')
+                .ele('Period');
+
+        this.#generateAdaptationSet(period, adaptive_formats);
+
+        return root.end({ prettyPrint: true });
+    }
+
+    #generateAdaptationSet(period: XMLBuilder, formats: Format[]) {
+        const mimeTypes: string[] = [];
+        const mimeObjects: Format[][] = [[]];
+        // sort the formats by mime types
+        formats.forEach(videoFormat => {
+            // if these properties are not available, then we skip it because we cannot set these properties
+            //if (!(videoFormat.hasOwnProperty('initRange') && videoFormat.hasOwnProperty('indexRange'))) {
+            //   return
+            //}
+            const mimeType = videoFormat.mime_type;
+            const mimeTypeIndex = mimeTypes.indexOf(mimeType);
+            if (mimeTypeIndex > -1) {
+                mimeObjects[mimeTypeIndex].push(videoFormat);
+            } else {
+                mimeTypes.push(mimeType);
+                mimeObjects.push([]);
+                mimeObjects[mimeTypes.length - 1].push(videoFormat);
+            }
+        });
+        // for each MimeType generate a new Adaptation set with Representations as sub elements
+        for (let i = 0; i < mimeTypes.length; i++) {
+            const set = period
+                .ele('AdaptationSet', {
+                    id: i,
+                    mimeType: mimeTypes[i].split(';')[0],
+                    startWithSAP: "1",
+                    subsegmentAlignment: "true",
+                    scanType: !mimeTypes[i].includes("audio") ? "progressive" : undefined,
+                });
+            mimeObjects[i].forEach(format => {
+                if (format.has_video) {
+                    this.#generateRepresentationVideo(set, format);
+                } else {
+                    this.#generateRepresentationAudio(set, format);
+                }
+            });
+        }
+    }
+
+    #generateRepresentationVideo(set: XMLBuilder, format: Format) {
+        const codecs = getStringBetweenStrings(format.mime_type, "codecs=\"", "\"");
+        if (!format.index_range || !format.init_range)
+            throw new InnertubeError('Index and init ranges not available', { format });
+
+        const url = new URL(format.decipher(this.#player));
+        url.searchParams.set('cpn', this.#cpn);
+        const browser_proxy = this.#actions.session.http.browser_proxy;
+        if (browser_proxy) {
+            url.searchParams.set('__host', url.host);
+            url.host = browser_proxy.host;
+            url.protocol = browser_proxy.schema;
+        }
+
+        set
+            .ele("Representation", {
+                id: format.itag,
+                codecs,
+                bandwidth: format.bitrate,
+                width: format.width,
+                height: format.height,
+                maxPlayoutRate: "1",
+                frameRate: format.fps,
+            })
+                .ele("BaseURL")
+                    .txt(url.toString())
+                    .up()
+                .ele("SegmentBase", {
+                    indexRange: `${format.index_range.start}-${format.index_range.end}`,
+                })
+                    .ele("Initialization", {
+                        range: `${format.init_range.start}-${format.init_range.end}`,
+                    });
+    }
+
+    #generateRepresentationAudio(set: XMLBuilder, format: Format) {
+        const codecs = getStringBetweenStrings(format.mime_type, "codecs=\"", "\"");
+        if (!format.index_range || !format.init_range)
+            throw new InnertubeError('Index and init ranges not available', { format });
+
+        const url = new URL(format.decipher(this.#player));
+        url.searchParams.set('cpn', this.#cpn);
+        const browser_proxy = this.#actions.session.http.browser_proxy;
+        if (browser_proxy) {
+            url.searchParams.set('__host', url.host);
+            url.host = browser_proxy.host;
+            url.protocol = browser_proxy.schema;
+        }
+
+        set
+            .ele("Representation", {
+                id: format.itag,
+                codecs,
+                bandwidth: format.bitrate,
+            })
+                .ele("AudioChannelConfiguration", {
+                    schemeIdUri: "urn:mpeg:dash:23003:3:audio_channel_configuration:2011",
+                    value: format.audio_channels || "2",
+                })
+                .up()
+                .ele("BaseURL")
+                    .txt(url.toString())
+                    .up()
+                .ele("SegmentBase", {
+                    indexRange: `${format.index_range.start}-${format.index_range.end}`,
+                })
+                    .ele("Initialization", {
+                        range: `${format.init_range.start}-${format.init_range.end}`,
+                    });
     }
 
     /**
