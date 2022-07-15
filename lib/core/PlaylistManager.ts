@@ -1,5 +1,7 @@
+import Playlist from "../parser/youtube/Playlist";
 import { InnertubeError, throwIfMissing, findNode } from "../utils/Utils";
 import Actions from "./Actions";
+import Feed from "./Feed";
 
 class PlaylistManager {
     #actions;
@@ -53,7 +55,7 @@ class PlaylistManager {
     /**
      * Removes videos from a given playlist.
      */
-    async removeVideos(playlist_id, video_ids) {
+    async removeVideos(playlist_id: string, video_ids: string[]) {
         throwIfMissing({ playlist_id, video_ids });
 
         const info = await this.#actions.execute('/browse', { browseId: `VL${playlist_id}`, parse: true });
@@ -64,16 +66,19 @@ class PlaylistManager {
 
         const payload = {
             playlistId: playlist_id,
-            actions: []
+            actions: [] as {
+                action: string;
+                setVideoId: string;
+            }[]
         };
 
-        const getSetVideoIds = async (pl) => {
-            const videos = pl.videos.filter((video) => video_ids.includes(video.id));
+        const getSetVideoIds = async (pl: Feed): Promise<void> => {
+            const videos = pl.videos.filter((video) => video_ids.includes(video.key("id").string()));
 
             videos.forEach((video) =>
                 payload.actions.push({
                     action: 'ACTION_REMOVE_VIDEO',
-                    setVideoId: video.set_video_id
+                    setVideoId: video.key("set_video_id").string()
                 })
             );
 
@@ -98,11 +103,8 @@ class PlaylistManager {
 
     /**
      * Moves a video to a new position within a given playlist.
-     * @param {string} playlist_id
-     * @param {string} moved_video_id
-     * @param {string} predecessor_video_id
      */
-    async moveVideo(playlist_id, moved_video_id, predecessor_video_id) {
+    async moveVideo(playlist_id: string, moved_video_id: string, predecessor_video_id: string) {
         throwIfMissing({ playlist_id, moved_video_id, predecessor_video_id });
 
         const info = await this.#actions.execute('/browse', { browseId: `VL${playlist_id}`, parse: true });
@@ -113,17 +115,22 @@ class PlaylistManager {
 
         const payload = {
             playlistId: playlist_id,
-            actions: []
+            actions: [] as {
+                action: string,
+                setVideoId?: string,
+                movedSetVideoIdPredecessor?: string
+            }[]
         };
 
-        let set_video_id_0, set_video_id_1;
+        let set_video_id_0: string | undefined, 
+            set_video_id_1: string | undefined;
 
-        const getSetVideoIds = async (pl) => {
-            const video_0 = pl.videos.find((video) => moved_video_id === video.id);
-            const video_1 = pl.videos.find((video) => predecessor_video_id === video.id);
+        const getSetVideoIds = async (pl: Feed): Promise<void> => {
+            const video_0 = pl.videos.find((video) => moved_video_id === video.key("id").string());
+            const video_1 = pl.videos.find((video) => predecessor_video_id === video.key("id").string());
 
-            set_video_id_0 = set_video_id_0 || video_0?.set_video_id;
-            set_video_id_1 = set_video_id_1 || video_1?.set_video_id;
+            set_video_id_0 = set_video_id_0 || video_0?.key("set_video_id").string();
+            set_video_id_1 = set_video_id_1 || video_1?.key("set_video_id").string();
 
             if (!set_video_id_0 || !set_video_id_1) {
                 const next = await pl.getContinuation();

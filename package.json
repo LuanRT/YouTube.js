@@ -10,12 +10,12 @@
   "funding": "https://ko-fi.com/luanrt",
   "license": "MIT",
   "scripts": {
-    "test": "npx jest --verbose",
+    "test": "npm run build:node && npx jest --verbose",
     "lint": "npx eslint ./lib",
     "lint:fix": "npx eslint --fix ./lib",
-    "build:node": "tsc",
+    "build:node": "npm run build:parser-map && npx tsc",
     "build:parser-map": "node ./scripts/build-parser-json.js",
-    "build:general": "npm run build:parser-map && tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis",
+    "build:general": "npm run build:parser-map && npx tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis",
     "build:browser": "npm run build:general -- --outfile=./build/browser.js --platform=browser",
     "build:browser:prod": "npm run build:general -- --outfile=./build/browser.min.js --platform=browser --minify"
   },
