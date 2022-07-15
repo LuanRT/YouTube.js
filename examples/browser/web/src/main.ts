@@ -15,6 +15,8 @@ async function main() {
 
   span.textContent = 'Library ready';
 
+  let player: dashjs.MediaPlayerClass | undefined = undefined;
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
@@ -36,10 +38,12 @@ async function main() {
       const uri = "data:application/dash+xml;charset=utf-8;base64," + btoa(dash);
 
       // create and append video element
-      const video_element = document.createElement('video');
+      const video_element = document.querySelector('video') as HTMLVideoElement;
       video_element.setAttribute('controls', 'true');
       // use dash.js to parse the manifest
-      const player = dashjs.MediaPlayer().create();
+      if (player)
+        player.destroy();
+      player = dashjs.MediaPlayer().create();
       player.initialize(video_element, uri, true);
       // append to dom
       document.body.appendChild(video_element);

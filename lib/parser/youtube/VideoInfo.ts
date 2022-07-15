@@ -340,12 +340,11 @@ class VideoInfo {
     #generateAdaptationSet(period: XMLBuilder, formats: Format[]) {
         const mimeTypes: string[] = [];
         const mimeObjects: Format[][] = [[]];
-        // sort the formats by mime types
+        
         formats.forEach(videoFormat => {
-            // if these properties are not available, then we skip it because we cannot set these properties
-            //if (!(videoFormat.hasOwnProperty('initRange') && videoFormat.hasOwnProperty('indexRange'))) {
-            //   return
-            //}
+            if (!videoFormat.index_range || !videoFormat.init_range) {
+                return;   
+            }
             const mimeType = videoFormat.mime_type;
             const mimeTypeIndex = mimeTypes.indexOf(mimeType);
             if (mimeTypeIndex > -1) {
@@ -356,7 +355,7 @@ class VideoInfo {
                 mimeObjects[mimeTypes.length - 1].push(videoFormat);
             }
         });
-        // for each MimeType generate a new Adaptation set with Representations as sub elements
+
         for (let i = 0; i < mimeTypes.length; i++) {
             const set = period
                 .ele('AdaptationSet', {

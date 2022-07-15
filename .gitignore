@@ -63,3 +63,6 @@ pnpm-lock.yaml
 # Temporary files for testing
 tmp/
 dist/
+
+# MacOS
+.DS_Store

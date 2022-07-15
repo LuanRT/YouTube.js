@@ -33143,6 +33143,9 @@ _VideoInfo_page = /* @__PURE__ */ new WeakMap(), _VideoInfo_actions = /* @__PURE
   const mimeTypes = [];
   const mimeObjects = [[]];
   formats.forEach((videoFormat) => {
+    if (!videoFormat.index_range || !videoFormat.init_range) {
+      return;
+    }
     const mimeType = videoFormat.mime_type;
     const mimeTypeIndex = mimeTypes.indexOf(mimeType);
     if (mimeTypeIndex > -1) {
