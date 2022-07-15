@@ -45,6 +45,7 @@
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
   [![Monthly downloads](https://img.shields.io/npm/dm/youtubei.js)][npm]
   [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks] 
+  [![Discord](https://img.shields.io/discord/996229661694627930.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/syDu7Yks54)
 
 </div>
 
@@ -91,6 +92,8 @@ ___
 Innertube is an API used across all YouTube clients, it was created [to simplify][gizmodo] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
 
 And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workings of the Innertube API!
+
+If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
 
 ### Features
 
