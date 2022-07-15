@@ -1,4 +1,4 @@
-import Session, { Context } from "../core/Session";
+import Session, { BrowserProxy, Context } from "../core/Session";
 import Constants from "./Constants";
 import { generateSidAuth, getRandomUserAgent, getRuntime, getStringBetweenStrings, InnertubeError, isServer } from "./Utils";
 
@@ -9,9 +9,11 @@ export interface HTTPClientInit {
 export default class HTTPClient {
     #session: Session;
     #cookie?: string;
-    constructor(session: Session, cookie?: string) {
+    #browser_proxy?: BrowserProxy;
+    constructor(session: Session, cookie?: string, browser_proxy?: BrowserProxy) {
         this.#session = session;
         this.#cookie = cookie;
+        this.#browser_proxy = browser_proxy;
     }
 
     async fetch(
@@ -49,6 +51,17 @@ export default class HTTPClient {
         if (isServer()) {
             request_headers.set('User-Agent', getRandomUserAgent('desktop').userAgent);
             request_headers.set('origin', request_url.origin);
+        }
+
+        if (this.#browser_proxy) {
+            const serialized_headers: Record<string, string> = {};
+            request_headers.forEach((value, key) => {
+                serialized_headers[key] = value;
+            })
+            request_url.searchParams.set('__host', request_url.host);
+            request_url.host = this.#browser_proxy.host;
+            request_url.protocol = this.#browser_proxy.schema;
+            request_url.searchParams.set('__headers', JSON.stringify(serialized_headers));
         }
 
         request_url.searchParams.set("key", this.#session.key);

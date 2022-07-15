@@ -44,6 +44,12 @@ export enum ClientType {
     ANDROID = "ANDROID",
 }
 
+
+export interface BrowserProxy {
+    host: string;
+    schema: 'http' | 'https';
+}
+
 export interface SessionOptions {
     lang?: string;
     device_category?: DeviceCategory;
@@ -51,6 +57,7 @@ export interface SessionOptions {
     timezone?: string;
     cache?: UniversalCache;
     cookie?: string;
+    browser_proxy?: BrowserProxy;
 }
 
 export default class Session extends EventEmitterLike {
@@ -62,13 +69,13 @@ export default class Session extends EventEmitterLike {
     http;
     logged_in;
     actions;
-    constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string) {
+    constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string, browser_proxy?: BrowserProxy) {
         super();
         this.#context = context;
         this.#key = api_key;
         this.#api_version = api_version;
         this.#player = player;
-        this.http = new HTTPClient(this, cookie);
+        this.http = new HTTPClient(this, cookie, browser_proxy);
         this.actions = new Actions(this);
         this.oauth = new OAuth(this);
         this.logged_in = !!cookie;
@@ -100,16 +107,23 @@ export default class Session extends EventEmitterLike {
         return response;
     }
     static async create(options: SessionOptions = {}) {
-        const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone);
-        return new Session(context, api_key, api_version, await Player.create(options.cache), options.cookie);
+        const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.browser_proxy);
+        return new Session(context, api_key, api_version, await Player.create(options.cache, options.browser_proxy), options.cookie, options.browser_proxy);
     }
     static async getSessionData(
         lang: string = 'en-US', 
         deviceCategory: DeviceCategory = 'desktop', 
         clientName: ClientType = ClientType.WEB, 
-        tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone
+        tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
+        browser_proxy?: BrowserProxy
     ) {
-        const res = await fetch(new URL('/sw.js_data', Constants.URLS.YT_BASE), {
+        const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
+        if (browser_proxy) {
+            url.searchParams.set('__host', url.host);
+            url.host = browser_proxy.host;
+            url.protocol = browser_proxy.schema;
+        }
+        const res = await fetch(url, {
             headers: {
                 'accept-language': lang,
                 'user-agent': getRandomUserAgent('desktop').userAgent,

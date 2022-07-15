@@ -2924,8 +2924,6 @@ var package_default = {
   license: "MIT",
   scripts: {
     test: "npx jest --verbose",
-    "test:node": "npm run build:node && npx jest node",
-    "test:browser": "npm run build:browser:prod && npx jest browser",
     lint: "npx eslint ./lib",
     "lint:fix": "npx eslint --fix ./lib",
     "build:node": "tsc",
@@ -4222,9 +4220,15 @@ var Player = class {
   get sts() {
     return __classPrivateFieldGet(this, _Player_signature_timestamp, "f");
   }
-  static create(cache) {
+  static create(cache, browser_proxy) {
     return __awaiter2(this, void 0, void 0, function* () {
-      const res = yield fetch(new URL("/iframe_api", Constants_default.URLS.YT_BASE));
+      const url = new URL("/iframe_api", Constants_default.URLS.YT_BASE);
+      if (browser_proxy) {
+        url.searchParams.set("__host", url.host);
+        url.host = browser_proxy.host;
+        url.protocol = browser_proxy.schema;
+      }
+      const res = yield fetch(url);
       if (res.status !== 200)
         throw new PlayerError("Failed to request player id");
       const js = yield res.text();
@@ -4237,6 +4241,11 @@ var Player = class {
           return cachedPlayer;
       }
       const player_url = new URL(`/s/player/${player_id}/player_ias.vflset/en_US/base.js`, Constants_default.URLS.YT_BASE);
+      if (browser_proxy) {
+        player_url.searchParams.set("__host", player_url.host);
+        player_url.host = browser_proxy.host;
+        player_url.protocol = browser_proxy.schema;
+      }
       const player_res = yield fetch(player_url, {
         headers: {
           "user-agent": getRandomUserAgent("desktop").userAgent
@@ -7845,14 +7854,17 @@ var __classPrivateFieldGet4 = function(receiver, state, kind, f) {
 var _HTTPClient_instances;
 var _HTTPClient_session;
 var _HTTPClient_cookie;
+var _HTTPClient_browser_proxy;
 var _HTTPClient_adjustContext;
 var HTTPClient = class {
-  constructor(session, cookie) {
+  constructor(session, cookie, browser_proxy) {
     _HTTPClient_instances.add(this);
     _HTTPClient_session.set(this, void 0);
     _HTTPClient_cookie.set(this, void 0);
+    _HTTPClient_browser_proxy.set(this, void 0);
     __classPrivateFieldSet3(this, _HTTPClient_session, session, "f");
     __classPrivateFieldSet3(this, _HTTPClient_cookie, cookie, "f");
+    __classPrivateFieldSet3(this, _HTTPClient_browser_proxy, browser_proxy, "f");
   }
   fetch(input, init) {
     return __awaiter4(this, void 0, void 0, function* () {
@@ -7870,6 +7882,16 @@ var HTTPClient = class {
       if (isServer()) {
         request_headers.set("User-Agent", getRandomUserAgent("desktop").userAgent);
         request_headers.set("origin", request_url.origin);
+      }
+      if (__classPrivateFieldGet4(this, _HTTPClient_browser_proxy, "f")) {
+        const serialized_headers = {};
+        request_headers.forEach((value, key) => {
+          serialized_headers[key] = value;
+        });
+        request_url.searchParams.set("__host", request_url.host);
+        request_url.host = __classPrivateFieldGet4(this, _HTTPClient_browser_proxy, "f").host;
+        request_url.protocol = __classPrivateFieldGet4(this, _HTTPClient_browser_proxy, "f").schema;
+        request_url.searchParams.set("__headers", JSON.stringify(serialized_headers));
       }
       request_url.searchParams.set("key", __classPrivateFieldGet4(this, _HTTPClient_session, "f").key);
       request_url.searchParams.set("prettyPrint", "false");
@@ -7924,7 +7946,7 @@ var HTTPClient = class {
   }
 };
 __name(HTTPClient, "HTTPClient");
-_HTTPClient_session = /* @__PURE__ */ new WeakMap(), _HTTPClient_cookie = /* @__PURE__ */ new WeakMap(), _HTTPClient_instances = /* @__PURE__ */ new WeakSet(), _HTTPClient_adjustContext = /* @__PURE__ */ __name(function _HTTPClient_adjustContext2(ctx, client) {
+_HTTPClient_session = /* @__PURE__ */ new WeakMap(), _HTTPClient_cookie = /* @__PURE__ */ new WeakMap(), _HTTPClient_browser_proxy = /* @__PURE__ */ new WeakMap(), _HTTPClient_instances = /* @__PURE__ */ new WeakSet(), _HTTPClient_adjustContext = /* @__PURE__ */ __name(function _HTTPClient_adjustContext2(ctx, client) {
   switch (client) {
     case "YTMUSIC":
       ctx.client.clientVersion = Constants_default.CLIENTS.YTMUSIC.VERSION;
@@ -8035,9 +8057,10 @@ var __classPrivateFieldGet5 = function(receiver, state, kind, f) {
     throw new TypeError("Cannot read private member from an object whose class did not declare it");
   return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _UnknownPropertyValidator_instances;
-var _UnknownPropertyValidator_value;
-var _UnknownPropertyValidator_assertPrimative;
+var _Maybe_instances;
+var _Maybe_value;
+var _Maybe_checkPrimative;
+var _Maybe_assertPrimative;
 var _SuperParsedResult_result;
 var isObserved = Symbol("ObservedArray.isObserved");
 var YTNode = class {
@@ -8056,6 +8079,12 @@ var YTNode = class {
   isOneOf(types) {
     return types.some((type) => this.is(type));
   }
+  asOneOf(types) {
+    if (!this.isOneOf(types)) {
+      throw new ParsingError(`Cannot cast ${this.type} to one of ${types.map((t) => t.type).join(", ")}`);
+    }
+    return this;
+  }
   hasKey(key) {
     return Reflect.has(this, key);
   }
@@ -8063,90 +8092,162 @@ var YTNode = class {
     if (!this.hasKey(key)) {
       throw new ParsingError(`Missing key ${key}`);
     }
-    return new UnknownPropertyValidator(this[key]);
+    return new Maybe(this[key]);
   }
 };
 __name(YTNode, "YTNode");
 YTNode.type = "YTNode";
-var UnknownPropertyValidator = class {
+var Maybe = class {
   constructor(value) {
-    _UnknownPropertyValidator_instances.add(this);
-    _UnknownPropertyValidator_value.set(this, void 0);
-    __classPrivateFieldSet4(this, _UnknownPropertyValidator_value, value, "f");
+    _Maybe_instances.add(this);
+    _Maybe_value.set(this, void 0);
+    __classPrivateFieldSet4(this, _Maybe_value, value, "f");
+  }
+  get typeof() {
+    return typeof __classPrivateFieldGet5(this, _Maybe_value, "f");
   }
   string() {
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_instances, "m", _UnknownPropertyValidator_assertPrimative).call(this, "string");
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_assertPrimative).call(this, "string");
+  }
+  isString() {
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, "string");
   }
   number() {
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_instances, "m", _UnknownPropertyValidator_assertPrimative).call(this, "number");
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_assertPrimative).call(this, "number");
+  }
+  isNumber() {
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, "number");
   }
   bigint() {
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_instances, "m", _UnknownPropertyValidator_assertPrimative).call(this, "bigint");
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_assertPrimative).call(this, "bigint");
+  }
+  isBigint() {
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, "bigint");
   }
   boolean() {
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_instances, "m", _UnknownPropertyValidator_assertPrimative).call(this, "boolean");
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_assertPrimative).call(this, "boolean");
+  }
+  isBoolean() {
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, "boolean");
   }
   symbol() {
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_instances, "m", _UnknownPropertyValidator_assertPrimative).call(this, "symbol");
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_assertPrimative).call(this, "symbol");
+  }
+  isSymbol() {
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, "symbol");
   }
   undefined() {
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_instances, "m", _UnknownPropertyValidator_assertPrimative).call(this, "undefined");
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_assertPrimative).call(this, "undefined");
+  }
+  isUndefined() {
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, "undefined");
+  }
+  null() {
+    if (__classPrivateFieldGet5(this, _Maybe_value, "f") !== null)
+      throw new TypeError(`Expected null, got ${typeof __classPrivateFieldGet5(this, _Maybe_value, "f")}`);
+    return __classPrivateFieldGet5(this, _Maybe_value, "f");
+  }
+  isNull() {
+    return __classPrivateFieldGet5(this, _Maybe_value, "f") === null;
   }
   object() {
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_instances, "m", _UnknownPropertyValidator_assertPrimative).call(this, "object");
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_assertPrimative).call(this, "object");
+  }
+  isObject() {
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, "object");
   }
   function() {
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_instances, "m", _UnknownPropertyValidator_assertPrimative).call(this, "function");
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_assertPrimative).call(this, "function");
+  }
+  isFunction() {
+    return __classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, "function");
   }
   array() {
-    if (!Array.isArray(__classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f"))) {
-      throw new TypeError(`Expected array, got ${typeof __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f")}`);
+    if (!Array.isArray(__classPrivateFieldGet5(this, _Maybe_value, "f"))) {
+      throw new TypeError(`Expected array, got ${typeof __classPrivateFieldGet5(this, _Maybe_value, "f")}`);
     }
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f");
+    return __classPrivateFieldGet5(this, _Maybe_value, "f");
+  }
+  arrayOfMaybe() {
+    const arrayProps = [];
+    return new Proxy(this.array(), {
+      get(target, prop) {
+        if (Reflect.has(arrayProps, prop)) {
+          return Reflect.get(target, prop);
+        }
+        return new Maybe(Reflect.get(target, prop));
+      }
+    });
+  }
+  isArray() {
+    return Array.isArray(__classPrivateFieldGet5(this, _Maybe_value, "f"));
   }
   node() {
-    if (!(__classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f") instanceof YTNode)) {
-      throw new TypeError(`Expected YTNode, got ${__classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f").constructor.name}`);
+    if (!(__classPrivateFieldGet5(this, _Maybe_value, "f") instanceof YTNode)) {
+      throw new TypeError(`Expected YTNode, got ${__classPrivateFieldGet5(this, _Maybe_value, "f").constructor.name}`);
     }
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f");
+    return __classPrivateFieldGet5(this, _Maybe_value, "f");
+  }
+  isNode() {
+    return __classPrivateFieldGet5(this, _Maybe_value, "f") instanceof YTNode;
   }
   nodeOfType(type) {
     return this.node().as(type);
   }
+  isNodeOfType(type) {
+    return this.isNode() && this.node().is(type);
+  }
   nodeOneOf(types) {
     return this.node().isOneOf(types);
   }
+  isNodeOneOf(types) {
+    return this.isNode() && this.node().isOneOf(types);
+  }
   observed() {
-    var _a2;
-    if (!((_a2 = __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f")) === null || _a2 === void 0 ? void 0 : _a2[isObserved])) {
-      throw new TypeError(`Expected ObservedArray, got ${typeof __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f")}`);
+    if (!this.isObserved()) {
+      throw new TypeError(`Expected ObservedArray, got ${typeof __classPrivateFieldGet5(this, _Maybe_value, "f")}`);
     }
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f");
+    return __classPrivateFieldGet5(this, _Maybe_value, "f");
+  }
+  isObserved() {
+    var _a2;
+    return (_a2 = __classPrivateFieldGet5(this, _Maybe_value, "f")) === null || _a2 === void 0 ? void 0 : _a2[isObserved];
   }
   parsed() {
-    if (!(__classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f") instanceof SuperParsedResult)) {
-      throw new TypeError(`Expected SuperParsedResult, got ${typeof __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f")}`);
+    if (!(__classPrivateFieldGet5(this, _Maybe_value, "f") instanceof SuperParsedResult)) {
+      throw new TypeError(`Expected SuperParsedResult, got ${typeof __classPrivateFieldGet5(this, _Maybe_value, "f")}`);
     }
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f");
+    return __classPrivateFieldGet5(this, _Maybe_value, "f");
+  }
+  isParsed() {
+    return __classPrivateFieldGet5(this, _Maybe_value, "f") instanceof SuperParsedResult;
   }
   any() {
     console.warn("This call is not meant to be used outside of debugging. Please use the specific type getter instead.");
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f");
+    return __classPrivateFieldGet5(this, _Maybe_value, "f");
   }
   instanceof(type) {
-    if (!(__classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f") instanceof type)) {
-      throw new TypeError(`Expected instance of ${type.name}, got ${__classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f").constructor.name}`);
+    if (!this.isInstanceof(type)) {
+      throw new TypeError(`Expected instance of ${type.name}, got ${__classPrivateFieldGet5(this, _Maybe_value, "f").constructor.name}`);
     }
-    return __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f");
+    return __classPrivateFieldGet5(this, _Maybe_value, "f");
+  }
+  isInstanceof(type) {
+    return __classPrivateFieldGet5(this, _Maybe_value, "f") instanceof type;
   }
 };
-__name(UnknownPropertyValidator, "UnknownPropertyValidator");
-_UnknownPropertyValidator_value = /* @__PURE__ */ new WeakMap(), _UnknownPropertyValidator_instances = /* @__PURE__ */ new WeakSet(), _UnknownPropertyValidator_assertPrimative = /* @__PURE__ */ __name(function _UnknownPropertyValidator_assertPrimative2(type) {
-  if (typeof __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f") !== type) {
-    throw new TypeError(`Expected ${type}, got ${typeof __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f")}`);
+__name(Maybe, "Maybe");
+_Maybe_value = /* @__PURE__ */ new WeakMap(), _Maybe_instances = /* @__PURE__ */ new WeakSet(), _Maybe_checkPrimative = /* @__PURE__ */ __name(function _Maybe_checkPrimative2(type) {
+  if (typeof __classPrivateFieldGet5(this, _Maybe_value, "f") !== type) {
+    return false;
   }
-  return __classPrivateFieldGet5(this, _UnknownPropertyValidator_value, "f");
-}, "_UnknownPropertyValidator_assertPrimative");
+  return true;
+}, "_Maybe_checkPrimative"), _Maybe_assertPrimative = /* @__PURE__ */ __name(function _Maybe_assertPrimative2(type) {
+  if (!__classPrivateFieldGet5(this, _Maybe_instances, "m", _Maybe_checkPrimative).call(this, type)) {
+    throw new TypeError(`Expected ${type}, got ${this.typeof}`);
+  }
+  return __classPrivateFieldGet5(this, _Maybe_value, "f");
+}, "_Maybe_assertPrimative");
 var SuperParsedResult = class {
   constructor(result) {
     _SuperParsedResult_result.set(this, void 0);
@@ -8608,7 +8709,7 @@ var NavigationEndpoint_default = NavigationEndpoint;
 var TextRun = class {
   constructor(data) {
     this.text = data.text;
-    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint_default(data.navigationEndpoint) : {};
+    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint_default(data.navigationEndpoint) : void 0;
   }
 };
 __name(TextRun, "TextRun");
@@ -10917,25 +11018,25 @@ var MusicResponsiveListItem = class extends YTNode {
     _MusicResponsiveListItem_flex_columns.set(this, void 0);
     _MusicResponsiveListItem_fixed_columns.set(this, void 0);
     _MusicResponsiveListItem_playlist_item_data.set(this, void 0);
-    __classPrivateFieldSet10(this, _MusicResponsiveListItem_flex_columns, Parser.parse(data.flexColumns), "f");
-    __classPrivateFieldSet10(this, _MusicResponsiveListItem_fixed_columns, Parser.parse(data.fixedColumns), "f");
+    __classPrivateFieldSet10(this, _MusicResponsiveListItem_flex_columns, Parser.parseArray(data.flexColumns), "f");
+    __classPrivateFieldSet10(this, _MusicResponsiveListItem_fixed_columns, Parser.parseArray(data.fixedColumns), "f");
     __classPrivateFieldSet10(this, _MusicResponsiveListItem_playlist_item_data, {
       video_id: ((_a2 = data === null || data === void 0 ? void 0 : data.playlistItemData) === null || _a2 === void 0 ? void 0 : _a2.videoId) || null,
       playlist_set_video_id: ((_b = data === null || data === void 0 ? void 0 : data.playlistItemData) === null || _b === void 0 ? void 0 : _b.playlistSetVideoId) || null
     }, "f");
-    this.endpoint = data.navigationEndpoint && new NavigationEndpoint_default(data.navigationEndpoint) || null;
+    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint_default(data.navigationEndpoint) : void 0;
     switch ((_d = (_c = this.endpoint) === null || _c === void 0 ? void 0 : _c.browse) === null || _d === void 0 ? void 0 : _d.page_type) {
       case "MUSIC_PAGE_TYPE_ALBUM":
-        this.type = "album";
+        this.list_type = "album";
         __classPrivateFieldGet12(this, _MusicResponsiveListItem_instances, "m", _MusicResponsiveListItem_parseAlbum).call(this);
         break;
       case "MUSIC_PAGE_TYPE_PLAYLIST":
-        this.type = "playlist";
+        this.list_type = "playlist";
         __classPrivateFieldGet12(this, _MusicResponsiveListItem_instances, "m", _MusicResponsiveListItem_parsePlaylist).call(this);
         break;
       case "MUSIC_PAGE_TYPE_ARTIST":
       case "MUSIC_PAGE_TYPE_USER_CHANNEL":
-        this.type = "artist";
+        this.list_type = "artist";
         __classPrivateFieldGet12(this, _MusicResponsiveListItem_instances, "m", _MusicResponsiveListItem_parseArtist).call(this);
         break;
       default:
@@ -10946,7 +11047,7 @@ var MusicResponsiveListItem = class extends YTNode {
       this.index = new Text_default(data.index);
     }
     this.thumbnails = data.thumbnail ? Thumbnail_default.fromResponse(data.thumbnail.musicThumbnailRenderer.thumbnail) : [];
-    this.badges = Parser.parse(data.badges) || [];
+    this.badges = Parser.parseArray(data.badges);
     this.menu = Parser.parse(data.menu);
     this.overlay = Parser.parse(data.overlay);
   }
@@ -10954,95 +11055,103 @@ var MusicResponsiveListItem = class extends YTNode {
 __name(MusicResponsiveListItem, "MusicResponsiveListItem");
 _MusicResponsiveListItem_flex_columns = /* @__PURE__ */ new WeakMap(), _MusicResponsiveListItem_fixed_columns = /* @__PURE__ */ new WeakMap(), _MusicResponsiveListItem_playlist_item_data = /* @__PURE__ */ new WeakMap(), _MusicResponsiveListItem_instances = /* @__PURE__ */ new WeakSet(), _MusicResponsiveListItem_parseVideoOrSong = /* @__PURE__ */ __name(function _MusicResponsiveListItem_parseVideoOrSong2() {
   var _a2;
-  const is_video = (_a2 = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs) === null || _a2 === void 0 ? void 0 : _a2.some((run) => run.text.match(/(.*?) views/));
+  const is_video = (_a2 = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _a2 === void 0 ? void 0 : _a2.some((run) => run.text.match(/(.*?) views/));
   if (is_video) {
-    this.type = "video";
+    this.list_type = "video";
     __classPrivateFieldGet12(this, _MusicResponsiveListItem_instances, "m", _MusicResponsiveListItem_parseVideo).call(this);
   } else {
-    this.type = "song";
+    this.list_type = "song";
     __classPrivateFieldGet12(this, _MusicResponsiveListItem_instances, "m", _MusicResponsiveListItem_parseSong).call(this);
   }
 }, "_MusicResponsiveListItem_parseVideoOrSong"), _MusicResponsiveListItem_parseSong = /* @__PURE__ */ __name(function _MusicResponsiveListItem_parseSong2() {
-  var _a2, _b, _c, _d, _e, _f, _g;
-  this.id = __classPrivateFieldGet12(this, _MusicResponsiveListItem_playlist_item_data, "f").video_id || this.endpoint.watch.video_id;
-  this.title = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].title.toString();
-  const duration_text = ((_b = (_a2 = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs) === null || _a2 === void 0 ? void 0 : _a2.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))) === null || _b === void 0 ? void 0 : _b.text) || ((_e = (_d = (_c = __classPrivateFieldGet12(this, _MusicResponsiveListItem_fixed_columns, "f")) === null || _c === void 0 ? void 0 : _c[0]) === null || _d === void 0 ? void 0 : _d.title) === null || _e === void 0 ? void 0 : _e.text);
+  var _a2, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
+  this.id = __classPrivateFieldGet12(this, _MusicResponsiveListItem_playlist_item_data, "f").video_id || ((_b = (_a2 = this.endpoint) === null || _a2 === void 0 ? void 0 : _a2.watch) === null || _b === void 0 ? void 0 : _b.video_id);
+  this.title = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].key("title").instanceof(Text_default).toString();
+  const duration_text = ((_d = (_c = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _c === void 0 ? void 0 : _c.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))) === null || _d === void 0 ? void 0 : _d.text) || ((_g = (_f = (_e = __classPrivateFieldGet12(this, _MusicResponsiveListItem_fixed_columns, "f")) === null || _e === void 0 ? void 0 : _e[0]) === null || _f === void 0 ? void 0 : _f.key("title").instanceof(Text_default)) === null || _g === void 0 ? void 0 : _g.toString());
   duration_text && (this.duration = {
     text: duration_text,
     seconds: timeToSeconds(duration_text)
   });
-  const album = (_f = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs) === null || _f === void 0 ? void 0 : _f.find((run) => {
-    var _a3;
-    return (_a3 = run.endpoint.browse) === null || _a3 === void 0 ? void 0 : _a3.id.startsWith("MPR");
+  const album = (_h = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _h === void 0 ? void 0 : _h.find((run) => {
+    var _a3, _b2;
+    return (_b2 = (_a3 = Reflect.get(run, "endpoint")) === null || _a3 === void 0 ? void 0 : _a3.browse) === null || _b2 === void 0 ? void 0 : _b2.id.startsWith("MPR");
   });
   if (album) {
     this.album = {
-      id: album.endpoint.browse.id,
+      id: (_k = (_j = album.endpoint) === null || _j === void 0 ? void 0 : _j.browse) === null || _k === void 0 ? void 0 : _k.id,
       name: album.text,
       endpoint: album.endpoint
     };
   }
-  const artists = (_g = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs) === null || _g === void 0 ? void 0 : _g.filter((run) => {
-    var _a3;
-    return (_a3 = run.endpoint.browse) === null || _a3 === void 0 ? void 0 : _a3.id.startsWith("UC");
+  const artists = (_l = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _l === void 0 ? void 0 : _l.filter((run) => {
+    var _a3, _b2;
+    return (_b2 = (_a3 = Reflect.get(run, "endpoint")) === null || _a3 === void 0 ? void 0 : _a3.browse) === null || _b2 === void 0 ? void 0 : _b2.id.startsWith("UC");
   });
   if (artists) {
-    this.artists = artists.map((artist) => ({
-      name: artist.text,
-      channel_id: artist.endpoint.browse.id,
-      endpoint: artist.endpoint
-    }));
+    this.artists = artists.map((artist) => {
+      var _a3, _b2;
+      return {
+        name: artist.text,
+        channel_id: (_b2 = (_a3 = artist.endpoint) === null || _a3 === void 0 ? void 0 : _a3.browse) === null || _b2 === void 0 ? void 0 : _b2.id,
+        endpoint: artist.endpoint
+      };
+    });
   }
 }, "_MusicResponsiveListItem_parseSong"), _MusicResponsiveListItem_parseVideo = /* @__PURE__ */ __name(function _MusicResponsiveListItem_parseVideo2() {
-  var _a2, _b;
+  var _a2, _b, _c, _d, _e;
   this.id = __classPrivateFieldGet12(this, _MusicResponsiveListItem_playlist_item_data, "f").video_id;
-  this.title = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].title.toString();
-  this.views = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs.find((run) => run.text.match(/(.*?) views/)).text;
-  const authors = (_a2 = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs) === null || _a2 === void 0 ? void 0 : _a2.filter((run) => {
-    var _a3;
-    return (_a3 = run.endpoint.browse) === null || _a3 === void 0 ? void 0 : _a3.id.startsWith("UC");
+  this.title = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].key("title").instanceof(Text_default).toString();
+  this.views = (_b = (_a2 = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _a2 === void 0 ? void 0 : _a2.find((run) => run.text.match(/(.*?) views/))) === null || _b === void 0 ? void 0 : _b.text;
+  const authors = (_c = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _c === void 0 ? void 0 : _c.filter((run) => {
+    var _a3, _b2;
+    return (_b2 = (_a3 = Reflect.get(run, "endpoint")) === null || _a3 === void 0 ? void 0 : _a3.browse) === null || _b2 === void 0 ? void 0 : _b2.id.startsWith("UC");
   });
   if (authors) {
-    this.authors = authors.map((author) => ({
-      name: author.text,
-      channel_id: author.endpoint.browse.id,
-      endpoint: author.endpoint
-    }));
+    this.authors = authors.map((author) => {
+      var _a3, _b2;
+      return {
+        name: author.text,
+        channel_id: (_b2 = (_a3 = author.endpoint) === null || _a3 === void 0 ? void 0 : _a3.browse) === null || _b2 === void 0 ? void 0 : _b2.id,
+        endpoint: author.endpoint
+      };
+    });
   }
-  const duration_text = (_b = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))) === null || _b === void 0 ? void 0 : _b.text;
+  const duration_text = (_e = (_d = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _d === void 0 ? void 0 : _d.find((run) => /^\d+$/.test(run.text.replace(/:/g, "")))) === null || _e === void 0 ? void 0 : _e.text;
   duration_text && (this.duration = {
     text: duration_text,
     seconds: timeToSeconds(duration_text)
   });
 }, "_MusicResponsiveListItem_parseVideo"), _MusicResponsiveListItem_parseArtist = /* @__PURE__ */ __name(function _MusicResponsiveListItem_parseArtist2() {
-  var _a2;
-  this.id = this.endpoint.browse.id;
-  this.name = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].title.toString();
-  this.subscribers = ((_a2 = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs[2]) === null || _a2 === void 0 ? void 0 : _a2.text) || "";
+  var _a2, _b, _c, _d;
+  this.id = (_b = (_a2 = this.endpoint) === null || _a2 === void 0 ? void 0 : _a2.browse) === null || _b === void 0 ? void 0 : _b.id;
+  this.name = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].key("title").instanceof(Text_default).toString();
+  this.subscribers = ((_d = (_c = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _c === void 0 ? void 0 : _c[2]) === null || _d === void 0 ? void 0 : _d.text) || "";
 }, "_MusicResponsiveListItem_parseArtist"), _MusicResponsiveListItem_parseAlbum = /* @__PURE__ */ __name(function _MusicResponsiveListItem_parseAlbum2() {
-  this.id = this.endpoint.browse.id;
-  this.title = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].title.toString();
-  const author = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs.find((run) => {
-    var _a2;
-    return (_a2 = run.endpoint.browse) === null || _a2 === void 0 ? void 0 : _a2.id.startsWith("UC");
+  var _a2, _b, _c, _d, _e, _f, _g;
+  this.id = (_b = (_a2 = this.endpoint) === null || _a2 === void 0 ? void 0 : _a2.browse) === null || _b === void 0 ? void 0 : _b.id;
+  this.title = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].key("title").instanceof(Text_default).toString();
+  const author = (_c = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _c === void 0 ? void 0 : _c.find((run) => {
+    var _a3, _b2;
+    return (_b2 = (_a3 = Reflect.get(run, "endpoint")) === null || _a3 === void 0 ? void 0 : _a3.browse) === null || _b2 === void 0 ? void 0 : _b2.id.startsWith("UC");
   });
   author && (this.author = {
     name: author.text,
-    channel_id: author.endpoint.browse.id,
+    channel_id: (_e = (_d = author.endpoint) === null || _d === void 0 ? void 0 : _d.browse) === null || _e === void 0 ? void 0 : _e.id,
     endpoint: author.endpoint
   });
-  this.year = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs.find((run) => /^[12][0-9]{3}$/.test(run.text)).text;
+  this.year = (_g = (_f = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _f === void 0 ? void 0 : _f.find((run) => /^[12][0-9]{3}$/.test(run.text))) === null || _g === void 0 ? void 0 : _g.text;
 }, "_MusicResponsiveListItem_parseAlbum"), _MusicResponsiveListItem_parsePlaylist = /* @__PURE__ */ __name(function _MusicResponsiveListItem_parsePlaylist2() {
-  this.id = this.endpoint.browse.id;
-  this.title = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].title.toString();
-  this.item_count = parseInt(__classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs.find((run) => run.text.match(/\d+ (song|songs)/)).text.match(/\d+/g));
-  const author = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].title.runs.find((run) => {
-    var _a2;
-    return (_a2 = run.endpoint.browse) === null || _a2 === void 0 ? void 0 : _a2.id.startsWith("UC");
+  var _a2, _b, _c, _d, _e, _f, _g;
+  this.id = (_b = (_a2 = this.endpoint) === null || _a2 === void 0 ? void 0 : _a2.browse) === null || _b === void 0 ? void 0 : _b.id;
+  this.title = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[0].key("title").instanceof(Text_default).toString();
+  this.item_count = parseInt((_d = (_c = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _c === void 0 ? void 0 : _c.find((run) => run.text.match(/\d+ (song|songs)/))) === null || _d === void 0 ? void 0 : _d.text.match(/\d+/g));
+  const author = (_e = __classPrivateFieldGet12(this, _MusicResponsiveListItem_flex_columns, "f")[1].key("title").instanceof(Text_default).runs) === null || _e === void 0 ? void 0 : _e.find((run) => {
+    var _a3, _b2;
+    return (_b2 = (_a3 = Reflect.get(run, "endpoint")) === null || _a3 === void 0 ? void 0 : _a3.browse) === null || _b2 === void 0 ? void 0 : _b2.id.startsWith("UC");
   });
   author && (this.author = {
     name: author.text,
-    channel_id: author.endpoint.browse.id,
+    channel_id: (_g = (_f = author.endpoint) === null || _f === void 0 ? void 0 : _f.browse) === null || _g === void 0 ? void 0 : _g.id,
     endpoint: author.endpoint
   });
 }, "_MusicResponsiveListItem_parsePlaylist");
@@ -13733,7 +13842,7 @@ var ClientType;
   ClientType2["ANDROID"] = "ANDROID";
 })(ClientType || (ClientType = {}));
 var Session = class extends EventEmitterLike {
-  constructor(context, api_key, api_version, player, cookie) {
+  constructor(context, api_key, api_version, player, cookie, browser_proxy) {
     super();
     _Session_api_version.set(this, void 0);
     _Session_key.set(this, void 0);
@@ -13743,7 +13852,7 @@ var Session = class extends EventEmitterLike {
     __classPrivateFieldSet13(this, _Session_key, api_key, "f");
     __classPrivateFieldSet13(this, _Session_api_version, api_version, "f");
     __classPrivateFieldSet13(this, _Session_player, player, "f");
-    this.http = new HTTPClient(this, cookie);
+    this.http = new HTTPClient(this, cookie, browser_proxy);
     this.actions = new Actions_default(this);
     this.oauth = new OAuth_default(this);
     this.logged_in = !!cookie;
@@ -13780,13 +13889,19 @@ var Session = class extends EventEmitterLike {
   }
   static create(options = {}) {
     return __awaiter9(this, void 0, void 0, function* () {
-      const { context, api_key, api_version } = yield Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone);
-      return new Session(context, api_key, api_version, yield Player.create(options.cache), options.cookie);
+      const { context, api_key, api_version } = yield Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.browser_proxy);
+      return new Session(context, api_key, api_version, yield Player.create(options.cache, options.browser_proxy), options.cookie, options.browser_proxy);
     });
   }
-  static getSessionData(lang = "en-US", deviceCategory = "desktop", clientName = ClientType.WEB, tz = Intl.DateTimeFormat().resolvedOptions().timeZone) {
+  static getSessionData(lang = "en-US", deviceCategory = "desktop", clientName = ClientType.WEB, tz = Intl.DateTimeFormat().resolvedOptions().timeZone, browser_proxy) {
     return __awaiter9(this, void 0, void 0, function* () {
-      const res = yield fetch(new URL("/sw.js_data", Constants_default.URLS.YT_BASE), {
+      const url = new URL("/sw.js_data", Constants_default.URLS.YT_BASE);
+      if (browser_proxy) {
+        url.searchParams.set("__host", url.host);
+        url.host = browser_proxy.host;
+        url.protocol = browser_proxy.schema;
+      }
+      const res = yield fetch(url, {
         headers: {
           "accept-language": lang,
           "user-agent": getRandomUserAgent("desktop").userAgent,
@@ -15224,12 +15339,11 @@ var _Playlist_instances;
 var _Playlist_getStat;
 var Playlist2 = class extends Feed_default {
   constructor(actions, data, already_parsed = false) {
-    var _a2, _b, _c;
+    var _a2, _b;
     super(actions, data, already_parsed);
     _Playlist_instances.add(this);
-    console.log("page sidebar is", (_a2 = this.page.sidebar) === null || _a2 === void 0 ? void 0 : _a2.type);
-    const primary_info = (_b = this.page.sidebar) === null || _b === void 0 ? void 0 : _b.key("contents").parsed().array().firstOfType(PlaylistSidebarPrimaryInfo_default);
-    const secondary_info = (_c = this.page.sidebar) === null || _c === void 0 ? void 0 : _c.key("contents").parsed().array().firstOfType(PlaylistSidebarSecondaryInfo_default);
+    const primary_info = (_a2 = this.page.sidebar) === null || _a2 === void 0 ? void 0 : _a2.key("contents").parsed().array().firstOfType(PlaylistSidebarPrimaryInfo_default);
+    const secondary_info = (_b = this.page.sidebar) === null || _b === void 0 ? void 0 : _b.key("contents").parsed().array().firstOfType(PlaylistSidebarSecondaryInfo_default);
     this.info = Object.assign(Object.assign({}, this.page.metadata), {
       author: secondary_info === null || secondary_info === void 0 ? void 0 : secondary_info.owner.item().as(VideoOwner_default).author,
       thumbnails: primary_info === null || primary_info === void 0 ? void 0 : primary_info.thumbnail_renderer.item().key("thumbnail").array().map((thumbnail) => {

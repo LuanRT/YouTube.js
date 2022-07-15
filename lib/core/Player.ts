@@ -3,6 +3,7 @@ import Constants from "../utils/Constants.js";
 import Signature from "../deciphers/Signature";
 import NToken from "../deciphers/NToken";
 import UniversalCache from "../utils/Cache.js";
+import { BrowserProxy } from "./Session.js";
 
 export default class Player {
     #ntoken;
@@ -74,8 +75,15 @@ export default class Player {
     get sts() {
         return this.#signature_timestamp;
     }
-    static async create(cache?: UniversalCache) {
-        const res = await fetch(new URL('/iframe_api', Constants.URLS.YT_BASE));
+    static async create(cache?: UniversalCache, browser_proxy?: BrowserProxy) {
+
+        const url = new URL('/iframe_api', Constants.URLS.YT_BASE);
+        if (browser_proxy) {
+            url.searchParams.set('__host', url.host);
+            url.host = browser_proxy.host;
+            url.protocol = browser_proxy.schema;
+        }
+        const res = await fetch(url);
 
         if (res.status !== 200)
             throw new PlayerError('Failed to request player id');
@@ -95,6 +103,11 @@ export default class Player {
         } 
 
         const player_url = new URL(`/s/player/${player_id}/player_ias.vflset/en_US/base.js`, Constants.URLS.YT_BASE);
+        if (browser_proxy) {
+            player_url.searchParams.set('__host', player_url.host);
+            player_url.host = browser_proxy.host;
+            player_url.protocol = browser_proxy.schema;
+        }
 
         const player_res = await fetch(player_url, {
             headers: { 
