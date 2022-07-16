@@ -13,15 +13,16 @@
     "test": "npm run build:node && npx jest --verbose",
     "lint": "npx eslint ./lib",
     "lint:fix": "npx eslint --fix ./lib",
+    "build": "npm run bundle:browser && npm run bundle:browser:prod && npm run build:node",
     "build:node": "npm run build:parser-map && npx tsc",
     "build:parser-map": "node ./scripts/build-parser-json.js",
-    "build:general": "npm run build:parser-map && npx tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis",
-    "build:browser": "npm run build:general -- --outfile=./build/browser.js --platform=browser",
-    "build:browser:prod": "npm run build:general -- --outfile=./build/browser.min.js --platform=browser --minify"
+    "bundle:general": "npm run build:parser-map && npx tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis",
+    "bundle:browser": "npm run bundle:general -- --outfile=./bundle/browser.js --platform=browser",
+    "bundle:browser:prod": "npm run bundle:general -- --outfile=./bundle/browser.min.js --platform=browser --minify"
   },
   "types": "./dist",
   "main": "./dist/index.js",
-  "browser": "./build/browser.js",
+  "browser": "./bundle/browser.js",
   "directories": {
     "test": "./test",
     "typings": "./dist",

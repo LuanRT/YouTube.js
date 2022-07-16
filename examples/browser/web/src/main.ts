@@ -1,5 +1,5 @@
 import './style.css'
-import { Innertube } from "../../../../build/browser.js";
+import { Innertube } from "../../../../bundle/browser";
 import dashjs from "dashjs";
 
 async function main() {

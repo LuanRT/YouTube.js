@@ -62,7 +62,11 @@ pnpm-lock.yaml
 
 # Temporary files for testing
 tmp/
+
+# Build output
 dist/
+bundle/*.js.*
+bundle/*.js
 
 # MacOS
 .DS_Store
