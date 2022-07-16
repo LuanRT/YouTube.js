@@ -86,8 +86,8 @@ export default class Session extends EventEmitterLike {
                 if (this.oauth.validateCredentials()) {
                     await this.oauth.checkAccessTokenValidity();
                     this.logged_in = true;
-                    resolve();
                 }
+                resolve();
             } catch (err) {
                 reject(err);
             }

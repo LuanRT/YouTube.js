@@ -9,6 +9,10 @@ var __name = (target, value) => __defProp(target, "name", { value, configurable:
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -20772,6 +20776,36 @@ var require_xmlbuilder2_min = __commonJS({
 var import_buffer = __toESM(require_buffer());
 
 // dist/lib/utils/Utils.js
+var Utils_exports = {};
+__export(Utils_exports, {
+  DownloadError: () => DownloadError,
+  InnertubeError: () => InnertubeError,
+  MissingParamError: () => MissingParamError,
+  NoStreamingDataError: () => NoStreamingDataError,
+  OAuthError: () => OAuthError,
+  ParsingError: () => ParsingError,
+  PlayerError: () => PlayerError,
+  SessionError: () => SessionError,
+  UnavailableContentError: () => UnavailableContentError,
+  camelToSnake: () => camelToSnake,
+  debugFetch: () => debugFetch,
+  deepCompare: () => deepCompare,
+  escapeStringRegexp: () => escapeStringRegexp,
+  findNode: () => findNode,
+  generateRandomString: () => generateRandomString,
+  generateSidAuth: () => generateSidAuth,
+  getRandomUserAgent: () => getRandomUserAgent,
+  getRuntime: () => getRuntime,
+  getStringBetweenStrings: () => getStringBetweenStrings,
+  isServer: () => isServer,
+  isValidClient: () => isValidClient,
+  refineNTokenData: () => refineNTokenData,
+  sha1Hash: () => sha1Hash,
+  streamToIterable: () => streamToIterable,
+  throwIfMissing: () => throwIfMissing,
+  timeToSeconds: () => timeToSeconds,
+  uuidv4: () => uuidv4
+});
 var import_user_agents = __toESM(require_dist());
 var import_flat = __toESM(require_flat());
 
@@ -20936,6 +20970,7 @@ var __asyncGenerator = function(thisArg, _arguments, generator) {
   }
   __name(settle, "settle");
 };
+var VALID_CLIENTS = /* @__PURE__ */ new Set(["YOUTUBE", "YTMUSIC"]);
 var InnertubeError = class extends Error {
   constructor(message, info) {
     super(message);
@@ -20950,9 +20985,18 @@ __name(InnertubeError, "InnertubeError");
 var ParsingError = class extends InnertubeError {
 };
 __name(ParsingError, "ParsingError");
+var DownloadError = class extends InnertubeError {
+};
+__name(DownloadError, "DownloadError");
 var MissingParamError = class extends InnertubeError {
 };
 __name(MissingParamError, "MissingParamError");
+var UnavailableContentError = class extends InnertubeError {
+};
+__name(UnavailableContentError, "UnavailableContentError");
+var NoStreamingDataError = class extends InnertubeError {
+};
+__name(NoStreamingDataError, "NoStreamingDataError");
 var OAuthError = class extends InnertubeError {
 };
 __name(OAuthError, "OAuthError");
@@ -21315,6 +21359,14 @@ function timeToSeconds(time) {
   }
 }
 __name(timeToSeconds, "timeToSeconds");
+function camelToSnake(string2) {
+  return string2[0].toLowerCase() + string2.slice(1, string2.length).replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+}
+__name(camelToSnake, "camelToSnake");
+function isValidClient(client) {
+  return VALID_CLIENTS.has(client);
+}
+__name(isValidClient, "isValidClient");
 function throwIfMissing(params) {
   for (const [key, value] of Object.entries(params)) {
     if (!value)
@@ -21322,6 +21374,10 @@ function throwIfMissing(params) {
   }
 }
 __name(throwIfMissing, "throwIfMissing");
+function refineNTokenData(data) {
+  return data.replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)').replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)').replace(/\[function\(d,e,f\)/g, '["function(d,e,f)').replace(/,b,/g, ',"b",').replace(/,b/g, ',"b"').replace(/b,/g, '"b",').replace(/b]/g, '"b"]').replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",').replace(/""/g, "").replace(/length]\)}"/g, "length])}");
+}
+__name(refineNTokenData, "refineNTokenData");
 function uuidv4() {
   var _a2;
   if (getRuntime() === "node") {
@@ -21368,6 +21424,17 @@ function streamToIterable(stream) {
   }, "streamToIterable_1"));
 }
 __name(streamToIterable, "streamToIterable");
+var debugFetch = /* @__PURE__ */ __name((input, init) => {
+  const url = typeof input === "string" ? new URL(input) : input instanceof URL ? input : new URL(input.url);
+  const headers = (init === null || init === void 0 ? void 0 : init.headers) ? new Headers(init.headers) : input instanceof Request ? input.headers : new Headers();
+  const arr_headers = [...headers];
+  console.log(`YouTube.js Fetch:
+  url: ${url.toString()}
+  method: ${(init === null || init === void 0 ? void 0 : init.method) || "GET"}
+  headers:
+` + (arr_headers.length > 0 ? arr_headers.map(([key, value]) => `    ${key}: ${value}`).join("\n") + "\n" : "    (none)\n") + "  body:\n" + ((init === null || init === void 0 ? void 0 : init.body) ? `${typeof init.body === "string" ? headers.get("content-type") === "application/json" ? JSON.stringify(JSON.parse(init.body), null, 2) : init.body : "    <binary>"}` : "    (none)"));
+  return globalThis.fetch(input, init);
+}, "debugFetch");
 
 // dist/lib/utils/Constants.js
 var URLS = {
@@ -25482,8 +25549,7 @@ var OAuth = class {
   revokeCredentials() {
     if (!__classPrivateFieldGet2(this, _OAuth_credentials, "f"))
       return;
-    return __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch("/o/oauth2/revoke?token=" + encodeURIComponent(__classPrivateFieldGet2(this, _OAuth_credentials, "f").access_token), {
-      baseURL: Constants_default.URLS.YT_BASE,
+    return __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch_function(new URL("/o/oauth2/revoke?token=" + encodeURIComponent(__classPrivateFieldGet2(this, _OAuth_credentials, "f").access_token), Constants_default.URLS.YT_BASE), {
       method: "post"
     });
   }
@@ -25504,9 +25570,8 @@ _OAuth_identity = /* @__PURE__ */ new WeakMap(), _OAuth_session = /* @__PURE__ *
       device_id: uuidv4(),
       model_name: Constants_default.OAUTH.MODEL_NAME
     };
-    const response = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch("/o/oauth2/device/code", {
+    const response = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch_function(new URL("/o/oauth2/device/code", Constants_default.URLS.YT_BASE), {
       body: JSON.stringify(data),
-      baseURL: Constants_default.URLS.YT_BASE,
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -25521,9 +25586,8 @@ _OAuth_identity = /* @__PURE__ */ new WeakMap(), _OAuth_session = /* @__PURE__ *
   const poller = setInterval(() => __awaiter3(this, void 0, void 0, function* () {
     const data = Object.assign(Object.assign({}, __classPrivateFieldGet2(this, _OAuth_identity, "f")), { code: device_code, grant_type: Constants_default.OAUTH.GRANT_TYPE });
     try {
-      const response = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch("/o/oauth2/token", {
+      const response = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch_function(new URL("/o/oauth2/token", Constants_default.URLS.YT_BASE), {
         body: JSON.stringify(data),
-        baseURL: Constants_default.URLS.YT_BASE,
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -25567,9 +25631,8 @@ _OAuth_identity = /* @__PURE__ */ new WeakMap(), _OAuth_session = /* @__PURE__ *
       return;
     __classPrivateFieldSet2(this, _OAuth_identity, yield __classPrivateFieldGet2(this, _OAuth_instances, "m", _OAuth_getClientIdentity).call(this), "f");
     const data = Object.assign(Object.assign({}, __classPrivateFieldGet2(this, _OAuth_identity, "f")), { refresh_token: __classPrivateFieldGet2(this, _OAuth_credentials, "f").refresh_token, grant_type: "refresh_token" });
-    const response = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch("/o/oauth2/token", {
+    const response = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch_function(new URL("/o/oauth2/token", Constants_default.URLS.YT_BASE), {
       body: JSON.stringify(data),
-      baseURL: Constants_default.URLS.YT_BASE,
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -25594,11 +25657,10 @@ _OAuth_identity = /* @__PURE__ */ new WeakMap(), _OAuth_session = /* @__PURE__ *
   });
 }, "_OAuth_refreshAccessToken"), _OAuth_getClientIdentity = /* @__PURE__ */ __name(function _OAuth_getClientIdentity2() {
   return __awaiter3(this, void 0, void 0, function* () {
-    const response = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch("/tv", {
-      baseURL: Constants_default.URLS.YT_BASE,
+    const response = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch_function(new URL("/tv", Constants_default.URLS.YT_BASE), {
       headers: Constants_default.OAUTH.HEADERS
     });
-    const response_data = yield response.json();
+    const response_data = yield response.text();
     const url_body = Constants_default.OAUTH.REGEX.AUTH_SCRIPT.exec(response_data)[1];
     const script = yield __classPrivateFieldGet2(this, _OAuth_session, "f").http.fetch(url_body, {
       baseURL: Constants_default.URLS.YT_BASE
@@ -31725,8 +31787,8 @@ var Session = class extends EventEmitterLike {
           if (this.oauth.validateCredentials()) {
             yield this.oauth.checkAccessTokenValidity();
             this.logged_in = true;
-            resolve();
           }
+          resolve();
         } catch (err) {
           reject(err);
         }
@@ -34574,12 +34636,295 @@ var Innertube = class {
 __name(Innertube, "Innertube");
 var Innertube_default = Innertube;
 
+// dist/lib/utils/Cache.js
+var __awaiter29 = function(thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function(resolve) {
+      resolve(value);
+    });
+  }
+  __name(adopt, "adopt");
+  return new (P || (P = Promise))(function(resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    __name(fulfilled, "fulfilled");
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+    __name(rejected, "rejected");
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+    __name(step, "step");
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+var __classPrivateFieldSet33 = function(receiver, state, value, kind, f) {
+  if (kind === "m")
+    throw new TypeError("Private method is not writable");
+  if (kind === "a" && !f)
+    throw new TypeError("Private accessor was defined without a setter");
+  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
+    throw new TypeError("Cannot write private member to an object whose class did not declare it");
+  return kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value), value;
+};
+var __classPrivateFieldGet36 = function(receiver, state, kind, f) {
+  if (kind === "a" && !f)
+    throw new TypeError("Private accessor was defined without a getter");
+  if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
+    throw new TypeError("Cannot read private member from an object whose class did not declare it");
+  return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _UniversalCache_instances;
+var _UniversalCache_persistent_directory;
+var _UniversalCache_persistent;
+var _UniversalCache_createCache;
+var _UniversalCache_getBrowserDB;
+var UniversalCache = class {
+  constructor(persistent = false, persistent_directory) {
+    _UniversalCache_instances.add(this);
+    _UniversalCache_persistent_directory.set(this, void 0);
+    _UniversalCache_persistent.set(this, void 0);
+    __classPrivateFieldSet33(this, _UniversalCache_persistent_directory, persistent_directory || UniversalCache.default_persistent_directory, "f");
+    __classPrivateFieldSet33(this, _UniversalCache_persistent, persistent, "f");
+  }
+  static get temp_directory() {
+    switch (getRuntime()) {
+      case "deno":
+        const Deno = Reflect.get(globalThis, "Deno");
+        return (Deno.env.get("TMPDIR") || Deno.env.get("TMP") || Deno.env.get("TEMP") || "/tmp") + "/youtubei.js";
+      case "node":
+        return globalThis.require("os").tmpdir() + "/youtubei.js";
+      default:
+        return "";
+    }
+  }
+  static get default_persistent_directory() {
+    switch (getRuntime()) {
+      case "deno":
+        const Deno = Reflect.get(globalThis, "Deno");
+        return Deno.cwd() + "/.cache/youtubei.js";
+      case "node":
+        return globalThis.require("path").resolve(globalThis.__dirname, "..", "..", ".cache", "youtubei.js");
+      default:
+        return "";
+    }
+  }
+  get cache_dir() {
+    return __classPrivateFieldGet36(this, _UniversalCache_persistent, "f") ? __classPrivateFieldGet36(this, _UniversalCache_persistent_directory, "f") : UniversalCache.temp_directory;
+  }
+  get(key) {
+    return __awaiter29(this, void 0, void 0, function* () {
+      yield __classPrivateFieldGet36(this, _UniversalCache_instances, "m", _UniversalCache_createCache).call(this);
+      switch (getRuntime()) {
+        case "deno": {
+          const file = this.cache_dir + "/" + key;
+          const Deno = Reflect.get(globalThis, "Deno");
+          try {
+            const stat = yield Deno.stat(file);
+            if (stat.isFile) {
+              const data = yield Deno.readFile(file);
+              return data.buffer;
+            } else {
+              throw new Error("An unexpected file was found in place of the cache key");
+            }
+          } catch (e) {
+            if (e instanceof Deno.errors.NotFound)
+              return void 0;
+            else
+              throw e;
+          }
+        }
+        case "node": {
+          const fs = globalThis.require("fs/promises");
+          const file = globalThis.require("path").resolve(this.cache_dir, key);
+          try {
+            const stat = yield fs.stat(file);
+            if (stat.isFile()) {
+              const data = yield fs.readFile(file);
+              return data.buffer;
+            } else {
+              throw new Error("An unexpected file was found in place of the cache key");
+            }
+          } catch (e) {
+            if ((e === null || e === void 0 ? void 0 : e.code) === "ENOENT")
+              return void 0;
+            else
+              throw e;
+          }
+        }
+        case "browser": {
+          const db = yield __classPrivateFieldGet36(this, _UniversalCache_instances, "m", _UniversalCache_getBrowserDB).call(this);
+          if (!db)
+            return;
+          return new Promise((resolve, reject) => {
+            const request = db.transaction("kv-store", "readonly").objectStore("kv-store").get(key);
+            request.onerror = reject;
+            request.onsuccess = function() {
+              var _a2;
+              const result = (_a2 = this.result) === null || _a2 === void 0 ? void 0 : _a2.v;
+              resolve(typeof result !== "undefined" ? result : void 0);
+            };
+          });
+        }
+      }
+    });
+  }
+  set(key, value) {
+    return __awaiter29(this, void 0, void 0, function* () {
+      yield __classPrivateFieldGet36(this, _UniversalCache_instances, "m", _UniversalCache_createCache).call(this);
+      switch (getRuntime()) {
+        case "deno":
+          {
+            const Deno = Reflect.get(globalThis, "Deno");
+            const file = this.cache_dir + "/" + key;
+            yield Deno.writeFile(file, new Uint8Array(value));
+          }
+          break;
+        case "node":
+          {
+            const fs = globalThis.require("fs/promises");
+            const file = globalThis.require("path").resolve(this.cache_dir, key);
+            yield fs.writeFile(file, new Uint8Array(value));
+          }
+          break;
+        case "browser": {
+          const db = yield __classPrivateFieldGet36(this, _UniversalCache_instances, "m", _UniversalCache_getBrowserDB).call(this);
+          if (!db)
+            return;
+          return new Promise((resolve, reject) => {
+            const request = db.transaction("kv-store", "readwrite").objectStore("kv-store").put({ k: key, v: value });
+            request.onerror = reject;
+            request.onsuccess = () => resolve();
+          });
+        }
+      }
+    });
+  }
+  remove(key) {
+    return __awaiter29(this, void 0, void 0, function* () {
+      yield __classPrivateFieldGet36(this, _UniversalCache_instances, "m", _UniversalCache_createCache).call(this);
+      switch (getRuntime()) {
+        case "deno":
+          {
+            const file = this.cache_dir + "/" + key;
+            const Deno = Reflect.get(globalThis, "Deno");
+            try {
+              yield Deno.remove(file);
+            } catch (e) {
+              if (e instanceof Deno.errors.NotFound)
+                return void 0;
+              else
+                throw e;
+            }
+          }
+          break;
+        case "node":
+          {
+            const fs = globalThis.require("fs/promises");
+            const file = globalThis.require("path").resolve(this.cache_dir, key);
+            try {
+              yield fs.unlink(file);
+            } catch (e) {
+              if ((e === null || e === void 0 ? void 0 : e.code) === "ENOENT")
+                return;
+              else
+                throw e;
+            }
+          }
+          break;
+        case "browser": {
+          const db = yield __classPrivateFieldGet36(this, _UniversalCache_instances, "m", _UniversalCache_getBrowserDB).call(this);
+          if (!db)
+            return;
+          return new Promise((resolve, reject) => {
+            const request = db.transaction("kv-store", "readwrite").objectStore("kv-store").delete(key);
+            request.onerror = reject;
+            request.onsuccess = () => resolve();
+          });
+        }
+      }
+    });
+  }
+};
+__name(UniversalCache, "UniversalCache");
+_UniversalCache_persistent_directory = /* @__PURE__ */ new WeakMap(), _UniversalCache_persistent = /* @__PURE__ */ new WeakMap(), _UniversalCache_instances = /* @__PURE__ */ new WeakSet(), _UniversalCache_createCache = /* @__PURE__ */ __name(function _UniversalCache_createCache2() {
+  return __awaiter29(this, void 0, void 0, function* () {
+    const dir = this.cache_dir;
+    switch (getRuntime()) {
+      case "deno":
+        {
+          const Deno = Reflect.get(globalThis, "Deno");
+          try {
+            const cwd = yield Deno.stat(dir);
+            if (!cwd.isDirectory)
+              throw new Error("An unexpected file was found in place of the cache directory");
+          } catch (e) {
+            if (e instanceof Deno.errors.NotFound)
+              yield Deno.mkdir(dir, { recursive: true });
+            else
+              throw e;
+          }
+        }
+        break;
+      case "node":
+        {
+          const fs = globalThis.require("fs/promises");
+          try {
+            const cwd = yield fs.stat(dir);
+            if (!cwd.isDirectory())
+              throw new Error("An unexpected file was found in place of the cache directory");
+          } catch (e) {
+            if ((e === null || e === void 0 ? void 0 : e.code) === "ENOENT")
+              yield fs.mkdir(dir, { recursive: true });
+            else
+              throw e;
+          }
+        }
+        break;
+    }
+  });
+}, "_UniversalCache_createCache"), _UniversalCache_getBrowserDB = /* @__PURE__ */ __name(function _UniversalCache_getBrowserDB2() {
+  const indexedDB = Reflect.get(globalThis, "indexedDB") || Reflect.get(globalThis, "webkitIndexedDB") || Reflect.get(globalThis, "mozIndexedDB") || Reflect.get(globalThis, "msIndexedDB");
+  if (!indexedDB)
+    return console.log("IndexedDB is not supported. No cache will be used.");
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("youtubei.js", 1);
+    request.onsuccess = function() {
+      resolve(this.result);
+    };
+    request.onerror = function(event) {
+      reject("indexedDB request error");
+      console.error(event);
+    };
+    request.onupgradeneeded = function() {
+      const store = this.result.createObjectStore("kv-store", {
+        keyPath: "k"
+      });
+      store.transaction.oncomplete = function() {
+        resolve(this.db);
+      };
+    };
+  });
+}, "_UniversalCache_getBrowserDB");
+
 // dist/browser.js
 if (!Reflect.has(globalThis, "Buffer")) {
   Reflect.set(globalThis, "Buffer", import_buffer.Buffer);
 }
 export {
-  Innertube_default as Innertube
+  Innertube_default as Innertube,
+  UniversalCache,
+  Utils_exports as Utils
 };
 /*!
  * The buffer module from node.js, for the browser.

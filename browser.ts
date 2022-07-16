@@ -7,3 +7,5 @@ if (!Reflect.has(globalThis, 'Buffer')) {
 }
 
 export { default as Innertube } from './lib/Innertube.js';
+export { default as UniversalCache } from './lib/utils/Cache';
+export * as Utils from './lib/utils/Utils';

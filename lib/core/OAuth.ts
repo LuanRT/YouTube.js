@@ -50,9 +50,8 @@ class OAuth {
             device_id: uuidv4(),
             model_name: Constants.OAUTH.MODEL_NAME
         };
-        const response = await this.#session.http.fetch('/o/oauth2/device/code', {
+        const response = await this.#session.http.fetch_function(new URL('/o/oauth2/device/code', Constants.URLS.YT_BASE), {
             body: JSON.stringify(data),
-            baseURL: Constants.URLS.YT_BASE,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -77,9 +76,8 @@ class OAuth {
                 grant_type: Constants.OAUTH.GRANT_TYPE
             };
             try {
-                const response = await this.#session.http.fetch('/o/oauth2/token', {
+                const response = await this.#session.http.fetch_function(new URL('/o/oauth2/token', Constants.URLS.YT_BASE), {
                     body: JSON.stringify(data),
-                    baseURL: Constants.URLS.YT_BASE,
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -140,9 +138,8 @@ class OAuth {
             refresh_token: this.#credentials.refresh_token,
             grant_type: 'refresh_token'
         };
-        const response = await this.#session.http.fetch('/o/oauth2/token', {
+        const response = await this.#session.http.fetch_function(new URL('/o/oauth2/token', Constants.URLS.YT_BASE), {
             body: JSON.stringify(data),
-            baseURL: Constants.URLS.YT_BASE,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -170,8 +167,7 @@ class OAuth {
      */
     revokeCredentials() {
         if (!this.#credentials) return;
-        return this.#session.http.fetch('/o/oauth2/revoke?token=' + encodeURIComponent(this.#credentials.access_token), {
-            baseURL: Constants.URLS.YT_BASE,
+        return this.#session.http.fetch_function(new URL('/o/oauth2/revoke?token=' + encodeURIComponent(this.#credentials.access_token), Constants.URLS.YT_BASE), {
             method: 'post'
         });
     }
@@ -180,11 +176,10 @@ class OAuth {
      * @returns {Promise.<{ client_id: string, client_secret: string }>}
      */
     async #getClientIdentity() {
-        const response = await this.#session.http.fetch('/tv', {
-            baseURL: Constants.URLS.YT_BASE,
+        const response = await this.#session.http.fetch_function(new URL('/tv', Constants.URLS.YT_BASE), {
             headers: Constants.OAUTH.HEADERS
         });
-        const response_data = await response.json();
+        const response_data = await response.text();
         const url_body = Constants.OAUTH.REGEX.AUTH_SCRIPT.exec(response_data)![1]; // TODO: probably check this rather than assume.
         const script = await this.#session.http.fetch(url_body, { 
             baseURL: Constants.URLS.YT_BASE 
