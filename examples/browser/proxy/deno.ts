@@ -32,37 +32,41 @@ const handler = async (request: Request): Promise<Response> => {
             { status: 400 }
         );
     }
+
+    // Set the URL host to the __host parameter
     url.host = url.searchParams.get("__host")!;
     url.protocol = 'https';
     url.port = '443';
     url.searchParams.delete("__host");
+
+    // Copy headers from the request to the new request
     const request_headers = new Headers(JSON.parse(url.searchParams.get("__headers") || "{}"));
     copyHeader("range", request_headers, request.headers);
-    request_headers.set('user-agent', request.headers.get('user-agent')!);
+    copyHeader("user-agent", request_headers, request.headers);
     url.searchParams.delete("__headers");
-    console.log('url', url.toString());
-    console.log('headers', request.headers, request.method);
-    console.log('body', {
-        method: request.method,
-        headers: request_headers,
-        body: request.body,
-    })
+
+    // Make the request to YouTube
     const fetchRes = await fetch(url, {
         method: request.method,
         headers: request_headers,
         body: request.body,
     });
+
+    // Construct the return headers
     const headers = new Headers();
+
+    // copy content headers
     copyHeader("content-length", headers, fetchRes.headers);
     copyHeader("content-type", headers, fetchRes.headers);
     copyHeader("content-disposition", headers, fetchRes.headers);
+
     // add cors headers
     headers.set("Access-Control-Allow-Origin", request.headers.get("origin") || "*");
     headers.set("Access-Control-Allow-Headers", "*");
     headers.set("Access-Control-Allow-Methods", "*");
     headers.set("Access-Control-Allow-Credentials", "true");
-    // headers.set("Origin", "https://www.youtube.com");
 
+    // Return the proxied response
     return new Response(fetchRes.body, { 
         status: fetchRes.status,
         headers: headers,

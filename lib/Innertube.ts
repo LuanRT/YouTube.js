@@ -19,10 +19,7 @@ import Constants from "./utils/Constants.js";
 import { throwIfMissing, generateRandomString } from "./utils/Utils.js";
 import Proto from "./proto/index.js";
 
-export interface InnertubeConfig extends SessionOptions {
-    // TODO: this doesn't do anything afaik
-    debug?: boolean;
-}
+export interface InnertubeConfig extends SessionOptions {}
 
 export interface SearchFilters {
     /**

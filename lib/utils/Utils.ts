@@ -1,6 +1,7 @@
 import UserAgent from "user-agents";
 import Flatten from "flat";
 import package_json from '../../package.json';
+import { FetchFunction } from "./HTTPClient";
 
 const VALID_CLIENTS = new Set(['YOUTUBE', 'YTMUSIC']);
 
@@ -18,21 +19,21 @@ export class InnertubeError extends Error {
         this.version = package_json.version;
     }
 }
-export class ParsingError extends InnertubeError {}
+export class ParsingError extends InnertubeError { }
 
-export class DownloadError extends InnertubeError {}
+export class DownloadError extends InnertubeError { }
 
-export class MissingParamError extends InnertubeError {}
+export class MissingParamError extends InnertubeError { }
 
-export class UnavailableContentError extends InnertubeError {}
+export class UnavailableContentError extends InnertubeError { }
 
-export class NoStreamingDataError extends InnertubeError {}
+export class NoStreamingDataError extends InnertubeError { }
 
-export class OAuthError extends InnertubeError {}
+export class OAuthError extends InnertubeError { }
 
-export class PlayerError extends Error {}
+export class PlayerError extends Error { }
 
-export class SessionError extends Error {}
+export class SessionError extends Error { }
 
 /**
  * Utility to help access deep properties of an object.
@@ -114,7 +115,7 @@ export function getRandomUserAgent(type: DeviceCategory): UserAgent["data"] {
 }
 
 export async function sha1Hash(str: string) {
-    const SubtleCrypto =  getRuntime() === 'node' ? ((globalThis as any).require("crypto").webcrypto as unknown as Crypto).subtle : window.crypto.subtle;
+    const SubtleCrypto = getRuntime() === 'node' ? ((globalThis as any).require("crypto").webcrypto as unknown as Crypto).subtle : window.crypto.subtle;
     const byteToHex = [
         "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0a", "0b", "0c", "0d", "0e", "0f",
         "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1a", "1b", "1c", "1d", "1e", "1f",
@@ -268,15 +269,54 @@ export function isServer() {
 export async function* streamToIterable(stream: ReadableStream<Uint8Array>) {
     const reader = stream.getReader();
     try {
-      while (true) {
-        const {done, value} = await reader.read();
-        if (done) {
-          return;
-          }
-        yield value;
-      }
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+                return;
+            }
+            yield value;
+        }
     }
     finally {
-      reader.releaseLock();
+        reader.releaseLock();
     }
+}
+
+export const debugFetch: FetchFunction = (input, init) => {
+    const url =
+        typeof input === 'string' ?
+            new URL(input) :
+        input instanceof URL ?
+            input :
+            new URL(input.url);
+
+
+    const headers =
+        init?.headers ?
+            new Headers(init.headers) :
+        input instanceof Request ?
+            input.headers :
+            new Headers();
+
+    const arr_headers = [...headers];
+
+    console.log(
+        'YouTube.js Fetch:\n' +
+        `  url: ${url.toString()}\n` +
+        `  method: ${init?.method || 'GET'}\n` +
+        '  headers:\n' +
+        (arr_headers.length > 0 ?
+            arr_headers.map(([key, value]) => `    ${key}: ${value}`).join('\n') + '\n' :
+            '    (none)\n'
+        ) +
+        '  body:\n' +
+        (init?.body ? `${typeof init.body === 'string' ?
+                headers.get('content-type') === 'application/json' ?
+                    JSON.stringify(JSON.parse(init.body), null, 2) :
+                    init.body :
+                '    <binary>'
+            }` : '    (none)')
+    );
+
+    return globalThis.fetch(input, init);
 }
