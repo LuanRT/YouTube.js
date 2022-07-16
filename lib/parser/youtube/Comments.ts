@@ -1,10 +1,10 @@
-import Parser, { ParsedResponse } from "../index.js";
-import { InnertubeError } from "../../utils/Utils.js";
-import Actions from "../../core/Actions.js";
-import CommentsHeader from "../classes/comments/CommentsHeader.js";
-import CommentThread from "../classes/comments/CommentThread.js";
-import ContinuationItem from "../classes/ContinuationItem.js";
-import NavigationEndpoint from "../classes/NavigationEndpoint.js";
+import Parser, { ParsedResponse } from "../index";
+import { InnertubeError } from "../../utils/Utils";
+import Actions from "../../core/Actions";
+import CommentsHeader from "../classes/comments/CommentsHeader";
+import CommentThread from "../classes/comments/CommentThread";
+import ContinuationItem from "../classes/ContinuationItem";
+import NavigationEndpoint from "../classes/NavigationEndpoint";
 class Comments {
     #page: ParsedResponse;
     #actions;

@@ -1,11 +1,11 @@
-import Parser from "../../index.js";
-import { InnertubeError } from "../../../utils/Utils.js";
+import Parser from "../../index";
+import { InnertubeError } from "../../../utils/Utils";
 
 import { YTNode } from "../../helpers";
 import Comment from "./Comment";
-import ContinuationItem from "../ContinuationItem.js";
-import Actions from "../../../core/Actions.js";
-import NavigationEndpoint from "../NavigationEndpoint.js";
+import ContinuationItem from "../ContinuationItem";
+import Actions from "../../../core/Actions";
+import NavigationEndpoint from "../NavigationEndpoint";
 
 class CommentThread extends YTNode {
     static type = 'CommentThread';

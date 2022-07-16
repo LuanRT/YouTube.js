@@ -1,7 +1,7 @@
 import { getStringBetweenStrings, InnertubeError, streamToIterable } from "../../utils/Utils";
-import Parser, { ParsedResponse } from "../index.js";
+import Parser, { ParsedResponse } from "../index";
 import LiveChat from "../classes/LiveChat";
-import Constants from "../../utils/Constants.js";
+import Constants from "../../utils/Constants";
 import Actions, { AxioslikeResponse } from "../../core/Actions";
 import Player from "../../core/Player";
 import TwoColumnWatchNextResults from "../classes/TwoColumnWatchNextResults";

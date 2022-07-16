@@ -1,12 +1,12 @@
-import Player from "./Player.js";
-import Proto from "../proto/index.js";
-import { DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from "../utils/Utils.js";
-import Constants from "../utils/Constants.js";
-import UniversalCache from "../utils/Cache.js";
-import OAuth, { Credentials } from "./OAuth.js";
-import EventEmitterLike from "../utils/EventEmitterLike.js";
-import HTTPClient, { FetchFunction } from "../utils/HTTPClient.js";
-import Actions from "./Actions.js";
+import Player from "./Player";
+import Proto from "../proto/index";
+import { DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from "../utils/Utils";
+import Constants from "../utils/Constants";
+import UniversalCache from "../utils/Cache";
+import OAuth, { Credentials } from "./OAuth";
+import EventEmitterLike from "../utils/EventEmitterLike";
+import HTTPClient, { FetchFunction } from "../utils/HTTPClient";
+import Actions from "./Actions";
 
 export interface Context {
     client: {

@@ -1,9 +1,9 @@
-import Parser, { ParsedResponse } from "../index.js";
+import Parser, { ParsedResponse } from "../index";
 
 // TODO: refactor this
 import { YTNode } from "../helpers";
-import Actions, { ActionsResponse } from "../../core/Actions.js";
-import { ParsingError } from "../../utils/Utils.js";
+import Actions, { ActionsResponse } from "../../core/Actions";
+import { ParsingError } from "../../utils/Utils";
 
 class NavigationEndpoint extends YTNode {
     payload;

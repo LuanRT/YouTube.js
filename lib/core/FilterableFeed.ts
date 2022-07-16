@@ -1,9 +1,9 @@
-import ChipCloudChip from "../parser/classes/ChipCloudChip.js";
-import FeedFilterChipBar from "../parser/classes/FeedFilterChipBar.js";
-import { ObservedArray } from "../parser/helpers.js";
-import { InnertubeError } from "../utils/Utils.js";
-import Actions from "./Actions.js";
-import Feed from "./Feed.js";
+import ChipCloudChip from "../parser/classes/ChipCloudChip";
+import FeedFilterChipBar from "../parser/classes/FeedFilterChipBar";
+import { ObservedArray } from "../parser/helpers";
+import { InnertubeError } from "../utils/Utils";
+import Actions from "./Actions";
+import Feed from "./Feed";
 
 class FilterableFeed extends Feed {
     #chips?: ObservedArray<ChipCloudChip>;

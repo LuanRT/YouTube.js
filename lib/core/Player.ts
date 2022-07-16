@@ -1,9 +1,9 @@
-import { getRandomUserAgent, getStringBetweenStrings, PlayerError } from "../utils/Utils.js";
-import Constants from "../utils/Constants.js";
+import { getRandomUserAgent, getStringBetweenStrings, PlayerError } from "../utils/Utils";
+import Constants from "../utils/Constants";
 import Signature from "../deciphers/Signature";
 import NToken from "../deciphers/NToken";
-import UniversalCache from "../utils/Cache.js";
-import { FetchFunction } from "../utils/HTTPClient.js";
+import UniversalCache from "../utils/Cache";
+import { FetchFunction } from "../utils/HTTPClient";
 
 export default class Player {
     #ntoken;

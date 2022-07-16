@@ -1,4 +1,4 @@
-import { NTOKEN_REGEX, BASE64_DIALECT } from "../utils/Constants.js";
+import { NTOKEN_REGEX, BASE64_DIALECT } from "../utils/Constants";
 
 export enum NTokenTransformOperation {
     NO_OP = 0,

@@ -1,6 +1,6 @@
-import Constants from "../utils/Constants.js";
-import { OAuthError, uuidv4 } from "../utils/Utils.js";
-import Session from "./Session.js";
+import Constants from "../utils/Constants";
+import { OAuthError, uuidv4 } from "../utils/Utils";
+import Session from "./Session";
 
 export interface Credentials {
     /**

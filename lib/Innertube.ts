@@ -1,23 +1,23 @@
-import Actions from "./core/Actions.js";
-import Session, { SessionOptions } from "./core/Session.js";
-import AccountManager from "./core/AccountManager.js";
-import PlaylistManager from "./core/PlaylistManager.js";
-import InteractionManager from "./core/InteractionManager.js";
-import Search from "./parser/youtube/Search.js";
-import VideoInfo, { DownloadOptions, FormatOptions } from "./parser/youtube/VideoInfo.js";
-import Channel from "./parser/youtube/Channel.js";
-import Playlist from "./parser/youtube/Playlist.js";
-import Library from "./parser/youtube/Library.js";
-import History from "./parser/youtube/History.js";
-import Comments from "./parser/youtube/Comments.js";
-import NotificationsMenu from "./parser/youtube/NotificationsMenu.js";
-import YTMusic from "./core/Music.js";
-import FilterableFeed from "./core/FilterableFeed.js";
-import TabbedFeed from "./core/TabbedFeed.js";
-import Feed from "./core/Feed.js";
-import Constants from "./utils/Constants.js";
-import { throwIfMissing, generateRandomString } from "./utils/Utils.js";
-import Proto from "./proto/index.js";
+import Actions from "./core/Actions";
+import Session, { SessionOptions } from "./core/Session";
+import AccountManager from "./core/AccountManager";
+import PlaylistManager from "./core/PlaylistManager";
+import InteractionManager from "./core/InteractionManager";
+import Search from "./parser/youtube/Search";
+import VideoInfo, { DownloadOptions, FormatOptions } from "./parser/youtube/VideoInfo";
+import Channel from "./parser/youtube/Channel";
+import Playlist from "./parser/youtube/Playlist";
+import Library from "./parser/youtube/Library";
+import History from "./parser/youtube/History";
+import Comments from "./parser/youtube/Comments";
+import NotificationsMenu from "./parser/youtube/NotificationsMenu";
+import YTMusic from "./core/Music";
+import FilterableFeed from "./core/FilterableFeed";
+import TabbedFeed from "./core/TabbedFeed";
+import Feed from "./core/Feed";
+import Constants from "./utils/Constants";
+import { throwIfMissing, generateRandomString } from "./utils/Utils";
+import Proto from "./proto/index";
 
 export interface InnertubeConfig extends SessionOptions {}
 

@@ -1,8 +1,8 @@
-import { throwIfMissing, findNode, InnertubeError } from "../utils/Utils.js";
-import Constants from "../utils/Constants.js";
-import Analytics from "../parser/youtube/Analytics.js";
-import Proto from "../proto/index.js";
-import Actions from "./Actions.js";
+import { throwIfMissing, findNode, InnertubeError } from "../utils/Utils";
+import Constants from "../utils/Constants";
+import Analytics from "../parser/youtube/Analytics";
+import Proto from "../proto/index";
+import Actions from "./Actions";
 
 /** @namespace */
 class AccountManager {

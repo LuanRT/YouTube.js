@@ -1,5 +1,5 @@
-import Parser from "../index.js";
-import NavigationEndpoint from "./NavigationEndpoint.js";
+import Parser from "../index";
+import NavigationEndpoint from "./NavigationEndpoint";
 
 import { YTNode } from "../helpers";
 

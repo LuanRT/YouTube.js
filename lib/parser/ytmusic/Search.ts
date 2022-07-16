@@ -1,14 +1,14 @@
-import Parser, { ParsedResponse } from "../index.js";
-import { InnertubeError } from "../../utils/Utils.js";
+import Parser, { ParsedResponse } from "../index";
+import { InnertubeError } from "../../utils/Utils";
 import { observe, ObservedArray, YTNode } from '../helpers';
-import Actions, { AxioslikeResponse } from "../../core/Actions.js";
-import DidYouMean from "../classes/DidYouMean.js";
-import ShowingResultsFor from "../classes/ShowingResultsFor.js";
-import MusicShelf from "../classes/MusicShelf.js";
-import Shelf from "../classes/Shelf.js";
-import RichShelf from "../classes/RichShelf.js";
-import ReelShelf from "../classes/ReelShelf.js";
-import ChipCloudChip from "../classes/ChipCloudChip.js";
+import Actions, { AxioslikeResponse } from "../../core/Actions";
+import DidYouMean from "../classes/DidYouMean";
+import ShowingResultsFor from "../classes/ShowingResultsFor";
+import MusicShelf from "../classes/MusicShelf";
+import Shelf from "../classes/Shelf";
+import RichShelf from "../classes/RichShelf";
+import ReelShelf from "../classes/ReelShelf";
+import ChipCloudChip from "../classes/ChipCloudChip";
 
 /** @namespace */
 class Search {

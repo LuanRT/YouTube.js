@@ -1,9 +1,9 @@
-import Actions from "../../core/Actions.js";
-import Feed from "../../core/Feed.js";
-import { InnertubeError } from "../../utils/Utils.js";
-import Thumbnail from "../classes/misc/Thumbnail.js";
-import PlaylistSidebarPrimaryInfo from "../classes/PlaylistSidebarPrimaryInfo.js";
-import PlaylistSidebarSecondaryInfo from "../classes/PlaylistSidebarSecondaryInfo.js";
+import Actions from "../../core/Actions";
+import Feed from "../../core/Feed";
+import { InnertubeError } from "../../utils/Utils";
+import Thumbnail from "../classes/misc/Thumbnail";
+import PlaylistSidebarPrimaryInfo from "../classes/PlaylistSidebarPrimaryInfo";
+import PlaylistSidebarSecondaryInfo from "../classes/PlaylistSidebarSecondaryInfo";
 import VideoOwner from '../classes/VideoOwner';
 
 class Playlist extends Feed {

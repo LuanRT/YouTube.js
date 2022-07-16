@@ -1,4 +1,4 @@
-import { SIG_REGEX } from "../utils/Constants.js";
+import { SIG_REGEX } from "../utils/Constants";
 
 export enum SignatureOperation {
     REVERSE,

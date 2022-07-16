@@ -1,6 +1,6 @@
 import { InnertubeError, ParsingError } from "../utils/Utils";
-import Format from "./classes/misc/Format.js";
-import VideoDetails from "./classes/misc/VideoDetails.js";
+import Format from "./classes/misc/Format";
+import VideoDetails from "./classes/misc/VideoDetails";
 import GetParserByName from "./map";
 import package_json from '../../package.json';
 import PlayerMicroformat from "./classes/PlayerMicroformat";

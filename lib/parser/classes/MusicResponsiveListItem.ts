@@ -1,14 +1,14 @@
 // TODO: this needs a refactor
 // seems like a mess to use
 
-import Parser from "../index.js";
-import Text from "./misc/Text.js";
+import Parser from "../index";
+import Text from "./misc/Text";
 import { timeToSeconds } from "../../utils/Utils";
-import Thumbnail from "./misc/Thumbnail.js";
-import NavigationEndpoint from "./NavigationEndpoint.js";
+import Thumbnail from "./misc/Thumbnail";
+import NavigationEndpoint from "./NavigationEndpoint";
 
 import { YTNode } from "../helpers";
-import TextRun from "./misc/TextRun.js";
+import TextRun from "./misc/TextRun";
 
 class MusicResponsiveListItem extends YTNode {
     static type = 'MusicResponsiveListItem';

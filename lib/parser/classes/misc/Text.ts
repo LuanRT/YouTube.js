@@ -1,5 +1,5 @@
-import TextRun from "./TextRun.js";
-import EmojiRun from "../EmojiRun.js";
+import TextRun from "./TextRun";
+import EmojiRun from "../EmojiRun";
 
 class Text {
     text: string;

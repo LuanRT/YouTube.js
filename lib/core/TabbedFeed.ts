@@ -1,7 +1,7 @@
-import Tab from "../parser/classes/Tab.js";
-import { InnertubeError } from "../utils/Utils.js";
-import Actions from "./Actions.js";
-import Feed from "./Feed.js";
+import Tab from "../parser/classes/Tab";
+import { InnertubeError } from "../utils/Utils";
+import Actions from "./Actions";
+import Feed from "./Feed";
 
 class TabbedFeed extends Feed {
     #tabs;

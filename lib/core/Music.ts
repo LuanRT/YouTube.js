@@ -1,21 +1,21 @@
-import Parser from "../parser/index.js";
-import { observe, YTNode } from "../parser/helpers.js";
-import Search from "../parser/ytmusic/Search.js";
-import HomeFeed from "../parser/ytmusic/HomeFeed.js";
-import Explore from "../parser/ytmusic/Explore.js";
-import Library from "../parser/ytmusic/Library.js";
-import Artist from "../parser/ytmusic/Artist.js";
-import Album from "../parser/ytmusic/Album.js";
-import { InnertubeError, throwIfMissing } from "../utils/Utils.js";
-import Session from "./Session.js";
-import SingleColumnBrowseResults from "../parser/classes/SingleColumnBrowseResults.js";
-import TabbedSearchResults from "../parser/classes/TabbedSearchResults.js";
-import TwoColumnBrowseResults from "../parser/classes/TwoColumnBrowseResults.js";
-import Tab from "../parser/classes/Tab.js";
-import SearchSuggestionsSection from "../parser/classes/SearchSuggestionsSection.js";
-import NavigationEndpoint from "../parser/classes/NavigationEndpoint.js";
-import MusicDescriptionShelf from "../parser/classes/MusicDescriptionShelf.js";
-import MusicCarouselShelf from "../parser/classes/MusicCarouselShelf.js";
+import Parser from "../parser/index";
+import { observe, YTNode } from "../parser/helpers";
+import Search from "../parser/ytmusic/Search";
+import HomeFeed from "../parser/ytmusic/HomeFeed";
+import Explore from "../parser/ytmusic/Explore";
+import Library from "../parser/ytmusic/Library";
+import Artist from "../parser/ytmusic/Artist";
+import Album from "../parser/ytmusic/Album";
+import { InnertubeError, throwIfMissing } from "../utils/Utils";
+import Session from "./Session";
+import SingleColumnBrowseResults from "../parser/classes/SingleColumnBrowseResults";
+import TabbedSearchResults from "../parser/classes/TabbedSearchResults";
+import TwoColumnBrowseResults from "../parser/classes/TwoColumnBrowseResults";
+import Tab from "../parser/classes/Tab";
+import SearchSuggestionsSection from "../parser/classes/SearchSuggestionsSection";
+import NavigationEndpoint from "../parser/classes/NavigationEndpoint";
+import MusicDescriptionShelf from "../parser/classes/MusicDescriptionShelf";
+import MusicCarouselShelf from "../parser/classes/MusicCarouselShelf";
 
 /** @namespace */
 class Music {

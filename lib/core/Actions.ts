@@ -1,8 +1,8 @@
-import Proto from "../proto/index.js";
-import { InnertubeError, throwIfMissing, uuidv4 } from "../utils/Utils.js";
-import Constants from "../utils/Constants.js";
-import Parser, { ParsedResponse } from "../parser/index.js";
-import Session from "./Session.js";
+import Proto from "../proto/index";
+import { InnertubeError, throwIfMissing, uuidv4 } from "../utils/Utils";
+import Constants from "../utils/Constants";
+import Parser, { ParsedResponse } from "../parser/index";
+import Session from "./Session";
 
 
 export interface BrowseArgs {
