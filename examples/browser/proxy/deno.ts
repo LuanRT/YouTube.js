@@ -36,14 +36,17 @@ const handler = async (request: Request): Promise<Response> => {
     url.protocol = 'https';
     url.port = '443';
     url.searchParams.delete("__host");
-    url.searchParams.delete("__proxy");
-    console.log('url', url.toString());
-    console.log('__headers', url.searchParams.get("__headers"));
     const request_headers = new Headers(JSON.parse(url.searchParams.get("__headers") || "{}"));
     copyHeader("range", request_headers, request.headers);
     request_headers.set('user-agent', request.headers.get('user-agent')!);
     url.searchParams.delete("__headers");
-    console.log('headers', request_headers, request.headers.get('range'));
+    console.log('url', url.toString());
+    console.log('headers', request.headers, request.method);
+    console.log('body', {
+        method: request.method,
+        headers: request_headers,
+        body: request.body,
+    })
     const fetchRes = await fetch(url, {
         method: request.method,
         headers: request_headers,
@@ -58,7 +61,7 @@ const handler = async (request: Request): Promise<Response> => {
     headers.set("Access-Control-Allow-Headers", "*");
     headers.set("Access-Control-Allow-Methods", "*");
     headers.set("Access-Control-Allow-Credentials", "true");
-    headers.set("Origin", "https://www.youtube.com");
+    // headers.set("Origin", "https://www.youtube.com");
 
     return new Response(fetchRes.body, { 
         status: fetchRes.status,

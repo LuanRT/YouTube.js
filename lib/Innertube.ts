@@ -15,17 +15,13 @@ import YTMusic from "./core/Music.js";
 import FilterableFeed from "./core/FilterableFeed.js";
 import TabbedFeed from "./core/TabbedFeed.js";
 import Feed from "./core/Feed.js";
-import EventEmitter from "./utils/EventEmitterLike";
 import Constants from "./utils/Constants.js";
-import { InnertubeError, throwIfMissing, generateRandomString } from "./utils/Utils.js";
+import { throwIfMissing, generateRandomString } from "./utils/Utils.js";
 import Proto from "./proto/index.js";
-import HTTPClient from "./utils/HTTPClient.js";
 
 export interface InnertubeConfig extends SessionOptions {
+    // TODO: this doesn't do anything afaik
     debug?: boolean;
-    proxy?: object;
-    http_ent?: object;
-    https_agent?: object;
 }
 
 export interface SearchFilters {
@@ -47,15 +43,14 @@ export interface SearchFilters {
     sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count';
   }
 
-class Innertube extends EventEmitter {
+class Innertube {
     session;
     account;
     playlist;
     interact;
     music;
     actions;
-    constructor(config: InnertubeConfig, session: Session) {
-        super();
+    constructor(session: Session) {
         this.session = session;
         this.account = new AccountManager(this.session.actions);
         this.playlist = new PlaylistManager(this.session.actions);
@@ -64,7 +59,7 @@ class Innertube extends EventEmitter {
         this.actions = this.session.actions;
     }
     static async create(config: InnertubeConfig = {}) {
-        return new Innertube(config, await Session.create(config));
+        return new Innertube(await Session.create(config));
     }
     /**
      * Retrieves video info.

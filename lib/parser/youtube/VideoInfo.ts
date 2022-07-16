@@ -23,6 +23,8 @@ import Format from "../classes/misc/Format";
 import { create } from "xmlbuilder2";
 import { XMLBuilder } from 'xmlbuilder2/lib/interfaces';
 
+export type URLTransformer = (url: URL) => URL;
+
 export interface FormatOptions {
     /**
      * video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
@@ -310,7 +312,7 @@ class VideoInfo {
         return candidates[0];
     }
 
-    toDash() {
+    toDash(url_transformer: URLTransformer = (url) => url) {
         if (!this.streaming_data)
             throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
         
@@ -332,15 +334,15 @@ class VideoInfo {
             .att('xsi', 'schemaLocation', 'urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd')
                 .ele('Period');
 
-        this.#generateAdaptationSet(period, adaptive_formats);
+        this.#generateAdaptationSet(period, adaptive_formats, url_transformer);
 
         return root.end({ prettyPrint: true });
     }
 
-    #generateAdaptationSet(period: XMLBuilder, formats: Format[]) {
+    #generateAdaptationSet(period: XMLBuilder, formats: Format[], url_transformer: URLTransformer) {
         const mimeTypes: string[] = [];
         const mimeObjects: Format[][] = [[]];
-        
+
         formats.forEach(videoFormat => {
             if (!videoFormat.index_range || !videoFormat.init_range) {
                 return;   
@@ -367,27 +369,21 @@ class VideoInfo {
                 });
             mimeObjects[i].forEach(format => {
                 if (format.has_video) {
-                    this.#generateRepresentationVideo(set, format);
+                    this.#generateRepresentationVideo(set, format, url_transformer);
                 } else {
-                    this.#generateRepresentationAudio(set, format);
+                    this.#generateRepresentationAudio(set, format, url_transformer);
                 }
             });
         }
     }
 
-    #generateRepresentationVideo(set: XMLBuilder, format: Format) {
+    #generateRepresentationVideo(set: XMLBuilder, format: Format, url_transformer: URLTransformer) {
         const codecs = getStringBetweenStrings(format.mime_type, "codecs=\"", "\"");
         if (!format.index_range || !format.init_range)
             throw new InnertubeError('Index and init ranges not available', { format });
 
         const url = new URL(format.decipher(this.#player));
         url.searchParams.set('cpn', this.#cpn);
-        const browser_proxy = this.#actions.session.http.browser_proxy;
-        if (browser_proxy) {
-            url.searchParams.set('__host', url.host);
-            url.host = browser_proxy.host;
-            url.protocol = browser_proxy.schema;
-        }
 
         set
             .ele("Representation", {
@@ -400,7 +396,7 @@ class VideoInfo {
                 frameRate: format.fps,
             })
                 .ele("BaseURL")
-                    .txt(url.toString())
+                    .txt(url_transformer(url).toString())
                     .up()
                 .ele("SegmentBase", {
                     indexRange: `${format.index_range.start}-${format.index_range.end}`,
@@ -410,19 +406,13 @@ class VideoInfo {
                     });
     }
 
-    #generateRepresentationAudio(set: XMLBuilder, format: Format) {
+    #generateRepresentationAudio(set: XMLBuilder, format: Format, url_transformer: URLTransformer) {
         const codecs = getStringBetweenStrings(format.mime_type, "codecs=\"", "\"");
         if (!format.index_range || !format.init_range)
             throw new InnertubeError('Index and init ranges not available', { format });
 
         const url = new URL(format.decipher(this.#player));
         url.searchParams.set('cpn', this.#cpn);
-        const browser_proxy = this.#actions.session.http.browser_proxy;
-        if (browser_proxy) {
-            url.searchParams.set('__host', url.host);
-            url.host = browser_proxy.host;
-            url.protocol = browser_proxy.schema;
-        }
 
         set
             .ele("Representation", {
@@ -436,7 +426,7 @@ class VideoInfo {
                 })
                 .up()
                 .ele("BaseURL")
-                    .txt(url.toString())
+                    .txt(url_transformer(url).toString())
                     .up()
                 .ele("SegmentBase", {
                     indexRange: `${format.index_range.start}-${format.index_range.end}`,
@@ -470,7 +460,7 @@ class VideoInfo {
 
         // If we're not downloading the video in chunks, we just use fetch once.
         if (opts.type === 'video+audio' && !options.range) {
-            const response = await fetch(`${format_url}&cpn=${this.#cpn}`, {
+            const response = await this.#actions.session.http.fetch_function(`${format_url}&cpn=${this.#cpn}`, {
                 method: 'GET',
                 headers: Constants.STREAM_HEADERS,
                 redirect: "follow"
@@ -509,7 +499,7 @@ class VideoInfo {
                     return new Promise(async (resolve, reject) => {
                         try {
                             cancel = new AbortController();
-                            const response = await fetch(`${format_url}&cpn=${this.#cpn}&range=${chunk_start}-${chunk_end || ''}`, {
+                            const response = await this.#actions.session.http.fetch_function(`${format_url}&cpn=${this.#cpn}&range=${chunk_start}-${chunk_end || ''}`, {
                                 method: 'GET',
                                 headers: {
                                     ...Constants.STREAM_HEADERS,

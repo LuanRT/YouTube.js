@@ -254,7 +254,7 @@ export function uuidv4() {
 export type Runtime = 'node' | 'deno' | 'browser';
 
 export function getRuntime(): Runtime {
-    if ((typeof process !== 'undefined') && (process.release.name === 'node'))
+    if ((typeof process !== 'undefined') && (process?.versions?.node))
         return 'node';
     if (Reflect.has(globalThis, 'Deno'))
         return 'deno';

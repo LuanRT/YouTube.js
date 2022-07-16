@@ -5,7 +5,7 @@ import Constants from "../utils/Constants.js";
 import UniversalCache from "../utils/Cache.js";
 import OAuth, { Credentials } from "./OAuth.js";
 import EventEmitterLike from "../utils/EventEmitterLike.js";
-import HTTPClient from "../utils/HTTPClient.js";
+import HTTPClient, { FetchFunction } from "../utils/HTTPClient.js";
 import Actions from "./Actions.js";
 
 export interface Context {
@@ -44,12 +44,6 @@ export enum ClientType {
     ANDROID = "ANDROID",
 }
 
-
-export interface BrowserProxy {
-    host: string;
-    schema: 'http' | 'https';
-}
-
 export interface SessionOptions {
     lang?: string;
     device_category?: DeviceCategory;
@@ -57,7 +51,7 @@ export interface SessionOptions {
     timezone?: string;
     cache?: UniversalCache;
     cookie?: string;
-    browser_proxy?: BrowserProxy;
+    fetch?: FetchFunction;
 }
 
 export default class Session extends EventEmitterLike {
@@ -69,13 +63,13 @@ export default class Session extends EventEmitterLike {
     http;
     logged_in;
     actions;
-    constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string, browser_proxy?: BrowserProxy) {
+    constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string, fetch?: FetchFunction) {
         super();
         this.#context = context;
         this.#key = api_key;
         this.#api_version = api_version;
         this.#player = player;
-        this.http = new HTTPClient(this, cookie, browser_proxy);
+        this.http = new HTTPClient(this, cookie, fetch);
         this.actions = new Actions(this);
         this.oauth = new OAuth(this);
         this.logged_in = !!cookie;
@@ -107,22 +101,18 @@ export default class Session extends EventEmitterLike {
         return response;
     }
     static async create(options: SessionOptions = {}) {
-        const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.browser_proxy);
-        return new Session(context, api_key, api_version, await Player.create(options.cache, options.browser_proxy), options.cookie, options.browser_proxy);
+        const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.fetch);
+        return new Session(context, api_key, api_version, await Player.create(options.cache, options.fetch), options.cookie, options.fetch);
     }
     static async getSessionData(
         lang: string = 'en-US', 
         deviceCategory: DeviceCategory = 'desktop', 
         clientName: ClientType = ClientType.WEB, 
         tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
-        browser_proxy?: BrowserProxy
+        fetch: FetchFunction = globalThis.fetch
     ) {
         const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
-        if (browser_proxy) {
-            url.searchParams.set('__host', url.host);
-            url.host = browser_proxy.host;
-            url.protocol = browser_proxy.schema;
-        }
+
         const res = await fetch(url, {
             headers: {
                 'accept-language': lang,

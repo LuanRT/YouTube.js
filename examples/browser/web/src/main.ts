@@ -4,9 +4,35 @@ import dashjs from "dashjs";
 
 async function main() {
   const yt = await Innertube.create({
-    browser_proxy: {
-      host: 'localhost:8080',
-      schema: 'http'
+    fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
+      // url
+      const url = 
+        typeof input === 'string' ? 
+          new URL(input) : 
+        input instanceof URL ?
+          input :
+          new URL(input.url);
+
+      // transform the url for use with our proxy
+      url.searchParams.set('__host', url.host);
+      url.host = 'localhost:8080';
+      url.protocol = 'http';
+      
+      const headers = 
+        init?.headers ? 
+          new Headers(init.headers) : 
+        input instanceof Request ? 
+          input.headers : 
+          new Headers();
+
+      // now serialize the headers
+      url.searchParams.set('__headers', JSON.stringify([...headers]));
+
+      // copy over the request
+      const request = new Request(url, input instanceof Request ? input : undefined);
+
+      // fetch the url
+      return fetch(request, init);
     }
   });
 
@@ -33,7 +59,12 @@ async function main() {
       console.log(video);
       span.textContent = video.basic_info.title || null;
 
-      const dash = video.toDash();
+      const dash = video.toDash(url => {
+        url.searchParams.set('__host', url.host);
+        url.host = 'localhost:8080';
+        url.protocol = 'http';
+        return url;
+      });
 
       const uri = "data:application/dash+xml;charset=utf-8;base64," + btoa(dash);
 

@@ -1,6 +1,8 @@
-import Session, { BrowserProxy, Context } from "../core/Session";
+import Session, { Context } from "../core/Session";
 import Constants from "./Constants";
 import { generateSidAuth, getRandomUserAgent, getRuntime, getStringBetweenStrings, InnertubeError, isServer } from "./Utils";
+
+export type FetchFunction = typeof fetch;
 
 export interface HTTPClientInit {
     baseURL?: string;
@@ -9,15 +11,15 @@ export interface HTTPClientInit {
 export default class HTTPClient {
     #session: Session;
     #cookie?: string;
-    #browser_proxy?: BrowserProxy;
-    constructor(session: Session, cookie?: string, browser_proxy?: BrowserProxy) {
+    #fetch: FetchFunction;
+    constructor(session: Session, cookie?: string, fetch?: FetchFunction) {
         this.#session = session;
         this.#cookie = cookie;
-        this.#browser_proxy = browser_proxy;
+        this.#fetch = fetch || globalThis.fetch;
     }
 
-    get browser_proxy() {
-        return this.#browser_proxy ? {...this.#browser_proxy} : undefined;
+    get fetch_function() {
+        return this.#fetch;
     }
 
     async fetch(
@@ -57,24 +59,12 @@ export default class HTTPClient {
             request_headers.set('origin', request_url.origin);
         }
 
-        if (this.#browser_proxy) {
-            const serialized_headers: Record<string, string> = {};
-            request_headers.forEach((value, key) => {
-                serialized_headers[key] = value;
-            })
-            request_url.searchParams.set('__host', request_url.host);
-            request_url.host = this.#browser_proxy.host;
-            request_url.protocol = this.#browser_proxy.schema;
-            request_url.searchParams.set('__headers', JSON.stringify(serialized_headers));
-        }
-
         request_url.searchParams.set("key", this.#session.key);
         request_url.searchParams.set('prettyPrint', 'false');
 
         const contentType = request_headers.get("Content-Type");
 
         let request_body = body;
-
 
         const is_innertube_req = baseURL === innertube_url;
 
@@ -112,7 +102,6 @@ export default class HTTPClient {
         }
 
         const request = new Request(request_url, {
-            body: request_body,
             headers: request_headers,
             cache: input instanceof Request ? input.cache : undefined,
             credentials: "include",
@@ -127,7 +116,9 @@ export default class HTTPClient {
             keepalive: input instanceof Request ? input.keepalive : init?.keepalive
         });
 
-        const response = await fetch(request);
+        const response = await this.#fetch(request, {
+            body: request_body
+        });
 
         // check if 2xx
         if (response.ok) {

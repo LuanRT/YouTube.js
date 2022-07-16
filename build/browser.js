@@ -21339,7 +21339,8 @@ function uuidv4() {
 }
 __name(uuidv4, "uuidv4");
 function getRuntime() {
-  if (typeof process !== "undefined" && process.release.name === "node")
+  var _a2;
+  if (typeof process !== "undefined" && ((_a2 = process === null || process === void 0 ? void 0 : process.versions) === null || _a2 === void 0 ? void 0 : _a2.node))
     return "node";
   if (Reflect.has(globalThis, "Deno"))
     return "deno";
@@ -22087,14 +22088,9 @@ var Player = class {
   get sts() {
     return __classPrivateFieldGet(this, _Player_signature_timestamp, "f");
   }
-  static create(cache, browser_proxy) {
+  static create(cache, fetch = globalThis.fetch) {
     return __awaiter2(this, void 0, void 0, function* () {
       const url = new URL("/iframe_api", Constants_default.URLS.YT_BASE);
-      if (browser_proxy) {
-        url.searchParams.set("__host", url.host);
-        url.host = browser_proxy.host;
-        url.protocol = browser_proxy.schema;
-      }
       const res = yield fetch(url);
       if (res.status !== 200)
         throw new PlayerError("Failed to request player id");
@@ -22108,11 +22104,6 @@ var Player = class {
           return cachedPlayer;
       }
       const player_url = new URL(`/s/player/${player_id}/player_ias.vflset/en_US/base.js`, Constants_default.URLS.YT_BASE);
-      if (browser_proxy) {
-        player_url.searchParams.set("__host", player_url.host);
-        player_url.host = browser_proxy.host;
-        player_url.protocol = browser_proxy.schema;
-      }
       const player_res = yield fetch(player_url, {
         headers: {
           "user-agent": getRandomUserAgent("desktop").userAgent
@@ -25721,20 +25712,20 @@ var __classPrivateFieldGet4 = function(receiver, state, kind, f) {
 var _HTTPClient_instances;
 var _HTTPClient_session;
 var _HTTPClient_cookie;
-var _HTTPClient_browser_proxy;
+var _HTTPClient_fetch;
 var _HTTPClient_adjustContext;
 var HTTPClient = class {
-  constructor(session, cookie, browser_proxy) {
+  constructor(session, cookie, fetch) {
     _HTTPClient_instances.add(this);
     _HTTPClient_session.set(this, void 0);
     _HTTPClient_cookie.set(this, void 0);
-    _HTTPClient_browser_proxy.set(this, void 0);
+    _HTTPClient_fetch.set(this, void 0);
     __classPrivateFieldSet3(this, _HTTPClient_session, session, "f");
     __classPrivateFieldSet3(this, _HTTPClient_cookie, cookie, "f");
-    __classPrivateFieldSet3(this, _HTTPClient_browser_proxy, browser_proxy, "f");
+    __classPrivateFieldSet3(this, _HTTPClient_fetch, fetch || globalThis.fetch, "f");
   }
-  get browser_proxy() {
-    return __classPrivateFieldGet4(this, _HTTPClient_browser_proxy, "f") ? Object.assign({}, __classPrivateFieldGet4(this, _HTTPClient_browser_proxy, "f")) : void 0;
+  get fetch_function() {
+    return __classPrivateFieldGet4(this, _HTTPClient_fetch, "f");
   }
   fetch(input, init) {
     return __awaiter4(this, void 0, void 0, function* () {
@@ -25752,16 +25743,6 @@ var HTTPClient = class {
       if (isServer()) {
         request_headers.set("User-Agent", getRandomUserAgent("desktop").userAgent);
         request_headers.set("origin", request_url.origin);
-      }
-      if (__classPrivateFieldGet4(this, _HTTPClient_browser_proxy, "f")) {
-        const serialized_headers = {};
-        request_headers.forEach((value, key) => {
-          serialized_headers[key] = value;
-        });
-        request_url.searchParams.set("__host", request_url.host);
-        request_url.host = __classPrivateFieldGet4(this, _HTTPClient_browser_proxy, "f").host;
-        request_url.protocol = __classPrivateFieldGet4(this, _HTTPClient_browser_proxy, "f").schema;
-        request_url.searchParams.set("__headers", JSON.stringify(serialized_headers));
       }
       request_url.searchParams.set("key", __classPrivateFieldGet4(this, _HTTPClient_session, "f").key);
       request_url.searchParams.set("prettyPrint", "false");
@@ -25794,7 +25775,6 @@ var HTTPClient = class {
         }
       }
       const request = new Request(request_url, {
-        body: request_body,
         headers: request_headers,
         cache: input instanceof Request ? input.cache : void 0,
         credentials: "include",
@@ -25807,7 +25787,9 @@ var HTTPClient = class {
         signal: input instanceof Request ? input.signal : init === null || init === void 0 ? void 0 : init.signal,
         keepalive: input instanceof Request ? input.keepalive : init === null || init === void 0 ? void 0 : init.keepalive
       });
-      const response = yield fetch(request);
+      const response = yield __classPrivateFieldGet4(this, _HTTPClient_fetch, "f").call(this, request, {
+        body: request_body
+      });
       if (response.ok) {
         return response;
       } else
@@ -25816,7 +25798,7 @@ var HTTPClient = class {
   }
 };
 __name(HTTPClient, "HTTPClient");
-_HTTPClient_session = /* @__PURE__ */ new WeakMap(), _HTTPClient_cookie = /* @__PURE__ */ new WeakMap(), _HTTPClient_browser_proxy = /* @__PURE__ */ new WeakMap(), _HTTPClient_instances = /* @__PURE__ */ new WeakSet(), _HTTPClient_adjustContext = /* @__PURE__ */ __name(function _HTTPClient_adjustContext2(ctx, client) {
+_HTTPClient_session = /* @__PURE__ */ new WeakMap(), _HTTPClient_cookie = /* @__PURE__ */ new WeakMap(), _HTTPClient_fetch = /* @__PURE__ */ new WeakMap(), _HTTPClient_instances = /* @__PURE__ */ new WeakSet(), _HTTPClient_adjustContext = /* @__PURE__ */ __name(function _HTTPClient_adjustContext2(ctx, client) {
   switch (client) {
     case "YTMUSIC":
       ctx.client.clientVersion = Constants_default.CLIENTS.YTMUSIC.VERSION;
@@ -31715,7 +31697,7 @@ var ClientType;
   ClientType2["ANDROID"] = "ANDROID";
 })(ClientType || (ClientType = {}));
 var Session = class extends EventEmitterLike {
-  constructor(context, api_key, api_version, player, cookie, browser_proxy) {
+  constructor(context, api_key, api_version, player, cookie, fetch) {
     super();
     _Session_api_version.set(this, void 0);
     _Session_key.set(this, void 0);
@@ -31725,7 +31707,7 @@ var Session = class extends EventEmitterLike {
     __classPrivateFieldSet13(this, _Session_key, api_key, "f");
     __classPrivateFieldSet13(this, _Session_api_version, api_version, "f");
     __classPrivateFieldSet13(this, _Session_player, player, "f");
-    this.http = new HTTPClient(this, cookie, browser_proxy);
+    this.http = new HTTPClient(this, cookie, fetch);
     this.actions = new Actions_default(this);
     this.oauth = new OAuth_default(this);
     this.logged_in = !!cookie;
@@ -31762,18 +31744,13 @@ var Session = class extends EventEmitterLike {
   }
   static create(options = {}) {
     return __awaiter9(this, void 0, void 0, function* () {
-      const { context, api_key, api_version } = yield Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.browser_proxy);
-      return new Session(context, api_key, api_version, yield Player.create(options.cache, options.browser_proxy), options.cookie, options.browser_proxy);
+      const { context, api_key, api_version } = yield Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.fetch);
+      return new Session(context, api_key, api_version, yield Player.create(options.cache, options.fetch), options.cookie, options.fetch);
     });
   }
-  static getSessionData(lang = "en-US", deviceCategory = "desktop", clientName = ClientType.WEB, tz = Intl.DateTimeFormat().resolvedOptions().timeZone, browser_proxy) {
+  static getSessionData(lang = "en-US", deviceCategory = "desktop", clientName = ClientType.WEB, tz = Intl.DateTimeFormat().resolvedOptions().timeZone, fetch = globalThis.fetch) {
     return __awaiter9(this, void 0, void 0, function* () {
       const url = new URL("/sw.js_data", Constants_default.URLS.YT_BASE);
-      if (browser_proxy) {
-        url.searchParams.set("__host", url.host);
-        url.host = browser_proxy.host;
-        url.protocol = browser_proxy.schema;
-      }
       const res = yield fetch(url, {
         headers: {
           "accept-language": lang,
@@ -33025,7 +33002,7 @@ var VideoInfo = class {
     }
     return candidates[0];
   }
-  toDash() {
+  toDash(url_transformer = (url) => url) {
     if (!this.streaming_data)
       throw new InnertubeError("Streaming data not available", { video_id: this.basic_info.id });
     const { adaptive_formats } = this.streaming_data;
@@ -33038,7 +33015,7 @@ var VideoInfo = class {
       type: "static",
       mediaPresentationDuration: `PT${length}S`
     }).att("xmlns", "xsi", "http://www.w3.org/2001/XMLSchema-instance").att("xsi", "schemaLocation", "urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd").ele("Period");
-    __classPrivateFieldGet23(this, _VideoInfo_instances, "m", _VideoInfo_generateAdaptationSet).call(this, period, adaptive_formats);
+    __classPrivateFieldGet23(this, _VideoInfo_instances, "m", _VideoInfo_generateAdaptationSet).call(this, period, adaptive_formats, url_transformer);
     return root.end({ prettyPrint: true });
   }
   download(options = {}) {
@@ -33054,7 +33031,7 @@ var VideoInfo = class {
       const format = this.chooseFormat(opts);
       const format_url = format.decipher(__classPrivateFieldGet23(this, _VideoInfo_player, "f"));
       if (opts.type === "video+audio" && !options.range) {
-        const response = yield fetch(`${format_url}&cpn=${__classPrivateFieldGet23(this, _VideoInfo_cpn, "f")}`, {
+        const response = yield __classPrivateFieldGet23(this, _VideoInfo_actions, "f").session.http.fetch_function(`${format_url}&cpn=${__classPrivateFieldGet23(this, _VideoInfo_cpn, "f")}`, {
           method: "GET",
           headers: Constants_default.STREAM_HEADERS,
           redirect: "follow"
@@ -33087,7 +33064,7 @@ var VideoInfo = class {
               var e_1, _c;
               try {
                 cancel = new AbortController();
-                const response = yield fetch(`${format_url}&cpn=${__classPrivateFieldGet23(this, _VideoInfo_cpn, "f")}&range=${chunk_start}-${chunk_end || ""}`, {
+                const response = yield __classPrivateFieldGet23(this, _VideoInfo_actions, "f").session.http.fetch_function(`${format_url}&cpn=${__classPrivateFieldGet23(this, _VideoInfo_cpn, "f")}&range=${chunk_start}-${chunk_end || ""}`, {
                   method: "GET",
                   headers: Object.assign({}, Constants_default.STREAM_HEADERS),
                   signal: cancel.signal
@@ -33139,7 +33116,7 @@ var VideoInfo = class {
   }
 };
 __name(VideoInfo, "VideoInfo");
-_VideoInfo_page = /* @__PURE__ */ new WeakMap(), _VideoInfo_actions = /* @__PURE__ */ new WeakMap(), _VideoInfo_player = /* @__PURE__ */ new WeakMap(), _VideoInfo_cpn = /* @__PURE__ */ new WeakMap(), _VideoInfo_watch_next_continuation = /* @__PURE__ */ new WeakMap(), _VideoInfo_instances = /* @__PURE__ */ new WeakSet(), _VideoInfo_generateAdaptationSet = /* @__PURE__ */ __name(function _VideoInfo_generateAdaptationSet2(period, formats) {
+_VideoInfo_page = /* @__PURE__ */ new WeakMap(), _VideoInfo_actions = /* @__PURE__ */ new WeakMap(), _VideoInfo_player = /* @__PURE__ */ new WeakMap(), _VideoInfo_cpn = /* @__PURE__ */ new WeakMap(), _VideoInfo_watch_next_continuation = /* @__PURE__ */ new WeakMap(), _VideoInfo_instances = /* @__PURE__ */ new WeakSet(), _VideoInfo_generateAdaptationSet = /* @__PURE__ */ __name(function _VideoInfo_generateAdaptationSet2(period, formats, url_transformer) {
   const mimeTypes = [];
   const mimeObjects = [[]];
   formats.forEach((videoFormat) => {
@@ -33166,24 +33143,18 @@ _VideoInfo_page = /* @__PURE__ */ new WeakMap(), _VideoInfo_actions = /* @__PURE
     });
     mimeObjects[i].forEach((format) => {
       if (format.has_video) {
-        __classPrivateFieldGet23(this, _VideoInfo_instances, "m", _VideoInfo_generateRepresentationVideo).call(this, set, format);
+        __classPrivateFieldGet23(this, _VideoInfo_instances, "m", _VideoInfo_generateRepresentationVideo).call(this, set, format, url_transformer);
       } else {
-        __classPrivateFieldGet23(this, _VideoInfo_instances, "m", _VideoInfo_generateRepresentationAudio).call(this, set, format);
+        __classPrivateFieldGet23(this, _VideoInfo_instances, "m", _VideoInfo_generateRepresentationAudio).call(this, set, format, url_transformer);
       }
     });
   }
-}, "_VideoInfo_generateAdaptationSet"), _VideoInfo_generateRepresentationVideo = /* @__PURE__ */ __name(function _VideoInfo_generateRepresentationVideo2(set, format) {
+}, "_VideoInfo_generateAdaptationSet"), _VideoInfo_generateRepresentationVideo = /* @__PURE__ */ __name(function _VideoInfo_generateRepresentationVideo2(set, format, url_transformer) {
   const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
   if (!format.index_range || !format.init_range)
     throw new InnertubeError("Index and init ranges not available", { format });
   const url = new URL(format.decipher(__classPrivateFieldGet23(this, _VideoInfo_player, "f")));
   url.searchParams.set("cpn", __classPrivateFieldGet23(this, _VideoInfo_cpn, "f"));
-  const browser_proxy = __classPrivateFieldGet23(this, _VideoInfo_actions, "f").session.http.browser_proxy;
-  if (browser_proxy) {
-    url.searchParams.set("__host", url.host);
-    url.host = browser_proxy.host;
-    url.protocol = browser_proxy.schema;
-  }
   set.ele("Representation", {
     id: format.itag,
     codecs,
@@ -33192,23 +33163,17 @@ _VideoInfo_page = /* @__PURE__ */ new WeakMap(), _VideoInfo_actions = /* @__PURE
     height: format.height,
     maxPlayoutRate: "1",
     frameRate: format.fps
-  }).ele("BaseURL").txt(url.toString()).up().ele("SegmentBase", {
+  }).ele("BaseURL").txt(url_transformer(url).toString()).up().ele("SegmentBase", {
     indexRange: `${format.index_range.start}-${format.index_range.end}`
   }).ele("Initialization", {
     range: `${format.init_range.start}-${format.init_range.end}`
   });
-}, "_VideoInfo_generateRepresentationVideo"), _VideoInfo_generateRepresentationAudio = /* @__PURE__ */ __name(function _VideoInfo_generateRepresentationAudio2(set, format) {
+}, "_VideoInfo_generateRepresentationVideo"), _VideoInfo_generateRepresentationAudio = /* @__PURE__ */ __name(function _VideoInfo_generateRepresentationAudio2(set, format, url_transformer) {
   const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
   if (!format.index_range || !format.init_range)
     throw new InnertubeError("Index and init ranges not available", { format });
   const url = new URL(format.decipher(__classPrivateFieldGet23(this, _VideoInfo_player, "f")));
   url.searchParams.set("cpn", __classPrivateFieldGet23(this, _VideoInfo_cpn, "f"));
-  const browser_proxy = __classPrivateFieldGet23(this, _VideoInfo_actions, "f").session.http.browser_proxy;
-  if (browser_proxy) {
-    url.searchParams.set("__host", url.host);
-    url.host = browser_proxy.host;
-    url.protocol = browser_proxy.schema;
-  }
   set.ele("Representation", {
     id: format.itag,
     codecs,
@@ -33216,7 +33181,7 @@ _VideoInfo_page = /* @__PURE__ */ new WeakMap(), _VideoInfo_actions = /* @__PURE
   }).ele("AudioChannelConfiguration", {
     schemeIdUri: "urn:mpeg:dash:23003:3:audio_channel_configuration:2011",
     value: format.audio_channels || "2"
-  }).up().ele("BaseURL").txt(url.toString()).up().ele("SegmentBase", {
+  }).up().ele("BaseURL").txt(url_transformer(url).toString()).up().ele("SegmentBase", {
     indexRange: `${format.index_range.start}-${format.index_range.end}`
   }).ele("Initialization", {
     range: `${format.init_range.start}-${format.init_range.end}`
@@ -34469,9 +34434,8 @@ var __awaiter28 = function(thisArg, _arguments, P, generator) {
     step((generator = generator.apply(thisArg, _arguments || [])).next());
   });
 };
-var Innertube = class extends EventEmitterLike {
-  constructor(config, session) {
-    super();
+var Innertube = class {
+  constructor(session) {
     this.session = session;
     this.account = new AccountManager_default(this.session.actions);
     this.playlist = new PlaylistManager_default(this.session.actions);
@@ -34481,7 +34445,7 @@ var Innertube = class extends EventEmitterLike {
   }
   static create(config = {}) {
     return __awaiter28(this, void 0, void 0, function* () {
-      return new Innertube(config, yield Session.create(config));
+      return new Innertube(yield Session.create(config));
     });
   }
   getInfo(video_id) {
