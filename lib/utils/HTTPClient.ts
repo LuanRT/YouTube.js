@@ -1,6 +1,6 @@
 import Session, { Context } from '../core/Session';
 import Constants from './Constants';
-import { generateSidAuth, getRandomUserAgent, getRuntime, getStringBetweenStrings, InnertubeError, isServer } from './Utils';
+import { generateSidAuth, getRandomUserAgent, getStringBetweenStrings, InnertubeError, isServer } from './Utils';
 
 export type FetchFunction = typeof fetch;
 

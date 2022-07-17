@@ -3,13 +3,9 @@ import Format from './classes/misc/Format';
 import VideoDetails from './classes/misc/VideoDetails';
 import GetParserByName from './map';
 import package_json from '../../package.json';
-import PlayerMicroformat from './classes/PlayerMicroformat';
-import PlaylistSidebar from './classes/PlaylistSidebar';
-import PlayerOverlay from './classes/PlayerOverlay';
 import Endscreen from './classes/Endscreen';
 import CardCollection from './classes/CardCollection';
 import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
-import MicroformatData from './classes/MicroformatData';
 
 export class AppendContinuationItemsAction extends YTNode {
   static readonly type = 'appendContinuationItemsAction';

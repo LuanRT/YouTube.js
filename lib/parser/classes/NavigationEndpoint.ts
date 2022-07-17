@@ -3,7 +3,6 @@ import Parser, { ParsedResponse } from '../index';
 // TODO: refactor this
 import { YTNode } from '../helpers';
 import Actions, { ActionsResponse } from '../../core/Actions';
-import { ParsingError } from '../../utils/Utils';
 
 class NavigationEndpoint extends YTNode {
   payload;

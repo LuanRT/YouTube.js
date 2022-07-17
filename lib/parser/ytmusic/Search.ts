@@ -1,6 +1,5 @@
 import Parser, { ParsedResponse } from '../index';
 import { InnertubeError } from '../../utils/Utils';
-import { observe, ObservedArray, YTNode } from '../helpers';
 import Actions, { AxioslikeResponse } from '../../core/Actions';
 import DidYouMean from '../classes/DidYouMean';
 import ShowingResultsFor from '../classes/ShowingResultsFor';

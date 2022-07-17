@@ -1,4 +1,4 @@
-import { throwIfMissing, findNode, InnertubeError } from '../utils/Utils';
+import { throwIfMissing, findNode } from '../utils/Utils';
 import Constants from '../utils/Constants';
 import Analytics from '../parser/youtube/Analytics';
 import Proto from '../proto/index';

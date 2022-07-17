@@ -1,5 +1,5 @@
 import Playlist from '../parser/youtube/Playlist';
-import { InnertubeError, throwIfMissing, findNode } from '../utils/Utils';
+import { InnertubeError, throwIfMissing } from '../utils/Utils';
 import Actions from './Actions';
 import Feed from './Feed';
 

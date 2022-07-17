@@ -1,4 +1,3 @@
-import Actions from './core/Actions';
 import Session, { SessionOptions } from './core/Session';
 import AccountManager from './core/AccountManager';
 import PlaylistManager from './core/PlaylistManager';

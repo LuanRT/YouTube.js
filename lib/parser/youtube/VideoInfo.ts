@@ -482,7 +482,6 @@ class VideoInfo {
     let must_end = false;
 
     let cancel: AbortController;
-    const i = 0;
     const readableStream = new ReadableStream<Uint8Array>({
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       start() {},
