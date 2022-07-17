@@ -461,8 +461,7 @@ const map: Record<string, YTNodeConstructor> = {
 };
 
 /**
- *
- * @param name
+ * @param name - Name of the node to be parsed
  */
 export default function GetParserByName(name: string) {
   const ParserConstructor = map[name];
