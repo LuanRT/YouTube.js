@@ -1,12 +1,11 @@
 plugins:
-  [ jsdoc ]
+  [ jsdoc, '@typescript-eslint' ]
 env:
   commonjs: true
   es2021: true
   node: true
-extends: [ eslint:recommended, plugin:jsdoc/recommended ]
-globals: 
-  BROWSER: readonly
+extends: [ eslint:recommended, plugin:jsdoc/recommended, 'plugin:@typescript-eslint/recommended' ]
+parser: '@typescript-eslint/parser'
 settings:
   jsdoc:
     mode: 'typescript'
@@ -31,6 +30,8 @@ rules:
   jsdoc/no-undefined-types: 'off'
   jsdoc/require-returns: 'off'
 
+  '@typescript-eslint/ban-types': 'off'
+
   no-template-curly-in-string: error
   no-unreachable-loop: error
   no-unused-private-class-members: 'off'
@@ -42,7 +43,7 @@ rules:
   no-implied-eval: error
   arrow-spacing: error
   no-invalid-this: error
-  no-lone-blocks: error
+  no-lone-blocks: warn
   no-new-func: error
   no-new-wrappers: error
   no-new: error

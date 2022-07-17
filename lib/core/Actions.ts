@@ -1,8 +1,8 @@
-import Proto from "../proto/index";
-import { InnertubeError, throwIfMissing, uuidv4 } from "../utils/Utils";
-import Constants from "../utils/Constants";
-import Parser, { ParsedResponse } from "../parser/index";
-import Session from "./Session";
+import Proto from '../proto/index';
+import { InnertubeError, throwIfMissing, uuidv4 } from '../utils/Utils';
+import Constants from '../utils/Constants';
+import Parser, { ParsedResponse } from '../parser/index';
+import Session from './Session';
 
 
 export interface BrowseArgs {
@@ -45,372 +45,393 @@ export interface AxioslikeResponse {
     success: boolean;
     status_code: number;
     data: any;
-};
+}
 
 export type ActionsResponse = Promise<AxioslikeResponse>;
 
 class Actions {
-    #session;
-    constructor(session: Session) {
-        this.#session = session;
-    }
-    get session() {
-        return this.#session;
-    }
+  #session;
+  constructor(session: Session) {
+    this.#session = session;
+  }
+  get session() {
+    return this.#session;
+  }
 
-    /**
-     * Mimmics the Axios API using Fetch's Response object.
-     */
-    async #wrap(response: Response) {
-        return {
-            success: response.ok,
-            status_code: response.status,
-            data: await response.json()
-        };
+  /**
+   * Mimmics the Axios API using Fetch's Response object.
+   * @param response
+   */
+  async #wrap(response: Response) {
+    return {
+      success: response.ok,
+      status_code: response.status,
+      data: await response.json()
+    };
+  }
+  /**
+   * Covers `/browse` endpoint, mostly used to access
+   * YouTube's sections such as the home feed, etc
+   * and sometimes to retrieve continuations.
+   *
+   * @param {string} id - browseId or a continuation token
+   * @param {object} args - additional arguments
+   * @param {string} [args.params]
+   * @param {boolean} [args.is_ytm]
+   * @param {boolean} [args.is_ctoken]
+   * @param {string} [args.client]
+   * @returns {Promise.<Response>}
+   */
+  async browse(id: string, args: BrowseArgs = {}) {
+    if (this.#needsLogin(id) && !this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+    const data: Record<string, any> = {};
+    if (args.params)
+      data.params = args.params;
+    if (args.is_ctoken) {
+      data.continuation = id;
+    } else {
+      data.browseId = id;
     }
-    /**
-     * Covers `/browse` endpoint, mostly used to access
-     * YouTube's sections such as the home feed, etc
-     * and sometimes to retrieve continuations.
-     *
-     * @param {string} id - browseId or a continuation token
-     * @param {object} args - additional arguments
-     * @param {string} [args.params]
-     * @param {boolean} [args.is_ytm]
-     * @param {boolean} [args.is_ctoken]
-     * @param {string} [args.client]
-     * @returns {Promise.<Response>}
-     */
-    async browse(id: string, args: BrowseArgs = {}) {
-        if (this.#needsLogin(id) && !this.#session.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const data: Record<string, any> = {};
-        if (args.params)
-            data.params = args.params;
-        if (args.is_ctoken) {
-            data.continuation = id;
-        }
-        else {
-            data.browseId = id;
-        }
-        if (args.client) {
-            data.client = args.client;
-        }
-        const response = await this.#session.http.fetch('/browse', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
+    if (args.client) {
+      data.client = args.client;
     }
-    /**
-     * Covers endpoints used to perform direct interactions
-     * on YouTube.
-     */
-    async engage(action: string, args: EngageArgs = {}) {
-        if (!this.#session.logged_in && !args.hasOwnProperty('text'))
-            throw new InnertubeError('You are not signed in');
-        const data: Record<string, any> = {};
-        switch (action) {
-            case 'like/like':
-            case 'like/dislike':
-            case 'like/removelike':
-                throwIfMissing({ video_id: args.video_id });
-                data.target = {};
-                data.target.videoId = args.video_id;
-                if (args.params) {
-                    data.params = args.params;
-                }
-                break;
-            case 'subscription/subscribe':
-            case 'subscription/unsubscribe':
-                throwIfMissing({ channel_id: args.channel_id });
-                data.channelIds = [args.channel_id];
-                data.params = action === 'subscription/subscribe' ? 'EgIIAhgA' : 'CgIIAhgA';
-                break;
-            case 'comment/create_comment':
-                data.commentText = args.text;
-                throwIfMissing({ video_id: args.video_id });
-                data.createCommentParams = Proto.encodeCommentParams(args.video_id!);
-                break;
-            case 'comment/create_comment_reply':
-                throwIfMissing({ comment_id: args.comment_id, video_id: args.video_id, text: args.text });
-                data.createReplyParams = Proto.encodeCommentReplyParams(args.comment_id!, args.video_id!);
-                data.commentText = args.text;
-                break;
-            case 'comment/perform_comment_action':
-                const target_action = (() => {
-                    switch (args.comment_action) {
-                        case 'like':
-                            return Proto.encodeCommentActionParams(5, args);
-                        case 'dislike':
-                            return Proto.encodeCommentActionParams(4, args);
-                        case 'translate':
-                            return Proto.encodeCommentActionParams(22, args);
-                        default:
-                            break;
-                    }
-                })();
-                data.actions = [target_action];
-                break;
-            default:
-                throw new InnertubeError('Action not implemented', action);
-        }
-        const response = await this.#session.http.fetch(`/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
-    }
-    /**
-     * Covers endpoints related to account management.
-     *
-     * @param {string} action
-     * @param {object} args
-     * @param {string} [args.new_value]
-     * @param {string} [args.setting_item_id]
-     * @returns {Promise.<Response>}
-     */
-    async account(action: string, args: AccountArgs = {}) {
-        if (!this.#session.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const data: Record<string, any> = {
-            client: args.client
-        };
-        switch (action) {
-            case 'account/set_setting':
-                data.newValue = {
-                    boolValue: args.new_value
-                };
-                data.settingItemId = args.setting_item_id;
-                break;
-            case 'account/accounts_list':
-                break;
-            default:
-                throw new InnertubeError('Action not implemented', action);
-        }
-        const response = await this.#session.http.fetch(`/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
-    }
-    /**
-     * Endpoint used for search.
-     *
-     * @param {object} args
-     * @param {string} [args.query]
-     * @param {object} [args.options]
-     * @param {string} [args.options.period]
-     * @param {string} [args.options.duration]
-     * @param {string} [args.options.order]
-     * @param {string} [args.client]
-     * @param {string} [args.ctoken]
-     * @returns {Promise.<Response>}
-     */
-    async search(args: SearchArgs = {}) {
-        const data: Record<string, any> = { client: args.client };
-        if (args.query) {
-            data.query = args.query;
-        }
-        if (args.ctoken) {
-            data.continuation = args.ctoken;
-        }
+    const response = await this.#session.http.fetch('/browse', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Covers endpoints used to perform direct interactions
+   * on YouTube.
+   * @param action
+   * @param args
+   */
+  async engage(action: string, args: EngageArgs = {}) {
+    if (!this.#session.logged_in && !args.hasOwnProperty('text'))
+      throw new InnertubeError('You are not signed in');
+    const data: Record<string, any> = {};
+    switch (action) {
+      case 'like/like':
+      case 'like/dislike':
+      case 'like/removelike':
+        throwIfMissing({ video_id: args.video_id });
+        data.target = {};
+        data.target.videoId = args.video_id;
         if (args.params) {
-            data.params = args.params;
+          data.params = args.params;
         }
-        if (args.filters) {
-            if (args.client == 'YTMUSIC') {
-                data.params = Proto.encodeMusicSearchFilters(args.filters);
-            }
-            else {
-                data.params = Proto.encodeSearchFilters(args.filters);
-            }
-        }
-        const response = await this.#session.http.fetch('/search', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
+        break;
+      case 'subscription/subscribe':
+      case 'subscription/unsubscribe':
+        throwIfMissing({ channel_id: args.channel_id });
+        data.channelIds = [ args.channel_id ];
+        data.params = action === 'subscription/subscribe' ? 'EgIIAhgA' : 'CgIIAhgA';
+        break;
+      case 'comment/create_comment':
+        data.commentText = args.text;
+        throwIfMissing({ video_id: args.video_id });
+        data.createCommentParams = Proto.encodeCommentParams(args.video_id!);
+        break;
+      case 'comment/create_comment_reply':
+        throwIfMissing({ comment_id: args.comment_id, video_id: args.video_id, text: args.text });
+        data.createReplyParams = Proto.encodeCommentReplyParams(args.comment_id!, args.video_id!);
+        data.commentText = args.text;
+        break;
+      case 'comment/perform_comment_action':
+        const target_action = (() => {
+          switch (args.comment_action) {
+            case 'like':
+              return Proto.encodeCommentActionParams(5, args);
+            case 'dislike':
+              return Proto.encodeCommentActionParams(4, args);
+            case 'translate':
+              return Proto.encodeCommentActionParams(22, args);
+            default:
+              break;
+          }
+        })();
+        data.actions = [ target_action ];
+        break;
+      default:
+        throw new InnertubeError('Action not implemented', action);
     }
-    /**
-     * Endpoint used fo Shorts' sound search.
-     *
-     * @param {object} args
-     * @param {string} args.query
-     * @returns {Promise.<Response>}
-     */
-    async searchSound(args: {
+    const response = await this.#session.http.fetch(`/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Covers endpoints related to account management.
+   *
+   * @param {string} action
+   * @param {object} args
+   * @param {string} [args.new_value]
+   * @param {string} [args.setting_item_id]
+   * @returns {Promise.<Response>}
+   */
+  async account(action: string, args: AccountArgs = {}) {
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+    const data: Record<string, any> = {
+      client: args.client
+    };
+    switch (action) {
+      case 'account/set_setting':
+        data.newValue = {
+          boolValue: args.new_value
+        };
+        data.settingItemId = args.setting_item_id;
+        break;
+      case 'account/accounts_list':
+        break;
+      default:
+        throw new InnertubeError('Action not implemented', action);
+    }
+    const response = await this.#session.http.fetch(`/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Endpoint used for search.
+   *
+   * @param {object} args
+   * @param {string} [args.query]
+   * @param {object} [args.options]
+   * @param {string} [args.options.period]
+   * @param {string} [args.options.duration]
+   * @param {string} [args.options.order]
+   * @param {string} [args.client]
+   * @param {string} [args.ctoken]
+   * @returns {Promise.<Response>}
+   */
+  async search(args: SearchArgs = {}) {
+    const data: Record<string, any> = { client: args.client };
+    if (args.query) {
+      data.query = args.query;
+    }
+    if (args.ctoken) {
+      data.continuation = args.ctoken;
+    }
+    if (args.params) {
+      data.params = args.params;
+    }
+    if (args.filters) {
+      if (args.client == 'YTMUSIC') {
+        data.params = Proto.encodeMusicSearchFilters(args.filters);
+      } else {
+        data.params = Proto.encodeSearchFilters(args.filters);
+      }
+    }
+    const response = await this.#session.http.fetch('/search', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Endpoint used fo Shorts' sound search.
+   *
+   * @param {object} args
+   * @param {string} args.query
+   * @returns {Promise.<Response>}
+   */
+  async searchSound(args: {
         query: string;
     }) {
-        const data = {
-            query: args.query,
-            client: 'ANDROID'
-        };
-        const response = await this.#session.http.fetch('/sfv/search', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
-    }
-    /**
-     * Channel management endpoints.
-     *
-     * @param {string} action
-     * @param {object} args
-     * @param {string} [args.new_name]
-     * @param {string} [args.new_description]
-     * @returns {Promise.<Response>}
-     */
-    async channel(action: string, args: {
+    const data = {
+      query: args.query,
+      client: 'ANDROID'
+    };
+    const response = await this.#session.http.fetch('/sfv/search', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Channel management endpoints.
+   *
+   * @param {string} action
+   * @param {object} args
+   * @param {string} [args.new_name]
+   * @param {string} [args.new_description]
+   * @param args.client
+   * @returns {Promise.<Response>}
+   */
+  async channel(action: string, args: {
         new_name?: string;
         new_description?: string;
         client?: string;
     } = {}) {
-        if (!this.#session.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const data: Record<string, any> = {
-            client: args.client || 'ANDROID'
-        };
-        switch (action) {
-            case 'channel/edit_name':
-                data.givenName = args.new_name;
-                break;
-            case 'channel/edit_description':
-                data.description = args.new_description;
-                break;
-            case 'channel/get_profile_editor':
-                break;
-            default:
-                throw new InnertubeError('Action not implemented', action);
-        }
-        const response = await this.#session.http.fetch(`/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+    const data: Record<string, any> = {
+      client: args.client || 'ANDROID'
+    };
+    switch (action) {
+      case 'channel/edit_name':
+        data.givenName = args.new_name;
+        break;
+      case 'channel/edit_description':
+        data.description = args.new_description;
+        break;
+      case 'channel/get_profile_editor':
+        break;
+      default:
+        throw new InnertubeError('Action not implemented', action);
     }
-    /**
-     * Covers endpoints used for playlist management.
-     *
-     * @param {string} [args.ids]
-     */
-    async playlist(action: string, args: {
+    const response = await this.#session.http.fetch(`/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Covers endpoints used for playlist management.
+   *
+   * @param {string} [args.ids]
+   * @param action
+   * @param args
+   * @param args.title
+   * @param args.playlist_id
+   * @param args.action
+   */
+  async playlist(action: string, args: {
         title?: string;
         ids?: string[]; // TODO: this was a string before, but I made it an array, is this correct?
         playlist_id?: string;
         action?: string;
     } = {}) {
-        if (!this.#session.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const data: Record<string, any> = {};
-        switch (action) {
-            case 'playlist/create':
-                data.title = args.title;
-                data.videoIds = args.ids;
-                break;
-            case 'playlist/delete':
-                data.playlistId = args.playlist_id;
-                break;
-            case 'browse/edit_playlist':
-                throwIfMissing({ ids: args.ids });
-                data.playlistId = args.playlist_id;
-                data.actions = args.ids!.map((id) => {
-                    switch (args.action) {
-                        case 'ACTION_ADD_VIDEO':
-                            return {
-                                action: args.action,
-                                addedVideoId: id
-                            };
-                        case 'ACTION_REMOVE_VIDEO':
-                            return {
-                                action: args.action,
-                                setVideoId: id
-                            };
-                        default:
-                            break;
-                    }
-                });
-                break;
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+    const data: Record<string, any> = {};
+    switch (action) {
+      case 'playlist/create':
+        data.title = args.title;
+        data.videoIds = args.ids;
+        break;
+      case 'playlist/delete':
+        data.playlistId = args.playlist_id;
+        break;
+      case 'browse/edit_playlist':
+        throwIfMissing({ ids: args.ids });
+        data.playlistId = args.playlist_id;
+        data.actions = args.ids!.map((id) => {
+          switch (args.action) {
+            case 'ACTION_ADD_VIDEO':
+              return {
+                action: args.action,
+                addedVideoId: id
+              };
+            case 'ACTION_REMOVE_VIDEO':
+              return {
+                action: args.action,
+                setVideoId: id
+              };
             default:
-                throw new InnertubeError('Action not implemented', action);
-        }
-        const response = await this.#session.http.fetch(`/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+              break;
+          }
         });
-        return this.#wrap(response);
+        break;
+      default:
+        throw new InnertubeError('Action not implemented', action);
     }
-    /**
-     * Covers endpoints used for notifications management.
-     */
-    async notifications(action: string, args: {
+    const response = await this.#session.http.fetch(`/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Covers endpoints used for notifications management.
+   * @param action
+   * @param args
+   * @param args.pref
+   * @param args.channel_id
+   * @param args.ctoken
+   * @param args.params
+   */
+  async notifications(action: string, args: {
         pref?: string;
         channel_id?: string;
         ctoken?: string;
         params?: string
     } = {}) {
-        if (!this.#session.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const data: Record<string, any> = {};
-        switch (action) {
-            case 'modify_channel_preference':
-                throwIfMissing({ channel_id: args.channel_id, pref: args.pref });
-                const pref_types = {
-                    PERSONALIZED: 1,
-                    ALL: 2,
-                    NONE: 3
-                };
-                if (!Object.keys(pref_types).includes(args.pref!.toUpperCase())) 
-                    throw new InnertubeError('Invalid preference type', args.pref);
-                data.params = Proto.encodeNotificationPref(args.channel_id!, pref_types[args.pref!.toUpperCase() as keyof typeof pref_types]);
-                break;
-            case 'get_notification_menu':
-                data.notificationsMenuRequestType = 'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX';
-                if (args.ctoken)
-                    data.ctoken = args.ctoken;
-                break;
-            case 'record_interactions':
-                data.serializedRecordNotificationInteractionsRequest = args.params;
-                break;
-            case 'get_unseen_count':
-                break;
-            default:
-                throw new InnertubeError('Action not implemented', action);
-        }
-        const response = await this.#session.http.fetch(`/notification/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+    const data: Record<string, any> = {};
+    switch (action) {
+      case 'modify_channel_preference':
+        throwIfMissing({ channel_id: args.channel_id, pref: args.pref });
+        const pref_types = {
+          PERSONALIZED: 1,
+          ALL: 2,
+          NONE: 3
+        };
+        if (!Object.keys(pref_types).includes(args.pref!.toUpperCase()))
+          throw new InnertubeError('Invalid preference type', args.pref);
+        data.params = Proto.encodeNotificationPref(args.channel_id!, pref_types[args.pref!.toUpperCase() as keyof typeof pref_types]);
+        break;
+      case 'get_notification_menu':
+        data.notificationsMenuRequestType = 'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX';
+        if (args.ctoken)
+          data.ctoken = args.ctoken;
+        break;
+      case 'record_interactions':
+        data.serializedRecordNotificationInteractionsRequest = args.params;
+        break;
+      case 'get_unseen_count':
+        break;
+      default:
+        throw new InnertubeError('Action not implemented', action);
     }
-    /**
-     * Covers livechat endpoints.
-     */
-    async livechat(action: string, args: {
+    const response = await this.#session.http.fetch(`/notification/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Covers livechat endpoints.
+   * @param action
+   * @param args
+   * @param args.text
+   * @param args.video_id
+   * @param args.channel_id
+   * @param args.ctoken
+   * @param args.params
+   * @param args.client
+   */
+  async livechat(action: string, args: {
         text?: string;
         video_id?: string;
         channel_id?: string;
@@ -418,317 +439,336 @@ class Actions {
         params?: string;
         client?: string;
     } = {}) {
-        // TODO: should client be required?
-        const data: Record<string, any> = { client: args.client };
-        switch (action) {
-            case 'live_chat/get_live_chat':
-            case 'live_chat/get_live_chat_replay':
-                data.continuation = args.ctoken;
-                break;
-            case 'live_chat/send_message':
-                throwIfMissing({ channel_id: args.channel_id, text: args.text, video_id: args.video_id });
-                data.params = Proto.encodeMessageParams(args.channel_id!, args.video_id!);
-                data.clientMessageId = uuidv4();
-                data.richMessage = {
-                    textSegments: [{
-                            text: args.text!
-                        }]
-                };
-                break;
-            case 'live_chat/get_item_context_menu':
-                // Note: this is currently broken due to a recent refactor
-                // TODO: this should be implemented
-                break;
-            case 'live_chat/moderate':
-                data.params = args.params;
-                break;
-            case 'updated_metadata':
-                data.videoId = args.video_id;
-                if (args.ctoken)
-                    data.continuation = args.ctoken;
-                break;
-            default:
-                throw new InnertubeError('Action not implemented', action);
-        }
-        const response = await this.#session.http.fetch(`/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
+    // TODO: should client be required?
+    const data: Record<string, any> = { client: args.client };
+    switch (action) {
+      case 'live_chat/get_live_chat':
+      case 'live_chat/get_live_chat_replay':
+        data.continuation = args.ctoken;
+        break;
+      case 'live_chat/send_message':
+        throwIfMissing({ channel_id: args.channel_id, text: args.text, video_id: args.video_id });
+        data.params = Proto.encodeMessageParams(args.channel_id!, args.video_id!);
+        data.clientMessageId = uuidv4();
+        data.richMessage = {
+          textSegments: [ {
+            text: args.text!
+          } ]
+        };
+        break;
+      case 'live_chat/get_item_context_menu':
+        // Note: this is currently broken due to a recent refactor
+        // TODO: this should be implemented
+        break;
+      case 'live_chat/moderate':
+        data.params = args.params;
+        break;
+      case 'updated_metadata':
+        data.videoId = args.video_id;
+        if (args.ctoken)
+          data.continuation = args.ctoken;
+        break;
+      default:
+        throw new InnertubeError('Action not implemented', action);
     }
-    /**
-     * Endpoint used to retrieve video thumbnails.
-     */
-    async thumbnails(args: {
+    const response = await this.#session.http.fetch(`/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Endpoint used to retrieve video thumbnails.
+   * @param args
+   * @param args.video_id
+   */
+  async thumbnails(args: {
         video_id: string;
     }) {
-        const data = {
-            client: 'ANDROID',
-            videoId: args.video_id
-        };
-        const response = await this.#session.http.fetch('/thumbnails', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
-    }
-    /**
-     * Place Autocomplete endpoint, found it in the APK but
-     * doesn't seem to be used anywhere on YouTube (maybe for ads?).
-     *
-     * Ex:
-     * ```js
-     * const places = await session.actions.geo('place_autocomplete', { input: 'San diego cafe' });
-     * console.info(places.data);
-     * ```
-     */
-    async geo(action: string, args: {
+    const data = {
+      client: 'ANDROID',
+      videoId: args.video_id
+    };
+    const response = await this.#session.http.fetch('/thumbnails', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Place Autocomplete endpoint, found it in the APK but
+   * doesn't seem to be used anywhere on YouTube (maybe for ads?).
+   *
+   * Ex:
+   * ```js
+   * const places = await session.actions.geo('place_autocomplete', { input: 'San diego cafe' });
+   * console.info(places.data);
+   * ```
+   * @param action
+   * @param args
+   * @param args.input
+   */
+  async geo(action: string, args: {
         input: string;
     }) {
-        if (!this.#session.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const data = {
-            input: args.input,
-            client: 'ANDROID'
-        };
-        const response = await this.#session.http.fetch(`/geo/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
-    }
-    /**
-     * Covers endpoints used to report content.
-     */
-    async flag(action: string, args: {
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+    const data = {
+      input: args.input,
+      client: 'ANDROID'
+    };
+    const response = await this.#session.http.fetch(`/geo/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Covers endpoints used to report content.
+   * @param action
+   * @param args
+   * @param args.action
+   * @param args.params
+   */
+  async flag(action: string, args: {
         action: string;
         params?: string;
     }) {
-        if (!this.#session.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const data: Record<string, any> = {};
-        switch (action) {
-            case 'flag/flag':
-                data.action = args.action;
-                break;
-            case 'flag/get_form':
-                data.params = args.params;
-                break;
-            default:
-                throw new InnertubeError('Action not implemented', action);
-        }
-        const response = await this.#session.http.fetch(`/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+    const data: Record<string, any> = {};
+    switch (action) {
+      case 'flag/flag':
+        data.action = args.action;
+        break;
+      case 'flag/get_form':
+        data.params = args.params;
+        break;
+      default:
+        throw new InnertubeError('Action not implemented', action);
     }
-    /**
-     * Covers specific YouTube Music endpoints.
-     */
-    async music(action: string, args: {
+    const response = await this.#session.http.fetch(`/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Covers specific YouTube Music endpoints.
+   * @param action
+   * @param args
+   * @param args.input
+   */
+  async music(action: string, args: {
         input?: string;
     }) {
-        const data = {
-            input: args.input || '',
-            client: 'YTMUSIC'
-        };
-        const response = await this.#session.http.fetch(`/music/${action}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
-    }
-    /**
-     * Mostly used for pagination and specific operations.
-     */
-    async next(args: {
+    const data = {
+      input: args.input || '',
+      client: 'YTMUSIC'
+    };
+    const response = await this.#session.http.fetch(`/music/${action}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Mostly used for pagination and specific operations.
+   * @param args
+   * @param args.video_id
+   * @param args.ctoken
+   * @param args.client
+   */
+  async next(args: {
         video_id?: string;
         ctoken?: string;
         client?: string;
     } = {}) {
-        const data: Record<string, any> = { client: args.client };
-        if (args.ctoken) {
-            data.continuation = args.ctoken;
+    const data: Record<string, any> = { client: args.client };
+    if (args.ctoken) {
+      data.continuation = args.ctoken;
+    }
+    if (args.video_id) {
+      data.videoId = args.video_id;
+    }
+    const response = await this.#session.http.fetch('/next', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Used to retrieve video info.
+   * @param id
+   * @param cpn
+   * @param client
+   */
+  async getVideoInfo(id: string, cpn?: string, client?: string) {
+    const data: Record<string, any> = {
+      playbackContext: {
+        contentPlaybackContext: {
+          vis: 0,
+          splay: false,
+          referer: 'https://www.youtube.com',
+          currentUrl: `/watch?v=${id}`,
+          autonavState: 'STATE_OFF',
+          signatureTimestamp: this.#session.player.sts,
+          autoCaptionsDefaultOn: false,
+          html5Preference: 'HTML5_PREF_WANTS',
+          lactMilliseconds: '-1'
         }
-        if (args.video_id) {
-            data.videoId = args.video_id;
-        }
-        const response = await this.#session.http.fetch('/next', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+      },
+      attestationRequest: {
+        omitBotguardData: true
+      },
+      videoId: id
+    };
+    if (client) {
+      data.client = client;
+    }
+    if (cpn) {
+      data.cpn = cpn;
+    }
+    const response = await this.#session.http.fetch('/player', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Covers search suggestion endpoints.
+   *
+   * @param {string} client
+   * @param {string} query
+   * @returns {Promise.<Response>}
+   */
+  async getSearchSuggestions(client: 'YOUTUBE' | 'YTMUSIC', query: string) {
+    if (![ 'YOUTUBE', 'YTMUSIC' ].includes(client))
+      throw new InnertubeError('Invalid client', client);
+    const response = await ({
+      YOUTUBE: async () => {
+        const params = new URLSearchParams({
+          q: query,
+          ds: 'yt',
+          client: 'youtube',
+          xssi: 't',
+          oe: 'UTF',
+          gl: this.#session.context.client.gl,
+          hl: this.#session.context.client.hl
+        });
+        const response = await this.#session.http.fetch(`search?${params.toString()}`, {
+          baseURL: Constants.URLS.YT_SUGGESTIONS,
+          method: 'GET'
         });
         return this.#wrap(response);
-    }
-    /**
-     * Used to retrieve video info.
-     */
-    async getVideoInfo(id: string, cpn?: string, client?: string) {
-        const data: Record<string, any> = {
-            playbackContext: {
-                contentPlaybackContext: {
-                    vis: 0,
-                    splay: false,
-                    referer: 'https://www.youtube.com',
-                    currentUrl: `/watch?v=${id}`,
-                    autonavState: 'STATE_OFF',
-                    signatureTimestamp: this.#session.player.sts,
-                    autoCaptionsDefaultOn: false,
-                    html5Preference: 'HTML5_PREF_WANTS',
-                    lactMilliseconds: '-1'
-                }
-            },
-            attestationRequest: {
-                omitBotguardData: true
-            },
-            videoId: id
-        };
-        if (client) {
-            data.client = client;
-        }
-        if (cpn) {
-            data.cpn = cpn;
-        }
-        const response = await this.#session.http.fetch('/player', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
-    }
-    /**
-     * Covers search suggestion endpoints.
-     *
-     * @param {string} client
-     * @param {string} query
-     * @returns {Promise.<Response>}
-     */
-    async getSearchSuggestions(client: 'YOUTUBE' | 'YTMUSIC', query: string) {
-        if (!['YOUTUBE', 'YTMUSIC'].includes(client))
-            throw new InnertubeError('Invalid client', client);
-        const response = await ({
-            YOUTUBE: async () => {
-                const params = new URLSearchParams({
-                    q: query,
-                    ds: 'yt',
-                    client: 'youtube',
-                    xssi: 't',
-                    oe: 'UTF',
-                    gl: this.#session.context.client.gl,
-                    hl: this.#session.context.client.hl
-                })
-                const response = await this.#session.http.fetch('search?' + params.toString(), {
-                    baseURL: Constants.URLS.YT_SUGGESTIONS,
-                    method: 'GET'
-                });
-                return this.#wrap(response);
-            },
-            YTMUSIC: () => this.music('get_search_suggestions', {
-                input: query
-            })
-        }[client])();
-        return response;
-    }
-    /**
-     * Endpoint used to retrieve user mention suggestions.
-     *
-     * @param {object} args
-     * @param {string} args.input
-     * @returns {Promise.<Response>}
-     */
-    async getUserMentionSuggestions(args: {
+      },
+      YTMUSIC: () => this.music('get_search_suggestions', {
+        input: query
+      })
+    }[client])();
+    return response;
+  }
+  /**
+   * Endpoint used to retrieve user mention suggestions.
+   *
+   * @param {object} args
+   * @param {string} args.input
+   * @returns {Promise.<Response>}
+   */
+  async getUserMentionSuggestions(args: {
         input: string;
     }) {
-        if (!this.#session.logged_in)
-            throw new InnertubeError('You are not signed in');
-        const data = {
-            input: args.input,
-            client: 'ANDROID'
-        };
-        const response = await this.#session.http.fetch('/get_user_mention_suggestions', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return this.#wrap(response);
-    }
-    /**
-     * Executes an API call.
-     * @param {string} action - endpoint
-     * @param {object} args - call arguments
-     * @param {boolean} [args.parse]
-     */
-    async execute(action: string, args: {
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+    const data = {
+      input: args.input,
+      client: 'ANDROID'
+    };
+    const response = await this.#session.http.fetch('/get_user_mention_suggestions', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return this.#wrap(response);
+  }
+  /**
+   * Executes an API call.
+   * @param {string} action - endpoint
+   * @param {object} args - call arguments
+   * @param {boolean} [args.parse]
+   */
+  async execute(action: string, args: {
         [key: string]: any;
         parse: true;
     }) : Promise<ParsedResponse>;
-    async execute(action: string, args: {
+  async execute(action: string, args: {
         [key: string]: any;
         parse?: false;
     }) : Promise<ActionsResponse>;
-    async execute(action: string, args: {
+  async execute(action: string, args: {
         [key: string]: any;
         parse?: boolean;
     }): Promise<ParsedResponse | ActionsResponse> {
-        const data = { ...args };
-        if (Reflect.has(data, 'parse'))
-            delete data.parse;
-        if (Reflect.has(data, 'request'))
-            delete data.request;
-        if (Reflect.has(data, 'clientActions'))
-            delete data.clientActions;
-        if (Reflect.has(data, 'action')) {
-            data.actions = [data.action];
-            delete data.action;
-        }
-        if (Reflect.has(data, 'token')) {
-            data.continuation = data.token;
-            delete data.token;
-        }
-        const response = await this.#session.http.fetch(action, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        if (args.parse) {
-            return Parser.parseResponse(await response.json());
-        }
-        return this.#wrap(response);
+    const data = { ...args };
+    if (Reflect.has(data, 'parse'))
+      delete data.parse;
+    if (Reflect.has(data, 'request'))
+      delete data.request;
+    if (Reflect.has(data, 'clientActions'))
+      delete data.clientActions;
+    if (Reflect.has(data, 'action')) {
+      data.actions = [ data.action ];
+      delete data.action;
     }
-    #needsLogin(id: string) {
-        return [
-            'FElibrary',
-            'FEhistory',
-            'FEsubscriptions',
-            'SPaccount_notifications',
-            'SPaccount_privacy',
-            'SPtime_watched'
-        ].includes(id);
+    if (Reflect.has(data, 'token')) {
+      data.continuation = data.token;
+      delete data.token;
     }
+    const response = await this.#session.http.fetch(action, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if (args.parse) {
+      return Parser.parseResponse(await response.json());
+    }
+    return this.#wrap(response);
+  }
+  #needsLogin(id: string) {
+    return [
+      'FElibrary',
+      'FEhistory',
+      'FEsubscriptions',
+      'SPaccount_notifications',
+      'SPaccount_privacy',
+      'SPtime_watched'
+    ].includes(id);
+  }
 }
 // TODO: maybe do this inferrance in a more elegant way
 export default Actions;
