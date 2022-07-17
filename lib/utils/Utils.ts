@@ -322,21 +322,26 @@ export const debugFetch: FetchFunction = (input, init) => {
 
   const arr_headers = [ ...headers ];
 
+  const body_contents = 
+    init?.body ? 
+      typeof init.body === 'string' ?
+        headers.get('content-type') === 'application/json' ?
+          JSON.stringify(JSON.parse(init.body), null, 2) : // body is string and json
+          init.body : // body is string
+        '    <binary>' : // body is not string
+      '    (none)'; // no body provided
+
+  const headers_serialized = 
+    arr_headers.length > 0 ?
+      `${arr_headers.map(([ key, value ]) => `    ${key}: ${value}`).join('\n')}` :
+      '    (none)'
+
   console.log(
     'YouTube.js Fetch:\n' +
-        `  url: ${url.toString()}\n` +
-        `  method: ${init?.method || 'GET'}\n` +
-        `  headers:\n${
-          arr_headers.length > 0 ?
-            `${arr_headers.map(([ key, value ]) => `    ${key}: ${value}`).join('\n')}\n` :
-            '    (none)\n'
-        }  body:\n${
-          init?.body ? `${typeof init.body === 'string' ?
-            headers.get('content-type') === 'application/json' ?
-              JSON.stringify(JSON.parse(init.body), null, 2) :
-              init.body :
-            '    <binary>'
-          }` : '    (none)'}`
+    `  url: ${url.toString()}\n` +
+    `  method: ${init?.method || 'GET'}\n` +
+    `  headers:\n${headers_serialized}\n' + 
+    '  body:\n${body_contents}`
   );
 
   return globalThis.fetch(input, init);
