@@ -3,7 +3,7 @@ import Proto from '../proto/index';
 import { DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils';
 import Constants from '../utils/Constants';
 import UniversalCache from '../utils/Cache';
-import OAuth, { Credentials } from './OAuth';
+import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth';
 import EventEmitterLike from '../utils/EventEmitterLike';
 import HTTPClient, { FetchFunction } from '../utils/HTTPClient';
 import Actions from './Actions';
@@ -74,20 +74,39 @@ export default class Session extends EventEmitterLike {
     this.oauth = new OAuth(this);
     this.logged_in = !!cookie;
   }
+  on(type: "auth", listener: OAuthAuthEventHandler): void;
+  on(type: "auth-pending", listener: OAuthAuthPendingEventHandler): void;
+  on(type: "auth-error", listener: OAuthAuthErrorEventHandler): void;
+  on(type: string, listener: (...args: any[]) => void): void {
+    super.on(type, listener);
+  }
+  once(type: "auth", listener: OAuthAuthEventHandler): void;
+  once(type: "auth-pending", listener: OAuthAuthPendingEventHandler): void;
+  once(type: "auth-error", listener: OAuthAuthErrorEventHandler): void;
+  once(type: string, listener: (...args: any[]) => void): void {
+    super.once(type, listener);
+  }
   async signIn(credentials?: Credentials): Promise<void> {
     return new Promise(async (resolve, reject) => {
+      const error_handler: OAuthAuthErrorEventHandler = (err) => {
+        reject(err);
+      }
       this.once('auth', (data) => {
-        this.logged_in = true;
-        if (data.status === 'SUCCESS')
+        this.off('auth-error', error_handler);
+        if (data.status === 'SUCCESS') {
+          this.logged_in = true;
           resolve();
+        } else 
+          reject(data);
       });
+      this.once('auth-error', error_handler)
       try {
         await this.oauth.init(credentials);
         if (this.oauth.validateCredentials()) {
           await this.oauth.checkAccessTokenValidity();
           this.logged_in = true;
+          resolve();
         }
-        resolve();
       } catch (err) {
         reject(err);
       }

@@ -17,6 +17,16 @@ export interface Credentials {
     expires: Date;
 }
 
+// TODO: actual type info for this.
+export type OAuthAuthPendingData = any;
+
+export type OAuthAuthEventHandler = (data: {
+  credentials: Credentials;
+  status: 'SUCCESS';
+}) => any;
+export type OAuthAuthPendingEventHandler = (data: OAuthAuthPendingData) => any;
+export type OAuthAuthErrorEventHandler = (err: OAuthError) => any;
+
 class OAuth {
   #identity?: Record<string, string>;
   #session: Session;
@@ -58,10 +68,7 @@ class OAuth {
       }
     });
     const response_data = await response.json();
-    this.#session.emit('auth', {
-      ...response_data,
-      status: 'AUTHORIZATION_PENDING'
-    });
+    this.#session.emit('auth-pending', response_data);
     this.#polling_interval = response_data.interval;
     this.#startPolling(response_data.device_code);
   }
@@ -88,10 +95,10 @@ class OAuth {
         if (response_data.error) {
           switch (response_data.error) {
             case 'access_denied':
-              this.#session.emit('auth', new OAuthError('Access was denied.', { status: 'ACCESS_DENIED' }));
+              this.#session.emit('auth-error', new OAuthError('Access was denied.', { status: 'ACCESS_DENIED' }));
               break;
             case 'expired_token':
-              this.#session.emit('auth', new OAuthError('The device code has expired, restarting auth flow.', { status: 'DEVICE_CODE_EXPIRED' }));
+              this.#session.emit('auth-error', new OAuthError('The device code has expired, restarting auth flow.', { status: 'DEVICE_CODE_EXPIRED' }));
               clearInterval(poller);
               this.#getUserCode();
               break;
@@ -113,7 +120,7 @@ class OAuth {
         clearInterval(poller);
       } catch (err) {
         clearInterval(poller);
-        return this.#session.emit('auth', new OAuthError('Could not obtain user code.', { status: 'FAILED', error: err }));
+        return this.#session.emit('auth-error', new OAuthError('Could not obtain user code.', { status: 'FAILED', error: err }));
       }
     }, this.#polling_interval * 1000);
   }
