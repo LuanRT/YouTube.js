@@ -26,7 +26,6 @@ export default class UniversalCache {
   }
 
   static get default_persistent_directory() {
-    __dirname
     switch (getRuntime()) {
       case 'deno':
         const Deno: any = Reflect.get(globalThis, 'Deno');
