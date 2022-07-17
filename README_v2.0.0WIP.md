@@ -98,7 +98,7 @@ YouTube.js runs on Node.js, Deno and in modern browsers.
 
 It requires a runtime with the following features:
 - [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-  - On Node we use [undici]()'s fetch implementation which requires Node.js 16.8+. You may provide your own fetch implementation if you need to use an older version. See [`fetching`](#usage-fetching) for more information. 
+  - On Node we use [undici]()'s fetch implementation which requires Node.js 16.8+. You may provide your own fetch implementation if you need to use an older version. See [providing your own fetch implementation](#custom-fetch) for more information. 
   - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` returns a non-standard `Readable` object.)
 - [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) required.
 
@@ -130,7 +130,7 @@ const youtube = await Innertube.create();
 ## Browser Usage
 To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
 
-You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests to through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for an simple example using [`Vite`]().
+You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests to through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for an simple example using [Vite](https://vitejs.dev/).
 
 ```ts
 // Pre-bundled version for the web
@@ -179,9 +179,49 @@ player.initialize(videoElement, uri, true);
 
 Our browser example in [`examples/browser/web`]() provides a full working example.
 
-## Providing your own fetch implementation
-You may provide your own fetch implementation to be used by YouTube.js. Which may be useful in some cases to modify the requests before they are sent and transform the responses before they are returned (eg. for proxies).
 
+<a name="custom-fetch"></a>
+
+## Providing your own fetch implementation
+You may provide your own fetch implementation to be used by YouTube.js. This may be useful in some cases to modify the requests before they are sent and transform the responses before they are returned (eg. for proxies).
+
+```ts
+// provide a fetch implementation
+const yt = await Innertube.create({
+  fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
+    // make the request with your own fetch implementation
+    // and return the response
+    return new Response(
+      /* ... */
+    );
+  }
+});
+```
+
+<a name="caching"></a>
+
+## Caching
+To improve performance, you may wish to cache the transformed player instance which we use to decode the streaming urls.
+
+Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` in Deno and `indexedDB` in browsers.
+
+```ts
+import { Innertube, UniversalCache } from 'youtubei.js';
+// By default, cache stores files in the OS temp directory (or indexedDB in browsers).
+const yt = await Innertube.create({
+  cache: new UniversalCache()
+});
+
+// You may wish to make the cache persistent (on Node and Deno)
+const yt = await Innertube.create({
+  cache: new UniversalCache(
+    // Enables persistent caching
+    true, 
+    // Path to the cache directory, will create the directory if it doesn't exist
+    './.cache' 
+  )
+});
+```
 
 ## API
 
