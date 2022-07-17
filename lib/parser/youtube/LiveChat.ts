@@ -1,39 +1,51 @@
-import Parser from "../index";
+import Parser, { LiveChatContinuation } from "../index";
 import EventEmitter from "../../utils/EventEmitterLike";
+import VideoInfo from "./VideoInfo";
+import { InnertubeError } from "../../utils/Utils";
+import UpdateTitleAction from "../classes/livechat/UpdateTitleAction";
+import UpdateDescriptionAction from "../classes/livechat/UpdateDescriptionAction";
+import UpdateViewershipAction from "../classes/livechat/UpdateViewershipAction";
+import UpdateDateTextAction from "../classes/livechat/UpdateDateTextAction";
+import { ObservedArray, YTNode } from "../helpers";
+import UpdateToggleButtonTextAction from "../classes/livechat/UpdateToggleButtonTextAction";
+import AddChatItemAction from "../classes/livechat/AddChatItemAction";
 
-class LiveChat {
-    ev;
+class LiveChat extends EventEmitter {
     #actions;
     #video_info;
     #continuation;
-    #mcontinuation;
+    #mcontinuation?: string;
     #lc_polling_interval_ms = 1000;
     #md_polling_interval_ms = 5000;
-    initial_info;
+    initial_info?: LiveChatContinuation;
     live_metadata;
+    metadata?: {
+        title: UpdateTitleAction | undefined;
+        description: UpdateDescriptionAction | undefined;
+        views: UpdateViewershipAction | undefined;
+        likes: UpdateToggleButtonTextAction | undefined;
+        date: UpdateDateTextAction | undefined;
+    }
     running = false;
     is_replay = false;
     /**
      * @param {import('./VideoInfo').default} video_info
      */
-    constructor(video_info) {
+    constructor(video_info: VideoInfo) {
+        super();
+        if (!video_info.livechat)
+            throw new InnertubeError("Video has no livechat");
         this.#video_info = video_info;
         this.#actions = video_info.actions;
-        this.#continuation = this.#video_info.livechat.continuation;
-        this.is_replay = this.#video_info.livechat.is_replay;
+        this.#continuation = this.#video_info.livechat!.continuation;
+        this.is_replay = this.#video_info.livechat!.is_replay;
         this.live_metadata = {
-            /** @type {import('../classes/livechat/metadata/UpdateTitleAction')} */
-            title: null,
-            /** @type {import('../classes/livechat/metadata/UpdateDescriptionAction')} */
-            description: null,
-            /** @type {import('../classes/livechat/metadata/UpdateViewershipAction')} */
-            views: null,
-            /** @type {import('../classes/livechat/metadata/UpdateTitleAction')} */
-            likes: null,
-            /** @type {import('../classes/livechat/metadata/UpdateDateTextAction')} */
-            date: null
+            title: null as UpdateTitleAction | null,
+            description: null as UpdateDescriptionAction | null,
+            views: null as UpdateViewershipAction | null,
+            likes: null as UpdateToggleButtonTextAction | null,
+            date: null as UpdateDateTextAction | null
         };
-        this.ev = new EventEmitter();
     }
     start() {
         if (!this.running) {
@@ -52,12 +64,15 @@ class LiveChat {
                 const response = await this.#actions.livechat(endpoint, { ctoken: this.#continuation });
                 const data = Parser.parseResponse(response.data);
                 const contents = data.continuation_contents;
+                if (!(contents instanceof LiveChatContinuation)) {
+                    throw new InnertubeError("Continuation is not a LiveChatContinuation");
+                }
                 this.#continuation = contents.continuation.token;
                 this.#lc_polling_interval_ms = contents.continuation.timeout_ms;
                 // Header only exists in the first request
                 if (contents.header) {
                     this.initial_info = contents;
-                    this.ev.emit('start', contents);
+                    this.emit('start', contents);
                 }
                 else {
                     await this.#emitSmoothedActions(contents.actions);
@@ -72,7 +87,7 @@ class LiveChat {
      * This was adapted from YouTube's compiled code (Android).
      * @param {object} actions
      */
-    async #emitSmoothedActions(actions) {
+    async #emitSmoothedActions(actions: ObservedArray<YTNode>) {
         const base = 1E4;
         let delay = actions.length < base / 80 ? 1 : 0;
         const emit_delay_ms = delay == 1 ? (delay = base / actions.length,
@@ -81,28 +96,31 @@ class LiveChat {
             delay = Math.max(80, delay)) : delay = 80;
         for (const action of actions) {
             await this.#wait(emit_delay_ms);
-            this.ev.emit('chat-update', action);
+            this.emit('chat-update', action);
         }
     }
     #pollMetadata() {
         const md_poller = setTimeout(() => {
             (async () => {
-                const payload = { video_id: this.#video_info.basic_info.id };
+                const payload = { 
+                    video_id: this.#video_info.basic_info.id,
+                    ctoken: undefined as string | undefined,
+                };
                 if (this.#mcontinuation) {
                     payload.ctoken = this.#mcontinuation;
                 }
                 const response = await this.#actions.livechat('updated_metadata', payload);
                 const data = Parser.parseResponse(response.data);
-                this.#mcontinuation = data.continuation.token;
-                this.#md_polling_interval_ms = data.continuation.timeout_ms;
+                this.#mcontinuation = data.continuation?.token;
+                this.#md_polling_interval_ms = data.continuation?.timeout_ms || this.#md_polling_interval_ms;
                 this.metadata = {
-                    title: data.actions.get({ type: 'UpdateTitleAction' }) || this.metadata?.title,
-                    description: data.actions.get({ type: 'UpdateDescriptionAction' }) || this.metadata?.description,
-                    views: data.actions.get({ type: 'UpdateViewershipAction' }) || this.metadata?.views,
-                    likes: data.actions.get({ type: 'UpdateToggleButtonTextAction' }) || this.metadata?.likes,
-                    date: data.actions.get({ type: 'UpdateDateTextAction' }) || this.metadata?.date
+                    title: data.actions?.array().firstOfType(UpdateTitleAction) || this.metadata?.title,
+                    description: data.actions?.array().firstOfType(UpdateDescriptionAction) || this.metadata?.description,
+                    views: data.actions?.array().firstOfType(UpdateViewershipAction) || this.metadata?.views,
+                    likes: data.actions?.array().firstOfType(UpdateToggleButtonTextAction) || this.metadata?.likes,
+                    date: data.actions?.array().firstOfType(UpdateDateTextAction) || this.metadata?.date
                 };
-                this.ev.emit('metadata-update', this.metadata);
+                this.emit('metadata-update', this.metadata);
                 clearTimeout(md_poller);
                 this.running && this.#pollMetadata();
             })().catch((err) => Promise.reject(err));
@@ -113,7 +131,7 @@ class LiveChat {
      * @param {string} text
      * @returns {Promise.<import('../classes/livechat/AddChatItemAction')[]>}
      */
-    async sendMessage(text) {
+    async sendMessage(text: string) {
         const response = await this.#actions.livechat('live_chat/send_message', {
             text,
             ...{
@@ -122,10 +140,10 @@ class LiveChat {
             }
         });
         const data = Parser.parseResponse(response.data);
-        return data.actions;
+        return data.actions?.array().as(AddChatItemAction);
     }
-    async #wait(ms) {
-        return new Promise((resolve) => setTimeout(() => resolve(), ms));
+    async #wait(ms: number) {
+        return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
     }
 }
 export default LiveChat;
