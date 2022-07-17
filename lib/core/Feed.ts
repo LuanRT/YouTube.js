@@ -115,7 +115,7 @@ class Feed {
   /**
    * Finds shelf by title.
    *
-   * @param {string} title
+   * @param title
    */
   getShelf(title: string) {
     return this.shelves.find((shelf) => shelf.title.toString() === title);

@@ -75,9 +75,9 @@ export function deepCompare(obj1: any, obj2: any) {
 /**
  * Finds a string between two delimiters.
  *
- * @param {string} data - the data.
- * @param {string} start_string - start string.
- * @param {string} end_string - end string.
+ * @param data - the data.
+ * @param start_string - start string.
+ * @param end_string - end string.
  */
 export function getStringBetweenStrings(data: string, start_string: string, end_string: string) {
   const regex = new RegExp(`${escapeStringRegexp(start_string)}(.*?)${escapeStringRegexp(end_string)}`, 's');
@@ -86,7 +86,7 @@ export function getStringBetweenStrings(data: string, start_string: string, end_
 }
 
 /**
- * @param {string} input
+ * @param input
  * @returns {string}
  */
 export function escapeStringRegexp(input: string): string {
@@ -154,7 +154,7 @@ export async function sha1Hash(str: string) {
 /**
  * Generates an authentication token from a cookies' sid.
  *
- * @param {string} sid - Sid extracted from cookies
+ * @param sid - Sid extracted from cookies
  * @returns {Promise<string>}
  */
 export async function generateSidAuth(sid: string): Promise<string> {

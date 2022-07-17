@@ -93,7 +93,7 @@ class Innertube {
   }
   /**
    * Retrieves search suggestions for a given query.
-   * @param {string} query - the search query.
+   * @param query - the search query.
    */
   async getSearchSuggestions(query: string): Promise<string[]> {
     throwIfMissing({ query });

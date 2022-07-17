@@ -74,13 +74,8 @@ class Actions {
    * YouTube's sections such as the home feed, etc
    * and sometimes to retrieve continuations.
    *
-   * @param {string} id - browseId or a continuation token
-   * @param {object} args - additional arguments
-   * @param {string} [args.params]
-   * @param {boolean} [args.is_ytm]
-   * @param {boolean} [args.is_ctoken]
-   * @param {string} [args.client]
-   * @returns {Promise.<Response>}
+   * @param id - browseId or a continuation token
+   * @param args - additional arguments
    */
   async browse(id: string, args: BrowseArgs = {}) {
     if (this.#needsLogin(id) && !this.#session.logged_in)
@@ -171,12 +166,6 @@ class Actions {
   }
   /**
    * Covers endpoints related to account management.
-   *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.new_value]
-   * @param {string} [args.setting_item_id]
-   * @returns {Promise.<Response>}
    */
   async account(action: string, args: AccountArgs = {}) {
     if (!this.#session.logged_in)
@@ -207,16 +196,6 @@ class Actions {
   }
   /**
    * Endpoint used for search.
-   *
-   * @param {object} args
-   * @param {string} [args.query]
-   * @param {object} [args.options]
-   * @param {string} [args.options.period]
-   * @param {string} [args.options.duration]
-   * @param {string} [args.options.order]
-   * @param {string} [args.client]
-   * @param {string} [args.ctoken]
-   * @returns {Promise.<Response>}
    */
   async search(args: SearchArgs = {}) {
     const data: Record<string, any> = { client: args.client };
@@ -247,10 +226,6 @@ class Actions {
   }
   /**
    * Endpoint used fo Shorts' sound search.
-   *
-   * @param {object} args
-   * @param {string} args.query
-   * @returns {Promise.<Response>}
    */
   async searchSound(args: {
         query: string;
@@ -271,12 +246,9 @@ class Actions {
   /**
    * Channel management endpoints.
    *
-   * @param {string} action
-   * @param {object} args
-   * @param {string} [args.new_name]
-   * @param {string} [args.new_description]
+   * @param action
+   * @param args
    * @param args.client
-   * @returns {Promise.<Response>}
    */
   async channel(action: string, args: {
         new_name?: string;
@@ -312,7 +284,6 @@ class Actions {
   /**
    * Covers endpoints used for playlist management.
    *
-   * @param {string} [args.ids]
    * @param action
    * @param args
    * @param args.title
@@ -510,9 +481,6 @@ class Actions {
    * const places = await session.actions.geo('place_autocomplete', { input: 'San diego cafe' });
    * console.info(places.data);
    * ```
-   * @param action
-   * @param args
-   * @param args.input
    */
   async geo(action: string, args: {
         input: string;
@@ -534,10 +502,6 @@ class Actions {
   }
   /**
    * Covers endpoints used to report content.
-   * @param action
-   * @param args
-   * @param args.action
-   * @param args.params
    */
   async flag(action: string, args: {
         action: string;
@@ -567,9 +531,6 @@ class Actions {
   }
   /**
    * Covers specific YouTube Music endpoints.
-   * @param action
-   * @param args
-   * @param args.input
    */
   async music(action: string, args: {
         input?: string;
@@ -589,10 +550,6 @@ class Actions {
   }
   /**
    * Mostly used for pagination and specific operations.
-   * @param args
-   * @param args.video_id
-   * @param args.ctoken
-   * @param args.client
    */
   async next(args: {
         video_id?: string;
@@ -617,9 +574,6 @@ class Actions {
   }
   /**
    * Used to retrieve video info.
-   * @param id
-   * @param cpn
-   * @param client
    */
   async getVideoInfo(id: string, cpn?: string, client?: string) {
     const data: Record<string, any> = {
@@ -658,10 +612,6 @@ class Actions {
   }
   /**
    * Covers search suggestion endpoints.
-   *
-   * @param {string} client
-   * @param {string} query
-   * @returns {Promise.<Response>}
    */
   async getSearchSuggestions(client: 'YOUTUBE' | 'YTMUSIC', query: string) {
     if (![ 'YOUTUBE', 'YTMUSIC' ].includes(client))
@@ -691,10 +641,6 @@ class Actions {
   }
   /**
    * Endpoint used to retrieve user mention suggestions.
-   *
-   * @param {object} args
-   * @param {string} args.input
-   * @returns {Promise.<Response>}
    */
   async getUserMentionSuggestions(args: {
         input: string;
@@ -716,9 +662,8 @@ class Actions {
   }
   /**
    * Executes an API call.
-   * @param {string} action - endpoint
-   * @param {object} args - call arguments
-   * @param {boolean} [args.parse]
+   * @param action - endpoint
+   * @param args - call arguments
    */
   async execute(action: string, args: {
         [key: string]: any;

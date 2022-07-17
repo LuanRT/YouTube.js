@@ -27,10 +27,10 @@ class OAuth {
   }
   /**
    * Starts the auth flow in case no valid credentials are available.
-   * @param {object} credentials
-   * @param {string} credentials.access_token
-   * @param {string} credentials.refresh_token
-   * @param {Date} credentials.expires_in
+   * @param credentials
+   * @param credentials.access_token
+   * @param credentials.refresh_token
+   * @param credentials.expires_in
    */
   async init(credentials?: Credentials) {
     this.#credentials = credentials;

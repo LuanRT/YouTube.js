@@ -72,7 +72,7 @@ class Music {
   /**
    * Retrieves artist's info & content.
    *
-   * @param {string} artist_id
+   * @param artist_id
    * @returns {Promise.<Artist>}
    */
   async getArtist(artist_id: string) {
@@ -85,7 +85,7 @@ class Music {
   /**
    * Retrieves album.
    *
-   * @param {string} album_id
+   * @param album_id
    * @returns {Promise.<Album>}
    */
   async getAlbum(album_id: string) {
@@ -98,7 +98,7 @@ class Music {
   /**
    * Retrieves song lyrics.
    *
-   * @param {string} video_id
+   * @param video_id
    */
   async getLyrics(video_id: string) {
     throwIfMissing({ video_id });
@@ -122,7 +122,7 @@ class Music {
   /**
    * Retrieves up next.
    *
-   * @param {string} video_id
+   * @param video_id
    */
   async getUpNext(video_id: string) {
     throwIfMissing({ video_id });
@@ -150,7 +150,7 @@ class Music {
   /**
    * Retrieves related content.
    *
-   * @param {string} video_id
+   * @param video_id
    */
   async getRelated(video_id: string) {
     throwIfMissing({ video_id });
@@ -172,7 +172,7 @@ class Music {
   }
   /**
    * Retrieves search suggestions for the given query.
-   * @param {string} query
+   * @param query
    * @returns {Promise.<import('../parser/contents/classes/SearchSuggestion')[] | import('../parser/contents/classes/HistorySuggestion')[]>}
    */
   async getSearchSuggestions(query: string) {

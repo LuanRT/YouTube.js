@@ -81,7 +81,7 @@ class LiveChat extends EventEmitter {
   /**
    * Ensures actions are emitted at the right speed.
    * This was adapted from YouTube's compiled code (Android).
-   * @param {object} actions
+   * @param actions
    */
   async #emitSmoothedActions(actions: ObservedArray<YTNode>) {
     const base = 1E4;
@@ -124,7 +124,7 @@ class LiveChat extends EventEmitter {
   }
   /**
    * Sends a message.
-   * @param {string} text
+   * @param text
    * @returns {Promise.<import('../classes/livechat/AddChatItemAction')[]>}
    */
   async sendMessage(text: string) {

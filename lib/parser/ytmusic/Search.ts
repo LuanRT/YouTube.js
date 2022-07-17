@@ -72,7 +72,7 @@ class Search {
   /**
    * Applies given filter to the search.
    *
-   * @param {string} name
+   * @param name
    * @returns {Promise.<Search>}
    */
   async selectFilter(name: string) {

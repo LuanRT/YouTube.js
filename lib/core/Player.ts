@@ -118,7 +118,7 @@ export default class Player {
   }
   /**
    * Extracts the signature timestamp from the player source code.
-   * @param {*} data
+   * @param data
    * @returns {number}
    */
   static extractSigTimestamp(data: string) {
@@ -126,7 +126,7 @@ export default class Player {
   }
   /**
    * Extracts the signature decipher algorithm.
-   * @param {*} data
+   * @param data
    * @returns {string}
    */
   static extractSigDecipherSc(data: string) {
@@ -138,7 +138,7 @@ export default class Player {
   }
   /**
    * Extracts the n-token decipher algorithm.
-   * @param {*} data
+   * @param data
    * @returns {string}
    */
   static extractNTokenSc(data: string) {
