@@ -166,6 +166,8 @@ class Actions {
   }
   /**
    * Covers endpoints related to account management.
+   * @param action
+   * @param args
    */
   async account(action: string, args: AccountArgs = {}) {
     if (!this.#session.logged_in)
@@ -196,6 +198,7 @@ class Actions {
   }
   /**
    * Endpoint used for search.
+   * @param args
    */
   async search(args: SearchArgs = {}) {
     const data: Record<string, any> = { client: args.client };
@@ -226,6 +229,8 @@ class Actions {
   }
   /**
    * Endpoint used fo Shorts' sound search.
+   * @param args
+   * @param args.query
    */
   async searchSound(args: {
         query: string;
@@ -249,6 +254,8 @@ class Actions {
    * @param action
    * @param args
    * @param args.client
+   * @param args.new_name
+   * @param args.new_description
    */
   async channel(action: string, args: {
         new_name?: string;
@@ -289,6 +296,7 @@ class Actions {
    * @param args.title
    * @param args.playlist_id
    * @param args.action
+   * @param args.ids
    */
   async playlist(action: string, args: {
         title?: string;
@@ -481,6 +489,9 @@ class Actions {
    * const places = await session.actions.geo('place_autocomplete', { input: 'San diego cafe' });
    * console.info(places.data);
    * ```
+   * @param action
+   * @param args
+   * @param args.input
    */
   async geo(action: string, args: {
         input: string;
@@ -502,6 +513,10 @@ class Actions {
   }
   /**
    * Covers endpoints used to report content.
+   * @param action
+   * @param args
+   * @param args.action
+   * @param args.params
    */
   async flag(action: string, args: {
         action: string;
@@ -531,6 +546,9 @@ class Actions {
   }
   /**
    * Covers specific YouTube Music endpoints.
+   * @param action
+   * @param args
+   * @param args.input
    */
   async music(action: string, args: {
         input?: string;
@@ -550,6 +568,10 @@ class Actions {
   }
   /**
    * Mostly used for pagination and specific operations.
+   * @param args
+   * @param args.video_id
+   * @param args.ctoken
+   * @param args.client
    */
   async next(args: {
         video_id?: string;
@@ -574,6 +596,9 @@ class Actions {
   }
   /**
    * Used to retrieve video info.
+   * @param id
+   * @param cpn
+   * @param client
    */
   async getVideoInfo(id: string, cpn?: string, client?: string) {
     const data: Record<string, any> = {
@@ -612,6 +637,8 @@ class Actions {
   }
   /**
    * Covers search suggestion endpoints.
+   * @param client
+   * @param query
    */
   async getSearchSuggestions(client: 'YOUTUBE' | 'YTMUSIC', query: string) {
     if (![ 'YOUTUBE', 'YTMUSIC' ].includes(client))
@@ -641,6 +668,8 @@ class Actions {
   }
   /**
    * Endpoint used to retrieve user mention suggestions.
+   * @param args
+   * @param args.input
    */
   async getUserMentionSuggestions(args: {
         input: string;

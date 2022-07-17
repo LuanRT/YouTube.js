@@ -107,7 +107,7 @@ export default class HTTPClient {
       body: request_body,
       headers: request_headers,
       credentials: 'include',
-      redirect: input instanceof Request ? input.redirect : init?.redirect || 'follow',
+      redirect: input instanceof Request ? input.redirect : init?.redirect || 'follow'
     });
 
     // Check if 2xx

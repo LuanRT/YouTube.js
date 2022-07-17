@@ -67,6 +67,8 @@ class InteractionManager {
    * @param text
    * @param target_language - an ISO language code
    * @param [args] - optional arguments
+   * @param args.video_id
+   * @param args.comment_id
    */
   async translate(text: string, target_language: string, args: {
         video_id?: string;

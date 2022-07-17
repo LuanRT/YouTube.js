@@ -322,19 +322,19 @@ export const debugFetch: FetchFunction = (input, init) => {
 
   const arr_headers = [ ...headers ];
 
-  const body_contents = 
-    init?.body ? 
+  const body_contents =
+    init?.body ?
       typeof init.body === 'string' ?
         headers.get('content-type') === 'application/json' ?
-          JSON.stringify(JSON.parse(init.body), null, 2) : // body is string and json
-          init.body : // body is string
-        '    <binary>' : // body is not string
-      '    (none)'; // no body provided
+          JSON.stringify(JSON.parse(init.body), null, 2) : // Body is string and json
+          init.body : // Body is string
+        '    <binary>' : // Body is not string
+      '    (none)'; // No body provided
 
-  const headers_serialized = 
+  const headers_serialized =
     arr_headers.length > 0 ?
       `${arr_headers.map(([ key, value ]) => `    ${key}: ${value}`).join('\n')}` :
-      '    (none)'
+      '    (none)';
 
   console.log(
     'YouTube.js Fetch:\n' +

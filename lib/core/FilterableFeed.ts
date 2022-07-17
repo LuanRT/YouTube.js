@@ -30,6 +30,7 @@ class FilterableFeed extends Feed {
   }
   /**
    * Applies given filter and returns a new {@link Feed} object.
+   * @param filter
    */
   async getFilteredFeed(filter: string | ChipCloudChip) {
     let target_filter: ChipCloudChip | undefined;
