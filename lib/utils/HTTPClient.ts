@@ -101,23 +101,13 @@ export default class HTTPClient {
       }
     }
 
-    const request = new Request(request_url, {
-      headers: request_headers,
-      cache: input instanceof Request ? input.cache : undefined,
-      credentials: 'include',
-      redirect: input instanceof Request ? input.redirect : init?.redirect || 'follow',
-      // Copy the request properties from the input
-      integrity: input instanceof Request ? input.integrity : init?.integrity,
-      method: input instanceof Request ? input.method : init?.method,
-      mode: input instanceof Request ? input.mode : init?.mode,
-      referrer: input instanceof Request ? input.referrer : init?.referrer,
-      referrerPolicy: input instanceof Request ? input.referrerPolicy : init?.referrerPolicy,
-      signal: input instanceof Request ? input.signal : init?.signal,
-      keepalive: input instanceof Request ? input.keepalive : init?.keepalive
-    });
+    const request = new Request(request_url, input instanceof Request ? input : init);
 
     const response = await this.#fetch(request, {
-      body: request_body
+      body: request_body,
+      headers: request_headers,
+      credentials: 'include',
+      redirect: input instanceof Request ? input.redirect : init?.redirect || 'follow',
     });
 
     // Check if 2xx
