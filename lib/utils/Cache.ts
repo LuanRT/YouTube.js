@@ -158,8 +158,8 @@ export default class UniversalCache {
           const request = db.transaction('kv-store', 'readonly').objectStore('kv-store').get(key);
           request.onerror = reject;
           request.onsuccess = function () {
-            const result = this.result?.v;
-            resolve(typeof result !== 'undefined' ? (result as ArrayBuffer) : undefined);
+            const result: Uint8Array | undefined = this.result?.v;
+            resolve(result ? result.buffer : undefined);
           };
         });
       }

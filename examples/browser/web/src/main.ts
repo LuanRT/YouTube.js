@@ -1,5 +1,5 @@
 import './style.css';
-import { Innertube } from '../../../../bundle/browser';
+import { Innertube, UniversalCache } from '../../../../bundle/browser';
 import dashjs from 'dashjs';
 
 async function main() {
@@ -32,9 +32,17 @@ async function main() {
         input instanceof Request ? input : undefined,
       );
 
+      headers.delete('user-agent');
+
       // fetch the url
-      return fetch(request, init);
+      return fetch(request, init ? {
+        ...init,
+        headers
+      } : {
+        headers
+      });
     },
+    cache: new UniversalCache(),
   });
 
   const span = document.getElementById('video_name') as HTMLSpanElement;
