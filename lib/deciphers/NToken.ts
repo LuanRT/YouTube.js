@@ -155,9 +155,7 @@ export default class NToken {
       if (el != null && typeof el != 'number') {
         const is_reverse_base64 = el.includes('case 65:');
         const func = NToken.getFunc(el)?.[0];
-        if (!func)
-          throw new InnertubeError('Invalid transformation function.', { transformation: el });
-        const opcode = OP_LOOKUP[func];
+        const opcode = func ? OP_LOOKUP[func] : undefined;
         if (opcode) {
           el = [ NTokenTransformOpType.FUNC, opcode, 0 + is_reverse_base64 ];
         } else if (el == 'b') {
