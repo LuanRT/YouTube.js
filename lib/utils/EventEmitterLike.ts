@@ -1,3 +1,23 @@
+// Polyfill CustomEvents on node
+if (!Reflect.has(globalThis, 'CustomEvent')) {
+
+    // see https://github.com/nodejs/node/issues/40678#issuecomment-1126944677
+    class CustomEvent extends Event {
+        #detail;
+    
+        constructor(type: string, options?: CustomEventInit<any[]>) {
+            super(type, options);
+            this.#detail = options?.detail ?? null;
+        }
+    
+        get detail() {
+            return this.#detail;
+        }
+    }
+
+    Reflect.set(globalThis, 'CustomEvent', CustomEvent);
+}
+
 export default class EventEmitterLike extends EventTarget {
     #legacy_listeners = new Map<Function, EventListener>();
     constructor() {

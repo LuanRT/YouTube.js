@@ -18,7 +18,7 @@ export default class UniversalCache {
                 return (Deno.env.get('TMPDIR') || Deno.env.get('TMP') || Deno.env.get('TEMP') || '/tmp') + '/youtubei.js';
         
             case 'node':
-                return (globalThis as any).require('os').tmpdir() + '/youtubei.js';
+                return Reflect.get(module, 'require')('os').tmpdir() + '/youtubei.js';
 
             default:
                 return '';
@@ -32,7 +32,7 @@ export default class UniversalCache {
                 return Deno.cwd() + '/.cache/youtubei.js';
         
             case 'node':
-                return (globalThis as any).require('path').resolve((globalThis as any).__dirname, '..', '..', '.cache', 'youtubei.js');
+                return Reflect.get(module, 'require')('path').resolve((globalThis as any).__dirname, '..', '..', '.cache', 'youtubei.js');
 
             default:
                 return '';
@@ -64,7 +64,7 @@ export default class UniversalCache {
 
             case 'node':
             {
-                const fs = (globalThis as any).require('fs/promises');
+                const fs = Reflect.get(module, 'require')('fs/promises');
                 try {
                     const cwd = await fs.stat(dir);
                     if (!cwd.isDirectory())
@@ -133,8 +133,8 @@ export default class UniversalCache {
 
             case 'node':
             {
-                const fs = (globalThis as any).require('fs/promises');
-                const file = (globalThis as any).require('path').resolve(this.cache_dir, key);
+                const fs = Reflect.get(module, 'require')('fs/promises');
+                const file = Reflect.get(module, 'require')('path').resolve(this.cache_dir, key);
                 try {
                     const stat = await fs.stat(file);
                     if (stat.isFile()) {
@@ -181,8 +181,8 @@ export default class UniversalCache {
 
             case 'node':
             {
-                const fs = (globalThis as any).require('fs/promises');
-                const file = (globalThis as any).require('path').resolve(this.cache_dir, key);
+                const fs = Reflect.get(module, 'require')('fs/promises');
+                const file = Reflect.get(module, 'require')('path').resolve(this.cache_dir, key);
                 await fs.writeFile(file, new Uint8Array(value));
             }
             break;
@@ -219,8 +219,8 @@ export default class UniversalCache {
 
             case 'node':
             {
-                const fs = (globalThis as any).require('fs/promises');
-                const file = (globalThis as any).require('path').resolve(this.cache_dir, key);
+                const fs = Reflect.get(module, 'require')('fs/promises');
+                const file = Reflect.get(module, 'require')('path').resolve(this.cache_dir, key);
                 try {
                     await fs.unlink(file);
                 } catch(e: any) {
