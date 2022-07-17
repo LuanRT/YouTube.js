@@ -26,13 +26,14 @@ export default class UniversalCache {
   }
 
   static get default_persistent_directory() {
+    __dirname
     switch (getRuntime()) {
       case 'deno':
         const Deno: any = Reflect.get(globalThis, 'Deno');
         return `${Deno.cwd()}/.cache/youtubei.js`;
 
       case 'node':
-        return Reflect.get(module, 'require')('path').resolve((globalThis as any).__dirname, '..', '..', '.cache', 'youtubei.js');
+        return Reflect.get(module, 'require')('path').resolve(__dirname, '..', '..', '.cache', 'youtubei.js');
 
       default:
         return '';
