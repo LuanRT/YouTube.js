@@ -217,6 +217,14 @@ export function throwIfMissing(params: object) {
   }
 }
 
+export function hasKeys<T extends object, R extends (keyof T)[]>(params: T, ...keys: R): params is Exclude<T, R[number]> & Required<Pick<T, R[number]>> {
+  for (const key of keys) {
+    if (!Reflect.has(params, key) || (params[key] === undefined))
+      return false;
+  }
+  return true;
+}
+
 /**
  * Turns the ntoken transform data into a valid json array
  */

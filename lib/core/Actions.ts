@@ -1,5 +1,5 @@
 import Proto from '../proto/index';
-import { InnertubeError, throwIfMissing, uuidv4 } from '../utils/Utils';
+import { hasKeys, InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils';
 import Constants from '../utils/Constants';
 import Parser, { ParsedResponse } from '../parser/index';
 import Session from './Session';
@@ -111,7 +111,8 @@ class Actions {
       case 'like/like':
       case 'like/dislike':
       case 'like/removelike':
-        throwIfMissing({ video_id: args.video_id });
+        if (!hasKeys(args, 'video_id'))
+          throw new MissingParamError('Arguments lacks video_id');
         data.target = {};
         data.target.videoId = args.video_id;
         if (args.params) {
@@ -120,18 +121,21 @@ class Actions {
         break;
       case 'subscription/subscribe':
       case 'subscription/unsubscribe':
-        throwIfMissing({ channel_id: args.channel_id });
+        if (!hasKeys(args, 'channel_id'))
+          throw new MissingParamError('Arguments lacks channel_id');
         data.channelIds = [ args.channel_id ];
         data.params = action === 'subscription/subscribe' ? 'EgIIAhgA' : 'CgIIAhgA';
         break;
       case 'comment/create_comment':
         data.commentText = args.text;
-        throwIfMissing({ video_id: args.video_id });
-        data.createCommentParams = Proto.encodeCommentParams(args.video_id!);
+        if (!hasKeys(args, 'video_id'))
+          throw new MissingParamError('Arguments lacks video_id');
+        data.createCommentParams = Proto.encodeCommentParams(args.video_id);
         break;
       case 'comment/create_comment_reply':
-        throwIfMissing({ comment_id: args.comment_id, video_id: args.video_id, text: args.text });
-        data.createReplyParams = Proto.encodeCommentReplyParams(args.comment_id!, args.video_id!);
+        if (!hasKeys(args, 'comment_id', 'video_id', 'text'))
+          throw new MissingParamError('Arguments lacks comment_id, video_id or text');
+        data.createReplyParams = Proto.encodeCommentReplyParams(args.comment_id, args.video_id);
         data.commentText = args.text;
         break;
       case 'comment/perform_comment_action':
@@ -297,9 +301,10 @@ class Actions {
         data.playlistId = args.playlist_id;
         break;
       case 'browse/edit_playlist':
-        throwIfMissing({ ids: args.ids });
+        if (!hasKeys(args, 'ids'))
+          throw new MissingParamError('Arguments lacks ids');
         data.playlistId = args.playlist_id;
-        data.actions = args.ids!.map((id) => {
+        data.actions = args.ids.map((id) => {
           switch (args.action) {
             case 'ACTION_ADD_VIDEO':
               return {
@@ -342,15 +347,16 @@ class Actions {
     const data: Record<string, any> = {};
     switch (action) {
       case 'modify_channel_preference':
-        throwIfMissing({ channel_id: args.channel_id, pref: args.pref });
+        if (!hasKeys(args, 'channel_id', 'pref'))
+          throw new MissingParamError('Arguments lacks channel_id or pref');
         const pref_types = {
           PERSONALIZED: 1,
           ALL: 2,
           NONE: 3
         };
-        if (!Object.keys(pref_types).includes(args.pref!.toUpperCase()))
+        if (!Object.keys(pref_types).includes(args.pref.toUpperCase()))
           throw new InnertubeError('Invalid preference type', args.pref);
-        data.params = Proto.encodeNotificationPref(args.channel_id!, pref_types[args.pref!.toUpperCase() as keyof typeof pref_types]);
+        data.params = Proto.encodeNotificationPref(args.channel_id, pref_types[args.pref.toUpperCase() as keyof typeof pref_types]);
         break;
       case 'get_notification_menu':
         data.notificationsMenuRequestType = 'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX';
@@ -393,12 +399,13 @@ class Actions {
         data.continuation = args.ctoken;
         break;
       case 'live_chat/send_message':
-        throwIfMissing({ channel_id: args.channel_id, text: args.text, video_id: args.video_id });
-        data.params = Proto.encodeMessageParams(args.channel_id!, args.video_id!);
+        if (!hasKeys(args, 'channel_id', 'video_id', 'text'))
+          throw new MissingParamError('Arguments lacks channel_id, video_id or text');
+        data.params = Proto.encodeMessageParams(args.channel_id, args.video_id);
         data.clientMessageId = uuidv4();
         data.richMessage = {
           textSegments: [ {
-            text: args.text!
+            text: args.text
           } ]
         };
         break;

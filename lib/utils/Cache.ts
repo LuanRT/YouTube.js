@@ -61,18 +61,16 @@ export default class UniversalCache {
         break;
 
       case 'node':
-        {
-          const fs = Reflect.get(module, 'require')('fs/promises');
-          try {
-            const cwd = await fs.stat(dir);
-            if (!cwd.isDirectory())
-              throw new Error('An unexpected file was found in place of the cache directory');
-          } catch (e: any) {
-            if (e?.code === 'ENOENT')
-              await fs.mkdir(dir, { recursive: true });
-            else
-              throw e;
-          }
+        const fs = Reflect.get(module, 'require')('fs/promises');
+        try {
+          const cwd = await fs.stat(dir);
+          if (!cwd.isDirectory())
+            throw new Error('An unexpected file was found in place of the cache directory');
+        } catch (e: any) {
+          if (e?.code === 'ENOENT')
+            await fs.mkdir(dir, { recursive: true });
+          else
+            throw e;
         }
         break;
     }
@@ -184,16 +182,17 @@ export default class UniversalCache {
         break;
 
       case 'browser':
-      {
-        const db = await this.#getBrowserDB();
-        if (!db) return;
+        {
+          const db = await this.#getBrowserDB();
+          if (!db) return;
 
-        return new Promise<void>((resolve, reject) => {
-          const request = db.transaction('kv-store', 'readwrite').objectStore('kv-store').put({ k: key, v: value });
-          request.onerror = reject;
-          request.onsuccess = () => resolve();
-        });
-      }
+          return new Promise<void>((resolve, reject) => {
+            const request = db.transaction('kv-store', 'readwrite').objectStore('kv-store').put({ k: key, v: value });
+            request.onerror = reject;
+            request.onsuccess = () => resolve();
+          });
+        }
+        break;
     }
   }
 

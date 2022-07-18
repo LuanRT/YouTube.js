@@ -189,7 +189,9 @@ export default class NToken {
   private evaluate(i: NTokenInstruction, nToken: string[], transformer: NTokenTransformer) {
     switch (i[0]) {
       case NTokenTransformOpType.FUNC:
-        return TRANSFORM_FUNCTIONS[i[2]!][i[1]!];
+        if (i[1] === undefined || i[2] === undefined)
+          throw new InnertubeError('Invalid NTokenInstruction.', { transformation: nToken, instruction: i });
+        return TRANSFORM_FUNCTIONS[i[2]][i[1]];
       case NTokenTransformOpType.N_ARR:
         return nToken;
       case NTokenTransformOpType.LITERAL:
@@ -215,7 +217,7 @@ export default class NToken {
         );
       });
     } catch (e) {
-      console.error(new Error(`Could not transform n-token, download may be throttled.\nOriginal Token:${n}Error:\n${e}`));
+      console.error(new Error(`Could not transform n-token, download may be throttled.\nOriginal Token:${n}\nError:\n${(e as Error).stack}`));
       return n;
     }
     return nToken.join('');
@@ -274,29 +276,33 @@ export default class NToken {
       switch (instruction[0]) {
         case NTokenTransformOpType.FUNC:
           {
-            const opcode = (instruction[0]! << 6) | instruction[2]!;
+            if (instruction[1] === undefined || instruction[2] === undefined)
+              throw new InnertubeError('Invalid NTokenInstruction.', { transformation: this.transformer, instruction });
+            const opcode = (instruction[0] << 6) | instruction[2];
             view.setUint8(offset, opcode);
             offset += 1;
-            view.setUint8(offset, instruction[1]!);
+            view.setUint8(offset, instruction[1]);
             offset += 1;
           }
           break;
         case NTokenTransformOpType.N_ARR:
         case NTokenTransformOpType.REF:
           {
-            const opcode = (instruction[0]! << 6);
+            const opcode = (instruction[0] << 6);
             view.setUint8(offset, opcode);
             offset += 1;
           }
           break;
         case NTokenTransformOpType.LITERAL:
           {
+            if (instruction[1] === undefined)
+              throw new InnertubeError('Invalid NTokenInstruction.', { transformation: this.transformer, instruction });
             const type = typeof instruction[1] === 'string' ? 1 : 0;
-            const opcode = (instruction[0]! << 6) | type;
+            const opcode = (instruction[0] << 6) | type;
             view.setUint8(offset, opcode);
             offset += 1;
             if (type === 0) {
-              view.setInt32(offset, instruction[1]!, true);
+              view.setInt32(offset, instruction[1], true);
               offset += 4;
             } else {
               const encoded = new TextEncoder().encode(instruction[1] as any);

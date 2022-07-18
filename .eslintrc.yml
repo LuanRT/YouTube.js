@@ -42,7 +42,7 @@ rules:
   no-implied-eval: error
   arrow-spacing: error
   no-invalid-this: error
-  no-lone-blocks: warn
+  no-lone-blocks: 'off'
   no-new-func: error
   no-new-wrappers: error
   no-new: error
