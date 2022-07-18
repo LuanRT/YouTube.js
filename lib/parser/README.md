@@ -106,11 +106,12 @@ if (node.is(TwoColumnSearchResults)) {
   const results = node;
 }
 
-// Sometimes we can expect multiple types of nodes
-const results = node.asOneOf<TwoColumnSearchResults | VideoList>([TwoColumnSearchResults, VideoList]);
+// Sometimes we can expect multiple types of nodes, we can just pass all possible types as params
+const results = node.as(TwoColumnSearchResults, VideoList);
+// The type of `results` will now be `TwoColumnSearchResults | VideoList`
 
 // similarly, we can check if the node is of a certain type
-if (node.isOneOf<TwoColumnSearchResults | VideoList>([TwoColumnSearchResults, VideoList])) {
+if (node.is(TwoColumnSearchResults, VideoList)) {
   // Again no casting is needed, the node is already of the correct type
   const results = node;
 }

@@ -124,7 +124,7 @@ class Feed {
     if (!this.#page.contents.is_node)
       return undefined;
     const node = this.#page.contents.item();
-    if (!node.isOneOf<TwoColumnBrowseResults | TwoColumnSearchResults>([ TwoColumnBrowseResults, TwoColumnSearchResults ]))
+    if (!node.is(TwoColumnBrowseResults, TwoColumnSearchResults))
       return undefined;
     return node.secondary_contents;
   }

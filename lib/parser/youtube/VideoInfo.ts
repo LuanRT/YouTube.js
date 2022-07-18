@@ -153,7 +153,7 @@ class VideoInfo {
     const data = response?.on_response_received_endpoints?.get({ type: 'appendContinuationItemsAction' });
     this.watch_next_feed = data?.contents;
     this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
-    return this.watch_next_feed?.filterType<CompactVideo | CompactMix>([ CompactVideo, CompactMix ]);
+    return this.watch_next_feed?.filterType(CompactVideo, CompactMix);
   }
   /**
    * Likes the video.

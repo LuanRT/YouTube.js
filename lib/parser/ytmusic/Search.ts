@@ -39,7 +39,7 @@ class Search {
       this.#continuation = shelf?.continuation;
       return;
     }
-    this.sections = shelves?.as<MusicShelf | Shelf | RichShelf | ReelShelf>([ MusicShelf, Shelf, RichShelf, ReelShelf ])?.map((shelf) => ({
+    this.sections = shelves?.as(MusicShelf, Shelf, RichShelf, ReelShelf)?.map((shelf) => ({
       title: shelf.title.toString(),
       contents: shelf.key('contents').parsed().array(),
       getMore: () => this.#getMore(shelf)

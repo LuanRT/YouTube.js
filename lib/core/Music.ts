@@ -91,7 +91,7 @@ class Music {
     const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
     const data = Parser.parseResponse(response.data);
     const node = data.contents.item();
-    if (!node.isOneOf<SingleColumnBrowseResults | TabbedSearchResults | TwoColumnBrowseResults>([ SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults ]))
+    if (!node.is(SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults))
       throw new InnertubeError('Invalid id', video_id);
     const tab = node.tabs.array().get({ title: 'Lyrics' });
     const page = await tab?.key('endpoint').nodeOfType(NavigationEndpoint).call(this.#actions, 'YTMUSIC', true);
@@ -114,7 +114,7 @@ class Music {
     const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
     const data = Parser.parseResponse(response.data);
     const node = data.contents.item();
-    if (!node.isOneOf<SingleColumnBrowseResults | TabbedSearchResults | TwoColumnBrowseResults>([ SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults ]))
+    if (!node.is(SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults))
       throw new InnertubeError('Invalid id', video_id);
     const tab = node.tabs.array().get({ title: 'Up next' });
     // TODO: verify this is a Tab
@@ -137,7 +137,7 @@ class Music {
     const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
     const data = Parser.parseResponse(response.data);
     const node = data.contents.item();
-    if (!node.isOneOf<SingleColumnBrowseResults | TabbedSearchResults | TwoColumnBrowseResults>([ SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults ]))
+    if (!node.is(SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults))
       throw new InnertubeError('Invalid id', video_id);
     const tab = node.tabs.array().get({ title: 'Related' });
     const page = await tab?.key('endpoint').nodeOfType(NavigationEndpoint).call(this.#actions, 'YTMUSIC', true);

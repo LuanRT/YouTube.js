@@ -9,44 +9,32 @@ export class YTNode {
   }
   /**
    * Check if the node is of the given type.
-   * @param type The type to check
+   * @param type - The type to check
    * @returns whether the node is of the given type
    */
-  is<T extends YTNode>(type: YTNodeConstructor<T>): this is T {
+  #is<T extends YTNode>(type: YTNodeConstructor<T>): this is T {
     return this.type === type.type;
   }
   /**
-   * Cast the node to the given type.
-   * @param type The type to cast to
-   * @returns The casted node
-   * @throws If the node is not of the given type
-   */
-  as<T extends YTNode>(type: YTNodeConstructor<T>): T {
-    if (!this.is(type)) {
-      throw new TypeError(`Cannot cast ${this.type} to ${type.type}`);
-    }
-    return this;
-  }
-  /**
    * Check if the node is of the given type.
-   * @param type The type to check
+   * @param types - The type to check
    * @returns whether the node is of the given type
    */
-  isOneOf<T extends YTNode>(types: YTNodeConstructor<T>[]): this is T {
-    return types.some((type) => this.is(type));
+  is<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): this is InstanceType<K[number]> {
+    return types.some((type) => this.#is(type));
   }
   /**
    * Cast to one of the given types.
    */
-  asOneOf<T extends YTNode>(types: YTNodeConstructor<T>[]): T {
-    if (!this.isOneOf(types)) {
+  as<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): InstanceType<K[number]> {
+    if (!this.is(...types)) {
       throw new ParsingError(`Cannot cast ${this.type} to one of ${types.map((t) => t.type).join(', ')}`);
     }
     return this;
   }
   /**
    * Check for a key without asserting the type.
-   * @param key The key to check
+   * @param key - The key to check
    * @returns Whether the node has the key
    */
   hasKey<T extends string, R = any>(key: T): this is this & { [k in T]: R } {
@@ -54,7 +42,7 @@ export class YTNode {
   }
   /**
    * Assert that the node has the given key and return it.
-   * @param key The key to check
+   * @param key - The key to check
    * @returns The value of the key wrapped in a Maybe
    * @throws If the node does not have the key
    */
@@ -224,40 +212,21 @@ export class Maybe {
 
   /**
    * Get the value as a YTNode of the given type.
-   * @param type The type to cast to
+   * @param type - The type to cast to
    * @returns The node casted to the given type
    * @throws If the node is not of the given type
    */
-  nodeOfType<T extends YTNode>(type: YTNodeConstructor<T>) {
-    return this.node().as(type);
+  nodeOfType<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K) {
+    return this.node().as(...types);
   }
 
   /**
    * Check if the value is a YTNode of the given type.
-   * @param type the type to check
+   * @param type - the type to check
    * @returns Whether the value is a YTNode of the given type
    */
-  isNodeOfType<T extends YTNode>(type: YTNodeConstructor<T>) {
-    return this.isNode() && this.node().is(type);
-  }
-
-  /**
-   * Get the value as a YTNode of one of the given type.
-   * @param types list of possible types
-   * @returns The node casted to the given types
-   * @throws If the node is not of the given types
-   */
-  nodeOneOf<T extends YTNode>(types: YTNodeConstructor<T>[]) {
-    return this.node().isOneOf(types);
-  }
-
-  /**
-   * Check if the value is a YTNode of one of the given type.
-   * @param types list of possible types
-   * @returns whether the value is a YTNode of one of the given types
-   */
-  isNodeOneOf<T extends YTNode>(types: YTNodeConstructor<T>[]) {
-    return this.isNode() && this.node().isOneOf(types);
+  isNodeOfType<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K) {
+    return this.isNode() && this.node().is(...types);
   }
 
   /**
@@ -307,7 +276,7 @@ export class Maybe {
 
   /**
    * Get the node as an instance of the given class.
-   * @param type The type to check
+   * @param type - The type to check
    * @returns the value as the given type
    * @throws If the node is not of the given type
    */
@@ -320,7 +289,7 @@ export class Maybe {
 
   /**
    * Check if the node is an instance of the given class.
-   * @param type The type to check
+   * @param type - The type to check
    * @returns Whether the node is an instance of the given type
    */
   isInstanceof<T extends object>(type: Constructor<T>): this is this & T {
@@ -388,15 +357,15 @@ export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
     /**
      * Get all items of a specific type
      */
-    filterType<R extends YTNode>(validTypes: YTNodeConstructor<R> | YTNodeConstructor<R>[]): ObservedArray<R>;
+    filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
     /**
      * Get the first of a specific type
      */
-    firstOfType<R extends YTNode>(validTypes: YTNodeConstructor<R> | YTNodeConstructor<R>[]): R | undefined;
+    firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
     /**
      * This is similar to filter but throws if there's a type mismatch.
      */
-    as<R extends YTNode>(validTypes: YTNodeConstructor<R> | YTNodeConstructor<R>[]): ObservedArray<R>;
+    as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
 };
 
 /**
@@ -432,14 +401,9 @@ export function observe<T extends YTNode>(obj: Array<T>) {
         );
       }
       if (prop == 'filterType') {
-        return (validTypes: YTNodeConstructor<T> | YTNodeConstructor<T>[]) => {
+        return (...types: YTNodeConstructor<YTNode>[]) => {
           return observe(target.filter((node: YTNode) => {
-            if (Array.isArray(validTypes)) {
-              if (node.isOneOf(validTypes))
-                return true;
-              return false;
-            }
-            if (node.is(validTypes))
+            if (node.is(...types))
               return true;
             return false;
 
@@ -447,32 +411,20 @@ export function observe<T extends YTNode>(obj: Array<T>) {
         };
       }
       if (prop == 'firstOfType') {
-        return (validTypes: YTNodeConstructor<T> | YTNodeConstructor<T>[]) => {
+        return (...types: YTNodeConstructor<YTNode>[]) => {
           return target.find((node: YTNode) => {
-            if (Array.isArray(validTypes)) {
-              if (node.isOneOf(validTypes))
-                return true;
-              return false;
-            }
-            if (node.is(validTypes))
+            if (node.is(...types))
               return true;
             return false;
-
-          })!;
+          });
         };
       }
       if (prop == 'as') {
-        return (validTypes: YTNodeConstructor<T> | YTNodeConstructor<T>[]) => {
+        return (...types: YTNodeConstructor<YTNode>[]) => {
           return observe(target.map((node: YTNode) => {
-            if (Array.isArray(validTypes)) {
-              if (node.isOneOf(validTypes))
-                return node;
-              throw new ParsingError(`Expected node of any type ${validTypes.map((type) => type.type).join(', ')}, got ${node.type}`);
-            } else {
-              if (node.is(validTypes))
-                return node;
-              throw new ParsingError(`Expected node of type ${validTypes.type}, got ${node.type}`);
-            }
+            if (node.is(...types))
+              return node;
+            throw new ParsingError(`Expected node of any type ${types.map((type) => type.type).join(', ')}, got ${(node as YTNode).type}`);
           }));
         };
       }
