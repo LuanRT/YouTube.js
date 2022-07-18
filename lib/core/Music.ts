@@ -17,12 +17,9 @@ import NavigationEndpoint from '../parser/classes/NavigationEndpoint';
 import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf';
 import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf';
 
-/** @namespace */
 class Music {
-  #session;
   #actions;
   constructor(session: Session) {
-    this.#session = session;
     this.#actions = session.actions;
   }
   /**
@@ -125,13 +122,9 @@ class Music {
     if (!upnext_content)
       throw new InnertubeError('Invalid id', video_id);
     return {
-      /** @type {string} */
       id: upnext_content.playlist_id,
-      /** @type {string} */
       title: upnext_content.title,
-      /** @type {boolean} */
       is_editable: upnext_content.is_editable,
-      /** @type {import('../parser/contents/classes/PlaylistPanelVideo')[]} */
       contents: observe(upnext_content.contents)
     };
   }

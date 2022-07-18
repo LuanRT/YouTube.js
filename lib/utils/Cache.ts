@@ -47,18 +47,16 @@ export default class UniversalCache {
     const dir = this.cache_dir;
     switch (getRuntime()) {
       case 'deno':
-        {
-          const Deno: any = Reflect.get(globalThis, 'Deno');
-          try {
-            const cwd = await Deno.stat(dir);
-            if (!cwd.isDirectory)
-              throw new Error('An unexpected file was found in place of the cache directory');
-          } catch (e) {
-            if (e instanceof Deno.errors.NotFound)
-              await Deno.mkdir(dir, { recursive: true });
-            else
-              throw e;
-          }
+        const Deno: any = Reflect.get(globalThis, 'Deno');
+        try {
+          const cwd = await Deno.stat(dir);
+          if (!cwd.isDirectory)
+            throw new Error('An unexpected file was found in place of the cache directory');
+        } catch (e) {
+          if (e instanceof Deno.errors.NotFound)
+            await Deno.mkdir(dir, { recursive: true });
+          else
+            throw e;
         }
         break;
 

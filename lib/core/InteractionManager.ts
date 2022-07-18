@@ -58,7 +58,7 @@ class InteractionManager {
    * Translates a given text using YouTube's comment translate feature.
    *
    * @param target_language - an ISO language code
-   * @param [args] - optional arguments
+   * @param args - optional arguments
    */
   async translate(text: string, target_language: string, args: {
         video_id?: string;

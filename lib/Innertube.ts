@@ -79,7 +79,7 @@ class Innertube {
   }
   /**
    * Searches a given query.
-   * @param string query - search query.
+   * @param query - search query.
    * @param filters - search filters.
    */
   async search(query: string, filters: SearchFilters = {}) {
@@ -139,7 +139,7 @@ class Innertube {
   }
   /**
    * Retrieves watch history.
-   * Which can also be achieved with {@link getLibrary()}.
+   * Which can also be achieved with {@link getLibrary}.
    */
   async getHistory() {
     const response = await this.actions.browse('FEhistory');
@@ -195,7 +195,7 @@ class Innertube {
    * An alternative to {@link download}.
    * Returns deciphered streaming data.
    *
-   * @note If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
+   * If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
    */
   async getStreamingData(video_id: string, options: FormatOptions = {}) {
     const info = await this.getBasicInfo(video_id);
@@ -204,7 +204,7 @@ class Innertube {
   /**
    * Downloads a given video. If you only need the direct download link take a look at {@link getStreamingData}.
    *
-   * @note If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
+   * If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
    */
   async download(video_id: string, options?: DownloadOptions) {
     throwIfMissing({ video_id });

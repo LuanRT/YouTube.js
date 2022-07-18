@@ -2,7 +2,7 @@ import { getRuntime } from './lib/utils/Utils';
 
 // Polyfill fetch for node
 if (getRuntime() === 'node') {
-  const undici = require('undici');
+  const undici = Reflect.get(module, 'require')('undici');
   Reflect.set(globalThis, 'fetch', undici.fetch);
   Reflect.set(globalThis, 'Headers', undici.Headers);
   Reflect.set(globalThis, 'Request', undici.Request);

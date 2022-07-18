@@ -59,12 +59,14 @@ export default class Player {
     url_components.searchParams.set('ratebypass', 'yes');
     if (signature_cipher || cipher) {
       const signature = this.#signature.decipher(url);
-      args.get('sp') ?
-        url_components.searchParams.set(args.get('sp')!, signature) :
+      const sp = args.get('sp');
+      sp ?
+        url_components.searchParams.set(sp, signature) :
         url_components.searchParams.set('signature', signature);
     }
-    if (url_components.searchParams.get('n')) {
-      const ntoken = this.#ntoken.transform(url_components.searchParams.get('n')!);
+    const n = url_components.searchParams.get('n');
+    if (n) {
+      const ntoken = this.#ntoken.transform(n);
       url_components.searchParams.set('n', ntoken);
     }
     return url_components.toString();

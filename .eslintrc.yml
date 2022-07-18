@@ -8,6 +8,12 @@ extends: [ eslint:recommended, 'plugin:@typescript-eslint/recommended' ]
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: latest
+overrides:
+  - 
+    files:
+      - '**/*.js'
+    rules:
+      'tsdoc/syntax': 'off'
 rules:
   max-len:
     - error
@@ -23,6 +29,7 @@ rules:
 
   '@typescript-eslint/ban-types': 'off'
   'tsdoc/syntax': 'warn'
+  '@typescript-eslint/no-explicit-any': 'off'
 
   no-template-curly-in-string: error
   no-unreachable-loop: error

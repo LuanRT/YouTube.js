@@ -192,7 +192,7 @@ export function timeToSeconds(time: string) {
 /**
  * Converts strings in camelCase to snake_case.
  *
- * @param string The string in camelCase.
+ * @param string - The string in camelCase.
  */
 export function camelToSnake(string: string) {
   return string[0].toLowerCase() + string.slice(1, string.length).replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);

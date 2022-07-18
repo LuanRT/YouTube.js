@@ -179,7 +179,9 @@ class OAuth {
       headers: Constants.OAUTH.HEADERS
     });
     const response_data = await response.text();
-    const url_body = Constants.OAUTH.REGEX.AUTH_SCRIPT.exec(response_data)![1]; // TODO: probably check this rather than assume.
+    const url_body = Constants.OAUTH.REGEX.AUTH_SCRIPT.exec(response_data)?.[1];
+    if (!url_body)
+      throw new OAuthError('Could not obtain script url.', { status: 'FAILED' });
     const script = await this.#session.http.fetch(url_body, {
       baseURL: Constants.URLS.YT_BASE
     });
@@ -187,16 +189,19 @@ class OAuth {
       .replace(/\n/g, '')
       .match(Constants.OAUTH.REGEX.CLIENT_IDENTITY);
     // TODO: check this.
-    return client_identity!.groups!;
+    const groups = client_identity?.groups;
+    if (!groups)
+      throw new OAuthError('Could not obtain client identity.', { status: 'FAILED' });
+    return groups;
   }
   get credentials() {
     return this.#credentials;
   }
-  validateCredentials() {
+  validateCredentials(): this is this & { credentials: Credentials } {
     return this.#credentials &&
             Reflect.has(this.#credentials, 'access_token') &&
             Reflect.has(this.#credentials, 'refresh_token') &&
-            Reflect.has(this.#credentials, 'expires');
+            Reflect.has(this.#credentials, 'expires') || false;
   }
 }
 export default OAuth;

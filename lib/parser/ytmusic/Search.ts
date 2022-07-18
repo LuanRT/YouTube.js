@@ -9,7 +9,6 @@ import RichShelf from '../classes/RichShelf';
 import ReelShelf from '../classes/ReelShelf';
 import ChipCloudChip from '../classes/ChipCloudChip';
 
-/** @namespace */
 class Search {
   #page;
   #actions;
@@ -83,11 +82,9 @@ class Search {
       throw new InnertubeError('Endpoint did not return any data');
     return new Search(response, this.#actions, { is_continuation: true });
   }
-  /** @type {boolean} */
   get has_continuation() {
     return !!this.#continuation;
   }
-  /** @type {string[]} */
   get filters() {
     return this.#header?.key('chips').parsed().array().as(ChipCloudChip).map((chip) => chip.text);
   }

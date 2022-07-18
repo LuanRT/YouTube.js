@@ -35,7 +35,7 @@ class NavigationEndpoint extends YTNode {
     super();
     const name = Object.keys(data || {})
       .find((item) => item.endsWith('Endpoint') || item.endsWith('Command'));
-    this.payload = data?.[name!] || {};
+    this.payload = name ? Reflect.get(data, name) : {};
     if (Reflect.has(this.payload, 'dialog')) {
       this.dialog = Parser.parse(this.payload.dialog);
     }
@@ -178,7 +178,7 @@ class NavigationEndpoint extends YTNode {
     }
   }
   /**
-   * Calls the endpoint. (This is an experiment and may replace {@link call()} in the future.).
+   * Calls the endpoint. (This is an experiment and may replace {@link call} in the future.).
    */
   async callTest(actions: Actions, args = { parse: true, params: {} }) {
     if (!actions)

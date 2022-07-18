@@ -34,8 +34,8 @@ class LiveChat extends EventEmitter {
       throw new InnertubeError('Video has no livechat');
     this.#video_info = video_info;
     this.#actions = video_info.actions;
-    this.#continuation = this.#video_info.livechat!.continuation;
-    this.is_replay = this.#video_info.livechat!.is_replay;
+    this.#continuation = video_info.livechat.continuation;
+    this.is_replay = video_info.livechat.is_replay;
     this.live_metadata = {
       title: null as UpdateTitleAction | null,
       description: null as UpdateDescriptionAction | null,

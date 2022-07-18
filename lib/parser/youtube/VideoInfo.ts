@@ -145,8 +145,6 @@ class VideoInfo {
     this.watch_next_feed = data?.contents;
     return this;
   }
-  /** @typedef {import('../classes/CompactVideo')} CompactVideo */
-  /** @typedef {import('../classes/CompactMix')} CompactMix */
   /**
    * Retrieves watch next feed continuation.
    */
@@ -157,11 +155,6 @@ class VideoInfo {
     this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
     return this.watch_next_feed?.filterType<CompactVideo | CompactMix>([ CompactVideo, CompactMix ]);
   }
-  /**
-   * API response.
-   *
-   * @typedef {{ success: boolean, status_code: number, data: object }} Response
-   */
   /**
    * Likes the video.
    *

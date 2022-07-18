@@ -40,11 +40,5 @@ class Playlist extends Feed {
       return 'N/A';
     return primary_info.stats[index]?.toString() || 'N/A';
   }
-  /**
-   * @alias videos
-   */
-  get items() {
-    return this.videos;
-  }
 }
 export default Playlist;

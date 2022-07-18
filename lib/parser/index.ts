@@ -94,9 +94,17 @@ export default class Parser {
   static #addToMemo(classname: string, result: YTNode) {
     if (!Parser.#memo)
       return;
-    if (!Parser.#memo.has(classname))
+
+    const list = Parser.#memo.get(classname);
+    if (!list)
       return Parser.#memo.set(classname, [ result ]);
-        Parser.#memo.get(classname)!.push(result);
+
+    list.push(result);
+  }
+  static #getMemo() {
+    if (!Parser.#memo)
+      throw new Error('Parser#getMemo() called before Parser#createMemo()');
+    return Parser.#memo;
   }
   /**
    * Parses InnerTube response.
@@ -106,24 +114,24 @@ export default class Parser {
     this.#createMemo();
     // TODO: is this parseItem?
     const contents = Parser.parse(data.contents);
-    const contents_memo = Parser.#memo!;
+    const contents_memo = this.#getMemo();
     // End of memoization
     this.#clearMemo();
     this.#createMemo();
     const on_response_received_actions = data.onResponseReceivedActions ? Parser.parseRR(data.onResponseReceivedActions) : null;
-    const on_response_received_actions_memo = Parser.#memo!;
+    const on_response_received_actions_memo = this.#getMemo();
     this.#clearMemo();
     this.#createMemo();
     const on_response_received_endpoints = data.onResponseReceivedEndpoints ? Parser.parseRR(data.onResponseReceivedEndpoints) : null;
-    const on_response_received_endpoints_memo = Parser.#memo!;
+    const on_response_received_endpoints_memo = this.#getMemo();
     this.#clearMemo();
     this.#createMemo();
     const on_response_received_commands = data.onResponseReceivedCommands ? Parser.parseRR(data.onResponseReceivedCommands) : null;
-    const on_response_received_commands_memo = Parser.#memo!;
+    const on_response_received_commands_memo = this.#getMemo();
     this.#clearMemo();
     this.#createMemo();
     const actions = data.actions ? Parser.parseActions(data.actions) : null;
-    const actions_memo = Parser.#memo!;
+    const actions_memo = this.#getMemo();
     this.#clearMemo();
     return {
       actions,

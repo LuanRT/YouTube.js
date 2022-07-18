@@ -4,7 +4,6 @@ import Analytics from '../parser/youtube/Analytics';
 import Proto from '../proto/index';
 import Actions from './Actions';
 
-/** @namespace */
 class AccountManager {
   #actions;
   channel;
