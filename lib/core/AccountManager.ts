@@ -15,14 +15,11 @@ class AccountManager {
     this.channel = {
       /**
        * Edits channel name.
-       * @param new_name
        */
       editName: (new_name: string) => this.#actions.channel('channel/edit_name', { new_name }),
       /**
        * Edits channel description.
        *
-       * @param new_description
-       * @returns {Promise.<Response>}
        */
       editDescription: (new_description: string) => this.#actions.channel('channel/edit_description', { new_description }),
       /**
@@ -36,42 +33,36 @@ class AccountManager {
          * Notify about activity from the channels you're subscribed to.
          *
          * @param option - ON | OFF
-         * @returns {Promise.<Response>}
          */
         setSubscriptions: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS, 'SPaccount_notifications', option),
         /**
          * Recommended content notifications.
          *
          * @param option - ON | OFF
-         * @returns {Promise.<Response>}
          */
         setRecommendedVideos: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.RECOMMENDED_VIDEOS, 'SPaccount_notifications', option),
         /**
          * Notify about activity on your channel.
          *
          * @param option - ON | OFF
-         * @returns {Promise.<Response>}
          */
         setChannelActivity: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.CHANNEL_ACTIVITY, 'SPaccount_notifications', option),
         /**
          * Notify about replies to your comments.
          *
          * @param option - ON | OFF
-         * @returns {Promise.<Response>}
          */
         setCommentReplies: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.COMMENT_REPLIES, 'SPaccount_notifications', option),
         /**
          * Notify when others mention your channel.
          *
          * @param option - ON | OFF
-         * @returns {Promise.<Response>}
          */
         setMentions: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.USER_MENTION, 'SPaccount_notifications', option),
         /**
          * Notify when others share your content on their channels.
          *
          * @param option - ON | OFF
-         * @returns {Promise.<Response>}
          */
         setSharedContent: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SHARED_CONTENT, 'SPaccount_notifications', option)
       },
@@ -80,14 +71,12 @@ class AccountManager {
          * If set to true, your subscriptions won't be visible to others.
          *
          * @param option - ON | OFF
-         * @returns {Promise.<Response>}
          */
         setSubscriptionsPrivate: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.SUBSCRIPTIONS_PRIVACY, 'SPaccount_privacy', option),
         /**
          * If set to true, saved playlists won't appear on your channel.
          *
          * @param option - ON | OFF
-         * @returns {Promise.<Response>}
          */
         setSavedPlaylistsPrivate: (option: boolean) => this.#setSetting(Constants.ACCOUNT_SETTINGS.PLAYLISTS_PRIVACY, 'SPaccount_privacy', option)
       }
@@ -95,9 +84,6 @@ class AccountManager {
   }
   /**
    * Internal method to perform changes on an account's settings.
-   * @param setting_id
-   * @param type
-   * @param new_value
    */
   async #setSetting(setting_id: string, type: string, new_value: boolean) {
     throwIfMissing({ setting_id, type, new_value });
@@ -123,8 +109,6 @@ class AccountManager {
   }
   /**
    * Retrieves channel info.
-   *
-   * @returns {Promise.<{ name: string, email: string, channel_id: string, subscriber_count: string, photo: object[] }>}
    */
   async getInfo() {
     const response = await this.#actions.account('account/accounts_list', { client: 'ANDROID' });
@@ -157,7 +141,6 @@ class AccountManager {
   /**
    * Retrieves basic channel analytics.
    *
-   * @returns {Promise.<Analytics>}
    */
   async getAnalytics() {
     const info = await this.getInfo();

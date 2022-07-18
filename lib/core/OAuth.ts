@@ -37,10 +37,6 @@ class OAuth {
   }
   /**
    * Starts the auth flow in case no valid credentials are available.
-   * @param credentials
-   * @param credentials.access_token
-   * @param credentials.refresh_token
-   * @param credentials.expires_in
    */
   async init(credentials?: Credentials) {
     this.#credentials = credentials;
@@ -50,7 +46,6 @@ class OAuth {
   }
   /**
    * Asks the server for a user code and verification URL.
-   * @returns {Promise.<void>}
    */
   async #getUserCode() {
     this.#identity = await this.#getClientIdentity();
@@ -74,7 +69,6 @@ class OAuth {
   }
   /**
    * Polls the authorization server until access is granted by the user.
-   * @param device_code
    */
   #startPolling(device_code: string) {
     const poller = setInterval(async () => {
@@ -126,7 +120,6 @@ class OAuth {
   }
   /**
    * Refreshes the access token if necessary.
-   * @returns {Promise.<void>}
    */
   async checkAccessTokenValidity() {
     const timestamp = this.#credentials ? new Date(this.#credentials.expires).getTime() : -Infinity;
@@ -136,7 +129,6 @@ class OAuth {
   }
   /**
    * Retrieves a new access token using the refresh token.
-   * @returns {Promise.<void>}
    */
   async #refreshAccessToken() {
     if (!this.#credentials) return;
@@ -181,7 +173,6 @@ class OAuth {
   }
   /**
    * Retrieves client identity from YouTube TV.
-   * @returns {Promise.<{ client_id: string, client_secret: string }>}
    */
   async #getClientIdentity() {
     const response = await this.#session.http.fetch_function(new URL('/tv', Constants.URLS.YT_BASE), {

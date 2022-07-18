@@ -1,14 +1,11 @@
 plugins:
-  [ jsdoc, '@typescript-eslint' ]
+  [ '@typescript-eslint', 'eslint-plugin-tsdoc' ]
 env:
   commonjs: true
   es2021: true
   node: true
-extends: [ eslint:recommended, plugin:jsdoc/recommended, 'plugin:@typescript-eslint/recommended' ]
+extends: [ eslint:recommended, 'plugin:@typescript-eslint/recommended' ]
 parser: '@typescript-eslint/parser'
-settings:
-  jsdoc:
-    mode: 'typescript'
 parserOptions:
   ecmaVersion: latest
 rules:
@@ -23,14 +20,9 @@ rules:
       ignoreRegExpLiterals: true
 
   quotes: [error, single] 
-  
-  jsdoc/newline-after-description: 'off'
-  jsdoc/require-returns-description: 'off'
-  jsdoc/require-param-description: 'off'
-  jsdoc/no-undefined-types: 'off'
-  jsdoc/require-returns: 'off'
 
   '@typescript-eslint/ban-types': 'off'
+  'tsdoc/syntax': 'warn'
 
   no-template-curly-in-string: error
   no-unreachable-loop: error

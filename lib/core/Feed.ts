@@ -51,7 +51,6 @@ class Feed {
   }
   /**
    * Get all videos on a given page via memo
-   * @param memo
    */
   static getVideosFromMemo(memo: Memo) {
     return memo.getType<Video | GridVideo | CompactVideo | PlaylistVideo | PlaylistPanelVideo | WatchCardCompactVideo>([
@@ -65,7 +64,6 @@ class Feed {
   }
   /**
    * Get all playlists on a given page via memo
-   * @param memo
    */
   static getPlaylistsFromMemo(memo: Memo) {
     return memo.getType<Playlist | GridPlaylist>([ Playlist, GridPlaylist ]);
@@ -115,7 +113,6 @@ class Feed {
   /**
    * Finds shelf by title.
    *
-   * @param title
    */
   getShelf(title: string) {
     return this.shelves.find((shelf) => shelf.title.toString() === title);
@@ -143,7 +140,6 @@ class Feed {
   /**
    * Checks if the feed has continuation.
    *
-   * @returns {boolean}
    */
   get has_continuation() {
     return (this.#memo.get('ContinuationItem') || []).length > 0;
@@ -168,7 +164,6 @@ class Feed {
   /**
    * Retrieves next batch of contents and returns a new {@link Feed} object.
    *
-   * @returns {Promise.<Feed>}
    */
   async getContinuation() {
     const continuation_data = await this.getContinuationData();

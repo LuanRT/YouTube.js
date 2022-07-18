@@ -27,7 +27,6 @@ class Comments {
   }
   /**
    * Creates a top-level comment.
-   * @param text
    */
   async comment(text: string) {
     const button = this.header?.create_renderer?.key('submit_button').node();
@@ -42,7 +41,6 @@ class Comments {
   }
   /**
    * Retrieves next batch of comments.
-   * @returns {Promise.<Comments>}
    */
   async getContinuation() {
     if (!this.#continuation)

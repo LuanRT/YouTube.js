@@ -179,8 +179,6 @@ class NavigationEndpoint extends YTNode {
   }
   /**
    * Calls the endpoint. (This is an experiment and may replace {@link call()} in the future.).
-   * @param actions
-   * @param args
    */
   async callTest(actions: Actions, args = { parse: true, params: {} }) {
     if (!actions)

@@ -59,7 +59,6 @@ class Innertube {
   }
   /**
    * Retrieves video info.
-   * @param video_id
    */
   async getInfo(video_id: string) {
     throwIfMissing({ video_id });
@@ -71,7 +70,6 @@ class Innertube {
   }
   /**
    * Retrieves basic video info.
-   * @param video_id
    */
   async getBasicInfo(video_id: string) {
     throwIfMissing({ video_id });
@@ -82,7 +80,6 @@ class Innertube {
   /**
    * Searches a given query.
    * @param string query - search query.
-   * @param query
    * @param filters - search filters.
    */
   async search(query: string, filters: SearchFilters = {}) {
@@ -150,7 +147,6 @@ class Innertube {
   }
   /**
    * Retrieves trending content.
-   * @returns {Promise<TabbedFeed>}
    */
   async getTrending() {
     const response = await this.actions.browse('FEtrending');
@@ -199,8 +195,6 @@ class Innertube {
    * An alternative to {@link download}.
    * Returns deciphered streaming data.
    *
-   * @param video_id
-   * @param options
    * @note If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
    */
   async getStreamingData(video_id: string, options: FormatOptions = {}) {
@@ -210,8 +204,6 @@ class Innertube {
   /**
    * Downloads a given video. If you only need the direct download link take a look at {@link getStreamingData}.
    *
-   * @param video_id
-   * @param options
    * @note If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
    */
   async download(video_id: string, options?: DownloadOptions) {

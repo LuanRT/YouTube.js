@@ -118,16 +118,12 @@ export default class Player {
   }
   /**
    * Extracts the signature timestamp from the player source code.
-   * @param data
-   * @returns {number}
    */
   static extractSigTimestamp(data: string) {
     return parseInt(getStringBetweenStrings(data, 'signatureTimestamp:', ',') || '0');
   }
   /**
    * Extracts the signature decipher algorithm.
-   * @param data
-   * @returns {string}
    */
   static extractSigDecipherSc(data: string) {
     const sig_alg_sc = getStringBetweenStrings(data, 'this.audioTracks};var', '};');
@@ -138,8 +134,6 @@ export default class Player {
   }
   /**
    * Extracts the n-token decipher algorithm.
-   * @param data
-   * @returns {string}
    */
   static extractNTokenSc(data: string) {
     const sc = `var b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;

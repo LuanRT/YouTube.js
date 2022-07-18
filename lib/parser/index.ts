@@ -100,7 +100,6 @@ export default class Parser {
   }
   /**
    * Parses InnerTube response.
-   * @param data
    */
   static parseResponse(data: any) {
     // Memoize the response objects by classname
@@ -246,9 +245,6 @@ export default class Parser {
   static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : SuperParsedResult<T>;
   /**
    * Parses the `contents` property of the response.
-   * @param data
-   * @param requireArray
-   * @param validTypes
    */
   static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
     if (!data)

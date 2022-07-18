@@ -13,7 +13,6 @@ class FilterableFeed extends Feed {
   /**
    * Get filters for the feed
    *
-   * @returns {import('../parser/classes/ChipCloudChip')[]}
    */
   get filter_chips() {
     if (this.#chips)
@@ -30,7 +29,6 @@ class FilterableFeed extends Feed {
   }
   /**
    * Applies given filter and returns a new {@link Feed} object.
-   * @param filter
    */
   async getFilteredFeed(filter: string | ChipCloudChip) {
     let target_filter: ChipCloudChip | undefined;

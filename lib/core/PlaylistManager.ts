@@ -10,8 +10,6 @@ class PlaylistManager {
   }
   /**
    * Creates a playlist.
-   * @param title
-   * @param video_ids
    */
   async create(title: string, video_ids: string[]) {
     throwIfMissing({ title, video_ids });
@@ -25,7 +23,6 @@ class PlaylistManager {
   }
   /**
    * Deletes a given playlist.
-   * @param playlist_id
    */
   async delete(playlist_id: string) {
     throwIfMissing({ playlist_id });
@@ -39,8 +36,6 @@ class PlaylistManager {
   }
   /**
    * Adds videos to a given playlist.
-   * @param playlist_id
-   * @param video_ids
    */
   async addVideos(playlist_id: string, video_ids: string[]) {
     throwIfMissing({ playlist_id, video_ids });
@@ -59,8 +54,6 @@ class PlaylistManager {
   }
   /**
    * Removes videos from a given playlist.
-   * @param playlist_id
-   * @param video_ids
    */
   async removeVideos(playlist_id: string, video_ids: string[]) {
     throwIfMissing({ playlist_id, video_ids });
@@ -110,9 +103,6 @@ class PlaylistManager {
 
   /**
    * Moves a video to a new position within a given playlist.
-   * @param playlist_id
-   * @param moved_video_id
-   * @param predecessor_video_id
    */
   async moveVideo(playlist_id: string, moved_video_id: string, predecessor_video_id: string) {
     throwIfMissing({ playlist_id, moved_video_id, predecessor_video_id });

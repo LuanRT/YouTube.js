@@ -58,8 +58,6 @@ export function findNode(obj: any, key: string, target: string, depth: number, s
  * Compares given objects. May not work correctly for
  * objects with methods.
  *
- * @param obj1
- * @param obj2
  */
 export function deepCompare(obj1: any, obj2: any) {
   const keys = Reflect.ownKeys(obj1);
@@ -86,8 +84,6 @@ export function getStringBetweenStrings(data: string, start_string: string, end_
 }
 
 /**
- * @param input
- * @returns {string}
  */
 export function escapeStringRegexp(input: string): string {
   return input.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d');
@@ -99,7 +95,6 @@ export type DeviceCategory = 'mobile' | 'desktop';
  * Returns a random user agent.
  *
  * @param type - mobile | desktop
- * @returns {object}
  */
 export function getRandomUserAgent(type: DeviceCategory): UserAgent['data'] {
   switch (type) {
@@ -116,7 +111,6 @@ export function getRandomUserAgent(type: DeviceCategory): UserAgent['data'] {
 
 /**
  *
- * @param str
  */
 export async function sha1Hash(str: string) {
   const SubtleCrypto = getRuntime() === 'node' ? (Reflect.get(module, 'require')('crypto').webcrypto as unknown as Crypto).subtle : window.crypto.subtle;
@@ -140,7 +134,6 @@ export async function sha1Hash(str: string) {
   ];
   /**
    *
-   * @param arrayBuffer
    */
   function hex(arrayBuffer: ArrayBuffer) {
     const buff = new Uint8Array(arrayBuffer);
@@ -155,7 +148,6 @@ export async function sha1Hash(str: string) {
  * Generates an authentication token from a cookies' sid.
  *
  * @param sid - Sid extracted from cookies
- * @returns {Promise<string>}
  */
 export async function generateSidAuth(sid: string): Promise<string> {
   const youtube = 'https://www.youtube.com';
@@ -168,8 +160,6 @@ export async function generateSidAuth(sid: string): Promise<string> {
 /**
  * Generates a random string with the given length.
  *
- * @param length
- * @returns {string}
  */
 export function generateRandomString(length: number): string {
   const result = [];
@@ -183,7 +173,6 @@ export function generateRandomString(length: number): string {
 /**
  * Converts time (h:m:s) to seconds.
  *
- * @param time
  * @returns seconds
  */
 export function timeToSeconds(time: string) {
@@ -212,7 +201,6 @@ export function camelToSnake(string: string) {
 /**
  * Checks if a given client is valid.
  *
- * @param client
  * @returns
  */
 export function isValidClient(client: string) {
@@ -221,7 +209,6 @@ export function isValidClient(client: string) {
 
 /**
  * Throws an error if given parameters are undefined.
- * @param params
  */
 export function throwIfMissing(params: object) {
   for (const [ key, value ] of Object.entries(params)) {
@@ -232,7 +219,6 @@ export function throwIfMissing(params: object) {
 
 /**
  * Turns the ntoken transform data into a valid json array
- * @param data
  */
 export function refineNTokenData(data: string) {
   return data
@@ -287,7 +273,6 @@ export function isServer() {
 
 /**
  *
- * @param stream
  */
 export async function* streamToIterable(stream: ReadableStream<Uint8Array>) {
   const reader = stream.getReader();

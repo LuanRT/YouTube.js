@@ -30,7 +30,6 @@ export class YTNode {
   /**
    * Check if the node is of the given type.
    * @param type The type to check
-   * @param types
    * @returns whether the node is of the given type
    */
   isOneOf<T extends YTNode>(types: YTNodeConstructor<T>[]): this is T {
@@ -38,7 +37,6 @@ export class YTNode {
   }
   /**
    * Cast to one of the given types.
-   * @param types
    */
   asOneOf<T extends YTNode>(types: YTNodeConstructor<T>[]): T {
     if (!this.isOneOf(types)) {
@@ -404,7 +402,6 @@ export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
 /**
  * Creates a trap to intercept property access
  * and add utilities to an object.
- * @param obj
  */
 export function observe<T extends YTNode>(obj: Array<T>) {
   return new Proxy(obj, {

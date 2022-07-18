@@ -74,8 +74,6 @@ class VideoInfo {
   livechat;
   /**
    * @param data - API response.
-   * @param actions
-   * @param player
    * @param cpn - Client Playback Nonce
    */
   constructor(data: [AxioslikeResponse, AxioslikeResponse?], actions: Actions, player: Player, cpn: string) {
@@ -135,7 +133,6 @@ class VideoInfo {
   }
   /**
    * Applies given filter to the watch next feed.
-   * @param name
    */
   async selectFilter(name: string) {
     if (!this.filters.includes(name))
@@ -168,7 +165,6 @@ class VideoInfo {
   /**
    * Likes the video.
    *
-   * @returns {Promise.<Response>}
    */
   async like() {
     const button = this.primary_info?.menu?.top_level_buttons?.get({ button_id: 'TOGGLE_BUTTON_ID_TYPE_LIKE' })?.as(ToggleButton);
@@ -182,7 +178,6 @@ class VideoInfo {
   /**
    * Dislikes the video.
    *
-   * @returns {Promise.<Response>}
    */
   async dislike() {
     const button = this.primary_info?.menu?.top_level_buttons?.get({ button_id: 'TOGGLE_BUTTON_ID_TYPE_DISLIKE' })?.as(ToggleButton);
@@ -196,7 +191,6 @@ class VideoInfo {
   /**
    * Removes like/dislike.
    *
-   * @returns {Promise.<Response>}
    */
   async removeLike() {
     const button = this.primary_info?.menu?.top_level_buttons?.get({ is_toggled: true })?.as(ToggleButton);

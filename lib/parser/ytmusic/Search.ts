@@ -57,7 +57,6 @@ class Search {
   /**
    * Retrieves continuation, only works for individual sections or filtered results.
    *
-   * @returns {Promise.<Search>}
    */
   async getContinuation() {
     if (!this.#continuation)
@@ -71,8 +70,6 @@ class Search {
   /**
    * Applies given filter to the search.
    *
-   * @param name
-   * @returns {Promise.<Search>}
    */
   async selectFilter(name: string) {
     if (!this.filters?.includes(name))

@@ -27,9 +27,6 @@ class Music {
   }
   /**
    * Searches on YouTube Music.
-   * @param query
-   * @param filters
-   * @param filters.type
    */
   async search(query: string, filters: {
         type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
@@ -43,7 +40,6 @@ class Music {
   /**
    * Retrieves the home feed.
    *
-   * @returns {Promise.<HomeFeed>}
    */
   async getHomeFeed() {
     const response = await this.#actions.browse('FEmusic_home', { client: 'YTMUSIC' });
@@ -52,7 +48,6 @@ class Music {
   /**
    * Retrieves the Explore feed.
    *
-   * @returns {Promise.<Explore>}
    */
   async getExplore() {
     const response = await this.#actions.browse('FEmusic_explore', { client: 'YTMUSIC' });
@@ -62,7 +57,6 @@ class Music {
   /**
    * Retrieves the Library.
    *
-   * @returns {Promise.<Library>}
    */
   async getLibrary() {
     const response = await this.#actions.browse('FEmusic_liked_albums', { client: 'YTMUSIC' });
@@ -72,8 +66,6 @@ class Music {
   /**
    * Retrieves artist's info & content.
    *
-   * @param artist_id
-   * @returns {Promise.<Artist>}
    */
   async getArtist(artist_id: string) {
     throwIfMissing({ artist_id });
@@ -85,8 +77,6 @@ class Music {
   /**
    * Retrieves album.
    *
-   * @param album_id
-   * @returns {Promise.<Album>}
    */
   async getAlbum(album_id: string) {
     throwIfMissing({ album_id });
@@ -98,7 +88,6 @@ class Music {
   /**
    * Retrieves song lyrics.
    *
-   * @param video_id
    */
   async getLyrics(video_id: string) {
     throwIfMissing({ video_id });
@@ -122,7 +111,6 @@ class Music {
   /**
    * Retrieves up next.
    *
-   * @param video_id
    */
   async getUpNext(video_id: string) {
     throwIfMissing({ video_id });
@@ -150,7 +138,6 @@ class Music {
   /**
    * Retrieves related content.
    *
-   * @param video_id
    */
   async getRelated(video_id: string) {
     throwIfMissing({ video_id });
@@ -172,8 +159,6 @@ class Music {
   }
   /**
    * Retrieves search suggestions for the given query.
-   * @param query
-   * @returns {Promise.<import('../parser/contents/classes/SearchSuggestion')[] | import('../parser/contents/classes/HistorySuggestion')[]>}
    */
   async getSearchSuggestions(query: string) {
     const response = await this.#actions.execute('/music/get_search_suggestions', {

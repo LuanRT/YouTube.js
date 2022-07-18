@@ -40,9 +40,6 @@ const OP_LOOKUP: Record<string, NTokenTransformOperation> = {
 export class NTokenTransforms {
   /**
    * Gets a base64 alphabet and uses it as a lookup table to modify n.
-   * @param arr
-   * @param token
-   * @param is_reverse_base64
    */
   static translate1(arr: any[], token: string, is_reverse_base64: boolean) {
     const characters = is_reverse_base64 && BASE64_DIALECT.REVERSE || BASE64_DIALECT.NORMAL;
@@ -62,7 +59,6 @@ export class NTokenTransforms {
 
   /**
    * Returns the requested base64 dialect, currently this is only used by 'translate2'.
-   * @param is_reverse_base64
    */
   static getBase64Dia(is_reverse_base64: boolean) {
     const characters = is_reverse_base64 && BASE64_DIALECT.REVERSE || BASE64_DIALECT.NORMAL;
@@ -71,8 +67,6 @@ export class NTokenTransforms {
 
   /**
    * Swaps the first element with the one at the given index.
-   * @param arr
-   * @param index
    */
   static swap0(arr: any[], index: number) {
     const old_elem = arr[0];
@@ -83,8 +77,6 @@ export class NTokenTransforms {
 
   /**
    * Rotates elements of the array.
-   * @param arr
-   * @param index
    */
   static rotate(arr: any[], index: number) {
     index = (index % arr.length + arr.length) % arr.length;
@@ -93,8 +85,6 @@ export class NTokenTransforms {
 
   /**
    * Deletes one element at the given index.
-   * @param arr
-   * @param index
    */
   static splice(arr: any[], index: number) {
     index = (index % arr.length + arr.length) % arr.length;

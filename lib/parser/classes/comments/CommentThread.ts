@@ -23,7 +23,6 @@ class CommentThread extends YTNode {
   }
   /**
    * Retrieves replies to this comment thread.
-   * @returns {Promise.<CommentThread>}
    */
   async getReplies() {
     if (!this.#actions)
@@ -41,7 +40,6 @@ class CommentThread extends YTNode {
   }
   /**
    * Retrieves next batch of replies.
-   * @returns {Promise.<CommentThread>}
    */
   async getContinuation() {
     if (!this.replies)

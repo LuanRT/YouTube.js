@@ -8,7 +8,6 @@ class InteractionManager {
   }
   /**
    * Likes a given video.
-   * @param video_id
    */
   async like(video_id: string) {
     throwIfMissing({ video_id });
@@ -17,7 +16,6 @@ class InteractionManager {
   }
   /**
    * Dislikes a given video.
-   * @param video_id
    */
   async dislike(video_id: string) {
     throwIfMissing({ video_id });
@@ -26,7 +24,6 @@ class InteractionManager {
   }
   /**
    * Removes a like/dislike.
-   * @param video_id
    */
   async removeLike(video_id: string) {
     throwIfMissing({ video_id });
@@ -35,7 +32,6 @@ class InteractionManager {
   }
   /**
    * Subscribes to a given channel.
-   * @param channel_id
    */
   async subscribe(channel_id: string) {
     throwIfMissing({ channel_id });
@@ -44,7 +40,6 @@ class InteractionManager {
   }
   /**
    * Unsubscribes from a given channel.
-   * @param channel_id
    */
   async unsubscribe(channel_id: string) {
     throwIfMissing({ channel_id });
@@ -53,8 +48,6 @@ class InteractionManager {
   }
   /**
    * Posts a comment on a given video.
-   * @param video_id
-   * @param text
    */
   async comment(video_id: string, text: string) {
     throwIfMissing({ video_id, text });
@@ -64,11 +57,8 @@ class InteractionManager {
   /**
    * Translates a given text using YouTube's comment translate feature.
    *
-   * @param text
    * @param target_language - an ISO language code
    * @param [args] - optional arguments
-   * @param args.video_id
-   * @param args.comment_id
    */
   async translate(text: string, target_language: string, args: {
         video_id?: string;
@@ -93,8 +83,6 @@ class InteractionManager {
   /**
    * Changes notification preferences for a given channel.
    * Only works with channels you are subscribed to.
-   * @param channel_id
-   * @param type
    */
   async setNotificationPreferences(channel_id: string, type: 'PERSONALIZED' | 'ALL' | 'NONE') {
     throwIfMissing({ channel_id, type });
