@@ -6,7 +6,7 @@ if (!Reflect.has(globalThis, 'Buffer')) {
   Reflect.set(globalThis, 'Buffer', Buffer);
 }
 
-import Innertube from './lib/Innertube';
-export { default as Innertube } from './lib/Innertube.js';
-export * from './lib/utils';
+import Innertube from './src/Innertube';
+export { default as Innertube } from './src/Innertube.js';
+export * from './src/utils';
 export default Innertube;

@@ -5,3 +5,4 @@ cache/
 lib/proto/messages.js
 coverage/
 node_modules/
+dist/

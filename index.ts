@@ -1,4 +1,4 @@
-import { getRuntime } from './lib/utils/Utils';
+import { getRuntime } from './src/utils/Utils';
 
 // Polyfill fetch for node
 if (getRuntime() === 'node') {
@@ -12,7 +12,7 @@ if (getRuntime() === 'node') {
   Reflect.set(globalThis, 'File', undici.File);
 }
 
-import Innertube from './lib/Innertube';
-export { default as Innertube } from './lib/Innertube.js';
-export * from './lib/utils';
+import Innertube from './src/Innertube';
+export { default as Innertube } from './src/Innertube.js';
+export * from './src/utils';
 export default Innertube;

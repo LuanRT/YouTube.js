@@ -2,33 +2,37 @@
   "name": "youtubei.js",
   "version": "2.0.0",
   "description": "A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
+  "main": "./dist/index.js",
+  "browser": "./bundle/browser.js",
+  "types": "./dist",
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
   "contributors": [
     "Wykerd (https://github.com/wykerd/)",
     "MasterOfBob777 (https://github.com/MasterOfBob777)"
   ],
-  "funding": "https://ko-fi.com/luanrt",
-  "license": "MIT",
-  "scripts": {
-    "test": "npm run build:node && npx jest --verbose",
-    "lint": "npx eslint ./lib",
-    "lint:fix": "npx eslint --fix ./lib",
-    "build": "npm run bundle:browser && npm run bundle:browser:prod && npm run build:node",
-    "build:node": "npm run build:parser-map && npx tsc",
-    "build:parser-map": "node ./scripts/build-parser-json.js",
-    "bundle:general": "npm run build:parser-map && npx tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis",
-    "bundle:browser": "npm run bundle:general -- --outfile=./bundle/browser.js --platform=browser",
-    "bundle:browser:prod": "npm run bundle:general -- --outfile=./bundle/browser.min.js --platform=browser --minify"
-  },
-  "types": "./dist",
-  "main": "./dist/index.js",
-  "browser": "./bundle/browser.js",
   "directories": {
     "test": "./test",
     "typings": "./dist",
     "examples": "./examples",
-    "lib": "./dist/lib"
+    "src": "./dist/src"
   },
+  "scripts": {
+    "test": "npm run build:node && npx jest --verbose",
+    "lint": "npx eslint ./src",
+    "lint:fix": "npx eslint --fix ./src",
+    "build": "npm run build:node && npm run bundle:browser && npm run bundle:browser:prod",
+    "build:node": "npm run build:parser-map && npx tsc",
+    "build:parser-map": "node ./scripts/build-parser-json.js",
+    "bundle:browser": "npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --outfile=./bundle/browser.js --platform=browser",
+    "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuanRT/YouTube.js.git"
+  },
+  "funding": "https://github.com/sponsors/LuanRT",
+  "license": "MIT",
   "dependencies": {
     "buffer": "^6.0.3",
     "flat": "^5.0.2",
@@ -50,10 +54,6 @@
     "glob": "^8.0.3",
     "jest": "^28.1.3",
     "typescript": "^4.7.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LuanRT/YouTube.js.git"
   },
   "bugs": {
     "url": "https://github.com/LuanRT/YouTube.js/issues"

@@ -3,7 +3,7 @@
 const Fs = require('fs');
 const { Innertube } = require('../dist');
 const Constants = require('./constants');
-const { streamToIterable } = require('../dist/lib/utils/Utils');
+const { streamToIterable } = require('../dist/src/utils/Utils');
 
 describe('YouTube.js Tests', () => { 
   beforeAll(async () => {
@@ -83,8 +83,8 @@ describe('YouTube.js Tests', () => {
   
   /*
   // TODO: fix this, doesn't run on node 12
-  const { default: NToken } = require('../../lib/deciphers/NToken');
-  const { default: Signature} = require('../../lib/deciphers/Signature');
+  const { default: NToken } = require('../../src/deciphers/NToken');
+  const { default: Signature} = require('../../src/deciphers/Signature');
 
   describe('Deciphers', () => {
     it('Should decipher signature', () => {
