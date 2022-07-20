@@ -20,10 +20,10 @@
     "test": "npm run build:node && npx jest --verbose",
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint --fix ./src",
-    "build": "npm run build:node && npm run bundle:browser && npm run bundle:browser:prod",
+    "build": "npm run bundle:browser && npm run bundle:browser:prod && npm run build:node",
     "build:node": "npm run build:parser-map && npx tsc",
     "build:parser-map": "node ./scripts/build-parser-json.js",
-    "bundle:browser": "npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --outfile=./bundle/browser.js --platform=browser",
+    "bundle:browser": "npx tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --outfile=./bundle/browser.js --platform=browser",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
     "prepublishOnly": "npm run build"
   },
