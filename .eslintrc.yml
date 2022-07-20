@@ -1,17 +1,19 @@
 plugins:
-  [ jsdoc ]
+  [ '@typescript-eslint', 'eslint-plugin-tsdoc' ]
 env:
   commonjs: true
   es2021: true
   node: true
-extends: [ eslint:recommended, plugin:jsdoc/recommended ]
-globals: 
-  BROWSER: readonly
-settings:
-  jsdoc:
-    mode: 'typescript'
+extends: [ eslint:recommended, 'plugin:@typescript-eslint/recommended' ]
+parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: latest
+overrides:
+  - 
+    files:
+      - '**/*.js'
+    rules:
+      'tsdoc/syntax': 'off'
 rules:
   max-len:
     - error
@@ -24,12 +26,10 @@ rules:
       ignoreRegExpLiterals: true
 
   quotes: [error, single] 
-  
-  jsdoc/newline-after-description: 'off'
-  jsdoc/require-returns-description: 'off'
-  jsdoc/require-param-description: 'off'
-  jsdoc/no-undefined-types: 'off'
-  jsdoc/require-returns: 'off'
+
+  '@typescript-eslint/ban-types': 'off'
+  'tsdoc/syntax': 'warn'
+  '@typescript-eslint/no-explicit-any': 'off'
 
   no-template-curly-in-string: error
   no-unreachable-loop: error
@@ -42,7 +42,7 @@ rules:
   no-implied-eval: error
   arrow-spacing: error
   no-invalid-this: error
-  no-lone-blocks: error
+  no-lone-blocks: 'off'
   no-new-func: error
   no-new-wrappers: error
   no-new: error

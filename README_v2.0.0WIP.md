@@ -88,17 +88,19 @@ Innertube is an API used across all YouTube clients, it was created to simplify[
 
 And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workings of the Innertube API!
 
+If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
 ### Prerequisites
-- [NodeJS][nodejs] v14 or greater
+YouTube.js runs on Node.js, Deno and in modern browsers.
 
-To verify things are set up
-properly, run this:
-```bash
-node --version
-```
+It requires a runtime with the following features:
+- [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+  - On Node we use [undici]()'s fetch implementation which requires Node.js 16.8+. You may provide your own fetch implementation if you need to use an older version. See [providing your own fetch implementation](#custom-fetch) for more information. 
+  - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` returns a non-standard `Readable` object.)
+- [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) required.
 
 ### Installation
 - NPM:
@@ -114,15 +116,113 @@ yarn add youtubei.js@latest
 npm install git+https://github.com/LuanRT/YouTube.js.git
 ```
 
+**TODO: Deno install instructions (esm.sh possibly?)**
+
 <!-- USAGE -->
 ## Usage
-
 Create an Innertube instance (or session):
-```js
-// const Innertube = require('youtubei.js');
-import Innertube from 'youtubei.js';
-const youtube = await new Innertube({ gl: 'US' });
+```ts
+// const { Innertube } = require('youtubei.js');
+import { Innertube } from 'youtubei.js';
+const youtube = await Innertube.create();
 ```
+
+## Browser Usage
+To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
+
+You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests to through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for an simple example using [Vite](https://vitejs.dev/).
+
+```ts
+// Pre-bundled version for the web
+import { Innertube } from 'youtubei.js/bundle/browser';
+await Innertube.create({
+  fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
+    // Modify the request
+    // and send it to the proxy
+
+    // fetch the url
+    return fetch(request, init);
+  }
+});
+```
+
+### Streaming
+YouTube.js supports streaming of videos in the browser by converting YouTube's streaming data into a MPEG-DASH manifest.
+
+The example below uses [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) to play the video.
+
+```ts
+import { Innertube } from 'youtubei.js';
+import dashjs from 'dashjs';
+
+const youtube = await Innertube.create({ /* setup - see above */ });
+
+// get the video info
+const videoInfo = await youtube.getInfo('videoId');
+
+// now convert to a dash manifest
+// again - to be able to stream the video in the browser - we must proxy the requests through our own server
+// to do this, we provide a method to transform the urls before writing them to the manifest
+const manifest = videoInfo.toDash(url => {
+  // modify the url
+  // and return it
+  return url;
+});
+
+const uri = "data:application/dash+xml;charset=utf-8;base64," + btoa(manifest);
+
+const videoElement = document.getElementById('video_player');
+
+const player = dashjs.MediaPlayer().create();
+player.initialize(videoElement, uri, true);
+```
+
+Our browser example in [`examples/browser/web`]() provides a full working example.
+
+
+<a name="custom-fetch"></a>
+
+## Providing your own fetch implementation
+You may provide your own fetch implementation to be used by YouTube.js. This may be useful in some cases to modify the requests before they are sent and transform the responses before they are returned (eg. for proxies).
+
+```ts
+// provide a fetch implementation
+const yt = await Innertube.create({
+  fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
+    // make the request with your own fetch implementation
+    // and return the response
+    return new Response(
+      /* ... */
+    );
+  }
+});
+```
+
+<a name="caching"></a>
+
+## Caching
+To improve performance, you may wish to cache the transformed player instance which we use to decode the streaming urls.
+
+Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` in Deno and `indexedDB` in browsers.
+
+```ts
+import { Innertube, UniversalCache } from 'youtubei.js';
+// By default, cache stores files in the OS temp directory (or indexedDB in browsers).
+const yt = await Innertube.create({
+  cache: new UniversalCache()
+});
+
+// You may wish to make the cache persistent (on Node and Deno)
+const yt = await Innertube.create({
+  cache: new UniversalCache(
+    // Enables persistent caching
+    true, 
+    // Path to the cache directory, will create the directory if it doesn't exist
+    './.cache' 
+  )
+});
+```
+
 ## API
 
 ## Innertube : `object`
