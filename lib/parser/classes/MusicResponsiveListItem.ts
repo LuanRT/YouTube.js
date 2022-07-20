@@ -16,7 +16,7 @@ class MusicResponsiveListItem extends YTNode {
   #fixed_columns;
   #playlist_item_data;
   endpoint;
-  list_type;
+  item_type;
   index;
   thumbnails;
   badges;
@@ -65,16 +65,16 @@ class MusicResponsiveListItem extends YTNode {
     this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : undefined;
     switch (this.endpoint?.browse?.page_type) {
       case 'MUSIC_PAGE_TYPE_ALBUM':
-        this.list_type = 'album';
+        this.item_type = 'album';
         this.#parseAlbum();
         break;
       case 'MUSIC_PAGE_TYPE_PLAYLIST':
-        this.list_type = 'playlist';
+        this.item_type = 'playlist';
         this.#parsePlaylist();
         break;
       case 'MUSIC_PAGE_TYPE_ARTIST':
       case 'MUSIC_PAGE_TYPE_USER_CHANNEL':
-        this.list_type = 'artist';
+        this.item_type = 'artist';
         this.#parseArtist();
         break;
       default:
@@ -92,10 +92,10 @@ class MusicResponsiveListItem extends YTNode {
   #parseVideoOrSong() {
     const is_video = this.#flex_columns[1].key('title').instanceof(Text).runs?.some((run) => run.text.match(/(.*?) views/));
     if (is_video) {
-      this.list_type = ('video');
+      this.item_type = 'video';
       this.#parseVideo();
     } else {
-      this.list_type = ('song');
+      this.item_type = 'song';
       this.#parseSong();
     }
   }
