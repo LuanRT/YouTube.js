@@ -5,6 +5,7 @@ import Shelf from '../classes/Shelf';
 import RichShelf from '../classes/RichShelf';
 import ReelShelf from '../classes/ReelShelf';
 import ChipCloudChip from '../classes/ChipCloudChip';
+import ItemSection from '../classes/ItemSection';
 
 import Parser, { ParsedResponse } from '../index';
 import { InnertubeError } from '../../utils/Utils';
@@ -30,13 +31,13 @@ class Search {
 
     const tab = this.#page.contents.item().key('tabs').parsed().array().get({ selected: true });
 
-    const shelves = tab?.key('content').parsed().item().key('contents').parsed().array();
-    const item_section = shelves?.get({ type: 'ItemSection' });
-
     this.#header = tab?.key('content').parsed().item().key('header').parsed().item();
 
-    this.did_you_mean = item_section?.key('contents').parsed().array().firstOfType(DidYouMean);
-    this.showing_results_for = item_section?.key('contents').parsed().array().firstOfType(ShowingResultsFor);
+    const shelves = tab?.key('content').parsed().item().key('contents').parsed().array();
+    const item_section = shelves?.firstOfType(ItemSection);
+
+    this.did_you_mean = item_section?.contents?.firstOfType(DidYouMean) || null;
+    this.showing_results_for = item_section?.contents?.firstOfType(ShowingResultsFor) || null;
 
     (!!this.did_you_mean || !!this.showing_results_for) && shelves?.shift();
 
