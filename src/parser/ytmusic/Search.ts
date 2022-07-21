@@ -35,12 +35,12 @@ class Search {
     const tab = this.#page.contents.item().key('tabs').parsed().array().get({ selected: true });
     const tab_content = tab?.key('content').parsed().item();
 
-    if (tab_content.hasKey('header')) {
+    if (tab_content?.hasKey('header')) {
       this.#header = tab_content.key('header').parsed().item().as(ChipCloud);
     }
 
-    const shelves = tab_content.key('contents').parsed().array();
-    const item_section = shelves.firstOfType(ItemSection);
+    const shelves = tab_content?.key('contents').parsed().array();
+    const item_section = shelves?.firstOfType(ItemSection);
 
     this.did_you_mean = item_section?.contents?.firstOfType(DidYouMean) || null;
     this.showing_results_for = item_section?.contents?.firstOfType(ShowingResultsFor) || null;
