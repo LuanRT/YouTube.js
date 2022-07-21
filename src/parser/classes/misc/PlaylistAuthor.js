@@ -1,4 +1,5 @@
 import Author from './Author';
+
 class PlaylistAuthor extends Author {
   constructor(data) {
     super(data);
@@ -7,4 +8,5 @@ class PlaylistAuthor extends Author {
     delete this.is_verified_artist;
   }
 }
+
 export default PlaylistAuthor;

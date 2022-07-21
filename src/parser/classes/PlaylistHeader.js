@@ -1,11 +1,11 @@
 import Text from './misc/Text';
 import PlaylistAuthor from './misc/PlaylistAuthor';
 import Parser from '../index';
-
 import { YTNode } from '../helpers';
 
 class PlaylistHeader extends YTNode {
   static type = 'PlaylistHeader';
+
   constructor(data) {
     super();
     this.id = data.playlistId;
@@ -25,4 +25,5 @@ class PlaylistHeader extends YTNode {
     this.menu = Parser.parse(data.moreActionsMenu);
   }
 }
+
 export default PlaylistHeader;

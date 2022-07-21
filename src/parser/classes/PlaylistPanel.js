@@ -1,10 +1,10 @@
 import Parser from '../index';
 import Text from './misc/Text';
-
 import { YTNode } from '../helpers';
 
 class PlaylistPanel extends YTNode {
   static type = 'PlaylistPanel';
+
   constructor(data) {
     super();
     this.title = data.title;
@@ -18,4 +18,5 @@ class PlaylistPanel extends YTNode {
     this.num_items_to_show = data.numItemsToShow;
   }
 }
+
 export default PlaylistPanel;

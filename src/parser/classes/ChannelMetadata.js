@@ -1,9 +1,9 @@
 import Thumbnail from './misc/Thumbnail';
-
 import { YTNode } from '../helpers';
 
 class ChannelMetadata extends YTNode {
   static type = 'ChannelMetadata';
+
   constructor(data) {
     super();
     this.title = data.title;
@@ -21,4 +21,5 @@ class ChannelMetadata extends YTNode {
     this.ios_appindexing_link = data.iosAppindexingLink;
   }
 }
+
 export default ChannelMetadata;

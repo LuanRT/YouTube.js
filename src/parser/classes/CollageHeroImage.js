@@ -1,10 +1,10 @@
 import NavigationEndpoint from './NavigationEndpoint';
 import Thumbnail from './misc/Thumbnail';
-
 import { YTNode } from '../helpers';
 
 class CollageHeroImage extends YTNode {
   static type = 'CollageHeroImage';
+
   constructor(data) {
     super();
     this.left = Thumbnail.fromResponse(data.leftThumbnail);
@@ -13,4 +13,5 @@ class CollageHeroImage extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
+
 export default CollageHeroImage;

@@ -1,9 +1,9 @@
 import Parser from '../index';
-
 import { YTNode } from '../helpers';
 
 class HorizontalCardList extends YTNode {
   static type = 'HorizontalCardList';
+
   constructor(data) {
     super();
     this.cards = Parser.parse(data.cards);
@@ -12,4 +12,5 @@ class HorizontalCardList extends YTNode {
     this.next_button = Parser.parse(data.nextButton);
   }
 }
+
 export default HorizontalCardList;

@@ -1,9 +1,9 @@
 import Parser from '../index';
-
 import { YTNode } from '../helpers';
 
 class MusicCarouselShelf extends YTNode {
   static type = 'MusicCarouselShelf';
+
   constructor(data) {
     super();
     this.header = Parser.parse(data.header);
@@ -13,4 +13,5 @@ class MusicCarouselShelf extends YTNode {
     }
   }
 }
+
 export default MusicCarouselShelf;

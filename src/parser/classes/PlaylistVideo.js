@@ -3,11 +3,11 @@ import Parser from '../index';
 import Thumbnail from './misc/Thumbnail';
 import PlaylistAuthor from './misc/PlaylistAuthor';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class PlaylistVideo extends YTNode {
   static type = 'PlaylistVideo';
+
   constructor(data) {
     super();
     this.id = data.videoId;
@@ -26,4 +26,5 @@ class PlaylistVideo extends YTNode {
     };
   }
 }
+
 export default PlaylistVideo;

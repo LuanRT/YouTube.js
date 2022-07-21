@@ -1,14 +1,15 @@
-
 import { YTNode } from '../helpers';
 
 class DataModelSection extends YTNode {
   static type = 'DataModelSection';
+
   constructor(data) {
     super();
     this.title = data.title;
     this.subtitle = data.subtitle;
     this.metric_value = data.metricValue;
     this.comparison_indicator = data.comparisonIndicator;
+
     this.series_configuration = {
       line_series: {
         lines_data: data.seriesConfiguration.lineSeries.linesData,
@@ -18,4 +19,5 @@ class DataModelSection extends YTNode {
     };
   }
 }
+
 export default DataModelSection;

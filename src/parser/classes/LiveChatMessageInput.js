@@ -1,11 +1,11 @@
 import Text from './misc/Text';
 import Parser from '../index';
 import Thumbnail from './misc/Thumbnail';
-
 import { YTNode } from '../helpers';
 
 class LiveChatMessageInput extends YTNode {
   static type = 'LiveChatMessageInput';
+
   constructor(data) {
     super();
     this.author_name = new Text(data.authorName);
@@ -14,4 +14,5 @@ class LiveChatMessageInput extends YTNode {
     this.target_id = data.targetId;
   }
 }
+
 export default LiveChatMessageInput;

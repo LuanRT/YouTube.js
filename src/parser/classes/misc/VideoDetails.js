@@ -25,6 +25,7 @@ class VideoDetails {
    * @type {string}
    */
   author;
+
   constructor(data) {
     this.id = data.videoId;
     this.channel_id = data.channelId;
@@ -42,4 +43,5 @@ class VideoDetails {
     this.is_crawlable = !!data.isCrawlable;
   }
 }
+
 export default VideoDetails;

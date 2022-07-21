@@ -25,7 +25,8 @@
     "build:parser-map": "node ./scripts/build-parser-json.js",
     "bundle:browser": "npx tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --outfile=./bundle/browser.js --platform=browser",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "watch": "npx tsc --watch"
   },
   "repository": {
     "type": "git",

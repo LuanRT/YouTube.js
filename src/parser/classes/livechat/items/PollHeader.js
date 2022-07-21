@@ -1,10 +1,11 @@
 import Text from '../../misc/Text';
 import Thumbnail from '../../misc/Thumbnail';
 import Parser from '../../../index';
-
 import { YTNode } from '../../../helpers';
+
 class PollHeader extends YTNode {
   static type = 'PollHeader';
+
   constructor(data) {
     super();
     this.poll_question = new Text(data.pollQuestion);
@@ -14,4 +15,5 @@ class PollHeader extends YTNode {
     this.context_menu_button = Parser.parse(data.contextMenuButton);
   }
 }
+
 export default PollHeader;

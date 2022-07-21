@@ -12,6 +12,7 @@ class Proto {
     const buf = messages.VisitorData.encode({ id, timestamp });
     return encodeURIComponent(Buffer.from(buf).toString('base64').replace(/\/|\+/g, '_'));
   }
+
   /**
    * Encodes basic channel analytics parameters.
    *
@@ -26,6 +27,7 @@ class Proto {
     });
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes search filters.
    *
@@ -45,6 +47,7 @@ class Proto {
       month: 4,
       year: 5
     };
+
     const type = {
       all: null,
       video: 1,
@@ -52,45 +55,55 @@ class Proto {
       playlist: 3,
       movie: 4
     };
+
     const duration = {
       all: null,
       short: 1,
       long: 2,
       medium: 3
     };
+
     const order = {
       relevance: null,
       rating: 1,
       upload_date: 2,
       view_count: 3
     };
+
     const data = {};
+
     if (filters)
       data.filters = {};
     else
       data.no_filter = 0;
+
     if (filters) {
       if (filters.upload_date && filters.type !== 'video')
         throw new Error(`Upload date filter cannot be used with type ${filters.type}`);
+
       if (filters.upload_date) {
         data.filters.upload_date = upload_date[filters.upload_date];
       }
+
       if (filters.type) {
         data.filters.type = type[filters.type];
       }
+
       if (filters.duration) {
         data.filters.duration = duration[filters.duration];
       }
+
       if (filters.sort_by && filters.sort_by !== 'relevance') {
         data.sort_by = order[filters.sort_by];
       }
     }
+
     const buf = messages.SearchFilter.encode(data);
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes YouTube Music search filters.
-   *
    * @param {object} filters
    * @param {string} filters.type - all | song | video | album | playlist | artist
    * @returns {string}
@@ -101,13 +114,15 @@ class Proto {
         type: {}
       }
     };
+
     data.filters.type[filters.type || 'all'] = 1;
+
     const buf = messages.MusicSearchFilter.encode(data);
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes livechat message parameters.
-   *
    * @param {string} channel_id
    * @param {string} video_id
    * @returns {string}
@@ -121,11 +136,12 @@ class Proto {
       },
       number_0: 1, number_1: 4
     });
+
     return Buffer.from(encodeURIComponent(Buffer.from(buf).toString('base64'))).toString('base64');
   }
+
   /**
    * Encodes comment section parameters.
-   *
    * @param {string} video_id
    * @param {object} options
    * @param {string} [options.type]
@@ -137,6 +153,7 @@ class Proto {
       TOP_COMMENTS: 0,
       NEWEST_FIRST: 1
     };
+
     const buf = messages.GetCommentsSectionParams.encode({
       ctx: {
         video_id
@@ -151,11 +168,12 @@ class Proto {
         target: 'comments-section'
       }
     });
+
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes comment replies parameters.
-   *
    * @param {string} video_id
    * @param {string} comment_id
    * @returns {string}
@@ -178,11 +196,12 @@ class Proto {
         target: `comment-replies-item-${comment_id}`
       }
     });
+
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes comment parameters.
-   *
    * @param {string} video_id
    * @returns {string}
    */
@@ -195,9 +214,9 @@ class Proto {
     });
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes comment reply parameters.
-   *
    * @param {string} comment_id
    * @param {string} video_id
    * @returns {string}
@@ -212,9 +231,9 @@ class Proto {
     });
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes comment action parameters.
-   *
    * @param {*} type
    * @param {object} [args]
    * @param {string} [args.comment_id]
@@ -225,10 +244,12 @@ class Proto {
    */
   static encodeCommentActionParams(type, args = {}) {
     const data = {};
+
     data.type = type;
     data.video_id = args.video_id || '';
     data.comment_id = args.comment_id || '';
     data.unk_num = 2;
+
     if (args.hasOwnProperty('text')) {
       args.comment_id && (delete data.unk_num);
       data.translate_comment_params = {
@@ -241,12 +262,13 @@ class Proto {
         target_language: args.target_language
       };
     }
+
     const buf = messages.PeformCommentActionParams.encode(data);
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes notification preference parameters.
-   *
    * @param {string} channel_id
    * @param {number} index
    * @returns {string}
@@ -258,11 +280,12 @@ class Proto {
       },
       number_0: 0, number_1: 4
     });
+
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
+
   /**
    * Encodes sound info parameters.
-   *
    * @param {string} id
    * @returns {string}
    */
@@ -278,8 +301,10 @@ class Proto {
         }
       }
     };
+
     const buf = messages.SoundInfoParams.encode(data);
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
   }
 }
+
 export default Proto;

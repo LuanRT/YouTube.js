@@ -3,9 +3,11 @@ import Actions from './Actions';
 
 class InteractionManager {
   #actions;
+
   constructor(actions: Actions) {
     this.#actions = actions;
   }
+
   /**
    * Likes a given video.
    */
@@ -14,6 +16,7 @@ class InteractionManager {
     const action = await this.#actions.engage('like/like', { video_id });
     return action;
   }
+
   /**
    * Dislikes a given video.
    */
@@ -22,6 +25,7 @@ class InteractionManager {
     const action = await this.#actions.engage('like/dislike', { video_id });
     return action;
   }
+
   /**
    * Removes a like/dislike.
    */
@@ -30,6 +34,7 @@ class InteractionManager {
     const action = await this.#actions.engage('like/removelike', { video_id });
     return action;
   }
+
   /**
    * Subscribes to a given channel.
    */
@@ -38,6 +43,7 @@ class InteractionManager {
     const action = await this.#actions.engage('subscription/subscribe', { channel_id });
     return action;
   }
+
   /**
    * Unsubscribes from a given channel.
    */
@@ -46,6 +52,7 @@ class InteractionManager {
     const action = await this.#actions.engage('subscription/unsubscribe', { channel_id });
     return action;
   }
+
   /**
    * Posts a comment on a given video.
    */
@@ -54,17 +61,16 @@ class InteractionManager {
     const action = await this.#actions.engage('comment/create_comment', { video_id, text });
     return action;
   }
+
   /**
    * Translates a given text using YouTube's comment translate feature.
    *
    * @param target_language - an ISO language code
    * @param args - optional arguments
    */
-  async translate(text: string, target_language: string, args: {
-        video_id?: string;
-        comment_id?: string;
-    } = {}) {
+  async translate(text: string, target_language: string, args: { video_id?: string; comment_id?: string; } = {}) {
     throwIfMissing({ text, target_language });
+
     const response = await await this.#actions.engage('comment/perform_comment_action', {
       video_id: args.video_id,
       comment_id: args.comment_id,
@@ -72,7 +78,9 @@ class InteractionManager {
       comment_action: 'translate',
       text
     });
+
     const translated_content = findNode(response.data, 'frameworkUpdates', 'content', 7, false);
+
     return {
       success: response.success,
       status_code: response.status_code,
@@ -80,6 +88,7 @@ class InteractionManager {
       data: response.data
     };
   }
+
   /**
    * Changes notification preferences for a given channel.
    * Only works with channels you are subscribed to.
@@ -90,4 +99,5 @@ class InteractionManager {
     return action;
   }
 }
+
 export default InteractionManager;

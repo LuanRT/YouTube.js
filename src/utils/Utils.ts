@@ -12,32 +12,27 @@ export class InnertubeError extends Error {
 
   constructor(message: string, info?: any) {
     super(message);
+
     if (info) {
       this.info = info;
     }
+
     this.date = new Date();
     this.version = package_json.version;
   }
 }
+
 export class ParsingError extends InnertubeError { }
-
 export class DownloadError extends InnertubeError { }
-
 export class MissingParamError extends InnertubeError { }
-
 export class UnavailableContentError extends InnertubeError { }
-
 export class NoStreamingDataError extends InnertubeError { }
-
 export class OAuthError extends InnertubeError { }
-
 export class PlayerError extends Error { }
-
 export class SessionError extends Error { }
 
 /**
  * Utility to help access deep properties of an object.
- *
  * @param obj - the object.
  * @param key - key of the property being accessed.
  * @param target - anything that might be inside of the property.
@@ -57,7 +52,6 @@ export function findNode(obj: any, key: string, target: string, depth: number, s
 /**
  * Compares given objects. May not work correctly for
  * objects with methods.
- *
  */
 export function deepCompare(obj1: any, obj2: any) {
   const keys = Reflect.ownKeys(obj1);
@@ -72,7 +66,6 @@ export function deepCompare(obj1: any, obj2: any) {
 
 /**
  * Finds a string between two delimiters.
- *
  * @param data - the data.
  * @param start_string - start string.
  * @param end_string - end string.
@@ -83,8 +76,6 @@ export function getStringBetweenStrings(data: string, start_string: string, end_
   return match ? match[1] : undefined;
 }
 
-/**
- */
 export function escapeStringRegexp(input: string): string {
   return input.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d');
 }
@@ -93,7 +84,6 @@ export type DeviceCategory = 'mobile' | 'desktop';
 
 /**
  * Returns a random user agent.
- *
  * @param type - mobile | desktop
  */
 export function getRandomUserAgent(type: DeviceCategory): UserAgent['data'] {
@@ -109,9 +99,6 @@ export function getRandomUserAgent(type: DeviceCategory): UserAgent['data'] {
   }
 }
 
-/**
- *
- */
 export async function sha1Hash(str: string) {
   const SubtleCrypto = getRuntime() === 'node' ? (Reflect.get(module, 'require')('crypto').webcrypto as unknown as Crypto).subtle : window.crypto.subtle;
   const byteToHex = [
@@ -132,9 +119,7 @@ export async function sha1Hash(str: string) {
     'e0', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'e9', 'ea', 'eb', 'ec', 'ed', 'ee', 'ef',
     'f0', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'fa', 'fb', 'fc', 'fd', 'fe', 'ff'
   ];
-  /**
-   *
-   */
+
   function hex(arrayBuffer: ArrayBuffer) {
     const buff = new Uint8Array(arrayBuffer);
     const hexOctets = [];
@@ -142,18 +127,21 @@ export async function sha1Hash(str: string) {
       hexOctets.push(byteToHex[buff[i]]);
     return hexOctets.join('');
   }
+
   return hex(await SubtleCrypto.digest('SHA-1', new TextEncoder().encode(str)));
 }
+
 /**
  * Generates an authentication token from a cookies' sid.
- *
  * @param sid - Sid extracted from cookies
  */
 export async function generateSidAuth(sid: string): Promise<string> {
   const youtube = 'https://www.youtube.com';
+
   const timestamp = Math.floor(new Date().getTime() / 1000);
   const input = [ timestamp, sid, youtube ].join(' ');
   const gen_hash = await sha1Hash(input);
+
   return [ 'SAPISIDHASH', [ timestamp, gen_hash ].join('_') ].join(' ');
 }
 
@@ -163,16 +151,18 @@ export async function generateSidAuth(sid: string): Promise<string> {
  */
 export function generateRandomString(length: number): string {
   const result = [];
+
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+
   for (let i = 0; i < length; i++) {
     result.push(alphabet.charAt(Math.floor(Math.random() * alphabet.length)));
   }
+
   return result.join('');
 }
 
 /**
  * Converts time (h:m:s) to seconds.
- *
  * @returns seconds
  */
 export function timeToSeconds(time: string) {
@@ -191,7 +181,6 @@ export function timeToSeconds(time: string) {
 
 /**
  * Converts strings in camelCase to snake_case.
- *
  * @param string - The string in camelCase.
  */
 export function camelToSnake(string: string) {
@@ -200,8 +189,6 @@ export function camelToSnake(string: string) {
 
 /**
  * Checks if a given client is valid.
- *
- * @returns
  */
 export function isValidClient(client: string) {
   return VALID_CLIENTS.has(client);
@@ -238,9 +225,6 @@ export function refineNTokenData(data: string) {
     .replace(/""/g, '').replace(/length]\)}"/g, 'length])}');
 }
 
-/**
- *
- */
 export function uuidv4() {
   if (getRuntime() === 'node') {
     return Reflect.get(module, 'require')('crypto').webcrypto.randomUUID();
@@ -255,15 +239,10 @@ export function uuidv4() {
     const c = parseInt(cc);
     return (c ^ window.crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16);
   });
-
-
 }
 
 export type Runtime = 'node' | 'deno' | 'browser';
 
-/**
- *
- */
 export function getRuntime(): Runtime {
   if ((typeof process !== 'undefined') && (process?.versions?.node))
     return 'node';
@@ -272,18 +251,13 @@ export function getRuntime(): Runtime {
   return 'browser';
 }
 
-/**
- *
- */
 export function isServer() {
   return [ 'node', 'deno' ].includes(getRuntime());
 }
 
-/**
- *
- */
 export async function* streamToIterable(stream: ReadableStream<Uint8Array>) {
   const reader = stream.getReader();
+
   try {
     while (true) {
       const { done, value } = await reader.read();
@@ -299,19 +273,18 @@ export async function* streamToIterable(stream: ReadableStream<Uint8Array>) {
 
 export const debugFetch: FetchFunction = (input, init) => {
   const url =
-        typeof input === 'string' ?
-          new URL(input) :
-          input instanceof URL ?
-            input :
-            new URL(input.url);
+    typeof input === 'string' ?
+      new URL(input) :
+      input instanceof URL ?
+        input : new URL(input.url);
 
 
   const headers =
-        init?.headers ?
-          new Headers(init.headers) :
-          input instanceof Request ?
-            input.headers :
-            new Headers();
+    init?.headers ?
+      new Headers(init.headers) :
+      input instanceof Request ?
+        input.headers :
+        new Headers();
 
   const arr_headers = [ ...headers ];
 

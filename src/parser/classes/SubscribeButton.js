@@ -1,11 +1,11 @@
 import Parser from '../index';
 import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class SubscribeButton extends YTNode {
   static type = 'SubscribeButton';
+
   constructor(data) {
     super();
     this.title = new Text(data.buttonText);
@@ -20,4 +20,5 @@ class SubscribeButton extends YTNode {
     this.endpoint = new NavigationEndpoint(data.serviceEndpoints?.[0] || data.onSubscribeEndpoints?.[0]);
   }
 }
+
 export default SubscribeButton;

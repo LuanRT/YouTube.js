@@ -1,5 +1,4 @@
 import Parser from '../index';
-
 import { YTNode } from '../helpers';
 
 class WatchCardSectionSequence extends YTNode {
@@ -9,4 +8,5 @@ class WatchCardSectionSequence extends YTNode {
     this.lists = Parser.parse(data.lists);
   }
 }
+
 export default WatchCardSectionSequence;

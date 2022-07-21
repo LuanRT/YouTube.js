@@ -1,9 +1,9 @@
 import Thumbnail from './misc/Thumbnail';
-
 import { YTNode } from '../helpers';
 
 class MicroformatData extends YTNode {
   static type = 'MicroformatData';
+
   constructor(data) {
     super();
     this.url_canonical = data.urlCanonical;
@@ -32,4 +32,5 @@ class MicroformatData extends YTNode {
     // XXX: linkAlternatives?
   }
 }
+
 export default MicroformatData;

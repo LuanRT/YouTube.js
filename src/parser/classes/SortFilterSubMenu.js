@@ -3,6 +3,7 @@ import { YTNode } from '../helpers';
 
 class SortFilterSubMenu extends YTNode {
   static type = 'SortFilterSubMenu';
+
   constructor(data) {
     super();
     this.sub_menu_items = observe(data.subMenuItems.map((item) => ({
@@ -11,7 +12,9 @@ class SortFilterSubMenu extends YTNode {
       continuation: item.continuation?.reloadContinuationData.continuation,
       subtitle: item.subtitle
     })));
+
     this.label = data.accessibility.accessibilityData.label;
   }
 }
+
 export default SortFilterSubMenu;

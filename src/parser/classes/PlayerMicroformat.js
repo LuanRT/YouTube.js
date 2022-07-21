@@ -1,15 +1,16 @@
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
-
 import { YTNode } from '../helpers';
 
 class PlayerMicroformat extends YTNode {
   static type = 'PlayerMicroformat';
+
   constructor(data) {
     super();
     this.title = new Text(data.title);
     this.description = new Text(data.description);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+
     this.embed = {
       iframe_url: data.embed.iframeUrl,
       flash_url: data.embed.flashUrl,
@@ -17,12 +18,15 @@ class PlayerMicroformat extends YTNode {
       width: data.embed.width,
       height: data.embed.height
     };
+
     this.length_seconds = parseInt(data.lengthSeconds);
+
     this.channel = {
       id: data.externalChannelId,
       name: data.ownerChannelName,
       url: data.ownerProfileUrl
     };
+
     this.is_family_safe = !!data.isFamilySafe;
     this.is_unlisted = !!data.isUnlisted;
     this.has_ypc_metadata = !!data.hasYpcMetadata;
@@ -33,4 +37,5 @@ class PlayerMicroformat extends YTNode {
     this.available_countries = data.availableCountries;
   }
 }
+
 export default PlayerMicroformat;

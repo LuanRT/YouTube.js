@@ -4,10 +4,10 @@ import Playlist from './Playlist';
 import Feed from '../../core/Feed';
 import { observe } from '../helpers';
 
-/** @namespace */
 class Library {
   #actions;
   #page;
+
   /**
    * @param {object} response - API response.
    * @param {import('../../core/Actions').default} actions
@@ -15,11 +15,15 @@ class Library {
   constructor(response, actions) {
     this.#actions = actions;
     this.#page = Parser.parseResponse(response);
+
     const tab = this.#page.contents.tabs.get({ selected: true });
     const shelves = tab.content.contents.map((section) => section.contents[0]);
+
     const stats = this.#page.contents.secondary_contents.items.get({ type: 'ProfileColumnStats' }).items;
     const user_info = this.#page.contents.secondary_contents.items.get({ type: 'ProfileColumnUserInfo' });
+
     this.profile = { stats, user_info };
+
     /** @type {{ type: string, title: import('../classes/misc/Text'), contents: object[], getAll: Promise.<Playlist | History | Feed> }[] } */
     this.sections = observe(shelves.map((shelf) => ({
       type: shelf.icon_type,
@@ -28,11 +32,14 @@ class Library {
       getAll: () => this.#getAll(shelf)
     })));
   }
+
   async #getAll(shelf) {
     if (!shelf.menu?.top_level_buttons)
       throw new Error(`The ${shelf.title.text} section doesn't have more items`);
+
     const button = await shelf.menu.top_level_buttons.get({ text: 'See all' });
     const page = await button.endpoint.call(this.#actions);
+
     switch (shelf.icon_type) {
       case 'LIKE':
       case 'WATCH_LATER':
@@ -44,23 +51,30 @@ class Library {
       default:
     }
   }
+
   get history() {
     return this.sections.get({ type: 'WATCH_HISTORY' });
   }
+
   get watch_later() {
     return this.sections.get({ type: 'WATCH_LATER' });
   }
+
   get liked_videos() {
     return this.sections.get({ type: 'LIKE' });
   }
+
   get playlists() {
     return this.sections.get({ type: 'PLAYLISTS' });
   }
+
   get clips() {
     return this.sections.get({ type: 'CONTENT_CUT' });
   }
+
   get page() {
     return this.#page;
   }
 }
+
 export default Library;

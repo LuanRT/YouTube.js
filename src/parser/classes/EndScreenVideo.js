@@ -3,11 +3,11 @@ import Text from './misc/Text';
 import Author from './misc/Author';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class EndScreenVideo extends YTNode {
   static type = 'EndScreenVideo';
+
   constructor(data) {
     super();
     this.id = data.videoId;
@@ -24,4 +24,5 @@ class EndScreenVideo extends YTNode {
     };
   }
 }
+
 export default EndScreenVideo;

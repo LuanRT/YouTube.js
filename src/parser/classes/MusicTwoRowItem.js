@@ -2,20 +2,24 @@ import Parser from '../index';
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class MusicTwoRowItem extends YTNode {
   static type = 'MusicTwoRowItem';
+
   constructor(data) {
     super();
+    this.id =
+      this.endpoint.browse?.id ||
+      this.endpoint.watch?.video_id;
+
     this.title = new Text(data.title);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.id = this.endpoint.browse?.id ||
-            this.endpoint.watch.video_id;
+
     this.subtitle = new Text(data.subtitle);
     this.badges = Parser.parse(data.subtitleBadges);
-    switch (this.endpoint.browse?.page_type) {
+
+    switch (this.endpoint?.browse?.page_type) {
       case 'MUSIC_PAGE_TYPE_ARTIST':
         this.type = 'artist';
         this.subscribers = this.subtitle.toString();
@@ -43,13 +47,15 @@ class MusicTwoRowItem extends YTNode {
         break;
       default:
         if (this.subtitle.runs[0].text !== 'Song') {
-          this.type = ('video');
+          this.type = 'video';
         } else {
-          this.type = ('song');
+          this.type = 'song';
         }
+
         if (this.type == 'video') {
           this.views = this.subtitle.runs
             .find((run) => run.text.match(/(.*?) views/)).text;
+
           const author = this.subtitle.runs.find((run) => run.endpoint.browse?.id.startsWith('UC'));
           if (author) {
             this.author = {
@@ -70,9 +76,11 @@ class MusicTwoRowItem extends YTNode {
         }
         break;
     }
+
     this.thumbnail = Thumbnail.fromResponse(data.thumbnailRenderer.musicThumbnailRenderer.thumbnail);
     this.thumbnail_overlay = Parser.parse(data.thumbnailOverlay);
     this.menu = Parser.parse(data.menu);
   }
 }
+
 export default MusicTwoRowItem;

@@ -1,6 +1,5 @@
 import Parser from '../index';
 
-/** @namespace */
 class Explore {
   #page;
   /**
@@ -8,12 +7,16 @@ class Explore {
    */
   constructor(response) {
     this.#page = Parser.parseResponse(response.data);
+
     const tab = this.page.contents.tabs.get({ selected: true });
+
     this.top_buttons = tab.content.contents.get({ type: 'Grid' }).items;
     this.sections = tab.content.contents.getAll({ type: 'MusicCarouselShelf' });
   }
+
   get page() {
     return this.#page;
   }
 }
+
 export default Explore;

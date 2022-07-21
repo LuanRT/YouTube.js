@@ -1,10 +1,10 @@
 import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class SubFeedOption extends YTNode {
   static type = 'SubFeedOption';
+
   constructor(data) {
     super();
     this.name = new Text(data.name);
@@ -12,4 +12,5 @@ class SubFeedOption extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
+
 export default SubFeedOption;

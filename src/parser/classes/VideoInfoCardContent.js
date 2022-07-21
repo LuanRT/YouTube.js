@@ -1,11 +1,11 @@
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class VideoInfoCardContent extends YTNode {
   static type = 'VideoInfoCardContent';
+
   constructor(data) {
     super();
     this.title = new Text(data.videoTitle);
@@ -16,4 +16,5 @@ class VideoInfoCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.action);
   }
 }
+
 export default VideoInfoCardContent;

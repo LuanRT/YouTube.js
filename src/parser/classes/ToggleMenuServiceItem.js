@@ -1,10 +1,10 @@
 import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class ToggleMenuServiceItem extends YTNode {
   static type = 'ToggleMenuServiceItem';
+
   constructor(data) {
     super();
     this.text = new Text(data.defaultText);
@@ -14,4 +14,5 @@ class ToggleMenuServiceItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
   }
 }
+
 export default ToggleMenuServiceItem;

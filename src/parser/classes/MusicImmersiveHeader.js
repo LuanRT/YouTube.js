@@ -1,10 +1,10 @@
 import Text from './misc/Text';
 import Parser from '../index';
-
 import { YTNode } from '../helpers';
 
 class MusicImmersiveHeader extends YTNode {
   static type = 'MusicImmersiveHeader';
+
   constructor(data) {
     super();
     this.title = new Text(data.title);
@@ -18,4 +18,5 @@ class MusicImmersiveHeader extends YTNode {
      */
   }
 }
+
 export default MusicImmersiveHeader;

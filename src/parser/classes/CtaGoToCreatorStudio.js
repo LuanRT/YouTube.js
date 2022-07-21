@@ -1,8 +1,8 @@
-
 import { YTNode } from '../helpers';
 
 class CtaGoToCreatorStudio extends YTNode {
   static type = 'CtaGoToCreatorStudio';
+
   constructor(data) {
     super();
     this.title = data.buttonLabel;
@@ -10,4 +10,5 @@ class CtaGoToCreatorStudio extends YTNode {
     // Is this even useful?
   }
 }
+
 export default CtaGoToCreatorStudio;

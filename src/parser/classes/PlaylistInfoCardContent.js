@@ -1,11 +1,11 @@
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class PlaylistInfoCardContent extends YTNode {
   static type = 'PlaylistInfoCardContent';
+
   constructor(data) {
     super();
     this.title = new Text(data.playlistTitle);
@@ -15,4 +15,5 @@ class PlaylistInfoCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.action);
   }
 }
+
 export default PlaylistInfoCardContent;

@@ -1,7 +1,6 @@
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class EndScreenPlaylist extends YTNode {
@@ -16,4 +15,5 @@ class EndScreenPlaylist extends YTNode {
     this.video_count = new Text(data.videoCountText);
   }
 }
+
 export default EndScreenPlaylist;

@@ -1,9 +1,9 @@
 import Parser from '../../index';
-
 import { YTNode } from '../../helpers';
 
 class MultiPageMenu extends YTNode {
   static type = 'MultiPageMenu';
+
   constructor(data) {
     super();
     this.header = Parser.parse(data.header);
@@ -11,4 +11,5 @@ class MultiPageMenu extends YTNode {
     this.style = data.style;
   }
 }
+
 export default MultiPageMenu;

@@ -1,11 +1,11 @@
 import Parser from '../index';
 import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class SearchBox extends YTNode {
   static type = 'SearchBox';
+
   constructor(data) {
     super();
     this.endpoint = new NavigationEndpoint(data.endpoint);
@@ -14,4 +14,5 @@ class SearchBox extends YTNode {
     this.placeholder_text = new Text(data.placeholderText);
   }
 }
+
 export default SearchBox;

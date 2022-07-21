@@ -1,10 +1,10 @@
 import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class CompactLink extends YTNode {
   static type = 'CompactLink';
+
   constructor(data) {
     super();
     this.title = new Text(data.title).toString();
@@ -12,4 +12,5 @@ class CompactLink extends YTNode {
     this.style = data.style;
   }
 }
+
 export default CompactLink;

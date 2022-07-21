@@ -1,19 +1,24 @@
 import Playlist from '../parser/youtube/Playlist';
-import { InnertubeError, throwIfMissing } from '../utils/Utils';
 import Actions from './Actions';
 import Feed from './Feed';
 
+import { InnertubeError, throwIfMissing } from '../utils/Utils';
+
 class PlaylistManager {
   #actions;
+
   constructor(actions: Actions) {
     this.#actions = actions;
   }
+
   /**
    * Creates a playlist.
    */
   async create(title: string, video_ids: string[]) {
     throwIfMissing({ title, video_ids });
+
     const response = await this.#actions.execute('/playlist/create', { title, ids: video_ids, parse: false });
+
     return {
       success: response.success,
       status_code: response.status_code,
@@ -21,12 +26,15 @@ class PlaylistManager {
       data: response.data
     };
   }
+
   /**
    * Deletes a given playlist.
    */
   async delete(playlist_id: string) {
     throwIfMissing({ playlist_id });
+
     const response = await this.#actions.execute('playlist/delete', { playlistId: playlist_id });
+
     return {
       playlist_id,
       success: response.success,
@@ -34,11 +42,13 @@ class PlaylistManager {
       data: response.data
     };
   }
+
   /**
    * Adds videos to a given playlist.
    */
   async addVideos(playlist_id: string, video_ids: string[]) {
     throwIfMissing({ playlist_id, video_ids });
+
     const response = await this.#actions.execute('/browse/edit_playlist', {
       playlistId: playlist_id,
       actions: video_ids.map((id) => ({
@@ -47,11 +57,13 @@ class PlaylistManager {
       })),
       parse: false
     });
+
     return {
       playlist_id,
       action_result: response.data.actions // TODO: implement actions in the parser
     };
   }
+
   /**
    * Removes videos from a given playlist.
    */
@@ -67,9 +79,9 @@ class PlaylistManager {
     const payload = {
       playlistId: playlist_id,
       actions: [] as {
-                action: string;
-                setVideoId: string;
-            }[]
+        action: string;
+        setVideoId: string;
+      }[]
     };
 
     const getSetVideoIds = async (pl: Feed): Promise<void> => {
@@ -116,14 +128,13 @@ class PlaylistManager {
     const payload = {
       playlistId: playlist_id,
       actions: [] as {
-                action: string,
-                setVideoId?: string,
-                movedSetVideoIdPredecessor?: string
-            }[]
+        action: string,
+        setVideoId?: string,
+        movedSetVideoIdPredecessor?: string
+      }[]
     };
 
-    let set_video_id_0: string | undefined,
-      set_video_id_1: string | undefined;
+    let set_video_id_0: string | undefined, set_video_id_1: string | undefined;
 
     const getSetVideoIds = async (pl: Feed): Promise<void> => {
       const video_0 = pl.videos.find((video) => moved_video_id === video.key('id').string());
@@ -154,4 +165,5 @@ class PlaylistManager {
     };
   }
 }
+
 export default PlaylistManager;

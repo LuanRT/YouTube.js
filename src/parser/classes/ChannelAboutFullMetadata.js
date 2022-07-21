@@ -2,11 +2,11 @@ import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
 import Text from './misc/Text';
 import Parser from '../index';
-
 import { YTNode } from '../helpers';
 
 class ChannelAboutFullMetadata extends YTNode {
   static type = 'ChannelAboutFullMetadata';
+
   constructor(data) {
     super();
     this.id = data.channelId;
@@ -22,4 +22,5 @@ class ChannelAboutFullMetadata extends YTNode {
     this.buttons = Parser.parse(data.actionButtons);
   }
 }
+
 export default ChannelAboutFullMetadata;

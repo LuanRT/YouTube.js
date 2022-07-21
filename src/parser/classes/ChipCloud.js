@@ -14,4 +14,5 @@ class ChipCloud extends YTNode {
     this.horizontal_scrollable = data.horizontalScrollable;
   }
 }
+
 export default ChipCloud;

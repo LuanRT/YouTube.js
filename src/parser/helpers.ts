@@ -1,12 +1,15 @@
 import { deepCompare, ParsingError } from '../utils/Utils';
 
 const isObserved = Symbol('ObservedArray.isObserved');
+
 export class YTNode {
   static readonly type: string = 'YTNode';
   readonly type: string;
+
   constructor() {
     this.type = (this.constructor as YTNodeConstructor).type;
   }
+
   /**
    * Check if the node is of the given type.
    * @param type - The type to check
@@ -15,6 +18,7 @@ export class YTNode {
   #is<T extends YTNode>(type: YTNodeConstructor<T>): this is T {
     return this.type === type.type;
   }
+
   /**
    * Check if the node is of the given type.
    * @param types - The type to check
@@ -23,6 +27,7 @@ export class YTNode {
   is<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): this is InstanceType<K[number]> {
     return types.some((type) => this.#is(type));
   }
+
   /**
    * Cast to one of the given types.
    */
@@ -32,6 +37,7 @@ export class YTNode {
     }
     return this;
   }
+
   /**
    * Check for a key without asserting the type.
    * @param key - The key to check
@@ -40,6 +46,7 @@ export class YTNode {
   hasKey<T extends string, R = any>(key: T): this is this & { [k in T]: R } {
     return Reflect.has(this, key);
   }
+
   /**
    * Assert that the node has the given key and return it.
    * @param key - The key to check
@@ -56,6 +63,7 @@ export class YTNode {
 
 export class Maybe {
   #value;
+
   constructor (value: any) {
     this.#value = value;
   }
@@ -311,6 +319,7 @@ export interface YTNodeConstructor<T extends YTNode = YTNode> {
  */
 export class SuperParsedResult<T extends YTNode = YTNode> {
   #result;
+
   constructor(result: T | ObservedArray<T> | null) {
     this.#result = result;
   }
@@ -386,9 +395,11 @@ export function observe<T extends YTNode>(obj: Array<T>) {
           })
         );
       }
+
       if (prop == isObserved) {
         return true;
       }
+
       if (prop == 'getAll') {
         return (rule: object, del_items: boolean) => (
           target.filter((obj, index) => {
@@ -400,6 +411,7 @@ export function observe<T extends YTNode>(obj: Array<T>) {
           })
         );
       }
+
       if (prop == 'filterType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return observe(target.filter((node: YTNode) => {
@@ -410,6 +422,7 @@ export function observe<T extends YTNode>(obj: Array<T>) {
           }));
         };
       }
+
       if (prop == 'firstOfType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return target.find((node: YTNode) => {
@@ -419,6 +432,7 @@ export function observe<T extends YTNode>(obj: Array<T>) {
           });
         };
       }
+
       if (prop == 'as') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return observe(target.map((node: YTNode) => {
@@ -428,9 +442,11 @@ export function observe<T extends YTNode>(obj: Array<T>) {
           }));
         };
       }
+
       if (prop == 'remove') {
         return (index: number): any => target.splice(index, 1);
       }
+
       return Reflect.get(target, prop);
     }
   }) as ObservedArray<T>;

@@ -1,17 +1,18 @@
 import Parser from '../index';
 import Text from './misc/Text';
-
 import { YTNode } from '../helpers';
 import Menu from './menus/Menu';
 
 class VideoPrimaryInfo extends YTNode {
   static type = 'VideoPrimaryInfo';
+
   title;
   super_title_link;
   view_count;
   short_view_count;
   published;
   menu;
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);
@@ -22,4 +23,5 @@ class VideoPrimaryInfo extends YTNode {
     this.menu = Parser.parseItem(data.videoActions, Menu);
   }
 }
+
 export default VideoPrimaryInfo;

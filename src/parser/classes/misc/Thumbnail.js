@@ -1,4 +1,3 @@
-
 class Thumbnail {
   /**
    * @type {string}
@@ -12,11 +11,13 @@ class Thumbnail {
    * @type {number}
    */
   height;
+
   constructor({ url, width, height }) {
     this.url = url;
     this.width = width;
     this.height = height;
   }
+
   /**
    * Get thumbnails from response object
    *
@@ -29,4 +30,5 @@ class Thumbnail {
     return data.thumbnails.map((x) => new Thumbnail(x)).sort((a, b) => b.width - a.width);
   }
 }
+
 export default Thumbnail;

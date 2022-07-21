@@ -1,9 +1,9 @@
 import Text from '../misc/Text';
-
 import { YTNode } from '../../helpers';
 
 class UpdateViewershipAction extends YTNode {
   static type = 'UpdateViewershipAction';
+
   constructor(data) {
     super();
     const view_count_renderer = data.viewCount.videoViewCountRenderer;
@@ -12,4 +12,5 @@ class UpdateViewershipAction extends YTNode {
     this.is_live = view_count_renderer.isLive;
   }
 }
+
 export default UpdateViewershipAction;

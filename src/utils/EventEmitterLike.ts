@@ -20,13 +20,16 @@ if (!Reflect.has(globalThis, 'CustomEvent')) {
 
 export default class EventEmitterLike extends EventTarget {
   #legacy_listeners = new Map<(...args: any[]) => void, EventListener>();
+
   constructor() {
     super();
   }
+
   emit(type: string, ...args: any[]) {
     const event = new CustomEvent(type, { detail: args });
     this.dispatchEvent(event);
   }
+
   on(type: string, listener: (...args: any[]) => void) {
     const wrapper: EventListener = (ev) => {
       if (ev instanceof CustomEvent) {
@@ -38,6 +41,7 @@ export default class EventEmitterLike extends EventTarget {
     this.#legacy_listeners.set(listener, wrapper);
     this.addEventListener(type, wrapper);
   }
+
   once(type: string, listener: (...args: any[]) => void) {
     const wrapper: EventListener = (ev) => {
       if (ev instanceof CustomEvent) {
@@ -50,6 +54,7 @@ export default class EventEmitterLike extends EventTarget {
     this.#legacy_listeners.set(listener, wrapper);
     this.addEventListener(type, wrapper);
   }
+
   off(type: string, listener: (...args: any[]) => void) {
     const wrapper = this.#legacy_listeners.get(listener);
     if (wrapper) {

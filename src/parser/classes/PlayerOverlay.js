@@ -1,9 +1,9 @@
 import Parser from '../index';
-
 import { YTNode } from '../helpers';
 
 class PlayerOverlay extends YTNode {
   static type = 'PlayerOverlay';
+
   constructor(data) {
     super();
     this.end_screen = Parser.parse(data.endScreen);
@@ -13,4 +13,5 @@ class PlayerOverlay extends YTNode {
     this.fullscreen_engagement = Parser.parse(data.fullscreenEngagement);
   }
 }
+
 export default PlayerOverlay;

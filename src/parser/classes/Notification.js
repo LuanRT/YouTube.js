@@ -2,11 +2,11 @@ import Parser from '../index';
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class Notification extends YTNode {
   static type = 'Notification';
+
   constructor(data) {
     super();
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
@@ -20,4 +20,5 @@ class Notification extends YTNode {
     this.read = data.read;
   }
 }
+
 export default Notification;

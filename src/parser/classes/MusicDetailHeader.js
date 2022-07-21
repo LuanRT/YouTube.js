@@ -1,11 +1,11 @@
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import Parser from '../index';
-
 import { YTNode } from '../helpers';
 
 class MusicDetailHeader extends YTNode {
   static type = 'MusicDetailHeader';
+
   constructor(data) {
     super();
     this.title = new Text(data.title);
@@ -17,7 +17,9 @@ class MusicDetailHeader extends YTNode {
     this.total_duration = this.second_subtitle.runs[2].text;
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail.croppedSquareThumbnailRenderer.thumbnail);
     this.badges = Parser.parse(data.subtitleBadges);
+
     const author = this.subtitle.runs.find((run) => run.endpoint.browse?.id.startsWith('UC'));
+
     if (author) {
       this.author = {
         name: author.text,
@@ -25,7 +27,9 @@ class MusicDetailHeader extends YTNode {
         endpoint: author.endpoint
       };
     }
+
     this.menu = Parser.parse(data.menu);
   }
 }
+
 export default MusicDetailHeader;

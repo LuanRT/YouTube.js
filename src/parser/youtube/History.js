@@ -1,7 +1,6 @@
 import Feed from '../../core/Feed';
 
-// TODO: make filter actions usable
-/** @namespace */
+// TODO: make feed actions usable
 class History extends Feed {
   /**
    * @param {import('../../core/Actions').default} actions
@@ -15,9 +14,9 @@ class History extends Feed {
     /** @type {import('../classes/BrowseFeedActions')[]} */
     this.feed_actions = this.memo.get('BrowseFeedActions')?.[0] || [];
   }
+
   /**
    * Retrieves next batch of contents.
-   *
    * @returns {Promise.<History>}
    */
   async getContinuation() {
@@ -25,4 +24,5 @@ class History extends Feed {
     return new History(this.actions, continuation, true);
   }
 }
+
 export default History;

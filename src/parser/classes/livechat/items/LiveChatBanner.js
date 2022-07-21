@@ -1,8 +1,9 @@
 import Parser from '../../../index';
-
 import { YTNode } from '../../../helpers';
+
 class LiveChatBanner extends YTNode {
   static type = 'LiveChatBanner';
+
   constructor(data) {
     super();
     this.header = Parser.parse(data.header, 'livechat/items');
@@ -14,4 +15,5 @@ class LiveChatBanner extends YTNode {
     this.background_type = data.backgroundType;
   }
 }
+
 export default LiveChatBanner;

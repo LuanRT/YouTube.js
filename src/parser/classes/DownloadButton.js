@@ -1,9 +1,9 @@
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class DownloadButton extends YTNode {
   static type = 'DownloadButton';
+
   constructor(data) {
     super();
     this.style = data.style;
@@ -12,4 +12,5 @@ class DownloadButton extends YTNode {
     this.target_id = data.targetId;
   }
 }
+
 export default DownloadButton;

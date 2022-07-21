@@ -3,6 +3,7 @@ import Parser from '../../../index';
 
 class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
   static type = 'LiveChatViewerEngagementMessage';
+
   constructor(data) {
     super(data);
     delete this.author;
@@ -11,4 +12,5 @@ class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
     this.action_button = Parser.parse(data.actionButton);
   }
 }
+
 export default LiveChatViewerEngagementMessage;

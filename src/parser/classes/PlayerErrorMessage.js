@@ -1,11 +1,11 @@
 import Parser from '../index';
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
-
 import { YTNode } from '../helpers';
 
 class PlayerErrorMessage extends YTNode {
   static type = 'PlayerErrorMessage';
+
   constructor(data) {
     super();
     this.subreason = new Text(data.subreason);
@@ -15,4 +15,5 @@ class PlayerErrorMessage extends YTNode {
     this.icon_type = data.icon.iconType;
   }
 }
+
 export default PlayerErrorMessage;

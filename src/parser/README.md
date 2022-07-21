@@ -12,13 +12,13 @@ Sanitizes and standardizes InnerTube responses while maintaining the integrity o
 
 <a name="parse"></a>
 
-#### parse(data)
+#### parse(data, requireArray, validTypes)
 
-Responsible for parsing specifically the `contents` property of the response object.
+Responsible for parsing individual nodes.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | `any` | The contents property |
+| data | `any` | The data |
 | requireArray | `?boolean` | Whether the response should be an array |
 | validTypes | `YTNodeConstructor<T> | YTNodeConstructor<T>[] | undefined` | The types of YTNodes are allowed |
 

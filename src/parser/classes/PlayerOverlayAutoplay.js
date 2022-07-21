@@ -2,11 +2,11 @@ import Parser from '../index';
 import Text from './misc/Text';
 import Author from './misc/Author';
 import Thumbnail from './misc/Thumbnail';
-
 import { YTNode } from '../helpers';
 
 class PlayerOverlayAutoplay extends YTNode {
   static type = 'PlayerOverlayAutoplay';
+
   constructor(data) {
     super();
     this.title = new Text(data.title);
@@ -24,4 +24,5 @@ class PlayerOverlayAutoplay extends YTNode {
     this.close_button = Parser.parse(data.closeButton);
   }
 }
+
 export default PlayerOverlayAutoplay;

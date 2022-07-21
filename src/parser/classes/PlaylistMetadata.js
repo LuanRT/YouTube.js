@@ -1,8 +1,8 @@
-
 import { YTNode } from '../helpers';
 
 class PlaylistMetadata extends YTNode {
   static type = 'PlaylistMetadata';
+
   constructor(data) {
     super();
     this.title = data.title;
@@ -10,4 +10,5 @@ class PlaylistMetadata extends YTNode {
     // XXX: Appindexing should be in microformat
   }
 }
+
 export default PlaylistMetadata;

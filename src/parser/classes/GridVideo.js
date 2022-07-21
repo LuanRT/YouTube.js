@@ -3,11 +3,11 @@ import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
 import Author from './misc/Author';
-
 import { YTNode } from '../helpers';
 
 class GridVideo extends YTNode {
   static type = 'GridVideo';
+
   constructor(data) {
     super();
     const length_alt = data.thumbnailOverlays.find((overlay) => overlay.hasOwnProperty('thumbnailOverlayTimeStatusRenderer'))?.thumbnailOverlayTimeStatusRenderer;
@@ -25,4 +25,5 @@ class GridVideo extends YTNode {
     this.menu = Parser.parse(data.menu);
   }
 }
+
 export default GridVideo;

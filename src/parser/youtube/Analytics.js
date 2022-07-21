@@ -1,8 +1,8 @@
 import Parser from '../index';
 
-/** @namespace */
 class Analytics {
   #page;
+
   /**
    * @param {object} response - API response.
    */
@@ -10,6 +10,7 @@ class Analytics {
     this.#page = Parser.parseResponse(response);
     this.sections = this.#page.contents_memo.get('Element');
   }
+
   get page() {
     return this.#page;
   }

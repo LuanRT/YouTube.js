@@ -1,10 +1,10 @@
 import Text from '../misc/Text';
 import Thumbnail from '../misc/Thumbnail';
-
 import { YTNode } from '../../helpers';
 
 class CommentsEntryPointHeader extends YTNode {
   static type = 'CommentsEntryPointHeader';
+
   constructor(data) {
     super();
     this.header = new Text(data.headerText);
@@ -14,4 +14,5 @@ class CommentsEntryPointHeader extends YTNode {
     this.simplebox_placeholder = new Text(data.simpleboxPlaceholder);
   }
 }
+
 export default CommentsEntryPointHeader;

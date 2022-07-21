@@ -1,4 +1,3 @@
-
 class Format {
   constructor(data) {
     this.itag = data.itag;
@@ -7,14 +6,17 @@ class Format {
     this.average_bitrate = data.averageBitrate;
     this.width = data.width || null;
     this.height = data.height || null;
+
     this.init_range = data.initRange ? {
       start: parseInt(data.initRange.start),
       end: parseInt(data.initRange.end)
     } : undefined;
+
     this.index_range = data.indexRange ? {
       start: parseInt(data.indexRange.start),
       end: parseInt(data.indexRange.end)
     } : undefined;
+
     this.last_modified = new Date(Math.floor(parseInt(data.lastModified) / 1000));
     this.content_length = parseInt(data.contentLength);
     this.quality = data.quality;
@@ -31,6 +33,7 @@ class Format {
     this.has_audio = !!data.audioBitrate || !!data.audioQuality;
     this.has_video = !!data.qualityLabel;
   }
+
   /**
    * Decipher the streaming url of the format.
    *
@@ -41,4 +44,5 @@ class Format {
     return player.decipher(this.url, this.signature_cipher, this.cipher);
   }
 }
+
 export default Format;

@@ -1,53 +1,56 @@
-import { getStringBetweenStrings, InnertubeError, streamToIterable } from '../../utils/Utils';
 import Parser, { ParsedResponse } from '../index';
-import LiveChat from '../classes/LiveChat';
 import Constants from '../../utils/Constants';
 import Actions, { AxioslikeResponse } from '../../core/Actions';
 import Player from '../../core/Player';
+
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo';
-import MerchandiseShelf from '../classes/MerchandiseShelf';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo';
+import PlayerMicroformat from '../classes/PlayerMicroformat';
+import Format from '../classes/misc/Format';
+
+import MerchandiseShelf from '../classes/MerchandiseShelf';
 import RelatedChipCloud from '../classes/RelatedChipCloud';
+
 import ChipCloud from '../classes/ChipCloud';
 import ItemSection from '../classes/ItemSection';
 import PlayerOverlay from '../classes/PlayerOverlay';
 import ToggleButton from '../classes/ToggleButton';
 import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader';
 import ContinuationItem from '../classes/ContinuationItem';
+
+import LiveChat from '../classes/LiveChat';
 import LiveChatWrap from './LiveChat';
-import CompactVideo from '../classes/CompactVideo';
-import CompactMix from '../classes/CompactMix';
-import PlayerMicroformat from '../classes/PlayerMicroformat';
-import Format from '../classes/misc/Format';
+
 import { create } from 'xmlbuilder2';
 import { XMLBuilder } from 'xmlbuilder2/lib/interfaces';
+import { getStringBetweenStrings, InnertubeError, streamToIterable } from '../../utils/Utils';
 
 export type URLTransformer = (url: URL) => URL;
 
 export interface FormatOptions {
-    /**
-     * Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
-     */
-    quality?: string;
-    /**
-     * Download type, can be: video, audio or video+audio
-     */
-    type?: 'video' | 'audio' | 'video+audio';
-    /**
-     * File format, use 'any' to download any format
-     */
-    format?: string;
+  /**
+   * Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
+   */
+  quality?: string;
+  /**
+   * Download type, can be: video, audio or video+audio
+   */
+  type?: 'video' | 'audio' | 'video+audio';
+  /**
+   * File format, use 'any' to download any format
+   */
+  format?: string;
 }
 
 export interface DownloadOptions extends FormatOptions {
-    /**
-     * Download range, indicates which bytes should be downloaded.
-     */
-    range?: {
-        start: number;
-        end: number;
-    }
+  /**
+   * Download range, indicates which bytes should be downloaded.
+   */
+  range?: {
+    start: number;
+    end: number;
+  }
 }
 
 class VideoInfo {
@@ -56,6 +59,7 @@ class VideoInfo {
   #player;
   #cpn;
   #watch_next_continuation;
+
   basic_info;
   streaming_data;
   playability_status;
@@ -72,6 +76,7 @@ class VideoInfo {
   player_overlays;
   comments_entry_point_header;
   livechat;
+
   /**
    * @param data - API response.
    * @param cpn - Client Playback Nonce
@@ -80,13 +85,18 @@ class VideoInfo {
     this.#actions = actions;
     this.#player = player;
     this.#cpn = cpn;
+
     const info = Parser.parseResponse(data[0].data);
     const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
+
     this.#page = [ info, next ];
+
     if (info.playability_status?.status === 'ERROR')
       throw new InnertubeError('This video is unavailable', info.playability_status);
+
     if (!info.microformat?.is(PlayerMicroformat))
       throw new InnertubeError('Invalid microformat', info.microformat);
+
     this.basic_info = { // This type is inferred so no need for an explicit type
       ...info.video_details,
       ...{
@@ -104,6 +114,7 @@ class VideoInfo {
       is_liked: undefined as boolean | undefined,
       is_disliked: undefined as boolean | undefined
     };
+
     this.streaming_data = info.streaming_data;
     this.playability_status = info.playability_status;
     this.annotations = info.annotations;
@@ -111,87 +122,118 @@ class VideoInfo {
     this.endscreen = info.endscreen;
     this.captions = info.captions;
     this.cards = info.cards;
+
     const two_col = next?.contents.item().as(TwoColumnWatchNextResults);
+
     const results = two_col?.results;
     const secondary_results = two_col?.secondary_results;
+
     if (results && secondary_results) {
       this.primary_info = results.get({ type: 'VideoPrimaryInfo' })?.as(VideoPrimaryInfo);
       this.secondary_info = results.get({ type: 'VideoSecondaryInfo' })?.as(VideoSecondaryInfo);
       this.merchandise = results.get({ type: 'MerchandiseShelf' })?.as(MerchandiseShelf);
       this.related_chip_cloud = secondary_results?.get({ type: 'RelatedChipCloud' })?.as(RelatedChipCloud)?.content.item().as(ChipCloud);
+
       this.watch_next_feed = secondary_results?.get({ type: 'ItemSection' })?.as(ItemSection)?.contents;
+
       if (this.watch_next_feed && Array.isArray(this.watch_next_feed))
         this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
+
       this.player_overlays = next?.player_overlays.item().as(PlayerOverlay);
+
       this.basic_info.like_count = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.like_count;
       this.basic_info.is_liked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.is_toggled;
       this.basic_info.is_disliked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'DISLIKE' })?.as(ToggleButton)?.is_toggled;
+
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
+
       this.comments_entry_point_header = comments_entry_point?.contents?.get({ type: 'CommentsEntryPointHeader' })?.as(CommentsEntryPointHeader);
       this.livechat = next?.contents_memo.getType(LiveChat)?.[0];
     }
   }
+
   /**
    * Applies given filter to the watch next feed.
    */
   async selectFilter(name: string) {
     if (!this.filters.includes(name))
       throw new InnertubeError('Invalid filter', { available_filters: this.filters });
+
     const filter = this.related_chip_cloud?.chips?.get({ text: name });
-    if (filter?.is_selected)
-      return this;
+    if (filter?.is_selected) return this;
+
     const response = await filter?.endpoint?.call(this.#actions, undefined, true);
     const data = response?.on_response_received_endpoints?.get({ target_id: 'watch-next-feed' });
+
     this.watch_next_feed = data?.contents;
+
     return this;
   }
+
   /**
    * Retrieves watch next feed continuation.
    */
   async getWatchNextContinuation() {
     const response = await this.#watch_next_continuation?.endpoint.call(this.#actions, undefined, true);
     const data = response?.on_response_received_endpoints?.get({ type: 'appendContinuationItemsAction' });
+
+    if (!data)
+      throw new InnertubeError('Continuation not found');
+
     this.watch_next_feed = data?.contents;
     this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
-    return this.watch_next_feed?.filterType(CompactVideo, CompactMix);
+
+    return this;
   }
+
   /**
    * Likes the video.
-   *
    */
   async like() {
     const button = this.primary_info?.menu?.top_level_buttons?.get({ button_id: 'TOGGLE_BUTTON_ID_TYPE_LIKE' })?.as(ToggleButton);
+
     if (!button)
       throw new InnertubeError('Like button not found', { video_id: this.basic_info.id });
+
     if (button.is_toggled)
       throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
+
     const response = await button.endpoint.call(this.#actions);
+
     return response;
   }
+
   /**
    * Dislikes the video.
-   *
    */
   async dislike() {
     const button = this.primary_info?.menu?.top_level_buttons?.get({ button_id: 'TOGGLE_BUTTON_ID_TYPE_DISLIKE' })?.as(ToggleButton);
+
     if (!button)
       throw new InnertubeError('Dislike button not found', { video_id: this.basic_info.id });
+
     if (button.is_toggled)
       throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
+
     const response = await button.endpoint.call(this.#actions);
+
     return response;
   }
+
   /**
    * Removes like/dislike.
-   *
    */
   async removeLike() {
     const button = this.primary_info?.menu?.top_level_buttons?.get({ is_toggled: true })?.as(ToggleButton);
+
     if (!button)
       throw new InnertubeError('This video is not liked/disliked', { video_id: this.basic_info.id });
+
     const response = await button.toggled_endpoint.call(this.#actions);
+
     return response;
   }
+
   /**
    * Retrieves Live Chat if available.
    */
@@ -200,15 +242,19 @@ class VideoInfo {
       throw new InnertubeError('Live Chat is not available', { video_id: this.basic_info.id });
     return new LiveChatWrap(this);
   }
+
   get filters() {
     return this.related_chip_cloud?.chips?.map((chip) => chip.text.toString()) || [];
   }
+
   get actions() {
     return this.#actions;
   }
+
   get page() {
     return this.#page;
   }
+
   /**
    * Get songs used in the video.
    */
@@ -247,19 +293,25 @@ class VideoInfo {
         */
     return [];
   }
+
   chooseFormat(options: FormatOptions) {
     if (!this.streaming_data)
       throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
+
     const formats = [
       ...(this.streaming_data.formats || []),
       ...(this.streaming_data.adaptive_formats || [])
     ];
+
     const requires_audio = options.type ? options.type.includes('audio') : true;
     const requires_video = options.type ? options.type.includes('video') : true;
     const quality = options.quality || '360p';
+
     let best_width = -1;
+
     const is_best = [ 'best', 'bestefficiency' ].includes(quality);
     const use_most_efficient = quality !== 'best';
+
     let candidates = formats.filter((format) => {
       if (requires_audio && !format.has_audio)
         return false;
@@ -273,19 +325,23 @@ class VideoInfo {
         best_width = format.width;
       return true;
     });
-    if (candidates.length === 0) {
+
+    if (!candidates.length) {
       throw new InnertubeError('No matching formats found', {
         options
       });
     }
+
     if (is_best && requires_video)
       candidates = candidates.filter((format) => format.width === best_width);
+
     if (requires_audio && !requires_video) {
       const audio_only = candidates.filter((format) => !format.has_video);
       if (audio_only.length > 0) {
         candidates = audio_only;
       }
     }
+
     if (use_most_efficient) {
       // Sort by bitrate (lower is better)
       candidates.sort((a, b) => a.bitrate - b.bitrate);
@@ -293,6 +349,7 @@ class VideoInfo {
       // Sort by bitrate (higher is better)
       candidates.sort((a, b) => b.bitrate - a.bitrate);
     }
+
     return candidates[0];
   }
 
@@ -363,6 +420,7 @@ class VideoInfo {
 
   #generateRepresentationVideo(set: XMLBuilder, format: Format, url_transformer: URLTransformer) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
+
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
 
@@ -421,7 +479,6 @@ class VideoInfo {
   }
 
   /**
-   *
    * @param options - download options.
    */
   async download(options: DownloadOptions = {}) {
@@ -431,6 +488,7 @@ class VideoInfo {
       throw new InnertubeError('Video is login required', { video: this, error_type: 'LOGIN_REQUIRED' });
     if (!this.streaming_data)
       throw new InnertubeError('Streaming data not available.', { video: this, error_type: 'NO_STREAMING_DATA' });
+
     const opts: DownloadOptions = {
       quality: '360p',
       type: 'video+audio',
@@ -461,15 +519,18 @@ class VideoInfo {
 
       return body;
     }
+
     // We need to download in chunks.
 
     const chunk_size = 1048576 * 10; // 10MB
+
     let chunk_start = (options.range ? options.range.start : 0);
     let chunk_end = (options.range ? options.range.end : chunk_size);
     let must_end = false;
 
     let cancel: AbortController;
-    const readableStream = new ReadableStream<Uint8Array>({
+
+    const readable_stream = new ReadableStream<Uint8Array>({
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       start() {},
       pull: async (controller) => {
@@ -477,12 +538,15 @@ class VideoInfo {
           controller.close();
           return;
         }
+
         if ((chunk_end >= format.content_length) || options.range) {
           must_end = true;
         }
+
         return new Promise(async (resolve, reject) => {
           try {
             cancel = new AbortController();
+
             const response = await this.#actions.session.http.fetch_function(`${format_url}&cpn=${this.#cpn}&range=${chunk_start}-${chunk_end || ''}`, {
               method: 'GET',
               headers: {
@@ -492,10 +556,11 @@ class VideoInfo {
               },
               signal: cancel.signal
             });
+
             const body = response.body;
-            if (!body) {
+
+            if (!body)
               throw new InnertubeError('Could not get ReadableStream from fetch Response.', { video: this, error_type: 'FETCH_FAILED', response });
-            }
 
             for await (const chunk of streamToIterable(body)) {
               controller.enqueue(chunk);
@@ -503,6 +568,7 @@ class VideoInfo {
 
             chunk_start = chunk_end + 1;
             chunk_end += chunk_size;
+
             resolve();
             return;
           } catch (e: any) {
@@ -520,8 +586,8 @@ class VideoInfo {
       }
     });
 
-    return readableStream;
-
+    return readable_stream;
   }
 }
+
 export default VideoInfo;

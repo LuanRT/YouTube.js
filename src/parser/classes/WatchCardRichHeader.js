@@ -1,11 +1,11 @@
 import Author from './misc/Author';
 import NavigationEndpoint from './NavigationEndpoint';
 import Text from './misc/Text';
-
 import { YTNode } from '../helpers';
 
 class WatchCardRichHeader extends YTNode {
   static type = 'WatchCardRichHeader';
+
   constructor(data) {
     super();
     this.title = new Text(data.title);
@@ -16,4 +16,5 @@ class WatchCardRichHeader extends YTNode {
     this.style = data.style;
   }
 }
+
 export default WatchCardRichHeader;

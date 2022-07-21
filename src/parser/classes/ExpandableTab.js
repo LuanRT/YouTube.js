@@ -1,10 +1,10 @@
 import Parser from '../index';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class ExpandableTab extends YTNode {
   static type = 'ExpandableTab';
+
   constructor(data) {
     super();
     this.title = data.title;
@@ -13,4 +13,5 @@ class ExpandableTab extends YTNode {
     this.content = data.content ? Parser.parse(data.content) : null;
   }
 }
+
 export default ExpandableTab;

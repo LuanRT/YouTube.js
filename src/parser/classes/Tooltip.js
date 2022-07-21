@@ -1,12 +1,13 @@
 import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class Tooltip extends YTNode {
   static type = 'Tooltip';
+
   constructor(data) {
     super();
+
     this.promo_config = {
       promo_id: data.promoConfig.promoId,
       impression_endpoints: data.promoConfig.impressionEndpoints
@@ -14,6 +15,7 @@ class Tooltip extends YTNode {
       accept: new NavigationEndpoint(data.promoConfig.acceptCommand),
       dismiss: new NavigationEndpoint(data.promoConfig.dismissCommand)
     };
+
     this.target_id = data.targetId;
     this.details = new Text(data.detailsText);
     this.suggested_position = data.suggestedPosition.type;
@@ -21,4 +23,5 @@ class Tooltip extends YTNode {
     this.dwell_time_ms = parseInt(data.dwellTimeMs);
   }
 }
+
 export default Tooltip;

@@ -1,9 +1,9 @@
 import Parser from '../../index';
-
 import { YTNode } from '../../helpers';
 
 class ReplayChatItemAction extends YTNode {
   static type = 'ReplayChatItemAction';
+
   constructor(data) {
     super();
     this.actions = Parser.parse(data.actions?.map((action) => {
@@ -13,4 +13,5 @@ class ReplayChatItemAction extends YTNode {
     this.video_offset_time_msec = data.videoOffsetTimeMsec;
   }
 }
+
 export default ReplayChatItemAction;

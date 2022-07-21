@@ -7,13 +7,16 @@ import { YTNode } from '../helpers';
 
 class BackstagePost extends YTNode {
   static type = 'BackstagePost';
+
   constructor(data) {
     super();
     this.id = data.postId;
+
     this.author = new Author({
       ...data.authorText,
       navigationEndpoint: data.authorEndpoint
     }, null, data.authorThumbnail);
+
     this.content = new Text(data.contentText, '');
     this.published = new Text(data.publishedTimeText);
     this.poll_status = data.pollStatus;
@@ -27,4 +30,5 @@ class BackstagePost extends YTNode {
     this.attachment = Parser.parse(data.backstageAttachment) || null;
   }
 }
+
 export default BackstagePost;

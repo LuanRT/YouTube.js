@@ -4,6 +4,7 @@ import EmojiRun from '../EmojiRun';
 class Text {
   text: string;
   runs;
+
   constructor(data: any) {
     if (data?.hasOwnProperty('runs') && Array.isArray(data.runs)) {
       this.runs = (data.runs as any[]).map((run: any) => run.emoji ?
@@ -15,8 +16,10 @@ class Text {
       this.text = data?.simpleText || 'N/A';
     }
   }
+
   toString() {
     return this.text;
   }
 }
+
 export default Text;

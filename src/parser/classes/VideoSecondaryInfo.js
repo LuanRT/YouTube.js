@@ -6,6 +6,7 @@ import MetadataRowContainer from './MetadataRowContainer';
 
 class VideoSecondaryInfo extends YTNode {
   static type = 'VideoSecondaryInfo';
+
   constructor(data) {
     super();
     this.owner = Parser.parse(data.owner);
@@ -18,4 +19,5 @@ class VideoSecondaryInfo extends YTNode {
     this.description_collapsed_lines = data.descriptionCollapsedLines;
   }
 }
+
 export default VideoSecondaryInfo;

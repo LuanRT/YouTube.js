@@ -1,10 +1,10 @@
 import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class SingleActionEmergencySupport extends YTNode {
   static type = 'SingleActionEmergencySupport';
+
   constructor(data) {
     super();
     this.action_text = new Text(data.actionText);
@@ -14,4 +14,5 @@ class SingleActionEmergencySupport extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
+
 export default SingleActionEmergencySupport;

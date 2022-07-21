@@ -2,20 +2,24 @@ import Text from '../../misc/Text';
 import Thumbnail from '../../misc/Thumbnail';
 import NavigationEndpoint from '../../NavigationEndpoint';
 import Parser from '../../../index';
-
 import { YTNode } from '../../../helpers';
+
 class LiveChatPaidMessage extends YTNode {
   static type = 'LiveChatPaidMessage';
+
   constructor(data) {
     super();
     this.message = new Text(data.message);
+
     this.author = {
       id: data.authorExternalChannelId,
       name: new Text(data.authorName),
       thumbnails: Thumbnail.fromResponse(data.authorPhoto),
       badges: Parser.parse(data.authorBadges)
     };
+
     const badges = Parser.parse(data.authorBadges);
+
     this.author.badges = badges;
     this.author.is_moderator = badges?.some((badge) => badge.icon_type == 'MODERATOR') || null;
     this.author.is_verified = badges?.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED') || null;
@@ -27,4 +31,5 @@ class LiveChatPaidMessage extends YTNode {
     this.id = data.id;
   }
 }
+
 export default LiveChatPaidMessage;

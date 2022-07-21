@@ -1,11 +1,11 @@
 import NavigationEndpoint from './NavigationEndpoint';
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
-
 import { YTNode } from '../helpers';
 
 class ReelItem extends YTNode {
   static type = 'ReelItem';
+
   constructor(data) {
     super();
     this.id = data.videoId;
@@ -15,4 +15,5 @@ class ReelItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
+
 export default ReelItem;

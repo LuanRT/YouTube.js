@@ -1,10 +1,10 @@
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
-
 import { YTNode } from '../helpers';
 
 class MerchandiseItem extends YTNode {
   static type = 'MerchandiseItem';
+
   constructor(data) {
     super();
     this.title = data.title;
@@ -20,4 +20,5 @@ class MerchandiseItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.buttonCommand);
   }
 }
+
 export default MerchandiseItem;

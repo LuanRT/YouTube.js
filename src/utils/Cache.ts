@@ -6,6 +6,7 @@ import { getRuntime } from './Utils';
 export default class UniversalCache {
   #persistent_directory: string;
   #persistent: boolean;
+
   constructor(persistent = false, persistent_directory?: string) {
     this.#persistent_directory = persistent_directory || UniversalCache.default_persistent_directory;
     this.#persistent = persistent;
@@ -16,10 +17,8 @@ export default class UniversalCache {
       case 'deno':
         const Deno: any = Reflect.get(globalThis, 'Deno');
         return `${Deno.env.get('TMPDIR') || Deno.env.get('TMP') || Deno.env.get('TEMP') || '/tmp'}/youtubei.js`;
-
       case 'node':
         return `${Reflect.get(module, 'require')('os').tmpdir()}/youtubei.js`;
-
       default:
         return '';
     }
@@ -30,10 +29,8 @@ export default class UniversalCache {
       case 'deno':
         const Deno: any = Reflect.get(globalThis, 'Deno');
         return `${Deno.cwd()}/.cache/youtubei.js`;
-
       case 'node':
         return Reflect.get(module, 'require')('path').resolve(__dirname, '..', '..', '.cache', 'youtubei.js');
-
       default:
         return '';
     }

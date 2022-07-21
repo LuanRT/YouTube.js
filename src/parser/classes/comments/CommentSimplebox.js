@@ -1,11 +1,11 @@
 import Parser from '../../index';
 import Thumbnail from '../misc/Thumbnail';
 import Text from '../misc/Text';
-
 import { YTNode } from '../../helpers';
 
 class CommentSimplebox extends YTNode {
   static type = 'CommentSimplebox';
+
   constructor(data) {
     super();
     this.submit_button = Parser.parse(data.submitButton);
@@ -15,4 +15,5 @@ class CommentSimplebox extends YTNode {
     this.avatar_size = data.avatarSize;
   }
 }
+
 export default CommentSimplebox;

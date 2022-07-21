@@ -6,4 +6,5 @@ class TextRun {
     this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : undefined;
   }
 }
+
 export default TextRun;
