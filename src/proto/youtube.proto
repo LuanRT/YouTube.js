@@ -26,7 +26,21 @@ message InnertubePayload {
   
   Context context = 1;
   
+  // This can be either a target id or a video id.
   optional string target = 2;
+  
+  // Note: I'm not entirely sure this message is only used for video settings 
+  message VideoSettings {
+    int32 type = 1; // is this something else?
+ 
+    message Thumbnail {
+      bytes image_data = 1;
+    }
+    
+    Thumbnail thumbnail = 3;
+  }
+  
+  optional VideoSettings video_settings = 20;
 }
 
 message SoundInfoParams {
