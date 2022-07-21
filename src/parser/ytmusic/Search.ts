@@ -1,9 +1,12 @@
 import DidYouMean from '../classes/DidYouMean';
 import ShowingResultsFor from '../classes/ShowingResultsFor';
 import MusicShelf from '../classes/MusicShelf';
+import MusicResponsiveListItem from '../classes/MusicResponsiveListItem';
+
 import Shelf from '../classes/Shelf';
 import RichShelf from '../classes/RichShelf';
 import ReelShelf from '../classes/ReelShelf';
+import ChipCloud from '../classes/ChipCloud';
 import ChipCloudChip from '../classes/ChipCloudChip';
 import ItemSection from '../classes/ItemSection';
 
@@ -30,11 +33,14 @@ class Search {
       Parser.parseResponse((response as AxioslikeResponse).data);
 
     const tab = this.#page.contents.item().key('tabs').parsed().array().get({ selected: true });
+    const tab_content = tab?.key('content').parsed().item();
 
-    this.#header = tab?.key('content').parsed().item().key('header').parsed().item();
+    if (tab_content.hasKey('header')) {
+      this.#header = tab_content.key('header').parsed().item().as(ChipCloud);
+    }
 
-    const shelves = tab?.key('content').parsed().item().key('contents').parsed().array();
-    const item_section = shelves?.firstOfType(ItemSection);
+    const shelves = tab_content.key('contents').parsed().array();
+    const item_section = shelves.firstOfType(ItemSection);
 
     this.did_you_mean = item_section?.contents?.firstOfType(DidYouMean) || null;
     this.showing_results_for = item_section?.contents?.firstOfType(ShowingResultsFor) || null;
@@ -43,14 +49,14 @@ class Search {
 
     if (args.is_continuation || args.is_filtered) {
       const shelf = shelves?.firstOfType(MusicShelf);
-      this.results = shelf?.contents;
+      this.results = shelf?.contents.array().as(MusicResponsiveListItem);
       this.#continuation = shelf?.continuation;
       return;
     }
 
     this.sections = shelves?.as(MusicShelf, Shelf, RichShelf, ReelShelf)?.map((shelf) => ({
       title: shelf.title.toString(),
-      contents: shelf.key('contents').parsed().array(),
+      contents: shelf.key('contents').parsed().array().as(MusicResponsiveListItem),
       getMore: () => this.#getMore(shelf)
     })) || [];
   }
@@ -69,7 +75,6 @@ class Search {
 
   /**
    * Retrieves continuation, only works for individual sections or filtered results.
-   *
    */
   async getContinuation() {
     if (!this.#continuation)
@@ -78,7 +83,7 @@ class Search {
     const response = await this.#actions.search({ ctoken: this.#continuation, client: 'YTMUSIC' });
     const data = response.data.continuationContents.musicShelfContinuation;
 
-    this.results = Parser.parse(data.contents);
+    this.results = Parser.parse(data.contents).array().as(MusicResponsiveListItem);
     this.#continuation = data?.continuations?.[0]?.nextContinuationData?.continuation;
 
     return this;
@@ -86,14 +91,14 @@ class Search {
 
   /**
    * Applies given filter to the search.
-   *
    */
   async selectFilter(name: string) {
     if (!this.filters?.includes(name))
       throw new InnertubeError('Invalid filter', { available_filters: this.filters });
 
     // TODO: make sure this is a ChipCloudChip or use the property accessor helpers on YTNode
-    const filter = this.#header?.key('chips').parsed().array().as(ChipCloudChip).get({ text: name });
+    const filter = this.#header?.chips?.as(ChipCloudChip).get({ text: name });
+
     if (filter?.is_selected) return this;
 
     const response = await filter?.endpoint?.call(this.#actions, 'YTMUSIC', true);
@@ -109,7 +114,7 @@ class Search {
   }
 
   get filters() {
-    return this.#header?.key('chips').parsed().array().as(ChipCloudChip).map((chip) => chip.text);
+    return this.#header?.chips?.as(ChipCloudChip).map((chip) => chip.text);
   }
 
   get songs() {
