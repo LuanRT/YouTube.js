@@ -28,7 +28,7 @@ class EndscreenElement extends YTNode {
   constructor(data: any) {
     super();
 
-    this.style = ''+data.style;
+    this.style = `${data.style}`;
     this.title = new Text(data.title);
     this.endpoint = new NavigationEndpoint(data.endpoint);
 
