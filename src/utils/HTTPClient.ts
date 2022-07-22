@@ -120,7 +120,7 @@ export default class HTTPClient {
     // Check if 2xx
     if (response.ok) {
       return response;
-    } throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, response);
+    } throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, await response.json());
   }
 
   #adjustContext(ctx: Context, client: string) {

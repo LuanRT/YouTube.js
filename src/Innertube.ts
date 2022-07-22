@@ -12,6 +12,7 @@ import VideoInfo, { DownloadOptions, FormatOptions } from './parser/youtube/Vide
 
 import Feed from './core/Feed';
 import YTMusic from './core/Music';
+import Studio from './core/Studio';
 import AccountManager from './core/AccountManager';
 import PlaylistManager from './core/PlaylistManager';
 import InteractionManager from './core/InteractionManager';
@@ -49,6 +50,7 @@ class Innertube {
   playlist;
   interact;
   music;
+  studio;
   actions;
 
   constructor(session: Session) {
@@ -57,6 +59,7 @@ class Innertube {
     this.playlist = new PlaylistManager(this.session.actions);
     this.interact = new InteractionManager(this.session.actions);
     this.music = new YTMusic(this.session);
+    this.studio = new Studio(this.session);
     this.actions = this.session.actions;
   }
 
