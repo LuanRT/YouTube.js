@@ -9,31 +9,30 @@ class MusicTwoRowItem extends YTNode {
 
   constructor(data) {
     super();
-    this.id =
-      this.endpoint.browse?.id ||
-      this.endpoint.watch?.video_id;
-
     this.title = new Text(data.title);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+
+    this.id =
+      this.endpoint?.browse?.id ||
+      this.endpoint?.watch?.video_id;
 
     this.subtitle = new Text(data.subtitle);
     this.badges = Parser.parse(data.subtitleBadges);
 
     switch (this.endpoint?.browse?.page_type) {
       case 'MUSIC_PAGE_TYPE_ARTIST':
-        this.type = 'artist';
+        this.item_type = 'artist';
         this.subscribers = this.subtitle.toString();
         break;
       case 'MUSIC_PAGE_TYPE_PLAYLIST':
-        this.type = 'playlist';
-        this.item_count = parseInt(this.subtitle.runs
-          .find((run) => run.text
-            .match(/\d+ (songs|song)/))?.text
-          .match(/\d+/g)) || null;
+        this.item_type = 'playlist';
+        this.item_count = this.subtitle.runs
+          .find((run) => run.text.match(/\d+ songs|song/))?.item || null;
+
         break;
       case 'MUSIC_PAGE_TYPE_ALBUM':
-        this.type = 'album';
-        const artists = this.subtitle.runs.filter((run) => run.endpoint.browse?.id.startsWith('UC'));
+        this.item_type = 'album';
+        const artists = this.subtitle.runs.filter((run) => run.endpoint?.browse?.id.startsWith('UC'));
         if (artists) {
           this.artists = artists.map((artist) => ({
             name: artist.text,
@@ -47,16 +46,16 @@ class MusicTwoRowItem extends YTNode {
         break;
       default:
         if (this.subtitle.runs[0].text !== 'Song') {
-          this.type = 'video';
+          this.item_type = 'video';
         } else {
-          this.type = 'song';
+          this.item_type = 'song';
         }
 
-        if (this.type == 'video') {
+        if (this.item_type == 'video') {
           this.views = this.subtitle.runs
             .find((run) => run.text.match(/(.*?) views/)).text;
 
-          const author = this.subtitle.runs.find((run) => run.endpoint.browse?.id.startsWith('UC'));
+          const author = this.subtitle.runs.find((run) => run.endpoint?.browse?.id.startsWith('UC'));
           if (author) {
             this.author = {
               name: author.text,
@@ -65,7 +64,7 @@ class MusicTwoRowItem extends YTNode {
             };
           }
         } else {
-          const artists = this.subtitle.runs.filter((run) => run.endpoint.browse?.id.startsWith('UC'));
+          const artists = this.subtitle.runs.filter((run) => run.endpoint?.browse?.id.startsWith('UC'));
           if (artists) {
             this.artists = artists.map((artist) => ({
               name: artist.text,
