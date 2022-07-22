@@ -188,7 +188,7 @@ export default class Parser {
         status: data.playabilityStatus.status as string,
         error_screen: Parser.parse(data.playabilityStatus.errorScreen),
         embeddable: !!data.playabilityStatus.playableInEmbed || false,
-        reason: `${data.reason}` || ''
+        reason: data.playabilityStatus?.reason || ''
       } : undefined,
       streaming_data: data.streamingData ? {
         expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
