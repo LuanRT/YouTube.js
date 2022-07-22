@@ -63,11 +63,11 @@ class Actions {
   /**
    * Mimmics the Axios API using Fetch's Response object.
    */
-  async #wrap(response: Response) {
+  async #wrap(response: Response, protobuf?: boolean) {
     return {
       success: response.ok,
       status_code: response.status,
-      data: await response.json()
+      data: protobuf ? await response.text() : JSON.parse(await response.text())
     };
   }
 
@@ -673,35 +673,43 @@ class Actions {
    * @param action - endpoint
    * @param args - call arguments
    */
-  async execute(action: string, args: { [key: string]: any; parse: true; }) : Promise<ParsedResponse>;
-  async execute(action: string, args: { [key: string]: any; parse?: false; }) : Promise<ActionsResponse>;
-  async execute(action: string, args: { [key: string]: any; parse?: boolean; }): Promise<ParsedResponse | ActionsResponse> {
-    const data = { ...args };
+  async execute(action: string, args: { [key: string]: any; parse: true; protobuf?: false; serialized_data?: any }) : Promise<ParsedResponse>;
+  async execute(action: string, args: { [key: string]: any; parse?: false; protobuf?: true; serialized_data?: any }) : Promise<ActionsResponse>;
+  async execute(action: string, args: { [key: string]: any; parse?: boolean; protobuf?: boolean; serialized_data?: any }): Promise<ParsedResponse | ActionsResponse> {
+    let data;
 
-    if (Reflect.has(data, 'parse'))
-      delete data.parse;
+    if (!args.protobuf) {
+      data = { ...args };
 
-    if (Reflect.has(data, 'request'))
-      delete data.request;
+      if (Reflect.has(data, 'parse'))
+        delete data.parse;
 
-    if (Reflect.has(data, 'clientActions'))
-      delete data.clientActions;
+      if (Reflect.has(data, 'request'))
+        delete data.request;
 
-    if (Reflect.has(data, 'action')) {
-      data.actions = [ data.action ];
-      delete data.action;
-    }
+      if (Reflect.has(data, 'clientActions'))
+        delete data.clientActions;
 
-    if (Reflect.has(data, 'token')) {
-      data.continuation = data.token;
-      delete data.token;
+      if (Reflect.has(data, 'action')) {
+        data.actions = [ data.action ];
+        delete data.action;
+      }
+
+      if (Reflect.has(data, 'token')) {
+        data.continuation = data.token;
+        delete data.token;
+      }
+    } else {
+      data = args.serialized_data;
     }
 
     const response = await this.#session.http.fetch(action, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: args.protobuf ? data : JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': args.protobuf ?
+          'application/x-protobuf' :
+          'application/json'
       }
     });
 
@@ -709,7 +717,7 @@ class Actions {
       return Parser.parseResponse(await response.json());
     }
 
-    return this.#wrap(response);
+    return this.#wrap(response, args.protobuf);
   }
 
   #needsLogin(id: string) {
