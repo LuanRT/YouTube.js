@@ -23,7 +23,7 @@
 
 <p align=center>
   <i>
-    A full-featured wrapper around the Innertube API, which is what YouTube itself uses.
+    A full-featured wrapper around the InnerTube API, which is what YouTube itself uses.
   </i>
 </p>
 
@@ -49,7 +49,31 @@
 
 </div>
 
-> **Note**: <br/><br/> We're currently in the process of rewriting some parts of the library to improve performance, maintainability and quality. While this might take a little while, most of this documentation will no longer be valid after v2 (see [#65](https://github.com/LuanRT/YouTube.js/issues/65)).
+> **Note**: <br/> We're currently in the process of rewriting the library to improve code quality, maintainability, and much more. While it might take some time, most of this documentation will be invalid after v2 and you may want to migrate once it is stable enough. See [#65](https://github.com/LuanRT/YouTube.js/issues/65) for more information on how to contribute, test v2, documentation and other upcoming changes.
+
+<!-- SPONSORS -->
+
+<p align="center">
+ <a><sub>Special thanks to:<sub></a>
+</p>
+
+<table align="center">
+  <body>
+    <tr>
+      <td align="center">
+        <a href="https://serpapi.com/">
+          <img width="80" alt="SerpApi" src="https://luanrt.is-a.dev/assets/img/serpapi.svg" />
+          <br>
+          <b>
+           <sub>
+             Scrape Google and other search engines from a fast, easy and complete API.
+           </sub>
+          </b>
+        </a>
+      </td>
+    </tr>
+  </body>
+</table>
 
 ___
 
@@ -89,9 +113,7 @@ ___
 <!-- ABOUT THE PROJECT -->
 ## About
 
-Innertube is an API used across all YouTube clients, it was created [to simplify][gizmodo] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
-
-And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workings of the Innertube API!
+InnerTube is an API used across all YouTube clients, it was created [to simplify][gizmodo] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
 
 If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
 

@@ -10,6 +10,9 @@
     "Wykerd (https://github.com/wykerd/)",
     "MasterOfBob777 (https://github.com/MasterOfBob777)"
   ],
+  "funding": [
+    "https://github.com/sponsors/LuanRT"
+  ],
   "directories": {
     "test": "./test",
     "typings": "./dist",
@@ -32,7 +35,6 @@
     "type": "git",
     "url": "git+https://github.com/LuanRT/YouTube.js.git"
   },
-  "funding": "https://github.com/sponsors/LuanRT",
   "license": "MIT",
   "dependencies": {
     "buffer": "^6.0.3",
