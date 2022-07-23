@@ -312,3 +312,7 @@ export const debugFetch: FetchFunction = (input, init) => {
 
   return globalThis.fetch(input, init);
 };
+
+export function u8ToBase64(u8: Uint8Array) {
+  return btoa(String.fromCharCode.apply(null, Array.from(u8)));
+}
