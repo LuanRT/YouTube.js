@@ -54,7 +54,7 @@ export default class HTTPClient {
     request_headers.set('x-youtube-client-version', this.#session.context.client.clientVersion || '');
 
     if (isServer()) {
-      request_headers.set('User-Agent', getRandomUserAgent('desktop').userAgent);
+      request_headers.set('User-Agent', getRandomUserAgent('desktop'));
       request_headers.set('origin', request_url.origin);
     }
 

@@ -124,7 +124,7 @@ export default class Player {
 
     const player_res = await fetch(player_url, {
       headers: {
-        'user-agent': getRandomUserAgent('desktop').userAgent
+        'user-agent': getRandomUserAgent('desktop')
       }
     });
 

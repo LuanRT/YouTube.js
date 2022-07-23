@@ -1,7 +1,7 @@
-import UserAgent from 'user-agents';
 import Flatten from 'flat';
 import package_json from '../../package.json';
 import { FetchFunction } from './HTTPClient';
+import userAgents from './user-agents.json';
 
 const VALID_CLIENTS = new Set([ 'YOUTUBE', 'YTMUSIC' ]);
 
@@ -86,17 +86,10 @@ export type DeviceCategory = 'mobile' | 'desktop';
  * Returns a random user agent.
  * @param type - mobile | desktop
  */
-export function getRandomUserAgent(type: DeviceCategory): UserAgent['data'] {
-  switch (type) {
-    case 'mobile':
-      return new UserAgent(/Android/).data;
-    case 'desktop':
-      return new UserAgent({
-        deviceCategory: 'desktop'
-      }).data;
-    default:
-      throw new TypeError('Invalid user agent type specified');
-  }
+export function getRandomUserAgent(type: DeviceCategory): string {
+  const available_agents = userAgents[type];
+  const random_index = Math.floor(Math.random() * available_agents.length);
+  return available_agents[random_index];
 }
 
 export async function sha1Hash(str: string) {
