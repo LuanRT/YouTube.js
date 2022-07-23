@@ -1,4 +1,5 @@
 import * as messages from './messages';
+import { CLIENTS } from '../utils/Constants';
 
 class Proto {
   /**
@@ -282,6 +283,31 @@ class Proto {
     });
 
     return encodeURIComponent(Buffer.from(buf).toString('base64'));
+  }
+
+  /**
+   * Encodes a custom thumbnail payload.
+   */
+  static encodeCustomThumbnailPayload(video_id, bytes) {
+    const data = {
+      context: {
+        client: {
+          unkparam: 14,
+          client_name: CLIENTS.ANDROID.NAME,
+          client_version: CLIENTS.ANDROID.VERSION
+        }
+      },
+      target: video_id,
+      video_settings: {
+        type: 3,
+        thumbnail: {
+          image_data: bytes
+        }
+      }
+    };
+
+    const buf = messages.InnertubePayload.encode(data);
+    return Buffer.from(buf);
   }
 
   /**
