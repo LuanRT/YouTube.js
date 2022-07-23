@@ -238,7 +238,7 @@ class Actions {
     }
 
     if (args.filters) {
-      if (args.client == 'YTMUSIC') {
+      if (args.client == 'YTMUSIC' && args.filters?.type && args.filters.type !== 'all') {
         data.params = Proto.encodeMusicSearchFilters(args.filters);
       } else {
         data.params = Proto.encodeSearchFilters(args.filters);
