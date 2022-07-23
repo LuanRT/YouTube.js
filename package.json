@@ -39,7 +39,6 @@
     "flat": "^5.0.2",
     "protocol-buffers-encodings": "^1.1.1",
     "undici": "^5.7.0",
-    "user-agents": "^1.0.1078",
     "xml-js": "^1.6.11",
     "xmlbuilder2": "^3.0.2"
   },
