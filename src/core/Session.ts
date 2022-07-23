@@ -153,7 +153,7 @@ export default class Session extends EventEmitterLike {
     const res = await fetch(url, {
       headers: {
         'accept-language': lang,
-        'user-agent': getRandomUserAgent('desktop').userAgent,
+        'user-agent': getRandomUserAgent('desktop'),
         'accept': '*/*',
         'referer': 'https://www.youtube.com/sw.js',
         'cookie': `PREF=tz=${tz.replace('/', '.')}`
