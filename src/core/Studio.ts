@@ -52,7 +52,7 @@ class Studio {
 
     return response;
   }
-  
+
   /**
    * Uploads a video to YouTube.
    * @example
@@ -67,9 +67,9 @@ class Studio {
 
     if (upload_result.status !== 'STATUS_SUCCESS')
       throw new InnertubeError('Could not process video.');
-      
+
     const response = await this.#setVideoMetadata(initial_data, upload_result, metadata);
-    
+
     return response;
   }
 
@@ -104,8 +104,8 @@ class Studio {
       upload_id: response.headers.get('x-guploader-uploadid') as string,
       upload_url: response.headers.get('x-goog-upload-url') as string,
       scotty_resource_id: response.headers.get('x-goog-upload-header-scotty-resource-id') as string,
-      chunk_granularity: response.headers.get('x-goog-upload-chunk-granularity') as string,
-    }
+      chunk_granularity: response.headers.get('x-goog-upload-chunk-granularity') as string
+    };
   }
 
   async #uploadVideo(upload_url: string, buffer: Uint8Array): Promise<UploadResult> {
@@ -127,7 +127,7 @@ class Studio {
 
     return data;
   }
-  
+
   async #setVideoMetadata(initial_data: InitialUploadData, upload_result: UploadResult, metadata: VideoMetadata) {
     const metadata_payload = {
       resourceId: {
@@ -151,13 +151,13 @@ class Studio {
           isDraft: metadata.is_draft
         }
       }
-    }
+    };
 
     const response = await this.#session.actions.execute('/upload/createvideo', {
       client: 'ANDROID',
       ...metadata_payload
     });
-    
+
     return response;
   }
 }
