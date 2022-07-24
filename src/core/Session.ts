@@ -80,6 +80,7 @@ export default class Session extends EventEmitterLike {
   on(type: 'auth', listener: OAuthAuthEventHandler): void;
   on(type: 'auth-pending', listener: OAuthAuthPendingEventHandler): void;
   on(type: 'auth-error', listener: OAuthAuthErrorEventHandler): void;
+  on(type: 'update-credentials', listener: OAuthAuthEventHandler): void;
 
   on(type: string, listener: (...args: any[]) => void): void {
     super.on(type, listener);

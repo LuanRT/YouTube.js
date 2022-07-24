@@ -20,7 +20,7 @@ export interface InitialUploadData {
 export interface VideoMetadata {
   title?: string;
   description?: string;
-  privacy?: string;
+  privacy?: 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
   is_draft?: boolean;
 }
 
@@ -148,7 +148,7 @@ class Studio {
           newPrivacy: metadata.privacy || 'PRIVATE'
         },
         draftState: {
-          isDraft: metadata.is_draft
+          isDraft: metadata.is_draft || false
         }
       }
     };
