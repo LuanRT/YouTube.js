@@ -65,7 +65,9 @@ export default class HTTPClient {
 
     let request_body = body;
 
-    const is_innertube_req = baseURL === innertube_url;
+    const is_innertube_req =
+      baseURL === innertube_url ||
+      baseURL === Constants.URLS.YT_UPLOAD;
 
     // Copy context into payload when possible
     if (content_type === 'application/json' && is_innertube_req && (typeof body === 'string')) {
@@ -120,7 +122,7 @@ export default class HTTPClient {
     // Check if 2xx
     if (response.ok) {
       return response;
-    } throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, await response.json());
+    } throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, await response.text());
   }
 
   #adjustContext(ctx: Context, client: string) {

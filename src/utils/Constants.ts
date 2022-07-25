@@ -3,6 +3,7 @@ export const URLS = Object.freeze({
   YT_BASE: 'https://www.youtube.com',
   YT_MUSIC_BASE: 'https://music.youtube.com',
   YT_SUGGESTIONS: 'https://suggestqueries.google.com/complete/',
+  YT_UPLOAD: 'https://upload.youtube.com/',
   API: Object.freeze({
     BASE: 'https://youtubei.googleapis.com',
     PRODUCTION: 'https://youtubei.googleapis.com/youtubei/',
