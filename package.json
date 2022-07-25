@@ -40,10 +40,8 @@
   "dependencies": {
     "@protobuf-ts/runtime": "^2.7.0",
     "flat": "^5.0.2",
-    "undici": "^5.7.0",
-
-    "xml-js": "^1.6.11",
-    "xmlbuilder2": "^3.0.2"
+    "linkedom": "^0.14.12",
+    "undici": "^5.7.0"
   },
   "devDependencies": {
     "@protobuf-ts/plugin": "^2.7.0",

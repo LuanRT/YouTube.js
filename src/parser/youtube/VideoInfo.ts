@@ -22,9 +22,11 @@ import ContinuationItem from '../classes/ContinuationItem';
 import LiveChat from '../classes/LiveChat';
 import LiveChatWrap from './LiveChat';
 
-import { create } from 'xmlbuilder2';
-import { XMLBuilder } from 'xmlbuilder2/lib/interfaces';
+import { DOMParser } from 'linkedom';
+import type { XMLDocument } from 'linkedom/types/xml/document';
+import type { Element } from 'linkedom/types/interface/element';
 import { getStringBetweenStrings, InnertubeError, streamToIterable } from '../../utils/Utils';
+import type { Node } from 'linkedom/types/interface/node';
 
 export type URLTransformer = (url: URL) => URL;
 
@@ -353,6 +355,18 @@ class VideoInfo {
     return candidates[0];
   }
 
+  #el(document: XMLDocument, tag: string, attrs: Record<string, string | undefined>, children: Node[] = []) {
+    const el = document.createElement(tag);
+    for (const [ key, value ] of Object.entries(attrs)) {
+      el.setAttribute(key, value);
+    }
+    for (const child of children) {
+      if (typeof child === 'undefined') continue;
+      el.appendChild(child);
+    }
+    return el;
+  }
+
   toDash(url_transformer: URLTransformer = (url) => url) {
     if (!this.streaming_data)
       throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
@@ -361,26 +375,27 @@ class VideoInfo {
 
     const length = adaptive_formats[0].approx_duration_ms / 1000;
 
-    const root = create({ version: '1.0', encoding: 'UTF-8' });
+    const document = new DOMParser().parseFromString('', 'text/xml');
+    const period = document.createElement('Period');
 
-    const period = root
-      .ele('MPD', {
-        xmlns: 'urn:mpeg:dash:schema:mpd:2011',
-        minBufferTime: 'PT1.500S',
-        profiles: 'urn:mpeg:dash:profile:isoff-main:2011',
-        type: 'static',
-        mediaPresentationDuration: `PT${length}S`
-      })
-      .att('xmlns', 'xsi', 'http://www.w3.org/2001/XMLSchema-instance')
-      .att('xsi', 'schemaLocation', 'urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd')
-      .ele('Period');
+    document.appendChild(this.#el(document, 'MPD', {
+      xmlns: 'urn:mpeg:dash:schema:mpd:2011',
+      minBufferTime: 'PT1.500S',
+      profiles: 'urn:mpeg:dash:profile:isoff-main:2011',
+      type: 'static',
+      mediaPresentationDuration: `PT${length}S`,
+      'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+      'xsi:schemaLocation': 'urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd'
+    }, [
+      period
+    ]));
 
-    this.#generateAdaptationSet(period, adaptive_formats, url_transformer);
+    this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer);
 
-    return root.end({ prettyPrint: true });
+    return `${document}`;
   }
 
-  #generateAdaptationSet(period: XMLBuilder, formats: Format[], url_transformer: URLTransformer) {
+  #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer) {
     const mimeTypes: string[] = [];
     const mimeObjects: Format[][] = [ [] ];
 
@@ -400,25 +415,24 @@ class VideoInfo {
     });
 
     for (let i = 0; i < mimeTypes.length; i++) {
-      const set = period
-        .ele('AdaptationSet', {
-          id: i,
-          mimeType: mimeTypes[i].split(';')[0],
-          startWithSAP: '1',
-          subsegmentAlignment: 'true',
-          scanType: !mimeTypes[i].includes('audio') ? 'progressive' : undefined
-        });
+      const set = this.#el(document, 'AdaptationSet', {
+        id: `${i}`,
+        mimeType: mimeTypes[i].split(';')[0],
+        startWithSAP: '1',
+        subsegmentAlignment: 'true'
+      });
+      period.appendChild(set);
       mimeObjects[i].forEach((format) => {
         if (format.has_video) {
-          this.#generateRepresentationVideo(set, format, url_transformer);
+          this.#generateRepresentationVideo(document, set, format, url_transformer);
         } else {
-          this.#generateRepresentationAudio(set, format, url_transformer);
+          this.#generateRepresentationAudio(document, set, format, url_transformer);
         }
       });
     }
   }
 
-  #generateRepresentationVideo(set: XMLBuilder, format: Format, url_transformer: URLTransformer) {
+  #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
 
     if (!format.index_range || !format.init_range)
@@ -427,28 +441,29 @@ class VideoInfo {
     const url = new URL(format.decipher(this.#player));
     url.searchParams.set('cpn', this.#cpn);
 
-    set
-      .ele('Representation', {
-        id: format.itag,
-        codecs,
-        bandwidth: format.bitrate,
-        width: format.width,
-        height: format.height,
-        maxPlayoutRate: '1',
-        frameRate: format.fps
-      })
-      .ele('BaseURL')
-      .txt(url_transformer(url).toString())
-      .up()
-      .ele('SegmentBase', {
+    set.appendChild(this.#el(document, 'Representation', {
+      id: format.itag,
+      codecs,
+      bandwidth: format.bitrate,
+      width: format.width,
+      height: format.height,
+      maxPlayoutRate: '1',
+      frameRate: format.fps
+    }, [
+      this.#el(document, 'BaseURL', {}, [
+        document.createTextNode(url_transformer(url).toString())
+      ]),
+      this.#el(document, 'SegmentBase', {
         indexRange: `${format.index_range.start}-${format.index_range.end}`
-      })
-      .ele('Initialization', {
-        range: `${format.init_range.start}-${format.init_range.end}`
-      });
+      }, [
+        this.#el(document, 'Initialization', {
+          range: `${format.init_range.start}-${format.init_range.end}`
+        })
+      ])
+    ]));
   }
 
-  #generateRepresentationAudio(set: XMLBuilder, format: Format, url_transformer: URLTransformer) {
+  #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
@@ -456,26 +471,26 @@ class VideoInfo {
     const url = new URL(format.decipher(this.#player));
     url.searchParams.set('cpn', this.#cpn);
 
-    set
-      .ele('Representation', {
-        id: format.itag,
-        codecs,
-        bandwidth: format.bitrate
-      })
-      .ele('AudioChannelConfiguration', {
+    set.appendChild(this.#el(document, 'Representation', {
+      id: format.itag,
+      codecs,
+      bandwidth: format.bitrate
+    }, [
+      this.#el(document, 'AudioChannelConfiguration', {
         schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
         value: format.audio_channels || '2'
-      })
-      .up()
-      .ele('BaseURL')
-      .txt(url_transformer(url).toString())
-      .up()
-      .ele('SegmentBase', {
+      }),
+      this.#el(document, 'BaseURL', {}, [
+        document.createTextNode(url_transformer(url).toString())
+      ]),
+      this.#el(document, 'SegmentBase', {
         indexRange: `${format.index_range.start}-${format.index_range.end}`
-      })
-      .ele('Initialization', {
-        range: `${format.init_range.start}-${format.init_range.end}`
-      });
+      }, [
+        this.#el(document, 'Initialization', {
+          range: `${format.init_range.start}-${format.init_range.end}`
+        })
+      ])
+    ]));
   }
 
   /**
