@@ -379,20 +379,20 @@ class VideoInfo {
     const period = document.createElement('Period');
 
     document.appendChild(this.#el(document, 'MPD', {
-        xmlns: 'urn:mpeg:dash:schema:mpd:2011',
-        minBufferTime: 'PT1.500S',
-        profiles: 'urn:mpeg:dash:profile:isoff-main:2011',
-        type: 'static',
-        mediaPresentationDuration: `PT${length}S`,
-        'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-        'xsi:schemaLocation': 'urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd'
-      }, [
-        period
-      ]));
+      xmlns: 'urn:mpeg:dash:schema:mpd:2011',
+      minBufferTime: 'PT1.500S',
+      profiles: 'urn:mpeg:dash:profile:isoff-main:2011',
+      type: 'static',
+      mediaPresentationDuration: `PT${length}S`,
+      'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+      'xsi:schemaLocation': 'urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd'
+    }, [
+      period
+    ]));
 
     this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer);
 
-    return ''+document;
+    return `${document}`;
   }
 
   #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer) {
@@ -416,11 +416,11 @@ class VideoInfo {
 
     for (let i = 0; i < mimeTypes.length; i++) {
       const set = this.#el(document, 'AdaptationSet', {
-          id:''+i,
-          mimeType: mimeTypes[i].split(';')[0],
-          startWithSAP: '1',
-          subsegmentAlignment: 'true',
-        });
+        id: `${i}`,
+        mimeType: mimeTypes[i].split(';')[0],
+        startWithSAP: '1',
+        subsegmentAlignment: 'true'
+      });
       period.appendChild(set);
       mimeObjects[i].forEach((format) => {
         if (format.has_video) {
