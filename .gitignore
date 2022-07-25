@@ -9,7 +9,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
-.npmignore
 
 # Coverage directory used by tools like istanbul
 coverage
