@@ -61,9 +61,9 @@ class Studio {
    * const response = await yt.studio.upload(buffer, { title: 'Wow!' });
    * ```
    */
-  async upload(buffer: Uint8Array, metadata: VideoMetadata = {}): Promise<AxioslikeResponse> {
+  async upload(file: BodyInit, metadata: VideoMetadata = {}): Promise<AxioslikeResponse> {
     const initial_data = await this.#getInitialUploadData();
-    const upload_result = await this.#uploadVideo(initial_data.upload_url, buffer);
+    const upload_result = await this.#uploadVideo(initial_data.upload_url, file);
 
     if (upload_result.status !== 'STATUS_SUCCESS')
       throw new InnertubeError('Could not process video.');
@@ -108,7 +108,7 @@ class Studio {
     };
   }
 
-  async #uploadVideo(upload_url: string, buffer: Uint8Array): Promise<UploadResult> {
+  async #uploadVideo(upload_url: string, file: BodyInit): Promise<UploadResult> {
     const response = await this.#session.http.fetch_function(upload_url, {
       method: 'POST',
       headers: {
@@ -117,7 +117,7 @@ class Studio {
         'x-goog-upload-file-name': `file-${Date.now()}`,
         'x-goog-upload-offset': '0'
       },
-      body: buffer
+      body: file
     });
 
     if (!response.ok)
