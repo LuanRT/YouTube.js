@@ -20,10 +20,10 @@ class Search extends Feed {
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     super(actions, data, already_parsed);
-    const contents = this.page.contents.item().as(TwoColumnSearchResults).primary_contents.item().key("contents").parsed().array()
+    const contents = this.page.contents.item().as(TwoColumnSearchResults).primary_contents.item().key('contents').parsed().array()
             || this.page.on_response_received_commands?.[0].contents;
-    const secondary_contents_maybe = this.page.contents.item().key("secondary_contents");
-    const secondary_contents = secondary_contents_maybe.isParsed() ? secondary_contents_maybe.parsed().item().key("contents").parsed().array() : undefined;
+    const secondary_contents_maybe = this.page.contents.item().key('secondary_contents');
+    const secondary_contents = secondary_contents_maybe.isParsed() ? secondary_contents_maybe.parsed().item().key('contents').parsed().array() : undefined;
     this.results = contents.firstOfType(ItemSection)?.contents;
     const card_list = this.results?.get({ type: 'HorizontalCardList' }, true)?.as(HorizontalCardList);
     const universal_watch_card = secondary_contents?.firstOfType(UniversalWatchCard);
@@ -56,7 +56,6 @@ class Search extends Feed {
     const page = await target_card.endpoint.call(this.actions);
     return new Search(this.actions, page, true);
   }
-  /** @type {string[]} */
   get refinement_card_queries() {
     return this.refinement_cards.cards.map((card) => card.query);
   }
