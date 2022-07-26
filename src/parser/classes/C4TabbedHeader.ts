@@ -7,7 +7,16 @@ import { YTNode } from '../helpers';
 class C4TabbedHeader extends YTNode {
   static type = 'C4TabbedHeader';
 
-  constructor(data) {
+  author;
+  banner;
+  tv_banner;
+  mobile_banner;
+  subscribers;
+  sponsor_button;
+  subscribe_button;
+  header_links;
+
+  constructor(data: any) {
     super();
     this.author = new Author({
       simpleText: data.title,
@@ -18,9 +27,9 @@ class C4TabbedHeader extends YTNode {
     this.tv_banner = data.tvBanner ? Thumbnail.fromResponse(data.tvBanner) : [];
     this.mobile_banner = data.mobileBanner ? Thumbnail.fromResponse(data.mobileBanner) : [];
     this.subscribers = new Text(data.subscriberCountText);
-    this.sponsor_button = data.sponsorButton && Parser.parse(data.sponsorButton);
-    this.subscribe_button = data.subscribeButton && Parser.parse(data.subscribeButton);
-    this.header_links = data.headerLinks && Parser.parse(data.headerLinks);
+    this.sponsor_button = data.sponsorButton ? Parser.parseItem(data.sponsorButton) : undefined;
+    this.subscribe_button = data.subscribeButton ? Parser.parseItem(data.subscribeButton) : undefined;
+    this.header_links = data.headerLinks ? Parser.parse(data.headerLinks) : undefined;
   }
 }
 
