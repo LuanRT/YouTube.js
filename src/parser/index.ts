@@ -182,7 +182,7 @@ export default class Parser {
       sidebar: Parser.parseItem(data.sidebar),
       overlay: Parser.parseItem(data.overlay),
       refinements: data.refinements || null,
-      estimated_results: data.estimatedResults || null,
+      estimated_results: data.estimatedResults ? parseInt(data.estimatedResults) : null,
       player_overlays: Parser.parse(data.playerOverlays),
       playability_status: data.playabilityStatus ? {
         status: data.playabilityStatus.status as string,

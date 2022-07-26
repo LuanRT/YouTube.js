@@ -27,7 +27,10 @@ class TabbedFeed extends Feed {
       return this;
 
     const response = await tab.endpoint.call(this.#actions);
-    return new TabbedFeed(this.#actions, response, true);
+    if (!response)
+      throw new InnertubeError('Failed to call endpoint');
+
+    return new TabbedFeed(this.#actions, response.data, false);
   }
 
   get title() {
