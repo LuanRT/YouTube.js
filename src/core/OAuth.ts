@@ -48,9 +48,8 @@ class OAuth {
         credentials: this.#credentials,
         status: 'SUCCESS'
       });
-    }
-    else if (!(await this.#loadCachedCredentials())) {
-        await this.#getUserCode();
+    } else if (!(await this.#loadCachedCredentials())) {
+      await this.#getUserCode();
     }
   }
 
@@ -75,7 +74,7 @@ class OAuth {
       access_token: credentials.access_token,
       refresh_token: credentials.refresh_token,
       expires: new Date(credentials.expires)
-    }
+    };
     this.#session.emit('auth', {
       credentials: this.#credentials,
       status: 'SUCCESS'
