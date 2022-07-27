@@ -43,9 +43,44 @@ class OAuth {
    */
   async init(credentials?: Credentials) {
     this.#credentials = credentials;
-    if (!credentials) {
-      await this.#getUserCode();
+    if (this.validateCredentials()) {
+      this.#session.emit('auth', {
+        credentials: this.#credentials,
+        status: 'SUCCESS'
+      });
     }
+    else if (!(await this.#loadCachedCredentials())) {
+        await this.#getUserCode();
+    }
+  }
+
+  async cacheCredentials() {
+    const str = JSON.stringify(this.#credentials);
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    await this.#session.cache?.set('youtubei_oauth_credentials', data.buffer);
+  }
+
+  async removeCache() {
+    await this.#session.cache?.remove('youtubei_oauth_credentials');
+  }
+
+  async #loadCachedCredentials() {
+    const data = await this.#session.cache?.get('youtubei_oauth_credentials');
+    if (!data) return false;
+    const decoder = new TextDecoder();
+    const str = decoder.decode(data);
+    const credentials = JSON.parse(str);
+    this.#credentials = {
+      access_token: credentials.access_token,
+      refresh_token: credentials.refresh_token,
+      expires: new Date(credentials.expires)
+    }
+    this.#session.emit('auth', {
+      credentials: this.#credentials,
+      status: 'SUCCESS'
+    });
+    return true;
   }
 
   /**
@@ -191,8 +226,9 @@ class OAuth {
   /**
    * Revokes credentials.
    */
-  revokeCredentials() {
+  async revokeCredentials() {
     if (!this.#credentials) return;
+    await this.removeCache();
     return this.#session.http.fetch_function(new URL(`/o/oauth2/revoke?token=${encodeURIComponent(this.#credentials.access_token)}`, Constants.URLS.YT_BASE), {
       method: 'post'
     });

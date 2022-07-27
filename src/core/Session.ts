@@ -64,8 +64,9 @@ export default class Session extends EventEmitterLike {
   http;
   logged_in;
   actions;
+  cache;
 
-  constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string, fetch?: FetchFunction) {
+  constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string, fetch?: FetchFunction, cache?: UniversalCache) {
     super();
     this.#context = context;
     this.#key = api_key;
@@ -75,6 +76,7 @@ export default class Session extends EventEmitterLike {
     this.actions = new Actions(this);
     this.oauth = new OAuth(this);
     this.logged_in = !!cookie;
+    this.cache = cache;
   }
 
   on(type: 'auth', listener: OAuthAuthEventHandler): void;
@@ -139,7 +141,7 @@ export default class Session extends EventEmitterLike {
 
   static async create(options: SessionOptions = {}) {
     const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.fetch);
-    return new Session(context, api_key, api_version, await Player.create(options.cache, options.fetch), options.cookie, options.fetch);
+    return new Session(context, api_key, api_version, await Player.create(options.cache, options.fetch), options.cookie, options.fetch, options.cache);
   }
 
   static async getSessionData(
