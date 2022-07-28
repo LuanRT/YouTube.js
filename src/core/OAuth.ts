@@ -43,20 +43,21 @@ class OAuth {
    */
   async init(credentials?: Credentials) {
     this.#credentials = credentials;
+
     if (this.validateCredentials()) {
-      this.#session.emit('auth', {
-        credentials: this.#credentials,
-        status: 'SUCCESS'
-      });
+      if (!this.has_access_token_expired)
+        this.#session.emit('auth', {
+          credentials: this.#credentials,
+          status: 'SUCCESS'
+        });
     } else if (!(await this.#loadCachedCredentials())) {
       await this.#getUserCode();
     }
   }
 
   async cacheCredentials() {
-    const str = JSON.stringify(this.#credentials);
     const encoder = new TextEncoder();
-    const data = encoder.encode(str);
+    const data = encoder.encode(JSON.stringify(this.#credentials));
     await this.#session.cache?.set('youtubei_oauth_credentials', data.buffer);
   }
 
@@ -67,18 +68,21 @@ class OAuth {
   async #loadCachedCredentials() {
     const data = await this.#session.cache?.get('youtubei_oauth_credentials');
     if (!data) return false;
+
     const decoder = new TextDecoder();
-    const str = decoder.decode(data);
-    const credentials = JSON.parse(str);
+    const credentials = JSON.parse(decoder.decode(data));
+
     this.#credentials = {
       access_token: credentials.access_token,
       refresh_token: credentials.refresh_token,
       expires: new Date(credentials.expires)
     };
+
     this.#session.emit('auth', {
       credentials: this.#credentials,
       status: 'SUCCESS'
     });
+
     return true;
   }
 
@@ -170,21 +174,16 @@ class OAuth {
   }
 
   /**
-   * Refreshes the access token if necessary.
+   * Refresh access token if the same has expired.
    */
-  async checkAccessTokenValidity() {
-    const timestamp = this.#credentials ? new Date(this.#credentials.expires).getTime() : -Infinity;
-    if (new Date().getTime() > timestamp) {
+  async refreshIfRequired() {
+    if (this.has_access_token_expired) {
       await this.#refreshAccessToken();
     }
   }
 
-  /**
-   * Retrieves a new access token using the refresh token.
-   */
   async #refreshAccessToken() {
     if (!this.#credentials) return;
-
     this.#identity = await this.#getClientIdentity();
 
     const data = {
@@ -201,12 +200,6 @@ class OAuth {
       }
     });
 
-    if (response instanceof Error) {
-      const error = new OAuthError('Could not refresh access token.', { status: 'FAILED' });
-      this.#session.emit('update-credentials', error);
-      throw error;
-    }
-
     const response_data = await response.json();
     const expiration_date = new Date(new Date().getTime() + response_data.expires_in * 1000);
 
@@ -222,9 +215,6 @@ class OAuth {
     });
   }
 
-  /**
-   * Revokes credentials.
-   */
   async revokeCredentials() {
     if (!this.#credentials) return;
     await this.removeCache();
@@ -262,6 +252,11 @@ class OAuth {
 
   get credentials() {
     return this.#credentials;
+  }
+
+  get has_access_token_expired(): boolean {
+    const timestamp = this.#credentials ? new Date(this.#credentials.expires).getTime() : -Infinity;
+    return new Date().getTime() > timestamp;
   }
 
   validateCredentials(): this is this & { credentials: Credentials } {

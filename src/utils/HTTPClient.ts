@@ -92,8 +92,7 @@ export default class HTTPClient {
       const oauth = this.#session.oauth;
 
       if (oauth.validateCredentials()) {
-        // Check if the access token is valid to avoid authorization errors.
-        await oauth.checkAccessTokenValidity();
+        await oauth.refreshIfRequired();
 
         request_headers.set('authorization', `Bearer ${oauth.credentials.access_token}`);
 
