@@ -13,4 +13,5 @@ jobs:
 
       - name: npm install and lint
         run: |
+          npm install
           npm run lint
