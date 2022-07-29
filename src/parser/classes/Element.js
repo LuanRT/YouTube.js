@@ -3,11 +3,12 @@ import { YTNode } from '../helpers';
 
 class Element extends YTNode {
   static type = 'Element';
+  model;
 
   constructor(data) {
     super();
     const type = data.newElement.type.componentType;
-    return Parser.parse(type.model);
+    this.model = Parser.parse(type.model);
   }
 }
 

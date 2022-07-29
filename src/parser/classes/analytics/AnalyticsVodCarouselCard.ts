@@ -1,10 +1,13 @@
 import Video from './AnalyticsVideo';
-import { YTNode } from '../helpers';
+import { YTNode } from '../../helpers';
 
 class AnalyticsVodCarouselCard extends YTNode {
   static type = 'AnalyticsVodCarouselCard';
 
-  constructor(data) {
+  title: string;
+  videos: Video[];
+
+  constructor(data: any) {
     super();
     this.title = data.title;
     this.videos = data.videoCarouselData.videos.map((video) => new Video(video));

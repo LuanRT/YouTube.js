@@ -154,7 +154,7 @@ class AccountManager {
     const params = Proto.encodeChannelAnalyticsParams(info.channel_id);
     const response = await this.#actions.browse('FEanalytics_screen', { params, client: 'ANDROID' });
 
-    return new Analytics(response.data);
+    return new Analytics(response);
   }
 }
 

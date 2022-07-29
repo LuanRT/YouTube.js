@@ -1,10 +1,19 @@
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Thumbnail from '../misc/Thumbnail';
+import { YTNode } from '../../helpers';
 
 class AnalyticsVideo extends YTNode {
   static type = 'AnalyticsVideo';
 
-  constructor(data) {
+  title: string;
+  metadata: {
+    views: string;
+    published: string;
+    thumbnails: Thumbnail[];
+    duration: string;
+    is_short: boolean;
+  };
+
+  constructor(data: any) {
     super();
     this.title = data.videoTitle;
 
