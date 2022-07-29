@@ -1,9 +1,12 @@
-import { YTNode } from '../helpers';
+import { YTNode } from '../../helpers';
 
 class CtaGoToCreatorStudio extends YTNode {
   static type = 'CtaGoToCreatorStudio';
 
-  constructor(data) {
+  title: string;
+  use_new_specs: boolean;
+
+  constructor(data: any) {
     super();
     this.title = data.buttonLabel;
     this.use_new_specs = data.useNewSpecs;

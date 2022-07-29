@@ -4,9 +4,13 @@ import { YTNodeConstructor } from './helpers';
 
 import { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction';
 import { default as OpenPopupAction } from './classes/actions/OpenPopupAction';
-import { default as AnalyticsMainAppKeyMetrics } from './classes/AnalyticsMainAppKeyMetrics';
-import { default as AnalyticsVideo } from './classes/AnalyticsVideo';
-import { default as AnalyticsVodCarouselCard } from './classes/AnalyticsVodCarouselCard';
+import { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics';
+import { default as AnalyticsRoot } from './classes/analytics/AnalyticsRoot';
+import { default as AnalyticsShortsCarouselCard } from './classes/analytics/AnalyticsShortsCarouselCard';
+import { default as AnalyticsVideo } from './classes/analytics/AnalyticsVideo';
+import { default as AnalyticsVodCarouselCard } from './classes/analytics/AnalyticsVodCarouselCard';
+import { default as CtaGoToCreatorStudio } from './classes/analytics/CtaGoToCreatorStudio';
+import { default as DataModelSection } from './classes/analytics/DataModelSection';
 import { default as BackstageImage } from './classes/BackstageImage';
 import { default as BackstagePost } from './classes/BackstagePost';
 import { default as BackstagePostThread } from './classes/BackstagePostThread';
@@ -42,8 +46,6 @@ import { default as CompactMix } from './classes/CompactMix';
 import { default as CompactPlaylist } from './classes/CompactPlaylist';
 import { default as CompactVideo } from './classes/CompactVideo';
 import { default as ContinuationItem } from './classes/ContinuationItem';
-import { default as CtaGoToCreatorStudio } from './classes/CtaGoToCreatorStudio';
-import { default as DataModelSection } from './classes/DataModelSection';
 import { default as DidYouMean } from './classes/DidYouMean';
 import { default as DownloadButton } from './classes/DownloadButton';
 import { default as Element } from './classes/Element';
@@ -234,8 +236,12 @@ const map: Record<string, YTNodeConstructor> = {
   AppendContinuationItemsAction,
   OpenPopupAction,
   AnalyticsMainAppKeyMetrics,
+  AnalyticsRoot,
+  AnalyticsShortsCarouselCard,
   AnalyticsVideo,
   AnalyticsVodCarouselCard,
+  CtaGoToCreatorStudio,
+  DataModelSection,
   BackstageImage,
   BackstagePost,
   BackstagePostThread,
@@ -271,8 +277,6 @@ const map: Record<string, YTNodeConstructor> = {
   CompactPlaylist,
   CompactVideo,
   ContinuationItem,
-  CtaGoToCreatorStudio,
-  DataModelSection,
   DidYouMean,
   DownloadButton,
   Element,
