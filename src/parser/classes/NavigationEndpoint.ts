@@ -212,15 +212,30 @@ class NavigationEndpoint extends YTNode {
   }
 
   /**
-   * Calls the endpoint. (This is an experiment and may replace {@link call} in the future.).
+   * Call endpoint. (This is an experiment and may replace {@link call} in the future.).
    */
-  async callTest(actions: Actions, args = { parse: true, params: {} }) {
+  async callTest(actions: Actions, args: {
+    parse: false;
+    params?: { [key: string]: any; }
+  }): Promise<ActionsResponse>;
+  async callTest(actions: Actions, args?: {
+    parse: true;
+    params?: { [key: string]: any; }
+  }): Promise<ParsedResponse>;
+  async callTest(actions: Actions, args: {
+    parse: boolean;
+    params: { [key: string]: any; }
+  }): Promise<ParsedResponse | ActionsResponse>;
+  async callTest(actions: Actions, args?: {
+    parse?: boolean;
+    params?: { [key: string]: any; }
+  }): Promise<ParsedResponse | ActionsResponse> {
     if (!actions)
       throw new Error('An active caller must be provided');
     if (!this.metadata.api_url)
       throw new Error('Expected an api_url, but none was found, this is a bug.');
 
-    const response = await actions.execute(this.metadata.api_url, { ...this.payload, ...args.params, parse: args.parse });
+    const response = await actions.execute(this.metadata.api_url, { ...this.payload, ...(args?.params || {}), parse: args ? args.parse : true });
 
     return response;
   }

@@ -202,7 +202,7 @@ class Innertube {
    */
   async getNotifications() {
     const response = await this.actions.notifications('get_notification_menu');
-    return new NotificationsMenu(this.actions, response.data);
+    return new NotificationsMenu(this.actions, response);
   }
 
   /**
