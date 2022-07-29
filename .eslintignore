@@ -2,7 +2,7 @@
 .github
 test/
 cache/
-src/proto/messages.js
+src/proto/youtube.js
 coverage/
 node_modules/
 dist/
