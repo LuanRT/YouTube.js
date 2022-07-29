@@ -10,7 +10,7 @@ class AnalyticsVodCarouselCard extends YTNode {
   constructor(data: any) {
     super();
     this.title = data.title;
-    this.videos = data.videoCarouselData.videos.map((video) => new Video(video));
+    this.videos = data.videoCarouselData.videos.map((video: any) => new Video(video));
   }
 }
 

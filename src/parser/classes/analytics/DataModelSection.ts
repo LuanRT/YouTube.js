@@ -27,6 +27,12 @@ class DataModelSection extends YTNode {
           labels: string[];
         }
       }
+      measure_axis: {
+        tick_values: number[];
+        custom_formatter: {
+          labels: string[];
+        }
+      }
     }
   };
 
