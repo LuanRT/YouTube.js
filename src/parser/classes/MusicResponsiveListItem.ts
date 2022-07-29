@@ -72,7 +72,7 @@ class MusicResponsiveListItem extends YTNode {
       playlist_set_video_id: data?.playlistItemData?.playlistSetVideoId || null
     };
 
-    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : undefined;
+    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : null;
 
     switch (this.endpoint?.browse?.page_type) {
       case 'MUSIC_PAGE_TYPE_ALBUM':

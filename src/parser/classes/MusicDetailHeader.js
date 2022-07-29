@@ -18,7 +18,7 @@ class MusicDetailHeader extends YTNode {
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail.croppedSquareThumbnailRenderer.thumbnail);
     this.badges = Parser.parse(data.subtitleBadges);
 
-    const author = this.subtitle.runs.find((run) => run.endpoint.browse?.id.startsWith('UC'));
+    const author = this.subtitle.runs.find((run) => run.endpoint?.browse?.id.startsWith('UC'));
 
     if (author) {
       this.author = {

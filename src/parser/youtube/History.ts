@@ -8,7 +8,7 @@ import BrowseFeedActions from '../classes/BrowseFeedActions';
 class History extends Feed {
   sections;
   feed_actions;
-  
+
   constructor(actions: Actions, data: any, already_parsed = false) {
     super(actions, data, already_parsed);
     this.sections = this.memo.get('ItemSection') as ItemSection[];
