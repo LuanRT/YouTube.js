@@ -6,7 +6,7 @@ class SingleColumnMusicWatchNextResults extends YTNode {
 
   constructor(data) {
     super();
-    return Parser.parse(data);
+    this.contents = Parser.parse(data);
   }
 }
 

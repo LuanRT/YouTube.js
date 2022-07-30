@@ -9,14 +9,23 @@ import Album from '../parser/ytmusic/Album';
 import Parser from '../parser/index';
 import { observe, YTNode } from '../parser/helpers';
 
-import Tab from '../parser/classes/Tab';
-import SingleColumnBrowseResults from '../parser/classes/SingleColumnBrowseResults';
-import TabbedSearchResults from '../parser/classes/TabbedSearchResults';
-import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults';
-import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection';
-import NavigationEndpoint from '../parser/classes/NavigationEndpoint';
+import MusicQueue from '../parser/classes/MusicQueue';
+import PlaylistPanel from '../parser/classes/PlaylistPanel';
+import Message from '../parser/classes/Message';
 import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf';
 import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf';
+import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection';
+
+import Tab from '../parser/classes/Tab';
+import Tabbed from '../parser/classes/Tabbed';
+import SingleColumnBrowseResults from '../parser/classes/SingleColumnBrowseResults';
+import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults';
+import TabbedSearchResults from '../parser/classes/TabbedSearchResults';
+import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults';
+import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults';
+import SectionList from '../parser/classes/SectionList';
+
+import NavigationEndpoint from '../parser/classes/NavigationEndpoint';
 
 import { InnertubeError, throwIfMissing } from '../utils/Utils';
 
@@ -99,21 +108,28 @@ class Music {
     const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
 
     const data = Parser.parseResponse(response.data);
-    const node = data.contents.item();
 
-    if (!node.is(SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults))
-      throw new InnertubeError('Invalid id', video_id);
+    const tabs = data.contents.item()
+      .as(SingleColumnMusicWatchNextResults).contents.item()
+      .as(Tabbed).contents.item()
+      .as(WatchNextTabbedResults)
+      .tabs.array().as(Tab);
 
-    const tab = node.tabs.array().get({ title: 'Lyrics' });
-    const page = await tab?.key('endpoint').nodeOfType(NavigationEndpoint).call(this.#actions, 'YTMUSIC', true);
+    const tab = tabs.get({ title: 'Lyrics' })?.as(Tab);
+
+    if (!tab)
+      throw new InnertubeError('Could not find target tab.');
+
+    const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
 
     if (!page)
-      throw new InnertubeError('Invalid video id');
+      throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
 
-    if (page.contents.constructor.name === 'Message')
-      throw new InnertubeError(page.contents.item().key('text').any(), video_id);
+    if (page.contents.item().key('type').string() === 'Message')
+      throw new InnertubeError(page.contents.item().as(Message).text, video_id);
 
-    const description_shelf = page.contents.item().key('contents').parsed().array().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
+    const section_list = page.contents.item().as(SectionList).contents.array();
+    const description_shelf = section_list.firstOfType(MusicDescriptionShelf);
 
     return {
       text: description_shelf?.description.toString(),
@@ -130,25 +146,26 @@ class Music {
     const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
 
     const data = Parser.parseResponse(response.data);
-    const node = data.contents.item();
 
-    if (!node.is(SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults))
-      throw new InnertubeError('Invalid id', video_id);
+    const tabs = data.contents.item()
+      .as(SingleColumnMusicWatchNextResults).contents.item()
+      .as(Tabbed).contents.item()
+      .as(WatchNextTabbedResults)
+      .tabs.array().as(Tab);
 
-    const tab = node.tabs.array().get({ title: 'Up next' });
+    const tab = tabs.get({ title: 'Up next' })?.as(Tab);
 
-    // TODO: verify this is a Tab
-    const upnext_content = tab?.as(Tab).content.item().key('content').any();
+    if (!tab)
+      throw new InnertubeError('Could not find target tab.');
 
-    if (!upnext_content)
-      throw new InnertubeError('Invalid id', video_id);
+    const music_queue = tab.content.item().as(MusicQueue);
 
-    return {
-      id: upnext_content.playlist_id,
-      title: upnext_content.title,
-      is_editable: upnext_content.is_editable,
-      contents: observe(upnext_content.contents)
-    };
+    if (!music_queue.content)
+      throw new InnertubeError('Music queue was empty, the given id is probably invalid.', music_queue);
+
+    const playlist_panel = music_queue.content.item().as(PlaylistPanel);
+
+    return playlist_panel;
   }
 
   /**
