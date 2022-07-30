@@ -53,7 +53,7 @@ class MusicTwoRowItem extends YTNode {
 
         if (this.item_type == 'video') {
           this.views = this.subtitle.runs
-            .find((run) => run.text.match(/(.*?) views/)).text;
+            .find((run) => run?.text.match(/(.*?) views/))?.text || 'N/A';
 
           const author = this.subtitle.runs.find((run) => run.endpoint?.browse?.id.startsWith('UC'));
           if (author) {

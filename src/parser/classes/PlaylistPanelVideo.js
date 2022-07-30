@@ -21,14 +21,14 @@ class PlaylistPanelVideo extends YTNode {
       seconds: timeToSeconds(new Text(data.lengthText).toString())
     };
 
-    const album = new Text(data.longBylineText).runs.find((run) => run.endpoint.browse?.id.startsWith('MPR'));
-    const artists = new Text(data.longBylineText).runs.filter((run) => run.endpoint.browse?.id.startsWith('UC'));
+    const album = new Text(data.longBylineText).runs.find((run) => run.endpoint?.browse?.id.startsWith('MPR'));
+    const artists = new Text(data.longBylineText).runs.filter((run) => run.endpoint?.browse?.id.startsWith('UC'));
 
     this.author = new Text(data.shortBylineText).toString();
 
     if (album) {
       this.album = {
-        id: album.endpoint.browse.id,
+        id: album.endpoint?.browse.id,
         name: album.text,
         year: new Text(data.longBylineText).runs.slice(-1)[0].text,
         endpoint: album.endpoint
@@ -37,7 +37,7 @@ class PlaylistPanelVideo extends YTNode {
 
     this.artists = artists.map((artist) => ({
       name: artist.text,
-      channel_id: artist.endpoint.browse.id,
+      channel_id: artist.endpoint?.browse.id,
       endpoint: artist.endpoint
     }));
 
