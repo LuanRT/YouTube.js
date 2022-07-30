@@ -107,29 +107,29 @@ class Music {
     const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
 
     const data = Parser.parseResponse(response.data);
-    
+
     const tabs = data.contents.item()
       .as(SingleColumnMusicWatchNextResults).contents.item()
       .as(Tabbed).contents.item()
       .as(WatchNextTabbedResults)
       .tabs.array().as(Tab);
-    
-    const tab = tabs.get({ title: 'Lyrics' })?.as(Tab);
-    
+
+    const tab = tabs.get({ title: 'Lyrics' });
+
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
-    
+
     const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
- 
+
     if (!page)
       throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
-      
+
     if (page.contents.item().key('type').string() === 'Message')
       throw new InnertubeError(page.contents.item().as(Message).text, video_id);
-      
+
     const section_list = page.contents.item().as(SectionList).contents.array();
     const description_shelf = section_list.firstOfType(MusicDescriptionShelf);
-    
+
     return {
       text: description_shelf?.description.toString(),
       footer: description_shelf?.footer
@@ -145,25 +145,25 @@ class Music {
     const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
 
     const data = Parser.parseResponse(response.data);
-  
+
     const tabs = data.contents.item()
       .as(SingleColumnMusicWatchNextResults).contents.item()
       .as(Tabbed).contents.item()
       .as(WatchNextTabbedResults)
       .tabs.array().as(Tab);
-    
-    const tab = tabs.get({ title: 'Up next' })?.as(Tab);
-    
+
+    const tab = tabs.get({ title: 'Up next' });
+
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
-    
+
     const music_queue = tab.content.item().as(MusicQueue);
- 
+
     if (!music_queue.content)
       throw new InnertubeError('Music queue was empty, the given id is probably invalid.', music_queue);
-      
+
     const playlist_panel = music_queue.content.item().as(PlaylistPanel);
-    
+
     return playlist_panel;
   }
 
