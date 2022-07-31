@@ -56,19 +56,6 @@ export const INNERTUBE_HEADERS_BASE = Object.freeze({
   'accept-encoding': 'gzip, deflate',
   'content-type': 'application/json'
 });
-export const METADATA_KEYS = Object.freeze([
-  'embed', 'view_count', 'average_rating', 'allow_ratings',
-  'length_seconds', 'channel_id', 'channel_url',
-  'external_channel_id', 'is_live_content', 'is_family_safe',
-  'is_unlisted', 'is_private', 'has_ypc_metadata',
-  'category', 'owner_channel_name', 'publish_date',
-  'upload_date', 'keywords', 'available_countries',
-  'owner_profile_url'
-]);
-export const BLACKLISTED_KEYS = Object.freeze([
-  'is_owner_viewing', 'is_unplugged_corpus',
-  'is_crawlable', 'author'
-]);
 export const ACCOUNT_SETTINGS = Object.freeze({
   // Notifications
   SUBSCRIPTIONS: 'NOTIFICATION_SUBSCRIPTION_NOTIFICATIONS',
@@ -113,8 +100,6 @@ export default {
   CLIENTS,
   STREAM_HEADERS,
   INNERTUBE_HEADERS_BASE,
-  METADATA_KEYS,
-  BLACKLISTED_KEYS,
   ACCOUNT_SETTINGS,
   BASE64_DIALECT,
   SIG_REGEX,
