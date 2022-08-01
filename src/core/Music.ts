@@ -18,12 +18,8 @@ import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection
 
 import Tab from '../parser/classes/Tab';
 import Tabbed from '../parser/classes/Tabbed';
-import SingleColumnBrowseResults from '../parser/classes/SingleColumnBrowseResults';
 import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults';
-import TabbedSearchResults from '../parser/classes/TabbedSearchResults';
 import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults';
-import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults';
-import NavigationEndpoint from '../parser/classes/NavigationEndpoint';
 import SectionList from '../parser/classes/SectionList';
 
 import { InnertubeError, throwIfMissing } from '../utils/Utils';
@@ -176,24 +172,26 @@ class Music {
     const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
 
     const data = Parser.parseResponse(response.data);
-    const node = data.contents.item();
 
-    if (!node.is(SingleColumnBrowseResults, TabbedSearchResults, TwoColumnBrowseResults))
-      throw new InnertubeError('Invalid id', video_id);
+    const tabs = data.contents.item()
+      .as(SingleColumnMusicWatchNextResults).contents.item()
+      .as(Tabbed).contents.item()
+      .as(WatchNextTabbedResults)
+      .tabs.array().as(Tab);
 
-    const tab = node.tabs.array().get({ title: 'Related' });
-    const page = await tab?.key('endpoint').nodeOfType(NavigationEndpoint).call(this.#actions, 'YTMUSIC', true);
+    const tab = tabs.get({ title: 'Related' });
+
+    if (!tab)
+      throw new InnertubeError('Could not find target tab.');
+
+    const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
 
     if (!page)
-      throw new InnertubeError('Invalid video id');
+      throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
 
-    const shelves = page.contents.item().key('contents').parsed().array().filterType(MusicCarouselShelf);
-    const info = page.contents.item().key('contents').parsed().array().get({ type: 'MusicDescriptionShelf' })?.as(MusicDescriptionShelf);
+    const shelves = page.contents.item().as(SectionList).contents.array().as(MusicCarouselShelf, MusicDescriptionShelf);
 
-    return {
-      sections: shelves,
-      info: info?.description.toString() || ''
-    };
+    return shelves;
   }
 
   /**
