@@ -34,21 +34,21 @@ Live Chat's EventEmitter.
   Arguments:
   | Type | Description |
   | --- | --- |                                       
-  | `object` | Initial chat data, actions, info, etc. |
+  | `LiveChatContinuation` | Initial chat data, actions, info, etc. |
 
 - `chat-update`
  
   Arguments:
   | Type | Description |
   | --- | --- |
-  | `object` | Chat Action |
+  | `ChatAction` | Chat Action |
 
 - `metadata-update`
  
   Arguments:
   | Type | Description |
   | --- | --- |
-  | `object` | LiveStream Metadata |
+  | `LiveMetadata` | LiveStream Metadata |
 
 <a name="start"></a>
 ### start()
@@ -66,7 +66,7 @@ Sends a message.
 | --- | --- | --- |
 | text | `string` | Message content |
 
-**Returns:** `Promise.<object>`
+**Returns:** `Promise<ObservedArray<AddChatItemAction>>`
 
 ## Example
 See [`index.js`]('./index.js').
