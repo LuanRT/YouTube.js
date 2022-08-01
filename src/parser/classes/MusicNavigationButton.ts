@@ -5,10 +5,13 @@ import { YTNode } from '../helpers';
 class MusicNavigationButton extends YTNode {
   static type = 'MusicNavigationButton';
 
-  constructor(data) {
+  button_text: string;
+  endpoint: NavigationEndpoint;
+
+  constructor(data: any) {
     super();
     this.button_text = new Text(data.buttonText).toString();
-    this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    this.endpoint = new NavigationEndpoint(data.clickCommand);
   }
 }
 
