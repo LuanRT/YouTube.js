@@ -134,12 +134,12 @@ class VideoInfo {
       this.primary_info = results.get({ type: 'VideoPrimaryInfo' })?.as(VideoPrimaryInfo);
       this.secondary_info = results.get({ type: 'VideoSecondaryInfo' })?.as(VideoSecondaryInfo);
       this.merchandise = results.get({ type: 'MerchandiseShelf' })?.as(MerchandiseShelf);
-      this.related_chip_cloud = secondary_results?.get({ type: 'RelatedChipCloud' })?.as(RelatedChipCloud)?.content.item().as(ChipCloud);
+      this.related_chip_cloud = secondary_results.get({ type: 'RelatedChipCloud' })?.as(RelatedChipCloud)?.content.item().as(ChipCloud);
 
-      this.watch_next_feed = secondary_results?.get({ type: 'ItemSection' })?.as(ItemSection)?.contents;
+      this.watch_next_feed = secondary_results.get({ type: 'ItemSection' })?.as(ItemSection)?.contents;
 
       if (this.watch_next_feed && Array.isArray(this.watch_next_feed))
-        this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
+        this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
 
       this.player_overlays = next?.player_overlays.item().as(PlayerOverlay);
 

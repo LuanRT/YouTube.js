@@ -2,15 +2,39 @@ import Parser, { LiveChatContinuation } from '../index';
 import EventEmitter from '../../utils/EventEmitterLike';
 import VideoInfo from './VideoInfo';
 
+import AddChatItemAction from '../classes/livechat/AddChatItemAction';
+import AddLiveChatTickerItemAction from '../classes/livechat/AddLiveChatTickerItemAction';
+import MarkChatItemAsDeletedAction from '../classes/livechat/MarkChatItemAsDeletedAction';
+import MarkChatItemsByAuthorAsDeletedAction from '../classes/livechat/MarkChatItemsByAuthorAsDeletedAction';
+import ReplaceChatItemAction from '../classes/livechat/ReplaceChatItemAction';
+import ReplayChatItemAction from '../classes/livechat/ReplayChatItemAction';
+import ShowLiveChatActionPanelAction from '../classes/livechat/ShowLiveChatActionPanelAction';
+
 import UpdateTitleAction from '../classes/livechat/UpdateTitleAction';
 import UpdateDescriptionAction from '../classes/livechat/UpdateDescriptionAction';
 import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction';
 import UpdateDateTextAction from '../classes/livechat/UpdateDateTextAction';
 import UpdateToggleButtonTextAction from '../classes/livechat/UpdateToggleButtonTextAction';
-import AddChatItemAction from '../classes/livechat/AddChatItemAction';
+
+import AddBannerToLiveChatCommand from '../classes/livechat/AddBannerToLiveChatCommand';
+import RemoveBannerForLiveChatCommand from '../classes/livechat/RemoveBannerForLiveChatCommand';
+import ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipCommand';
 
 import { InnertubeError } from '../../utils/Utils';
-import { ObservedArray, YTNode } from '../helpers';
+import { ObservedArray } from '../helpers';
+
+export type ChatAction =
+  AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
+  MarkChatItemAsDeletedAction | MarkChatItemsByAuthorAsDeletedAction | RemoveBannerForLiveChatCommand |
+  ReplaceChatItemAction | ReplayChatItemAction | ShowLiveChatActionPanelAction | ShowLiveChatTooltipCommand;
+
+export interface LiveMetadata {
+  title: UpdateTitleAction | undefined;
+  description: UpdateDescriptionAction | undefined;
+  views: UpdateViewershipAction | undefined;
+  likes: UpdateToggleButtonTextAction | undefined;
+  date: UpdateDateTextAction | undefined;
+}
 
 class LiveChat extends EventEmitter {
   #actions;
@@ -22,15 +46,7 @@ class LiveChat extends EventEmitter {
   #md_polling_interval_ms = 5000;
 
   initial_info?: LiveChatContinuation;
-  live_metadata;
-
-  metadata?: {
-    title: UpdateTitleAction | undefined;
-    description: UpdateDescriptionAction | undefined;
-    views: UpdateViewershipAction | undefined;
-    likes: UpdateToggleButtonTextAction | undefined;
-    date: UpdateDateTextAction | undefined;
-  };
+  metadata?: LiveMetadata;
 
   running = false;
   is_replay = false;
@@ -42,14 +58,6 @@ class LiveChat extends EventEmitter {
     this.#actions = video_info.actions;
     this.#continuation = video_info.livechat?.continuation || undefined;
     this.is_replay = video_info.livechat?.is_replay || false;
-
-    this.live_metadata = {
-      title: null as UpdateTitleAction | null,
-      description: null as UpdateDescriptionAction | null,
-      views: null as UpdateViewershipAction | null,
-      likes: null as UpdateToggleButtonTextAction | null,
-      date: null as UpdateDateTextAction | null
-    };
   }
 
   start() {
@@ -93,11 +101,12 @@ class LiveChat extends EventEmitter {
       })().catch((err) => Promise.reject(err));
     }, this.#lc_polling_interval_ms);
   }
+
   /**
    * Ensures actions are emitted at the right speed.
    * This was adapted from YouTube's compiled code (Android).
    */
-  async #emitSmoothedActions(actions: ObservedArray<YTNode>) {
+  async #emitSmoothedActions(actions: ObservedArray<ChatAction>) {
     const base = 1E4;
 
     let delay = actions.length < base / 80 ? 1 : 0;
@@ -154,7 +163,7 @@ class LiveChat extends EventEmitter {
   /**
    * Sends a message.
    */
-  async sendMessage(text: string) {
+  async sendMessage(text: string): Promise<ObservedArray<AddChatItemAction>> {
     const response = await this.#actions.livechat('live_chat/send_message', {
       text,
       ...{
@@ -164,7 +173,11 @@ class LiveChat extends EventEmitter {
     });
 
     const data = Parser.parseResponse(response.data);
-    return data.actions?.array().as(AddChatItemAction);
+
+    if (!data.actions)
+      throw new InnertubeError('Response did not have an "actions" property. The call may have failed.');
+
+    return data.actions.array().as(AddChatItemAction);
   }
 
   async #wait(ms: number) {
