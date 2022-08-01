@@ -80,6 +80,7 @@ import { default as LiveChatMembershipItem } from './classes/livechat/items/Live
 import { default as LiveChatPaidMessage } from './classes/livechat/items/LiveChatPaidMessage';
 import { default as LiveChatPaidSticker } from './classes/livechat/items/LiveChatPaidSticker';
 import { default as LiveChatPlaceholderItem } from './classes/livechat/items/LiveChatPlaceholderItem';
+import { default as LiveChatProductItem } from './classes/livechat/items/LiveChatProductItem';
 import { default as LiveChatTextMessage } from './classes/livechat/items/LiveChatTextMessage';
 import { default as LiveChatTickerPaidMessageItem } from './classes/livechat/items/LiveChatTickerPaidMessageItem';
 import { default as LiveChatTickerSponsorItem } from './classes/livechat/items/LiveChatTickerSponsorItem';
@@ -311,6 +312,7 @@ const map: Record<string, YTNodeConstructor> = {
   LiveChatPaidMessage,
   LiveChatPaidSticker,
   LiveChatPlaceholderItem,
+  LiveChatProductItem,
   LiveChatTextMessage,
   LiveChatTickerPaidMessageItem,
   LiveChatTickerSponsorItem,

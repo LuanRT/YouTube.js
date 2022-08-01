@@ -20,9 +20,10 @@ class LiveChatTextMessage extends YTNode {
     const badges = Parser.parse(data.authorBadges);
 
     this.author.badges = badges;
-    this.author.is_moderator = badges?.some((badge) => badge.icon_type == 'MODERATOR') || null;
-    this.author.is_verified = badges?.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED') || null;
-    this.author.is_verified_artist = badges?.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') || null;
+    this.author.is_moderator = badges ? badges.some((badge) => badge.icon_type == 'MODERATOR') : null;
+    this.author.is_verified = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED') : null;
+    this.author.is_verified_artist = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') : null;
+
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);
     this.id = data.id;
