@@ -2,25 +2,25 @@ import { NTOKEN_REGEX, BASE64_DIALECT } from '../utils/Constants';
 import { InnertubeError } from '../utils/Utils';
 
 export enum NTokenTransformOperation {
-    NO_OP = 0,
-    PUSH,
-    REVERSE_1,
-    REVERSE_2,
-    SPLICE,
-    SWAP0_1,
-    SWAP0_2,
-    ROTATE_1,
-    ROTATE_2,
-    BASE64_DIA,
-    TRANSLATE_1,
-    TRANSLATE_2,
+  NO_OP = 0,
+  PUSH,
+  REVERSE_1,
+  REVERSE_2,
+  SPLICE,
+  SWAP0_1,
+  SWAP0_2,
+  ROTATE_1,
+  ROTATE_2,
+  BASE64_DIA,
+  TRANSLATE_1,
+  TRANSLATE_2,
 }
 
 export enum NTokenTransformOpType {
-    FUNC,
-    N_ARR,
-    LITERAL,
-    REF
+  FUNC,
+  N_ARR,
+  LITERAL,
+  REF
 }
 
 const OP_LOOKUP: Record<string, NTokenTransformOperation> = {
@@ -96,39 +96,39 @@ export class NTokenTransforms {
   }
 
   static push(arr: any[], item: any) {
-    if (Array.isArray(arr?.[0])) arr.push([ NTokenTransformOpType.LITERAL, item ]);
-    else arr.push(item);
+    if (Array.isArray(arr?.[0])) {
+      arr.push([ NTokenTransformOpType.LITERAL, item ]);
+    } else {
+      arr.push(item);
+    }
   }
 }
 
-const TRANSFORM_FUNCTIONS: [Record<number, any>, Record<number, any>] = [
-  {
-    [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
-    [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
-    [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
-    [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
-    [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
-    [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
-    [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
-    [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
-    [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(false),
-    [NTokenTransformOperation.TRANSLATE_1]: (...args: any[]) => NTokenTransforms.translate1.apply(null, [ ...args, false ] as any),
-    [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
-  },
-  {
-    [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
-    [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
-    [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
-    [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
-    [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
-    [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
-    [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
-    [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
-    [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(true),
-    [NTokenTransformOperation.TRANSLATE_1]: (...args: any[]) => NTokenTransforms.translate1.apply(null, [ ...args, true ] as any),
-    [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
-  }
-];
+const TRANSFORM_FUNCTIONS: [Record<number, any>, Record<number, any>] = [ {
+  [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
+  [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
+  [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
+  [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
+  [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
+  [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
+  [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
+  [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
+  [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(false),
+  [NTokenTransformOperation.TRANSLATE_1]: (...args: any[]) => NTokenTransforms.translate1.apply(null, [ ...args, false ] as any),
+  [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
+}, {
+  [NTokenTransformOperation.PUSH]: NTokenTransforms.push,
+  [NTokenTransformOperation.SPLICE]: NTokenTransforms.splice,
+  [NTokenTransformOperation.SWAP0_1]: NTokenTransforms.swap0,
+  [NTokenTransformOperation.SWAP0_2]: NTokenTransforms.swap0,
+  [NTokenTransformOperation.ROTATE_1]: NTokenTransforms.rotate,
+  [NTokenTransformOperation.ROTATE_2]: NTokenTransforms.rotate,
+  [NTokenTransformOperation.REVERSE_1]: NTokenTransforms.reverse,
+  [NTokenTransformOperation.REVERSE_2]: NTokenTransforms.reverse,
+  [NTokenTransformOperation.BASE64_DIA]: () => NTokenTransforms.getBase64Dia(true),
+  [NTokenTransformOperation.TRANSLATE_1]: (...args: any[]) => NTokenTransforms.translate1.apply(null, [ ...args, true ] as any),
+  [NTokenTransformOperation.TRANSLATE_2]: NTokenTransforms.translate2
+} ];
 
 export type NTokenCall = [number, number[]];
 export type NTokenInstruction = [NTokenTransformOpType, (NTokenTransformOperation | number)?, number?];
@@ -136,16 +136,22 @@ export type NTokenTransformer = [NTokenInstruction[], NTokenCall[]];
 
 export default class NToken {
   private transformer: NTokenTransformer;
+
   constructor(transformer: NTokenTransformer) {
     this.transformer = transformer;
   }
+
   static fromSourceCode(raw: string) {
-    const transformationData = NToken.getTransformationData(raw);
-    const transformations = transformationData.map((el) => {
+    const transformation_data = NToken.getTransformationData(raw);
+
+    const transformations = transformation_data.map((el) => {
       if (el != null && typeof el != 'number') {
         const is_reverse_base64 = el.includes('case 65:');
+
         const func = NToken.getFunc(el)?.[0];
+
         const opcode = func ? OP_LOOKUP[func] : undefined;
+
         if (opcode) {
           el = [ NTokenTransformOpType.FUNC, opcode, 0 + is_reverse_base64 ];
         } else if (el == 'b') {
@@ -156,6 +162,7 @@ export default class NToken {
       } else if (el != null) {
         el = [ NTokenTransformOpType.LITERAL, el ];
       }
+
       return el;
     });
 
@@ -165,22 +172,23 @@ export default class NToken {
 
     // Parses and emulates calls to the functions of the transformations array
     const function_body = raw.replace(/\n/g, '').match(/try\{(.*?)\}catch/s)?.[1];
+
     if (!function_body) {
       throw new InnertubeError('Invalid NToken transformation function.', { transformation: raw });
     }
-    const function_calls = [
-      ...function_body.matchAll(NTOKEN_REGEX.CALLS)
-    ].map((params) =>
-      [
-        parseInt(params[1]),
-        params[2].split(',').map((param: string) => {
-          const param_value = param.match(/c\[(.*?)\]/)?.[1];
-          if (!param_value) {
-            throw new InnertubeError('Unexpected NToken transformation function parameter.', { transformation: raw, param });
-          }
-          return parseInt(param_value);
-        })
-      ] as NTokenCall
+
+    const function_calls = [ ...function_body.matchAll(NTOKEN_REGEX.CALLS) ].map((params) => [
+      parseInt(params[1]),
+      params[2].split(',').map((param: string) => {
+        const param_value = param.match(/c\[(.*?)\]/)?.[1];
+
+        if (!param_value) {
+          throw new InnertubeError('Unexpected NToken transformation function parameter.', { transformation: raw, param });
+        }
+
+        return parseInt(param_value);
+      })
+    ] as NTokenCall
     );
 
     return new NToken([ transformations, function_calls ]);
@@ -220,6 +228,7 @@ export default class NToken {
       console.error(new Error(`Could not transform n-token, download may be throttled.\nOriginal Token:${n}\nError:\n${(e as Error).stack}`));
       return n;
     }
+
     return nToken.join('');
   }
 
@@ -241,6 +250,7 @@ export default class NToken {
     // We've got a 3 * 32 bit header to store the library version and the size of the two arrays
 
     let size = 4 * 3;
+
     for (const instruction of this.transformer[0]) {
       switch (instruction[0]) {
         case NTokenTransformOpType.FUNC:
@@ -258,6 +268,7 @@ export default class NToken {
           break;
       }
     }
+
     for (const call of this.transformer[1]) {
       size += 2 + call[1].length;
     }
@@ -266,21 +277,28 @@ export default class NToken {
     const view = new DataView(buffer);
 
     let offset = 0;
+
     view.setUint32(offset, NToken.LIBRARY_VERSION, true);
     offset += 4;
+
     view.setUint32(offset, this.transformer[0].length, true);
     offset += 4;
+
     view.setUint32(offset, this.transformer[1].length, true);
     offset += 4;
+
     for (const instruction of this.transformer[0]) {
       switch (instruction[0]) {
         case NTokenTransformOpType.FUNC:
           {
             if (instruction[1] === undefined || instruction[2] === undefined)
               throw new InnertubeError('Invalid NTokenInstruction.', { transformation: this.transformer, instruction });
+
             const opcode = (instruction[0] << 6) | instruction[2];
+
             view.setUint8(offset, opcode);
             offset += 1;
+
             view.setUint8(offset, instruction[1]);
             offset += 1;
           }
@@ -297,17 +315,23 @@ export default class NToken {
           {
             if (instruction[1] === undefined)
               throw new InnertubeError('Invalid NTokenInstruction.', { transformation: this.transformer, instruction });
+
             const type = typeof instruction[1] === 'string' ? 1 : 0;
+
             const opcode = (instruction[0] << 6) | type;
+
             view.setUint8(offset, opcode);
             offset += 1;
+
             if (type === 0) {
               view.setInt32(offset, instruction[1], true);
               offset += 4;
             } else {
               const encoded = new TextEncoder().encode(instruction[1] as any);
+
               view.setUint32(offset, encoded.byteLength, true);
               offset += 4;
+
               for (let i = 0; i < encoded.byteLength; i++) {
                 view.setUint8(offset, encoded[i]);
                 offset += 1;
@@ -317,11 +341,14 @@ export default class NToken {
           break;
       }
     }
+
     for (const call of this.transformer[1]) {
       view.setUint8(offset, call[0]);
       offset += 1;
+
       view.setUint8(offset, call[1].length);
       offset += 1;
+
       for (const param of call[1]) {
         view.setUint8(offset, param);
         offset += 1;
@@ -334,19 +361,25 @@ export default class NToken {
   static fromArrayBuffer(buffer: ArrayBuffer) {
     const view = new DataView(buffer);
     let offset = 0;
+
     const version = view.getUint32(offset, true);
     offset += 4;
+
     if (version !== NToken.LIBRARY_VERSION)
       throw new TypeError('Invalid library version');
 
     const transformations_length = view.getUint32(offset, true);
     offset += 4;
+
     const function_calls_length = view.getUint32(offset, true);
     offset += 4;
+
     const transformations = new Array<NTokenInstruction>(transformations_length);
+
     for (let i = 0; i < transformations_length; i++) {
       const opcode = view.getUint8(offset++);
       const op = opcode >> 6;
+
       switch (op) {
         case NTokenTransformOpType.FUNC:
           {
@@ -355,17 +388,16 @@ export default class NToken {
             transformations[i] = [ op, operation, is_reverse_base64 ];
           }
           break;
-
         case NTokenTransformOpType.N_ARR:
         case NTokenTransformOpType.REF:
           {
             transformations[i] = [ op ];
           }
           break;
-
         case NTokenTransformOpType.LITERAL:
           {
             const type = opcode & 0b00000001;
+
             if (type === 0) {
               const literal = view.getInt32(offset, true);
               offset += 4;
@@ -373,27 +405,34 @@ export default class NToken {
             } else {
               const length = view.getUint32(offset, true);
               offset += 4;
+
               const literal = new Uint8Array(length);
+
               for (let i = 0; i < length; i++) {
                 literal[i] = view.getUint8(offset++);
               }
+
               transformations[i] = [ op, new TextDecoder().decode(literal) as any ];
             }
           }
           break;
-
         default:
           throw new Error('Invalid opcode');
       }
     }
+
     const function_calls = new Array<NTokenCall>(function_calls_length);
+
     for (let i = 0; i < function_calls_length; i++) {
       const index = view.getUint8(offset++);
+
       const num_params = view.getUint8(offset++);
       const params = new Array<number>(num_params);
+
       for (let j = 0; j < num_params; j++) {
         params[j] = view.getUint8(offset++);
       }
+
       function_calls[i] = [ index, params ];
     }
 

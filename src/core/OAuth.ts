@@ -1,6 +1,6 @@
+import Session from './Session';
 import Constants from '../utils/Constants';
 import { OAuthError, uuidv4 } from '../utils/Utils';
-import Session from './Session';
 
 export interface Credentials {
   /**
@@ -61,10 +61,6 @@ class OAuth {
     await this.#session.cache?.set('youtubei_oauth_credentials', data.buffer);
   }
 
-  async removeCache() {
-    await this.#session.cache?.remove('youtubei_oauth_credentials');
-  }
-
   async #loadCachedCredentials() {
     const data = await this.#session.cache?.get('youtubei_oauth_credentials');
     if (!data) return false;
@@ -84,6 +80,10 @@ class OAuth {
     });
 
     return true;
+  }
+
+  async removeCache() {
+    await this.#session.cache?.remove('youtubei_oauth_credentials');
   }
 
   /**
@@ -266,4 +266,5 @@ class OAuth {
       Reflect.has(this.#credentials, 'expires') || false;
   }
 }
+
 export default OAuth;

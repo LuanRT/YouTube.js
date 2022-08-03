@@ -1,9 +1,11 @@
-import { getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils';
-import Constants from '../utils/Constants';
-import Signature from '../deciphers/Signature';
-import NToken from '../deciphers/NToken';
-import UniversalCache from '../utils/Cache';
 import { FetchFunction } from '../utils/HTTPClient';
+import { getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils';
+
+import Constants from '../utils/Constants';
+import UniversalCache from '../utils/Cache';
+
+import NToken from '../deciphers/NToken';
+import Signature from '../deciphers/Signature';
 
 export default class Player {
   #ntoken;
@@ -16,87 +18,6 @@ export default class Player {
     this.#signature = signature;
     this.#signature_timestamp = signature_timestamp;
     this.#player_id = player_id;
-  }
-
-  static async fromCache(cache: UniversalCache, player_id: string) {
-    const buffer = await cache.get(player_id);
-
-    if (!buffer)
-      return null;
-
-    const view = new DataView(buffer);
-    const version = view.getUint32(0, true);
-
-    if (version !== Player.LIBRARY_VERSION)
-      return null;
-
-    const sig_timestamp = view.getUint32(4, true);
-    const sig_decipher_len = view.getUint32(8, true);
-    const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
-    const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
-
-    return new Player(Signature.fromArrayBuffer(sig_decipher_buf), NToken.fromArrayBuffer(ntoken_transform_buf), sig_timestamp, player_id);
-  }
-
-  static async fromSource(cache: UniversalCache | undefined, sig_timestamp: number, sig_decipher_sc: string, ntoken_sc: string, player_id: string) {
-    const player = new Player(Signature.fromSourceCode(sig_decipher_sc), NToken.fromSourceCode(ntoken_sc), sig_timestamp, player_id);
-    await player.cache(cache);
-    return player;
-  }
-
-  async cache(cache?: UniversalCache) {
-    if (!cache) return;
-
-    const ntokenBuf = this.#ntoken.toArrayBuffer();
-    const sigDecipherBuf = this.#signature.toArrayBuffer();
-    const buffer = new ArrayBuffer(12 + sigDecipherBuf.byteLength + ntokenBuf.byteLength);
-    const view = new DataView(buffer);
-
-    view.setUint32(0, Player.LIBRARY_VERSION, true);
-    view.setUint32(4, this.#signature_timestamp, true);
-    view.setUint32(8, sigDecipherBuf.byteLength, true);
-
-    new Uint8Array(buffer).set(new Uint8Array(sigDecipherBuf), 12);
-    new Uint8Array(buffer).set(new Uint8Array(ntokenBuf), 12 + sigDecipherBuf.byteLength);
-
-    await cache.set(this.#player_id, new Uint8Array(buffer));
-  }
-
-  decipher(url?: string, signature_cipher?: string, cipher?: string) {
-    url = url || signature_cipher || cipher;
-
-    if (!url)
-      throw new PlayerError('No valid URL to decipher');
-
-    const args = new URLSearchParams(url);
-    const url_components = new URL(args.get('url') || url);
-
-    url_components.searchParams.set('ratebypass', 'yes');
-
-    if (signature_cipher || cipher) {
-      const signature = this.#signature.decipher(url);
-      const sp = args.get('sp');
-      sp ?
-        url_components.searchParams.set(sp, signature) :
-        url_components.searchParams.set('signature', signature);
-    }
-
-    const n = url_components.searchParams.get('n');
-
-    if (n) {
-      const ntoken = this.#ntoken.transform(n);
-      url_components.searchParams.set('n', ntoken);
-    }
-
-    return url_components.toString();
-  }
-
-  get url() {
-    return new URL(`/s/player/${this.#player_id}/player_ias.vflset/en_US/base.js`, Constants.URLS.YT_BASE).toString();
-  }
-
-  get sts() {
-    return this.#signature_timestamp;
   }
 
   static async create(cache: UniversalCache | undefined, fetch: FetchFunction = globalThis.fetch) {
@@ -141,6 +62,80 @@ export default class Player {
     return await Player.fromSource(cache, sig_timestamp, sig_decipher_sc, ntoken_sc, player_id);
   }
 
+  decipher(url?: string, signature_cipher?: string, cipher?: string) {
+    url = url || signature_cipher || cipher;
+
+    if (!url)
+      throw new PlayerError('No valid URL to decipher');
+
+    const args = new URLSearchParams(url);
+    const url_components = new URL(args.get('url') || url);
+
+    url_components.searchParams.set('ratebypass', 'yes');
+
+    if (signature_cipher || cipher) {
+      const signature = this.#signature.decipher(url);
+      const sp = args.get('sp');
+
+      sp ?
+        url_components.searchParams.set(sp, signature) :
+        url_components.searchParams.set('signature', signature);
+    }
+
+    const n = url_components.searchParams.get('n');
+
+    if (n) {
+      const ntoken = this.#ntoken.transform(n);
+      url_components.searchParams.set('n', ntoken);
+    }
+
+    return url_components.toString();
+  }
+
+  static async fromCache(cache: UniversalCache, player_id: string) {
+    const buffer = await cache.get(player_id);
+
+    if (!buffer)
+      return null;
+
+    const view = new DataView(buffer);
+    const version = view.getUint32(0, true);
+
+    if (version !== Player.LIBRARY_VERSION)
+      return null;
+
+    const sig_timestamp = view.getUint32(4, true);
+    const sig_decipher_len = view.getUint32(8, true);
+    const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
+    const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
+
+    return new Player(Signature.fromArrayBuffer(sig_decipher_buf), NToken.fromArrayBuffer(ntoken_transform_buf), sig_timestamp, player_id);
+  }
+
+  static async fromSource(cache: UniversalCache | undefined, sig_timestamp: number, sig_decipher_sc: string, ntoken_sc: string, player_id: string) {
+    const player = new Player(Signature.fromSourceCode(sig_decipher_sc), NToken.fromSourceCode(ntoken_sc), sig_timestamp, player_id);
+    await player.cache(cache);
+    return player;
+  }
+
+  async cache(cache?: UniversalCache) {
+    if (!cache) return;
+
+    const ntoken_buf = this.#ntoken.toArrayBuffer();
+    const sig_decipher_buf = this.#signature.toArrayBuffer();
+    const buffer = new ArrayBuffer(12 + sig_decipher_buf.byteLength + ntoken_buf.byteLength);
+    const view = new DataView(buffer);
+
+    view.setUint32(0, Player.LIBRARY_VERSION, true);
+    view.setUint32(4, this.#signature_timestamp, true);
+    view.setUint32(8, sig_decipher_buf.byteLength, true);
+
+    new Uint8Array(buffer).set(new Uint8Array(sig_decipher_buf), 12);
+    new Uint8Array(buffer).set(new Uint8Array(ntoken_buf), 12 + sig_decipher_buf.byteLength);
+
+    await cache.set(this.#player_id, new Uint8Array(buffer));
+  }
+
   /**
    * Extracts the signature timestamp from the player source code.
    */
@@ -171,6 +166,14 @@ export default class Player {
       throw new PlayerError('Failed to extract n-token decipher algorithm');
 
     return sc;
+  }
+
+  get url() {
+    return new URL(`/s/player/${this.#player_id}/player_ias.vflset/en_US/base.js`, Constants.URLS.YT_BASE).toString();
+  }
+
+  get sts() {
+    return this.#signature_timestamp;
   }
 
   static get LIBRARY_VERSION() {

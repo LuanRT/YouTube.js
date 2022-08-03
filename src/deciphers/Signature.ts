@@ -1,25 +1,25 @@
 import { SIG_REGEX } from '../utils/Constants';
 
 export enum SignatureOperation {
-    REVERSE,
-    SPLICE,
-    SWAP
+  REVERSE,
+  SPLICE,
+  SWAP
 }
 
-export type SignatureInstruction = [SignatureOperation, number];
+export type SignatureInstruction = [ SignatureOperation, number ];
 
 export default class Signature {
-  private actionSequence;
+  private action_sequence;
 
-  constructor(actionSequence: SignatureInstruction[]) {
-    this.actionSequence = actionSequence;
+  constructor(action_sequence: SignatureInstruction[]) {
+    this.action_sequence = action_sequence;
   }
 
-  static fromSourceCode(sigDecipherSc: string) {
+  static fromSourceCode(raw_sc: string) {
     let func: RegExpExecArray | null;
     const functions = [];
 
-    while ((func = SIG_REGEX.FUNCTIONS.exec(sigDecipherSc)) !== null) {
+    while ((func = SIG_REGEX.FUNCTIONS.exec(raw_sc)) !== null) {
       if (func[0].includes('reverse')) {
         functions[0] = func[1];
       } else if (func[0].includes('splice')) {
@@ -31,51 +31,49 @@ export default class Signature {
 
     let actions: RegExpExecArray | null;
 
-    const actionSequence: SignatureInstruction[] = [];
+    const action_sequence: SignatureInstruction[] = [];
 
-    while ((actions = SIG_REGEX.ACTIONS.exec(sigDecipherSc)) !== null) {
+    while ((actions = SIG_REGEX.ACTIONS.exec(raw_sc)) !== null) {
       const action = actions.groups;
       if (!action) continue;
       switch (action.name) {
         case functions[0]:
-          actionSequence.push([ SignatureOperation.REVERSE, 0 ]);
+          action_sequence.push([ SignatureOperation.REVERSE, 0 ]);
           break;
         case functions[1]:
-          actionSequence.push([ SignatureOperation.SPLICE, parseInt(action.param) ]);
+          action_sequence.push([ SignatureOperation.SPLICE, parseInt(action.param) ]);
           break;
         case functions[2]:
-          actionSequence.push([ SignatureOperation.SWAP, parseInt(action.param) ]);
+          action_sequence.push([ SignatureOperation.SWAP, parseInt(action.param) ]);
           break;
         default:
       }
     }
 
-    return new Signature(actionSequence);
+    return new Signature(action_sequence);
   }
 
   decipher(url: string) {
     const args = new URLSearchParams(url);
     const signature = args.get('s')?.split('');
+
     if (!signature)
       throw new TypeError('Invalid input signature');
 
-    for (const action of this.actionSequence) {
+    for (const action of this.action_sequence) {
       switch (action[0]) {
         case SignatureOperation.REVERSE:
           signature.reverse();
           break;
-
         case SignatureOperation.SPLICE:
           signature.splice(0, action[1]);
           break;
-
         case SignatureOperation.SWAP:
           const index = action[1];
-          const origArrI = signature[0];
+          const orig_arr = signature[0];
           signature[0] = signature[index % signature.length];
-          signature[index % signature.length] = origArrI;
+          signature[index % signature.length] = orig_arr;
           break;
-
         default:
           break;
       }
@@ -85,43 +83,55 @@ export default class Signature {
   }
 
   toJSON() {
-    return [ ...this.actionSequence ];
+    return [ ...this.action_sequence ];
   }
 
   toArrayBuffer() {
     // Array buffer encoding assumes that the index of the action is a short (16 bit unsigned)
-    const buffer = new ArrayBuffer(4 + 4 + this.actionSequence.length * (1 + 2));
+    const buffer = new ArrayBuffer(4 + 4 + this.action_sequence.length * (1 + 2));
     const view = new DataView(buffer);
+
     let offset = 0;
+
     view.setUint32(offset, Signature.LIBRARY_VERSION, true);
     offset += 4;
-    view.setUint32(offset, this.actionSequence.length, true);
+
+    view.setUint32(offset, this.action_sequence.length, true);
     offset += 4;
-    for (let i = 0; i < this.actionSequence.length; i++) {
-      view.setUint8(offset, this.actionSequence[i][0]);
+
+    for (let i = 0; i < this.action_sequence.length; i++) {
+      view.setUint8(offset, this.action_sequence[i][0]);
       offset += 1;
-      view.setUint16(offset, this.actionSequence[i][1], true);
+
+      view.setUint16(offset, this.action_sequence[i][1], true);
       offset += 2;
     }
+
     return buffer;
   }
 
   static fromArrayBuffer(buffer: ArrayBuffer) {
     const view = new DataView(buffer);
+
     let offset = 0;
+
     const version = view.getUint32(offset, true);
     offset += 4;
+
     if (version !== Signature.LIBRARY_VERSION)
       throw new TypeError('Invalid library version');
 
-    const actionSequenceLength = view.getUint32(offset, true);
+    const action_sequenceLength = view.getUint32(offset, true);
     offset += 4;
-    const actionSequence = new Array<SignatureInstruction>(actionSequenceLength);
-    for (let i = 0; i < actionSequenceLength; i++) {
-      actionSequence[i] = [ view.getUint8(offset), view.getUint16(offset + 1, true) ];
+
+    const action_sequence = new Array<SignatureInstruction>(action_sequenceLength);
+
+    for (let i = 0; i < action_sequenceLength; i++) {
+      action_sequence[i] = [ view.getUint8(offset), view.getUint16(offset + 1, true) ];
       offset += 3;
     }
-    return new Signature(actionSequence);
+
+    return new Signature(action_sequence);
   }
 
   static get LIBRARY_VERSION() {

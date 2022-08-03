@@ -27,6 +27,7 @@ class TabbedFeed extends Feed {
       return this;
 
     const response = await tab.endpoint.call(this.#actions);
+
     if (!response)
       throw new InnertubeError('Failed to call endpoint');
 

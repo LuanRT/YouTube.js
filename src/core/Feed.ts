@@ -1,27 +1,34 @@
-import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction';
+import Parser, { ParsedResponse, ReloadContinuationItemsCommand } from '../parser/index';
+import { Memo, ObservedArray } from '../parser/helpers';
+import { InnertubeError } from '../utils/Utils';
+import Actions from './Actions';
+
+import Post from '../parser/classes/Post';
 import BackstagePost from '../parser/classes/BackstagePost';
+
 import Channel from '../parser/classes/Channel';
 import CompactVideo from '../parser/classes/CompactVideo';
-import ContinuationItem from '../parser/classes/ContinuationItem';
+
 import GridChannel from '../parser/classes/GridChannel';
 import GridPlaylist from '../parser/classes/GridPlaylist';
 import GridVideo from '../parser/classes/GridVideo';
+
 import Playlist from '../parser/classes/Playlist';
 import PlaylistPanelVideo from '../parser/classes/PlaylistPanelVideo';
 import PlaylistVideo from '../parser/classes/PlaylistVideo';
-import Post from '../parser/classes/Post';
+
+import Tab from '../parser/classes/Tab';
 import ReelShelf from '../parser/classes/ReelShelf';
 import RichShelf from '../parser/classes/RichShelf';
 import Shelf from '../parser/classes/Shelf';
-import Tab from '../parser/classes/Tab';
+
 import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults';
 import TwoColumnSearchResults from '../parser/classes/TwoColumnSearchResults';
-import Video from '../parser/classes/Video';
 import WatchCardCompactVideo from '../parser/classes/WatchCardCompactVideo';
-import { Memo, ObservedArray } from '../parser/helpers';
-import Parser, { ParsedResponse, ReloadContinuationItemsCommand } from '../parser/index';
-import { InnertubeError } from '../utils/Utils';
-import Actions from './Actions';
+import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction';
+import ContinuationItem from '../parser/classes/ContinuationItem';
+
+import Video from '../parser/classes/Video';
 
 // TODO: add a way subdivide into sections and return subfeeds?
 class Feed {
@@ -37,6 +44,7 @@ class Feed {
       this.#page = Parser.parseResponse(data);
     }
 
+    // Xxx: this can be extremely confusing — maybe refactor?
     const memo =
             this.#page.on_response_received_commands ?
               this.#page.on_response_received_commands_memo :

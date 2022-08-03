@@ -9,6 +9,12 @@ import HTTPClient, { FetchFunction } from '../utils/HTTPClient';
 import { DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils';
 import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth';
 
+export enum ClientType {
+  WEB = 'WEB',
+  MUSIC = 'WEB_REMIX',
+  ANDROID = 'ANDROID',
+}
+
 export interface Context {
   client: {
     hl: string;
@@ -39,12 +45,6 @@ export interface Context {
   };
 }
 
-export enum ClientType {
-  WEB = 'WEB',
-  MUSIC = 'WEB_REMIX',
-  ANDROID = 'ANDROID',
-}
-
 export interface SessionOptions {
   lang?: string;
   device_category?: DeviceCategory;
@@ -60,6 +60,7 @@ export default class Session extends EventEmitterLike {
   #key;
   #context;
   #player;
+
   oauth;
   http;
   logged_in;
@@ -96,49 +97,6 @@ export default class Session extends EventEmitterLike {
     super.once(type, listener);
   }
 
-  async signIn(credentials?: Credentials): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-      const error_handler: OAuthAuthErrorEventHandler = (err) => {
-        reject(err);
-      };
-
-      this.once('auth', (data) => {
-        this.off('auth-error', error_handler);
-
-        if (data.status === 'SUCCESS') {
-          this.logged_in = true;
-          resolve();
-        }
-
-        reject(data);
-      });
-
-      this.once('auth-error', error_handler);
-
-      try {
-        await this.oauth.init(credentials);
-
-        if (this.oauth.validateCredentials()) {
-          await this.oauth.refreshIfRequired();
-          this.logged_in = true;
-          resolve();
-        }
-      } catch (err) {
-        reject(err);
-      }
-    });
-  }
-
-  async signOut() {
-    if (!this.logged_in)
-      throw new InnertubeError('You are not signed in');
-
-    const response = await this.oauth.revokeCredentials();
-    this.logged_in = false;
-
-    return response;
-  }
-
   static async create(options: SessionOptions = {}) {
     const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.fetch);
     return new Session(context, api_key, api_version, await Player.create(options.cache, options.fetch), options.cookie, options.fetch, options.cache);
@@ -146,8 +104,8 @@ export default class Session extends EventEmitterLike {
 
   static async getSessionData(
     lang = 'en-US',
-    deviceCategory: DeviceCategory = 'desktop',
-    clientName: ClientType = ClientType.WEB,
+    device_category: DeviceCategory = 'desktop',
+    client_name: ClientType = ClientType.WEB,
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
     fetch: FetchFunction = globalThis.fetch
   ) {
@@ -187,11 +145,11 @@ export default class Session extends EventEmitterLike {
         remoteHost: device_info[3],
         visitorData: visitor_data,
         userAgent: device_info[14],
-        clientName,
+        clientName: client_name,
         clientVersion: device_info[16],
         osName: device_info[17],
         osVersion: device_info[18],
-        platform: deviceCategory.toUpperCase(),
+        platform: device_category.toUpperCase(),
         clientFormFactor: 'UNKNOWN_FORM_FACTOR',
         userInterfaceTheme: 'USER_INTERFACE_THEME_LIGHT',
         timeZone: device_info[79],
@@ -210,11 +168,48 @@ export default class Session extends EventEmitterLike {
       }
     };
 
-    return {
-      context,
-      api_key,
-      api_version
-    };
+    return { context, api_key, api_version };
+  }
+
+  async signIn(credentials?: Credentials): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      const error_handler: OAuthAuthErrorEventHandler = (err) => reject(err);
+
+      this.once('auth', (data) => {
+        this.off('auth-error', error_handler);
+
+        if (data.status === 'SUCCESS') {
+          this.logged_in = true;
+          resolve();
+        }
+
+        reject(data);
+      });
+
+      this.once('auth-error', error_handler);
+
+      try {
+        await this.oauth.init(credentials);
+
+        if (this.oauth.validateCredentials()) {
+          await this.oauth.refreshIfRequired();
+          this.logged_in = true;
+          resolve();
+        }
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  async signOut() {
+    if (!this.logged_in)
+      throw new InnertubeError('You are not signed in');
+
+    const response = await this.oauth.revokeCredentials();
+    this.logged_in = false;
+
+    return response;
   }
 
   get key() {
