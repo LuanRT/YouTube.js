@@ -86,8 +86,6 @@ ___
 
 InnerTube is an API used across all YouTube clients, it was created to simplify[^1] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
 
-And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workings of the Innertube API!
-
 If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
 
 <!-- GETTING STARTED -->
@@ -322,22 +320,24 @@ Searches the given query on YouTube.
 ### getSearchSuggestions(query)
 Retrieves search suggestions for given query.
 
+**Returns**: `Promise.<string[]>`
+
 | Param | Type | Description |
 | --- | --- | --- |
 | query | `string` | The search query |
 
-**Returns**: `Promise.<string[]>`
 
 <a name="getcomments"></a>
 ### getComments(video_id, sort_by?)
 Retrieves comments for given video.
+
+**Returns**: `Promise.<Comments>`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The video id |
 | sort_by | `string` | Can be: `TOP_COMMENTS` or `NEWEST_FIRST` |
 
-**Returns**: `Promise.<Comments>`
 
 <a name="gethomefeed"></a>
 ### getHomeFeed()
@@ -373,11 +373,12 @@ Retrieves subscriptions feed.
 ### getChannel(id)
 Retrieves contents for a given channel.
 
+**Returns**: `Promise.<Channel>`
+
 | Param | Type | Description |
 | --- | --- | --- |
 | id | `string` | Channel id |
 
-**Returns**: `Promise.<Channel>`
 
 <a name="getnotifications"></a>
 ### getNotifications()
@@ -395,33 +396,36 @@ Retrieves unseen notifications count.
 ### getPlaylist(id)
 Retrieves playlist contents.
 
+**Returns**: `Promise.<Playlist>`
+
 | Param | Type | Description |
 | --- | --- | --- |
 | id | `string` | Playlist id |
 
-**Returns**: `Promise.<Playlist>`
 
 <a name="getstreamingdata"></a>
 ### getStreamingData(video_id, options)
 Returns deciphered streaming data.
+
+**Returns**: `Promise.<object>`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | Video id |
 | options | `FormatOptions` | Format options |
 
-**Returns**: `Promise.<object>`
 
 <a name="download"></a>
 ### download(video_id, options?)
 Downloads a given video.
+
+**Returns**: `Promise.<ReadableStream<Uint8Array>>`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | Video id |
 | options | `DownloadOptions` | Download options |
 
-**Returns**: `Promise.<ReadableStream<Uint8Array>>`
 
 <!-- CONTRIBUTING -->
 ## Contributing
