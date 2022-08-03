@@ -84,7 +84,7 @@ ___
 <!-- ABOUT THE PROJECT -->
 ## About
 
-Innertube is an API used across all YouTube clients, it was created to simplify[^1] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
+InnerTube is an API used across all YouTube clients, it was created to simplify[^1] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
 
 And huge thanks to [@gatecrasher777][gatecrasher] for his research on the workings of the Innertube API!
 
@@ -103,24 +103,23 @@ It requires a runtime with the following features:
 - [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) required.
 
 ### Installation
-- NPM:
+
 ```bash
+# NPM
 npm install youtubei.js@latest
-```
-- Yarn:
-```bash
+
+# Yarn
 yarn add youtubei.js@latest
-```
-- Git (bleeding-edge version):
-```bash
-npm install git+https://github.com/LuanRT/YouTube.js.git
+
+# Git (edge version)
+npm install github:LuanRT/YouTube.js
 ```
 
 **TODO: Deno install instructions (esm.sh possibly?)**
 
 <!-- USAGE -->
 ## Usage
-Create an Innertube instance (or session):
+Create an InnerTube instance:
 ```ts
 // const { Innertube } = require('youtubei.js');
 import { Innertube } from 'youtubei.js';
@@ -179,7 +178,6 @@ player.initialize(videoElement, uri, true);
 
 Our browser example in [`examples/browser/web`]() provides a full working example.
 
-
 <a name="custom-fetch"></a>
 
 ## Providing your own fetch implementation
@@ -225,19 +223,39 @@ const yt = await Innertube.create({
 
 ## API
 
-## Innertube : `object`
+* Innertube
 
-* Innertube : `object`
-  * [.getInfo(video_id)](#getinfo) ⇒ `function`
-  * [.getBasicInfo(video_id)](#getbasicinfo) ⇒ `function`
-  * [.search(query, filters?)](#ytsearch) ⇒ `function`
-
+  <!-- TODO: write API refs for these -->
+  * [.session](#session)
+  * [.account](#account)
+  * [.interact](#interact)
+  * [.playlist](#playlist)
+  * [.music](#music)
+  * [.studio](#studio)
+  ___
+  * [.getInfo(video_id)](#getinfo)
+  * [.getBasicInfo(video_id)](#getbasicinfo)
+  * [.search(query, filters?)](#search)
+  * [.getSearchSuggestions(query)](#getsearchsuggestions)
+  * [.getComments(video_id, sort_by?)](#getcomments)
+  * [.getHomeFeed()](#gethomefeed)
+  * [.getLibrary()](#getlibrary)
+  * [.getHistory()](#gethistory)
+  * [.getTrending()](#gettrending)
+  * [.getSubscriptionsFeed()](#getsubscriptionsfeed)
+  * [.getChannel(id)](#getchannel)
+  * [.getNotifications()](#getnotifications)
+  * [.getUnseenNotificationsCount()](#getunseennotificationscount)
+  * [.getPlaylist(id)](#getplaylist)
+  * [.getStreamingData(video_id, options)](#getstreamingdata)
+  * [.download(video_id, options?)](#download)
+  
 <a name="getinfo"></a>
 ### getInfo(video_id)
 
 Retrieves video info, including playback data and even layout elements such as menus, buttons etc — all nicely parsed.
 
-**Returns**: [`Promise.<VideoInfo>`](https://github.com/LuanRT/YouTube.js/blob/main/typings/lib/parser/youtube/VideoInfo.d.ts)
+**Returns**: `Promise.<VideoInfo>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -245,25 +263,25 @@ Retrieves video info, including playback data and even layout elements such as m
 
 **Methods & Getters**:
 
-- [`<info>#like()`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/VideoInfo.d.ts#L98)
+- `<info>#like()`
   - Likes the video.
 
-- [`<info>#dislike()`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/VideoInfo.d.ts#L108)
+- `<info>#dislike()`
   - Dislikes the video.
 
-- [`<info>#removeLike()`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/VideoInfo.d.ts#L118)
+- `<info>#removeLike()`
   - Removes like/dislike.
 
-- [`<info>#filters`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/VideoInfo.d.ts#L124)
+- `<info>#filters`
   - Returns filters that can be applied to the watch next feed.
 
-- [`<info>#selectFilter(name)`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/VideoInfo.d.ts#L79)
+- `<info>#selectFilter(name)`
   - Applies given filter to the watch next feed and returns a new instance of [`VideoInfo`](https://github.com/LuanRT/YouTube.js/blob/main/typings/lib/parser/youtube/VideoInfo.d.ts).
 
-- [`<info>#getWatchNextContinuation()`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/VideoInfo.d.ts#L87)
+- `<info>#getWatchNextContinuation()`
   - Retrieves next batch of items for the [watch next feed](https://github.com/LuanRT/YouTube.js/blob/main/typings/lib/parser/youtube/VideoInfo.d.ts).
 
-- [`<info>#page`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/VideoInfo.d.ts#L125)
+- `<info>#page`
   - Returns original InnerTube response (sanitized).
 
 <a name="getbasicinfo"></a>
@@ -271,47 +289,139 @@ Retrieves video info, including playback data and even layout elements such as m
 
 Suitable for cases where you only need basic video metadata, much faster than `getInfo()`.
 
-**Returns**: [`Promise.<VideoInfo>`](https://github.com/LuanRT/YouTube.js/blob/main/typings/lib/parser/youtube/VideoInfo.d.ts)
+**Returns**: `Promise.<VideoInfo>`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The id of the video |
 
-<a name="ytsearch"></a>
+<a name="search"></a>
 ### search(query, filters?)
 
 Searches the given query on YouTube.
 
-**Returns**: [`Promise.<Search>`](https://github.com/LuanRT/YouTube.js/blob/3f22a44ba9dd96575f609b0349bab5f50490c9fe/typings/lib/parser/youtube/Search.d.ts)
+**Returns**: `Promise.<Search>`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | query | `string` | The search query |
-| filters | `object` | Search filters |
-
-**Supported search filters**:
-* type: `all` | `video` | `channel` | `playlist` | `movie`
-* upload_date: `all` | `hour` | `today` | `week` | `month` | `year`
-* duration: `all` | `short` | `medium` | `long`
-* sort_by: `relevance` | `rating` | `upload_date` | `view_count`
+| filters | `SearchFilters` | Search filters |
 
 **Methods & Getters**:
 
-- [`<search>#selectRefinementCard(SearchRefinementCard | string)`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/Search.d.ts#L34)
-  - Applies given refinement card and returns a new [Search](https://github.com/LuanRT/YouTube.js/blob/main/typings/lib/parser/youtube/Search.d.ts#L34) instance.
+- `<search>#selectRefinementCard(SearchRefinementCard | string)`
+  - Applies given refinement card and returns a new Search instance.
 
-- [`<search>#refinement_card_queries`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/Search.d.ts#L36)
-  - Returns available refinement cards, this is a simplified version of the [refinement cards](https://github.com/LuanRT/YouTube.js/blob/3f22a44ba9dd96575f609b0349bab5f50490c9fe/typings/lib/parser/youtube/Search.d.ts#L25#L30) object.
+- `<search>#refinement_card_queries`
+  - Returns available refinement cards, this is a simplified version of the `refinement_cards` object.
 
-- [`<search>#getContinuation()`](https://github.com/LuanRT/YouTube.js/blob/1681a9b84cdf059ef176b4faadab05866bad0754/typings/lib/parser/youtube/Search.d.ts#L42)
+- `<search>#getContinuation()`
   - Retrieves next batch of results.
 
-<a name="ythomefeed"></a>
-### getHomeFeed()
+<a name="getsearchsuggestions"></a>
+### getSearchSuggestions(query)
+Retrieves search suggestions for given query.
 
+| Param | Type | Description |
+| --- | --- | --- |
+| query | `string` | The search query |
+
+**Returns**: `Promise.<string[]>`
+
+<a name="getcomments"></a>
+### getComments(video_id, sort_by?)
+Retrieves comments for given video.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | The video id |
+| sort_by | `string` | Can be: `TOP_COMMENTS` or `NEWEST_FIRST` |
+
+**Returns**: `Promise.<Comments>`
+
+<a name="gethomefeed"></a>
+### getHomeFeed()
 Retrieves YouTube's home feed.
 
-**Returns**: [`Promise.<FilterableFeed>`](https://github.com/LuanRT/YouTube.js/blob/main/typings/lib/core/FilterableFeed.d.ts)
+**Returns**: `Promise.<FilterableFeed>`
+
+<a name="getlibrary"></a>
+### getLibrary()
+Retrieves the account's library.
+
+**Returns**: `Promise.<Library>`
+
+<a name="gethistory"></a>
+### getHistory()
+Retrieves watch history.
+
+**Returns**: `Promise.<History>`
+
+<a name="gettrending"></a>
+### getTrending()
+Retrieves trending content.
+
+**Returns**: `Promise.<TabbedFeed>`
+
+<a name="getsubscriptionsfeed"></a>
+### getSubscriptionsFeed()
+Retrieves subscriptions feed.
+
+**Returns**: `Promise.<Feed>`
+
+<a name="getchannel"></a>
+### getChannel(id)
+Retrieves contents for a given channel.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | `string` | Channel id |
+
+**Returns**: `Promise.<Channel>`
+
+<a name="getnotifications"></a>
+### getNotifications()
+Retrieves notifications.
+
+**Returns**: `Promise.<NotificationsMenu>`
+
+<a name="getunseennotificationscount"></a>
+### getUnseenNotificationsCount()
+Retrieves unseen notifications count.
+
+**Returns**: `Promise.<number>`
+
+<a name="getplaylist"></a>
+### getPlaylist(id)
+Retrieves playlist contents.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | `string` | Playlist id |
+
+**Returns**: `Promise.<Playlist>`
+
+<a name="getstreamingdata"></a>
+### getStreamingData(video_id, options)
+Returns deciphered streaming data.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | Video id |
+| options | `FormatOptions` | Format options |
+
+**Returns**: `Promise.<object>`
+
+<a name="download"></a>
+### download(video_id, options?)
+Downloads a given video.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | Video id |
+| options | `DownloadOptions` | Download options |
+
+**Returns**: `Promise.<ReadableStream<Uint8Array>>`
 
 <!-- CONTRIBUTING -->
 ## Contributing

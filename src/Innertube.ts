@@ -214,12 +214,11 @@ class Innertube {
   }
 
   /**
-   * Retrieves the contents of a given playlist.
-   * @param playlist_id - the id of the playlist.
+   * Retrieves playlist contents.
    */
-  async getPlaylist(playlist_id: string) {
-    throwIfMissing({ playlist_id });
-    const response = await this.actions.browse(`VL${playlist_id.replace(/VL/g, '')}`);
+  async getPlaylist(id: string) {
+    throwIfMissing({ id });
+    const response = await this.actions.browse(`VL${id.replace(/VL/g, '')}`);
     return new Playlist(this.actions, response.data);
   }
 
