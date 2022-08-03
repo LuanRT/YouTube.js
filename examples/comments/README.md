@@ -11,7 +11,7 @@ const comments = await session.getComments(VIDEO_ID);
 ## API
 * Comments
   * [.contents](#commentthread) ⇒ `CommentThread[]`
-  * [.comment](#comment) ⇒ `function`
+  * [.createComment](#createComment) ⇒ `function`
   * [.getContinuation](#getc) ⇒ `function`
   * [.page](#page) ⇒ `getter`
 
@@ -21,27 +21,27 @@ A list of comment threads. **Note:** More about comment threads [**here**](./Com
 
 **Type:** [`CommentThread[]`](../../lib/parser/contents/classes/CommentThread.js)
 
-<a name="comment"></a>
-### comment(text)
-Posts a top-level comment.
+<a name="createComment"></a>
+### createComment(text)
+Creates a top-level comment.
 
 | Param | Type | Description |
 | --- | --- | --- |
 | text | `string` | Comment content |
 
-**Returns:** `Promise.<object>`
+**Returns:** `Promise<ActionsResponse>`
 
 <a name="getc"></a>
 ### getContinuation()
 Retrieves next batch of comment threads.
 
-**Returns:** [`Promise.<Comments>`](../../lib/parser/youtube/Comments.js)
+**Returns:** [`Promise.<Comments>`](../../lib/parser/youtube/Comments.ts)
 
 <a name="page"></a>
 ### page
 Returns original InnerTube response (sanitized).
 
-**Returns:** `Promise.<object>`
+**Returns:** `ParsedResponse`
 
 ## Example
 See [`index.ts`]('./index.ts').
