@@ -221,26 +221,22 @@ class NavigationEndpoint extends YTNode {
    */
   async callTest(actions: Actions, args: {
     parse: false;
-    params?: { [key: string]: any; }
+    params?: object
   }): Promise<ActionsResponse>;
   async callTest(actions: Actions, args?: {
-    parse: true;
-    params?: { [key: string]: any; }
+    parse?: true;
+    params?: object
   }): Promise<ParsedResponse>;
   async callTest(actions: Actions, args: {
-    parse: boolean;
-    params: { [key: string]: any; }
-  }): Promise<ParsedResponse | ActionsResponse>;
-  async callTest(actions: Actions, args?: {
     parse?: boolean;
-    params?: { [key: string]: any; }
-  }): Promise<ParsedResponse | ActionsResponse> {
+    params?: object
+  } = { parse: true, params: {} }): Promise<ParsedResponse | ActionsResponse> {
     if (!actions)
       throw new Error('An active caller must be provided');
     if (!this.metadata.api_url)
       throw new Error('Expected an api_url, but none was found, this is a bug.');
 
-    const response = await actions.execute(this.metadata.api_url, { ...this.payload, ...(args?.params || {}), parse: args ? args.parse : true });
+    const response = await actions.execute(this.metadata.api_url, { ...this.payload, ...args.params, parse: args.parse });
 
     return response;
   }

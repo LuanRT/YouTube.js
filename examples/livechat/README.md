@@ -69,4 +69,4 @@ Sends a message.
 **Returns:** `Promise<ObservedArray<AddChatItemAction>>`
 
 ## Example
-See [`index.js`]('./index.js').
+See [`index.ts`]('./index.ts').

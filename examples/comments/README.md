@@ -44,4 +44,4 @@ Returns original InnerTube response (sanitized).
 **Returns:** `Promise.<object>`
 
 ## Example
-See [`index.js`]('./index.js').
+See [`index.ts`]('./index.ts').
