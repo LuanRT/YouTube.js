@@ -8,7 +8,23 @@ import { YTNode } from '../helpers';
 class PlaylistVideo extends YTNode {
   static type = 'PlaylistVideo';
 
-  constructor(data) {
+  id: string;
+  index: Text;
+  title: Text;
+  author: PlaylistAuthor;
+  thumbnails: Thumbnail[];
+  thumbnail_overlays;
+  set_video_id: string | undefined;
+  endpoint: NavigationEndpoint;
+  is_playable: boolean;
+  menu;
+
+  duration: {
+    text: string;
+    seconds: number;
+  };
+
+  constructor(data: any) {
     super();
     this.id = data.videoId;
     this.index = new Text(data.index);

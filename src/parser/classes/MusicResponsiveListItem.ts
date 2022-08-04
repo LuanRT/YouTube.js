@@ -59,7 +59,7 @@ class MusicResponsiveListItem extends YTNode {
     channel_id?: string
     endpoint?: NavigationEndpoint
   };
-  item_count?: number;
+  item_count?: string | undefined;
   year?: string;
 
   constructor(data: any) {
@@ -190,14 +190,21 @@ class MusicResponsiveListItem extends YTNode {
   #parsePlaylist() {
     this.id = this.endpoint?.browse?.id;
     this.title = this.#flex_columns[0].key('title').instanceof(Text).toString();
-    this.item_count = parseInt(this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => run.text.match(/\d+ (song|songs)/))?.text.match(/\d+/g));
+
+    const item_count_run = this.#flex_columns[1].key('title')
+      .instanceof(Text).runs?.find((run) => run.text.match(/\d+ (song|songs)/));
+
+    this.item_count = item_count_run ? item_count_run.text : undefined;
 
     const author = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('UC')) as TextRun;
-    author && (this.author = {
-      name: author.text,
-      channel_id: author.endpoint?.browse?.id,
-      endpoint: author.endpoint
-    });
+
+    if (author) {
+      this.author = {
+        name: author.text,
+        channel_id: author.endpoint?.browse?.id,
+        endpoint: author.endpoint
+      };
+    }
   }
 }
 

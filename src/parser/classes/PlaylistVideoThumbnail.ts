@@ -4,7 +4,9 @@ import { YTNode } from '../helpers';
 class PlaylistVideoThumbnail extends YTNode {
   static type = 'PlaylistVideoThumbnail';
 
-  constructor(data) {
+  thumbnail: Thumbnail[];
+
+  constructor(data: any) {
     super();
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
   }

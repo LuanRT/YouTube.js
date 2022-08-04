@@ -4,7 +4,10 @@ import { YTNode } from '../helpers';
 class PlaylistSidebarSecondaryInfo extends YTNode {
   static type = 'PlaylistSidebarSecondaryInfo';
 
-  constructor(data) {
+  owner;
+  button;
+
+  constructor(data: any) {
     super();
     this.owner = Parser.parse(data.videoOwner) || null;
     this.button = Parser.parse(data.button) || null;

@@ -4,7 +4,9 @@ import { YTNode } from '../helpers';
 class PlaylistSidebar extends YTNode {
   static type = 'PlaylistSidebar';
 
-  constructor(data) {
+  items;
+
+  constructor(data: any) {
     super();
     this.items = Parser.parse(data.items);
   }

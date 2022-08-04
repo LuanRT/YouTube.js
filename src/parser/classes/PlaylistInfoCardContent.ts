@@ -6,7 +6,13 @@ import { YTNode } from '../helpers';
 class PlaylistInfoCardContent extends YTNode {
   static type = 'PlaylistInfoCardContent';
 
-  constructor(data) {
+  title: Text;
+  thumbnails: Thumbnail[];
+  video_count: Text;
+  channel_name: Text;
+  endpoint: NavigationEndpoint;
+
+  constructor(data: any) {
     super();
     this.title = new Text(data.playlistTitle);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);

@@ -1,14 +1,22 @@
 import Parser from '../index';
-import NavigationEndpoint from './NavigationEndpoint';
 import Text from './misc/Text';
+import NavigationEndpoint from './NavigationEndpoint';
+
 import { YTNode } from '../helpers';
 
 class PlaylistSidebarPrimaryInfo extends YTNode {
   static type = 'PlaylistSidebarPrimaryInfo';
 
-  constructor(data) {
+  stats: Text[];
+  thumbnail_renderer;
+  title: Text;
+  menu;
+  endpoint: NavigationEndpoint;
+  description: Text;
+
+  constructor(data: any) {
     super();
-    this.stats = data.stats.map((stat) => new Text(stat));
+    this.stats = data.stats.map((stat: any) => new Text(stat));
     this.thumbnail_renderer = Parser.parse(data.thumbnailRenderer);
     this.title = new Text(data.title);
     this.menu = data.menu && Parser.parse(data.menu);

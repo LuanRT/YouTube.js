@@ -50,7 +50,6 @@ import { default as DidYouMean } from './classes/DidYouMean';
 import { default as DownloadButton } from './classes/DownloadButton';
 import { default as Element } from './classes/Element';
 import { default as EmergencyOnebox } from './classes/EmergencyOnebox';
-import { default as EmojiRun } from './classes/EmojiRun';
 import { default as Endscreen } from './classes/Endscreen';
 import { default as EndscreenElement } from './classes/EndscreenElement';
 import { default as EndScreenPlaylist } from './classes/EndScreenPlaylist';
@@ -282,7 +281,6 @@ const map: Record<string, YTNodeConstructor> = {
   DownloadButton,
   Element,
   EmergencyOnebox,
-  EmojiRun,
   Endscreen,
   EndscreenElement,
   EndScreenPlaylist,

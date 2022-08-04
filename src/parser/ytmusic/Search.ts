@@ -142,7 +142,7 @@ class Search {
   }
 
   get playlists() {
-    return this.sections?.find((section) => section.title === 'Playlists');
+    return this.sections?.find((section) => section.title === 'Community playlists');
   }
 
   get page() {

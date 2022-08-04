@@ -4,7 +4,12 @@ import { YTNode } from '../helpers';
 class PlaylistVideoList extends YTNode {
   static type = 'PlaylistVideoList';
 
-  constructor(data) {
+  id: string;
+  is_editable: boolean;
+  can_reorder: boolean;
+  videos;
+
+  constructor(data: any) {
     super();
     this.id = data.playlistId;
     this.is_editable = data.isEditable;

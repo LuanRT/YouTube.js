@@ -6,12 +6,28 @@ import { YTNode } from '../helpers';
 class PlaylistHeader extends YTNode {
   static type = 'PlaylistHeader';
 
-  constructor(data) {
+  id: string;
+  title: Text;
+  stats: Text[];
+  brief_stats: Text[];
+  author: PlaylistAuthor;
+  description: Text;
+  num_videos: Text;
+  view_count: Text;
+  can_share: boolean;
+  can_delete: boolean;
+  is_editable: boolean;
+  privacy: string;
+  save_button;
+  shuffle_play_button;
+  menu;
+
+  constructor(data: any) {
     super();
     this.id = data.playlistId;
     this.title = new Text(data.title);
-    this.stats = data.stats.map((stat) => new Text(stat));
-    this.brief_stats = data.briefStats.map((stat) => new Text(stat));
+    this.stats = data.stats.map((stat: any) => new Text(stat));
+    this.brief_stats = data.briefStats.map((stat: any) => new Text(stat));
     this.author = new PlaylistAuthor({ ...data.ownerText, navigationEndpoint: data.ownerEndpoint }, data.ownerBadges, null);
     this.description = new Text(data.descriptionText);
     this.num_videos = new Text(data.numVideosText);

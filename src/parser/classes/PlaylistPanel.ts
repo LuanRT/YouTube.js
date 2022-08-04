@@ -5,7 +5,17 @@ import { YTNode } from '../helpers';
 class PlaylistPanel extends YTNode {
   static type = 'PlaylistPanel';
 
-  constructor(data) {
+  title: string;
+  title_text: Text;
+  contents;
+  playlist_id: string;
+  is_infinite: boolean;
+  continuation: string;
+  is_editable: boolean;
+  preview_description: string;
+  num_items_to_show: string;
+
+  constructor(data: any) {
     super();
     this.title = data.title;
     this.title_text = new Text(data.titleText);

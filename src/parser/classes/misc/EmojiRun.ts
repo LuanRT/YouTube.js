@@ -1,16 +1,19 @@
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Thumbnail from './Thumbnail';
 
-class EmojiRun extends YTNode {
-  static type = 'EmojiRun';
+class EmojiRun {
+  text: string;
+  emoji: {
+    emoji_id: string;
+    shortcuts: string[];
+    search_terms: string[];
+    image: Thumbnail[];
+  };
 
-  constructor(data) {
-    super();
-
+  constructor(data: any) {
     this.text =
       data.emoji?.emojiId ||
       data.emoji?.shortcuts?.[0] ||
-      null;
+      '';
 
     this.emoji = {
       emoji_id: data.emoji.emojiId,

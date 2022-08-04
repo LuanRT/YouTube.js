@@ -3,7 +3,10 @@ import { YTNode } from '../helpers';
 class PlaylistMetadata extends YTNode {
   static type = 'PlaylistMetadata';
 
-  constructor(data) {
+  title: string;
+  description: string;
+
+  constructor(data: any) {
     super();
     this.title = data.title;
     this.description = data.description || null;
