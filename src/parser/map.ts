@@ -185,6 +185,7 @@ import { default as SecondarySearchContainer } from './classes/SecondarySearchCo
 import { default as SectionList } from './classes/SectionList';
 import { default as Shelf } from './classes/Shelf';
 import { default as ShowingResultsFor } from './classes/ShowingResultsFor';
+import { default as SimpleCardContent } from './classes/SimpleCardContent';
 import { default as SimpleCardTeaser } from './classes/SimpleCardTeaser';
 import { default as SingleActionEmergencySupport } from './classes/SingleActionEmergencySupport';
 import { default as SingleColumnBrowseResults } from './classes/SingleColumnBrowseResults';
@@ -416,6 +417,7 @@ const map: Record<string, YTNodeConstructor> = {
   SectionList,
   Shelf,
   ShowingResultsFor,
+  SimpleCardContent,
   SimpleCardTeaser,
   SingleActionEmergencySupport,
   SingleColumnBrowseResults,
