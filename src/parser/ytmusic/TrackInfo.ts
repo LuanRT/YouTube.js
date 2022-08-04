@@ -22,6 +22,7 @@ class TrackInfo {
 
   tabs;
   current_video_endpoint;
+  player_overlays;
 
   constructor(data: [AxioslikeResponse, AxioslikeResponse?], actions: Actions) {
     this.#actions = actions;
