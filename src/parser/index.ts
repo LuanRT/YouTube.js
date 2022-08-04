@@ -3,6 +3,7 @@ import VideoDetails from './classes/misc/VideoDetails';
 import GetParserByName from './map';
 import Endscreen from './classes/Endscreen';
 import CardCollection from './classes/CardCollection';
+import NavigationEndpoint from './classes/NavigationEndpoint';
 
 import { InnertubeError, ParsingError } from '../utils/Utils';
 import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
@@ -197,6 +198,7 @@ export default class Parser {
         dash_manifest_url: data.streamingData?.dashManifestUrl || null,
         dls_manifest_url: data.streamingData?.dashManifestUrl || null
       } : undefined,
+      current_video_endpoint: data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null,
       // TODO: PlayerCaptionsTracklist ?
       captions: Parser.parse(data.captions),
       video_details: data.videoDetails ? new VideoDetails(data.videoDetails) : undefined,

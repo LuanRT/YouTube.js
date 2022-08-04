@@ -1,4 +1,7 @@
 import Session from './Session';
+
+import TrackInfo from '../parser/ytmusic/TrackInfo';
+
 import Search from '../parser/ytmusic/Search';
 import HomeFeed from '../parser/ytmusic/HomeFeed';
 import Explore from '../parser/ytmusic/Explore';
@@ -29,6 +32,17 @@ class Music {
 
   constructor(session: Session) {
     this.#actions = session.actions;
+  }
+
+  /**
+   * Retrieves track info.
+   */
+  async getInfo(video_id: string) {
+    const initial_info = this.#actions.execute('/player', { client: 'YTMUSIC', videoId: video_id });
+    const continuation = this.#actions.execute('/next', { client: 'YTMUSIC', videoId: video_id });
+
+    const response = await Promise.all([ initial_info, continuation ]);
+    return new TrackInfo(response, this.#actions);
   }
 
   /**
