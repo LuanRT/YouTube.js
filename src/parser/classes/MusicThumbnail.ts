@@ -4,9 +4,11 @@ import { YTNode } from '../helpers';
 class MusicThumbnail extends YTNode {
   static type = 'MusicThumbnail';
 
-  constructor(data) {
+  contents;
+
+  constructor(data: any) {
     super();
-    return Thumbnail.fromResponse(data.thumbnail);
+    this.contents = Thumbnail.fromResponse(data.thumbnail);
   }
 }
 

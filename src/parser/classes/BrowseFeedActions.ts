@@ -4,9 +4,11 @@ import { YTNode } from '../helpers';
 class BrowseFeedActions extends YTNode {
   static type = 'BrowseFeedActions';
 
-  constructor(data) {
+  contents;
+
+  constructor(data: any) {
     super();
-    this.contents = Parser.parse(data.contents);
+    this.contents = Parser.parseArray(data.contents);
   }
 }
 
