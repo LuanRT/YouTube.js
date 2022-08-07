@@ -44,7 +44,10 @@ class Library {
 
     this.profile = { stats, user_info };
 
-    const shelves = tab.content.item().as(SectionList).contents.array().as(ItemSection).map((is: ItemSection) => is.contents?.firstOfType(Shelf));
+    if (!tab.content)
+      throw new InnertubeError('Target tab did not have any content.');
+
+    const shelves = tab.content.as(SectionList).contents.array().as(ItemSection).map((is: ItemSection) => is.contents?.firstOfType(Shelf));
 
     this.sections = shelves.map((shelf: any) => ({
       type: shelf.icon_type,

@@ -32,7 +32,7 @@ class Artist {
     if (!music_shelves.length)
       throw new InnertubeError('Could not find any node of type MusicShelf.');
 
-    const shelf = music_shelves.find((shelf) => shelf.title === 'Songs') as MusicShelf;
+    const shelf = music_shelves.find((shelf) => shelf.title.toString() === 'Songs') as MusicShelf;
 
     if (!shelf)
       throw new InnertubeError('Could not find target shelf (Songs).');

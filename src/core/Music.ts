@@ -167,9 +167,9 @@ class Music {
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
 
-    const music_queue = tab.content.item().as(MusicQueue);
+    const music_queue = tab.content?.as(MusicQueue);
 
-    if (!music_queue.content)
+    if (!music_queue || !music_queue.content)
       throw new InnertubeError('Music queue was empty, the given id is probably invalid.', music_queue);
 
     const playlist_panel = music_queue.content.item().as(PlaylistPanel);

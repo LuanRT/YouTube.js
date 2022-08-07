@@ -1,5 +1,9 @@
 import Parser from '../index';
 import NavigationEndpoint from './NavigationEndpoint';
+import SectionList from './SectionList';
+import MusicQueue from './MusicQueue';
+import RichGrid from './RichGrid';
+
 import { YTNode } from '../helpers';
 
 class Tab extends YTNode {
@@ -15,7 +19,7 @@ class Tab extends YTNode {
     this.title = data.title || 'N/A';
     this.selected = data.selected || false;
     this.endpoint = new NavigationEndpoint(data.endpoint);
-    this.content = Parser.parse(data.content);
+    this.content = Parser.parseItem<SectionList | MusicQueue | RichGrid>(data.content, [ SectionList, MusicQueue, RichGrid ]);
   }
 }
 

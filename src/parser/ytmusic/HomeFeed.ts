@@ -1,9 +1,10 @@
-import Parser, { ParsedResponse } from '../index';
+import Parser, { ParsedResponse, SectionListContinuation } from '../index';
 import Actions, { AxioslikeResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 
-import MusicCarouselShelfBasicHeader from '../classes/MusicCarouselShelfBasicHeader';
-import MusicTwoRowItem from '../classes/MusicTwoRowItem';
+import SectionList from '../classes/SectionList';
+import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 
 class HomeFeed {
   #page;
@@ -16,25 +17,23 @@ class HomeFeed {
     this.#actions = actions;
     this.#page = Parser.parseResponse((response as AxioslikeResponse).data);
 
-    const tab = this.#page.contents.item().key('tabs').parsed().array().get({ selected: true });
+    const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
 
     if (!tab)
       throw new InnertubeError('Could not get Home tab.');
 
-    let contents;
-
     if (tab.key('content').isNull()) {
-      this.#continuation = this.#page.continuation_contents?.key('continuation').string();
-      contents = this.#page.continuation_contents?.key('contents').array();
-    } else {
-      this.#continuation = tab.key('content').parsed().item().key('continuation').string();
-      contents = tab.key('content').parsed().item().key('contents').parsed().array();
+      if (!this.#page.continuation_contents)
+        throw new InnertubeError('Continuation did not have any content.');
+
+      this.#continuation = this.#page.continuation_contents.as(SectionListContinuation).continuation;
+      this.sections = this.#page.continuation_contents.as(SectionListContinuation).contents?.as(MusicCarouselShelf);
+
+      return;
     }
 
-    this.sections = contents?.map((content) => ({
-      header: content.header.item() as MusicCarouselShelfBasicHeader,
-      contents: content.contents.array() as Array<MusicTwoRowItem>
-    }));
+    this.#continuation = tab.content?.as(SectionList).continuation;
+    this.sections = tab.content?.as(SectionList).contents.array().as(MusicCarouselShelf);
   }
 
   /**

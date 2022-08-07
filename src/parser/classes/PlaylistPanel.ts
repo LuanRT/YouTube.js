@@ -1,5 +1,7 @@
 import Parser from '../index';
 import Text from './misc/Text';
+import PlaylistPanelVideo from './PlaylistPanelVideo';
+
 import { YTNode } from '../helpers';
 
 class PlaylistPanel extends YTNode {
@@ -19,7 +21,7 @@ class PlaylistPanel extends YTNode {
     super();
     this.title = data.title;
     this.title_text = new Text(data.titleText);
-    this.contents = Parser.parse(data.contents);
+    this.contents = Parser.parseArray<PlaylistPanelVideo>(data.contents, PlaylistPanelVideo);
     this.playlist_id = data.playlistId;
     this.is_infinite = data.isInfinite;
     this.continuation = data.continuations[0]?.nextRadioContinuationData?.continuation;

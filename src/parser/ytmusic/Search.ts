@@ -1,29 +1,32 @@
+import Parser, { ParsedResponse } from '../index';
+import Actions, { AxioslikeResponse } from '../../core/Actions';
+
+import { InnertubeError } from '../../utils/Utils';
+
+import SectionList from '../classes/SectionList';
+import TabbedSearchResults from '../classes/TabbedSearchResults';
+
 import DidYouMean from '../classes/DidYouMean';
 import ShowingResultsFor from '../classes/ShowingResultsFor';
 import MusicShelf from '../classes/MusicShelf';
 import MusicResponsiveListItem from '../classes/MusicResponsiveListItem';
 
-import Shelf from '../classes/Shelf';
-import RichShelf from '../classes/RichShelf';
-import ReelShelf from '../classes/ReelShelf';
 import ChipCloud from '../classes/ChipCloud';
 import ChipCloudChip from '../classes/ChipCloudChip';
 import ItemSection from '../classes/ItemSection';
 import Message from '../classes/Message';
 
-import Parser, { ParsedResponse } from '../index';
-import { InnertubeError } from '../../utils/Utils';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
-
 class Search {
   #page;
   #actions;
   #continuation;
-  #header;
 
-  did_you_mean;
-  showing_results_for;
-  message;
+  header;
+
+  did_you_mean: DidYouMean | null;
+  showing_results_for: ShowingResultsFor | null;
+  message: Message | null;
+
   results;
   sections;
 
@@ -34,44 +37,39 @@ class Search {
       response as ParsedResponse :
       Parser.parseResponse((response as AxioslikeResponse).data);
 
-    const tab = this.#page.contents.item().key('tabs').parsed().array().get({ selected: true });
+    const tab = this.#page.contents.item().as(TabbedSearchResults).tabs.get({ selected: true });
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
 
-    const tab_content = tab.key('content').parsed().item();
+    const tab_content = tab.content?.as(SectionList);
 
-    if (tab_content.hasKey('header')) {
-      this.#header = tab_content.key('header').parsed().item().as(ChipCloud);
-    }
+    if (!tab_content)
+      throw new InnertubeError('Target tab did not have any content.');
 
-    const shelves = tab_content.key('contents').parsed().array();
+    this.header = tab_content.hasKey('header') ? tab_content.header?.item().as(ChipCloud) : null;
+
+    const shelves = tab_content.contents.array().as(MusicShelf, ItemSection);
     const item_section = shelves.firstOfType(ItemSection);
 
     this.did_you_mean = item_section?.contents?.firstOfType(DidYouMean) || null;
     this.showing_results_for = item_section?.contents?.firstOfType(ShowingResultsFor) || null;
     this.message = item_section?.contents?.firstOfType(Message) || null;
 
-    if (!!this.did_you_mean || !!this.showing_results_for || !!this.message)
-      shelves.shift();
-
     if (args.is_continuation || args.is_filtered) {
-      const shelf = shelves.firstOfType(MusicShelf);
-      this.results = shelf?.contents.array().as(MusicResponsiveListItem);
-      this.#continuation = shelf?.continuation;
-      return;
+      this.results = shelves.firstOfType(MusicShelf)?.contents;
+      this.#continuation = shelves.firstOfType(MusicShelf)?.continuation;
+    } else {
+      this.sections = shelves.filterType(MusicShelf);
     }
-
-    this.sections = shelves.as(MusicShelf, Shelf, RichShelf, ReelShelf).map((shelf) => ({
-      title: shelf.title.toString(),
-      contents: shelf.key('contents').parsed().array().as(MusicResponsiveListItem),
-      getMore: () => this.#getMore(shelf)
-    }));
   }
 
-  async #getMore(shelf: MusicShelf | Shelf | RichShelf | ReelShelf): Promise<Search> {
-    if (!shelf.endpoint)
-      throw new InnertubeError(`${shelf.title} doesn't have more items`);
+  /**
+   * Equivalent to clicking on the shelf to load more items.
+   */
+  async getMore(shelf: MusicShelf | undefined): Promise<Search> {
+    if (!shelf || !shelf.endpoint)
+      throw new InnertubeError('Cannot retrieve more items for this shelf because it does not have an endpoint.');
 
     const response = await shelf.endpoint.call(this.#actions, 'YTMUSIC', true);
 
@@ -104,8 +102,7 @@ class Search {
     if (!this.filters?.includes(name))
       throw new InnertubeError('Invalid filter', { available_filters: this.filters });
 
-    // TODO: make sure this is a ChipCloudChip or use the property accessor helpers on YTNode
-    const filter = this.#header?.chips?.as(ChipCloudChip).get({ text: name });
+    const filter = this.header?.chips?.as(ChipCloudChip).get({ text: name });
 
     if (filter?.is_selected) return this;
 
@@ -122,30 +119,30 @@ class Search {
   }
 
   get filters(): string[] | null {
-    return this.#header?.chips?.as(ChipCloudChip).map((chip) => chip.text) || null;
+    return this.header?.chips?.as(ChipCloudChip).map((chip) => chip.text) || null;
   }
 
-  get songs() {
-    return this.sections?.find((section) => section.title === 'Songs');
+  get songs(): MusicShelf | undefined {
+    return this.sections?.find((section) => section.title.toString() === 'Songs');
   }
 
-  get videos() {
-    return this.sections?.find((section) => section.title === 'Videos');
+  get videos(): MusicShelf | undefined {
+    return this.sections?.find((section) => section.title.toString() === 'Videos');
   }
 
-  get albums() {
-    return this.sections?.find((section) => section.title === 'Albums');
+  get albums(): MusicShelf | undefined {
+    return this.sections?.find((section) => section.title.toString() === 'Albums');
   }
 
-  get artists() {
-    return this.sections?.find((section) => section.title === 'Artists');
+  get artists(): MusicShelf | undefined {
+    return this.sections?.find((section) => section.title.toString() === 'Artists');
   }
 
-  get playlists() {
-    return this.sections?.find((section) => section.title === 'Community playlists');
+  get playlists(): MusicShelf | undefined {
+    return this.sections?.find((section) => section.title.toString() === 'Community playlists');
   }
 
-  get page() {
+  get page(): ParsedResponse {
     return this.#page;
   }
 }

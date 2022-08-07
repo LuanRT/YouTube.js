@@ -119,7 +119,7 @@ class Feed {
    * Returns contents from the page.
    */
   get contents() {
-    const tab_content = this.#memo.getType(Tab)?.[0]?.content.item();
+    const tab_content = this.#memo.getType(Tab)?.[0]?.content;
     const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand)?.[0];
     const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction)?.[0];
 
