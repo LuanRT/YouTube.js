@@ -23,7 +23,7 @@
 
 <p align=center>
   <i>
-    A full-featured wrapper around the Innertube API, which is what YouTube itself uses.
+    A full-featured wrapper around the InnerTube API, which is what YouTube itself uses.
   </i>
 </p>
 
