@@ -43,7 +43,20 @@ export class SectionListContinuation extends YTNode {
   constructor(data: any) {
     super();
     this.contents = Parser.parse(data.contents, true);
-    this.continuation = data.continuations[0].nextContinuationData.continuation;
+    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
+  }
+}
+
+export class MusicPlaylistShelfContinuation extends YTNode {
+  static readonly type = 'musicPlaylistShelfContinuation';
+
+  continuation: string;
+  contents: ObservedArray<YTNode> | null;
+
+  constructor(data: any) {
+    super();
+    this.contents = Parser.parse(data.contents, true);
+    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
   }
 }
 
@@ -220,6 +233,8 @@ export default class Parser {
       return new SectionListContinuation(data.sectionListContinuation);
     if (data.liveChatContinuation)
       return new LiveChatContinuation(data.liveChatContinuation);
+    if (data.musicPlaylistShelfContinuation)
+      return new MusicPlaylistShelfContinuation(data.musicPlaylistShelfContinuation);
   }
 
   static parseRR(actions: any[]) {

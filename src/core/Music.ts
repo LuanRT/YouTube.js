@@ -8,6 +8,7 @@ import Explore from '../parser/ytmusic/Explore';
 import Library from '../parser/ytmusic/Library';
 import Artist from '../parser/ytmusic/Artist';
 import Album from '../parser/ytmusic/Album';
+import Playlist from '../parser/ytmusic/Playlist';
 
 import Parser from '../parser/index';
 import { observe, YTNode } from '../parser/helpers';
@@ -106,6 +107,16 @@ class Music {
 
     const response = await this.#actions.browse(album_id, { client: 'YTMUSIC' });
     return new Album(response, this.#actions);
+  }
+
+  /**
+   * Retrieves playlist.
+   */
+  async getPlaylist(playlist_id: string) {
+    throwIfMissing({ playlist_id });
+
+    const response = await this.#actions.browse(`VL${playlist_id.replace(/VL/g, '')}`, { client: 'YTMUSIC' });
+    return new Playlist(response, this.#actions);
   }
 
   /**
