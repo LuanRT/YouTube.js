@@ -4,13 +4,13 @@ import { YTNode } from '../helpers';
 
 class ToggleMenuServiceItem extends YTNode {
   static type = 'ToggleMenuServiceItem';
-  
+
   text: Text;
   toggled_text: Text;
   icon_type: string;
   toggled_icon_type: string;
   endpoint: NavigationEndpoint;
-  
+
   constructor(data: any) {
     super();
     this.text = new Text(data.defaultText);

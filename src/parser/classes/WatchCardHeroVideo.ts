@@ -4,12 +4,12 @@ import { YTNode } from '../helpers';
 
 class WatchCardHeroVideo extends YTNode {
   static type = 'WatchCardHeroVideo';
-  
+
   endpoint: NavigationEndpoint;
   call_to_action_button;
   hero_image;
   label: string;
-  
+
   constructor(data: any) {
     super();
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);

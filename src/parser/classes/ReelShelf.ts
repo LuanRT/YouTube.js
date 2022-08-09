@@ -5,11 +5,11 @@ import { YTNode } from '../helpers';
 
 class ReelShelf extends YTNode {
   static type = 'ReelShelf';
-  
+
   title: Text;
   items;
   endpoint: NavigationEndpoint | null;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);

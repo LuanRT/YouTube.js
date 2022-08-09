@@ -3,10 +3,10 @@ import { YTNode } from '../helpers';
 
 class TwoColumnBrowseResults extends YTNode {
   static type = 'TwoColumnBrowseResults';
-  
+
   tabs;
   secondary_contents;
-  
+
   constructor(data: any) {
     super();
     this.tabs = Parser.parse(data.tabs);

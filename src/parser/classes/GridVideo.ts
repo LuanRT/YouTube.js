@@ -7,7 +7,7 @@ import { YTNode } from '../helpers';
 
 class GridVideo extends YTNode {
   static type = 'GridVideo';
-  
+
   id: string;
   title: Text;
   thumbnails: Thumbnail[];
@@ -20,7 +20,7 @@ class GridVideo extends YTNode {
   short_view_count: Text;
   endpoint: NavigationEndpoint;
   menu;
-  
+
   constructor(data: any) {
     super();
     const length_alt = data.thumbnailOverlays.find((overlay: any) => overlay.hasOwnProperty('thumbnailOverlayTimeStatusRenderer'))?.thumbnailOverlayTimeStatusRenderer;

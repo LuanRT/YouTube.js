@@ -4,11 +4,11 @@ import { YTNode } from '../helpers';
 
 class VideoOwner extends YTNode {
   static type = 'VideoOwner';
-  
+
   subscription_button;
   subscriber_count: Text;
   author: Author;
-  
+
   constructor(data: any) {
     super();
     // TODO: check this

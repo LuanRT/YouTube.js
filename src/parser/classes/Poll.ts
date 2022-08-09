@@ -5,7 +5,7 @@ import { YTNode } from '../helpers';
 
 class Poll extends YTNode {
   static type = 'Poll';
-  
+
   choices: {
     text: string;
     select_endpoint: NavigationEndpoint | null;
@@ -16,11 +16,11 @@ class Poll extends YTNode {
     vote_percentage_if_not_selected: number | string | null;
     image: Thumbnail[] | null;
   }[];
-  
+
   poll_type;
   total_votes;
   live_chat_poll_id;
-  
+
   constructor(data: any) {
     super();
 

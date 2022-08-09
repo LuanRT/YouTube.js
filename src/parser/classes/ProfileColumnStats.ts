@@ -3,9 +3,9 @@ import { YTNode } from '../helpers';
 
 class ProfileColumnStats extends YTNode {
   static type = 'ProfileColumnStats';
-  
+
   items;
-  
+
   constructor(data: any) {
     super();
     this.items = Parser.parse(data.items);

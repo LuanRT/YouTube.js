@@ -4,28 +4,28 @@ import { YTNode } from '../helpers';
 
 class PlayerMicroformat extends YTNode {
   static type = 'PlayerMicroformat';
-  
+
   title: Text;
   description: Text;
   thumbnails;
-  
+
   embed: {
     iframe_url: string;
     flash_url: string;
     flash_secure_url: string;
     // TODO: check these
-    width: any; 
+    width: any;
     height: any;
   };
-  
+
   length_seconds: number;
-  
+
   channel: {
     id: string;
     name: string;
     url: string;
-  }
-  
+  };
+
   is_family_safe: boolean;
   is_unlisted: boolean;
   has_ypc_metadata: boolean;
@@ -34,7 +34,7 @@ class PlayerMicroformat extends YTNode {
   publish_date: string;
   upload_date: string;
   available_countries: string[];
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);

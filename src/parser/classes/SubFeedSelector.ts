@@ -4,10 +4,10 @@ import { YTNode } from '../helpers';
 
 class SubFeedSelector extends YTNode {
   static type = 'SubFeedSelector';
-  
+
   title: Text;
   options;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);

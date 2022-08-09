@@ -3,7 +3,7 @@ import { YTNode } from '../helpers';
 
 class MicroformatData extends YTNode {
   static type = 'MicroformatData';
-  
+
   url_canonical: string;
   title: string;
   description: string;
@@ -27,7 +27,7 @@ class MicroformatData extends YTNode {
   is_family_safe: boolean;
   tags: any; // TODO: string array?
   available_countries: string[];
-  
+
   constructor(data: any) {
     super();
     this.url_canonical = data.urlCanonical;

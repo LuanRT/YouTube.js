@@ -3,7 +3,7 @@ import { YTNode } from '../helpers';
 
 class CallToActionButton extends YTNode {
   static type = 'CallToActionButton';
-  
+
   label: Text;
   icon_type: string;
   style: string;

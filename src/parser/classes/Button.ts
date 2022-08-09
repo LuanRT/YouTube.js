@@ -5,15 +5,15 @@ import { YTNode } from '../helpers';
 
 class Button extends YTNode {
   static type = 'Button';
-  
+
   text: string;
-  
+
   label;
   tooltip;
   icon_type;
-  
+
   endpoint: NavigationEndpoint;
-  
+
   constructor(data: any) {
     super();
     this.text = new Text(data.text).toString();

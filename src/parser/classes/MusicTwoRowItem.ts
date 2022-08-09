@@ -9,36 +9,36 @@ import { YTNode } from '../helpers';
 
 class MusicTwoRowItem extends YTNode {
   static type = 'MusicTwoRowItem';
-  
+
   title: Text;
   endpoint: NavigationEndpoint;
   id: string | undefined;
   subtitle: Text;
   badges;
-  
+
   item_type: string;
-  
+
   subscribers?: string;
   item_count?: string | null;
   year?: string;
   views?: string;
-  
+
   artists?: {
     name: string;
     channel_id: string;
     endpoint: NavigationEndpoint | undefined;
   }[];
-  
+
   author?: {
     name: string;
     channel_id: string;
     endpoint: NavigationEndpoint | undefined;
   };
-  
+
   thumbnail: Thumbnail[];
   thumbnail_overlay;
   menu;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);
@@ -58,7 +58,7 @@ class MusicTwoRowItem extends YTNode {
         break;
       case 'MUSIC_PAGE_TYPE_PLAYLIST':
         this.item_type = 'playlist';
-   
+
         const item_count_run = this.subtitle.runs?.find((run) => run.text.match(/\d+ songs|song/));
         this.item_count = item_count_run ? (item_count_run as TextRun).text : null;
 

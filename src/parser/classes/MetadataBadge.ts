@@ -2,11 +2,11 @@ import { YTNode } from '../helpers';
 
 class MetadataBadge extends YTNode {
   static type = 'MetadataBadge';
-  
+
   icon_type?: string;
   style?: string;
   tooltip: string | null;
-  
+
   constructor(data: any) {
     super();
 

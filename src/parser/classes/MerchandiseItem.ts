@@ -4,7 +4,7 @@ import { YTNode } from '../helpers';
 
 class MerchandiseItem extends YTNode {
   static type = 'MerchandiseItem';
-  
+
   title: string;
   description: string;
   thumbnails: Thumbnail[];
@@ -16,7 +16,7 @@ class MerchandiseItem extends YTNode {
   additional_fees_text: string;
   region_format: string;
   endpoint: NavigationEndpoint;
-  
+
   constructor(data: any) {
     super();
     this.title = data.title;

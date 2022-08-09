@@ -5,7 +5,7 @@ import { YTNode } from '../helpers';
 
 class SubscribeButton extends YTNode {
   static type = 'SubscribeButton';
-  
+
   title: Text;
   subscribed: boolean;
   enabled: boolean;
@@ -16,7 +16,7 @@ class SubscribeButton extends YTNode {
   unsubscribed_text: Text;
   notification_preference_button;
   endpoint: NavigationEndpoint;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.buttonText);

@@ -4,11 +4,11 @@ import { YTNode } from '../helpers';
 
 class LiveChat extends YTNode {
   static type = 'LiveChat';
-  
+
   header;
   initial_display_state: string;
   continuation: string;
-  
+
   client_messages: {
     reconnect_message: Text;
     unable_to_reconnect_message: Text;
@@ -16,9 +16,9 @@ class LiveChat extends YTNode {
     reconnected_message: Text;
     generic_error: Text;
   };
-  
+
   is_replay: boolean;
-  
+
   constructor(data: any) {
     super();
     this.header = Parser.parse(data.header);

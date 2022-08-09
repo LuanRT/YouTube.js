@@ -5,7 +5,7 @@ import { YTNode, SuperParsedResult } from '../helpers';
 
 class PlayerAnnotationsExpanded extends YTNode {
   static type = 'PlayerAnnotationsExpanded';
-  
+
   featured_channel: {
     start_time_ms: number;
     end_time_ms: number;
@@ -14,10 +14,10 @@ class PlayerAnnotationsExpanded extends YTNode {
     endpoint: NavigationEndpoint;
     subscribe_button: SuperParsedResult<YTNode>;
   };
-  
+
   allow_swipe_dismiss: boolean;
   annotation_id: string;
-  
+
   constructor(data: any) {
     super();
 

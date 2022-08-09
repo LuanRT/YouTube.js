@@ -7,7 +7,7 @@ import { YTNode } from '../helpers';
 
 class MusicDetailHeader extends YTNode {
   static type = 'MusicDetailHeader';
-  
+
   title: Text;
   description: Text;
   subtitle: Text;
@@ -21,9 +21,9 @@ class MusicDetailHeader extends YTNode {
     name: string;
     channel_id: string;
     endpoint: NavigationEndpoint | undefined;
-  }
+  };
   menu;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);

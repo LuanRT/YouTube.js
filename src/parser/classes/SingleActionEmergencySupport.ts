@@ -4,13 +4,13 @@ import { YTNode } from '../helpers';
 
 class SingleActionEmergencySupport extends YTNode {
   static type = 'SingleActionEmergencySupport';
-  
+
   action_text: Text;
   nav_text: Text;
   details: Text;
   icon_type: string;
   endpoint: NavigationEndpoint;
-  
+
   constructor(data: any) {
     super();
     this.action_text = new Text(data.actionText);

@@ -4,12 +4,12 @@ import { YTNode } from '../helpers';
 
 class SearchSuggestion extends YTNode {
   static type = 'SearchSuggestion';
-  
+
   suggestion: Text;
   endpoint: NavigationEndpoint;
   icon_type: string;
   service_endpoint;
-  
+
   constructor(data: any) {
     super();
     this.suggestion = new Text(data.suggestion);

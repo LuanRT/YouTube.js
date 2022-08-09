@@ -3,10 +3,10 @@ import { YTNode } from '../helpers';
 
 class ProfileColumnStatsEntry extends YTNode {
   static type = 'ProfileColumnStatsEntry';
-  
+
   label: Text;
   value: Text;
-  
+
   constructor(data: any) {
     super();
     this.label = new Text(data.label);

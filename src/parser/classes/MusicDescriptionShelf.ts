@@ -3,7 +3,7 @@ import { YTNode } from '../helpers';
 
 class MusicDescriptionShelf extends YTNode {
   static type = 'MusicDescriptionShelf';
-  
+
   description: Text;
   max_collapsed_lines?: string;
   max_expanded_lines?: string;

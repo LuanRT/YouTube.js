@@ -5,12 +5,12 @@ import { YTNode } from '../helpers';
 
 class VerticalWatchCardList extends YTNode {
   static type = 'VerticalWatchCardList';
-  
+
   items;
   contents;
   view_all_text: Text;
   view_all_endpoint: NavigationEndpoint;
-  
+
   constructor(data: any) {
     super();
     this.items = Parser.parse(data.items);

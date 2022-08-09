@@ -3,18 +3,18 @@ import { YTNode } from '../helpers';
 
 class LikeButton extends YTNode {
   static type = 'LikeButton';
-  
+
   target: {
     video_id: string;
   };
-  
+
   like_status: string;
   likes_allowed: string;
   endpoints?: NavigationEndpoint[];
-  
+
   constructor(data: any) {
     super();
-    
+
     this.target = {
       video_id: data.target.videoId
     };

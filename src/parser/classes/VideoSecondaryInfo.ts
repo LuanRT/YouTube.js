@@ -6,7 +6,7 @@ import MetadataRowContainer from './MetadataRowContainer';
 
 class VideoSecondaryInfo extends YTNode {
   static type = 'VideoSecondaryInfo';
-  
+
   owner; // TODO: VideoOwner?
   description: Text;
   subscribe_button;
@@ -15,7 +15,7 @@ class VideoSecondaryInfo extends YTNode {
   show_less_text: string;
   default_expanded: string;
   description_collapsed_lines: string;
-  
+
   constructor(data: any) {
     super();
     this.owner = Parser.parse(data.owner);

@@ -3,11 +3,11 @@ import { YTNode } from '../helpers';
 
 class MusicItemThumbnailOverlay extends YTNode {
   static type = 'MusicItemThumbnailOverlay';
-  
+
   content;
   content_position;
   display_style: string;
-  
+
   constructor(data: any) {
     super();
     this.content = Parser.parse(data.content);

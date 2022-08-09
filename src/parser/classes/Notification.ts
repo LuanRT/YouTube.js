@@ -6,7 +6,7 @@ import { YTNode } from '../helpers';
 
 class Notification extends YTNode {
   static type = 'Notification';
-  
+
   thumbnails: Thumbnail[];
   video_thumbnails: Thumbnail[];
   short_message: Text;
@@ -16,7 +16,7 @@ class Notification extends YTNode {
   record_click_endpoint: NavigationEndpoint;
   menu;
   read: boolean;
-  
+
   constructor(data: any) {
     super();
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);

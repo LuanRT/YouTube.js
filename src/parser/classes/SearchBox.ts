@@ -5,12 +5,12 @@ import { YTNode } from '../helpers';
 
 class SearchBox extends YTNode {
   static type = 'SearchBox';
-  
+
   endpoint: NavigationEndpoint;
   search_button;
   clear_button;
   placeholder_text: Text;
-  
+
   constructor(data: any) {
     super();
     this.endpoint = new NavigationEndpoint(data.endpoint);

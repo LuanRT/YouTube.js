@@ -3,10 +3,10 @@ import { YTNode } from '../helpers';
 
 class MusicResponsiveListItemFlexColumn extends YTNode {
   static type = 'musicResponsiveListItemFlexColumnRenderer';
-  
+
   title: Text;
   display_priority: string;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.text);

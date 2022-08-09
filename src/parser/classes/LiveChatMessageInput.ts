@@ -5,12 +5,12 @@ import { YTNode } from '../helpers';
 
 class LiveChatMessageInput extends YTNode {
   static type = 'LiveChatMessageInput';
-  
+
   author_name: Text;
   author_photo: Thumbnail[];
   send_button;
   target_id: string;
-  
+
   constructor(data: any) {
     super();
     this.author_name = new Text(data.authorName);

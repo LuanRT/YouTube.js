@@ -3,12 +3,12 @@ import { YTNode } from '../helpers';
 
 class SectionList extends YTNode {
   static type = 'SectionList';
-  
+
   target_id;
   contents;
   continuation;
   header;
-  
+
   constructor(data: any) {
     super();
     if (data.targetId) {

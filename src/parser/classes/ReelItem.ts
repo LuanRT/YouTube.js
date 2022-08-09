@@ -5,13 +5,13 @@ import { YTNode } from '../helpers';
 
 class ReelItem extends YTNode {
   static type = 'ReelItem';
-  
+
   id: string;
   title: Text;
   thumbnails: Thumbnail[];
   views: Text;
   endpoint: NavigationEndpoint;
-  
+
   constructor(data: any) {
     super();
     this.id = data.videoId;

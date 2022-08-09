@@ -3,9 +3,9 @@ import { YTNode } from '../helpers';
 
 class ThumbnailOverlayLoadingPreview extends YTNode {
   static type = 'ThumbnailOverlayLoadingPreview';
-  
+
   text: Text;
-  
+
   constructor(data: any) {
     super();
     this.text = new Text(data.text);

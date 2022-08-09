@@ -3,9 +3,9 @@ import { YTNode } from '../helpers';
 
 class RichSection extends YTNode {
   static type = 'RichSection';
-  
+
   contents;
-  
+
   constructor(data: any) {
     super();
     this.contents = Parser.parse(data.content);

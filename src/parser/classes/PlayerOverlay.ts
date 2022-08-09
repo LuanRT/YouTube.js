@@ -3,13 +3,13 @@ import { YTNode } from '../helpers';
 
 class PlayerOverlay extends YTNode {
   static type = 'PlayerOverlay';
-  
+
   end_screen;
   autoplay;
   share_button;
   add_to_menu;
   fullscreen_engagement;
-  
+
   constructor(data: any) {
     super();
     this.end_screen = Parser.parse(data.endScreen);

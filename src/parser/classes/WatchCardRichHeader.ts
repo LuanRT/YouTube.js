@@ -5,13 +5,13 @@ import { YTNode } from '../helpers';
 
 class WatchCardRichHeader extends YTNode {
   static type = 'WatchCardRichHeader';
-  
+
   title: Text;
   title_endpoint: NavigationEndpoint;
   subtitle: Text;
   author: Author;
   style: string;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);

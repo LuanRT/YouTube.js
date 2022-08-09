@@ -3,16 +3,16 @@ import { YTNode } from '../helpers';
 
 class SubscriptionNotificationToggleButton extends YTNode {
   static type = 'SubscriptionNotificationToggleButton';
-  
+
   states: {
     id: string;
     next_id: string;
     state: any;
-  }
-  
+  };
+
   current_state_id: string;
   target_id: string;
-  
+
   constructor(data: any) {
     super();
     this.states = data.states.map((data: any) => ({

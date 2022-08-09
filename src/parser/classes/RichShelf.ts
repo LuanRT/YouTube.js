@@ -5,11 +5,11 @@ import { YTNode } from '../helpers';
 
 class RichShelf extends YTNode {
   static type = 'RichShelf';
-  
+
   title: Text;
   contents;
   endpoint: NavigationEndpoint | null;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);

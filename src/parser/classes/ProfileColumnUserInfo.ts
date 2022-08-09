@@ -4,10 +4,10 @@ import { YTNode } from '../helpers';
 
 class ProfileColumnUserInfo extends YTNode {
   static type = 'ProfileColumnUserInfo';
-  
+
   title: Text;
   thumbnails: Thumbnail[];
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);

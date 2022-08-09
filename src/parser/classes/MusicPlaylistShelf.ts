@@ -5,11 +5,11 @@ class MusicPlaylistShelf extends YTNode {
   static type = 'MusicPlaylistShelf';
 
   #continuations;
-  
+
   playlist_id: string;
   contents;
   collapsed_item_count: string;
-  
+
   constructor(data: any) {
     super();
     this.playlist_id = data.playlistId;

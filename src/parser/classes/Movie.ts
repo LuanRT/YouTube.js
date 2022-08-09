@@ -8,7 +8,7 @@ import { YTNode } from '../helpers';
 
 class Movie extends YTNode {
   static type = 'Movie';
-  
+
   id: string;
   title: Text;
   description_snippet: Text | null;
@@ -16,18 +16,18 @@ class Movie extends YTNode {
   thumbnails: Thumbnail[];
   thumbnail_overlays;
   author: Author;
-  
+
   duration: {
     text: string;
     seconds: number;
   };
-  
+
   endpoint: NavigationEndpoint;
   badges;
   use_vertical_poster: boolean;
   show_action_menu: boolean;
   menu;
-  
+
   constructor(data: any) {
     super();
     const overlay_time_status = data.thumbnailOverlays

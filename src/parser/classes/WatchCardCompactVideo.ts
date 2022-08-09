@@ -4,17 +4,17 @@ import { YTNode } from '../helpers';
 
 class WatchCardCompactVideo extends YTNode {
   static type = 'WatchCardCompactVideo';
-  
+
   title: Text;
   subtitle: Text;
-  
+
   duration: {
     text: string;
     seconds: number;
-  }
-  
+  };
+
   style: string;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.title);

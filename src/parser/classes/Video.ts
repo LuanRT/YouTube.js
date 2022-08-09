@@ -8,7 +8,7 @@ import { YTNode } from '../helpers';
 
 class Video extends YTNode {
   static type = 'Video';
-  
+
   id: string;
   title: Text;
   description_snippet: Text | null;
@@ -16,7 +16,7 @@ class Video extends YTNode {
     text: Text;
     hover_text: Text;
   }[];
-  
+
   thumbnails: Thumbnail[];
   thumbnail_overlays;
   rich_thumbnail;
@@ -26,16 +26,16 @@ class Video extends YTNode {
   view_count: Text;
   short_view_count: Text;
   upcoming;
-  
+
   duration: {
     text: string;
     seconds: number;
-  }
-  
+  };
+
   show_action_menu: boolean;
   is_watched: boolean;
   menu;
-  
+
   constructor(data: any) {
     super();
 
@@ -82,22 +82,22 @@ class Video extends YTNode {
     }
     return this.description_snippet?.toString() || '';
   }
-  
+
   /*
-  get is_live() {
+  Get is_live() {
     return this.badges.some((badge) => badge.style === 'BADGE_STYLE_TYPE_LIVE_NOW');
   }
   */
- 
+
   get is_upcoming(): boolean | undefined {
     return this.upcoming && this.upcoming > new Date();
   }
-  
+
   /*
-  get has_captions() {
+  Get has_captions() {
     return this.badges.some((badge) => badge.label === 'CC');
   }*/
-  
+
   get best_thumbnail(): Thumbnail | undefined{
     return this.thumbnails[0];
   }

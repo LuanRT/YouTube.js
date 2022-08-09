@@ -5,14 +5,14 @@ import { YTNode } from '../helpers';
 
 class VideoInfoCardContent extends YTNode {
   static type = 'VideoInfoCardContent';
-  
+
   title: Text;
   channel_name: Text;
   view_count: Text;
   video_thumbnails: Thumbnail[];
   duration: Text;
   endpoint: NavigationEndpoint;
-  
+
   constructor(data: any) {
     super();
     this.title = new Text(data.videoTitle);

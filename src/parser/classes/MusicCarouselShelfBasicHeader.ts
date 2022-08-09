@@ -4,11 +4,11 @@ import { YTNode } from '../helpers';
 
 class MusicCarouselShelfBasicHeader extends YTNode {
   static type = 'MusicCarouselShelfBasicHeader';
-  
+
   strapline?: string;
   title: string;
   thumbnail?: Thumbnail[];
-  
+
   constructor(data: any) {
     super();
 

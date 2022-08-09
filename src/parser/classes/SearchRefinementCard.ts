@@ -5,11 +5,11 @@ import { YTNode } from '../helpers';
 
 class SearchRefinementCard extends YTNode {
   static type = 'SearchRefinementCard';
-  
+
   thumbnails: Thumbnail[];
   endpoint: NavigationEndpoint;
   query: string;
-  
+
   constructor(data: any) {
     super();
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);

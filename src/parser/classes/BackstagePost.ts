@@ -7,7 +7,7 @@ import { YTNode } from '../helpers';
 
 class BackstagePost extends YTNode {
   static type = 'BackstagePost';
-  
+
   id: string;
   author: Author;
   content: Text;
@@ -21,10 +21,10 @@ class BackstagePost extends YTNode {
   surface: string;
   endpoint: NavigationEndpoint;
   attachment;
-  
+
   constructor(data: any) {
     super();
-    
+
     this.id = data.postId;
 
     this.author = new Author({

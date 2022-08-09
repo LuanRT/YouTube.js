@@ -3,7 +3,7 @@ import { YTNode } from '../helpers';
 
 class PlayerCaptionsTracklist extends YTNode {
   static type = 'PlayerCaptionsTracklist';
-  
+
   caption_tracks: {
     base_url: string;
     name: Text;
@@ -12,16 +12,16 @@ class PlayerCaptionsTracklist extends YTNode {
     kind: string;
     is_translatable: boolean;
   }[];
-  
+
   audio_tracks: {
     caption_track_indices: number;
   }[];
-  
+
   translation_languages: {
     language_code: string;
     language_name: Text;
   }[];
-  
+
   constructor(data: any) {
     super();
     this.caption_tracks = data.captionTracks.map((ct: any) => ({

@@ -3,14 +3,14 @@ import { YTNode } from '../helpers';
 
 class MusicPlayButton extends YTNode {
   static type = 'MusicPlayButton';
-  
+
   endpoint: NavigationEndpoint;
   play_icon_type: string;
   pause_icon_type: string;
   play_label;
   pause_label;
   icon_color: string;
-  
+
   constructor(data: any) {
     super();
     this.endpoint = new NavigationEndpoint(data.playNavigationEndpoint);

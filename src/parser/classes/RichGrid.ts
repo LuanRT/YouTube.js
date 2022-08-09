@@ -4,10 +4,10 @@ import { YTNode } from '../helpers';
 
 class RichGrid extends YTNode {
   static type = 'RichGrid';
-  
+
   header;
   contents;
-  
+
   constructor(data: any) {
     super();
     // XXX: we don't parse the masthead since it is usually an advertisement

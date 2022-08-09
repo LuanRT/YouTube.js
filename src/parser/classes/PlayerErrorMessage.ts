@@ -5,13 +5,13 @@ import { YTNode } from '../helpers';
 
 class PlayerErrorMessage extends YTNode {
   static type = 'PlayerErrorMessage';
-  
+
   subreason: Text;
   reason: Text;
   proceed_button;
   thumbnails: Thumbnail[];
   icon_type: string;
-  
+
   constructor(data: any) {
     super();
     this.subreason = new Text(data.subreason);

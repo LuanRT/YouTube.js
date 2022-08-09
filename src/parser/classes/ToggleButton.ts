@@ -4,7 +4,7 @@ import { YTNode } from '../helpers';
 
 class ToggleButton extends YTNode {
   static type = 'ToggleButton';
-  
+
   text: Text;
   toggled_text: Text;
   tooltip: string;
@@ -12,15 +12,15 @@ class ToggleButton extends YTNode {
   is_toggled: boolean;
   is_disabled: boolean;
   icon_type: string;
-  
+
   like_count;
   short_like_count;
-  
+
   endpoint: NavigationEndpoint;
   toggled_endpoint: NavigationEndpoint;
   button_id: string | null;
   target_id: string | null;
-  
+
   constructor(data: any) {
     super();
     this.text = new Text(data.defaultText);
