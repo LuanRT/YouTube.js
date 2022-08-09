@@ -1,33 +1,26 @@
 import Text from './misc/Text';
+import Thumbnail from './misc/Thumbnail';
 import { YTNode } from '../helpers';
-import MusicThumbnail from './MusicThumbnail';
-import Parser from '..';
-import Button from './Button';
 
 class MusicCarouselShelfBasicHeader extends YTNode {
   static type = 'MusicCarouselShelfBasicHeader';
-
-  strapline?: Text;
-  title: Text;
-  thumbnail?: MusicThumbnail | null;
-  more_content?: Button | null;
-
+  
+  strapline?: string;
+  title: string;
+  thumbnail?: Thumbnail[];
+  
   constructor(data: any) {
     super();
 
     if (data.strapline) {
-      this.strapline = new Text(data.strapline);
+      this.strapline = new Text(data.strapline).toString();
     }
 
-    this.title = new Text(data.title);
+    this.title = new Text(data.title).toString();
     // This.label = data.accessibilityData.accessibilityData.label;
     // ^^ redundant?
     if (data.thumbnail) {
-      this.thumbnail = Parser.parseItem<MusicThumbnail>(data.thumbnail, MusicThumbnail);
-    }
-
-    if (data.moreContentButton) {
-      this.more_content = Parser.parseItem<Button>(data.moreContentButton, Button);
+      this.thumbnail = Thumbnail.fromResponse(data.thumbnail.musicThumbnailRenderer.thumbnail);
     }
   }
 }
