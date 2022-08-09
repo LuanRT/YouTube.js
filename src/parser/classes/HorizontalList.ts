@@ -5,7 +5,7 @@ class HorizontalList extends YTNode {
   static type = 'HorizontalList';
   
   visible_item_count: string;
-  items:
+  items;
   
   constructor(data: any) {
     super();
