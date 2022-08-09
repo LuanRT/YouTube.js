@@ -67,6 +67,8 @@ import { default as HorizontalCardList } from './classes/HorizontalCardList';
 import { default as HorizontalList } from './classes/HorizontalList';
 import { default as ItemSection } from './classes/ItemSection';
 import { default as ItemSectionHeader } from './classes/ItemSectionHeader';
+import { default as ItemSectionTab } from './classes/ItemSectionTab';
+import { default as ItemSectionTabbedHeader } from './classes/ItemSectionTabbedHeader';
 import { default as LikeButton } from './classes/LikeButton';
 import { default as LiveChat } from './classes/LiveChat';
 import { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBannerToLiveChatCommand';
@@ -299,6 +301,8 @@ const map: Record<string, YTNodeConstructor> = {
   HorizontalList,
   ItemSection,
   ItemSectionHeader,
+  ItemSectionTab,
+  ItemSectionTabbedHeader,
   LikeButton,
   LiveChat,
   AddBannerToLiveChatCommand,
