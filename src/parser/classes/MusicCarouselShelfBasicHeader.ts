@@ -25,6 +25,10 @@ class MusicCarouselShelfBasicHeader extends YTNode {
     if (data.thumbnail) {
       this.thumbnail = Parser.parseItem<MusicThumbnail>(data.thumbnail, MusicThumbnail);
     }
+
+    if (data.moreContentButton) {
+      this.more_content = Parser.parseItem<Button>(data.moreContentButton, Button);
+    }
   }
 }
 
