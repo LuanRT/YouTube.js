@@ -5,7 +5,7 @@ class LiveChatItemList extends YTNode {
   static type = 'LiveChatItemList';
   
   max_items_to_display: string;
-  more_comments_below_button: string;
+  more_comments_below_button;
   
   constructor(data: any) {
     super();

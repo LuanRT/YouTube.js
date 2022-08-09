@@ -23,7 +23,7 @@ class GridVideo extends YTNode {
   
   constructor(data: any) {
     super();
-    const length_alt = data.thumbnailOverlays.find((overlay) => overlay.hasOwnProperty('thumbnailOverlayTimeStatusRenderer'))?.thumbnailOverlayTimeStatusRenderer;
+    const length_alt = data.thumbnailOverlays.find((overlay: any) => overlay.hasOwnProperty('thumbnailOverlayTimeStatusRenderer'))?.thumbnailOverlayTimeStatusRenderer;
     this.id = data.videoId;
     this.title = new Text(data.title);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
