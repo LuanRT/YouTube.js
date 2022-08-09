@@ -21,14 +21,13 @@ class Playlist {
     this.#actions = actions;
 
     if (this.#page.continuation_contents) {
-        const data = this.#page.continuation_contents?.as(MusicPlaylistShelfContinuation);
-        this.items = data.contents;
-        this.#continuation = data.continuation;
-    }
-    else {
-        this.header = this.#page.header.item().as(MusicDetailHeader);
-        this.items = this.#page.contents_memo.get('MusicPlaylistShelf')?.[0].as(MusicPlaylistShelf).contents;
-        this.#continuation = this.#page.contents_memo.get('MusicPlaylistShelf')?.[0].as(MusicPlaylistShelf).continuation || null;
+      const data = this.#page.continuation_contents?.as(MusicPlaylistShelfContinuation);
+      this.items = data.contents;
+      this.#continuation = data.continuation;
+    } else {
+      this.header = this.#page.header.item().as(MusicDetailHeader);
+      this.items = this.#page.contents_memo.get('MusicPlaylistShelf')?.[0].as(MusicPlaylistShelf).contents;
+      this.#continuation = this.#page.contents_memo.get('MusicPlaylistShelf')?.[0].as(MusicPlaylistShelf).continuation || null;
     }
   }
 
@@ -45,12 +44,12 @@ class Playlist {
    */
   async getContinuation() {
     if (this.#continuation) {
-        const response = await this.#actions.browse(this.#continuation, { is_ctoken: true, client: 'YTMUSIC' });
-        return new Playlist(response, this.#actions);
+      const response = await this.#actions.browse(this.#continuation, { is_ctoken: true, client: 'YTMUSIC' });
+      return new Playlist(response, this.#actions);
     }
-    else {
-        throw new InnertubeError('Continuation not found.');
-    }
+
+    throw new InnertubeError('Continuation not found.');
+
   }
 
   /**
@@ -60,22 +59,22 @@ class Playlist {
     let section_continuation = this.#page.contents_memo.get('SectionList')?.[0].as(SectionList).continuation;
 
     while (section_continuation) {
-        const response = await this.#actions.browse(section_continuation, { is_ctoken: true, client: 'YTMUSIC' });
-        const data = Parser.parseResponse(response.data);
-        const section_list = data.continuation_contents?.as(SectionListContinuation);
-        const sections = section_list?.contents?.as(MusicCarouselShelf);
-        const related = sections?.filter(section => section.header?.title === 'Related playlists')[0];
-        if (related) {
-            return related.contents || [];
-        }
-        else {
-            section_continuation = section_list?.continuation;
-        }
+      const response = await this.#actions.browse(section_continuation, { is_ctoken: true, client: 'YTMUSIC' });
+      const data = Parser.parseResponse(response.data);
+      const section_list = data.continuation_contents?.as(SectionListContinuation);
+      const sections = section_list?.contents?.as(MusicCarouselShelf);
+      const related = sections?.filter((section) => section.header?.title === 'Related playlists')[0];
+      if (related) {
+        return related.contents || [];
+      }
+
+      section_continuation = section_list?.continuation;
+
     }
 
     return [];
   }
-  
+
 }
 
 export default Playlist;
