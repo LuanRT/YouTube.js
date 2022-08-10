@@ -1,25 +1,23 @@
 import Parser from '../index';
+import MusicResponsiveListItem from './MusicResponsiveListItem';
+
 import { YTNode } from '../helpers';
 
 class MusicPlaylistShelf extends YTNode {
   static type = 'MusicPlaylistShelf';
 
-  #continuations;
-
   playlist_id: string;
   contents;
-  collapsed_item_count: string;
+  collapsed_item_count: number;
+  continuation: string | null;
 
   constructor(data: any) {
     super();
-    this.playlist_id = data.playlistId;
-    this.contents = Parser.parse(data.contents);
-    this.collapsed_item_count = data.collapsedItemCount;
-    this.#continuations = data.continuations;
-  }
 
-  get continuation() {
-    return this.#continuations?.[0]?.nextContinuationData;
+    this.playlist_id = data.playlistId;
+    this.contents = Parser.parseArray<MusicResponsiveListItem>(data.contents, MusicResponsiveListItem);
+    this.collapsed_item_count = data.collapsedItemCount;
+    this.continuation = data.continuations?.[0]?.nextContinuationData?.continuation || null;
   }
 }
 
