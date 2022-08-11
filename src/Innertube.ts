@@ -77,7 +77,7 @@ class Innertube {
 
     const initial_info = await this.actions.execute('/player', {
       client: 'ANDROID',
-      videoId: 'mFWf4Tb5m6Y'
+      videoId: video_id
     });
 
     const continuation = this.actions.next({ video_id });
@@ -96,7 +96,7 @@ class Innertube {
 
     const response = await this.actions.execute('/player', {
       client: 'ANDROID',
-      videoId: 'mFWf4Tb5m6Y'
+      videoId: video_id
     });
 
     return new VideoInfo([ response ], this.actions, this.session.player, cpn);
