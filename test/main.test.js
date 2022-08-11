@@ -83,24 +83,6 @@ describe('YouTube.js Tests', () => {
       expect(result).toBeTruthy();
     }, 30000);
   });
-  
-  /*
-  // TODO: fix this, doesn't run on node 12
-  const { default: NToken } = require('../../src/deciphers/NToken');
-  const { default: Signature} = require('../../src/deciphers/Signature');
-
-  describe('Deciphers', () => {
-    it('Should decipher signature', () => {
-      const result = Signature.fromSourceCode(Constants.DECIPHERS.SIG.ALGORITHM).decipher(Constants.DECIPHERS.SIG.ORIGINAL_URL);
-      expect(result).toEqual(Constants.DECIPHERS.SIG.DECIPHERED_URL);
-    });
-    
-    it('Should decipher ntoken', () => {
-      const result = NToken.fromSourceCode(Constants.DECIPHERS.N.ALGORITHM).transform(Constants.DECIPHERS.N.ORIGINAL_TOKEN);
-      expect(result).toEqual(Constants.DECIPHERS.N.DECIPHERED_TOKEN);
-    });
-  });
-  */
 });
 
 async function download(id, session) {   

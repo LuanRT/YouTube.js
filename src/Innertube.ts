@@ -70,12 +70,16 @@ class Innertube {
   /**
    * Retrieves video info.
    */
-  async getInfo(video_id: string) {
+  async getInfo(video_id: string | undefined) {
     throwIfMissing({ video_id });
 
     const cpn = generateRandomString(16);
 
-    const initial_info = this.actions.getVideoInfo(video_id, cpn);
+    const initial_info = await this.actions.execute('/player', {
+      client: 'ANDROID',
+      videoId: 'mFWf4Tb5m6Y'
+    });
+
     const continuation = this.actions.next({ video_id });
 
     const response = await Promise.all([ initial_info, continuation ]);
@@ -85,11 +89,15 @@ class Innertube {
   /**
    * Retrieves basic video info.
    */
-  async getBasicInfo(video_id: string) {
+  async getBasicInfo(video_id: string | undefined) {
     throwIfMissing({ video_id });
 
     const cpn = generateRandomString(16);
-    const response = await this.actions.getVideoInfo(video_id, cpn);
+
+    const response = await this.actions.execute('/player', {
+      client: 'ANDROID',
+      videoId: 'mFWf4Tb5m6Y'
+    });
 
     return new VideoInfo([ response ], this.actions, this.session.player, cpn);
   }
@@ -238,7 +246,7 @@ class Innertube {
    *
    * If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
    */
-  async download(video_id: string, options?: DownloadOptions) {
+  async download(video_id: string | undefined, options?: DownloadOptions) {
     throwIfMissing({ video_id });
     const info = await this.getBasicInfo(video_id);
     return info.download(options);
