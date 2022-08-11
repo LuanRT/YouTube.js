@@ -62,6 +62,11 @@ describe('YouTube.js Tests', () => {
       const playlist = await this.session.getPlaylist('PLLw0AzOz95FU7w2juhPECP9NyGhbZmz_t', { client: 'YOUTUBE' });
       expect(playlist.items.length).toBeLessThanOrEqual(100);
     });
+
+    it('Should retrieve playlist with YouTube Music', async () => {
+      const playlist = await this.session.music.getPlaylist('PLVbEymL-83SyVXXqT7fYX5sEvELvyGjL7');
+      expect(playlist.items.length).toBeLessThanOrEqual(100);
+    });
     
     it('Should retrieve home feed', async () => {
       const homefeed = await this.session.getHomeFeed();
