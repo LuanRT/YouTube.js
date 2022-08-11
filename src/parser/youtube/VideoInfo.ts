@@ -453,7 +453,7 @@ class VideoInfo {
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
 
-    const url = new URL(format.decipher(this.#player));
+    const url = new URL(format.decipher());
     url.searchParams.set('cpn', this.#cpn);
 
     set.appendChild(this.#el(document, 'Representation', {
@@ -498,7 +498,7 @@ class VideoInfo {
     };
 
     const format = this.chooseFormat(opts);
-    const format_url = format.decipher(this.#player);
+    const format_url = format.decipher();
 
     // If we're not downloading the video in chunks, we just use fetch once.
     if (opts.type === 'video+audio' && !options.range) {
