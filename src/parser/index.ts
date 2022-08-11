@@ -60,6 +60,36 @@ export class MusicPlaylistShelfContinuation extends YTNode {
   }
 }
 
+export class MusicShelfContinuation extends YTNode {
+  static readonly type = 'musicShelfContinuation';
+
+  continuation: string;
+  contents: ObservedArray<YTNode> | null;
+
+  constructor(data: any) {
+    super();
+    this.contents = Parser.parse(data.contents, true);
+    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
+  }
+}
+
+export class GridContinuation extends YTNode {
+  static readonly type = 'gridContinuation';
+
+  continuation: string;
+  items: ObservedArray<YTNode> | null;
+
+  constructor(data: any) {
+    super();
+    this.items = Parser.parse(data.items, true);
+    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
+  }
+
+  get contents() {
+    return this.items;
+  }
+}
+
 export class TimedContinuation extends YTNode {
   static readonly type = 'timedContinuationData';
 
@@ -235,6 +265,10 @@ export default class Parser {
       return new LiveChatContinuation(data.liveChatContinuation);
     if (data.musicPlaylistShelfContinuation)
       return new MusicPlaylistShelfContinuation(data.musicPlaylistShelfContinuation);
+    if (data.musicShelfContinuation)
+      return new MusicShelfContinuation(data.musicShelfContinuation);
+    if (data.gridContinuation)
+      return new GridContinuation(data.gridContinuation);
   }
 
   static parseRR(actions: any[]) {

@@ -84,6 +84,7 @@ class MusicResponsiveListItem extends YTNode {
         this.#parsePlaylist();
         break;
       case 'MUSIC_PAGE_TYPE_ARTIST':
+      case 'MUSIC_PAGE_TYPE_LIBRARY_ARTIST':
       case 'MUSIC_PAGE_TYPE_USER_CHANNEL':
         this.item_type = 'artist';
         this.#parseArtist();
