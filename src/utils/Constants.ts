@@ -41,7 +41,7 @@ export const CLIENTS = Object.freeze({
   },
   ANDROID: {
     NAME: 'ANDROID',
-    VERSION: '17.17.32',
+    VERSION: '17.32.33',
     SDK_VERSION: '29'
   }
 });
