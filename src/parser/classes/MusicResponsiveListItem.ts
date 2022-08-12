@@ -128,7 +128,8 @@ class MusicResponsiveListItem extends YTNode {
       seconds: timeToSeconds(duration_text)
     });
 
-    const album = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('MPR')) as TextRun;
+    const album = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('MPR')) as TextRun ||
+      this.#flex_columns[2]?.key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('MPR')) as TextRun;
     if (album) {
       this.album = {
         id: album.endpoint?.browse?.id,
