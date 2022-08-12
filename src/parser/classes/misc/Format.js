@@ -36,12 +36,11 @@ class Format {
 
   /**
    * Decipher the streaming url of the format.
-   *
-   * @param {import('../../../core/Player').default} player
    * @returns {string} Deciphered URL for downloading
    */
-  decipher(player) {
-    return player.decipher(this.url, this.signature_cipher, this.cipher);
+  decipher() {
+    return this.url;
+    // Return player.decipher(this.url, this.signature_cipher, this.cipher);
   }
 }
 

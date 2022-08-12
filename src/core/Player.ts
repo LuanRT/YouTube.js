@@ -4,19 +4,23 @@ import { getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../uti
 import Constants from '../utils/Constants';
 import UniversalCache from '../utils/Cache';
 
-import NToken from '../deciphers/NToken';
-import Signature from '../deciphers/Signature';
+
+// Import NToken from '../deciphers/NToken';
+// Import Signature from '../deciphers/Signature';
 
 export default class Player {
-  #ntoken;
-  #signature;
+  // #ntoken;
+  // #signature;
+
   #signature_timestamp;
   #player_id;
 
-  constructor(signature: Signature, ntoken: NToken, signature_timestamp: number, player_id: string) {
-    this.#ntoken = ntoken;
-    this.#signature = signature;
+  constructor(signature_timestamp: number, player_id: string) {
+    // This.#ntoken = ntoken;
+    // This.#signature = signature;
+
     this.#signature_timestamp = signature_timestamp;
+
     this.#player_id = player_id;
   }
 
@@ -56,13 +60,15 @@ export default class Player {
     const player_js = await player_res.text();
 
     const sig_timestamp = this.extractSigTimestamp(player_js);
-    const sig_decipher_sc = this.extractSigDecipherSc(player_js);
-    const ntoken_sc = this.extractNTokenSc(player_js);
 
-    return await Player.fromSource(cache, sig_timestamp, sig_decipher_sc, ntoken_sc, player_id);
+    // Const sig_decipher_sc = this.extractSigDecipherSc(player_js);
+    // Const ntoken_sc = this.extractNTokenSc(player_js);
+
+    return await Player.fromSource(cache, sig_timestamp, player_id);
   }
 
-  decipher(url?: string, signature_cipher?: string, cipher?: string) {
+  /*
+  Decipher(url?: string, signature_cipher?: string, cipher?: string) {
     url = url || signature_cipher || cipher;
 
     if (!url)
@@ -90,7 +96,7 @@ export default class Player {
     }
 
     return url_components.toString();
-  }
+  }*/
 
   static async fromCache(cache: UniversalCache, player_id: string) {
     const buffer = await cache.get(player_id);
@@ -105,15 +111,18 @@ export default class Player {
       return null;
 
     const sig_timestamp = view.getUint32(4, true);
-    const sig_decipher_len = view.getUint32(8, true);
-    const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
-    const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
 
-    return new Player(Signature.fromArrayBuffer(sig_decipher_buf), NToken.fromArrayBuffer(ntoken_transform_buf), sig_timestamp, player_id);
+    /*
+     * Const sig_decipher_len = view.getUint32(8, true);
+     * const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
+     * const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
+     */
+
+    return new Player(sig_timestamp, player_id);
   }
 
-  static async fromSource(cache: UniversalCache | undefined, sig_timestamp: number, sig_decipher_sc: string, ntoken_sc: string, player_id: string) {
-    const player = new Player(Signature.fromSourceCode(sig_decipher_sc), NToken.fromSourceCode(ntoken_sc), sig_timestamp, player_id);
+  static async fromSource(cache: UniversalCache | undefined, sig_timestamp: number, player_id: string) {
+    const player = new Player(sig_timestamp, player_id);
     await player.cache(cache);
     return player;
   }
@@ -121,17 +130,21 @@ export default class Player {
   async cache(cache?: UniversalCache) {
     if (!cache) return;
 
-    const ntoken_buf = this.#ntoken.toArrayBuffer();
-    const sig_decipher_buf = this.#signature.toArrayBuffer();
-    const buffer = new ArrayBuffer(12 + sig_decipher_buf.byteLength + ntoken_buf.byteLength);
+    /**
+     * Const ntoken_buf = this.#ntoken.toArrayBuffer();
+     * const sig_decipher_buf = this.#signature.toArrayBuffer();
+     */
+
+    const buffer = new ArrayBuffer(12 /* + sig_decipher_buf.byteLength + ntoken_buf.byteLength */);
     const view = new DataView(buffer);
 
     view.setUint32(0, Player.LIBRARY_VERSION, true);
     view.setUint32(4, this.#signature_timestamp, true);
-    view.setUint32(8, sig_decipher_buf.byteLength, true);
 
-    new Uint8Array(buffer).set(new Uint8Array(sig_decipher_buf), 12);
-    new Uint8Array(buffer).set(new Uint8Array(ntoken_buf), 12 + sig_decipher_buf.byteLength);
+    // View.setUint32(8, sig_decipher_buf.byteLength, true);
+
+    // New Uint8Array(buffer).set(new Uint8Array(sig_decipher_buf), 12);
+    // New Uint8Array(buffer).set(new Uint8Array(ntoken_buf), 12 + sig_decipher_buf.byteLength);
 
     await cache.set(this.#player_id, new Uint8Array(buffer));
   }
@@ -162,6 +175,7 @@ export default class Player {
   static extractNTokenSc(data: string) {
     const sc = `var b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
 
+    console.log(sc);
     if (!sc)
       throw new PlayerError('Failed to extract n-token decipher algorithm');
 
