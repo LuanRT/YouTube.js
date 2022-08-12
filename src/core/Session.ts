@@ -24,6 +24,7 @@ export interface Context {
     userAgent: string;
     clientName: string;
     clientVersion: string;
+    androidSdkVersion?: string;
     osName: string;
     osVersion: string;
     platform: string;

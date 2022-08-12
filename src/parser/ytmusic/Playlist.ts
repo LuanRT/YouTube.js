@@ -63,7 +63,7 @@ class Playlist {
       const data = Parser.parseResponse(response.data);
       const section_list = data.continuation_contents?.as(SectionListContinuation);
       const sections = section_list?.contents?.as(MusicCarouselShelf);
-      const related = sections?.filter((section) => section.header?.title === 'Related playlists')[0];
+      const related = sections?.filter((section) => section.header?.title.toString() === 'Related playlists')[0];
       if (related) {
         return related.contents || [];
       }

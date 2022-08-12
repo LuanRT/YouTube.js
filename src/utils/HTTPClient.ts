@@ -60,6 +60,7 @@ export default class HTTPClient {
 
     request_url.searchParams.set('key', this.#session.key);
     request_url.searchParams.set('prettyPrint', 'false');
+    request_url.searchParams.set('alt', 'json');
 
     const content_type = request_headers.get('Content-Type');
 
@@ -134,6 +135,7 @@ export default class HTTPClient {
         ctx.client.clientVersion = Constants.CLIENTS.ANDROID.VERSION;
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
+        ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
         break;
       default:
         break;
