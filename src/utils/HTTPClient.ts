@@ -135,6 +135,7 @@ export default class HTTPClient {
         ctx.client.clientVersion = Constants.CLIENTS.ANDROID.VERSION;
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
+        ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
         break;
       default:
         break;
