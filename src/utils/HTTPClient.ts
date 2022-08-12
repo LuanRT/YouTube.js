@@ -60,6 +60,7 @@ export default class HTTPClient {
 
     request_url.searchParams.set('key', this.#session.key);
     request_url.searchParams.set('prettyPrint', 'false');
+    request_url.searchParams.set('alt', 'json');
 
     const content_type = request_headers.get('Content-Type');
 
