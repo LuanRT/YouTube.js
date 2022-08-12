@@ -2,7 +2,6 @@ import Parser, { GridContinuation, MusicShelfContinuation, ParsedResponse, Secti
 import Actions from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 import SectionList from '../classes/SectionList';
-import { ObservedArray, YTNode } from '../helpers';
 
 type CONTENT_TYPE = 'history' | 'playlists' | 'albums' | 'songs' | 'artists' | 'subscriptions';
 
@@ -34,11 +33,11 @@ class Library {
     const getItemsFromDataNode = (node: any) => {
       switch (node?.type) {
         case 'Grid':
-          return node.contents?.array() || null;
+          return node.contents?.array();
         case 'MusicShelf':
-          return node.contents || null;
+          return node.contents;
         default:
-          return null;
+          return [];
       }
     };
 
@@ -46,7 +45,7 @@ class Library {
     const sections: Array<any> = page.contents_memo.get('SectionList')?.[0].as(SectionList).contents.array() || [];
     const contents_section = sections.find((section) => section.header?.type === 'ItemSectionTabbedHeader');
     const data_node = contents_section?.contents?.[0];
-    return new LibraryItemList(getItemsFromDataNode(data_node), data_node?.continuation, page, this.#actions);
+    return new LibraryItemList(getItemsFromDataNode(data_node) || [], data_node?.continuation, page, this.#actions);
   }
 
   async getPlaylists() {
@@ -73,14 +72,14 @@ class Library {
     if (show_all) {
       const page = await this.#fetchPage('history');
       const section_list = page.contents_memo.get('SectionList')?.[0].as(SectionList);
-      const sections = section_list?.contents?.array() || null;
+      const sections = section_list?.contents?.array() || [];
       return new LibrarySectionList(sections, section_list?.continuation || null, page, this.#actions);
     }
 
     const page = await this.#fetchPage('songs');
     const sections: Array<any> = page.contents_memo.get('SectionList')?.[0].as(SectionList).contents.array() || [];
     const contents_section = sections.find((section) => section.header?.type === 'MusicCarouselShelfBasicHeader' && section.header?.title.toString() === 'Recent activity');
-    const items = contents_section?.contents || null;
+    const items = contents_section?.contents || [];
     return new LibraryItemList(items, null, page, this.#actions);
   }
 }
@@ -127,9 +126,9 @@ class LibraryResultsBase {
 class LibraryItemList extends LibraryResultsBase {
   #actions: Actions;
 
-  items: ObservedArray<YTNode> | null;
+  items: Array<any>;
 
-  constructor(items: ObservedArray<YTNode> | null, continuation: string | null, page: ParsedResponse, actions: Actions) {
+  constructor(items: Array<any>, continuation: string | null, page: ParsedResponse, actions: Actions) {
     super(continuation, page, actions);
     this.#actions = actions;
     this.items = items;
@@ -137,16 +136,16 @@ class LibraryItemList extends LibraryResultsBase {
 
   async parseContinuationContents(page: ParsedResponse) {
     const data = page.continuation_contents?.as(MusicShelfContinuation, GridContinuation);
-    return new LibraryItemList(data?.contents || null, data?.continuation || null, page, this.#actions);
+    return new LibraryItemList(data?.contents || [], data?.continuation || null, page, this.#actions);
   }
 }
 
 class LibrarySectionList extends LibraryResultsBase {
   #actions: Actions;
 
-  sections: ObservedArray<YTNode> | null;
+  sections: Array<any>;
 
-  constructor(sections: ObservedArray<YTNode> | null, continuation: string | null, page: ParsedResponse, actions: Actions) {
+  constructor(sections: Array<any>, continuation: string | null, page: ParsedResponse, actions: Actions) {
     super(continuation, page, actions);
     this.#actions = actions;
     this.sections = sections;
@@ -154,7 +153,7 @@ class LibrarySectionList extends LibraryResultsBase {
 
   async parseContinuationContents(page: ParsedResponse) {
     const data = page.continuation_contents?.as(SectionListContinuation);
-    return new LibrarySectionList(data?.contents || null, data?.continuation || null, page, this.#actions);
+    return new LibrarySectionList(data?.contents || [], data?.continuation || null, page, this.#actions);
   }
 }
 
