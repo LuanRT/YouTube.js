@@ -1,5 +1,3 @@
-import Player from '../../../core/Player';
-
 class Format {
   itag: string;
   mime_type: string;
