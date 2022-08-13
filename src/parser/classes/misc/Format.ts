@@ -23,7 +23,7 @@ class Format {
   quality: string;
   quality_label: string | undefined;
   fps: string | undefined;
-  url: string | undefined;
+  url: string;
   cipher: string | undefined;
   signature_cipher: string | undefined;
   audio_quality: string | undefined;
@@ -73,8 +73,8 @@ class Format {
    * Decipher the streaming url of the format.
    * @returns Deciphered URL.
    */
-  decipher(player: Player): string {
-    return player.decipher(this.url, this.signature_cipher, this.cipher);
+  decipher(): string {
+    return this.url;
   }
 }
 
