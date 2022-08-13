@@ -90,6 +90,19 @@ export class GridContinuation extends YTNode {
   }
 }
 
+export class PlaylistPanelContinuation extends YTNode {
+  static readonly type = 'playlistPanelContinuation';
+
+  continuation: string;
+  contents: ObservedArray<YTNode> | null;
+
+  constructor(data: any) {
+    super();
+    this.contents = Parser.parse(data.contents, true);
+    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
+  }
+}
+
 export class TimedContinuation extends YTNode {
   static readonly type = 'timedContinuationData';
 
@@ -269,6 +282,8 @@ export default class Parser {
       return new MusicShelfContinuation(data.musicShelfContinuation);
     if (data.gridContinuation)
       return new GridContinuation(data.gridContinuation);
+    if (data.playlistPanelContinuation)
+      return new PlaylistPanelContinuation(data.playlistPanelContinuation);
   }
 
   static parseRR(actions: any[]) {
