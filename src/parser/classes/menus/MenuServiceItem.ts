@@ -3,7 +3,7 @@ import Button from '../Button';
 class MenuServiceItem extends Button {
   static type = 'MenuServiceItem';
 
-  constructor(data) {
+  constructor(data: any) {
     super(data);
   }
 }

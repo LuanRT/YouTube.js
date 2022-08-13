@@ -4,7 +4,9 @@ import { YTNode } from '../../helpers';
 class MultiPageMenuNotificationSection extends YTNode {
   static type = 'MultiPageMenuNotificationSection';
 
-  constructor(data) {
+  items;
+
+  constructor(data: any) {
     super();
     this.items = Parser.parse(data.items);
   }
