@@ -580,7 +580,7 @@ class Actions {
   /**
    * Mostly used for pagination and specific operations.
    */
-  async next(args: { video_id?: string; ctoken?: string; client?: string; } = {}) {
+  async next(args: { video_id?: string; ctoken?: string; client?: string; playlist_id?: string; params?: string } = {}) {
     const data: Record<string, any> = { client: args.client };
 
     if (args.ctoken) {
@@ -589,6 +589,14 @@ class Actions {
 
     if (args.video_id) {
       data.videoId = args.video_id;
+    }
+
+    if (args.playlist_id) {
+      data.playlistId = args.playlist_id;
+    }
+
+    if (args.params) {
+      data.params = args.params;
     }
 
     const response = await this.#session.http.fetch('/next', {

@@ -2,6 +2,7 @@
 import { YTNode } from '../helpers';
 import Parser, { ParsedResponse } from '../index';
 import Actions, { ActionsResponse } from '../../core/Actions';
+import CreatePlaylistDialog from './CreatePlaylistDialog';
 
 class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';
@@ -30,6 +31,7 @@ class NavigationEndpoint extends YTNode {
   watch_playlist;
   playlist_edit;
   add_to_playlist;
+  create_playlist;
   get_report_form;
   live_chat_item_context_menu;
   send_live_chat_vote;
@@ -188,6 +190,17 @@ class NavigationEndpoint extends YTNode {
     if (data?.addToPlaylistServiceEndpoint) {
       this.add_to_playlist = {
         video_id: data.addToPlaylistServiceEndpoint.videoId
+      };
+    }
+
+    if (data?.createPlaylistEndpoint) {
+      if (data?.createPlaylistEndpoint.createPlaylistDialog) {
+        this.dialog = Parser.parseItem(data?.createPlaylistEndpoint.createPlaylistDialog, CreatePlaylistDialog);
+      }
+      this.create_playlist = {
+        // Nothing to put here - data.createPlaylistEndpoint has only one prop `createPlaylistDialog`
+        // Which was already parsed and referred to by `this.dialog`. But still useful to have this as
+        // A quick indicator of what the endpoint does.
       };
     }
 

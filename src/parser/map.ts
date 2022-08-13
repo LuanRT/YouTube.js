@@ -11,6 +11,7 @@ import { default as AnalyticsVideo } from './classes/analytics/AnalyticsVideo';
 import { default as AnalyticsVodCarouselCard } from './classes/analytics/AnalyticsVodCarouselCard';
 import { default as CtaGoToCreatorStudio } from './classes/analytics/CtaGoToCreatorStudio';
 import { default as DataModelSection } from './classes/analytics/DataModelSection';
+import { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo';
 import { default as BackstageImage } from './classes/BackstageImage';
 import { default as BackstagePost } from './classes/BackstagePost';
 import { default as BackstagePostThread } from './classes/BackstagePostThread';
@@ -46,8 +47,11 @@ import { default as CompactMix } from './classes/CompactMix';
 import { default as CompactPlaylist } from './classes/CompactPlaylist';
 import { default as CompactVideo } from './classes/CompactVideo';
 import { default as ContinuationItem } from './classes/ContinuationItem';
+import { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog';
 import { default as DidYouMean } from './classes/DidYouMean';
 import { default as DownloadButton } from './classes/DownloadButton';
+import { default as Dropdown } from './classes/Dropdown';
+import { default as DropdownItem } from './classes/DropdownItem';
 import { default as Element } from './classes/Element';
 import { default as EmergencyOnebox } from './classes/EmergencyOnebox';
 import { default as Endscreen } from './classes/Endscreen';
@@ -67,6 +71,8 @@ import { default as HorizontalCardList } from './classes/HorizontalCardList';
 import { default as HorizontalList } from './classes/HorizontalList';
 import { default as ItemSection } from './classes/ItemSection';
 import { default as ItemSectionHeader } from './classes/ItemSectionHeader';
+import { default as ItemSectionTab } from './classes/ItemSectionTab';
+import { default as ItemSectionTabbedHeader } from './classes/ItemSectionTabbedHeader';
 import { default as LikeButton } from './classes/LikeButton';
 import { default as LiveChat } from './classes/LiveChat';
 import { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBannerToLiveChatCommand';
@@ -243,6 +249,7 @@ const map: Record<string, YTNodeConstructor> = {
   AnalyticsVodCarouselCard,
   CtaGoToCreatorStudio,
   DataModelSection,
+  AutomixPreviewVideo,
   BackstageImage,
   BackstagePost,
   BackstagePostThread,
@@ -278,8 +285,11 @@ const map: Record<string, YTNodeConstructor> = {
   CompactPlaylist,
   CompactVideo,
   ContinuationItem,
+  CreatePlaylistDialog,
   DidYouMean,
   DownloadButton,
+  Dropdown,
+  DropdownItem,
   Element,
   EmergencyOnebox,
   Endscreen,
@@ -299,6 +309,8 @@ const map: Record<string, YTNodeConstructor> = {
   HorizontalList,
   ItemSection,
   ItemSectionHeader,
+  ItemSectionTab,
+  ItemSectionTabbedHeader,
   LikeButton,
   LiveChat,
   AddBannerToLiveChatCommand,
