@@ -45,10 +45,16 @@ class MusicTwoRowItem extends YTNode {
           delete this.year;
         break;
       default:
-        if (this.subtitle.runs[0].text !== 'Song') {
-          this.item_type = 'video';
+        if (this.subtitle.runs?.[0]) {
+          if (this.subtitle.runs[0].text !== 'Song') {
+            this.item_type = 'video';
+          } else {
+            this.item_type = 'song';
+          }
+        } else if (this.endpoint) {
+          this.item_type = 'endpoint';
         } else {
-          this.item_type = 'song';
+          this.item_type = 'unknown';
         }
 
         if (this.item_type == 'video') {
@@ -63,7 +69,7 @@ class MusicTwoRowItem extends YTNode {
               endpoint: author.endpoint
             };
           }
-        } else {
+        } else if (this.item_type == 'song') {
           const artists = this.subtitle.runs.filter((run) => run.endpoint?.browse?.id.startsWith('UC'));
           if (artists) {
             this.artists = artists.map((artist) => ({
