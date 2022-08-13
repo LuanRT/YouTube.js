@@ -24,7 +24,7 @@ class PlaylistPanel extends YTNode {
     this.contents = Parser.parseArray<PlaylistPanelVideo>(data.contents, PlaylistPanelVideo);
     this.playlist_id = data.playlistId;
     this.is_infinite = data.isInfinite;
-    this.continuation = data.continuations[0]?.nextRadioContinuationData?.continuation;
+    this.continuation = data.continuations[0]?.nextRadioContinuationData?.continuation || data.continuations[0]?.nextContinuationData?.continuation;
     this.is_editable = data.isEditable;
     this.preview_description = data.previewDescription;
     this.num_items_to_show = data.numItemsToShow;
