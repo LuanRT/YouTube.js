@@ -1,6 +1,7 @@
 import Parser, { GridContinuation, MusicShelfContinuation, ParsedResponse, PlaylistPanelContinuation, SectionListContinuation } from '..';
 import Actions from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
+import DropdownItem from '../classes/DropdownItem';
 import NavigationEndpoint from '../classes/NavigationEndpoint';
 import PlaylistPanel from '../classes/PlaylistPanel';
 import SectionList from '../classes/SectionList';
@@ -12,6 +13,7 @@ type Continuation = {
   payload?: {}
 };
 type ItemFilter = ((item: any) => boolean) | null;
+type SortBy = 'recently_added' | 'a_z' | 'z_a';
 
 const BROWSE_IDS: { [key: string]: string } = {
   'history': 'FEmusic_history',
@@ -22,6 +24,17 @@ const BROWSE_IDS: { [key: string]: string } = {
   'subscriptions': 'FEmusic_library_corpus_artists'
 };
 
+const SORT_BY_TEXTS: { [key: string]: string } = {
+  'recently_added': 'Recently added',
+  'a_z': 'A to Z',
+  'z_a': 'Z to A'
+};
+
+const SORT_BY_TEXTS_R: { [key: string]: string } = {};
+for (const [ key, value ] of Object.entries(SORT_BY_TEXTS)) {
+  SORT_BY_TEXTS_R[value] = key;
+}
+
 class Library {
   #actions;
 
@@ -29,19 +42,22 @@ class Library {
     this.#actions = actions;
   }
 
-  async #fetchPage(type: ContentType) {
-    const browse_id = BROWSE_IDS[type];
-    const response = await this.#actions.browse(browse_id, { client: 'YTMUSIC' });
+  #getBrowseId(type: ContentType) {
+    return BROWSE_IDS[type];
+  }
 
+  async #fetchPage(browse_id: string, fetchArgs = {}) {
+    const response = await this.#actions.browse(browse_id, { ...fetchArgs, client: 'YTMUSIC' });
     return Parser.parseResponse(response.data);
   }
 
   /**
-   * Fetches and returns the list of library items specified by `type`
-   * @param type - The type of content to fetch
+   * Fetches the list of library items from the endpoint given by `browse_id`
+   * @param browse_id - id of browse endpoint from which contents are fetched
    * @param filter - The filter to apply to fetched items (`null` for no filtering)
+   * @param fetchArgs - Args to be included in the fetch payload
    */
-  async #fetchAndParseTabContents(type: ContentType, filter: ItemFilter = null) {
+  async #fetchAndParseTabContents(browse_id: string, filter: ItemFilter = null, fetchArgs = {}) {
 
     const getItemsFromDataNode = (node: any) => {
       switch (node?.type) {
@@ -54,7 +70,7 @@ class Library {
       }
     };
 
-    const page = await this.#fetchPage(type);
+    const page = await this.#fetchPage(browse_id, fetchArgs);
     const sections = page.contents_memo.get('SectionList')?.[0].as(SectionList).contents.array() as Array<any> || [];
     const contents_section = sections.find((section) => section.header?.type === 'ItemSectionTabbedHeader');
     const data_node = contents_section?.contents?.[0];
@@ -68,37 +84,52 @@ class Library {
   /**
    * Retrieves the library's playlists
    */
-  async getPlaylists() {
-    return await this.#fetchAndParseTabContents('playlists', (item) => item.item_type === 'playlist');
+  async getPlaylists(args?: { sort_by?: SortBy }) {
+    const data = await this.#fetchAndParseTabContents(this.#getBrowseId('playlists'), (item) => item.item_type === 'playlist');
+    const sort_by = args?.sort_by || null;
+    return sort_by ? this.#applySortBy(data, sort_by) : data;
   }
 
   /**
    * Retrieves the library's albums
    */
-  async getAlbums() {
-    return this.#fetchAndParseTabContents('albums', (item) => item.item_type === 'album');
+  async getAlbums(args?: { sort_by?: SortBy }) {
+    const data = await this.#fetchAndParseTabContents(this.#getBrowseId('albums'), (item) => item.item_type === 'album');
+    const sort_by = args?.sort_by || null;
+    return sort_by ? this.#applySortBy(data, sort_by) : data;
   }
 
   /**
    * Retrieves the library's artists
    */
-  async getArtists() {
-    return this.#fetchAndParseTabContents('artists', (item) => item.item_type === 'artist');
+  async getArtists(args?: { sort_by?: SortBy }) {
+    const data = await this.#fetchAndParseTabContents(this.#getBrowseId('artists'), (item) => item.item_type === 'artist');
+    const sort_by = args?.sort_by || null;
+    return sort_by ? this.#applySortBy(data, sort_by) : data;
   }
 
   /**
    * Retrieves the library's songs
-   * @param shuffle - Whether to retrieve a shuffled list of songs (default: `false`)
    */
-  async getSongs(shuffle = false) {
-    const result = await this.#fetchAndParseTabContents('songs', (item) => (item.item_type === 'song' || item.item_type === 'video'));
+  async getSongs(args?: { sort_by?: SortBy | 'random' }) {
+    const data = await this.#fetchAndParseTabContents(this.#getBrowseId('songs'), (item) => (item.item_type === 'song' || item.item_type === 'video'));
+
+    const sort_by = args?.sort_by || null;
+    const shuffle = (sort_by === 'random');
 
     const shuffle_endpoint = shuffle ?
-      result.all_items.find((item) =>
+      data.all_items.find((item) =>
         item.item_type === 'endpoint' && item.title.toString() === 'Shuffle all'
       )?.endpoint as NavigationEndpoint : null;
 
-    return !shuffle_endpoint ? result : this.#fetchAndParseShuffledSongs(shuffle_endpoint);
+    if (shuffle) {
+      if (!shuffle_endpoint) {
+        throw new InnertubeError('Unable to obtain endpoint for sort_by value \'random\'');
+      }
+      return this.#fetchAndParseShuffledSongs(shuffle_endpoint);
+    }
+
+    return sort_by ? this.#applySortBy(data, sort_by) : data;
   }
 
   /**
@@ -120,23 +151,45 @@ class Library {
       payload
     } as Continuation : null;
     const filter = (item: any) => item.type === 'PlaylistPanelVideo';
-    return new LibraryItemList(items, filter, continuation, page, this.#actions);
+    return new LibraryItemList(items, filter, continuation, page, this.#actions, { sort_by: 'random' });
   }
 
   /**
    * Retrieves the library's subscriptions
    */
-  async getSubscriptions() {
-    return this.#fetchAndParseTabContents('subscriptions');
+  async getSubscriptions(args?: { sort_by?: SortBy }) {
+    const data = await this.#fetchAndParseTabContents(this.#getBrowseId('subscriptions'));
+    const sort_by = args?.sort_by || null;
+    return sort_by ? this.#applySortBy(data, sort_by) : data;
+  }
+
+  /**
+   * Applies `sort_by` to `data` and returns the result. Original `data` is not modified.
+   */
+  async #applySortBy(data: LibraryItemList, sort_by: SortBy) {
+    const page = data.page;
+    const dropdownItem = page?.contents_memo.get('DropdownItem')?.find(
+      (item) => item.as(DropdownItem).label === SORT_BY_TEXTS[sort_by])?.as(DropdownItem);
+
+    if (!dropdownItem?.endpoint?.browse) {
+      throw new InnertubeError(`Unable to obtain browse endpoint for sort_by value '${sort_by}'`);
+    }
+
+    if (dropdownItem?.selected) {
+      return data;
+    }
+
+    const fetchArgs = { params: dropdownItem.endpoint.browse.params };
+    return this.#fetchAndParseTabContents(dropdownItem.endpoint.browse.id, data.filter, fetchArgs);
   }
 
   /**
    * Retrieves recent activity
-   * @param show_all - Whether to retrieve all recent activity (default: `false`)
    */
-  async getRecentActivity(show_all = false) {
-    if (show_all) {
-      const page = await this.#fetchPage('history');
+  async getRecentActivity(args: {all: boolean}) {
+    const all = !!args?.all;
+    if (all) {
+      const page = await this.#fetchPage(this.#getBrowseId('history'));
       const section_list = page.contents_memo.get('SectionList')?.[0].as(SectionList);
       const sections = section_list?.contents?.array() || [];
       const continuation = section_list?.continuation ? {
@@ -146,12 +199,12 @@ class Library {
       return new LibrarySectionList(sections, continuation, page, this.#actions);
     }
 
-    const page = await this.#fetchPage('songs');
+    const page = await this.#fetchPage(this.#getBrowseId('songs'));
     const sections = page.contents_memo.get('SectionList')?.[0].as(SectionList).contents.array() as Array<any> || [];
     const contents_section = sections.find(
       (section) => section.header?.type === 'MusicCarouselShelfBasicHeader' && section.header?.title.toString() === 'Recent activity');
     const items = contents_section?.contents || [];
-    return new LibraryItemList(items, null, null, page, this.#actions);
+    return new LibraryItemList(items, null, null, page, this.#actions, { sort_by: null });
   }
 }
 
@@ -204,24 +257,40 @@ class LibraryItemList extends LibraryResultsBase {
   #actions;
   #all_items; // Unfiltered items
   items; // Items after applying filter (if any)
+  sort_by: SortBy | 'random' | null;
 
-  constructor(items: Array<any>, filter: ItemFilter, continuation: Continuation | null, page: ParsedResponse, actions: Actions) {
+  constructor(items: Array<any>, filter: ItemFilter, continuation: Continuation | null, page: ParsedResponse, actions: Actions, overrides?: { sort_by: SortBy | 'random' | null }) {
     super(continuation, page, actions);
     this.#filter = filter;
     this.#actions = actions;
     this.#all_items = items;
     this.items = filter ? items.filter(filter) : items;
-
+    this.sort_by = (overrides?.sort_by !== undefined) ? overrides.sort_by : this.#getSortBy();
   }
 
   async parseContinuationContents(page: ParsedResponse, from_continuation: Continuation) {
     const data = page.continuation_contents?.as(MusicShelfContinuation, GridContinuation, PlaylistPanelContinuation);
     const continuation = data?.continuation ? { ...from_continuation, token: data?.continuation } : null;
-    return new LibraryItemList(data?.contents || [], this.#filter, continuation, page, this.#actions);
+    return new LibraryItemList(data?.contents || [], this.#filter, continuation, page, this.#actions, { sort_by: this.sort_by });
+  }
+
+  #getSortBy() {
+    const selected = this.page?.contents_memo.get('DropdownItem')?.filter((item) => item.as(DropdownItem).selected) as DropdownItem[] || [];
+    for (const s of selected) {
+      const v = SORT_BY_TEXTS_R[s.label];
+      if (v) {
+        return v as SortBy;
+      }
+    }
+    return null;
   }
 
   get all_items() {
     return this.#all_items;
+  }
+
+  get filter() {
+    return this.#filter;
   }
 }
 
