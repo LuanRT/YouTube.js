@@ -124,6 +124,9 @@ class Library {
 
     if (shuffle) {
       if (!shuffle_endpoint) {
+        if (data.items.length <= 1) {
+          return data;
+        }
         throw new InnertubeError('Unable to obtain endpoint for sort_by value \'random\'');
       }
       return this.#fetchAndParseShuffledSongs(shuffle_endpoint);
@@ -172,6 +175,9 @@ class Library {
       (item) => item.as(DropdownItem).label === SORT_BY_TEXTS[sort_by])?.as(DropdownItem);
 
     if (!dropdownItem?.endpoint?.browse) {
+      if (data.items.length <= 1) {
+        return data;
+      }
       throw new InnertubeError(`Unable to obtain browse endpoint for sort_by value '${sort_by}'`);
     }
 
