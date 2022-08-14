@@ -3,7 +3,7 @@ import { YTNode } from '../helpers';
 
 class MusicEditablePlaylistDetailHeader extends YTNode {
   static type = 'MusicEditablePlaylistDetailHeader';
-  
+
   header;
 
   constructor(data: any) {

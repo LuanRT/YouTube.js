@@ -20,8 +20,7 @@ class DropdownItem extends YTNode {
 
     if (data.int32Value) {
       this.value = data.int32Value;
-    }
-    else if (data.stringValue) {
+    } else if (data.stringValue) {
       this.value = data.stringValue;
     }
 
