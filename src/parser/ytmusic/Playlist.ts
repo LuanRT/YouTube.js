@@ -1,4 +1,4 @@
-import Parser, { MusicPlaylistShelfContinuation, ParsedResponse, SectionListContinuation } from '../index';
+import Parser, { MusicPlaylistShelfContinuation, MusicShelfContinuation, ParsedResponse, SectionListContinuation } from '../index';
 import Actions, { AxioslikeResponse } from '../../core/Actions';
 
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
@@ -6,11 +6,14 @@ import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
 import SectionList from '../classes/SectionList';
 import { InnertubeError } from '../../utils/Utils';
 import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader';
+import MusicShelf from '../classes/MusicShelf';
 
 class Playlist {
   #page;
   #actions;
   #continuation;
+  #suggestions_continuation;
+  #last_fetched_suggestions: any;
 
   header;
   items;
@@ -19,6 +22,9 @@ class Playlist {
     this.#actions = actions;
     this.#page = Parser.parseResponse(response.data);
     this.#actions = actions;
+    this.#suggestions_continuation = this.#page.contents_memo.getType(MusicShelf)?.find(
+      (shelf) => shelf.title.toString() === 'Suggestions')?.continuation || null;
+    this.#last_fetched_suggestions = null;
 
     if (this.#page.continuation_contents) {
       const data = this.#page.continuation_contents?.as(MusicPlaylistShelfContinuation);
@@ -27,8 +33,7 @@ class Playlist {
     } else {
       if (this.#page.header?.item().type === 'MusicEditablePlaylistDetailHeader') {
         this.header = this.#page.header?.item().as(MusicEditablePlaylistDetailHeader).header.item();
-      }
-      else {
+      } else {
         this.header = this.#page.header?.item() || null;
       }
       this.items = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0].contents;
@@ -78,6 +83,36 @@ class Playlist {
     }
 
     return [];
+  }
+
+  async getSuggestions(refresh = true) {
+    const require_fetch = refresh || !this.#last_fetched_suggestions;
+    const fetch_promise = require_fetch ? this.#fetchSuggestions(this.#suggestions_continuation) : Promise.resolve(null);
+    const fetch_result = await fetch_promise;
+
+    if (fetch_result) {
+      this.#last_fetched_suggestions = fetch_result.items;
+      this.#suggestions_continuation = fetch_result.continuation;
+    }
+
+    return fetch_result?.items || this.#last_fetched_suggestions;
+  }
+
+  async #fetchSuggestions(continuation: string | null) {
+    if (continuation) {
+      const response = await this.#actions.browse(continuation, { is_ctoken: true, client: 'YTMUSIC' });
+      const page = Parser.parseResponse(response.data);
+      const data = page.continuation_contents?.as(MusicShelfContinuation);
+      return {
+        items: data?.contents || [],
+        continuation: data?.continuation || null
+      };
+    }
+
+    return {
+      items: [],
+      continuation: null
+    };
   }
 
 }
