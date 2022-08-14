@@ -1,11 +1,11 @@
 import Parser, { MusicPlaylistShelfContinuation, ParsedResponse, SectionListContinuation } from '../index';
 import Actions, { AxioslikeResponse } from '../../core/Actions';
 
-import MusicDetailHeader from '../classes/MusicDetailHeader';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
 import SectionList from '../classes/SectionList';
 import { InnertubeError } from '../../utils/Utils';
+import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader';
 
 class Playlist {
   #page;
@@ -25,9 +25,14 @@ class Playlist {
       this.items = data.contents;
       this.#continuation = data.continuation;
     } else {
-      this.header = this.#page.header.item().as(MusicDetailHeader);
-      this.items = this.#page.contents_memo.get('MusicPlaylistShelf')?.[0].as(MusicPlaylistShelf).contents;
-      this.#continuation = this.#page.contents_memo.get('MusicPlaylistShelf')?.[0].as(MusicPlaylistShelf).continuation || null;
+      if (this.#page.header?.item().type === 'MusicEditablePlaylistDetailHeader') {
+        this.header = this.#page.header?.item().as(MusicEditablePlaylistDetailHeader).header.item();
+      }
+      else {
+        this.header = this.#page.header?.item() || null;
+      }
+      this.items = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0].contents;
+      this.#continuation = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0].continuation || null;
     }
   }
 
