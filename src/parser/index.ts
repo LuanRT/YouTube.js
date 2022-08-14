@@ -69,7 +69,9 @@ export class MusicShelfContinuation extends YTNode {
   constructor(data: any) {
     super();
     this.contents = Parser.parse(data.contents, true);
-    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
+    this.continuation =
+      data.continuations?.[0].nextContinuationData?.continuation ||
+      data.continuations?.[0].reloadContinuationData?.continuation || null;
   }
 }
 
