@@ -133,6 +133,7 @@ import { default as MusicCarouselShelf } from './classes/MusicCarouselShelf';
 import { default as MusicCarouselShelfBasicHeader } from './classes/MusicCarouselShelfBasicHeader';
 import { default as MusicDescriptionShelf } from './classes/MusicDescriptionShelf';
 import { default as MusicDetailHeader } from './classes/MusicDetailHeader';
+import { default as MusicEditablePlaylistDetailHeader } from './classes/MusicEditablePlaylistDetailHeader';
 import { default as MusicHeader } from './classes/MusicHeader';
 import { default as MusicImmersiveHeader } from './classes/MusicImmersiveHeader';
 import { default as MusicInlineBadge } from './classes/MusicInlineBadge';
@@ -371,6 +372,7 @@ const map: Record<string, YTNodeConstructor> = {
   MusicCarouselShelfBasicHeader,
   MusicDescriptionShelf,
   MusicDetailHeader,
+  MusicEditablePlaylistDetailHeader,
   MusicHeader,
   MusicImmersiveHeader,
   MusicInlineBadge,
