@@ -7,8 +7,9 @@ class DropdownItem extends YTNode {
 
   label: string;
   selected: boolean;
-  value?: number;
+  value?: number | string;
   iconType?: string;
+  description?: string;
   endpoint?: NavigationEndpoint;
 
   constructor(data: any) {
@@ -20,6 +21,9 @@ class DropdownItem extends YTNode {
     if (data.int32Value) {
       this.value = data.int32Value;
     }
+    else if (data.stringValue) {
+      this.value = data.stringValue;
+    }
 
     if (data.onSelectCommand?.browseEndpoint) {
       this.endpoint = new NavigationEndpoint(data.onSelectCommand);
@@ -27,6 +31,10 @@ class DropdownItem extends YTNode {
 
     if (data.icon?.iconType) {
       this.iconType = data.icon?.iconType;
+    }
+
+    if (data.descriptionText) {
+      this.description = new Text(data.descriptionText).toString();
     }
   }
 }
