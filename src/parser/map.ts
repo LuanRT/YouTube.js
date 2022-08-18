@@ -64,6 +64,7 @@ import { default as FeedFilterChipBar } from './classes/FeedFilterChipBar';
 import { default as FeedTabbedHeader } from './classes/FeedTabbedHeader';
 import { default as Grid } from './classes/Grid';
 import { default as GridChannel } from './classes/GridChannel';
+import { default as GridHeader } from './classes/GridHeader';
 import { default as GridPlaylist } from './classes/GridPlaylist';
 import { default as GridVideo } from './classes/GridVideo';
 import { default as HistorySuggestion } from './classes/HistorySuggestion';
@@ -303,6 +304,7 @@ const map: Record<string, YTNodeConstructor> = {
   FeedTabbedHeader,
   Grid,
   GridChannel,
+  GridHeader,
   GridPlaylist,
   GridVideo,
   HistorySuggestion,

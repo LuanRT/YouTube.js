@@ -22,7 +22,7 @@ class MusicTwoRowItem extends YTNode {
     switch (this.endpoint?.browse?.page_type) {
       case 'MUSIC_PAGE_TYPE_ARTIST':
         this.item_type = 'artist';
-        this.subscribers = this.subtitle.toString();
+        this.subscribers = this.subtitle.runs?.find((run) => (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text))?.text || '';
         break;
       case 'MUSIC_PAGE_TYPE_PLAYLIST':
         this.item_type = 'playlist';
