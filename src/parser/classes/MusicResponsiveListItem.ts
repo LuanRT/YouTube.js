@@ -178,7 +178,8 @@ class MusicResponsiveListItem extends YTNode {
       }));
     }
 
-    const duration_text = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text;
+    const duration_text = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text ||
+      this.#fixed_columns[0]?.key('title').instanceof(Text).runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text;
     duration_text && (this.duration = {
       text: duration_text,
       seconds: timeToSeconds(duration_text)
