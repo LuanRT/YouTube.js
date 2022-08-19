@@ -3,6 +3,7 @@ import Text from './misc/Text';
 import PlaylistPanelVideo from './PlaylistPanelVideo';
 
 import { YTNode } from '../helpers';
+import AutomixPreviewVideo from './AutomixPreviewVideo';
 
 class PlaylistPanel extends YTNode {
   static type = 'PlaylistPanel';
@@ -21,7 +22,7 @@ class PlaylistPanel extends YTNode {
     super();
     this.title = data.title;
     this.title_text = new Text(data.titleText);
-    this.contents = Parser.parseArray<PlaylistPanelVideo>(data.contents, PlaylistPanelVideo);
+    this.contents = Parser.parseArray<PlaylistPanelVideo | AutomixPreviewVideo>(data.contents, [ PlaylistPanelVideo, AutomixPreviewVideo ]);
     this.playlist_id = data.playlistId;
     this.is_infinite = data.isInfinite;
     this.continuation = data.continuations[0]?.nextRadioContinuationData?.continuation || data.continuations[0]?.nextContinuationData?.continuation;
