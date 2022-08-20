@@ -54,7 +54,7 @@ class MusicTwoRowItem extends YTNode {
     switch (this.endpoint?.browse?.page_type) {
       case 'MUSIC_PAGE_TYPE_ARTIST':
         this.item_type = 'artist';
-        this.subscribers = this.subtitle.toString();
+        this.subscribers = this.subtitle.runs?.find((run) => (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text))?.text || '';
         break;
       case 'MUSIC_PAGE_TYPE_PLAYLIST':
         this.item_type = 'playlist';
@@ -78,12 +78,18 @@ class MusicTwoRowItem extends YTNode {
           delete this.year;
         break;
       default:
-        if (this.subtitle.runs?.[0].text !== 'Song') {
-          this.item_type = 'video';
+        if (this.subtitle.runs?.[0]) {
+          if (this.subtitle.runs[0].text !== 'Song') {
+            this.item_type = 'video';
+          } else {
+            this.item_type = 'song';
+          }
+        } else if (this.endpoint) {
+          this.item_type = 'endpoint';
         } else {
-          this.item_type = 'song';
+          this.item_type = 'unknown';
         }
-
+      
         if (this.item_type == 'video') {
           this.views = this?.subtitle.runs?.find((run) => run?.text.match(/(.*?) views/))?.text || 'N/A';
 
@@ -95,7 +101,7 @@ class MusicTwoRowItem extends YTNode {
               endpoint: (author as TextRun)?.endpoint
             };
           }
-        } else {
+        } else if (this.item_type == 'song') {
           const artists = this.subtitle.runs?.filter((run: any) => run.endpoint?.browse?.id.startsWith('UC'));
           if (artists) {
             this.artists = artists.map((artist: any) => ({

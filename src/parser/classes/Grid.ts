@@ -15,6 +15,11 @@ class Grid extends YTNode {
     this.is_collapsible = data.isCollapsible;
     this.visible_row_count = data.visibleRowCount;
     this.target_id = data.targetId;
+    this.continuation = data.continuations?.[0]?.nextContinuationData?.continuation || null;
+
+    if (data.header) {
+      this.header = Parser.parse(data.header);
+    }
   }
 
   // XXX: alias for consistency

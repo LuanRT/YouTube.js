@@ -52,7 +52,9 @@ class MusicResponsiveListItem extends YTNode {
   }[];
 
   name?: string;
+  subtitle?: Text;
   subscribers?: string;
+  song_count?: string;
   // TODO: these might be replaceable with Author class
   author?: {
     name: string,
@@ -84,12 +86,17 @@ class MusicResponsiveListItem extends YTNode {
         this.#parsePlaylist();
         break;
       case 'MUSIC_PAGE_TYPE_ARTIST':
+      case 'MUSIC_PAGE_TYPE_LIBRARY_ARTIST':
       case 'MUSIC_PAGE_TYPE_USER_CHANNEL':
         this.item_type = 'artist';
         this.#parseArtist();
         break;
       default:
-        this.#parseVideoOrSong();
+        if (this.#flex_columns[1]) {
+          this.#parseVideoOrSong();
+        } else {
+          this.#parseOther();
+        }
         break;
     }
 
@@ -97,10 +104,20 @@ class MusicResponsiveListItem extends YTNode {
       this.index = new Text(data.index);
     }
 
-    this.thumbnails = data.thumbnail ? Thumbnail.fromResponse(data.thumbnail.musicThumbnailRenderer.thumbnail) : [];
+    this.thumbnails = data.thumbnail ? Thumbnail.fromResponse(data.thumbnail.musicThumbnailRenderer?.thumbnail) : [];
     this.badges = Parser.parseArray(data.badges);
     this.menu = Parser.parse(data.menu);
     this.overlay = Parser.parse(data.overlay);
+  }
+
+  #parseOther() {
+    this.title = this.#flex_columns[0].key('title').instanceof(Text).toString();
+
+    if (this.endpoint) {
+      this.item_type = 'endpoint';
+    } else {
+      this.item_type = 'unknown';
+    }
   }
 
   #parseVideoOrSong() {
@@ -127,7 +144,8 @@ class MusicResponsiveListItem extends YTNode {
       seconds: timeToSeconds(duration_text)
     });
 
-    const album = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('MPR')) as TextRun;
+    const album = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('MPR')) as TextRun ||
+      this.#flex_columns[2]?.key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('MPR')) as TextRun;
     if (album) {
       this.album = {
         id: album.endpoint?.browse?.id,
@@ -160,7 +178,8 @@ class MusicResponsiveListItem extends YTNode {
       }));
     }
 
-    const duration_text = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text;
+    const duration_text = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text ||
+      this.#fixed_columns[0]?.key('title').instanceof(Text).runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text;
     duration_text && (this.duration = {
       text: duration_text,
       seconds: timeToSeconds(duration_text)
@@ -170,7 +189,9 @@ class MusicResponsiveListItem extends YTNode {
   #parseArtist() {
     this.id = this.endpoint?.browse?.id;
     this.name = this.#flex_columns[0].key('title').instanceof(Text).toString();
-    this.subscribers = this.#flex_columns[1].key('title').instanceof(Text).runs?.[2]?.text || '';
+    this.subtitle = this.#flex_columns[1].key('title').instanceof(Text);
+    this.subscribers = this.subtitle.runs?.find((run) => (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text))?.text || '';
+    this.song_count = this.subtitle.runs?.find((run) => (/^\d+(,\d+)? songs?$/i).test(run.text))?.text || '';
   }
 
   #parseAlbum() {

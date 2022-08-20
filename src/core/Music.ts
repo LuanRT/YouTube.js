@@ -77,10 +77,8 @@ class Music {
   /**
    * Retrieves the Library.
    */
-  async getLibrary() {
-    const response = await this.#actions.browse('FEmusic_liked_albums', { client: 'YTMUSIC' });
-    return new Library(response);
-    // TODO: return new Library(response, this.#actions);
+  getLibrary() {
+    return new Library(this.#actions);
   }
 
   /**

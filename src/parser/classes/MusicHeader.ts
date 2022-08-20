@@ -1,5 +1,6 @@
 import Parser from '../index';
 import { YTNode } from '../helpers';
+import Text from './misc/Text';
 
 class MusicHeader extends YTNode {
   static type = 'MusicHeader';
@@ -8,7 +9,14 @@ class MusicHeader extends YTNode {
 
   constructor(data: any) {
     super();
-    this.header = Parser.parse(data.header);
+
+    if (data.header) {
+      this.header = Parser.parse(data.header);
+    }
+
+    if (data.title) {
+      this.title = new Text(data.title);
+    }
   }
 }
 
