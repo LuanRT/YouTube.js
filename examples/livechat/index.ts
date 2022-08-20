@@ -22,8 +22,8 @@ import LiveChatPaidMessage from 'youtubei.js/dist/src/parser/classes/livechat/it
     /**
      * Initial info is what you see when you first open a Live Chat — this is; inital actions (pinned messages, top donations..), account's info and so on.
      */
-    
-    console.info(`Hey ${initial_data.viewer_name}, welcome to ${info.basic_info.channel.name}\'s Live Chat!`);
+     
+    console.info(`Hey ${initial_data.viewer_name || 'N/A'}, welcome to Live Chat!`);
   });
   
   livechat.on('chat-update', (action: ChatAction) => {
@@ -49,7 +49,7 @@ import LiveChatPaidMessage from 'youtubei.js/dist/src/parser/classes/livechat/it
       switch (item.type) {
         case 'LiveChatTextMessage':
           console.info(
-            `${hours} - ${item.as(LiveChatTextMessage).author.name.toString()}:\n` +
+            `${hours} - ${item.as(LiveChatTextMessage).author?.name.toString()}:\n` +
             `${item.as(LiveChatTextMessage).message.toString()}\n`
           );
           break;

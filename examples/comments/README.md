@@ -5,7 +5,7 @@ YouTube.js has full support for comments, including comment actions such as liki
 Get a [`Comments`](../../lib/parser/youtube/Comments.js) instance:
 
 ```js
-const comments = await session.getComments(VIDEO_ID);
+const comments = await yt.getComments(VIDEO_ID);
 ```
 
 ## API
