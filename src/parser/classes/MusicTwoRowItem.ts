@@ -89,7 +89,7 @@ class MusicTwoRowItem extends YTNode {
         } else {
           this.item_type = 'unknown';
         }
-      
+
         if (this.item_type == 'video') {
           this.views = this?.subtitle.runs?.find((run) => run?.text.match(/(.*?) views/))?.text || 'N/A';
 

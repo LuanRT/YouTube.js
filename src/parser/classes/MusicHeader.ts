@@ -5,7 +5,8 @@ import Text from './misc/Text';
 class MusicHeader extends YTNode {
   static type = 'MusicHeader';
 
-  header;
+  header?;
+  title?: Text;
 
   constructor(data: any) {
     super();

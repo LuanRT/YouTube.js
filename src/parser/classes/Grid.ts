@@ -8,6 +8,8 @@ class Grid extends YTNode {
   is_collapsible: boolean;
   visible_row_count: string;
   target_id: string;
+  continuation: string | null;
+  header?;
 
   constructor(data: any) {
     super();
