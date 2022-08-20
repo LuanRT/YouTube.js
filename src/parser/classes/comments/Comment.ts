@@ -11,7 +11,7 @@ import Proto from '../../../proto/index';
 import Actions from '../../../core/Actions';
 import { InnertubeError } from '../../../utils/Utils';
 
-import { YTNode } from '../../helpers';
+import { YTNode, SuperParsedResult } from '../../helpers';
 
 class Comment extends YTNode {
   static type = 'Comment';
@@ -118,7 +118,8 @@ class Comment extends YTNode {
     if (!button.endpoint.dialog)
       throw new InnertubeError('Reply button endpoint did not have a dialog.');
 
-    const dialog_button = button.endpoint.dialog.item().as(CommentReplyDialog).reply_button.item().as(ToggleButton);
+    const dialog = button.endpoint.dialog as SuperParsedResult<YTNode>;
+    const dialog_button = dialog.item().as(CommentReplyDialog).reply_button.item().as(ToggleButton);
 
     const payload = {
       params: {

@@ -8,13 +8,13 @@ class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';
 
   payload;
-  dialog;
+  dialog?;
 
   metadata: {
     url?: string;
     api_url?: string;
     page_type?: string;
-    send_post?: boolean; // TODO: is this boolean?
+    send_post?: boolean; // TODO: is this a boolean?
   };
 
   // TODO: these should be given proper types, currently infered
