@@ -6,11 +6,11 @@ import Menu from './menus/Menu';
 class VideoPrimaryInfo extends YTNode {
   static type = 'VideoPrimaryInfo';
 
-  title;
-  super_title_link;
-  view_count;
-  short_view_count;
-  published;
+  title: Text;
+  super_title_link: Text;
+  view_count: Text;
+  short_view_count: Text;
+  published: Text;
   menu;
 
   constructor(data: any) {

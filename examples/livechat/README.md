@@ -7,7 +7,7 @@ The library's Live Chat parser and poller were heavily based on YouTube's origin
 Before fetching a Live Chat, you have to retrieve the target livestream's info:
 
 ```js
-const info = await session.getInfo('video_id');
+const info = await yt.getInfo('video_id');
 ```
 
 Then you may request a Live Chat instance:

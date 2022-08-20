@@ -21,7 +21,7 @@ import RemoveBannerForLiveChatCommand from '../classes/livechat/RemoveBannerForL
 import ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipCommand';
 
 import { InnertubeError } from '../../utils/Utils';
-import { ObservedArray } from '../helpers';
+import { ObservedArray, YTNode } from '../helpers';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
@@ -106,7 +106,7 @@ class LiveChat extends EventEmitter {
    * Ensures actions are emitted at the right speed.
    * This was adapted from YouTube's compiled code (Android).
    */
-  async #emitSmoothedActions(actions: ObservedArray<ChatAction>) {
+  async #emitSmoothedActions(actions: ObservedArray<YTNode>) {
     const base = 1E4;
 
     let delay = actions.length < base / 80 ? 1 : 0;
