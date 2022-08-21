@@ -58,6 +58,23 @@ describe('YouTube.js Tests', () => {
       expect(thread.replies.length).toBeLessThanOrEqual(10);
     });
   });
+
+  describe('Info', () => {
+    it('should retrieve full video info', async () => {
+      const info = await yt.getInfo(VIDEOS[0].ID);
+      expect(info.basic_info.id).toBe(VIDEOS[0].ID);
+    });
+
+    it('should have captions on full video info', async () => {
+      const info = await yt.getInfo(VIDEOS[0].ID);
+      expect(info.captions?.caption_tracks.length).toBeGreaterThan(0);
+    });
+
+    it('should retrieve basic video info', async () => {
+      const info = await yt.getBasicInfo(VIDEOS[0].ID);
+      expect(info.basic_info.id).toBe(VIDEOS[0].ID);
+    });
+  });
   
   describe('General', () => {
     it('should retrieve playlist with YouTube', async () => {
@@ -78,17 +95,7 @@ describe('YouTube.js Tests', () => {
     it('should retrieve trending content', async () => {
       const trending = await yt.getTrending();
       expect(trending.videos.length).toBeGreaterThan(0);
-    }); 
-    
-    it('should retrieve full video info', async () => {
-      const info = await yt.getInfo(VIDEOS[0].ID);
-      expect(info.basic_info.id).toBe(VIDEOS[0].ID);
     });
-    
-    it('should retrieve basic video info', async () => {
-      const info = await yt.getBasicInfo(VIDEOS[0].ID);
-      expect(info.basic_info.id).toBe(VIDEOS[0].ID);
-    }); 
     
     it('should download video', async () => {
       const result = await download(VIDEOS[1].ID, yt);
