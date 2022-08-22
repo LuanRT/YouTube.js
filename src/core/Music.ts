@@ -113,7 +113,10 @@ class Music {
   async getPlaylist(playlist_id: string) {
     throwIfMissing({ playlist_id });
 
-    const response = await this.#actions.browse(`VL${playlist_id.replace(/VL/g, '')}`, { client: 'YTMUSIC' });
+    if (!playlist_id.startsWith('VL')) {
+      playlist_id = `VL${playlist_id}`;
+    }
+    const response = await this.#actions.browse(playlist_id, { client: 'YTMUSIC' });
     return new Playlist(response, this.#actions);
   }
 
