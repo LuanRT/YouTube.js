@@ -3,6 +3,7 @@ import { YTNode } from '../helpers';
 import MusicThumbnail from './MusicThumbnail';
 import Parser from '..';
 import Button from './Button';
+import IconLink from './IconLink';
 
 class MusicCarouselShelfBasicHeader extends YTNode {
   static type = 'MusicCarouselShelfBasicHeader';
@@ -11,6 +12,7 @@ class MusicCarouselShelfBasicHeader extends YTNode {
   title: Text;
   thumbnail?: MusicThumbnail | null;
   more_content?: Button | null;
+  end_icons?: Array<IconLink>;
 
   constructor(data: any) {
     super();
@@ -28,6 +30,10 @@ class MusicCarouselShelfBasicHeader extends YTNode {
 
     if (data.moreContentButton) {
       this.more_content = Parser.parseItem<Button>(data.moreContentButton, Button);
+    }
+
+    if (data.endIcons) {
+      this.end_icons = Parser.parseArray<IconLink>(data.endIcons, IconLink);
     }
   }
 }
