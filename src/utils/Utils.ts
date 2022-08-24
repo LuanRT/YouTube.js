@@ -205,19 +205,6 @@ export function hasKeys<T extends object, R extends (keyof T)[]>(params: T, ...k
   return true;
 }
 
-/**
- * Turns the ntoken transform data into a valid json array
- */
-export function refineNTokenData(data: string) {
-  return data
-    .replace(/function\(d,e\)/g, '"function(d,e)').replace(/function\(d\)/g, '"function(d)')
-    .replace(/function\(\)/g, '"function()').replace(/function\(d,e,f\)/g, '"function(d,e,f)')
-    .replace(/\[function\(d,e,f\)/g, '["function(d,e,f)').replace(/,b,/g, ',"b",')
-    .replace(/,b/g, ',"b"').replace(/b,/g, '"b",').replace(/b]/g, '"b"]')
-    .replace(/\[b/g, '["b"').replace(/}]/g, '"]').replace(/},/g, '}",')
-    .replace(/""/g, '').replace(/length]\)}"/g, 'length])}');
-}
-
 export function uuidv4() {
   if (getRuntime() === 'node') {
     return Reflect.get(module, 'require')('crypto').webcrypto.randomUUID();

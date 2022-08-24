@@ -11,6 +11,7 @@ import { default as AnalyticsVideo } from './classes/analytics/AnalyticsVideo';
 import { default as AnalyticsVodCarouselCard } from './classes/analytics/AnalyticsVodCarouselCard';
 import { default as CtaGoToCreatorStudio } from './classes/analytics/CtaGoToCreatorStudio';
 import { default as DataModelSection } from './classes/analytics/DataModelSection';
+import { default as StatRow } from './classes/analytics/StatRow';
 import { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo';
 import { default as BackstageImage } from './classes/BackstageImage';
 import { default as BackstagePost } from './classes/BackstagePost';
@@ -192,10 +193,12 @@ import { default as SearchSuggestion } from './classes/SearchSuggestion';
 import { default as SearchSuggestionsSection } from './classes/SearchSuggestionsSection';
 import { default as SecondarySearchContainer } from './classes/SecondarySearchContainer';
 import { default as SectionList } from './classes/SectionList';
+import { default as SettingBoolean } from './classes/SettingBoolean';
 import { default as Shelf } from './classes/Shelf';
 import { default as ShowingResultsFor } from './classes/ShowingResultsFor';
 import { default as SimpleCardContent } from './classes/SimpleCardContent';
 import { default as SimpleCardTeaser } from './classes/SimpleCardTeaser';
+import { default as SimpleTextSection } from './classes/SimpleTextSection';
 import { default as SingleActionEmergencySupport } from './classes/SingleActionEmergencySupport';
 import { default as SingleColumnBrowseResults } from './classes/SingleColumnBrowseResults';
 import { default as SingleColumnMusicWatchNextResults } from './classes/SingleColumnMusicWatchNextResults';
@@ -252,6 +255,7 @@ const map: Record<string, YTNodeConstructor> = {
   AnalyticsVodCarouselCard,
   CtaGoToCreatorStudio,
   DataModelSection,
+  StatRow,
   AutomixPreviewVideo,
   BackstageImage,
   BackstagePost,
@@ -433,10 +437,12 @@ const map: Record<string, YTNodeConstructor> = {
   SearchSuggestionsSection,
   SecondarySearchContainer,
   SectionList,
+  SettingBoolean,
   Shelf,
   ShowingResultsFor,
   SimpleCardContent,
   SimpleCardTeaser,
+  SimpleTextSection,
   SingleActionEmergencySupport,
   SingleColumnBrowseResults,
   SingleColumnMusicWatchNextResults,

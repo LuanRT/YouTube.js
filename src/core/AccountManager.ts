@@ -1,8 +1,10 @@
-import { throwIfMissing, findNode } from '../utils/Utils';
-import Constants from '../utils/Constants';
-import Analytics from '../parser/youtube/Analytics';
 import Proto from '../proto/index';
 import Actions from './Actions';
+import Constants from '../utils/Constants';
+import { throwIfMissing, findNode } from '../utils/Utils';
+
+import Analytics from '../parser/youtube/Analytics';
+import TimeWatched from '../parser/youtube/TimeWatched';
 
 class AccountManager {
   #actions;
@@ -129,20 +131,12 @@ class AccountManager {
    * Retrieves time watched statistics.
    */
   async getTimeWatched() {
-    const response = await this.#actions.browse('SPtime_watched', { client: 'ANDROID' });
-    const rows: any[] = findNode(response.data, 'contents', 'statRowRenderer', 11, false);
+    const response = await this.#actions.execute('/browse', {
+      browseId: 'SPtime_watched',
+      client: 'ANDROID'
+    });
 
-    const stats = rows.map((row: any) => {
-      const renderer = row.statRowRenderer;
-      if (renderer) {
-        return {
-          title: renderer.title.runs.map((run: any) => run.text).join(''),
-          time: renderer.contents.runs.map((run: any) => run.text).join('')
-        };
-      }
-    }).filter((stat: any) => stat);
-
-    return stats;
+    return new TimeWatched(response);
   }
 
   /**
