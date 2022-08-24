@@ -25,13 +25,13 @@ class MusicTwoRowItem extends YTNode {
 
   artists?: {
     name: string;
-    channel_id: string;
+    channel_id: string | undefined;
     endpoint: NavigationEndpoint | undefined;
   }[];
 
   author?: {
     name: string;
-    channel_id: string;
+    channel_id: string | undefined;
     endpoint: NavigationEndpoint | undefined;
   };
 
