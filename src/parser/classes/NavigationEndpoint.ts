@@ -18,7 +18,13 @@ class NavigationEndpoint extends YTNode {
   };
 
   // TODO: these should be given proper types, currently infered
-  browse;
+  browse?: {
+    id: string,
+    params: string | null,
+    base_url: string | null,
+    page_type: string | null,
+    form_data?: {}
+  };
   watch;
   search;
   subscribe;

@@ -6,9 +6,10 @@ import Parser, { ParsedResponse } from '../parser/index';
 import { hasKeys, InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils';
 
 export interface BrowseArgs {
-  params?: string;
+  params?: string | null;
   is_ytm?: boolean;
   is_ctoken?: boolean;
+  form_data?: {};
   client?: string;
 }
 
@@ -92,6 +93,10 @@ class Actions {
       data.continuation = id;
     } else {
       data.browseId = id;
+    }
+
+    if (args.form_data) {
+      data.formData = args.form_data;
     }
 
     if (args.client) {

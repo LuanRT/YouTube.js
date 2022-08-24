@@ -120,6 +120,9 @@ import { default as MenuServiceItem } from './classes/menus/MenuServiceItem';
 import { default as MenuServiceItemDownload } from './classes/menus/MenuServiceItemDownload';
 import { default as MultiPageMenu } from './classes/menus/MultiPageMenu';
 import { default as MultiPageMenuNotificationSection } from './classes/menus/MultiPageMenuNotificationSection';
+import { default as MusicMenuItemDivider } from './classes/menus/MusicMenuItemDivider';
+import { default as MusicMultiSelectMenu } from './classes/menus/MusicMultiSelectMenu';
+import { default as MusicMultiSelectMenuItem } from './classes/menus/MusicMultiSelectMenuItem';
 import { default as SimpleMenuHeader } from './classes/menus/SimpleMenuHeader';
 import { default as MerchandiseItem } from './classes/MerchandiseItem';
 import { default as MerchandiseShelf } from './classes/MerchandiseShelf';
@@ -149,6 +152,8 @@ import { default as MusicResponsiveListItem } from './classes/MusicResponsiveLis
 import { default as MusicResponsiveListItemFixedColumn } from './classes/MusicResponsiveListItemFixedColumn';
 import { default as MusicResponsiveListItemFlexColumn } from './classes/MusicResponsiveListItemFlexColumn';
 import { default as MusicShelf } from './classes/MusicShelf';
+import { default as MusicSideAlignedItem } from './classes/MusicSideAlignedItem';
+import { default as MusicSortFilterButton } from './classes/MusicSortFilterButton';
 import { default as MusicThumbnail } from './classes/MusicThumbnail';
 import { default as MusicTwoRowItem } from './classes/MusicTwoRowItem';
 import { default as NavigationEndpoint } from './classes/NavigationEndpoint';
@@ -364,6 +369,9 @@ const map: Record<string, YTNodeConstructor> = {
   MenuServiceItemDownload,
   MultiPageMenu,
   MultiPageMenuNotificationSection,
+  MusicMenuItemDivider,
+  MusicMultiSelectMenu,
+  MusicMultiSelectMenuItem,
   SimpleMenuHeader,
   MerchandiseItem,
   MerchandiseShelf,
@@ -393,6 +401,8 @@ const map: Record<string, YTNodeConstructor> = {
   MusicResponsiveListItemFixedColumn,
   MusicResponsiveListItemFlexColumn,
   MusicShelf,
+  MusicSideAlignedItem,
+  MusicSortFilterButton,
   MusicThumbnail,
   MusicTwoRowItem,
   NavigationEndpoint,
