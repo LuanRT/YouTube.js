@@ -25,7 +25,7 @@ class MusicShelf extends YTNode {
     this.continuation =
       data.continuations?.[0].nextContinuationData?.continuation ||
       data.continuations?.[0].reloadContinuationData?.continuation || null;
-    this.bottom_text = Reflect.has(data, 'bottomText') ? new Text(data.bottomText) : null;   
+    this.bottom_text = Reflect.has(data, 'bottomText') ? new Text(data.bottomText) : null;
     this.bottom_button = Parser.parseItem(data.bottomButton, Button);
   }
 }
