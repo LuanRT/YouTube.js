@@ -4,6 +4,7 @@ import NavigationEndpoint from './NavigationEndpoint';
 import MusicResponsiveListItem from './MusicResponsiveListItem';
 
 import { YTNode } from '../helpers';
+import Button from './Button';
 
 class MusicShelf extends YTNode {
   static type = 'MusicShelf';
@@ -13,6 +14,7 @@ class MusicShelf extends YTNode {
   endpoint: NavigationEndpoint | null;
   continuation: string | null;
   bottom_text: Text | null;
+  bottom_button?: Button | null;
 
   constructor(data: any) {
     super();
@@ -23,7 +25,8 @@ class MusicShelf extends YTNode {
     this.continuation =
       data.continuations?.[0].nextContinuationData?.continuation ||
       data.continuations?.[0].reloadContinuationData?.continuation || null;
-    this.bottom_text = Reflect.has(data, 'bottomText') ? new Text(data.bottomText) : null;
+    this.bottom_text = Reflect.has(data, 'bottomText') ? new Text(data.bottomText) : null;   
+    this.bottom_button = Parser.parseItem(data.bottomButton, Button);
   }
 }
 
