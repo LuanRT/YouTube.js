@@ -86,10 +86,13 @@ class MusicResponsiveListItem extends YTNode {
         this.#parsePlaylist();
         break;
       case 'MUSIC_PAGE_TYPE_ARTIST':
-      case 'MUSIC_PAGE_TYPE_LIBRARY_ARTIST':
       case 'MUSIC_PAGE_TYPE_USER_CHANNEL':
         this.item_type = 'artist';
         this.#parseArtist();
+        break;
+      case 'MUSIC_PAGE_TYPE_LIBRARY_ARTIST':
+        this.item_type = 'library_artist';
+        this.#parseLibraryArtist();
         break;
       default:
         if (this.#flex_columns[1]) {
@@ -191,7 +194,12 @@ class MusicResponsiveListItem extends YTNode {
     this.name = this.#flex_columns[0].key('title').instanceof(Text).toString();
     this.subtitle = this.#flex_columns[1].key('title').instanceof(Text);
     this.subscribers = this.subtitle.runs?.find((run) => (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text))?.text || '';
-    this.song_count = this.subtitle.runs?.find((run) => (/^\d+(,\d+)? songs?$/i).test(run.text))?.text || '';
+  }
+
+  #parseLibraryArtist() {
+    this.name = this.#flex_columns[0].key('title').instanceof(Text).toString();
+    this.subtitle = this.#flex_columns[1].key('title').instanceof(Text);
+    this.song_count = this.subtitle?.runs?.find((run) => (/^\d+(,\d+)? songs?$/i).test(run.text))?.text || '';
   }
 
   #parseAlbum() {

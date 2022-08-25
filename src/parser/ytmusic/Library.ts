@@ -103,7 +103,7 @@ class Library {
    * Retrieves the library's artists
    */
   async getArtists(args?: { sort_by?: SortBy }) {
-    const data = await this.#fetchAndParseTabContents(this.#getBrowseId('artists'), (item) => item.item_type === 'artist');
+    const data = await this.#fetchAndParseTabContents(this.#getBrowseId('artists'), (item) => item.item_type === 'library_artist');
     const sort_by = args?.sort_by || null;
     return sort_by ? this.#applySortBy(data, sort_by) : data;
   }
