@@ -1,8 +1,11 @@
-import { throwIfMissing, findNode } from '../utils/Utils';
-import Constants from '../utils/Constants';
-import Analytics from '../parser/youtube/Analytics';
 import Proto from '../proto/index';
 import Actions from './Actions';
+import Constants from '../utils/Constants';
+import { throwIfMissing, findNode } from '../utils/Utils';
+
+import Analytics from '../parser/youtube/Analytics';
+import TimeWatched from '../parser/youtube/TimeWatched';
+import AccountInfo from '../parser/youtube/AccountInfo';
 
 class AccountManager {
   #actions;
@@ -111,38 +114,20 @@ class AccountManager {
    * Retrieves channel info.
    */
   async getInfo() {
-    const response = await this.#actions.account('account/accounts_list', { client: 'ANDROID' });
-
-    const account_item_section_renderer = findNode(response.data, 'contents', 'accountItem', 8, false);
-    const profile = account_item_section_renderer.accountItem.serviceEndpoint.signInEndpoint.directSigninUserProfile;
-
-    const name = profile.accountName;
-    const email = profile.email;
-    const photo = profile.accountPhoto.thumbnails;
-    const subscriber_count = account_item_section_renderer.accountItem.accountByline.runs.map((run: any) => run.text).join('');
-    const channel_id = response.data.contents[0].accountSectionListRenderer.footers[0].accountChannelRenderer.navigationEndpoint.browseEndpoint.browseId;
-
-    return { name, email, channel_id, subscriber_count, photo };
+    const response = await this.#actions.execute('/account/accounts_list', { client: 'ANDROID' });
+    return new AccountInfo(response);
   }
 
   /**
    * Retrieves time watched statistics.
    */
   async getTimeWatched() {
-    const response = await this.#actions.browse('SPtime_watched', { client: 'ANDROID' });
-    const rows: any[] = findNode(response.data, 'contents', 'statRowRenderer', 11, false);
+    const response = await this.#actions.execute('/browse', {
+      browseId: 'SPtime_watched',
+      client: 'ANDROID'
+    });
 
-    const stats = rows.map((row: any) => {
-      const renderer = row.statRowRenderer;
-      if (renderer) {
-        return {
-          title: renderer.title.runs.map((run: any) => run.text).join(''),
-          time: renderer.contents.runs.map((run: any) => run.text).join('')
-        };
-      }
-    }).filter((stat: any) => stat);
-
-    return stats;
+    return new TimeWatched(response);
   }
 
   /**
@@ -151,7 +136,7 @@ class AccountManager {
   async getAnalytics() {
     const info = await this.getInfo();
 
-    const params = Proto.encodeChannelAnalyticsParams(info.channel_id);
+    const params = Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId);
     const response = await this.#actions.browse('FEanalytics_screen', { params, client: 'ANDROID' });
 
     return new Analytics(response);

@@ -10,6 +10,7 @@ import { InnertubeError, ParsingError } from '../utils/Utils';
 import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
 
 import package_json from '../../package.json';
+import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem';
 
 export class AppendContinuationItemsAction extends YTNode {
   static readonly type = 'appendContinuationItemsAction';
@@ -223,6 +224,8 @@ export default class Parser {
     const actions_memo = this.#getMemo();
     this.#clearMemo();
 
+    this.applyMutations(contents_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
+
     return {
       actions,
       actions_memo,
@@ -387,6 +390,44 @@ export default class Parser {
     }
 
     return new SuperParsedResult(this.parseItem(data, validTypes));
+  }
+
+  static applyMutations(memo: Memo, mutations: Array<any>) {
+    // Apply mutations to MusicMultiSelectMenuItems
+    const musicMultiSelectMenuItems = memo.getType(MusicMultiSelectMenuItem);
+    if (musicMultiSelectMenuItems.length > 0 && !mutations) {
+      console.warn(
+        new InnertubeError(
+          'Mutation data required for processing MusicMultiSelectMenuItems, but none found.\n' +
+          `This is a bug, please report it at ${package_json.bugs.url}`
+        )
+      );
+    } else {
+      const missingOrInvalidMutations = [];
+      for (const menuItem of musicMultiSelectMenuItems) {
+        const mutation = mutations.find((mutation) => mutation.payload?.musicFormBooleanChoice?.id === menuItem.form_item_entity_key);
+        const choice = mutation?.payload.musicFormBooleanChoice;
+        if (choice?.selected !== undefined && choice?.opaqueToken) {
+          menuItem.selected = choice.selected;
+          if (menuItem.endpoint?.browse) {
+            menuItem.endpoint.browse.form_data = {
+              selectedValues: [ choice.opaqueToken ]
+            };
+          }
+        } else {
+          missingOrInvalidMutations.push(`'${menuItem.title}'`);
+        }
+      }
+      if (missingOrInvalidMutations.length > 0) {
+        console.warn(
+          new InnertubeError(
+            `Mutation data missing or invalid for ${missingOrInvalidMutations.length} out of ${musicMultiSelectMenuItems.length} MusicMultiSelectMenuItems. ` +
+            `The titles of the failed items are: ${missingOrInvalidMutations.join(', ')}.\n` +
+            `This is a bug, please report it at ${package_json.bugs.url}`
+          )
+        );
+      }
+    }
   }
 
   static formatError({ classname, classdata, err }: { classname: string, classdata: any, err: any }) {

@@ -19,7 +19,7 @@ class MusicDetailHeader extends YTNode {
   badges;
   author?: {
     name: string;
-    channel_id: string;
+    channel_id: string | undefined;
     endpoint: NavigationEndpoint | undefined;
   };
   menu;
