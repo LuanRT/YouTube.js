@@ -5,6 +5,7 @@ import { throwIfMissing, findNode } from '../utils/Utils';
 
 import Analytics from '../parser/youtube/Analytics';
 import TimeWatched from '../parser/youtube/TimeWatched';
+import AccountInfo from '../parser/youtube/AccountInfo';
 
 class AccountManager {
   #actions;
@@ -113,18 +114,8 @@ class AccountManager {
    * Retrieves channel info.
    */
   async getInfo() {
-    const response = await this.#actions.account('account/accounts_list', { client: 'ANDROID' });
-
-    const account_item_section_renderer = findNode(response.data, 'contents', 'accountItem', 8, false);
-    const profile = account_item_section_renderer.accountItem.serviceEndpoint.signInEndpoint.directSigninUserProfile;
-
-    const name = profile.accountName;
-    const email = profile.email;
-    const photo = profile.accountPhoto.thumbnails;
-    const subscriber_count = account_item_section_renderer.accountItem.accountByline.runs.map((run: any) => run.text).join('');
-    const channel_id = response.data.contents[0].accountSectionListRenderer.footers[0].accountChannelRenderer.navigationEndpoint.browseEndpoint.browseId;
-
-    return { name, email, channel_id, subscriber_count, photo };
+    const response = await this.#actions.execute('/account/accounts_list', { client: 'ANDROID' });
+    return new AccountInfo(response);
   }
 
   /**
@@ -145,7 +136,7 @@ class AccountManager {
   async getAnalytics() {
     const info = await this.getInfo();
 
-    const params = Proto.encodeChannelAnalyticsParams(info.channel_id);
+    const params = Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId);
     const response = await this.#actions.browse('FEanalytics_screen', { params, client: 'ANDROID' });
 
     return new Analytics(response);

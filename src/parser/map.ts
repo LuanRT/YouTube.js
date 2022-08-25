@@ -2,6 +2,10 @@
 // See ./scripts/build-parser-json.js
 import { YTNodeConstructor } from './helpers';
 
+import { default as AccountChannel } from './classes/AccountChannel';
+import { default as AccountItemSection } from './classes/AccountItemSection';
+import { default as AccountItemSectionHeader } from './classes/AccountItemSectionHeader';
+import { default as AccountSectionList } from './classes/AccountSectionList';
 import { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction';
 import { default as OpenPopupAction } from './classes/actions/OpenPopupAction';
 import { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics';
@@ -246,6 +250,10 @@ import { default as WatchNextEndScreen } from './classes/WatchNextEndScreen';
 import { default as WatchNextTabbedResults } from './classes/WatchNextTabbedResults';
 
 const map: Record<string, YTNodeConstructor> = {
+  AccountChannel,
+  AccountItemSection,
+  AccountItemSectionHeader,
+  AccountSectionList,
   AppendContinuationItemsAction,
   OpenPopupAction,
   AnalyticsMainAppKeyMetrics,
