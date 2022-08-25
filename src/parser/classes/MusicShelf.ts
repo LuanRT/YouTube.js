@@ -13,6 +13,7 @@ class MusicShelf extends YTNode {
   endpoint: NavigationEndpoint | null;
   continuation: string | null;
   bottom_text: Text | null;
+  subheaders?: Array<any>;
 
   constructor(data: any) {
     super();
@@ -24,6 +25,9 @@ class MusicShelf extends YTNode {
       data.continuations?.[0].nextContinuationData?.continuation ||
       data.continuations?.[0].reloadContinuationData?.continuation || null;
     this.bottom_text = Reflect.has(data, 'bottomText') ? new Text(data.bottomText) : null;
+    if (data.subheaders) {
+      this.subheaders = Parser.parseArray(data.subheaders);
+    }
   }
 }
 
