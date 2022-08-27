@@ -9,8 +9,7 @@ import Settings from '../parser/youtube/Settings';
 class AccountManager {
   #actions;
   channel;
-  settings;
-
+  
   constructor(actions: Actions) {
     this.#actions = actions;
 
