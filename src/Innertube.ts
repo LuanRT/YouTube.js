@@ -9,6 +9,10 @@ import History from './parser/youtube/History';
 import Comments from './parser/youtube/Comments';
 import NotificationsMenu from './parser/youtube/NotificationsMenu';
 import VideoInfo, { DownloadOptions, FormatOptions } from './parser/youtube/VideoInfo';
+import NavigationEndpoint from './parser/classes/NavigationEndpoint';
+
+import { ParsedResponse } from './parser';
+import { ActionsResponse } from './core/Actions';
 
 import Feed from './core/Feed';
 import YTMusic from './core/Music';
@@ -250,6 +254,12 @@ class Innertube {
     throwIfMissing({ video_id });
     const info = await this.getBasicInfo(video_id);
     return info.download(options);
+  }
+
+  call(endpoint: NavigationEndpoint, args: { [ key: string ]: any; parse: true }): Promise<ParsedResponse>;
+  call(endpoint: NavigationEndpoint, args?: { [ key: string ]: any; parse?: false }): Promise<ActionsResponse>;
+  call(endpoint: NavigationEndpoint, args?: object): Promise<ActionsResponse | ParsedResponse> {
+    return endpoint.callTest(this.actions, args);
   }
 }
 
