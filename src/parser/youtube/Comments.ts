@@ -51,10 +51,7 @@ class Comments {
       throw new InnertubeError('Could not find target button.');
 
     const response = await button.endpoint.callTest(this.#actions, {
-      params: {
-        commentText: text
-      },
-      parse: false
+      commentText: text
     });
 
     return response;

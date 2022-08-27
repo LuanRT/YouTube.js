@@ -122,9 +122,7 @@ class Comment extends YTNode {
     const dialog_button = dialog.item().as(CommentReplyDialog).reply_button.item().as(ToggleButton);
 
     const payload = {
-      params: {
-        commentText: text
-      }
+      commentText: text
     };
 
     const response = await dialog_button.endpoint.callTest(this.#actions, payload);
