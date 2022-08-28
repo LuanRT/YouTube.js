@@ -53,6 +53,7 @@ import { default as CompactMix } from './classes/CompactMix';
 import { default as CompactPlaylist } from './classes/CompactPlaylist';
 import { default as CompactVideo } from './classes/CompactVideo';
 import { default as ContinuationItem } from './classes/ContinuationItem';
+import { default as CopyLink } from './classes/CopyLink';
 import { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog';
 import { default as DidYouMean } from './classes/DidYouMean';
 import { default as DownloadButton } from './classes/DownloadButton';
@@ -205,6 +206,7 @@ import { default as SearchSuggestionsSection } from './classes/SearchSuggestions
 import { default as SecondarySearchContainer } from './classes/SecondarySearchContainer';
 import { default as SectionList } from './classes/SectionList';
 import { default as SettingBoolean } from './classes/SettingBoolean';
+import { default as SettingsCheckbox } from './classes/SettingsCheckbox';
 import { default as SettingsOptions } from './classes/SettingsOptions';
 import { default as SettingsSidebar } from './classes/SettingsSidebar';
 import { default as SettingsSwitch } from './classes/SettingsSwitch';
@@ -311,6 +313,7 @@ const map: Record<string, YTNodeConstructor> = {
   CompactPlaylist,
   CompactVideo,
   ContinuationItem,
+  CopyLink,
   CreatePlaylistDialog,
   DidYouMean,
   DownloadButton,
@@ -463,6 +466,7 @@ const map: Record<string, YTNodeConstructor> = {
   SecondarySearchContainer,
   SectionList,
   SettingBoolean,
+  SettingsCheckbox,
   SettingsOptions,
   SettingsSidebar,
   SettingsSwitch,

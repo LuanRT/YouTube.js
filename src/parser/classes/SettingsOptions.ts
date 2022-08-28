@@ -3,16 +3,18 @@ import Parser from '..';
 import Text from './misc/Text';
 import Dropdown from './Dropdown';
 import SettingsSwitch from './SettingsSwitch';
+import SettingsCheckbox from './SettingsCheckbox';
 import ChannelOptions from './ChannelOptions';
+import CopyLink from './CopyLink';
 
-import { ObservedArray, YTNode } from '../helpers';
+import { YTNode } from '../helpers';
 
 class SettingsOptions extends YTNode {
   static type = 'SettingsOptions';
 
   title: Text;
   text?: string;
-  options?: ObservedArray<Dropdown | SettingsSwitch | ChannelOptions>;
+  options?;
 
   constructor(data: any) {
     super();
@@ -23,7 +25,7 @@ class SettingsOptions extends YTNode {
     }
 
     if (Reflect.has(data, 'options')) {
-      this.options = Parser.parseArray<SettingsSwitch | Dropdown | ChannelOptions>(data.options, [ SettingsSwitch, Dropdown, ChannelOptions ]);
+      this.options = Parser.parseArray(data.options, [ SettingsSwitch, Dropdown, CopyLink, SettingsCheckbox, ChannelOptions ]);
     }
   }
 }
