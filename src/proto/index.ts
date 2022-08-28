@@ -229,8 +229,8 @@ class Proto {
   } = {}) {
     const data: PeformCommentActionParams = {
       type,
-      commentId: args.comment_id || '',
-      videoId: args.video_id || '',
+      commentId: args.comment_id || ' ',
+      videoId: args.video_id || ' ',
       unkNum: 2
     };
 
@@ -244,7 +244,7 @@ class Proto {
             text: args.text as string
           }
         },
-        commentId: args.comment_id || '',
+        commentId: args.comment_id || ' ',
         targetLanguage: args.target_language
       };
     }

@@ -40,7 +40,6 @@
   "license": "MIT",
   "dependencies": {
     "@protobuf-ts/runtime": "^2.7.0",
-    "flat": "^5.0.2",
     "linkedom": "^0.14.12",
     "undici": "^5.7.0"
   },
