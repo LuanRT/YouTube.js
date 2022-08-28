@@ -51,10 +51,7 @@ class Comments {
       throw new InnertubeError('Could not find target button.');
 
     const response = await button.endpoint.callTest(this.#actions, {
-      params: {
-        commentText: text
-      },
-      parse: false
+      commentText: text
     });
 
     return response;
@@ -67,7 +64,7 @@ class Comments {
     if (!this.#continuation)
       throw new InnertubeError('Continuation not found');
 
-    const data = await this.#continuation.endpoint.callTest(this.#actions);
+    const data = await this.#continuation.endpoint.callTest(this.#actions, { parse: true });
 
     // Copy the previous page so we can keep the header.
     const page = Object.assign({}, this.#page);

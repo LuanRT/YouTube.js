@@ -1,4 +1,4 @@
-import { throwIfMissing, findNode } from '../utils/Utils';
+import { throwIfMissing } from '../utils/Utils';
 import Actions from './Actions';
 
 class InteractionManager {
@@ -79,12 +79,12 @@ class InteractionManager {
       text
     });
 
-    const translated_content = findNode(response.data, 'frameworkUpdates', 'content', 7, false);
+    const mutation = response.data.frameworkUpdates.entityBatchUpdate.mutations[0].payload.commentEntityPayload;
 
     return {
       success: response.success,
       status_code: response.status_code,
-      translated_content: translated_content.content,
+      translated_content: mutation.translatedContent.content,
       data: response.data
     };
   }
