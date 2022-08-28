@@ -20,8 +20,8 @@ class Artist {
 
     this.header = this.page.header.item().as(MusicImmersiveHeader);
 
-    const music_shelf = this.#page.contents_memo.get('MusicShelf') as MusicShelf[];
-    const music_carousel_shelf = this.#page.contents_memo.get('MusicCarouselShelf') as MusicCarouselShelf[];
+    const music_shelf = this.#page.contents_memo.get('MusicShelf') as MusicShelf[] || [];
+    const music_carousel_shelf = this.#page.contents_memo.get('MusicCarouselShelf') as MusicCarouselShelf[] || [];
 
     this.sections = [ ...music_shelf, ...music_carousel_shelf ];
   }
