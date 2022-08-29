@@ -70,7 +70,7 @@ export default class Player {
     url = url || signature_cipher || cipher;
 
     if (!url)
-      throw new PlayerError('No valid URL to ');
+      throw new PlayerError('No valid URL to decipher');
 
     const args = new URLSearchParams(url);
     const url_components = new URL(args.get('url') || url);
