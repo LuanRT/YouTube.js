@@ -1,3 +1,5 @@
+import Player from '../../../core/Player';
+
 class Format {
   itag: string;
   mime_type: string;
@@ -71,8 +73,8 @@ class Format {
    * Decipher the streaming url of the format.
    * @returns Deciphered URL.
    */
-  decipher(): string {
-    return this.url;
+  decipher(player: Player): string {
+    return player.decipher(this.url, this.signature_cipher, this.cipher);
   }
 }
 
