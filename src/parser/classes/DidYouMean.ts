@@ -13,7 +13,7 @@ class DidYouMean extends YTNode {
     super();
     this.text = new Text(data.didYouMean).toString();
     this.corrected_query = new Text(data.correctedQuery);
-    this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.correctedQueryEndpoint);
   }
 }
 
