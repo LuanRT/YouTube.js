@@ -17,6 +17,7 @@ import PlayerOverlay from '../classes/PlayerOverlay';
 import ToggleButton from '../classes/ToggleButton';
 import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader';
 import ContinuationItem from '../classes/ContinuationItem';
+import PlayerMicroformat from '../classes/PlayerMicroformat';
 
 import LiveChat from '../classes/LiveChat';
 import LiveChatWrap from './LiveChat';
@@ -42,6 +43,10 @@ export interface FormatOptions {
    * File format, use 'any' to download any format
    */
   format?: string;
+  /**
+   * InnerTube client, can be ANDROID, WEB or YTMUSIC
+   */
+  client?: 'ANDROID' | 'WEB' | 'YTMUSIC'
 }
 
 export interface DownloadOptions extends FormatOptions {
@@ -95,8 +100,22 @@ class VideoInfo {
     if (info.playability_status?.status === 'ERROR')
       throw new InnertubeError('This video is unavailable', info.playability_status);
 
+    if (info.microformat && !info.microformat?.is(PlayerMicroformat))
+      throw new InnertubeError('Invalid microformat', info.microformat);
+
     this.basic_info = { // This type is inferred so no need for an explicit type
       ...info.video_details,
+      ...{
+        /**
+         * Microformat is a bit redundant, so only
+         * a few things there are interesting to us.
+         */
+        embed: info.microformat?.embed,
+        channel: info.microformat?.channel,
+        is_unlisted: info.microformat?.is_unlisted,
+        is_family_safe: info.microformat?.is_family_safe,
+        has_ypc_metadata: info.microformat?.has_ypc_metadata
+      },
       like_count: undefined as number | undefined,
       is_liked: undefined as boolean | undefined,
       is_disliked: undefined as boolean | undefined
@@ -423,7 +442,7 @@ class VideoInfo {
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
 
-    const url = new URL(format.decipher());
+    const url = new URL(format.decipher(this.#player));
     url.searchParams.set('cpn', this.#cpn);
 
     set.appendChild(this.#el(document, 'Representation', {
@@ -453,7 +472,7 @@ class VideoInfo {
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
 
-    const url = new URL(format.decipher());
+    const url = new URL(format.decipher(this.#player));
     url.searchParams.set('cpn', this.#cpn);
 
     set.appendChild(this.#el(document, 'Representation', {
@@ -498,7 +517,7 @@ class VideoInfo {
     };
 
     const format = this.chooseFormat(opts);
-    const format_url = format.decipher();
+    const format_url = format.decipher(this.#player);
 
     // If we're not downloading the video in chunks, we just use fetch once.
     if (opts.type === 'video+audio' && !options.range) {

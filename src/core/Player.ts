@@ -1,25 +1,24 @@
+
 import { FetchFunction } from '../utils/HTTPClient';
 import { getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils';
 
 import Constants from '../utils/Constants';
 import UniversalCache from '../utils/Cache';
 
-
-// Import NToken from '../deciphers/NToken';
-// Import Signature from '../deciphers/Signature';
+// See https://github.com/LuanRT/Jinter
+import Jinter from 'jintr';
 
 export default class Player {
-  // #ntoken;
-  // #signature;
-
-  #signature_timestamp;
+  #nsig_sc;
+  #sig_sc;
+  #sig_sc_timestamp;
   #player_id;
 
-  constructor(signature_timestamp: number, player_id: string) {
-    // This.#ntoken = ntoken;
-    // This.#signature = signature;
+  constructor(signature_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string) {
+    this.#nsig_sc = nsig_sc;
+    this.#sig_sc = sig_sc;
 
-    this.#signature_timestamp = signature_timestamp;
+    this.#sig_sc_timestamp = signature_timestamp;
 
     this.#player_id = player_id;
   }
@@ -61,14 +60,13 @@ export default class Player {
 
     const sig_timestamp = this.extractSigTimestamp(player_js);
 
-    // Const sig_decipher_sc = this.extractSigDecipherSc(player_js);
-    // Const ntoken_sc = this.extractNTokenSc(player_js);
+    const sig_sc = this.extractSigSourceCode(player_js);
+    const nsig_sc = this.extractNSigSourceCode(player_js);
 
-    return await Player.fromSource(cache, sig_timestamp, player_id);
+    return await Player.fromSource(cache, sig_timestamp, sig_sc, nsig_sc, player_id);
   }
 
-  /*
-  Decipher(url?: string, signature_cipher?: string, cipher?: string) {
+  decipher(url?: string, signature_cipher?: string, cipher?: string) {
     url = url || signature_cipher || cipher;
 
     if (!url)
@@ -80,7 +78,11 @@ export default class Player {
     url_components.searchParams.set('ratebypass', 'yes');
 
     if (signature_cipher || cipher) {
-      const signature = this.#signature.decipher(url);
+      const sig_decipher = new Jinter(this.#sig_sc);
+      sig_decipher.scope.set('sig', args.get('s'));
+
+      const signature = sig_decipher.interpret();
+
       const sp = args.get('sp');
 
       sp ?
@@ -91,12 +93,20 @@ export default class Player {
     const n = url_components.searchParams.get('n');
 
     if (n) {
-      const ntoken = this.#ntoken.transform(n);
-      url_components.searchParams.set('n', ntoken);
+      const nsig_decipher = new Jinter(this.#nsig_sc);
+      nsig_decipher.scope.set('nsig', n);
+
+      const nsig = nsig_decipher.interpret();
+
+      if (nsig.startsWith('enhanced_except_')) {
+        console.warn('Warning:\nCould not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!');
+      }
+
+      url_components.searchParams.set('n', nsig);
     }
 
     return url_components.toString();
-  }*/
+  }
 
   static async fromCache(cache: UniversalCache, player_id: string) {
     const buffer = await cache.get(player_id);
@@ -112,17 +122,20 @@ export default class Player {
 
     const sig_timestamp = view.getUint32(4, true);
 
-    /*
-     * Const sig_decipher_len = view.getUint32(8, true);
-     * const sig_decipher_buf = buffer.slice(12, 12 + sig_decipher_len);
-     * const ntoken_transform_buf = buffer.slice(12 + sig_decipher_len);
-     */
+    const sig_len = view.getUint32(8, true);
+    const sig_buf = buffer.slice(12, 12 + sig_len);
+    const nsig_buf = buffer.slice(12 + sig_len);
 
-    return new Player(sig_timestamp, player_id);
+    const decoder = new TextDecoder();
+
+    const sig_sc = decoder.decode(sig_buf);
+    const nsig_sc = decoder.decode(nsig_buf);
+
+    return new Player(sig_timestamp, sig_sc, nsig_sc, player_id);
   }
 
-  static async fromSource(cache: UniversalCache | undefined, sig_timestamp: number, player_id: string) {
-    const player = new Player(sig_timestamp, player_id);
+  static async fromSource(cache: UniversalCache | undefined, sig_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string) {
+    const player = new Player(sig_timestamp, sig_sc, nsig_sc, player_id);
     await player.cache(cache);
     return player;
   }
@@ -130,52 +143,41 @@ export default class Player {
   async cache(cache?: UniversalCache) {
     if (!cache) return;
 
-    /**
-     * Const ntoken_buf = this.#ntoken.toArrayBuffer();
-     * const sig_decipher_buf = this.#signature.toArrayBuffer();
-     */
+    const encoder = new TextEncoder();
 
-    const buffer = new ArrayBuffer(12 /* + sig_decipher_buf.byteLength + ntoken_buf.byteLength */);
+    const sig_buf = encoder.encode(this.#sig_sc);
+    const nsig_buf = encoder.encode(this.#nsig_sc);
+
+    const buffer = new ArrayBuffer(12 + sig_buf.byteLength + nsig_buf.byteLength);
     const view = new DataView(buffer);
 
     view.setUint32(0, Player.LIBRARY_VERSION, true);
-    view.setUint32(4, this.#signature_timestamp, true);
+    view.setUint32(4, this.#sig_sc_timestamp, true);
+    view.setUint32(8, sig_buf.byteLength, true);
 
-    // View.setUint32(8, sig_decipher_buf.byteLength, true);
-
-    // New Uint8Array(buffer).set(new Uint8Array(sig_decipher_buf), 12);
-    // New Uint8Array(buffer).set(new Uint8Array(ntoken_buf), 12 + sig_decipher_buf.byteLength);
+    new Uint8Array(buffer).set(sig_buf, 12);
+    new Uint8Array(buffer).set(nsig_buf, 12 + sig_buf.byteLength);
 
     await cache.set(this.#player_id, new Uint8Array(buffer));
   }
 
-  /**
-   * Extracts the signature timestamp from the player source code.
-   */
   static extractSigTimestamp(data: string) {
     return parseInt(getStringBetweenStrings(data, 'signatureTimestamp:', ',') || '0');
   }
 
-  /**
-   * Extracts the signature decipher algorithm.
-   */
-  static extractSigDecipherSc(data: string) {
-    const sig_alg_sc = getStringBetweenStrings(data, 'this.audioTracks};var', '};');
-    const sig_data = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+  static extractSigSourceCode(data: string) {
+    const funcs = getStringBetweenStrings(data, 'this.audioTracks};var', '};');
+    const calls = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
 
-    if (!sig_alg_sc || !sig_data)
+    if (!funcs || !calls)
       throw new PlayerError('Failed to extract signature decipher algorithm');
 
-    return sig_alg_sc + sig_data;
+    return `function descramble_sig(a) { a = a.split(""); ${funcs}}${calls} return a.join("") } descramble_sig(sig);`;
   }
 
-  /**
-   * Extracts the n-token decipher algorithm.
-   */
-  static extractNTokenSc(data: string) {
-    const sc = `var b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join("");`;
+  static extractNSigSourceCode(data: string) {
+    const sc = `function descramble_nsig(a) { let b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join(""); } descramble_nsig(nsig)`;
 
-    console.log(sc);
     if (!sc)
       throw new PlayerError('Failed to extract n-token decipher algorithm');
 
@@ -187,10 +189,18 @@ export default class Player {
   }
 
   get sts() {
-    return this.#signature_timestamp;
+    return this.#sig_sc_timestamp;
+  }
+
+  get nsig_sc() {
+    return this.#nsig_sc;
+  }
+
+  get sig_sc() {
+    return this.#sig_sc;
   }
 
   static get LIBRARY_VERSION() {
-    return 1;
+    return 2;
   }
 }

@@ -48,6 +48,8 @@ export interface SearchFilters {
   sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count';
 }
 
+export type InnerTubeClient = 'ANDROID' | 'WEB' | 'YTMUSIC';
+
 class Innertube {
   session;
   account;
@@ -74,16 +76,10 @@ class Innertube {
   /**
    * Retrieves video info.
    */
-  async getInfo(video_id: string | undefined) {
-    throwIfMissing({ video_id });
-
+  async getInfo(video_id: string, client?: InnerTubeClient) {
     const cpn = generateRandomString(16);
 
-    const initial_info = await this.actions.execute('/player', {
-      client: 'ANDROID',
-      videoId: video_id
-    });
-
+    const initial_info = await this.actions.getVideoInfo(video_id, cpn, client);
     const continuation = this.actions.next({ video_id });
 
     const response = await Promise.all([ initial_info, continuation ]);
@@ -93,15 +89,9 @@ class Innertube {
   /**
    * Retrieves basic video info.
    */
-  async getBasicInfo(video_id: string | undefined) {
-    throwIfMissing({ video_id });
-
+  async getBasicInfo(video_id: string, client?: InnerTubeClient) {
     const cpn = generateRandomString(16);
-
-    const response = await this.actions.execute('/player', {
-      client: 'ANDROID',
-      videoId: video_id
-    });
+    const response = await this.actions.getVideoInfo(video_id, cpn, client);
 
     return new VideoInfo([ response ], this.actions, this.session.player, cpn);
   }
@@ -246,13 +236,12 @@ class Innertube {
   }
 
   /**
-   * Downloads a given video. If you only need the direct download link take a look at {@link getStreamingData}.
+   * Downloads a given video. If you only need the direct download link see {@link getStreamingData}.
    *
    * If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
    */
-  async download(video_id: string | undefined, options?: DownloadOptions) {
-    throwIfMissing({ video_id });
-    const info = await this.getBasicInfo(video_id);
+  async download(video_id: string, options?: DownloadOptions) {
+    const info = await this.getBasicInfo(video_id, options?.client);
     return info.download(options);
   }
 
