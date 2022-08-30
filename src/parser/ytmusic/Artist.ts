@@ -6,6 +6,7 @@ import MusicShelf from '../classes/MusicShelf';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
 import MusicImmersiveHeader from '../classes/MusicImmersiveHeader';
+import MusicVisualHeader from '../classes/MusicVisualHeader';
 
 class Artist {
   #page;
@@ -18,7 +19,7 @@ class Artist {
     this.#page = Parser.parseResponse((response as AxioslikeResponse).data);
     this.#actions = actions;
 
-    this.header = this.page.header.item().as(MusicImmersiveHeader);
+    this.header = this.page.header.item().as(MusicImmersiveHeader, MusicVisualHeader);
 
     const music_shelf = this.#page.contents_memo.get('MusicShelf') as MusicShelf[] || [];
     const music_carousel_shelf = this.#page.contents_memo.get('MusicCarouselShelf') as MusicCarouselShelf[] || [];
