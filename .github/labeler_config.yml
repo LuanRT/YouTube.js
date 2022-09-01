@@ -1,0 +1,59 @@
+version: 1
+labels:
+  - label: "breaking-change"
+    title: "^refactor!:.*"
+    
+  - label: "enhancement"
+    title: "^feat:.*"
+    
+  - label: "bug"
+    title: "^fix:.*"
+ 
+  - label: "github"
+    files:
+      - ".github/.*"
+      
+  - label: "git"
+    files:
+      - ".gitignore"
+      - ".gitattributes"
+      
+  - label: "tests"
+    files:
+      - "test/.*"
+    
+  - label: "docs"
+    files:
+      - "docs/.*"
+      - "README.md"
+      
+  - label: "parser"
+    files:
+      - "src/parser/.*"
+      - "src/Innertube.ts"
+      
+  - label: "core"
+    files:
+      - "src/core/.*"
+      
+  - label: "protobuf"
+    files:
+      - "src/proto/.*"
+  
+  - label: "xsmall-diff"
+    size-below: 10
+    
+  - label: "small-diff"
+    size-above: 9
+    size-below: 100
+    
+  - label: "medium-diff"
+    size-above: 99
+    size-below: 500
+    
+  - label: "large-diff"
+    size-above: 499
+    size-below: 1000
+    
+  - label: "xlarge-diff"
+    size-above: 999
