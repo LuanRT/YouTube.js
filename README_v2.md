@@ -13,8 +13,6 @@
 [project]: https://github.com/LuanRT/YouTube.js
 [twitter]: https://twitter.com/lrt_nooneknows
 [nodejs]: https://nodejs.org
-[gatecrasher]: https://github.com/gatecrasher777/ytcog
-[gizmodo]: https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491
 
 <!-- INTRODUCTION -->
 <h1 align=center>
@@ -48,6 +46,30 @@
 
 </div>
 
+<!-- SPONSORS -->
+
+<p align="center">
+ <a><sub>Special thanks to:<sub></a>
+</p>
+
+<table align="center">
+  <body>
+    <tr>
+      <td align="center">
+        <a href="https://serpapi.com/">
+          <img width="80" alt="SerpApi" src="https://luanrt.is-a.dev/assets/img/serpapi.svg" />
+          <br>
+          <b>
+           <sub>
+             Scrape Google and other search engines from a fast, easy and complete API.
+           </sub>
+          </b>
+        </a>
+      </td>
+    </tr>
+  </body>
+</table>
+
 ___
 
 > WIP- Documentation for YouTube.js 2.0.0
@@ -57,10 +79,7 @@ ___
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about">About The Project</a>
-      <ul>
-        <li><a href="#features">Features</a></li>
-      </ul>
+      <a href="#about">About</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -72,19 +91,24 @@ ___
     <li>
       <a href="#usage">Usage</a>
       <ul>
+        <li><a href="#browser-usage">Browser Usage</a></li>
+        <li><a href="#caching">Caching</a></li>
+        <li><a href="#caching">API</a></li>
       </ul>
     </li>
+    <li><a href="#implementing-custom-functionality">Implementing custom functionality </a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#contributors">Contributors</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#disclaimer">Disclaimer</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 ## About
 
-InnerTube is an API used across all YouTube clients, it was created to simplify[^1] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
+InnerTube is an API used across all YouTube clients, it was created to simplify[^1] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with InnerTube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
 
 If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
 
@@ -92,13 +116,13 @@ If you have any questions or need help, feel free to contact us on our chat serv
 ## Getting Started
 
 ### Prerequisites
-YouTube.js runs on Node.js, Deno and in modern browsers.
+YouTube.js runs on Node.js, Deno, and modern browsers.
 
 It requires a runtime with the following features:
 - [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-  - On Node we use [undici]()'s fetch implementation which requires Node.js 16.8+. You may provide your own fetch implementation if you need to use an older version. See [providing your own fetch implementation](#custom-fetch) for more information. 
+  - On Node we use [undici]()'s fetch implementation which requires Node.js 16.8+. You may provide your fetch implementation if you need to use an older version. See [providing your own fetch implementation](#custom-fetch) for more information. 
   - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` returns a non-standard `Readable` object.)
-- [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) required.
+- [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) are required.
 
 ### Installation
 
@@ -127,7 +151,7 @@ const youtube = await Innertube.create();
 ## Browser Usage
 To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
 
-You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests to through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for an simple example using [Vite](https://vitejs.dev/).
+You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for a simple example using [Vite](https://vitejs.dev/).
 
 ```ts
 // Pre-bundled version for the web
@@ -137,14 +161,14 @@ await Innertube.create({
     // Modify the request
     // and send it to the proxy
 
-    // fetch the url
+    // fetch the URL
     return fetch(request, init);
   }
 });
 ```
 
 ### Streaming
-YouTube.js supports streaming of videos in the browser by converting YouTube's streaming data into a MPEG-DASH manifest.
+YouTube.js supports streaming of videos in the browser by converting YouTube's streaming data into an MPEG-DASH manifest.
 
 The example below uses [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) to play the video.
 
@@ -159,7 +183,7 @@ const videoInfo = await youtube.getInfo('videoId');
 
 // now convert to a dash manifest
 // again - to be able to stream the video in the browser - we must proxy the requests through our own server
-// to do this, we provide a method to transform the urls before writing them to the manifest
+// to do this, we provide a method to transform the URLs before writing them to the manifest
 const manifest = videoInfo.toDash(url => {
   // modify the url
   // and return it
@@ -174,13 +198,11 @@ const player = dashjs.MediaPlayer().create();
 player.initialize(videoElement, uri, true);
 ```
 
-Our browser example in [`examples/browser/web`]() provides a full working example.
-
+Our browser example in [`examples/browser/web`]() provides a fully working example.
 <a name="custom-fetch"></a>
 
 ## Providing your own fetch implementation
-You may provide your own fetch implementation to be used by YouTube.js. This may be useful in some cases to modify the requests before they are sent and transform the responses before they are returned (eg. for proxies).
-
+You may provide your own fetch implementation to be used by YouTube.js. This can be useful in some cases to modify the requests before they are sent and transform the responses before they are returned (eg. for proxies).
 ```ts
 // provide a fetch implementation
 const yt = await Innertube.create({
@@ -199,7 +221,7 @@ const yt = await Innertube.create({
 ## Caching
 To improve performance, you may wish to cache the transformed player instance which we use to decode the streaming urls.
 
-Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` in Deno and `indexedDB` in browsers.
+Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` in Deno, and `indexedDB` in browsers.
 
 ```ts
 import { Innertube, UniversalCache } from 'youtubei.js';
@@ -213,7 +235,7 @@ const yt = await Innertube.create({
   cache: new UniversalCache(
     // Enables persistent caching
     true, 
-    // Path to the cache directory, will create the directory if it doesn't exist
+    // Path to the cache directory will create the directory if it doesn't exist
     './.cache' 
   )
 });
@@ -223,16 +245,27 @@ const yt = await Innertube.create({
 
 * Innertube
 
-  <!-- TODO: write API refs for these -->
-  * [.session](#session)
-  * [.account](#account)
-  * [.interact](#interact)
-  * [.playlist](#playlist)
-  * [.music](#music)
-  * [.studio](#studio)
-  ___
-  * [.getInfo(video_id)](#getinfo)
-  * [.getBasicInfo(video_id)](#getbasicinfo)
+  <details>
+  <summary>objects</summary>
+  <p>
+  
+  * [.session](./docs/API/session.md)
+  * [.account](./docs/API/account.md)
+  * [.interact](./docs/API/interaction-manager.md)
+  * [.playlist](./docs/API/playlist.md)
+  * [.music](./docs/API/music.md)
+  * [.studio](./docs/API/studio.md)
+ 
+  </p>
+  </details> 
+  
+
+  <details>
+  <summary>methods</summary>
+  <p>
+  
+  * [.getInfo(video_id, client?)](#getinfo)
+  * [.getBasicInfo(video_id, client?)](#getbasicinfo)
   * [.search(query, filters?)](#search)
   * [.getSearchSuggestions(query)](#getsearchsuggestions)
   * [.getComments(video_id, sort_by?)](#getcomments)
@@ -247,19 +280,26 @@ const yt = await Innertube.create({
   * [.getPlaylist(id)](#getplaylist)
   * [.getStreamingData(video_id, options)](#getstreamingdata)
   * [.download(video_id, options?)](#download)
+  * [.call(endpoint, args?)](#call)
   
-<a name="getinfo"></a>
-### getInfo(video_id)
+  </p>
+  </details> 
 
-Retrieves video info, including playback data and even layout elements such as menus, buttons etc — all nicely parsed.
+<a name="getinfo"></a>
+### getInfo(video_id, client?)
+
+Retrieves video info, including playback data and even layout elements such as menus, buttons, etc — all nicely parsed.
 
 **Returns**: `Promise.<VideoInfo>`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The id of the video |
+| client? | `InnerTubeClient` | `WEB`, `ANDROID` or `YTMUSIC` |
 
-**Methods & Getters**:
+<details>
+<summary>Methods & Getters</summary>
+<p>
 
 - `<info>#like()`
   - Likes the video.
@@ -270,28 +310,44 @@ Retrieves video info, including playback data and even layout elements such as m
 - `<info>#removeLike()`
   - Removes like/dislike.
 
+- `<info>#getLiveChat()`
+  - Returns a LiveChat instance.
+
+- `<info>#chooseFormat(options)`
+  - Used to choose streaming data formats.
+
+- `<info>#toDash(url_transformer)`
+  - Converts streaming data to a MPEG-DASH manifest.
+
+- `<info>#download(options)`
+  - Downloads the video. See [download](#download).
+
 - `<info>#filters`
   - Returns filters that can be applied to the watch next feed.
 
 - `<info>#selectFilter(name)`
-  - Applies given filter to the watch next feed and returns a new instance of [`VideoInfo`](https://github.com/LuanRT/YouTube.js/blob/main/typings/lib/parser/youtube/VideoInfo.d.ts).
+  - Applies the given filter to the watch next feed and returns a new instance of [`VideoInfo`](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/youtube/VideoInfo.ts).
 
 - `<info>#getWatchNextContinuation()`
-  - Retrieves next batch of items for the [watch next feed](https://github.com/LuanRT/YouTube.js/blob/main/typings/lib/parser/youtube/VideoInfo.d.ts).
+  - Retrieves the next batch of items for the watch next feed.
 
 - `<info>#page`
   - Returns original InnerTube response (sanitized).
 
+</p>
+</details> 
+
 <a name="getbasicinfo"></a>
 ### getBasicInfo(video_id)
 
-Suitable for cases where you only need basic video metadata, much faster than `getInfo()`.
+Suitable for cases where you only need basic video metadata. Also, it is faster than [`getInfo()`](#getinfo).
 
 **Returns**: `Promise.<VideoInfo>`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The id of the video |
+| client? | `InnerTubeClient` | `WEB`, `ANDROID` or `YTMUSIC` |
 
 <a name="search"></a>
 ### search(query, filters?)
@@ -303,9 +359,11 @@ Searches the given query on YouTube.
 | Param | Type | Description |
 | --- | --- | --- |
 | query | `string` | The search query |
-| filters | `SearchFilters` | Search filters |
+| filters? | `SearchFilters` | Search filters |
 
-**Methods & Getters**:
+<details>
+<summary>Methods & Getters</summary>
+<p>
 
 - `<search>#selectRefinementCard(SearchRefinementCard | string)`
   - Applies given refinement card and returns a new Search instance.
@@ -316,6 +374,9 @@ Searches the given query on YouTube.
 - `<search>#getContinuation()`
   - Retrieves next batch of results.
 
+</p>
+</details> 
+
 <a name="getsearchsuggestions"></a>
 ### getSearchSuggestions(query)
 Retrieves search suggestions for given query.
@@ -325,7 +386,6 @@ Retrieves search suggestions for given query.
 | Param | Type | Description |
 | --- | --- | --- |
 | query | `string` | The search query |
-
 
 <a name="getcomments"></a>
 ### getComments(video_id, sort_by?)
@@ -338,6 +398,7 @@ Retrieves comments for given video.
 | video_id | `string` | The video id |
 | sort_by | `string` | Can be: `TOP_COMMENTS` or `NEWEST_FIRST` |
 
+Examples & docs can be found [here](./examples/comments).
 
 <a name="gethomefeed"></a>
 ### getHomeFeed()
@@ -351,11 +412,36 @@ Retrieves the account's library.
 
 **Returns**: `Promise.<Library>`
 
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<library>#history`
+- `<library>#watch_later`
+- `<library>#liked_videos`
+- `<library>#playlists`
+- `<library>#clips`
+- `<library>#page`
+  - Returns original InnerTube response (sanitized).
+
+</p>
+</details> 
+
 <a name="gethistory"></a>
 ### getHistory()
 Retrieves watch history.
 
 **Returns**: `Promise.<History>`
+
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<history>#getContinuation()`
+  - Retrieves next batch of contents.
+
+</p>
+</details> 
 
 <a name="gettrending"></a>
 ### getTrending()
@@ -379,12 +465,38 @@ Retrieves contents for a given channel.
 | --- | --- | --- |
 | id | `string` | Channel id |
 
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<channel>#getVideos()`
+- `<channel>#getPlaylists()`
+- `<channel>#getHome()`
+- `<channel>#getCommunity()`
+- `<channel>#getChannels()`
+- `<channel>#getAbout()`
+
+</p>
+</details> 
+
+**Info:** 
+Examples can be found [here](./examples/channel).
 
 <a name="getnotifications"></a>
 ### getNotifications()
 Retrieves notifications.
 
 **Returns**: `Promise.<NotificationsMenu>`
+
+<details>
+<summary>Methods & Getter</summary>
+<p>
+
+- `<notifications>#getContinuation()`
+  - Retrieves next batch of notifications.
+
+</p>
+</details>
 
 <a name="getunseennotificationscount"></a>
 ### getUnseenNotificationsCount()
@@ -402,6 +514,15 @@ Retrieves playlist contents.
 | --- | --- | --- |
 | id | `string` | Playlist id |
 
+<details>
+<summary>Methods & Getter</summary>
+<p>
+
+- `<playlist>#items`
+  - Returns the items of the playlist.
+
+</p>
+</details>
 
 <a name="getstreamingdata"></a>
 ### getStreamingData(video_id, options)
@@ -414,7 +535,6 @@ Returns deciphered streaming data.
 | video_id | `string` | Video id |
 | options | `FormatOptions` | Format options |
 
-
 <a name="download"></a>
 ### download(video_id, options?)
 Downloads a given video.
@@ -426,11 +546,60 @@ Downloads a given video.
 | video_id | `string` | Video id |
 | options | `DownloadOptions` | Download options |
 
+<a name="call"></a>
+### call(endpoint, args?)
+Utility to call navigation endpoints.
+
+**Returns**: `Promise.<ActionsResponse | ParsedResponse>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| endpoint | `NavigationEndpoint` | The target endpoint |
+| args? | `object` | Additional payload arguments |
+
+## Implementing custom functionality 
+
+Something cool about YouTube.js is that it is completely modular and easy to tinker with. Almost all methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
+
+For example, you may want to call an endpoint directly, that can be achieved by using the `Actions` class, which the library uses internally to make API calls.
+
+Example:
+
+```ts
+// ...
+
+const payload = {
+  videoId: 'jLTOuvBTLxA',
+  client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, WEB
+  parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
+};
+
+const response = await yt.actions.execute('/player', payload);
+
+console.info(response);
+```
+
+Or maybe there's an interesting `NavigationEndpoint` in a parsed response and we want to call it to see what happens:
+
+```ts
+// ...
+const artist = await yt.music.getArtist('UC52ZqHVQz5OoGhvbWiRal6g');
+const albums = artist.sections[1].as(MusicCarouselShelf);
+
+// Say we have a button and want to “click” it
+const button = albums.as(MusicCarouselShelf).header?.more_content;
+  
+if (button) {
+  // To do that, we can call its navigation endpoint:
+  const page = await button.endpoint.call(yt.actions, 'YTMUSIC', true);
+  console.info(page);
+}
+```
 
 <!-- CONTRIBUTING -->
 ## Contributing
-Contributions, issues and feature requests are welcome.
-Feel free to check [issues page](https://github.com/LuanRT/YouTube.js/issues) if you want to contribute.
+Contributions, issues, and feature requests are welcome.
+Feel free to check [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](./CONTRIBUTING.md) if you want to contribute.
 
 <!-- CONTRIBUTORS -->
 ## Contributors
@@ -446,8 +615,8 @@ LuanRT  - [@lrt_nooneknows][twitter] - luan.lrt4@gmail.com
 Project Link: [https://github.com/LuanRT/YouTube.js][project]
 
 ## Disclaimer
-This project is not affiliated with, endorsed, or sponsored by YouTube or any of their affiliates or subsidiaries.
-All trademarks, logos and brand names are the property of their respective owners, and are used only to directly describe the services being provided, as such, any usage of trademarks to refer to such services is considered nominative use.
+This project is not affiliated with, endorsed, or sponsored by YouTube or any of its affiliates or subsidiaries.
+All trademarks, logos, and brand names are the property of their respective owners and are used only to directly describe the services being provided, as such, any usage of trademarks to refer to such services is considered nominative use.
 
 Should you have any questions or concerns please contact me directly via email.
 
@@ -458,6 +627,6 @@ Should you have any questions or concerns please contact me directly via email.
 ## License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License.
 
-<p align="right">
+<p align=" right">
 (<a href="#top">back to top</a>)
 </p>
