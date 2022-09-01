@@ -1,5 +1,5 @@
 <!-- Hi there, fellow coder :) -->
-  
+
 <!-- BADGE LINKS -->
 [npm]: https://www.npmjs.com/package/youtubei.js
 [versions]: https://www.npmjs.com/package/youtubei.js?activeTab=versions
@@ -13,8 +13,6 @@
 [project]: https://github.com/LuanRT/YouTube.js
 [twitter]: https://twitter.com/lrt_nooneknows
 [nodejs]: https://nodejs.org
-[gatecrasher]: https://github.com/gatecrasher777/ytcog
-[gizmodo]: https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491 
 
 <!-- INTRODUCTION -->
 <h1 align=center>
@@ -29,9 +27,9 @@
 
 <p align="center">
   <a href="https://github.com/LuanRT/YouTube.js/issues">
-     Report Bug
+    Report Bug
   </a>
-    ·
+  ·
   <a href="https://github.com/LuanRT/YouTube.js/issues">
     Request Feature
   </a>
@@ -39,16 +37,14 @@
 
 <!-- BADGES -->
 <div align="center">
-  
+
   [![Tests](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)][actions]
   [![Latest version](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)][versions]
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
   [![Monthly downloads](https://img.shields.io/npm/dm/youtubei.js)][npm]
-  [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks] 
+  [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks]
 
 </div>
-
-> **Note**: <br/> We're currently in the process of rewriting the library to improve code quality, maintainability, and much more. While it might take some time, most of this documentation will be invalid after v2 and you may want to migrate once it is stable enough. See [#65](https://github.com/LuanRT/YouTube.js/issues/65) for more information on how to contribute, test v2, documentation and other upcoming changes.
 
 <!-- SPONSORS -->
 
@@ -76,15 +72,14 @@
 
 ___
 
+> WIP- Documentation for YouTube.js 2.0.0
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about">About The Project</a>
-      <ul>
-        <li><a href="#features">Features</a></li>
-      </ul>
+      <a href="#about">About</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -96,1132 +91,515 @@ ___
     <li>
       <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#interactions">Interactions</a></li>
-        <li><a href="#live-chats">Livechats</a></li>
-        <li><a href="#downloading-videos">Downloading videos</a></li>
-        <li><a href="#signing-in">Signing in</a></li>
+        <li><a href="#browser-usage">Browser Usage</a></li>
+        <li><a href="#caching">Caching</a></li>
+        <li><a href="#caching">API</a></li>
       </ul>
     </li>
+    <li><a href="#implementing-custom-functionality">Implementing custom functionality </a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
+    <li><a href="#contributors">Contributors</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#disclaimer">Disclaimer</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 ## About
 
-InnerTube is an API used across all YouTube clients, it was created [to simplify][gizmodo] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with Innertube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
+InnerTube is an API used across all YouTube clients, it was created to simplify[^1] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with InnerTube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
 
 If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
-
-### Features
-
-- Search videos, playlists, music, albums, artists, etc.
-- Subscribe, unsubscribe, like, dislike, post comments, replies, and etc.
-- Get subscriptions/home feed, notifications, watch history, and more.
-- Easily sign in to any Google Account.
-- Fetch live chat & live stats.
-- Manage account settings.
-- Manage playlists.
-- Download videos.
-
-~ And more!
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
 ### Prerequisites
-- [NodeJS][nodejs] v14 or greater
+YouTube.js runs on Node.js, Deno, and modern browsers.
 
-  To verify things are set up
-properly, run this:
-  ```bash
-  node --version
-  ```
+It requires a runtime with the following features:
+- [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+  - On Node we use [undici]()'s fetch implementation which requires Node.js 16.8+. You may provide your fetch implementation if you need to use an older version. See [providing your own fetch implementation](#custom-fetch) for more information. 
+  - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` returns a non-standard `Readable` object.)
+- [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) are required.
 
 ### Installation
-- NPM:
-  ```bash
-  npm install youtubei.js@latest
-  ```
-- Yarn:
-  ```bash
-  yarn add youtubei.js@latest
-  ```
-- Git (bleeding-edge version):
-  ```bash
-  npm install git+https://github.com/LuanRT/YouTube.js.git
-  ```
+
+```bash
+# NPM
+npm install youtubei.js@latest
+
+# Yarn
+yarn add youtubei.js@latest
+
+# Git (edge version)
+npm install github:LuanRT/YouTube.js
+```
+
+**TODO: Deno install instructions (esm.sh possibly?)**
 
 <!-- USAGE -->
 ## Usage
-
-Create an Innertube instance (or session):
-```js
-// const Innertube = require('youtubei.js'); 
-import Innertube from 'youtubei.js';
-const youtube = await new Innertube({ gl: 'US' });
+Create an InnerTube instance:
+```ts
+// const { Innertube } = require('youtubei.js');
+import { Innertube } from 'youtubei.js';
+const youtube = await Innertube.create();
 ```
 
-### Search:
+## Browser Usage
+To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
 
-Options:
-  * client: `YOUTUBE` | `YTMUSIC`
+You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for a simple example using [Vite](https://vitejs.dev/).
+
+```ts
+// Pre-bundled version for the web
+import { Innertube } from 'youtubei.js/bundle/browser';
+await Innertube.create({
+  fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
+    // Modify the request
+    // and send it to the proxy
+
+    // fetch the URL
+    return fetch(request, init);
+  }
+});
+```
+
+### Streaming
+YouTube.js supports streaming of videos in the browser by converting YouTube's streaming data into an MPEG-DASH manifest.
+
+The example below uses [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) to play the video.
+
+```ts
+import { Innertube } from 'youtubei.js';
+import dashjs from 'dashjs';
+
+const youtube = await Innertube.create({ /* setup - see above */ });
+
+// get the video info
+const videoInfo = await youtube.getInfo('videoId');
+
+// now convert to a dash manifest
+// again - to be able to stream the video in the browser - we must proxy the requests through our own server
+// to do this, we provide a method to transform the URLs before writing them to the manifest
+const manifest = videoInfo.toDash(url => {
+  // modify the url
+  // and return it
+  return url;
+});
+
+const uri = "data:application/dash+xml;charset=utf-8;base64," + btoa(manifest);
+
+const videoElement = document.getElementById('video_player');
+
+const player = dashjs.MediaPlayer().create();
+player.initialize(videoElement, uri, true);
+```
+
+Our browser example in [`examples/browser/web`]() provides a fully working example.
+<a name="custom-fetch"></a>
+
+## Providing your own fetch implementation
+You may provide your own fetch implementation to be used by YouTube.js. This can be useful in some cases to modify the requests before they are sent and transform the responses before they are returned (eg. for proxies).
+```ts
+// provide a fetch implementation
+const yt = await Innertube.create({
+  fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
+    // make the request with your own fetch implementation
+    // and return the response
+    return new Response(
+      /* ... */
+    );
+  }
+});
+```
+
+<a name="caching"></a>
+
+## Caching
+To improve performance, you may wish to cache the transformed player instance which we use to decode the streaming urls.
+
+Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` in Deno, and `indexedDB` in browsers.
+
+```ts
+import { Innertube, UniversalCache } from 'youtubei.js';
+// By default, cache stores files in the OS temp directory (or indexedDB in browsers).
+const yt = await Innertube.create({
+  cache: new UniversalCache()
+});
+
+// You may wish to make the cache persistent (on Node and Deno)
+const yt = await Innertube.create({
+  cache: new UniversalCache(
+    // Enables persistent caching
+    true, 
+    // Path to the cache directory will create the directory if it doesn't exist
+    './.cache' 
+  )
+});
+```
+
+## API
+
+* Innertube
+
+  <details>
+  <summary>objects</summary>
+  <p>
   
-  * filters (WIP, youtube only):
-    * upload_date: `any` | `last_hour` | `today` | `this_week` | `this_month` | `this_year`
-    
-    * type: `any` | `video` | `channel` | `playlist` | `movie`
-    
-    * duration: `any` | `short` | `medium` | `long`
-    
-    * sort_by: `relevance` | `rating` | `upload_date` | `view_count`
+  * [.session](./docs/API/session.md)
+  * [.account](./docs/API/account.md)
+  * [.interact](./docs/API/interaction-manager.md)
+  * [.playlist](./docs/API/playlist.md)
+  * [.music](./docs/API/music.md)
+  * [.studio](./docs/API/studio.md)
+ 
+  </p>
+  </details> 
+  
 
-```js
-const search = await youtube.search('QUERY', { client: 'YOUTUBE' });
-```
+  <details>
+  <summary>methods</summary>
+  <p>
+  
+  * [.getInfo(video_id, client?)](#getinfo)
+  * [.getBasicInfo(video_id, client?)](#getbasicinfo)
+  * [.search(query, filters?)](#search)
+  * [.getSearchSuggestions(query)](#getsearchsuggestions)
+  * [.getComments(video_id, sort_by?)](#getcomments)
+  * [.getHomeFeed()](#gethomefeed)
+  * [.getLibrary()](#getlibrary)
+  * [.getHistory()](#gethistory)
+  * [.getTrending()](#gettrending)
+  * [.getSubscriptionsFeed()](#getsubscriptionsfeed)
+  * [.getChannel(id)](#getchannel)
+  * [.getNotifications()](#getnotifications)
+  * [.getUnseenNotificationsCount()](#getunseennotificationscount)
+  * [.getPlaylist(id)](#getplaylist)
+  * [.getStreamingData(video_id, options)](#getstreamingdata)
+  * [.download(video_id, options?)](#download)
+  * [.call(endpoint, args?)](#call)
+  
+  </p>
+  </details> 
+
+<a name="getinfo"></a>
+### getInfo(video_id, client?)
+
+Retrieves video info, including playback data and even layout elements such as menus, buttons, etc — all nicely parsed.
+
+**Returns**: `Promise.<VideoInfo>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | The id of the video |
+| client? | `InnerTubeClient` | `WEB`, `ANDROID` or `YTMUSIC` |
 
 <details>
-<summary>YouTube Output</summary>
+<summary>Methods & Getters</summary>
 <p>
 
-```js
-{
-  query: string,
-  corrected_query: string,
-  estimated_results: number,
-  videos: [
-    {
-      id: string,
-      url: string,
-      title: string,
-      description: string,
-      metadata: {
-        view_count: string,
-        short_view_count_text: {
-          simple_text: string,
-          accessibility_label: string
-        },
-        thumbnails: object[],
-        duration: {
-          seconds: number,
-          simple_text: string,
-          accessibility_label: string
-        },
-        published: string,
-        badges: string[],
-        owner_badges: string[]
-      }
-    }
-  ]
-}
-```
+- `<info>#like()`
+  - Likes the video.
+
+- `<info>#dislike()`
+  - Dislikes the video.
+
+- `<info>#removeLike()`
+  - Removes like/dislike.
+
+- `<info>#getLiveChat()`
+  - Returns a LiveChat instance.
+
+- `<info>#chooseFormat(options)`
+  - Used to choose streaming data formats.
+
+- `<info>#toDash(url_transformer)`
+  - Converts streaming data to a MPEG-DASH manifest.
+
+- `<info>#download(options)`
+  - Downloads the video. See [download](#download).
+
+- `<info>#filters`
+  - Returns filters that can be applied to the watch next feed.
+
+- `<info>#selectFilter(name)`
+  - Applies the given filter to the watch next feed and returns a new instance of [`VideoInfo`](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/youtube/VideoInfo.ts).
+
+- `<info>#getWatchNextContinuation()`
+  - Retrieves the next batch of items for the watch next feed.
+
+- `<info>#page`
+  - Returns original InnerTube response (sanitized).
 
 </p>
 </details> 
 
-<details>
-<summary>YTMusic Output</summary>
-<p>
+<a name="getbasicinfo"></a>
+### getBasicInfo(video_id)
 
+Suitable for cases where you only need basic video metadata. Also, it is faster than [`getInfo()`](#getinfo).
 
-```js
-{
-  query: string,
-  corrected_query: string,
-  results: {
-    top_result: object[],  // <- Can be anything; video, playlist, artist etc..
-    songs: [
-      {
-        id: string,
-        title: string,
-        artist: string,
-        album: string,
-        duration: string,
-        thumbnails: object[]
-      }
-    ],
-    videos: [
-      {
-        id: string,
-        title: string,
-        author: string,
-        views: string,
-        duration: string,
-        thumbnails: object[]
-      }
-    ],
-    albums: [
-      {
-        id: string,
-        title: string,
-        author: string,
-        year: string,
-        thumbnails: object[]
-      }
-    ],
-    featured_playlists: [
-      {
-        id: string,
-        title: string,
-        author: string,
-        channel_id: string,
-        total_items:number
-      }
-    ],
-    community_playlists: [
-      {
-        id: string,
-        title: string,
-        author: string,
-        channel_id: string,
-        total_items: number
-      }
-    ],
-    artists: [
-      {
-        id: string,
-        name: string,
-        subscribers: string,
-        thumbnails: object[]
-      }
-    ]
-  }
-}
-```
+**Returns**: `Promise.<VideoInfo>`
 
-</p>
-</details> 
-<br>
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | The id of the video |
+| client? | `InnerTubeClient` | `WEB`, `ANDROID` or `YTMUSIC` |
 
-Search suggestions:
-```js
-const suggestions = await youtube.getSearchSuggestions('QUERY', { client: 'YOUTUBE' })
-```
+<a name="search"></a>
+### search(query, filters?)
+
+Searches the given query on YouTube.
+
+**Returns**: `Promise.<Search>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| query | `string` | The search query |
+| filters? | `SearchFilters` | Search filters |
 
 <details>
-<summary>Output</summary>
+<summary>Methods & Getters</summary>
 <p>
 
-```js
-{
-  query: string,
-  results: string[]
-}
-```
+- `<search>#selectRefinementCard(SearchRefinementCard | string)`
+  - Applies given refinement card and returns a new Search instance.
+
+- `<search>#refinement_card_queries`
+  - Returns available refinement cards, this is a simplified version of the `refinement_cards` object.
+
+- `<search>#getContinuation()`
+  - Retrieves next batch of results.
 
 </p>
 </details> 
 
-### Video info:
+<a name="getsearchsuggestions"></a>
+### getSearchSuggestions(query)
+Retrieves search suggestions for given query.
 
-```js
-const video = await youtube.getDetails('VIDEO_ID');
-```
+**Returns**: `Promise.<string[]>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| query | `string` | The search query |
+
+<a name="getcomments"></a>
+### getComments(video_id, sort_by?)
+Retrieves comments for given video.
+
+**Returns**: `Promise.<Comments>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | The video id |
+| sort_by | `string` | Can be: `TOP_COMMENTS` or `NEWEST_FIRST` |
+
+Examples & docs can be found [here](./examples/comments).
+
+<a name="gethomefeed"></a>
+### getHomeFeed()
+Retrieves YouTube's home feed.
+
+**Returns**: `Promise.<FilterableFeed>`
+
+<a name="getlibrary"></a>
+### getLibrary()
+Retrieves the account's library.
+
+**Returns**: `Promise.<Library>`
 
 <details>
-<summary>Output</summary>
+<summary>Methods & Getters</summary>
 <p>
 
-```js
-{
-  title: string,
-  description: string,
-  thumbnail: {
-    url: string,
-    width: number,
-    height: number
-  },
-  metadata: {
-    embed: {
-      iframeUrl: string,
-      flashUrl: string,
-      width: number,
-      height: number,
-      flashSecureUrl: string
-    },
-    likes: {
-      count: number, 
-      short_count_text: string
-    },
-    view_count: number,
-    average_rating: number,
-    length_seconds: number,
-    channel_id: string,
-    channel_url: string,
-    external_channel_id: string,
-    allow_ratings: boolean,
-    is_live_content: boolean,
-    is_family_safe: boolean,
-    is_unlisted: boolean,
-    is_private: boolean,
-    is_liked: boolean,
-    is_disliked: boolean,
-    is_subscribed: boolean,
-    subscriber_count: string,
-    current_notification_preference: string,
-    publish_date_text: string,
-    has_ypc_metadata: boolean,
-    category: string,
-    channel_name: string,
-    publish_date: string,
-    upload_date: string,
-    keywords: string[]
-  }
-}
-```
+- `<library>#history`
+- `<library>#watch_later`
+- `<library>#liked_videos`
+- `<library>#playlists`
+- `<library>#clips`
+- `<library>#page`
+  - Returns original InnerTube response (sanitized).
+
+</p>
+</details> 
+
+<a name="gethistory"></a>
+### getHistory()
+Retrieves watch history.
+
+**Returns**: `Promise.<History>`
+
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<history>#getContinuation()`
+  - Retrieves next batch of contents.
+
+</p>
+</details> 
+
+<a name="gettrending"></a>
+### getTrending()
+Retrieves trending content.
+
+**Returns**: `Promise.<TabbedFeed>`
+
+<a name="getsubscriptionsfeed"></a>
+### getSubscriptionsFeed()
+Retrieves subscriptions feed.
+
+**Returns**: `Promise.<Feed>`
+
+<a name="getchannel"></a>
+### getChannel(id)
+Retrieves contents for a given channel.
+
+**Returns**: `Promise.<Channel>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | `string` | Channel id |
+
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<channel>#getVideos()`
+- `<channel>#getPlaylists()`
+- `<channel>#getHome()`
+- `<channel>#getCommunity()`
+- `<channel>#getChannels()`
+- `<channel>#getAbout()`
+
+</p>
+</details> 
+
+**Info:** 
+Examples can be found [here](./examples/channel).
+
+<a name="getnotifications"></a>
+### getNotifications()
+Retrieves notifications.
+
+**Returns**: `Promise.<NotificationsMenu>`
+
+<details>
+<summary>Methods & Getter</summary>
+<p>
+
+- `<notifications>#getContinuation()`
+  - Retrieves next batch of notifications.
 
 </p>
 </details>
 
-### Comments:
+<a name="getunseennotificationscount"></a>
+### getUnseenNotificationsCount()
+Retrieves unseen notifications count.
 
-Sorting options: `TOP_COMMENTS` | `NEWEST_FIRST`
+**Returns**: `Promise.<number>`
 
-```js
-const comments = await youtube.getComments('VIDEO_ID', 'TOP_COMMENTS');
-```
-Alternatively, you can use:
+<a name="getplaylist"></a>
+### getPlaylist(id)
+Retrieves playlist contents.
 
-```js
-const video = await youtube.getDetails('VIDEO_ID');
-const comments = await video.getComments(); 
-```
+**Returns**: `Promise.<Playlist>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| id | `string` | Playlist id |
+
 <details>
-<summary>Output</summary>
+<summary>Methods & Getter</summary>
 <p>
 
-```js
-{
-  page_count: number,
-  comment_count: number,
-  items: [
-    {
-      text: string,
-      author: {
-        name: string,
-        thumbnails: [
-          {
-            url: string,
-            width: number,
-            height: number
-          }
-        ],
-        channel_id: string
-      },
-      metadata: {
-        published: string,
-        is_liked: boolean,
-        is_disliked: boolean,
-        is_pinned: boolean,
-        is_channel_owner: boolean,
-        is_reply: boolean,
-        like_count: number,
-        reply_count: number,
-        id: string
-      }
-    }
-  ]
-}
-```
+- `<playlist>#items`
+  - Returns the items of the playlist.
 
 </p>
 </details>
 
-Reply to, like/dislike, translate and report a comment:
-```js
-const top_comment = comments.items[0];
+<a name="getstreamingdata"></a>
+### getStreamingData(video_id, options)
+Returns deciphered streaming data.
 
-await top_comment.like();
-await top_comment.dislike();
-await top_comment.report();
-await top_comment.reply('Nice comment!'); 
+**Returns**: `Promise.<object>`
 
-// Note: only ISO language codes are accepted
-await top_comment.translate('ru');  
-```
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | Video id |
+| options | `FormatOptions` | Format options |
 
-Comment replies:
-```js
-const replies = await top_comment.getReplies();
-```
+<a name="download"></a>
+### download(video_id, options?)
+Downloads a given video.
 
-Comments/replies continuation:
-```js
-const continuation = await comments.getContinuation();
-const replies_continuation = await replies.getContinuation();
-```
+**Returns**: `Promise.<ReadableStream<Uint8Array>>`
 
-### Home feed:
-```js
-const homefeed = await youtube.getHomeFeed();
-```
-<details>
-<summary>Output</summary>
-<p>
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | Video id |
+| options | `DownloadOptions` | Download options |
 
-```js
-{
-  videos: [
-    {
-      id: string,
-      title: string,
-      description: string,
-      channel: {
-        id: string,
-        name: string,
-        url: string
-      },
-      metadata: {
-        view_count: string,
-        short_view_count_text: {
-          simple_text: string,
-          accessibility_label: string
-        },
-        thumbnail: {
-          url: string,
-          width: number,
-          height: number
-        },
-        moving_thumbnail: {
-          url: string,
-          width: number,
-          height: number
-        },
-        published: string,
-        badges: string[],
-        owner_badges: string[]
-      }
-    }
-  ]
-}
-```
+<a name="call"></a>
+### call(endpoint, args?)
+Utility to call navigation endpoints.
 
-</p>
-</details>
+**Returns**: `Promise.<ActionsResponse | ParsedResponse>`
 
-Continuation:
-```js
-const continuation = await homefeed.getContinuation();
-````
+| Param | Type | Description |
+| --- | --- | --- |
+| endpoint | `NavigationEndpoint` | The target endpoint |
+| args? | `object` | Additional payload arguments |
 
-### Watch history:
-```js
-const history = await youtube.getHistory();
-```
+## Implementing custom functionality 
 
-<details>
-<summary>Output</summary>
-<p>
+Something cool about YouTube.js is that it is completely modular and easy to tinker with. Almost all methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
 
-```js
-{
-  items: [
-    {
-      date: string,
-      videos: [
-        {
-          id: string,
-          title: string,
-          description: string,
-          channel: {
-            id: string,
-            name: string,
-            url: string
-          },
-          metadata: {
-            view_count: string,
-            short_view_count_text: {
-              simple_text: string,
-              accessibility_label: string
-            },
-            thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            moving_thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            published: string,
-            badges: string[],
-            owner_badges: string[]
-          }
-        }
-      ]
-    }
-  ]
-}
-```
-
-</p>
-</details>
-
-Continuation:
-```js
-const continuation = await history.getContinuation();
-````
-
-### Subscriptions feed:
-```js
-const mysubsfeed = await youtube.getSubscriptionsFeed();
-```
-
-<details>
-<summary>Output</summary>
-<p>
-
-```js
-{
-  items: [
-    {
-      date: string,
-      videos: [
-        {
-          id: string,
-          title: string,
-          description: string,
-          channel: {
-            id: string,
-            name: string,
-            url: string
-          },
-          metadata: {
-            view_count: string,
-            short_view_count_text: {
-              simple_text: string,
-              accessibility_label: string
-            },
-            thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            moving_thumbnail: {
-              url: string,
-              width: number,
-              height: number
-            },
-            published: string,
-            badges: string[],
-            owner_badges: string[]
-          }
-        }
-      ]
-    }
-  ]
-}
-```
-
-</p>
-</details>
-
-Continuation:
-```js
-const continuation = await mysubsfeed.getContinuation();
-````
-
-### Trending content:
-
-```js
-const trending = await youtube.getTrending();
-```
-
-<details>
-<summary>Output</summary>
-<p>
-
-```js
-{
-  now: {
-    content: [
-      {
-        title: string,
-        videos: object[]
-      }
-    ]
-  },
-  // Other categories require an additional call to fetch videos
-  music: { getVideos: Promise.<Array.<object>> },
-  gaming: { getVideos: Promise.<Array.<object>> },
-  movies: { getVideos: Promise.<Array.<object>> }
-}
-```
-
-</p>
-</details>
-
-### Song lyrics:
-```js
-const search = await youtube.search('Never give you up', { client: 'YTMUSIC' });
-const lyrics = await youtube.getLyrics(search.results.songs[0].id); 
-```
-
-### Notifications:
-
-```js
-const notifications = await youtube.getNotifications();
-```
-
-<details>
-<summary>Output</summary>
-<p>
-
-```js
-{
-  items: [
-    {
-      title: string,
-      sent_time: string,
-      channel_name: string,
-      channel_thumbnail: {
-         url: string,
-         width: number,
-         height: number
-      },
-      video_thumbnail: { 
-         url: string,
-         width: number,
-         height: number
-      },
-      video_url: string,
-      read: boolean,
-      notification_id: string
-    }
-  ]
-}
-```
-
-</p>
-</details>
-
-Continuation:
-```js
-const continuation = await notifications.getContinuation();
-````
-
-Unseen notifications count:
-
-```js
-const unread_notis_count = await youtube.getUnseenNotificationsCount();
-```
-
-### Get playlist: 
-Client: `YOUTUBE` | `YTMUSIC`
-
-```js
-const playlist = await youtube.getPlaylist('PLAYLIST_ID', { client: 'YOUTUBE' });
-```
-
-<details>
-  <summary>YouTube Output</summary>
-<p>
-
-```js
-{
-  title: string,
-  description: string,
-  total_items: string,
-  last_updated: string,
-  views: string,
-  items: [
-    {
-      id: string,
-      title: string,
-      author: string,
-      duration: {
-        seconds: number,
-        simple_text: string,
-        accessibility_label: string
-      },
-      thumbnails: object[]
-    }
-  ]
-}
-```
-
-</p>
-</details>
-
-<details>
-  <summary>YouTube Music Output</summary>
-<p>
-
-```js
-{
-  title: string,
-  description: string,
-  total_items: number,
-  duration: string,
-  year: string,
-  items: [
-    {
-      id: string,
-      title: string,
-      author: string,
-      duration: {
-        seconds: number,
-        simple_text: string
-      },
-      thumbnails: object[]
-    }
-  ]
-}
-```
-
-</p>
-</details>
-
-### Interactions:
-
-___
-
-Don't forget that you must be signed in to use some of the following features!
-
-* Subscribe/Unsubscribe:
-  ```js
-  await youtube.interact.subscribe('CHANNEL_ID');
-  await youtube.interact.unsubscribe('CHANNEL_ID');
-  ```
-
-* Like/Dislike:
-  ```js
-  await youtube.interact.like('VIDEO_ID');
-  await youtube.interact.dislike('VIDEO_ID');
-  await youtube.interact.removeLike('VIDEO_ID');
-  ```
-
-* Comment:
-  ```js
-  await youtube.interact.comment('VIDEO_ID', 'Haha, nice video!');
-  ```
-
-* Playlists:
-  ```js
-  const videos = [
-    'VIDEO_ID1',
-    'VIDEO_ID2',
-    'VIDEO_ID3'
-    //...
-  ];
-
-  // Create and delete a playlist:
-  await youtube.playlist.create('My Awesome Playlist', videos);
-  await youtube.playlist.delete('PLAYLIST_ID');
-   
-  // Add and remove videos from a playlist:
-  await youtube.playlist.addVideos('PLAYLIST_ID', videos);
-  await youtube.playlist.removeVideos('PLAYLIST_ID', videos);
-  ```
-
-* Translate (does not require sign in)
-  ```js
-  await youtube.interact.translate('Hi mom!', 'ru');
-  ```
-
-* Change notification preferences:
-  
-  Options: `ALL` | `NONE` | `PERSONALIZED`
-  
-  ```js
-  await youtube.interact.setNotificationPreferences('CHANNEL_ID', 'ALL'); 
-  ```
-
-Response schema:
-```js
-{
-  success: boolean, 
-  status_code: number, 
-  playlist_id?: string,
-  translated_content?: string,
-  data?: object
-}
-```
-
-### Account
-
-___
-
-* Get account info:
-  ```js
-  await youtube.account.getInfo();
-  ```
-
-  <details>
-  <summary>Output</summary>
-  <p>
-
-  ```js
-  {
-    name: string,
-    email: string,
-    channel_id: string,
-    subscriber_count: string,
-    photo: object[]
-  }
-  ```
-  
-  </p>
-  </details>
-  <br>
-  
-* Get basic channel analytics:
-  ```js
-  await youtube.account.getAnalytics();
-  ```
-
-  <details>
-  <summary>Output</summary>
-  <p>
-  
-  ```js
-  {
-    metrics: [
-      {
-        title: string,
-        subtitle: string,
-        metric_value: string,
-        comparison_indicator: object,
-        series_configuration: object
-      }
-    ],
-    top_content: [
-      {
-        views: string,
-        published: string,
-        thumbnails: object[],
-        duration: string,
-        is_short: boolean
-      }
-    ]
-  }
-  ```
-  
-  </p>
-  </details>
-  <br>
-
-* Get Time Watched stats:
-  ```js
-  await session.account.getTimeWatched();
-  ```
-
-  <details>
-  <summary>Output</summary>
-  <p>
-  
-  ```js
-  [
-    {
-      title: string,
-      time: string
-    }
-  ]
-  ```
-
-  </p>
-  </details>
-  <br>
-  
-#### Channel:
-
-* Edit channel name:
-  ```js
-  await youtube.account.channel.editName('My new awesome name');
-  ```
-
-* Edit channel description:
-  ```js
-  await youtube.account.channel.editDescription('An awesome description');
-  ```
-
-#### Notification settings:
-
-Options: `ON` | `OFF`
-
-* Subscription notifications:
-  ```js
-  await youtube.account.settings.notifications.setSubscriptions('ON'); 
-  ```
-
-* Recommended content notifications:
-  ```js
-  await youtube.account.settings.notifications.setRecommendedVideos('ON'); 
-  ```
-
-* Channel activity notifications:
-  ```js
-  await youtube.account.settings.notifications.setChannelActivity('ON'); 
-  ```
-
-* Comment replies notifications:
-  ```js
-  await youtube.account.settings.notifications.setCommentReplies('ON'); 
-  ```
-
-* Channel mention notifications:
-  ```js
-  await youtube.account.settings.notifications.setSharedContent('ON'); 
-  ```
-
-#### Privacy settings:
-
-Options: `ON` | `OFF`
-
-* Subscriptions privacy:
-  ```js
-  await youtube.account.settings.privacy.setSubscriptionsPrivate('ON'); 
-  ```
-
-* Saved playlists privacy:
-  ```js
-  await youtube.account.settings.privacy.setSavedPlaylistsPrivate('ON'); 
-  ```
-
-### Live chats:
----
-
-Currently, the library can retrieve the live chat, stats, and send messages.
+For example, you may want to call an endpoint directly, that can be achieved by using the `Actions` class, which the library uses internally to make API calls.
 
 Example:
-```js
-import Innertube from 'youtubei.js';
 
-const youtube = await new Innertube();
+```ts
+// ...
 
-const search = await youtube.search('Lofi girl live');
-const video = await youtube.getDetails(search.videos[0].id);
-  
-const livechat = video.getLivechat();
-
-// Updated stats about the livestream
-livechat.on('update-metadata', (data) => {
-  console.info('Info:', data);
-});
-   
-// Fired whenever there is a new message or other chat events
-livechat.on('chat-update', (message) => {
-  console.info(`- ${message.author.name}\n${message.text}\n\n`);
-    
-  if(message.text == '!info') {
-    livechat.sendMessage('Hello! This message was sent from YouTube.js');
-  }
-});
-```
-
-Stop fetching the live chat:
-```js
-livechat.stop();
-```
-
-Delete a message:
-```js
-const msg = await livechat.sendMessage('Nice livestream!');
-await msg.deleteMessage();
-```
-
-### Downloading videos:
----
-```js
-const options = {
-  format?: string,
-  quality?: string,
-  type?: string,
-  range?: { start: number, end: number }
+const payload = {
+  videoId: 'jLTOuvBTLxA',
+  client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, WEB
+  parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
 };
 
-const stream = youtube.download('VIDEO_ID', options);
+const response = await yt.actions.execute('/player', payload);
+
+console.info(response);
 ```
 
-Options:
+Or maybe there's an interesting `NavigationEndpoint` in a parsed response and we want to call it to see what happens:
 
-* format: 
-  `mp4` | `webm` etc.. (note: only formats provided by YouTube are available) 
+```ts
+// ...
+const artist = await yt.music.getArtist('UC52ZqHVQz5OoGhvbWiRal6g');
+const albums = artist.sections[1].as(MusicCarouselShelf);
 
-* quality: 
-  `144p`, `240p`, `360p`, `480p`, `720p`, `1080p` etc..
-   
-* type:
-  `video` | `audio` | `videoandaudio`
-
-* range: indicates which bytes should be downloaded 
-  * start: an integer indicating the beginning of the range
-  * end: an integer indicating the end of the range
-
-Cancel a download:
-```js
-stream.cancel();
-```
-
-Example:
-```js
-import fs from 'fs';
-import Innertube from 'youtubei.js';
-
-const youtube = await new Innertube();
-const search = await youtube.search('Sound Coming From A Massive Black Hole - Anton Petrov');
+// Say we have a button and want to “click” it
+const button = albums.as(MusicCarouselShelf).header?.more_content;
   
-const stream = youtube.download(search.videos[0].id, {
-  format: 'mp4', // defaults to mp4
-  quality: '720p', // falls back to 360p if a specific quality isn't available
-  type: 'videoandaudio' 
-});
-  
-stream.pipe(fs.createWriteStream(`./${search.videos[0].id}.mp4`));
- 
-stream.on('start', () => {
-  console.info('[YOUTUBE.JS]', 'Starting now!');
-});
-  
-stream.on('info', (info) => {
-  console.info('[YOUTUBE.JS]', `Downloading ${info.video_details.title} by ${info.video_details.metadata.channel_name}`);
-});
-  
-stream.on('progress', (info) => {
-  process.stdout.clearLine();
-  process.stdout.cursorTo(0);
-  process.stdout.write(`[YOUTUBE.JS] Downloaded ${info.percentage}% (${info.downloaded_size}MB) of ${info.size}MB`);
-});
-  
-stream.on('end', () => {
-  process.stdout.clearLine();
-  process.stdout.cursorTo(0);
-  console.info('[YOUTUBE.JS]', 'Done!');
-});
-  
-stream.on('error', (err) => console.error('[ERROR]', err)); 
-```
-
-Alternatively, you can get the deciphered streaming data and handle the download yourself:
-
-```js
-await youtube.getStreamingData('VIDEO_ID', options);
-```
-
-<details>
-<summary>Output</summary>
-<p>
-
-```js
-{
-  selected_format: {
-    itag: number,
-    mimeType: string,
-    bitrate: number,
-    initRange: { start: string, end: string },
-    indexRange: { start: string, end: string },
-    lastModified: string,
-    contentLength: string,
-    quality: string,
-    projectionType: string,
-    averageBitrate: number,
-    highReplication: boolean,
-    audioQuality: string,
-    approxDurationMs: string,
-    audioSampleRate: string,
-    audioChannels: number,
-    loudnessDb: number,
-    url: string,
-    has_audio: boolean,
-    has_video: boolean
-  },
-  formats: [
-    {
-      itag: number,
-      mimeType: string,
-      bitrate: number,
-      initRange: { start: string, end: string },
-      indexRange: { start: string, end: string },
-      lastModified: string,
-      contentLength: string,
-      quality: string,
-      projectionType: string,
-      averageBitrate: number,
-      highReplication: boolean,
-      audioQuality: string,
-      approxDurationMs: string,
-      audioSampleRate: string,
-      audioChannels: number,
-      loudnessDb: number,
-      url: string,
-      has_audio: boolean,
-      has_video: boolean
-    }
-  ]
+if (button) {
+  // To do that, we can call its navigation endpoint:
+  const page = await button.endpoint.call(yt.actions, 'YTMUSIC', true);
+  console.info(page);
 }
-  
-```
-</p>
-</details>
-
-### Signing in:
----
-
-When signing in to a Google account, you have two options:
-
-- OAuth 2.0; easy, simple & reliable.
-- Cookies; usually complicated to extract and unreliable.
-
-#### OAuth:
-
-```js
-import fs from 'fs';
-import Innertube from 'youtubei.js';
-
-const youtube = await new Innertube();
-
-const creds_path = './yt_oauth_creds.json'; 
-const creds = fs.existsSync(creds_path) ? JSON.parse(fs.readFileSync(creds_path).toString()) : {};
-
-youtube.ev.on('auth', (data) => {
-  switch (data.status) {
-    case 'AUTHORIZATION_PENDING':
-      console.info(`
-        Hello! On your phone or computer,
-        go to ${data.verification_url} and enter
-        the code ${data.code}.
-      `);
-      break;
-    case 'SUCCESS':
-      fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
-      console.info('Successfully signed in, enjoy!');
-      break;
-  }
-});
-
-youtube.ev.on('update-credentials', (data) => {
-  fs.writeFileSync(creds_path, JSON.stringify(data.credentials));
-  console.info('Credentials updated!', data);
-});
-  
-await youtube.signIn(creds);
-  
-//...
-```
-
-Sign out:
-```js
-const response = await youtube.signOut();
-if (response.success) {
-  console.log('You have successfully signed out');
-}
-```
-
-#### Cookies:
-
-```js
-import Innertube from 'youtubei.js';
-const youtube = await new Innertube({ cookie: '...' }); 
 ```
 
 <!-- CONTRIBUTING -->
 ## Contributing
-Contributions, issues and feature requests are welcome.
-Feel free to check [issues page](https://github.com/LuanRT/YouTube.js/issues) if you want to contribute.
+Contributions, issues, and feature requests are welcome.
+Feel free to check [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](./CONTRIBUTING.md) if you want to contribute.
 
 <!-- CONTRIBUTORS -->
 ## Contributors
@@ -1236,17 +614,19 @@ LuanRT  - [@lrt_nooneknows][twitter] - luan.lrt4@gmail.com
 
 Project Link: [https://github.com/LuanRT/YouTube.js][project]
 
-<!-- DISCLAIMER -->
 ## Disclaimer
-This project is not affiliated with, endorsed, or sponsored by YouTube or any of their affiliates or subsidiaries. 
-All trademarks, logos and brand names are the property of their respective owners, and are used only to directly describe the services being provided, as such, any usage of trademarks to refer to such services is considered nominative use.
+This project is not affiliated with, endorsed, or sponsored by YouTube or any of its affiliates or subsidiaries.
+All trademarks, logos, and brand names are the property of their respective owners and are used only to directly describe the services being provided, as such, any usage of trademarks to refer to such services is considered nominative use.
 
 Should you have any questions or concerns please contact me directly via email.
+
+<!-- Footnotes -->
+[^1]: https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491
 
 <!-- LICENSE -->
 ## License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License.
 
-<p align="right">
-  (<a href="#top">back to top</a>)
+<p align=" right">
+(<a href="#top">back to top</a>)
 </p>
