@@ -562,9 +562,7 @@ Utility to call navigation endpoints.
 
 Something cool about YouTube.js is that it is completely modular and easy to tinker with. Almost all methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
 
-For example, you may want to call an endpoint directly, that can be achieved with the `Actions` class, which the library uses internally to make API calls.
-
-Example:
+For example, you may want to call an endpoint directly, that can be achieved with the `Actions` class:
 
 ```ts
 // ...
