@@ -243,7 +243,7 @@ const yt = await Innertube.create({
 
 ## API
 
-* Innertube
+* `Innertube`
 
   <details>
   <summary>objects</summary>
@@ -398,7 +398,7 @@ Retrieves comments for given video.
 | video_id | `string` | The video id |
 | sort_by | `string` | Can be: `TOP_COMMENTS` or `NEWEST_FIRST` |
 
-Examples & docs can be found [here](./examples/comments).
+See [`./examples/comments`](./examples/comments) for examples.
 
 <a name="gethomefeed"></a>
 ### getHomeFeed()
@@ -479,8 +479,7 @@ Retrieves contents for a given channel.
 </p>
 </details> 
 
-**Info:** 
-Examples can be found [here](./examples/channel).
+See [`./examples/channel`](./examples/channel) for examples.
 
 <a name="getnotifications"></a>
 ### getNotifications()
@@ -545,6 +544,8 @@ Downloads a given video.
 | --- | --- | --- |
 | video_id | `string` | Video id |
 | options | `DownloadOptions` | Download options |
+
+See [`./examples/download`](./examples/download) for examples.
 
 <a name="call"></a>
 ### call(endpoint, args?)
