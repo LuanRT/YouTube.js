@@ -317,7 +317,7 @@ Retrieves video info, including playback data and even layout elements such as m
   - Used to choose streaming data formats.
 
 - `<info>#toDash(url_transformer)`
-  - Converts streaming data to a MPEG-DASH manifest.
+  - Converts streaming data to an MPEG-DASH manifest.
 
 - `<info>#download(options)`
   - Downloads the video. See [download](#download).
@@ -562,9 +562,7 @@ Utility to call navigation endpoints.
 
 Something cool about YouTube.js is that it is completely modular and easy to tinker with. Almost all methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
 
-For example, you may want to call an endpoint directly, that can be achieved by using the `Actions` class, which the library uses internally to make API calls.
-
-Example:
+For example, you may want to call an endpoint directly, that can be achieved with the `Actions` class:
 
 ```ts
 // ...
@@ -597,10 +595,65 @@ if (button) {
 }
 ```
 
+### Parser
+
+If you're working on an extension for the library or just want to have nicely typed and sanitized InnerTube responses for a project then have a look at our powerful parser!
+
+<details>
+<summary>Example:</summary>
+<p>
+
+```ts
+// See ./examples/parser
+
+import Parser from 'youtubei.js/dist/src/parser';
+
+import SectionList from 'youtubei.js/dist/src/parser/classes/SectionList';
+import SingleColumnBrowseResults from 'youtubei.js/dist/src/parser/classes/SingleColumnBrowseResults';
+
+import MusicVisualHeader from 'youtubei.js/dist/src/parser/classes/MusicVisualHeader';
+import MusicImmersiveHeader from 'youtubei.js/dist/src/parser/classes/MusicImmersiveHeader';
+import MusicCarouselShelf from 'youtubei.js/dist/src/parser/classes/MusicCarouselShelf';
+import MusicDescriptionShelf from 'youtubei.js/dist/src/parser/classes/MusicDescriptionShelf';
+import MusicShelf from 'youtubei.js/dist/src/parser/classes/MusicShelf';
+
+import { readFileSync } from 'fs';
+
+// Artist page response from YouTube Music
+const data = readFileSync('./artist.json').toString();
+
+const page = Parser.parseResponse(JSON.parse(data));
+
+const header = page.header.item().as(MusicImmersiveHeader, MusicVisualHeader);
+
+console.info('Header:', header);
+
+// The parser encapsulates all arrays in a proxy object.
+// A proxy intercepts access to the actual data, allowing
+// the parser to add type safety and many utility methods
+// that make working with InnerTube much easier.
+const tab = page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: false });
+
+if (!tab)
+  throw new Error('Target tab not found');
+
+if (!tab.content)
+  throw new Error('Target tab appears to be empty');
+  
+const sections = tab.content?.as(SectionList).contents.array().as(MusicCarouselShelf, MusicShelf);
+
+console.info('Sections:', sections);
+```
+
+</p>
+</details>
+
+Detailed documentation can be found [here](./src/parser).
+
 <!-- CONTRIBUTING -->
 ## Contributing
 Contributions, issues, and feature requests are welcome.
-Feel free to check [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](./CONTRIBUTING.md) if you want to contribute.
+Feel free to check the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](./CONTRIBUTING.md) if you want to contribute.
 
 <!-- CONTRIBUTORS -->
 ## Contributors
