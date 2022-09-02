@@ -173,7 +173,8 @@ class NavigationEndpoint extends YTNode {
 
     if (data?.watchPlaylistEndpoint) {
       this.watch_playlist = {
-        playlist_id: data.watchPlaylistEndpoint?.playlistId
+        playlist_id: data.watchPlaylistEndpoint?.playlistId,
+        params: data.watchPlaylistEndpoint?.params || null
       };
     }
 
