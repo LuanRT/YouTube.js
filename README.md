@@ -558,7 +558,7 @@ Utility to call navigation endpoints.
 | endpoint | `NavigationEndpoint` | The target endpoint |
 | args? | `object` | Additional payload arguments |
 
-## Implementing custom fuctionality 
+## Implementing custom functionality 
 
 Something cool about YouTube.js is that it is completely modular and easy to tinker with. Almost all methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
 
