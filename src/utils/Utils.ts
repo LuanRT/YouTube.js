@@ -2,8 +2,6 @@ import package_json from '../../package.json';
 import { FetchFunction } from './HTTPClient';
 import userAgents from './user-agents.json';
 
-const VALID_CLIENTS = new Set([ 'YOUTUBE', 'YTMUSIC' ]);
-
 export class InnertubeError extends Error {
   date: Date;
   version: string;
@@ -151,21 +149,6 @@ export function timeToSeconds(time: string) {
     default:
       throw new Error('Invalid time string');
   }
-}
-
-/**
- * Converts strings in camelCase to snake_case.
- * @param string - The string in camelCase.
- */
-export function camelToSnake(string: string) {
-  return string[0].toLowerCase() + string.slice(1, string.length).replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-}
-
-/**
- * Checks if a given client is valid.
- */
-export function isValidClient(client: string) {
-  return VALID_CLIENTS.has(client);
 }
 
 /**
