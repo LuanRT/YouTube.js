@@ -102,7 +102,7 @@ class Music {
   async getAlbum(album_id: string) {
     throwIfMissing({ album_id });
 
-    if (!album_id.startsWith('MPR'))
+    if (!album_id.startsWith('MPR') && !album_id.startsWith('FEmusic_library_privately_owned_release'))
       throw new InnertubeError('Invalid album id', album_id);
 
     const response = await this.#actions.browse(album_id, { client: 'YTMUSIC' });
