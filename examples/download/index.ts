@@ -19,7 +19,7 @@ import { readFileSync, existsSync, mkdirSync, createWriteStream } from 'fs';
   for (const song of album.contents) {
     const stream = await yt.download(song.id as string, {
       type: 'audio', // audio, video or audio+video
-      quality: 'best' // best, bestefficiency, 144p, 240p, 480p, 720p and so on.
+      quality: 'best', // best, bestefficiency, 144p, 240p, 480p, 720p and so on.
       format: 'mp4' // media container format 
     });
     
