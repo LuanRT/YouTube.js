@@ -26,7 +26,7 @@ import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMus
 import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults';
 import SectionList from '../parser/classes/SectionList';
 
-import { InnertubeError, throwIfMissing } from '../utils/Utils';
+import { InnertubeError, throwIfMissing, generateRandomString } from '../utils/Utils';
 
 class Music {
   #actions;
@@ -39,7 +39,9 @@ class Music {
    * Retrieves track info.
    */
   async getInfo(video_id: string) {
-    const initial_info = this.#actions.execute('/player', { client: 'YTMUSIC', videoId: video_id });
+    const cpn = generateRandomString(16);
+
+    const initial_info = await this.#actions.getVideoInfo(video_id, cpn, 'YTMUSIC');
     const continuation = this.#actions.execute('/next', { client: 'YTMUSIC', videoId: video_id });
 
     const response = await Promise.all([ initial_info, continuation ]);
