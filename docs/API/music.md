@@ -6,7 +6,7 @@ YouTube Music class.
 
 * Music 
   * [.getInfo(video_id)](#getinfo)
-  * [.search(query, [filters?])](#search)
+  * [.search(query, filters?)](#search)
   * [.getHomeFeed()](#gethomefeed)
   * [.getExplore()](#getexplore)
   * [.getLibrary()](#getlibrary)
@@ -30,7 +30,7 @@ Retrieves track info.
 | video_id | `string` | Video id |
 
 <a name="search"></a>
-### search(query, [filters?])
+### search(query, filters?)
 
 Searches on YouTube Music.
 
@@ -187,13 +187,13 @@ Retrieves given playlist.
 <summary>Methods & Getters</summary>
 <p>
 
-- `<playlist#getRelated()`
+- `<playlist>#getRelated()`
   - Retrieves related playlists.
 
-- `<playlist#getSuggestions()`
+- `<playlist>#getSuggestions()`
   - Retrieves playlist suggestions.
 
-- `<playlist#getContinuation()`
+- `<playlist>#getContinuation()`
   - Retrieves continuation.
 
 - `<playlist>#has_continuation`

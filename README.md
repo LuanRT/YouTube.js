@@ -92,7 +92,7 @@ ___
       <ul>
         <li><a href="#browser-usage">Browser Usage</a></li>
         <li><a href="#caching">Caching</a></li>
-        <li><a href="#caching">API</a></li>
+        <li><a href="#api">API</a></li>
       </ul>
     </li>
     <li><a href="#implementing-custom-functionality">Implementing custom functionality </a></li>
@@ -337,7 +337,7 @@ Retrieves video info, including playback data and even layout elements such as m
 </details> 
 
 <a name="getbasicinfo"></a>
-### getBasicInfo(video_id)
+### getBasicInfo(video_id, client?)
 
 Suitable for cases where you only need basic video metadata. Also, it is faster than [`getInfo()`](#getinfo).
 

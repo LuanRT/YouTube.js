@@ -27,7 +27,7 @@
     "build": "npm run build:parser-map && npm run build:proto && npm run bundle:browser && npm run bundle:browser:prod && npm run build:node",
     "build:proto": "npx protoc --ts_out ./src/proto --proto_path ./src/proto ./src/proto/youtube.proto",
     "build:node": "npx tsc",
-    "build:parser-map": "node ./scripts/build-parser-json.js",
+    "build:parser-map": "node ./scripts/build-parser-map.js",
     "bundle:browser": "npx tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --outfile=./bundle/browser.js --platform=browser",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
     "prepare": "npm run build",
