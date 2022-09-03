@@ -13,18 +13,18 @@ import Playlist from '../parser/ytmusic/Playlist';
 import Parser from '../parser/index';
 import { observe, YTNode } from '../parser/helpers';
 
+import Tab from '../parser/classes/Tab';
+import Tabbed from '../parser/classes/Tabbed';
+import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults';
+import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults';
+import SectionList from '../parser/classes/SectionList';
+
 import MusicQueue from '../parser/classes/MusicQueue';
 import PlaylistPanel from '../parser/classes/PlaylistPanel';
 import Message from '../parser/classes/Message';
 import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf';
 import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf';
 import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection';
-
-import Tab from '../parser/classes/Tab';
-import Tabbed from '../parser/classes/Tabbed';
-import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults';
-import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults';
-import SectionList from '../parser/classes/SectionList';
 
 import { InnertubeError, throwIfMissing, generateRandomString } from '../utils/Utils';
 
