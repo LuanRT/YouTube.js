@@ -18,6 +18,7 @@ import ToggleButton from '../classes/ToggleButton';
 import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader';
 import ContinuationItem from '../classes/ContinuationItem';
 import PlayerMicroformat from '../classes/PlayerMicroformat';
+import MicroformatData from '../classes/MicroformatData';
 
 import LiveChat from '../classes/LiveChat';
 import LiveChatWrap from './LiveChat';
@@ -100,7 +101,7 @@ class VideoInfo {
     if (info.playability_status?.status === 'ERROR')
       throw new InnertubeError('This video is unavailable', info.playability_status);
 
-    if (info.microformat && !info.microformat?.is(PlayerMicroformat))
+    if (info.microformat && !info.microformat?.is(PlayerMicroformat, MicroformatData))
       throw new InnertubeError('Invalid microformat', info.microformat);
 
     this.basic_info = { // This type is inferred so no need for an explicit type
@@ -110,11 +111,11 @@ class VideoInfo {
          * Microformat is a bit redundant, so only
          * a few things there are interesting to us.
          */
-        embed: info.microformat?.embed,
-        channel: info.microformat?.channel,
+        embed: info.microformat?.is(PlayerMicroformat) ? info.microformat?.embed : null,
+        channel: info.microformat?.is(PlayerMicroformat) ? info.microformat?.channel : null,
         is_unlisted: info.microformat?.is_unlisted,
         is_family_safe: info.microformat?.is_family_safe,
-        has_ypc_metadata: info.microformat?.has_ypc_metadata
+        has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null
       },
       like_count: undefined as number | undefined,
       is_liked: undefined as boolean | undefined,
