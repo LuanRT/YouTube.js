@@ -6,7 +6,6 @@
 [codefactor]: https://www.codefactor.io/repository/github/luanrt/youtube.js
 [actions]: https://github.com/LuanRT/YouTube.js/actions
 [say-thanks]: https://saythanks.io/to/LuanRT
-[ko-fi]:https://ko-fi.com/luanrt
 [github-sponsors]:https://github.com/sponsors/LuanRT
 
 <!-- OTHER LINKS -->
