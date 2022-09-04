@@ -1,4 +1,4 @@
-import Parser from 'youtubei.js/dist/src/parser';
+import { Parser } from 'youtubei.js';
 
 import SectionList from 'youtubei.js/dist/src/parser/classes/SectionList';
 import SingleColumnBrowseResults from 'youtubei.js/dist/src/parser/classes/SingleColumnBrowseResults';
@@ -32,6 +32,6 @@ if (!tab)
 if (!tab.content)
   throw new Error('Target tab appears to be empty');
   
-const sections = tab.content?.as(SectionList).contents.array().as(MusicCarouselShelf, MusicShelf);
+const sections = tab.content?.as(SectionList).contents.array().as(MusicCarouselShelf, MusicDescriptionShelf, MusicShelf);
 
 console.info('Sections:', sections);

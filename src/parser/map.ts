@@ -524,6 +524,8 @@ const map: Record<string, YTNodeConstructor> = {
   WatchNextTabbedResults
 };
 
+export const YTNodes = map;
+
 /**
  * @param name - Name of the node to be parsed
  */

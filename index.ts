@@ -13,6 +13,9 @@ if (getRuntime() === 'node') {
 }
 
 import Innertube from './src/Innertube';
-export { default as Innertube } from './src/Innertube.js';
+
 export * from './src/utils';
+export { YTNodes } from './src/parser/map';
+export { default as Parser } from './src/parser';
+export { default as Innertube } from './src/Innertube';
 export default Innertube;

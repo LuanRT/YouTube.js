@@ -16,20 +16,19 @@
   ],
   "directories": {
     "test": "./test",
-    "typings": "./dist",
     "examples": "./examples",
-    "src": "./dist/src"
+    "dist": "./dist"
   },
   "scripts": {
     "test": "npx jest --verbose",
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint --fix ./src",
     "build": "npm run build:parser-map && npm run build:proto && npm run bundle:browser && npm run bundle:browser:prod && npm run build:node",
-    "build:proto": "npx protoc --ts_out ./src/proto --proto_path ./src/proto ./src/proto/youtube.proto",
     "build:node": "npx tsc",
-    "build:parser-map": "node ./scripts/build-parser-map.js",
     "bundle:browser": "npx tsc --module esnext && npx esbuild ./dist/browser.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --outfile=./bundle/browser.js --platform=browser",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
+    "build:parser-map": "node ./scripts/build-parser-map.js",
+    "build:proto": "npx protoc --ts_out ./src/proto --proto_path ./src/proto ./src/proto/youtube.proto",
     "prepare": "npm run build",
     "watch": "npx tsc --watch"
   },
@@ -45,13 +44,11 @@
     "undici": "^5.7.0"
   },
   "devDependencies": {
-    "@protobuf-ts/plugin": "^2.7.0",
-    "@types/flat": "^5.0.2",
-    "@types/jest": "^28.1.7",
-    "@types/node": "^17.0.45",
-    "@types/user-agents": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
+    "@protobuf-ts/plugin": "^2.7.0",
+    "@types/jest": "^28.1.7",
+    "@types/node": "^17.0.45",
     "esbuild": "^0.14.49",
     "eslint": "^8.19.0",
     "eslint-plugin-tsdoc": "^0.2.16",

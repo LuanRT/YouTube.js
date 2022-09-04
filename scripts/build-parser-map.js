@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const import_list = [];
+
 const json = [];
 
 glob.sync('../src/parser/classes/**/*.{js,ts}', { cwd: __dirname })
@@ -18,7 +19,7 @@ glob.sync('../src/parser/classes/**/*.{js,ts}', { cwd: __dirname })
 fs.writeFileSync(
   path.resolve(__dirname, '../src/parser/map.ts'),
   `// This file was auto generated, do not edit.
-// See ./scripts/build-parser-json.js
+// See ./scripts/build-parser-map.js
 import { YTNodeConstructor } from './helpers';
 
 ${import_list.join('\n')}
@@ -26,6 +27,8 @@ ${import_list.join('\n')}
 const map: Record<string, YTNodeConstructor> = {
   ${json.join(',\n  ')}
 };
+
+export const YTNodes = map;
 
 /**
  * @param name - Name of the node to be parsed
