@@ -20,10 +20,10 @@ class LiveChatPaidMessage extends YTNode {
     is_verified_artist: boolean | null;
   };
 
-  headerBackgroundColor: number;
-  headerTextColor: number;
-  bodyBackgroundColor: number;
-  bodyTextColor: number;
+  header_background_color: number;
+  header_text_color: number;
+  body_background_color: number;
+  body_text_color: number;
   purchase_amount: string;
   menu_endpoint: NavigationEndpoint;
   timestamp: number;
@@ -51,10 +51,10 @@ class LiveChatPaidMessage extends YTNode {
     this.author.is_verified = badges?.some((badge: any) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED') || null;
     this.author.is_verified_artist = badges?.some((badge: any) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') || null;
 
-    this.headerBackgroundColor = data.headerBackgroundColor;
-    this.headerTextColor = data.headerTextColor;
-    this.bodyBackgroundColor = data.bodyBackgroundColor;
-    this.bodyTextColor = data.bodyTextColor;
+    this.header_background_color = data.headerBackgroundColor;
+    this.header_text_color = data.headerTextColor;
+    this.body_background_color = data.bodyBackgroundColor;
+    this.body_text_color = data.bodyTextColor;
     this.purchase_amount = new Text(data.purchaseAmountText).toString();
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);
