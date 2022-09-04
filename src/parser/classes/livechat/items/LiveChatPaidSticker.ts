@@ -16,6 +16,10 @@ class LiveChatPaidSticker extends YTNode {
     badges: any;
   };
 
+  moneyChipBackgroundColor: number;
+  moneyChipTextColor: number;
+  backgroundColor: number;
+  authorNameTextColor: number;
   sticker: Thumbnail[];
   purchase_amount: string;
   context_menu: NavigationEndpoint;
@@ -32,6 +36,10 @@ class LiveChatPaidSticker extends YTNode {
       badges: Parser.parse(data.authorBadges)
     };
 
+    this.moneyChipBackgroundColor = data.moneyChipBackgroundColor;
+    this.moneyChipTextColor = data.moneyChipTextColor;
+    this.backgroundColor = data.backgroundColor;
+    this.authorNameTextColor = data.authorNameTextColor;
     this.sticker = Thumbnail.fromResponse(data.sticker);
     this.purchase_amount = new Text(data.purchaseAmountText).toString();
     this.context_menu = new NavigationEndpoint(data.contextMenuEndpoint);
