@@ -253,7 +253,7 @@ Retrieves your YouTube Music recap.
 - `<recap>#getPlaylist()`
   - Retrieves recap playlist.
 
-- `<homefeed>#page`
+- `<recap>#page`
   - Returns original InnerTube response (sanitized).
 
 </p>
