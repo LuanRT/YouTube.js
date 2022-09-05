@@ -3,10 +3,13 @@ import Actions, { AxioslikeResponse } from '../../core/Actions';
 
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
-import SectionList from '../classes/SectionList';
-import { InnertubeError } from '../../utils/Utils';
 import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader';
+import MusicDetailHeader from '../classes/MusicDetailHeader';
 import MusicShelf from '../classes/MusicShelf';
+
+import SectionList from '../classes/SectionList';
+
+import { InnertubeError } from '../../utils/Utils';
 
 class Playlist {
   #page;
@@ -21,7 +24,7 @@ class Playlist {
   constructor(response: AxioslikeResponse, actions: Actions) {
     this.#actions = actions;
     this.#page = Parser.parseResponse(response.data);
-    this.#actions = actions;
+
     this.#suggestions_continuation = this.#page.contents_memo.getType(MusicShelf)?.find(
       (shelf) => shelf.title.toString() === 'Suggestions')?.continuation || null;
     this.#last_fetched_suggestions = null;
@@ -32,9 +35,9 @@ class Playlist {
       this.#continuation = data.continuation;
     } else {
       if (this.#page.header?.item().type === 'MusicEditablePlaylistDetailHeader') {
-        this.header = this.#page.header?.item().as(MusicEditablePlaylistDetailHeader).header.item();
+        this.header = this.#page.header?.item().as(MusicEditablePlaylistDetailHeader).header.item().as(MusicDetailHeader);
       } else {
-        this.header = this.#page.header?.item() || null;
+        this.header = this.#page.header?.item().as(MusicDetailHeader) || null;
       }
       this.items = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0].contents;
       this.#continuation = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0].continuation || null;
@@ -50,16 +53,14 @@ class Playlist {
   }
 
   /**
-   * Retrieves playlist item continuation.
+   * Retrieves playlist items continuation.
    */
   async getContinuation() {
-    if (this.#continuation) {
-      const response = await this.#actions.browse(this.#continuation, { is_ctoken: true, client: 'YTMUSIC' });
-      return new Playlist(response, this.#actions);
-    }
+    if (!this.#continuation)
+      throw new InnertubeError('Continuation not found.');
 
-    throw new InnertubeError('Continuation not found.');
-
+    const response = await this.#actions.browse(this.#continuation, { is_ctoken: true, client: 'YTMUSIC' });
+    return new Playlist(response, this.#actions);
   }
 
   /**
@@ -114,7 +115,6 @@ class Playlist {
       continuation: null
     };
   }
-
 }
 
 export default Playlist;

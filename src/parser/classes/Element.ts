@@ -11,6 +11,11 @@ class Element extends YTNode {
 
   constructor(data: any) {
     super();
+
+    if (Reflect.has(data, 'elementRenderer')) {
+      return Parser.parseItem<Element>(data, Element) as Element;
+    }
+
     const type = data.newElement.type.componentType;
     this.model = Parser.parse(type?.model);
 
