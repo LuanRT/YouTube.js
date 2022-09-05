@@ -464,6 +464,7 @@ export default class Parser {
     'BackgroundPromo',
     'PromotedSparklesWeb',
     'RunAttestationCommand',
+    'CompactPromotedVideo',
     'StatementBanner'
   ]);
 
