@@ -16,6 +16,7 @@ YouTube Music class.
   * [.getLyrics(video_id)](#getlyrics)
   * [.getUpNext(video_id)](#getupnext)
   * [.getRelated(video_id)](#getrelated)
+  * [.getRecap()](#getrecap)
   * [.getSearchSuggestions(query)](#getsearchsuggestions)
 
 <a name="getinfo"></a>
@@ -237,6 +238,26 @@ Retrieves related content.
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | Video id |
+
+<a name="getrecap"></a>
+### getRecap()
+
+Retrieves your YouTube Music recap.
+
+**Returns:** `Promise.<Recap>`
+
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<recap>#getPlaylist()`
+  - Retrieves recap playlist.
+
+- `<homefeed>#page`
+  - Returns original InnerTube response (sanitized).
+
+</p>
+</details> 
 
 <a name="getsearchsuggestions"></a>
 ### getSearchSuggestions(query)
