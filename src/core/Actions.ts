@@ -751,6 +751,7 @@ class Actions {
       'FElibrary',
       'FEhistory',
       'FEsubscriptions',
+      'FEmusic_listening_review',
       'SPaccount_notifications',
       'SPaccount_privacy',
       'SPtime_watched'
