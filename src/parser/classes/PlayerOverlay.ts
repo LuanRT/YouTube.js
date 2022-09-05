@@ -1,4 +1,9 @@
 import Parser from '../index';
+import Menu from './menus/Menu';
+import Button from './Button';
+import WatchNextEndScreen from './WatchNextEndScreen';
+import PlayerOverlayAutoplay from './PlayerOverlayAutoplay';
+
 import { YTNode } from '../helpers';
 
 class PlayerOverlay extends YTNode {
@@ -12,10 +17,10 @@ class PlayerOverlay extends YTNode {
 
   constructor(data: any) {
     super();
-    this.end_screen = Parser.parse(data.endScreen);
-    this.autoplay = Parser.parse(data.autoplay);
-    this.share_button = Parser.parse(data.shareButton);
-    this.add_to_menu = Parser.parse(data.addToMenu);
+    this.end_screen = Parser.parseItem<WatchNextEndScreen>(data.endScreen, WatchNextEndScreen);
+    this.autoplay = Parser.parseItem<PlayerOverlayAutoplay>(data.autoplay, PlayerOverlayAutoplay);
+    this.share_button = Parser.parseItem<Button>(data.shareButton, Button);
+    this.add_to_menu = Parser.parseItem<Menu>(data.addToMenu, Menu);
     this.fullscreen_engagement = Parser.parse(data.fullscreenEngagement);
   }
 }

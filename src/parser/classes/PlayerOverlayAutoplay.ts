@@ -2,6 +2,7 @@ import Parser from '../index';
 import Text from './misc/Text';
 import Author from './misc/Author';
 import Thumbnail from './misc/Thumbnail';
+import Button from './Button';
 import { YTNode } from '../helpers';
 
 class PlayerOverlayAutoplay extends YTNode {
@@ -33,9 +34,9 @@ class PlayerOverlayAutoplay extends YTNode {
     this.background = Thumbnail.fromResponse(data.background);
     this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
     this.author = new Author(data.byline);
-    this.cancel_button = Parser.parse(data.cancelButton);
-    this.next_button = Parser.parse(data.nextButton);
-    this.close_button = Parser.parse(data.closeButton);
+    this.cancel_button = Parser.parseItem<Button>(data.cancelButton, Button);
+    this.next_button = Parser.parseItem<Button>(data.nextButton, Button);
+    this.close_button = Parser.parseItem<Button>(data.closeButton, Button);
   }
 }
 

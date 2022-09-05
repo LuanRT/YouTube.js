@@ -9,7 +9,7 @@ class Endscreen extends YTNode {
 
   constructor(data: any) {
     super();
-    this.elements = Parser.parse(data.elements);
+    this.elements = Parser.parseArray(data.elements);
     this.start_ms = data.startMs;
   }
 }

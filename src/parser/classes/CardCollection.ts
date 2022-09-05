@@ -11,7 +11,7 @@ class CardCollection extends YTNode {
 
   constructor(data: any) {
     super();
-    this.cards = Parser.parse(data.cards);
+    this.cards = Parser.parseArray(data.cards);
     this.header = new Text(data.headerText);
     this.allow_teaser_dismiss = data.allowTeaserDismiss;
   }

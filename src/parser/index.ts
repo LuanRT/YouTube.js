@@ -4,7 +4,11 @@ import GetParserByName from './map';
 import Endscreen from './classes/Endscreen';
 import CardCollection from './classes/CardCollection';
 import NavigationEndpoint from './classes/NavigationEndpoint';
+
+import PlayerStoryboardSpec from './classes/PlayerStoryboardSpec';
 import PlayerCaptionsTracklist from './classes/PlayerCaptionsTracklist';
+import PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec';
+import PlayerAnnotationsExpanded from './classes/PlayerAnnotationsExpanded';
 
 import { InnertubeError, ParsingError } from '../utils/Utils';
 import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
@@ -264,9 +268,8 @@ export default class Parser {
       current_video_endpoint: data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null,
       captions: Parser.parseItem<PlayerCaptionsTracklist>(data.captions, PlayerCaptionsTracklist),
       video_details: data.videoDetails ? new VideoDetails(data.videoDetails) : undefined,
-      // TODO: might want to type check these two and use parseItem
-      annotations: Parser.parse(data.annotations),
-      storyboards: Parser.parse(data.storyboards),
+      annotations: Parser.parseArray<PlayerAnnotationsExpanded>(data.annotations, PlayerAnnotationsExpanded),
+      storyboards: Parser.parseItem<PlayerStoryboardSpec | PlayerLiveStoryboardSpec>(data.storyboards, [ PlayerStoryboardSpec, PlayerLiveStoryboardSpec ]),
       endscreen: Parser.parseItem<Endscreen>(data.endscreen, Endscreen),
       cards: Parser.parseItem<CardCollection>(data.cards, CardCollection)
     };

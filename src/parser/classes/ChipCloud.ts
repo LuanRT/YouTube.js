@@ -1,7 +1,8 @@
 import Parser from '../index';
+import Button from './Button';
+import ChipCloudChip from './ChipCloudChip';
 
 import { YTNode } from '../helpers';
-import ChipCloudChip from './ChipCloudChip';
 
 class ChipCloud extends YTNode {
   static type = 'ChipCloud';
@@ -15,8 +16,8 @@ class ChipCloud extends YTNode {
     super();
     // TODO: check this assumption that chipcloudchip is always returned
     this.chips = Parser.parseArray<ChipCloudChip>(data.chips, ChipCloudChip);
-    this.next_button = Parser.parse(data.nextButton);
-    this.previous_button = Parser.parse(data.previousButton);
+    this.next_button = Parser.parseItem<Button>(data.nextButton, Button);
+    this.previous_button = Parser.parseItem<Button>(data.previousButton, Button);
     this.horizontal_scrollable = data.horizontalScrollable;
   }
 }
