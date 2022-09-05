@@ -1,5 +1,5 @@
 // This file was auto generated, do not edit.
-// See ./scripts/build-parser-json.js
+// See ./scripts/build-parser-map.js
 import { YTNodeConstructor } from './helpers';
 
 import { default as AccountChannel } from './classes/AccountChannel';
@@ -74,6 +74,7 @@ import { default as GridChannel } from './classes/GridChannel';
 import { default as GridHeader } from './classes/GridHeader';
 import { default as GridPlaylist } from './classes/GridPlaylist';
 import { default as GridVideo } from './classes/GridVideo';
+import { default as HighlightsCarousel } from './classes/HighlightsCarousel';
 import { default as HistorySuggestion } from './classes/HistorySuggestion';
 import { default as HorizontalCardList } from './classes/HorizontalCardList';
 import { default as HorizontalList } from './classes/HorizontalList';
@@ -146,10 +147,12 @@ import { default as MusicCarouselShelfBasicHeader } from './classes/MusicCarouse
 import { default as MusicDescriptionShelf } from './classes/MusicDescriptionShelf';
 import { default as MusicDetailHeader } from './classes/MusicDetailHeader';
 import { default as MusicEditablePlaylistDetailHeader } from './classes/MusicEditablePlaylistDetailHeader';
+import { default as MusicElementHeader } from './classes/MusicElementHeader';
 import { default as MusicHeader } from './classes/MusicHeader';
 import { default as MusicImmersiveHeader } from './classes/MusicImmersiveHeader';
 import { default as MusicInlineBadge } from './classes/MusicInlineBadge';
 import { default as MusicItemThumbnailOverlay } from './classes/MusicItemThumbnailOverlay';
+import { default as MusicLargeCardItemCarousel } from './classes/MusicLargeCardItemCarousel';
 import { default as MusicNavigationButton } from './classes/MusicNavigationButton';
 import { default as MusicPlayButton } from './classes/MusicPlayButton';
 import { default as MusicPlaylistShelf } from './classes/MusicPlaylistShelf';
@@ -335,6 +338,7 @@ const map: Record<string, YTNodeConstructor> = {
   GridHeader,
   GridPlaylist,
   GridVideo,
+  HighlightsCarousel,
   HistorySuggestion,
   HorizontalCardList,
   HorizontalList,
@@ -407,10 +411,12 @@ const map: Record<string, YTNodeConstructor> = {
   MusicDescriptionShelf,
   MusicDetailHeader,
   MusicEditablePlaylistDetailHeader,
+  MusicElementHeader,
   MusicHeader,
   MusicImmersiveHeader,
   MusicInlineBadge,
   MusicItemThumbnailOverlay,
+  MusicLargeCardItemCarousel,
   MusicNavigationButton,
   MusicPlayButton,
   MusicPlaylistShelf,
