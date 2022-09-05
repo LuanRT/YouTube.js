@@ -13,6 +13,7 @@ export enum ClientType {
   WEB = 'WEB',
   MUSIC = 'WEB_REMIX',
   ANDROID = 'ANDROID',
+  ANDROID_MUSIC = 'ANDROID_MUSIC'
 }
 
 export interface Context {

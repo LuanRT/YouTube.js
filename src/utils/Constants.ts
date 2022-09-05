@@ -43,6 +43,10 @@ export const CLIENTS = Object.freeze({
     NAME: 'ANDROID',
     VERSION: '17.17.32',
     SDK_VERSION: '29'
+  },
+  YTMUSIC_ANDROID: {
+    NAME: 'ANDROID_MUSIC',
+    VERSION: '5.17.51'
   }
 });
 export const STREAM_HEADERS = Object.freeze({

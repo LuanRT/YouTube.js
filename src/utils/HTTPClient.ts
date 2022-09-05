@@ -137,6 +137,12 @@ export default class HTTPClient {
         ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
         ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
         break;
+      case 'YTMUSIC_ANDROID':
+        ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC_ANDROID.VERSION;
+        ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
+        ctx.client.clientName = Constants.CLIENTS.YTMUSIC_ANDROID.NAME;
+        ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
+        break;
       default:
         break;
     }
