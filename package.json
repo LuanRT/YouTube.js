@@ -1,18 +1,18 @@
 {
   "name": "youtubei.js",
   "version": "2.0.0",
-  "description": "A full-featured wrapper around YouTube's private API. Allows you to retrieve info about any video, subscribe, unsubscribe, like, dislike, comment, search, download videos/music and much more!",
+  "description": "Full-featured wrapper around YouTube's private API.",
   "main": "./dist/index.js",
   "browser": "./bundle/browser.js",
   "types": "./dist",
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
+  "funding": [
+    "https://github.com/sponsors/LuanRT"
+  ],
   "contributors": [
     "Wykerd (https://github.com/wykerd/)",
     "MasterOfBob777 (https://github.com/MasterOfBob777)",
     "patrickkfkan (https://github.com/patrickkfkan)"
-  ],
-  "funding": [
-    "https://github.com/sponsors/LuanRT"
   ],
   "directories": {
     "test": "./test",

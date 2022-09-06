@@ -71,8 +71,6 @@
 
 ___
 
-> WIP- Documentation for YouTube.js 2.0.0
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -136,7 +134,7 @@ yarn add youtubei.js@latest
 npm install github:LuanRT/YouTube.js
 ```
 
-**TODO: Deno install instructions (esm.sh possibly?)**
+**TODO:** Deno install instructions (esm.sh possibly?)
 
 <!-- USAGE -->
 ## Usage
