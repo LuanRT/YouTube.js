@@ -57,8 +57,8 @@ class Studio {
    * Uploads a video to YouTube.
    * @example
    * ```ts
-   * const buffer = fs.readFileSync('./my_awesome_video.mp4');
-   * const response = await yt.studio.upload(buffer, { title: 'Wow!' });
+   * const file = fs.readFileSync('./my_awesome_video.mp4');
+   * const response = await yt.studio.upload(file.buffer, { title: 'Wow!' });
    * ```
    */
   async upload(file: BodyInit, metadata: VideoMetadata = {}): Promise<AxioslikeResponse> {
