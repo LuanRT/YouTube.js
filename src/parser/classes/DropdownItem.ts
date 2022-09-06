@@ -8,7 +8,7 @@ class DropdownItem extends YTNode {
   label: string;
   selected: boolean;
   value?: number | string;
-  iconType?: string;
+  icon_type?: string;
   description?: string;
   endpoint?: NavigationEndpoint;
 
@@ -29,7 +29,7 @@ class DropdownItem extends YTNode {
     }
 
     if (data.icon?.iconType) {
-      this.iconType = data.icon?.iconType;
+      this.icon_type = data.icon?.iconType;
     }
 
     if (data.descriptionText) {
