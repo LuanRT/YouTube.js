@@ -195,7 +195,7 @@ const player = dashjs.MediaPlayer().create();
 player.initialize(videoElement, uri, true);
 ```
 
-Our browser example in [`examples/browser/web`]() provides a fully working example.
+Our browser example in [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/blob/main/examples/browser/web) provides a fully working example.
 <a name="custom-fetch"></a>
 
 ## Providing your own fetch implementation
