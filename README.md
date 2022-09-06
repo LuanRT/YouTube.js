@@ -246,12 +246,12 @@ const yt = await Innertube.create({
   <summary>objects</summary>
   <p>
   
-  * [.session](./docs/API/session.md)
-  * [.account](./docs/API/account.md)
-  * [.interact](./docs/API/interaction-manager.md)
-  * [.playlist](./docs/API/playlist.md)
-  * [.music](./docs/API/music.md)
-  * [.studio](./docs/API/studio.md)
+  * [.session](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/session.md)
+  * [.account](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/account.md)
+  * [.interact](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/interaction-manager.md)
+  * [.playlist](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/playlist.md)
+  * [.music](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/music.md)
+  * [.studio](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/studio.md)
  
   </p>
   </details> 
@@ -398,7 +398,7 @@ Retrieves comments for given video.
 | video_id | `string` | The video id |
 | sort_by | `string` | Can be: `TOP_COMMENTS` or `NEWEST_FIRST` |
 
-See [`./examples/comments`](./examples/comments) for examples.
+See [`./examples/comments`](https://github.com/LuanRT/YouTube.js/blob/main/examples/comments) for examples.
 
 <a name="gethomefeed"></a>
 ### getHomeFeed()
@@ -479,7 +479,7 @@ Retrieves contents for a given channel.
 </p>
 </details> 
 
-See [`./examples/channel`](./examples/channel) for examples.
+See [`./examples/channel`](https://github.com/LuanRT/YouTube.js/blob/main/examples/channel) for examples.
 
 <a name="getnotifications"></a>
 ### getNotifications()
@@ -545,7 +545,7 @@ Downloads a given video.
 | video_id | `string` | Video id |
 | options | `DownloadOptions` | Download options |
 
-See [`./examples/download`](./examples/download) for examples.
+See [`./examples/download`](https://github.com/LuanRT/YouTube.js/blob/main/examples/download) for examples.
 
 <a name="call"></a>
 ### call(endpoint, args?)
@@ -648,12 +648,12 @@ console.info('Sections:', sections);
 </p>
 </details>
 
-Detailed documentation can be found [here](./src/parser).
+Detailed documentation can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/src/parser).
 
 <!-- CONTRIBUTING -->
 ## Contributing
 Contributions, issues, and feature requests are welcome.
-Feel free to check the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](./CONTRIBUTING.md) if you want to contribute.
+Feel free to check the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md) if you want to contribute.
 
 <!-- CONTRIBUTORS -->
 ## Contributors
