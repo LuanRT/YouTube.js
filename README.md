@@ -330,6 +330,9 @@ Retrieves video info, including playback data and even layout elements such as m
 - `<info>#getWatchNextContinuation()`
   - Retrieves the next batch of items for the watch next feed.
 
+- `<info>#addToWatchHistory()`
+  - Adds the video to the watch history.
+
 - `<info>#page`
   - Returns original InnerTube response (sanitized).
 
