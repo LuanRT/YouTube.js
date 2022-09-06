@@ -90,7 +90,7 @@ class Music {
   async getArtist(artist_id: string) {
     throwIfMissing({ artist_id });
 
-    if (!artist_id.startsWith('UC'))
+    if (!artist_id.startsWith('UC') && !artist_id.startsWith('FEmusic_library_privately_owned_artist'))
       throw new InnertubeError('Invalid artist id', artist_id);
 
     const response = await this.#actions.browse(artist_id, { client: 'YTMUSIC' });
