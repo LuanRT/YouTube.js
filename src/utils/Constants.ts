@@ -33,7 +33,8 @@ export const OAUTH = Object.freeze({
 });
 export const CLIENTS = Object.freeze({
   WEB: {
-    NAME: 'WEB'
+    NAME: 'WEB',
+    VERSION: '2.20220902.01.00'
   },
   YTMUSIC: {
     NAME: 'WEB_REMIX',

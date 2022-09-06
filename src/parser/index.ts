@@ -252,6 +252,10 @@ export default class Parser {
       refinements: data.refinements || null,
       estimated_results: data.estimatedResults ? parseInt(data.estimatedResults) : null,
       player_overlays: Parser.parse(data.playerOverlays),
+      playback_tracking: data.playbackTracking ? {
+        videostats_watchtime_url: data.playbackTracking.videostatsWatchtimeUrl.baseUrl,
+        videostats_playback_url: data.playbackTracking.videostatsPlaybackUrl.baseUrl
+      } : null,
       playability_status: data.playabilityStatus ? {
         status: data.playabilityStatus.status as string,
         error_screen: Parser.parse(data.playabilityStatus.errorScreen),
