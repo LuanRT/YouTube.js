@@ -46,7 +46,7 @@ class Music {
     const continuation = this.#actions.execute('/next', { client: 'YTMUSIC', videoId: video_id });
 
     const response = await Promise.all([ initial_info, continuation ]);
-    return new TrackInfo(response, this.#actions);
+    return new TrackInfo(response, this.#actions, cpn);
   }
 
   /**

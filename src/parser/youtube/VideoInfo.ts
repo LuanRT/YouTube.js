@@ -75,6 +75,9 @@ class VideoInfo {
   endscreen;
   captions;
   cards;
+
+  #playback_tracking;
+
   primary_info;
   secondary_info;
   merchandise;
@@ -130,6 +133,8 @@ class VideoInfo {
     this.captions = info.captions;
     this.cards = info.cards;
 
+    this.#playback_tracking = info.playback_tracking;
+
     const two_col = next?.contents.item().as(TwoColumnWatchNextResults);
 
     const results = two_col?.results;
@@ -175,6 +180,28 @@ class VideoInfo {
     this.watch_next_feed = data?.contents;
 
     return this;
+  }
+
+  /**
+   * Adds the video to the watch history.
+   */
+  async addToWatchHistory() {
+    if (!this.#playback_tracking)
+      throw new InnertubeError('Playback tracking not available');
+
+    const url_params = {
+      cpn: this.#cpn,
+      fmt: 251,
+      rtn: 0,
+      rt: 0
+    };
+
+    const response = await this.#actions.stats(this.#playback_tracking.videostats_playback_url, {
+      client_name: Constants.CLIENTS.WEB.NAME,
+      client_version: Constants.CLIENTS.WEB.VERSION
+    }, url_params);
+
+    return response;
   }
 
   /**
@@ -256,6 +283,10 @@ class VideoInfo {
 
   get actions() {
     return this.#actions;
+  }
+
+  get cpn() {
+    return this.#cpn;
   }
 
   get page() {

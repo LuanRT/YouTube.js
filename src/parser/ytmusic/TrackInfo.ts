@@ -1,5 +1,6 @@
 import Parser, { ParsedResponse } from '..';
 import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Constants from '../../utils/Constants';
 import { InnertubeError } from '../../utils/Utils';
 
 import Tab from '../classes/Tab';
@@ -13,6 +14,7 @@ import PlayerOverlay from '../classes/PlayerOverlay';
 class TrackInfo {
   #page: [ ParsedResponse, ParsedResponse? ];
   #actions: Actions;
+  #cpn;
 
   basic_info;
   streaming_data;
@@ -20,17 +22,20 @@ class TrackInfo {
   storyboards;
   endscreen;
 
+  #playback_tracking;
+
   tabs;
   current_video_endpoint;
   player_overlays;
 
-  constructor(data: [AxioslikeResponse, AxioslikeResponse?], actions: Actions) {
+  constructor(data: [AxioslikeResponse, AxioslikeResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;
 
     const info = Parser.parseResponse(data[0].data);
     const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
 
     this.#page = [ info, next ];
+    this.#cpn = cpn;
 
     if (info.playability_status?.status === 'ERROR')
       throw new InnertubeError('This video is unavailable', info.playability_status);
@@ -54,6 +59,8 @@ class TrackInfo {
     this.storyboards = info.storyboards;
     this.endscreen = info.endscreen;
 
+    this.#playback_tracking = info.playback_tracking;
+
     if (next) {
       const single_col = next.contents.item().as(SingleColumnMusicWatchNextResults);
       const tabbed_results = single_col.contents.item().as(Tabbed).contents.item().as(WatchNextTabbedResults);
@@ -64,6 +71,28 @@ class TrackInfo {
       // TODO: update PlayerOverlay, YTMusic's is a little bit different.
       this.player_overlays = next.player_overlays.item().as(PlayerOverlay);
     }
+  }
+
+  /**
+   * Adds the song to the watch history.
+   */
+  async addToWatchHistory() {
+    if (!this.#playback_tracking)
+      throw new InnertubeError('Playback tracking not available');
+
+    const url_params = {
+      cpn: this.#cpn,
+      fmt: 251,
+      rtn: 0,
+      rt: 0
+    };
+
+    const response = await this.#actions.stats(this.#playback_tracking.videostats_playback_url, {
+      client_name: Constants.CLIENTS.YTMUSIC.NAME,
+      client_version: Constants.CLIENTS.YTMUSIC.VERSION
+    }, url_params);
+
+    return response;
   }
 
   get page() {
