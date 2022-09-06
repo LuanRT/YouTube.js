@@ -1,5 +1,6 @@
 import { Innertube, UniversalCache } from 'youtubei.js';
 import { readFileSync, existsSync, mkdirSync, createWriteStream } from 'fs';
+import { streamToIterable } from 'youtubei.js/dist/src/utils/Utils';
 
 (async () => {
   const yt = await Innertube.create({ cache: new UniversalCache() });
@@ -32,7 +33,7 @@ import { readFileSync, existsSync, mkdirSync, createWriteStream } from 'fs';
     }
     
     const file = createWriteStream(`${dir}/${song.title?.replace(/\//g, '')}.m4a`);
-  
+    
     for await (const chunk of streamToIterable(stream)) {
       file.write(chunk);
     }
