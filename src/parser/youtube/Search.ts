@@ -1,15 +1,17 @@
 import Actions from '../../core/Actions';
-import Feed from '../../core/Feed';
+import { observe, ObservedArray, YTNode } from '../helpers';
 import { InnertubeError } from '../../utils/Utils';
-import HorizontalCardList from '../classes/HorizontalCardList';
+
+import Feed from '../../core/Feed';
+import SectionList from '../classes/SectionList';
 import ItemSection from '../classes/ItemSection';
+import HorizontalCardList from '../classes/HorizontalCardList';
 import RichListHeader from '../classes/RichListHeader';
 import SearchRefinementCard from '../classes/SearchRefinementCard';
 import TwoColumnSearchResults from '../classes/TwoColumnSearchResults';
 import UniversalWatchCard from '../classes/UniversalWatchCard';
 import WatchCardHeroVideo from '../classes/WatchCardHeroVideo';
 import WatchCardSectionSequence from '../classes/WatchCardSectionSequence';
-import { observe, ObservedArray, YTNode } from '../helpers';
 
 class Search extends Feed {
   results: ObservedArray<YTNode> | null | undefined;
@@ -22,11 +24,11 @@ class Search extends Feed {
     super(actions, data, already_parsed);
 
     const contents =
-      this.page.contents.item().as(TwoColumnSearchResults).primary_contents.item().key('contents').parsed().array() ||
+      this.page.contents?.item().as(TwoColumnSearchResults).primary_contents.item().as(SectionList).contents.array() ||
       this.page.on_response_received_commands?.[0].contents;
 
-    const secondary_contents_maybe = this.page.contents.item().key('secondary_contents');
-    const secondary_contents = secondary_contents_maybe.isParsed() ? secondary_contents_maybe.parsed().item().key('contents').parsed().array() : undefined;
+    const secondary_contents_maybe = this.page.contents?.item().key('secondary_contents');
+    const secondary_contents = secondary_contents_maybe?.isParsed() ? secondary_contents_maybe.parsed().item().key('contents').parsed().array() : undefined;
 
     this.results = contents.firstOfType(ItemSection)?.contents;
 
@@ -64,7 +66,7 @@ class Search extends Feed {
       throw new InnertubeError('Invalid refinement card!');
     }
 
-    const page = await target_card.endpoint.call(this.actions);
+    const page = await target_card.endpoint.call(this.actions, null, true);
 
     return new Search(this.actions, page, true);
   }
@@ -81,4 +83,5 @@ class Search extends Feed {
     return new Search(this.actions, continuation, true);
   }
 }
+
 export default Search;
