@@ -66,7 +66,7 @@ class Search extends Feed {
       throw new InnertubeError('Invalid refinement card!');
     }
 
-    const page = await target_card.endpoint.call(this.actions, null, true);
+    const page = await target_card.endpoint.call(this.actions, undefined, true);
 
     return new Search(this.actions, page, true);
   }
