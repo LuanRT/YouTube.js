@@ -20,6 +20,16 @@ describe('YouTube.js Tests', () => {
       expect(search.has_continuation).toBe(true);
     });
     
+    it('should retrieve YouTube search continuation', async () => {
+      const search = await yt.search(VIDEOS[0].QUERY);
+      const next = await search.getContinuation()
+      expect(next.results?.length).toBeLessThanOrEqual(35);
+      expect(next.videos.length).toBeLessThanOrEqual(35);
+      expect(next.playlists.length).toBeLessThanOrEqual(35);
+      expect(next.channels.length).toBeLessThanOrEqual(35);
+      expect(next.has_continuation).toBe(true);
+    });
+    
     it('should search on YouTube Music', async () => {
       const search = await yt.music.search(VIDEOS[1].QUERY);
       expect(search.songs?.contents.length).toBeLessThanOrEqual(3);
