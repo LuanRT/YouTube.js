@@ -12,10 +12,7 @@ ___
   * [Create a PR](#changes-2)
   * [Run tests](#test)
   * [Lint your code](#lint)
-  * [Build for node](#build-1)
-  * [Bundle for browsers](#build-2)
-  * [Compile proto file](#build-3)
-  * [Build parser map](#build-4)
+  * [Build](#build)
   
 ## Issues
 
@@ -62,42 +59,23 @@ npm run test
 
 ```bash
 npm run lint
-```
-
-Or
-
-```bash
 npm run lint:fix
 ```
 
-<a id="build-1"></a>
-#### Build for Node
+<a id="build"></a>
+#### Build
 
 ```bash
+# Node
 npm run build:node
-```
 
-<a id="build-2"></a>
-#### Build for browsers 
-
-```bash
+# Browser
 npm run build:browser
-```
-Or:
-```bash
 npm run build:browser:prod
-```
 
-<a id="build-3"></a>
-#### Compile proto file
+# Protobuf
+npm run build:proto
 
-```bash
-// TODO
-```
-
-<a id="build-4"></a>
-#### Build parser map
-
-```bash
+# Parser map
 npm run build:parser-map
 ```
