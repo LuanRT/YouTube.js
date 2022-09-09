@@ -183,6 +183,7 @@ import { default as PlaylistInfoCardContent } from './classes/PlaylistInfoCardCo
 import { default as PlaylistMetadata } from './classes/PlaylistMetadata';
 import { default as PlaylistPanel } from './classes/PlaylistPanel';
 import { default as PlaylistPanelVideo } from './classes/PlaylistPanelVideo';
+import { default as PlaylistPanelVideoWrapper } from './classes/PlaylistPanelVideoWrapper';
 import { default as PlaylistSidebar } from './classes/PlaylistSidebar';
 import { default as PlaylistSidebarPrimaryInfo } from './classes/PlaylistSidebarPrimaryInfo';
 import { default as PlaylistSidebarSecondaryInfo } from './classes/PlaylistSidebarSecondaryInfo';
@@ -448,6 +449,7 @@ const map: Record<string, YTNodeConstructor> = {
   PlaylistMetadata,
   PlaylistPanel,
   PlaylistPanelVideo,
+  PlaylistPanelVideoWrapper,
   PlaylistSidebar,
   PlaylistSidebarPrimaryInfo,
   PlaylistSidebarSecondaryInfo,
