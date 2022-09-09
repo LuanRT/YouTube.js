@@ -244,6 +244,7 @@ import { default as ThumbnailOverlayResumePlayback } from './classes/ThumbnailOv
 import { default as ThumbnailOverlaySidePanel } from './classes/ThumbnailOverlaySidePanel';
 import { default as ThumbnailOverlayTimeStatus } from './classes/ThumbnailOverlayTimeStatus';
 import { default as ThumbnailOverlayToggleButton } from './classes/ThumbnailOverlayToggleButton';
+import { default as TitleAndButtonListHeader } from './classes/TitleAndButtonListHeader';
 import { default as ToggleButton } from './classes/ToggleButton';
 import { default as ToggleMenuServiceItem } from './classes/ToggleMenuServiceItem';
 import { default as Tooltip } from './classes/Tooltip';
@@ -508,6 +509,7 @@ const map: Record<string, YTNodeConstructor> = {
   ThumbnailOverlaySidePanel,
   ThumbnailOverlayTimeStatus,
   ThumbnailOverlayToggleButton,
+  TitleAndButtonListHeader,
   ToggleButton,
   ToggleMenuServiceItem,
   Tooltip,

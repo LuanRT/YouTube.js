@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "Full-featured wrapper around YouTube's private API.",
   "main": "./dist/index.js",
   "browser": "./bundle/browser.js",
@@ -69,17 +69,18 @@
     "youtubedl",
     "youtube-dl",
     "youtube-downloader",
-    "innertube",
+    "youtube-music",
     "innertubeapi",
+    "innertube",
     "unofficial",
     "downloader",
     "livechat",
+    "studio",
+    "upload",
     "ytmusic",
-    "dislike",
     "search",
     "comment",
     "music",
-    "like",
     "api"
   ]
 }
