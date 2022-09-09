@@ -88,6 +88,7 @@ import { default as LiveChat } from './classes/LiveChat';
 import { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBannerToLiveChatCommand';
 import { default as AddChatItemAction } from './classes/livechat/AddChatItemAction';
 import { default as AddLiveChatTickerItemAction } from './classes/livechat/AddLiveChatTickerItemAction';
+import { default as LiveChatAutoModMessage } from './classes/livechat/items/LiveChatAutoModMessage';
 import { default as LiveChatBanner } from './classes/livechat/items/LiveChatBanner';
 import { default as LiveChatBannerHeader } from './classes/livechat/items/LiveChatBannerHeader';
 import { default as LiveChatBannerPoll } from './classes/livechat/items/LiveChatBannerPoll';
@@ -353,6 +354,7 @@ const map: Record<string, YTNodeConstructor> = {
   AddBannerToLiveChatCommand,
   AddChatItemAction,
   AddLiveChatTickerItemAction,
+  LiveChatAutoModMessage,
   LiveChatBanner,
   LiveChatBannerHeader,
   LiveChatBannerPoll,
