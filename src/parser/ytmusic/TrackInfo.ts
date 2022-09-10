@@ -87,7 +87,9 @@ class TrackInfo {
       rt: 0
     };
 
-    const response = await this.#actions.stats(this.#playback_tracking.videostats_playback_url, {
+    const url = this.#playback_tracking.videostats_playback_url.replace('https://s.', 'https://music.');
+
+    const response = await this.#actions.stats(url, {
       client_name: Constants.CLIENTS.YTMUSIC.NAME,
       client_version: Constants.CLIENTS.YTMUSIC.VERSION
     }, url_params);

@@ -196,7 +196,9 @@ class VideoInfo {
       rt: 0
     };
 
-    const response = await this.#actions.stats(this.#playback_tracking.videostats_playback_url, {
+    const url = this.#playback_tracking.videostats_playback_url.replace('https://s.', 'https://www.');
+
+    const response = await this.#actions.stats(url, {
       client_name: Constants.CLIENTS.WEB.NAME,
       client_version: Constants.CLIENTS.WEB.VERSION
     }, url_params);
