@@ -38,6 +38,7 @@ import { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer';
 import { default as ChildVideo } from './classes/ChildVideo';
 import { default as ChipCloud } from './classes/ChipCloud';
 import { default as ChipCloudChip } from './classes/ChipCloudChip';
+import { default as CollaboratorInfoCardContent } from './classes/CollaboratorInfoCardContent';
 import { default as CollageHeroImage } from './classes/CollageHeroImage';
 import { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge';
 import { default as Comment } from './classes/comments/Comment';
@@ -305,6 +306,7 @@ const map: Record<string, YTNodeConstructor> = {
   ChildVideo,
   ChipCloud,
   ChipCloudChip,
+  CollaboratorInfoCardContent,
   CollageHeroImage,
   AuthorCommentBadge,
   Comment,
