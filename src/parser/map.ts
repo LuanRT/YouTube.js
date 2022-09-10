@@ -118,6 +118,7 @@ import { default as UpdateTitleAction } from './classes/livechat/UpdateTitleActi
 import { default as UpdateToggleButtonTextAction } from './classes/livechat/UpdateToggleButtonTextAction';
 import { default as UpdateViewershipAction } from './classes/livechat/UpdateViewershipAction';
 import { default as LiveChatAuthorBadge } from './classes/LiveChatAuthorBadge';
+import { default as LiveChatDialog } from './classes/LiveChatDialog';
 import { default as LiveChatHeader } from './classes/LiveChatHeader';
 import { default as LiveChatItemList } from './classes/LiveChatItemList';
 import { default as LiveChatMessageInput } from './classes/LiveChatMessageInput';
@@ -212,6 +213,7 @@ import { default as SearchSuggestion } from './classes/SearchSuggestion';
 import { default as SearchSuggestionsSection } from './classes/SearchSuggestionsSection';
 import { default as SecondarySearchContainer } from './classes/SecondarySearchContainer';
 import { default as SectionList } from './classes/SectionList';
+import { default as SegmentedLikeDislikeButton } from './classes/SegmentedLikeDislikeButton';
 import { default as SettingBoolean } from './classes/SettingBoolean';
 import { default as SettingsCheckbox } from './classes/SettingsCheckbox';
 import { default as SettingsOptions } from './classes/SettingsOptions';
@@ -386,6 +388,7 @@ const map: Record<string, YTNodeConstructor> = {
   UpdateToggleButtonTextAction,
   UpdateViewershipAction,
   LiveChatAuthorBadge,
+  LiveChatDialog,
   LiveChatHeader,
   LiveChatItemList,
   LiveChatMessageInput,
@@ -480,6 +483,7 @@ const map: Record<string, YTNodeConstructor> = {
   SearchSuggestionsSection,
   SecondarySearchContainer,
   SectionList,
+  SegmentedLikeDislikeButton,
   SettingBoolean,
   SettingsCheckbox,
   SettingsOptions,
