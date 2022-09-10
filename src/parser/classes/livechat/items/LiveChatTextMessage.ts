@@ -2,6 +2,7 @@ import Text from '../../misc/Text';
 import Thumbnail from '../../misc/Thumbnail';
 import NavigationEndpoint from '../../NavigationEndpoint';
 import MetadataBadge from '../../MetadataBadge';
+import LiveChatAuthorBadge from '../../LiveChatAuthorBadge';
 import Parser from '../../../index';
 
 import { YTNode } from '../../../helpers';
@@ -14,7 +15,7 @@ class LiveChatTextMessage extends YTNode {
     id: string;
     name: Text;
     thumbnails: Thumbnail[];
-    badges: MetadataBadge[];
+    badges: LiveChatAuthorBadge[] | MetadataBadge[];
     is_moderator: boolean | null;
     is_verified: boolean | null;
     is_verified_artist: boolean | null;
@@ -32,13 +33,13 @@ class LiveChatTextMessage extends YTNode {
       id: data.authorExternalChannelId,
       name: new Text(data.authorName),
       thumbnails: Thumbnail.fromResponse(data.authorPhoto),
-      badges: [] as MetadataBadge[],
+      badges: [] as LiveChatAuthorBadge[] | [] as MetadataBadge[],
       is_moderator: null,
       is_verified: null,
       is_verified_artist: null
     };
 
-    const badges = Parser.parseArray<MetadataBadge>(data.authorBadges, MetadataBadge);
+    const badges = Parser.parseArray<LiveChatAuthorBadge | MetadataBadge>(data.authorBadges, [ MetadataBadge, LiveChatAuthorBadge ]);
 
     this.author.badges = badges;
     this.author.is_moderator = badges ? badges.some((badge) => badge.icon_type == 'MODERATOR') : null;

@@ -88,6 +88,7 @@ import { default as LiveChat } from './classes/LiveChat';
 import { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBannerToLiveChatCommand';
 import { default as AddChatItemAction } from './classes/livechat/AddChatItemAction';
 import { default as AddLiveChatTickerItemAction } from './classes/livechat/AddLiveChatTickerItemAction';
+import { default as LiveChatAutoModMessage } from './classes/livechat/items/LiveChatAutoModMessage';
 import { default as LiveChatBanner } from './classes/livechat/items/LiveChatBanner';
 import { default as LiveChatBannerHeader } from './classes/livechat/items/LiveChatBannerHeader';
 import { default as LiveChatBannerPoll } from './classes/livechat/items/LiveChatBannerPoll';
@@ -183,6 +184,7 @@ import { default as PlaylistInfoCardContent } from './classes/PlaylistInfoCardCo
 import { default as PlaylistMetadata } from './classes/PlaylistMetadata';
 import { default as PlaylistPanel } from './classes/PlaylistPanel';
 import { default as PlaylistPanelVideo } from './classes/PlaylistPanelVideo';
+import { default as PlaylistPanelVideoWrapper } from './classes/PlaylistPanelVideoWrapper';
 import { default as PlaylistSidebar } from './classes/PlaylistSidebar';
 import { default as PlaylistSidebarPrimaryInfo } from './classes/PlaylistSidebarPrimaryInfo';
 import { default as PlaylistSidebarSecondaryInfo } from './classes/PlaylistSidebarSecondaryInfo';
@@ -353,6 +355,7 @@ const map: Record<string, YTNodeConstructor> = {
   AddBannerToLiveChatCommand,
   AddChatItemAction,
   AddLiveChatTickerItemAction,
+  LiveChatAutoModMessage,
   LiveChatBanner,
   LiveChatBannerHeader,
   LiveChatBannerPoll,
@@ -448,6 +451,7 @@ const map: Record<string, YTNodeConstructor> = {
   PlaylistMetadata,
   PlaylistPanel,
   PlaylistPanelVideo,
+  PlaylistPanelVideoWrapper,
   PlaylistSidebar,
   PlaylistSidebarPrimaryInfo,
   PlaylistSidebarSecondaryInfo,
