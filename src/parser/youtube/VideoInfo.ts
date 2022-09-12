@@ -16,6 +16,7 @@ import ItemSection from '../classes/ItemSection';
 import PlayerOverlay from '../classes/PlayerOverlay';
 import ToggleButton from '../classes/ToggleButton';
 import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader';
+import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton';
 import ContinuationItem from '../classes/ContinuationItem';
 import PlayerMicroformat from '../classes/PlayerMicroformat';
 import MicroformatData from '../classes/MicroformatData';
@@ -153,9 +154,11 @@ class VideoInfo {
 
       this.player_overlays = next?.player_overlays.item().as(PlayerOverlay);
 
-      this.basic_info.like_count = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.like_count;
-      this.basic_info.is_liked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'LIKE' })?.as(ToggleButton)?.is_toggled;
-      this.basic_info.is_disliked = this.primary_info?.menu?.top_level_buttons?.get({ icon_type: 'DISLIKE' })?.as(ToggleButton)?.is_toggled;
+      const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
+
+      this.basic_info.like_count = segmented_like_dislike_button?.like_button?.as(ToggleButton)?.like_count;
+      this.basic_info.is_liked = segmented_like_dislike_button?.like_button?.as(ToggleButton)?.is_toggled;
+      this.basic_info.is_disliked = segmented_like_dislike_button?.dislike_button?.as(ToggleButton)?.is_toggled;
 
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
