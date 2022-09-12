@@ -618,7 +618,7 @@ class Actions {
   /**
    * Used to retrieve video info.
    */
-  async getVideoInfo(id: string, cpn?: string, client?: string) {
+  async getVideoInfo(id: string, cpn?: string, client?: string, playlist_id?: string) {
     const data: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
@@ -645,6 +645,10 @@ class Actions {
 
     if (cpn) {
       data.cpn = cpn;
+    }
+
+    if (playlist_id) {
+      data.playlistId = playlist_id;
     }
 
     const response = await this.#session.http.fetch('/player', {
@@ -719,6 +723,9 @@ class Actions {
           throw new InnertubeError('You are not signed in');
       }
 
+      if (Reflect.has(data, 'override_endpoint'))
+        delete data.override_endpoint;
+
       if (Reflect.has(data, 'parse'))
         delete data.parse;
 
@@ -745,11 +752,17 @@ class Actions {
         data.continuation = data.token;
         delete data.token;
       }
+
+      if (data?.client === 'YTMUSIC') {
+        data.isAudioOnly = true;
+      }
     } else {
       data = args.serialized_data;
     }
 
-    const response = await this.#session.http.fetch(action, {
+    const endpoint = Reflect.has(args, 'override_endpoint') ? args.override_endpoint : action;
+
+    const response = await this.#session.http.fetch(endpoint, {
       method: 'POST',
       body: args.protobuf ? data : JSON.stringify(data),
       headers: {
