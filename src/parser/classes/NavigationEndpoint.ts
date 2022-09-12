@@ -245,6 +245,8 @@ class NavigationEndpoint extends YTNode {
     switch (name) {
       case 'browseEndpoint':
         return '/browse';
+      case 'watchEndpoint':
+        return '/player';
     }
   }
 
