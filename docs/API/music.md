@@ -14,7 +14,7 @@ YouTube Music class.
   * [.getAlbum(album_id)](#getalbum)
   * [.getPlaylist(playlist_id)](#getplaylist)
   * [.getLyrics(video_id)](#getlyrics)
-  * [.getUpNext(video_id)](#getupnext)
+  * [.getUpNext(video_id, automix?)](#getupnext)
   * [.getRelated(video_id)](#getrelated)
   * [.getRecap()](#getrecap)
   * [.getSearchSuggestions(query)](#getsearchsuggestions)
@@ -28,7 +28,29 @@ Retrieves track info.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| target | `string | MusicTwoRowItem` | video id or list item |
+| target | `string` or `MusicTwoRowItem` | video id or list item |
+
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<info>#getTab(title)`
+  - Retrieves contents of the given tab.
+
+- `<info>#getUpNext(automix?)`
+  - Retrieves up next.
+
+- `<info>#getRelated()`
+  - Retrieves related content.
+
+- `<info>#getLyrics()`
+  - Retrieves song lyrics.
+
+- `<info>#available_tabs`
+  - Returns available tabs.
+
+</p>
+</details> 
 
 <a name="search"></a>
 ### search(query, filters?)
@@ -227,7 +249,7 @@ Retrieves up next content.
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | Video id |
-| automix | `boolean` | if related songs should be fetched |
+| automix? | `boolean` | if automix should be fetched |
 
 <a name="getrelated"></a>
 ### getRelated(video_id)
