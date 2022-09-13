@@ -166,20 +166,21 @@ export default class Player {
   }
 
   static extractSigSourceCode(data: string) {
-    const funcs = getStringBetweenStrings(data, 'this.audioTracks};var', '};');
     const calls = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+    const obj_name = calls?.split('.')?.[0]?.replace(';', '');
+    const functions = getStringBetweenStrings(data, `var ${obj_name}=`, '};');
 
-    if (!funcs || !calls)
-      throw new PlayerError('Failed to extract signature decipher algorithm');
+    if (!functions || !calls)
+      console.warn(new PlayerError('Failed to extract signature decipher algorithm'));
 
-    return `function descramble_sig(a) { a = a.split(""); ${funcs}}${calls} return a.join("") } descramble_sig(sig);`;
+    return `function descramble_sig(a) { a = a.split(""); let ${obj_name}=${functions}}${calls} return a.join("") } descramble_sig(sig);`;
   }
 
   static extractNSigSourceCode(data: string) {
     const sc = `function descramble_nsig(a) { let b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join(""); } descramble_nsig(nsig)`;
 
     if (!sc)
-      throw new PlayerError('Failed to extract n-token decipher algorithm');
+      console.warn(new PlayerError('Failed to extract n-token decipher algorithm'));
 
     return sc;
   }
