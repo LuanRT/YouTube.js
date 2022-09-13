@@ -9,8 +9,15 @@ import WatchNextTabbedResults from '../classes/WatchNextTabbedResults';
 import SingleColumnMusicWatchNextResults from '../classes/SingleColumnMusicWatchNextResults';
 import MicroformatData from '../classes/MicroformatData';
 import PlayerOverlay from '../classes/PlayerOverlay';
+import PlaylistPanel from '../classes/PlaylistPanel';
 import SectionList from '../classes/SectionList';
+import MusicQueue from '../classes/MusicQueue';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf';
+import MusicDescriptionShelf from '../classes/MusicDescriptionShelf';
+import AutomixPreviewVideo from '../classes/AutomixPreviewVideo';
 import Message from '../classes/Message';
+
+import { ObservedArray } from '../helpers';
 
 class TrackInfo {
   #page: [ ParsedResponse, ParsedResponse? ];
@@ -34,7 +41,7 @@ class TrackInfo {
 
     const info = Parser.parseResponse(data[0].data);
     const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
-    //Console.info(data[0].data)
+
     this.#page = [ info, next ];
     this.#cpn = cpn;
 
@@ -98,6 +105,54 @@ class TrackInfo {
   }
 
   /**
+   * Retrieves up next.
+   */
+  async getUpNext(automix = true): Promise<PlaylistPanel> {
+    const music_queue = await this.getTab('Up next') as MusicQueue;
+
+    if (!music_queue || !music_queue.content)
+      throw new InnertubeError('Music queue was empty, the video id is probably invalid.', music_queue);
+
+    const playlist_panel = music_queue.content.as(PlaylistPanel);
+
+    if (!playlist_panel.playlist_id && automix) {
+      const automix_preview_video = playlist_panel.contents.firstOfType(AutomixPreviewVideo);
+
+      if (!automix_preview_video)
+        throw new InnertubeError('Automix item not found');
+
+      const page = await automix_preview_video.playlist_video?.endpoint.callTest(this.#actions, {
+        videoId: this.basic_info.id,
+        client: 'YTMUSIC',
+        parse: true
+      });
+
+      if (!page)
+        throw new InnertubeError('Could not fetch automix');
+
+      return page.contents_memo.getType(PlaylistPanel)?.[0];
+    }
+
+    return playlist_panel;
+  }
+
+  /**
+   * Retrieves related content.
+   */
+  async getRelated(): Promise<ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>> {
+    const tab = await this.getTab('Related') as ObservedArray<MusicDescriptionShelf | MusicDescriptionShelf>;
+    return tab;
+  }
+
+  /**
+   * Retrieves lyrics.
+   */
+  async getLyrics(): Promise<MusicDescriptionShelf | undefined> {
+    const tab = await this.getTab('Lyrics') as ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>;
+    return tab.firstOfType(MusicDescriptionShelf);
+  }
+
+  /**
    * Adds the song to the watch history.
    */
   async addToWatchHistory() {
@@ -121,7 +176,7 @@ class TrackInfo {
     return response;
   }
 
-  get available_tabs() {
+  get available_tabs(): string[] {
     return this.tabs ? this.tabs.map((tab) => tab.title) : [];
   }
 
