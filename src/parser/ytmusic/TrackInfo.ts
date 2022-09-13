@@ -9,8 +9,9 @@ import WatchNextTabbedResults from '../classes/WatchNextTabbedResults';
 import SingleColumnMusicWatchNextResults from '../classes/SingleColumnMusicWatchNextResults';
 import MicroformatData from '../classes/MicroformatData';
 import PlayerOverlay from '../classes/PlayerOverlay';
+import SectionList from '../classes/SectionList';
+import Message from '../classes/Message';
 
-// TODO: add a way to get specific tabs
 class TrackInfo {
   #page: [ ParsedResponse, ParsedResponse? ];
   #actions: Actions;
@@ -33,7 +34,7 @@ class TrackInfo {
 
     const info = Parser.parseResponse(data[0].data);
     const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
-
+    //Console.info(data[0].data)
     this.#page = [ info, next ];
     this.#cpn = cpn;
 
@@ -74,6 +75,29 @@ class TrackInfo {
   }
 
   /**
+   * Retrieves contents of the given tab.
+   */
+  async getTab(title: string) {
+    if (!this.tabs)
+      throw new InnertubeError('Could not find any tab');
+
+    const target_tab = this.tabs.get({ title });
+
+    if (!target_tab)
+      throw new InnertubeError(`Tab "${title}" not found`, { available_tabs: this.available_tabs });
+
+    if (target_tab.content)
+      return target_tab.content;
+
+    const page = await target_tab.endpoint.callTest(this.#actions, { client: 'YTMUSIC', parse: true });
+
+    if (page.contents.item().key('type').string() === 'Message')
+      return page.contents.item().as(Message);
+
+    return page.contents.item().as(SectionList).contents.array();
+  }
+
+  /**
    * Adds the song to the watch history.
    */
   async addToWatchHistory() {
@@ -95,6 +119,10 @@ class TrackInfo {
     }, url_params);
 
     return response;
+  }
+
+  get available_tabs() {
+    return this.tabs ? this.tabs.map((tab) => tab.title) : [];
   }
 
   get page() {
