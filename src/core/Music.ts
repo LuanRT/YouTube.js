@@ -38,7 +38,7 @@ class Music {
   }
 
   /**
-   * Retrives track info. Passing a list item of type MusicTwoRowItem automatically starts a radio.
+   * Retrieves track info. Passing a list item of type MusicTwoRowItem automatically starts a radio.
    * @param target - video id or a list item.
    */
   getInfo(target: string | MusicTwoRowItem): Promise<TrackInfo> {
