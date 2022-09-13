@@ -11,7 +11,7 @@ describe('YouTube.js Tests', () => {
   });
   
   describe('Search', () => {
-    it('should search on YouTube', async () => {
+    it('should search', async () => {
       const search = await yt.search(VIDEOS[0].QUERY);
       expect(search.results?.length).toBeLessThanOrEqual(35);
       expect(search.videos.length).toBeLessThanOrEqual(35);
@@ -20,7 +20,7 @@ describe('YouTube.js Tests', () => {
       expect(search.has_continuation).toBe(true);
     });
     
-    it('should retrieve YouTube search continuation', async () => {
+    it('should retrieve search continuation', async () => {
       const search = await yt.search(VIDEOS[0].QUERY);
       const next = await search.getContinuation()
       expect(next.results?.length).toBeLessThanOrEqual(35);
@@ -30,18 +30,8 @@ describe('YouTube.js Tests', () => {
       expect(next.has_continuation).toBe(true);
     });
     
-    it('should search on YouTube Music', async () => {
-      const search = await yt.music.search(VIDEOS[1].QUERY);
-      expect(search.songs?.contents.length).toBeLessThanOrEqual(3);
-    });
-    
-    it('should retrieve YouTube search suggestions', async () => {
+    it('should retrieve search suggestions', async () => {
       const suggestions = await yt.getSearchSuggestions(VIDEOS[0].QUERY);
-      expect(suggestions.length).toBeLessThanOrEqual(10);
-    });
-    
-    it('should retrieve YouTube Music search suggestions', async () => {
-      const suggestions = await yt.music.getSearchSuggestions(VIDEOS[1].QUERY);
       expect(suggestions.length).toBeLessThanOrEqual(10);
     });
   });
@@ -87,14 +77,9 @@ describe('YouTube.js Tests', () => {
   });
   
   describe('General', () => {
-    it('should retrieve playlist with YouTube', async () => {
+    it('should retrieve playlist', async () => {
       const playlist = await yt.getPlaylist('PLLw0AzOz95FU7w2juhPECP9NyGhbZmz_t');
       expect(playlist.items.length).toBeLessThanOrEqual(100);
-    });
-
-    it('should retrieve playlist with YouTube Music', async () => {
-      const playlist = await yt.music.getPlaylist('PLVbEymL-83SyVXXqT7fYX5sEvELvyGjL7');
-      expect(playlist.items?.length).toBeLessThanOrEqual(100);
     });
     
     it('should retrieve home feed', async () => {
@@ -111,6 +96,46 @@ describe('YouTube.js Tests', () => {
       const result = await download(VIDEOS[1].ID, yt);
       expect(result).toBeTruthy();
     }, 30000);
+  });
+  
+  describe('YouTube Music', () => {
+    let search: any;
+
+    it('should search', async () => {
+      search = await yt.music.search(VIDEOS[1].QUERY);
+      expect(search.songs?.contents.length).toBeLessThanOrEqual(3);
+    });
+    
+    it('should retrieve search suggestions', async () => {
+      const suggestions = await yt.music.getSearchSuggestions(VIDEOS[1].QUERY);
+      expect(suggestions.length).toBeLessThanOrEqual(10);
+    });
+    
+    it('should retrieve track info', async () => {
+      const info = await yt.music.getInfo(VIDEOS[1].ID);
+      expect(info.basic_info.id).toBe(VIDEOS[1].ID);
+    });
+    
+    it('should retrieve the "Related" tab', async () => {
+      const info = await yt.music.getInfo(VIDEOS[1].ID);
+      const related = await info.getRelated();
+      expect((related as any).length).toBeGreaterThan(3);
+    });
+    
+    it('should retrieve albums', async () => {
+      const album = await yt.music.getAlbum(search.albums?.contents[0]?.id);
+      expect(album.contents).toBeDefined();
+    });
+    
+    it('should retrieve artists', async () => {
+      const artist = await yt.music.getArtist(search.artists?.contents[0]?.id);
+      expect(artist.sections).toBeDefined();
+    });
+    
+    it('should retrieve playlists', async () => {
+      const playlist = await yt.music.getPlaylist(search.playlists?.contents[0]?.id);
+      expect(playlist.items).toBeDefined();
+    });
   });
 });
 
