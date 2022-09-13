@@ -16,11 +16,13 @@ import { default as AnalyticsVodCarouselCard } from './classes/analytics/Analyti
 import { default as CtaGoToCreatorStudio } from './classes/analytics/CtaGoToCreatorStudio';
 import { default as DataModelSection } from './classes/analytics/DataModelSection';
 import { default as StatRow } from './classes/analytics/StatRow';
+import { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability';
 import { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo';
 import { default as BackstageImage } from './classes/BackstageImage';
 import { default as BackstagePost } from './classes/BackstagePost';
 import { default as BackstagePostThread } from './classes/BackstagePostThread';
 import { default as BrowseFeedActions } from './classes/BrowseFeedActions';
+import { default as BrowserMediaSession } from './classes/BrowserMediaSession';
 import { default as Button } from './classes/Button';
 import { default as C4TabbedHeader } from './classes/C4TabbedHeader';
 import { default as CallToActionButton } from './classes/CallToActionButton';
@@ -149,6 +151,7 @@ import { default as MusicCarouselShelf } from './classes/MusicCarouselShelf';
 import { default as MusicCarouselShelfBasicHeader } from './classes/MusicCarouselShelfBasicHeader';
 import { default as MusicDescriptionShelf } from './classes/MusicDescriptionShelf';
 import { default as MusicDetailHeader } from './classes/MusicDetailHeader';
+import { default as MusicDownloadStateBadge } from './classes/MusicDownloadStateBadge';
 import { default as MusicEditablePlaylistDetailHeader } from './classes/MusicEditablePlaylistDetailHeader';
 import { default as MusicElementHeader } from './classes/MusicElementHeader';
 import { default as MusicHeader } from './classes/MusicHeader';
@@ -286,11 +289,13 @@ const map: Record<string, YTNodeConstructor> = {
   CtaGoToCreatorStudio,
   DataModelSection,
   StatRow,
+  AudioOnlyPlayability,
   AutomixPreviewVideo,
   BackstageImage,
   BackstagePost,
   BackstagePostThread,
   BrowseFeedActions,
+  BrowserMediaSession,
   Button,
   C4TabbedHeader,
   CallToActionButton,
@@ -419,6 +424,7 @@ const map: Record<string, YTNodeConstructor> = {
   MusicCarouselShelfBasicHeader,
   MusicDescriptionShelf,
   MusicDetailHeader,
+  MusicDownloadStateBadge,
   MusicEditablePlaylistDetailHeader,
   MusicElementHeader,
   MusicHeader,

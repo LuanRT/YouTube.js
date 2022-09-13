@@ -5,7 +5,7 @@ YouTube Music class.
 ## API
 
 * Music 
-  * [.getInfo(video_id)](#getinfo)
+  * [.getInfo(target)](#getinfo)
   * [.search(query, filters?)](#search)
   * [.getHomeFeed()](#gethomefeed)
   * [.getExplore()](#getexplore)
@@ -14,13 +14,13 @@ YouTube Music class.
   * [.getAlbum(album_id)](#getalbum)
   * [.getPlaylist(playlist_id)](#getplaylist)
   * [.getLyrics(video_id)](#getlyrics)
-  * [.getUpNext(video_id)](#getupnext)
+  * [.getUpNext(video_id, automix?)](#getupnext)
   * [.getRelated(video_id)](#getrelated)
   * [.getRecap()](#getrecap)
   * [.getSearchSuggestions(query)](#getsearchsuggestions)
 
 <a name="getinfo"></a>
-### getInfo(video_id)
+### getInfo(target)
 
 Retrieves track info.
 
@@ -28,7 +28,29 @@ Retrieves track info.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| video_id | `string` | Video id |
+| target | `string` or `MusicTwoRowItem` | video id or list item |
+
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<info>#getTab(title)`
+  - Retrieves contents of the given tab.
+
+- `<info>#getUpNext(automix?)`
+  - Retrieves up next.
+
+- `<info>#getRelated()`
+  - Retrieves related content.
+
+- `<info>#getLyrics()`
+  - Retrieves song lyrics.
+
+- `<info>#available_tabs`
+  - Returns available tabs.
+
+</p>
+</details> 
 
 <a name="search"></a>
 ### search(query, filters?)
@@ -211,14 +233,14 @@ Retrieves given playlist.
 
 Retrieves song lyrics.
 
-**Returns:** `Promise.<{ text: string; footer: object; }>`
+**Returns:** `Promise.<MusicDescriptionShelf | undefined>`
 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | Video id |
 
 <a name="getupnext"></a>
-### getUpNext(video_id)
+### getUpNext(video_id, automix?)
 
 Retrieves up next content.
 
@@ -227,6 +249,7 @@ Retrieves up next content.
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | Video id |
+| automix? | `boolean` | if automix should be fetched |
 
 <a name="getrelated"></a>
 ### getRelated(video_id)

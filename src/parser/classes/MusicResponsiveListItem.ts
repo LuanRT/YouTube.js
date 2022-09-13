@@ -3,12 +3,16 @@
 
 import Parser from '../index';
 import Text from './misc/Text';
-import { timeToSeconds } from '../../utils/Utils';
+import TextRun from './misc/TextRun';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
+import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay';
+import MusicResponsiveListItemFlexColumn from './MusicResponsiveListItemFlexColumn';
+import MusicResponsiveListItemFixedColumn from './MusicResponsiveListItemFixedColumn';
+import Menu from './menus/Menu';
 
+import { timeToSeconds } from '../../utils/Utils';
 import { YTNode } from '../helpers';
-import TextRun from './misc/TextRun';
 
 class MusicResponsiveListItem extends YTNode {
   static type = 'MusicResponsiveListItem';
@@ -66,8 +70,8 @@ class MusicResponsiveListItem extends YTNode {
 
   constructor(data: any) {
     super();
-    this.#flex_columns = Parser.parseArray(data.flexColumns);
-    this.#fixed_columns = Parser.parseArray(data.fixedColumns);
+    this.#flex_columns = Parser.parseArray<MusicResponsiveListItemFlexColumn>(data.flexColumns, MusicResponsiveListItemFlexColumn);
+    this.#fixed_columns = Parser.parseArray<MusicResponsiveListItemFixedColumn>(data.fixedColumns, MusicResponsiveListItemFixedColumn);
 
     this.#playlist_item_data = {
       video_id: data?.playlistItemData?.videoId || null,
@@ -109,8 +113,8 @@ class MusicResponsiveListItem extends YTNode {
 
     this.thumbnails = data.thumbnail ? Thumbnail.fromResponse(data.thumbnail.musicThumbnailRenderer?.thumbnail) : [];
     this.badges = Parser.parseArray(data.badges);
-    this.menu = Parser.parse(data.menu);
-    this.overlay = Parser.parse(data.overlay);
+    this.menu = Parser.parseItem<Menu>(data.menu, Menu);
+    this.overlay = Parser.parseItem<MusicItemThumbnailOverlay>(data.overlay, MusicItemThumbnailOverlay);
   }
 
   #parseOther() {

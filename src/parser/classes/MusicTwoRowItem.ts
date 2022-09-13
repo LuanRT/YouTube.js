@@ -5,6 +5,9 @@ import Text from './misc/Text';
 import TextRun from './misc/TextRun';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
+import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay';
+import Menu from './menus/Menu';
+
 import { YTNode } from '../helpers';
 
 class MusicTwoRowItem extends YTNode {
@@ -118,8 +121,8 @@ class MusicTwoRowItem extends YTNode {
     }
 
     this.thumbnail = Thumbnail.fromResponse(data.thumbnailRenderer.musicThumbnailRenderer.thumbnail);
-    this.thumbnail_overlay = Parser.parse(data.thumbnailOverlay);
-    this.menu = Parser.parse(data.menu);
+    this.thumbnail_overlay = Parser.parseItem<MusicItemThumbnailOverlay>(data.thumbnailOverlay, MusicItemThumbnailOverlay);
+    this.menu = Parser.parseItem<Menu>(data.menu, Menu);
   }
 }
 

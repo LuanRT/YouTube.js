@@ -1,14 +1,15 @@
 import Parser from '../index';
+import PlaylistPanel from './PlaylistPanel';
 import { YTNode } from '../helpers';
 
 class MusicQueue extends YTNode {
   static type = 'MusicQueue';
 
-  content;
+  content: PlaylistPanel | null;
 
   constructor(data: any) {
     super();
-    this.content = Parser.parse(data.content);
+    this.content = Parser.parseItem<PlaylistPanel>(data.content, PlaylistPanel);
   }
 }
 

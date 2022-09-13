@@ -15,6 +15,7 @@ import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, M
 
 import package_json from '../../package.json';
 import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem';
+import AudioOnlyPlayability from './classes/AudioOnlyPlayability';
 
 export class AppendContinuationItemsAction extends YTNode {
   static readonly type = 'appendContinuationItemsAction';
@@ -259,6 +260,7 @@ export default class Parser {
       playability_status: data.playabilityStatus ? {
         status: data.playabilityStatus.status as string,
         error_screen: Parser.parse(data.playabilityStatus.errorScreen),
+        audio_only_playablility: Parser.parseItem<AudioOnlyPlayability>(data.playabilityStatus.audioOnlyPlayability, AudioOnlyPlayability),
         embeddable: !!data.playabilityStatus.playableInEmbed || false,
         reason: data.playabilityStatus?.reason || ''
       } : undefined,
@@ -373,10 +375,6 @@ export default class Parser {
 
   static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : ObservedArray<T> | null;
   static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : SuperParsedResult<T>;
-
-  /**
-   * Parses the `contents` property of the response as well as its nodes.
-   */
   static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
     if (!data) return null;
 
