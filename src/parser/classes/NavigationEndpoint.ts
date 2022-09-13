@@ -247,6 +247,8 @@ class NavigationEndpoint extends YTNode {
         return '/browse';
       case 'watchEndpoint':
         return '/player';
+      case 'watchPlaylistEndpoint':
+        return '/next';
     }
   }
 
