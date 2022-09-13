@@ -11,40 +11,92 @@ import Album from '../parser/ytmusic/Album';
 import Playlist from '../parser/ytmusic/Playlist';
 import Recap from '../parser/ytmusic/Recap';
 
-import Parser from '../parser/index';
-import { observe, YTNode } from '../parser/helpers';
-
-import Tab from '../parser/classes/Tab';
-import Tabbed from '../parser/classes/Tabbed';
-import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults';
-import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults';
-import SectionList from '../parser/classes/SectionList';
-
-import MusicQueue from '../parser/classes/MusicQueue';
-import PlaylistPanel from '../parser/classes/PlaylistPanel';
 import Message from '../parser/classes/Message';
+import MenuNavigationItem from '../parser/classes/menus/MenuNavigationItem';
 import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf';
-import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf';
+import MusicResponsiveListItem from '../parser/classes/MusicResponsiveListItem';
 import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection';
 
+import { observe, ObservedArray, YTNode } from '../parser/helpers';
 import { InnertubeError, throwIfMissing, generateRandomString } from '../utils/Utils';
 
 class Music {
+  #session;
   #actions;
 
   constructor(session: Session) {
+    this.#session = session;
     this.#actions = session.actions;
   }
-
+  
   /**
-   * Retrieves track info.
+   * Retrives track info.
+   * Note: passing a list item adds more context to the request, thus more info (up next contents, etc) is returned.
+   * @param target - video id or a list item.
    */
-  async getInfo(video_id: string) {
+  getInfo(target: string | MusicResponsiveListItem) {
+    if (target instanceof MusicResponsiveListItem) {
+      return this.#fetchInfoFromListItem(target);
+    } else if (typeof target === 'string') {
+      return this.#fetchInfoFromVideoId(target);
+    }
+    
+    throw new InnertubeError('Invalid target, expected either a video id or a list item', target);
+  }
+
+  async #fetchInfoFromVideoId(video_id: string) {
     const cpn = generateRandomString(16);
+  
+    const initial_info = this.#actions.execute('/player', {
+      cpn,
+      client: 'YTMUSIC',
+      videoId: video_id,
+      playbackContext: {
+        contentPlaybackContext: {
+          signatureTimestamp: this.#session.player.sts
+        }
+      }
+    });
+    
+    const continuation = this.#actions.execute('/next', {
+      client: 'YTMUSIC', 
+      videoId: video_id
+    });
 
-    const initial_info = await this.#actions.getVideoInfo(video_id, cpn, 'YTMUSIC');
-    const continuation = this.#actions.execute('/next', { client: 'YTMUSIC', videoId: video_id });
-
+    const response = await Promise.all([ initial_info, continuation ]);
+    return new TrackInfo(response, this.#actions, cpn);
+  }
+  
+  async #fetchInfoFromListItem(list_item: MusicResponsiveListItem | undefined) {
+    if (!list_item)
+      throw new InnertubeError('List item cannot be undefined');
+      
+    if (!list_item.menu)
+      throw new Error('This item does not have a menu.');
+    
+    const start_radio_button = list_item.menu.items.get({ icon_type: 'MIX' })?.as(MenuNavigationItem);
+    
+    if (!start_radio_button)
+      throw new Error('Could not find target button.');
+    
+    const cpn = generateRandomString(16);
+    
+    const initial_info = start_radio_button.endpoint.callTest(this.#actions, {
+      cpn,
+      client: 'YTMUSIC',
+      playbackContext: {
+        contentPlaybackContext: {
+          signatureTimestamp: this.#session.player.sts
+        }
+      }
+    });
+    
+    const continuation = start_radio_button.endpoint.callTest(this.#actions, {
+      client: 'YTMUSIC',
+      enablePersistentPlaylistPanel: true,
+      override_endpoint: '/next'
+    });
+    
     const response = await Promise.all([ initial_info, continuation ]);
     return new TrackInfo(response, this.#actions, cpn);
   }
@@ -125,103 +177,40 @@ class Music {
   }
 
   /**
-   * Retrieves song lyrics.
+   * Retrieves up next (this only works properly if a list item is passed instead of a video id).
+   * @param target - video id or a list item.
    */
-  async getLyrics(video_id: string) {
-    throwIfMissing({ video_id });
+  async getUpNext(target: string | MusicResponsiveListItem) {
+    const info = await this.getInfo(target);
+    return info.getTab('Up next');
+  }
 
-    const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
-
-    const data = Parser.parseResponse(response.data);
-
-    const tabs = data.contents.item()
-      .as(SingleColumnMusicWatchNextResults).contents.item()
-      .as(Tabbed).contents.item()
-      .as(WatchNextTabbedResults)
-      .tabs.array().as(Tab);
-
-    const tab = tabs.get({ title: 'Lyrics' });
-
-    if (!tab)
-      throw new InnertubeError('Could not find target tab.');
-
-    const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
-
-    if (!page)
-      throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
-
-    if (page.contents.item().key('type').string() === 'Message')
-      throw new InnertubeError(page.contents.item().as(Message).text, video_id);
-
-    const section_list = page.contents.item().as(SectionList).contents.array();
-    const description_shelf = section_list.firstOfType(MusicDescriptionShelf);
+  /**
+   * Retrieves related content.
+   * @param target - video id or a list item.
+   */
+  async getRelated(target: string | MusicResponsiveListItem) {
+    const info = await this.getInfo(target);
+    return info.getTab('Related');
+  }
+  
+  /**
+   * Retrieves song lyrics.
+   * @param target - video id or a list item.
+   */
+  async getLyrics(target: string | MusicResponsiveListItem) {
+    const info = await this.getInfo(target);
+    const tab = await info.getTab('Lyrics');
+    
+    if (tab instanceof Message)
+      throw new InnertubeError(tab.text);
+    
+    const description_shelf = (tab as ObservedArray<YTNode>).firstOfType(MusicDescriptionShelf);
 
     return {
       text: description_shelf?.description.toString(),
       footer: description_shelf?.footer
     };
-  }
-
-  /**
-   * Retrieves up next.
-   */
-  async getUpNext(video_id: string) {
-    throwIfMissing({ video_id });
-
-    const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
-
-    const data = Parser.parseResponse(response.data);
-
-    const tabs = data.contents.item()
-      .as(SingleColumnMusicWatchNextResults).contents.item()
-      .as(Tabbed).contents.item()
-      .as(WatchNextTabbedResults)
-      .tabs.array().as(Tab);
-
-    const tab = tabs.get({ title: 'Up next' });
-
-    if (!tab)
-      throw new InnertubeError('Could not find target tab.');
-
-    const music_queue = tab.content?.as(MusicQueue);
-
-    if (!music_queue || !music_queue.content)
-      throw new InnertubeError('Music queue was empty, the given id is probably invalid.', music_queue);
-
-    const playlist_panel = music_queue.content.item().as(PlaylistPanel);
-
-    return playlist_panel;
-  }
-
-  /**
-   * Retrieves related content.
-   */
-  async getRelated(video_id: string) {
-    throwIfMissing({ video_id });
-
-    const response = await this.#actions.next({ video_id, client: 'YTMUSIC' });
-
-    const data = Parser.parseResponse(response.data);
-
-    const tabs = data.contents.item()
-      .as(SingleColumnMusicWatchNextResults).contents.item()
-      .as(Tabbed).contents.item()
-      .as(WatchNextTabbedResults)
-      .tabs.array().as(Tab);
-
-    const tab = tabs.get({ title: 'Related' });
-
-    if (!tab)
-      throw new InnertubeError('Could not find target tab.');
-
-    const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
-
-    if (!page)
-      throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
-
-    const shelves = page.contents.item().as(SectionList).contents.array().as(MusicCarouselShelf, MusicDescriptionShelf);
-
-    return shelves;
   }
 
   async getRecap() {
