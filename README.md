@@ -40,7 +40,7 @@
   [![Tests](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)][actions]
   [![Latest version](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)][versions]
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
-  [![Monthly downloads](https://img.shields.io/npm/dm/youtubei.js)][npm]
+  [![Downloads](https://img.shields.io/npm/dt/youtubei.js)][npm]
   [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks]
 
 </div>
