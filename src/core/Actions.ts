@@ -64,11 +64,11 @@ class Actions {
   /**
    * Mimmics the Axios API using Fetch's Response object.
    */
-  async #wrap(response: Response, protobuf?: boolean) {
+  async #wrap(response: Response) {
     return {
       success: response.ok,
       status_code: response.status,
-      data: protobuf ? await response.text() : JSON.parse(await response.text())
+      data: JSON.parse(await response.text())
     };
   }
 
@@ -776,7 +776,7 @@ class Actions {
       return Parser.parseResponse(await response.json());
     }
 
-    return this.#wrap(response, args.protobuf);
+    return this.#wrap(response);
   }
 
   #needsLogin(id: string) {

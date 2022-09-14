@@ -27,7 +27,7 @@ export default class HTTPClient {
     input: URL | Request | string,
     init?: RequestInit & HTTPClientInit
   ) {
-    const innertube_url = Constants.URLS.API.PRODUCTION + this.#session.api_version;
+    const innertube_url = Constants.URLS.API.PRODUCTION_1 + this.#session.api_version;
     const baseURL = init?.baseURL || innertube_url;
 
     const request_url =

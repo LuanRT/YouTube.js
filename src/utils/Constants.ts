@@ -6,7 +6,8 @@ export const URLS = Object.freeze({
   YT_UPLOAD: 'https://upload.youtube.com/',
   API: Object.freeze({
     BASE: 'https://youtubei.googleapis.com',
-    PRODUCTION: 'https://youtubei.googleapis.com/youtubei/',
+    PRODUCTION_1: 'https://www.youtube.com/youtubei/',
+    PRODUCTION_2: 'https://youtubei.googleapis.com/youtubei/',
     STAGING: 'https://green-youtubei.sandbox.googleapis.com/youtubei/',
     RELEASE: 'https://release-youtubei.sandbox.googleapis.com/youtubei/',
     TEST: 'https://test-youtubei.sandbox.googleapis.com/youtubei/',
