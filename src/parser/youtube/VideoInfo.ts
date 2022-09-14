@@ -640,7 +640,7 @@ class VideoInfo {
     }, {
       highWaterMark: 1, // TODO: better value?
       size(chunk) {
-        return chunk.byteLength;
+        return chunk!.byteLength;
       }
     });
 
