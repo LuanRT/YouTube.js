@@ -41,7 +41,7 @@ InnerTube API key.
 **Returns:** `string`
 
 <a name="api_version"></a>
-### key
+### api_version
 
 InnerTube API version.
 
