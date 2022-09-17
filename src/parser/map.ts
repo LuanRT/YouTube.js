@@ -144,6 +144,7 @@ import { default as MetadataBadge } from './classes/MetadataBadge';
 import { default as MetadataRow } from './classes/MetadataRow';
 import { default as MetadataRowContainer } from './classes/MetadataRowContainer';
 import { default as MetadataRowHeader } from './classes/MetadataRowHeader';
+import { default as MetadataScreen } from './classes/MetadataScreen';
 import { default as MicroformatData } from './classes/MicroformatData';
 import { default as Mix } from './classes/Mix';
 import { default as Movie } from './classes/Movie';
@@ -418,6 +419,7 @@ const map: Record<string, YTNodeConstructor> = {
   MetadataRow,
   MetadataRowContainer,
   MetadataRowHeader,
+  MetadataScreen,
   MicroformatData,
   Mix,
   Movie,
