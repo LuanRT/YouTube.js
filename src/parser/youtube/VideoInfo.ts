@@ -46,9 +46,9 @@ export interface FormatOptions {
    */
   format?: string;
   /**
-   * InnerTube client, can be ANDROID, WEB or YTMUSIC
+   * InnerTube client, can be ANDROID, WEB, YTMUSIC, YTMUSIC_ANDROID or TV_EMBEDDED
    */
-  client?: 'ANDROID' | 'WEB' | 'YTMUSIC'
+  client?: 'ANDROID' | 'WEB' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'TV_EMBEDDED'
 }
 
 export interface DownloadOptions extends FormatOptions {
