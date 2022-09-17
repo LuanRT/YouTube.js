@@ -143,6 +143,10 @@ export default class HTTPClient {
         ctx.client.clientName = Constants.CLIENTS.YTMUSIC_ANDROID.NAME;
         ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
         break;
+      case 'TV_EMBEDDED':
+        ctx.client.clientVersion = Constants.CLIENTS.TV_EMBEDDED.VERSION;
+        ctx.client.clientName = Constants.CLIENTS.TV_EMBEDDED.NAME;
+        break;
       default:
         break;
     }

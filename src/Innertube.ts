@@ -48,7 +48,7 @@ export interface SearchFilters {
   sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count';
 }
 
-export type InnerTubeClient = 'ANDROID' | 'YTMUSIC_ANDROID' | 'WEB' | 'YTMUSIC';
+export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'TV_EMBEDDED';
 
 class Innertube {
   session;
