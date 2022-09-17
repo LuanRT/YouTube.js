@@ -89,7 +89,7 @@ const is_null = response.is_null;
 ## YTNode
 All renderers returned by InnerTube are converted to this generic class and then extended for the specific renderers.
 
-This class is allows us a typesafe way to use data returned by the InnerTube API.
+This class is what allows us a typesafe way to use data returned by the InnerTube API.
 
 Here's how to use this class to access returned data:
 
