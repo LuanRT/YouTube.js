@@ -55,6 +55,7 @@ import { default as CompactLink } from './classes/CompactLink';
 import { default as CompactMix } from './classes/CompactMix';
 import { default as CompactPlaylist } from './classes/CompactPlaylist';
 import { default as CompactVideo } from './classes/CompactVideo';
+import { default as ConfirmDialog } from './classes/ConfirmDialog';
 import { default as ContinuationItem } from './classes/ContinuationItem';
 import { default as CopyLink } from './classes/CopyLink';
 import { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog';
@@ -328,6 +329,7 @@ const map: Record<string, YTNodeConstructor> = {
   CompactMix,
   CompactPlaylist,
   CompactVideo,
+  ConfirmDialog,
   ContinuationItem,
   CopyLink,
   CreatePlaylistDialog,
