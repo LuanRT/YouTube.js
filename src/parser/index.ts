@@ -259,7 +259,7 @@ export default class Parser {
       } : null,
       playability_status: data.playabilityStatus ? {
         status: data.playabilityStatus.status as string,
-        error_screen: Parser.parse(data.playabilityStatus.errorScreen),
+        error_screen: Parser.parseItem(data.playabilityStatus.errorScreen),
         audio_only_playablility: Parser.parseItem<AudioOnlyPlayability>(data.playabilityStatus.audioOnlyPlayability, AudioOnlyPlayability),
         embeddable: !!data.playabilityStatus.playableInEmbed || false,
         reason: data.playabilityStatus?.reason || ''

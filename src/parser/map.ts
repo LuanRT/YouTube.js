@@ -55,6 +55,7 @@ import { default as CompactLink } from './classes/CompactLink';
 import { default as CompactMix } from './classes/CompactMix';
 import { default as CompactPlaylist } from './classes/CompactPlaylist';
 import { default as CompactVideo } from './classes/CompactVideo';
+import { default as ConfirmDialog } from './classes/ConfirmDialog';
 import { default as ContinuationItem } from './classes/ContinuationItem';
 import { default as CopyLink } from './classes/CopyLink';
 import { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog';
@@ -143,6 +144,7 @@ import { default as MetadataBadge } from './classes/MetadataBadge';
 import { default as MetadataRow } from './classes/MetadataRow';
 import { default as MetadataRowContainer } from './classes/MetadataRowContainer';
 import { default as MetadataRowHeader } from './classes/MetadataRowHeader';
+import { default as MetadataScreen } from './classes/MetadataScreen';
 import { default as MicroformatData } from './classes/MicroformatData';
 import { default as Mix } from './classes/Mix';
 import { default as Movie } from './classes/Movie';
@@ -328,6 +330,7 @@ const map: Record<string, YTNodeConstructor> = {
   CompactMix,
   CompactPlaylist,
   CompactVideo,
+  ConfirmDialog,
   ContinuationItem,
   CopyLink,
   CreatePlaylistDialog,
@@ -416,6 +419,7 @@ const map: Record<string, YTNodeConstructor> = {
   MetadataRow,
   MetadataRowContainer,
   MetadataRowHeader,
+  MetadataScreen,
   MicroformatData,
   Mix,
   Movie,
