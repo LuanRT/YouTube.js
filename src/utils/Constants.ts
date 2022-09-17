@@ -49,6 +49,10 @@ export const CLIENTS = Object.freeze({
   YTMUSIC_ANDROID: {
     NAME: 'ANDROID_MUSIC',
     VERSION: '5.17.51'
+  },
+  TV_EMBEDDED: {
+    NAME: 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
+    VERSION: '2.0'
   }
 });
 export const STREAM_HEADERS = Object.freeze({

@@ -292,7 +292,7 @@ Retrieves video info, including playback data and even layout elements such as m
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The id of the video |
-| client? | `InnerTubeClient` | `WEB`, `ANDROID` or `YTMUSIC` |
+| client? | `InnerTubeClient` | `WEB`, `ANDROID`, `YTMUSIC`, `YTMUSIC_ANDROID` or `TV_EMBEDDED` |
 
 <details>
 <summary>Methods & Getters</summary>
@@ -347,7 +347,7 @@ Suitable for cases where you only need basic video metadata. Also, it is faster 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The id of the video |
-| client? | `InnerTubeClient` | `WEB`, `ANDROID` or `YTMUSIC` |
+| client? | `InnerTubeClient` | `WEB`, `ANDROID`, `YTMUSIC_ANDROID`, `YTMUSIC`, `TV_EMBEDDED` |
 
 <a name="search"></a>
 ### search(query, filters?)
@@ -569,7 +569,7 @@ For example, you may want to call an endpoint directly, that can be achieved wit
 
 const payload = {
   videoId: 'jLTOuvBTLxA',
-  client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, WEB
+  client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB or TV_EMBEDDED
   parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
 };
 
