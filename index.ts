@@ -10,6 +10,11 @@ if (getRuntime() === 'node') {
   Reflect.set(globalThis, 'Response', undici.Response);
   Reflect.set(globalThis, 'FormData', undici.FormData);
   Reflect.set(globalThis, 'File', undici.File);
+  try {
+    // eslint-disable-next-line
+    const { ReadableStream } = require('node:stream/web');
+    Reflect.set(globalThis, 'ReadableStream', ReadableStream);
+  } catch { /* do nothing */ }
 }
 
 import Innertube from './src/Innertube';
