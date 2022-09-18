@@ -40,6 +40,7 @@ export interface Context {
     deviceModel: string;
     utcOffsetMinutes: number;
   };
+  thirdParty?: object;
   user: {
     lockedSafetyMode: false;
   };
