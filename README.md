@@ -292,7 +292,7 @@ Retrieves video info, including playback data and even layout elements such as m
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The id of the video |
-| client? | `InnerTubeClient` | `WEB`, `ANDROID` or `YTMUSIC` |
+| client? | `InnerTubeClient` | `WEB`, `ANDROID`, `YTMUSIC`, `YTMUSIC_ANDROID` or `TV_EMBEDDED` |
 
 <details>
 <summary>Methods & Getters</summary>
@@ -347,7 +347,7 @@ Suitable for cases where you only need basic video metadata. Also, it is faster 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The id of the video |
-| client? | `InnerTubeClient` | `WEB`, `ANDROID` or `YTMUSIC` |
+| client? | `InnerTubeClient` | `WEB`, `ANDROID`, `YTMUSIC_ANDROID`, `YTMUSIC`, `TV_EMBEDDED` |
 
 <a name="search"></a>
 ### search(query, filters?)
@@ -527,6 +527,14 @@ Retrieves playlist contents.
 ### getStreamingData(video_id, options)
 Returns deciphered streaming data.
 
+**Note:**
+It is recommended to retrieve streaming data from a `VideoInfo`/`TrackInfo` object instead if you want to select formats manually, example:
+```ts
+const info = await yt.getBasicInfo('somevideoid');
+const url = info.streaming_data?.formats[0].decipher(yt.session.player);
+console.info('Playback url:', url);
+```
+
 **Returns**: `Promise.<object>`
 
 | Param | Type | Description |
@@ -569,7 +577,7 @@ For example, you may want to call an endpoint directly, that can be achieved wit
 
 const payload = {
   videoId: 'jLTOuvBTLxA',
-  client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, WEB
+  client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB or TV_EMBEDDED
   parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
 };
 
