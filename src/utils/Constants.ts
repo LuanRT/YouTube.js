@@ -52,7 +52,10 @@ export const CLIENTS = Object.freeze({
   },
   TV_EMBEDDED: {
     NAME: 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
-    VERSION: '2.0'
+    VERSION: '2.0',
+    THIRD_PARTY: {
+      'embedUrl': 'https://www.youtube.com/'
+    }
   }
 });
 export const STREAM_HEADERS = Object.freeze({
