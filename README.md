@@ -527,6 +527,14 @@ Retrieves playlist contents.
 ### getStreamingData(video_id, options)
 Returns deciphered streaming data.
 
+**Note:**
+It is recommended to retrieve streaming data from a `VideoInfo`/`TrackInfo` object instead if you want to select formats manually, example:
+```ts
+const info = await yt.getBasicInfo('somevideoid');
+const url = info.streaming_data?.formats[0].decipher(yt.session.player);
+console.info('Playback url:', url);
+```
+
 **Returns**: `Promise.<object>`
 
 | Param | Type | Description |
