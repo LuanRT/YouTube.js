@@ -18,7 +18,7 @@ const handler = async (request: Request): Promise<Response> => {
         'Access-Control-Allow-Origin': request.headers.get('origin') || '*',
         'Access-Control-Allow-Methods': '*',
         'Access-Control-Allow-Headers':
-          'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-goog-visitor-id, x-origin, x-youtube-client-version, Accept-Language, Range',
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-goog-visitor-id, x-origin, x-youtube-client-version, Accept-Language, Range, Referer',
         'Access-Control-Max-Age': '86400',
         'Access-Control-Allow-Credentials': 'true',
       }),
@@ -45,7 +45,7 @@ const handler = async (request: Request): Promise<Response> => {
     JSON.parse(url.searchParams.get('__headers') || '{}'),
   );
   copyHeader('range', request_headers, request.headers);
-  copyHeader('user-agent', request_headers, request.headers);
+  !request_headers.has('user-agent') && copyHeader('user-agent', request_headers, request.headers);
   url.searchParams.delete('__headers');
 
   // Make the request to YouTube
@@ -62,6 +62,8 @@ const handler = async (request: Request): Promise<Response> => {
   copyHeader('content-length', headers, fetchRes.headers);
   copyHeader('content-type', headers, fetchRes.headers);
   copyHeader('content-disposition', headers, fetchRes.headers);
+  copyHeader('accept-ranges', headers, fetchRes.headers);
+  copyHeader('content-range', headers, fetchRes.headers);
 
   // add cors headers
   headers.set(
