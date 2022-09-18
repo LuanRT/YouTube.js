@@ -147,6 +147,7 @@ export default class HTTPClient {
         ctx.client.clientVersion = Constants.CLIENTS.TV_EMBEDDED.VERSION;
         ctx.client.clientName = Constants.CLIENTS.TV_EMBEDDED.NAME;
         ctx.client.clientScreen = 'EMBED';
+        ctx.thirdParty = { embedUrl: Constants.URLS.YT_BASE };
         break;
       default:
         break;
