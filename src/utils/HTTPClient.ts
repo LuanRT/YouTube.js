@@ -146,6 +146,7 @@ export default class HTTPClient {
       case 'TV_EMBEDDED':
         ctx.client.clientVersion = Constants.CLIENTS.TV_EMBEDDED.VERSION;
         ctx.client.clientName = Constants.CLIENTS.TV_EMBEDDED.NAME;
+        ctx.thirdParty = Constants.CLIENTS.TV_EMBEDDED.THIRD_PARTY;
         ctx.client.clientScreen = 'EMBED';
         break;
       default:
