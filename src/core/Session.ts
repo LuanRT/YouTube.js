@@ -43,6 +43,9 @@ export interface Context {
   user: {
     lockedSafetyMode: false;
   };
+  thirdParty?: {
+    embedUrl: string;
+  };
   request: {
     useSsl: true;
   };
