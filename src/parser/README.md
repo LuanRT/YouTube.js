@@ -20,7 +20,7 @@ Responsible for parsing individual nodes.
 | --- | --- | --- |
 | data | `any` | The data |
 | requireArray | `?boolean` | Whether the response should be an array |
-| validTypes | `YTNodeConstructor<T> \| YTNodeConstructor<T>[] \| undefined` | The types of YTNodes are allowed |
+| validTypes | `YTNodeConstructor<T> \| YTNodeConstructor<T>[] \| undefined` | Types of `YTNode` allowed |
 
 When `requireArray` is `true`, the response will be an `ObservedArray<YTNodes>`.
 
