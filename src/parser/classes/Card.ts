@@ -6,8 +6,8 @@ class Card extends YTNode {
 
   teaser;
   content;
-  card_id: string;
-  feature: string;
+  card_id: string | null;
+  feature: string | null;
 
   cue_ranges: {
     start_card_active_ms: string;
@@ -18,10 +18,10 @@ class Card extends YTNode {
 
   constructor(data: any) {
     super();
-    this.teaser = Parser.parse(data.teaser);
-    this.content = Parser.parse(data.content);
-    this.card_id = data.cardId;
-    this.feature = data.feature;
+    this.teaser = Parser.parseItem(data.teaser);
+    this.content = Parser.parseItem(data.content);
+    this.card_id = data.cardId || null;
+    this.feature = data.feature || null;
 
     this.cue_ranges = data.cueRanges.map((cr: any) => ({
       start_card_active_ms: cr.startCardActiveMs,

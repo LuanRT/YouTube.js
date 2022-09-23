@@ -24,7 +24,7 @@ class Search extends Feed {
     super(actions, data, already_parsed);
 
     const contents =
-      this.page.contents?.item().as(TwoColumnSearchResults).primary_contents.item().as(SectionList).contents.array() ||
+      this.page.contents?.item().as(TwoColumnSearchResults).primary_contents?.item().as(SectionList).contents.array() ||
       this.page.on_response_received_commands?.[0].contents;
 
     const secondary_contents_maybe = this.page.contents?.item().key('secondary_contents');
@@ -59,7 +59,7 @@ class Search extends Feed {
     if (typeof card === 'string') {
       target_card = this.refinement_cards.cards.get({ query: card });
       if (!target_card)
-        throw new InnertubeError('Refinement card not found!', { available_cards: this.refinement_card_queries });
+        throw new InnertubeError(`Refinement card "${card}" not found`, { available_cards: this.refinement_card_queries });
     } else if (card.type === 'SearchRefinementCard') {
       target_card = card;
     } else {

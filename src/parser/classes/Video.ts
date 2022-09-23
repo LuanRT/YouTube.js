@@ -1,6 +1,7 @@
 import Parser from '../index';
 import Text from './misc/Text';
 import Author from './misc/Author';
+import Menu from './menus/Menu';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
 import { timeToSeconds } from '../../utils/Utils';
@@ -53,8 +54,8 @@ class Video extends YTNode {
     })) || [];
 
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
-    this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
-    this.rich_thumbnail = data.richThumbnail && Parser.parse(data.richThumbnail);
+    this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
+    this.rich_thumbnail = data.richThumbnail ? Parser.parse(data.richThumbnail) : null;
     this.author = new Author(data.ownerText, data.ownerBadges, data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer?.thumbnail);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.published = new Text(data.publishedTimeText);
@@ -73,7 +74,7 @@ class Video extends YTNode {
 
     this.show_action_menu = data.showActionMenu;
     this.is_watched = data.isWatched || false;
-    this.menu = Parser.parse(data.menu);
+    this.menu = Parser.parseItem<Menu>(data.menu, Menu);
   }
 
   get description(): string {
