@@ -455,8 +455,7 @@ class Actions {
         };
         break;
       case 'live_chat/get_item_context_menu':
-        // Note: this is currently broken due to a recent refactor
-        // TODO: this should be implemented
+        data.params = args.params;
         break;
       case 'live_chat/moderate':
         data.params = args.params;

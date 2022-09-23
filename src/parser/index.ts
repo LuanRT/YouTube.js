@@ -230,6 +230,13 @@ export default class Parser {
     const actions_memo = this.#getMemo();
     this.#clearMemo();
 
+    this.#createMemo();
+    const live_chat_item_context_menu_supported_renderers = data.liveChatItemContextMenuSupportedRenderers
+      ? Parser.parseItem(data.liveChatItemContextMenuSupportedRenderers)
+      : null;
+    const live_chat_item_context_menu_supported_renderers_memo = this.#getMemo();
+    this.#clearMemo();
+
     this.applyMutations(contents_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
 
     return {
@@ -237,6 +244,8 @@ export default class Parser {
       actions_memo,
       contents,
       contents_memo,
+      live_chat_item_context_menu_supported_renderers,
+      live_chat_item_context_menu_supported_renderers_memo,
       on_response_received_actions,
       on_response_received_actions_memo,
       on_response_received_endpoints,

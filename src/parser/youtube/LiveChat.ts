@@ -22,11 +22,21 @@ import ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipC
 
 import { InnertubeError } from '../../utils/Utils';
 import { ObservedArray, YTNode } from '../helpers';
+import LiveChatTextMessage from '../classes/livechat/items/LiveChatTextMessage';
+import Button from '../classes/Button';
+import Menu from '../classes/menus/Menu';
+import LiveChatPaidMessage from '../classes/livechat/items/LiveChatPaidMessage';
+import LiveChatPaidSticker from '../classes/livechat/items/LiveChatPaidSticker';
+import LiveChatAutoModMessage from '../classes/livechat/items/LiveChatAutoModMessage';
+import LiveChatMembershipItem from '../classes/livechat/items/LiveChatMembershipItem';
+import LiveChatViewerEngagementMessage from '../classes/livechat/items/LiveChatViewerEngagementMessage';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
   MarkChatItemAsDeletedAction | MarkChatItemsByAuthorAsDeletedAction | RemoveBannerForLiveChatCommand |
   ReplaceChatItemAction | ReplayChatItemAction | ShowLiveChatActionPanelAction | ShowLiveChatTooltipCommand;
+
+export type ChatItemHasMenuEndpoint = LiveChatAutoModMessage | LiveChatMembershipItem | LiveChatPaidMessage | LiveChatPaidSticker | LiveChatTextMessage | LiveChatViewerEngagementMessage;
 
 export interface LiveMetadata {
   title: UpdateTitleAction | undefined;
@@ -178,6 +188,31 @@ class LiveChat extends EventEmitter {
       throw new InnertubeError('Response did not have an "actions" property. The call may have failed.');
 
     return data.actions.array().as(AddChatItemAction);
+  }
+
+  async getItemMenu(item: ChatItemHasMenuEndpoint): Promise<Menu> {
+    if (!item.menu_endpoint) {
+      throw new InnertubeError('Response did not have an "menu_endpoint" property. The call may have failed.');
+    }
+
+    const response = await item.menu_endpoint.call(this.#actions, undefined, true);
+
+    const menu = response?.live_chat_item_context_menu_supported_renderers;
+    if (!menu || !menu.is(Menu)) {
+      throw new InnertubeError('Response did not have an "live_chat_item_context_menu_supported_renderers" property. The call may have failed.');
+    }
+
+    return menu.as(Menu);
+  }
+
+  async selectButtonItem(button: Button) {
+    const endpoint = button.endpoint;
+    if (!endpoint.metadata.api_url) {
+      throw new InnertubeError('Response did not have an "api_url" property. The call may have failed.');
+    }
+    const response = await this.#actions.execute(endpoint.metadata.api_url, {...endpoint.payload, parse: true});
+
+    return response;
   }
 
   async #wait(ms: number) {

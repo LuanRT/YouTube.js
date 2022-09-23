@@ -5,7 +5,8 @@ import MetadataBadge from '../../MetadataBadge';
 import LiveChatAuthorBadge from '../../LiveChatAuthorBadge';
 import Parser from '../../../index';
 
-import { YTNode } from '../../../helpers';
+import { ObservedArray, YTNode } from '../../../helpers';
+import Button from '../../Button';
 
 class LiveChatTextMessage extends YTNode {
   static type = 'LiveChatTextMessage';
@@ -22,6 +23,7 @@ class LiveChatTextMessage extends YTNode {
   };
 
   menu_endpoint?: NavigationEndpoint;
+  inline_action_buttons: ObservedArray<Button>;
   timestamp: number;
   id: string;
 
@@ -47,6 +49,7 @@ class LiveChatTextMessage extends YTNode {
     this.author.is_verified_artist = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') : null;
 
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
+    this.inline_action_buttons = Parser.parseArray<Button>(data.inlineActionButtons, [ Button ]);
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);
     this.id = data.id;
   }
