@@ -210,6 +210,8 @@ import { default as RelatedChipCloud } from './classes/RelatedChipCloud';
 import { default as RichGrid } from './classes/RichGrid';
 import { default as RichItem } from './classes/RichItem';
 import { default as RichListHeader } from './classes/RichListHeader';
+import { default as RichMetadata } from './classes/RichMetadata';
+import { default as RichMetadataRow } from './classes/RichMetadataRow';
 import { default as RichSection } from './classes/RichSection';
 import { default as RichShelf } from './classes/RichShelf';
 import { default as SearchBox } from './classes/SearchBox';
@@ -485,6 +487,8 @@ const map: Record<string, YTNodeConstructor> = {
   RichGrid,
   RichItem,
   RichListHeader,
+  RichMetadata,
+  RichMetadataRow,
   RichSection,
   RichShelf,
   SearchBox,

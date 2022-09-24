@@ -7,6 +7,16 @@ describe('YouTube.js Tests', () => {
   let yt: Innertube;
   
   beforeAll(async () => {
+    jest.spyOn(console, 'warn').mockImplementation((message) => {
+      console.log(JSON.stringify(message));
+      throw new Error(`Failing due to console.warn while running test!\n\n${message}`);
+    });
+
+    jest.spyOn(console, 'error').mockImplementation((message) => {
+      console.log(JSON.stringify(message));
+      throw new Error(`Failing due to console.error while running test!\n\n${message}`);
+    });
+
     yt = await Innertube.create();
   });
   
@@ -73,6 +83,11 @@ describe('YouTube.js Tests', () => {
     it('should retrieve basic video info', async () => {
       const info = await yt.getBasicInfo(VIDEOS[0].ID);
       expect(info.basic_info.id).toBe(VIDEOS[0].ID);
+    });
+
+    it('should retrieve metadata', async () => {
+      const info = await yt.getInfo(VIDEOS[2].ID);
+      expect(info.basic_info.id).toBe(VIDEOS[2].ID);
     });
   });
   
