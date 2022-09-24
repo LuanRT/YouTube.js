@@ -5,6 +5,7 @@ import VideoOwner from './VideoOwner';
 import SubscribeButton from './SubscribeButton';
 import MetadataRowContainer from './MetadataRowContainer';
 import { YTNode } from '../helpers';
+import RichMetadataRow from './RichMetadataRow';
 
 class VideoSecondaryInfo extends YTNode {
   static type = 'VideoSecondaryInfo';
@@ -12,7 +13,7 @@ class VideoSecondaryInfo extends YTNode {
   owner: VideoOwner | null;// TODO: VideoOwner?
   description: Text;
   subscribe_button;
-  metadata: MetadataRowContainer | null;
+  metadata: RichMetadataRow | null;
   show_more_text: string;
   show_less_text: string;
   default_expanded: string;
@@ -23,7 +24,8 @@ class VideoSecondaryInfo extends YTNode {
     this.owner = Parser.parseItem<VideoOwner>(data.owner);
     this.description = new Text(data.description);
     this.subscribe_button = Parser.parseItem<SubscribeButton | Button>(data.subscribeButton, [ SubscribeButton, Button ]);
-    this.metadata = Parser.parseItem<MetadataRowContainer>(data.metadataRowContainer, MetadataRowContainer);
+    // MetadataRowContainer is redundant, we want to target 'RichMetadataRow'
+    this.metadata = Parser.parseItem<MetadataRowContainer>(data.metadataRowContainer, MetadataRowContainer)?.rows?.[0] ?? null;
     this.show_more_text = data.showMoreText;
     this.show_less_text = data.showLessText;
     this.default_expanded = data.defaultExpanded;

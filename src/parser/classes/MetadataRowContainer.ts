@@ -1,5 +1,6 @@
 import Parser from '../index';
 import { YTNode } from '../helpers';
+import RichMetadataRow from './RichMetadataRow';
 
 class MetadataRowContainer extends YTNode {
   static type = 'MetadataRowContainer';
@@ -8,7 +9,7 @@ class MetadataRowContainer extends YTNode {
 
   constructor(data: any) {
     super();
-    this.rows = Parser.parseArray(data.rows);
+    this.rows = Parser.parseArray<RichMetadataRow>(data.rows);
     this.collapsed_item_count = data.collapsedItemCount;
   }
 }
