@@ -347,7 +347,7 @@ export default class Parser {
 
         return result as T;
       } catch (err) {
-        this.formatError({ classname, classdata: data[keys[0]], err });
+        this.printError({ classname, classdata: data[keys[0]], err });
         return null;
       }
     }
@@ -436,12 +436,13 @@ export default class Parser {
     }
   }
 
-  static formatError({ classname, classdata, err }: { classname: string, classdata: any, err: any }) {
+  static printError({ classname, classdata, err }: { classname: string, classdata: any, err: any }) {
     if (err.code == 'MODULE_NOT_FOUND') {
       return console.warn(
         new InnertubeError(
           `${classname} not found!\n` +
-          `This is a bug, please report it at ${package_json.bugs.url}`, classdata)
+          `This is a bug, want to help us fix it? Follow the instructions at ${package_json.homepage.split('#')[0]}/blob/main/docs/updating-the-parser.md or report it at ${package_json.bugs.url}!`, classdata
+        )
       );
     }
 
