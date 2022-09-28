@@ -22,7 +22,7 @@ If you find a problem, search if an issue already exists. If a related issue doe
 
 <a id="issue-2"></a>
 #### Solve an issue
-Scan through the existing issues to find one that interests you. You can narrow down the search using labels as filters. If you find an issue to work on, you are welcome to open a PR with a fix.
+Scan through the existing issues to find one that interests you. You can narrow down the search using labels as filters. If you find an issue to work on, you are welcome to open a PR with a fix. Documentation updates and grammar fixes are also appreciated!
 
 <a id="changes"></a>
 ## Make changes
