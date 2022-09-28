@@ -1,6 +1,25 @@
 # Parser
 
-Sanitizes and standardizes InnerTube responses while maintaining the integrity of the data. Also [drastically improves](https://github.com/LuanRT/YouTube.js/blob/main/lib/parser/youtube/Library.js#L44) how API calls are made and handled. 
+Sanitizes and standardizes InnerTube responses while maintaining the integrity of the data. Also [drastically improves](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/youtube/Library.ts#L69) how API calls are made and handled. 
+
+<ol>
+  <li>
+    <a href="#api">API</a>
+  </li>
+  <li>
+    <a href="#usage">Usage</a>
+    <ul>
+      <li><a href="#observedarray">ObservedArray</a></li>
+      <li><a href="#superparsedresponse">SuperParsedResponse</a></li>
+      <li><a href="#ytnode">YTNode</a></li>
+      <li><a href="#memo">Memo</a></li>
+    </ul>
+  </li>
+  <li><a href="#adding-new-nodes">Adding new nodes</a></li>
+  <li><a href="#how-it-works">How it works</a></li>
+</ol>
+
+___
 
 ## API
 
@@ -43,6 +62,8 @@ Unlike `parse`, this can be used to parse the entire response object.
 | --- | --- | --- |
 | data | `object` | Raw InnerTube response |
 
+## Usage
+
 ## ObservedArray
 You may use `ObservedArray<T extends YTNode>` as a normal array, but it provides additional methods for typesafe access and casting.
 
@@ -58,13 +79,13 @@ const firstVideo = feed.firstOfType(GridVideo);
 // We may cast the whole array to a GridVideo[] and throw if we have any non-GridVideo elements:
 const allVideos = feed.as(GridVideo);
 
-// There's some extra methods for ObservedArray<T extends YTNode>
+// There are some extra methods for ObservedArray<T extends YTNode>
 // which we use internally but not documented here (yet).
 // see the source code for more details.
 ```
 
 ## SuperParsedResponse
-Represents a parsed response in an unknown state. Either a `YTNode` or a `ObservedArray<YTNode>` or `null`.
+Represents a parsed response in an unknown state. Either a `YTNode` or an `ObservedArray<YTNode>` or `null`.
 
 You will need to assert the type and unwrap the response to get the actual value.
 
@@ -116,14 +137,14 @@ if (node.is(TwoColumnSearchResults, VideoList)) {
 ```
 
 ### Accessing properties without casting
-Sometimes multiple nodes have the same properties and we don't want to check the type of the node before accessing the property, for example the property "contents" is used by many node types, and we may add more in the future, as such we want to only assert the property instead of casting to a specific type.
+Sometimes multiple nodes have the same properties and we don't want to check the type of the node before accessing the property, for example, the property "contents" is used by many node types, and we may add more in the future, as such we want to only assert the property instead of casting to a specific type.
 
 ```ts
-// Accesing a property on a node which you aren't sure if it exists.
+// Accessing a property on a node which you aren't sure if it exists.
 const prop = node.key("contents");
 // This returns the value wrapped into a `Maybe` type
 // which you can use to find the type of the value
-// note however, this throws an error if the key doesn't exist
+// note, however, this throws an error if the key doesn't exist
 // we may want to check for the key before accessing it.
 if (node.hasKey("contents")) {
   const prop = node.key("contents");
@@ -146,7 +167,7 @@ if (prop.isInstanceof(Text)) {
   });
 }
 
-// There's some special methods for using with the parser —
+// There are some special methods for using with the parser —
 // such as getting the value as a YTNode.
 const prop = node.key("contents");
 if (prop.isNode()) {
@@ -171,7 +192,7 @@ const prop = node.key("contents");
 if (prop.isObserved()) {
   const array = prop.observed();
 
-  // Now we may use the all the ObservedArray methods as normal,
+  // Now we may use all the ObservedArray methods as normal,
   // like finding nodes of a certain type for example.
   const results = array.filterType(GridVideo);
 }
@@ -187,7 +208,7 @@ if (prop.isParsed()) {
   const videos = results.filterType(Video);
 }
 
-// Sometimes we just want to debug something and not interested in finding the type.
+// Sometimes we just want to debug something and are not interested in finding the type.
 // This will, however, warn you when being used.
 const prop = node.key("contents");
 const value = prop.any();
@@ -200,7 +221,7 @@ if (prop.isArray()) {
   // This will return Maybe[]
 }
 
-// Or if you want zero typesafety you can use the `array` method.
+// Or if you want zero type safety you can use the `array` method.
 const prop = node.key("contents");
 if (prop.isArray()) {
   const array = prop.array();
@@ -221,13 +242,16 @@ const videos = response.contents_memo.getType(Video);
 
 `Memo` extends `Map<string, YTNode[]>` and can be used as a normal `Map` too if you want.
 
+## Adding new nodes
+Instructions can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/docs/updating-the-parser.md).
+
 ## How it works
 
-If you decompile a YouTube client and analize it for a while you will notice that it has classes named `protos/youtube/api/innertube/MusicItemRenderer`, `protos/youtube/api/innertube/SectionListRenderer`, etc. 
+If you decompile a YouTube client and analyze it for a while you will notice that it has classes named `protos/youtube/api/innertube/MusicItemRenderer`, `protos/youtube/api/innertube/SectionListRenderer`, etc. 
 
-These classes are used to parse objects from the response, map them into models and generate the UI. The website works in a similar way, the difference is that it uses plain JSON (likely converted from protobuf server-side, hence the weird structure of the response).
+These classes are used to parse objects from the response, map them into models and generate the UI. The website works similarly, the difference is that it uses plain JSON (likely converted from protobuf server-side, hence the weird structure of the response).
 
-Here we're taking a similar approach, the parser goes through all the renderers and parses their inner element(s). The final result is a nicely structured JSON, and on top of that it also parses navigation endpoints which allows us to make an API call with all required parameters in one line and even emulate client actions (eg; clicking a button).
+Here we're taking a similar approach, the parser goes through all the renderers and parses their inner element(s). The final result is a nicely structured JSON, and on top of that, it also parses navigation endpoints which allow us to make an API call with all required parameters in one line and even emulate client actions (eg; clicking a button).
 
 Here is your average, arguably ugly InnerTube response:
 <details>
