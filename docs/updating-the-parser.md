@@ -17,11 +17,11 @@ This is a bug, want to help us fix it? Follow the instructions at https://github
 }
 ```
 
-This warning, however, **does not** throw an error. The parser itself will continue working normally, even if a parsing error occurs on an existing renderer parser.
+This warning, however, **does not** throw an error. The parser itself will continue working normally, even if a parsing error occurs in an existing renderer parser.
 
 ## Adding a new renderer parser
 
-Thanks to the modularity of the parser, a new renderer can be implemented by simply adding a new file anywhere in the [classes directory](../src/parser/classes)!
+Thanks to the modularity of the parser, a renderer can be implemented by simply adding a new file anywhere in the [classes directory](../src/parser/classes)!
 
 For example, say we found a new renderer named `verticalListRenderer`, to let the parser know it exists we would have to create a file with the following structure:
 
