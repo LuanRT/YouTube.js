@@ -5,11 +5,12 @@ import Button from '../classes/Button';
 import Menu from '../classes/menus/Menu';
 import MenuServiceItem from '../classes/menus/MenuServiceItem';
 import NavigationEndpoint from '../classes/NavigationEndpoint';
+import { ObservedArray, YTNode } from '../helpers';
 
 class ItemMenu {
   #page: ParsedResponse;
   #actions: Actions;
-  #menu: Menu;
+  #items: ObservedArray<YTNode>;
   constructor(data: ParsedResponse, actions: Actions) {
     this.#page = data;
     this.#actions = actions;
@@ -17,7 +18,7 @@ class ItemMenu {
     if (!menu || !menu.is(Menu)) {
       throw new InnertubeError('Response did not have an "live_chat_item_context_menu_supported_renderers" property. The call may have failed.');
     }
-    this.#menu = menu.as(Menu);
+    this.#items = menu.as(Menu).items;
   }
 
   async selectItem(icon_type: string): Promise<ParsedResponse>
@@ -27,7 +28,7 @@ class ItemMenu {
     if (item instanceof Button) {
       endpoint = item.endpoint;
     } else {
-      const button = this.#menu.items.find((button) => {
+      const button = this.#items.find((button) => {
         if (!button.is(MenuServiceItem)) {
           return false;
         }
@@ -39,16 +40,13 @@ class ItemMenu {
       }
       endpoint = button.as(MenuServiceItem).endpoint;
     }
-    if (!endpoint.metadata.api_url) {
-      throw new InnertubeError('Response did not have an "api_url" property. The call may have failed.');
-    }
-    const response = await this.#actions.execute(endpoint.metadata.api_url, {...endpoint.payload, parse: true});
+    const response = await endpoint.callTest(this.#actions, { parse: true });
 
     return response;
   }
 
-  menu(): Menu {
-    return this.#menu;
+  items(): ObservedArray<YTNode> {
+    return this.#items;
   }
 
   page(): ParsedResponse {

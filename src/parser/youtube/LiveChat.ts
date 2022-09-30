@@ -1,4 +1,4 @@
-import Parser, { LiveChatContinuation } from '../index';
+import Parser, { LiveChatContinuation, ParsedResponse } from '../index';
 import EventEmitter from '../../utils/EventEmitterLike';
 import VideoInfo from './VideoInfo';
 
@@ -29,6 +29,7 @@ import LiveChatAutoModMessage from '../classes/livechat/items/LiveChatAutoModMes
 import LiveChatMembershipItem from '../classes/livechat/items/LiveChatMembershipItem';
 import LiveChatViewerEngagementMessage from '../classes/livechat/items/LiveChatViewerEngagementMessage';
 import ItemMenu from './ItemMenu';
+import Button from '../classes/Button';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
@@ -201,6 +202,13 @@ class LiveChat extends EventEmitter {
     }
 
     return new ItemMenu(response, this.#actions);
+  }
+
+  async selectButton(button: Button): Promise<ParsedResponse> {
+    const endpoint = button.endpoint;
+    const response = await endpoint.callTest(this.#actions, { parse: true });
+
+    return response;
   }
 
   async #wait(ms: number) {
