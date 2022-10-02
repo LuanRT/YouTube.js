@@ -230,12 +230,6 @@ class NavigationEndpoint extends YTNode {
         params: data.sendLiveChatVoteEndpoint.params
       };
     }
-
-    if (data?.liveChatItemContextMenuEndpoint) {
-      this.live_chat_item_context_menu = {
-        params: data.liveChatItemContextMenuEndpoint.params
-      };
-    }
   }
 
   /**
@@ -249,6 +243,8 @@ class NavigationEndpoint extends YTNode {
         return '/player';
       case 'watchPlaylistEndpoint':
         return '/next';
+      case 'liveChatItemContextMenuEndpoint':
+        return 'live_chat/get_item_context_menu';
     }
   }
 
@@ -297,6 +293,15 @@ class NavigationEndpoint extends YTNode {
       const response = await actions.engage(this.metadata.api_url, { video_id: this.like.target.video_id, params: this.like.params });
       return response;
     }
+
+    if (this.live_chat_item_context_menu) {
+      if (!this.metadata.api_url)
+        throw new Error('Live Chat Item Context Menu endpoint requires an api_url, but was not parsed from the response.');
+      const response = await actions.livechat(this.metadata.api_url, {
+        params: this.live_chat_item_context_menu.params
+      });
+      return response;
+    }
   }
 
   async call(actions: Actions, client: string | undefined, parse: true) : Promise<ParsedResponse | undefined>;
@@ -307,7 +312,7 @@ class NavigationEndpoint extends YTNode {
     if (parse && result)
       return Parser.parseResponse(result.data);
 
-    return this.#call(actions, client);
+    return result;
   }
 }
 

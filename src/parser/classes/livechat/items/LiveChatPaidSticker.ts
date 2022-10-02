@@ -23,6 +23,7 @@ class LiveChatPaidSticker extends YTNode {
   sticker: Thumbnail[];
   purchase_amount: string;
   context_menu: NavigationEndpoint;
+  menu_endpoint?: NavigationEndpoint;
   timestamp: number;
 
   constructor(data: any) {
@@ -42,7 +43,8 @@ class LiveChatPaidSticker extends YTNode {
     this.author_name_text_color = data.authorNameTextColor;
     this.sticker = Thumbnail.fromResponse(data.sticker);
     this.purchase_amount = new Text(data.purchaseAmountText).toString();
-    this.context_menu = new NavigationEndpoint(data.contextMenuEndpoint);
+    this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
+    this.context_menu = this.menu_endpoint;
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);
   }
 }

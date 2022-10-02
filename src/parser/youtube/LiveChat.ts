@@ -1,4 +1,4 @@
-import Parser, { LiveChatContinuation } from '../index';
+import Parser, { LiveChatContinuation, ParsedResponse } from '../index';
 import EventEmitter from '../../utils/EventEmitterLike';
 import VideoInfo from './VideoInfo';
 
@@ -22,11 +22,21 @@ import ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipC
 
 import { InnertubeError } from '../../utils/Utils';
 import { ObservedArray, YTNode } from '../helpers';
+import LiveChatTextMessage from '../classes/livechat/items/LiveChatTextMessage';
+import LiveChatPaidMessage from '../classes/livechat/items/LiveChatPaidMessage';
+import LiveChatPaidSticker from '../classes/livechat/items/LiveChatPaidSticker';
+import LiveChatAutoModMessage from '../classes/livechat/items/LiveChatAutoModMessage';
+import LiveChatMembershipItem from '../classes/livechat/items/LiveChatMembershipItem';
+import LiveChatViewerEngagementMessage from '../classes/livechat/items/LiveChatViewerEngagementMessage';
+import ItemMenu from './ItemMenu';
+import Button from '../classes/Button';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
   MarkChatItemAsDeletedAction | MarkChatItemsByAuthorAsDeletedAction | RemoveBannerForLiveChatCommand |
   ReplaceChatItemAction | ReplayChatItemAction | ShowLiveChatActionPanelAction | ShowLiveChatTooltipCommand;
+
+export type ChatItemHasMenuEndpoint = LiveChatAutoModMessage | LiveChatMembershipItem | LiveChatPaidMessage | LiveChatPaidSticker | LiveChatTextMessage | LiveChatViewerEngagementMessage;
 
 export interface LiveMetadata {
   title: UpdateTitleAction | undefined;
@@ -178,6 +188,29 @@ class LiveChat extends EventEmitter {
       throw new InnertubeError('Response did not have an "actions" property. The call may have failed.');
 
     return data.actions.array().as(AddChatItemAction);
+  }
+
+  /**
+   * Retrieves given chat item's menu.
+   */
+  async getItemMenu(item: ChatItemHasMenuEndpoint): Promise<ItemMenu> {
+    if (!item.menu_endpoint)
+      throw new InnertubeError('This item does not have a menu.', item);
+
+    const response = await item.menu_endpoint.call(this.#actions, undefined, true);
+
+    if (!response)
+      throw new InnertubeError('Could not retrieve item menu.', item);
+
+    return new ItemMenu(response, this.#actions);
+  }
+
+  /**
+   * Equivalent to "clicking" a button.
+   */
+  async selectButton(button: Button): Promise<ParsedResponse> {
+    const response = await button.endpoint.callTest(this.#actions, { parse: true });
+    return response;
   }
 
   async #wait(ms: number) {
