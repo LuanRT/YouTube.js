@@ -103,6 +103,7 @@ import { default as LiveChatPlaceholderItem } from './classes/livechat/items/Liv
 import { default as LiveChatProductItem } from './classes/livechat/items/LiveChatProductItem';
 import { default as LiveChatTextMessage } from './classes/livechat/items/LiveChatTextMessage';
 import { default as LiveChatTickerPaidMessageItem } from './classes/livechat/items/LiveChatTickerPaidMessageItem';
+import { default as LiveChatTickerPaidStickerItem } from './classes/livechat/items/LiveChatTickerPaidStickerItem';
 import { default as LiveChatTickerSponsorItem } from './classes/livechat/items/LiveChatTickerSponsorItem';
 import { default as LiveChatViewerEngagementMessage } from './classes/livechat/items/LiveChatViewerEngagementMessage';
 import { default as PollHeader } from './classes/livechat/items/PollHeader';
@@ -110,6 +111,7 @@ import { default as LiveChatActionPanel } from './classes/livechat/LiveChatActio
 import { default as MarkChatItemAsDeletedAction } from './classes/livechat/MarkChatItemAsDeletedAction';
 import { default as MarkChatItemsByAuthorAsDeletedAction } from './classes/livechat/MarkChatItemsByAuthorAsDeletedAction';
 import { default as RemoveBannerForLiveChatCommand } from './classes/livechat/RemoveBannerForLiveChatCommand';
+import { default as RemoveChatItemAction } from './classes/livechat/RemoveChatItemAction';
 import { default as ReplaceChatItemAction } from './classes/livechat/ReplaceChatItemAction';
 import { default as ReplayChatItemAction } from './classes/livechat/ReplayChatItemAction';
 import { default as ShowLiveChatActionPanelAction } from './classes/livechat/ShowLiveChatActionPanelAction';
@@ -378,6 +380,7 @@ const map: Record<string, YTNodeConstructor> = {
   LiveChatProductItem,
   LiveChatTextMessage,
   LiveChatTickerPaidMessageItem,
+  LiveChatTickerPaidStickerItem,
   LiveChatTickerSponsorItem,
   LiveChatViewerEngagementMessage,
   PollHeader,
@@ -385,6 +388,7 @@ const map: Record<string, YTNodeConstructor> = {
   MarkChatItemAsDeletedAction,
   MarkChatItemsByAuthorAsDeletedAction,
   RemoveBannerForLiveChatCommand,
+  RemoveChatItemAction,
   ReplaceChatItemAction,
   ReplayChatItemAction,
   ShowLiveChatActionPanelAction,
