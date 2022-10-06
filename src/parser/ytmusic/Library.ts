@@ -1,17 +1,20 @@
 import Parser, { GridContinuation, MusicShelfContinuation, ParsedResponse, PlaylistPanelContinuation, SectionListContinuation } from '..';
 import Actions from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
+
 import DropdownItem from '../classes/DropdownItem';
 import NavigationEndpoint from '../classes/NavigationEndpoint';
 import PlaylistPanel from '../classes/PlaylistPanel';
 import SectionList from '../classes/SectionList';
 
 type ContentType = 'history' | 'playlists' | 'albums' | 'songs' | 'artists' | 'subscriptions';
+
 type Continuation = {
   type: 'browse' | 'next';
   token: string,
   payload?: {}
 };
+
 type ItemFilter = ((item: any) => boolean) | null;
 type SortBy = 'recently_added' | 'a_z' | 'z_a';
 
