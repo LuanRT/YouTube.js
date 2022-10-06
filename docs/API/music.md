@@ -151,7 +151,27 @@ Retrieves library.
 
 **Returns:** `Promise.<Library>`
 
-<!-- TODO: document Library's methods and getters. -->
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<library>#getPlaylists(args?)`
+  - Retrieves the library's playlists.
+
+- `<library>#getAlbums(args?)`
+  - Retrieves the library's albums.
+
+- `<library>#getArtists(args?)`
+  - Retrieves the library's artists.
+  - 
+- `<library>#getSongs(args?)`
+  - Retrieves the library's songs.
+
+- `<library>#getRecentActivity(args)`
+  - Retrieves recent activity.
+
+</p>
+</details> 
 
 <a name="getartist"></a>
 ### getArtist(artist_id)
