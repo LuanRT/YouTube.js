@@ -21,6 +21,7 @@ const livechat = await info.getLiveChat();
   * [.ev](#ev) ⇒ `EventEmitter`
   * [.start](#start) ⇒ `function`
   * [.stop](#stop) ⇒ `function`
+  * [.getItemMenu](#getitemmenu) ⇒ `function`
   * [.sendMessage](#sendmessage) ⇒ `function`
 
 <a name="ev"></a>
@@ -57,6 +58,16 @@ Starts the Live Chat.
 <a name="stop"></a>
 ### stop()
 Stops the Live Chat.
+
+<a name="getitemmenu"></a>
+### getItemMenu(item)
+Retrieves given chat item's menu.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | `object` | Chat item |
+
+**Returns:** `Promise<ItemMenu>`
 
 <a name="sendmessage"></a>
 ### sendMessage(text)
