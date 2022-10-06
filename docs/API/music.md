@@ -149,7 +149,7 @@ Retrieves “Explore” feed.
 
 Retrieves library.
 
-**Returns:** `Promise.<Library>`
+**Returns:** `Library`
 
 <details>
 <summary>Methods & Getters</summary>
@@ -163,7 +163,7 @@ Retrieves library.
 
 - `<library>#getArtists(args?)`
   - Retrieves the library's artists.
-  - 
+
 - `<library>#getSongs(args?)`
   - Retrieves the library's songs.
 
