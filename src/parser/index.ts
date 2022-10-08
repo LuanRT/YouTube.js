@@ -278,7 +278,7 @@ export default class Parser {
         formats: Parser.parseFormats(data.streamingData.formats),
         adaptive_formats: Parser.parseFormats(data.streamingData.adaptiveFormats),
         dash_manifest_url: data.streamingData?.dashManifestUrl || null,
-        dls_manifest_url: data.streamingData?.dashManifestUrl || null
+        hls_manifest_url: data.streamingData?.hlsManifestUrl || null
       } : undefined,
       current_video_endpoint: data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null,
       captions: Parser.parseItem<PlayerCaptionsTracklist>(data.captions, PlayerCaptionsTracklist),
