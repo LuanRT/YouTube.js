@@ -57,9 +57,45 @@ export interface InnertubePayload {
      */
     target?: string;
     /**
-     * @generated from protobuf field: optional youtube.InnertubePayload.VideoSettings video_settings = 20;
+     * @generated from protobuf field: optional youtube.InnertubePayload.Title title = 3;
      */
-    videoSettings?: InnertubePayload_VideoSettings;
+    title?: InnertubePayload_Title;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.Description description = 4;
+     */
+    description?: InnertubePayload_Description;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.Tags tags = 6;
+     */
+    tags?: InnertubePayload_Tags;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.Privacy privacy = 38;
+     */
+    privacy?: InnertubePayload_Privacy;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.MadeForKids made_for_kids = 68;
+     */
+    madeForKids?: InnertubePayload_MadeForKids;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.AgeRestricted age_restricted = 69;
+     */
+    ageRestricted?: InnertubePayload_AgeRestricted;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.AllowRatings allow_ratings = 9;
+     */
+    allowRatings?: InnertubePayload_AllowRatings;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.AllowEmbedding allow_embedding = 10;
+     */
+    allowEmbedding?: InnertubePayload_AllowEmbedding;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.License license = 8;
+     */
+    license?: InnertubePayload_License;
+    /**
+     * @generated from protobuf field: optional youtube.InnertubePayload.VideoThumbnail video_thumbnail = 20;
+     */
+    videoThumbnail?: InnertubePayload_VideoThumbnail;
 }
 /**
  * @generated from protobuf message youtube.InnertubePayload.Context
@@ -87,25 +123,126 @@ export interface InnertubePayload_Context_Client {
      */
     clientName: string;
 }
+// *** YT Sudio stuff ***
+
 /**
- * Note: I'm not entirely sure this message is only used for video settings
- *
- * @generated from protobuf message youtube.InnertubePayload.VideoSettings
+ * @generated from protobuf message youtube.InnertubePayload.Title
  */
-export interface InnertubePayload_VideoSettings {
+export interface InnertubePayload_Title {
+    /**
+     * @generated from protobuf field: string text = 1;
+     */
+    text: string;
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.Description
+ */
+export interface InnertubePayload_Description {
+    /**
+     * @generated from protobuf field: string text = 1;
+     */
+    text: string;
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.Tags
+ */
+export interface InnertubePayload_Tags {
+    /**
+     * @generated from protobuf field: repeated string list = 1;
+     */
+    list: string[];
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.Privacy
+ */
+export interface InnertubePayload_Privacy {
+    /**
+     * @generated from protobuf field: int32 type = 1;
+     */
+    type: number;
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.MadeForKids
+ */
+export interface InnertubePayload_MadeForKids {
+    /**
+     * @generated from protobuf field: int32 unkparam = 1;
+     */
+    unkparam: number;
+    /**
+     * @generated from protobuf field: int32 choice = 2;
+     */
+    choice: number;
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.AgeRestricted
+ */
+export interface InnertubePayload_AgeRestricted {
+    /**
+     * @generated from protobuf field: int32 unkparam = 1;
+     */
+    unkparam: number;
+    /**
+     * @generated from protobuf field: int32 choice = 2;
+     */
+    choice: number;
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.AllowRatings
+ */
+export interface InnertubePayload_AllowRatings {
+    /**
+     * @generated from protobuf field: int32 unkparam_1 = 1;
+     */
+    unkparam1: number;
+    /**
+     * @generated from protobuf field: int32 unkparam_2 = 2;
+     */
+    unkparam2: number;
+    /**
+     * @generated from protobuf field: int32 choice = 4;
+     */
+    choice: number;
+    /**
+     * @generated from protobuf field: int32 unkparam_3 = 5;
+     */
+    unkparam3: number;
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.AllowEmbedding
+ */
+export interface InnertubePayload_AllowEmbedding {
+    /**
+     * @generated from protobuf field: int32 choice = 1;
+     */
+    choice: number;
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.License
+ */
+export interface InnertubePayload_License {
+    /**
+     * @generated from protobuf field: string type = 1;
+     */
+    type: string;
+}
+/**
+ * @generated from protobuf message youtube.InnertubePayload.VideoThumbnail
+ */
+export interface InnertubePayload_VideoThumbnail {
     /**
      * @generated from protobuf field: int32 type = 1;
      */
     type: number; // is this something else?
     /**
-     * @generated from protobuf field: youtube.InnertubePayload.VideoSettings.Thumbnail thumbnail = 3;
+     * @generated from protobuf field: youtube.InnertubePayload.VideoThumbnail.Thumbnail thumbnail = 3;
      */
-    thumbnail?: InnertubePayload_VideoSettings_Thumbnail;
+    thumbnail?: InnertubePayload_VideoThumbnail_Thumbnail;
 }
 /**
- * @generated from protobuf message youtube.InnertubePayload.VideoSettings.Thumbnail
+ * @generated from protobuf message youtube.InnertubePayload.VideoThumbnail.Thumbnail
  */
-export interface InnertubePayload_VideoSettings_Thumbnail {
+export interface InnertubePayload_VideoThumbnail_Thumbnail {
     /**
      * @generated from protobuf field: bytes image_data = 1;
      */
@@ -683,7 +820,16 @@ class InnertubePayload$Type extends MessageType<InnertubePayload> {
         super("youtube.InnertubePayload", [
             { no: 1, name: "context", kind: "message", T: () => InnertubePayload_Context },
             { no: 2, name: "target", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
-            { no: 20, name: "video_settings", kind: "message", T: () => InnertubePayload_VideoSettings }
+            { no: 3, name: "title", kind: "message", T: () => InnertubePayload_Title },
+            { no: 4, name: "description", kind: "message", T: () => InnertubePayload_Description },
+            { no: 6, name: "tags", kind: "message", T: () => InnertubePayload_Tags },
+            { no: 38, name: "privacy", kind: "message", T: () => InnertubePayload_Privacy },
+            { no: 68, name: "made_for_kids", kind: "message", T: () => InnertubePayload_MadeForKids },
+            { no: 69, name: "age_restricted", kind: "message", T: () => InnertubePayload_AgeRestricted },
+            { no: 9, name: "allow_ratings", kind: "message", T: () => InnertubePayload_AllowRatings },
+            { no: 10, name: "allow_embedding", kind: "message", T: () => InnertubePayload_AllowEmbedding },
+            { no: 8, name: "license", kind: "message", T: () => InnertubePayload_License },
+            { no: 20, name: "video_thumbnail", kind: "message", T: () => InnertubePayload_VideoThumbnail }
         ]);
     }
     create(value?: PartialMessage<InnertubePayload>): InnertubePayload {
@@ -704,8 +850,35 @@ class InnertubePayload$Type extends MessageType<InnertubePayload> {
                 case /* optional string target */ 2:
                     message.target = reader.string();
                     break;
-                case /* optional youtube.InnertubePayload.VideoSettings video_settings */ 20:
-                    message.videoSettings = InnertubePayload_VideoSettings.internalBinaryRead(reader, reader.uint32(), options, message.videoSettings);
+                case /* optional youtube.InnertubePayload.Title title */ 3:
+                    message.title = InnertubePayload_Title.internalBinaryRead(reader, reader.uint32(), options, message.title);
+                    break;
+                case /* optional youtube.InnertubePayload.Description description */ 4:
+                    message.description = InnertubePayload_Description.internalBinaryRead(reader, reader.uint32(), options, message.description);
+                    break;
+                case /* optional youtube.InnertubePayload.Tags tags */ 6:
+                    message.tags = InnertubePayload_Tags.internalBinaryRead(reader, reader.uint32(), options, message.tags);
+                    break;
+                case /* optional youtube.InnertubePayload.Privacy privacy */ 38:
+                    message.privacy = InnertubePayload_Privacy.internalBinaryRead(reader, reader.uint32(), options, message.privacy);
+                    break;
+                case /* optional youtube.InnertubePayload.MadeForKids made_for_kids */ 68:
+                    message.madeForKids = InnertubePayload_MadeForKids.internalBinaryRead(reader, reader.uint32(), options, message.madeForKids);
+                    break;
+                case /* optional youtube.InnertubePayload.AgeRestricted age_restricted */ 69:
+                    message.ageRestricted = InnertubePayload_AgeRestricted.internalBinaryRead(reader, reader.uint32(), options, message.ageRestricted);
+                    break;
+                case /* optional youtube.InnertubePayload.AllowRatings allow_ratings */ 9:
+                    message.allowRatings = InnertubePayload_AllowRatings.internalBinaryRead(reader, reader.uint32(), options, message.allowRatings);
+                    break;
+                case /* optional youtube.InnertubePayload.AllowEmbedding allow_embedding */ 10:
+                    message.allowEmbedding = InnertubePayload_AllowEmbedding.internalBinaryRead(reader, reader.uint32(), options, message.allowEmbedding);
+                    break;
+                case /* optional youtube.InnertubePayload.License license */ 8:
+                    message.license = InnertubePayload_License.internalBinaryRead(reader, reader.uint32(), options, message.license);
+                    break;
+                case /* optional youtube.InnertubePayload.VideoThumbnail video_thumbnail */ 20:
+                    message.videoThumbnail = InnertubePayload_VideoThumbnail.internalBinaryRead(reader, reader.uint32(), options, message.videoThumbnail);
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -725,9 +898,36 @@ class InnertubePayload$Type extends MessageType<InnertubePayload> {
         /* optional string target = 2; */
         if (message.target !== undefined)
             writer.tag(2, WireType.LengthDelimited).string(message.target);
-        /* optional youtube.InnertubePayload.VideoSettings video_settings = 20; */
-        if (message.videoSettings)
-            InnertubePayload_VideoSettings.internalBinaryWrite(message.videoSettings, writer.tag(20, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.Title title = 3; */
+        if (message.title)
+            InnertubePayload_Title.internalBinaryWrite(message.title, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.Description description = 4; */
+        if (message.description)
+            InnertubePayload_Description.internalBinaryWrite(message.description, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.Tags tags = 6; */
+        if (message.tags)
+            InnertubePayload_Tags.internalBinaryWrite(message.tags, writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.Privacy privacy = 38; */
+        if (message.privacy)
+            InnertubePayload_Privacy.internalBinaryWrite(message.privacy, writer.tag(38, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.MadeForKids made_for_kids = 68; */
+        if (message.madeForKids)
+            InnertubePayload_MadeForKids.internalBinaryWrite(message.madeForKids, writer.tag(68, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.AgeRestricted age_restricted = 69; */
+        if (message.ageRestricted)
+            InnertubePayload_AgeRestricted.internalBinaryWrite(message.ageRestricted, writer.tag(69, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.AllowRatings allow_ratings = 9; */
+        if (message.allowRatings)
+            InnertubePayload_AllowRatings.internalBinaryWrite(message.allowRatings, writer.tag(9, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.AllowEmbedding allow_embedding = 10; */
+        if (message.allowEmbedding)
+            InnertubePayload_AllowEmbedding.internalBinaryWrite(message.allowEmbedding, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.License license = 8; */
+        if (message.license)
+            InnertubePayload_License.internalBinaryWrite(message.license, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
+        /* optional youtube.InnertubePayload.VideoThumbnail video_thumbnail = 20; */
+        if (message.videoThumbnail)
+            InnertubePayload_VideoThumbnail.internalBinaryWrite(message.videoThumbnail, writer.tag(20, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -847,30 +1047,26 @@ class InnertubePayload_Context_Client$Type extends MessageType<InnertubePayload_
  */
 export const InnertubePayload_Context_Client = new InnertubePayload_Context_Client$Type();
 // @generated message type with reflection information, may provide speed optimized methods
-class InnertubePayload_VideoSettings$Type extends MessageType<InnertubePayload_VideoSettings> {
+class InnertubePayload_Title$Type extends MessageType<InnertubePayload_Title> {
     constructor() {
-        super("youtube.InnertubePayload.VideoSettings", [
-            { no: 1, name: "type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 3, name: "thumbnail", kind: "message", T: () => InnertubePayload_VideoSettings_Thumbnail }
+        super("youtube.InnertubePayload.Title", [
+            { no: 1, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
         ]);
     }
-    create(value?: PartialMessage<InnertubePayload_VideoSettings>): InnertubePayload_VideoSettings {
-        const message = { type: 0 };
+    create(value?: PartialMessage<InnertubePayload_Title>): InnertubePayload_Title {
+        const message = { text: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
-            reflectionMergePartial<InnertubePayload_VideoSettings>(this, message, value);
+            reflectionMergePartial<InnertubePayload_Title>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_VideoSettings): InnertubePayload_VideoSettings {
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_Title): InnertubePayload_Title {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* int32 type */ 1:
-                    message.type = reader.int32();
-                    break;
-                case /* youtube.InnertubePayload.VideoSettings.Thumbnail thumbnail */ 3:
-                    message.thumbnail = InnertubePayload_VideoSettings_Thumbnail.internalBinaryRead(reader, reader.uint32(), options, message.thumbnail);
+                case /* string text */ 1:
+                    message.text = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -883,13 +1079,10 @@ class InnertubePayload_VideoSettings$Type extends MessageType<InnertubePayload_V
         }
         return message;
     }
-    internalBinaryWrite(message: InnertubePayload_VideoSettings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* int32 type = 1; */
-        if (message.type !== 0)
-            writer.tag(1, WireType.Varint).int32(message.type);
-        /* youtube.InnertubePayload.VideoSettings.Thumbnail thumbnail = 3; */
-        if (message.thumbnail)
-            InnertubePayload_VideoSettings_Thumbnail.internalBinaryWrite(message.thumbnail, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+    internalBinaryWrite(message: InnertubePayload_Title, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string text = 1; */
+        if (message.text !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.text);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -897,24 +1090,489 @@ class InnertubePayload_VideoSettings$Type extends MessageType<InnertubePayload_V
     }
 }
 /**
- * @generated MessageType for protobuf message youtube.InnertubePayload.VideoSettings
+ * @generated MessageType for protobuf message youtube.InnertubePayload.Title
  */
-export const InnertubePayload_VideoSettings = new InnertubePayload_VideoSettings$Type();
+export const InnertubePayload_Title = new InnertubePayload_Title$Type();
 // @generated message type with reflection information, may provide speed optimized methods
-class InnertubePayload_VideoSettings_Thumbnail$Type extends MessageType<InnertubePayload_VideoSettings_Thumbnail> {
+class InnertubePayload_Description$Type extends MessageType<InnertubePayload_Description> {
     constructor() {
-        super("youtube.InnertubePayload.VideoSettings.Thumbnail", [
+        super("youtube.InnertubePayload.Description", [
+            { no: 1, name: "text", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_Description>): InnertubePayload_Description {
+        const message = { text: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_Description>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_Description): InnertubePayload_Description {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string text */ 1:
+                    message.text = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_Description, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string text = 1; */
+        if (message.text !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.text);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.Description
+ */
+export const InnertubePayload_Description = new InnertubePayload_Description$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_Tags$Type extends MessageType<InnertubePayload_Tags> {
+    constructor() {
+        super("youtube.InnertubePayload.Tags", [
+            { no: 1, name: "list", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_Tags>): InnertubePayload_Tags {
+        const message = { list: [] };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_Tags>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_Tags): InnertubePayload_Tags {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* repeated string list */ 1:
+                    message.list.push(reader.string());
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_Tags, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* repeated string list = 1; */
+        for (let i = 0; i < message.list.length; i++)
+            writer.tag(1, WireType.LengthDelimited).string(message.list[i]);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.Tags
+ */
+export const InnertubePayload_Tags = new InnertubePayload_Tags$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_Privacy$Type extends MessageType<InnertubePayload_Privacy> {
+    constructor() {
+        super("youtube.InnertubePayload.Privacy", [
+            { no: 1, name: "type", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_Privacy>): InnertubePayload_Privacy {
+        const message = { type: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_Privacy>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_Privacy): InnertubePayload_Privacy {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 type */ 1:
+                    message.type = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_Privacy, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.Privacy
+ */
+export const InnertubePayload_Privacy = new InnertubePayload_Privacy$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_MadeForKids$Type extends MessageType<InnertubePayload_MadeForKids> {
+    constructor() {
+        super("youtube.InnertubePayload.MadeForKids", [
+            { no: 1, name: "unkparam", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "choice", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_MadeForKids>): InnertubePayload_MadeForKids {
+        const message = { unkparam: 0, choice: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_MadeForKids>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_MadeForKids): InnertubePayload_MadeForKids {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 unkparam */ 1:
+                    message.unkparam = reader.int32();
+                    break;
+                case /* int32 choice */ 2:
+                    message.choice = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_MadeForKids, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 unkparam = 1; */
+        if (message.unkparam !== 0)
+            writer.tag(1, WireType.Varint).int32(message.unkparam);
+        /* int32 choice = 2; */
+        if (message.choice !== 0)
+            writer.tag(2, WireType.Varint).int32(message.choice);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.MadeForKids
+ */
+export const InnertubePayload_MadeForKids = new InnertubePayload_MadeForKids$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_AgeRestricted$Type extends MessageType<InnertubePayload_AgeRestricted> {
+    constructor() {
+        super("youtube.InnertubePayload.AgeRestricted", [
+            { no: 1, name: "unkparam", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "choice", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_AgeRestricted>): InnertubePayload_AgeRestricted {
+        const message = { unkparam: 0, choice: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_AgeRestricted>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_AgeRestricted): InnertubePayload_AgeRestricted {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 unkparam */ 1:
+                    message.unkparam = reader.int32();
+                    break;
+                case /* int32 choice */ 2:
+                    message.choice = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_AgeRestricted, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 unkparam = 1; */
+        if (message.unkparam !== 0)
+            writer.tag(1, WireType.Varint).int32(message.unkparam);
+        /* int32 choice = 2; */
+        if (message.choice !== 0)
+            writer.tag(2, WireType.Varint).int32(message.choice);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.AgeRestricted
+ */
+export const InnertubePayload_AgeRestricted = new InnertubePayload_AgeRestricted$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_AllowRatings$Type extends MessageType<InnertubePayload_AllowRatings> {
+    constructor() {
+        super("youtube.InnertubePayload.AllowRatings", [
+            { no: 1, name: "unkparam_1", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "unkparam_2", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 4, name: "choice", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 5, name: "unkparam_3", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_AllowRatings>): InnertubePayload_AllowRatings {
+        const message = { unkparam1: 0, unkparam2: 0, choice: 0, unkparam3: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_AllowRatings>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_AllowRatings): InnertubePayload_AllowRatings {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 unkparam_1 */ 1:
+                    message.unkparam1 = reader.int32();
+                    break;
+                case /* int32 unkparam_2 */ 2:
+                    message.unkparam2 = reader.int32();
+                    break;
+                case /* int32 choice */ 4:
+                    message.choice = reader.int32();
+                    break;
+                case /* int32 unkparam_3 */ 5:
+                    message.unkparam3 = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_AllowRatings, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 unkparam_1 = 1; */
+        if (message.unkparam1 !== 0)
+            writer.tag(1, WireType.Varint).int32(message.unkparam1);
+        /* int32 unkparam_2 = 2; */
+        if (message.unkparam2 !== 0)
+            writer.tag(2, WireType.Varint).int32(message.unkparam2);
+        /* int32 choice = 4; */
+        if (message.choice !== 0)
+            writer.tag(4, WireType.Varint).int32(message.choice);
+        /* int32 unkparam_3 = 5; */
+        if (message.unkparam3 !== 0)
+            writer.tag(5, WireType.Varint).int32(message.unkparam3);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.AllowRatings
+ */
+export const InnertubePayload_AllowRatings = new InnertubePayload_AllowRatings$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_AllowEmbedding$Type extends MessageType<InnertubePayload_AllowEmbedding> {
+    constructor() {
+        super("youtube.InnertubePayload.AllowEmbedding", [
+            { no: 1, name: "choice", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_AllowEmbedding>): InnertubePayload_AllowEmbedding {
+        const message = { choice: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_AllowEmbedding>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_AllowEmbedding): InnertubePayload_AllowEmbedding {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 choice */ 1:
+                    message.choice = reader.int32();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_AllowEmbedding, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 choice = 1; */
+        if (message.choice !== 0)
+            writer.tag(1, WireType.Varint).int32(message.choice);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.AllowEmbedding
+ */
+export const InnertubePayload_AllowEmbedding = new InnertubePayload_AllowEmbedding$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_License$Type extends MessageType<InnertubePayload_License> {
+    constructor() {
+        super("youtube.InnertubePayload.License", [
+            { no: 1, name: "type", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_License>): InnertubePayload_License {
+        const message = { type: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_License>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_License): InnertubePayload_License {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string type */ 1:
+                    message.type = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_License, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string type = 1; */
+        if (message.type !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.type);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.License
+ */
+export const InnertubePayload_License = new InnertubePayload_License$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_VideoThumbnail$Type extends MessageType<InnertubePayload_VideoThumbnail> {
+    constructor() {
+        super("youtube.InnertubePayload.VideoThumbnail", [
+            { no: 1, name: "type", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 3, name: "thumbnail", kind: "message", T: () => InnertubePayload_VideoThumbnail_Thumbnail }
+        ]);
+    }
+    create(value?: PartialMessage<InnertubePayload_VideoThumbnail>): InnertubePayload_VideoThumbnail {
+        const message = { type: 0 };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<InnertubePayload_VideoThumbnail>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_VideoThumbnail): InnertubePayload_VideoThumbnail {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 type */ 1:
+                    message.type = reader.int32();
+                    break;
+                case /* youtube.InnertubePayload.VideoThumbnail.Thumbnail thumbnail */ 3:
+                    message.thumbnail = InnertubePayload_VideoThumbnail_Thumbnail.internalBinaryRead(reader, reader.uint32(), options, message.thumbnail);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: InnertubePayload_VideoThumbnail, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        /* youtube.InnertubePayload.VideoThumbnail.Thumbnail thumbnail = 3; */
+        if (message.thumbnail)
+            InnertubePayload_VideoThumbnail_Thumbnail.internalBinaryWrite(message.thumbnail, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.InnertubePayload.VideoThumbnail
+ */
+export const InnertubePayload_VideoThumbnail = new InnertubePayload_VideoThumbnail$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class InnertubePayload_VideoThumbnail_Thumbnail$Type extends MessageType<InnertubePayload_VideoThumbnail_Thumbnail> {
+    constructor() {
+        super("youtube.InnertubePayload.VideoThumbnail.Thumbnail", [
             { no: 1, name: "image_data", kind: "scalar", T: 12 /*ScalarType.BYTES*/ }
         ]);
     }
-    create(value?: PartialMessage<InnertubePayload_VideoSettings_Thumbnail>): InnertubePayload_VideoSettings_Thumbnail {
+    create(value?: PartialMessage<InnertubePayload_VideoThumbnail_Thumbnail>): InnertubePayload_VideoThumbnail_Thumbnail {
         const message = { imageData: new Uint8Array(0) };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
-            reflectionMergePartial<InnertubePayload_VideoSettings_Thumbnail>(this, message, value);
+            reflectionMergePartial<InnertubePayload_VideoThumbnail_Thumbnail>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_VideoSettings_Thumbnail): InnertubePayload_VideoSettings_Thumbnail {
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: InnertubePayload_VideoThumbnail_Thumbnail): InnertubePayload_VideoThumbnail_Thumbnail {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
@@ -933,7 +1591,7 @@ class InnertubePayload_VideoSettings_Thumbnail$Type extends MessageType<Innertub
         }
         return message;
     }
-    internalBinaryWrite(message: InnertubePayload_VideoSettings_Thumbnail, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+    internalBinaryWrite(message: InnertubePayload_VideoThumbnail_Thumbnail, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
         /* bytes image_data = 1; */
         if (message.imageData.length)
             writer.tag(1, WireType.LengthDelimited).bytes(message.imageData);
@@ -944,9 +1602,9 @@ class InnertubePayload_VideoSettings_Thumbnail$Type extends MessageType<Innertub
     }
 }
 /**
- * @generated MessageType for protobuf message youtube.InnertubePayload.VideoSettings.Thumbnail
+ * @generated MessageType for protobuf message youtube.InnertubePayload.VideoThumbnail.Thumbnail
  */
-export const InnertubePayload_VideoSettings_Thumbnail = new InnertubePayload_VideoSettings_Thumbnail$Type();
+export const InnertubePayload_VideoThumbnail_Thumbnail = new InnertubePayload_VideoThumbnail_Thumbnail$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SoundInfoParams$Type extends MessageType<SoundInfoParams> {
     constructor() {
