@@ -20,6 +20,16 @@ export interface InitialUploadData {
 export interface VideoMetadata {
   title?: string;
   description?: string;
+  tags?: string[];
+  license?: string;
+  age_restricted?: boolean;
+  made_for_kids?: boolean;
+  privacy?: 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
+}
+
+export interface UploadedVideoMetadata {
+  title?: string;
+  description?: string;
   privacy?: 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
   is_draft?: boolean;
 }
@@ -54,6 +64,30 @@ class Studio {
   }
 
   /**
+   * Updates given video's metadata.
+   * @example
+   * ```ts
+   * const response = await yt.studio.updateVideoMetadata('videoid', {
+   *   tags: [ 'astronomy', 'NASA', 'APOD' ],
+   *   title: 'Artemis Mission',
+   *   description: 'A nicely written description...',
+   *   licence: 'creative_commons'
+   *   // ...
+   * });
+   * ```
+   */
+  async updateVideoMetadata(video_id: string, metadata: VideoMetadata) {
+    const payload = Proto.encodeVideoMetadataPayload(video_id, metadata);
+
+    const response = await this.#session.actions.execute('/video_manager/metadata_update', {
+      protobuf: true,
+      serialized_data: payload
+    });
+
+    return response;
+  }
+
+  /**
    * Uploads a video to YouTube.
    * @example
    * ```ts
@@ -61,7 +95,7 @@ class Studio {
    * const response = await yt.studio.upload(file.buffer, { title: 'Wow!' });
    * ```
    */
-  async upload(file: BodyInit, metadata: VideoMetadata = {}): Promise<AxioslikeResponse> {
+  async upload(file: BodyInit, metadata: UploadedVideoMetadata = {}): Promise<AxioslikeResponse> {
     const initial_data = await this.#getInitialUploadData();
     const upload_result = await this.#uploadVideo(initial_data.upload_url, file);
 
@@ -128,7 +162,7 @@ class Studio {
     return data;
   }
 
-  async #setVideoMetadata(initial_data: InitialUploadData, upload_result: UploadResult, metadata: VideoMetadata) {
+  async #setVideoMetadata(initial_data: InitialUploadData, upload_result: UploadResult, metadata: UploadedVideoMetadata) {
     const metadata_payload = {
       resourceId: {
         scottyResourceId: {
