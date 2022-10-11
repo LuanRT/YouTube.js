@@ -112,6 +112,7 @@ import { default as MarkChatItemAsDeletedAction } from './classes/livechat/MarkC
 import { default as MarkChatItemsByAuthorAsDeletedAction } from './classes/livechat/MarkChatItemsByAuthorAsDeletedAction';
 import { default as RemoveBannerForLiveChatCommand } from './classes/livechat/RemoveBannerForLiveChatCommand';
 import { default as RemoveChatItemAction } from './classes/livechat/RemoveChatItemAction';
+import { default as RemoveChatItemByAuthorAction } from './classes/livechat/RemoveChatItemByAuthorAction';
 import { default as ReplaceChatItemAction } from './classes/livechat/ReplaceChatItemAction';
 import { default as ReplayChatItemAction } from './classes/livechat/ReplayChatItemAction';
 import { default as ShowLiveChatActionPanelAction } from './classes/livechat/ShowLiveChatActionPanelAction';
@@ -389,6 +390,7 @@ const map: Record<string, YTNodeConstructor> = {
   MarkChatItemsByAuthorAsDeletedAction,
   RemoveBannerForLiveChatCommand,
   RemoveChatItemAction,
+  RemoveChatItemByAuthorAction,
   ReplaceChatItemAction,
   ReplayChatItemAction,
   ShowLiveChatActionPanelAction,
