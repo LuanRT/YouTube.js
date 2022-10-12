@@ -1,3 +1,5 @@
+// TODO: clean this up
+
 syntax = "proto2";
 package youtube;
 
@@ -54,6 +56,12 @@ message InnertubePayload {
   }
   
   optional Privacy privacy = 38;
+  
+  message Category {
+    required int32 id = 1;
+  }
+  
+  optional Category category = 7;
   
   message MadeForKids {
     required int32 unkparam = 1;

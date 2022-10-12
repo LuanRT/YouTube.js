@@ -21,6 +21,7 @@ export interface VideoMetadata {
   title?: string;
   description?: string;
   tags?: string[];
+  category?: number;
   license?: string;
   age_restricted?: boolean;
   made_for_kids?: boolean;
@@ -71,6 +72,7 @@ class Studio {
    *   tags: [ 'astronomy', 'NASA', 'APOD' ],
    *   title: 'Artemis Mission',
    *   description: 'A nicely written description...',
+   *   category: 27,
    *   licence: 'creative_commons'
    *   // ...
    * });

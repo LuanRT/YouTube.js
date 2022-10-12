@@ -260,6 +260,9 @@ class Proto {
     if (Reflect.has(metadata, 'tags'))
       data.tags = { list: metadata.tags || [] };
 
+    if (Reflect.has(metadata, 'category'))
+      data.category = { id: metadata.category || 0 };
+
     if (Reflect.has(metadata, 'privacy')) {
       switch (metadata.privacy) {
         case 'PUBLIC':
