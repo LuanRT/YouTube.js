@@ -1,3 +1,5 @@
+// TODO: clean this up
+
 syntax = "proto2";
 package youtube;
 
@@ -29,8 +31,59 @@ message InnertubePayload {
   // This can be either a target id or a video id.
   optional string target = 2;
   
-  // Note: I'm not entirely sure this message is only used for video settings 
-  message VideoSettings {
+  /**** YT Sudio stuff ****/ 
+  
+  message Title {
+    required string text = 1;
+  }
+  
+  optional Title title = 3;
+  
+  message Description {
+    required string text = 1;
+  }
+  
+  optional Description description = 4;
+  
+  message Tags {
+    repeated string list = 1;
+  }
+  
+  optional Tags tags = 6;
+  
+  message Privacy {
+    required int32 type = 1;
+  }
+  
+  optional Privacy privacy = 38;
+  
+  message Category {
+    required int32 id = 1;
+  }
+  
+  optional Category category = 7;
+  
+  message MadeForKids {
+    required int32 unkparam = 1;
+    required int32 choice = 2;
+  }
+  
+  optional MadeForKids made_for_kids = 68;
+  
+  message AgeRestricted {
+    required int32 unkparam = 1;
+    required int32 choice = 2;
+  }
+  
+  optional AgeRestricted age_restricted = 69;
+
+  message License {
+    required string type = 1;
+  }
+  
+  optional License license = 8;
+  
+  message VideoThumbnail {
     required int32 type = 1; // is this something else?
  
     message Thumbnail {
@@ -40,7 +93,7 @@ message InnertubePayload {
     required Thumbnail thumbnail = 3;
   }
   
-  optional VideoSettings video_settings = 20;
+  optional VideoThumbnail video_thumbnail = 20;
 }
 
 message SoundInfoParams {

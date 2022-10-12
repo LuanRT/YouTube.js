@@ -1,11 +1,9 @@
 import { CLIENTS } from '../utils/Constants';
 import { u8ToBase64 } from '../utils/Utils';
+import { VideoMetadata } from '../core/Studio';
 import { ChannelAnalytics, CreateCommentParams, CreateCommentReplyParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter, SoundInfoParams, VisitorData } from './youtube';
 
 class Proto {
-  /**
-   * Encodes visitor data.
-   */
   static encodeVisitorData(id: string, timestamp: number) {
     const buf = VisitorData.toBinary({
       id,
@@ -14,9 +12,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf).replace(/\/|\+/g, '_'));
   }
 
-  /**
-   * Encodes basic channel analytics parameters.
-   */
   static encodeChannelAnalyticsParams(channel_id: string) {
     const buf = ChannelAnalytics.toBinary({
       params: {
@@ -26,9 +21,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes search filters.
-   */
   static encodeSearchFilters(filters: {
     upload_date?: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year',
     type?: 'all' | 'video' | 'channel' | 'playlist' | 'movie',
@@ -98,9 +90,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes YouTube Music search filters.
-   */
   static encodeMusicSearchFilters(filters: {
     type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist'
   }) {
@@ -118,9 +107,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes livechat message parameters.
-   */
   static encodeMessageParams(channel_id: string, video_id: string) {
     const buf = LiveMessageParams.toBinary({
       params: {
@@ -134,9 +120,6 @@ class Proto {
     return btoa(encodeURIComponent(u8ToBase64(buf)));
   }
 
-  /**
-   * Encodes comment section parameters.
-   */
   static encodeCommentsSectionParams(video_id: string, options: {
     type?: number,
     sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'
@@ -164,9 +147,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes comment replies parameters.
-   */
   static encodeCommentRepliesParams(video_id: string, comment_id: string) {
     const buf = GetCommentsSectionParams.toBinary({
       ctx: {
@@ -189,9 +169,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes comment parameters.
-   */
   static encodeCommentParams(video_id: string) {
     const buf = CreateCommentParams.toBinary({
       videoId: video_id,
@@ -203,9 +180,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes comment reply parameters.
-   */
   static encodeCommentReplyParams(comment_id: string, video_id: string) {
     const buf = CreateCommentReplyParams.toBinary({
       videoId: video_id,
@@ -218,9 +192,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes comment action parameters.
-   */
   static encodeCommentActionParams(type: number, args: {
     comment_id?: string,
     video_id?: string,
@@ -253,9 +224,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes notification preference parameters.
-   */
   static encodeNotificationPref(channel_id: string, index: number) {
     const buf = NotificationPreferences.toBinary({
       channelId: channel_id,
@@ -268,9 +236,68 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  /**
-   * Encodes a custom thumbnail payload.
-   */
+  static encodeVideoMetadataPayload(video_id: string, metadata: VideoMetadata) {
+    const data: InnertubePayload = {
+      context: {
+        client: {
+          unkparam: 14,
+          clientName: CLIENTS.ANDROID.NAME,
+          clientVersion: CLIENTS.ANDROID.VERSION
+        }
+      },
+      target: video_id
+    };
+
+    if (Reflect.has(metadata, 'title'))
+      data.title = { text: metadata.title || '' };
+
+    if (Reflect.has(metadata, 'description'))
+      data.description = { text: metadata.description || '' };
+
+    if (Reflect.has(metadata, 'license'))
+      data.license = { type: metadata.license || '' };
+
+    if (Reflect.has(metadata, 'tags'))
+      data.tags = { list: metadata.tags || [] };
+
+    if (Reflect.has(metadata, 'category'))
+      data.category = { id: metadata.category || 0 };
+
+    if (Reflect.has(metadata, 'privacy')) {
+      switch (metadata.privacy) {
+        case 'PUBLIC':
+          data.privacy = { type: 1 };
+          break;
+        case 'UNLISTED':
+          data.privacy = { type: 2 };
+          break;
+        case 'PRIVATE':
+          data.privacy = { type: 3 };
+          break;
+        default:
+          throw new Error('Invalid visibility option');
+      }
+    }
+
+    if (Reflect.has(metadata, 'made_for_kids')) {
+      data.madeForKids = {
+        unkparam: 1,
+        choice: metadata.made_for_kids ? 1 : 2
+      };
+    }
+
+    if (Reflect.has(metadata, 'age_restricted')) {
+      data.ageRestricted = {
+        unkparam: 1,
+        choice: metadata.age_restricted ? 1 : 2
+      };
+    }
+
+    const buf = InnertubePayload.toBinary(data);
+
+    return buf;
+  }
+
   static encodeCustomThumbnailPayload(video_id: string, bytes: Uint8Array) {
     const data: InnertubePayload = {
       context: {
@@ -281,7 +308,7 @@ class Proto {
         }
       },
       target: video_id,
-      videoSettings: {
+      videoThumbnail: {
         type: 3,
         thumbnail: {
           imageData: bytes
@@ -290,12 +317,10 @@ class Proto {
     };
 
     const buf = InnertubePayload.toBinary(data);
+
     return buf;
   }
 
-  /**
-   * Encodes sound info parameters.
-   */
   static encodeSoundInfoParams(id: string) {
     const data: SoundInfoParams = {
       sound: {
