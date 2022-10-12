@@ -4,12 +4,12 @@ import { AxioslikeResponse } from './Actions';
 import { InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils';
 import { Constants } from '../utils';
 
-export interface UploadResult {
+interface UploadResult {
   status: string;
   scottyResourceId: string;
 }
 
-export interface InitialUploadData {
+interface InitialUploadData {
   frontend_upload_id: string;
   upload_id: string;
   upload_url: string;

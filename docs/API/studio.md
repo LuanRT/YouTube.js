@@ -6,6 +6,7 @@ YouTube Studio class (WIP).
 
 * Studio 
   * [.setThumbnail(video_id, buffer)](#setthumbnail)
+  * [.updateVideoMetadata(video_id, metadata)](#updatemetadata)
   * [.upload(file, metadata)](#upload)
 
 <a name="setthumbnail"></a>
@@ -20,6 +21,18 @@ Uploads a custom thumbnail and sets it for a video.
 | video_id | `string` | Video id |
 | buffer | `Uint8Array` | Thumbnail buffer |
 
+<a name="updatemetadata"></a>
+### updateVideoMetadata(video_id, metadata)
+
+Updates given video's metadata.
+
+**Returns:** `Promise.<ActionsResponse>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | Video id |
+| metadata | `VideoMetadata` | Video metadata |
+
 <a name="upload"></a>
 ### upload(file, metadata)
 
@@ -30,4 +43,4 @@ Uploads a video to YouTube.
 | Param | Type | Description |
 | --- | --- | --- |
 | file | `BodyInit` | Video file |
-| metadata | `VideoMetadata` | Video metadata |
+| metadata | `UploadedVideoMetadata` | Video metadata |
