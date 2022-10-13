@@ -1,17 +1,9 @@
 import { CLIENTS } from '../utils/Constants';
 import { u8ToBase64 } from '../utils/Utils';
 import { VideoMetadata } from '../core/Studio';
-import { ChannelAnalytics, CreateCommentParams, CreateCommentReplyParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter, SoundInfoParams, VisitorData } from './youtube';
+import { ChannelAnalytics, CreateCommentParams, CreateCommentReplyParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter, SoundInfoParams } from './youtube';
 
 class Proto {
-  static encodeVisitorData(id: string, timestamp: number) {
-    const buf = VisitorData.toBinary({
-      id,
-      timestamp
-    });
-    return encodeURIComponent(u8ToBase64(buf).replace(/\/|\+/g, '_'));
-  }
-
   static encodeChannelAnalyticsParams(channel_id: string) {
     const buf = ChannelAnalytics.toBinary({
       params: {

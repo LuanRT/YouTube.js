@@ -3,11 +3,6 @@
 syntax = "proto2";
 package youtube;
 
-message VisitorData {
-  required string id = 1;
-  required int32 timestamp = 5;
-}
-
 message ChannelAnalytics {
   message Params {
     required string channel_id = 1001;
