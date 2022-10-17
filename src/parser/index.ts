@@ -170,8 +170,16 @@ export class LiveChatContinuation extends YTNode {
   }
 }
 
+export type ParserError = { classname: string, classdata: any, err: any };
+export type ParserErrorHandler = (error: ParserError) => void;
+
 export default class Parser {
+  static #errorHandler: ParserErrorHandler = Parser.#printError;
   static #memo: Memo | null = null;
+
+  static setParserErrorHandler(handler: ParserErrorHandler) {
+    this.#errorHandler = handler;
+  }
 
   static #clearMemo() {
     Parser.#memo = null;
@@ -356,7 +364,7 @@ export default class Parser {
 
         return result as T;
       } catch (err) {
-        this.printError({ classname, classdata: data[keys[0]], err });
+        this.#errorHandler({ classname, classdata: data[keys[0]], err });
         return null;
       }
     }
@@ -445,7 +453,7 @@ export default class Parser {
     }
   }
 
-  static printError({ classname, classdata, err }: { classname: string, classdata: any, err: any }) {
+  static #printError({ classname, classdata, err }: ParserError) {
     if (err.code == 'MODULE_NOT_FOUND') {
       return console.warn(
         new InnertubeError(
