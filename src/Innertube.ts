@@ -220,7 +220,7 @@ class Innertube {
    */
   async getPlaylist(id: string) {
     throwIfMissing({ id });
-    const response = await this.actions.browse(`VL${id.replace(/VL/g, '')}`);
+    const response = await this.actions.browse(`VL${id}`);
     return new Playlist(this.actions, response.data);
   }
 
