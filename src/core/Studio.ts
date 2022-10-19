@@ -73,7 +73,7 @@ class Studio {
    *   title: 'Artemis Mission',
    *   description: 'A nicely written description...',
    *   category: 27,
-   *   licence: 'creative_commons'
+   *   license: 'creative_commons'
    *   // ...
    * });
    * ```
