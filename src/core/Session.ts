@@ -144,7 +144,7 @@ export default class Session extends EventEmitterLike {
         hl: device_info[0],
         gl: device_info[2],
         remoteHost: device_info[3],
-        visitorData: data[3],
+        visitorData: device_info[13],
         userAgent: device_info[14],
         clientName: client_name,
         clientVersion: device_info[16],
@@ -156,7 +156,7 @@ export default class Session extends EventEmitterLike {
         timeZone: device_info[79],
         browserName: device_info[86],
         browserVersion: device_info[87],
-        originalUrl: Constants.URLS.API.BASE,
+        originalUrl: Constants.URLS.YT_BASE,
         deviceMake: device_info[11],
         deviceModel: device_info[12],
         utcOffsetMinutes: new Date().getTimezoneOffset()
