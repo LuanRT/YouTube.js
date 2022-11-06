@@ -1,12 +1,12 @@
 import Parser, { ParsedResponse } from '..';
-import { AxioslikeResponse } from '../../core/Actions';
+import { ApiResponse } from '../../core/Actions';
 import Element from '../classes/Element';
 
 class Analytics {
   #page;
   sections;
 
-  constructor(response: AxioslikeResponse) {
+  constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);
     this.sections = this.#page.contents_memo?.get('Element')
       ?.map((el) => el.as(Element).model?.item());

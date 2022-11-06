@@ -1,7 +1,8 @@
 import { CLIENTS } from '../utils/Constants';
 import { u8ToBase64 } from '../utils/Utils';
 import { VideoMetadata } from '../core/Studio';
-import { ChannelAnalytics, CreateCommentParams, CreateCommentReplyParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter, SoundInfoParams } from './youtube';
+
+import { ChannelAnalytics, CreateCommentParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter } from './youtube';
 
 class Proto {
   static encodeChannelAnalyticsParams(channel_id: string) {
@@ -139,28 +140,6 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  static encodeCommentRepliesParams(video_id: string, comment_id: string) {
-    const buf = GetCommentsSectionParams.toBinary({
-      ctx: {
-        videoId: video_id
-      },
-      unkParam: 6,
-      params: {
-        repliesOpts: {
-          videoId: video_id, commentId: comment_id,
-          unkopts: {
-            unkParam: 0
-          },
-          unkParam1: 1, unkParam2: 10,
-          channelId: ' ' // XXX: Seems like this can be omitted
-        },
-        target: `comment-replies-item-${comment_id}`
-      }
-    });
-
-    return encodeURIComponent(u8ToBase64(buf));
-  }
-
   static encodeCommentParams(video_id: string) {
     const buf = CreateCommentParams.toBinary({
       videoId: video_id,
@@ -168,18 +147,6 @@ class Proto {
         index: 0
       },
       number: 7
-    });
-    return encodeURIComponent(u8ToBase64(buf));
-  }
-
-  static encodeCommentReplyParams(comment_id: string, video_id: string) {
-    const buf = CreateCommentReplyParams.toBinary({
-      videoId: video_id,
-      commentId: comment_id,
-      params: {
-        unkNum: 0
-      },
-      unkNum: 7
     });
     return encodeURIComponent(u8ToBase64(buf));
   }
@@ -311,23 +278,6 @@ class Proto {
     const buf = InnertubePayload.toBinary(data);
 
     return buf;
-  }
-
-  static encodeSoundInfoParams(id: string) {
-    const data: SoundInfoParams = {
-      sound: {
-        params: {
-          ids: {
-            id1: id,
-            id2: id,
-            id3: id
-          }
-        }
-      }
-    };
-
-    const buf = SoundInfoParams.toBinary(data);
-    return encodeURIComponent(u8ToBase64(buf));
   }
 }
 

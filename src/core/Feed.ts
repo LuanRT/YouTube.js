@@ -1,6 +1,6 @@
 import Parser, { ParsedResponse, ReloadContinuationItemsCommand } from '../parser/index';
 import { Memo, ObservedArray } from '../parser/helpers';
-import { InnertubeError } from '../utils/Utils';
+import { concatMemos, InnertubeError } from '../utils/Utils';
 import Actions from './Actions';
 
 import Post from '../parser/classes/Post';
@@ -30,7 +30,6 @@ import ContinuationItem from '../parser/classes/ContinuationItem';
 
 import Video from '../parser/classes/Video';
 
-// TODO: add a way subdivide into sections and return subfeeds?
 class Feed {
   #page: ParsedResponse;
   #continuation?: ObservedArray<ContinuationItem>;
@@ -44,16 +43,14 @@ class Feed {
       this.#page = Parser.parseResponse(data);
     }
 
-    // Xxx: this can be extremely confusing — maybe refactor?
-    const memo =
-            this.#page.on_response_received_commands ?
-              this.#page.on_response_received_commands_memo :
-              this.#page.on_response_received_endpoints ?
-                this.#page.on_response_received_endpoints_memo :
-                this.#page.contents ?
-                  this.#page.contents_memo :
-                  this.#page.on_response_received_actions ?
-                    this.#page.on_response_received_actions_memo : undefined;
+    const memo = concatMemos(
+      this.#page.contents_memo,
+      this.#page.on_response_received_commands_memo,
+      this.#page.on_response_received_endpoints_memo,
+      this.#page.on_response_received_actions_memo,
+      this.#page.sidebar_memo,
+      this.#page.header_memo
+    );
 
     if (!memo)
       throw new InnertubeError('No memo found in feed');
@@ -183,7 +180,7 @@ class Feed {
       if (this.#continuation.length === 0)
         throw new InnertubeError('There are no continuations');
 
-      const response = await this.#continuation[0].endpoint.call(this.#actions, undefined, true);
+      const response = await this.#continuation[0].endpoint.call(this.#actions, { parse: true });
 
       return response;
     }

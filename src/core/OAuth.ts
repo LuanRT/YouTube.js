@@ -241,7 +241,6 @@ class OAuth {
       .replace(/\n/g, '')
       .match(Constants.OAUTH.REGEX.CLIENT_IDENTITY);
 
-    // TODO: check this.
     const groups = client_identity?.groups;
 
     if (!groups)

@@ -48,7 +48,7 @@ class ItemMenu {
       endpoint = button.as(MenuServiceItem).endpoint;
     }
 
-    const response = await endpoint.callTest(this.#actions, { parse: true });
+    const response = await endpoint.call(this.#actions, { parse: true });
 
     return response;
   }

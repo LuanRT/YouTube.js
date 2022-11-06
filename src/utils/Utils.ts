@@ -1,4 +1,5 @@
 import package_json from '../../package.json';
+import { Memo } from '../parser/helpers';
 import { FetchFunction } from './HTTPClient';
 import userAgents from './user-agents.json';
 
@@ -151,9 +152,18 @@ export function timeToSeconds(time: string) {
   }
 }
 
-/**
- * Throws an error if given parameters are undefined.
- */
+export function concatMemos(...iterables: Memo[]) {
+  const memo = new Memo();
+
+  for (const iterable of iterables) {
+    for (const item of iterable) {
+      memo.set(...item);
+    }
+  }
+
+  return memo;
+}
+
 export function throwIfMissing(params: object) {
   for (const [ key, value ] of Object.entries(params)) {
     if (!value)

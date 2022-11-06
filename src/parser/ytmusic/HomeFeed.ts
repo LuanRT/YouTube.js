@@ -1,5 +1,5 @@
 import Parser, { ParsedResponse, SectionListContinuation } from '../index';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 
 import SectionList from '../classes/SectionList';
@@ -13,9 +13,9 @@ class HomeFeed {
 
   sections;
 
-  constructor(response: AxioslikeResponse | ParsedResponse, actions: Actions) {
+  constructor(response: ApiResponse | ParsedResponse, actions: Actions) {
     this.#actions = actions;
-    this.#page = Parser.parseResponse((response as AxioslikeResponse).data);
+    this.#page = Parser.parseResponse((response as ApiResponse).data);
 
     const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
 
@@ -43,7 +43,11 @@ class HomeFeed {
     if (!this.#continuation)
       throw new InnertubeError('Continuation not found.');
 
-    const response = await this.#actions.browse(this.#continuation, { is_ctoken: true, client: 'YTMUSIC' });
+    const response = await this.#actions.execute('/browse', {
+      client: 'YTMUSIC',
+      continuation: this.#continuation
+    });
+
     return new HomeFeed(response, this.#actions);
   }
 

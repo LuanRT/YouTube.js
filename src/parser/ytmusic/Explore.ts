@@ -1,7 +1,7 @@
 import Parser, { ParsedResponse } from '..';
 
 import { InnertubeError } from '../../utils/Utils';
-import { AxioslikeResponse } from '../../core/Actions';
+import { ApiResponse } from '../../core/Actions';
 
 import Grid from '../classes/Grid';
 import SectionList from '../classes/SectionList';
@@ -15,7 +15,7 @@ class Explore {
   top_buttons;
   sections;
 
-  constructor(response: AxioslikeResponse) {
+  constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);
 
     const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
@@ -28,7 +28,7 @@ class Explore {
     if (!section_list)
       throw new InnertubeError('Target tab did not have any content.');
 
-    this.top_buttons = section_list.contents.array().firstOfType(Grid)?.items.array().as(MusicNavigationButton) || ([] as MusicNavigationButton[]);
+    this.top_buttons = section_list.contents.array().firstOfType(Grid)?.items.as(MusicNavigationButton) || ([] as MusicNavigationButton[]);
     this.sections = section_list.contents.array().getAll({ type: 'MusicCarouselShelf' }) as MusicCarouselShelf[];
   }
 

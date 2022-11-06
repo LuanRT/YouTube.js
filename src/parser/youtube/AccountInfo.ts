@@ -1,5 +1,5 @@
 import Parser, { ParsedResponse } from '..';
-import { AxioslikeResponse } from '../../core/Actions';
+import { ApiResponse } from '../../core/Actions';
 
 import AccountSectionList from '../classes/AccountSectionList';
 import AccountItemSection from '../classes/AccountItemSection';
@@ -11,7 +11,7 @@ class AccountInfo {
   contents: AccountItemSection | null;
   footers: AccountChannel | null;
 
-  constructor(response: AxioslikeResponse) {
+  constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);
 
     const account_section_list = this.#page.contents.array().as(AccountSectionList)[0];

@@ -27,6 +27,7 @@ import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem';
 
 import { observe, ObservedArray, YTNode } from '../parser/helpers';
 import { InnertubeError, throwIfMissing, generateRandomString } from '../utils/Utils';
+import Proto from '../proto';
 
 class Music {
   #session;
@@ -39,7 +40,7 @@ class Music {
 
   /**
    * Retrieves track info. Passing a list item of type MusicTwoRowItem automatically starts a radio.
-   * @param target - video id or a list item.
+   * @param target - Video id or a list item.
    */
   getInfo(target: string | MusicTwoRowItem): Promise<TrackInfo> {
     if (target instanceof MusicTwoRowItem) {
@@ -83,7 +84,7 @@ class Music {
 
     const cpn = generateRandomString(16);
 
-    const initial_info = list_item.endpoint.callTest(this.#actions, {
+    const initial_info = list_item.endpoint.call(this.#actions, {
       cpn,
       client: 'YTMUSIC',
       playbackContext: {
@@ -93,7 +94,7 @@ class Music {
       }
     });
 
-    const continuation = list_item.endpoint.callTest(this.#actions, {
+    const continuation = list_item.endpoint.call(this.#actions, {
       client: 'YTMUSIC',
       enablePersistentPlaylistPanel: true,
       override_endpoint: '/next'
@@ -105,12 +106,26 @@ class Music {
 
   /**
    * Searches on YouTube Music.
+   * @param query - Search query.
+   * @param filters - Search filters.
    */
   async search(query: string, filters: {
     type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
   } = {}): Promise<Search> {
     throwIfMissing({ query });
-    const response = await this.#actions.search({ query, filters, client: 'YTMUSIC' });
+
+    const payload: {
+      query: string;
+      client: string;
+      params?: string;
+    } = { query, client: 'YTMUSIC' };
+
+    if (filters.type && filters.type !== 'all') {
+      payload.params = Proto.encodeMusicSearchFilters(filters);
+    }
+
+    const response = await this.#actions.execute('/search', payload);
+
     return new Search(response, this.#actions, { is_filtered: Reflect.has(filters, 'type') && filters.type !== 'all' });
   }
 
@@ -118,7 +133,11 @@ class Music {
    * Retrieves the home feed.
    */
   async getHomeFeed(): Promise<HomeFeed> {
-    const response = await this.#actions.browse('FEmusic_home', { client: 'YTMUSIC' });
+    const response = await this.#actions.execute('/browse', {
+      client: 'YTMUSIC',
+      browseId: 'FEmusic_home'
+    });
+
     return new HomeFeed(response, this.#actions);
   }
 
@@ -126,20 +145,30 @@ class Music {
    * Retrieves the Explore feed.
    */
   async getExplore(): Promise<Explore> {
-    const response = await this.#actions.browse('FEmusic_explore', { client: 'YTMUSIC' });
+    const response = await this.#actions.execute('/browse', {
+      client: 'YTMUSIC',
+      browseId: 'FEmusic_explore'
+    });
+
     return new Explore(response);
     // TODO: return new Explore(response, this.#actions);
   }
 
   /**
-   * Retrieves the Library.
+   * Retrieves the library.
    */
-  getLibrary() {
-    return new Library(this.#actions);
+  async getLibrary(): Promise<Library> {
+    const response = await this.#actions.execute('/browse', {
+      client: 'YTMUSIC',
+      browseId: 'FEmusic_library_landing'
+    });
+
+    return new Library(response, this.#actions);
   }
 
   /**
    * Retrieves artist's info & content.
+   * @param artist_id - The artist id.
    */
   async getArtist(artist_id: string): Promise<Artist> {
     throwIfMissing({ artist_id });
@@ -147,12 +176,17 @@ class Music {
     if (!artist_id.startsWith('UC') && !artist_id.startsWith('FEmusic_library_privately_owned_artist'))
       throw new InnertubeError('Invalid artist id', artist_id);
 
-    const response = await this.#actions.browse(artist_id, { client: 'YTMUSIC' });
+    const response = await this.#actions.execute('/browse', {
+      client: 'YTMUSIC',
+      browseId: artist_id
+    });
+
     return new Artist(response, this.#actions);
   }
 
   /**
    * Retrieves album.
+   * @param album_id - The album id.
    */
   async getAlbum(album_id: string): Promise<Album> {
     throwIfMissing({ album_id });
@@ -160,12 +194,17 @@ class Music {
     if (!album_id.startsWith('MPR') && !album_id.startsWith('FEmusic_library_privately_owned_release'))
       throw new InnertubeError('Invalid album id', album_id);
 
-    const response = await this.#actions.browse(album_id, { client: 'YTMUSIC' });
+    const response = await this.#actions.execute('/browse', {
+      client: 'YTMUSIC',
+      browseId: album_id
+    });
+
     return new Album(response, this.#actions);
   }
 
   /**
    * Retrieves playlist.
+   * @param playlist_id - The playlist id.
    */
   async getPlaylist(playlist_id: string): Promise<Playlist> {
     throwIfMissing({ playlist_id });
@@ -174,12 +213,18 @@ class Music {
       playlist_id = `VL${playlist_id}`;
     }
 
-    const response = await this.#actions.browse(playlist_id, { client: 'YTMUSIC' });
+    const response = await this.#actions.execute('/browse', {
+      client: 'YTMUSIC',
+      browseId: playlist_id
+    });
+
     return new Playlist(response, this.#actions);
   }
 
   /**
    * Retrieves up next.
+   * @param video_id - The video id.
+   * @param automix - Whether to enable automix.
    */
   async getUpNext(video_id: string, automix = true): Promise<PlaylistPanel> {
     throwIfMissing({ video_id });
@@ -214,7 +259,7 @@ class Music {
       if (!automix_preview_video)
         throw new InnertubeError('Automix item not found');
 
-      const page = await automix_preview_video.playlist_video?.endpoint.callTest(this.#actions, {
+      const page = await automix_preview_video.playlist_video?.endpoint.call(this.#actions, {
         videoId: video_id,
         client: 'YTMUSIC',
         parse: true
@@ -231,6 +276,7 @@ class Music {
 
   /**
    * Retrieves related content.
+   * @param video_id - The video id.
    */
   async getRelated(video_id: string): Promise<ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>> {
     throwIfMissing({ video_id });
@@ -252,10 +298,7 @@ class Music {
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
 
-    const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
-
-    if (!page)
-      throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
+    const page = await tab.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
 
     const shelves = page.contents.item().as(SectionList).contents.array().as(MusicCarouselShelf, MusicDescriptionShelf);
 
@@ -264,6 +307,7 @@ class Music {
 
   /**
    * Retrieves song lyrics.
+   * @param video_id - The video id.
    */
   async getLyrics(video_id: string): Promise<MusicDescriptionShelf | undefined> {
     throwIfMissing({ video_id });
@@ -285,10 +329,7 @@ class Music {
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
 
-    const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
-
-    if (!page)
-      throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
+    const page = await tab.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
 
     if (page.contents.item().key('type').string() === 'Message')
       throw new InnertubeError(page.contents.item().as(Message).text, video_id);
@@ -311,6 +352,7 @@ class Music {
 
   /**
    * Retrieves search suggestions for the given query.
+   * @param query - The query.
    */
   async getSearchSuggestions(query: string) {
     const response = await this.#actions.execute('/music/get_search_suggestions', {
@@ -321,7 +363,7 @@ class Music {
 
     const search_suggestions_section = response.contents_memo.getType(SearchSuggestionsSection)?.[0];
 
-    if (!search_suggestions_section.contents.is_array)
+    if (!search_suggestions_section?.contents.is_array)
       return observe([] as YTNode[]);
 
     return search_suggestions_section?.contents.array();

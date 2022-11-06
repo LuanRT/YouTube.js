@@ -57,7 +57,8 @@ class FilterableFeed extends Feed {
     if (target_filter.is_selected)
       return this;
 
-    const response = await target_filter.endpoint?.call(this.actions, undefined, true);
+    const response = await target_filter.endpoint?.call(this.actions, { parse: true });
+
     return new Feed(this.actions, response, true);
   }
 }

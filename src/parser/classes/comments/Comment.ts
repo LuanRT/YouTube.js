@@ -82,7 +82,7 @@ class Comment extends YTNode {
     if (button.is_toggled)
       throw new InnertubeError('This comment is already liked', { comment_id: this.comment_id });
 
-    const response = await button.endpoint.callTest(this.#actions, { parse: false });
+    const response = await button.endpoint.call(this.#actions, { parse: false });
 
     return response;
   }
@@ -98,7 +98,7 @@ class Comment extends YTNode {
     if (button.is_toggled)
       throw new InnertubeError('This comment is already disliked', { comment_id: this.comment_id });
 
-    const response = await button.endpoint.callTest(this.#actions, { parse: false });
+    const response = await button.endpoint.call(this.#actions, { parse: false });
 
     return response;
   }
@@ -125,7 +125,7 @@ class Comment extends YTNode {
       commentText: text
     };
 
-    const response = await dialog_button.endpoint.callTest(this.#actions, payload);
+    const response = await dialog_button.endpoint.call(this.#actions, payload);
 
     return response;
   }

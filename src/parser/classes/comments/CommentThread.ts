@@ -35,7 +35,7 @@ class CommentThread extends YTNode {
       throw new InnertubeError('This comment has no replies.', { comment_id: this.comment?.comment_id });
 
     const continuation = this.#replies.key('contents').parsed().array().get({ type: 'ContinuationItem' })?.as(ContinuationItem);
-    const response = await continuation?.endpoint.callTest(this.#actions, { parse: true });
+    const response = await continuation?.endpoint.call(this.#actions, { parse: true });
 
     this.replies = response?.on_response_received_endpoints_memo?.getType(Comment).map((comment) => {
       comment.setActions(this.#actions);
@@ -60,7 +60,7 @@ class CommentThread extends YTNode {
     if (!this.#actions)
       throw new InnertubeError('Actions not set for this CommentThread.');
 
-    const response = await this.#continuation.button?.item().key('endpoint').nodeOfType(NavigationEndpoint).callTest(this.#actions, { parse: true });
+    const response = await this.#continuation.button?.item().key('endpoint').nodeOfType(NavigationEndpoint).call(this.#actions, { parse: true });
 
     this.replies = response?.on_response_received_endpoints_memo.getType(Comment).map((comment) => {
       comment.setActions(this.#actions);

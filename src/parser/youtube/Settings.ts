@@ -1,5 +1,5 @@
 import Parser from '..';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 
 import Tab from '../classes/Tab';
@@ -20,7 +20,7 @@ class Settings {
   introduction: PageIntroduction | null | undefined;
   sections;
 
-  constructor(actions: Actions, response: AxioslikeResponse) {
+  constructor(actions: Actions, response: ApiResponse) {
     this.#actions = actions;
     this.#page = Parser.parseResponse(response.data);
 
@@ -53,7 +53,7 @@ class Settings {
     if (!item)
       throw new InnertubeError(`Item "${name}" not found`, { available_items: this.sidebar_items });
 
-    const response = await item.endpoint.callTest(this.#actions, { parse: false });
+    const response = await item.endpoint.call(this.#actions, { parse: false });
 
     return new Settings(this.#actions, response);
   }

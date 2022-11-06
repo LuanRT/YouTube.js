@@ -192,7 +192,7 @@ class LiveChat extends EventEmitter {
     if (!item.menu_endpoint)
       throw new InnertubeError('This item does not have a menu.', item);
 
-    const response = await item.menu_endpoint.call(this.#actions, undefined, true);
+    const response = await item.menu_endpoint.call(this.#actions, { parse: true });
 
     if (!response)
       throw new InnertubeError('Could not retrieve item menu.', item);
@@ -204,7 +204,7 @@ class LiveChat extends EventEmitter {
    * Equivalent to "clicking" a button.
    */
   async selectButton(button: Button): Promise<ParsedResponse> {
-    const response = await button.endpoint.callTest(this.#actions, { parse: true });
+    const response = await button.endpoint.call(this.#actions, { parse: true });
     return response;
   }
 

@@ -36,12 +36,12 @@ class MusicDetailHeader extends YTNode {
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail.croppedSquareThumbnailRenderer.thumbnail);
     this.badges = Parser.parse(data.subtitleBadges);
 
-    const author = this.subtitle.runs?.find((run) => (run as TextRun)?.endpoint?.browse?.id.startsWith('UC'));
+    const author = this.subtitle.runs?.find((run) => (run as TextRun)?.endpoint?.payload?.browseId.startsWith('UC'));
 
     if (author) {
       this.author = {
         name: (author as TextRun).text,
-        channel_id: (author as TextRun).endpoint?.browse?.id,
+        channel_id: (author as TextRun).endpoint?.payload?.browseId,
         endpoint: (author as TextRun).endpoint
       };
     }

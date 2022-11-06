@@ -8,7 +8,7 @@ class MusicMultiSelectMenuItem extends YTNode {
   title: string;
   form_item_entity_key: string;
   selected_icon_type: string;
-  endpoint?: NavigationEndpoint;
+  endpoint?: NavigationEndpoint | null;
   selected: boolean;
 
   constructor(data: any) {
@@ -17,19 +17,7 @@ class MusicMultiSelectMenuItem extends YTNode {
     this.title = new Text(data.title).text;
     this.form_item_entity_key = data.formItemEntityKey;
     this.selected_icon_type = data.selectedIcon?.iconType || null;
-    const command = data.selectedCommand?.commandExecutorCommand?.commands?.find((command: any) => command.musicBrowseFormBinderCommand?.browseEndpoint);
-    if (command) {
-      /**
-       * At this point, endpoint will still be missing `form_data` field which is required for
-       * selection to take effect. This can only be obtained from the response data which
-       * we don't have here. We shall delegate this task back to `Parser`.
-       */
-      this.endpoint = new NavigationEndpoint(command.musicBrowseFormBinderCommand);
-    }
-    /**
-     * Inferring selected state from existence of endpoint. `Parser` shall
-     * update this with the definitive value obtained from response data.
-     */
+    this.endpoint = data.selectedCommand ? new NavigationEndpoint(data.selectedCommand) : null;
     this.selected = !!this.endpoint;
   }
 }

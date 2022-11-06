@@ -5,6 +5,7 @@ import Analytics from '../parser/youtube/Analytics';
 import TimeWatched from '../parser/youtube/TimeWatched';
 import AccountInfo from '../parser/youtube/AccountInfo';
 import Settings from '../parser/youtube/Settings';
+import { InnertubeError } from '../utils/Utils';
 
 class AccountManager {
   #actions;
@@ -16,13 +17,30 @@ class AccountManager {
     this.channel = {
       /**
        * Edits channel name.
+       * @param new_name - The new channel name.
        */
-      editName: (new_name: string) => this.#actions.channel('channel/edit_name', { new_name }),
+      editName: (new_name: string) => {
+        if (!this.#actions.session.logged_in)
+          throw new InnertubeError('You are not signed in');
+
+        return this.#actions.execute('/channel/edit_name', {
+          givenName: new_name,
+          client: 'ANDROID'
+        });
+      },
       /**
        * Edits channel description.
-       *
+       * @param new_description - The new description.
        */
-      editDescription: (new_description: string) => this.#actions.channel('channel/edit_description', { new_description }),
+      editDescription: (new_description: string) => {
+        if (!this.#actions.session.logged_in)
+          throw new InnertubeError('You are not signed in');
+
+        return this.#actions.execute('/channel/edit_description', {
+          givenDescription: new_description,
+          client: 'ANDROID'
+        });
+      },
       /**
        * Retrieves basic channel analytics.
        */
@@ -34,6 +52,9 @@ class AccountManager {
    * Retrieves channel info.
    */
   async getInfo() {
+    if (!this.#actions.session.logged_in)
+      throw new InnertubeError('You are not signed in');
+
     const response = await this.#actions.execute('/account/accounts_list', { client: 'ANDROID' });
     return new AccountInfo(response);
   }
@@ -68,7 +89,12 @@ class AccountManager {
     const info = await this.getInfo();
 
     const params = Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId);
-    const response = await this.#actions.browse('FEanalytics_screen', { params, client: 'ANDROID' });
+
+    const response = await this.#actions.execute('/browse', {
+      browseId: 'FEanalytics_screen',
+      client: 'ANDROID',
+      params
+    });
 
     return new Analytics(response);
   }

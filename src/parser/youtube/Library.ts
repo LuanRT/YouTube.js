@@ -1,5 +1,5 @@
 import Parser, { ParsedResponse } from '..';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 
 import Feed from '../../core/Feed';
@@ -25,7 +25,7 @@ class Library {
   profile;
   sections;
 
-  constructor(response: AxioslikeResponse, actions: Actions) {
+  constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
     this.#page = Parser.parseResponse(response);
 
@@ -66,7 +66,7 @@ class Library {
     if (!button)
       throw new InnertubeError('Did not find target button.');
 
-    const page = await button.as(Button).endpoint.callTest(this.#actions, { parse: true });
+    const page = await button.as(Button).endpoint.call(this.#actions, { parse: true });
 
     switch (shelf.icon_type) {
       case 'LIKE':

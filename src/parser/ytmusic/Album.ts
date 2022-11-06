@@ -1,5 +1,5 @@
 import Parser, { ParsedResponse } from '../index';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 
 import MusicDetailHeader from '../classes/MusicDetailHeader';
 import MicroformatData from '../classes/MicroformatData';
@@ -16,11 +16,11 @@ class Album {
 
   url: string | null;
 
-  constructor(response: AxioslikeResponse, actions: Actions) {
+  constructor(response: ApiResponse, actions: Actions) {
     this.#page = Parser.parseResponse(response.data);
     this.#actions = actions;
 
-    this.header = this.#page.header.item().as(MusicDetailHeader);
+    this.header = this.#page.header?.item().as(MusicDetailHeader);
     this.url = this.#page.microformat?.as(MicroformatData).url_canonical || null;
 
     this.contents = this.#page.contents_memo.get('MusicShelf')?.[0].as(MusicShelf).contents;

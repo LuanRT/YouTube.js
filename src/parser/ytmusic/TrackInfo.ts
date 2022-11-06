@@ -1,5 +1,5 @@
 import Parser, { ParsedResponse } from '..';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 import Constants from '../../utils/Constants';
 import { InnertubeError } from '../../utils/Utils';
 
@@ -36,7 +36,7 @@ class TrackInfo {
   current_video_endpoint;
   player_overlays;
 
-  constructor(data: [AxioslikeResponse, AxioslikeResponse?], actions: Actions, cpn: string) {
+  constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;
 
     const info = Parser.parseResponse(data[0].data);
@@ -96,7 +96,7 @@ class TrackInfo {
     if (target_tab.content)
       return target_tab.content;
 
-    const page = await target_tab.endpoint.callTest(this.#actions, { client: 'YTMUSIC', parse: true });
+    const page = await target_tab.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
 
     if (page.contents.item().key('type').string() === 'Message')
       return page.contents.item().as(Message);
@@ -121,7 +121,7 @@ class TrackInfo {
       if (!automix_preview_video)
         throw new InnertubeError('Automix item not found');
 
-      const page = await automix_preview_video.playlist_video?.endpoint.callTest(this.#actions, {
+      const page = await automix_preview_video.playlist_video?.endpoint.call(this.#actions, {
         videoId: this.basic_info.id,
         client: 'YTMUSIC',
         parse: true
