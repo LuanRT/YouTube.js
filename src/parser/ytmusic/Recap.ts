@@ -1,5 +1,5 @@
 import Parser, { ParsedResponse } from '../index';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 
 import Playlist from './Playlist';
 import MusicHeader from '../classes/MusicHeader';
@@ -22,15 +22,15 @@ class Recap {
   header;
   sections;
 
-  constructor(response: AxioslikeResponse, actions: Actions) {
+  constructor(response: ApiResponse, actions: Actions) {
     this.#page = Parser.parseResponse(response.data);
     this.#actions = actions;
 
-    const header = this.#page.header.item();
+    const header = this.#page.header?.item();
 
-    this.header = header.is(MusicElementHeader) ?
-      this.#page.header.item().as(MusicElementHeader).element?.model?.item().as(HighlightsCarousel) :
-      this.#page.header.item().as(MusicHeader);
+    this.header = header?.is(MusicElementHeader) ?
+      this.#page.header?.item().as(MusicElementHeader).element?.model?.item().as(HighlightsCarousel) :
+      this.#page.header?.item().as(MusicHeader);
 
     const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.firstOfType(Tab);
 
@@ -51,7 +51,7 @@ class Recap {
       throw new InnertubeError('Recap playlist not available, check back later.');
 
     const endpoint = this.header.panels[0].text_on_tap_endpoint;
-    const response = await endpoint.callTest(this.#actions, { client: 'YTMUSIC' });
+    const response = await endpoint.call(this.#actions, { client: 'YTMUSIC' });
 
     return new Playlist(response, this.#actions);
   }

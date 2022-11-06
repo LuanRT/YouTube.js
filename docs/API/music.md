@@ -155,20 +155,26 @@ Retrieves library.
 <summary>Methods & Getters</summary>
 <p>
 
-- `<library>#getPlaylists(args?)`
-  - Retrieves the library's playlists.
+- `<library>#applyFilter(filter)`
+  - Applies given filter to the library.
 
-- `<library>#getAlbums(args?)`
-  - Retrieves the library's albums.
+- `<library>#applySortFilter(filter)`
+  - Applies given sort filter to the library items.
 
-- `<library>#getArtists(args?)`
-  - Retrieves the library's artists.
+- `<library>#getContinuation()`
+  - Retrieves continuation of the library items.
 
-- `<library>#getSongs(args?)`
-  - Retrieves the library's songs.
+- `<library>#has_continuation`
+  - Checks if continuation is available.
 
-- `<library>#getRecentActivity(args)`
-  - Retrieves recent activity.
+- `<library>#filters`
+  - Returns available filters.
+
+- `<library>#sort_filters`
+  - Returns available sort filters.
+
+- `<library>#page`
+  - Returns original InnerTube response (sanitized).
 
 </p>
 </details> 

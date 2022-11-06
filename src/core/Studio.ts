@@ -1,6 +1,6 @@
 import Proto from '../proto';
 import Session from './Session';
-import { AxioslikeResponse } from './Actions';
+import { ApiResponse } from './Actions';
 import { InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils';
 import { Constants } from '../utils';
 
@@ -50,7 +50,10 @@ class Studio {
    * const response = await yt.studio.setThumbnail(video_id, buffer);
    * ```
    */
-  async setThumbnail(video_id: string, buffer: Uint8Array): Promise<AxioslikeResponse> {
+  async setThumbnail(video_id: string, buffer: Uint8Array): Promise<ApiResponse> {
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+
     if (!video_id || !buffer)
       throw new MissingParamError('One or more parameters are missing.');
 
@@ -79,6 +82,9 @@ class Studio {
    * ```
    */
   async updateVideoMetadata(video_id: string, metadata: VideoMetadata) {
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+
     const payload = Proto.encodeVideoMetadataPayload(video_id, metadata);
 
     const response = await this.#session.actions.execute('/video_manager/metadata_update', {
@@ -97,7 +103,10 @@ class Studio {
    * const response = await yt.studio.upload(file.buffer, { title: 'Wow!' });
    * ```
    */
-  async upload(file: BodyInit, metadata: UploadedVideoMetadata = {}): Promise<AxioslikeResponse> {
+  async upload(file: BodyInit, metadata: UploadedVideoMetadata = {}): Promise<ApiResponse> {
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You are not signed in');
+
     const initial_data = await this.#getInitialUploadData();
     const upload_result = await this.#uploadVideo(initial_data.upload_url, file);
 

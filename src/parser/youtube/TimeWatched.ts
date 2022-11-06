@@ -1,5 +1,5 @@
 import Parser, { ParsedResponse } from '..';
-import { AxioslikeResponse } from '../../core/Actions';
+import { ApiResponse } from '../../core/Actions';
 
 import ItemSection from '../classes/ItemSection';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
@@ -11,7 +11,7 @@ class TimeWatched {
   #page;
   contents;
 
-  constructor(response: AxioslikeResponse) {
+  constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);
 
     const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });

@@ -600,7 +600,7 @@ const button = albums.as(MusicCarouselShelf).header?.more_content;
   
 if (button) {
   // To do that, we can call its navigation endpoint:
-  const page = await button.endpoint.call(yt.actions, 'YTMUSIC', true);
+  const page = await button.endpoint.call(yt.actions, { parse: true, client: 'YTMUSIC' });
   console.info(page);
 }
 ```

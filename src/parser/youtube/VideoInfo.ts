@@ -1,6 +1,6 @@
 import Parser, { ParsedResponse } from '../index';
 import Constants from '../../utils/Constants';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 import Player from '../../core/Player';
 
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults';
@@ -92,7 +92,7 @@ class VideoInfo {
    * @param data - API response.
    * @param cpn - Client Playback Nonce
    */
-  constructor(data: [AxioslikeResponse, AxioslikeResponse?], actions: Actions, player: Player, cpn: string) {
+  constructor(data: [ApiResponse, ApiResponse?], actions: Actions, player: Player, cpn: string) {
     this.#actions = actions;
     this.#player = player;
     this.#cpn = cpn;
@@ -177,7 +177,7 @@ class VideoInfo {
     const filter = this.related_chip_cloud?.chips?.get({ text: name });
     if (filter?.is_selected) return this;
 
-    const response = await filter?.endpoint?.call(this.#actions, undefined, true);
+    const response = await filter?.endpoint?.call(this.#actions, { parse: true });
     const data = response?.on_response_received_endpoints?.get({ target_id: 'watch-next-feed' });
 
     this.watch_next_feed = data?.contents;
@@ -213,7 +213,7 @@ class VideoInfo {
    * Retrieves watch next feed continuation.
    */
   async getWatchNextContinuation() {
-    const response = await this.#watch_next_continuation?.endpoint.call(this.#actions, undefined, true);
+    const response = await this.#watch_next_continuation?.endpoint.call(this.#actions, { parse: true });
     const data = response?.on_response_received_endpoints?.get({ type: 'appendContinuationItemsAction' });
 
     if (!data)

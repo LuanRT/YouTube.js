@@ -16,13 +16,13 @@ class Channel extends TabbedFeed {
   constructor(actions: Actions, data: any, already_parsed = false) {
     super(actions, data, already_parsed);
 
-    this.header = this.page.header.item().as(C4TabbedHeader);
+    this.header = this.page.header?.item().as(C4TabbedHeader);
     const metadata = this.page.metadata.item().as(ChannelMetadata);
     const microformat = this.page.microformat?.as(MicroformatData);
 
     this.metadata = { ...metadata, ...(microformat || {}) };
-    this.sponsor_button = this.header.sponsor_button;
-    this.subscribe_button = this.header.subscribe_button;
+    this.sponsor_button = this.header?.sponsor_button;
+    this.subscribe_button = this.header?.subscribe_button;
 
     const tab = this.page.contents.item().key('tabs').parsed().array().filterType(Tab).get({ selected: true });
 

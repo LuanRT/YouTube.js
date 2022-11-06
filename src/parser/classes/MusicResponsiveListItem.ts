@@ -80,7 +80,9 @@ class MusicResponsiveListItem extends YTNode {
 
     this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : null;
 
-    switch (this.endpoint?.browse?.page_type) {
+    const page_type = this.endpoint?.payload?.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType;
+
+    switch (page_type) {
       case 'MUSIC_PAGE_TYPE_ALBUM':
         this.item_type = 'album';
         this.#parseAlbum();
@@ -139,7 +141,7 @@ class MusicResponsiveListItem extends YTNode {
   }
 
   #parseSong() {
-    this.id = this.#playlist_item_data.video_id || this.endpoint?.watch?.video_id;
+    this.id = this.#playlist_item_data.video_id || this.endpoint?.payload?.videoId;
     this.title = this.#flex_columns[0].key('title').instanceof(Text).toString();
 
     const duration_text =
@@ -151,21 +153,21 @@ class MusicResponsiveListItem extends YTNode {
       seconds: timeToSeconds(duration_text)
     });
 
-    const album = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('MPR')) as TextRun ||
-      this.#flex_columns[2]?.key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('MPR')) as TextRun;
+    const album = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.payload?.browseId.startsWith('MPR')) as TextRun ||
+      this.#flex_columns[2]?.key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.payload?.browseId.startsWith('MPR')) as TextRun;
     if (album) {
       this.album = {
-        id: album.endpoint?.browse?.id,
+        id: album.endpoint?.payload?.browseId,
         name: album.text,
         endpoint: album.endpoint
       };
     }
 
-    const artists = this.#flex_columns[1].key('title').instanceof(Text).runs?.filter((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('UC')) as TextRun[];
+    const artists = this.#flex_columns[1].key('title').instanceof(Text).runs?.filter((run) => Reflect.get(run, 'endpoint')?.payload?.browseId.startsWith('UC')) as TextRun[];
     if (artists) {
       this.artists = artists.map((artist) => ({
         name: artist.text,
-        channel_id: artist.endpoint?.browse?.id,
+        channel_id: artist.endpoint?.payload?.browseId,
         endpoint: artist.endpoint
       }));
     }
@@ -176,11 +178,11 @@ class MusicResponsiveListItem extends YTNode {
     this.title = this.#flex_columns[0].key('title').instanceof(Text).toString();
     this.views = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => run.text.match(/(.*?) views/))?.text;
 
-    const authors = this.#flex_columns[1].key('title').instanceof(Text).runs?.filter((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('UC')) as TextRun[];
+    const authors = this.#flex_columns[1].key('title').instanceof(Text).runs?.filter((run) => Reflect.get(run, 'endpoint')?.payload?.browseId.startsWith('UC')) as TextRun[];
     if (authors) {
       this.authors = authors.map((author) => ({
         name: author.text,
-        channel_id: author.endpoint?.browse?.id,
+        channel_id: author.endpoint?.payload?.browseId,
         endpoint: author.endpoint
       }));
     }
@@ -194,7 +196,7 @@ class MusicResponsiveListItem extends YTNode {
   }
 
   #parseArtist() {
-    this.id = this.endpoint?.browse?.id;
+    this.id = this.endpoint?.payload?.browseId;
     this.name = this.#flex_columns[0].key('title').instanceof(Text).toString();
     this.subtitle = this.#flex_columns[1].key('title').instanceof(Text);
     this.subscribers = this.subtitle.runs?.find((run) => (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text))?.text || '';
@@ -207,13 +209,13 @@ class MusicResponsiveListItem extends YTNode {
   }
 
   #parseAlbum() {
-    this.id = this.endpoint?.browse?.id;
+    this.id = this.endpoint?.payload?.browseId;
     this.title = this.#flex_columns[0].key('title').instanceof(Text).toString();
 
-    const author = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('UC')) as TextRun;
+    const author = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.payload?.browseId.startsWith('UC')) as TextRun;
     author && (this.author = {
       name: author.text,
-      channel_id: author.endpoint?.browse?.id,
+      channel_id: author.endpoint?.payload?.browseId,
       endpoint: author.endpoint
     });
 
@@ -221,7 +223,7 @@ class MusicResponsiveListItem extends YTNode {
   }
 
   #parsePlaylist() {
-    this.id = this.endpoint?.browse?.id;
+    this.id = this.endpoint?.payload?.browseId;
     this.title = this.#flex_columns[0].key('title').instanceof(Text).toString();
 
     const item_count_run = this.#flex_columns[1].key('title')
@@ -229,12 +231,12 @@ class MusicResponsiveListItem extends YTNode {
 
     this.item_count = item_count_run ? item_count_run.text : undefined;
 
-    const author = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.browse?.id.startsWith('UC')) as TextRun;
+    const author = this.#flex_columns[1].key('title').instanceof(Text).runs?.find((run) => Reflect.get(run, 'endpoint')?.payload?.browseId.startsWith('UC')) as TextRun;
 
     if (author) {
       this.author = {
         name: author.text,
-        channel_id: author.endpoint?.browse?.id,
+        channel_id: author.endpoint?.payload?.browseId,
         endpoint: author.endpoint
       };
     }

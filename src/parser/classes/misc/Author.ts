@@ -21,8 +21,8 @@ class Author {
     this.#nav_text = new NavigatableText(item);
 
     this.id =
-      (this.#nav_text.runs?.[0] as TextRun)?.endpoint?.browse?.id ||
-      this.#nav_text?.endpoint?.browse?.id || 'N/A';
+      (this.#nav_text.runs?.[0] as TextRun)?.endpoint?.payload?.browseId ||
+      this.#nav_text?.endpoint?.payload?.browseId || 'N/A';
 
     this.name = this.#nav_text.text || 'N/A';
     this.thumbnails = thumbs ? Thumbnail.fromResponse(thumbs) : [];
@@ -32,9 +32,9 @@ class Author {
     this.is_verified_artist = this.badges?.some((badge: any) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') || null;
 
     this.url =
-      (this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.browse &&
-        `${Constants.URLS.YT_BASE}${(this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.browse?.base_url || `/u/${(this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.browse?.id}`}` ||
-        `${Constants.URLS.YT_BASE}${this.#nav_text?.endpoint?.browse?.base_url || `/u/${this.#nav_text?.endpoint?.browse?.id}`}` ||
+      (this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.metadata?.api_url === '/browse' &&
+        `${Constants.URLS.YT_BASE}${(this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.canonicalBaseUrl || `/u/${(this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.browseId}`}` ||
+        `${Constants.URLS.YT_BASE}${this.#nav_text?.endpoint?.payload?.canonicalBaseUrl || `/u/${this.#nav_text?.endpoint?.payload?.browseId}`}` ||
         null;
   }
 

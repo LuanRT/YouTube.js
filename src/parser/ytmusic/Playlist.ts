@@ -1,5 +1,5 @@
-import Parser, { MusicPlaylistShelfContinuation, MusicShelfContinuation, ParsedResponse, SectionListContinuation } from '../index';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Parser, { MusicPlaylistShelfContinuation, ParsedResponse, SectionListContinuation } from '../index';
+import Actions, { ApiResponse } from '../../core/Actions';
 
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
@@ -15,19 +15,18 @@ class Playlist {
   #page;
   #actions;
   #continuation;
-  #suggestions_continuation;
   #last_fetched_suggestions: any;
+  #suggestions_continuation: any;
 
   header;
   items;
 
-  constructor(response: AxioslikeResponse, actions: Actions) {
+  constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
     this.#page = Parser.parseResponse(response.data);
 
-    this.#suggestions_continuation = this.#page.contents_memo.getType(MusicShelf)?.find(
-      (shelf) => shelf.title.toString() === 'Suggestions')?.continuation || null;
     this.#last_fetched_suggestions = null;
+    this.#suggestions_continuation = null;
 
     if (this.#page.continuation_contents) {
       const data = this.#page.continuation_contents?.as(MusicPlaylistShelfContinuation);
@@ -44,14 +43,6 @@ class Playlist {
     }
   }
 
-  get page(): ParsedResponse {
-    return this.#page;
-  }
-
-  get has_continuation() {
-    return !!this.#continuation;
-  }
-
   /**
    * Retrieves playlist items continuation.
    */
@@ -59,7 +50,11 @@ class Playlist {
     if (!this.#continuation)
       throw new InnertubeError('Continuation not found.');
 
-    const response = await this.#actions.browse(this.#continuation, { is_ctoken: true, client: 'YTMUSIC' });
+    const response = await this.#actions.execute('/browse', {
+      client: 'YTMUSIC',
+      continuation: this.#continuation
+    });
+
     return new Playlist(response, this.#actions);
   }
 
@@ -70,17 +65,25 @@ class Playlist {
     let section_continuation = this.#page.contents_memo.get('SectionList')?.[0].as(SectionList).continuation;
 
     while (section_continuation) {
-      const response = await this.#actions.browse(section_continuation, { is_ctoken: true, client: 'YTMUSIC' });
-      const data = Parser.parseResponse(response.data);
+      const data = await this.#actions.execute('/browse', {
+        client: 'YTMUSIC',
+        continuation: section_continuation,
+        parse: true
+      });
+
       const section_list = data.continuation_contents?.as(SectionListContinuation);
-      const sections = section_list?.contents?.as(MusicCarouselShelf);
-      const related = sections?.filter((section) => section.header?.title.toString() === 'Related playlists')[0];
-      if (related) {
+      const sections = section_list?.contents?.as(MusicCarouselShelf, MusicShelf);
+
+      const related = sections?.filter(
+        (section) =>
+          section.is(MusicCarouselShelf) ? section.header?.title.toString() === 'Related playlists' :
+            section.title.toString() === 'Related playlists'
+      )[0];
+
+      if (related)
         return related.contents || [];
-      }
 
       section_continuation = section_list?.continuation;
-
     }
 
     return [];
@@ -88,7 +91,7 @@ class Playlist {
 
   async getSuggestions(refresh = true) {
     const require_fetch = refresh || !this.#last_fetched_suggestions;
-    const fetch_promise = require_fetch ? this.#fetchSuggestions(this.#suggestions_continuation) : Promise.resolve(null);
+    const fetch_promise = require_fetch ? this.#fetchSuggestions() : Promise.resolve(null);
     const fetch_result = await fetch_promise;
 
     if (fetch_result) {
@@ -99,14 +102,26 @@ class Playlist {
     return fetch_result?.items || this.#last_fetched_suggestions;
   }
 
-  async #fetchSuggestions(continuation: string | null) {
+  async #fetchSuggestions() {
+    const continuation = this.#suggestions_continuation || this.#page.contents_memo.get('SectionList')?.[0].as(SectionList).continuation;
+
     if (continuation) {
-      const response = await this.#actions.browse(continuation, { is_ctoken: true, client: 'YTMUSIC' });
-      const page = Parser.parseResponse(response.data);
-      const data = page.continuation_contents?.as(MusicShelfContinuation);
+      const page = await this.#actions.execute('/browse', {
+        client: 'YTMUSIC',
+        continuation: continuation,
+        parse: true
+      });
+
+      const section_list = page.continuation_contents?.as(SectionListContinuation);
+      const sections = section_list?.contents?.as(MusicCarouselShelf, MusicShelf);
+
+      const suggestions = sections?.filter(
+        (section) => section.is(MusicShelf) && section.title.toString() === 'Suggestions'
+      )[0] as MusicShelf | undefined;
+
       return {
-        items: data?.contents || [],
-        continuation: data?.continuation || null
+        items: suggestions?.contents || [],
+        continuation: suggestions?.continuation || null
       };
     }
 
@@ -114,6 +129,14 @@ class Playlist {
       items: [],
       continuation: null
     };
+  }
+
+  get page(): ParsedResponse {
+    return this.#page;
+  }
+
+  get has_continuation() {
+    return !!this.#continuation;
   }
 }
 

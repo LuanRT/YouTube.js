@@ -1,5 +1,5 @@
 import Parser from '..';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 
 import Notification from '../classes/Notification';
@@ -13,7 +13,7 @@ class NotificationsMenu {
   header;
   contents;
 
-  constructor(actions: Actions, response: AxioslikeResponse) {
+  constructor(actions: Actions, response: ApiResponse) {
     this.#actions = actions;
     this.#page = Parser.parseResponse(response.data);
 
@@ -27,7 +27,7 @@ class NotificationsMenu {
     if (!continuation)
       throw new InnertubeError('Continuation not found');
 
-    const response = await continuation.endpoint.callTest(this.#actions, { parse: false });
+    const response = await continuation.endpoint.call(this.#actions, { parse: false });
     return new NotificationsMenu(this.#actions, response);
   }
 }

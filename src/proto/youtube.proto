@@ -186,18 +186,6 @@ message CreateCommentParams {
   required int32 number = 10;
 }
 
-message CreateCommentReplyParams {
-  required string video_id = 2;
-  required string comment_id = 4;
- 
-  message UnknownParams {
-    required int32 unk_num = 1;
-  }
-  required UnknownParams params = 5;
-  
-  optional int32 unk_num = 10;
-}
-
 message PeformCommentActionParams {
   required int32 type = 1;
   required string comment_id = 3;

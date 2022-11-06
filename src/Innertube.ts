@@ -27,25 +27,13 @@ import Proto from './proto/index';
 
 import { throwIfMissing, generateRandomString } from './utils/Utils';
 
-export type InnertubeConfig = SessionOptions
+export type InnertubeConfig = SessionOptions;
 
 export interface SearchFilters {
-  /**
-   * Filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
-   */
-  upload_date?: 'any' | 'last_hour' | 'today' | 'this_week' | 'this_month' | 'this_year';
-  /**
-   * Filter results by type, can be: any | video | channel | playlist | movie
-   */
-  type?: 'any' | 'video' | 'channel' | 'playlist' | 'movie';
-  /**
-   * Filter videos by duration, can be: any | short | medium | long
-   */
-  duration?: 'any' | 'short' | 'medium' | 'long';
-  /**
-   * Filter video results by order, can be: relevance | rating | upload_date | view_count
-   */
-  sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count';
+  upload_date?: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year',
+  type?: 'all' | 'video' | 'channel' | 'playlist' | 'movie',
+  duration?: 'all' | 'short' | 'medium' | 'long',
+  sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count'
 }
 
 export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'TV_EMBEDDED';
@@ -75,12 +63,14 @@ class Innertube {
 
   /**
    * Retrieves video info.
+   * @param video_id - The video id.
+   * @param client - The client to use.
    */
   async getInfo(video_id: string, client?: InnerTubeClient) {
     const cpn = generateRandomString(16);
 
     const initial_info = await this.actions.getVideoInfo(video_id, cpn, client);
-    const continuation = this.actions.next({ video_id });
+    const continuation = this.actions.execute('/next', { videoId: video_id });
 
     const response = await Promise.all([ initial_info, continuation ]);
     return new VideoInfo(response, this.actions, this.session.player, cpn);
@@ -88,6 +78,8 @@ class Innertube {
 
   /**
    * Retrieves basic video info.
+   * @param video_id - The video id.
+   * @param client - The client to use.
    */
   async getBasicInfo(video_id: string, client?: InnerTubeClient) {
     const cpn = generateRandomString(16);
@@ -98,18 +90,27 @@ class Innertube {
 
   /**
    * Searches a given query.
-   * @param query - search query.
-   * @param filters - search filters.
+   * @param query - The search query.
+   * @param filters - Search filters.
    */
   async search(query: string, filters: SearchFilters = {}) {
     throwIfMissing({ query });
-    const response = await this.actions.search({ query, filters });
+
+    const args = {
+      query,
+      ...{
+        params: filters ? Proto.encodeSearchFilters(filters) : undefined
+      }
+    };
+
+    const response = await this.actions.execute('/search', args);
+
     return new Search(this.actions, response.data);
   }
 
   /**
    * Retrieves search suggestions for a given query.
-   * @param query - the search query.
+   * @param query - The search query.
    */
   async getSearchSuggestions(query: string): Promise<string[]> {
     throwIfMissing({ query });
@@ -134,8 +135,8 @@ class Innertube {
 
   /**
    * Retrieves comments for a video.
-   * @param video_id - the video id.
-   * @param sort_by - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
+   * @param video_id - The video id.
+   * @param sort_by - Sorting options.
    */
   async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST') {
     throwIfMissing({ video_id });
@@ -144,7 +145,8 @@ class Innertube {
       sort_by: sort_by || 'TOP_COMMENTS'
     });
 
-    const response = await this.actions.next({ ctoken: payload });
+    const response = await this.actions.execute('/next', { continuation: payload });
+
     return new Comments(this.actions, response.data);
   }
 
@@ -152,7 +154,7 @@ class Innertube {
    * Retrieves YouTube's home feed (aka recommendations).
    */
   async getHomeFeed() {
-    const response = await this.actions.browse('FEwhat_to_watch');
+    const response = await this.actions.execute('/browse', { browseId: 'FEwhat_to_watch' });
     return new FilterableFeed(this.actions, response.data);
   }
 
@@ -160,7 +162,7 @@ class Innertube {
    * Returns the account's library.
    */
   async getLibrary() {
-    const response = await this.actions.browse('FElibrary');
+    const response = await this.actions.execute('/browse', { browseId: 'FElibrary' });
     return new Library(response.data, this.actions);
   }
 
@@ -169,7 +171,7 @@ class Innertube {
    * Which can also be achieved with {@link getLibrary}.
    */
   async getHistory() {
-    const response = await this.actions.browse('FEhistory');
+    const response = await this.actions.execute('/browse', { browseId: 'FEhistory' });
     return new History(this.actions, response.data);
   }
 
@@ -177,7 +179,7 @@ class Innertube {
    * Retrieves trending content.
    */
   async getTrending() {
-    const response = await this.actions.browse('FEtrending');
+    const response = await this.actions.execute('/browse', { browseId: 'FEtrending' });
     return new TabbedFeed(this.actions, response.data);
   }
 
@@ -185,7 +187,7 @@ class Innertube {
    * Retrieves subscriptions feed.
    */
   async getSubscriptionsFeed() {
-    const response = await this.actions.browse('FEsubscriptions');
+    const response = await this.actions.execute('/browse', { browseId: 'FEsubscriptions' });
     return new Feed(this.actions, response.data);
   }
 
@@ -195,7 +197,7 @@ class Innertube {
    */
   async getChannel(id: string) {
     throwIfMissing({ id });
-    const response = await this.actions.browse(id);
+    const response = await this.actions.execute('/browse', { browseId: id });
     return new Channel(this.actions, response.data);
   }
 
@@ -203,7 +205,7 @@ class Innertube {
    * Retrieves notifications.
    */
   async getNotifications() {
-    const response = await this.actions.notifications('get_notification_menu');
+    const response = await this.actions.execute('/notification/get_notification_menu', { notificationsMenuRequestType: 'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX' });
     return new NotificationsMenu(this.actions, response);
   }
 
@@ -211,7 +213,7 @@ class Innertube {
    * Retrieves unseen notifications count.
    */
   async getUnseenNotificationsCount() {
-    const response = await this.actions.notifications('get_unseen_count');
+    const response = await this.actions.execute('/notification/get_unseen_count');
     return response.data.unseenCount;
   }
 
@@ -220,7 +222,12 @@ class Innertube {
    */
   async getPlaylist(id: string) {
     throwIfMissing({ id });
-    const response = await this.actions.browse(`VL${id}`);
+
+    if (!id.startsWith('VL')) {
+      id = `VL${id}`;
+    }
+
+    const response = await this.actions.execute('/browse', { browseId: id });
     return new Playlist(this.actions, response.data);
   }
 
@@ -245,10 +252,15 @@ class Innertube {
     return info.download(options);
   }
 
+  /**
+   * Utility method to call an endpoint without having to use {@link Actions}.
+   * @param endpoint -The endpoint to call.
+   * @param args - Call arguments.
+   */
   call(endpoint: NavigationEndpoint, args: { [ key: string ]: any; parse: true }): Promise<ParsedResponse>;
   call(endpoint: NavigationEndpoint, args?: { [ key: string ]: any; parse?: false }): Promise<ActionsResponse>;
   call(endpoint: NavigationEndpoint, args?: object): Promise<ActionsResponse | ParsedResponse> {
-    return endpoint.callTest(this.actions, args);
+    return endpoint.call(this.actions, args);
   }
 }
 

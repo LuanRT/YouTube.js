@@ -48,13 +48,15 @@ class MusicTwoRowItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
 
     this.id =
-      this.endpoint?.browse?.id ||
-      this.endpoint?.watch?.video_id;
+      this.endpoint?.payload?.browseId ||
+      this.endpoint?.payload?.videoId;
 
     this.subtitle = new Text(data.subtitle);
     this.badges = Parser.parse(data.subtitleBadges);
 
-    switch (this.endpoint?.browse?.page_type) {
+    const page_type = this.endpoint?.payload?.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType;
+
+    switch (page_type) {
       case 'MUSIC_PAGE_TYPE_ARTIST':
         this.item_type = 'artist';
         break;
@@ -65,7 +67,7 @@ class MusicTwoRowItem extends YTNode {
         this.item_type = 'album';
         break;
       default:
-        if (this.endpoint?.watch_playlist) {
+        if (this.endpoint?.metadata?.api_url === '/next') {
           this.item_type = 'endpoint';
         } else if (this.subtitle.runs?.[0]) {
           if (this.subtitle.runs[0].text !== 'Song') {
@@ -87,11 +89,11 @@ class MusicTwoRowItem extends YTNode {
       const item_count_run = this.subtitle.runs?.find((run) => run.text.match(/\d+ songs|song/));
       this.item_count = item_count_run ? (item_count_run as TextRun).text : null;
     } else if (this.item_type == 'album') {
-      const artists = this.subtitle.runs?.filter((run: any) => run.endpoint?.browse?.id.startsWith('UC'));
+      const artists = this.subtitle.runs?.filter((run: any) => run.endpoint?.payload?.browseId.startsWith('UC'));
       if (artists) {
         this.artists = artists.map((artist: any) => ({
           name: artist.text,
-          channel_id: artist.endpoint.browse.id,
+          channel_id: artist.endpoint?.payload?.browseId,
           endpoint: artist.endpoint
         }));
       }
@@ -101,20 +103,20 @@ class MusicTwoRowItem extends YTNode {
     } else if (this.item_type == 'video') {
       this.views = this?.subtitle.runs?.find((run) => run?.text.match(/(.*?) views/))?.text || 'N/A';
 
-      const author = this.subtitle.runs?.find((run: any) => run.endpoint?.browse?.id?.startsWith('UC'));
+      const author = this.subtitle.runs?.find((run: any) => run.endpoint?.payload?.browseId?.startsWith('UC'));
       if (author) {
         this.author = {
           name: (author as TextRun)?.text,
-          channel_id: (author as TextRun)?.endpoint?.browse?.id,
+          channel_id: (author as TextRun)?.endpoint?.payload?.browseId,
           endpoint: (author as TextRun)?.endpoint
         };
       }
     } else if (this.item_type == 'song') {
-      const artists = this.subtitle.runs?.filter((run: any) => run.endpoint?.browse?.id.startsWith('UC'));
+      const artists = this.subtitle.runs?.filter((run: any) => run.endpoint?.payload?.browseId.startsWith('UC'));
       if (artists) {
         this.artists = artists.map((artist: any) => ({
           name: (artist as TextRun)?.text,
-          channel_id: (artist as TextRun)?.endpoint?.browse?.id,
+          channel_id: (artist as TextRun)?.endpoint?.payload?.browseId,
           endpoint: (artist as TextRun)?.endpoint
         }));
       }

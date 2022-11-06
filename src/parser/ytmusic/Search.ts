@@ -1,5 +1,5 @@
 import Parser, { ParsedResponse } from '../index';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Actions, { ApiResponse } from '../../core/Actions';
 
 import { InnertubeError } from '../../utils/Utils';
 
@@ -30,12 +30,12 @@ class Search {
   results;
   sections;
 
-  constructor(response: AxioslikeResponse | ParsedResponse, actions: Actions, args: { is_continuation?: boolean, is_filtered?: boolean } = {}) {
+  constructor(response: ApiResponse | ParsedResponse, actions: Actions, args: { is_continuation?: boolean, is_filtered?: boolean } = {}) {
     this.#actions = actions;
 
     this.#page = args.is_continuation ?
       response as ParsedResponse :
-      Parser.parseResponse((response as AxioslikeResponse).data);
+      Parser.parseResponse((response as ApiResponse).data);
 
     const tab = this.#page.contents.item().as(TabbedSearchResults).tabs.get({ selected: true });
 
@@ -71,7 +71,7 @@ class Search {
     if (!shelf || !shelf.endpoint)
       throw new InnertubeError('Cannot retrieve more items for this shelf because it does not have an endpoint.');
 
-    const response = await shelf.endpoint.call(this.#actions, 'YTMUSIC', true);
+    const response = await shelf.endpoint.call(this.#actions, { parse: true, client: 'YTMUSIC' });
 
     if (!response)
       throw new InnertubeError('Endpoint did not return any data');
@@ -86,7 +86,11 @@ class Search {
     if (!this.#continuation)
       throw new InnertubeError('Continuation not found.');
 
-    const response = await this.#actions.search({ ctoken: this.#continuation, client: 'YTMUSIC' });
+    const response = await this.#actions.execute('/search', {
+      continuation: this.#continuation,
+      client: 'YTMUSIC'
+    });
+
     const data = response.data.continuationContents.musicShelfContinuation;
 
     this.results = Parser.parse(data.contents).array().as(MusicResponsiveListItem);
@@ -106,7 +110,7 @@ class Search {
 
     if (filter?.is_selected) return this;
 
-    const response = await filter?.endpoint?.call(this.#actions, 'YTMUSIC', true);
+    const response = await filter?.endpoint?.call(this.#actions, { parse: true, client: 'YTMUSIC' });
 
     if (!response)
       throw new InnertubeError('Endpoint did not return any data');
