@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Full-featured wrapper around YouTube's private API.",
   "main": "./dist/index.js",
   "browser": "./bundle/browser.js",
