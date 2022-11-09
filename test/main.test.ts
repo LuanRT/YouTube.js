@@ -38,6 +38,14 @@ describe('YouTube.js Tests', () => {
       expect(search.channels).toBeDefined();
       expect(search.has_continuation).toBe(true);
     });
+
+    it('should search with WatchCardHeroVideo parse', async () => {
+      search = await yt.search(VIDEOS[2].QUERY);
+      expect(search.results.length).toBeGreaterThanOrEqual(5);
+      expect(search.playlists).toBeDefined();
+      expect(search.channels).toBeDefined();
+      expect(search.has_continuation).toBe(true);
+    });
     
     it('should retrieve search continuation', async () => {
       const next = await search.getContinuation();
