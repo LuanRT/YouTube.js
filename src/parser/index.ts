@@ -497,6 +497,7 @@ export default class Parser {
   }
 
   static ignore_list = new Set<string>([
+    'AdSlot',
     'DisplayAd',
     'SearchPyv',
     'MealbarPromo',
