@@ -1,9 +1,12 @@
 import Actions from '../../core/Actions';
 import TabbedFeed from '../../core/TabbedFeed';
+import Button from '../classes/Button';
 import C4TabbedHeader from '../classes/C4TabbedHeader';
+import CarouselHeader from '../classes/CarouselHeader';
 import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata';
 import ChannelMetadata from '../classes/ChannelMetadata';
 import MicroformatData from '../classes/MicroformatData';
+import SubscribeButton from '../classes/SubscribeButton';
 import Tab from '../classes/Tab';
 
 class Channel extends TabbedFeed {
@@ -16,13 +19,15 @@ class Channel extends TabbedFeed {
   constructor(actions: Actions, data: any, already_parsed = false) {
     super(actions, data, already_parsed);
 
-    this.header = this.page.header?.item().as(C4TabbedHeader);
+    this.header = this.page.header?.item().as(C4TabbedHeader, CarouselHeader);
+
     const metadata = this.page.metadata.item().as(ChannelMetadata);
     const microformat = this.page.microformat?.as(MicroformatData);
 
     this.metadata = { ...metadata, ...(microformat || {}) };
-    this.sponsor_button = this.header?.sponsor_button;
-    this.subscribe_button = this.header?.subscribe_button;
+
+    this.sponsor_button = this.page.header_memo.getType(Button)?.[0];
+    this.subscribe_button = this.page.header_memo.getType(SubscribeButton)?.[0];
 
     const tab = this.page.contents.item().key('tabs').parsed().array().filterType(Tab).get({ selected: true });
 

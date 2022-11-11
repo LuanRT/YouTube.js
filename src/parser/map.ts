@@ -28,6 +28,8 @@ import { default as C4TabbedHeader } from './classes/C4TabbedHeader';
 import { default as CallToActionButton } from './classes/CallToActionButton';
 import { default as Card } from './classes/Card';
 import { default as CardCollection } from './classes/CardCollection';
+import { default as CarouselHeader } from './classes/CarouselHeader';
+import { default as CarouselItem } from './classes/CarouselItem';
 import { default as Channel } from './classes/Channel';
 import { default as ChannelAboutFullMetadata } from './classes/ChannelAboutFullMetadata';
 import { default as ChannelFeaturedContent } from './classes/ChannelFeaturedContent';
@@ -54,11 +56,13 @@ import { default as CommentThread } from './classes/comments/CommentThread';
 import { default as CompactLink } from './classes/CompactLink';
 import { default as CompactMix } from './classes/CompactMix';
 import { default as CompactPlaylist } from './classes/CompactPlaylist';
+import { default as CompactStation } from './classes/CompactStation';
 import { default as CompactVideo } from './classes/CompactVideo';
 import { default as ConfirmDialog } from './classes/ConfirmDialog';
 import { default as ContinuationItem } from './classes/ContinuationItem';
 import { default as CopyLink } from './classes/CopyLink';
 import { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog';
+import { default as DefaultPromoPanel } from './classes/DefaultPromoPanel';
 import { default as DidYouMean } from './classes/DidYouMean';
 import { default as DownloadButton } from './classes/DownloadButton';
 import { default as Dropdown } from './classes/Dropdown';
@@ -245,6 +249,7 @@ import { default as Tab } from './classes/Tab';
 import { default as Tabbed } from './classes/Tabbed';
 import { default as TabbedSearchResults } from './classes/TabbedSearchResults';
 import { default as TextHeader } from './classes/TextHeader';
+import { default as ThumbnailLandscapePortrait } from './classes/ThumbnailLandscapePortrait';
 import { default as ThumbnailOverlayBottomPanel } from './classes/ThumbnailOverlayBottomPanel';
 import { default as ThumbnailOverlayEndorsement } from './classes/ThumbnailOverlayEndorsement';
 import { default as ThumbnailOverlayHoverText } from './classes/ThumbnailOverlayHoverText';
@@ -261,6 +266,7 @@ import { default as TitleAndButtonListHeader } from './classes/TitleAndButtonLis
 import { default as ToggleButton } from './classes/ToggleButton';
 import { default as ToggleMenuServiceItem } from './classes/ToggleMenuServiceItem';
 import { default as Tooltip } from './classes/Tooltip';
+import { default as TopicChannelDetails } from './classes/TopicChannelDetails';
 import { default as TwoColumnBrowseResults } from './classes/TwoColumnBrowseResults';
 import { default as TwoColumnSearchResults } from './classes/TwoColumnSearchResults';
 import { default as TwoColumnWatchNextResults } from './classes/TwoColumnWatchNextResults';
@@ -306,6 +312,8 @@ const map: Record<string, YTNodeConstructor> = {
   CallToActionButton,
   Card,
   CardCollection,
+  CarouselHeader,
+  CarouselItem,
   Channel,
   ChannelAboutFullMetadata,
   ChannelFeaturedContent,
@@ -332,11 +340,13 @@ const map: Record<string, YTNodeConstructor> = {
   CompactLink,
   CompactMix,
   CompactPlaylist,
+  CompactStation,
   CompactVideo,
   ConfirmDialog,
   ContinuationItem,
   CopyLink,
   CreatePlaylistDialog,
+  DefaultPromoPanel,
   DidYouMean,
   DownloadButton,
   Dropdown,
@@ -523,6 +533,7 @@ const map: Record<string, YTNodeConstructor> = {
   Tabbed,
   TabbedSearchResults,
   TextHeader,
+  ThumbnailLandscapePortrait,
   ThumbnailOverlayBottomPanel,
   ThumbnailOverlayEndorsement,
   ThumbnailOverlayHoverText,
@@ -539,6 +550,7 @@ const map: Record<string, YTNodeConstructor> = {
   ToggleButton,
   ToggleMenuServiceItem,
   Tooltip,
+  TopicChannelDetails,
   TwoColumnBrowseResults,
   TwoColumnSearchResults,
   TwoColumnWatchNextResults,
