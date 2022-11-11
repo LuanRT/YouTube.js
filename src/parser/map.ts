@@ -77,6 +77,8 @@ import { default as ExpandableTab } from './classes/ExpandableTab';
 import { default as ExpandedShelfContents } from './classes/ExpandedShelfContents';
 import { default as FeedFilterChipBar } from './classes/FeedFilterChipBar';
 import { default as FeedTabbedHeader } from './classes/FeedTabbedHeader';
+import { default as GameCard } from './classes/GameCard';
+import { default as GameDetails } from './classes/GameDetails';
 import { default as Grid } from './classes/Grid';
 import { default as GridChannel } from './classes/GridChannel';
 import { default as GridHeader } from './classes/GridHeader';
@@ -87,6 +89,7 @@ import { default as HistorySuggestion } from './classes/HistorySuggestion';
 import { default as HorizontalCardList } from './classes/HorizontalCardList';
 import { default as HorizontalList } from './classes/HorizontalList';
 import { default as IconLink } from './classes/IconLink';
+import { default as InteractiveTabbedHeader } from './classes/InteractiveTabbedHeader';
 import { default as ItemSection } from './classes/ItemSection';
 import { default as ItemSectionHeader } from './classes/ItemSectionHeader';
 import { default as ItemSectionTab } from './classes/ItemSectionTab';
@@ -193,6 +196,7 @@ import { default as PlayerOverlay } from './classes/PlayerOverlay';
 import { default as PlayerOverlayAutoplay } from './classes/PlayerOverlayAutoplay';
 import { default as PlayerStoryboardSpec } from './classes/PlayerStoryboardSpec';
 import { default as Playlist } from './classes/Playlist';
+import { default as PlaylistCustomThumbnail } from './classes/PlaylistCustomThumbnail';
 import { default as PlaylistHeader } from './classes/PlaylistHeader';
 import { default as PlaylistInfoCardContent } from './classes/PlaylistInfoCardContent';
 import { default as PlaylistMetadata } from './classes/PlaylistMetadata';
@@ -211,6 +215,7 @@ import { default as ProfileColumn } from './classes/ProfileColumn';
 import { default as ProfileColumnStats } from './classes/ProfileColumnStats';
 import { default as ProfileColumnStatsEntry } from './classes/ProfileColumnStatsEntry';
 import { default as ProfileColumnUserInfo } from './classes/ProfileColumnUserInfo';
+import { default as RecognitionShelf } from './classes/RecognitionShelf';
 import { default as ReelItem } from './classes/ReelItem';
 import { default as ReelShelf } from './classes/ReelShelf';
 import { default as RelatedChipCloud } from './classes/RelatedChipCloud';
@@ -274,6 +279,7 @@ import { default as UniversalWatchCard } from './classes/UniversalWatchCard';
 import { default as VerticalList } from './classes/VerticalList';
 import { default as VerticalWatchCardList } from './classes/VerticalWatchCardList';
 import { default as Video } from './classes/Video';
+import { default as VideoCard } from './classes/VideoCard';
 import { default as VideoInfoCardContent } from './classes/VideoInfoCardContent';
 import { default as VideoOwner } from './classes/VideoOwner';
 import { default as VideoPrimaryInfo } from './classes/VideoPrimaryInfo';
@@ -285,7 +291,7 @@ import { default as WatchCardSectionSequence } from './classes/WatchCardSectionS
 import { default as WatchNextEndScreen } from './classes/WatchNextEndScreen';
 import { default as WatchNextTabbedResults } from './classes/WatchNextTabbedResults';
 
-const map: Record<string, YTNodeConstructor> = {
+export const YTNodes = {
   AccountChannel,
   AccountItemSection,
   AccountItemSectionHeader,
@@ -361,6 +367,8 @@ const map: Record<string, YTNodeConstructor> = {
   ExpandedShelfContents,
   FeedFilterChipBar,
   FeedTabbedHeader,
+  GameCard,
+  GameDetails,
   Grid,
   GridChannel,
   GridHeader,
@@ -371,6 +379,7 @@ const map: Record<string, YTNodeConstructor> = {
   HorizontalCardList,
   HorizontalList,
   IconLink,
+  InteractiveTabbedHeader,
   ItemSection,
   ItemSectionHeader,
   ItemSectionTab,
@@ -477,6 +486,7 @@ const map: Record<string, YTNodeConstructor> = {
   PlayerOverlayAutoplay,
   PlayerStoryboardSpec,
   Playlist,
+  PlaylistCustomThumbnail,
   PlaylistHeader,
   PlaylistInfoCardContent,
   PlaylistMetadata,
@@ -495,6 +505,7 @@ const map: Record<string, YTNodeConstructor> = {
   ProfileColumnStats,
   ProfileColumnStatsEntry,
   ProfileColumnUserInfo,
+  RecognitionShelf,
   ReelItem,
   ReelShelf,
   RelatedChipCloud,
@@ -558,6 +569,7 @@ const map: Record<string, YTNodeConstructor> = {
   VerticalList,
   VerticalWatchCardList,
   Video,
+  VideoCard,
   VideoInfoCardContent,
   VideoOwner,
   VideoPrimaryInfo,
@@ -570,7 +582,7 @@ const map: Record<string, YTNodeConstructor> = {
   WatchNextTabbedResults
 };
 
-export const YTNodes = map;
+const map: Record<string, YTNodeConstructor> = YTNodes;
 
 /**
  * @param name - Name of the node to be parsed
