@@ -24,11 +24,11 @@ import { YTNodeConstructor } from './helpers';
 
 ${import_list.join('\n')}
 
-const map: Record<string, YTNodeConstructor> = {
+export const YTNodes = {
   ${json.join(',\n  ')}
 };
 
-export const YTNodes = map;
+const map: Record<string, YTNodeConstructor> = YTNodes;
 
 /**
  * @param name - Name of the node to be parsed

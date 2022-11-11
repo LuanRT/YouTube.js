@@ -1,12 +1,14 @@
-import { Innertube, UniversalCache } from 'youtubei.js';
+import { Innertube, UniversalCache, YTNodes } from 'youtubei.js';
 
 (async () => {
   const yt = await Innertube.create({ cache: new UniversalCache() });
 
   const channel = await yt.getChannel('UCX6OQ3DkcsbYNE6H8uQQuVA');
 
-  console.info('Viewing channel:', channel.header.author.name);
-  console.info('Family Safe:', channel.metadata.is_family_safe);
+  if (channel.header?.is(YTNodes.C4TabbedHeader)) {
+    console.info('Viewing channel:', channel?.header?.author.name);
+    console.info('Family Safe:', channel.metadata.is_family_safe);
+  }
 
   const about = await channel.getAbout();
 

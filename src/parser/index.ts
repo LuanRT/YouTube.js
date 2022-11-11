@@ -357,9 +357,13 @@ export default class Parser {
   }
 
   static parseItem<T extends YTNode = YTNode>(data: any, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
-    if (!data) return null;
+    if (!data ) return null;
 
     const keys = Object.keys(data);
+
+    if (!keys.length)
+      return null;
+
     const classname = this.sanitizeClassName(keys[0]);
 
     if (!this.shouldIgnore(classname)) {
