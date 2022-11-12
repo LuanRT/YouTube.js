@@ -406,7 +406,32 @@ See [`./examples/comments`](https://github.com/LuanRT/YouTube.js/blob/main/examp
 ### getHomeFeed()
 Retrieves YouTube's home feed.
 
-**Returns**: `Promise.<FilterableFeed>`
+**Returns**: `Promise.<HomeFeed>`
+
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<home_feed>#videos`
+  - Returns all videos in the home feed.
+
+- `<home_feed>#posts`
+  - Returns all posts in the home feed.
+
+- `<home_feed>#shelfs`
+  - Returns all shelfs in the home feed.
+
+- `<home_feed>#filters`
+  - Returns available filters.
+
+- `<home_feed>#applyFilter(name | ChipCloudChip)`
+  - Applies given filter and returns a new HomeFeed instance.
+
+- `<home_feed>#getContinuation()`
+  - Retrieves feed continuation.
+
+</p>
+</details> 
 
 <a name="getlibrary"></a>
 ### getLibrary()
