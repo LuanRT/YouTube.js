@@ -103,7 +103,7 @@ export default class HTTPClient {
 
       if (this.#cookie) {
         const papisid = getStringBetweenStrings(this.#cookie, 'PAPISID=', ';');
-       
+
         if (papisid) {
           request_headers.set('authorization', await generateSidAuth(papisid));
           request_headers.set('x-goog-authuser', this.#session.account_index.toString());

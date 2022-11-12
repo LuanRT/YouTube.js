@@ -110,7 +110,14 @@ export default class Session extends EventEmitterLike {
   }
 
   static async create(options: SessionOptions = {}) {
-    const { context, api_key, api_version, account_index } = await Session.getSessionData(options.lang, options.account_index, options.device_category, options.client_type, options.timezone, options.fetch);
+    const { context, api_key, api_version, account_index } = await Session.getSessionData(
+      options.lang,
+      options.account_index,
+      options.device_category,
+      options.client_type,
+      options.timezone,
+      options.fetch
+    );
     return new Session(context, api_key, api_version, account_index, await Player.create(options.cache, options.fetch), options.cookie, options.fetch, options.cache);
   }
 
