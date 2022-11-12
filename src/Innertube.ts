@@ -215,7 +215,7 @@ class Innertube {
   async getUnseenNotificationsCount(): Promise<number> {
     const response = await this.actions.execute('/notification/get_unseen_count');
     // TODO: properly parse this
-    return response.data?.unseenCount || response.data.actions?.[0].updateNotificationsUnseenCountAction?.unseenCount;
+    return response.data?.unseenCount || response.data?.actions?.[0].updateNotificationsUnseenCountAction?.unseenCount || 0;
   }
 
   /**
