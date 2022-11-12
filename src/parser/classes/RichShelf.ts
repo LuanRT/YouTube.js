@@ -13,7 +13,7 @@ class RichShelf extends YTNode {
   constructor(data: any) {
     super();
     this.title = new Text(data.title);
-    this.contents = Parser.parse(data.contents);
+    this.contents = Parser.parseArray(data.contents);
     this.endpoint = data.endpoint ? new NavigationEndpoint(data.endpoint) : null;
   }
 }

@@ -8,8 +8,7 @@ class RichItem extends YTNode {
 
   constructor(data: any) {
     super();
-    // TODO: check this
-    this.content = Parser.parse(data.content);
+    this.content = Parser.parseItem(data.content);
   }
 }
 
