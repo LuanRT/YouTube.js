@@ -17,6 +17,7 @@ import { ActionsResponse } from './core/Actions';
 import Feed from './core/Feed';
 import YTMusic from './core/Music';
 import Studio from './core/Studio';
+import HomeFeed from './parser/youtube/HomeFeed';
 import AccountManager from './core/AccountManager';
 import PlaylistManager from './core/PlaylistManager';
 import InteractionManager from './core/InteractionManager';
@@ -25,7 +26,6 @@ import Constants from './utils/Constants';
 import Proto from './proto/index';
 
 import { throwIfMissing, generateRandomString } from './utils/Utils';
-import HomeFeed from './parser/youtube/HomeFeed';
 
 export type InnertubeConfig = SessionOptions;
 
