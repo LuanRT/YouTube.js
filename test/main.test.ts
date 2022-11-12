@@ -92,6 +92,8 @@ describe('YouTube.js Tests', () => {
     
     it('should retrieve home feed', async () => {
       const homefeed = await yt.getHomeFeed();
+      expect(homefeed.header).toBeDefined();
+      expect(homefeed.contents).toBeDefined();
       expect(homefeed.videos.length).toBeGreaterThan(0);
     });
     
