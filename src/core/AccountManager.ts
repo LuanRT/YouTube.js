@@ -21,7 +21,7 @@ class AccountManager {
        */
       editName: (new_name: string) => {
         if (!this.#actions.session.logged_in)
-          throw new InnertubeError('You are not signed in');
+          throw new InnertubeError('You must be signed in to perform this operation.');
 
         return this.#actions.execute('/channel/edit_name', {
           givenName: new_name,
@@ -34,7 +34,7 @@ class AccountManager {
        */
       editDescription: (new_description: string) => {
         if (!this.#actions.session.logged_in)
-          throw new InnertubeError('You are not signed in');
+          throw new InnertubeError('You must be signed in to perform this operation.');
 
         return this.#actions.execute('/channel/edit_description', {
           givenDescription: new_description,
@@ -53,7 +53,7 @@ class AccountManager {
    */
   async getInfo() {
     if (!this.#actions.session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const response = await this.#actions.execute('/account/accounts_list', { client: 'ANDROID' });
     return new AccountInfo(response);

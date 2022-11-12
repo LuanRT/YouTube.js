@@ -17,7 +17,7 @@ class InteractionManager {
     throwIfMissing({ video_id });
 
     if (!this.#actions.session.logged_in)
-      throw new Error('You are not signed in');
+      throw new Error('You must be signed in to perform this operation.');
 
     const action = await this.#actions.execute('/like/like', {
       client: 'ANDROID',
@@ -37,7 +37,7 @@ class InteractionManager {
     throwIfMissing({ video_id });
 
     if (!this.#actions.session.logged_in)
-      throw new Error('You are not signed in');
+      throw new Error('You must be signed in to perform this operation.');
 
     const action = await this.#actions.execute('/like/dislike', {
       client: 'ANDROID',
@@ -57,7 +57,7 @@ class InteractionManager {
     throwIfMissing({ video_id });
 
     if (!this.#actions.session.logged_in)
-      throw new Error('You are not signed in');
+      throw new Error('You must be signed in to perform this operation.');
 
     const action = await this.#actions.execute('/like/removelike', {
       client: 'ANDROID',
@@ -77,7 +77,7 @@ class InteractionManager {
     throwIfMissing({ channel_id });
 
     if (!this.#actions.session.logged_in)
-      throw new Error('You are not signed in');
+      throw new Error('You must be signed in to perform this operation.');
 
     const action = await this.#actions.execute('/subscription/subscribe', {
       client: 'ANDROID',
@@ -96,7 +96,7 @@ class InteractionManager {
     throwIfMissing({ channel_id });
 
     if (!this.#actions.session.logged_in)
-      throw new Error('You are not signed in');
+      throw new Error('You must be signed in to perform this operation.');
 
     const action = await this.#actions.execute('/subscription/unsubscribe', {
       client: 'ANDROID',
@@ -116,7 +116,7 @@ class InteractionManager {
     throwIfMissing({ video_id, text });
 
     if (!this.#actions.session.logged_in)
-      throw new Error('You are not signed in');
+      throw new Error('You must be signed in to perform this operation.');
 
     const action = await this.#actions.execute('/comment/create_comment', {
       client: 'ANDROID',
@@ -163,7 +163,7 @@ class InteractionManager {
     throwIfMissing({ channel_id, type });
 
     if (!this.#actions.session.logged_in)
-      throw new Error('You are not signed in');
+      throw new Error('You must be signed in to perform this operation.');
 
     const pref_types = {
       PERSONALIZED: 1,

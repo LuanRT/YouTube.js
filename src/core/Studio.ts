@@ -52,7 +52,7 @@ class Studio {
    */
   async setThumbnail(video_id: string, buffer: Uint8Array): Promise<ApiResponse> {
     if (!this.#session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     if (!video_id || !buffer)
       throw new MissingParamError('One or more parameters are missing.');
@@ -83,7 +83,7 @@ class Studio {
    */
   async updateVideoMetadata(video_id: string, metadata: VideoMetadata) {
     if (!this.#session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const payload = Proto.encodeVideoMetadataPayload(video_id, metadata);
 
@@ -105,7 +105,7 @@ class Studio {
    */
   async upload(file: BodyInit, metadata: UploadedVideoMetadata = {}): Promise<ApiResponse> {
     if (!this.#session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const initial_data = await this.#getInitialUploadData();
     const upload_result = await this.#uploadVideo(initial_data.upload_url, file);
