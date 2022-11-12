@@ -166,7 +166,7 @@ class Actions {
 
     const response = await this.#session.http.fetch(endpoint, {
       method: 'POST',
-      body: args?.protobuf ? data : JSON.stringify(data),
+      body: args?.protobuf ? data : JSON.stringify((data || {})),
       headers: {
         'Content-Type': args?.protobuf ?
           'application/x-protobuf' :

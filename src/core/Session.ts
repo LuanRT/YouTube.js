@@ -20,6 +20,10 @@ export interface Context {
     hl: string;
     gl: string;
     remoteHost: string;
+    screenDensityFloat: number;
+    screenHeightPoints: number;
+    screenPixelDensity: number;
+    screenWidthPoints: number;
     visitorData: string;
     userAgent: string;
     clientName: string;
@@ -144,6 +148,10 @@ export default class Session extends EventEmitterLike {
         hl: device_info[0],
         gl: device_info[2],
         remoteHost: device_info[3],
+        screenDensityFloat: 1,
+        screenHeightPoints: 720,
+        screenPixelDensity: 1,
+        screenWidthPoints: 1280,
         visitorData: device_info[13],
         userAgent: device_info[14],
         clientName: client_name,
