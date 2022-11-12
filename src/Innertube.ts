@@ -69,7 +69,7 @@ class Innertube {
   async getInfo(video_id: string, client?: InnerTubeClient) {
     const cpn = generateRandomString(16);
 
-    const initial_info = await this.actions.getVideoInfo(video_id, cpn, client);
+    const initial_info = this.actions.getVideoInfo(video_id, cpn, client);
     const continuation = this.actions.execute('/next', { videoId: video_id });
 
     const response = await Promise.all([ initial_info, continuation ]);
