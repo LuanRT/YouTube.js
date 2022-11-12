@@ -122,7 +122,7 @@ class Actions {
 
       if (Reflect.has(data, 'browseId')) {
         if (this.#needsLogin(data.browseId) && !this.#session.logged_in)
-          throw new InnertubeError('You are not signed in');
+          throw new InnertubeError('You must be signed in to perform this operation.');
       }
 
       if (Reflect.has(data, 'override_endpoint'))

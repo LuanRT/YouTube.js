@@ -56,6 +56,7 @@ export interface Context {
 
 export interface SessionOptions {
   lang?: string;
+  account_index?: number;
   device_category?: DeviceCategory;
   client_type?: ClientType;
   timezone?: string;
@@ -68,6 +69,7 @@ export default class Session extends EventEmitterLike {
   #api_version;
   #key;
   #context;
+  #account_index;
   #player;
 
   oauth;
@@ -76,9 +78,10 @@ export default class Session extends EventEmitterLike {
   actions;
   cache;
 
-  constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string, fetch?: FetchFunction, cache?: UniversalCache) {
+  constructor(context: Context, api_key: string, api_version: string, account_index: number, player: Player, cookie?: string, fetch?: FetchFunction, cache?: UniversalCache) {
     super();
     this.#context = context;
+    this.#account_index = account_index;
     this.#key = api_key;
     this.#api_version = api_version;
     this.#player = player;
@@ -107,12 +110,13 @@ export default class Session extends EventEmitterLike {
   }
 
   static async create(options: SessionOptions = {}) {
-    const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.fetch);
-    return new Session(context, api_key, api_version, await Player.create(options.cache, options.fetch), options.cookie, options.fetch, options.cache);
+    const { context, api_key, api_version, account_index } = await Session.getSessionData(options.lang, options.account_index, options.device_category, options.client_type, options.timezone, options.fetch);
+    return new Session(context, api_key, api_version, account_index, await Player.create(options.cache, options.fetch), options.cookie, options.fetch, options.cache);
   }
 
   static async getSessionData(
     lang = 'en-US',
+    account_index = 0,
     device_category: DeviceCategory = 'desktop',
     client_name: ClientType = ClientType.WEB,
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -177,7 +181,7 @@ export default class Session extends EventEmitterLike {
       }
     };
 
-    return { context, api_key, api_version };
+    return { context, api_key, api_version, account_index };
   }
 
   async signIn(credentials?: Credentials): Promise<void> {
@@ -213,7 +217,7 @@ export default class Session extends EventEmitterLike {
 
   async signOut() {
     if (!this.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const response = await this.oauth.revokeCredentials();
     this.logged_in = false;
@@ -235,6 +239,10 @@ export default class Session extends EventEmitterLike {
 
   get client_name() {
     return this.#context.client.clientName;
+  }
+
+  get account_index() {
+    return this.#account_index;
   }
 
   get context() {

@@ -20,7 +20,7 @@ class PlaylistManager {
     throwIfMissing({ title, video_ids });
 
     if (!this.#actions.session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const response = await this.#actions.execute('/playlist/create', {
       title,
@@ -44,7 +44,7 @@ class PlaylistManager {
     throwIfMissing({ playlist_id });
 
     if (!this.#actions.session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const response = await this.#actions.execute('playlist/delete', { playlistId: playlist_id });
 
@@ -65,7 +65,7 @@ class PlaylistManager {
     throwIfMissing({ playlist_id, video_ids });
 
     if (!this.#actions.session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const response = await this.#actions.execute('/browse/edit_playlist', {
       playlistId: playlist_id,
@@ -91,7 +91,7 @@ class PlaylistManager {
     throwIfMissing({ playlist_id, video_ids });
 
     if (!this.#actions.session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const info = await this.#actions.execute('/browse', {
       browseId: `VL${playlist_id}`,
@@ -150,7 +150,7 @@ class PlaylistManager {
     throwIfMissing({ playlist_id, moved_video_id, predecessor_video_id });
 
     if (!this.#actions.session.logged_in)
-      throw new InnertubeError('You are not signed in');
+      throw new InnertubeError('You must be signed in to perform this operation.');
 
     const info = await this.#actions.execute('/browse', {
       browseId: `VL${playlist_id}`,
