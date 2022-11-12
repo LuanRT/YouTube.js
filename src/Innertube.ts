@@ -20,12 +20,12 @@ import Studio from './core/Studio';
 import AccountManager from './core/AccountManager';
 import PlaylistManager from './core/PlaylistManager';
 import InteractionManager from './core/InteractionManager';
-import FilterableFeed from './core/FilterableFeed';
 import TabbedFeed from './core/TabbedFeed';
 import Constants from './utils/Constants';
 import Proto from './proto/index';
 
 import { throwIfMissing, generateRandomString } from './utils/Utils';
+import HomeFeed from './parser/youtube/HomeFeed';
 
 export type InnertubeConfig = SessionOptions;
 
@@ -155,7 +155,7 @@ class Innertube {
    */
   async getHomeFeed() {
     const response = await this.actions.execute('/browse', { browseId: 'FEwhat_to_watch' });
-    return new FilterableFeed(this.actions, response.data);
+    return new HomeFeed(this.actions, response.data);
   }
 
   /**
