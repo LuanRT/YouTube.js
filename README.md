@@ -418,8 +418,8 @@ Retrieves YouTube's home feed.
 - `<home_feed>#posts`
   - Returns all posts in the home feed.
 
-- `<home_feed>#shelfs`
-  - Returns all shelfs in the home feed.
+- `<home_feed>#shelves`
+  - Returns all shelves in the home feed.
 
 - `<home_feed>#filters`
   - Returns available filters.
