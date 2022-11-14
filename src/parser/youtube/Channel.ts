@@ -10,8 +10,12 @@ import SubscribeButton from '../classes/SubscribeButton';
 import Tab from '../classes/Tab';
 
 import { InnertubeError } from '../../utils/Utils';
+import FeedFilterChipBar from '../classes/FeedFilterChipBar';
+import ChipCloudChip from '../classes/ChipCloudChip';
+import FilterableFeed from '../../core/FilterableFeed';
+import Feed from '../../core/Feed';
 
-class Channel extends TabbedFeed {
+export default class Channel extends TabbedFeed {
   header;
   metadata;
   subscribe_button;
@@ -37,18 +41,52 @@ class Channel extends TabbedFeed {
     this.current_tab = tab;
   }
 
+  async applyFilter(filter: string | ChipCloudChip) {
+    let target_filter: ChipCloudChip | undefined;
+
+    const filter_chipbar = this.memo.getType(FeedFilterChipBar)?.[0];
+
+    if (typeof filter === 'string') {
+      target_filter = filter_chipbar?.contents.get({ text: filter });
+      if (!target_filter)
+        throw new InnertubeError(`Filter ${filter} not found`, { available_filters: this.filters });
+    } else if (filter instanceof ChipCloudChip) {
+      target_filter = filter;
+    }
+
+    if (!target_filter)
+      throw new InnertubeError('Invalid filter', filter);
+
+    const page = await target_filter.endpoint?.call(this.actions, { parse: true });
+    return new FilteredChannelList(this.actions, page, true);
+  }
+
+  get filters(): string[] {
+    return this.memo.getType(FeedFilterChipBar)?.[0]?.contents.filterType(ChipCloudChip).map((chip) => chip.text) || [];
+  }
+
+  async getHome() {
+    const tab = await this.getTab('Home');
+    return new Channel(this.actions, tab.page, true);
+  }
+
   async getVideos() {
     const tab = await this.getTab('Videos');
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getPlaylists() {
-    const tab = await this.getTab('Playlists');
+  async getShorts() {
+    const tab = await this.getTab('Shorts');
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getHome() {
-    const tab = await this.getTab('Home');
+  async getLiveStreams() {
+    const tab = await this.getTab('Live');
+    return new Channel(this.actions, tab.page, true);
+  }
+
+  async getPlaylists() {
+    const tab = await this.getTab('Playlists');
     return new Channel(this.actions, tab.page, true);
   }
 
@@ -70,6 +108,74 @@ class Channel extends TabbedFeed {
     const tab = await this.getTab('About');
     return tab.memo.getType(ChannelAboutFullMetadata)?.[0];
   }
+
+  /**
+   * Retrives list continuation.
+   */
+  async getContinuation() {
+    const page = await super.getContinuationData();
+    return new ChannelListContinuation(this.actions, page, true);
+  }
 }
 
-export default Channel;
+export class ChannelListContinuation extends Feed {
+  contents;
+
+  constructor(actions: Actions, data: any, already_parsed = false) {
+    super(actions, data, already_parsed);
+    this.contents =
+      this.page.on_response_received_actions?.[0] ||
+      this.page.on_response_received_endpoints?.[0];
+  }
+
+  /**
+   * Retrieves list continuation.
+   */
+  async getContinuation() {
+    const page = await super.getContinuationData();
+    return new ChannelListContinuation(this.actions, page, true);
+  }
+}
+
+export class FilteredChannelList extends FilterableFeed {
+  applied_filter: ChipCloudChip | undefined;
+  contents;
+
+  constructor(actions: Actions, data: any, already_parsed = false) {
+    super(actions, data, already_parsed);
+
+    this.applied_filter = this.memo.getType(ChipCloudChip).get({ is_selected: true });
+
+    // Removes the filter chipbar from the actions list
+    if (
+      this.page.on_response_received_actions &&
+      this.page.on_response_received_actions.length > 1
+    ) {
+      this.page.on_response_received_actions.shift();
+    }
+
+    this.contents = this.page.on_response_received_actions?.[0];
+  }
+
+  /**
+   * Applies given filter to the list.
+   * @param filter - The filter to apply
+   */
+  async applyFilter(filter: string | ChipCloudChip) {
+    const feed = await super.getFilteredFeed(filter);
+    return new FilteredChannelList(this.actions, feed.page, true);
+  }
+
+  /**
+   * Retrieves list continuation.
+   */
+  async getContinuation() {
+    const page = await super.getContinuationData();
+
+    // Keep the filters
+    page?.on_response_received_actions_memo.set('FeedFilterChipBar', this.memo.getType(FeedFilterChipBar));
+    page?.on_response_received_actions_memo.set('ChipCloudChip', this.memo.getType(ChipCloudChip));
+
+    return new FilteredChannelList(this.actions, page, true);
+  }
+}
