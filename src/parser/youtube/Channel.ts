@@ -41,6 +41,10 @@ export default class Channel extends TabbedFeed {
     this.current_tab = tab;
   }
 
+  /**
+   * Applies given filter to the list.
+   * @param filter - The filter to apply
+   */
   async applyFilter(filter: string | ChipCloudChip) {
     let target_filter: ChipCloudChip | undefined;
 
