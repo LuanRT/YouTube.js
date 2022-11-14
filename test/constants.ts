@@ -12,3 +12,10 @@ export const VIDEOS = [
     QUERY: 'mkbhd',
   }
 ];
+
+export const CHANNELS = [
+  {
+    ID: 'UC_x5XG1OV2P6uZZ5FSM9Ttw',
+    NAME: 'Linus Tech Tips'
+  }
+];

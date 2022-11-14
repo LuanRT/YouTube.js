@@ -29,6 +29,7 @@ import AppendContinuationItemsAction from '../parser/classes/actions/AppendConti
 import ContinuationItem from '../parser/classes/ContinuationItem';
 
 import Video from '../parser/classes/Video';
+import ReelItem from '../parser/classes/ReelItem';
 
 class Feed {
   #page: ParsedResponse;
@@ -63,9 +64,10 @@ class Feed {
    * Get all videos on a given page via memo
    */
   static getVideosFromMemo(memo: Memo) {
-    return memo.getType<Video | GridVideo | CompactVideo | PlaylistVideo | PlaylistPanelVideo | WatchCardCompactVideo>([
+    return memo.getType<Video | GridVideo | ReelItem | CompactVideo | PlaylistVideo | PlaylistPanelVideo | WatchCardCompactVideo>([
       Video,
       GridVideo,
+      ReelItem,
       CompactVideo,
       PlaylistVideo,
       PlaylistPanelVideo,

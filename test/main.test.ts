@@ -1,6 +1,6 @@
 import fs from 'fs';
 import Innertube from '..';
-import { VIDEOS } from './constants';
+import { CHANNELS, VIDEOS } from './constants';
 import { streamToIterable } from '../src/utils/Utils';
 
 describe('YouTube.js Tests', () => { 
@@ -90,6 +90,18 @@ describe('YouTube.js Tests', () => {
       expect(playlist.items.length).toBeLessThanOrEqual(100);
     });
     
+    it('should retrieve channel', async () => {
+      const channel = await yt.getChannel(CHANNELS[0].ID);
+      expect(channel.videos.length).toBeGreaterThan(0);
+      expect(channel.shelves.length).toBeGreaterThan(0);
+
+      const videos_tab = await channel.getVideos();
+      expect(videos_tab.videos.length).toBeGreaterThan(0);
+
+      const filtered_list = await videos_tab.applyFilter('Popular');
+      expect(filtered_list.videos.length).toBeGreaterThan(0);
+    });
+
     it('should retrieve home feed', async () => {
       const homefeed = await yt.getHomeFeed();
       expect(homefeed.header).toBeDefined();

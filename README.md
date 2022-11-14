@@ -497,11 +497,16 @@ Retrieves contents for a given channel.
 <p>
 
 - `<channel>#getVideos()`
+- `<channel>#getShorts()`
+- `<channel>#getLiveStreams()`
 - `<channel>#getPlaylists()`
 - `<channel>#getHome()`
 - `<channel>#getCommunity()`
 - `<channel>#getChannels()`
 - `<channel>#getAbout()`
+- `<channel>#getContinuation()`
+- `<channel>#filters`
+- `<channel>#page`
 
 </p>
 </details> 
