@@ -49,7 +49,7 @@ class Actions {
           referer: 'https://www.youtube.com',
           currentUrl: `/watch?v=${id}`,
           autonavState: 'STATE_OFF',
-          signatureTimestamp: this.#session.player.sts,
+          signatureTimestamp: this.#session.player?.sts || 0,
           autoCaptionsDefaultOn: false,
           html5Preference: 'HTML5_PREF_WANTS',
           lactMilliseconds: '-1'
@@ -188,6 +188,7 @@ class Actions {
       'FEsubscriptions',
       'FEmusic_listening_review',
       'FEmusic_library_landing',
+      'SPaccount_overview',
       'SPaccount_notifications',
       'SPaccount_privacy',
       'SPtime_watched'

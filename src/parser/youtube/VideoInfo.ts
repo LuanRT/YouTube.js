@@ -92,7 +92,7 @@ class VideoInfo {
    * @param data - API response.
    * @param cpn - Client Playback Nonce
    */
-  constructor(data: [ApiResponse, ApiResponse?], actions: Actions, player: Player, cpn: string) {
+  constructor(data: [ApiResponse, ApiResponse?], actions: Actions, player?: Player, cpn?: string) {
     this.#actions = actions;
     this.#player = player;
     this.#cpn = cpn;
@@ -492,7 +492,7 @@ class VideoInfo {
       throw new InnertubeError('Index and init ranges not available', { format });
 
     const url = new URL(format.decipher(this.#player));
-    url.searchParams.set('cpn', this.#cpn);
+    url.searchParams.set('cpn', this.#cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {
       id: format.itag,
@@ -522,7 +522,7 @@ class VideoInfo {
       throw new InnertubeError('Index and init ranges not available', { format });
 
     const url = new URL(format.decipher(this.#player));
-    url.searchParams.set('cpn', this.#cpn);
+    url.searchParams.set('cpn', this.#cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {
       id: format.itag,

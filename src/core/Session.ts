@@ -78,7 +78,7 @@ export default class Session extends EventEmitterLike {
   actions;
   cache;
 
-  constructor(context: Context, api_key: string, api_version: string, account_index: number, player: Player, cookie?: string, fetch?: FetchFunction, cache?: UniversalCache) {
+  constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: UniversalCache) {
     super();
     this.#context = context;
     this.#account_index = account_index;
