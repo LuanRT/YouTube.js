@@ -61,7 +61,7 @@ class Music {
       videoId: video_id,
       playbackContext: {
         contentPlaybackContext: {
-          signatureTimestamp: this.#session.player.sts
+          signatureTimestamp: this.#session.player?.sts || 0
         }
       }
     });
@@ -89,7 +89,7 @@ class Music {
       client: 'YTMUSIC',
       playbackContext: {
         contentPlaybackContext: {
-          signatureTimestamp: this.#session.player.sts
+          signatureTimestamp: this.#session.player?.sts || 0
         }
       }
     });
