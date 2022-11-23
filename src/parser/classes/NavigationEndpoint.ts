@@ -76,6 +76,8 @@ class NavigationEndpoint extends YTNode {
         return '/browse';
       case 'watchEndpoint':
         return '/player';
+      case 'searchEndpoint':
+        return '/search';
       case 'watchPlaylistEndpoint':
         return '/next';
       case 'liveChatItemContextMenuEndpoint':
