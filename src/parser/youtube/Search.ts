@@ -40,8 +40,8 @@ class Search extends Feed {
 
     this.watch_card = {
       header: universal_watch_card?.header.item() || null,
-      call_to_action: universal_watch_card?.call_to_action.item().as(WatchCardHeroVideo) || null,
-      sections: universal_watch_card?.sections.array().filterType(WatchCardSectionSequence) || []
+      call_to_action: universal_watch_card?.call_to_action?.item()?.as(WatchCardHeroVideo) || null,
+      sections: universal_watch_card?.sections?.array()?.filterType(WatchCardSectionSequence) || []
     };
 
     this.refinement_cards = {
