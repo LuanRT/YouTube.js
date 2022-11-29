@@ -1,9 +1,10 @@
-import Parser from '../index';
+import Parser from '..';
 import Text from './misc/Text';
 import Author from './misc/Author';
 import Menu from './menus/Menu';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
+
 import { timeToSeconds } from '../../utils/Utils';
 import { YTNode } from '../helpers';
 
