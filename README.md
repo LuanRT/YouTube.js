@@ -1,5 +1,3 @@
-<!-- Hi there, fellow coder :) -->
-
 <!-- BADGE LINKS -->
 [npm]: https://www.npmjs.com/package/youtubei.js
 [versions]: https://www.npmjs.com/package/youtubei.js?activeTab=versions
@@ -10,37 +8,23 @@
 
 <!-- OTHER LINKS -->
 [project]: https://github.com/LuanRT/YouTube.js
-[twitter]: https://twitter.com/lrt_nooneknows
+[twitter]: https://twitter.com/thesciencephile
+[discord]: https://discord.gg/syDu7Yks54
 [nodejs]: https://nodejs.org
 
 <!-- INTRODUCTION -->
-<h1 align=center>
-  YouTube.js
-</h1>
+<h1 align=center>YouTube.js</h1>
 
-<p align=center>
-  <i>
-    A full-featured wrapper around the InnerTube API, which is what YouTube itself uses.
-  </i>
-</p>
-
-<p align="center">
-  <a href="https://github.com/LuanRT/YouTube.js/issues">
-    Report Bug
-  </a>
-  ·
-  <a href="https://github.com/LuanRT/YouTube.js/issues">
-    Request Feature
-  </a>
-</p>
+<p align=center>A full-featured wrapper around the InnerTube API, which is what YouTube itself uses.</p>
 
 <!-- BADGES -->
 <div align="center">
 
   [![Tests](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)][actions]
-  [![Latest version](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)][versions]
+  [![NPM Version](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)][versions]
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
   [![Downloads](https://img.shields.io/npm/dt/youtubei.js)][npm]
+  [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
   [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks]
   <br>
   [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][github-sponsors]
@@ -57,7 +41,7 @@
   <body>
     <tr>
       <td align="center">
-        <a href="https://serpapi.com/">
+        <a href="https://serpapi.com/" target="_blank">
           <img width="80" alt="SerpApi" src="https://luanrt.is-a.dev/assets/img/serpapi.svg" />
           <br>
           <b>
@@ -105,7 +89,7 @@ ___
 </details>
 
 <!-- ABOUT THE PROJECT -->
-## About
+## Description
 
 InnerTube is an API used across all YouTube clients, it was created to simplify[^1] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with InnerTube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
 
@@ -245,7 +229,7 @@ const yt = await Innertube.create({
 * `Innertube`
 
   <details>
-  <summary>objects</summary>
+  <summary>Objects</summary>
   <p>
   
   * [.session](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/session.md)
@@ -260,7 +244,7 @@ const yt = await Innertube.create({
   
 
   <details>
-  <summary>methods</summary>
+  <summary>Methods</summary>
   <p>
   
   * [.getInfo(video_id, client?)](#getinfo)
@@ -690,7 +674,7 @@ Feel free to check the [issues page](https://github.com/LuanRT/YouTube.js/issues
 <!-- CONTACT -->
 ## Contact
 
-LuanRT  - [@lrt_nooneknows][twitter] - luan.lrt4@gmail.com
+LuanRT  - [@thesciencephile][twitter] - luan.lrt4@gmail.com
 
 Project Link: [https://github.com/LuanRT/YouTube.js][project]
 
