@@ -3,7 +3,7 @@ import NavigationEndpoint from './NavigationEndpoint';
 import Text from './misc/Text';
 import { YTNode } from '../helpers';
 
-class WatchCardRichHeader extends YTNode {
+export default class WatchCardRichHeader extends YTNode {
   static type = 'WatchCardRichHeader';
 
   title: Text;
@@ -22,5 +22,3 @@ class WatchCardRichHeader extends YTNode {
     this.style = data.style;
   }
 }
-
-export default WatchCardRichHeader;

@@ -1,13 +1,14 @@
-import Parser from '../index';
+import Parser from '..';
 import Text from './misc/Text';
 import Author from './misc/Author';
 import Menu from './menus/Menu';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
+
 import { timeToSeconds } from '../../utils/Utils';
 import { YTNode } from '../helpers';
 
-class Video extends YTNode {
+export default class Video extends YTNode {
   static type = 'Video';
 
   id: string;
@@ -55,7 +56,7 @@ class Video extends YTNode {
 
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
-    this.rich_thumbnail = data.richThumbnail ? Parser.parse(data.richThumbnail) : null;
+    this.rich_thumbnail = data.richThumbnail ? Parser.parseItem(data.richThumbnail) : null;
     this.author = new Author(data.ownerText, data.ownerBadges, data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer?.thumbnail);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.published = new Text(data.publishedTimeText);
@@ -103,5 +104,3 @@ class Video extends YTNode {
     return this.thumbnails[0];
   }
 }
-
-export default Video;

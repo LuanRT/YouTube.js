@@ -20,14 +20,14 @@ class Shelf extends YTNode {
       this.endpoint = new NavigationEndpoint(data.endpoint);
     }
 
-    this.content = Parser.parse(data.content) || null;
+    this.content = Parser.parseItem(data.content) || null;
 
     if (data.icon?.iconType) {
       this.icon_type = data.icon?.iconType;
     }
 
     if (data.menu) {
-      this.menu = Parser.parse(data.menu);
+      this.menu = Parser.parseItem(data.menu);
     }
   }
 }

@@ -1,5 +1,7 @@
 import Parser from '../index';
 import { YTNode } from '../helpers';
+import SearchRefinementCard from './SearchRefinementCard';
+import Button from './Button';
 
 class HorizontalCardList extends YTNode {
   static type = 'HorizontalCardList';
@@ -11,10 +13,10 @@ class HorizontalCardList extends YTNode {
 
   constructor(data: any) {
     super();
-    this.cards = Parser.parse(data.cards);
-    this.header = Parser.parse(data.header);
-    this.previous_button = Parser.parse(data.previousButton);
-    this.next_button = Parser.parse(data.nextButton);
+    this.cards = Parser.parseArray<SearchRefinementCard>(data.cards, SearchRefinementCard);
+    this.header = Parser.parseItem(data.header);
+    this.previous_button = Parser.parseItem<Button>(data.previousButton, Button);
+    this.next_button = Parser.parseItem<Button>(data.nextButton, Button);
   }
 }
 
