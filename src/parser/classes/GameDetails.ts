@@ -4,7 +4,7 @@ import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
 
-export default class GameDetails extends YTNode {
+class GameDetails extends YTNode {
   static type = 'GameDetails';
 
   title: Text;
@@ -22,3 +22,5 @@ export default class GameDetails extends YTNode {
     this.is_official_box_art = data.isOfficialBoxArt;
   }
 }
+
+export default GameDetails;

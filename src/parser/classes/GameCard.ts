@@ -1,7 +1,7 @@
 import Parser from '..';
 import { YTNode } from '../helpers';
 
-export default class GameCard extends YTNode {
+class GameCard extends YTNode {
   static type = 'GameCard';
 
   game;
@@ -11,3 +11,5 @@ export default class GameCard extends YTNode {
     this.game = Parser.parseItem(data.game);
   }
 }
+
+export default GameCard;

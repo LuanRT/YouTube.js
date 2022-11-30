@@ -2,7 +2,7 @@ import Parser from '../index';
 import { YTNode } from '../helpers';
 import ChipCloudChip from './ChipCloudChip';
 
-export default class FeedFilterChipBar extends YTNode {
+class FeedFilterChipBar extends YTNode {
   static type = 'FeedFilterChipBar';
 
   contents;
@@ -12,3 +12,5 @@ export default class FeedFilterChipBar extends YTNode {
     this.contents = Parser.parseArray<ChipCloudChip>(data.contents, ChipCloudChip);
   }
 }
+
+export default FeedFilterChipBar;

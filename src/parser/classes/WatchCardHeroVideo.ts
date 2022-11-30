@@ -2,7 +2,7 @@ import Parser from '../index';
 import NavigationEndpoint from './NavigationEndpoint';
 import { YTNode } from '../helpers';
 
-export default class WatchCardHeroVideo extends YTNode {
+class WatchCardHeroVideo extends YTNode {
   static type = 'WatchCardHeroVideo';
 
   endpoint: NavigationEndpoint;
@@ -18,3 +18,5 @@ export default class WatchCardHeroVideo extends YTNode {
     this.label = data.lengthText?.accessibility.accessibilityData.label || '';
   }
 }
+
+export default WatchCardHeroVideo;

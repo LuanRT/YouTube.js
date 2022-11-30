@@ -2,7 +2,7 @@ import Parser from '../index';
 import Text from './misc/Text';
 import { YTNode } from '../helpers';
 
-export default class UniversalWatchCard extends YTNode {
+class UniversalWatchCard extends YTNode {
   static type = 'UniversalWatchCard';
 
   header;
@@ -21,3 +21,5 @@ export default class UniversalWatchCard extends YTNode {
     }
   }
 }
+
+export default UniversalWatchCard;

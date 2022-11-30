@@ -1,7 +1,7 @@
 import Text from './misc/Text';
 import { YTNode } from '../helpers';
 
-export default class RichListHeader extends YTNode {
+class RichListHeader extends YTNode {
   static type = 'RichListHeader';
 
   title: Text;
@@ -17,3 +17,5 @@ export default class RichListHeader extends YTNode {
     this.icon_type = data?.icon?.iconType;
   }
 }
+
+export default RichListHeader;

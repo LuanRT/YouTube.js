@@ -1,7 +1,7 @@
 import Parser from '../index';
 import { YTNode } from '../helpers';
 
-export default class WatchCardSectionSequence extends YTNode {
+class WatchCardSectionSequence extends YTNode {
   static type = 'WatchCardSectionSequence';
 
   lists;
@@ -11,3 +11,5 @@ export default class WatchCardSectionSequence extends YTNode {
     this.lists = Parser.parseArray(data.lists);
   }
 }
+
+export default WatchCardSectionSequence;

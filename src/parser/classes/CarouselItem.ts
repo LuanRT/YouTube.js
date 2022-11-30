@@ -3,7 +3,7 @@ import { YTNode } from '../helpers';
 
 import Thumbnail from './misc/Thumbnail';
 
-export default class CarouselItem extends YTNode {
+class CarouselItem extends YTNode {
   static type = 'CarouselItem';
 
   items: YTNode[];
@@ -21,3 +21,5 @@ export default class CarouselItem extends YTNode {
     this.paginator_alignment = data.paginatorAlignment;
   }
 }
+
+export default CarouselItem;

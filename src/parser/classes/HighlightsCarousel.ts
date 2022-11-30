@@ -4,7 +4,7 @@ import { YTNode } from '../helpers';
 class Panel {
   static type = 'Panel';
 
-  thumbnail: {
+  thumbnail?: {
     image: {
       url: string;
       width: number;
@@ -43,13 +43,15 @@ class Panel {
   };
 
   constructor(data: any) {
-    this.thumbnail = {
-      image: data.thumbnail.image.sources,
-      endpoint: new NavigationEndpoint(data.thumbnail.onTap),
-      on_long_press_endpoint: new NavigationEndpoint(data.thumbnail.onLongPress),
-      content_mode: data.thumbnail.contentMode,
-      crop_options: data.thumbnail.cropOptions
-    };
+    if (data.thumbnail) {
+      this.thumbnail = {
+        image: data.thumbnail.image.sources,
+        endpoint: new NavigationEndpoint(data.thumbnail.onTap),
+        on_long_press_endpoint: new NavigationEndpoint(data.thumbnail.onLongPress),
+        content_mode: data.thumbnail.contentMode,
+        crop_options: data.thumbnail.cropOptions
+      };
+    }
 
     this.background_image = {
       image: data.backgroundImage.image.sources,

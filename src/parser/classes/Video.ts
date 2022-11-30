@@ -8,7 +8,7 @@ import NavigationEndpoint from './NavigationEndpoint';
 import { timeToSeconds } from '../../utils/Utils';
 import { YTNode } from '../helpers';
 
-export default class Video extends YTNode {
+class Video extends YTNode {
   static type = 'Video';
 
   id: string;
@@ -104,3 +104,5 @@ export default class Video extends YTNode {
     return this.thumbnails[0];
   }
 }
+
+export default Video;

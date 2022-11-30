@@ -4,7 +4,7 @@ import { YTNode } from '../helpers';
 import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
 
-export default class DefaultPromoPanel extends YTNode {
+class DefaultPromoPanel extends YTNode {
   static type = 'DefaultPromoPanel';
 
   title: Text;
@@ -34,3 +34,5 @@ export default class DefaultPromoPanel extends YTNode {
     this.panel_layout = data.panelLayout;
   }
 }
+
+export default DefaultPromoPanel;

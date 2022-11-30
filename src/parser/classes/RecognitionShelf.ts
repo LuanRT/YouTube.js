@@ -5,7 +5,7 @@ import Button from './Button';
 import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 
-export default class RecognitionShelf extends YTNode {
+class RecognitionShelf extends YTNode {
   static type = 'RecognitionShelf';
 
   title: Text;
@@ -24,3 +24,5 @@ export default class RecognitionShelf extends YTNode {
     this.surface = data.surface;
   }
 }
+
+export default RecognitionShelf;

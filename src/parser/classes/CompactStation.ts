@@ -4,7 +4,7 @@ import Text from './misc/Text';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
 
-export default class CompactStation extends YTNode {
+class CompactStation extends YTNode {
   static type = 'CompactStation';
 
   title: Text;
@@ -23,3 +23,5 @@ export default class CompactStation extends YTNode {
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
   }
 }
+
+export default CompactStation;

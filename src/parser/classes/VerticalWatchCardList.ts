@@ -3,7 +3,7 @@ import Text from './misc/Text';
 import NavigationEndpoint from './NavigationEndpoint';
 import { YTNode } from '../helpers';
 
-export default class VerticalWatchCardList extends YTNode {
+class VerticalWatchCardList extends YTNode {
   static type = 'VerticalWatchCardList';
 
   items;
@@ -19,3 +19,5 @@ export default class VerticalWatchCardList extends YTNode {
     this.view_all_endpoint = new NavigationEndpoint(data.viewAllEndpoint);
   }
 }
+
+export default VerticalWatchCardList;

@@ -1,7 +1,7 @@
 import { YTNode } from '../helpers';
 import Thumbnail from './misc/Thumbnail';
 
-export default class ThumbnailLandscapePortrait extends YTNode {
+class ThumbnailLandscapePortrait extends YTNode {
   static type = 'ThumbnailLandscapePortrait';
 
   landscape: Thumbnail[];
@@ -13,3 +13,5 @@ export default class ThumbnailLandscapePortrait extends YTNode {
     this.portrait = Thumbnail.fromResponse(data.portrait);
   }
 }
+
+export default ThumbnailLandscapePortrait;

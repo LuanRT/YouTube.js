@@ -6,7 +6,7 @@ import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
 import SubscribeButton from './SubscribeButton';
 
-export default class TopicChannelDetails extends YTNode {
+class TopicChannelDetails extends YTNode {
   static type = 'TopicChannelDetails';
 
   title: Text;
@@ -25,3 +25,5 @@ export default class TopicChannelDetails extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
+
+export default TopicChannelDetails;

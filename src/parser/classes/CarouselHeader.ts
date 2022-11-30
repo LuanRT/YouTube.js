@@ -1,7 +1,7 @@
 import Parser from '..';
 import { YTNode } from '../helpers';
 
-export default class CarouselHeader extends YTNode {
+class CarouselHeader extends YTNode {
   static type = 'CarouselHeader';
 
   contents: YTNode[];
@@ -11,3 +11,5 @@ export default class CarouselHeader extends YTNode {
     this.contents = Parser.parseArray(data.contents);
   }
 }
+
+export default CarouselHeader;
