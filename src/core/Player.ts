@@ -167,13 +167,13 @@ export default class Player {
 
   static extractSigSourceCode(data: string) {
     const calls = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
-    const obj_name = calls?.split('.')?.[0]?.replace(';', '');
-    const functions = getStringBetweenStrings(data, `var ${obj_name}=`, '};');
+    const obj_name = calls?.split(/\.|\[/)?.[0]?.replace(';', '')?.trim();
+    const functions = getStringBetweenStrings(data, `var ${obj_name}={`, '};');
 
     if (!functions || !calls)
       console.warn(new PlayerError('Failed to extract signature decipher algorithm'));
 
-    return `function descramble_sig(a) { a = a.split(""); let ${obj_name}=${functions}}${calls} return a.join("") } descramble_sig(sig);`;
+    return `function descramble_sig(a) { a = a.split(""); let ${obj_name}={${functions}}${calls} return a.join("") } descramble_sig(sig);`;
   }
 
   static extractNSigSourceCode(data: string) {
