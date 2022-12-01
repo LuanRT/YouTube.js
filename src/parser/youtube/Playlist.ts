@@ -7,6 +7,7 @@ import VideoOwner from '../classes/VideoOwner';
 import PlaylistMetadata from '../classes/PlaylistMetadata';
 import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo';
 import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo';
+import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail';
 import PlaylistHeader from '../classes/PlaylistHeader';
 
@@ -30,8 +31,8 @@ class Playlist extends Feed {
     this.info = {
       ...this.page.metadata.item().as(PlaylistMetadata),
       ...{
-        author: secondary_info?.owner.item().as(VideoOwner).author,
-        thumbnails: primary_info?.thumbnail_renderer.item().as(PlaylistVideoThumbnail).thumbnail as Thumbnail[],
+        author: secondary_info?.owner.item().as(VideoOwner).author ?? header?.author,
+        thumbnails: primary_info?.thumbnail_renderer.item().as(PlaylistVideoThumbnail, PlaylistCustomThumbnail).thumbnail as Thumbnail[],
         total_items: this.#getStat(0, primary_info),
         views: this.#getStat(1, primary_info),
         last_updated: this.#getStat(2, primary_info),
