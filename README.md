@@ -76,7 +76,6 @@ ___
     </li>
     <li><a href="#extending-the-library">Extending the library</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contributors">Contributors</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#disclaimer">Disclaimer</a></li>
     <li><a href="#license">License</a></li>
