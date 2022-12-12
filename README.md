@@ -14,7 +14,7 @@
 
 <h1 align=center>YouTube.js</h1>
 
-<p align=center>A full-featured wrapper around the InnerTube API, which is what YouTube itself uses.</p>
+<p align=center>A full-featured wrapper around the InnerTube API, which is what YouTube itself uses</p>
 
 <div align="center">
 
