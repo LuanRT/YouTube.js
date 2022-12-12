@@ -12,12 +12,10 @@
 [discord]: https://discord.gg/syDu7Yks54
 [nodejs]: https://nodejs.org
 
-<!-- INTRODUCTION -->
 <h1 align=center>YouTube.js</h1>
 
 <p align=center>A full-featured wrapper around the InnerTube API, which is what YouTube itself uses.</p>
 
-<!-- BADGES -->
 <div align="center">
 
   [![Tests](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)][actions]
@@ -30,8 +28,6 @@
   [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][github-sponsors]
  
 </div>
-
-<!-- SPONSORS -->
 
 <p align="center">
  <a><sub>Special thanks to:<sub></a>
@@ -57,7 +53,6 @@
 
 ___
 
-<!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -79,7 +74,7 @@ ___
         <li><a href="#api">API</a></li>
       </ul>
     </li>
-    <li><a href="#implementing-custom-functionality">Implementing custom functionality </a></li>
+    <li><a href="#extending-the-library">Extending the library</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contributors">Contributors</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -88,14 +83,12 @@ ___
   </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
 ## Description
 
-InnerTube is an API used across all YouTube clients, it was created to simplify[^1] the internal structure of the platform in a way that updates, tweaks, and experiments can be easily made. This library handles all the low-level communication with InnerTube, providing a simple, fast, and efficient way to interact with YouTube programmatically.
+InnerTube is an API used across all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform[^1]. This library handles all the low-level communication with InnerTube, providing a simple, and efficient way to interact with YouTube programmatically. It is designed to emulate an actual client as closely as possible, including how API responses are parsed. 
 
-If you have any questions or need help, feel free to contact us on our chat server [here](https://discord.gg/syDu7Yks54).
+If you have any questions or need help, feel free to reach out to us on our [Discord server][discord] or open an issue on [here](https://github.com/LuanRT/YouTube.js/issues).
 
-<!-- GETTING STARTED -->
 ## Getting Started
 
 ### Prerequisites
@@ -122,14 +115,13 @@ npm install github:LuanRT/YouTube.js
 
 **TODO:** Deno install instructions (esm.sh possibly?)
 
-<!-- USAGE -->
 ## Usage
 Create an InnerTube instance:
 ```ts
 // const { Innertube } = require('youtubei.js');
 import { Innertube } from 'youtubei.js';
 const youtube = await Innertube.create();
-```
+```****
 
 ## Browser Usage
 To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
@@ -581,48 +573,58 @@ Utility to call navigation endpoints.
 | --- | --- | --- |
 | endpoint | `NavigationEndpoint` | The target endpoint |
 | args? | `object` | Additional payload arguments |
+ 
+## Extending the library
 
-## Implementing custom functionality 
+YouTube.js is completely modular and easy to extend. Almost all methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
 
-Something cool about YouTube.js is that it is completely modular and easy to tinker with. Almost all methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
-
-For example, you may want to call an endpoint directly, that can be achieved with the `Actions` class:
+For example, let's say we want to implement a method to retrieve video info manually. We can do that by using an instance of the `Actions` class:
 
 ```ts
-// ...
+import { Innertube } from 'youtubei.js';
 
-const payload = {
-  // ...
-  videoId: 'jLTOuvBTLxA',
-  client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB or TV_EMBEDDED
-  parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
-};
+const yt = await Innertube.create();
 
-const response = await yt.actions.execute('/player', payload);
+async function getVideoInfo(videoId: string) {
+  const payload = {
+    // anything added here will be merged with the default payload and sent to InnerTube.
+    videoId,
+    client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB or TV_EMBEDDED
+    parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
+  };
 
-console.info(response);
+  const videoInfo = await yt.actions.execute('/player', payload);
+
+  return videoInfo;
+}
+
+const videoInfo = await getVideoInfo('jLTOuvBTLxA');
+console.info(videoInfo);
 ```
 
-Or maybe there's an interesting `NavigationEndpoint` in a parsed response and we want to call it to see what happens:
+Or perhaps there's a `NavigationEndpoint` in a parsed response and we want to call it to see what happens:
 
 ```ts
-// ...
+import { Innertube, YTNodes } from 'youtubei.js';
+
+const yt = await Innertube.create();
+
 const artist = await yt.music.getArtist('UC52ZqHVQz5OoGhvbWiRal6g');
 const albums = artist.sections[1].as(YTNodes.MusicCarouselShelf);
 
-// Say we have a button and want to “click” it
+// Say we want to click the “More” button:
 const button = albums.as(YTNodes.MusicCarouselShelf).header?.more_content;
-  
+
 if (button) {
-  // To do that, we can call its navigation endpoint:
-  const page = await button.endpoint.call(yt.actions, { parse: true, client: 'YTMUSIC' });
+  // After making sure it exists, we can call its navigation endpoint:
+  const page = await button.endpoint.call(yt.actions);
   console.info(page);
 }
 ```
 
 ### Parser
 
-If you're working on an extension for the library or just want to have nicely typed and sanitized InnerTube responses for a project then have a look at our powerful parser!
+YouTube.js' parser allows you to parse InnerTube responses and turn their nodes into strongly typed objects that can be easily manipulated. It also provides a set of utility methods that make working with InnerTube much easier.
 
 Example:
 ```ts
@@ -640,10 +642,12 @@ const header = page.header?.item().as(YTNodes.MusicImmersiveHeader, YTNodes.Musi
 
 console.info('Header:', header);
 
-// The parser encapsulates all arrays in a proxy object.
-// A proxy intercepts access to the actual data, allowing
-// the parser to add type safety and many utility methods
-// that make working with InnerTube much easier.
+/**
+ * The parser encapsulates all arrays in a proxy object.
+ * A proxy intercepts access to the actual data, allowing
+ * the parser to add type safety and many utility methods
+ * that make working with InnerTube much easier.
+ */
 const tab = page.contents.item().as(YTNodes.SingleColumnBrowseResults).tabs.firstOfType(YTNodes.Tab);
 
 
@@ -658,20 +662,18 @@ const sections = tab.content?.as(YTNodes.SectionList).contents.array().as(YTNode
 console.info('Sections:', sections);
 ```
 
-Detailed documentation can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/src/parser).
+Documentation for the parser can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/src/parser).
 
 <!-- CONTRIBUTING -->
 ## Contributing
 Contributions, issues, and feature requests are welcome.
 Feel free to check the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md) if you want to contribute.
 
-<!-- CONTRIBUTORS -->
-## Contributors
+Thank you to all the wonderful people who have contributed to this project:
 <a href="https://github.com/LuanRT/YouTube.js/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=LuanRT/YouTube.js" />
 </a>
 
-<!-- CONTACT -->
 ## Contact
 
 LuanRT  - [@thesciencephile][twitter] - luan.lrt4@gmail.com
@@ -684,10 +686,8 @@ All trademarks, logos, and brand names are the property of their respective owne
 
 Should you have any questions or concerns please contact me directly via email.
 
-<!-- Footnotes -->
 [^1]: https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491
 
-<!-- LICENSE -->
 ## License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License.
 
