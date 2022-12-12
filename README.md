@@ -120,7 +120,7 @@ Create an InnerTube instance:
 // const { Innertube } = require('youtubei.js');
 import { Innertube } from 'youtubei.js';
 const youtube = await Innertube.create();
-```****
+```
 
 ## Browser Usage
 To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
@@ -582,23 +582,23 @@ For example, let's say we want to implement a method to retrieve video info manu
 ```ts
 import { Innertube } from 'youtubei.js';
 
-const yt = await Innertube.create();
+(async () => {
+  const yt = await Innertube.create();
 
-async function getVideoInfo(videoId: string) {
-  const payload = {
-    // anything added here will be merged with the default payload and sent to InnerTube.
-    videoId,
-    client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB or TV_EMBEDDED
-    parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
-  };
+  async function getVideoInfo(videoId: string) {
+    const videoInfo = await yt.actions.execute('/player', {
+      // anything added here will be merged with the default payload and sent to InnerTube.
+      videoId,
+      client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB or TV_EMBEDDED
+      parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
+    });
 
-  const videoInfo = await yt.actions.execute('/player', payload);
+    return videoInfo;
+  }
 
-  return videoInfo;
-}
-
-const videoInfo = await getVideoInfo('jLTOuvBTLxA');
-console.info(videoInfo);
+  const videoInfo = await getVideoInfo('jLTOuvBTLxA');
+  console.info(videoInfo);
+})();
 ```
 
 Or perhaps there's a `NavigationEndpoint` in a parsed response and we want to call it to see what happens:
@@ -606,19 +606,21 @@ Or perhaps there's a `NavigationEndpoint` in a parsed response and we want to ca
 ```ts
 import { Innertube, YTNodes } from 'youtubei.js';
 
-const yt = await Innertube.create();
+(async () => {
+  const yt = await Innertube.create();
 
-const artist = await yt.music.getArtist('UC52ZqHVQz5OoGhvbWiRal6g');
-const albums = artist.sections[1].as(YTNodes.MusicCarouselShelf);
+  const artist = await yt.music.getArtist('UC52ZqHVQz5OoGhvbWiRal6g');
+  const albums = artist.sections[1].as(YTNodes.MusicCarouselShelf);
 
-// Say we want to click the “More” button:
-const button = albums.as(YTNodes.MusicCarouselShelf).header?.more_content;
+  // Say we want to click the “More” button:
+  const button = albums.as(YTNodes.MusicCarouselShelf).header?.more_content;
 
-if (button) {
-  // After making sure it exists, we can call its navigation endpoint:
-  const page = await button.endpoint.call(yt.actions);
-  console.info(page);
-}
+  if (button) {
+    // After making sure it exists, we can call its navigation endpoint:
+    const page = await button.endpoint.call(yt.actions);
+    console.info(page);
+  }
+})();
 ```
 
 ### Parser
