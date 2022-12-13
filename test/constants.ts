@@ -10,6 +10,10 @@ export const VIDEOS = [
   {
     ID: 'I1qsF0WQy8c',
     QUERY: 'mkbhd',
+  },
+  {
+    ID: 'OqiXFXlYFi8',
+    QUERY: 'formatted comment text'
   }
 ];
 
