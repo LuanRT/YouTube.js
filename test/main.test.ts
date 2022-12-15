@@ -2,6 +2,7 @@ import fs from 'fs';
 import Innertube from '..';
 import { CHANNELS, VIDEOS } from './constants';
 import { streamToIterable } from '../src/utils/Utils';
+import TextRun from '../src/parser/classes/misc/TextRun';
 
 describe('YouTube.js Tests', () => { 
   let yt: Innertube;
@@ -68,6 +69,19 @@ describe('YouTube.js Tests', () => {
       threads = await yt.getComments(VIDEOS[1].ID);
       expect(threads.contents.length).toBeGreaterThan(0);
     });
+
+    it('should parse formatted comments', async () => {
+      const threads = await yt.getComments(VIDEOS[3].ID);
+      const authorComment = threads.contents.find(t => t.comment?.author_is_channel_owner)
+      expect(authorComment).not.toBeUndefined();
+
+      expect(authorComment!.comment?.content.runs?.length).toBeGreaterThan(0)
+      const runs = authorComment!.comment!.content.runs! as TextRun[]
+
+      expect(runs[0].bold).toBeTruthy()
+      expect(runs[2].italics).toBeTruthy()
+      expect(runs[4].strikethrough).toBeTruthy()
+    })
     
     it('should retrieve next batch of comments', async () => {
       const next = await threads.getContinuation();
