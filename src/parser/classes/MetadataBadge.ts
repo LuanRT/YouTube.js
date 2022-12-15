@@ -5,7 +5,8 @@ class MetadataBadge extends YTNode {
 
   icon_type?: string;
   style?: string;
-  tooltip: string | null;
+  label?: string;
+  tooltip?: string;
 
   constructor(data: any) {
     super();
@@ -18,7 +19,13 @@ class MetadataBadge extends YTNode {
       this.style = data.style;
     }
 
-    this.tooltip = data?.tooltip || data?.iconTooltip || null;
+    if (data?.label) {
+      this.style = data.label;
+    }
+
+    if (data?.tooltip || data?.iconTooltip) {
+      this.tooltip = data.tooltip || data.iconTooltip;
+    }
   }
 }
 

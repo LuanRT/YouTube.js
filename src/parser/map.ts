@@ -73,6 +73,7 @@ import { default as Endscreen } from './classes/Endscreen';
 import { default as EndscreenElement } from './classes/EndscreenElement';
 import { default as EndScreenPlaylist } from './classes/EndScreenPlaylist';
 import { default as EndScreenVideo } from './classes/EndScreenVideo';
+import { default as ExpandableMetadata } from './classes/ExpandableMetadata';
 import { default as ExpandableTab } from './classes/ExpandableTab';
 import { default as ExpandedShelfContents } from './classes/ExpandedShelfContents';
 import { default as FeedFilterChipBar } from './classes/FeedFilterChipBar';
@@ -137,6 +138,7 @@ import { default as LiveChatItemList } from './classes/LiveChatItemList';
 import { default as LiveChatMessageInput } from './classes/LiveChatMessageInput';
 import { default as LiveChatParticipant } from './classes/LiveChatParticipant';
 import { default as LiveChatParticipantsList } from './classes/LiveChatParticipantsList';
+import { default as MacroMarkersListItem } from './classes/MacroMarkersListItem';
 import { default as Menu } from './classes/menus/Menu';
 import { default as MenuNavigationItem } from './classes/menus/MenuNavigationItem';
 import { default as MenuServiceItem } from './classes/menus/MenuServiceItem';
@@ -363,6 +365,7 @@ export const YTNodes = {
   EndscreenElement,
   EndScreenPlaylist,
   EndScreenVideo,
+  ExpandableMetadata,
   ExpandableTab,
   ExpandedShelfContents,
   FeedFilterChipBar,
@@ -427,6 +430,7 @@ export const YTNodes = {
   LiveChatMessageInput,
   LiveChatParticipant,
   LiveChatParticipantsList,
+  MacroMarkersListItem,
   Menu,
   MenuNavigationItem,
   MenuServiceItem,

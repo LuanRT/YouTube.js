@@ -40,7 +40,7 @@ export default class Search extends Feed {
 
     if (typeof card === 'string') {
       if (!this.refinement_cards) throw new InnertubeError('No refinement cards found.');
-      target_card = this.refinement_cards?.cards.get({ query: card });
+      target_card = this.refinement_cards?.cards.get({ query: card })?.as(SearchRefinementCard);
       if (!target_card)
         throw new InnertubeError(`Refinement card "${card}" not found`, { available_cards: this.refinement_card_queries });
     } else if (card.type === 'SearchRefinementCard') {
@@ -58,7 +58,7 @@ export default class Search extends Feed {
    * Returns a list of refinement card queries.
    */
   get refinement_card_queries() {
-    return this.refinement_cards?.cards.map((card) => card.query);
+    return this.refinement_cards?.cards.as(SearchRefinementCard).map((card) => card.query);
   }
 
   /**
