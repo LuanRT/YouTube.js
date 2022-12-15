@@ -4,6 +4,8 @@ import Author from './misc/Author';
 import Menu from './menus/Menu';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
+import MetadataBadge from './MetadataBadge';
+import ExpandableMetadata from './ExpandableMetadata';
 
 import { timeToSeconds } from '../../utils/Utils';
 import { YTNode } from '../helpers';
@@ -18,11 +20,13 @@ class Video extends YTNode {
     text: Text;
     hover_text: Text;
   }[];
+  expandable_metadata: ExpandableMetadata | null;
 
   thumbnails: Thumbnail[];
   thumbnail_overlays;
   rich_thumbnail;
   author: Author;
+  badges: MetadataBadge[];
   endpoint: NavigationEndpoint;
   published: Text;
   view_count: Text;
@@ -36,7 +40,8 @@ class Video extends YTNode {
 
   show_action_menu: boolean;
   is_watched: boolean;
-  menu;
+  menu: Menu | null;
+  search_video_result_entity_key: string;
 
   constructor(data: any) {
     super();
@@ -54,10 +59,13 @@ class Video extends YTNode {
       hover_text: new Text(snippet.snippetHoverText)
     })) || [];
 
+    this.expandable_metadata = Parser.parseItem<ExpandableMetadata>(data.expandableMetadata);
+
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.rich_thumbnail = data.richThumbnail ? Parser.parseItem(data.richThumbnail) : null;
     this.author = new Author(data.ownerText, data.ownerBadges, data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer?.thumbnail);
+    this.badges = Parser.parseArray(data.badges, MetadataBadge);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.published = new Text(data.publishedTimeText);
     this.view_count = new Text(data.viewCountText);
@@ -76,6 +84,7 @@ class Video extends YTNode {
     this.show_action_menu = data.showActionMenu;
     this.is_watched = data.isWatched || false;
     this.menu = Parser.parseItem<Menu>(data.menu, Menu);
+    this.search_video_result_entity_key = data.searchVideoResultEntityKey;
   }
 
   get description(): string {
@@ -85,22 +94,30 @@ class Video extends YTNode {
     return this.description_snippet?.toString() || '';
   }
 
-  /*
-  Get is_live() {
-    return this.badges.some((badge) => badge.style === 'BADGE_STYLE_TYPE_LIVE_NOW');
+  get is_live(): boolean {
+    return this.badges.some((badge) => {
+      if (badge.label === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.style === 'LIVE')
+        return true;
+    });
   }
-  */
 
   get is_upcoming(): boolean | undefined {
     return this.upcoming && this.upcoming > new Date();
   }
 
-  /*
-  Get has_captions() {
-    return this.badges.some((badge) => badge.label === 'CC');
-  }*/
+  get is_premiere(): boolean {
+    return this.badges.some((badge) => badge.style === 'PREMIERE');
+  }
 
-  get best_thumbnail(): Thumbnail | undefined{
+  get is_4k(): boolean {
+    return this.badges.some((badge) => badge.style === '4K');
+  }
+
+  get has_captions(): boolean {
+    return this.badges.some((badge) => badge.style === 'CC');
+  }
+
+  get best_thumbnail(): Thumbnail | undefined {
     return this.thumbnails[0];
   }
 }
