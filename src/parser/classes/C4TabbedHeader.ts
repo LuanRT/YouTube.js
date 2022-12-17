@@ -1,20 +1,28 @@
 import Parser from '../index';
 import Author from './misc/Author';
-import Thumbnail from './misc/Thumbnail';
 import Text from './misc/Text';
+import Thumbnail from './misc/Thumbnail';
+
+import type Button from './Button';
+import type ChannelHeaderLinks from './ChannelHeaderLinks';
+import type SubscribeButton from './SubscribeButton';
+
 import { YTNode } from '../helpers';
 
 class C4TabbedHeader extends YTNode {
   static type = 'C4TabbedHeader';
 
-  author;
-  banner;
-  tv_banner;
-  mobile_banner;
-  subscribers;
-  sponsor_button;
-  subscribe_button;
-  header_links;
+  author: Author;
+  banner: Thumbnail[];
+  tv_banner: Thumbnail[];
+  mobile_banner: Thumbnail[];
+  subscribers: Text;
+  videos_count: Text;
+  sponsor_button: Button | null;
+  subscribe_button: SubscribeButton | null;
+  header_links: ChannelHeaderLinks | null;
+  channel_handle: Text;
+  channel_id: string;
 
   constructor(data: any) {
     super();
@@ -23,13 +31,16 @@ class C4TabbedHeader extends YTNode {
       navigationEndpoint: data.navigationEndpoint
     }, data.badges, data.avatar);
 
-    this.banner = data.banner ? Thumbnail.fromResponse(data.banner) : [];
-    this.tv_banner = data.tvBanner ? Thumbnail.fromResponse(data.tvBanner) : [];
-    this.mobile_banner = data.mobileBanner ? Thumbnail.fromResponse(data.mobileBanner) : [];
+    this.banner = Thumbnail.fromResponse(data.banner);
+    this.tv_banner = Thumbnail.fromResponse(data.tvBanner);
+    this.mobile_banner = Thumbnail.fromResponse(data.mobileBanner);
     this.subscribers = new Text(data.subscriberCountText);
-    this.sponsor_button = data.sponsorButton ? Parser.parseItem(data.sponsorButton) : undefined;
-    this.subscribe_button = data.subscribeButton ? Parser.parseItem(data.subscribeButton) : undefined;
-    this.header_links = data.headerLinks ? Parser.parse(data.headerLinks) : undefined;
+    this.videos_count = new Text(data.videosCountText);
+    this.sponsor_button = Parser.parseItem<Button>(data.sponsorButton);
+    this.subscribe_button = Parser.parseItem<SubscribeButton>(data.subscribeButton);
+    this.header_links = Parser.parseItem<ChannelHeaderLinks>(data.headerLinks);
+    this.channel_handle = new Text(data.channelHandleText);
+    this.channel_id = data.channelId;
   }
 }
 

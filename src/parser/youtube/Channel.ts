@@ -9,11 +9,12 @@ import MicroformatData from '../classes/MicroformatData';
 import SubscribeButton from '../classes/SubscribeButton';
 import Tab from '../classes/Tab';
 
-import { InnertubeError } from '../../utils/Utils';
 import FeedFilterChipBar from '../classes/FeedFilterChipBar';
 import ChipCloudChip from '../classes/ChipCloudChip';
 import FilterableFeed from '../../core/FilterableFeed';
 import Feed from '../../core/Feed';
+
+import { InnertubeError } from '../../utils/Utils';
 
 export default class Channel extends TabbedFeed {
   header;
@@ -70,37 +71,37 @@ export default class Channel extends TabbedFeed {
   }
 
   async getHome() {
-    const tab = await this.getTab('Home');
+    const tab = await this.getTabByURL('featured');
     return new Channel(this.actions, tab.page, true);
   }
 
   async getVideos() {
-    const tab = await this.getTab('Videos');
+    const tab = await this.getTabByURL('videos');
     return new Channel(this.actions, tab.page, true);
   }
 
   async getShorts() {
-    const tab = await this.getTab('Shorts');
+    const tab = await this.getTabByURL('shorts');
     return new Channel(this.actions, tab.page, true);
   }
 
   async getLiveStreams() {
-    const tab = await this.getTab('Live');
+    const tab = await this.getTabByURL('streams');
     return new Channel(this.actions, tab.page, true);
   }
 
   async getPlaylists() {
-    const tab = await this.getTab('Playlists');
+    const tab = await this.getTabByURL('playlists');
     return new Channel(this.actions, tab.page, true);
   }
 
   async getCommunity() {
-    const tab = await this.getTab('Community');
+    const tab = await this.getTabByURL('community');
     return new Channel(this.actions, tab.page, true);
   }
 
   async getChannels() {
-    const tab = await this.getTab('Channels');
+    const tab = await this.getTabByURL('channels');
     return new Channel(this.actions, tab.page, true);
   }
 
@@ -109,7 +110,7 @@ export default class Channel extends TabbedFeed {
    * Note that this does not return a new {@link Channel} object.
    */
   async getAbout() {
-    const tab = await this.getTab('About');
+    const tab = await this.getTabByURL('about');
     return tab.memo.getType(ChannelAboutFullMetadata)?.[0];
   }
 

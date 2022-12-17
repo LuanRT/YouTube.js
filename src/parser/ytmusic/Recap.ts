@@ -37,7 +37,7 @@ class Recap {
     if (!tab)
       throw new InnertubeError('Target tab not found');
 
-    this.sections = tab.content?.as(SectionList).contents.array().as(ItemSection, MusicCarouselShelf, Message);
+    this.sections = tab.content?.as(SectionList).contents.as(ItemSection, MusicCarouselShelf, Message);
   }
 
   /**

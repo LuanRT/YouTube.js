@@ -61,7 +61,7 @@ class Playlist {
   /**
    * Retrieves related playlists
    */
-  async getRelated() {
+  async getRelated(): Promise<MusicCarouselShelf> {
     let section_continuation = this.#page.contents_memo.get('SectionList')?.[0].as(SectionList).continuation;
 
     while (section_continuation) {
@@ -74,19 +74,15 @@ class Playlist {
       const section_list = data.continuation_contents?.as(SectionListContinuation);
       const sections = section_list?.contents?.as(MusicCarouselShelf, MusicShelf);
 
-      const related = sections?.filter(
-        (section) =>
-          section.is(MusicCarouselShelf) ? section.header?.title.toString() === 'Related playlists' :
-            section.title.toString() === 'Related playlists'
-      )[0];
+      const related = sections?.matchCondition((section) => section.is(MusicCarouselShelf))?.as(MusicCarouselShelf);
 
       if (related)
-        return related.contents || [];
+        return related;
 
       section_continuation = section_list?.continuation;
     }
 
-    return [];
+    throw new InnertubeError('Target section not found.');
   }
 
   async getSuggestions(refresh = true) {
@@ -115,9 +111,7 @@ class Playlist {
       const section_list = page.continuation_contents?.as(SectionListContinuation);
       const sections = section_list?.contents?.as(MusicCarouselShelf, MusicShelf);
 
-      const suggestions = sections?.filter(
-        (section) => section.is(MusicShelf) && section.title.toString() === 'Suggestions'
-      )[0] as MusicShelf | undefined;
+      const suggestions = sections?.matchCondition((section) => section.is(MusicShelf))?.as(MusicShelf);
 
       return {
         items: suggestions?.contents || [],

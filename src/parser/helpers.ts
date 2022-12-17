@@ -360,6 +360,10 @@ export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
      */
     getAll: (rule: object, del_items?: boolean) => T[];
     /**
+     * Returns the first object to match the condition.
+     */
+    matchCondition: (condition: (node: T) => boolean) => T | undefined;
+    /**
      * Removes the item at the given index.
      */
     remove: (index: number) => T[];
@@ -408,6 +412,14 @@ export function observe<T extends YTNode>(obj: Array<T>) {
               target.splice(index, 1);
             }
             return match;
+          })
+        );
+      }
+
+      if (prop == 'matchCondition') {
+        return (condition: (node: T) => boolean) => (
+          target.find((obj) => {
+            return condition(obj);
           })
         );
       }

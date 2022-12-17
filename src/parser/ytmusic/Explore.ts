@@ -28,8 +28,8 @@ class Explore {
     if (!section_list)
       throw new InnertubeError('Target tab did not have any content.');
 
-    this.top_buttons = section_list.contents.array().firstOfType(Grid)?.items.as(MusicNavigationButton) || ([] as MusicNavigationButton[]);
-    this.sections = section_list.contents.array().getAll({ type: 'MusicCarouselShelf' }) as MusicCarouselShelf[];
+    this.top_buttons = section_list.contents.firstOfType(Grid)?.items.as(MusicNavigationButton) || ([] as MusicNavigationButton[]);
+    this.sections = section_list.contents.getAll({ type: 'MusicCarouselShelf' }) as MusicCarouselShelf[];
   }
 
   get page(): ParsedResponse {

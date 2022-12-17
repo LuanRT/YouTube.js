@@ -16,7 +16,7 @@ class SectionList extends YTNode {
     }
 
     // TODO: this should be Parser#parseArray
-    this.contents = Parser.parse(data.contents);
+    this.contents = Parser.parseArray(data.contents);
 
     if (data.continuations) {
       if (data.continuations[0].nextContinuationData) {

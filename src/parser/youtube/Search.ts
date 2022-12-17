@@ -20,7 +20,7 @@ export default class Search extends Feed {
     super(actions, data, already_parsed);
 
     const contents =
-      this.page.contents_memo.getType(SectionList)?.[0]?.contents?.array() ||
+      this.page.contents_memo.getType(SectionList)?.[0]?.contents ||
       this.page.on_response_received_commands?.[0].contents;
 
     this.results = contents.firstOfType(ItemSection)?.contents;

@@ -33,7 +33,7 @@ class HomeFeed {
     }
 
     this.#continuation = tab.content?.as(SectionList).continuation;
-    this.sections = tab.content?.as(SectionList).contents.array().as(MusicCarouselShelf);
+    this.sections = tab.content?.as(SectionList).contents.as(MusicCarouselShelf);
   }
 
   /**

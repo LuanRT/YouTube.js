@@ -49,7 +49,7 @@ class Search {
 
     this.header = tab_content.hasKey('header') ? tab_content.header?.item().as(ChipCloud) : null;
 
-    const shelves = tab_content.contents.array().as(MusicShelf, ItemSection);
+    const shelves = tab_content.contents.as(MusicShelf, ItemSection);
     const item_section = shelves.firstOfType(ItemSection);
 
     this.did_you_mean = item_section?.contents?.firstOfType(DidYouMean) || null;
