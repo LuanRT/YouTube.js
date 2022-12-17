@@ -19,7 +19,7 @@ class TimeWatched {
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
 
-    this.contents = tab.content?.as(SectionList).contents.array().as(ItemSection);
+    this.contents = tab.content?.as(SectionList).contents.as(ItemSection);
   }
 
   get page(): ParsedResponse {

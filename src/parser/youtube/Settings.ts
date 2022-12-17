@@ -31,7 +31,7 @@ class Settings {
     if (!tab)
       throw new InnertubeError('Target tab not found');
 
-    const contents = tab.content?.as(SectionList).contents.array().as(ItemSection);
+    const contents = tab.content?.as(SectionList).contents.as(ItemSection);
 
     this.introduction = contents?.shift()?.contents?.get({ type: 'PageIntroduction' })?.as(PageIntroduction);
 

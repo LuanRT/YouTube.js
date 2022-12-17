@@ -17,7 +17,7 @@ class TabbedFeed extends Feed {
     return this.#tabs.map((tab) => tab.title.toString());
   }
 
-  async getTab(title: string) {
+  async getTabByName(title: string) {
     const tab = this.#tabs.find((tab) => tab.title.toLowerCase() === title.toLowerCase());
 
     if (!tab)
@@ -28,8 +28,19 @@ class TabbedFeed extends Feed {
 
     const response = await tab.endpoint.call(this.#actions);
 
-    if (!response)
-      throw new InnertubeError('Failed to call endpoint');
+    return new TabbedFeed(this.#actions, response.data, false);
+  }
+
+  async getTabByURL(url: string) {
+    const tab = this.#tabs.find((tab) => tab.endpoint.metadata.url?.split('/').pop() === url);
+
+    if (!tab)
+      throw new InnertubeError(`Tab "${url}" not found`);
+
+    if (tab.selected)
+      return this;
+
+    const response = await tab.endpoint.call(this.#actions);
 
     return new TabbedFeed(this.#actions, response.data, false);
   }

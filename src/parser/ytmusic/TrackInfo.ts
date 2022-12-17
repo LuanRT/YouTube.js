@@ -4,9 +4,7 @@ import Constants from '../../utils/Constants';
 import { InnertubeError } from '../../utils/Utils';
 
 import Tab from '../classes/Tab';
-import Tabbed from '../classes/Tabbed';
 import WatchNextTabbedResults from '../classes/WatchNextTabbedResults';
-import SingleColumnMusicWatchNextResults from '../classes/SingleColumnMusicWatchNextResults';
 import MicroformatData from '../classes/MicroformatData';
 import PlayerOverlay from '../classes/PlayerOverlay';
 import PlaylistPanel from '../classes/PlaylistPanel';
@@ -70,8 +68,7 @@ class TrackInfo {
     this.#playback_tracking = info.playback_tracking;
 
     if (next) {
-      const single_col = next.contents.item().as(SingleColumnMusicWatchNextResults);
-      const tabbed_results = single_col.contents.item().as(Tabbed).contents.item().as(WatchNextTabbedResults);
+      const tabbed_results = next.contents_memo.getType(WatchNextTabbedResults)?.[0];
 
       this.tabs = tabbed_results.tabs.array().as(Tab);
       this.current_video_endpoint = next.current_video_endpoint;
@@ -84,14 +81,17 @@ class TrackInfo {
   /**
    * Retrieves contents of the given tab.
    */
-  async getTab(title: string) {
+  async getTab(title_or_page_type: string) {
     if (!this.tabs)
       throw new InnertubeError('Could not find any tab');
 
-    const target_tab = this.tabs.get({ title });
+    const target_tab =
+      this.tabs.get({ title: title_or_page_type }) ||
+      this.tabs.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === title_or_page_type) ||
+      this.tabs?.[0];
 
     if (!target_tab)
-      throw new InnertubeError(`Tab "${title}" not found`, { available_tabs: this.available_tabs });
+      throw new InnertubeError(`Tab "${title_or_page_type}" not found`, { available_tabs: this.available_tabs });
 
     if (target_tab.content)
       return target_tab.content;
@@ -101,7 +101,7 @@ class TrackInfo {
     if (page.contents.item().key('type').string() === 'Message')
       return page.contents.item().as(Message);
 
-    return page.contents.item().as(SectionList).contents.array();
+    return page.contents.item().as(SectionList).contents;
   }
 
   /**
@@ -140,7 +140,7 @@ class TrackInfo {
    * Retrieves related content.
    */
   async getRelated(): Promise<ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>> {
-    const tab = await this.getTab('Related') as ObservedArray<MusicDescriptionShelf | MusicDescriptionShelf>;
+    const tab = await this.getTab('MUSIC_PAGE_TYPE_TRACK_RELATED') as ObservedArray<MusicDescriptionShelf | MusicDescriptionShelf>;
     return tab;
   }
 
@@ -148,7 +148,7 @@ class TrackInfo {
    * Retrieves lyrics.
    */
   async getLyrics(): Promise<MusicDescriptionShelf | undefined> {
-    const tab = await this.getTab('Lyrics') as ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>;
+    const tab = await this.getTab('MUSIC_PAGE_TYPE_TRACK_LYRICS') as ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>;
     return tab.firstOfType(MusicDescriptionShelf);
   }
 

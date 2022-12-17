@@ -11,9 +11,6 @@ import Playlist from '../parser/ytmusic/Playlist';
 import Recap from '../parser/ytmusic/Recap';
 
 import Tab from '../parser/classes/Tab';
-import Tabbed from '../parser/classes/Tabbed';
-import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults';
-import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults';
 import SectionList from '../parser/classes/SectionList';
 
 import Message from '../parser/classes/Message';
@@ -235,13 +232,9 @@ class Music {
       parse: true
     });
 
-    const tabs = data.contents.item()
-      .as(SingleColumnMusicWatchNextResults).contents.item()
-      .as(Tabbed).contents.item()
-      .as(WatchNextTabbedResults)
-      .tabs.array().as(Tab);
+    const tabs = data.contents_memo.getType(Tab);
 
-    const tab = tabs.get({ title: 'Up next' });
+    const tab = tabs?.[0];
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
@@ -287,20 +280,16 @@ class Music {
       parse: true
     });
 
-    const tabs = data.contents.item()
-      .as(SingleColumnMusicWatchNextResults).contents.item()
-      .as(Tabbed).contents.item()
-      .as(WatchNextTabbedResults)
-      .tabs.array().as(Tab);
+    const tabs = data.contents_memo.getType(Tab);
 
-    const tab = tabs.get({ title: 'Related' });
+    const tab = tabs?.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_RELATED');
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
 
     const page = await tab.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
 
-    const shelves = page.contents.item().as(SectionList).contents.array().as(MusicCarouselShelf, MusicDescriptionShelf);
+    const shelves = page.contents.item().as(SectionList).contents.as(MusicCarouselShelf, MusicDescriptionShelf);
 
     return shelves;
   }
@@ -318,13 +307,9 @@ class Music {
       parse: true
     });
 
-    const tabs = data.contents.item()
-      .as(SingleColumnMusicWatchNextResults).contents.item()
-      .as(Tabbed).contents.item()
-      .as(WatchNextTabbedResults)
-      .tabs.array().as(Tab);
+    const tabs = data.contents_memo.getType(Tab);
 
-    const tab = tabs.get({ title: 'Lyrics' });
+    const tab = tabs?.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_LYRICS');
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
@@ -334,7 +319,7 @@ class Music {
     if (page.contents.item().key('type').string() === 'Message')
       throw new InnertubeError(page.contents.item().as(Message).text, video_id);
 
-    const section_list = page.contents.item().as(SectionList).contents.array();
+    const section_list = page.contents.item().as(SectionList).contents;
     return section_list.firstOfType(MusicDescriptionShelf);
   }
 
