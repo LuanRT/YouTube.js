@@ -8,7 +8,7 @@ class ExpandedShelfContents extends YTNode {
 
   constructor(data: any) {
     super();
-    this.items = Parser.parse(data.items);
+    this.items = Parser.parseArray(data.items);
   }
 
   // XXX: alias for consistency

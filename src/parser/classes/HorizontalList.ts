@@ -10,7 +10,7 @@ class HorizontalList extends YTNode {
   constructor(data: any) {
     super();
     this.visible_item_count = data.visibleItemCount;
-    this.items = Parser.parse(data.items);
+    this.items = Parser.parseArray(data.items);
   }
 
   // XXX: alias for consistency
