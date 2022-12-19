@@ -56,6 +56,7 @@ export interface Context {
 
 export interface SessionOptions {
   lang?: string;
+  location?: string;
   account_index?: number;
   device_category?: DeviceCategory;
   client_type?: ClientType;
@@ -112,6 +113,7 @@ export default class Session extends EventEmitterLike {
   static async create(options: SessionOptions = {}) {
     const { context, api_key, api_version, account_index } = await Session.getSessionData(
       options.lang,
+      options.location,
       options.account_index,
       options.device_category,
       options.client_type,
@@ -123,6 +125,7 @@ export default class Session extends EventEmitterLike {
 
   static async getSessionData(
     lang = 'en-US',
+    location = '',
     account_index = 0,
     device_category: DeviceCategory = 'desktop',
     client_name: ClientType = ClientType.WEB,
@@ -157,7 +160,7 @@ export default class Session extends EventEmitterLike {
     const context: Context = {
       client: {
         hl: device_info[0],
-        gl: device_info[2],
+        gl: location || device_info[2],
         remoteHost: device_info[3],
         screenDensityFloat: 1,
         screenHeightPoints: 720,

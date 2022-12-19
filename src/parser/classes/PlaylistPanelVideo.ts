@@ -76,8 +76,8 @@ class PlaylistPanelVideo extends YTNode {
       }));
     }
 
-    this.badges = Parser.parse(data.badges);
-    this.menu = Parser.parse(data.menu);
+    this.badges = Parser.parseArray(data.badges);
+    this.menu = Parser.parseItem(data.menu);
     this.set_video_id = data.playlistSetVideoId;
   }
 }
