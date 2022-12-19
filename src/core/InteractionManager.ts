@@ -175,7 +175,7 @@ class InteractionManager {
       throw new Error(`Invalid notification preference type: ${type}`);
 
     const action = await this.#actions.execute('/notification/modify_channel_preference', {
-      client: 'ANDROID',
+      client: 'WEB',
       params: Proto.encodeNotificationPref(channel_id, pref_types[type.toUpperCase() as keyof typeof pref_types])
     });
 
