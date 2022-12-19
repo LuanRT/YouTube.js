@@ -48,7 +48,7 @@ export default class HTTPClient {
     const request_headers = new Headers(headers);
 
     request_headers.set('Accept', '*/*');
-    request_headers.set('Accept-Language', `${this.#session.context.client.hl}-${this.#session.context.client.gl}`);
+    request_headers.set('Accept-Language', '*');
     request_headers.set('x-goog-visitor-id', this.#session.context.client.visitorData || '');
     request_headers.set('x-origin', request_url.origin);
     request_headers.set('x-youtube-client-version', this.#session.context.client.clientVersion || '');
