@@ -4,6 +4,8 @@ import Author from './misc/Author';
 import { timeToSeconds } from '../../utils/Utils';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
+import type Menu from './menus/Menu';
+
 import { YTNode } from '../helpers';
 
 class CompactVideo extends YTNode {
@@ -25,7 +27,7 @@ class CompactVideo extends YTNode {
 
   thumbnail_overlays;
   endpoint: NavigationEndpoint;
-  menu;
+  menu: Menu | null;
 
   constructor(data: any) {
     super();
@@ -43,9 +45,9 @@ class CompactVideo extends YTNode {
       seconds: timeToSeconds(new Text(data.lengthText).toString())
     };
 
-    this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+    this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.menu = Parser.parse(data.menu);
+    this.menu = Parser.parseItem<Menu>(data.menu);
   }
 
   get best_thumbnail() {

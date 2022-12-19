@@ -3,6 +3,8 @@ import Parser from '../index';
 import Thumbnail from './misc/Thumbnail';
 import PlaylistAuthor from './misc/PlaylistAuthor';
 import NavigationEndpoint from './NavigationEndpoint';
+import type Menu from './menus/Menu';
+
 import { YTNode } from '../helpers';
 
 class PlaylistVideo extends YTNode {
@@ -17,7 +19,7 @@ class PlaylistVideo extends YTNode {
   set_video_id: string | undefined;
   endpoint: NavigationEndpoint;
   is_playable: boolean;
-  menu;
+  menu: Menu | null;
 
   duration: {
     text: string;
@@ -35,7 +37,7 @@ class PlaylistVideo extends YTNode {
     this.set_video_id = data?.setVideoId;
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.is_playable = data.isPlayable;
-    this.menu = Parser.parse(data.menu);
+    this.menu = Parser.parseItem<Menu>(data.menu);
     this.duration = {
       text: new Text(data.lengthText).text,
       seconds: parseInt(data.lengthSeconds)
