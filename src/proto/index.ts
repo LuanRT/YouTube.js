@@ -201,7 +201,7 @@ class Proto {
         client: {
           unkparam: 14,
           clientName: CLIENTS.ANDROID.NAME,
-          clientVersion: CLIENTS.ANDROID.VERSION
+          clientVersion: CLIENTS.YTSTUDIO_ANDROID.VERSION
         }
       },
       target: video_id
@@ -263,7 +263,7 @@ class Proto {
         client: {
           unkparam: 14,
           clientName: CLIENTS.ANDROID.NAME,
-          clientVersion: CLIENTS.ANDROID.VERSION
+          clientVersion: CLIENTS.YTSTUDIO_ANDROID.VERSION
         }
       },
       target: video_id,
