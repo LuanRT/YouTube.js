@@ -15,6 +15,7 @@ import FilterableFeed from '../../core/FilterableFeed';
 import Feed from '../../core/Feed';
 
 import { InnertubeError } from '../../utils/Utils';
+import ExpandableTab from '../classes/ExpandableTab';
 
 export default class Channel extends TabbedFeed {
   header;
@@ -37,9 +38,7 @@ export default class Channel extends TabbedFeed {
 
     this.subscribe_button = this.page.header_memo.getType(SubscribeButton)?.[0];
 
-    const tab = this.page.contents.item().key('tabs').parsed().array().filterType(Tab).get({ selected: true });
-
-    this.current_tab = tab;
+    this.current_tab = this.page.contents.item().key('tabs').parsed().array().filterType(Tab, ExpandableTab).get({ selected: true });
   }
 
   /**
@@ -112,6 +111,20 @@ export default class Channel extends TabbedFeed {
   async getAbout() {
     const tab = await this.getTabByURL('about');
     return tab.memo.getType(ChannelAboutFullMetadata)?.[0];
+  }
+
+  /**
+   * Searches within the channel.
+   */
+  async search(query: string) {
+    const tab = this.memo.getType(ExpandableTab)?.[0];
+
+    if (!tab)
+      throw new InnertubeError('Search tab not found', this);
+
+    const page = await tab.endpoint?.call(this.actions, { query, parse: true });
+
+    return new Channel(this.actions, page, true);
   }
 
   /**

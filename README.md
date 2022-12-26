@@ -479,6 +479,7 @@ Retrieves contents for a given channel.
 - `<channel>#getCommunity()`
 - `<channel>#getChannels()`
 - `<channel>#getAbout()`
+- `<channel>#search(query)`
 - `<channel>#getContinuation()`
 - `<channel>#filters`
 - `<channel>#page`

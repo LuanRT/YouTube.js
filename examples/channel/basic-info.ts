@@ -14,28 +14,34 @@ import { Innertube, UniversalCache, YTNodes } from 'youtubei.js';
 
   console.info('Country:', about.country.toString());
 
-  console.info('\nLists the following videos:');
+  console.info('\nVideos:');
   const videos = await channel.getVideos();
 
   for (const video of videos.videos) {
     console.info('Video:', video.title.toString());
   }
 
-  console.info('\nLists the following playlists:');
+  console.info('\nPopular videos:');
+  const popular_videos = await videos.applyFilter('Popular');
+  for (const video of popular_videos.videos) {
+    console.info('Video:', video.title.toString());
+  }
+
+  console.info('\nPlaylists:');
   const playlists = await channel.getPlaylists();
 
   for (const playlist of playlists.playlists) {
     console.info('Playlist:', playlist.title.toString());
   }
 
-  console.info('\nLists the following channels:');
+  console.info('\nChannels:');
   const channels = await channel.getChannels();
  
   for (const channel of channels.channels) {
     console.info('Channel:', channel.author.name);
   }
 
-  console.info('\nLists the following community posts:');
+  console.info('\nCommunity posts:');
   const posts = await channel.getCommunity();
  
   for (const post of posts.posts) {
