@@ -114,6 +114,9 @@ describe('YouTube.js Tests', () => {
 
       const filtered_list = await videos_tab.applyFilter('Popular');
       expect(filtered_list.videos.length).toBeGreaterThan(0);
+
+      const search = await channel.search('e-ink');
+      expect(search.videos.length).toBeGreaterThan(0);
     });
 
     it('should retrieve home feed', async () => {
