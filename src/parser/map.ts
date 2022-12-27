@@ -39,6 +39,7 @@ import { default as ChannelMobileHeader } from './classes/ChannelMobileHeader';
 import { default as ChannelOptions } from './classes/ChannelOptions';
 import { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailWithLink';
 import { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer';
+import { default as Chapter } from './classes/Chapter';
 import { default as ChildVideo } from './classes/ChildVideo';
 import { default as ChipCloud } from './classes/ChipCloud';
 import { default as ChipCloudChip } from './classes/ChipCloudChip';
@@ -62,6 +63,7 @@ import { default as ConfirmDialog } from './classes/ConfirmDialog';
 import { default as ContinuationItem } from './classes/ContinuationItem';
 import { default as CopyLink } from './classes/CopyLink';
 import { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog';
+import { default as DecoratedPlayerBar } from './classes/DecoratedPlayerBar';
 import { default as DefaultPromoPanel } from './classes/DefaultPromoPanel';
 import { default as DidYouMean } from './classes/DidYouMean';
 import { default as DownloadButton } from './classes/DownloadButton';
@@ -85,6 +87,8 @@ import { default as GridChannel } from './classes/GridChannel';
 import { default as GridHeader } from './classes/GridHeader';
 import { default as GridPlaylist } from './classes/GridPlaylist';
 import { default as GridVideo } from './classes/GridVideo';
+import { default as Heatmap } from './classes/Heatmap';
+import { default as HeatMarker } from './classes/HeatMarker';
 import { default as HighlightsCarousel } from './classes/HighlightsCarousel';
 import { default as HistorySuggestion } from './classes/HistorySuggestion';
 import { default as HorizontalCardList } from './classes/HorizontalCardList';
@@ -161,6 +165,7 @@ import { default as MicroformatData } from './classes/MicroformatData';
 import { default as Mix } from './classes/Mix';
 import { default as Movie } from './classes/Movie';
 import { default as MovingThumbnail } from './classes/MovingThumbnail';
+import { default as MultiMarkersPlayerBar } from './classes/MultiMarkersPlayerBar';
 import { default as MusicCarouselShelf } from './classes/MusicCarouselShelf';
 import { default as MusicCarouselShelfBasicHeader } from './classes/MusicCarouselShelfBasicHeader';
 import { default as MusicDescriptionShelf } from './classes/MusicDescriptionShelf';
@@ -269,6 +274,7 @@ import { default as ThumbnailOverlayResumePlayback } from './classes/ThumbnailOv
 import { default as ThumbnailOverlaySidePanel } from './classes/ThumbnailOverlaySidePanel';
 import { default as ThumbnailOverlayTimeStatus } from './classes/ThumbnailOverlayTimeStatus';
 import { default as ThumbnailOverlayToggleButton } from './classes/ThumbnailOverlayToggleButton';
+import { default as TimedMarkerDecoration } from './classes/TimedMarkerDecoration';
 import { default as TitleAndButtonListHeader } from './classes/TitleAndButtonListHeader';
 import { default as ToggleButton } from './classes/ToggleButton';
 import { default as ToggleMenuServiceItem } from './classes/ToggleMenuServiceItem';
@@ -331,6 +337,7 @@ export const YTNodes = {
   ChannelOptions,
   ChannelThumbnailWithLink,
   ChannelVideoPlayer,
+  Chapter,
   ChildVideo,
   ChipCloud,
   ChipCloudChip,
@@ -354,6 +361,7 @@ export const YTNodes = {
   ContinuationItem,
   CopyLink,
   CreatePlaylistDialog,
+  DecoratedPlayerBar,
   DefaultPromoPanel,
   DidYouMean,
   DownloadButton,
@@ -377,6 +385,8 @@ export const YTNodes = {
   GridHeader,
   GridPlaylist,
   GridVideo,
+  Heatmap,
+  HeatMarker,
   HighlightsCarousel,
   HistorySuggestion,
   HorizontalCardList,
@@ -453,6 +463,7 @@ export const YTNodes = {
   Mix,
   Movie,
   MovingThumbnail,
+  MultiMarkersPlayerBar,
   MusicCarouselShelf,
   MusicCarouselShelfBasicHeader,
   MusicDescriptionShelf,
@@ -561,6 +572,7 @@ export const YTNodes = {
   ThumbnailOverlaySidePanel,
   ThumbnailOverlayTimeStatus,
   ThumbnailOverlayToggleButton,
+  TimedMarkerDecoration,
   TitleAndButtonListHeader,
   ToggleButton,
   ToggleMenuServiceItem,
