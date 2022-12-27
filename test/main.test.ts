@@ -19,8 +19,25 @@ describe('YouTube.js Tests', () => {
       expect(info.basic_info.id).toBe(VIDEOS[0].ID);
     });
 
-    it('should have captions on full video info', async () => {
+    it('should have captions', () => {
       expect(info.captions?.caption_tracks.length).toBeGreaterThan(0);
+    });
+
+    it('should have chapters', () => {
+      const markers_map = info.player_overlays?.decorated_player_bar?.player_bar?.markers_map;
+      
+      const chapters = (
+        markers_map?.get({ marker_key: 'AUTO_CHAPTERS' }) ||
+        markers_map?.get({ marker_key: 'DESCRIPTION_CHAPTERS' })
+      )?.value?.chapters;
+
+      expect(chapters).toBeDefined();
+    });
+
+    it('should have heatmap', () => {
+      const markers_map = info.player_overlays?.decorated_player_bar?.player_bar?.markers_map;
+      const heatmap = markers_map?.get({ marker_key: 'HEATSEEKER' })?.value?.heatmap;
+      expect(heatmap).toBeDefined();
     });
 
     it('should retrieve basic video info', async () => {
@@ -114,9 +131,6 @@ describe('YouTube.js Tests', () => {
 
       const filtered_list = await videos_tab.applyFilter('Popular');
       expect(filtered_list.videos.length).toBeGreaterThan(0);
-
-      const search = await channel.search('e-ink');
-      expect(search.videos.length).toBeGreaterThan(0);
     });
 
     it('should retrieve home feed', async () => {

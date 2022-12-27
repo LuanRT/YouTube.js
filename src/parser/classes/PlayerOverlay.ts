@@ -3,6 +3,7 @@ import Menu from './menus/Menu';
 import Button from './Button';
 import WatchNextEndScreen from './WatchNextEndScreen';
 import PlayerOverlayAutoplay from './PlayerOverlayAutoplay';
+import type DecoratedPlayerBar from './DecoratedPlayerBar';
 
 import { YTNode } from '../helpers';
 
@@ -16,6 +17,7 @@ class PlayerOverlay extends YTNode {
   fullscreen_engagement;
   actions;
   browser_media_session;
+  decorated_player_bar;
 
   constructor(data: any) {
     super();
@@ -26,6 +28,7 @@ class PlayerOverlay extends YTNode {
     this.fullscreen_engagement = Parser.parse(data.fullscreenEngagement);
     this.actions = Parser.parseArray(data.actions);
     this.browser_media_session = Parser.parseItem(data.browserMediaSession);
+    this.decorated_player_bar = Parser.parseItem<DecoratedPlayerBar>(data.decoratedPlayerBarRenderer);
   }
 }
 
