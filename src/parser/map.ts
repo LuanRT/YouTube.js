@@ -113,6 +113,7 @@ import { default as LiveChatPaidMessage } from './classes/livechat/items/LiveCha
 import { default as LiveChatPaidSticker } from './classes/livechat/items/LiveChatPaidSticker';
 import { default as LiveChatPlaceholderItem } from './classes/livechat/items/LiveChatPlaceholderItem';
 import { default as LiveChatProductItem } from './classes/livechat/items/LiveChatProductItem';
+import { default as LiveChatRestrictedParticipation } from './classes/livechat/items/LiveChatRestrictedParticipation';
 import { default as LiveChatTextMessage } from './classes/livechat/items/LiveChatTextMessage';
 import { default as LiveChatTickerPaidMessageItem } from './classes/livechat/items/LiveChatTickerPaidMessageItem';
 import { default as LiveChatTickerPaidStickerItem } from './classes/livechat/items/LiveChatTickerPaidStickerItem';
@@ -411,6 +412,7 @@ export const YTNodes = {
   LiveChatPaidSticker,
   LiveChatPlaceholderItem,
   LiveChatProductItem,
+  LiveChatRestrictedParticipation,
   LiveChatTextMessage,
   LiveChatTickerPaidMessageItem,
   LiveChatTickerPaidStickerItem,
