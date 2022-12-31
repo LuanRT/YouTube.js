@@ -1,25 +1,27 @@
 import Parser, { MusicPlaylistShelfContinuation, ParsedResponse, SectionListContinuation } from '../index';
-import Actions, { ApiResponse } from '../../core/Actions';
 
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
-import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader';
 import MusicDetailHeader from '../classes/MusicDetailHeader';
+import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader';
+import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
+import MusicResponsiveListItem from '../classes/MusicResponsiveListItem';
 import MusicShelf from '../classes/MusicShelf';
-
 import SectionList from '../classes/SectionList';
 
 import { InnertubeError } from '../../utils/Utils';
+import type { ObservedArray, YTNode } from '../helpers';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
 
 class Playlist {
-  #page;
-  #actions;
-  #continuation;
+  #page: ParsedResponse;
+  #actions: Actions;
+  #continuation: string | null;
   #last_fetched_suggestions: any;
   #suggestions_continuation: any;
 
-  header;
-  items;
+  header?: MusicDetailHeader | null;
+  items: ObservedArray<YTNode> | null;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
@@ -46,7 +48,7 @@ class Playlist {
   /**
    * Retrieves playlist items continuation.
    */
-  async getContinuation() {
+  async getContinuation(): Promise<Playlist> {
     if (!this.#continuation)
       throw new InnertubeError('Continuation not found.');
 
@@ -62,7 +64,7 @@ class Playlist {
    * Retrieves related playlists
    */
   async getRelated(): Promise<MusicCarouselShelf> {
-    let section_continuation = this.#page.contents_memo.get('SectionList')?.[0].as(SectionList).continuation;
+    let section_continuation = this.#page.contents_memo.getType(SectionList)?.[0].continuation;
 
     while (section_continuation) {
       const data = await this.#actions.execute('/browse', {
@@ -98,7 +100,7 @@ class Playlist {
     return fetch_result?.items || this.#last_fetched_suggestions;
   }
 
-  async #fetchSuggestions() {
+  async #fetchSuggestions(): Promise<{ items: never[] | ObservedArray<MusicResponsiveListItem>, continuation: string | null }> {
     const continuation = this.#suggestions_continuation || this.#page.contents_memo.get('SectionList')?.[0].as(SectionList).continuation;
 
     if (continuation) {
@@ -129,7 +131,7 @@ class Playlist {
     return this.#page;
   }
 
-  get has_continuation() {
+  get has_continuation(): boolean {
     return !!this.#continuation;
   }
 }

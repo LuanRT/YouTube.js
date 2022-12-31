@@ -1,31 +1,33 @@
 
 import Session, { SessionOptions } from './core/Session';
+import type { ParsedResponse } from './parser';
+import type { ActionsResponse } from './core/Actions';
 
-import Search from './parser/youtube/Search';
-import Channel from './parser/youtube/Channel';
-import Playlist from './parser/youtube/Playlist';
-import Library from './parser/youtube/Library';
-import History from './parser/youtube/History';
-import Comments from './parser/youtube/Comments';
-import NotificationsMenu from './parser/youtube/NotificationsMenu';
-import VideoInfo, { DownloadOptions, FormatOptions } from './parser/youtube/VideoInfo';
 import NavigationEndpoint from './parser/classes/NavigationEndpoint';
+import Channel from './parser/youtube/Channel';
+import Comments from './parser/youtube/Comments';
+import History from './parser/youtube/History';
+import Library from './parser/youtube/Library';
+import NotificationsMenu from './parser/youtube/NotificationsMenu';
+import Playlist from './parser/youtube/Playlist';
+import Search from './parser/youtube/Search';
+import VideoInfo, { DownloadOptions, FormatOptions } from './parser/youtube/VideoInfo';
 
-import { ParsedResponse } from './parser';
-import { ActionsResponse } from './core/Actions';
-
-import Feed from './core/Feed';
-import YTMusic from './core/Music';
-import Studio from './core/Studio';
-import HomeFeed from './parser/youtube/HomeFeed';
 import AccountManager from './core/AccountManager';
-import PlaylistManager from './core/PlaylistManager';
+import Feed from './core/Feed';
 import InteractionManager from './core/InteractionManager';
+import YTMusic from './core/Music';
+import PlaylistManager from './core/PlaylistManager';
+import Studio from './core/Studio';
 import TabbedFeed from './core/TabbedFeed';
-import Constants from './utils/Constants';
+import HomeFeed from './parser/youtube/HomeFeed';
 import Proto from './proto/index';
+import Constants from './utils/Constants';
 
-import { throwIfMissing, generateRandomString } from './utils/Utils';
+import type Actions from './core/Actions';
+import type Format from './parser/classes/misc/Format';
+
+import { generateRandomString, throwIfMissing } from './utils/Utils';
 
 export type InnertubeConfig = SessionOptions;
 
@@ -36,16 +38,16 @@ export interface SearchFilters {
   sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count'
 }
 
-export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'TV_EMBEDDED';
+export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED';
 
 class Innertube {
-  session;
-  account;
-  playlist;
-  interact;
-  music;
-  studio;
-  actions;
+  session: Session;
+  account: AccountManager;
+  playlist: PlaylistManager;
+  interact: InteractionManager;
+  music: YTMusic;
+  studio: Studio;
+  actions: Actions;
 
   constructor(session: Session) {
     this.session = session;
@@ -57,7 +59,7 @@ class Innertube {
     this.actions = this.session.actions;
   }
 
-  static async create(config: InnertubeConfig = {}) {
+  static async create(config: InnertubeConfig = {}): Promise<Innertube> {
     return new Innertube(await Session.create(config));
   }
 
@@ -66,13 +68,15 @@ class Innertube {
    * @param video_id - The video id.
    * @param client - The client to use.
    */
-  async getInfo(video_id: string, client?: InnerTubeClient) {
+  async getInfo(video_id: string, client?: InnerTubeClient): Promise<VideoInfo> {
+    throwIfMissing({ video_id });
+
     const cpn = generateRandomString(16);
 
     const initial_info = this.actions.getVideoInfo(video_id, cpn, client);
     const continuation = this.actions.execute('/next', { videoId: video_id });
 
-    const response = await Promise.all([ initial_info, continuation ]);
+    const response = await Promise.all([initial_info, continuation]);
     return new VideoInfo(response, this.actions, this.session.player, cpn);
   }
 
@@ -81,11 +85,13 @@ class Innertube {
    * @param video_id - The video id.
    * @param client - The client to use.
    */
-  async getBasicInfo(video_id: string, client?: InnerTubeClient) {
+  async getBasicInfo(video_id: string, client?: InnerTubeClient): Promise<VideoInfo> {
+    throwIfMissing({ video_id });
+
     const cpn = generateRandomString(16);
     const response = await this.actions.getVideoInfo(video_id, cpn, client);
 
-    return new VideoInfo([ response ], this.actions, this.session.player, cpn);
+    return new VideoInfo([response], this.actions, this.session.player, cpn);
   }
 
   /**
@@ -93,7 +99,7 @@ class Innertube {
    * @param query - The search query.
    * @param filters - Search filters.
    */
-  async search(query: string, filters: SearchFilters = {}) {
+  async search(query: string, filters: SearchFilters = {}): Promise<Search> {
     throwIfMissing({ query });
 
     const args = {
@@ -138,7 +144,7 @@ class Innertube {
    * @param video_id - The video id.
    * @param sort_by - Sorting options.
    */
-  async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST') {
+  async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
     throwIfMissing({ video_id });
 
     const payload = Proto.encodeCommentsSectionParams(video_id, {
@@ -153,7 +159,7 @@ class Innertube {
   /**
    * Retrieves YouTube's home feed (aka recommendations).
    */
-  async getHomeFeed() {
+  async getHomeFeed(): Promise<HomeFeed> {
     const response = await this.actions.execute('/browse', { browseId: 'FEwhat_to_watch' });
     return new HomeFeed(this.actions, response.data);
   }
@@ -161,7 +167,7 @@ class Innertube {
   /**
    * Returns the account's library.
    */
-  async getLibrary() {
+  async getLibrary(): Promise<Library> {
     const response = await this.actions.execute('/browse', { browseId: 'FElibrary' });
     return new Library(response.data, this.actions);
   }
@@ -170,7 +176,7 @@ class Innertube {
    * Retrieves watch history.
    * Which can also be achieved with {@link getLibrary}.
    */
-  async getHistory() {
+  async getHistory(): Promise<History> {
     const response = await this.actions.execute('/browse', { browseId: 'FEhistory' });
     return new History(this.actions, response.data);
   }
@@ -178,7 +184,7 @@ class Innertube {
   /**
    * Retrieves trending content.
    */
-  async getTrending() {
+  async getTrending(): Promise<TabbedFeed> {
     const response = await this.actions.execute('/browse', { browseId: 'FEtrending' });
     return new TabbedFeed(this.actions, response.data);
   }
@@ -186,16 +192,16 @@ class Innertube {
   /**
    * Retrieves subscriptions feed.
    */
-  async getSubscriptionsFeed() {
+  async getSubscriptionsFeed(): Promise<Feed> {
     const response = await this.actions.execute('/browse', { browseId: 'FEsubscriptions' });
     return new Feed(this.actions, response.data);
   }
 
   /**
    * Retrieves contents for a given channel.
-   * @param id - channel id
+   * @param id - Channel id
    */
-  async getChannel(id: string) {
+  async getChannel(id: string): Promise<Channel> {
     throwIfMissing({ id });
     const response = await this.actions.execute('/browse', { browseId: id });
     return new Channel(this.actions, response.data);
@@ -204,7 +210,7 @@ class Innertube {
   /**
    * Retrieves notifications.
    */
-  async getNotifications() {
+  async getNotifications(): Promise<NotificationsMenu> {
     const response = await this.actions.execute('/notification/get_notification_menu', { notificationsMenuRequestType: 'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX' });
     return new NotificationsMenu(this.actions, response);
   }
@@ -220,8 +226,9 @@ class Innertube {
 
   /**
    * Retrieves playlist contents.
+   * @param id - Playlist id
    */
-  async getPlaylist(id: string) {
+  async getPlaylist(id: string): Promise<Playlist> {
     throwIfMissing({ id });
 
     if (!id.startsWith('VL')) {
@@ -237,18 +244,21 @@ class Innertube {
    * Returns deciphered streaming data.
    *
    * If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
+   * @param video_id - The video id.
+   * @param options - Format options.
    */
-  async getStreamingData(video_id: string, options: FormatOptions = {}) {
+  async getStreamingData(video_id: string, options: FormatOptions = {}): Promise<Format> {
     const info = await this.getBasicInfo(video_id);
     return info.chooseFormat(options);
   }
 
   /**
    * Downloads a given video. If you only need the direct download link see {@link getStreamingData}.
-   *
    * If you wish to retrieve the video info too, have a look at {@link getBasicInfo} or {@link getInfo}.
+   * @param video_id - The video id.
+   * @param options - Download options.
    */
-  async download(video_id: string, options?: DownloadOptions) {
+  async download(video_id: string, options?: DownloadOptions): Promise<ReadableStream<Uint8Array>> {
     const info = await this.getBasicInfo(video_id, options?.client);
     return info.download(options);
   }
@@ -258,8 +268,8 @@ class Innertube {
    * @param endpoint -The endpoint to call.
    * @param args - Call arguments.
    */
-  call(endpoint: NavigationEndpoint, args: { [ key: string ]: any; parse: true }): Promise<ParsedResponse>;
-  call(endpoint: NavigationEndpoint, args?: { [ key: string ]: any; parse?: false }): Promise<ActionsResponse>;
+  call(endpoint: NavigationEndpoint, args: { [key: string]: any; parse: true }): Promise<ParsedResponse>;
+  call(endpoint: NavigationEndpoint, args?: { [key: string]: any; parse?: false }): Promise<ActionsResponse>;
   call(endpoint: NavigationEndpoint, args?: object): Promise<ActionsResponse | ParsedResponse> {
     return endpoint.call(this.actions, args);
   }

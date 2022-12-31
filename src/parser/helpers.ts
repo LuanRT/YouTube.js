@@ -385,7 +385,7 @@ export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
  * Creates a trap to intercept property access
  * and add utilities to an object.
  */
-export function observe<T extends YTNode>(obj: Array<T>) {
+export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
   return new Proxy(obj, {
     get(target, prop) {
       if (prop == 'get') {

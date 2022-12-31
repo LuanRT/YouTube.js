@@ -1,27 +1,28 @@
-import Actions from '../../core/Actions';
+import type Actions from '../../core/Actions';
 import TabbedFeed from '../../core/TabbedFeed';
 import C4TabbedHeader from '../classes/C4TabbedHeader';
 import CarouselHeader from '../classes/CarouselHeader';
-import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader';
 import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata';
 import ChannelMetadata from '../classes/ChannelMetadata';
+import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader';
 import MicroformatData from '../classes/MicroformatData';
 import SubscribeButton from '../classes/SubscribeButton';
 import Tab from '../classes/Tab';
 
-import FeedFilterChipBar from '../classes/FeedFilterChipBar';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import FilterableFeed from '../../core/FilterableFeed';
 import Feed from '../../core/Feed';
-
-import { InnertubeError } from '../../utils/Utils';
+import FilterableFeed from '../../core/FilterableFeed';
+import ChipCloudChip from '../classes/ChipCloudChip';
 import ExpandableTab from '../classes/ExpandableTab';
+import FeedFilterChipBar from '../classes/FeedFilterChipBar';
+import { InnertubeError } from '../../utils/Utils';
+
+import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
 
 export default class Channel extends TabbedFeed {
-  header;
+  header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader;
   metadata;
-  subscribe_button;
-  current_tab;
+  subscribe_button?: SubscribeButton;
+  current_tab?: Tab | ExpandableTab;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -42,10 +43,10 @@ export default class Channel extends TabbedFeed {
   }
 
   /**
-   * Applies given filter to the list.
+   * Applies given filter to the list. Use {@link filters} to get available filters.
    * @param filter - The filter to apply
    */
-  async applyFilter(filter: string | ChipCloudChip) {
+  async applyFilter(filter: string | ChipCloudChip): Promise<FilteredChannelList> {
     let target_filter: ChipCloudChip | undefined;
 
     const filter_chipbar = this.memo.getType(FeedFilterChipBar)?.[0];
@@ -69,37 +70,37 @@ export default class Channel extends TabbedFeed {
     return this.memo.getType(FeedFilterChipBar)?.[0]?.contents.filterType(ChipCloudChip).map((chip) => chip.text) || [];
   }
 
-  async getHome() {
+  async getHome(): Promise<Channel> {
     const tab = await this.getTabByURL('featured');
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getVideos() {
+  async getVideos(): Promise<Channel> {
     const tab = await this.getTabByURL('videos');
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getShorts() {
+  async getShorts(): Promise<Channel> {
     const tab = await this.getTabByURL('shorts');
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getLiveStreams() {
+  async getLiveStreams(): Promise<Channel> {
     const tab = await this.getTabByURL('streams');
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getPlaylists() {
+  async getPlaylists(): Promise<Channel> {
     const tab = await this.getTabByURL('playlists');
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getCommunity() {
+  async getCommunity(): Promise<Channel> {
     const tab = await this.getTabByURL('community');
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getChannels() {
+  async getChannels(): Promise<Channel> {
     const tab = await this.getTabByURL('channels');
     return new Channel(this.actions, tab.page, true);
   }
@@ -108,7 +109,7 @@ export default class Channel extends TabbedFeed {
    * Retrieves the channel about page.
    * Note that this does not return a new {@link Channel} object.
    */
-  async getAbout() {
+  async getAbout(): Promise<ChannelAboutFullMetadata> {
     const tab = await this.getTabByURL('about');
     return tab.memo.getType(ChannelAboutFullMetadata)?.[0];
   }
@@ -116,7 +117,7 @@ export default class Channel extends TabbedFeed {
   /**
    * Searches within the channel.
    */
-  async search(query: string) {
+  async search(query: string): Promise<Channel> {
     const tab = this.memo.getType(ExpandableTab)?.[0];
 
     if (!tab)
@@ -130,14 +131,14 @@ export default class Channel extends TabbedFeed {
   /**
    * Retrives list continuation.
    */
-  async getContinuation() {
+  async getContinuation(): Promise<ChannelListContinuation> {
     const page = await super.getContinuationData();
     return new ChannelListContinuation(this.actions, page, true);
   }
 }
 
 export class ChannelListContinuation extends Feed {
-  contents;
+  contents: ReloadContinuationItemsCommand | AppendContinuationItemsAction | undefined;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -149,14 +150,14 @@ export class ChannelListContinuation extends Feed {
   /**
    * Retrieves list continuation.
    */
-  async getContinuation() {
+  async getContinuation(): Promise<ChannelListContinuation> {
     const page = await super.getContinuationData();
     return new ChannelListContinuation(this.actions, page, true);
   }
 }
 
 export class FilteredChannelList extends FilterableFeed {
-  applied_filter: ChipCloudChip | undefined;
+  applied_filter?: ChipCloudChip;
   contents;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
@@ -179,7 +180,7 @@ export class FilteredChannelList extends FilterableFeed {
    * Applies given filter to the list.
    * @param filter - The filter to apply
    */
-  async applyFilter(filter: string | ChipCloudChip) {
+  async applyFilter(filter: string | ChipCloudChip): Promise<FilteredChannelList> {
     const feed = await super.getFilteredFeed(filter);
     return new FilteredChannelList(this.actions, feed.page, true);
   }
@@ -187,7 +188,7 @@ export class FilteredChannelList extends FilterableFeed {
   /**
    * Retrieves list continuation.
    */
-  async getContinuation() {
+  async getContinuation(): Promise<FilteredChannelList> {
     const page = await super.getContinuationData();
 
     // Keep the filters

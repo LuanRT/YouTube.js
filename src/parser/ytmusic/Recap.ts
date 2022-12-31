@@ -1,26 +1,29 @@
 import Parser, { ParsedResponse } from '../index';
-import Actions, { ApiResponse } from '../../core/Actions';
 
-import Playlist from './Playlist';
-import MusicHeader from '../classes/MusicHeader';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
+
+import HighlightsCarousel from '../classes/HighlightsCarousel';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 import MusicElementHeader from '../classes/MusicElementHeader';
-import HighlightsCarousel from '../classes/HighlightsCarousel';
+import MusicHeader from '../classes/MusicHeader';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
+import Playlist from './Playlist';
 
-import Tab from '../classes/Tab';
 import ItemSection from '../classes/ItemSection';
-import SectionList from '../classes/SectionList';
 import Message from '../classes/Message';
+import SectionList from '../classes/SectionList';
+import Tab from '../classes/Tab';
 
 import { InnertubeError } from '../../utils/Utils';
+import type { ObservedArray } from '../helpers';
 
 class Recap {
-  #page;
-  #actions;
+  #page: ParsedResponse;
+  #actions: Actions;
 
-  header;
-  sections;
+  header?: HighlightsCarousel | MusicHeader;
+  sections?: ObservedArray<ItemSection | MusicCarouselShelf | Message>;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#page = Parser.parseResponse(response.data);
@@ -43,7 +46,7 @@ class Recap {
   /**
    * Retrieves recap playlist.
    */
-  async getPlaylist() {
+  async getPlaylist(): Promise<Playlist> {
     if (!this.header)
       throw new InnertubeError('Header not found');
 

@@ -1,9 +1,10 @@
 import ChipCloudChip from '../parser/classes/ChipCloudChip';
 import FeedFilterChipBar from '../parser/classes/FeedFilterChipBar';
-import { ObservedArray } from '../parser/helpers';
-import { InnertubeError } from '../utils/Utils';
-import Actions from './Actions';
 import Feed from './Feed';
+
+import type { ObservedArray } from '../parser/helpers';
+import { InnertubeError } from '../utils/Utils';
+import type Actions from './Actions';
 
 class FilterableFeed extends Feed {
   #chips?: ObservedArray<ChipCloudChip>;
@@ -15,7 +16,7 @@ class FilterableFeed extends Feed {
   /**
    * Returns the filter chips.
    */
-  get filter_chips() {
+  get filter_chips(): ObservedArray<ChipCloudChip> {
     if (this.#chips)
       return this.#chips || [];
 
@@ -33,14 +34,14 @@ class FilterableFeed extends Feed {
   /**
    * Returns available filters.
    */
-  get filters() {
+  get filters(): string[] {
     return this.filter_chips.map((chip) => chip.text.toString()) || [];
   }
 
   /**
    * Applies given filter and returns a new {@link Feed} object.
    */
-  async getFilteredFeed(filter: string | ChipCloudChip) {
+  async getFilteredFeed(filter: string | ChipCloudChip): Promise<Feed> {
     let target_filter: ChipCloudChip | undefined;
 
     if (typeof filter === 'string') {

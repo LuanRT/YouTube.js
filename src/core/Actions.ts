@@ -1,6 +1,6 @@
-import Session from './Session';
 import Parser, { ParsedResponse } from '../parser/index';
 import { InnertubeError } from '../utils/Utils';
+import type Session from './Session';
 
 export interface ApiResponse {
   success: boolean;
@@ -11,13 +11,13 @@ export interface ApiResponse {
 export type ActionsResponse = Promise<ApiResponse>;
 
 class Actions {
-  #session;
+  #session: Session;
 
   constructor(session: Session) {
     this.#session = session;
   }
 
-  get session() {
+  get session(): Session {
     return this.#session;
   }
 
@@ -25,7 +25,7 @@ class Actions {
    * Mimmics the Axios API using Fetch's Response object.
    * @param response - The response object.
    */
-  async #wrap(response: Response) {
+  async #wrap(response: Response): Promise<ApiResponse> {
     return {
       success: response.ok,
       status_code: response.status,
@@ -40,7 +40,7 @@ class Actions {
    * @param client - The client to use.
    * @param playlist_id - The playlist ID.
    */
-  async getVideoInfo(id: string, cpn?: string, client?: string, playlist_id?: string) {
+  async getVideoInfo(id: string, cpn?: string, client?: string, playlist_id?: string): Promise<ActionsResponse> {
     const data: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
@@ -90,7 +90,7 @@ class Actions {
    * @param client - The client to use.
    * @param params - Call parameters.
    */
-  async stats(url: string, client: { client_name: string; client_version: string }, params: { [key: string]: any }) {
+  async stats(url: string, client: { client_name: string; client_version: string }, params: { [key: string]: any }): Promise<Response> {
     const s_url = new URL(url);
 
     s_url.searchParams.set('ver', '2');

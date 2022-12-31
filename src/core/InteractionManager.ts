@@ -1,9 +1,10 @@
 import Proto from '../proto';
-import Actions from './Actions';
+import type Actions from './Actions';
+import type { ApiResponse } from './Actions';
 import { throwIfMissing } from '../utils/Utils';
 
 class InteractionManager {
-  #actions;
+  #actions: Actions;
 
   constructor(actions: Actions) {
     this.#actions = actions;
@@ -13,7 +14,7 @@ class InteractionManager {
    * Likes a given video.
    * @param video_id - The video ID
    */
-  async like(video_id: string) {
+  async like(video_id: string): Promise<ApiResponse> {
     throwIfMissing({ video_id });
 
     if (!this.#actions.session.logged_in)
@@ -33,7 +34,7 @@ class InteractionManager {
    * Dislikes a given video.
    * @param video_id - The video ID
    */
-  async dislike(video_id: string) {
+  async dislike(video_id: string): Promise<ApiResponse> {
     throwIfMissing({ video_id });
 
     if (!this.#actions.session.logged_in)
@@ -53,7 +54,7 @@ class InteractionManager {
    * Removes a like/dislike.
    * @param video_id - The video ID
    */
-  async removeRating(video_id: string) {
+  async removeRating(video_id: string): Promise<ApiResponse> {
     throwIfMissing({ video_id });
 
     if (!this.#actions.session.logged_in)
@@ -73,7 +74,7 @@ class InteractionManager {
    * Subscribes to a given channel.
    * @param channel_id - The channel ID
    */
-  async subscribe(channel_id: string) {
+  async subscribe(channel_id: string): Promise<ApiResponse> {
     throwIfMissing({ channel_id });
 
     if (!this.#actions.session.logged_in)
@@ -92,7 +93,7 @@ class InteractionManager {
    * Unsubscribes from a given channel.
    * @param channel_id - The channel ID
    */
-  async unsubscribe(channel_id: string) {
+  async unsubscribe(channel_id: string): Promise<ApiResponse>{
     throwIfMissing({ channel_id });
 
     if (!this.#actions.session.logged_in)
@@ -112,7 +113,7 @@ class InteractionManager {
    * @param video_id - The video ID
    * @param text - The comment text
    */
-  async comment(video_id: string, text: string) {
+  async comment(video_id: string, text: string): Promise<ApiResponse> {
     throwIfMissing({ video_id, text });
 
     if (!this.#actions.session.logged_in)
@@ -159,7 +160,7 @@ class InteractionManager {
    * @param channel_id - The channel ID.
    * @param type - The notification type.
    */
-  async setNotificationPreferences(channel_id: string, type: 'PERSONALIZED' | 'ALL' | 'NONE') {
+  async setNotificationPreferences(channel_id: string, type: 'PERSONALIZED' | 'ALL' | 'NONE'): Promise<ApiResponse> {
     throwIfMissing({ channel_id, type });
 
     if (!this.#actions.session.logged_in)

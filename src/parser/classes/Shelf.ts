@@ -7,10 +7,10 @@ class Shelf extends YTNode {
   static type = 'Shelf';
 
   title: Text;
-  endpoint;
-  content;
-  icon_type;
-  menu;
+  endpoint?: NavigationEndpoint;
+  content: YTNode | null;
+  icon_type?: string;
+  menu?: YTNode | null;
 
   constructor(data: any) {
     super();

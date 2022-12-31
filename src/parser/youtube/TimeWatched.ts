@@ -1,15 +1,15 @@
 import Parser, { ParsedResponse } from '..';
-import { ApiResponse } from '../../core/Actions';
-
 import ItemSection from '../classes/ItemSection';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
 import SectionList from '../classes/SectionList';
+import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
 
 import { InnertubeError } from '../../utils/Utils';
+import type { ApiResponse } from '../../core/Actions';
+import type { ObservedArray } from '../helpers';
 
 class TimeWatched {
-  #page;
-  contents;
+  #page: ParsedResponse;
+  contents?: ObservedArray<ItemSection>;
 
   constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);

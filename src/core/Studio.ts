@@ -1,8 +1,9 @@
 import Proto from '../proto';
-import Session from './Session';
-import { ApiResponse } from './Actions';
-import { InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils';
 import { Constants } from '../utils';
+import { InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils';
+
+import type { ApiResponse } from './Actions';
+import type Session from './Session';
 
 interface UploadResult {
   status: string;
@@ -36,7 +37,7 @@ export interface UploadedVideoMetadata {
 }
 
 class Studio {
-  #session;
+  #session: Session;
 
   constructor(session: Session) {
     this.#session = session;
@@ -81,7 +82,7 @@ class Studio {
    * });
    * ```
    */
-  async updateVideoMetadata(video_id: string, metadata: VideoMetadata) {
+  async updateVideoMetadata(video_id: string, metadata: VideoMetadata): Promise<ApiResponse> {
     if (!this.#session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 

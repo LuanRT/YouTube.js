@@ -1,5 +1,6 @@
 import Parser, { ParsedResponse } from '../index';
-import Actions, { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 
 import MusicShelf from '../classes/MusicShelf';
@@ -10,11 +11,11 @@ import MusicVisualHeader from '../classes/MusicVisualHeader';
 import MusicHeader from '../classes/MusicHeader';
 
 class Artist {
-  #page;
-  #actions;
+  #page: ParsedResponse;
+  #actions: Actions;
 
-  header;
-  sections;
+  header?: MusicImmersiveHeader | MusicVisualHeader | MusicHeader;
+  sections: (MusicCarouselShelf | MusicShelf)[];
 
   constructor(response: ApiResponse | ParsedResponse, actions: Actions) {
     this.#page = Parser.parseResponse((response as ApiResponse).data);
@@ -22,8 +23,8 @@ class Artist {
 
     this.header = this.page.header?.item().as(MusicImmersiveHeader, MusicVisualHeader, MusicHeader);
 
-    const music_shelf = this.#page.contents_memo.get('MusicShelf') as MusicShelf[] || [];
-    const music_carousel_shelf = this.#page.contents_memo.get('MusicCarouselShelf') as MusicCarouselShelf[] || [];
+    const music_shelf = this.#page.contents_memo.getType(MusicShelf) || [];
+    const music_carousel_shelf = this.#page.contents_memo.getType(MusicCarouselShelf) || [];
 
     this.sections = [ ...music_shelf, ...music_carousel_shelf ];
   }
@@ -43,7 +44,7 @@ class Artist {
       throw new InnertubeError('Target shelf (Songs) did not have an endpoint.');
 
     const page = await shelf.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
-    const contents = page.contents_memo.get('MusicPlaylistShelf')?.[0]?.as(MusicPlaylistShelf) || null;
+    const contents = page.contents_memo.getType(MusicPlaylistShelf)?.[0] || null;
 
     return contents;
   }

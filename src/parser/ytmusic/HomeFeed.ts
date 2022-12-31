@@ -1,17 +1,20 @@
-import Parser, { ParsedResponse, SectionListContinuation } from '../index';
-import Actions, { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
+import type { ObservedArray } from '../helpers';
 import { InnertubeError } from '../../utils/Utils';
 
+import Parser, { ParsedResponse, SectionListContinuation } from '../index';
+
+import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 import SectionList from '../classes/SectionList';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 
 class HomeFeed {
-  #page;
-  #actions;
-  #continuation;
+  #page: ParsedResponse;
+  #actions: Actions;
+  #continuation?: string;
 
-  sections;
+  sections?: ObservedArray<MusicCarouselShelf>;
 
   constructor(response: ApiResponse | ParsedResponse, actions: Actions) {
     this.#actions = actions;
@@ -55,7 +58,7 @@ class HomeFeed {
     return !!this.#continuation;
   }
 
-  get page() {
+  get page(): ParsedResponse {
     return this.#page;
   }
 }

@@ -1,4 +1,3 @@
-import Actions from '../../core/Actions';
 import Feed from '../../core/Feed';
 
 import Thumbnail from '../classes/misc/Thumbnail';
@@ -12,6 +11,8 @@ import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail';
 import PlaylistHeader from '../classes/PlaylistHeader';
 
 import { InnertubeError } from '../../utils/Utils';
+
+import type Actions from '../../core/Actions';
 
 class Playlist extends Feed {
   info;
@@ -43,7 +44,7 @@ class Playlist extends Feed {
       }
     };
 
-    this.menu = primary_info?.menu.item();
+    this.menu = primary_info?.menu;
     this.endpoint = primary_info?.endpoint;
   }
 

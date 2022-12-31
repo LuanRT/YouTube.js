@@ -1,11 +1,11 @@
+import type Feed from './Feed';
+import type Actions from './Actions';
 import Playlist from '../parser/youtube/Playlist';
-import Actions from './Actions';
-import Feed from './Feed';
 
 import { InnertubeError, throwIfMissing } from '../utils/Utils';
 
 class PlaylistManager {
-  #actions;
+  #actions: Actions;
 
   constructor(actions: Actions) {
     this.#actions = actions;
@@ -16,7 +16,7 @@ class PlaylistManager {
    * @param title - The title of the playlist.
    * @param video_ids - An array of video IDs to add to the playlist.
    */
-  async create(title: string, video_ids: string[]) {
+  async create(title: string, video_ids: string[]): Promise<{ success: boolean; status_code: number; playlist_id: string; data: any }> {
     throwIfMissing({ title, video_ids });
 
     if (!this.#actions.session.logged_in)
@@ -40,7 +40,7 @@ class PlaylistManager {
    * Deletes a given playlist.
    * @param playlist_id - The playlist ID.
    */
-  async delete(playlist_id: string) {
+  async delete(playlist_id: string): Promise<{ playlist_id: string; success: boolean; status_code: number; data: any }> {
     throwIfMissing({ playlist_id });
 
     if (!this.#actions.session.logged_in)
@@ -61,7 +61,7 @@ class PlaylistManager {
    * @param playlist_id - The playlist ID.
    * @param video_ids - An array of video IDs to add to the playlist.
    */
-  async addVideos(playlist_id: string, video_ids: string[]) {
+  async addVideos(playlist_id: string, video_ids: string[]): Promise<{ playlist_id: string; action_result: any }> {
     throwIfMissing({ playlist_id, video_ids });
 
     if (!this.#actions.session.logged_in)
@@ -87,7 +87,7 @@ class PlaylistManager {
    * @param playlist_id - The playlist ID.
    * @param video_ids - An array of video IDs to remove from the playlist.
    */
-  async removeVideos(playlist_id: string, video_ids: string[]) {
+  async removeVideos(playlist_id: string, video_ids: string[]): Promise<{ playlist_id: string; action_result: any }> {
     throwIfMissing({ playlist_id, video_ids });
 
     if (!this.#actions.session.logged_in)
@@ -146,7 +146,7 @@ class PlaylistManager {
    * @param moved_video_id - The video ID to move.
    * @param predecessor_video_id - The video ID to move the moved video before.
    */
-  async moveVideo(playlist_id: string, moved_video_id: string, predecessor_video_id: string) {
+  async moveVideo(playlist_id: string, moved_video_id: string, predecessor_video_id: string): Promise<{ playlist_id: string; action_result: any; }> {
     throwIfMissing({ playlist_id, moved_video_id, predecessor_video_id });
 
     if (!this.#actions.session.logged_in)

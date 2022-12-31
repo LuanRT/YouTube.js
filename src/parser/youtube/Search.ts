@@ -1,20 +1,20 @@
-import Actions from '../../core/Actions';
-import { ObservedArray, YTNode } from '../helpers';
-import { InnertubeError } from '../../utils/Utils';
-
 import Feed from '../../core/Feed';
-import SectionList from '../classes/SectionList';
-import ItemSection from '../classes/ItemSection';
 import HorizontalCardList from '../classes/HorizontalCardList';
+import ItemSection from '../classes/ItemSection';
 import SearchRefinementCard from '../classes/SearchRefinementCard';
+import SectionList from '../classes/SectionList';
 import UniversalWatchCard from '../classes/UniversalWatchCard';
 
+import type Actions from '../../core/Actions';
+import { InnertubeError } from '../../utils/Utils';
+import type { ObservedArray, YTNode } from '../helpers';
+
 export default class Search extends Feed {
-  results: ObservedArray<YTNode> | null | undefined;
-  refinements;
-  estimated_results;
-  watch_card;
-  refinement_cards;
+  results?: ObservedArray<YTNode> | null;
+  refinements: string[];
+  estimated_results: number | null;
+  watch_card: UniversalWatchCard | null;
+  refinement_cards?: HorizontalCardList | null;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -33,9 +33,9 @@ export default class Search extends Feed {
   }
 
   /**
-   * Applies given refinement card and returns a new {@link Search} object.
+   * Applies given refinement card and returns a new {@link Search} object. Use {@link refinement_card_queries} to get a list of available refinement cards.
    */
-  async selectRefinementCard(card: SearchRefinementCard | string) {
+  async selectRefinementCard(card: SearchRefinementCard | string): Promise<Search> {
     let target_card: SearchRefinementCard | undefined;
 
     if (typeof card === 'string') {
@@ -57,8 +57,8 @@ export default class Search extends Feed {
   /**
    * Returns a list of refinement card queries.
    */
-  get refinement_card_queries() {
-    return this.refinement_cards?.cards.as(SearchRefinementCard).map((card) => card.query);
+  get refinement_card_queries(): string[] {
+    return this.refinement_cards?.cards.as(SearchRefinementCard).map((card) => card.query) || [];
   }
 
   /**

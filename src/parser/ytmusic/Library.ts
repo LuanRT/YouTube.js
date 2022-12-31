@@ -1,5 +1,6 @@
 import Parser, { ParsedResponse } from '..';
-import Actions, { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
 
 import Grid from '../classes/Grid';
 import MusicShelf from '../classes/MusicShelf';
@@ -14,14 +15,15 @@ import MusicSortFilterButton from '../classes/MusicSortFilterButton';
 import MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider';
 
 import { InnertubeError } from '../../utils/Utils';
+import type { ObservedArray } from '../helpers';
 
 class Library {
-  #page;
-  #actions;
-  #continuation;
+  #page: ParsedResponse;
+  #actions: Actions;
+  #continuation?: string | null;
 
-  header;
-  contents;
+  header?: MusicSideAlignedItem;
+  contents?: ObservedArray<Grid | MusicShelf>;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#page = Parser.parseResponse(response.data);
@@ -38,7 +40,7 @@ class Library {
   /**
    * Applies given sort filter to the library items.
    */
-  async applySortFilter(sort_by: string | MusicMultiSelectMenuItem) {
+  async applySortFilter(sort_by: string | MusicMultiSelectMenuItem): Promise<Library> {
     let target_item: MusicMultiSelectMenuItem | undefined;
 
     if (typeof sort_by === 'string') {

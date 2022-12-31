@@ -5,7 +5,7 @@ import { VideoMetadata } from '../core/Studio';
 import { ChannelAnalytics, CreateCommentParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter } from './youtube';
 
 class Proto {
-  static encodeChannelAnalyticsParams(channel_id: string) {
+  static encodeChannelAnalyticsParams(channel_id: string): string {
     const buf = ChannelAnalytics.toBinary({
       params: {
         channelId: channel_id
@@ -19,7 +19,7 @@ class Proto {
     type?: 'all' | 'video' | 'channel' | 'playlist' | 'movie',
     duration?: 'all' | 'short' | 'medium' | 'long',
     sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count'
-  }) {
+  }): string {
     const upload_date = {
       all: undefined,
       hour: 1,
@@ -85,7 +85,7 @@ class Proto {
 
   static encodeMusicSearchFilters(filters: {
     type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist'
-  }) {
+  }): string {
     const data: MusicSearchFilter = {
       filters: {
         type: {}
@@ -100,7 +100,7 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  static encodeMessageParams(channel_id: string, video_id: string) {
+  static encodeMessageParams(channel_id: string, video_id: string): string {
     const buf = LiveMessageParams.toBinary({
       params: {
         ids: {
@@ -116,7 +116,7 @@ class Proto {
   static encodeCommentsSectionParams(video_id: string, options: {
     type?: number,
     sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'
-  } = {}) {
+  } = {}): string {
     const sort_options = {
       TOP_COMMENTS: 0,
       NEWEST_FIRST: 1
@@ -140,7 +140,7 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  static encodeCommentParams(video_id: string) {
+  static encodeCommentParams(video_id: string): string {
     const buf = CreateCommentParams.toBinary({
       videoId: video_id,
       params: {
@@ -156,7 +156,7 @@ class Proto {
     video_id?: string,
     text?: string,
     target_language?: string
-  } = {}) {
+  } = {}): string {
     const data: PeformCommentActionParams = {
       type,
       commentId: args.comment_id || ' ',
@@ -183,7 +183,7 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  static encodeNotificationPref(channel_id: string, index: number) {
+  static encodeNotificationPref(channel_id: string, index: number): string {
     const buf = NotificationPreferences.toBinary({
       channelId: channel_id,
       prefId: {
@@ -195,7 +195,7 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  static encodeVideoMetadataPayload(video_id: string, metadata: VideoMetadata) {
+  static encodeVideoMetadataPayload(video_id: string, metadata: VideoMetadata): Uint8Array {
     const data: InnertubePayload = {
       context: {
         client: {
@@ -257,7 +257,7 @@ class Proto {
     return buf;
   }
 
-  static encodeCustomThumbnailPayload(video_id: string, bytes: Uint8Array) {
+  static encodeCustomThumbnailPayload(video_id: string, bytes: Uint8Array): Uint8Array {
     const data: InnertubePayload = {
       context: {
         client: {

@@ -1,10 +1,10 @@
-import Actions from '../../core/Actions';
+import type Actions from '../../core/Actions';
 import FilterableFeed from '../../core/FilterableFeed';
 import ChipCloudChip from '../classes/ChipCloudChip';
 import FeedTabbedHeader from '../classes/FeedTabbedHeader';
 import RichGrid from '../classes/RichGrid';
 
-import { ReloadContinuationItemsCommand, AppendContinuationItemsAction } from '..';
+import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
 
 export default class HomeFeed extends FilterableFeed {
   contents: RichGrid | AppendContinuationItemsAction | ReloadContinuationItemsCommand;
@@ -19,7 +19,7 @@ export default class HomeFeed extends FilterableFeed {
   }
 
   /**
-   * Applies given filter to the feed.
+   * Applies given filter to the feed. Use {@link filters} to get available filters.
    * @param filter - Filter to apply.
    */
   async applyFilter(filter: string | ChipCloudChip): Promise<HomeFeed> {

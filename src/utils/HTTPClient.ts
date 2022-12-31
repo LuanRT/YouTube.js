@@ -19,14 +19,14 @@ export default class HTTPClient {
     this.#fetch = fetch || globalThis.fetch;
   }
 
-  get fetch_function() {
+  get fetch_function(): FetchFunction {
     return this.#fetch;
   }
 
   async fetch(
     input: URL | Request | string,
     init?: RequestInit & HTTPClientInit
-  ) {
+  ): Promise<Response> {
     const innertube_url = Constants.URLS.API.PRODUCTION_1 + this.#session.api_version;
     const baseURL = init?.baseURL || innertube_url;
 
@@ -128,7 +128,7 @@ export default class HTTPClient {
     } throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, await response.text());
   }
 
-  #adjustContext(ctx: Context, client: string) {
+  #adjustContext(ctx: Context, client: string): void {
     switch (client) {
       case 'YTMUSIC':
         ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;
@@ -146,9 +146,14 @@ export default class HTTPClient {
         ctx.client.clientName = Constants.CLIENTS.YTMUSIC_ANDROID.NAME;
         ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
         break;
+      case 'YTSTUDIO_ANDROID':
+        ctx.client.clientVersion = Constants.CLIENTS.YTSTUDIO_ANDROID.VERSION;
+        ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
+        ctx.client.clientName = Constants.CLIENTS.YTSTUDIO_ANDROID.NAME;
+        ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
+        break;
       case 'TV_EMBEDDED':
         ctx.client.clientVersion = Constants.CLIENTS.TV_EMBEDDED.VERSION;
-        ctx.client.clientName = Constants.CLIENTS.TV_EMBEDDED.NAME;
         ctx.client.clientScreen = 'EMBED';
         ctx.thirdParty = { embedUrl: Constants.URLS.YT_BASE };
         break;
