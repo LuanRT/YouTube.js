@@ -254,6 +254,7 @@ const yt = await Innertube.create({
   * [.getPlaylist(id)](#getplaylist)
   * [.getStreamingData(video_id, options)](#getstreamingdata)
   * [.download(video_id, options?)](#download)
+  * [.resolveURL(url)](#resolveurl)
   * [.call(endpoint, args?)](#call)
   
   </p>
@@ -562,6 +563,16 @@ Downloads a given video.
 | options | `DownloadOptions` | Download options |
 
 See [`./examples/download`](https://github.com/LuanRT/YouTube.js/blob/main/examples/download) for examples.
+
+<a name="resolveurl"></a>
+### resolveURL(url)
+Resolves a given url.
+
+**Returns**: `Promise.<NavigationEndpoint>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| url | `string` | Url to resolve |
 
 <a name="call"></a>
 ### call(endpoint, args?)
