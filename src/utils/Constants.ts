@@ -47,6 +47,7 @@ export const CLIENTS = Object.freeze({
     SDK_VERSION: '29'
   },
   YTSTUDIO_ANDROID: {
+    NAME: 'ANDROID_CREATOR',
     VERSION: '22.43.101'
   },
   YTMUSIC_ANDROID: {

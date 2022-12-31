@@ -19,7 +19,7 @@ class PlaylistSidebarPrimaryInfo extends YTNode {
     this.stats = data.stats.map((stat: any) => new Text(stat));
     this.thumbnail_renderer = Parser.parse(data.thumbnailRenderer);
     this.title = new Text(data.title);
-    this.menu = data.menu && Parser.parse(data.menu);
+    this.menu = Parser.parseItem(data.menu);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.description = new Text(data.description);
   }

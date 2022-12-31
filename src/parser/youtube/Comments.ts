@@ -1,5 +1,6 @@
 import Parser, { ParsedResponse } from '..';
-import Actions, { ActionsResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 
 import Button from '../classes/Button';
@@ -11,10 +12,10 @@ import ContinuationItem from '../classes/ContinuationItem';
 class Comments {
   #page: ParsedResponse;
   #actions: Actions;
-  #continuation: ContinuationItem | undefined;
+  #continuation?: ContinuationItem;
 
-  header: CommentsHeader | undefined;
-  contents;
+  header?: CommentsHeader;
+  contents: CommentThread[];
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     this.#page = already_parsed ? data : Parser.parseResponse(data);
@@ -25,7 +26,7 @@ class Comments {
     if (!contents)
       throw new InnertubeError('Comments page did not have any content.');
 
-    this.header = contents[0].contents?.get({ type: 'CommentsHeader' })?.as(CommentsHeader);
+    this.header = contents[0].contents?.firstOfType(CommentsHeader);
 
     const threads: CommentThread[] = contents[1].contents?.filterType(CommentThread) || [];
 
@@ -35,14 +36,14 @@ class Comments {
       return thread;
     }) as CommentThread[];
 
-    this.#continuation = contents[1].contents?.get({ type: 'ContinuationItem' })?.as(ContinuationItem);
+    this.#continuation = contents[1].contents?.firstOfType(ContinuationItem);
   }
 
   /**
    * Creates a top-level comment.
    * @param text - Comment text.
    */
-  async createComment(text: string): Promise<ActionsResponse> {
+  async createComment(text: string): Promise<ApiResponse> {
     if (!this.header)
       throw new InnertubeError('Page header is missing. Cannot create comment.');
 

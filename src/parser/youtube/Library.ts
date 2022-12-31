@@ -1,5 +1,6 @@
 import Parser, { ParsedResponse } from '..';
-import Actions, { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
 
 import Feed from '../../core/Feed';
@@ -13,10 +14,14 @@ import ProfileColumnStats from '../classes/ProfileColumnStats';
 import ProfileColumnUserInfo from '../classes/ProfileColumnUserInfo';
 
 class Library {
-  #actions;
-  #page;
+  #actions: Actions;
+  #page: ParsedResponse;
 
-  profile;
+  profile: {
+    stats?: ProfileColumnStats;
+    user_info?: ProfileColumnUserInfo;
+  };
+
   sections;
 
   constructor(response: ApiResponse, actions: Actions) {
@@ -30,10 +35,10 @@ class Library {
 
     const shelves = this.#page.contents_memo.getType(Shelf);
 
-    this.sections = shelves.map((shelf: any) => ({
+    this.sections = shelves.map((shelf: Shelf) => ({
       type: shelf.icon_type,
       title: shelf.title,
-      contents: shelf.content?.item().items || [],
+      contents: shelf.content?.key('items').array() || [],
       getAll: () => this.#getAll(shelf)
     }));
   }
@@ -42,7 +47,7 @@ class Library {
     if (!shelf.menu?.as(Menu).hasKey('top_level_buttons'))
       throw new InnertubeError(`The ${shelf.title.text} shelf doesn't have more items`);
 
-    const button = shelf.menu.as(Menu).top_level_buttons.get({ text: 'See all' });
+    const button = shelf.menu.as(Menu).top_level_buttons.firstOfType(Button);
 
     if (!button)
       throw new InnertubeError('Did not find target button.');

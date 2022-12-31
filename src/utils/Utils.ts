@@ -21,10 +21,7 @@ export class InnertubeError extends Error {
 }
 
 export class ParsingError extends InnertubeError { }
-export class DownloadError extends InnertubeError { }
 export class MissingParamError extends InnertubeError { }
-export class UnavailableContentError extends InnertubeError { }
-export class NoStreamingDataError extends InnertubeError { }
 export class OAuthError extends InnertubeError { }
 export class PlayerError extends Error { }
 export class SessionError extends Error { }
@@ -33,7 +30,7 @@ export class SessionError extends Error { }
  * Compares given objects. May not work correctly for
  * objects with methods.
  */
-export function deepCompare(obj1: any, obj2: any) {
+export function deepCompare(obj1: any, obj2: any): boolean {
   const keys = Reflect.ownKeys(obj1);
   return keys.some((key) => {
     const is_text = obj2[key]?.constructor.name === 'Text';
@@ -50,7 +47,7 @@ export function deepCompare(obj1: any, obj2: any) {
  * @param start_string - start string.
  * @param end_string - end string.
  */
-export function getStringBetweenStrings(data: string, start_string: string, end_string: string) {
+export function getStringBetweenStrings(data: string, start_string: string, end_string: string): string | undefined {
   const regex = new RegExp(`${escapeStringRegexp(start_string)}(.*?)${escapeStringRegexp(end_string)}`, 's');
   const match = data.match(regex);
   return match ? match[1] : undefined;
@@ -72,7 +69,7 @@ export function getRandomUserAgent(type: DeviceCategory): string {
   return available_agents[random_index];
 }
 
-export async function sha1Hash(str: string) {
+export async function sha1Hash(str: string): Promise<string> {
   const SubtleCrypto = getRuntime() === 'node' ? (Reflect.get(module, 'require')('crypto').webcrypto as unknown as Crypto).subtle : window.crypto.subtle;
   const byteToHex = [
     '00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '0a', '0b', '0c', '0d', '0e', '0f',
@@ -93,7 +90,7 @@ export async function sha1Hash(str: string) {
     'f0', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'fa', 'fb', 'fc', 'fd', 'fe', 'ff'
   ];
 
-  function hex(arrayBuffer: ArrayBuffer) {
+  function hex(arrayBuffer: ArrayBuffer): string {
     const buff = new Uint8Array(arrayBuffer);
     const hexOctets = [];
     for (let i = 0; i < buff.length; ++i)
@@ -138,7 +135,7 @@ export function generateRandomString(length: number): string {
  * Converts time (h:m:s) to seconds.
  * @returns seconds
  */
-export function timeToSeconds(time: string) {
+export function timeToSeconds(time: string): number {
   const params = time.split(':').map((param) => parseInt(param));
   switch (params.length) {
     case 1:
@@ -152,7 +149,7 @@ export function timeToSeconds(time: string) {
   }
 }
 
-export function concatMemos(...iterables: Memo[]) {
+export function concatMemos(...iterables: Memo[]): Memo {
   const memo = new Memo();
 
   for (const iterable of iterables) {
@@ -164,7 +161,7 @@ export function concatMemos(...iterables: Memo[]) {
   return memo;
 }
 
-export function throwIfMissing(params: object) {
+export function throwIfMissing(params: object): void {
   for (const [ key, value ] of Object.entries(params)) {
     if (!value)
       throw new MissingParamError(`${key} is missing`);
@@ -179,7 +176,7 @@ export function hasKeys<T extends object, R extends (keyof T)[]>(params: T, ...k
   return true;
 }
 
-export function uuidv4() {
+export function uuidv4(): string {
   if (getRuntime() === 'node') {
     return Reflect.get(module, 'require')('crypto').webcrypto.randomUUID();
   }
@@ -205,7 +202,7 @@ export function getRuntime(): Runtime {
   return 'browser';
 }
 
-export function isServer() {
+export function isServer(): boolean {
   return [ 'node', 'deno' ].includes(getRuntime());
 }
 
@@ -267,6 +264,6 @@ export const debugFetch: FetchFunction = (input, init) => {
   return globalThis.fetch(input, init);
 };
 
-export function u8ToBase64(u8: Uint8Array) {
+export function u8ToBase64(u8: Uint8Array): string {
   return btoa(String.fromCharCode.apply(null, Array.from(u8)));
 }

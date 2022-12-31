@@ -1,6 +1,6 @@
-import Session from './Session';
 import Constants from '../utils/Constants';
 import { OAuthError, uuidv4 } from '../utils/Utils';
+import type Session from './Session';
 
 export interface Credentials {
   /**
@@ -41,7 +41,7 @@ class OAuth {
   /**
    * Starts the auth flow in case no valid credentials are available.
    */
-  async init(credentials?: Credentials) {
+  async init(credentials?: Credentials): Promise<void> {
     this.#credentials = credentials;
 
     if (this.validateCredentials()) {
@@ -55,13 +55,13 @@ class OAuth {
     }
   }
 
-  async cacheCredentials() {
+  async cacheCredentials(): Promise<void> {
     const encoder = new TextEncoder();
     const data = encoder.encode(JSON.stringify(this.#credentials));
     await this.#session.cache?.set('youtubei_oauth_credentials', data.buffer);
   }
 
-  async #loadCachedCredentials() {
+  async #loadCachedCredentials(): Promise<boolean> {
     const data = await this.#session.cache?.get('youtubei_oauth_credentials');
     if (!data) return false;
 
@@ -82,14 +82,14 @@ class OAuth {
     return true;
   }
 
-  async removeCache() {
+  async removeCache(): Promise<void> {
     await this.#session.cache?.remove('youtubei_oauth_credentials');
   }
 
   /**
    * Asks the server for a user code and verification URL.
    */
-  async #getUserCode() {
+  async #getUserCode(): Promise<void> {
     this.#identity = await this.#getClientIdentity();
 
     const data = {
@@ -117,7 +117,7 @@ class OAuth {
   /**
    * Polls the authorization server until access is granted by the user.
    */
-  #startPolling(device_code: string) {
+  #startPolling(device_code: string): void {
     const poller = setInterval(async () => {
       const data = {
         ...this.#identity,
@@ -176,13 +176,13 @@ class OAuth {
   /**
    * Refresh access token if the same has expired.
    */
-  async refreshIfRequired() {
+  async refreshIfRequired(): Promise<void> {
     if (this.has_access_token_expired) {
       await this.#refreshAccessToken();
     }
   }
 
-  async #refreshAccessToken() {
+  async #refreshAccessToken(): Promise<void> {
     if (!this.#credentials) return;
     this.#identity = await this.#getClientIdentity();
 
@@ -215,7 +215,7 @@ class OAuth {
     });
   }
 
-  async revokeCredentials() {
+  async revokeCredentials(): Promise<Response | undefined> {
     if (!this.#credentials) return;
     await this.removeCache();
     return this.#session.http.fetch_function(new URL(`/o/oauth2/revoke?token=${encodeURIComponent(this.#credentials.access_token)}`, Constants.URLS.YT_BASE), {
@@ -226,7 +226,7 @@ class OAuth {
   /**
    * Retrieves client identity from YouTube TV.
    */
-  async #getClientIdentity() {
+  async #getClientIdentity(): Promise<{ [key: string]: string; }> {
     const response = await this.#session.http.fetch_function(new URL('/tv', Constants.URLS.YT_BASE), { headers: Constants.OAUTH.HEADERS });
 
     const response_data = await response.text();
@@ -249,7 +249,7 @@ class OAuth {
     return groups;
   }
 
-  get credentials() {
+  get credentials(): Credentials | undefined {
     return this.#credentials;
   }
 

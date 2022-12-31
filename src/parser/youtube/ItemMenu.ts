@@ -1,13 +1,12 @@
-import Actions from '../../core/Actions';
-
+import Button from '../classes/Button';
 import Menu from '../classes/menus/Menu';
 import MenuServiceItem from '../classes/menus/MenuServiceItem';
 import NavigationEndpoint from '../classes/NavigationEndpoint';
-import Button from '../classes/Button';
 
-import { ParsedResponse } from '..';
+import type Actions from '../../core/Actions';
+import type { ParsedResponse } from '..';
 import { InnertubeError } from '../../utils/Utils';
-import { ObservedArray, YTNode } from '../helpers';
+import type { ObservedArray, YTNode } from '../helpers';
 
 class ItemMenu {
   #page: ParsedResponse;

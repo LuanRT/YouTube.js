@@ -1,41 +1,40 @@
+import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../parser/helpers';
 import Parser, { ParsedResponse, ReloadContinuationItemsCommand } from '../parser/index';
-import { Memo, ObservedArray } from '../parser/helpers';
 import { concatMemos, InnertubeError } from '../utils/Utils';
-import Actions from './Actions';
+import type Actions from './Actions';
 
-import Post from '../parser/classes/Post';
 import BackstagePost from '../parser/classes/BackstagePost';
-
 import Channel from '../parser/classes/Channel';
 import CompactVideo from '../parser/classes/CompactVideo';
-
 import GridChannel from '../parser/classes/GridChannel';
 import GridPlaylist from '../parser/classes/GridPlaylist';
 import GridVideo from '../parser/classes/GridVideo';
-
 import Playlist from '../parser/classes/Playlist';
 import PlaylistPanelVideo from '../parser/classes/PlaylistPanelVideo';
 import PlaylistVideo from '../parser/classes/PlaylistVideo';
-
-import Tab from '../parser/classes/Tab';
+import Post from '../parser/classes/Post';
+import ReelItem from '../parser/classes/ReelItem';
 import ReelShelf from '../parser/classes/ReelShelf';
 import RichShelf from '../parser/classes/RichShelf';
 import Shelf from '../parser/classes/Shelf';
+import Tab from '../parser/classes/Tab';
+import Video from '../parser/classes/Video';
 
+import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction';
+import ContinuationItem from '../parser/classes/ContinuationItem';
 import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults';
 import TwoColumnSearchResults from '../parser/classes/TwoColumnSearchResults';
 import WatchCardCompactVideo from '../parser/classes/WatchCardCompactVideo';
-import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction';
-import ContinuationItem from '../parser/classes/ContinuationItem';
 
-import Video from '../parser/classes/Video';
-import ReelItem from '../parser/classes/ReelItem';
+import type MusicQueue from '../parser/classes/MusicQueue';
+import type RichGrid from '../parser/classes/RichGrid';
+import type SectionList from '../parser/classes/SectionList';
 
 class Feed {
   #page: ParsedResponse;
   #continuation?: ObservedArray<ContinuationItem>;
-  #actions;
-  #memo;
+  #actions: Actions;
+  #memo: Memo;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     if (data.on_response_received_actions || data.on_response_received_endpoints || already_parsed) {
@@ -117,7 +116,7 @@ class Feed {
   /**
    * Returns contents from the page.
    */
-  get page_contents() {
+  get page_contents(): SectionList | MusicQueue | RichGrid | ReloadContinuationItemsCommand {
     const tab_content = this.#memo.getType(Tab)?.[0]?.content;
     const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand)?.[0];
     const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction)?.[0];
@@ -136,13 +135,13 @@ class Feed {
    * Finds shelf by title.
    */
   getShelf(title: string) {
-    return this.shelves.find((shelf) => shelf.title.toString() === title);
+    return this.shelves.get({ title });
   }
 
   /**
    * Returns secondary contents from the page.
    */
-  get secondary_contents() {
+  get secondary_contents(): SuperParsedResult<YTNode> | undefined {
     if (!this.#page.contents.is_node)
       return undefined;
 
@@ -154,21 +153,21 @@ class Feed {
     return node.secondary_contents;
   }
 
-  get actions() {
+  get actions(): Actions {
     return this.#actions;
   }
 
   /**
    * Get the original page data
    */
-  get page() {
+  get page(): ParsedResponse {
     return this.#page;
   }
 
   /**
    * Checks if the feed has continuation.
    */
-  get has_continuation() {
+  get has_continuation(): boolean {
     return (this.#memo.get('ContinuationItem') || []).length > 0;
   }
 
@@ -196,7 +195,7 @@ class Feed {
   /**
    * Retrieves next batch of contents and returns a new {@link Feed} object.
    */
-  async getContinuation() {
+  async getContinuation(): Promise<Feed> {
     const continuation_data = await this.getContinuationData();
     return new Feed(this.actions, continuation_data, true);
   }

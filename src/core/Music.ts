@@ -1,34 +1,36 @@
-import Session from './Session';
 
-import TrackInfo from '../parser/ytmusic/TrackInfo';
-import Search from '../parser/ytmusic/Search';
-import HomeFeed from '../parser/ytmusic/HomeFeed';
-import Explore from '../parser/ytmusic/Explore';
-import Library from '../parser/ytmusic/Library';
-import Artist from '../parser/ytmusic/Artist';
 import Album from '../parser/ytmusic/Album';
+import Artist from '../parser/ytmusic/Artist';
+import Explore from '../parser/ytmusic/Explore';
+import HomeFeed from '../parser/ytmusic/HomeFeed';
+import Library from '../parser/ytmusic/Library';
 import Playlist from '../parser/ytmusic/Playlist';
 import Recap from '../parser/ytmusic/Recap';
+import Search from '../parser/ytmusic/Search';
+import TrackInfo from '../parser/ytmusic/TrackInfo';
 
-import Tab from '../parser/classes/Tab';
-import SectionList from '../parser/classes/SectionList';
-
-import Message from '../parser/classes/Message';
-import MusicQueue from '../parser/classes/MusicQueue';
-import PlaylistPanel from '../parser/classes/PlaylistPanel';
-import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf';
-import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf';
-import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection';
 import AutomixPreviewVideo from '../parser/classes/AutomixPreviewVideo';
+import Message from '../parser/classes/Message';
+import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf';
+import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf';
+import MusicQueue from '../parser/classes/MusicQueue';
 import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem';
+import PlaylistPanel from '../parser/classes/PlaylistPanel';
+import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection';
+import SectionList from '../parser/classes/SectionList';
+import Tab from '../parser/classes/Tab';
 
-import { observe, ObservedArray, YTNode } from '../parser/helpers';
-import { InnertubeError, throwIfMissing, generateRandomString } from '../utils/Utils';
+import { observe } from '../parser/helpers';
 import Proto from '../proto';
+import { generateRandomString, InnertubeError, throwIfMissing } from '../utils/Utils';
+
+import type { ObservedArray, YTNode } from '../parser/helpers';
+import type Actions from './Actions';
+import type Session from './Session';
 
 class Music {
-  #session;
-  #actions;
+  #session: Session;
+  #actions: Actions;
 
   constructor(session: Session) {
     this.#session = session;
@@ -49,7 +51,7 @@ class Music {
     throw new InnertubeError('Invalid target, expected either a video id or a valid MusicTwoRowItem', target);
   }
 
-  async #fetchInfoFromVideoId(video_id: string) {
+  async #fetchInfoFromVideoId(video_id: string): Promise<TrackInfo> {
     const cpn = generateRandomString(16);
 
     const initial_info = this.#actions.execute('/player', {
@@ -72,7 +74,7 @@ class Music {
     return new TrackInfo(response, this.#actions, cpn);
   }
 
-  async #fetchInfoFromListItem(list_item: MusicTwoRowItem | undefined) {
+  async #fetchInfoFromListItem(list_item: MusicTwoRowItem | undefined): Promise<TrackInfo> {
     if (!list_item)
       throw new InnertubeError('List item cannot be undefined');
 
@@ -339,7 +341,7 @@ class Music {
    * Retrieves search suggestions for the given query.
    * @param query - The query.
    */
-  async getSearchSuggestions(query: string) {
+  async getSearchSuggestions(query: string): Promise<ObservedArray<YTNode>> {
     const response = await this.#actions.execute('/music/get_search_suggestions', {
       parse: true,
       input: query,

@@ -1,5 +1,5 @@
-import Parser, { LiveChatContinuation, ParsedResponse } from '../index';
 import EventEmitter from '../../utils/EventEmitterLike';
+import Parser, { LiveChatContinuation, ParsedResponse } from '../index';
 import VideoInfo from './VideoInfo';
 
 import AddChatItemAction from '../classes/livechat/AddChatItemAction';
@@ -10,11 +10,11 @@ import ReplaceChatItemAction from '../classes/livechat/ReplaceChatItemAction';
 import ReplayChatItemAction from '../classes/livechat/ReplayChatItemAction';
 import ShowLiveChatActionPanelAction from '../classes/livechat/ShowLiveChatActionPanelAction';
 
-import UpdateTitleAction from '../classes/livechat/UpdateTitleAction';
-import UpdateDescriptionAction from '../classes/livechat/UpdateDescriptionAction';
-import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction';
 import UpdateDateTextAction from '../classes/livechat/UpdateDateTextAction';
+import UpdateDescriptionAction from '../classes/livechat/UpdateDescriptionAction';
+import UpdateTitleAction from '../classes/livechat/UpdateTitleAction';
 import UpdateToggleButtonTextAction from '../classes/livechat/UpdateToggleButtonTextAction';
+import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction';
 
 import AddBannerToLiveChatCommand from '../classes/livechat/AddBannerToLiveChatCommand';
 import RemoveBannerForLiveChatCommand from '../classes/livechat/RemoveBannerForLiveChatCommand';
@@ -22,16 +22,18 @@ import ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipC
 
 import Proto from '../../proto/index';
 import { InnertubeError, uuidv4 } from '../../utils/Utils';
-import { ObservedArray, YTNode } from '../helpers';
+import type { ObservedArray, YTNode } from '../helpers';
 
-import LiveChatTextMessage from '../classes/livechat/items/LiveChatTextMessage';
-import LiveChatPaidMessage from '../classes/livechat/items/LiveChatPaidMessage';
-import LiveChatPaidSticker from '../classes/livechat/items/LiveChatPaidSticker';
+import Button from '../classes/Button';
 import LiveChatAutoModMessage from '../classes/livechat/items/LiveChatAutoModMessage';
 import LiveChatMembershipItem from '../classes/livechat/items/LiveChatMembershipItem';
+import LiveChatPaidMessage from '../classes/livechat/items/LiveChatPaidMessage';
+import LiveChatPaidSticker from '../classes/livechat/items/LiveChatPaidSticker';
+import LiveChatTextMessage from '../classes/livechat/items/LiveChatTextMessage';
 import LiveChatViewerEngagementMessage from '../classes/livechat/items/LiveChatViewerEngagementMessage';
 import ItemMenu from './ItemMenu';
-import Button from '../classes/Button';
+
+import type Actions from '../../core/Actions';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
@@ -49,9 +51,9 @@ export interface LiveMetadata {
 }
 
 class LiveChat extends EventEmitter {
-  #actions;
-  #video_info;
-  #continuation;
+  #actions: Actions;
+  #video_info: VideoInfo;
+  #continuation?: string;
   #mcontinuation?: string;
 
   initial_info?: LiveChatContinuation;

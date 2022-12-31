@@ -1,34 +1,37 @@
-import Parser, { ParsedResponse } from '../index';
-import Actions, { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
 
+import Parser, { ParsedResponse } from '../index';
 import { InnertubeError } from '../../utils/Utils';
 
 import SectionList from '../classes/SectionList';
 import TabbedSearchResults from '../classes/TabbedSearchResults';
 
 import DidYouMean from '../classes/DidYouMean';
-import ShowingResultsFor from '../classes/ShowingResultsFor';
-import MusicShelf from '../classes/MusicShelf';
 import MusicResponsiveListItem from '../classes/MusicResponsiveListItem';
+import MusicShelf from '../classes/MusicShelf';
+import ShowingResultsFor from '../classes/ShowingResultsFor';
 
 import ChipCloud from '../classes/ChipCloud';
 import ChipCloudChip from '../classes/ChipCloudChip';
 import ItemSection from '../classes/ItemSection';
 import Message from '../classes/Message';
 
-class Search {
-  #page;
-  #actions;
-  #continuation;
+import type { ObservedArray } from '../helpers';
 
-  header;
+class Search {
+  #page: ParsedResponse;
+  #actions: Actions;
+  #continuation?: string | null;
+
+  header?: ChipCloud | null;
 
   did_you_mean: DidYouMean | null;
   showing_results_for: ShowingResultsFor | null;
   message: Message | null;
 
-  results;
-  sections;
+  results?: ObservedArray<MusicResponsiveListItem>;
+  sections?: ObservedArray<MusicShelf>;
 
   constructor(response: ApiResponse | ParsedResponse, actions: Actions, args: { is_continuation?: boolean, is_filtered?: boolean } = {}) {
     this.#actions = actions;
@@ -82,7 +85,7 @@ class Search {
   /**
    * Retrieves continuation, only works for individual sections or filtered results.
    */
-  async getContinuation() {
+  async getContinuation(): Promise<Search> {
     if (!this.#continuation)
       throw new InnertubeError('Continuation not found.');
 
@@ -102,15 +105,22 @@ class Search {
   /**
    * Applies given filter to the search.
    */
-  async selectFilter(name: string): Promise<Search> {
-    if (!this.filters?.includes(name))
+  async selectFilter(target_filter: string | ChipCloudChip): Promise<Search> {
+    let cloud_chip: ChipCloudChip | undefined;
+
+    if (typeof target_filter === 'string') {
+      cloud_chip = this.header?.chips?.as(ChipCloudChip).get({ text: target_filter });
+      if (!cloud_chip)
+        throw new InnertubeError('Could not find filter with given name.', { available_filters: this.filters });
+    } else if (target_filter?.is(ChipCloudChip)) {
+      cloud_chip = target_filter;
+    } else {
       throw new InnertubeError('Invalid filter', { available_filters: this.filters });
+    }
 
-    const filter = this.header?.chips?.as(ChipCloudChip).get({ text: name });
+    if (cloud_chip?.is_selected) return this;
 
-    if (filter?.is_selected) return this;
-
-    const response = await filter?.endpoint?.call(this.#actions, { parse: true, client: 'YTMUSIC' });
+    const response = await cloud_chip?.endpoint?.call(this.#actions, { parse: true, client: 'YTMUSIC' });
 
     if (!response)
       throw new InnertubeError('Endpoint did not return any data');
@@ -122,8 +132,8 @@ class Search {
     return !!this.#continuation;
   }
 
-  get filters(): string[] | null {
-    return this.header?.chips?.as(ChipCloudChip).map((chip) => chip.text) || null;
+  get filters(): string[] {
+    return this.header?.chips?.as(ChipCloudChip).map((chip) => chip.text) || [];
   }
 
   get songs(): MusicShelf | undefined {

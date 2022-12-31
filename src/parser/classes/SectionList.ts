@@ -4,9 +4,9 @@ import { YTNode } from '../helpers';
 class SectionList extends YTNode {
   static type = 'SectionList';
 
-  target_id;
+  target_id?: string;
   contents;
-  continuation;
+  continuation?: string;
   header;
 
   constructor(data: any) {

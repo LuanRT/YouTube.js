@@ -1,15 +1,22 @@
 import Proto from '../proto/index';
-import Actions from './Actions';
+import type Actions from './Actions';
+import type { ActionsResponse } from './Actions';
 
 import Analytics from '../parser/youtube/Analytics';
 import TimeWatched from '../parser/youtube/TimeWatched';
 import AccountInfo from '../parser/youtube/AccountInfo';
 import Settings from '../parser/youtube/Settings';
+
 import { InnertubeError } from '../utils/Utils';
 
 class AccountManager {
-  #actions;
-  channel;
+  #actions: Actions;
+
+  channel: {
+    editName: (new_name: string) => Promise<ActionsResponse>;
+    editDescription: (new_description: string) => Promise<ActionsResponse>;
+    getBasicAnalytics: () => Promise<Analytics>;
+  };
 
   constructor(actions: Actions) {
     this.#actions = actions;
@@ -51,7 +58,7 @@ class AccountManager {
   /**
    * Retrieves channel info.
    */
-  async getInfo() {
+  async getInfo(): Promise<AccountInfo> {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
@@ -62,7 +69,7 @@ class AccountManager {
   /**
    * Retrieves time watched statistics.
    */
-  async getTimeWatched() {
+  async getTimeWatched(): Promise<TimeWatched> {
     const response = await this.#actions.execute('/browse', {
       browseId: 'SPtime_watched',
       client: 'ANDROID'
@@ -74,7 +81,7 @@ class AccountManager {
   /**
    * Opens YouTube settings.
    */
-  async getSettings() {
+  async getSettings(): Promise<Settings> {
     const response = await this.#actions.execute('/browse', {
       browseId: 'SPaccount_overview'
     });
@@ -85,7 +92,7 @@ class AccountManager {
   /**
    * Retrieves basic channel analytics.
    */
-  async getAnalytics() {
+  async getAnalytics(): Promise<Analytics> {
     const info = await this.getInfo();
 
     const params = Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId);

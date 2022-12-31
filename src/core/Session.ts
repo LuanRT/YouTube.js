@@ -1,8 +1,8 @@
-import Player from './Player';
-import Actions from './Actions';
-import Constants from '../utils/Constants';
 import UniversalCache from '../utils/Cache';
+import Constants from '../utils/Constants';
 import EventEmitterLike from '../utils/EventEmitterLike';
+import Actions from './Actions';
+import Player from './Player';
 
 import HTTPClient, { FetchFunction } from '../utils/HTTPClient';
 import { DeviceCategory, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils';
@@ -12,7 +12,9 @@ export enum ClientType {
   WEB = 'WEB',
   MUSIC = 'WEB_REMIX',
   ANDROID = 'ANDROID',
-  ANDROID_MUSIC = 'ANDROID_MUSIC'
+  ANDROID_MUSIC = 'ANDROID_MUSIC',
+  ANDROID_CREATOR = 'ANDROID_CREATOR',
+  TV_EMBEDDED = 'TVHTML5_SIMPLY_EMBEDDED_PLAYER'
 }
 
 export interface Context {
@@ -73,11 +75,11 @@ export default class Session extends EventEmitterLike {
   #account_index;
   #player;
 
-  oauth;
-  http;
-  logged_in;
-  actions;
-  cache;
+  oauth: OAuth;
+  http: HTTPClient;
+  logged_in: boolean;
+  actions: Actions;
+  cache?: UniversalCache;
 
   constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: UniversalCache) {
     super();
@@ -225,7 +227,10 @@ export default class Session extends EventEmitterLike {
     });
   }
 
-  async signOut() {
+  /**
+   * Signs out of the current account and revokes the credentials.
+   */
+  async signOut(): Promise<Response | undefined> {
     if (!this.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
@@ -235,35 +240,41 @@ export default class Session extends EventEmitterLike {
     return response;
   }
 
-  get key() {
+  /**
+   * InnerTube API key.
+   */
+  get key(): string {
     return this.#key;
   }
 
-  get api_version() {
+  /**
+   * InnerTube API version.
+   */
+  get api_version(): string {
     return this.#api_version;
   }
 
-  get client_version() {
+  get client_version(): string {
     return this.#context.client.clientVersion;
   }
 
-  get client_name() {
+  get client_name(): string {
     return this.#context.client.clientName;
   }
 
-  get account_index() {
+  get account_index(): number {
     return this.#account_index;
   }
 
-  get context() {
+  get context(): Context {
     return this.#context;
   }
 
-  get player() {
+  get player(): Player | undefined {
     return this.#player;
   }
 
-  get lang() {
+  get lang(): string {
     return this.#context.client.hl;
   }
 }

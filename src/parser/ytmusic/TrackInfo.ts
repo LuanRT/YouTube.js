@@ -1,38 +1,46 @@
 import Parser, { ParsedResponse } from '..';
-import Actions, { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
+
 import Constants from '../../utils/Constants';
 import { InnertubeError } from '../../utils/Utils';
 
-import Tab from '../classes/Tab';
-import WatchNextTabbedResults from '../classes/WatchNextTabbedResults';
+import AutomixPreviewVideo from '../classes/AutomixPreviewVideo';
+import Endscreen from '../classes/Endscreen';
+import Message from '../classes/Message';
 import MicroformatData from '../classes/MicroformatData';
-import PlayerOverlay from '../classes/PlayerOverlay';
-import PlaylistPanel from '../classes/PlaylistPanel';
-import SectionList from '../classes/SectionList';
-import MusicQueue from '../classes/MusicQueue';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 import MusicDescriptionShelf from '../classes/MusicDescriptionShelf';
-import AutomixPreviewVideo from '../classes/AutomixPreviewVideo';
-import Message from '../classes/Message';
+import MusicQueue from '../classes/MusicQueue';
+import PlayerOverlay from '../classes/PlayerOverlay';
+import PlaylistPanel from '../classes/PlaylistPanel';
+import RichGrid from '../classes/RichGrid';
+import SectionList from '../classes/SectionList';
+import Tab from '../classes/Tab';
+import WatchNextTabbedResults from '../classes/WatchNextTabbedResults';
 
-import { ObservedArray } from '../helpers';
+import type NavigationEndpoint from '../classes/NavigationEndpoint';
+import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec';
+import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec';
+
+import type { ObservedArray, YTNode } from '../helpers';
 
 class TrackInfo {
   #page: [ ParsedResponse, ParsedResponse? ];
   #actions: Actions;
-  #cpn;
+  #cpn: string;
 
   basic_info;
   streaming_data;
   playability_status;
-  storyboards;
-  endscreen;
+  storyboards: PlayerStoryboardSpec | PlayerLiveStoryboardSpec | null;
+  endscreen: Endscreen | null;
 
   #playback_tracking;
 
-  tabs;
-  current_video_endpoint;
-  player_overlays;
+  tabs?: ObservedArray<Tab>;
+  current_video_endpoint?: NavigationEndpoint | null;
+  player_overlays?: PlayerOverlay;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;
@@ -81,7 +89,7 @@ class TrackInfo {
   /**
    * Retrieves contents of the given tab.
    */
-  async getTab(title_or_page_type: string) {
+  async getTab(title_or_page_type: string): Promise<ObservedArray<YTNode> | SectionList | MusicQueue | RichGrid | Message> {
     if (!this.tabs)
       throw new InnertubeError('Could not find any tab');
 
@@ -155,7 +163,7 @@ class TrackInfo {
   /**
    * Adds the song to the watch history.
    */
-  async addToWatchHistory() {
+  async addToWatchHistory(): Promise<Response> {
     if (!this.#playback_tracking)
       throw new InnertubeError('Playback tracking not available');
 
@@ -180,7 +188,7 @@ class TrackInfo {
     return this.tabs ? this.tabs.map((tab) => tab.title) : [];
   }
 
-  get page() {
+  get page(): [ParsedResponse, ParsedResponse?] {
     return this.#page;
   }
 }

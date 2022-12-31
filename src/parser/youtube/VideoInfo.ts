@@ -1,34 +1,45 @@
-import Parser, { ParsedResponse } from '../index';
 import Constants from '../../utils/Constants';
-import Actions, { ApiResponse } from '../../core/Actions';
-import Player from '../../core/Player';
+import Parser, { ParsedResponse } from '../index';
 
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo';
-import Format from '../classes/misc/Format';
 
 import MerchandiseShelf from '../classes/MerchandiseShelf';
 import RelatedChipCloud from '../classes/RelatedChipCloud';
 
 import ChipCloud from '../classes/ChipCloud';
-import ItemSection from '../classes/ItemSection';
-import PlayerOverlay from '../classes/PlayerOverlay';
-import ToggleButton from '../classes/ToggleButton';
+import ChipCloudChip from '../classes/ChipCloudChip';
 import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader';
-import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton';
 import ContinuationItem from '../classes/ContinuationItem';
-import PlayerMicroformat from '../classes/PlayerMicroformat';
-import MicroformatData from '../classes/MicroformatData';
-
+import ItemSection from '../classes/ItemSection';
 import LiveChat from '../classes/LiveChat';
+import MicroformatData from '../classes/MicroformatData';
+import PlayerMicroformat from '../classes/PlayerMicroformat';
+import PlayerOverlay from '../classes/PlayerOverlay';
+import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton';
+import ToggleButton from '../classes/ToggleButton';
 import LiveChatWrap from './LiveChat';
 
+import type CardCollection from '../classes/CardCollection';
+import type Endscreen from '../classes/Endscreen';
+import type Format from '../classes/misc/Format';
+import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded';
+import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist';
+import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec';
+import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec';
+
 import { DOMParser } from 'linkedom';
-import type { XMLDocument } from 'linkedom/types/xml/document';
 import type { Element } from 'linkedom/types/interface/element';
-import { getStringBetweenStrings, InnertubeError, streamToIterable } from '../../utils/Utils';
 import type { Node } from 'linkedom/types/interface/node';
+import type { XMLDocument } from 'linkedom/types/xml/document';
+
+import type Player from '../../core/Player';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
+import type { ObservedArray, YTNode } from '../helpers';
+
+import { getStringBetweenStrings, InnertubeError, streamToIterable } from '../../utils/Utils';
 
 export type URLTransformer = (url: URL) => URL;
 
@@ -46,9 +57,9 @@ export interface FormatOptions {
    */
   format?: string;
   /**
-   * InnerTube client, can be ANDROID, WEB, YTMUSIC, YTMUSIC_ANDROID or TV_EMBEDDED
+   * InnerTube client, can be ANDROID, WEB, YTMUSIC, YTMUSIC_ANDROID, YTSTUDIO_ANDROID or TV_EMBEDDED
    */
-  client?: 'ANDROID' | 'WEB' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'TV_EMBEDDED'
+  client?: 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED';
 }
 
 export interface DownloadOptions extends FormatOptions {
@@ -63,34 +74,37 @@ export interface DownloadOptions extends FormatOptions {
 
 class VideoInfo {
   #page: [ParsedResponse, ParsedResponse?];
-  #actions;
-  #player;
-  #cpn;
-  #watch_next_continuation;
+
+  #actions: Actions;
+  #player?: Player;
+  #cpn?: string;
+  #watch_next_continuation?: ContinuationItem;
 
   basic_info;
   streaming_data;
   playability_status;
-  annotations;
-  storyboards;
-  endscreen;
-  captions;
-  cards;
+  annotations: ObservedArray<PlayerAnnotationsExpanded>;
+  storyboards: PlayerStoryboardSpec | PlayerLiveStoryboardSpec | null;
+  endscreen: Endscreen | null;
+  captions: PlayerCaptionsTracklist | null;
+  cards: CardCollection | null;
 
   #playback_tracking;
 
-  primary_info;
-  secondary_info;
-  merchandise;
-  related_chip_cloud;
-  watch_next_feed;
-  player_overlays;
-  comments_entry_point_header;
-  livechat;
+  primary_info?: VideoPrimaryInfo | null;
+  secondary_info?: VideoSecondaryInfo | null;
+  merchandise?: MerchandiseShelf | null;
+  related_chip_cloud?: ChipCloud | null;
+  watch_next_feed?: ObservedArray<YTNode> | null;
+  player_overlays?: PlayerOverlay | null;
+  comments_entry_point_header?: CommentsEntryPointHeader | null;
+  livechat?: LiveChat | null;
 
   /**
    * @param data - API response.
-   * @param cpn - Client Playback Nonce
+   * @param actions - Actions instance.
+   * @param player - Player instance.
+   * @param cpn - Client Playback Nonce.
    */
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, player?: Player, cpn?: string) {
     this.#actions = actions;
@@ -142,12 +156,12 @@ class VideoInfo {
     const secondary_results = two_col?.secondary_results;
 
     if (results && secondary_results) {
-      this.primary_info = results.get({ type: 'VideoPrimaryInfo' })?.as(VideoPrimaryInfo);
-      this.secondary_info = results.get({ type: 'VideoSecondaryInfo' })?.as(VideoSecondaryInfo);
-      this.merchandise = results.get({ type: 'MerchandiseShelf' })?.as(MerchandiseShelf);
-      this.related_chip_cloud = secondary_results.get({ type: 'RelatedChipCloud' })?.as(RelatedChipCloud)?.content.item().as(ChipCloud);
+      this.primary_info = results.firstOfType(VideoPrimaryInfo);
+      this.secondary_info = results.firstOfType(VideoSecondaryInfo);
+      this.merchandise = results.firstOfType(MerchandiseShelf);
+      this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.item().as(ChipCloud);
 
-      this.watch_next_feed = secondary_results.get({ type: 'ItemSection' })?.as(ItemSection)?.contents;
+      this.watch_next_feed = secondary_results.firstOfType(ItemSection)?.contents;
 
       if (this.watch_next_feed && Array.isArray(this.watch_next_feed))
         this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
@@ -162,22 +176,34 @@ class VideoInfo {
 
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
-      this.comments_entry_point_header = comments_entry_point?.contents?.get({ type: 'CommentsEntryPointHeader' })?.as(CommentsEntryPointHeader);
+      this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
       this.livechat = next?.contents_memo.getType(LiveChat)?.[0];
     }
   }
 
   /**
-   * Applies given filter to the watch next feed.
+   * Applies given filter to the watch next feed. Use {@link filters} to get available filters.
+   * @param target_filter - Filter to apply.
    */
-  async selectFilter(name: string) {
-    if (!this.filters.includes(name))
-      throw new InnertubeError('Invalid filter', { available_filters: this.filters });
+  async selectFilter(target_filter: string | ChipCloudChip | undefined): Promise<VideoInfo> {
+    let cloud_chip: ChipCloudChip;
 
-    const filter = this.related_chip_cloud?.chips?.get({ text: name });
-    if (filter?.is_selected) return this;
+    if (typeof target_filter === 'string') {
+      const filter = this.related_chip_cloud?.chips?.get({ text: target_filter });
 
-    const response = await filter?.endpoint?.call(this.#actions, { parse: true });
+      if (!filter)
+        throw new InnertubeError('Invalid filter', { available_filters: this.filters });
+
+      cloud_chip = filter;
+    } else if (target_filter?.is(ChipCloudChip)) {
+      cloud_chip = target_filter;
+    } else {
+      throw new InnertubeError('Invalid cloud chip', target_filter);
+    }
+
+    if (cloud_chip.is_selected) return this;
+
+    const response = await cloud_chip.endpoint?.call(this.#actions, { parse: true });
     const data = response?.on_response_received_endpoints?.get({ target_id: 'watch-next-feed' });
 
     this.watch_next_feed = data?.contents;
@@ -186,9 +212,9 @@ class VideoInfo {
   }
 
   /**
-   * Adds the video to the watch history.
+   * Adds video to the watch history.
    */
-  async addToWatchHistory() {
+  async addToWatchHistory(): Promise<Response> {
     if (!this.#playback_tracking)
       throw new InnertubeError('Playback tracking not available');
 
@@ -212,7 +238,7 @@ class VideoInfo {
   /**
    * Retrieves watch next feed continuation.
    */
-  async getWatchNextContinuation() {
+  async getWatchNextContinuation(): Promise<VideoInfo> {
     const response = await this.#watch_next_continuation?.endpoint.call(this.#actions, { parse: true });
     const data = response?.on_response_received_endpoints?.get({ type: 'appendContinuationItemsAction' });
 
@@ -228,7 +254,7 @@ class VideoInfo {
   /**
    * Likes the video.
    */
-  async like() {
+  async like(): Promise<ApiResponse> {
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
     const button = segmented_like_dislike_button?.like_button?.as(ToggleButton);
 
@@ -246,7 +272,7 @@ class VideoInfo {
   /**
    * Dislikes the video.
    */
-  async dislike() {
+  async dislike(): Promise<ApiResponse> {
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
     const button = segmented_like_dislike_button?.dislike_button?.as(ToggleButton);
 
@@ -264,7 +290,7 @@ class VideoInfo {
   /**
    * Removes like/dislike.
    */
-  async removeLike() {
+  async removeRating(): Promise<ApiResponse> {
     let button;
 
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
@@ -288,25 +314,37 @@ class VideoInfo {
   /**
    * Retrieves Live Chat if available.
    */
-  getLiveChat() {
+  getLiveChat(): LiveChatWrap {
     if (!this.livechat)
       throw new InnertubeError('Live Chat is not available', { video_id: this.basic_info.id });
     return new LiveChatWrap(this);
   }
 
-  get filters() {
+  /**
+   * Watch next feed filters.
+   */
+  get filters(): string[] {
     return this.related_chip_cloud?.chips?.map((chip) => chip.text.toString()) || [];
   }
 
-  get actions() {
+  /**
+   * Actions instance.
+   */
+  get actions(): Actions {
     return this.#actions;
   }
 
-  get cpn() {
+  /**
+   * Content Playback Nonce.
+   */
+  get cpn(): string | undefined {
     return this.#cpn;
   }
 
-  get page() {
+  /**
+   * Original parsed InnerTube response.
+   */
+  get page(): [ ParsedResponse, ParsedResponse? ] {
     return this.#page;
   }
 
@@ -349,7 +387,11 @@ class VideoInfo {
     return [];
   }
 
-  chooseFormat(options: FormatOptions) {
+  /**
+   * Selects the format that best matches the given options.
+   * @param options - Options
+   */
+  chooseFormat(options: FormatOptions): Format {
     if (!this.streaming_data)
       throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
 
@@ -420,7 +462,12 @@ class VideoInfo {
     return el;
   }
 
-  toDash(url_transformer: URLTransformer = (url) => url) {
+  /**
+   * Generates a DASH manifest from the streaming data.
+   * @param url_transformer - Function to transform the URLs.
+   * @returns DASH manifest
+   */
+  toDash(url_transformer: URLTransformer = (url) => url): string {
     if (!this.streaming_data)
       throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
 
@@ -547,9 +594,10 @@ class VideoInfo {
   }
 
   /**
-   * @param options - download options.
+   * Downloads the video.
+   * @param options - Download options.
    */
-  async download(options: DownloadOptions = {}) {
+  async download(options: DownloadOptions = {}): Promise<ReadableStream<Uint8Array>> {
     if (this.playability_status?.status === 'UNPLAYABLE')
       throw new InnertubeError('Video is unplayable', { video: this, error_type: 'UNPLAYABLE' });
     if (this.playability_status?.status === 'LOGIN_REQUIRED')
@@ -600,7 +648,7 @@ class VideoInfo {
 
     const readable_stream = new ReadableStream<Uint8Array>({
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      start() {},
+      start() { },
       pull: async (controller) => {
         if (must_end) {
           controller.close();
