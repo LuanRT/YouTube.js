@@ -116,6 +116,11 @@ describe('YouTube.js Tests', () => {
   });
   
   describe('General', () => {
+    it('should resolve a URL', async () => {
+      const url = await yt.resolveURL('https://www.youtube.com/@linustechtips');
+      expect(url.payload.browseId).toBe(CHANNELS[0].ID);
+    });
+
     it('should retrieve playlist', async () => {
       const playlist = await yt.getPlaylist('PLLw0AzOz95FU7w2juhPECP9NyGhbZmz_t');
       expect(playlist.items.length).toBeLessThanOrEqual(100);

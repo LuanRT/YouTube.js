@@ -19,7 +19,7 @@ export const VIDEOS = [
 
 export const CHANNELS = [
   {
-    ID: 'UC_x5XG1OV2P6uZZ5FSM9Ttw',
+    ID: 'UCXuqSBlHAE6Xw-yeJA0Tunw',
     NAME: 'Linus Tech Tips'
   }
 ];

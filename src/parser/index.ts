@@ -148,6 +148,7 @@ export default class Parser {
         hls_manifest_url: data.streamingData?.hlsManifestUrl as string || null
       } : undefined,
       current_video_endpoint: data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null,
+      endpoint: data.endpoint ? new NavigationEndpoint(data.endpoint) : null,
       captions: Parser.parseItem<PlayerCaptionsTracklist>(data.captions),
       video_details: data.videoDetails ? new VideoDetails(data.videoDetails) : undefined,
       annotations: Parser.parseArray<PlayerAnnotationsExpanded>(data.annotations),
