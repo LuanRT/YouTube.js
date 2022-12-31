@@ -50,7 +50,7 @@ class Settings {
   async selectSidebarItem(target_item: string | CompactLink): Promise<Settings> {
     if (!this.sidebar)
       throw new InnertubeError('Sidebar not available');
-    
+
     let item: CompactLink | undefined;
 
     if (typeof target_item === 'string') {

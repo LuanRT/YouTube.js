@@ -15,7 +15,7 @@ class Comments {
   #continuation?: ContinuationItem;
 
   header?: CommentsHeader;
-  contents: CommentThread[]; 
+  contents: CommentThread[];
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     this.#page = already_parsed ? data : Parser.parseResponse(data);

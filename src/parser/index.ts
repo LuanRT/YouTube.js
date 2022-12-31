@@ -42,7 +42,7 @@ export default class Parser {
 
     const list = Parser.#memo.get(classname);
     if (!list)
-      return Parser.#memo.set(classname, [result]);
+      return Parser.#memo.set(classname, [ result ]);
 
     list.push(result);
   }
@@ -375,7 +375,7 @@ export default class Parser {
 
 export type ParsedResponse = ReturnType<typeof Parser.parseResponse>;
 
-// Continuation nodes 
+// Continuation nodes
 
 export class AppendContinuationItemsAction extends YTNode {
   static readonly type = 'appendContinuationItemsAction';

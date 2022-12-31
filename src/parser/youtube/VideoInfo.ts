@@ -95,7 +95,7 @@ class VideoInfo {
   secondary_info?: VideoSecondaryInfo | null;
   merchandise?: MerchandiseShelf | null;
   related_chip_cloud?: ChipCloud | null;
-  watch_next_feed?: ObservedArray<YTNode> | null
+  watch_next_feed?: ObservedArray<YTNode> | null;
   player_overlays?: PlayerOverlay | null;
   comments_entry_point_header?: CommentsEntryPointHeader | null;
   livechat?: LiveChat | null;
@@ -114,7 +114,7 @@ class VideoInfo {
     const info = Parser.parseResponse(data[0].data);
     const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
 
-    this.#page = [info, next];
+    this.#page = [ info, next ];
 
     if (info.playability_status?.status === 'ERROR')
       throw new InnertubeError('This video is unavailable', info.playability_status);
@@ -406,7 +406,7 @@ class VideoInfo {
 
     let best_width = -1;
 
-    const is_best = ['best', 'bestefficiency'].includes(quality);
+    const is_best = [ 'best', 'bestefficiency' ].includes(quality);
     const use_most_efficient = quality !== 'best';
 
     let candidates = formats.filter((format) => {
@@ -452,7 +452,7 @@ class VideoInfo {
 
   #el(document: XMLDocument, tag: string, attrs: Record<string, string | undefined>, children: Node[] = []) {
     const el = document.createElement(tag);
-    for (const [key, value] of Object.entries(attrs)) {
+    for (const [ key, value ] of Object.entries(attrs)) {
       el.setAttribute(key, value);
     }
     for (const child of children) {
@@ -497,7 +497,7 @@ class VideoInfo {
 
   #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer) {
     const mimeTypes: string[] = [];
-    const mimeObjects: Format[][] = [[]];
+    const mimeObjects: Format[][] = [ [] ];
 
     formats.forEach((videoFormat) => {
       if (!videoFormat.index_range || !videoFormat.init_range) {

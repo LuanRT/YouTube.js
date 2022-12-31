@@ -21,7 +21,7 @@ class Library {
     stats?: ProfileColumnStats;
     user_info?: ProfileColumnUserInfo;
   };
-  
+
   sections;
 
   constructor(response: ApiResponse, actions: Actions) {

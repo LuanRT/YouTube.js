@@ -11,7 +11,7 @@ import { InnertubeError } from '../utils/Utils';
 
 class AccountManager {
   #actions: Actions;
-  
+
   channel: {
     editName: (new_name: string) => Promise<ActionsResponse>;
     editDescription: (new_description: string) => Promise<ActionsResponse>;
