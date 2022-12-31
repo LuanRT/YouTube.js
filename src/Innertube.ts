@@ -264,6 +264,15 @@ class Innertube {
   }
 
   /**
+   * Resolves the given URL.
+   * @param url - The URL.
+   */
+  async resolveURL(url: string): Promise<NavigationEndpoint> {
+    const response = await this.actions.execute('/navigation/resolve_url', { url, parse: true });
+    return response.endpoint as NavigationEndpoint;
+  }
+
+  /**
    * Utility method to call an endpoint without having to use {@link Actions}.
    * @param endpoint -The endpoint to call.
    * @param args - Call arguments.
