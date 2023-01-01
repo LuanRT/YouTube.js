@@ -126,9 +126,10 @@ export default class Session extends EventEmitterLike {
       options.timezone,
       options.fetch
     );
+
     return new Session(
       context, api_key, api_version, account_index,
-      options.retrieve_player ? await Player.create(options.cache, options.fetch) : undefined,
+      options.retrieve_player === false ? undefined : await Player.create(options.cache, options.fetch),
       options.cookie, options.fetch, options.cache
     );
   }
