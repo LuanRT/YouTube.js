@@ -46,7 +46,8 @@ export interface Context {
     utcOffsetMinutes: number;
   };
   user: {
-    lockedSafetyMode: false;
+    enableSafetyMode: boolean;
+    lockedSafetyMode: boolean;
   };
   thirdParty?: {
     embedUrl: string;
@@ -60,6 +61,8 @@ export interface SessionOptions {
   lang?: string;
   location?: string;
   account_index?: number;
+  retrieve_player?: boolean;
+  enable_safety_mode?: boolean;
   device_category?: DeviceCategory;
   client_type?: ClientType;
   timezone?: string;
@@ -117,18 +120,25 @@ export default class Session extends EventEmitterLike {
       options.lang,
       options.location,
       options.account_index,
+      options.enable_safety_mode,
       options.device_category,
       options.client_type,
       options.timezone,
       options.fetch
     );
-    return new Session(context, api_key, api_version, account_index, await Player.create(options.cache, options.fetch), options.cookie, options.fetch, options.cache);
+
+    return new Session(
+      context, api_key, api_version, account_index,
+      options.retrieve_player === false ? undefined : await Player.create(options.cache, options.fetch),
+      options.cookie, options.fetch, options.cache
+    );
   }
 
   static async getSessionData(
     lang = 'en-US',
     location = '',
     account_index = 0,
+    enable_safety_mode = false,
     device_category: DeviceCategory = 'desktop',
     client_name: ClientType = ClientType.WEB,
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -186,6 +196,7 @@ export default class Session extends EventEmitterLike {
         utcOffsetMinutes: new Date().getTimezoneOffset()
       },
       user: {
+        enableSafetyMode: enable_safety_mode,
         lockedSafetyMode: false
       },
       request: {
