@@ -10,7 +10,7 @@ describe('YouTube.js Tests', () => {
   beforeAll(async () => {
     yt = await Innertube.create();
   });
-  
+
   describe('Info', () => {
     let info: any;
     
@@ -116,6 +116,11 @@ describe('YouTube.js Tests', () => {
   });
   
   describe('General', () => {
+    it('should create sessions without a player instance', async () => {
+      const nop_yt = await Innertube.create({ retrieve_player: false });
+      expect(nop_yt.session.player).toBeUndefined();
+    });
+
     it('should resolve a URL', async () => {
       const url = await yt.resolveURL('https://www.youtube.com/@linustechtips');
       expect(url.payload.browseId).toBe(CHANNELS[0].ID);
