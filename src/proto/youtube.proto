@@ -235,6 +235,18 @@ message SearchFilter {
     optional int32 upload_date = 1;
     optional int32 type = 2;
     optional int32 duration = 3;
+
+    optional int32 features_hd = 4;
+    optional int32 features_subtitles = 5;
+    optional int32 features_creative_commons = 6;
+    optional int32 features_3d = 7;
+    optional int32 features_live = 8;
+    optional int32 features_purchased = 9;
+    optional int32 features_4k = 14;
+    optional int32 features_360 = 15;
+    optional int32 features_location = 23;
+    optional int32 features_hdr = 25;
+    optional int32 features_vr180 = 26; 
   }
   
   optional Filters filters = 2;

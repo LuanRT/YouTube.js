@@ -600,6 +600,50 @@ export interface SearchFilter_Filters {
      * @generated from protobuf field: optional int32 duration = 3;
      */
     duration?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_hd = 4;
+     */
+    featuresHd?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_subtitles = 5;
+     */
+    featuresSubtitles?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_creative_commons = 6;
+     */
+    featuresCreativeCommons?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_3d = 7 [json_name = "features3d"];
+     */
+    features3D?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_live = 8;
+     */
+    featuresLive?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_purchased = 9;
+     */
+    featuresPurchased?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_4k = 14 [json_name = "features4k"];
+     */
+    features4K?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_360 = 15;
+     */
+    features360?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_location = 23;
+     */
+    featuresLocation?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_hdr = 25;
+     */
+    featuresHdr?: number;
+    /**
+     * @generated from protobuf field: optional int32 features_vr180 = 26;
+     */
+    featuresVr180?: number;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class ChannelAnalytics$Type extends MessageType<ChannelAnalytics> {
@@ -2844,7 +2888,18 @@ class SearchFilter_Filters$Type extends MessageType<SearchFilter_Filters> {
         super("youtube.SearchFilter.Filters", [
             { no: 1, name: "upload_date", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
             { no: 2, name: "type", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
-            { no: 3, name: "duration", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ }
+            { no: 3, name: "duration", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 4, name: "features_hd", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 5, name: "features_subtitles", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 6, name: "features_creative_commons", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 7, name: "features_3d", kind: "scalar", jsonName: "features3d", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "features_live", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 9, name: "features_purchased", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 14, name: "features_4k", kind: "scalar", jsonName: "features4k", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 15, name: "features_360", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 23, name: "features_location", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 25, name: "features_hdr", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 26, name: "features_vr180", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ }
         ]);
     }
     create(value?: PartialMessage<SearchFilter_Filters>): SearchFilter_Filters {
@@ -2868,6 +2923,39 @@ class SearchFilter_Filters$Type extends MessageType<SearchFilter_Filters> {
                 case /* optional int32 duration */ 3:
                     message.duration = reader.int32();
                     break;
+                case /* optional int32 features_hd */ 4:
+                    message.featuresHd = reader.int32();
+                    break;
+                case /* optional int32 features_subtitles */ 5:
+                    message.featuresSubtitles = reader.int32();
+                    break;
+                case /* optional int32 features_creative_commons */ 6:
+                    message.featuresCreativeCommons = reader.int32();
+                    break;
+                case /* optional int32 features_3d = 7 [json_name = "features3d"];*/ 7:
+                    message.features3D = reader.int32();
+                    break;
+                case /* optional int32 features_live */ 8:
+                    message.featuresLive = reader.int32();
+                    break;
+                case /* optional int32 features_purchased */ 9:
+                    message.featuresPurchased = reader.int32();
+                    break;
+                case /* optional int32 features_4k = 14 [json_name = "features4k"];*/ 14:
+                    message.features4K = reader.int32();
+                    break;
+                case /* optional int32 features_360 */ 15:
+                    message.features360 = reader.int32();
+                    break;
+                case /* optional int32 features_location */ 23:
+                    message.featuresLocation = reader.int32();
+                    break;
+                case /* optional int32 features_hdr */ 25:
+                    message.featuresHdr = reader.int32();
+                    break;
+                case /* optional int32 features_vr180 */ 26:
+                    message.featuresVr180 = reader.int32();
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -2889,6 +2977,39 @@ class SearchFilter_Filters$Type extends MessageType<SearchFilter_Filters> {
         /* optional int32 duration = 3; */
         if (message.duration !== undefined)
             writer.tag(3, WireType.Varint).int32(message.duration);
+        /* optional int32 features_hd = 4; */
+        if (message.featuresHd !== undefined)
+            writer.tag(4, WireType.Varint).int32(message.featuresHd);
+        /* optional int32 features_subtitles = 5; */
+        if (message.featuresSubtitles !== undefined)
+            writer.tag(5, WireType.Varint).int32(message.featuresSubtitles);
+        /* optional int32 features_creative_commons = 6; */
+        if (message.featuresCreativeCommons !== undefined)
+            writer.tag(6, WireType.Varint).int32(message.featuresCreativeCommons);
+        /* optional int32 features_3d = 7 [json_name = "features3d"]; */
+        if (message.features3D !== undefined)
+            writer.tag(7, WireType.Varint).int32(message.features3D);
+        /* optional int32 features_live = 8; */
+        if (message.featuresLive !== undefined)
+            writer.tag(8, WireType.Varint).int32(message.featuresLive);
+        /* optional int32 features_purchased = 9; */
+        if (message.featuresPurchased !== undefined)
+            writer.tag(9, WireType.Varint).int32(message.featuresPurchased);
+        /* optional int32 features_4k = 14 [json_name = "features4k"]; */
+        if (message.features4K !== undefined)
+            writer.tag(14, WireType.Varint).int32(message.features4K);
+        /* optional int32 features_360 = 15; */
+        if (message.features360 !== undefined)
+            writer.tag(15, WireType.Varint).int32(message.features360);
+        /* optional int32 features_location = 23; */
+        if (message.featuresLocation !== undefined)
+            writer.tag(23, WireType.Varint).int32(message.featuresLocation);
+        /* optional int32 features_hdr = 25; */
+        if (message.featuresHdr !== undefined)
+            writer.tag(25, WireType.Varint).int32(message.featuresHdr);
+        /* optional int32 features_vr180 = 26; */
+        if (message.featuresVr180 !== undefined)
+            writer.tag(26, WireType.Varint).int32(message.featuresVr180);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
