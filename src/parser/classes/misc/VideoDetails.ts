@@ -13,7 +13,9 @@ class VideoDetails {
   view_count: number;
   author: string;
   is_private: boolean;
+  is_live: boolean;
   is_live_content: boolean;
+  is_upcoming: boolean;
   is_crawlable: boolean;
 
   constructor(data: any) {
@@ -29,7 +31,9 @@ class VideoDetails {
     this.view_count = parseInt(data.viewCount);
     this.author = data.author;
     this.is_private = !!data.isPrivate;
+    this.is_live = !!data.isLive;
     this.is_live_content = !!data.isLiveContent;
+    this.is_upcoming = !!data.isUpcoming;
     this.is_crawlable = !!data.isCrawlable;
   }
 }
