@@ -84,7 +84,7 @@ ___
 
 ## Description
 
-InnerTube is an API used across all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform[^1]. This library handles all the low-level communication with InnerTube, providing a simple, and efficient way to interact with YouTube programmatically. It is designed to emulate an actual client as closely as possible, including how API responses are parsed. 
+InnerTube is an API used by all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform[^1]. This library handles all the low-level communication with InnerTube, providing a simple, and efficient way to interact with YouTube programmatically. It is designed to emulate an actual client as closely as possible, including how API responses are [parsed](https://github.com/LuanRT/YouTube.js/tree/main/src/parser#how-it-works).
 
 If you have any questions or need help, feel free to reach out to us on our [Discord server][discord] or open an issue [here](https://github.com/LuanRT/YouTube.js/issues).
 

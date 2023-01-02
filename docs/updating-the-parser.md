@@ -2,7 +2,7 @@
 
 YouTube is constantly changing, so it is not rare to see YouTube crawlers/scrapers breaking every now and then. 
 
-Our parser, on the other hand, was written so that it behaves similarly to an official client, parsing and mapping renderers (a.k.a YTNodes) dynamically without hard-coding their path in the response.  This way, whenever a new renderer pops up (e.g; YouTube adds a new feature / minor UI changes) the library will print a warning like this in the console:
+Our parser, on the other hand, was written so that it behaves similarly to an official client, parsing and mapping renderers (a.k.a YTNodes) dynamically without hard-coding their path in the response.  This way, whenever a new renderer pops up (e.g; YouTube adds a new feature / minor UI changes) the library will print a warning similar to this:
 ```
 InnertubeError: SomeRenderer not found!
 This is a bug, want to help us fix it? Follow the instructions at https://github.com/LuanRT/YouTube.js/blob/main/docs/updating-the-parser.md or report it at https://github.com/LuanRT/YouTube.js/issues!
@@ -17,7 +17,7 @@ This is a bug, want to help us fix it? Follow the instructions at https://github
 }
 ```
 
-This warning, however, **does not** throw an error. The parser itself will continue working normally, even if a parsing error occurs in an existing renderer parser.
+This warning **does not** throw an error. The parser itself will continue working normally, even if a parsing error occurs in an existing renderer parser.
 
 ## Adding a new renderer parser
 
