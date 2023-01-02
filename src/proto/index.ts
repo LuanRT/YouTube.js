@@ -101,7 +101,6 @@ class Proto {
     }
 
     const buf = SearchFilter.toBinary(data);
-    console.log(u8ToBase64(buf), data);
     return encodeURIComponent(u8ToBase64(buf));
   }
 
