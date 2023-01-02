@@ -2,7 +2,7 @@ import { CLIENTS } from '../utils/Constants';
 import { u8ToBase64 } from '../utils/Utils';
 import { VideoMetadata } from '../core/Studio';
 
-import { ChannelAnalytics, CreateCommentParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter } from './youtube';
+import { ChannelAnalytics, CreateCommentParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter, SearchFilter_Filters } from './youtube';
 
 class Proto {
   static encodeChannelAnalyticsParams(channel_id: string): string {
@@ -18,7 +18,8 @@ class Proto {
     upload_date?: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year',
     type?: 'all' | 'video' | 'channel' | 'playlist' | 'movie',
     duration?: 'all' | 'short' | 'medium' | 'long',
-    sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count'
+    sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count',
+    features?: ('hd' | 'subtitles' | 'creative_commons' | '3d' | 'live' | 'purchased' | '4k' | '360' | 'location' | 'hdr' | 'vr180')[]
   }): string {
     const upload_date = {
       all: undefined,
@@ -51,6 +52,20 @@ class Proto {
       view_count: 3
     };
 
+    const features = {
+      hd: 'featuresHd',
+      subtitles: 'featuresSubtitles',
+      creative_commons: 'featuresCreativeCommons',
+      '3d': 'features3D',
+      live: 'featuresLive',
+      purchased: 'featuresPurchased',
+      '4k': 'features4K',
+      '360': 'features360',
+      location: 'featuresLocation',
+      hdr: 'featuresHdr',
+      vr180: 'featuresVr180'
+    };
+
     const data: SearchFilter = {};
 
     if (filters)
@@ -77,9 +92,16 @@ class Proto {
       if (filters.sort_by && filters.sort_by !== 'relevance') {
         data.sortBy = order[filters.sort_by];
       }
+
+      if (filters.features) {
+        for (const feature of filters.features) {
+          data.filters[features[feature] as keyof SearchFilter_Filters] = 1;
+        }
+      }
     }
 
     const buf = SearchFilter.toBinary(data);
+    console.log(u8ToBase64(buf), data);
     return encodeURIComponent(u8ToBase64(buf));
   }
 
