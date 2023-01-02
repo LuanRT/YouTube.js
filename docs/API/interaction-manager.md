@@ -7,7 +7,7 @@ Handles direct interactions.
 * InteractionManager 
   * [.like(video_id)](#like) 
   * [.dislike(video_id)](#dislike) 
-  * [.removeLike(video_id)](#removelike) 
+  * [.removeRating(video_id)](#removerating) 
   * [.subscribe(video_id)](#subscribe) 
   * [.unsubscribe(video_id)](#unsubscribe) 
   * [.comment(video_id, text)](#comment) 
@@ -36,7 +36,7 @@ Dislikes given video.
 | --- | --- | --- |
 | video_id | `string` | Video id |
 
-<a name="removelike"></a>
+<a name="removerating"></a>
 ### removeLike(video_id)
 
 Remover like/dislike.
