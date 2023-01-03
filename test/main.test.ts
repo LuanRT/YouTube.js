@@ -44,6 +44,16 @@ describe('YouTube.js Tests', () => {
       const b_info = await yt.getBasicInfo(VIDEOS[0].ID);
       expect(b_info.basic_info.id).toBe(VIDEOS[0].ID);
     });
+
+    it('should be upcoming', async () => {
+      const b_info = await yt.getBasicInfo(VIDEOS[4].ID);
+      expect(b_info.basic_info.is_upcoming).toBe(true);
+    });
+
+    it('should be live', async () => {
+      const b_info = await yt.getBasicInfo(VIDEOS[5].ID);
+      expect(b_info.basic_info.is_live).toBe(true);
+    });
   });
   
   describe('Search', () => {
