@@ -54,6 +54,12 @@ describe('YouTube.js Tests', () => {
       const b_info = await yt.getBasicInfo(VIDEOS[5].ID);
       expect(b_info.basic_info.is_live).toBe(true);
     });
+
+    it('should extract live stream start timestamp', async () => {
+      const b_info = await yt.getBasicInfo(VIDEOS[4].ID);
+      expect(b_info.basic_info.start_timestamp).not.toBeNull()
+      expect(b_info.basic_info.start_timestamp!.toISOString()).toBe('2024-03-30T23:00:00.000Z');
+    })
   });
   
   describe('Search', () => {
