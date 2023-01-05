@@ -2,12 +2,12 @@ import Player from '../../../core/Player';
 import { InnertubeError } from '../../../utils/Utils';
 
 class Format {
-  itag: string;
+  itag: number;
   mime_type: string;
-  bitrate;
-  average_bitrate;
-  width;
-  height;
+  bitrate: number;
+  average_bitrate: number;
+  width: number | undefined;
+  height: number | undefined;
 
   init_range: {
     start: number;
@@ -23,15 +23,15 @@ class Format {
   content_length: number;
   quality: string;
   quality_label: string | undefined;
-  fps: string | undefined;
+  fps: number | undefined;
   url: string;
   cipher: string | undefined;
   signature_cipher: string | undefined;
   audio_quality: string | undefined;
   approx_duration_ms: number;
   audio_sample_rate: number;
-  audio_channels: string;
-  loudness_db: string;
+  audio_channels: number;
+  loudness_db: number;
   has_audio: boolean;
   has_video: boolean;
 
