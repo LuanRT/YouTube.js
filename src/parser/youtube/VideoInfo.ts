@@ -124,11 +124,11 @@ class VideoInfo {
 
     this.basic_info = { // This type is inferred so no need for an explicit type
       ...info.video_details,
+      /**
+       * Microformat is a bit redundant, so only
+       * a few things there are interesting to us.
+       */
       ...{
-        /**
-         * Microformat is a bit redundant, so only
-         * a few things there are interesting to us.
-         */
         embed: info.microformat?.is(PlayerMicroformat) ? info.microformat?.embed : null,
         channel: info.microformat?.is(PlayerMicroformat) ? info.microformat?.channel : null,
         is_unlisted: info.microformat?.is_unlisted,
@@ -162,7 +162,7 @@ class VideoInfo {
       this.merchandise = results.firstOfType(MerchandiseShelf);
       this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.item().as(ChipCloud);
 
-      this.watch_next_feed = secondary_results.firstOfType(ItemSection)?.contents;
+      this.watch_next_feed = actions.session.logged_in ? secondary_results.firstOfType(ItemSection)?.contents : secondary_results;
 
       if (this.watch_next_feed && Array.isArray(this.watch_next_feed))
         this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
@@ -178,7 +178,7 @@ class VideoInfo {
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
       this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
-      this.livechat = next?.contents_memo.getType(LiveChat)?.[0];
+      this.livechat = next?.contents_memo.getType(LiveChat).first();
     }
   }
 
@@ -187,6 +187,9 @@ class VideoInfo {
    * @param target_filter - Filter to apply.
    */
   async selectFilter(target_filter: string | ChipCloudChip | undefined): Promise<VideoInfo> {
+    if (!this.related_chip_cloud)
+      throw new InnertubeError('Chip cloud not found, cannot apply filter');
+
     let cloud_chip: ChipCloudChip;
 
     if (typeof target_filter === 'string') {
@@ -236,15 +239,19 @@ class VideoInfo {
     return response;
   }
 
+
   /**
    * Retrieves watch next feed continuation.
    */
   async getWatchNextContinuation(): Promise<VideoInfo> {
+    if (!this.#watch_next_continuation)
+      throw new InnertubeError('Watch next feed continuation not found');
+
     const response = await this.#watch_next_continuation?.endpoint.call(this.#actions, { parse: true });
     const data = response?.on_response_received_endpoints?.get({ type: 'appendContinuationItemsAction' });
 
     if (!data)
-      throw new InnertubeError('Continuation not found');
+      throw new InnertubeError('AppendContinuationItemsAction not found');
 
     this.watch_next_feed = data?.contents;
     this.#watch_next_continuation = this.watch_next_feed?.pop()?.as(ContinuationItem);
@@ -343,9 +350,16 @@ class VideoInfo {
   }
 
   /**
+ * Checks if continuation is available for the watch next feed.
+ */
+  get wn_has_continuation(): boolean {
+    return !!this.#watch_next_continuation;
+  }
+
+  /**
    * Original parsed InnerTube response.
    */
-  get page(): [ ParsedResponse, ParsedResponse? ] {
+  get page(): [ParsedResponse, ParsedResponse?] {
     return this.#page;
   }
 

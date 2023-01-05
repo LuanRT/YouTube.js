@@ -40,6 +40,10 @@ describe('YouTube.js Tests', () => {
       expect(heatmap).toBeDefined();
     });
 
+    it('should have watch next feed', () => {
+      expect(info.watch_next_feed).toBeDefined();
+    });
+    
     it('should retrieve basic video info', async () => {
       const b_info = await yt.getBasicInfo(VIDEOS[0].ID);
       expect(b_info.basic_info.id).toBe(VIDEOS[0].ID);
