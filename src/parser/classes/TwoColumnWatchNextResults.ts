@@ -10,9 +10,9 @@ class TwoColumnWatchNextResults extends YTNode {
 
   constructor(data: any) {
     super();
-    this.results = Parser.parse(data.results?.results.contents, true);
-    this.secondary_results = Parser.parse(data.secondaryResults?.secondaryResults.results, true);
-    this.conversation_bar = Parser.parse(data?.conversationBar);
+    this.results = Parser.parseArray(data.results?.results.contents);
+    this.secondary_results = Parser.parseArray(data.secondaryResults?.secondaryResults.results);
+    this.conversation_bar = Parser.parseItem(data?.conversationBar);
   }
 }
 

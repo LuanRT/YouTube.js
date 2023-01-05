@@ -376,6 +376,10 @@ export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
      */
     firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
     /**
+     * Get the first item
+     */
+    first: () => T | undefined;
+    /**
      * This is similar to filter but throws if there's a type mismatch.
      */
     as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
@@ -435,6 +439,7 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
         };
       }
 
+
       if (prop == 'firstOfType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return target.find((node: YTNode) => {
@@ -443,6 +448,10 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
             return false;
           });
         };
+      }
+
+      if (prop == 'first') {
+        return () => target[0];
       }
 
       if (prop == 'as') {
