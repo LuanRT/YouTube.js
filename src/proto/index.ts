@@ -74,9 +74,6 @@ class Proto {
       data.noFilter = 0;
 
     if (data.filters) {
-      if (filters.upload_date && filters.type !== 'video')
-        throw new Error(`Upload date filter cannot be used with type ${filters.type}`);
-
       if (filters.upload_date) {
         data.filters.uploadDate = upload_date[filters.upload_date];
       }
