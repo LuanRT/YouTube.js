@@ -133,7 +133,8 @@ class VideoInfo {
         channel: info.microformat?.is(PlayerMicroformat) ? info.microformat?.channel : null,
         is_unlisted: info.microformat?.is_unlisted,
         is_family_safe: info.microformat?.is_family_safe,
-        has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null
+        has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null,
+        start_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.start_timestamp : null
       },
       like_count: undefined as number | undefined,
       is_liked: undefined as boolean | undefined,

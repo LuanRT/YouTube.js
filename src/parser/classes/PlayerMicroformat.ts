@@ -34,6 +34,7 @@ class PlayerMicroformat extends YTNode {
   publish_date: string;
   upload_date: string;
   available_countries: string[];
+  start_timestamp: Date | null;
 
   constructor(data: any) {
     super();
@@ -65,6 +66,7 @@ class PlayerMicroformat extends YTNode {
     this.publish_date = data.publishDate;
     this.upload_date = data.uploadDate;
     this.available_countries = data.availableCountries;
+    this.start_timestamp = data.liveBroadcastDetails?.startTimestamp ? new Date(data.liveBroadcastDetails.startTimestamp) : null;
   }
 }
 
