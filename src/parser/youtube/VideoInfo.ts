@@ -162,7 +162,7 @@ class VideoInfo {
       this.merchandise = results.firstOfType(MerchandiseShelf);
       this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.item().as(ChipCloud);
 
-      this.watch_next_feed = actions.session.logged_in ? secondary_results.firstOfType(ItemSection)?.contents : secondary_results;
+      this.watch_next_feed = secondary_results.firstOfType(ItemSection)?.contents || secondary_results;
 
       if (this.watch_next_feed && Array.isArray(this.watch_next_feed))
         this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
