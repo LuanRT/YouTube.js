@@ -3,12 +3,9 @@
 syntax = "proto2";
 package youtube;
 
-message ChannelAnalytics {
-  message Params {
-    required string channel_id = 1001;
-  }
-
-  required Params params = 32;
+message VisitorData {
+  required string id = 1;
+  required int32 timestamp = 5;
 }
 
 message InnertubePayload {
@@ -89,6 +86,14 @@ message InnertubePayload {
   }
   
   optional VideoThumbnail video_thumbnail = 20;
+}
+
+message ChannelAnalytics {
+  message Params {
+    required string channel_id = 1001;
+  }
+
+  required Params params = 32;
 }
 
 message SoundInfoParams {

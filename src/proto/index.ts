@@ -2,9 +2,14 @@ import { CLIENTS } from '../utils/Constants';
 import { u8ToBase64 } from '../utils/Utils';
 import { VideoMetadata } from '../core/Studio';
 
-import { ChannelAnalytics, CreateCommentParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter, SearchFilter_Filters } from './youtube';
+import { ChannelAnalytics, CreateCommentParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter, SearchFilter_Filters, VisitorData } from './youtube';
 
 class Proto {
+  static encodeVisitorData(id: string, timestamp: number): string {
+    const buf = VisitorData.toBinary({ id, timestamp });
+    return encodeURIComponent(u8ToBase64(buf).replace(/\+/g, '-').replace(/\//g, '_'));
+  }
+
   static encodeChannelAnalyticsParams(channel_id: string): string {
     const buf = ChannelAnalytics.toBinary({
       params: {

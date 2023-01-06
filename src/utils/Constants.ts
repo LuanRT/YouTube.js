@@ -35,7 +35,9 @@ export const OAUTH = Object.freeze({
 export const CLIENTS = Object.freeze({
   WEB: {
     NAME: 'WEB',
-    VERSION: '2.20220902.01.00'
+    VERSION: '2.20230104.01.00',
+    API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
+    API_VERSION: 'v1'
   },
   YTMUSIC: {
     NAME: 'WEB_REMIX',

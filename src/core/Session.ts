@@ -1,12 +1,13 @@
 import UniversalCache from '../utils/Cache';
-import Constants from '../utils/Constants';
+import Constants, { CLIENTS } from '../utils/Constants';
 import EventEmitterLike from '../utils/EventEmitterLike';
 import Actions from './Actions';
 import Player from './Player';
 
 import HTTPClient, { FetchFunction } from '../utils/HTTPClient';
-import { DeviceCategory, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils';
+import { DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils';
 import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth';
+import Proto from '../proto';
 
 export enum ClientType {
   WEB = 'WEB',
@@ -21,7 +22,7 @@ export interface Context {
   client: {
     hl: string;
     gl: string;
-    remoteHost: string;
+    remoteHost?: string;
     screenDensityFloat: number;
     screenHeightPoints: number;
     screenPixelDensity: number;
@@ -38,8 +39,8 @@ export interface Context {
     clientFormFactor: string;
     userInterfaceTheme: string;
     timeZone: string;
-    browserName: string;
-    browserVersion: string;
+    browserName?: string;
+    browserVersion?: string;
     originalUrl: string;
     deviceMake: string;
     deviceModel: string;
@@ -58,25 +59,72 @@ export interface Context {
 }
 
 export interface SessionOptions {
+  /**
+   * Language.
+   */
   lang?: string;
+  /**
+   * Geolocation.
+   */
   location?: string;
+  /**
+   * The account index to use. This is useful if you have multiple accounts logged in.
+   * **NOTE:**
+   * Only works if you are signed in with cookies.
+   */
   account_index?: number;
+  /**
+   * Specifies whether to retrieve the JS player. Disabling this will make session creation faster.
+   * **NOTE:** Deciphering formats is not possible without the JS player.
+   */
   retrieve_player?: boolean;
+  /**
+   * Specifies whether to enable safety mode. This will prevent the session from loading any potentially unsafe content.
+   */
   enable_safety_mode?: boolean;
+  /**
+   * Specifies whether to generate the session data locally or retrieve it from YouTube.
+   * This can be useful if you need more performance.
+   */
+  generate_session_locally?: boolean;
+  /**
+   * Platform to use for the session.
+   */
   device_category?: DeviceCategory;
+  /**
+   * InnerTube client type.
+   */
   client_type?: ClientType;
+  /**
+   * The time zone.
+   */
   timezone?: string;
+  /**
+   * Used to cache the deciphering functions from the JS player.
+   */
   cache?: UniversalCache;
+  /**
+   * YouTube cookies.
+   */
   cookie?: string;
+  /**
+   * Fetch function to use.
+   */
   fetch?: FetchFunction;
 }
 
+export interface SessionData {
+  context: Context;
+  api_key: string;
+  api_version: string;
+}
+
 export default class Session extends EventEmitterLike {
-  #api_version;
-  #key;
-  #context;
-  #account_index;
-  #player;
+  #api_version: string;
+  #key: string;
+  #context: Context;
+  #account_index: number;
+  #player?: Player;
 
   oauth: OAuth;
   http: HTTPClient;
@@ -121,6 +169,7 @@ export default class Session extends EventEmitterLike {
       options.location,
       options.account_index,
       options.enable_safety_mode,
+      options.generate_session_locally,
       options.device_category,
       options.client_type,
       options.timezone,
@@ -135,30 +184,49 @@ export default class Session extends EventEmitterLike {
   }
 
   static async getSessionData(
-    lang = 'en-US',
+    lang = '',
     location = '',
     account_index = 0,
     enable_safety_mode = false,
+    generate_session_locally = false,
     device_category: DeviceCategory = 'desktop',
     client_name: ClientType = ClientType.WEB,
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
     fetch: FetchFunction = globalThis.fetch
   ) {
+    let session_data: SessionData;
+
+    if (generate_session_locally) {
+      session_data = this.#generateSessionData({ lang, location, time_zone: tz, device_category, client_name, enable_safety_mode });
+    } else {
+      session_data = await this.#retrieveSessionData({ lang, location, time_zone: tz, device_category, client_name, enable_safety_mode }, fetch);
+    }
+
+    return { ...session_data, account_index };
+  }
+
+  static async #retrieveSessionData(options: {
+    lang: string;
+    location: string;
+    time_zone: string;
+    device_category: string;
+    client_name: string;
+    enable_safety_mode: boolean;
+  }, fetch: FetchFunction = globalThis.fetch): Promise<SessionData> {
     const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
 
     const res = await fetch(url, {
       headers: {
-        'accept-language': lang,
+        'accept-language': options.lang || 'en-US',
         'user-agent': getRandomUserAgent('desktop'),
         'accept': '*/*',
         'referer': 'https://www.youtube.com/sw.js',
-        'cookie': `PREF=tz=${tz.replace('/', '.')}`
+        'cookie': `PREF=tz=${options.time_zone.replace('/', '.')}`
       }
     });
 
-    if (!res.ok) {
-      throw new SessionError(`Failed to get session data: ${res.status}`);
-    }
+    if (!res.ok)
+      throw new SessionError(`Failed to retrieve session data: ${res.status}`);
 
     const text = await res.text();
     const data = JSON.parse(text.replace(/^\)\]\}'/, ''));
@@ -172,22 +240,22 @@ export default class Session extends EventEmitterLike {
     const context: Context = {
       client: {
         hl: device_info[0],
-        gl: location || device_info[2],
+        gl: options.location || device_info[2],
         remoteHost: device_info[3],
         screenDensityFloat: 1,
-        screenHeightPoints: 720,
+        screenHeightPoints: 1080,
         screenPixelDensity: 1,
-        screenWidthPoints: 1280,
+        screenWidthPoints: 1920,
         visitorData: device_info[13],
         userAgent: device_info[14],
-        clientName: client_name,
+        clientName: options.client_name,
         clientVersion: device_info[16],
         osName: device_info[17],
         osVersion: device_info[18],
-        platform: device_category.toUpperCase(),
+        platform: options.device_category.toUpperCase(),
         clientFormFactor: 'UNKNOWN_FORM_FACTOR',
         userInterfaceTheme: 'USER_INTERFACE_THEME_LIGHT',
-        timeZone: device_info[79],
+        timeZone: device_info[79] || options.time_zone,
         browserName: device_info[86],
         browserVersion: device_info[87],
         originalUrl: Constants.URLS.YT_BASE,
@@ -196,7 +264,7 @@ export default class Session extends EventEmitterLike {
         utcOffsetMinutes: new Date().getTimezoneOffset()
       },
       user: {
-        enableSafetyMode: enable_safety_mode,
+        enableSafetyMode: options.enable_safety_mode,
         lockedSafetyMode: false
       },
       request: {
@@ -204,7 +272,53 @@ export default class Session extends EventEmitterLike {
       }
     };
 
-    return { context, api_key, api_version, account_index };
+    return { context, api_key, api_version };
+  }
+
+  static #generateSessionData(options: {
+    lang: string;
+    location: string;
+    time_zone: string;
+    device_category: DeviceCategory;
+    client_name: string;
+    enable_safety_mode: boolean
+  }): SessionData {
+    const id = generateRandomString(11);
+    const timestamp = Math.floor(Date.now() / 1000);
+
+    const context: Context = {
+      client: {
+        hl: options.lang || 'en',
+        gl: options.location || 'US',
+        screenDensityFloat: 1,
+        screenHeightPoints: 1080,
+        screenPixelDensity: 1,
+        screenWidthPoints: 1920,
+        visitorData: Proto.encodeVisitorData(id, timestamp),
+        userAgent: getRandomUserAgent('desktop'),
+        clientName: options.client_name,
+        clientVersion: CLIENTS.WEB.VERSION,
+        osName: 'Windows',
+        osVersion: '10.0',
+        platform: options.device_category.toUpperCase(),
+        clientFormFactor: 'UNKNOWN_FORM_FACTOR',
+        userInterfaceTheme: 'USER_INTERFACE_THEME_LIGHT',
+        timeZone: options.time_zone,
+        originalUrl: Constants.URLS.YT_BASE,
+        deviceMake: '',
+        deviceModel: '',
+        utcOffsetMinutes: new Date().getTimezoneOffset()
+      },
+      user: {
+        enableSafetyMode: options.enable_safety_mode,
+        lockedSafetyMode: false
+      },
+      request: {
+        useSsl: true
+      }
+    };
+
+    return { context, api_key: CLIENTS.WEB.API_KEY, api_version: CLIENTS.WEB.API_VERSION };
   }
 
   async signIn(credentials?: Credentials): Promise<void> {
