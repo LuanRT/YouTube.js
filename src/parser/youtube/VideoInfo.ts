@@ -332,7 +332,7 @@ class VideoInfo {
    * Watch next feed filters.
    */
   get filters(): string[] {
-    return this.related_chip_cloud?.chips?.map((chip) => chip.text.toString()) || [];
+    return this.related_chip_cloud?.chips?.map((chip) => chip.text?.toString()) || [];
   }
 
   /**
@@ -378,7 +378,7 @@ class VideoInfo {
         for (let i = 0; i < metadata.rows.length; i++) {
             const row = metadata.rows[i];
             if (row.is(MetadataRowHeader)) {
-                if (row.content.toString().toLowerCase().startsWith('music')) {
+                if (row.content?.toString().toLowerCase().startsWith('music')) {
                     is_music_section = true;
                     i++; // Skip the learn more link
                 }
@@ -387,7 +387,7 @@ class VideoInfo {
             if (!is_music_section)
                 continue;
             if (row.is(MetadataRow))
-                current_song[row.title.toString().toLowerCase().replace(/ /g, '_')] = row.contents;
+                current_song[row.title?.toString().toLowerCase().replace(/ /g, '_')] = row.contents;
             // TODO: this makes no sense, we continue above when
             if (row.has_divider_line) {
                 songs.push(current_song);
@@ -557,16 +557,16 @@ class VideoInfo {
     url.searchParams.set('cpn', this.#cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {
-      id: format.itag.toString(),
+      id: format.itag?.toString(),
       codecs,
-      bandwidth: format.bitrate.toString(),
-      width: format.width.toString(),
-      height: format.height.toString(),
+      bandwidth: format.bitrate?.toString(),
+      width: format.width?.toString(),
+      height: format.height?.toString(),
       maxPlayoutRate: '1',
       frameRate: format.fps?.toString()
     }, [
       this.#el(document, 'BaseURL', {}, [
-        document.createTextNode(url_transformer(url).toString())
+        document.createTextNode(url_transformer(url)?.toString())
       ]),
       this.#el(document, 'SegmentBase', {
         indexRange: `${format.index_range.start}-${format.index_range.end}`
@@ -587,16 +587,16 @@ class VideoInfo {
     url.searchParams.set('cpn', this.#cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {
-      id: format.itag.toString(),
+      id: format.itag?.toString(),
       codecs,
-      bandwidth: format.bitrate.toString()
+      bandwidth: format.bitrate?.toString()
     }, [
       this.#el(document, 'AudioChannelConfiguration', {
         schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
-        value: format.audio_channels.toString() || '2'
+        value: format.audio_channels?.toString() || '2'
       }),
       this.#el(document, 'BaseURL', {}, [
-        document.createTextNode(url_transformer(url).toString())
+        document.createTextNode(url_transformer(url)?.toString())
       ]),
       this.#el(document, 'SegmentBase', {
         indexRange: `${format.index_range.start}-${format.index_range.end}`
