@@ -557,13 +557,13 @@ class VideoInfo {
     url.searchParams.set('cpn', this.#cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {
-      id: format.itag,
+      id: format.itag.toString(),
       codecs,
-      bandwidth: format.bitrate,
-      width: format.width,
-      height: format.height,
+      bandwidth: format.bitrate.toString(),
+      width: format.width.toString(),
+      height: format.height.toString(),
       maxPlayoutRate: '1',
-      frameRate: format.fps
+      frameRate: format.fps?.toString()
     }, [
       this.#el(document, 'BaseURL', {}, [
         document.createTextNode(url_transformer(url).toString())
@@ -587,13 +587,13 @@ class VideoInfo {
     url.searchParams.set('cpn', this.#cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {
-      id: format.itag,
+      id: format.itag.toString(),
       codecs,
-      bandwidth: format.bitrate
+      bandwidth: format.bitrate.toString()
     }, [
       this.#el(document, 'AudioChannelConfiguration', {
         schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
-        value: format.audio_channels || '2'
+        value: format.audio_channels.toString() || '2'
       }),
       this.#el(document, 'BaseURL', {}, [
         document.createTextNode(url_transformer(url).toString())

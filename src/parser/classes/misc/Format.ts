@@ -6,8 +6,8 @@ class Format {
   mime_type: string;
   bitrate: number;
   average_bitrate: number;
-  width: number | undefined;
-  height: number | undefined;
+  width: number;
+  height: number;
 
   init_range: {
     start: number;
