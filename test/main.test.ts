@@ -142,7 +142,7 @@ describe('YouTube.js Tests', () => {
     });
 
     it('should create a session from data generated locally', async () => {
-      const loc_yt = await Innertube.create({ generate_session_locally: true });
+      const loc_yt = await Innertube.create({ generate_session_locally: true, retrieve_player: false });
       expect(loc_yt.session.context).toBeDefined();
     });
 
