@@ -141,6 +141,11 @@ describe('YouTube.js Tests', () => {
       expect(nop_yt.session.player).toBeUndefined();
     });
 
+    it('should create a session from data generated locally', async () => {
+      const loc_yt = await Innertube.create({ generate_session_locally: true });
+      expect(loc_yt.session.context).toBeDefined();
+    });
+
     it('should resolve a URL', async () => {
       const url = await yt.resolveURL('https://www.youtube.com/@linustechtips');
       expect(url.payload.browseId).toBe(CHANNELS[0].ID);
