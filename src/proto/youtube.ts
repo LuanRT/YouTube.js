@@ -15,22 +15,17 @@ import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MESSAGE_TYPE } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 /**
- * @generated from protobuf message youtube.ChannelAnalytics
+ * @generated from protobuf message youtube.VisitorData
  */
-export interface ChannelAnalytics {
+export interface VisitorData {
     /**
-     * @generated from protobuf field: youtube.ChannelAnalytics.Params params = 32;
+     * @generated from protobuf field: string id = 1;
      */
-    params?: ChannelAnalytics_Params;
-}
-/**
- * @generated from protobuf message youtube.ChannelAnalytics.Params
- */
-export interface ChannelAnalytics_Params {
+    id: string;
     /**
-     * @generated from protobuf field: string channel_id = 1001;
+     * @generated from protobuf field: int32 timestamp = 5;
      */
-    channelId: string;
+    timestamp: number;
 }
 /**
  * @generated from protobuf message youtube.InnertubePayload
@@ -212,6 +207,24 @@ export interface InnertubePayload_VideoThumbnail_Thumbnail {
      * @generated from protobuf field: bytes image_data = 1;
      */
     imageData: Uint8Array;
+}
+/**
+ * @generated from protobuf message youtube.ChannelAnalytics
+ */
+export interface ChannelAnalytics {
+    /**
+     * @generated from protobuf field: youtube.ChannelAnalytics.Params params = 32;
+     */
+    params?: ChannelAnalytics_Params;
+}
+/**
+ * @generated from protobuf message youtube.ChannelAnalytics.Params
+ */
+export interface ChannelAnalytics_Params {
+    /**
+     * @generated from protobuf field: string channel_id = 1001;
+     */
+    channelId: string;
 }
 /**
  * @generated from protobuf message youtube.SoundInfoParams
@@ -646,26 +659,30 @@ export interface SearchFilter_Filters {
     featuresVr180?: number;
 }
 // @generated message type with reflection information, may provide speed optimized methods
-class ChannelAnalytics$Type extends MessageType<ChannelAnalytics> {
+class VisitorData$Type extends MessageType<VisitorData> {
     constructor() {
-        super("youtube.ChannelAnalytics", [
-            { no: 32, name: "params", kind: "message", T: () => ChannelAnalytics_Params }
+        super("youtube.VisitorData", [
+            { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "timestamp", kind: "scalar", T: 5 /*ScalarType.INT32*/ }
         ]);
     }
-    create(value?: PartialMessage<ChannelAnalytics>): ChannelAnalytics {
-        const message = {};
+    create(value?: PartialMessage<VisitorData>): VisitorData {
+        const message = { id: "", timestamp: 0 };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
-            reflectionMergePartial<ChannelAnalytics>(this, message, value);
+            reflectionMergePartial<VisitorData>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ChannelAnalytics): ChannelAnalytics {
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: VisitorData): VisitorData {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* youtube.ChannelAnalytics.Params params */ 32:
-                    message.params = ChannelAnalytics_Params.internalBinaryRead(reader, reader.uint32(), options, message.params);
+                case /* string id */ 1:
+                    message.id = reader.string();
+                    break;
+                case /* int32 timestamp */ 5:
+                    message.timestamp = reader.int32();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -678,10 +695,13 @@ class ChannelAnalytics$Type extends MessageType<ChannelAnalytics> {
         }
         return message;
     }
-    internalBinaryWrite(message: ChannelAnalytics, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* youtube.ChannelAnalytics.Params params = 32; */
-        if (message.params)
-            ChannelAnalytics_Params.internalBinaryWrite(message.params, writer.tag(32, WireType.LengthDelimited).fork(), options).join();
+    internalBinaryWrite(message: VisitorData, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string id = 1; */
+        if (message.id !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.id);
+        /* int32 timestamp = 5; */
+        if (message.timestamp !== 0)
+            writer.tag(5, WireType.Varint).int32(message.timestamp);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -689,56 +709,9 @@ class ChannelAnalytics$Type extends MessageType<ChannelAnalytics> {
     }
 }
 /**
- * @generated MessageType for protobuf message youtube.ChannelAnalytics
+ * @generated MessageType for protobuf message youtube.VisitorData
  */
-export const ChannelAnalytics = new ChannelAnalytics$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class ChannelAnalytics_Params$Type extends MessageType<ChannelAnalytics_Params> {
-    constructor() {
-        super("youtube.ChannelAnalytics.Params", [
-            { no: 1001, name: "channel_id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-        ]);
-    }
-    create(value?: PartialMessage<ChannelAnalytics_Params>): ChannelAnalytics_Params {
-        const message = { channelId: "" };
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial<ChannelAnalytics_Params>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ChannelAnalytics_Params): ChannelAnalytics_Params {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* string channel_id */ 1001:
-                    message.channelId = reader.string();
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message: ChannelAnalytics_Params, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* string channel_id = 1001; */
-        if (message.channelId !== "")
-            writer.tag(1001, WireType.LengthDelimited).string(message.channelId);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message youtube.ChannelAnalytics.Params
- */
-export const ChannelAnalytics_Params = new ChannelAnalytics_Params$Type();
+export const VisitorData = new VisitorData$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class InnertubePayload$Type extends MessageType<InnertubePayload> {
     constructor() {
@@ -1455,6 +1428,100 @@ class InnertubePayload_VideoThumbnail_Thumbnail$Type extends MessageType<Innertu
  * @generated MessageType for protobuf message youtube.InnertubePayload.VideoThumbnail.Thumbnail
  */
 export const InnertubePayload_VideoThumbnail_Thumbnail = new InnertubePayload_VideoThumbnail_Thumbnail$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ChannelAnalytics$Type extends MessageType<ChannelAnalytics> {
+    constructor() {
+        super("youtube.ChannelAnalytics", [
+            { no: 32, name: "params", kind: "message", T: () => ChannelAnalytics_Params }
+        ]);
+    }
+    create(value?: PartialMessage<ChannelAnalytics>): ChannelAnalytics {
+        const message = {};
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<ChannelAnalytics>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ChannelAnalytics): ChannelAnalytics {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* youtube.ChannelAnalytics.Params params */ 32:
+                    message.params = ChannelAnalytics_Params.internalBinaryRead(reader, reader.uint32(), options, message.params);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ChannelAnalytics, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* youtube.ChannelAnalytics.Params params = 32; */
+        if (message.params)
+            ChannelAnalytics_Params.internalBinaryWrite(message.params, writer.tag(32, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.ChannelAnalytics
+ */
+export const ChannelAnalytics = new ChannelAnalytics$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ChannelAnalytics_Params$Type extends MessageType<ChannelAnalytics_Params> {
+    constructor() {
+        super("youtube.ChannelAnalytics.Params", [
+            { no: 1001, name: "channel_id", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<ChannelAnalytics_Params>): ChannelAnalytics_Params {
+        const message = { channelId: "" };
+        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
+        if (value !== undefined)
+            reflectionMergePartial<ChannelAnalytics_Params>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ChannelAnalytics_Params): ChannelAnalytics_Params {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string channel_id */ 1001:
+                    message.channelId = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ChannelAnalytics_Params, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string channel_id = 1001; */
+        if (message.channelId !== "")
+            writer.tag(1001, WireType.LengthDelimited).string(message.channelId);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message youtube.ChannelAnalytics.Params
+ */
+export const ChannelAnalytics_Params = new ChannelAnalytics_Params$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class SoundInfoParams$Type extends MessageType<SoundInfoParams> {
     constructor() {
