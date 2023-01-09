@@ -184,6 +184,7 @@ class Proto {
       type,
       commentId: args.comment_id || ' ',
       videoId: args.video_id || ' ',
+      channelId: ' ',
       unkNum: 2
     };
 
