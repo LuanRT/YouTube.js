@@ -52,7 +52,8 @@ export interface LiveMetadata {
 
 class LiveChat extends EventEmitter {
   #actions: Actions;
-  #video_info: VideoInfo;
+  #video_id: string;
+  #channel_id: string;
   #continuation?: string;
   #mcontinuation?: string;
 
@@ -65,7 +66,8 @@ class LiveChat extends EventEmitter {
   constructor(video_info: VideoInfo) {
     super();
 
-    this.#video_info = video_info;
+    this.#video_id = video_info.basic_info.id as string;
+    this.#channel_id = video_info.basic_info.channel_id as string;
     this.#actions = video_info.actions;
     this.#continuation = video_info.livechat?.continuation || undefined;
     this.is_replay = video_info.livechat?.is_replay || false;
@@ -142,7 +144,7 @@ class LiveChat extends EventEmitter {
       const payload: {
         videoId: string | undefined;
         continuation?: string;
-      } = { videoId: this.#video_info.basic_info.id };
+      } = { videoId: this.#video_id };
 
       if (this.#mcontinuation) {
         payload.continuation = this.#mcontinuation;
@@ -175,7 +177,7 @@ class LiveChat extends EventEmitter {
    */
   async sendMessage(text: string): Promise<ObservedArray<AddChatItemAction>> {
     const response = await this.#actions.execute('/live_chat/send_message', {
-      params: Proto.encodeMessageParams(this.#video_info.basic_info.channel_id as string, this.#video_info.basic_info.id as string),
+      params: Proto.encodeMessageParams(this.#channel_id, this.#video_id),
       richMessage: { textSegments: [ { text } ] },
       clientMessageId: uuidv4(),
       parse: true
