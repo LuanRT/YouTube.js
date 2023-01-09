@@ -7,6 +7,7 @@ class EmojiRun {
     shortcuts: string[];
     search_terms: string[];
     image: Thumbnail[];
+    is_custom: boolean;
   };
 
   constructor(data: any) {
@@ -19,7 +20,8 @@ class EmojiRun {
       emoji_id: data.emoji.emojiId,
       shortcuts: data.emoji?.shortcuts || [],
       search_terms: data.emoji?.searchTerms || [],
-      image: Thumbnail.fromResponse(data.emoji.image)
+      image: Thumbnail.fromResponse(data.emoji.image),
+      is_custom: !!data.emoji?.isCustomEmoji
     };
   }
 }
