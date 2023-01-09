@@ -1,5 +1,5 @@
 ## Comment
-Contains information about a single comment. A [`Comment`](../../lib/parser/contents/classes/Comment.js) can be a top-level comment or a reply to a top-level comment.
+Contains information about a single comment. A [`Comment`](../../src/parser/classes/comments/Comment.ts) can be a top-level comment or a reply to a top-level comment.
 
 ## API
 

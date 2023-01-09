@@ -1,48 +1,56 @@
 import Parser from '../../index';
 import Comment from './Comment';
 import ContinuationItem from '../ContinuationItem';
-import Actions from '../../../core/Actions';
-import NavigationEndpoint from '../NavigationEndpoint';
-
+import CommentReplies from './CommentReplies';
+import Button from '../Button';
+import type Actions from '../../../core/Actions';
+import type { ObservedArray } from '../../helpers';
 import { InnertubeError } from '../../../utils/Utils';
-import { YTNode } from '../../helpers';
+import { observe, YTNode } from '../../helpers';
 
 class CommentThread extends YTNode {
   static type = 'CommentThread';
 
-  #replies;
   #actions?: Actions;
   #continuation?: ContinuationItem;
+
+  comment: Comment | null;
+  replies?: ObservedArray<Comment>;
+  comment_replies_data: CommentReplies | null;
   is_moderated_elq_comment: boolean;
-  comment;
-  replies: Comment[] | undefined;
+  has_replies: boolean;
 
   constructor(data: any) {
     super();
-    this.comment = Parser.parseItem(data.comment, Comment);
-    this.#replies = Parser.parseItem(data.replies);
+    this.comment = Parser.parseItem<Comment>(data.comment, Comment);
+    this.comment_replies_data = Parser.parseItem<CommentReplies>(data.replies);
     this.is_moderated_elq_comment = data.isModeratedElqComment;
+    this.has_replies = !!this.comment_replies_data;
   }
 
   /**
    * Retrieves replies to this comment thread.
    */
-  async getReplies() {
+  async getReplies(): Promise<CommentThread> {
     if (!this.#actions)
-      throw new InnertubeError('Actions not set for this CommentThread.');
+      throw new InnertubeError('Actions instance not set for this thread.');
 
-    if (!this.#replies)
+    if (!this.comment_replies_data)
       throw new InnertubeError('This comment has no replies.', { comment_id: this.comment?.comment_id });
 
-    const continuation = this.#replies.key('contents').parsed().array().get({ type: 'ContinuationItem' })?.as(ContinuationItem);
-    const response = await continuation?.endpoint.call(this.#actions, { parse: true });
+    const continuation = this.comment_replies_data.contents?.firstOfType(ContinuationItem);
 
-    this.replies = response?.on_response_received_endpoints_memo?.getType(Comment).map((comment) => {
+    if (!continuation)
+      throw new InnertubeError('Replies continuation not found.');
+
+    const response = await continuation.endpoint.call(this.#actions, { parse: true });
+
+    this.replies = observe(response.on_response_received_endpoints_memo?.getType(Comment).map((comment) => {
       comment.setActions(this.#actions);
       return comment;
-    });
+    }));
 
-    this.#continuation = response?.on_response_received_endpoints_memo.getType(ContinuationItem)?.[0];
+    this.#continuation = response?.on_response_received_endpoints_memo.getType(ContinuationItem).first();
 
     return this;
   }
@@ -50,26 +58,37 @@ class CommentThread extends YTNode {
   /**
    * Retrieves next batch of replies.
    */
-  async getContinuation() {
+  async getContinuation(): Promise<CommentThread> {
     if (!this.replies)
-      throw new InnertubeError('Continuation not available.');
+      throw new InnertubeError('Cannot retrieve continuation because this thread\'s replies have not been loaded.');
 
     if (!this.#continuation)
       throw new InnertubeError('Continuation not found.');
 
     if (!this.#actions)
-      throw new InnertubeError('Actions not set for this CommentThread.');
+      throw new InnertubeError('Actions instance not set for this thread.');
 
-    const response = await this.#continuation.button?.item().key('endpoint').nodeOfType(NavigationEndpoint).call(this.#actions, { parse: true });
+    const load_more_button = this.#continuation.button?.as(Button);
 
-    this.replies = response?.on_response_received_endpoints_memo.getType(Comment).map((comment) => {
+    if (!load_more_button)
+      throw new InnertubeError('"Load more" button not found.');
+
+    const response = await load_more_button.endpoint.call(this.#actions, { parse: true });
+
+    this.replies = observe(response?.on_response_received_endpoints_memo.getType(Comment).map((comment) => {
       comment.setActions(this.#actions);
       return comment;
-    });
+    }));
 
     this.#continuation = response?.on_response_received_endpoints_memo.getType(ContinuationItem)?.[0];
 
     return this;
+  }
+
+  get has_continuation(): boolean {
+    if (!this.replies)
+      throw new InnertubeError('Cannot determine if there is a continuation because this thread\'s replies have not been loaded.');
+    return !!this.#continuation;
   }
 
   setActions(actions: Actions) {

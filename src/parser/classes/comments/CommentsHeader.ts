@@ -1,6 +1,7 @@
 import Parser from '../../index';
 import Text from '../misc/Text';
 import Thumbnail from '../misc/Thumbnail';
+import type SortFilterSubMenu from '../SortFilterSubMenu';
 import { YTNode } from '../../helpers';
 
 class CommentsHeader extends YTNode {
@@ -10,7 +11,7 @@ class CommentsHeader extends YTNode {
   count: Text;
   comments_count: Text;
   create_renderer;
-  sort_menu;
+  sort_menu: SortFilterSubMenu | null;
 
   custom_emojis: {
     emoji_id: string;
@@ -26,7 +27,7 @@ class CommentsHeader extends YTNode {
     this.count = new Text(data.countText);
     this.comments_count = new Text(data.commentsCount);
     this.create_renderer = Parser.parseItem(data.createRenderer);
-    this.sort_menu = Parser.parse(data.sortMenu);
+    this.sort_menu = Parser.parseItem<SortFilterSubMenu>(data.sortMenu);
 
     this.custom_emojis = data.customEmojis?.map((emoji: any) => ({
       emoji_id: emoji.emojiId,

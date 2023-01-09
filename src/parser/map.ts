@@ -48,12 +48,17 @@ import { default as CollageHeroImage } from './classes/CollageHeroImage';
 import { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge';
 import { default as Comment } from './classes/comments/Comment';
 import { default as CommentActionButtons } from './classes/comments/CommentActionButtons';
+import { default as CommentDialog } from './classes/comments/CommentDialog';
 import { default as CommentReplies } from './classes/comments/CommentReplies';
 import { default as CommentReplyDialog } from './classes/comments/CommentReplyDialog';
 import { default as CommentsEntryPointHeader } from './classes/comments/CommentsEntryPointHeader';
 import { default as CommentsHeader } from './classes/comments/CommentsHeader';
 import { default as CommentSimplebox } from './classes/comments/CommentSimplebox';
 import { default as CommentThread } from './classes/comments/CommentThread';
+import { default as CreatorHeart } from './classes/comments/CreatorHeart';
+import { default as EmojiPicker } from './classes/comments/EmojiPicker';
+import { default as PdgCommentChip } from './classes/comments/PdgCommentChip';
+import { default as SponsorCommentBadge } from './classes/comments/SponsorCommentBadge';
 import { default as CompactLink } from './classes/CompactLink';
 import { default as CompactMix } from './classes/CompactMix';
 import { default as CompactPlaylist } from './classes/CompactPlaylist';
@@ -71,6 +76,9 @@ import { default as Dropdown } from './classes/Dropdown';
 import { default as DropdownItem } from './classes/DropdownItem';
 import { default as Element } from './classes/Element';
 import { default as EmergencyOnebox } from './classes/EmergencyOnebox';
+import { default as EmojiPickerCategory } from './classes/EmojiPickerCategory';
+import { default as EmojiPickerCategoryButton } from './classes/EmojiPickerCategoryButton';
+import { default as EmojiPickerUpsellCategory } from './classes/EmojiPickerUpsellCategory';
 import { default as Endscreen } from './classes/Endscreen';
 import { default as EndscreenElement } from './classes/EndscreenElement';
 import { default as EndScreenPlaylist } from './classes/EndScreenPlaylist';
@@ -347,12 +355,17 @@ export const YTNodes = {
   AuthorCommentBadge,
   Comment,
   CommentActionButtons,
+  CommentDialog,
   CommentReplies,
   CommentReplyDialog,
   CommentsEntryPointHeader,
   CommentsHeader,
   CommentSimplebox,
   CommentThread,
+  CreatorHeart,
+  EmojiPicker,
+  PdgCommentChip,
+  SponsorCommentBadge,
   CompactLink,
   CompactMix,
   CompactPlaylist,
@@ -370,6 +383,9 @@ export const YTNodes = {
   DropdownItem,
   Element,
   EmergencyOnebox,
+  EmojiPickerCategory,
+  EmojiPickerCategoryButton,
+  EmojiPickerUpsellCategory,
   Endscreen,
   EndscreenElement,
   EndScreenPlaylist,

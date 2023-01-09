@@ -14,7 +14,7 @@ class ContinuationItem extends YTNode {
     this.trigger = data.trigger;
 
     if (data.button) {
-      this.button = Parser.parse(data.button);
+      this.button = Parser.parseItem(data.button);
     }
 
     this.endpoint = new NavigationEndpoint(data.continuationEndpoint);

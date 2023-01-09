@@ -3,6 +3,7 @@ import Innertube from '..';
 import { CHANNELS, VIDEOS } from './constants';
 import { streamToIterable } from '../src/utils/Utils';
 import TextRun from '../src/parser/classes/misc/TextRun';
+import Comments from '../dist/src/parser/youtube/Comments';
 
 describe('YouTube.js Tests', () => { 
   let yt: Innertube;
@@ -100,39 +101,41 @@ describe('YouTube.js Tests', () => {
   });
   
   describe('Comments', () => {
-    let threads: any;
+    let comment_section: Comments;
     
     it('should retrieve comments', async () => {
-      threads = await yt.getComments(VIDEOS[1].ID);
-      expect(threads.contents.length).toBeGreaterThan(0);
+      comment_section = await yt.getComments(VIDEOS[1].ID);
+      expect(comment_section.contents.length).toBeGreaterThan(0);
     });
 
     it('should parse formatted comments', async () => {
-      const threads = await yt.getComments(VIDEOS[3].ID);
-      const authorComment = threads.contents.find(t => t.comment?.author_is_channel_owner)
-      expect(authorComment).not.toBeUndefined();
+      const comment_section = await yt.getComments(VIDEOS[3].ID);
+      const channel_owner_thread = comment_section.contents.find(t => t.comment?.author_is_channel_owner);
+      expect(channel_owner_thread).not.toBeUndefined();
 
-      expect(authorComment!.comment?.content.runs?.length).toBeGreaterThan(0)
-      const runs = authorComment!.comment!.content.runs! as TextRun[]
+      expect(channel_owner_thread!.comment?.content.runs?.length).toBeGreaterThan(0);
+      const runs = channel_owner_thread!.comment!.content.runs! as TextRun[];
 
-      expect(runs[0].bold).toBeTruthy()
-      expect(runs[2].italics).toBeTruthy()
-      expect(runs[4].strikethrough).toBeTruthy()
+      expect(runs[0].bold).toBeTruthy();
+      expect(runs[2].italics).toBeTruthy();
+      expect(runs[4].strikethrough).toBeTruthy();
     })
     
     it('should retrieve next batch of comments', async () => {
-      const next = await threads.getContinuation();
+      const next = await comment_section.getContinuation();
       expect(next.contents.length).toBeGreaterThan(0);
     });
     
     it('should retrieve comment replies', async () => {
-      const comment = threads.contents[0];
-      
-      const thread = await comment.getReplies();
+      const thread = comment_section.contents.first();
+      expect(thread?.has_replies).toBe(true);
+
+      const full_thread = await thread?.getReplies();
  
-      expect(thread.comment_id).toBe(comment.comment_id);
-      expect(thread.replies.length).toBeLessThanOrEqual(10);
+      expect(full_thread?.comment?.comment_id).toBe(thread?.comment?.comment_id);
+      expect(full_thread?.replies?.length).toBeLessThanOrEqual(10);
     });
+
   });
   
   describe('General', () => {

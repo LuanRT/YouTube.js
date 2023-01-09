@@ -17,8 +17,8 @@ class EmojiRun {
 
     this.emoji = {
       emoji_id: data.emoji.emojiId,
-      shortcuts: data.emoji.shortcuts,
-      search_terms: data.emoji.searchTerms,
+      shortcuts: data.emoji?.shortcuts || [],
+      search_terms: data.emoji?.searchTerms || [],
       image: Thumbnail.fromResponse(data.emoji.image)
     };
   }

@@ -2,8 +2,8 @@ import Parser, { ParsedResponse } from '..';
 import type Actions from '../../core/Actions';
 import type { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
+import { observe, ObservedArray } from '../helpers';
 
-import Button from '../classes/Button';
 import CommentsHeader from '../classes/comments/CommentsHeader';
 import CommentSimplebox from '../classes/comments/CommentSimplebox';
 import CommentThread from '../classes/comments/CommentThread';
@@ -15,7 +15,7 @@ class Comments {
   #continuation?: ContinuationItem;
 
   header?: CommentsHeader;
-  contents: CommentThread[];
+  contents: ObservedArray<CommentThread>;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     this.#page = already_parsed ? data : Parser.parseResponse(data);
@@ -26,17 +26,47 @@ class Comments {
     if (!contents)
       throw new InnertubeError('Comments page did not have any content.');
 
-    this.header = contents[0].contents?.firstOfType(CommentsHeader);
+    const header_node = contents.at(0);
+    const body_node = contents.at(1);
 
-    const threads: CommentThread[] = contents[1].contents?.filterType(CommentThread) || [];
+    this.header = header_node?.contents?.firstOfType(CommentsHeader);
 
-    this.contents = threads.map((thread) => {
+    const threads = body_node?.contents?.filterType(CommentThread) || [];
+
+    this.contents = observe(threads.map((thread) => {
       thread.comment?.setActions(this.#actions);
       thread.setActions(this.#actions);
       return thread;
-    }) as CommentThread[];
+    }));
 
-    this.#continuation = contents[1].contents?.firstOfType(ContinuationItem);
+    this.#continuation = body_node?.contents?.firstOfType(ContinuationItem);
+  }
+
+  /**
+   * Sorts the comments with the given sort type.
+   * @param sort - Sort type.
+   */
+  async applySort(sort: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
+    if (!this.header)
+      throw new InnertubeError('Page header is missing. Cannot apply sort filter.');
+
+    let button;
+
+    if (sort === 'TOP_COMMENTS') {
+      button = this.header.sort_menu?.sub_menu_items?.at(0);
+    } else if (sort === 'NEWEST_FIRST') {
+      button = this.header.sort_menu?.sub_menu_items?.at(1);
+    }
+
+    if (!button)
+      throw new InnertubeError('Could not find target button.');
+
+    if (button.selected)
+      return this;
+
+    const response = await button.endpoint.call(this.#actions, { parse: true });
+
+    return new Comments(this.#actions, response, true);
   }
 
   /**
@@ -47,10 +77,13 @@ class Comments {
     if (!this.header)
       throw new InnertubeError('Page header is missing. Cannot create comment.');
 
-    const button = this.header.create_renderer?.as(CommentSimplebox).submit_button?.item().as(Button);
+    const button = this.header.create_renderer?.as(CommentSimplebox).submit_button;
 
     if (!button)
       throw new InnertubeError('Could not find target button. You are probably not logged in.');
+
+    if (!button.endpoint)
+      throw new InnertubeError('Button does not have an endpoint.');
 
     const response = await button.endpoint.call(this.#actions, { commentText: text });
 
@@ -77,6 +110,10 @@ class Comments {
     page.on_response_received_endpoints.push(data.on_response_received_endpoints[0]);
 
     return new Comments(this.#actions, page, true);
+  }
+
+  get has_continuation(): boolean {
+    return !!this.#continuation;
   }
 
   get page(): ParsedResponse {

@@ -394,11 +394,13 @@ export class ReloadContinuationItemsCommand extends YTNode {
 
   target_id: string;
   contents: ObservedArray<YTNode> | null;
+  slot?: string;
 
   constructor(data: any) {
     super();
     this.target_id = data.targetId;
     this.contents = Parser.parse(data.continuationItems, true);
+    this.slot = data?.slot;
   }
 }
 
