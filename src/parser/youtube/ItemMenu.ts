@@ -28,9 +28,12 @@ class ItemMenu {
   async selectItem(icon_type: string): Promise<ParsedResponse>
   async selectItem(button: Button): Promise<ParsedResponse>
   async selectItem(item: string | Button): Promise<ParsedResponse> {
-    let endpoint: NavigationEndpoint;
+    let endpoint: NavigationEndpoint | undefined;
 
     if (item instanceof Button) {
+      if (!item.endpoint)
+        throw new InnertubeError('Item does not have an endpoint.');
+
       endpoint = item.endpoint;
     } else {
       const button = this.#items.find((button) => {
@@ -41,11 +44,14 @@ class ItemMenu {
         return menuServiceItem.icon_type === item;
       });
 
-      if (!button)
+      if (!button || !button.is(MenuServiceItem))
         throw new InnertubeError(`Button "${item}" not found.`);
 
-      endpoint = button.as(MenuServiceItem).endpoint;
+      endpoint = button.endpoint;
     }
+
+    if (!endpoint)
+      throw new InnertubeError('Target button does not have an endpoint.');
 
     const response = await endpoint.call(this.#actions, { parse: true });
 

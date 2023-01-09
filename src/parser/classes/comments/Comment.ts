@@ -1,16 +1,20 @@
 import Parser from '../../index';
+
 import Text from '../misc/Text';
 import Thumbnail from '../misc/Thumbnail';
-import Author from '../misc/Author';
-import ToggleButton from '../ToggleButton';
 import CommentReplyDialog from './CommentReplyDialog';
-import CommentActionButtons from './CommentActionButtons';
 import AuthorCommentBadge from './AuthorCommentBadge';
+import Author from '../misc/Author';
+
+import type Menu from '../menus/Menu';
+import type CommentActionButtons from './CommentActionButtons';
+import type SponsorCommentBadge from './SponsorCommentBadge';
+import type PdgCommentChip from './PdgCommentChip';
+import type { ApiResponse } from '../../../core/Actions';
+import type Actions from '../../../core/Actions';
 
 import Proto from '../../../proto/index';
-import Actions from '../../../core/Actions';
 import { InnertubeError } from '../../../utils/Utils';
-
 import { YTNode, SuperParsedResult } from '../../helpers';
 
 class Comment extends YTNode {
@@ -22,22 +26,23 @@ class Comment extends YTNode {
   published: Text;
   author_is_channel_owner: boolean;
   current_user_reply_thumbnail: Thumbnail[];
-  author_badge;
+  sponsor_comment_badge: SponsorCommentBadge | null;
+  paid_comment_chip: PdgCommentChip | null;
+  author_badge: AuthorCommentBadge | null;
   author: Author;
-  action_menu;
-  action_buttons;
+  action_menu: Menu | null;
+  action_buttons: CommentActionButtons | null;
   comment_id: string;
   vote_status: string;
 
-  vote_count: {
-    text: string;
-    short_text: string;
-  };
+  vote_count: string;
 
   reply_count: number;
   is_liked: boolean;
   is_disliked: boolean;
+  is_hearted: boolean;
   is_pinned: boolean;
+  is_member: boolean;
 
   constructor(data: any) {
     super();
@@ -45,6 +50,8 @@ class Comment extends YTNode {
     this.published = new Text(data.publishedTimeText);
     this.author_is_channel_owner = data.authorIsChannelOwner;
     this.current_user_reply_thumbnail = Thumbnail.fromResponse(data.currentUserReplyThumbnail);
+    this.sponsor_comment_badge = Parser.parseItem<SponsorCommentBadge>(data.sponsorCommentBadge);
+    this.paid_comment_chip = Parser.parseItem<PdgCommentChip>(data.paidCommentChipRenderer);
     this.author_badge = Parser.parseItem<AuthorCommentBadge>(data.authorCommentBadge, AuthorCommentBadge);
 
     this.author = new Author({
@@ -54,30 +61,32 @@ class Comment extends YTNode {
       metadataBadgeRenderer: this.author_badge?.orig_badge
     } ] : null, data.authorThumbnail);
 
-    this.action_menu = Parser.parse(data.actionMenu);
-    this.action_buttons = Parser.parse(data.actionButtons);
+    this.action_menu = Parser.parseItem<Menu>(data.actionMenu);
+    this.action_buttons = Parser.parseItem<CommentActionButtons>(data.actionButtons);
     this.comment_id = data.commentId;
     this.vote_status = data.voteStatus;
 
-    this.vote_count = {
-      text: data.voteCount ? data.voteCount.accessibility.accessibilityData?.label.replace(/\D/g, '') : '0',
-      short_text: data.voteCount ? new Text(data.voteCount).toString() : '0'
-    };
+    this.vote_count = data.voteCount ? new Text(data.voteCount).toString() : '0';
 
     this.reply_count = data.replyCount || 0;
-    this.is_liked = this.action_buttons.item().as(CommentActionButtons).like_button.item().as(ToggleButton).is_toggled;
-    this.is_disliked = this.action_buttons.item().as(CommentActionButtons).dislike_button.item().as(ToggleButton).is_toggled;
+    this.is_liked = !!this.action_buttons?.like_button?.is_toggled;
+    this.is_disliked = !!this.action_buttons?.dislike_button?.is_toggled;
+    this.is_hearted = !!this.action_buttons?.creator_heart?.is_hearted;
     this.is_pinned = !!data.pinnedCommentBadge;
+    this.is_member = !!data.sponsorCommentBadge;
   }
 
   /**
    * Likes the comment.
    */
-  async like() {
+  async like(): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('An active caller must be provide to perform this operation.');
 
-    const button = this.action_buttons.item().as(CommentActionButtons).like_button.item().as(ToggleButton);
+    const button = this.action_buttons?.like_button;
+
+    if (!button)
+      throw new InnertubeError('Like button was not found.', { comment_id: this.comment_id });
 
     if (button.is_toggled)
       throw new InnertubeError('This comment is already liked', { comment_id: this.comment_id });
@@ -89,11 +98,14 @@ class Comment extends YTNode {
   /**
    * Dislikes the comment.
    */
-  async dislike() {
+  async dislike(): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('An active caller must be provide to perform this operation.');
 
-    const button = this.action_buttons.item().as(CommentActionButtons).dislike_button.item().as(ToggleButton);
+    const button = this.action_buttons?.dislike_button;
+
+    if (!button)
+      throw new InnertubeError('Dislike button was not found.', { comment_id: this.comment_id });
 
     if (button.is_toggled)
       throw new InnertubeError('This comment is already disliked', { comment_id: this.comment_id });
@@ -106,26 +118,28 @@ class Comment extends YTNode {
   /**
    * Creates a reply to the comment.
    */
-  async reply(text: string) {
+  async reply(text: string): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('An active caller must be provide to perform this operation.');
 
-    if (!this.action_buttons.item().as(CommentActionButtons).reply_button)
+    if (!this.action_buttons?.reply_button)
       throw new InnertubeError('Cannot reply to another reply. Try mentioning the user instead.', { comment_id: this.comment_id });
 
-    const button = this.action_buttons.item().as(CommentActionButtons).reply_button.item().as(ToggleButton);
+    const button = this.action_buttons?.reply_button;
 
-    if (!button.endpoint.dialog)
+    if (!button.endpoint?.dialog)
       throw new InnertubeError('Reply button endpoint did not have a dialog.');
 
     const dialog = button.endpoint.dialog as SuperParsedResult<YTNode>;
-    const dialog_button = dialog.item().as(CommentReplyDialog).reply_button.item().as(ToggleButton);
+    const dialog_button = dialog.item().as(CommentReplyDialog).reply_button;
 
-    const payload = {
-      commentText: text
-    };
+    if (!dialog_button)
+      throw new InnertubeError('Reply button was not found in the dialog.', { comment_id: this.comment_id });
 
-    const response = await dialog_button.endpoint.call(this.#actions, payload);
+    if (!dialog_button.endpoint)
+      throw new InnertubeError('Reply button endpoint was not found.', { comment_id: this.comment_id });
+
+    const response = await dialog_button.endpoint.call(this.#actions, { commentText: text });
 
     return response;
   }
@@ -134,7 +148,12 @@ class Comment extends YTNode {
    * Translates the comment to the given language.
    * @param target_language - Ex; en, ja
    */
-  async translate(target_language: string) {
+  async translate(target_language: string): Promise<{
+    content: any;
+    success: boolean;
+    status_code: number;
+    data: any;
+  }> {
     if (!this.#actions)
       throw new InnertubeError('An active caller must be provide to perform this operation.');
 
@@ -151,8 +170,8 @@ class Comment extends YTNode {
     const response = await this.#actions.execute('comment/perform_comment_action', { action, client: 'ANDROID' });
 
     // TODO: maybe add these to Parser#parseResponse?
-    const mutations = response.data.frameworkUpdates.entityBatchUpdate.mutations;
-    const content = mutations[0].payload.commentEntityPayload.translatedContent.content;
+    const mutations = response.data.frameworkUpdates?.entityBatchUpdate?.mutations;
+    const content = mutations?.[0]?.payload?.commentEntityPayload?.translatedContent?.content;
 
     return { ...response, content };
   }
