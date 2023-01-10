@@ -33,7 +33,7 @@ Live Chat's EventEmitter.
 
 - `start`
   
-  Emitted when the live chat is started.
+  Fired when the live chat is started.
  
   Arguments:
   | Type | Description |
@@ -42,7 +42,7 @@ Live Chat's EventEmitter.
 
 - `chat-update`
 
-  Emitted when a new chat action is received.
+  Fired when a new chat action is received.
 
   Arguments:
   | Type | Description |
@@ -51,7 +51,7 @@ Live Chat's EventEmitter.
 
 - `metadata-update`
 
-  Emitted when the livestream's metadata is updated.
+  Fired when the livestream's metadata is updated.
  
   Arguments:
   | Type | Description |
@@ -60,16 +60,16 @@ Live Chat's EventEmitter.
 
 - `error`
   
-    Emitted when an error occurs.
+  Fired when an error occurs.
   
-    Arguments:
-    | Type | Description |
-    | --- | --- |
-    | `Error` | Details about the error |
+  Arguments:
+  | Type | Description |
+  | --- | --- |
+  | `Error` | Details about the error |
   
 - `end`
  
-  Emitted when the livestream ends.
+  Fired when the livestream ends.
 
 <a name="start"></a>
 ### start()
