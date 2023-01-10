@@ -1,12 +1,11 @@
+import { observe, ObservedArray, YTNode } from '../../../helpers';
+import Parser from '../../../index';
+import Button from '../../Button';
+import LiveChatAuthorBadge from '../../LiveChatAuthorBadge';
+import MetadataBadge from '../../MetadataBadge';
 import Text from '../../misc/Text';
 import Thumbnail from '../../misc/Thumbnail';
 import NavigationEndpoint from '../../NavigationEndpoint';
-import MetadataBadge from '../../MetadataBadge';
-import LiveChatAuthorBadge from '../../LiveChatAuthorBadge';
-import Parser from '../../../index';
-
-import { ObservedArray, YTNode } from '../../../helpers';
-import Button from '../../Button';
 
 class LiveChatTextMessage extends YTNode {
   static type = 'LiveChatTextMessage';
@@ -16,7 +15,7 @@ class LiveChatTextMessage extends YTNode {
     id: string;
     name: Text;
     thumbnails: Thumbnail[];
-    badges: LiveChatAuthorBadge[] | MetadataBadge[];
+    badges: ObservedArray<LiveChatAuthorBadge | MetadataBadge>;
     is_moderator: boolean | null;
     is_verified: boolean | null;
     is_verified_artist: boolean | null;
@@ -35,7 +34,7 @@ class LiveChatTextMessage extends YTNode {
       id: data.authorExternalChannelId,
       name: new Text(data.authorName),
       thumbnails: Thumbnail.fromResponse(data.authorPhoto),
-      badges: [] as LiveChatAuthorBadge[] | [] as MetadataBadge[],
+      badges: observe([]).as(LiveChatAuthorBadge, MetadataBadge),
       is_moderator: null,
       is_verified: null,
       is_verified_artist: null

@@ -1,7 +1,7 @@
+import { YTNode } from '../../../helpers';
 import Parser from '../../../index';
 import Text from '../../misc/Text';
 import Thumbnail from '../../misc/Thumbnail';
-import { YTNode } from '../../../helpers';
 
 class LiveChatBannerPoll extends YTNode {
   static type = 'LiveChatBannerPoll';
@@ -29,7 +29,7 @@ class LiveChatBannerPoll extends YTNode {
 
     this.collapsed_state_entity_key = data.collapsedStateEntityKey;
     this.live_chat_poll_state_entity_key = data.liveChatPollStateEntityKey;
-    this.context_menu_button = Parser.parse(data.contextMenuButton);
+    this.context_menu_button = Parser.parseItem(data.contextMenuButton);
   }
 }
 

@@ -1,8 +1,10 @@
+import { observe, ObservedArray, YTNode } from '../../../helpers';
 import Parser from '../../../index';
+import LiveChatAuthorBadge from '../../LiveChatAuthorBadge';
+import MetadataBadge from '../../MetadataBadge';
 import Text from '../../misc/Text';
 import Thumbnail from '../../misc/Thumbnail';
 import NavigationEndpoint from '../../NavigationEndpoint';
-import { YTNode } from '../../../helpers';
 
 class LiveChatMembershipItem extends YTNode {
   static type = 'LiveChatMembershipItem';
@@ -15,7 +17,10 @@ class LiveChatMembershipItem extends YTNode {
     id: string;
     name: Text;
     thumbnails: Thumbnail[];
-    badges: any;
+    badges: ObservedArray<LiveChatAuthorBadge | MetadataBadge>;
+    is_moderator: boolean | null;
+    is_verified: boolean | null;
+    is_verified_artist: boolean | null;
   };
 
   menu_endpoint: NavigationEndpoint;
@@ -30,8 +35,18 @@ class LiveChatMembershipItem extends YTNode {
       id: data.authorExternalChannelId,
       name: new Text(data?.authorName),
       thumbnails: Thumbnail.fromResponse(data.authorPhoto),
-      badges: Parser.parse(data.authorBadges)
+      badges: observe([]).as(LiveChatAuthorBadge, MetadataBadge),
+      is_moderator: null,
+      is_verified: null,
+      is_verified_artist: null
     };
+
+    const badges = Parser.parseArray<LiveChatAuthorBadge | MetadataBadge>(data.authorBadges);
+
+    this.author.badges = badges;
+    this.author.is_moderator = badges ? badges.some((badge) => badge.icon_type == 'MODERATOR') : null;
+    this.author.is_verified = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED') : null;
+    this.author.is_verified_artist = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') : null;
 
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
   }

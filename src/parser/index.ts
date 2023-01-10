@@ -5,11 +5,16 @@ import type PlayerAnnotationsExpanded from './classes/PlayerAnnotationsExpanded'
 import type PlayerCaptionsTracklist from './classes/PlayerCaptionsTracklist';
 import type PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec';
 import type PlayerStoryboardSpec from './classes/PlayerStoryboardSpec';
+import type Message from './classes/Message';
+import type LiveChatParticipantsList from './classes/LiveChatParticipantsList';
+import type LiveChatHeader from './classes/LiveChatHeader';
+import type LiveChatItemList from './classes/LiveChatItemList';
 
 import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem';
 import Format from './classes/misc/Format';
 import VideoDetails from './classes/misc/VideoDetails';
 import NavigationEndpoint from './classes/NavigationEndpoint';
+import Thumbnail from './classes/misc/Thumbnail';
 
 import { InnertubeError, ParsingError } from '../utils/Utils';
 import { Memo, observe, ObservedArray, SuperParsedResult, YTNode, YTNodeConstructor } from './helpers';
@@ -496,11 +501,16 @@ export class LiveChatContinuation extends YTNode {
 
   actions: ObservedArray<YTNode>;
   action_panel: YTNode | null;
-  item_list: YTNode | null;
-  header: YTNode | null;
-  participants_list: YTNode | null;
-  popout_message: YTNode | null;
-  emojis: any[] | null; // TODO: give this an actual type
+  item_list: LiveChatItemList | null;
+  header: LiveChatHeader | null;
+  participants_list: LiveChatParticipantsList | null;
+  popout_message: Message | null;
+  emojis: {
+    emoji_id: string;
+    shortcuts: string[];
+    search_terms: string[];
+    image: Thumbnail[];
+  }[];
   continuation: TimedContinuation;
   viewer_name: string;
 
@@ -512,18 +522,18 @@ export class LiveChatContinuation extends YTNode {
     }), true) || observe<YTNode>([]);
 
     this.action_panel = Parser.parseItem(data.actionPanel);
-    this.item_list = Parser.parseItem(data.itemList);
-    this.header = Parser.parseItem(data.header);
-    this.participants_list = Parser.parseItem(data.participantsList);
-    this.popout_message = Parser.parseItem(data.popoutMessage);
+    this.item_list = Parser.parseItem<LiveChatItemList>(data.itemList);
+    this.header = Parser.parseItem<LiveChatHeader>(data.header);
+    this.participants_list = Parser.parseItem<LiveChatParticipantsList>(data.participantsList);
+    this.popout_message = Parser.parseItem<Message>(data.popoutMessage);
 
     this.emojis = data.emojis?.map((emoji: any) => ({
       emoji_id: emoji.emojiId,
       shortcuts: emoji.shortcuts,
       search_terms: emoji.searchTerms,
-      image: emoji.image,
+      image: Thumbnail.fromResponse(emoji.image),
       is_custom_emoji: emoji.isCustomEmoji
-    })) || null;
+    })) || [];
 
     this.continuation = new TimedContinuation(
       data.continuations?.[0].timedContinuationData ||

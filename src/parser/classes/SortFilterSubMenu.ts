@@ -12,7 +12,7 @@ class SortFilterSubMenu extends YTNode {
   sub_menu_items?: {
     title: string;
     selected: boolean;
-    continuation: string | null;
+    continuation: string;
     endpoint: NavigationEndpoint;
     subtitle: string | null;
   }[];
@@ -40,7 +40,7 @@ class SortFilterSubMenu extends YTNode {
       this.sub_menu_items = data.subMenuItems.map((item: any) => ({
         title: item.title,
         selected: item.selected,
-        continuation: item.continuation?.reloadContinuationData?.continuation || null,
+        continuation: item.continuation?.reloadContinuationData?.continuation,
         endpoint: new NavigationEndpoint(item.serviceEndpoint),
         subtitle: item.subtitle || null
       }));

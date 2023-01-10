@@ -5,7 +5,7 @@ class AddLiveChatTickerItemAction extends YTNode {
   static type = 'AddLiveChatTickerItemAction';
 
   item;
-  duration_sec;
+  duration_sec: string; // TODO: check this assumption
 
   constructor(data: any) {
     super();

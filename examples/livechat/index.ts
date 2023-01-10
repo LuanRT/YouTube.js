@@ -1,24 +1,37 @@
 import { Innertube, UniversalCache, YTNodes } from 'youtubei.js';
-
 import { LiveChatContinuation } from 'youtubei.js/dist/src/parser';
 import { ChatAction, LiveMetadata } from 'youtubei.js/dist/src/parser/youtube/LiveChat';
 
 (async () => {
-  const yt = await Innertube.create({ cache: new UniversalCache() });
+  const yt = await Innertube.create({ cache: new UniversalCache(), generate_session_locally: true });
 
-  
-  const search = await yt.search('Lofi girl live');
+  const search = await yt.search('lofi hip hop radio - beats to relax/study to');
   const info = await yt.getInfo(search.videos[0].as(YTNodes.Video).id);
 
   const livechat = info.getLiveChat();
 
   livechat.on('start', (initial_data: LiveChatContinuation) => {
     /**
-     * Initial info is what you see when you first open a Live Chat — this is; inital actions (pinned messages, top donations..), account's info and so on.
+     * Initial info is what you see when you first open a a live chat — this is; initial actions (pinned messages, top donations..), account's info and so forth.
      */
+    console.info(`Hey ${initial_data.viewer_name || 'Guest'}, welcome to Live Chat!`);
 
-    console.info(`Hey ${initial_data.viewer_name || 'N/A'}, welcome to Live Chat!`);
+    const pinned_action = initial_data.actions.firstOfType(YTNodes.AddBannerToLiveChatCommand);
+
+    if (pinned_action) {
+      if (pinned_action.banner?.contents?.is(YTNodes.LiveChatTextMessage)) {
+        console.info(
+          '\n', 'Pinned message:\n',
+          pinned_action.banner.contents.author?.name.toString(), '-', pinned_action?.banner.contents.message.toString(),
+          '\n'
+        );
+      }
+    }
   });
+
+  livechat.on('error', (error: Error) => console.info('Live chat error:', error));
+
+  livechat.on('end', () => console.info('This live stream has ended.'));
 
   livechat.on('chat-update', (action: ChatAction) => {
     /**
@@ -43,14 +56,24 @@ import { ChatAction, LiveMetadata } from 'youtubei.js/dist/src/parser/youtube/Li
       switch (item.type) {
         case 'LiveChatTextMessage':
           console.info(
+            `${item.as(YTNodes.LiveChatTextMessage).author?.is_moderator ? '[MOD]' : ''}`,
             `${hours} - ${item.as(YTNodes.LiveChatTextMessage).author?.name.toString()}:\n` +
             `${item.as(YTNodes.LiveChatTextMessage).message.toString()}\n`
           );
           break;
         case 'LiveChatPaidMessage':
           console.info(
+            `${item.as(YTNodes.LiveChatPaidMessage).author?.is_moderator ? '[MOD]' : ''}`,
             `${hours} - ${item.as(YTNodes.LiveChatPaidMessage).author.name.toString()}:\n` +
+            `${item.as(YTNodes.LiveChatPaidMessage).message.toString()}\n`,
             `${item.as(YTNodes.LiveChatPaidMessage).purchase_amount}\n`
+          );
+          break;
+        case 'LiveChatPaidSticker':
+          console.info(
+            `${item.as(YTNodes.LiveChatPaidSticker).author?.is_moderator ? '[MOD]' : ''}`,
+            `${hours} - ${item.as(YTNodes.LiveChatPaidSticker).author.name.toString()}:\n` +
+            `${item.as(YTNodes.LiveChatPaidSticker).purchase_amount}\n`
           );
           break;
         default:
@@ -59,8 +82,16 @@ import { ChatAction, LiveMetadata } from 'youtubei.js/dist/src/parser/youtube/Li
       }
     }
 
-    if (action.is(YTNodes.MarkChatItemAsDeletedAction)) {
-      console.warn(`Message ${action.target_item_id} just got deleted and should be replaced with ${action.deleted_state_message.toString()}!`, '\n');
+    if (action.is(YTNodes.AddBannerToLiveChatCommand)) {
+      console.info('Message pinned:', action.banner?.contents);
+    }
+
+    if (action.is(YTNodes.RemoveBannerForLiveChatCommand)) {
+      console.info(`Message with action id ${action.target_action_id} was unpinned.`);
+    }
+
+    if (action.is(YTNodes.RemoveChatItemAction)) {
+      console.warn(`Message with action id ${action.target_item_id} just got deleted!`, '\n');
     }
   });
 

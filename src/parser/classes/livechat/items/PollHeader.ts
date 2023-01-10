@@ -18,7 +18,7 @@ class PollHeader extends YTNode {
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.metadata = new Text(data.metadataText);
     this.live_chat_poll_type = data.liveChatPollType;
-    this.context_menu_button = Parser.parse(data.contextMenuButton);
+    this.context_menu_button = Parser.parseItem(data.contextMenuButton);
   }
 }
 

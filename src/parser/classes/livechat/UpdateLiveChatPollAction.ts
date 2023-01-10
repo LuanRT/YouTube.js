@@ -8,7 +8,7 @@ class UpdateLiveChatPollAction extends YTNode {
 
   constructor(data: any) {
     super();
-    this.poll_to_update = Parser.parse(data.pollToUpdate);
+    this.poll_to_update = Parser.parseItem(data.pollToUpdate);
   }
 }
 

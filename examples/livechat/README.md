@@ -1,16 +1,16 @@
 ## Live Chat
 
-The library's Live Chat parser and poller were heavily based on YouTube's original compiled code, this makes it behave in a similar if not identical way to YouTube's Live Chat. Here you can do all sorts of funny things, ex; track messages, donations, polls, and much more.
+Represents a livestream chat. 
 
 ## Usage 
 
-Before fetching a Live Chat, you have to retrieve the target livestream's info:
+Before fetching a live chat, you have to retrieve the target livestream's info:
 
 ```js
 const info = await yt.getInfo('video_id');
 ```
 
-Then you may request a Live Chat instance:
+Then you may request a live chat instance:
 ```js
 const livechat = await info.getLiveChat();
 ```
@@ -21,6 +21,7 @@ const livechat = await info.getLiveChat();
   * [.ev](#ev) ⇒ `EventEmitter`
   * [.start](#start) ⇒ `function`
   * [.stop](#stop) ⇒ `function`
+  * [.applyFilter](#applyfilter) ⇒ `function`
   * [.getItemMenu](#getitemmenu) ⇒ `function`
   * [.sendMessage](#sendmessage) ⇒ `function`
 
@@ -31,6 +32,8 @@ Live Chat's EventEmitter.
 **Events:**
 
 - `start`
+  
+  Fired when the live chat is started.
  
   Arguments:
   | Type | Description |
@@ -38,18 +41,35 @@ Live Chat's EventEmitter.
   | `LiveChatContinuation` | Initial chat data, actions, info, etc. |
 
 - `chat-update`
- 
+
+  Fired when a new chat action is received.
+
   Arguments:
   | Type | Description |
   | --- | --- |
-  | `ChatAction` | Chat Action |
+  | `ChatAction` | Chat action |
 
 - `metadata-update`
+
+  Fired when the livestream's metadata is updated.
  
   Arguments:
   | Type | Description |
   | --- | --- |
-  | `LiveMetadata` | LiveStream Metadata |
+  | `LiveMetadata` | Livestream metadata |
+
+- `error`
+  
+  Fired when an error occurs.
+  
+  Arguments:
+  | Type | Description |
+  | --- | --- |
+  | `Error` | Details about the error |
+  
+- `end`
+ 
+  Fired when the livestream ends.
 
 <a name="start"></a>
 ### start()
@@ -58,6 +78,15 @@ Starts the Live Chat.
 <a name="stop"></a>
 ### stop()
 Stops the Live Chat.
+
+<a name="applyfilter"></a>
+### applyFilter(filter)
+
+Applies given filter to the live chat.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| filter | `string` | Can be `TOP_CHAT` or `LIVE_CHAT` |
 
 <a name="getitemmenu"></a>
 ### getItemMenu(item)

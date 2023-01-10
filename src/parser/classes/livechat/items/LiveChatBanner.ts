@@ -1,10 +1,11 @@
-import Parser from '../../../index';
 import { YTNode } from '../../../helpers';
+import Parser from '../../../index';
+import type LiveChatBannerHeader from './LiveChatBannerHeader';
 
 class LiveChatBanner extends YTNode {
   static type = 'LiveChatBanner';
 
-  header;
+  header: LiveChatBannerHeader | null;
   contents;
   action_id: string;
   viewer_is_creator: boolean;
@@ -14,9 +15,8 @@ class LiveChatBanner extends YTNode {
 
   constructor(data: any) {
     super();
-
-    this.header = Parser.parse(data.header);
-    this.contents = Parser.parse(data.contents);
+    this.header = Parser.parseItem<LiveChatBannerHeader>(data.header);
+    this.contents = Parser.parseItem(data.contents);
     this.action_id = data.actionId;
     this.viewer_is_creator = data.viewerIsCreator;
     this.target_id = data.targetId;
