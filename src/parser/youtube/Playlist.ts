@@ -9,22 +9,26 @@ import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInf
 import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail';
 import PlaylistHeader from '../classes/PlaylistHeader';
+import Message from '../classes/Message';
 
 import { InnertubeError } from '../../utils/Utils';
 
 import type Actions from '../../core/Actions';
+import { ObservedArray } from '../helpers';
+import NavigationEndpoint from '../classes/NavigationEndpoint';
 
 class Playlist extends Feed {
   info;
   menu;
-  endpoint;
+  endpoint?: NavigationEndpoint;
+  messages: ObservedArray<Message>;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     super(actions, data, already_parsed);
 
-    const header = this.memo.getType(PlaylistHeader)?.[0];
-    const primary_info = this.memo.getType(PlaylistSidebarPrimaryInfo)?.[0];
-    const secondary_info = this.memo.getType(PlaylistSidebarSecondaryInfo)?.[0];
+    const header = this.memo.getType(PlaylistHeader).first();
+    const primary_info = this.memo.getType(PlaylistSidebarPrimaryInfo).first();
+    const secondary_info = this.memo.getType(PlaylistSidebarSecondaryInfo).first();
 
     if (!primary_info && !secondary_info)
       throw new InnertubeError('This playlist does not exist');
@@ -46,6 +50,7 @@ class Playlist extends Feed {
 
     this.menu = primary_info?.menu;
     this.endpoint = primary_info?.endpoint;
+    this.messages = this.memo.getType(Message);
   }
 
   #getStat(index: number, primary_info?: PlaylistSidebarPrimaryInfo): string {
@@ -59,7 +64,7 @@ class Playlist extends Feed {
 
   async getContinuation(): Promise<Playlist> {
     const response = await this.getContinuationData();
-    return new Playlist(this.actions, response);
+    return new Playlist(this.actions, response, true);
   }
 }
 
