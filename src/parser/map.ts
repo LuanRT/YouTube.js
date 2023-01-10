@@ -112,6 +112,7 @@ import { default as LiveChat } from './classes/LiveChat';
 import { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBannerToLiveChatCommand';
 import { default as AddChatItemAction } from './classes/livechat/AddChatItemAction';
 import { default as AddLiveChatTickerItemAction } from './classes/livechat/AddLiveChatTickerItemAction';
+import { default as DimChatItemAction } from './classes/livechat/DimChatItemAction';
 import { default as LiveChatAutoModMessage } from './classes/livechat/items/LiveChatAutoModMessage';
 import { default as LiveChatBanner } from './classes/livechat/items/LiveChatBanner';
 import { default as LiveChatBannerHeader } from './classes/livechat/items/LiveChatBannerHeader';
@@ -137,6 +138,7 @@ import { default as RemoveChatItemByAuthorAction } from './classes/livechat/Remo
 import { default as ReplaceChatItemAction } from './classes/livechat/ReplaceChatItemAction';
 import { default as ReplayChatItemAction } from './classes/livechat/ReplayChatItemAction';
 import { default as ShowLiveChatActionPanelAction } from './classes/livechat/ShowLiveChatActionPanelAction';
+import { default as ShowLiveChatDialogAction } from './classes/livechat/ShowLiveChatDialogAction';
 import { default as ShowLiveChatTooltipCommand } from './classes/livechat/ShowLiveChatTooltipCommand';
 import { default as UpdateDateTextAction } from './classes/livechat/UpdateDateTextAction';
 import { default as UpdateDescriptionAction } from './classes/livechat/UpdateDescriptionAction';
@@ -293,6 +295,7 @@ import { default as TwoColumnBrowseResults } from './classes/TwoColumnBrowseResu
 import { default as TwoColumnSearchResults } from './classes/TwoColumnSearchResults';
 import { default as TwoColumnWatchNextResults } from './classes/TwoColumnWatchNextResults';
 import { default as UniversalWatchCard } from './classes/UniversalWatchCard';
+import { default as UpsellDialog } from './classes/UpsellDialog';
 import { default as VerticalList } from './classes/VerticalList';
 import { default as VerticalWatchCardList } from './classes/VerticalWatchCardList';
 import { default as Video } from './classes/Video';
@@ -419,6 +422,7 @@ export const YTNodes = {
   AddBannerToLiveChatCommand,
   AddChatItemAction,
   AddLiveChatTickerItemAction,
+  DimChatItemAction,
   LiveChatAutoModMessage,
   LiveChatBanner,
   LiveChatBannerHeader,
@@ -444,6 +448,7 @@ export const YTNodes = {
   ReplaceChatItemAction,
   ReplayChatItemAction,
   ShowLiveChatActionPanelAction,
+  ShowLiveChatDialogAction,
   ShowLiveChatTooltipCommand,
   UpdateDateTextAction,
   UpdateDescriptionAction,
@@ -600,6 +605,7 @@ export const YTNodes = {
   TwoColumnSearchResults,
   TwoColumnWatchNextResults,
   UniversalWatchCard,
+  UpsellDialog,
   VerticalList,
   VerticalWatchCardList,
   Video,

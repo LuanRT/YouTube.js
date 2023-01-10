@@ -9,10 +9,10 @@ class ReplayChatItemAction extends YTNode {
 
   constructor(data: any) {
     super();
-    this.actions = Parser.parse(data.actions?.map((action: any) => {
+    this.actions = Parser.parseArray(data.actions?.map((action: any) => {
       delete action.clickTrackingParams;
       return action;
-    })) || [];
+    }));
     this.video_offset_time_msec = data.videoOffsetTimeMsec;
   }
 }

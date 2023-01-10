@@ -1,5 +1,5 @@
-import LiveChatTextMessage from './LiveChatTextMessage';
 import Parser from '../../../index';
+import LiveChatTextMessage from './LiveChatTextMessage';
 
 class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
   static type = 'LiveChatViewerEngagementMessage';
@@ -12,7 +12,7 @@ class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
     delete this.author;
     delete this.menu_endpoint;
     this.icon_type = data.icon.iconType;
-    this.action_button = Parser.parse(data.actionButton);
+    this.action_button = Parser.parseItem(data.actionButton);
   }
 }
 

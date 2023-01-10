@@ -32,12 +32,12 @@ class LiveChatProductItem extends YTNode {
     this.price = data.price;
     this.vendor_name = data.vendorName;
     this.from_vendor_text = data.fromVendorText;
-    this.information_button = Parser.parse(data.informationButton);
+    this.information_button = Parser.parseItem(data.informationButton);
     this.endpoint = new NavigationEndpoint(data.onClickCommand);
     this.creator_message = data.creatorMessage;
     this.creator_name = data.creatorName;
     this.author_photo = Thumbnail.fromResponse(data.authorPhoto);
-    this.information_dialog = Parser.parse(data.informationDialog);
+    this.information_dialog = Parser.parseItem(data.informationDialog);
     this.is_verified = data.isVerified;
     this.creator_custom_message = new Text(data.creatorCustomMessage);
   }
