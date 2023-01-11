@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "description": "Full-featured wrapper around YouTube's private API. Supports YouTube, YouTube Music and YouTube Studio (WIP).",
   "main": "./dist/index.js",
   "browser": "./bundle/browser.js",
