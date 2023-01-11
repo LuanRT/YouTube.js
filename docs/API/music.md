@@ -158,8 +158,8 @@ Retrieves library.
 - `<library>#applyFilter(filter)`
   - Applies given filter to the library.
 
-- `<library>#applySortFilter(filter)`
-  - Applies given sort filter to the library items.
+- `<library>#applySort(sort_by)`
+  - Applies given sort option to the library items.
 
 - `<library>#getContinuation()`
   - Retrieves continuation of the library items.
@@ -170,8 +170,8 @@ Retrieves library.
 - `<library>#filters`
   - Returns available filters.
 
-- `<library>#sort_filters`
-  - Returns available sort filters.
+- `<library>#sort_options`
+  - Returns available sort options.
 
 - `<library>#page`
   - Returns original InnerTube response (sanitized).

@@ -1,4 +1,4 @@
-import Parser, { ParsedResponse } from '..';
+import Parser, { ParsedResponse, SectionListContinuation } from '..';
 import type Actions from '../../core/Actions';
 import type { ApiResponse } from '../../core/Actions';
 
@@ -29,7 +29,7 @@ class Library {
     this.#page = Parser.parseResponse(response.data);
     this.#actions = actions;
 
-    const section_list = this.#page.contents_memo.getType(SectionList)?.[0];
+    const section_list = this.#page.contents_memo.getType(SectionList).first();
 
     this.header = section_list?.header?.item().as(MusicSideAlignedItem);
     this.contents = section_list?.contents?.as(Grid, MusicShelf);
@@ -38,9 +38,9 @@ class Library {
   }
 
   /**
-   * Applies given sort filter to the library items.
+   * Applies given sort option to the library items.
    */
-  async applySortFilter(sort_by: string | MusicMultiSelectMenuItem): Promise<Library> {
+  async applySort(sort_by: string | MusicMultiSelectMenuItem): Promise<Library> {
     let target_item: MusicMultiSelectMenuItem | undefined;
 
     if (typeof sort_by === 'string') {
@@ -54,13 +54,13 @@ class Library {
       target_item = options?.find((item) => item.title === sort_by);
 
       if (!target_item)
-        throw new InnertubeError(`Sort filter "${sort_by}" not found`, { available_filters: options.map((item) => item.title) });
+        throw new InnertubeError(`Sort option "${sort_by}" not found`, { available_filters: options.map((item) => item.title) });
     } else if (sort_by instanceof MusicMultiSelectMenuItem) {
       target_item = sort_by;
     }
 
     if (!target_item)
-      throw new InnertubeError('Invalid sort filter');
+      throw new InnertubeError('Invalid sort option');
 
     if (target_item.selected)
       return this;
@@ -68,14 +68,23 @@ class Library {
     const cmd = target_item.endpoint?.payload?.commands?.find((cmd: any) => cmd.browseSectionListReloadEndpoint)?.browseSectionListReloadEndpoint;
 
     if (!cmd)
-      throw new InnertubeError('Failed to find sort filter command');
+      throw new InnertubeError('Failed to find sort option command');
 
     const response = await this.#actions.execute('/browse', {
       client: 'YTMUSIC',
-      continuation: cmd.continuation.reloadContinuationData.continuation
+      continuation: cmd.continuation.reloadContinuationData.continuation,
+      parse: true
     });
 
-    return new Library(response, this.#actions);
+    const previously_selected_item = this.#page.contents_memo.getType(MusicMultiSelectMenuItem)?.find((item) => item.selected);
+    if (previously_selected_item)
+      previously_selected_item.selected = false;
+
+    target_item.selected = true;
+
+    this.contents = response.continuation_contents?.as(SectionListContinuation).contents?.as(Grid, MusicShelf);
+
+    return this;
   }
 
   /**
@@ -123,14 +132,14 @@ class Library {
     return !!this.#continuation;
   }
 
-  get sort_filters(): string[] {
+  get sort_options(): string[] {
     const button = this.#page.contents_memo.getType(MusicSortFilterButton)?.[0];
     const options = button.menu?.options.filter((item: MusicMultiSelectMenuItem | MusicMenuItemDivider) => item instanceof MusicMultiSelectMenuItem) as MusicMultiSelectMenuItem[];
     return options.map((item) => item.title);
   }
 
   get filters(): string[] {
-    return this.#page.contents_memo.getType(ChipCloud)?.[0].chips.map((chip: ChipCloudChip) => chip.text);
+    return this.#page.contents_memo.getType(ChipCloud)?.first()?.chips.map((chip: ChipCloudChip) => chip.text) || [];
   }
 
   get page(): ParsedResponse {

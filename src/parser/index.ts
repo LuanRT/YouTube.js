@@ -86,6 +86,11 @@ export default class Parser {
     this.#clearMemo();
 
     this.#createMemo();
+    const continuation_contents = data.continuationContents ? Parser.parseLC(data.continuationContents) : null;
+    const continuation_contents_memo = this.#getMemo();
+    this.#clearMemo();
+
+    this.#createMemo();
     const actions = data.actions ? Parser.parseActions(data.actions) : null;
     const actions_memo = this.#getMemo();
     this.#clearMemo();
@@ -127,7 +132,8 @@ export default class Parser {
       on_response_received_commands,
       on_response_received_commands_memo,
       continuation: data.continuation ? Parser.parseC(data.continuation) : null,
-      continuation_contents: data.continuationContents ? Parser.parseLC(data.continuationContents) : null,
+      continuation_contents,
+      continuation_contents_memo,
       metadata: Parser.parse(data.metadata),
       microformat: data.microformat ? Parser.parseItem(data.microformat) : null,
       overlay: Parser.parseItem(data.overlay),
