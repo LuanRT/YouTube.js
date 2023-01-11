@@ -43,12 +43,12 @@ class Comments {
   }
 
   /**
-   * Sorts the comments with the given sort type.
+   * Applies given sort option to the comments.
    * @param sort - Sort type.
    */
   async applySort(sort: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
     if (!this.header)
-      throw new InnertubeError('Page header is missing. Cannot apply sort filter.');
+      throw new InnertubeError('Page header is missing. Cannot apply sort option.');
 
     let button;
 

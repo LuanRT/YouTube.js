@@ -25,11 +25,11 @@ A list of comment threads. **Note:** More about comment threads [**here**](./Com
 
 <a name="applysort"></a>
 ### applySort(sort)
-Sorts the comments with the given sort type.
+Applies given sort option to the comments.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| sort | `string` | Sort type. Can be `TOP_COMMENTS`, `NEWEST_FIRST` |
+| sort | `string` | Sort option. Can be `TOP_COMMENTS`, `NEWEST_FIRST` |
 
 **Returns:** [`Promise.<Comments>`](../../src/parser/youtube/Comments.ts)
 
