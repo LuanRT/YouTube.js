@@ -39,6 +39,10 @@ export const CLIENTS = Object.freeze({
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1'
   },
+  WEB_KIDS: {
+    NAME: 'WEB_KIDS',
+    VERSION: '2.20230111.00.00'
+  },
   YTMUSIC: {
     NAME: 'WEB_REMIX',
     VERSION: '1.20211213.00.00'

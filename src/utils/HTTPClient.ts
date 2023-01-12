@@ -40,8 +40,8 @@ export default class HTTPClient {
 
     const headers =
       init?.headers ||
-        (input instanceof Request ? input.headers : new Headers()) ||
-        new Headers();
+      (input instanceof Request ? input.headers : new Headers()) ||
+      new Headers();
 
     const body = init?.body || (input instanceof Request ? input.body : undefined);
 
@@ -156,6 +156,40 @@ export default class HTTPClient {
         ctx.client.clientVersion = Constants.CLIENTS.TV_EMBEDDED.VERSION;
         ctx.client.clientScreen = 'EMBED';
         ctx.thirdParty = { embedUrl: Constants.URLS.YT_BASE };
+        break;
+      case 'YTKIDS':
+        ctx.client.clientVersion = Constants.CLIENTS.WEB_KIDS.VERSION;
+        ctx.client.clientName = Constants.CLIENTS.WEB_KIDS.NAME;
+        ctx.client.kidsAppInfo = { // TODO: Make this customizable
+          categorySettings: {
+            enabledCategories: [
+              'approved_for_you',
+              'black_joy',
+              'camp',
+              'collections',
+              'earth',
+              'explore',
+              'favorites',
+              'gaming',
+              'halloween',
+              'hero',
+              'learning',
+              'move',
+              'music',
+              'reading',
+              'shared_by_parents',
+              'shows',
+              'soccer',
+              'sports',
+              'spotlight',
+              'winter'
+            ]
+          },
+          contentSettings: {
+            corpusPreference: 'KIDS_CORPUS_PREFERENCE_YOUNGER',
+            kidsNoSearchMode: 'YT_KIDS_NO_SEARCH_MODE_OFF'
+          }
+        };
         break;
       default:
         break;

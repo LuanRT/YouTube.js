@@ -11,6 +11,7 @@ import Proto from '../proto';
 
 export enum ClientType {
   WEB = 'WEB',
+  KIDS = 'WEB_KIDS',
   MUSIC = 'WEB_REMIX',
   ANDROID = 'ANDROID',
   ANDROID_MUSIC = 'ANDROID_MUSIC',
@@ -45,6 +46,15 @@ export interface Context {
     deviceMake: string;
     deviceModel: string;
     utcOffsetMinutes: number;
+    kidsAppInfo?: {
+      categorySettings: {
+        enabledCategories: string[];
+      };
+      contentSettings: {
+        corpusPreference: string;
+        kidsNoSearchMode: string;
+      };
+    };
   };
   user: {
     enableSafetyMode: boolean;
