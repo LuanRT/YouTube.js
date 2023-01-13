@@ -263,6 +263,8 @@ import { default as SingleActionEmergencySupport } from './classes/SingleActionE
 import { default as SingleColumnBrowseResults } from './classes/SingleColumnBrowseResults';
 import { default as SingleColumnMusicWatchNextResults } from './classes/SingleColumnMusicWatchNextResults';
 import { default as SingleHeroImage } from './classes/SingleHeroImage';
+import { default as SlimOwner } from './classes/SlimOwner';
+import { default as SlimVideoMetadata } from './classes/SlimVideoMetadata';
 import { default as SortFilterSubMenu } from './classes/SortFilterSubMenu';
 import { default as SubFeedOption } from './classes/SubFeedOption';
 import { default as SubFeedSelector } from './classes/SubFeedSelector';
@@ -573,6 +575,8 @@ export const YTNodes = {
   SingleColumnBrowseResults,
   SingleColumnMusicWatchNextResults,
   SingleHeroImage,
+  SlimOwner,
+  SlimVideoMetadata,
   SortFilterSubMenu,
   SubFeedOption,
   SubFeedSelector,
