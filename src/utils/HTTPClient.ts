@@ -65,6 +65,7 @@ export default class HTTPClient {
     const content_type = request_headers.get('Content-Type');
 
     let request_body = body;
+    let is_web_kids = false;
 
     const is_innertube_req =
       baseURL === innertube_url ||
@@ -85,11 +86,12 @@ export default class HTTPClient {
 
       delete n_body.client;
 
+      is_web_kids = n_body.context.client.clientName === 'WEB_KIDS';
       request_body = JSON.stringify(n_body);
     }
 
-    // Authenticate
-    if (this.#session.logged_in && is_innertube_req) {
+    // Authenticate (NOTE: YouTube Kids does not support regular bearer tokens)
+    if (this.#session.logged_in && is_innertube_req && !is_web_kids) {
       const oauth = this.#session.oauth;
 
       if (oauth.validateCredentials()) {
