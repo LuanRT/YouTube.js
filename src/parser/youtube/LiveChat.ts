@@ -129,6 +129,7 @@ class LiveChat extends EventEmitter {
   }
 
   stop() {
+    this.smoothed_queue.clear();
     this.running = false;
   }
 

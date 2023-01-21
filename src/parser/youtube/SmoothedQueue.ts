@@ -47,7 +47,7 @@ class SmoothedQueue {
   #last_update_time: number | null;
   #estimated_update_interval: number | null;
   #callback: Function | null;
-  #message_queue: YTNode[][];
+  #action_queue: YTNode[][];
   #next_update_id: any;
   #poll_response_delay_queue: DelayQueue;
 
@@ -55,7 +55,7 @@ class SmoothedQueue {
     this.#last_update_time = null;
     this.#estimated_update_interval = null;
     this.#callback = null;
-    this.#message_queue = [];
+    this.#action_queue = [];
     this.#next_update_id = null;
     this.#poll_response_delay_queue = new DelayQueue();
   }
@@ -81,40 +81,40 @@ class SmoothedQueue {
 
     this.#last_update_time = Date.now();
 
-    this.#message_queue.push(group);
+    this.#action_queue.push(group);
 
     if (this.#next_update_id === null) {
-      this.#next_update_id = setTimeout(this.emitSmoothedMessages.bind(this));
+      this.#next_update_id = setTimeout(this.emitSmoothedActions.bind(this));
     }
   }
 
-  public emitSmoothedMessages(): void {
+  public emitSmoothedActions(): void {
     this.#next_update_id = null;
 
-    if (this.#message_queue.length) {
+    if (this.#action_queue.length) {
       let delay = 1E4;
 
       if (this.#estimated_update_interval !== null && this.#last_update_time !== null) {
         delay = this.#estimated_update_interval - Date.now() + this.#last_update_time;
       }
 
-      delay = this.#message_queue.length < delay / 80 ? 1 : Math.ceil(this.#message_queue.length / (delay / 80));
+      delay = this.#action_queue.length < delay / 80 ? 1 : Math.ceil(this.#action_queue.length / (delay / 80));
 
-      const messages = flattenQueue(this.#message_queue.splice(0, delay));
+      const actions = flattenQueue(this.#action_queue.splice(0, delay));
 
       if (this.#callback) {
-        this.#callback(messages);
+        this.#callback(actions);
       }
 
-      if (this.#message_queue !== null) {
+      if (this.#action_queue !== null) {
         delay == 1 ? (
-          delay = this.#estimated_update_interval as number / this.#message_queue.length,
+          delay = this.#estimated_update_interval as number / this.#action_queue.length,
           delay *= Math.random() + 0.5,
           delay = Math.min(1E3, delay),
           delay = Math.max(80, delay)
         ) : delay = 80;
 
-        this.#next_update_id = setTimeout(this.emitSmoothedMessages.bind(this), delay);
+        this.#next_update_id = setTimeout(this.emitSmoothedActions.bind(this), delay);
       }
     }
   }
@@ -124,7 +124,7 @@ class SmoothedQueue {
       clearTimeout(this.#next_update_id);
       this.#next_update_id = null;
     }
-    this.#message_queue = [];
+    this.#action_queue = [];
   }
 
   set callback(cb: Function | null) {
@@ -135,8 +135,8 @@ class SmoothedQueue {
     return this.#callback;
   }
 
-  get message_queue(): YTNode[][] {
-    return this.#message_queue;
+  get action_queue(): YTNode[][] {
+    return this.#action_queue;
   }
 
   get estimated_update_interval(): number | null {
