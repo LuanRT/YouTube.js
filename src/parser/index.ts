@@ -265,7 +265,7 @@ export default class Parser {
 
   static parseC(data: any) {
     if (data.timedContinuationData)
-      return new TimedContinuation(data.timedContinuationData);
+      return new Continuation({ continuation: data.timedContinuationData, type: 'timed' });
   }
 
   static parseLC(data: any) {
@@ -489,16 +489,20 @@ export class PlaylistPanelContinuation extends YTNode {
   }
 }
 
-export class TimedContinuation extends YTNode {
-  static readonly type = 'timedContinuationData';
+export class Continuation extends YTNode {
+  static readonly type = 'continuation';
 
-  timeout_ms: number;
+  continuation_type: string;
+  timeout_ms?: number;
+  time_until_last_message_ms?: number;
   token: string;
 
   constructor(data: any) {
     super();
-    this.timeout_ms = data.timeoutMs || data.timeUntilLastMessageMsec;
-    this.token = data.continuation;
+    this.continuation_type = data.type;
+    this.timeout_ms = data.continuation?.timeoutMs;
+    this.time_until_last_message_ms = data.continuation?.timeUntilLastMessageMsec;
+    this.token = data.continuation?.continuation;
   }
 }
 
@@ -517,7 +521,7 @@ export class LiveChatContinuation extends YTNode {
     search_terms: string[];
     image: Thumbnail[];
   }[];
-  continuation: TimedContinuation;
+  continuation: Continuation;
   viewer_name: string;
 
   constructor(data: any) {
@@ -541,11 +545,20 @@ export class LiveChatContinuation extends YTNode {
       is_custom_emoji: emoji.isCustomEmoji
     })) || [];
 
-    this.continuation = new TimedContinuation(
-      data.continuations?.[0].timedContinuationData ||
-      data.continuations?.[0].invalidationContinuationData ||
-      data.continuations?.[0].liveChatReplayContinuationData
-    );
+    let continuation, type;
+
+    if (data.continuations?.[0].timedContinuationData) {
+      type = 'timed';
+      continuation = data.continuations?.[0].timedContinuationData;
+    } else if (data.continuations?.[0].invalidationContinuationData) {
+      type = 'invalidation';
+      continuation = data.continuations?.[0].invalidationContinuationData;
+    } else if (data.continuations?.[0].liveChatReplayContinuationData) {
+      type = 'replay';
+      continuation = data.continuations?.[0].liveChatReplayContinuationData;
+    }
+
+    this.continuation = new Continuation({ continuation, type });
 
     this.viewer_name = data.viewerName;
   }
