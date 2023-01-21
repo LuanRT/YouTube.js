@@ -1,6 +1,7 @@
 import EventEmitter from '../../utils/EventEmitterLike';
 import Parser, { LiveChatContinuation, ParsedResponse } from '../index';
 import VideoInfo from './VideoInfo';
+import SmoothedQueue from './SmoothedQueue';
 
 import AddChatItemAction from '../classes/livechat/AddChatItemAction';
 import AddLiveChatTickerItemAction from '../classes/livechat/AddLiveChatTickerItemAction';
@@ -51,11 +52,14 @@ export interface LiveMetadata {
 }
 
 class LiveChat extends EventEmitter {
+  smoothed_queue: SmoothedQueue;
+
   #actions: Actions;
   #video_id: string;
   #channel_id: string;
   #continuation?: string;
   #mcontinuation?: string;
+  #retry_count = 0;
 
   initial_info?: LiveChatContinuation;
   metadata?: LiveMetadata;
@@ -71,6 +75,31 @@ class LiveChat extends EventEmitter {
     this.#actions = video_info.actions;
     this.#continuation = video_info.livechat?.continuation;
     this.is_replay = video_info.livechat?.is_replay || false;
+    this.smoothed_queue = new SmoothedQueue();
+
+    this.smoothed_queue.callback = async (actions: YTNode[]) => {
+      if (!actions.length) {
+        // Wait 2 seconds before requesting an incremental continuation if the action group is empty.
+        await this.#wait(2000);
+      } else if (actions.length < 10) {
+        // If there are less than 10 actions, wait until all of them are emitted.
+        await this.#emitSmoothedActions(actions);
+      } else if (this.is_replay) {
+        /**
+         * NOTE: Live chat replays require data from the video player for actions to be emitted timely
+         * and as we don't have that, this ends up being quite innacurate.
+         */
+        this.#emitSmoothedActions(actions);
+        await this.#wait(2000);
+      } else {
+        // There are more than 10 actions, emit them asynchonously so we can request the next incremental continuation.
+        this.#emitSmoothedActions(actions);
+      }
+
+      if (this.running) {
+        this.#pollLivechat();
+      }
+    };
   }
 
   on(type: 'start', listener: (initial_data: LiveChatContinuation) => void): void;
@@ -82,6 +111,15 @@ class LiveChat extends EventEmitter {
     super.on(type, listener);
   }
 
+  once(type: 'start', listener: (initial_data: LiveChatContinuation) => void): void;
+  once(type: 'chat-update', listener: (action: ChatAction) => void): void;
+  once(type: 'metadata-update', listener: (metadata: LiveMetadata) => void): void;
+  once(type: 'error', listener: (err: Error) => void): void;
+  once(type: 'end', listener: () => void): void;
+  once(type: string, listener: (...args: any[]) => void): void {
+    super.once(type, listener);
+  }
+
   start() {
     if (!this.running) {
       this.running = true;
@@ -91,17 +129,25 @@ class LiveChat extends EventEmitter {
   }
 
   stop() {
+    this.smoothed_queue.clear();
     this.running = false;
   }
 
   #pollLivechat() {
     (async () => {
       try {
-        const endpoint = this.is_replay ? 'live_chat/get_live_chat_replay' : 'live_chat/get_live_chat';
-        const response = await this.#actions.execute(endpoint, { continuation: this.#continuation });
+        const response = await this.#actions.execute(
+          this.is_replay ? 'live_chat/get_live_chat_replay' : 'live_chat/get_live_chat',
+          { continuation: this.#continuation, parse: true }
+        );
 
-        const data = Parser.parseResponse(response.data);
-        const contents = data.continuation_contents;
+        const contents = response.continuation_contents;
+
+        if (!contents) {
+          this.emit('error', new InnertubeError('Unexpected live chat incremental continuation response', response));
+          this.emit('end');
+          this.stop();
+        }
 
         if (!(contents instanceof LiveChatContinuation)) {
           this.stop();
@@ -115,31 +161,31 @@ class LiveChat extends EventEmitter {
         if (contents.header) {
           this.initial_info = contents;
           this.emit('start', contents);
+          if (this.running)
+            this.#pollLivechat();
         } else {
-          await this.#emitSmoothedActions(contents.actions);
+          this.smoothed_queue.enqueueActionGroup(contents.actions);
         }
 
-        /**
-         * If there are no actions then we wait 1000 milliseconds, otherwise
-         * the amount of items on the action queue will determine the polling interval.
-         */
-        if (!contents.actions.length && !contents.header)
-          await this.#wait(1000);
-
-        if (this.running)
-          this.#pollLivechat();
+        this.#retry_count = 0;
       } catch (err) {
-        this.emit('error', new InnertubeError('Failed to poll livechat, retrying...', err));
-        await this.#wait(2000);
-        if (this.running)
+        this.emit('error', err);
+
+        if (this.#retry_count++ < 10) {
+          await this.#wait(2000);
           this.#pollLivechat();
+        } else {
+          this.emit('error', new InnertubeError('Reached retry limit for incremental continuation requests', err));
+          this.emit('end');
+          this.stop();
+        }
       }
     })();
   }
 
   /**
    * Ensures actions are emitted at the right speed.
-   * This was adapted from YouTube's compiled code (Android & Web).
+   * This and {@link SmoothedQueue} were based off of YouTube's own implementation.
    */
   async #emitSmoothedActions(action_queue: YTNode[]) {
     const base = 1E4;
@@ -192,7 +238,6 @@ class LiveChat extends EventEmitter {
         if (this.running)
           this.#pollMetadata();
       } catch (err) {
-        this.emit('error', new InnertubeError('Failed to poll live metadata, retrying...', err));
         await this.#wait(2000);
         if (this.running)
           this.#pollMetadata();
@@ -209,11 +254,12 @@ class LiveChat extends EventEmitter {
       params: Proto.encodeMessageParams(this.#channel_id, this.#video_id),
       richMessage: { textSegments: [ { text } ] },
       clientMessageId: uuidv4(),
+      client: 'ANDROID',
       parse: true
     });
 
     if (!response.actions)
-      throw new InnertubeError('Response did not have an "actions" property. The call may have failed.');
+      throw new InnertubeError('Unexpected response from send_message', response);
 
     return response.actions.array().as(AddChatItemAction);
   }
