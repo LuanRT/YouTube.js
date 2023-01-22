@@ -3,6 +3,7 @@ import VideoInfo from '../parser/ytkids/VideoInfo';
 import type Session from './Session';
 
 import { generateRandomString } from '../utils/Utils';
+import HomeFeed from '../parser/ytkids/HomeFeed';
 
 class Kids {
   #session: Session;
@@ -43,6 +44,14 @@ class Kids {
     const response = await Promise.all([ initial_info, continuation ]);
 
     return new VideoInfo(response, this.#session.actions, cpn);
+  }
+
+  /**
+   * Retrieves the home feed.
+   */
+  async getHomeFeed(): Promise<HomeFeed> {
+    const response = await this.#session.actions.execute('/browse', { browseId: 'FEkids_home', client: 'YTKIDS' });
+    return new HomeFeed(this.#session.actions, response.data);
   }
 }
 
