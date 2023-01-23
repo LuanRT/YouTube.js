@@ -34,7 +34,7 @@ Searches the given query on YouTube Kids.
 <a name="getinfo"></a>
 ### getInfo(video_id)
 
-Retrieves track info.
+Retrieves video info.
 
 **Returns:** `Promise.<VideoInfo>`
 
