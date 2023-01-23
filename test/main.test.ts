@@ -238,6 +238,11 @@ describe('YouTube.js Tests', () => {
       const info = await yt.kids.getInfo(VIDEOS[6].ID);
       expect(info.basic_info?.id).toBe(VIDEOS[6].ID);
     });
+
+    it('should retrieve a channel', async () => {
+      const channel = await yt.kids.getChannel(CHANNELS[1].ID);
+      expect(channel.videos.length).toBeGreaterThan(0);
+    });
   });
 });
 
