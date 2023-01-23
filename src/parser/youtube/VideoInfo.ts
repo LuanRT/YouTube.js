@@ -29,48 +29,13 @@ import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec';
 
-import { DOMParser } from 'linkedom';
-import type { Element } from 'linkedom/types/interface/element';
-import type { Node } from 'linkedom/types/interface/node';
-import type { XMLDocument } from 'linkedom/types/xml/document';
-
 import type Player from '../../core/Player';
 import type Actions from '../../core/Actions';
 import type { ApiResponse } from '../../core/Actions';
 import type { ObservedArray, YTNode } from '../helpers';
 
-import { getStringBetweenStrings, InnertubeError, streamToIterable } from '../../utils/Utils';
-
-export type URLTransformer = (url: URL) => URL;
-
-export interface FormatOptions {
-  /**
-   * Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
-   */
-  quality?: string;
-  /**
-   * Download type, can be: video, audio or video+audio
-   */
-  type?: 'video' | 'audio' | 'video+audio';
-  /**
-   * File format, use 'any' to download any format
-   */
-  format?: string;
-  /**
-   * InnerTube client, can be ANDROID, WEB, YTMUSIC, YTMUSIC_ANDROID, YTSTUDIO_ANDROID or TV_EMBEDDED
-   */
-  client?: 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED';
-}
-
-export interface DownloadOptions extends FormatOptions {
-  /**
-   * Download range, indicates which bytes should be downloaded.
-   */
-  range?: {
-    start: number;
-    end: number;
-  }
-}
+import FormatUtils, { FormatOptions, DownloadOptions, URLTransformer } from '../../utils/FormatUtils';
+import { InnertubeError } from '../../utils/Utils';
 
 class VideoInfo {
   #page: [ParsedResponse, ParsedResponse?];
@@ -333,6 +298,31 @@ class VideoInfo {
   }
 
   /**
+   * Selects the format that best matches the given options.
+   * @param options - Options
+   */
+  chooseFormat(options: FormatOptions): Format {
+    return FormatUtils.chooseFormat(options, this.streaming_data);
+  }
+
+  /**
+   * Generates a DASH manifest from the streaming data.
+   * @param url_transformer - Function to transform the URLs.
+   * @returns DASH manifest
+   */
+  toDash(url_transformer: URLTransformer = (url) => url): string {
+    return FormatUtils.toDash(this.streaming_data, url_transformer);
+  }
+
+  /**
+   * Downloads the video.
+   * @param options - Download options.
+   */
+  async download(options: DownloadOptions = {}): Promise<ReadableStream<Uint8Array>> {
+    return FormatUtils.download(options, this.#actions, this.playability_status, this.streaming_data, this.#actions.session.player, this.cpn);
+  }
+
+  /**
    * Watch next feed filters.
    */
   get filters(): string[] {
@@ -354,17 +344,10 @@ class VideoInfo {
   }
 
   /**
- * Checks if continuation is available for the watch next feed.
- */
+   * Checks if continuation is available for the watch next feed.
+   */
   get wn_has_continuation(): boolean {
     return !!this.#watch_next_continuation;
-  }
-
-  /**
-   * Original parsed InnerTube response.
-   */
-  get page(): [ParsedResponse, ParsedResponse?] {
-    return this.#page;
   }
 
   /**
@@ -407,321 +390,10 @@ class VideoInfo {
   }
 
   /**
-   * Selects the format that best matches the given options.
-   * @param options - Options
+   * Original parsed InnerTube response.
    */
-  chooseFormat(options: FormatOptions): Format {
-    if (!this.streaming_data)
-      throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
-
-    const formats = [
-      ...(this.streaming_data.formats || []),
-      ...(this.streaming_data.adaptive_formats || [])
-    ];
-
-    const requires_audio = options.type ? options.type.includes('audio') : true;
-    const requires_video = options.type ? options.type.includes('video') : true;
-    const quality = options.quality || '360p';
-
-    let best_width = -1;
-
-    const is_best = [ 'best', 'bestefficiency' ].includes(quality);
-    const use_most_efficient = quality !== 'best';
-
-    let candidates = formats.filter((format) => {
-      if (requires_audio && !format.has_audio)
-        return false;
-      if (requires_video && !format.has_video)
-        return false;
-      if (options.format !== 'any' && !format.mime_type.includes(options.format || 'mp4'))
-        return false;
-      if (!is_best && format.quality_label !== quality)
-        return false;
-      if (best_width < format.width)
-        best_width = format.width;
-      return true;
-    });
-
-    if (!candidates.length) {
-      throw new InnertubeError('No matching formats found', {
-        options
-      });
-    }
-
-    if (is_best && requires_video)
-      candidates = candidates.filter((format) => format.width === best_width);
-
-    if (requires_audio && !requires_video) {
-      const audio_only = candidates.filter((format) => !format.has_video);
-      if (audio_only.length > 0) {
-        candidates = audio_only;
-      }
-    }
-
-    if (use_most_efficient) {
-      // Sort by bitrate (lower is better)
-      candidates.sort((a, b) => a.bitrate - b.bitrate);
-    } else {
-      // Sort by bitrate (higher is better)
-      candidates.sort((a, b) => b.bitrate - a.bitrate);
-    }
-
-    return candidates[0];
-  }
-
-  #el(document: XMLDocument, tag: string, attrs: Record<string, string | undefined>, children: Node[] = []) {
-    const el = document.createElement(tag);
-    for (const [ key, value ] of Object.entries(attrs)) {
-      el.setAttribute(key, value);
-    }
-    for (const child of children) {
-      if (typeof child === 'undefined') continue;
-      el.appendChild(child);
-    }
-    return el;
-  }
-
-  /**
-   * Generates a DASH manifest from the streaming data.
-   * @param url_transformer - Function to transform the URLs.
-   * @returns DASH manifest
-   */
-  toDash(url_transformer: URLTransformer = (url) => url): string {
-    if (!this.streaming_data)
-      throw new InnertubeError('Streaming data not available', { video_id: this.basic_info.id });
-
-    const { adaptive_formats } = this.streaming_data;
-
-    const length = adaptive_formats[0].approx_duration_ms / 1000;
-
-    const document = new DOMParser().parseFromString('', 'text/xml');
-    const period = document.createElement('Period');
-
-    document.appendChild(this.#el(document, 'MPD', {
-      xmlns: 'urn:mpeg:dash:schema:mpd:2011',
-      minBufferTime: 'PT1.500S',
-      profiles: 'urn:mpeg:dash:profile:isoff-main:2011',
-      type: 'static',
-      mediaPresentationDuration: `PT${length}S`,
-      'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-      'xsi:schemaLocation': 'urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd'
-    }, [
-      period
-    ]));
-
-    this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer);
-
-    return `${document}`;
-  }
-
-  #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer) {
-    const mimeTypes: string[] = [];
-    const mimeObjects: Format[][] = [ [] ];
-
-    formats.forEach((videoFormat) => {
-      if (!videoFormat.index_range || !videoFormat.init_range) {
-        return;
-      }
-      const mimeType = videoFormat.mime_type;
-      const mimeTypeIndex = mimeTypes.indexOf(mimeType);
-      if (mimeTypeIndex > -1) {
-        mimeObjects[mimeTypeIndex].push(videoFormat);
-      } else {
-        mimeTypes.push(mimeType);
-        mimeObjects.push([]);
-        mimeObjects[mimeTypes.length - 1].push(videoFormat);
-      }
-    });
-
-    for (let i = 0; i < mimeTypes.length; i++) {
-      const set = this.#el(document, 'AdaptationSet', {
-        id: `${i}`,
-        mimeType: mimeTypes[i].split(';')[0],
-        startWithSAP: '1',
-        subsegmentAlignment: 'true'
-      });
-      period.appendChild(set);
-      mimeObjects[i].forEach((format) => {
-        if (format.has_video) {
-          this.#generateRepresentationVideo(document, set, format, url_transformer);
-        } else {
-          this.#generateRepresentationAudio(document, set, format, url_transformer);
-        }
-      });
-    }
-  }
-
-  #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer) {
-    const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
-
-    if (!format.index_range || !format.init_range)
-      throw new InnertubeError('Index and init ranges not available', { format });
-
-    const url = new URL(format.decipher(this.#player));
-    url.searchParams.set('cpn', this.#cpn || '');
-
-    set.appendChild(this.#el(document, 'Representation', {
-      id: format.itag?.toString(),
-      codecs,
-      bandwidth: format.bitrate?.toString(),
-      width: format.width?.toString(),
-      height: format.height?.toString(),
-      maxPlayoutRate: '1',
-      frameRate: format.fps?.toString()
-    }, [
-      this.#el(document, 'BaseURL', {}, [
-        document.createTextNode(url_transformer(url)?.toString())
-      ]),
-      this.#el(document, 'SegmentBase', {
-        indexRange: `${format.index_range.start}-${format.index_range.end}`
-      }, [
-        this.#el(document, 'Initialization', {
-          range: `${format.init_range.start}-${format.init_range.end}`
-        })
-      ])
-    ]));
-  }
-
-  #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer) {
-    const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
-    if (!format.index_range || !format.init_range)
-      throw new InnertubeError('Index and init ranges not available', { format });
-
-    const url = new URL(format.decipher(this.#player));
-    url.searchParams.set('cpn', this.#cpn || '');
-
-    set.appendChild(this.#el(document, 'Representation', {
-      id: format.itag?.toString(),
-      codecs,
-      bandwidth: format.bitrate?.toString()
-    }, [
-      this.#el(document, 'AudioChannelConfiguration', {
-        schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
-        value: format.audio_channels?.toString() || '2'
-      }),
-      this.#el(document, 'BaseURL', {}, [
-        document.createTextNode(url_transformer(url)?.toString())
-      ]),
-      this.#el(document, 'SegmentBase', {
-        indexRange: `${format.index_range.start}-${format.index_range.end}`
-      }, [
-        this.#el(document, 'Initialization', {
-          range: `${format.init_range.start}-${format.init_range.end}`
-        })
-      ])
-    ]));
-  }
-
-  /**
-   * Downloads the video.
-   * @param options - Download options.
-   */
-  async download(options: DownloadOptions = {}): Promise<ReadableStream<Uint8Array>> {
-    if (this.playability_status?.status === 'UNPLAYABLE')
-      throw new InnertubeError('Video is unplayable', { video: this, error_type: 'UNPLAYABLE' });
-    if (this.playability_status?.status === 'LOGIN_REQUIRED')
-      throw new InnertubeError('Video is login required', { video: this, error_type: 'LOGIN_REQUIRED' });
-    if (!this.streaming_data)
-      throw new InnertubeError('Streaming data not available.', { video: this, error_type: 'NO_STREAMING_DATA' });
-
-    const opts: DownloadOptions = {
-      quality: '360p',
-      type: 'video+audio',
-      format: 'mp4',
-      range: undefined,
-      ...options
-    };
-
-    const format = this.chooseFormat(opts);
-    const format_url = format.decipher(this.#player);
-
-    // If we're not downloading the video in chunks, we just use fetch once.
-    if (opts.type === 'video+audio' && !options.range) {
-      const response = await this.#actions.session.http.fetch_function(`${format_url}&cpn=${this.#cpn}`, {
-        method: 'GET',
-        headers: Constants.STREAM_HEADERS,
-        redirect: 'follow'
-      });
-
-      // Throw if the response is not 2xx
-      if (!response.ok)
-        throw new InnertubeError('The server responded with a non 2xx status code', { video: this, error_type: 'FETCH_FAILED', response });
-
-      const body = response.body;
-
-      if (!body)
-        throw new InnertubeError('Could not get ReadableStream from fetch Response.', { video: this, error_type: 'FETCH_FAILED', response });
-
-      return body;
-    }
-
-    // We need to download in chunks.
-
-    const chunk_size = 1048576 * 10; // 10MB
-
-    let chunk_start = (options.range ? options.range.start : 0);
-    let chunk_end = (options.range ? options.range.end : chunk_size);
-    let must_end = false;
-
-    let cancel: AbortController;
-
-    const readable_stream = new ReadableStream<Uint8Array>({
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      start() { },
-      pull: async (controller) => {
-        if (must_end) {
-          controller.close();
-          return;
-        }
-
-        if ((chunk_end >= format.content_length) || options.range) {
-          must_end = true;
-        }
-
-        return new Promise(async (resolve, reject) => {
-          try {
-            cancel = new AbortController();
-
-            const response = await this.#actions.session.http.fetch_function(`${format_url}&cpn=${this.#cpn}&range=${chunk_start}-${chunk_end || ''}`, {
-              method: 'GET',
-              headers: {
-                ...Constants.STREAM_HEADERS
-                // XXX: use YouTube's range parameter instead of a Range header.
-                // Range: `bytes=${chunk_start}-${chunk_end}`
-              },
-              signal: cancel.signal
-            });
-
-            const body = response.body;
-
-            if (!body)
-              throw new InnertubeError('Could not get ReadableStream from fetch Response.', { video: this, error_type: 'FETCH_FAILED', response });
-
-            for await (const chunk of streamToIterable(body)) {
-              controller.enqueue(chunk);
-            }
-
-            chunk_start = chunk_end + 1;
-            chunk_end += chunk_size;
-
-            resolve();
-            return;
-          } catch (e: any) {
-            reject(e);
-          }
-        });
-      },
-      async cancel(reason) {
-        cancel.abort(reason);
-      }
-    }, {
-      highWaterMark: 1, // TODO: better value?
-      size(chunk) {
-        return chunk.byteLength;
-      }
-    });
-
-    return readable_stream;
+  get page(): [ParsedResponse, ParsedResponse?] {
+    return this.#page;
   }
 }
 

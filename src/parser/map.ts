@@ -59,6 +59,7 @@ import { default as CreatorHeart } from './classes/comments/CreatorHeart';
 import { default as EmojiPicker } from './classes/comments/EmojiPicker';
 import { default as PdgCommentChip } from './classes/comments/PdgCommentChip';
 import { default as SponsorCommentBadge } from './classes/comments/SponsorCommentBadge';
+import { default as CompactChannel } from './classes/CompactChannel';
 import { default as CompactLink } from './classes/CompactLink';
 import { default as CompactMix } from './classes/CompactMix';
 import { default as CompactPlaylist } from './classes/CompactPlaylist';
@@ -263,6 +264,8 @@ import { default as SingleActionEmergencySupport } from './classes/SingleActionE
 import { default as SingleColumnBrowseResults } from './classes/SingleColumnBrowseResults';
 import { default as SingleColumnMusicWatchNextResults } from './classes/SingleColumnMusicWatchNextResults';
 import { default as SingleHeroImage } from './classes/SingleHeroImage';
+import { default as SlimOwner } from './classes/SlimOwner';
+import { default as SlimVideoMetadata } from './classes/SlimVideoMetadata';
 import { default as SortFilterSubMenu } from './classes/SortFilterSubMenu';
 import { default as SubFeedOption } from './classes/SubFeedOption';
 import { default as SubFeedSelector } from './classes/SubFeedSelector';
@@ -310,6 +313,10 @@ import { default as WatchCardRichHeader } from './classes/WatchCardRichHeader';
 import { default as WatchCardSectionSequence } from './classes/WatchCardSectionSequence';
 import { default as WatchNextEndScreen } from './classes/WatchNextEndScreen';
 import { default as WatchNextTabbedResults } from './classes/WatchNextTabbedResults';
+import { default as AnchoredSection } from './classes/ytkids/AnchoredSection';
+import { default as KidsCategoriesHeader } from './classes/ytkids/KidsCategoriesHeader';
+import { default as KidsCategoryTab } from './classes/ytkids/KidsCategoryTab';
+import { default as KidsHomeScreen } from './classes/ytkids/KidsHomeScreen';
 
 export const YTNodes = {
   AccountChannel,
@@ -369,6 +376,7 @@ export const YTNodes = {
   EmojiPicker,
   PdgCommentChip,
   SponsorCommentBadge,
+  CompactChannel,
   CompactLink,
   CompactMix,
   CompactPlaylist,
@@ -573,6 +581,8 @@ export const YTNodes = {
   SingleColumnBrowseResults,
   SingleColumnMusicWatchNextResults,
   SingleHeroImage,
+  SlimOwner,
+  SlimVideoMetadata,
   SortFilterSubMenu,
   SubFeedOption,
   SubFeedSelector,
@@ -619,7 +629,11 @@ export const YTNodes = {
   WatchCardRichHeader,
   WatchCardSectionSequence,
   WatchNextEndScreen,
-  WatchNextTabbedResults
+  WatchNextTabbedResults,
+  AnchoredSection,
+  KidsCategoriesHeader,
+  KidsCategoryTab,
+  KidsHomeScreen
 };
 
 const map: Record<string, YTNodeConstructor> = YTNodes;

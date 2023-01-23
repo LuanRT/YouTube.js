@@ -11,14 +11,15 @@ import Library from './parser/youtube/Library';
 import NotificationsMenu from './parser/youtube/NotificationsMenu';
 import Playlist from './parser/youtube/Playlist';
 import Search from './parser/youtube/Search';
-import VideoInfo, { DownloadOptions, FormatOptions } from './parser/youtube/VideoInfo';
+import VideoInfo from './parser/youtube/VideoInfo';
 
 import AccountManager from './core/AccountManager';
 import Feed from './core/Feed';
 import InteractionManager from './core/InteractionManager';
 import YTMusic from './core/Music';
 import PlaylistManager from './core/PlaylistManager';
-import Studio from './core/Studio';
+import YTStudio from './core/Studio';
+import YTKids from './core/Kids';
 import TabbedFeed from './core/TabbedFeed';
 import HomeFeed from './parser/youtube/HomeFeed';
 import Proto from './proto/index';
@@ -28,6 +29,7 @@ import type Actions from './core/Actions';
 import type Format from './parser/classes/misc/Format';
 
 import { generateRandomString, throwIfMissing } from './utils/Utils';
+import type { FormatOptions, DownloadOptions } from './utils/FormatUtils';
 
 export type InnertubeConfig = SessionOptions;
 
@@ -39,7 +41,7 @@ export interface SearchFilters {
   features?: ('hd' | 'subtitles' | 'creative_commons' | '3d' | 'live' | 'purchased' | '4k' | '360' | 'location' | 'hdr' | 'vr180')[];
 }
 
-export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED';
+export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS'
 
 class Innertube {
   session: Session;
@@ -47,7 +49,8 @@ class Innertube {
   playlist: PlaylistManager;
   interact: InteractionManager;
   music: YTMusic;
-  studio: Studio;
+  studio: YTStudio;
+  kids: YTKids;
   actions: Actions;
 
   constructor(session: Session) {
@@ -56,7 +59,8 @@ class Innertube {
     this.playlist = new PlaylistManager(this.session.actions);
     this.interact = new InteractionManager(this.session.actions);
     this.music = new YTMusic(this.session);
-    this.studio = new Studio(this.session);
+    this.studio = new YTStudio(this.session);
+    this.kids = new YTKids(this.session);
     this.actions = this.session.actions;
   }
 

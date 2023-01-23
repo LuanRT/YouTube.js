@@ -22,8 +22,10 @@ import WatchNextTabbedResults from '../classes/WatchNextTabbedResults';
 import type NavigationEndpoint from '../classes/NavigationEndpoint';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec';
+import type Format from '../classes/misc/Format';
 
 import type { ObservedArray, YTNode } from '../helpers';
+import FormatUtils, { URLTransformer, FormatOptions, DownloadOptions } from '../../utils/FormatUtils';
 
 class TrackInfo {
   #page: [ ParsedResponse, ParsedResponse? ];
@@ -84,6 +86,31 @@ class TrackInfo {
       // TODO: update PlayerOverlay, YTMusic's is a little bit different.
       this.player_overlays = next.player_overlays.item().as(PlayerOverlay);
     }
+  }
+
+  /**
+ * Generates a DASH manifest from the streaming data.
+ * @param url_transformer - Function to transform the URLs.
+ * @returns DASH manifest
+ */
+  toDash(url_transformer: URLTransformer = (url) => url): string {
+    return FormatUtils.toDash(this.streaming_data, url_transformer, this.#cpn, this.#actions.session.player);
+  }
+
+  /**
+   * Selects the format that best matches the given options.
+   * @param options - Options
+   */
+  chooseFormat(options: FormatOptions): Format {
+    return FormatUtils.chooseFormat(options, this.streaming_data);
+  }
+
+  /**
+   * Downloads the video.
+   * @param options - Download options.
+   */
+  async download(options: DownloadOptions = {}): Promise<ReadableStream<Uint8Array>> {
+    return FormatUtils.download(options, this.#actions, this.playability_status, this.streaming_data, this.#actions.session.player);
   }
 
   /**

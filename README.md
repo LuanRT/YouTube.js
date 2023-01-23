@@ -14,7 +14,7 @@
 
 <h1 align=center>YouTube.js</h1>
 
-<p align=center>A full-featured wrapper around the InnerTube API, which is what YouTube itself uses</p>
+<p align=center>A full-featured wrapper around the InnerTube API</p>
 
 <div align="center">
 
@@ -84,7 +84,7 @@ ___
 
 ## Description
 
-InnerTube is an API used by all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform[^1]. This library handles all the low-level communication with InnerTube, providing a simple, and efficient way to interact with YouTube programmatically. It is designed to emulate an actual client as closely as possible, including how API responses are [parsed](https://github.com/LuanRT/YouTube.js/tree/main/src/parser#how-it-works).
+InnerTube is an API used by all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform[^1]. This library handles all the low-level communication with InnerTube, providing a simple, and efficient way to interact with YouTube programmatically. It is designed to emulate an actual client as closely as possible, including how API responses are parsed.
 
 If you have any questions or need help, feel free to reach out to us on our [Discord server][discord] or open an issue [here](https://github.com/LuanRT/YouTube.js/issues).
 
@@ -229,6 +229,7 @@ const yt = await Innertube.create({
   * [.playlist](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/playlist.md)
   * [.music](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/music.md)
   * [.studio](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/studio.md)
+  * [.kids](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/kids.md)
  
   </p>
   </details> 

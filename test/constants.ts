@@ -22,6 +22,10 @@ export const VIDEOS = [
   {
     ID: 'jfKfPfyJRdk',
     QUERY: 'live video'
+  },
+  {
+    ID: 'juN8qEgLScw',
+    QUERY: 'Galapagos Tortoise Can\'t Get Enough Watermelon'
   }
 ];
 
