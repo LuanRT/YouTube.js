@@ -49,6 +49,18 @@ Retrieves track info.
 - `<info>#available_tabs`
   - Returns available tabs.
 
+- `<info>#toDash(url_transformer?)`
+  - Generates a DASH manifest from the streaming data.
+
+- `<info>#chooseFormat(options)`
+  - Selects the format that best matches the given options. This method is used internally by `#download`.
+
+- `<info>#download(options?)`
+  - Downloads the track.
+
+- `<info>#addToWatchHistory()`
+  - Adds the song to the watch history.
+
 - `<info>#page`
   - Returns the original InnerTube response(s), parsed and sanitized.
 
