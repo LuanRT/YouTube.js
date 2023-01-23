@@ -235,8 +235,8 @@ describe('YouTube.js Tests', () => {
     });
     
     it('should retrieve video info', async () => {
-      const info = await yt.kids.getInfo(VIDEOS[7].ID);
-      expect(info.basic_info?.id).toBe(VIDEOS[7].ID);
+      const info = await yt.kids.getInfo(VIDEOS[6].ID);
+      expect(info.basic_info?.id).toBe(VIDEOS[6].ID);
     });
   });
 });
