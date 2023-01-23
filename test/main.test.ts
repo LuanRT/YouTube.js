@@ -220,6 +220,25 @@ describe('YouTube.js Tests', () => {
       expect(playlist.items).toBeDefined();
     });
   });
+
+  describe('YouTube Kids', () => {
+    it('should search', async () => {
+      const search = await yt.kids.search('cocomelon');
+      expect(search.estimated_results).toBeDefined();
+      expect(search.contents?.length).toBeGreaterThan(0);
+    });
+
+    it('should retrieve home feed', async () => {
+      const homefeed = await yt.kids.getHomeFeed();
+      expect(homefeed.contents).toBeDefined();
+      expect(homefeed.videos.length).toBeGreaterThan(0);
+    });
+    
+    it('should retrieve video info', async () => {
+      const info = await yt.kids.getInfo(VIDEOS[7].ID);
+      expect(info.basic_info?.id).toBe(VIDEOS[7].ID);
+    });
+  });
 });
 
 async function download(id: string, yt: Innertube): Promise<boolean> {   
