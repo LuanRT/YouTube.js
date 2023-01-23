@@ -7,6 +7,7 @@ YouTube Kids is a modified version of the YouTube app, with a simplified interfa
 * Kids
   * [.search(query)](#search)
   * [.getInfo(video_id)](#getinfo)
+  * [.getChannel(channel_id)](#getchannel)
   * [.getHomeFeed()](#gethomefeed)
 
 <a name="search"></a>
@@ -63,6 +64,33 @@ Retrieves video info.
 
 </p>
 </details> 
+
+<a name="getchannel"></a>
+### getChannel(channel_id)
+
+Retrieves channel info.
+
+**Returns:** `Promise.<Channel>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| channel_id | `string` | The channel id |
+
+<details>
+<summary>Methods & Getters</summary>
+<p>
+
+- `<channel>#getContinuation()`
+  - Retrieves next batch of videos.
+
+- `<channel>#has_continuation`
+  - Returns whether there are more videos to retrieve.
+
+- `<channel>#page`
+  - Returns the original InnerTube response(s), parsed and sanitized.
+
+</p>
+</details>
 
 <a name="gethomefeed"></a>
 ### getHomeFeed()

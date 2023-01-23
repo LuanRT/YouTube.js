@@ -269,6 +269,8 @@ export default class Parser {
   }
 
   static parseLC(data: any) {
+    if (data.itemSectionContinuation)
+      return new ItemSectionContinuation(data.itemSectionContinuation);
     if (data.sectionListContinuation)
       return new SectionListContinuation(data.sectionListContinuation);
     if (data.liveChatContinuation)
@@ -387,7 +389,22 @@ export default class Parser {
 
 export type ParsedResponse = ReturnType<typeof Parser.parseResponse>;
 
-// Continuation nodes
+// Continuation
+
+export class ItemSectionContinuation extends YTNode {
+  static readonly type = 'itemSectionContinuation';
+
+  contents: ObservedArray<YTNode> | null;
+  continuation?: string;
+
+  constructor(data: any) {
+    super();
+    this.contents = Parser.parseArray(data.contents);
+    if (data.continuations) {
+      this.continuation = data.continuations?.at(0)?.nextContinuationData?.continuation;
+    }
+  }
+}
 
 export class AppendContinuationItemsAction extends YTNode {
   static readonly type = 'appendContinuationItemsAction';

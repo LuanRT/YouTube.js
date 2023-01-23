@@ -33,5 +33,9 @@ export const CHANNELS = [
   {
     ID: 'UCXuqSBlHAE6Xw-yeJA0Tunw',
     NAME: 'Linus Tech Tips'
+  },
+  {
+    ID: 'UCpbpfcZfo-hoDAx2m1blFhg',
+    NAME: 'Learning Blocks'
   }
 ];
