@@ -10,7 +10,8 @@ class ItemSection extends YTNode {
 
   header: CommentsHeader | ItemSectionHeader | ItemSectionTabbedHeader | null;
   contents;
-  target_id;
+  target_id?: string;
+  continuation?: string;
 
   constructor(data: any) {
     super();
@@ -19,6 +20,10 @@ class ItemSection extends YTNode {
 
     if (data.targetId || data.sectionIdentifier) {
       this.target_id = data?.target_id || data?.sectionIdentifier;
+    }
+
+    if (data.continuations) {
+      this.continuation = data.continuations?.at(0)?.nextContinuationData?.continuation;
     }
   }
 }

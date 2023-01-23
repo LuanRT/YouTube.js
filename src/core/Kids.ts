@@ -1,7 +1,9 @@
 import Search from '../parser/ytkids/Search';
 import HomeFeed from '../parser/ytkids/HomeFeed';
 import VideoInfo from '../parser/ytkids/VideoInfo';
+import Channel from '../parser/ytkids/Channel';
 import type Session from './Session';
+
 import { generateRandomString } from '../utils/Utils';
 
 class Kids {
@@ -43,6 +45,15 @@ class Kids {
     const response = await Promise.all([ initial_info, continuation ]);
 
     return new VideoInfo(response, this.#session.actions, cpn);
+  }
+
+  /**
+   * Retrieves the contents of the given channel.
+  * @param channel_id - The channel id.
+   */
+  async getChannel(channel_id: string): Promise<Channel> {
+    const response = await this.#session.actions.execute('/browse', { browseId: channel_id, client: 'YTKIDS' });
+    return new Channel(this.#session.actions, response.data);
   }
 
   /**

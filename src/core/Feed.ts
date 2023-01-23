@@ -45,6 +45,7 @@ class Feed {
 
     const memo = concatMemos(
       this.#page.contents_memo,
+      this.#page.continuation_contents_memo,
       this.#page.on_response_received_commands_memo,
       this.#page.on_response_received_endpoints_memo,
       this.#page.on_response_received_actions_memo,
