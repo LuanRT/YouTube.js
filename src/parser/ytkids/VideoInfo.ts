@@ -24,6 +24,7 @@ class VideoInfo {
   basic_info;
   streaming_data;
   playability_status;
+  captions;
 
   #playback_tracking;
 
@@ -48,6 +49,7 @@ class VideoInfo {
 
     this.streaming_data = info.streaming_data;
     this.playability_status = info.playability_status;
+    this.captions = info.captions;
 
     this.#playback_tracking = info.playback_tracking;
 
