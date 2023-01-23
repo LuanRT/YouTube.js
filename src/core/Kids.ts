@@ -1,9 +1,8 @@
 import Search from '../parser/ytkids/Search';
+import HomeFeed from '../parser/ytkids/HomeFeed';
 import VideoInfo from '../parser/ytkids/VideoInfo';
 import type Session from './Session';
-
 import { generateRandomString } from '../utils/Utils';
-import HomeFeed from '../parser/ytkids/HomeFeed';
 
 class Kids {
   #session: Session;
