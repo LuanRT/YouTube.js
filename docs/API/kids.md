@@ -25,7 +25,7 @@ Searches the given query on YouTube Kids.
 <summary>Methods & Getters</summary>
 <p>
 
-- `<info>#page`
+- `<search>#page`
   - Returns the original InnerTube response(s), parsed and sanitized.
 
 </p>
