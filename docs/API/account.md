@@ -46,7 +46,7 @@ Retrieves account information.
 <p>
 
 - `<accountinfo>#page`
-  - Returns original InnerTube response (sanitized).
+  - Returns the original InnerTube response(s), parsed and sanitized.
 
 </p>
 </details>
@@ -63,7 +63,7 @@ Retrieves time watched statistics.
 <p>
 
 - `<timewatched>#page`
-  - Returns original InnerTube response (sanitized).
+  - Returns the original InnerTube response(s), parsed and sanitized.
 
 </p>
 </details>
@@ -91,6 +91,9 @@ Retrieves YouTube settings.
 - `<settings>#sidebar_items`
   - Returns options available in the sidebar menu.
 
+- `<settings>#page`
+  - Returns the original InnerTube response(s), parsed and sanitized.
+
 </p>
 </details>
 
@@ -106,7 +109,7 @@ Retrieves basic channel analytics.
 <p>
 
 - `<analytics>#page`
-  - Returns original InnerTube response (sanitized).
+  - Returns the original InnerTube response(s), parsed and sanitized.
 
 </p>
 </details>
