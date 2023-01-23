@@ -34,6 +34,9 @@ class Format {
   loudness_db: number;
   has_audio: boolean;
   has_video: boolean;
+  language?: string | null;
+  is_dubbed?: boolean;
+  is_original?: boolean;
 
   constructor(data: any) {
     this.itag = data.itag;
@@ -68,6 +71,14 @@ class Format {
     this.loudness_db = data.loudnessDb;
     this.has_audio = !!data.audioBitrate || !!data.audioQuality;
     this.has_video = !!data.qualityLabel;
+
+    if (this.has_audio) {
+      const args = new URLSearchParams(this.cipher || this.signature_cipher);
+      const url_components = new URLSearchParams(args.get('url') || this.url);
+      this.language = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('lang='))?.split('=').at(1) || null;
+      this.is_dubbed = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'dubbed';
+      this.is_original = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'original' || !this.is_dubbed;
+    }
   }
 
   /**
