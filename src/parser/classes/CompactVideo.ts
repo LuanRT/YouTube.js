@@ -40,7 +40,7 @@ class CompactVideo extends YTNode {
     this.view_count = new Text(data.viewCountText);
     this.short_view_count = new Text(data.shortViewCountText);
     this.published = new Text(data.publishedTimeText);
-    this.is_live = data.badges?.some((badge: any) => badge.metadataBadgeRenderer.style == 'BADGE_STYLE_TYPE_LIVE_NOW') || false;
+    this.is_live = data.badges?.some((badge: any) => badge.metadataBadgeRenderer.style === 'BADGE_STYLE_TYPE_LIVE_NOW') || false;
 
     this.duration = {
       text: new Text(data.lengthText).toString(),
