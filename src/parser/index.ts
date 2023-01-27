@@ -9,6 +9,7 @@ import type Message from './classes/Message';
 import type LiveChatParticipantsList from './classes/LiveChatParticipantsList';
 import type LiveChatHeader from './classes/LiveChatHeader';
 import type LiveChatItemList from './classes/LiveChatItemList';
+import type Alert from './classes/Alert';
 
 import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem';
 import Format from './classes/misc/Format';
@@ -137,6 +138,7 @@ export default class Parser {
       metadata: Parser.parse(data.metadata),
       microformat: data.microformat ? Parser.parseItem(data.microformat) : null,
       overlay: Parser.parseItem(data.overlay),
+      alerts: Parser.parseArray<Alert>(data.alerts),
       refinements: data.refinements || null,
       estimated_results: data.estimatedResults ? parseInt(data.estimatedResults) : null,
       player_overlays: Parser.parse(data.playerOverlays),

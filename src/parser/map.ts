@@ -8,6 +8,7 @@ import { default as AccountItemSectionHeader } from './classes/AccountItemSectio
 import { default as AccountSectionList } from './classes/AccountSectionList';
 import { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction';
 import { default as OpenPopupAction } from './classes/actions/OpenPopupAction';
+import { default as Alert } from './classes/Alert';
 import { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics';
 import { default as AnalyticsRoot } from './classes/analytics/AnalyticsRoot';
 import { default as AnalyticsShortsCarouselCard } from './classes/analytics/AnalyticsShortsCarouselCard';
@@ -326,6 +327,7 @@ export const YTNodes = {
   AccountSectionList,
   AppendContinuationItemsAction,
   OpenPopupAction,
+  Alert,
   AnalyticsMainAppKeyMetrics,
   AnalyticsRoot,
   AnalyticsShortsCarouselCard,

@@ -25,6 +25,7 @@ export class MissingParamError extends InnertubeError { }
 export class OAuthError extends InnertubeError { }
 export class PlayerError extends Error { }
 export class SessionError extends Error { }
+export class ChannelError extends Error { }
 
 /**
  * Compares given objects. May not work correctly for

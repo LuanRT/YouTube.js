@@ -18,7 +18,7 @@ import FeedFilterChipBar from '../classes/FeedFilterChipBar';
 import ChannelSubMenu from '../classes/ChannelSubMenu';
 import SortFilterSubMenu from '../classes/SortFilterSubMenu';
 
-import { InnertubeError } from '../../utils/Utils';
+import { ChannelError, InnertubeError } from '../../utils/Utils';
 
 import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
 
@@ -35,6 +35,13 @@ export default class Channel extends TabbedFeed {
 
     const metadata = this.page.metadata?.item().as(ChannelMetadata);
     const microformat = this.page.microformat?.as(MicroformatData);
+
+    if (this.page.alerts) {
+      const alert = this.page.alerts.first();
+      if (alert?.alert_type === 'ERROR') {
+        throw new ChannelError(alert.text.toString());
+      }
+    }
 
     if (!metadata && !this.page.contents)
       throw new InnertubeError('Invalid channel', this);
