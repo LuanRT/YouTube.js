@@ -14,7 +14,7 @@ import type { ObservedArray, YTNode } from '../helpers';
 import { Constants } from '../../utils';
 import { InnertubeError } from '../../utils/Utils';
 
-import FormatUtils, { DownloadOptions, FormatOptions, URLTransformer } from '../../utils/FormatUtils';
+import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils';
 
 class VideoInfo {
   #page: [ParsedResponse, ParsedResponse?];
@@ -69,10 +69,11 @@ class VideoInfo {
   /**
    * Generates a DASH manifest from the streaming data.
    * @param url_transformer - Function to transform the URLs.
+   * @param format_filter - Function to filter the formats.
    * @returns DASH manifest
    */
-  toDash(url_transformer: URLTransformer = (url) => url): string {
-    return FormatUtils.toDash(this.streaming_data, url_transformer, this.#cpn, this.#actions.session.player);
+  toDash(url_transformer: URLTransformer = (url) => url, format_filter: FormatFilter): string {
+    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player);
   }
 
   /**

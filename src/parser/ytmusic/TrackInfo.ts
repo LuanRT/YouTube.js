@@ -25,7 +25,7 @@ import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec';
 import type Format from '../classes/misc/Format';
 
 import type { ObservedArray, YTNode } from '../helpers';
-import FormatUtils, { URLTransformer, FormatOptions, DownloadOptions } from '../../utils/FormatUtils';
+import FormatUtils, { URLTransformer, FormatOptions, DownloadOptions, FormatFilter } from '../../utils/FormatUtils';
 
 class TrackInfo {
   #page: [ ParsedResponse, ParsedResponse? ];
@@ -91,10 +91,11 @@ class TrackInfo {
   /**
  * Generates a DASH manifest from the streaming data.
  * @param url_transformer - Function to transform the URLs.
+ * @param format_filter - Function to filter the formats.
  * @returns DASH manifest
  */
-  toDash(url_transformer: URLTransformer = (url) => url): string {
-    return FormatUtils.toDash(this.streaming_data, url_transformer, this.#cpn, this.#actions.session.player);
+  toDash(url_transformer: URLTransformer = (url) => url, format_filter: FormatFilter): string {
+    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player);
   }
 
   /**
