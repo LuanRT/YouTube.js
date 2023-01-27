@@ -28,6 +28,11 @@ class Format {
   cipher: string | undefined;
   signature_cipher: string | undefined;
   audio_quality: string | undefined;
+  audio_track?: {
+    audio_is_default: boolean;
+    display_name: string;
+    id: string;
+  };
   approx_duration_ms: number;
   audio_sample_rate: number;
   audio_channels: number;
@@ -75,9 +80,18 @@ class Format {
     if (this.has_audio) {
       const args = new URLSearchParams(this.cipher || this.signature_cipher);
       const url_components = new URLSearchParams(args.get('url') || this.url);
+
       this.language = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('lang='))?.split('=').at(1) || null;
       this.is_dubbed = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'dubbed';
       this.is_original = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'original' || !this.is_dubbed;
+
+      if (data.audioTrack) {
+        this.audio_track = {
+          audio_is_default: data.audioTrack.audioIsDefault,
+          display_name: data.audioTrack.displayName,
+          id: data.audioTrack.id
+        };
+      }
     }
   }
 
