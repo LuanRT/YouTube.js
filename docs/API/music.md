@@ -49,7 +49,7 @@ Retrieves track info.
 - `<info>#available_tabs`
   - Returns available tabs.
 
-- `<info>#toDash(url_transformer?)`
+- `<info>#toDash(url_transformer?, format_filter?)`
   - Generates a DASH manifest from the streaming data.
 
 - `<info>#chooseFormat(options)`

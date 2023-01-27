@@ -47,7 +47,7 @@ Retrieves video info.
 <summary>Methods & Getters</summary>
 <p>
 
-- `<info>#toDash(url_transformer?)`
+- `<info>#toDash(url_transformer?, format_filter?)`
   - Generates a DASH manifest from the streaming data.
 
 - `<info>#chooseFormat(options)`
