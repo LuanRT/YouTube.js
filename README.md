@@ -482,8 +482,13 @@ Retrieves contents for a given channel.
 - `<channel>#getChannels()`
 - `<channel>#getAbout()`
 - `<channel>#search(query)`
+- `<channel>#applyFilter(filter)`
+- `<channel>#applyContentTypeFilter(content_type_filter)`
+- `<channel>#applySort(sort)`
 - `<channel>#getContinuation()`
 - `<channel>#filters`
+- `<channel>#content_type_filters`
+- `<channel>#sort_filters`
 - `<channel>#page`
 
 </p>

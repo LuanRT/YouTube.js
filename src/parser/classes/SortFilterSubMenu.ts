@@ -41,7 +41,7 @@ class SortFilterSubMenu extends YTNode {
         title: item.title,
         selected: item.selected,
         continuation: item.continuation?.reloadContinuationData?.continuation,
-        endpoint: new NavigationEndpoint(item.serviceEndpoint),
+        endpoint: new NavigationEndpoint(item.serviceEndpoint || item.navigationEndpoint),
         subtitle: item.subtitle || null
       }));
     }
