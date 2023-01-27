@@ -53,6 +53,14 @@ class CompactVideo extends YTNode {
     this.menu = Parser.parseItem<Menu>(data.menu);
   }
 
+  get best_thumbnail() {
+    return this.thumbnails[0];
+  }
+
+  get is_fundraiser(): boolean {
+    return this.badges.some((badge) => badge.style === 'Fundraiser');
+  }
+
   get is_live(): boolean {
     return this.badges.some((badge) => {
       if (badge.label === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.style === 'LIVE')
@@ -60,20 +68,12 @@ class CompactVideo extends YTNode {
     });
   }
 
-  get is_premiere(): boolean {
-    return this.badges.some((badge) => badge.style === 'PREMIERE');
-  }
-
   get is_new(): boolean {
     return this.badges.some((badge) => badge.style === 'New');
   }
 
-  get is_fundraiser(): boolean {
-    return this.badges.some((badge) => badge.style === 'Fundraiser');
-  }
-
-  get best_thumbnail() {
-    return this.thumbnails[0];
+  get is_premiere(): boolean {
+    return this.badges.some((badge) => badge.style === 'PREMIERE');
   }
 }
 
