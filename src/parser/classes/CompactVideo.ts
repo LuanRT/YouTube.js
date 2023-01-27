@@ -5,6 +5,7 @@ import { timeToSeconds } from '../../utils/Utils';
 import Thumbnail from './misc/Thumbnail';
 import NavigationEndpoint from './NavigationEndpoint';
 import type Menu from './menus/Menu';
+import MetadataBadge from './MetadataBadge';
 
 import { YTNode } from '../helpers';
 
@@ -19,7 +20,7 @@ class CompactVideo extends YTNode {
   view_count: Text;
   short_view_count: Text;
   published: Text;
-  is_live: Boolean;
+  badges: MetadataBadge[];
 
   duration: {
     text: string;
@@ -40,7 +41,7 @@ class CompactVideo extends YTNode {
     this.view_count = new Text(data.viewCountText);
     this.short_view_count = new Text(data.shortViewCountText);
     this.published = new Text(data.publishedTimeText);
-    this.is_live = data.badges?.some((badge: any) => badge.metadataBadgeRenderer.style == 'BADGE_STYLE_TYPE_LIVE_NOW') || false;
+    this.badges = Parser.parseArray(data.badges, MetadataBadge);
 
     this.duration = {
       text: new Text(data.lengthText).toString(),
@@ -50,6 +51,25 @@ class CompactVideo extends YTNode {
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.menu = Parser.parseItem<Menu>(data.menu);
+  }
+
+  get is_live(): boolean {
+    return this.badges.some((badge) => {
+      if (badge.label === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.style === 'LIVE')
+        return true;
+    });
+  }
+
+  get is_premiere(): boolean {
+    return this.badges.some((badge) => badge.style === 'PREMIERE');
+  }
+
+  get is_new(): boolean {
+    return this.badges.some((badge) => badge.style === 'New');
+  }
+
+  get is_fundraiser(): boolean {
+    return this.badges.some((badge) => badge.style === 'Fundraiser');
   }
 
   get best_thumbnail() {
