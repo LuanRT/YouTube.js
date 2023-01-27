@@ -8,6 +8,7 @@ class SectionList extends YTNode {
   contents;
   continuation?: string;
   header;
+  sub_menu;
 
   constructor(data: any) {
     super();
@@ -28,6 +29,10 @@ class SectionList extends YTNode {
 
     if (data.header) {
       this.header = Parser.parse(data.header);
+    }
+
+    if (data.subMenu) {
+      this.sub_menu = Parser.parseItem(data.subMenu);
     }
   }
 }

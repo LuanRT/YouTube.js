@@ -7,13 +7,17 @@ import ChannelMetadata from '../classes/ChannelMetadata';
 import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader';
 import MicroformatData from '../classes/MicroformatData';
 import SubscribeButton from '../classes/SubscribeButton';
+import ExpandableTab from '../classes/ExpandableTab';
+import SectionList from '../classes/SectionList';
 import Tab from '../classes/Tab';
 
 import Feed from '../../core/Feed';
 import FilterableFeed from '../../core/FilterableFeed';
 import ChipCloudChip from '../classes/ChipCloudChip';
-import ExpandableTab from '../classes/ExpandableTab';
 import FeedFilterChipBar from '../classes/FeedFilterChipBar';
+import ChannelSubMenu from '../classes/ChannelSubMenu';
+import SortFilterSubMenu from '../classes/SortFilterSubMenu';
+
 import { InnertubeError } from '../../utils/Utils';
 
 import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
@@ -49,7 +53,7 @@ export default class Channel extends TabbedFeed {
   async applyFilter(filter: string | ChipCloudChip): Promise<FilteredChannelList> {
     let target_filter: ChipCloudChip | undefined;
 
-    const filter_chipbar = this.memo.getType(FeedFilterChipBar)?.[0];
+    const filter_chipbar = this.memo.getType(FeedFilterChipBar).first();
 
     if (typeof filter === 'string') {
       target_filter = filter_chipbar?.contents.get({ text: filter });
@@ -63,11 +67,68 @@ export default class Channel extends TabbedFeed {
       throw new InnertubeError('Invalid filter', filter);
 
     const page = await target_filter.endpoint?.call(this.actions, { parse: true });
+
     return new FilteredChannelList(this.actions, page, true);
+  }
+
+  /**
+   * Applies given sort filter to the list. Use {@link sort_filters} to get available filters.
+   * @param sort - The sort filter to apply
+   */
+  async applySort(sort: string): Promise<Channel> {
+    const sort_filter_sub_menu = this.memo.getType(SortFilterSubMenu).first();
+
+    if (!sort_filter_sub_menu)
+      throw new InnertubeError('No sort filter sub menu found');
+
+    const target_sort = sort_filter_sub_menu?.sub_menu_items?.find((item) => item.title === sort);
+
+    if (!target_sort)
+      throw new InnertubeError(`Sort filter ${sort} not found`, { available_sort_filters: this.sort_filters });
+
+    if (target_sort.selected)
+      return this;
+
+    const page = await target_sort.endpoint?.call(this.actions, { parse: true });
+
+    return new Channel(this.actions, page, true);
+  }
+
+  /**
+   * Applies given content type filter to the list. Use {@link content_type_filters} to get available filters.
+   * @param content_type_filter - The content type filter to apply
+   */
+  async applyContentTypeFilter(content_type_filter: string): Promise<Channel> {
+    const sub_menu = this.current_tab?.content?.as(SectionList).sub_menu?.as(ChannelSubMenu);
+
+    if (!sub_menu)
+      throw new InnertubeError('Sub menu not found');
+
+    const item = sub_menu.content_type_sub_menu_items.find((item) => item.title === content_type_filter);
+
+    if (!item)
+      throw new InnertubeError(`Sub menu item ${content_type_filter} not found`, { available_filters: this.content_type_filters });
+
+    if (item.selected)
+      return this;
+
+    const page = await item.endpoint?.call(this.actions, { parse: true });
+
+    return new Channel(this.actions, page, true);
   }
 
   get filters(): string[] {
     return this.memo.getType(FeedFilterChipBar)?.[0]?.contents.filterType(ChipCloudChip).map((chip) => chip.text) || [];
+  }
+
+  get sort_filters(): string[] {
+    const sort_filter_sub_menu = this.memo.getType(SortFilterSubMenu).first();
+    return sort_filter_sub_menu?.sub_menu_items?.map((item) => item.title) || [];
+  }
+
+  get content_type_filters(): string[] {
+    const sub_menu = this.current_tab?.content?.as(SectionList).sub_menu?.as(ChannelSubMenu);
+    return sub_menu?.content_type_sub_menu_items.map((item) => item.title) || [];
   }
 
   async getHome(): Promise<Channel> {

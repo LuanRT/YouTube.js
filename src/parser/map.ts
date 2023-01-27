@@ -37,6 +37,7 @@ import { default as ChannelHeaderLinks } from './classes/ChannelHeaderLinks';
 import { default as ChannelMetadata } from './classes/ChannelMetadata';
 import { default as ChannelMobileHeader } from './classes/ChannelMobileHeader';
 import { default as ChannelOptions } from './classes/ChannelOptions';
+import { default as ChannelSubMenu } from './classes/ChannelSubMenu';
 import { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailWithLink';
 import { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer';
 import { default as Chapter } from './classes/Chapter';
@@ -354,6 +355,7 @@ export const YTNodes = {
   ChannelMetadata,
   ChannelMobileHeader,
   ChannelOptions,
+  ChannelSubMenu,
   ChannelThumbnailWithLink,
   ChannelVideoPlayer,
   Chapter,
