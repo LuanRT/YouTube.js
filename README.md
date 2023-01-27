@@ -292,7 +292,7 @@ Retrieves video info, including playback data and even layout elements such as m
 - `<info>#chooseFormat(options)`
   - Used to choose streaming data formats.
 
-- `<info>#toDash(url_transformer)`
+- `<info>#toDash(url_transformer?, format_filter?)`
   - Converts streaming data to an MPEG-DASH manifest.
 
 - `<info>#download(options)`

@@ -14,6 +14,7 @@ import { Constants } from '.';
 import { getStringBetweenStrings, InnertubeError, streamToIterable } from './Utils';
 
 export type URLTransformer = (url: URL) => URL;
+export type FormatFilter = (format: Format) => boolean;
 
 export interface FormatOptions {
   /**
@@ -24,6 +25,10 @@ export interface FormatOptions {
    * Download type, can be: video, audio or video+audio
    */
   type?: 'video' | 'audio' | 'video+audio';
+  /**
+   * Language code, defaults to 'original'.
+   */
+  language?: string;
   /**
    * File format, use 'any' to download any format
    */
@@ -187,7 +192,8 @@ class FormatUtils {
 
     const requires_audio = options.type ? options.type.includes('audio') : true;
     const requires_video = options.type ? options.type.includes('video') : true;
-    const quality = options.quality || '360p';
+    const language = options.language || 'original';
+    const quality = options.quality || 'best';
 
     let best_width = -1;
 
@@ -208,17 +214,20 @@ class FormatUtils {
       return true;
     });
 
-    if (!candidates.length) {
-      throw new InnertubeError('No matching formats found', {
-        options
-      });
-    }
+    if (!candidates.length)
+      throw new InnertubeError('No matching formats found', { options });
 
     if (is_best && requires_video)
       candidates = candidates.filter((format) => format.width === best_width);
 
     if (requires_audio && !requires_video) {
-      const audio_only = candidates.filter((format) => !format.has_video);
+      const audio_only = candidates.filter((format) => {
+        if (language !== 'original') {
+          return !format.has_video && format.language === language;
+        }
+        return !format.has_video && format.is_original;
+
+      });
       if (audio_only.length > 0) {
         candidates = audio_only;
       }
@@ -241,11 +250,28 @@ class FormatUtils {
     adaptive_formats: Format[];
     dash_manifest_url: string | null;
     hls_manifest_url: string | null;
-  }, url_transformer: URLTransformer = (url) => url, cpn?: string, player?: Player): string {
+  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player): string {
     if (!streaming_data)
       throw new InnertubeError('Streaming data not available');
 
-    const { adaptive_formats } = streaming_data;
+    let filtered_streaming_data;
+
+    if (format_filter) {
+      filtered_streaming_data = {
+        formats: streaming_data.formats.filter((fmt: Format) => !(format_filter(fmt))),
+        adaptive_formats: streaming_data.adaptive_formats.filter((fmt: Format) => !(format_filter(fmt))),
+        expires: streaming_data.expires,
+        dash_manifest_url: streaming_data.dash_manifest_url,
+        hls_manifest_url: streaming_data.hls_manifest_url
+      };
+    } else {
+      filtered_streaming_data = streaming_data;
+    }
+
+    const { adaptive_formats } = filtered_streaming_data;
+
+    if (!adaptive_formats.length)
+      throw new InnertubeError('No adaptive formats found');
 
     const length = adaptive_formats[0].approx_duration_ms / 1000;
 
