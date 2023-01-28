@@ -163,6 +163,14 @@ describe('YouTube.js Tests', () => {
       expect(filtered_list.videos.length).toBeGreaterThan(0);
     });
 
+    it('should detect missing channel tabs', async () => {
+      const channel = await yt.getChannel(CHANNELS[2].ID);
+      expect(channel.has_videos).toBe(true);
+      expect(channel.has_shorts).toBe(false);
+      expect(channel.has_live_streams).toBe(false);
+      expect(channel.has_community).toBe(true);
+    })
+
     it('should retrieve home feed', async () => {
       const homefeed = await yt.getHomeFeed();
       expect(homefeed.header).toBeDefined();

@@ -196,6 +196,22 @@ export default class Channel extends TabbedFeed {
     return new Channel(this.actions, page, true);
   }
 
+  get has_videos(): boolean {
+    return this.hasTabWithURL('videos');
+  }
+
+  get has_shorts(): boolean {
+    return this.hasTabWithURL('shorts');
+  }
+
+  get has_live_streams(): boolean {
+    return this.hasTabWithURL('streams');
+  }
+
+  get has_community(): boolean {
+    return this.hasTabWithURL('community');
+  }
+
   /**
    * Retrives list continuation.
    */

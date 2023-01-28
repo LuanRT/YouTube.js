@@ -37,5 +37,9 @@ export const CHANNELS = [
   {
     ID: 'UCpbpfcZfo-hoDAx2m1blFhg',
     NAME: 'Learning Blocks'
+  },
+  {
+    ID: 'UCt-oJR5teQIjOAxCmIQvcgA',
+    NAME: "They're Just Movies"
   }
 ];

@@ -47,6 +47,10 @@ class TabbedFeed extends Feed {
     return new TabbedFeed(this.#actions, response.data, false);
   }
 
+  hasTabWithURL(url: string): boolean {
+    return this.#tabs.some((tab) => tab.endpoint.metadata.url?.split('/').pop() === url);
+  }
+
   get title(): string | undefined {
     return this.page.contents_memo.getType(Tab)?.find((tab) => tab.selected)?.title.toString();
   }
