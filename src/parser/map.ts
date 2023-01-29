@@ -232,6 +232,7 @@ import { default as PlaylistVideoList } from './classes/PlaylistVideoList';
 import { default as PlaylistVideoThumbnail } from './classes/PlaylistVideoThumbnail';
 import { default as Poll } from './classes/Poll';
 import { default as Post } from './classes/Post';
+import { default as PostMultiImage } from './classes/PostMultiImage';
 import { default as ProfileColumn } from './classes/ProfileColumn';
 import { default as ProfileColumnStats } from './classes/ProfileColumnStats';
 import { default as ProfileColumnStatsEntry } from './classes/ProfileColumnStatsEntry';
@@ -551,6 +552,7 @@ export const YTNodes = {
   PlaylistVideoThumbnail,
   Poll,
   Post,
+  PostMultiImage,
   ProfileColumn,
   ProfileColumnStats,
   ProfileColumnStatsEntry,
