@@ -168,6 +168,7 @@ describe('YouTube.js Tests', () => {
       expect(channel.has_videos).toBe(true);
       expect(channel.has_shorts).toBe(false);
       expect(channel.has_live_streams).toBe(false);
+      expect(channel.has_playlists).toBe(true);
       expect(channel.has_community).toBe(true);
     })
 

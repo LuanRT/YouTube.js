@@ -208,6 +208,10 @@ export default class Channel extends TabbedFeed {
     return this.hasTabWithURL('streams');
   }
 
+  get has_playlists(): boolean {
+    return this.hasTabWithURL('playlists');
+  }
+
   get has_community(): boolean {
     return this.hasTabWithURL('community');
   }
