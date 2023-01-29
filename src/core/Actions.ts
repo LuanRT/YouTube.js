@@ -48,7 +48,7 @@ class Actions {
           splay: false,
           referer: 'https://www.youtube.com',
           currentUrl: `/watch?v=${id}`,
-          autonavState: 'STATE_OFF',
+          autonavState: 'STATE_NONE',
           signatureTimestamp: this.#session.player?.sts || 0,
           autoCaptionsDefaultOn: false,
           html5Preference: 'HTML5_PREF_WANTS',

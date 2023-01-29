@@ -75,7 +75,7 @@ export default class Player {
     const args = new URLSearchParams(url);
     const url_components = new URL(args.get('url') || url);
 
-    url_components.searchParams.set('ratebypass', 'yes');
+    url_components.searchParams.set('alr', 'yes');
 
     if (signature_cipher || cipher) {
       const sig_decipher = new Jinter(this.#sig_sc);
