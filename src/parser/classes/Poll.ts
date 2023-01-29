@@ -7,25 +7,25 @@ class Poll extends YTNode {
   static type = 'Poll';
 
   choices: {
-    text: string;
+    text: Text;
     select_endpoint: NavigationEndpoint | null;
     deselect_endpoint: NavigationEndpoint | null;
-    vote_ratio_if_selected: number | string | null;
-    vote_percentage_if_selected: number | string | null;
-    vote_ratio_if_not_selected: number | string| null;
-    vote_percentage_if_not_selected: number | string | null;
+    vote_ratio_if_selected: number | null;
+    vote_percentage_if_selected: Text;
+    vote_ratio_if_not_selected: number | null;
+    vote_percentage_if_not_selected: Text;
     image: Thumbnail[] | null;
   }[];
 
-  poll_type;
-  total_votes;
-  live_chat_poll_id;
+  poll_type?: string;
+  total_votes?: Text;
+  live_chat_poll_id?: string;
 
   constructor(data: any) {
     super();
 
     this.choices = data.choices.map((choice: any) => ({
-      text: new Text(choice.text).toString(),
+      text: new Text(choice.text),
       select_endpoint: choice.selectServiceEndpoint ? new NavigationEndpoint(choice.selectServiceEndpoint) : null,
       deselect_endpoint: choice.deselectServiceEndpoint ? new NavigationEndpoint(choice.deselectServiceEndpoint) : null,
       vote_ratio_if_selected: choice?.voteRatioIfSelected || null,

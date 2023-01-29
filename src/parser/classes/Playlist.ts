@@ -33,12 +33,12 @@ class Playlist extends YTNode {
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail || { thumbnails: data.thumbnails.map((th: any) => th.thumbnails).flat(1) });
     this.video_count = new Text(data.thumbnailText);
     this.video_count_short = new Text(data.videoCountShortText);
-    this.first_videos = Parser.parse(data.videos) || [];
+    this.first_videos = Parser.parseArray(data.videos);
     this.share_url = data.shareUrl || null;
-    this.menu = Parser.parse(data.menu);
-    this.badges = Parser.parse(data.ownerBadges);
+    this.menu = Parser.parseItem(data.menu);
+    this.badges = Parser.parseArray(data.ownerBadges);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays) || [];
+    this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
   }
 }
 

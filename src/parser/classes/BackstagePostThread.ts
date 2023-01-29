@@ -8,7 +8,7 @@ class BackstagePostThread extends YTNode {
 
   constructor(data: any) {
     super();
-    this.post = Parser.parse(data.post);
+    this.post = Parser.parseItem(data.post);
   }
 }
 
