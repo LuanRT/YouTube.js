@@ -37,11 +37,11 @@ class ChannelAboutFullMetadata extends YTNode {
     this.avatar = Thumbnail.fromResponse(data.avatar);
     this.canonical_channel_url = data.canonicalChannelUrl;
 
-    this.primary_links = data.primaryLinks.map((link: any) => ({
+    this.primary_links = data.primaryLinks?.map((link: any) => ({
       endpoint: new NavigationEndpoint(link.navigationEndpoint),
       icon: Thumbnail.fromResponse(link.icon),
       title: new Text(link.title)
-    }));
+    })) ?? [];
 
     this.views = new Text(data.viewCountText);
     this.joined = new Text(data.joinedDateText);
