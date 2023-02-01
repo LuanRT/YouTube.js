@@ -176,7 +176,7 @@ describe('YouTube.js Tests', () => {
       expect(channel.has_search).toBe(true);
     })
 
-    it('should have no channel tabs channel tabs', async () => {
+    it('should have no channel tabs', async () => {
       const channel = await yt.getChannel(CHANNELS[3].ID);
       expect(channel.has_home).toBe(false);
       expect(channel.has_videos).toBe(false);
