@@ -19,8 +19,8 @@ class TopicChannelDetails extends YTNode {
     super();
 
     this.title = new Text(data.title);
-    this.avatar = Thumbnail.fromResponse(data.thumbnail);
-    this.subtitle = new Text(data.title);
+    this.avatar = Thumbnail.fromResponse(data.thumbnail ?? data.avatar);
+    this.subtitle = new Text(data.subtitle);
     this.subscribe_button = Parser.parseItem<SubscribeButton>(data.subscribeButton, SubscribeButton);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
