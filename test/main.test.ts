@@ -165,11 +165,28 @@ describe('YouTube.js Tests', () => {
 
     it('should detect missing channel tabs', async () => {
       const channel = await yt.getChannel(CHANNELS[2].ID);
+      expect(channel.has_home).toBe(true);
       expect(channel.has_videos).toBe(true);
       expect(channel.has_shorts).toBe(false);
       expect(channel.has_live_streams).toBe(false);
       expect(channel.has_playlists).toBe(true);
       expect(channel.has_community).toBe(true);
+      expect(channel.has_channels).toBe(true);
+      expect(channel.has_about).toBe(true);
+      expect(channel.has_search).toBe(true);
+    })
+
+    it('should have no channel tabs', async () => {
+      const channel = await yt.getChannel(CHANNELS[3].ID);
+      expect(channel.has_home).toBe(false);
+      expect(channel.has_videos).toBe(false);
+      expect(channel.has_shorts).toBe(false);
+      expect(channel.has_live_streams).toBe(false);
+      expect(channel.has_playlists).toBe(false);
+      expect(channel.has_community).toBe(false);
+      expect(channel.has_channels).toBe(false);
+      expect(channel.has_about).toBe(false);
+      expect(channel.has_search).toBe(false);
     })
 
     it('should retrieve home feed', async () => {

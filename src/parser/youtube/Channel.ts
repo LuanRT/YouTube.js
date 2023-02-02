@@ -196,6 +196,10 @@ export default class Channel extends TabbedFeed {
     return new Channel(this.actions, page, true);
   }
 
+  get has_home(): boolean {
+    return this.hasTabWithURL('featured');
+  }
+
   get has_videos(): boolean {
     return this.hasTabWithURL('videos');
   }
@@ -214,6 +218,18 @@ export default class Channel extends TabbedFeed {
 
   get has_community(): boolean {
     return this.hasTabWithURL('community');
+  }
+
+  get has_channels(): boolean {
+    return this.hasTabWithURL('channels');
+  }
+
+  get has_about(): boolean {
+    return this.hasTabWithURL('about');
+  }
+
+  get has_search(): boolean {
+    return this.memo.getType(ExpandableTab)?.length > 0;
   }
 
   /**
