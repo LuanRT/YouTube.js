@@ -584,7 +584,7 @@ Resolves a given url.
 ### call(endpoint, args?)
 Utility to call navigation endpoints.
 
-**Returns**: `Promise.<ActionsResponse | ParsedResponse>`
+**Returns**: `Promise.<T extends IParsedResponse | IParsedResponse | ApiResponse>`
 
 | Param | Type | Description |
 | --- | --- | --- |
