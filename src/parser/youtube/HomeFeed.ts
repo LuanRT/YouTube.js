@@ -4,18 +4,18 @@ import ChipCloudChip from '../classes/ChipCloudChip';
 import FeedTabbedHeader from '../classes/FeedTabbedHeader';
 import RichGrid from '../classes/RichGrid';
 
+import type { IBrowseResponse } from '../types/ParsedResponse';
 import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
+import type { ApiResponse } from '../../core/Actions';
 
-export default class HomeFeed extends FilterableFeed {
+export default class HomeFeed extends FilterableFeed<IBrowseResponse> {
   contents: RichGrid | AppendContinuationItemsAction | ReloadContinuationItemsCommand;
   header: FeedTabbedHeader;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
+  constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
-    this.header = this.memo.getType<FeedTabbedHeader>(FeedTabbedHeader)?.[0];
-    this.contents =
-      this.memo.getType<RichGrid>(RichGrid)?.[0] ||
-      this.page.on_response_received_actions?.[0];
+    this.header = this.memo.getType(FeedTabbedHeader).first();
+    this.contents = this.memo.getType(RichGrid).first() || this.page.on_response_received_actions.first();
   }
 
   /**
@@ -35,7 +35,7 @@ export default class HomeFeed extends FilterableFeed {
 
     // Keep the page header
     feed.page.header = this.page.header;
-    feed.page.header_memo.set(this.header.type, [ this.header ]);
+    feed.page.header_memo?.set(this.header.type, [ this.header ]);
 
     return new HomeFeed(this.actions, feed.page, true);
   }

@@ -1,5 +1,5 @@
 import EventEmitter from '../../utils/EventEmitterLike';
-import Parser, { LiveChatContinuation, ParsedResponse } from '../index';
+import Parser, { LiveChatContinuation } from '../index';
 import VideoInfo from './VideoInfo';
 import SmoothedQueue from './SmoothedQueue';
 
@@ -35,6 +35,7 @@ import LiveChatViewerEngagementMessage from '../classes/livechat/items/LiveChatV
 import ItemMenu from './ItemMenu';
 
 import type Actions from '../../core/Actions';
+import type { IParsedResponse, IUpdatedMetadataResponse } from '../types';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
@@ -219,7 +220,7 @@ class LiveChat extends EventEmitter {
         }
 
         const response = await this.#actions.execute('/updated_metadata', payload);
-        const data = Parser.parseResponse(response.data);
+        const data = Parser.parseResponse<IUpdatedMetadataResponse>(response.data);
 
         this.#mcontinuation = data.continuation?.token;
 
@@ -301,7 +302,7 @@ class LiveChat extends EventEmitter {
   /**
    * Equivalent to "clicking" a button.
    */
-  async selectButton(button: Button): Promise<ParsedResponse> {
+  async selectButton(button: Button): Promise<IParsedResponse> {
     const response = await button.endpoint.call(this.#actions, { parse: true });
     return response;
   }

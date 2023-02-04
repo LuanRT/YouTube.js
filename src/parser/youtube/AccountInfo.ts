@@ -1,5 +1,6 @@
-import Parser, { ParsedResponse } from '..';
+import Parser from '..';
 import type { ApiResponse } from '../../core/Actions';
+import type { IParsedResponse } from '../types';
 
 import AccountSectionList from '../classes/AccountSectionList';
 import AccountItemSection from '../classes/AccountItemSection';
@@ -8,7 +9,7 @@ import AccountChannel from '../classes/AccountChannel';
 import { InnertubeError } from '../../utils/Utils';
 
 class AccountInfo {
-  #page: ParsedResponse;
+  #page: IParsedResponse;
 
   contents: AccountItemSection | null;
   footers: AccountChannel | null;
@@ -16,7 +17,10 @@ class AccountInfo {
   constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);
 
-    const account_section_list = this.#page.contents.array().as(AccountSectionList)?.[0];
+    if (!this.#page.contents)
+      throw new InnertubeError('Page contents not found');
+
+    const account_section_list = this.#page.contents.array().as(AccountSectionList).first();
 
     if (!account_section_list)
       throw new InnertubeError('Account section list not found');
@@ -25,7 +29,7 @@ class AccountInfo {
     this.footers = account_section_list.footers;
   }
 
-  get page(): ParsedResponse {
+  get page(): IParsedResponse {
     return this.#page;
   }
 }

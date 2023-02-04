@@ -1,29 +1,29 @@
 import Feed from '../../core/Feed';
-
+import Message from '../classes/Message';
 import Thumbnail from '../classes/misc/Thumbnail';
-import VideoOwner from '../classes/VideoOwner';
-
+import NavigationEndpoint from '../classes/NavigationEndpoint';
+import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail';
+import PlaylistHeader from '../classes/PlaylistHeader';
 import PlaylistMetadata from '../classes/PlaylistMetadata';
 import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo';
 import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo';
-import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail';
-import PlaylistHeader from '../classes/PlaylistHeader';
-import Message from '../classes/Message';
+import VideoOwner from '../classes/VideoOwner';
 
 import { InnertubeError } from '../../utils/Utils';
+import { ObservedArray } from '../helpers';
 
 import type Actions from '../../core/Actions';
-import { ObservedArray } from '../helpers';
-import NavigationEndpoint from '../classes/NavigationEndpoint';
+import type { IBrowseResponse } from '../types';
+import type { ApiResponse } from '../../core/Actions';
 
-class Playlist extends Feed {
+class Playlist extends Feed<IBrowseResponse> {
   info;
   menu;
   endpoint?: NavigationEndpoint;
   messages: ObservedArray<Message>;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
+  constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
 
     const header = this.memo.getType(PlaylistHeader).first();
@@ -34,7 +34,7 @@ class Playlist extends Feed {
       throw new InnertubeError('This playlist does not exist');
 
     this.info = {
-      ...this.page.metadata.item().as(PlaylistMetadata),
+      ...this.page.metadata?.item().as(PlaylistMetadata),
       ...{
         author: secondary_info?.owner.item().as(VideoOwner).author ?? header?.author,
         thumbnails: primary_info?.thumbnail_renderer.item().as(PlaylistVideoThumbnail, PlaylistCustomThumbnail).thumbnail as Thumbnail[],
@@ -63,8 +63,10 @@ class Playlist extends Feed {
   }
 
   async getContinuation(): Promise<Playlist> {
-    const response = await this.getContinuationData();
-    return new Playlist(this.actions, response, true);
+    const page = await this.getContinuationData();
+    if (!page)
+      throw new InnertubeError('Could not get continuation data');
+    return new Playlist(this.actions, page, true);
   }
 }
 

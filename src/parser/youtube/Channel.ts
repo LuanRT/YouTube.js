@@ -1,34 +1,36 @@
-import type Actions from '../../core/Actions';
-import TabbedFeed from '../../core/TabbedFeed';
 import C4TabbedHeader from '../classes/C4TabbedHeader';
 import CarouselHeader from '../classes/CarouselHeader';
 import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata';
 import ChannelMetadata from '../classes/ChannelMetadata';
+import ChannelSubMenu from '../classes/ChannelSubMenu';
+import ChipCloudChip from '../classes/ChipCloudChip';
+import ExpandableTab from '../classes/ExpandableTab';
+import FeedFilterChipBar from '../classes/FeedFilterChipBar';
 import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader';
 import MicroformatData from '../classes/MicroformatData';
-import SubscribeButton from '../classes/SubscribeButton';
-import ExpandableTab from '../classes/ExpandableTab';
 import SectionList from '../classes/SectionList';
+import SortFilterSubMenu from '../classes/SortFilterSubMenu';
+import SubscribeButton from '../classes/SubscribeButton';
 import Tab from '../classes/Tab';
 
 import Feed from '../../core/Feed';
 import FilterableFeed from '../../core/FilterableFeed';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import FeedFilterChipBar from '../classes/FeedFilterChipBar';
-import ChannelSubMenu from '../classes/ChannelSubMenu';
-import SortFilterSubMenu from '../classes/SortFilterSubMenu';
+import TabbedFeed from '../../core/TabbedFeed';
 
 import { ChannelError, InnertubeError } from '../../utils/Utils';
 
 import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
+import type Actions from '../../core/Actions';
+import type { ApiResponse } from '../../core/Actions';
+import type { IBrowseResponse } from '../types';
 
-export default class Channel extends TabbedFeed {
+export default class Channel extends TabbedFeed<IBrowseResponse> {
   header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader;
   metadata;
   subscribe_button?: SubscribeButton;
   current_tab?: Tab | ExpandableTab;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
+  constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
 
     this.header = this.page.header?.item()?.as(C4TabbedHeader, CarouselHeader, InteractiveTabbedHeader);
@@ -48,9 +50,9 @@ export default class Channel extends TabbedFeed {
 
     this.metadata = { ...metadata, ...(microformat || {}) };
 
-    this.subscribe_button = this.page.header_memo.getType(SubscribeButton)?.[0];
+    this.subscribe_button = this.page.header_memo?.getType(SubscribeButton).first();
 
-    this.current_tab = this.page.contents.item().key('tabs').parsed().array().filterType(Tab, ExpandableTab).get({ selected: true });
+    this.current_tab = this.page.contents?.item().key('tabs').parsed().array().filterType(Tab, ExpandableTab).get({ selected: true });
   }
 
   /**
@@ -73,7 +75,10 @@ export default class Channel extends TabbedFeed {
     if (!target_filter)
       throw new InnertubeError('Invalid filter', filter);
 
-    const page = await target_filter.endpoint?.call(this.actions, { parse: true });
+    const page = await target_filter.endpoint?.call<IBrowseResponse>(this.actions, { parse: true });
+
+    if (!page)
+      throw new InnertubeError('No page returned', { filter: target_filter });
 
     return new FilteredChannelList(this.actions, page, true);
   }
@@ -96,7 +101,7 @@ export default class Channel extends TabbedFeed {
     if (target_sort.selected)
       return this;
 
-    const page = await target_sort.endpoint?.call(this.actions, { parse: true });
+    const page = await target_sort.endpoint?.call<IBrowseResponse>(this.actions, { parse: true });
 
     return new Channel(this.actions, page, true);
   }
@@ -119,7 +124,7 @@ export default class Channel extends TabbedFeed {
     if (item.selected)
       return this;
 
-    const page = await item.endpoint?.call(this.actions, { parse: true });
+    const page = await item.endpoint?.call<IBrowseResponse>(this.actions, { parse: true });
 
     return new Channel(this.actions, page, true);
   }
@@ -191,7 +196,7 @@ export default class Channel extends TabbedFeed {
     if (!tab)
       throw new InnertubeError('Search tab not found', this);
 
-    const page = await tab.endpoint?.call(this.actions, { query, parse: true });
+    const page = await tab.endpoint?.call<IBrowseResponse>(this.actions, { query, parse: true });
 
     return new Channel(this.actions, page, true);
   }
@@ -221,14 +226,16 @@ export default class Channel extends TabbedFeed {
    */
   async getContinuation(): Promise<ChannelListContinuation> {
     const page = await super.getContinuationData();
+    if (!page)
+      throw new InnertubeError('Could not get continuation data');
     return new ChannelListContinuation(this.actions, page, true);
   }
 }
 
-export class ChannelListContinuation extends Feed {
+export class ChannelListContinuation extends Feed<IBrowseResponse> {
   contents: ReloadContinuationItemsCommand | AppendContinuationItemsAction | undefined;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
+  constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.contents =
       this.page.on_response_received_actions?.[0] ||
@@ -240,15 +247,17 @@ export class ChannelListContinuation extends Feed {
    */
   async getContinuation(): Promise<ChannelListContinuation> {
     const page = await super.getContinuationData();
+    if (!page)
+      throw new InnertubeError('Could not get continuation data');
     return new ChannelListContinuation(this.actions, page, true);
   }
 }
 
-export class FilteredChannelList extends FilterableFeed {
+export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
   applied_filter?: ChipCloudChip;
-  contents;
+  contents: ReloadContinuationItemsCommand | AppendContinuationItemsAction;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
+  constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
 
     this.applied_filter = this.memo.getType(ChipCloudChip).get({ is_selected: true });
@@ -261,7 +270,7 @@ export class FilteredChannelList extends FilterableFeed {
       this.page.on_response_received_actions.shift();
     }
 
-    this.contents = this.page.on_response_received_actions?.[0];
+    this.contents = this.page.on_response_received_actions.first();
   }
 
   /**
@@ -279,9 +288,12 @@ export class FilteredChannelList extends FilterableFeed {
   async getContinuation(): Promise<FilteredChannelList> {
     const page = await super.getContinuationData();
 
+    if (!page?.on_response_received_actions_memo)
+      throw new InnertubeError('Unexpected continuation data', page);
+
     // Keep the filters
-    page?.on_response_received_actions_memo.set('FeedFilterChipBar', this.memo.getType(FeedFilterChipBar));
-    page?.on_response_received_actions_memo.set('ChipCloudChip', this.memo.getType(ChipCloudChip));
+    page.on_response_received_actions_memo.set('FeedFilterChipBar', this.memo.getType(FeedFilterChipBar));
+    page.on_response_received_actions_memo.set('ChipCloudChip', this.memo.getType(ChipCloudChip));
 
     return new FilteredChannelList(this.actions, page, true);
   }

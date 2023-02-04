@@ -1,4 +1,4 @@
-import Parser, { ParsedResponse } from '..';
+import Parser from '..';
 import ItemSection from '../classes/ItemSection';
 import SectionList from '../classes/SectionList';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
@@ -6,13 +6,17 @@ import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
 import { InnertubeError } from '../../utils/Utils';
 import type { ApiResponse } from '../../core/Actions';
 import type { ObservedArray } from '../helpers';
+import type { IBrowseResponse } from '../types';
 
 class TimeWatched {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
   contents?: ObservedArray<ItemSection>;
 
   constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);
+
+    if (!this.#page.contents)
+      throw new InnertubeError('Page contents not found');
 
     const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
 
@@ -22,7 +26,7 @@ class TimeWatched {
     this.contents = tab.content?.as(SectionList).contents.as(ItemSection);
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }

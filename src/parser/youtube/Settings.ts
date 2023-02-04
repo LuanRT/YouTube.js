@@ -1,33 +1,36 @@
-import Parser, { ParsedResponse } from '..';
+import Parser from '..';
 import { InnertubeError } from '../../utils/Utils';
 
-import ItemSection from '../classes/ItemSection';
-import SectionList from '../classes/SectionList';
-import Tab from '../classes/Tab';
-import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults';
-
 import CompactLink from '../classes/CompactLink';
+import ItemSection from '../classes/ItemSection';
 import PageIntroduction from '../classes/PageIntroduction';
+import SectionList from '../classes/SectionList';
 import SettingsOptions from '../classes/SettingsOptions';
 import SettingsSidebar from '../classes/SettingsSidebar';
 import SettingsSwitch from '../classes/SettingsSwitch';
+import Tab from '../classes/Tab';
+import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults';
 
 import type Actions from '../../core/Actions';
 import type { ApiResponse } from '../../core/Actions';
+import type { IBrowseResponse } from '../types';
 
 class Settings {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
   #actions: Actions;
 
-  sidebar: SettingsSidebar | null | undefined;
-  introduction: PageIntroduction | null | undefined;
+  sidebar?: SettingsSidebar;
+  introduction?: PageIntroduction;
   sections;
 
   constructor(actions: Actions, response: ApiResponse) {
     this.#actions = actions;
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
     this.sidebar = this.#page.sidebar?.as(SettingsSidebar);
+
+    if (!this.#page.contents)
+      throw new InnertubeError('Page contents not found');
 
     const tab = this.#page.contents.item().as(TwoColumnBrowseResults).tabs.array().as(Tab).get({ selected: true });
 
@@ -124,7 +127,7 @@ class Settings {
     return this.sidebar.items.map((item) => item.title.toString());
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }

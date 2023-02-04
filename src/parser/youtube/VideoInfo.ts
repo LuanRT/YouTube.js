@@ -1,5 +1,5 @@
 import Constants from '../../utils/Constants';
-import Parser, { ParsedResponse } from '../index';
+import Parser from '../index';
 
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo';
@@ -33,13 +33,14 @@ import type Player from '../../core/Player';
 import type Actions from '../../core/Actions';
 import type { ApiResponse } from '../../core/Actions';
 import type { ObservedArray, YTNode } from '../helpers';
+import type { IPlayerResponse, INextResponse } from '../types';
 
 import FormatUtils, { FormatOptions, DownloadOptions, URLTransformer, FormatFilter } from '../../utils/FormatUtils';
 
 import { InnertubeError } from '../../utils/Utils';
 
 class VideoInfo {
-  #page: [ParsedResponse, ParsedResponse?];
+  #page: [IPlayerResponse, INextResponse?];
 
   #actions: Actions;
   #player?: Player;
@@ -49,11 +50,11 @@ class VideoInfo {
   basic_info;
   streaming_data;
   playability_status;
-  annotations: ObservedArray<PlayerAnnotationsExpanded>;
-  storyboards: PlayerStoryboardSpec | PlayerLiveStoryboardSpec | null;
-  endscreen: Endscreen | null;
-  captions: PlayerCaptionsTracklist | null;
-  cards: CardCollection | null;
+  annotations?: ObservedArray<PlayerAnnotationsExpanded>;
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
+  endscreen?: Endscreen;
+  captions?: PlayerCaptionsTracklist;
+  cards?: CardCollection;
 
   #playback_tracking;
 
@@ -77,8 +78,8 @@ class VideoInfo {
     this.#player = player;
     this.#cpn = cpn;
 
-    const info = Parser.parseResponse(data[0].data);
-    const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
+    const info = Parser.parseResponse<IPlayerResponse>(data[0].data);
+    const next = data?.[1]?.data ? Parser.parseResponse<INextResponse>(data[1].data) : undefined;
 
     this.#page = [ info, next ];
 
@@ -117,7 +118,7 @@ class VideoInfo {
 
     this.#playback_tracking = info.playback_tracking;
 
-    const two_col = next?.contents.item().as(TwoColumnWatchNextResults);
+    const two_col = next?.contents?.item().as(TwoColumnWatchNextResults);
 
     const results = two_col?.results;
     const secondary_results = two_col?.secondary_results;
@@ -133,7 +134,7 @@ class VideoInfo {
       if (this.watch_next_feed && Array.isArray(this.watch_next_feed) && this.watch_next_feed.at(-1)?.is(ContinuationItem))
         this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
 
-      this.player_overlays = next?.player_overlays.item().as(PlayerOverlay);
+      this.player_overlays = next?.player_overlays?.item().as(PlayerOverlay);
 
       const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
 
@@ -144,7 +145,7 @@ class VideoInfo {
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
       this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
-      this.livechat = next?.contents_memo.getType(LiveChat).first();
+      this.livechat = next?.contents_memo?.getType(LiveChat).first();
     }
   }
 
@@ -394,7 +395,7 @@ class VideoInfo {
   /**
    * Original parsed InnerTube response.
    */
-  get page(): [ParsedResponse, ParsedResponse?] {
+  get page(): [IPlayerResponse, INextResponse?] {
     return this.#page;
   }
 }
