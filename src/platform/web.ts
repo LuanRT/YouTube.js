@@ -84,8 +84,8 @@ class Cache implements ICache {
 }
 
 Platform.load({
-  runtime: 'deno',
-  server: true,
+  runtime: 'browser',
+  server: false,
   info: {
     version: package_json.version,
     bugs_url: package_json.bugs.url,
