@@ -1,9 +1,9 @@
-import Parser from '..';
-import { ObservedArray, YTNode } from '../helpers';
-import Button from './Button';
-import Dropdown from './Dropdown';
-import DropdownItem from './DropdownItem';
-import Text from './misc/Text';
+import Parser from '../index.js';
+import { ObservedArray, YTNode } from '../helpers.js';
+import Button from './Button.js';
+import Dropdown from './Dropdown.js';
+import DropdownItem from './DropdownItem.js';
+import Text from './misc/Text.js';
 
 class CreatePlaylistDialog extends YTNode {
   static type = 'CreatePlaylistDialog';

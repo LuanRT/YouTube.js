@@ -1,12 +1,12 @@
-import Button from '../classes/Button';
-import Menu from '../classes/menus/Menu';
-import MenuServiceItem from '../classes/menus/MenuServiceItem';
-import NavigationEndpoint from '../classes/NavigationEndpoint';
+import Button from '../classes/Button.js';
+import Menu from '../classes/menus/Menu.js';
+import MenuServiceItem from '../classes/menus/MenuServiceItem.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
-import type Actions from '../../core/Actions';
-import type { ParsedResponse } from '..';
-import { InnertubeError } from '../../utils/Utils';
-import type { ObservedArray, YTNode } from '../helpers';
+import type Actions from '../../core/Actions.js';
+import type { ParsedResponse } from '../index.js';
+import { InnertubeError } from '../../utils/Utils.js';
+import type { ObservedArray, YTNode } from '../helpers.js';
 
 class ItemMenu {
   #page: ParsedResponse;

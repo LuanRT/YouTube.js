@@ -1,13 +1,14 @@
-import UniversalCache from '../utils/Cache';
-import Constants, { CLIENTS } from '../utils/Constants';
-import EventEmitterLike from '../utils/EventEmitterLike';
-import Actions from './Actions';
-import Player from './Player';
+import Constants, { CLIENTS } from '../utils/Constants.js';
+import EventEmitterLike from '../utils/EventEmitterLike.js';
+import Actions from './Actions.js';
+import Player from './Player.js';
 
-import HTTPClient, { FetchFunction } from '../utils/HTTPClient';
-import { DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils';
-import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth';
-import Proto from '../proto';
+import HTTPClient from '../utils/HTTPClient.js';
+import { Platform, DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils.js';
+import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.js';
+import Proto from '../proto/index.js';
+import { ICache } from '../types/Cache.js';
+import { FetchFunction } from '../types/PlatformShim.js';
 
 export enum ClientType {
   WEB = 'WEB',
@@ -112,7 +113,7 @@ export interface SessionOptions {
   /**
    * Used to cache the deciphering functions from the JS player.
    */
-  cache?: UniversalCache;
+  cache?: ICache;
   /**
    * YouTube cookies.
    */
@@ -140,9 +141,9 @@ export default class Session extends EventEmitterLike {
   http: HTTPClient;
   logged_in: boolean;
   actions: Actions;
-  cache?: UniversalCache;
+  cache?: ICache;
 
-  constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: UniversalCache) {
+  constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: ICache) {
     super();
     this.#context = context;
     this.#account_index = account_index;
@@ -202,7 +203,7 @@ export default class Session extends EventEmitterLike {
     device_category: DeviceCategory = 'desktop',
     client_name: ClientType = ClientType.WEB,
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
-    fetch: FetchFunction = globalThis.fetch
+    fetch: FetchFunction = Platform.shim.fetch
   ) {
     let session_data: SessionData;
 
@@ -222,7 +223,7 @@ export default class Session extends EventEmitterLike {
     device_category: string;
     client_name: string;
     enable_safety_mode: boolean;
-  }, fetch: FetchFunction = globalThis.fetch): Promise<SessionData> {
+  }, fetch: FetchFunction = Platform.shim.fetch): Promise<SessionData> {
     const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
 
     const res = await fetch(url, {

@@ -1,5 +1,5 @@
-import Player from '../../../core/Player';
-import { InnertubeError } from '../../../utils/Utils';
+import Player from '../../../core/Player.js';
+import { InnertubeError } from '../../../utils/Utils.js';
 
 class Format {
   itag: number;
@@ -99,7 +99,7 @@ class Format {
    * Decipher the streaming url of the format.
    * @returns Deciphered URL.
    */
-  decipher(player: Player | undefined): string {
+  decipher(player: Player | undefined): Promise<string> {
     if (!player) throw new InnertubeError('Cannot decipher format, this session appears to have no valid player.');
     return player.decipher(this.url, this.signature_cipher, this.cipher);
   }

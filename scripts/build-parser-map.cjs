@@ -12,7 +12,7 @@ glob.sync('../src/parser/classes/**/*.{js,ts}', { cwd: __dirname })
     // Trim path
     file = file.replace('../src/parser/classes/', '').replace('.js', '').replace('.ts', '');
     const import_name = file.split('/').pop();
-    import_list.push(`import { default as ${import_name} } from './classes/${file}';`);
+    import_list.push(`import { default as ${import_name} } from './classes/${file}.js';`);
     json.push(import_name);
   });
 
@@ -20,7 +20,7 @@ fs.writeFileSync(
   path.resolve(__dirname, '../src/parser/map.ts'),
   `// This file was auto generated, do not edit.
 // See ./scripts/build-parser-map.js
-import { YTNodeConstructor } from './helpers';
+import { YTNodeConstructor } from './helpers.js';
 
 ${import_list.join('\n')}
 

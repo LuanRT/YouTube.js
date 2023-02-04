@@ -1,11 +1,11 @@
-import Parser from '../index';
-import Author from './misc/Author';
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import type CommentActionButtons from './comments/CommentActionButtons';
-import type Menu from './menus/Menu';
+import Parser from '../index.js';
+import Author from './misc/Author.js';
+import Text from './misc/Text.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import type CommentActionButtons from './comments/CommentActionButtons.js';
+import type Menu from './menus/Menu.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class BackstagePost extends YTNode {
   static type = 'BackstagePost';

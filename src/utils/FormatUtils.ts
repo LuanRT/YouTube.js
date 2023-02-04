@@ -1,17 +1,12 @@
-import Player from '../core/Player';
-import Actions from '../core/Actions';
+import Player from '../core/Player.js';
+import Actions from '../core/Actions.js';
 
-import type Format from '../parser/classes/misc/Format';
-import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability';
-import type { YTNode } from '../parser/helpers';
+import type Format from '../parser/classes/misc/Format.js';
+import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability.js';
+import type { YTNode } from '../parser/helpers.js';
 
-import { DOMParser } from 'linkedom';
-import type { Element } from 'linkedom/types/interface/element';
-import type { Node } from 'linkedom/types/interface/node';
-import type { XMLDocument } from 'linkedom/types/xml/document';
-
-import { Constants } from '.';
-import { getStringBetweenStrings, InnertubeError, streamToIterable } from './Utils';
+import { Constants } from './index.js';
+import { getStringBetweenStrings, InnertubeError, Platform, streamToIterable } from './Utils.js';
 
 export type URLTransformer = (url: URL) => URL;
 export type FormatFilter = (format: Format) => boolean;
@@ -79,7 +74,7 @@ class FormatUtils {
     };
 
     const format = this.chooseFormat(opts, streaming_data);
-    const format_url = format.decipher(player);
+    const format_url = await format.decipher(player);
 
     // If we're not downloading the video in chunks, we just use fetch once.
     if (opts.type === 'video+audio' && !options.range) {
@@ -111,7 +106,7 @@ class FormatUtils {
 
     let cancel: AbortController;
 
-    const readable_stream = new ReadableStream<Uint8Array>({
+    const readable_stream = new Platform.shim.ReadableStream<Uint8Array>({
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       start() { },
       pull: async (controller) => {
@@ -244,13 +239,13 @@ class FormatUtils {
     return candidates[0];
   }
 
-  static toDash(streaming_data?: {
+  static async toDash(streaming_data?: {
     expires: Date;
     formats: Format[];
     adaptive_formats: Format[];
     dash_manifest_url: string | null;
     hls_manifest_url: string | null;
-  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player): string {
+  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player): Promise<string> {
     if (!streaming_data)
       throw new InnertubeError('Streaming data not available');
 
@@ -275,7 +270,7 @@ class FormatUtils {
 
     const length = adaptive_formats[0].approx_duration_ms / 1000;
 
-    const document = new DOMParser().parseFromString('', 'text/xml');
+    const document = new Platform.shim.DOMParser().parseFromString('', 'text/xml');
     const period = document.createElement('Period');
 
     document.appendChild(this.#el(document, 'MPD', {
@@ -290,7 +285,7 @@ class FormatUtils {
       period
     ]));
 
-    this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player);
+    await this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player);
 
     return `${document}`;
   }
@@ -298,7 +293,7 @@ class FormatUtils {
   static #el(document: XMLDocument, tag: string, attrs: Record<string, string | undefined>, children: Node[] = []) {
     const el = document.createElement(tag);
     for (const [ key, value ] of Object.entries(attrs)) {
-      el.setAttribute(key, value);
+      value && el.setAttribute(key, value);
     }
     for (const child of children) {
       if (typeof child === 'undefined') continue;
@@ -307,7 +302,7 @@ class FormatUtils {
     return el;
   }
 
-  static #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static async #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer, cpn?: string, player?: Player) {
     const mime_types: string[] = [];
     const mime_objects: Format[][] = [ [] ];
 
@@ -336,23 +331,23 @@ class FormatUtils {
 
       period.appendChild(set);
 
-      mime_objects[i].forEach((format) => {
+      for (const format of mime_objects[i]) {
         if (format.has_video) {
-          this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
+          await this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
         } else {
-          this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+          await this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
         }
-      });
+      }
     }
   }
 
-  static #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static async #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
 
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
 
-    const url = new URL(format.decipher(player));
+    const url = new URL(await format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {
@@ -377,12 +372,12 @@ class FormatUtils {
     ]));
   }
 
-  static #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static async #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
 
-    const url = new URL(format.decipher(player));
+    const url = new URL(await format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {

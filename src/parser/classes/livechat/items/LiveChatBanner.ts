@@ -1,6 +1,6 @@
-import { YTNode } from '../../../helpers';
-import Parser from '../../../index';
-import type LiveChatBannerHeader from './LiveChatBannerHeader';
+import { YTNode } from '../../../helpers.js';
+import Parser from '../../../index.js';
+import type LiveChatBannerHeader from './LiveChatBannerHeader.js';
 
 class LiveChatBanner extends YTNode {
   static type = 'LiveChatBanner';

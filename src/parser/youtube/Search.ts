@@ -1,13 +1,13 @@
-import Feed from '../../core/Feed';
-import HorizontalCardList from '../classes/HorizontalCardList';
-import ItemSection from '../classes/ItemSection';
-import SearchRefinementCard from '../classes/SearchRefinementCard';
-import SectionList from '../classes/SectionList';
-import UniversalWatchCard from '../classes/UniversalWatchCard';
+import Feed from '../../core/Feed.js';
+import HorizontalCardList from '../classes/HorizontalCardList.js';
+import ItemSection from '../classes/ItemSection.js';
+import SearchRefinementCard from '../classes/SearchRefinementCard.js';
+import SectionList from '../classes/SectionList.js';
+import UniversalWatchCard from '../classes/UniversalWatchCard.js';
 
-import type Actions from '../../core/Actions';
-import { InnertubeError } from '../../utils/Utils';
-import type { ObservedArray, YTNode } from '../helpers';
+import type Actions from '../../core/Actions.js';
+import { InnertubeError } from '../../utils/Utils.js';
+import type { ObservedArray, YTNode } from '../helpers.js';
 
 export default class Search extends Feed {
   results?: ObservedArray<YTNode> | null;

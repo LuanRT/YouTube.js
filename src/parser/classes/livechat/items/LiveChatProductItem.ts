@@ -1,9 +1,9 @@
-import Parser from '../../../index';
-import { YTNode } from '../../../helpers';
+import Parser from '../../../index.js';
+import { YTNode } from '../../../helpers.js';
 
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
-import NavigationEndpoint from '../../NavigationEndpoint';
+import Text from '../../misc/Text.js';
+import Thumbnail from '../../misc/Thumbnail.js';
+import NavigationEndpoint from '../../NavigationEndpoint.js';
 
 class LiveChatProductItem extends YTNode {
   static type = 'LiveChatProductItem';

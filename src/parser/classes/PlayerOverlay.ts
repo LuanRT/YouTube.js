@@ -1,11 +1,11 @@
-import Parser from '../index';
-import Menu from './menus/Menu';
-import Button from './Button';
-import WatchNextEndScreen from './WatchNextEndScreen';
-import PlayerOverlayAutoplay from './PlayerOverlayAutoplay';
-import type DecoratedPlayerBar from './DecoratedPlayerBar';
+import Parser from '../index.js';
+import Menu from './menus/Menu.js';
+import Button from './Button.js';
+import WatchNextEndScreen from './WatchNextEndScreen.js';
+import PlayerOverlayAutoplay from './PlayerOverlayAutoplay.js';
+import type DecoratedPlayerBar from './DecoratedPlayerBar.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class PlayerOverlay extends YTNode {
   static type = 'PlayerOverlay';

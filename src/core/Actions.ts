@@ -1,6 +1,6 @@
-import Parser, { ParsedResponse } from '../parser/index';
-import { InnertubeError } from '../utils/Utils';
-import type Session from './Session';
+import Parser, { ParsedResponse } from '../parser/index.js';
+import { InnertubeError } from '../utils/Utils.js';
+import type Session from './Session.js';
 
 export interface ApiResponse {
   success: boolean;

@@ -1,21 +1,21 @@
-import Feed from '../../core/Feed';
+import Feed from '../../core/Feed.js';
 
-import Thumbnail from '../classes/misc/Thumbnail';
-import VideoOwner from '../classes/VideoOwner';
+import Thumbnail from '../classes/misc/Thumbnail.js';
+import VideoOwner from '../classes/VideoOwner.js';
 
-import PlaylistMetadata from '../classes/PlaylistMetadata';
-import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo';
-import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo';
-import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail';
-import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail';
-import PlaylistHeader from '../classes/PlaylistHeader';
-import Message from '../classes/Message';
+import PlaylistMetadata from '../classes/PlaylistMetadata.js';
+import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.js';
+import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.js';
+import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail.js';
+import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.js';
+import PlaylistHeader from '../classes/PlaylistHeader.js';
+import Message from '../classes/Message.js';
 
-import { InnertubeError } from '../../utils/Utils';
+import { InnertubeError } from '../../utils/Utils.js';
 
-import type Actions from '../../core/Actions';
-import { ObservedArray } from '../helpers';
-import NavigationEndpoint from '../classes/NavigationEndpoint';
+import type Actions from '../../core/Actions.js';
+import { ObservedArray } from '../helpers.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
 class Playlist extends Feed {
   info;

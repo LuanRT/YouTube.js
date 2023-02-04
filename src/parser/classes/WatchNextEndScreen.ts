@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import EndScreenVideo from './EndScreenVideo';
-import EndScreenPlaylist from './EndScreenPlaylist';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import EndScreenVideo from './EndScreenVideo.js';
+import EndScreenPlaylist from './EndScreenPlaylist.js';
+import { YTNode } from '../helpers.js';
 
 class WatchNextEndScreen extends YTNode {
   static type = 'WatchNextEndScreen';

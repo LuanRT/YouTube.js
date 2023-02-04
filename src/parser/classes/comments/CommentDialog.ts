@@ -1,9 +1,9 @@
-import Parser from '../..';
-import Text from '../misc/Text';
-import Thumbnail from '../misc/Thumbnail';
-import type Button from '../Button';
-import type EmojiPicker from './EmojiPicker';
-import { YTNode } from '../../helpers';
+import Parser from '../../index.js';
+import Text from '../misc/Text.js';
+import Thumbnail from '../misc/Thumbnail.js';
+import type Button from '../Button.js';
+import type EmojiPicker from './EmojiPicker.js';
+import { YTNode } from '../../helpers.js';
 
 class CommentDialog extends YTNode {
   static type = 'CommentDialog';

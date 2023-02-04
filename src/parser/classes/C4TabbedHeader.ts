@@ -1,13 +1,13 @@
-import Parser from '../index';
-import Author from './misc/Author';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
+import Parser from '../index.js';
+import Author from './misc/Author.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
 
-import type Button from './Button';
-import type ChannelHeaderLinks from './ChannelHeaderLinks';
-import type SubscribeButton from './SubscribeButton';
+import type Button from './Button.js';
+import type ChannelHeaderLinks from './ChannelHeaderLinks.js';
+import type SubscribeButton from './SubscribeButton.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class C4TabbedHeader extends YTNode {
   static type = 'C4TabbedHeader';

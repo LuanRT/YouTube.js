@@ -1,6 +1,6 @@
-import { YTNode } from '../helpers';
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
+import { YTNode } from '../helpers.js';
+import Text from './misc/Text.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
 class DropdownItem extends YTNode {
   static type = 'DropdownItem';

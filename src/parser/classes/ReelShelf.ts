@@ -1,7 +1,7 @@
-import Parser from '../index';
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Text from './misc/Text.js';
+import { YTNode } from '../helpers.js';
 
 class ReelShelf extends YTNode {
   static type = 'ReelShelf';

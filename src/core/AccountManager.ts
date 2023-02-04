@@ -1,13 +1,13 @@
-import Proto from '../proto/index';
-import type Actions from './Actions';
-import type { ActionsResponse } from './Actions';
+import Proto from '../proto/index.js';
+import type Actions from './Actions.js';
+import type { ActionsResponse } from './Actions.js';
 
-import Analytics from '../parser/youtube/Analytics';
-import TimeWatched from '../parser/youtube/TimeWatched';
-import AccountInfo from '../parser/youtube/AccountInfo';
-import Settings from '../parser/youtube/Settings';
+import Analytics from '../parser/youtube/Analytics.js';
+import TimeWatched from '../parser/youtube/TimeWatched.js';
+import AccountInfo from '../parser/youtube/AccountInfo.js';
+import Settings from '../parser/youtube/Settings.js';
 
-import { InnertubeError } from '../utils/Utils';
+import { InnertubeError } from '../utils/Utils.js';
 
 class AccountManager {
   #actions: Actions;

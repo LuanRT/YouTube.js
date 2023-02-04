@@ -1,5 +1,5 @@
-import Parser from '../../../index';
-import LiveChatTextMessage from './LiveChatTextMessage';
+import Parser from '../../../index.js';
+import LiveChatTextMessage from './LiveChatTextMessage.js';
 
 class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
   static type = 'LiveChatViewerEngagementMessage';

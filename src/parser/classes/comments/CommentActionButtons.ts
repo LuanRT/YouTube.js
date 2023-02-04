@@ -1,8 +1,8 @@
-import Parser from '../../index';
-import type Button from '../Button';
-import type ToggleButton from '../ToggleButton';
-import type CreatorHeart from './CreatorHeart';
-import { YTNode } from '../../helpers';
+import Parser from '../../index.js';
+import type Button from '../Button.js';
+import type ToggleButton from '../ToggleButton.js';
+import type CreatorHeart from './CreatorHeart.js';
+import { YTNode } from '../../helpers.js';
 
 class CommentActionButtons extends YTNode {
   static type = 'CommentActionButtons';

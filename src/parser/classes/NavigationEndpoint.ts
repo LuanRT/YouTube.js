@@ -1,8 +1,8 @@
-import Parser, { ParsedResponse } from '../index';
-import Actions, { ActionsResponse } from '../../core/Actions';
-import { YTNode } from '../helpers';
+import Parser, { ParsedResponse } from '../index.js';
+import Actions, { ActionsResponse } from '../../core/Actions.js';
+import { YTNode } from '../helpers.js';
 
-import CreatePlaylistDialog from './CreatePlaylistDialog';
+import CreatePlaylistDialog from './CreatePlaylistDialog.js';
 
 class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';

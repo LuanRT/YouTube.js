@@ -1,9 +1,9 @@
-import Parser from '../../index';
-import NavigatableText from './NavigatableText';
-import NavigationEndpoint from '../NavigationEndpoint';
-import TextRun from './TextRun';
-import Thumbnail from './Thumbnail';
-import Constants from '../../../utils/Constants';
+import Parser from '../../index.js';
+import NavigatableText from './NavigatableText.js';
+import NavigationEndpoint from '../NavigationEndpoint.js';
+import TextRun from './TextRun.js';
+import Thumbnail from './Thumbnail.js';
+import Constants from '../../../utils/Constants.js';
 
 class Author {
   #nav_text;

@@ -1,8 +1,8 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
+import Text from './misc/Text.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
 class DefaultPromoPanel extends YTNode {
   static type = 'DefaultPromoPanel';

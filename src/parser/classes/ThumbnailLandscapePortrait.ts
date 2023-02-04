@@ -1,5 +1,5 @@
-import { YTNode } from '../helpers';
-import Thumbnail from './misc/Thumbnail';
+import { YTNode } from '../helpers.js';
+import Thumbnail from './misc/Thumbnail.js';
 
 class ThumbnailLandscapePortrait extends YTNode {
   static type = 'ThumbnailLandscapePortrait';

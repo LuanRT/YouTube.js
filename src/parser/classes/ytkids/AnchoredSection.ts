@@ -1,7 +1,7 @@
-import Parser from '../..';
-import NavigationEndpoint from '../NavigationEndpoint';
-import type SectionList from '../SectionList';
-import { YTNode } from '../../helpers';
+import Parser from '../../index.js';
+import NavigationEndpoint from '../NavigationEndpoint.js';
+import type SectionList from '../SectionList.js';
+import { YTNode } from '../../helpers.js';
 
 class AnchoredSection extends YTNode {
   static type = 'AnchoredSection';

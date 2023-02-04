@@ -1,21 +1,21 @@
-import Parser from '../../index';
+import Parser from '../../index.js';
 
-import Text from '../misc/Text';
-import Thumbnail from '../misc/Thumbnail';
-import CommentReplyDialog from './CommentReplyDialog';
-import AuthorCommentBadge from './AuthorCommentBadge';
-import Author from '../misc/Author';
+import Text from '../misc/Text.js';
+import Thumbnail from '../misc/Thumbnail.js';
+import CommentReplyDialog from './CommentReplyDialog.js';
+import AuthorCommentBadge from './AuthorCommentBadge.js';
+import Author from '../misc/Author.js';
 
-import type Menu from '../menus/Menu';
-import type CommentActionButtons from './CommentActionButtons';
-import type SponsorCommentBadge from './SponsorCommentBadge';
-import type PdgCommentChip from './PdgCommentChip';
-import type { ApiResponse } from '../../../core/Actions';
-import type Actions from '../../../core/Actions';
+import type Menu from '../menus/Menu.js';
+import type CommentActionButtons from './CommentActionButtons.js';
+import type SponsorCommentBadge from './SponsorCommentBadge.js';
+import type PdgCommentChip from './PdgCommentChip.js';
+import type { ApiResponse } from '../../../core/Actions.js';
+import type Actions from '../../../core/Actions.js';
 
-import Proto from '../../../proto/index';
-import { InnertubeError } from '../../../utils/Utils';
-import { YTNode, SuperParsedResult } from '../../helpers';
+import Proto from '../../../proto/index.js';
+import { InnertubeError } from '../../../utils/Utils.js';
+import { YTNode, SuperParsedResult } from '../../helpers.js';
 
 class Comment extends YTNode {
   static type = 'Comment';

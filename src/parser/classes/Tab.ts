@@ -1,10 +1,10 @@
-import Parser from '../index';
-import NavigationEndpoint from './NavigationEndpoint';
-import SectionList from './SectionList';
-import MusicQueue from './MusicQueue';
-import RichGrid from './RichGrid';
+import Parser from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import SectionList from './SectionList.js';
+import MusicQueue from './MusicQueue.js';
+import RichGrid from './RichGrid.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class Tab extends YTNode {
   static type = 'Tab';

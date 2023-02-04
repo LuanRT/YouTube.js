@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import Author from './misc/Author';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import Author from './misc/Author.js';
+import { YTNode } from '../helpers.js';
 
 class VideoOwner extends YTNode {
   static type = 'VideoOwner';

@@ -1,9 +1,9 @@
-import Tab from '../parser/classes/Tab';
-import Feed from './Feed';
-import { InnertubeError } from '../utils/Utils';
+import Tab from '../parser/classes/Tab.js';
+import Feed from './Feed.js';
+import { InnertubeError } from '../utils/Utils.js';
 
-import type Actions from './Actions';
-import type { ObservedArray } from '../parser/helpers';
+import type Actions from './Actions.js';
+import type { ObservedArray } from '../parser/helpers.js';
 
 class TabbedFeed extends Feed {
   #tabs: ObservedArray<Tab>;

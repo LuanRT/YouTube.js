@@ -1,8 +1,8 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import Menu from './menus/Menu';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import Menu from './menus/Menu.js';
 
 class MusicVisualHeader extends YTNode {
   static type = 'MusicVisualHeader';

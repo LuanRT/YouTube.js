@@ -1,8 +1,8 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
-import SearchRefinementCard from './SearchRefinementCard';
-import Button from './Button';
-import MacroMarkersListItem from './MacroMarkersListItem';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
+import SearchRefinementCard from './SearchRefinementCard.js';
+import Button from './Button.js';
+import MacroMarkersListItem from './MacroMarkersListItem.js';
 
 class HorizontalCardList extends YTNode {
   static type = 'HorizontalCardList';

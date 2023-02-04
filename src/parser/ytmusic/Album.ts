@@ -1,14 +1,14 @@
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import type { ObservedArray } from '../helpers';
-import Parser, { ParsedResponse } from '../index';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { ObservedArray } from '../helpers.js';
+import Parser, { ParsedResponse } from '../index.js';
 
-import MicroformatData from '../classes/MicroformatData';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import MusicDetailHeader from '../classes/MusicDetailHeader';
-import MusicShelf from '../classes/MusicShelf';
+import MicroformatData from '../classes/MicroformatData.js';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
+import MusicDetailHeader from '../classes/MusicDetailHeader.js';
+import MusicShelf from '../classes/MusicShelf.js';
 
-import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem';
+import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
 
 class Album {
   #page: ParsedResponse;

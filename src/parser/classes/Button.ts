@@ -1,7 +1,7 @@
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
+import Text from './misc/Text.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class Button extends YTNode {
   static type = 'Button';

@@ -1,11 +1,11 @@
-import Parser from '../index';
+import Parser from '../index.js';
 
-import MusicTwoRowItem from './MusicTwoRowItem';
-import MusicResponsiveListItem from './MusicResponsiveListItem';
-import MusicCarouselShelfBasicHeader from './MusicCarouselShelfBasicHeader';
-import MusicNavigationButton from './MusicNavigationButton';
+import MusicTwoRowItem from './MusicTwoRowItem.js';
+import MusicResponsiveListItem from './MusicResponsiveListItem.js';
+import MusicCarouselShelfBasicHeader from './MusicCarouselShelfBasicHeader.js';
+import MusicNavigationButton from './MusicNavigationButton.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class MusicCarouselShelf extends YTNode {
   static type = 'MusicCarouselShelf';

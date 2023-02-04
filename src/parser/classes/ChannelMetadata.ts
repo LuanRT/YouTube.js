@@ -1,5 +1,5 @@
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Thumbnail from './misc/Thumbnail.js';
+import { YTNode } from '../helpers.js';
 
 class ChannelMetadata extends YTNode {
   static type = 'ChannelMetadata';

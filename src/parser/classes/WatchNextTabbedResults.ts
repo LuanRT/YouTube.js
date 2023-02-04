@@ -1,4 +1,4 @@
-import TwoColumnBrowseResults from './TwoColumnBrowseResults';
+import TwoColumnBrowseResults from './TwoColumnBrowseResults.js';
 
 class WatchNextTabbedResults extends TwoColumnBrowseResults {
   static type = 'WatchNextTabbedResults';

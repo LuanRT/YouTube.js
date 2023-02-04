@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import { YTNode } from '../helpers.js';
 
 class HeaderLink {
   endpoint: NavigationEndpoint;

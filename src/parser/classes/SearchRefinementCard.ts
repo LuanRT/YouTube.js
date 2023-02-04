@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import Thumbnail from './misc/Thumbnail';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Thumbnail from './misc/Thumbnail.js';
+import Text from './misc/Text.js';
+import { YTNode } from '../helpers.js';
 
 class SearchRefinementCard extends YTNode {
   static type = 'SearchRefinementCard';

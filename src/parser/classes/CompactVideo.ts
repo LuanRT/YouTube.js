@@ -1,13 +1,13 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import Author from './misc/Author';
-import { timeToSeconds } from '../../utils/Utils';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import type Menu from './menus/Menu';
-import MetadataBadge from './MetadataBadge';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import Author from './misc/Author.js';
+import { timeToSeconds } from '../../utils/Utils.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import type Menu from './menus/Menu.js';
+import MetadataBadge from './MetadataBadge.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class CompactVideo extends YTNode {
   static type = 'CompactVideo';

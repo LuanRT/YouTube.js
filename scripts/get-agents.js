@@ -47,6 +47,6 @@ const agentsByDevice = agents.reduce((acc, agent) => {
     return acc;
 }, {});
 
-await writeFile(resolve(__dirname, '..', 'src', 'utils', 'user-agents.json'), JSON.stringify(agentsByDevice, null, 2));
+await writeFile(resolve(__dirname, '..', 'src', 'utils', 'user-agents.ts'), "/* eslint-disable */\n/* Generated file do not edit */\nexport default " + JSON.stringify(agentsByDevice, null, 2) + " as { desktop: string[], mobile: string[] };");
 
 })();

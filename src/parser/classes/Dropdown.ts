@@ -1,6 +1,6 @@
-import Parser from '..';
-import { ObservedArray, YTNode } from '../helpers';
-import DropdownItem from './DropdownItem';
+import Parser from '../index.js';
+import { ObservedArray, YTNode } from '../helpers.js';
+import DropdownItem from './DropdownItem.js';
 
 class Dropdown extends YTNode {
   static type = 'Dropdown';

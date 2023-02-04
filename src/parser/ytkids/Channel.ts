@@ -1,8 +1,8 @@
-import Feed from '../../core/Feed';
-import Actions from '../../core/Actions';
-import C4TabbedHeader from '../classes/C4TabbedHeader';
-import ItemSection from '../classes/ItemSection';
-import { ItemSectionContinuation } from '..';
+import Feed from '../../core/Feed.js';
+import Actions from '../../core/Actions.js';
+import C4TabbedHeader from '../classes/C4TabbedHeader.js';
+import ItemSection from '../classes/ItemSection.js';
+import { ItemSectionContinuation } from '../index.js';
 
 class Channel extends Feed {
   header?: C4TabbedHeader;

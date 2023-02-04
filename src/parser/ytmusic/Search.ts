@@ -1,23 +1,23 @@
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
-import Parser, { ParsedResponse } from '../index';
-import { InnertubeError } from '../../utils/Utils';
+import Parser, { ParsedResponse } from '../index.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
-import SectionList from '../classes/SectionList';
-import TabbedSearchResults from '../classes/TabbedSearchResults';
+import SectionList from '../classes/SectionList.js';
+import TabbedSearchResults from '../classes/TabbedSearchResults.js';
 
-import DidYouMean from '../classes/DidYouMean';
-import MusicResponsiveListItem from '../classes/MusicResponsiveListItem';
-import MusicShelf from '../classes/MusicShelf';
-import ShowingResultsFor from '../classes/ShowingResultsFor';
+import DidYouMean from '../classes/DidYouMean.js';
+import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
+import MusicShelf from '../classes/MusicShelf.js';
+import ShowingResultsFor from '../classes/ShowingResultsFor.js';
 
-import ChipCloud from '../classes/ChipCloud';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import ItemSection from '../classes/ItemSection';
-import Message from '../classes/Message';
+import ChipCloud from '../classes/ChipCloud.js';
+import ChipCloudChip from '../classes/ChipCloudChip.js';
+import ItemSection from '../classes/ItemSection.js';
+import Message from '../classes/Message.js';
 
-import type { ObservedArray } from '../helpers';
+import type { ObservedArray } from '../helpers.js';
 
 class Search {
   #page: ParsedResponse;

@@ -1,10 +1,10 @@
-import Parser from '../index';
-import Author from './misc/Author';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import { timeToSeconds } from '../../utils/Utils';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Author from './misc/Author.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import { timeToSeconds } from '../../utils/Utils.js';
+import Text from './misc/Text.js';
+import { YTNode } from '../helpers.js';
 
 class Movie extends YTNode {
   static type = 'Movie';

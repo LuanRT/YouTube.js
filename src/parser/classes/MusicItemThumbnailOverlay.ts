@@ -1,6 +1,6 @@
-import Parser from '../index';
-import MusicPlayButton from './MusicPlayButton';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import MusicPlayButton from './MusicPlayButton.js';
+import { YTNode } from '../helpers.js';
 
 class MusicItemThumbnailOverlay extends YTNode {
   static type = 'MusicItemThumbnailOverlay';

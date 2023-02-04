@@ -1,7 +1,7 @@
-import { YTNode } from '../../../helpers';
-import Parser from '../../../index';
-import type Button from '../../Button';
-import Text from '../../misc/Text';
+import { YTNode } from '../../../helpers.js';
+import Parser from '../../../index.js';
+import type Button from '../../Button.js';
+import Text from '../../misc/Text.js';
 
 class LiveChatBannerHeader extends YTNode {
   static type = 'LiveChatBannerHeader';

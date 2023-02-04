@@ -1,10 +1,10 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import PlaylistPanelVideo from './PlaylistPanelVideo';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import PlaylistPanelVideo from './PlaylistPanelVideo.js';
 
-import { YTNode } from '../helpers';
-import AutomixPreviewVideo from './AutomixPreviewVideo';
-import PlaylistPanelVideoWrapper from './PlaylistPanelVideoWrapper';
+import { YTNode } from '../helpers.js';
+import AutomixPreviewVideo from './AutomixPreviewVideo.js';
+import PlaylistPanelVideoWrapper from './PlaylistPanelVideoWrapper.js';
 
 class PlaylistPanel extends YTNode {
   static type = 'PlaylistPanel';

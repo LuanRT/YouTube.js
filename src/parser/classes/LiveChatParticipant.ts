@@ -1,7 +1,7 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import { YTNode } from '../helpers.js';
 
 class LiveChatParticipant extends YTNode {
   static type = 'LiveChatParticipant';

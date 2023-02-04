@@ -1,8 +1,8 @@
-import MusicMultiSelectMenuItem from './MusicMultiSelectMenuItem';
-import MusicMenuItemDivider from './MusicMenuItemDivider';
-import { YTNode } from '../../helpers';
-import Text from '../misc/Text';
-import Parser from '../..';
+import MusicMultiSelectMenuItem from './MusicMultiSelectMenuItem.js';
+import MusicMenuItemDivider from './MusicMenuItemDivider.js';
+import { YTNode } from '../../helpers.js';
+import Text from '../misc/Text.js';
+import Parser from '../../index.js';
 
 class MusicMultiSelectMenu extends YTNode {
   static type = 'MusicMultiSelectMenu';

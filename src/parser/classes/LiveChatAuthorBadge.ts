@@ -1,5 +1,5 @@
-import MetadataBadge from './MetadataBadge';
-import Thumbnail from './misc/Thumbnail';
+import MetadataBadge from './MetadataBadge.js';
+import Thumbnail from './misc/Thumbnail.js';
 
 class LiveChatAuthorBadge extends MetadataBadge {
   static type = 'LiveChatAuthorBadge';

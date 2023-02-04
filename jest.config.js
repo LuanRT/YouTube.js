@@ -1,6 +1,6 @@
 
 
-module.exports = {
+export default {
   projects: [
     {
       displayName: 'node',

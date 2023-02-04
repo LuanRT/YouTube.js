@@ -1,7 +1,7 @@
-import Proto from '../proto';
-import type Actions from './Actions';
-import type { ApiResponse } from './Actions';
-import { throwIfMissing } from '../utils/Utils';
+import Proto from '../proto/index.js';
+import type Actions from './Actions.js';
+import type { ApiResponse } from './Actions.js';
+import { throwIfMissing } from '../utils/Utils.js';
 
 class InteractionManager {
   #actions: Actions;

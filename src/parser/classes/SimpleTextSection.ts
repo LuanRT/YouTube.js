@@ -1,6 +1,6 @@
-import Text from './misc/Text';
+import Text from './misc/Text.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class SimpleTextSection extends YTNode {
   static type = 'SimpleTextSection';

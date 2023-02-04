@@ -1,4 +1,4 @@
-import { deepCompare, ParsingError } from '../utils/Utils';
+import { deepCompare, ParsingError } from '../utils/Utils.js';
 
 const isObserved = Symbol('ObservedArray.isObserved');
 

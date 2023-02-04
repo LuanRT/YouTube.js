@@ -1,12 +1,12 @@
-import Parser, { ParsedResponse } from '..';
-import { InnertubeError } from '../../utils/Utils';
+import Parser, { ParsedResponse } from '../index.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
-import ContinuationItem from '../classes/ContinuationItem';
-import SimpleMenuHeader from '../classes/menus/SimpleMenuHeader';
-import Notification from '../classes/Notification';
+import ContinuationItem from '../classes/ContinuationItem.js';
+import SimpleMenuHeader from '../classes/menus/SimpleMenuHeader.js';
+import Notification from '../classes/Notification.js';
 
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
 class NotificationsMenu {
   #page: ParsedResponse;

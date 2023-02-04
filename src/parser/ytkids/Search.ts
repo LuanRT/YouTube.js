@@ -1,8 +1,8 @@
-import Feed from '../../core/Feed';
-import ItemSection from '../classes/ItemSection';
-import { InnertubeError } from '../../utils/Utils';
-import type Actions from '../../core/Actions';
-import type { ObservedArray, YTNode } from '../helpers';
+import Feed from '../../core/Feed.js';
+import ItemSection from '../classes/ItemSection.js';
+import { InnertubeError } from '../../utils/Utils.js';
+import type Actions from '../../core/Actions.js';
+import type { ObservedArray, YTNode } from '../helpers.js';
 
 class Search extends Feed {
   estimated_results: number | null;

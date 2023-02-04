@@ -1,18 +1,18 @@
 // TODO: this needs a refactor
 // Seems like a mess to use
 
-import Parser from '../index';
-import Text from './misc/Text';
-import TextRun from './misc/TextRun';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay';
-import MusicResponsiveListItemFlexColumn from './MusicResponsiveListItemFlexColumn';
-import MusicResponsiveListItemFixedColumn from './MusicResponsiveListItemFixedColumn';
-import Menu from './menus/Menu';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import TextRun from './misc/TextRun.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.js';
+import MusicResponsiveListItemFlexColumn from './MusicResponsiveListItemFlexColumn.js';
+import MusicResponsiveListItemFixedColumn from './MusicResponsiveListItemFixedColumn.js';
+import Menu from './menus/Menu.js';
 
-import { timeToSeconds } from '../../utils/Utils';
-import { YTNode } from '../helpers';
+import { timeToSeconds } from '../../utils/Utils.js';
+import { YTNode } from '../helpers.js';
 
 class MusicResponsiveListItem extends YTNode {
   static type = 'MusicResponsiveListItem';

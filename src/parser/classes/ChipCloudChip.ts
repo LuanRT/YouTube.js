@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import { YTNode } from '../helpers.js';
 
 class ChipCloudChip extends YTNode {
   static type = 'ChipCloudChip';

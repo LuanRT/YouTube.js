@@ -1,4 +1,4 @@
-import NavigationEndpoint from '../NavigationEndpoint';
+import NavigationEndpoint from '../NavigationEndpoint.js';
 
 class TextRun {
   text: string;

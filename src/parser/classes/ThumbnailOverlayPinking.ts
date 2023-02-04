@@ -1,4 +1,4 @@
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class ThumbnailOverlayPinking extends YTNode {
   static type = 'ThumbnailOverlayPinking';
