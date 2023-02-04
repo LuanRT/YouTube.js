@@ -1,4 +1,4 @@
-import Parser, { ParsedResponse } from '../index';
+import Parser from '../index';
 import type Actions from '../../core/Actions';
 import type { ApiResponse } from '../../core/Actions';
 import { InnertubeError } from '../../utils/Utils';
@@ -9,27 +9,28 @@ import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
 import MusicImmersiveHeader from '../classes/MusicImmersiveHeader';
 import MusicVisualHeader from '../classes/MusicVisualHeader';
 import MusicHeader from '../classes/MusicHeader';
+import type { IBrowseResponse } from '../types';
 
 class Artist {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
   #actions: Actions;
 
   header?: MusicImmersiveHeader | MusicVisualHeader | MusicHeader;
   sections: (MusicCarouselShelf | MusicShelf)[];
 
-  constructor(response: ApiResponse | ParsedResponse, actions: Actions) {
-    this.#page = Parser.parseResponse((response as ApiResponse).data);
+  constructor(response: ApiResponse, actions: Actions) {
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
     this.#actions = actions;
 
     this.header = this.page.header?.item().as(MusicImmersiveHeader, MusicVisualHeader, MusicHeader);
 
-    const music_shelf = this.#page.contents_memo.getType(MusicShelf) || [];
-    const music_carousel_shelf = this.#page.contents_memo.getType(MusicCarouselShelf) || [];
+    const music_shelf = this.#page.contents_memo?.getType(MusicShelf) || [];
+    const music_carousel_shelf = this.#page.contents_memo?.getType(MusicCarouselShelf) || [];
 
     this.sections = [ ...music_shelf, ...music_carousel_shelf ];
   }
 
-  async getAllSongs(): Promise<MusicPlaylistShelf | null> {
+  async getAllSongs(): Promise<MusicPlaylistShelf | undefined> {
     const music_shelves = this.sections.filter((section) => section.type === 'MusicShelf') as MusicShelf[];
 
     if (!music_shelves.length)
@@ -44,12 +45,12 @@ class Artist {
       throw new InnertubeError('Target shelf (Songs) did not have an endpoint.');
 
     const page = await shelf.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
-    const contents = page.contents_memo.getType(MusicPlaylistShelf)?.[0] || null;
+    const contents = page.contents_memo?.getType(MusicPlaylistShelf)?.first();
 
     return contents;
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }

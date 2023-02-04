@@ -1,5 +1,4 @@
-import Parser, { ParsedResponse } from '../index';
-
+import Parser from '../index';
 import type Actions from '../../core/Actions';
 import type { ApiResponse } from '../../core/Actions';
 
@@ -17,16 +16,17 @@ import Tab from '../classes/Tab';
 
 import { InnertubeError } from '../../utils/Utils';
 import type { ObservedArray } from '../helpers';
+import type { IBrowseResponse } from '../types';
 
 class Recap {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
   #actions: Actions;
 
   header?: HighlightsCarousel | MusicHeader;
   sections?: ObservedArray<ItemSection | MusicCarouselShelf | Message>;
 
   constructor(response: ApiResponse, actions: Actions) {
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
     this.#actions = actions;
 
     const header = this.#page.header?.item();
@@ -35,7 +35,7 @@ class Recap {
       this.#page.header?.item().as(MusicElementHeader).element?.model?.item().as(HighlightsCarousel) :
       this.#page.header?.item().as(MusicHeader);
 
-    const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.firstOfType(Tab);
+    const tab = this.#page.contents?.item().as(SingleColumnBrowseResults).tabs.firstOfType(Tab);
 
     if (!tab)
       throw new InnertubeError('Target tab not found');
@@ -59,7 +59,7 @@ class Recap {
     return new Playlist(response, this.#actions);
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }

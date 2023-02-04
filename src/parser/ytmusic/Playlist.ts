@@ -1,4 +1,4 @@
-import Parser, { MusicPlaylistShelfContinuation, ParsedResponse, SectionListContinuation } from '../index';
+import Parser, { MusicPlaylistShelfContinuation, SectionListContinuation } from '../index';
 
 import MusicCarouselShelf from '../classes/MusicCarouselShelf';
 import MusicDetailHeader from '../classes/MusicDetailHeader';
@@ -12,20 +12,21 @@ import { InnertubeError } from '../../utils/Utils';
 import type { ObservedArray, YTNode } from '../helpers';
 import type Actions from '../../core/Actions';
 import type { ApiResponse } from '../../core/Actions';
+import type { IBrowseResponse } from '../types';
 
 class Playlist {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
   #actions: Actions;
   #continuation: string | null;
   #last_fetched_suggestions: any;
   #suggestions_continuation: any;
 
-  header?: MusicDetailHeader | null;
-  items: ObservedArray<YTNode> | null;
+  header?: MusicDetailHeader;
+  items?: ObservedArray<YTNode> | null;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
     this.#last_fetched_suggestions = null;
     this.#suggestions_continuation = null;
@@ -38,10 +39,10 @@ class Playlist {
       if (this.#page.header?.item().type === 'MusicEditablePlaylistDetailHeader') {
         this.header = this.#page.header?.item().as(MusicEditablePlaylistDetailHeader).header.item().as(MusicDetailHeader);
       } else {
-        this.header = this.#page.header?.item().as(MusicDetailHeader) || null;
+        this.header = this.#page.header?.item().as(MusicDetailHeader);
       }
-      this.items = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0].contents;
-      this.#continuation = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0].continuation || null;
+      this.items = this.#page.contents_memo?.getType(MusicPlaylistShelf).first().contents || null;
+      this.#continuation = this.#page.contents_memo?.getType(MusicPlaylistShelf).first().continuation || null;
     }
   }
 
@@ -64,7 +65,7 @@ class Playlist {
    * Retrieves related playlists
    */
   async getRelated(): Promise<MusicCarouselShelf> {
-    let section_continuation = this.#page.contents_memo.getType(SectionList)?.[0].continuation;
+    let section_continuation = this.#page.contents_memo?.getType(SectionList)?.[0].continuation;
 
     while (section_continuation) {
       const data = await this.#actions.execute('/browse', {
@@ -101,7 +102,7 @@ class Playlist {
   }
 
   async #fetchSuggestions(): Promise<{ items: never[] | ObservedArray<MusicResponsiveListItem>, continuation: string | null }> {
-    const continuation = this.#suggestions_continuation || this.#page.contents_memo.get('SectionList')?.[0].as(SectionList).continuation;
+    const continuation = this.#suggestions_continuation || this.#page.contents_memo?.get('SectionList')?.[0].as(SectionList).continuation;
 
     if (continuation) {
       const page = await this.#actions.execute('/browse', {
@@ -127,7 +128,7 @@ class Playlist {
     };
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 
