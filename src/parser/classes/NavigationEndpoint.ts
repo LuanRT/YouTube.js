@@ -1,8 +1,9 @@
-import Parser, { ParsedResponse } from '../index';
-import Actions, { ActionsResponse } from '../../core/Actions';
+import Parser from '../index';
+import Actions, { ApiResponse } from '../../core/Actions';
 import { YTNode } from '../helpers';
 
 import CreatePlaylistDialog from './CreatePlaylistDialog';
+import type { IParsedResponse } from '../types';
 
 class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';
@@ -85,9 +86,9 @@ class NavigationEndpoint extends YTNode {
     }
   }
 
-  call(actions: Actions, args: { [ key: string ]: any; parse: true }): Promise<ParsedResponse>;
-  call(actions: Actions, args?: { [ key: string ]: any; parse?: false }): Promise<ActionsResponse>;
-  call(actions: Actions, args?: { [ key: string ]: any; parse?: boolean }): Promise<ParsedResponse | ActionsResponse> {
+  call<T extends IParsedResponse>(actions: Actions, args: { [ key: string ]: any; parse: true }): Promise<T>;
+  call(actions: Actions, args?: { [ key: string ]: any; parse?: false }): Promise<ApiResponse>;
+  call(actions: Actions, args?: { [ key: string ]: any; parse?: boolean }): Promise<IParsedResponse | ApiResponse> {
     if (!actions)
       throw new Error('An active caller must be provided');
     if (!this.metadata.api_url)

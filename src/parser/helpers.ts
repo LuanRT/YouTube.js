@@ -378,7 +378,7 @@ export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
     /**
      * Get the first item
      */
-    first: () => T | undefined;
+    first: () => T;
     /**
      * This is similar to filter but throws if there's a type mismatch.
      */

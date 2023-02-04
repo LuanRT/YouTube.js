@@ -7,8 +7,8 @@ class SectionList extends YTNode {
   target_id?: string;
   contents;
   continuation?: string;
-  header;
-  sub_menu;
+  header?;
+  sub_menu?;
 
   constructor(data: any) {
     super();
