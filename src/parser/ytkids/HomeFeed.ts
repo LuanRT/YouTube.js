@@ -4,12 +4,14 @@ import KidsCategoriesHeader from '../classes/ytkids/KidsCategoriesHeader';
 import KidsCategoryTab from '../classes/ytkids/KidsCategoryTab';
 import KidsHomeScreen from '../classes/ytkids/KidsHomeScreen';
 import { InnertubeError } from '../../utils/Utils';
+import type { IBrowseResponse } from '../types';
+import type { ApiResponse } from '../../core/Actions';
 
-class HomeFeed extends Feed {
+class HomeFeed extends Feed<IBrowseResponse> {
   header?: KidsCategoriesHeader;
   contents?: KidsHomeScreen;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
+  constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.header = this.page.header?.item().as(KidsCategoriesHeader);
     this.contents = this.page.contents?.item().as(KidsHomeScreen);
@@ -31,7 +33,7 @@ class HomeFeed extends Feed {
     if (!target_tab)
       throw new InnertubeError(`Tab "${tab}" not found`);
 
-    const page = await target_tab.endpoint.call(this.actions, { client: 'YTKIDS', parse: true });
+    const page = await target_tab.endpoint.call<IBrowseResponse>(this.actions, { client: 'YTKIDS', parse: true });
 
     // Copy over the header and header memo
     page.header = this.page.header;
