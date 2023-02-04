@@ -198,15 +198,15 @@ To improve performance, you may wish to cache the transformed player instance wh
 Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` in Deno, and `indexedDB` in browsers.
 
 ```ts
-import { Innertube, Platform } from 'youtubei.js';
+import { Innertube, UniversalCache } from 'youtubei.js';
 // By default, cache stores files in the OS temp directory (or indexedDB in browsers).
 const yt = await Innertube.create({
-  cache: new Platform.shim.Cache()
+  cache: new UniversalCache()
 });
 
 // You may wish to make the cache persistent (on Node and Deno)
 const yt = await Innertube.create({
-  cache: new Platform.shim.Cache(
+  cache: new UniversalCache(
     // Enables persistent caching
     true, 
     // Path to the cache directory will create the directory if it doesn't exist
