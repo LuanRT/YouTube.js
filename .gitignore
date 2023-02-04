@@ -67,5 +67,8 @@ dist/
 bundle/*.js.*
 bundle/*.js
 
+# VSCode files
+.vscode/
+
 # MacOS
 .DS_Store

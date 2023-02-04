@@ -1,4 +1,3 @@
-
 import Album from '../parser/ytmusic/Album';
 import Artist from '../parser/ytmusic/Artist';
 import Explore from '../parser/ytmusic/Explore';
@@ -125,7 +124,7 @@ class Music {
 
     const response = await this.#actions.execute('/search', payload);
 
-    return new Search(response, this.#actions, { is_filtered: Reflect.has(filters, 'type') && filters.type !== 'all' });
+    return new Search(response, this.#actions, Reflect.has(filters, 'type') && filters.type !== 'all');
   }
 
   /**
@@ -198,7 +197,7 @@ class Music {
       browseId: album_id
     });
 
-    return new Album(response, this.#actions);
+    return new Album(response);
   }
 
   /**
@@ -234,9 +233,9 @@ class Music {
       parse: true
     });
 
-    const tabs = data.contents_memo.getType(Tab);
+    const tabs = data.contents_memo?.getType(Tab);
 
-    const tab = tabs?.[0];
+    const tab = tabs?.first();
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
@@ -260,10 +259,10 @@ class Music {
         parse: true
       });
 
-      if (!page)
+      if (!page || !page.contents_memo)
         throw new InnertubeError('Could not fetch automix');
 
-      return page.contents_memo.getType(PlaylistPanel)?.[0];
+      return page.contents_memo.getType(PlaylistPanel).first();
     }
 
     return playlist_panel;
@@ -282,7 +281,7 @@ class Music {
       parse: true
     });
 
-    const tabs = data.contents_memo.getType(Tab);
+    const tabs = data.contents_memo?.getType(Tab);
 
     const tab = tabs?.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_RELATED');
 
@@ -290,6 +289,9 @@ class Music {
       throw new InnertubeError('Could not find target tab.');
 
     const page = await tab.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
+
+    if (!page.contents)
+      throw new InnertubeError('Unexpected response', page);
 
     const shelves = page.contents.item().as(SectionList).contents.as(MusicCarouselShelf, MusicDescriptionShelf);
 
@@ -309,7 +311,7 @@ class Music {
       parse: true
     });
 
-    const tabs = data.contents_memo.getType(Tab);
+    const tabs = data.contents_memo?.getType(Tab);
 
     const tab = tabs?.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_LYRICS');
 
@@ -318,10 +320,14 @@ class Music {
 
     const page = await tab.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
 
+    if (!page.contents)
+      throw new InnertubeError('Unexpected response', page);
+
     if (page.contents.item().key('type').string() === 'Message')
       throw new InnertubeError(page.contents.item().as(Message).text, video_id);
 
     const section_list = page.contents.item().as(SectionList).contents;
+
     return section_list.firstOfType(MusicDescriptionShelf);
   }
 
@@ -348,7 +354,7 @@ class Music {
       client: 'YTMUSIC'
     });
 
-    const search_suggestions_section = response.contents_memo.getType(SearchSuggestionsSection)?.[0];
+    const search_suggestions_section = response.contents_memo?.getType(SearchSuggestionsSection)?.[0];
 
     if (!search_suggestions_section?.contents.is_array)
       return observe([] as YTNode[]);

@@ -1,15 +1,17 @@
 import ChipCloudChip from '../parser/classes/ChipCloudChip';
 import FeedFilterChipBar from '../parser/classes/FeedFilterChipBar';
+import { InnertubeError } from '../utils/Utils';
 import Feed from './Feed';
 
 import type { ObservedArray } from '../parser/helpers';
-import { InnertubeError } from '../utils/Utils';
+import type { IParsedResponse } from '../parser/types';
 import type Actions from './Actions';
+import type { ApiResponse } from './Actions';
 
-class FilterableFeed extends Feed {
+class FilterableFeed<T extends IParsedResponse> extends Feed<T> {
   #chips?: ObservedArray<ChipCloudChip>;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
+  constructor(actions: Actions, data: ApiResponse | T, already_parsed = false) {
     super(actions, data, already_parsed);
   }
 
@@ -41,7 +43,7 @@ class FilterableFeed extends Feed {
   /**
    * Applies given filter and returns a new {@link Feed} object.
    */
-  async getFilteredFeed(filter: string | ChipCloudChip): Promise<Feed> {
+  async getFilteredFeed(filter: string | ChipCloudChip): Promise<Feed<T>> {
     let target_filter: ChipCloudChip | undefined;
 
     if (typeof filter === 'string') {
@@ -61,6 +63,9 @@ class FilterableFeed extends Feed {
       return this;
 
     const response = await target_filter.endpoint?.call(this.actions, { parse: true });
+
+    if (!response)
+      throw new InnertubeError('Failed to get filtered feed');
 
     return new Feed(this.actions, response, true);
   }

@@ -16,7 +16,7 @@ class PlaylistManager {
    * @param title - The title of the playlist.
    * @param video_ids - An array of video IDs to add to the playlist.
    */
-  async create(title: string, video_ids: string[]): Promise<{ success: boolean; status_code: number; playlist_id: string; data: any }> {
+  async create(title: string, video_ids: string[]): Promise<{ success: boolean; status_code: number; playlist_id?: string; data: any }> {
     throwIfMissing({ title, video_ids });
 
     if (!this.#actions.session.logged_in)
