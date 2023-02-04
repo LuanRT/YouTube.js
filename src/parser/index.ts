@@ -122,7 +122,7 @@ export default class Parser {
     this.#clearMemo();
 
     this.#createMemo();
-    const live_chat_item_context_menu_supported_renderers = data.liveChatItemContextMenuSupportedRenderers ? Parser.parseItem(data.liveChatItemContextMenuSupportedRenderers) : null;
+    const live_chat_item_context_menu_supported_renderers = data.liveChatItemContextMenuSupportedRenderers ? this.parseItem(data.liveChatItemContextMenuSupportedRenderers) : null;
     const live_chat_item_context_menu_supported_renderers_memo = this.#getMemo();
     if (live_chat_item_context_menu_supported_renderers) {
       parsed_data.live_chat_item_context_menu_supported_renderers = live_chat_item_context_menu_supported_renderers;
@@ -131,7 +131,7 @@ export default class Parser {
     this.#clearMemo();
 
     this.#createMemo();
-    const header = data.header ? Parser.parse(data.header) : null;
+    const header = data.header ? this.parse(data.header) : null;
     const header_memo = this.#getMemo();
     if (header) {
       parsed_data.header = header;
@@ -140,7 +140,7 @@ export default class Parser {
     this.#clearMemo();
 
     this.#createMemo();
-    const sidebar = data.sidebar ? Parser.parseItem(data.sidebar) : null;
+    const sidebar = data.sidebar ? this.parseItem(data.sidebar) : null;
     const sidebar_memo = this.#getMemo();
     if (sidebar) {
       parsed_data.sidebar = sidebar;
@@ -203,8 +203,8 @@ export default class Parser {
       status: data.playabilityStatus.status,
       reason: data.playabilityStatus.reason || '',
       embeddable: !!data.playabilityStatus.playableInEmbed || false,
-      audio_only_playablility: Parser.parseItem<AudioOnlyPlayability>(data.playabilityStatus.audioOnlyPlayability),
-      error_screen: Parser.parseItem(data.playabilityStatus.errorScreen)
+      audio_only_playablility: this.parseItem<AudioOnlyPlayability>(data.playabilityStatus.audioOnlyPlayability),
+      error_screen: this.parseItem(data.playabilityStatus.errorScreen)
     } : null;
 
     if (playability_status) {
@@ -233,7 +233,7 @@ export default class Parser {
       parsed_data.endpoint = endpoint;
     }
 
-    const captions = Parser.parseItem<PlayerCaptionsTracklist>(data.captions);
+    const captions = this.parseItem<PlayerCaptionsTracklist>(data.captions);
     if (captions) {
       parsed_data.captions = captions;
     }
@@ -243,22 +243,22 @@ export default class Parser {
       parsed_data.video_details = video_details;
     }
 
-    const annotations = Parser.parseArray<PlayerAnnotationsExpanded>(data.annotations);
+    const annotations = this.parseArray<PlayerAnnotationsExpanded>(data.annotations);
     if (annotations.length) {
       parsed_data.annotations = annotations;
     }
 
-    const storyboards = Parser.parseItem<PlayerStoryboardSpec | PlayerLiveStoryboardSpec>(data.storyboards);
+    const storyboards = this.parseItem<PlayerStoryboardSpec | PlayerLiveStoryboardSpec>(data.storyboards);
     if (storyboards) {
       parsed_data.storyboards = storyboards;
     }
 
-    const endscreen = Parser.parseItem<Endscreen>(data.endscreen);
+    const endscreen = this.parseItem<Endscreen>(data.endscreen);
     if (endscreen) {
       parsed_data.endscreen = endscreen;
     }
 
-    const cards = Parser.parseItem<CardCollection>(data.cards);
+    const cards = this.parseItem<CardCollection>(data.cards);
     if (cards) {
       parsed_data.cards = cards;
     }
@@ -403,7 +403,7 @@ export default class Parser {
         return action;
       }));
     }
-    return new SuperParsedResult(Parser.parseItem(data));
+    return new SuperParsedResult(this.parseItem(data));
   }
 
   static parseFormats(formats: RawNode[]): Format[] {
