@@ -94,6 +94,17 @@ class NavigationEndpoint extends YTNode {
       throw new Error('Expected an api_url, but none was found, this is a bug.');
     return actions.execute(this.metadata.api_url, { ...this.payload, ...args });
   }
+
+  toURL(): string | undefined {
+    if (!this.metadata.url)
+      return undefined;
+    if (!this.metadata.page_type)
+      return undefined;
+    return (
+      this.metadata.page_type === 'WEB_PAGE_TYPE_UNKNOWN' ?
+        this.metadata.url : `https://www.youtube.com${this.metadata.url}`
+    );
+  }
 }
 
 export default NavigationEndpoint;

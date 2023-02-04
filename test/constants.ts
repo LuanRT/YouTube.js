@@ -41,5 +41,9 @@ export const CHANNELS = [
   {
     ID: 'UCt-oJR5teQIjOAxCmIQvcgA',
     NAME: "They're Just Movies"
+  },
+  {
+    ID: 'UCOpNcN46UbXVtpKMrmU4Abg',
+    NAME: "Gaming"
   }
 ];

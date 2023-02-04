@@ -1,6 +1,21 @@
 import TextRun from './TextRun.js';
 import EmojiRun from './EmojiRun.js';
 
+export interface Run {
+  text: string;
+  toString(): string;
+  toHTML(): string;
+}
+
+export function escape(text: string) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 class Text {
   text: string;
   runs;
@@ -15,6 +30,10 @@ class Text {
     } else {
       this.text = data?.simpleText || 'N/A';
     }
+  }
+
+  toHTML() {
+    return this.runs ? this.runs.map((run) => run.toHTML()).join('') : this.text;
   }
 
   toString() {
