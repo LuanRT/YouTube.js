@@ -4,4 +4,4 @@ export * as Constants from './Constants.js';
 export { default as EventEmitter } from './EventEmitterLike.js';
 export { default as HTTPClient } from './HTTPClient.js';
 export * from './HTTPClient.js';
-export { default as UniversalCache } from './Cache';
+export { default as UniversalCache } from './Cache.js';
