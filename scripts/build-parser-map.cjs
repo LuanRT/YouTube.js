@@ -5,15 +5,23 @@ const path = require('path');
 const import_list = [];
 
 const json = [];
+const misc_exports = [];
 
 glob.sync('../src/parser/classes/**/*.{js,ts}', { cwd: __dirname })
   .forEach((file) => {
-    if (file.includes('/misc/')) return;
     // Trim path
+    const is_misc = file.includes('/misc/');
     file = file.replace('../src/parser/classes/', '').replace('.js', '').replace('.ts', '');
     const import_name = file.split('/').pop();
-    import_list.push(`import { default as ${import_name} } from './classes/${file}.js';`);
-    json.push(import_name);
+
+    if (is_misc) {
+      const class_name = file.split('/').pop().replace('.js', '').replace('.ts', '');
+      import_list.push(`import { default as ${class_name} } from './classes/${file}.js';`);
+      misc_exports.push(class_name);
+    } else {
+      import_list.push(`import { default as ${import_name} } from './classes/${file}.js';`);
+      json.push(import_name);
+    }
   });
 
 fs.writeFileSync(
@@ -26,6 +34,10 @@ ${import_list.join('\n')}
 
 export const YTNodes = {
   ${json.join(',\n  ')}
+};
+
+export const Misc = {
+  ${misc_exports.join(',\n  ')}
 };
 
 const map: Record<string, YTNodeConstructor> = YTNodes;

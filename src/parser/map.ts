@@ -176,6 +176,16 @@ import { default as MetadataRowContainer } from './classes/MetadataRowContainer.
 import { default as MetadataRowHeader } from './classes/MetadataRowHeader.js';
 import { default as MetadataScreen } from './classes/MetadataScreen.js';
 import { default as MicroformatData } from './classes/MicroformatData.js';
+import { default as Author } from './classes/misc/Author.js';
+import { default as ChildElement } from './classes/misc/ChildElement.js';
+import { default as EmojiRun } from './classes/misc/EmojiRun.js';
+import { default as Format } from './classes/misc/Format.js';
+import { default as NavigatableText } from './classes/misc/NavigatableText.js';
+import { default as PlaylistAuthor } from './classes/misc/PlaylistAuthor.js';
+import { default as Text } from './classes/misc/Text.js';
+import { default as TextRun } from './classes/misc/TextRun.js';
+import { default as Thumbnail } from './classes/misc/Thumbnail.js';
+import { default as VideoDetails } from './classes/misc/VideoDetails.js';
 import { default as Mix } from './classes/Mix.js';
 import { default as Movie } from './classes/Movie.js';
 import { default as MovingThumbnail } from './classes/MovingThumbnail.js';
@@ -640,6 +650,19 @@ export const YTNodes = {
   KidsCategoriesHeader,
   KidsCategoryTab,
   KidsHomeScreen
+};
+
+export const Misc = {
+  Author,
+  ChildElement,
+  EmojiRun,
+  Format,
+  NavigatableText,
+  PlaylistAuthor,
+  Text,
+  TextRun,
+  Thumbnail,
+  VideoDetails
 };
 
 const map: Record<string, YTNodeConstructor> = YTNodes;
