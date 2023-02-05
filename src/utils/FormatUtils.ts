@@ -74,7 +74,7 @@ class FormatUtils {
     };
 
     const format = this.chooseFormat(opts, streaming_data);
-    const format_url = await format.decipher(player);
+    const format_url = format.decipher(player);
 
     // If we're not downloading the video in chunks, we just use fetch once.
     if (opts.type === 'video+audio' && !options.range) {
@@ -239,13 +239,13 @@ class FormatUtils {
     return candidates[0];
   }
 
-  static async toDash(streaming_data?: {
+  static toDash(streaming_data?: {
     expires: Date;
     formats: Format[];
     adaptive_formats: Format[];
     dash_manifest_url: string | null;
     hls_manifest_url: string | null;
-  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player): Promise<string> {
+  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player): string {
     if (!streaming_data)
       throw new InnertubeError('Streaming data not available');
 
@@ -286,7 +286,7 @@ class FormatUtils {
       period
     ]));
 
-    await this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player);
+    this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player);
 
     return `${document}`;
   }
@@ -303,7 +303,7 @@ class FormatUtils {
     return el;
   }
 
-  static async #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer, cpn?: string, player?: Player) {
     const mime_types: string[] = [];
     const mime_objects: Format[][] = [ [] ];
 
@@ -334,21 +334,21 @@ class FormatUtils {
 
       for (const format of mime_objects[i]) {
         if (format.has_video) {
-          await this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
+          this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
         } else {
-          await this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+          this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
         }
       }
     }
   }
 
-  static async #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
 
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
 
-    const url = new URL(await format.decipher(player));
+    const url = new URL(format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {
@@ -378,7 +378,7 @@ class FormatUtils {
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
 
-    const url = new URL(await format.decipher(player));
+    const url = new URL(format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
     set.appendChild(this.#el(document, 'Representation', {

@@ -63,7 +63,7 @@ export default class Player {
     return await Player.fromSource(cache, sig_timestamp, sig_sc, nsig_sc, player_id);
   }
 
-  async decipher(url?: string, signature_cipher?: string, cipher?: string): Promise<string> {
+  decipher(url?: string, signature_cipher?: string, cipher?: string): string {
     url = url || signature_cipher || cipher;
 
     if (!url)
@@ -75,7 +75,7 @@ export default class Player {
     url_components.searchParams.set('alr', 'yes');
 
     if (signature_cipher || cipher) {
-      const signature = await Platform.shim.eval(this.#sig_sc, {
+      const signature = Platform.shim.eval(this.#sig_sc, {
         sig: args.get('s')
       });
 
@@ -92,7 +92,7 @@ export default class Player {
     const n = url_components.searchParams.get('n');
 
     if (n) {
-      const nsig = await Platform.shim.eval(this.#nsig_sc, {
+      const nsig = Platform.shim.eval(this.#nsig_sc, {
         nsig: n
       });
 
