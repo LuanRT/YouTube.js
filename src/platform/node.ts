@@ -18,7 +18,7 @@ import fs from 'fs/promises';
 import { readFileSync } from 'fs';
 import DOMParser from './polyfills/server-dom.js';
 import { fileURLToPath } from 'url';
-import evaluate from './jsruntime/v8.js';
+import evaluate from './jsruntime/jinter.js';
 
 const meta_url = import.meta.url;
 const is_cjs = !meta_url;

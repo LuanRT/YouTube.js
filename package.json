@@ -51,9 +51,6 @@
     "linkedom": "^0.14.12",
     "undici": "^5.7.0"
   },
-  "optionalDependencies": {
-    "isolated-vm": "^4.4.2"
-  },
   "devDependencies": {
     "@types/jest": "^28.1.7",
     "@types/node": "^17.0.45",
