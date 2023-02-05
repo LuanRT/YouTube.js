@@ -3,12 +3,14 @@
   "version": "2.9.0",
   "description": "Full-featured wrapper around YouTube's private API. Supports YouTube, YouTube Music and YouTube Studio (WIP).",
   "type": "module",
+  "types": "./dist/src/platform/lib.d.ts",
   "exports": {
     "node": {
       "import": "./dist/src/platform/node.js",
       "require": "./bundle/node.cjs"
     },
     "deno": "./dist/src/platform/deno.js",
+    "types": "./dist/src/platform/lib.d.ts",
     "default": "./dist/src/platform/web.js"
   },
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
