@@ -96,6 +96,9 @@ Platform.load({
   },
   eval: evaluate,
   DOMParser,
+  serializeDOM(document) {
+    return document.toString();
+  },
   fetch: globalThis.fetch,
   Request: globalThis.Request,
   Response: globalThis.Response,

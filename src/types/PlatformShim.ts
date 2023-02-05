@@ -19,6 +19,7 @@ interface PlatformShim {
     uuidv4(): string;
     eval(code: string, env: Record<string, VMPrimative>): Promise<unknown>;
     DOMParser: typeof globalThis.DOMParser;
+    serializeDOM: (document: Document) => string;
     fetch: FetchFunction;
     Request: typeof Request;
     Response: typeof Response;

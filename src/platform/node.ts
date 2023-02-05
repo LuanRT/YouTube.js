@@ -112,6 +112,9 @@ Platform.load({
   uuidv4() {
     return crypto.randomUUID();
   },
+  serializeDOM(document) {
+    return document.toString();
+  },
   eval: evaluate,
   DOMParser,
   fetch: defaultFetch as unknown as FetchFunction,

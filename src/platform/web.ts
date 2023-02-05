@@ -106,6 +106,9 @@ Platform.load({
   },
   eval: evaluate,
   DOMParser: globalThis.DOMParser,
+  serializeDOM(document) {
+    return new XMLSerializer().serializeToString(document);
+  },
   fetch: globalThis.fetch,
   Request: globalThis.Request,
   Response: globalThis.Response,

@@ -270,10 +270,11 @@ class FormatUtils {
 
     const length = adaptive_formats[0].approx_duration_ms / 1000;
 
-    const document = new Platform.shim.DOMParser().parseFromString('', 'text/xml');
+    const document = new Platform.shim.DOMParser().parseFromString('<?xml version="1.0" encoding="utf-8"?><MPD />', 'application/xml');
+    const mpd = document.querySelector('MPD') as HTMLElement;
     const period = document.createElement('Period');
 
-    document.appendChild(this.#el(document, 'MPD', {
+    mpd.replaceWith(this.#el(document, 'MPD', {
       xmlns: 'urn:mpeg:dash:schema:mpd:2011',
       minBufferTime: 'PT1.500S',
       profiles: 'urn:mpeg:dash:profile:isoff-main:2011',
