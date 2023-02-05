@@ -288,7 +288,7 @@ class FormatUtils {
 
     this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player);
 
-    return `${document}`;
+    return Platform.shim.serializeDOM(document);
   }
 
   static #el(document: XMLDocument, tag: string, attrs: Record<string, string | undefined>, children: Node[] = []) {
