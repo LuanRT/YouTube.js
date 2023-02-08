@@ -180,7 +180,6 @@ import { default as Author } from './classes/misc/Author.js';
 import { default as ChildElement } from './classes/misc/ChildElement.js';
 import { default as EmojiRun } from './classes/misc/EmojiRun.js';
 import { default as Format } from './classes/misc/Format.js';
-import { default as NavigatableText } from './classes/misc/NavigatableText.js';
 import { default as PlaylistAuthor } from './classes/misc/PlaylistAuthor.js';
 import { default as Text } from './classes/misc/Text.js';
 import { default as TextRun } from './classes/misc/TextRun.js';
@@ -657,27 +656,9 @@ export const Misc = {
   ChildElement,
   EmojiRun,
   Format,
-  NavigatableText,
   PlaylistAuthor,
   Text,
   TextRun,
   Thumbnail,
   VideoDetails
 };
-
-const map: Record<string, YTNodeConstructor> = YTNodes;
-
-/**
- * @param name - Name of the node to be parsed
- */
-export default function GetParserByName(name: string) {
-  const ParserConstructor = map[name];
-
-  if (!ParserConstructor) {
-    const error = new Error(`Module not found: ${name}`);
-    (error as any).code = 'MODULE_NOT_FOUND';
-    throw error;
-  }
-
-  return ParserConstructor;
-}

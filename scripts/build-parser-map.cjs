@@ -39,22 +39,5 @@ export const YTNodes = {
 export const Misc = {
   ${misc_exports.join(',\n  ')}
 };
-
-const map: Record<string, YTNodeConstructor> = YTNodes;
-
-/**
- * @param name - Name of the node to be parsed
- */
-export default function GetParserByName(name: string) {
-  const ParserConstructor = map[name];
-
-  if (!ParserConstructor) {
-    const error = new Error(\`Module not found: \${name}\`);
-    (error as any).code = 'MODULE_NOT_FOUND';
-    throw error;
-  }
-
-  return ParserConstructor;
-}
 `
 );
