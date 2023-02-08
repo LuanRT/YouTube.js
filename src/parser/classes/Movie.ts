@@ -43,8 +43,8 @@ class Movie extends YTNode {
     this.author = new Author(data.longBylineText, data.ownerBadges, data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer?.thumbnail);
 
     this.duration = {
-      text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
-      seconds: timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+      text: data.lengthText ? new Text(data.lengthText).toString() : new Text(overlay_time_status).toString(),
+      seconds: timeToSeconds(data.lengthText ? new Text(data.lengthText).toString() : new Text(overlay_time_status).toString())
     };
 
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);

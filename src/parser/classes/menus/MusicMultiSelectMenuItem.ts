@@ -14,7 +14,7 @@ class MusicMultiSelectMenuItem extends YTNode {
   constructor(data: any) {
     super();
 
-    this.title = new Text(data.title).text;
+    this.title = new Text(data.title).toString();
     this.form_item_entity_key = data.formItemEntityKey;
     this.selected_icon_type = data.selectedIcon?.iconType || null;
     this.endpoint = data.selectedCommand ? new NavigationEndpoint(data.selectedCommand) : null;

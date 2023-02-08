@@ -13,7 +13,7 @@ class MusicMultiSelectMenu extends YTNode {
   constructor(data: any) {
     super();
 
-    this.title = new Text(data.title.musicMenuTitleRenderer?.primaryText).text;
+    this.title = new Text(data.title.musicMenuTitleRenderer?.primaryText).toString();
     this.options = Parser.parseArray(data.options, [ MusicMultiSelectMenuItem, MusicMenuItemDivider ]);
   }
 }

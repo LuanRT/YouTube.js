@@ -1,9 +1,9 @@
 import Parser from '../../index.js';
-import NavigatableText from './NavigatableText.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
 import TextRun from './TextRun.js';
 import Thumbnail from './Thumbnail.js';
 import Constants from '../../../utils/Constants.js';
+import Text from './Text.js';
 
 class Author {
   #nav_text;
@@ -11,14 +11,14 @@ class Author {
   id: string;
   name: string;
   thumbnails: Thumbnail[];
-  endpoint: NavigationEndpoint | null;
+  endpoint?: NavigationEndpoint;
   badges?: any;
   is_verified?: boolean | null;
   is_verified_artist?: boolean | null;
   url: string | null;
 
   constructor(item: any, badges?: any, thumbs?: any) {
-    this.#nav_text = new NavigatableText(item);
+    this.#nav_text = new Text(item);
 
     this.id =
       (this.#nav_text.runs?.[0] as TextRun)?.endpoint?.payload?.browseId ||

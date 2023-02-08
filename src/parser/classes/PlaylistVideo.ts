@@ -39,7 +39,7 @@ class PlaylistVideo extends YTNode {
     this.is_playable = data.isPlayable;
     this.menu = Parser.parseItem<Menu>(data.menu);
     this.duration = {
-      text: new Text(data.lengthText).text,
+      text: new Text(data.lengthText).toString(),
       seconds: parseInt(data.lengthSeconds)
     };
   }
