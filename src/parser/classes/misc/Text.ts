@@ -32,10 +32,10 @@ class Text {
     } else {
       this.text = data?.simpleText;
     }
-    if (data && Reflect.has(data, 'navigationEndpoint')) {
+    if (typeof data === 'object' && data !== null && Reflect.has(data, 'navigationEndpoint')) {
       this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     }
-    if (data && Reflect.has(data, 'titleNavigationEndpoint')) {
+    if (typeof data === 'object' && data !== null && Reflect.has(data, 'titleNavigationEndpoint')) {
       this.endpoint = new NavigationEndpoint(data.titleNavigationEndpoint);
     }
     if (!this.endpoint)
