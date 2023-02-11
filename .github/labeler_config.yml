@@ -2,13 +2,7 @@ version: 1
 labels:
   - label: "breaking-change"
     title: "^refactor!:.*"
-    
-  - label: "enhancement"
-    title: "^feat:.*"
-    
-  - label: "bug"
-    title: "^fix:.*"
- 
+
   - label: "github"
     files:
       - ".github/.*"
