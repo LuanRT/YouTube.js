@@ -315,7 +315,7 @@ class FormatUtils {
       if (!video_format.index_range || !video_format.init_range) {
         return;
       }
-      const mime_type = video_format.mime_type;
+      const mime_type = video_format.mime_type.split(';')[0];
       const mime_type_index = mime_types.indexOf(mime_type);
       if (mime_type_index > -1) {
         mime_objects[mime_type_index].push(video_format);
@@ -326,23 +326,81 @@ class FormatUtils {
       }
     });
 
+    let set_id = 0;
     for (let i = 0; i < mime_types.length; i++) {
-      const set = this.#el(document, 'AdaptationSet', {
-        id: `${i}`,
-        mimeType: mime_types[i].split(';')[0],
-        startWithSAP: '1',
-        subsegmentAlignment: 'true'
-      });
 
-      period.appendChild(set);
+      // When the video has multiple different audio tracks/langues we want to include the extra information in the manifest
+      if (mime_objects[i][0].has_audio && mime_objects[i][0].language) {
+        const languages: string[] = [];
+        const language_objects: Format[][] = [ [] ];
 
-      mime_objects[i].forEach((format) => {
-        if (format.has_video) {
-          this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
-        } else {
-          this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+        mime_objects[i].forEach((format) => {
+          const language_index = languages.indexOf(format.language as string);
+          if (language_index > -1) {
+            language_objects[language_index].push(format);
+          } else {
+            languages.push(format.language as string);
+            language_objects.push([]);
+            language_objects[languages.length - 1].push(format);
+          }
+        });
+
+        // The lang attribute has to go on the AdaptationSet element, so we need a separate adaptation set for each language
+        for (let j = 0; j < languages.length; j++) {
+          const first_format = language_objects[j][0];
+
+          const children = [];
+
+          if (first_format.audio_track) {
+            let role;
+            if (first_format.audio_track.audio_is_default) {
+              role = 'main';
+            } else if (first_format.is_dubbed) {
+              role = 'dub';
+            } else {
+              role = 'alternate';
+            }
+
+            children.push(
+              this.#el(document, 'Role', {
+                schemeIdUri: 'urn:mpeg:dash:role:2011',
+                value: role
+              })
+            );
+          }
+
+          const set = this.#el(document, 'AdaptationSet', {
+            id: `${set_id++}`,
+            mimeType: mime_types[i],
+            startWithSAP: '1',
+            subsegmentAlignment: 'true',
+            lang: languages[j]
+          }, children);
+
+          period.appendChild(set);
+
+          language_objects[j].forEach((format) => {
+            this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+          });
         }
-      });
+      } else {
+        const set = this.#el(document, 'AdaptationSet', {
+          id: `${set_id++}`,
+          mimeType: mime_types[i],
+          startWithSAP: '1',
+          subsegmentAlignment: 'true'
+        });
+
+        period.appendChild(set);
+
+        mime_objects[i].forEach((format) => {
+          if (format.has_video) {
+            this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
+          } else {
+            this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+          }
+        });
+      }
     }
   }
 
@@ -388,7 +446,8 @@ class FormatUtils {
     set.appendChild(this.#el(document, 'Representation', {
       id: format.itag?.toString(),
       codecs,
-      bandwidth: format.bitrate?.toString()
+      bandwidth: format.bitrate?.toString(),
+      audioSamplingRate: format.audio_sample_rate?.toString()
     }, [
       this.#el(document, 'AudioChannelConfiguration', {
         schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
