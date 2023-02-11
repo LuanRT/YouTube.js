@@ -1,0 +1,57 @@
+on:
+  push:
+    branches:
+      - main
+name: release-please
+jobs:
+  release-please:
+    permissions:
+      contents: write
+      pull-requests: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: node
+          package-name: youtubei.js
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Build for Deno
+        run: |
+          npm ci
+          npm run build:deno       
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Move Deno files
+        run: |
+          mkdir build
+          mv deno build/deno
+          cp deno.ts build/deno.ts
+          cp {LICENSE,README.md} build
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Push to the Deno branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: deno
+          FOLDER: ./build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SKIP_EMPTY_COMMITS: true
+          MESSAGE: "chore: ${{ steps.release.outputs.tag_name }} release"
+          TAG: ${{ steps.release.outputs.tag_name }}-deno
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Remove Deno folder
+        run: rm -rf build
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Install dependencies
+        run: npm ci
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Publish package on NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        if: ${{ steps.release.outputs.release_created }}
