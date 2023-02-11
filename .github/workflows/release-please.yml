@@ -24,7 +24,7 @@ jobs:
       - name: Build for Deno
         run: |
           npm ci
-          npm run build:deno       
+          npm run build:deno
         if: ${{ steps.release.outputs.release_created }}
       - name: Move Deno files
         run: |
