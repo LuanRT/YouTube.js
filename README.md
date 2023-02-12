@@ -18,7 +18,7 @@
 
 <div align="center">
 
-  [![Tests](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)][actions]
+  [![CI](https://github.com/LuanRT/YouTube.js/actions/workflows/test.yml/badge.svg)][actions]
   [![NPM Version](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)][versions]
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
   [![Downloads](https://img.shields.io/npm/dt/youtubei.js)][npm]
