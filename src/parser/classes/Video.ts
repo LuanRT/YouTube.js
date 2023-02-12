@@ -96,7 +96,7 @@ class Video extends YTNode {
 
   get is_live(): boolean {
     return this.badges.some((badge) => {
-      if (badge.label === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.style === 'LIVE')
+      if (badge.style === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.label === 'LIVE')
         return true;
     });
   }
@@ -106,15 +106,15 @@ class Video extends YTNode {
   }
 
   get is_premiere(): boolean {
-    return this.badges.some((badge) => badge.style === 'PREMIERE');
+    return this.badges.some((badge) => badge.label === 'PREMIERE');
   }
 
   get is_4k(): boolean {
-    return this.badges.some((badge) => badge.style === '4K');
+    return this.badges.some((badge) => badge.label === '4K');
   }
 
   get has_captions(): boolean {
-    return this.badges.some((badge) => badge.style === 'CC');
+    return this.badges.some((badge) => badge.label === 'CC');
   }
 
   get best_thumbnail(): Thumbnail | undefined {
