@@ -1,8 +1,8 @@
-import Parser from '..';
-import AccountChannel from './AccountChannel';
-import AccountItemSection from './AccountItemSection';
+import Parser from '../index.js';
+import AccountChannel from './AccountChannel.js';
+import AccountItemSection from './AccountItemSection.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class AccountSectionList extends YTNode {
   static type = 'AccountSectionList';

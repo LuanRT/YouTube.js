@@ -1,7 +1,7 @@
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode, SuperParsedResult } from '../helpers';
+import Parser from '../index.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import { YTNode, SuperParsedResult } from '../helpers.js';
 
 class PlayerAnnotationsExpanded extends YTNode {
   static type = 'PlayerAnnotationsExpanded';

@@ -1,7 +1,7 @@
-import Parser from '../..';
-import type Button from '../Button';
-import type KidsCategoryTab from './KidsCategoryTab';
-import { YTNode } from '../../helpers';
+import Parser from '../../index.js';
+import type Button from '../Button.js';
+import type KidsCategoryTab from './KidsCategoryTab.js';
+import { YTNode } from '../../helpers.js';
 
 class KidsCategoriesHeader extends YTNode {
   static type = 'kidsCategoriesHeader';

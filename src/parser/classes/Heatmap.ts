@@ -1,7 +1,7 @@
-import Parser from '..';
-import type HeatMarker from './HeatMarker';
+import Parser from '../index.js';
+import type HeatMarker from './HeatMarker.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class Heatmap extends YTNode {
   static type = 'Heatmap';

@@ -1,14 +1,14 @@
-import Parser, { ParsedResponse } from '../index';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import { InnertubeError } from '../../utils/Utils';
+import Parser, { ParsedResponse } from '../index.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
-import MusicShelf from '../classes/MusicShelf';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
-import MusicImmersiveHeader from '../classes/MusicImmersiveHeader';
-import MusicVisualHeader from '../classes/MusicVisualHeader';
-import MusicHeader from '../classes/MusicHeader';
+import MusicShelf from '../classes/MusicShelf.js';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
+import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.js';
+import MusicImmersiveHeader from '../classes/MusicImmersiveHeader.js';
+import MusicVisualHeader from '../classes/MusicVisualHeader.js';
+import MusicHeader from '../classes/MusicHeader.js';
 
 class Artist {
   #page: ParsedResponse;

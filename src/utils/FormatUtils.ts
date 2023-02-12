@@ -1,17 +1,12 @@
-import Player from '../core/Player';
-import Actions from '../core/Actions';
+import Player from '../core/Player.js';
+import Actions from '../core/Actions.js';
 
-import type Format from '../parser/classes/misc/Format';
-import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability';
-import type { YTNode } from '../parser/helpers';
+import type Format from '../parser/classes/misc/Format.js';
+import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability.js';
+import type { YTNode } from '../parser/helpers.js';
 
-import { DOMParser } from 'linkedom';
-import type { Element } from 'linkedom/types/interface/element';
-import type { Node } from 'linkedom/types/interface/node';
-import type { XMLDocument } from 'linkedom/types/xml/document';
-
-import { Constants } from '.';
-import { getStringBetweenStrings, InnertubeError, streamToIterable } from './Utils';
+import { Constants } from './index.js';
+import { getStringBetweenStrings, InnertubeError, Platform, streamToIterable } from './Utils.js';
 
 export type URLTransformer = (url: URL) => URL;
 export type FormatFilter = (format: Format) => boolean;
@@ -111,7 +106,7 @@ class FormatUtils {
 
     let cancel: AbortController;
 
-    const readable_stream = new ReadableStream<Uint8Array>({
+    const readable_stream = new Platform.shim.ReadableStream<Uint8Array>({
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       start() { },
       pull: async (controller) => {
@@ -275,10 +270,11 @@ class FormatUtils {
 
     const length = adaptive_formats[0].approx_duration_ms / 1000;
 
-    const document = new DOMParser().parseFromString('', 'text/xml');
+    const document = new Platform.shim.DOMParser().parseFromString('<?xml version="1.0" encoding="utf-8"?><MPD />', 'application/xml');
+    const mpd = document.querySelector('MPD') as HTMLElement;
     const period = document.createElement('Period');
 
-    document.appendChild(this.#el(document, 'MPD', {
+    mpd.replaceWith(this.#el(document, 'MPD', {
       xmlns: 'urn:mpeg:dash:schema:mpd:2011',
       minBufferTime: 'PT1.500S',
       profiles: 'urn:mpeg:dash:profile:isoff-main:2011',
@@ -292,13 +288,13 @@ class FormatUtils {
 
     this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player);
 
-    return `${document}`;
+    return Platform.shim.serializeDOM(document);
   }
 
   static #el(document: XMLDocument, tag: string, attrs: Record<string, string | undefined>, children: Node[] = []) {
     const el = document.createElement(tag);
     for (const [ key, value ] of Object.entries(attrs)) {
-      el.setAttribute(key, value);
+      value && el.setAttribute(key, value);
     }
     for (const child of children) {
       if (typeof child === 'undefined') continue;
@@ -435,7 +431,7 @@ class FormatUtils {
     ]));
   }
 
-  static #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static async #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });

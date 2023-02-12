@@ -1,4 +1,4 @@
-import BackstagePost from './BackstagePost';
+import BackstagePost from './BackstagePost.js';
 
 class Post extends BackstagePost {
   static type = 'Post';

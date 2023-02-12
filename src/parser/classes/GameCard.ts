@@ -1,5 +1,5 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
 class GameCard extends YTNode {
   static type = 'GameCard';

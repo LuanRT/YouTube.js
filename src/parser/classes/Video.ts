@@ -1,14 +1,14 @@
-import Parser from '..';
-import Text from './misc/Text';
-import Author from './misc/Author';
-import Menu from './menus/Menu';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import MetadataBadge from './MetadataBadge';
-import ExpandableMetadata from './ExpandableMetadata';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import Author from './misc/Author.js';
+import Menu from './menus/Menu.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import MetadataBadge from './MetadataBadge.js';
+import ExpandableMetadata from './ExpandableMetadata.js';
 
-import { timeToSeconds } from '../../utils/Utils';
-import { YTNode } from '../helpers';
+import { timeToSeconds } from '../../utils/Utils.js';
+import { YTNode } from '../helpers.js';
 
 class Video extends YTNode {
   static type = 'Video';

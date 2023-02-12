@@ -1,26 +1,26 @@
-import type Actions from '../../core/Actions';
-import TabbedFeed from '../../core/TabbedFeed';
-import C4TabbedHeader from '../classes/C4TabbedHeader';
-import CarouselHeader from '../classes/CarouselHeader';
-import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata';
-import ChannelMetadata from '../classes/ChannelMetadata';
-import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader';
-import MicroformatData from '../classes/MicroformatData';
-import SubscribeButton from '../classes/SubscribeButton';
-import ExpandableTab from '../classes/ExpandableTab';
-import SectionList from '../classes/SectionList';
-import Tab from '../classes/Tab';
+import type Actions from '../../core/Actions.js';
+import TabbedFeed from '../../core/TabbedFeed.js';
+import C4TabbedHeader from '../classes/C4TabbedHeader.js';
+import CarouselHeader from '../classes/CarouselHeader.js';
+import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata.js';
+import ChannelMetadata from '../classes/ChannelMetadata.js';
+import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader.js';
+import MicroformatData from '../classes/MicroformatData.js';
+import SubscribeButton from '../classes/SubscribeButton.js';
+import ExpandableTab from '../classes/ExpandableTab.js';
+import SectionList from '../classes/SectionList.js';
+import Tab from '../classes/Tab.js';
 
-import Feed from '../../core/Feed';
-import FilterableFeed from '../../core/FilterableFeed';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import FeedFilterChipBar from '../classes/FeedFilterChipBar';
-import ChannelSubMenu from '../classes/ChannelSubMenu';
-import SortFilterSubMenu from '../classes/SortFilterSubMenu';
+import Feed from '../../core/Feed.js';
+import FilterableFeed from '../../core/FilterableFeed.js';
+import ChipCloudChip from '../classes/ChipCloudChip.js';
+import FeedFilterChipBar from '../classes/FeedFilterChipBar.js';
+import ChannelSubMenu from '../classes/ChannelSubMenu.js';
+import SortFilterSubMenu from '../classes/SortFilterSubMenu.js';
 
-import { ChannelError, InnertubeError } from '../../utils/Utils';
+import { ChannelError, InnertubeError } from '../../utils/Utils.js';
 
-import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
+import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '../index.js';
 
 export default class Channel extends TabbedFeed {
   header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader;

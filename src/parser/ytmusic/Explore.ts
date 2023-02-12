@@ -1,14 +1,14 @@
-import Parser, { ParsedResponse } from '..';
+import Parser, { ParsedResponse } from '../index.js';
 
-import Grid from '../classes/Grid';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import MusicNavigationButton from '../classes/MusicNavigationButton';
-import SectionList from '../classes/SectionList';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
+import Grid from '../classes/Grid.js';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
+import MusicNavigationButton from '../classes/MusicNavigationButton.js';
+import SectionList from '../classes/SectionList.js';
+import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';
 
-import type { ApiResponse } from '../../core/Actions';
-import type { ObservedArray } from '../helpers';
-import { InnertubeError } from '../../utils/Utils';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { ObservedArray } from '../helpers.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
 class Explore {
   #page: ParsedResponse;

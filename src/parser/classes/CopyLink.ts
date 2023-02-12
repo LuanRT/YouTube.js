@@ -1,6 +1,6 @@
-import Parser from '../index';
-import Button from './Button';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Button from './Button.js';
+import { YTNode } from '../helpers.js';
 
 class CopyLink extends YTNode {
   static type = 'CopyLink';

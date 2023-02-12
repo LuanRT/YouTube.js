@@ -1,11 +1,11 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import PlaylistAuthor from './misc/PlaylistAuthor';
-import NavigationEndpoint from './NavigationEndpoint';
-import type Menu from './menus/Menu';
+import Text from './misc/Text.js';
+import Parser from '../index.js';
+import Thumbnail from './misc/Thumbnail.js';
+import PlaylistAuthor from './misc/PlaylistAuthor.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import type Menu from './menus/Menu.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class PlaylistVideo extends YTNode {
   static type = 'PlaylistVideo';

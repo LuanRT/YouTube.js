@@ -1,6 +1,6 @@
-import Parser, { ParsedResponse } from '..';
-import type { ApiResponse } from '../../core/Actions';
-import Element from '../classes/Element';
+import Parser, { ParsedResponse } from '../index.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import Element from '../classes/Element.js';
 
 class Analytics {
   #page: ParsedResponse;

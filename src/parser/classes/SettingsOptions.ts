@@ -1,13 +1,13 @@
-import Parser from '..';
+import Parser from '../index.js';
 
-import Text from './misc/Text';
-import Dropdown from './Dropdown';
-import SettingsSwitch from './SettingsSwitch';
-import SettingsCheckbox from './SettingsCheckbox';
-import ChannelOptions from './ChannelOptions';
-import CopyLink from './CopyLink';
+import Text from './misc/Text.js';
+import Dropdown from './Dropdown.js';
+import SettingsSwitch from './SettingsSwitch.js';
+import SettingsCheckbox from './SettingsCheckbox.js';
+import ChannelOptions from './ChannelOptions.js';
+import CopyLink from './CopyLink.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class SettingsOptions extends YTNode {
   static type = 'SettingsOptions';

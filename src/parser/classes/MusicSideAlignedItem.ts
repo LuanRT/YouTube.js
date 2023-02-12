@@ -1,6 +1,6 @@
-import Parser from '../index';
+import Parser from '../index.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class MusicSideAlignedItem extends YTNode {
   static type = 'MusicSideAlignedItem';

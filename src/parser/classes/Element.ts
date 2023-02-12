@@ -1,7 +1,7 @@
-import Parser from '../index';
-import ChildElement from './misc/ChildElement';
+import Parser from '../index.js';
+import ChildElement from './misc/ChildElement.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class Element extends YTNode {
   static type = 'Element';

@@ -1,9 +1,9 @@
-import Parser from '../../..';
-import { observe, ObservedArray, YTNode } from '../../../helpers';
-import LiveChatAuthorBadge from '../../LiveChatAuthorBadge';
-import MetadataBadge from '../../MetadataBadge';
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
+import Parser from '../../../index.js';
+import { observe, ObservedArray, YTNode } from '../../../helpers.js';
+import LiveChatAuthorBadge from '../../LiveChatAuthorBadge.js';
+import MetadataBadge from '../../MetadataBadge.js';
+import Text from '../../misc/Text.js';
+import Thumbnail from '../../misc/Thumbnail.js';
 
 class LiveChatTickerSponsorItem extends YTNode {
   static type = 'LiveChatTickerSponsorItem';

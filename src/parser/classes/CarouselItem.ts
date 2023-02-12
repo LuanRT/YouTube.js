@@ -1,7 +1,7 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
-import Thumbnail from './misc/Thumbnail';
+import Thumbnail from './misc/Thumbnail.js';
 
 class CarouselItem extends YTNode {
   static type = 'CarouselItem';

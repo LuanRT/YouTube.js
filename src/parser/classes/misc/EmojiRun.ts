@@ -1,5 +1,5 @@
-import { escape, Run } from './Text';
-import Thumbnail from './Thumbnail';
+import { escape, Run } from './Text.js';
+import Thumbnail from './Thumbnail.js';
 
 class EmojiRun implements Run {
   text: string;

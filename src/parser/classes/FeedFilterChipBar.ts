@@ -1,6 +1,6 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
-import ChipCloudChip from './ChipCloudChip';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
+import ChipCloudChip from './ChipCloudChip.js';
 
 class FeedFilterChipBar extends YTNode {
   static type = 'FeedFilterChipBar';

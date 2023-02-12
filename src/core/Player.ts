@@ -1,12 +1,9 @@
-import { getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils';
+import { Platform, getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils.js';
 
-import Constants from '../utils/Constants';
-import UniversalCache from '../utils/Cache';
+import Constants from '../utils/Constants.js';
 
-// See: https://github.com/LuanRT/Jinter
-import Jinter from 'jintr';
-
-import type { FetchFunction } from '../utils/HTTPClient';
+import { ICache } from '../types/Cache.js';
+import { FetchFunction } from '../types/PlatformShim.js';
 
 export default class Player {
   #nsig_sc;
@@ -23,7 +20,7 @@ export default class Player {
     this.#player_id = player_id;
   }
 
-  static async create(cache: UniversalCache | undefined, fetch: FetchFunction = globalThis.fetch): Promise<Player> {
+  static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch): Promise<Player> {
     const url = new URL('/iframe_api', Constants.URLS.YT_BASE);
     const res = await fetch(url);
 
@@ -78,10 +75,12 @@ export default class Player {
     url_components.searchParams.set('alr', 'yes');
 
     if (signature_cipher || cipher) {
-      const sig_decipher = new Jinter(this.#sig_sc);
-      sig_decipher.scope.set('sig', args.get('s'));
+      const signature = Platform.shim.eval(this.#sig_sc, {
+        sig: args.get('s')
+      });
 
-      const signature = sig_decipher.interpret();
+      if (typeof signature !== 'string')
+        throw new PlayerError('Failed to decipher signature');
 
       const sp = args.get('sp');
 
@@ -93,10 +92,12 @@ export default class Player {
     const n = url_components.searchParams.get('n');
 
     if (n) {
-      const nsig_decipher = new Jinter(this.#nsig_sc);
-      nsig_decipher.scope.set('nsig', n);
+      const nsig = Platform.shim.eval(this.#nsig_sc, {
+        nsig: n
+      });
 
-      const nsig = nsig_decipher.interpret();
+      if (typeof nsig !== 'string')
+        throw new PlayerError('Failed to decipher nsig');
 
       if (nsig.startsWith('enhanced_except_')) {
         console.warn('Warning:\nCould not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!');
@@ -108,7 +109,7 @@ export default class Player {
     return url_components.toString();
   }
 
-  static async fromCache(cache: UniversalCache, player_id: string): Promise<Player | null> {
+  static async fromCache(cache: ICache, player_id: string): Promise<Player | null> {
     const buffer = await cache.get(player_id);
 
     if (!buffer)
@@ -134,13 +135,13 @@ export default class Player {
     return new Player(sig_timestamp, sig_sc, nsig_sc, player_id);
   }
 
-  static async fromSource(cache: UniversalCache | undefined, sig_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string): Promise<Player> {
+  static async fromSource(cache: ICache | undefined, sig_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string): Promise<Player> {
     const player = new Player(sig_timestamp, sig_sc, nsig_sc, player_id);
     await player.cache(cache);
     return player;
   }
 
-  async cache(cache?: UniversalCache): Promise<void> {
+  async cache(cache?: ICache): Promise<void> {
     if (!cache) return;
 
     const encoder = new TextEncoder();

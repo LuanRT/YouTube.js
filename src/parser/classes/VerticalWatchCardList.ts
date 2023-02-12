@@ -1,7 +1,7 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import { YTNode } from '../helpers.js';
 
 class VerticalWatchCardList extends YTNode {
   static type = 'VerticalWatchCardList';

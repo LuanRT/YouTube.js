@@ -1,34 +1,34 @@
-import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../parser/helpers';
-import Parser, { ParsedResponse, ReloadContinuationItemsCommand } from '../parser/index';
-import { concatMemos, InnertubeError } from '../utils/Utils';
-import type Actions from './Actions';
+import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../parser/helpers.js';
+import Parser, { ParsedResponse, ReloadContinuationItemsCommand } from '../parser/index.js';
+import { concatMemos, InnertubeError } from '../utils/Utils.js';
+import type Actions from './Actions.js';
 
-import BackstagePost from '../parser/classes/BackstagePost';
-import Channel from '../parser/classes/Channel';
-import CompactVideo from '../parser/classes/CompactVideo';
-import GridChannel from '../parser/classes/GridChannel';
-import GridPlaylist from '../parser/classes/GridPlaylist';
-import GridVideo from '../parser/classes/GridVideo';
-import Playlist from '../parser/classes/Playlist';
-import PlaylistPanelVideo from '../parser/classes/PlaylistPanelVideo';
-import PlaylistVideo from '../parser/classes/PlaylistVideo';
-import Post from '../parser/classes/Post';
-import ReelItem from '../parser/classes/ReelItem';
-import ReelShelf from '../parser/classes/ReelShelf';
-import RichShelf from '../parser/classes/RichShelf';
-import Shelf from '../parser/classes/Shelf';
-import Tab from '../parser/classes/Tab';
-import Video from '../parser/classes/Video';
+import BackstagePost from '../parser/classes/BackstagePost.js';
+import Channel from '../parser/classes/Channel.js';
+import CompactVideo from '../parser/classes/CompactVideo.js';
+import GridChannel from '../parser/classes/GridChannel.js';
+import GridPlaylist from '../parser/classes/GridPlaylist.js';
+import GridVideo from '../parser/classes/GridVideo.js';
+import Playlist from '../parser/classes/Playlist.js';
+import PlaylistPanelVideo from '../parser/classes/PlaylistPanelVideo.js';
+import PlaylistVideo from '../parser/classes/PlaylistVideo.js';
+import Post from '../parser/classes/Post.js';
+import ReelItem from '../parser/classes/ReelItem.js';
+import ReelShelf from '../parser/classes/ReelShelf.js';
+import RichShelf from '../parser/classes/RichShelf.js';
+import Shelf from '../parser/classes/Shelf.js';
+import Tab from '../parser/classes/Tab.js';
+import Video from '../parser/classes/Video.js';
 
-import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction';
-import ContinuationItem from '../parser/classes/ContinuationItem';
-import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults';
-import TwoColumnSearchResults from '../parser/classes/TwoColumnSearchResults';
-import WatchCardCompactVideo from '../parser/classes/WatchCardCompactVideo';
+import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction.js';
+import ContinuationItem from '../parser/classes/ContinuationItem.js';
+import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults.js';
+import TwoColumnSearchResults from '../parser/classes/TwoColumnSearchResults.js';
+import WatchCardCompactVideo from '../parser/classes/WatchCardCompactVideo.js';
 
-import type MusicQueue from '../parser/classes/MusicQueue';
-import type RichGrid from '../parser/classes/RichGrid';
-import type SectionList from '../parser/classes/SectionList';
+import type MusicQueue from '../parser/classes/MusicQueue.js';
+import type RichGrid from '../parser/classes/RichGrid.js';
+import type SectionList from '../parser/classes/SectionList.js';
 
 class Feed {
   #page: ParsedResponse;

@@ -66,6 +66,9 @@ tmp/
 dist/
 bundle/*.js.*
 bundle/*.js
+bundle/*.cjs
+bundle/*.cjs.*
+deno/
 
 # MacOS
 .DS_Store

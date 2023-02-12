@@ -1,8 +1,8 @@
-import Parser from '../index';
-import type Menu from './menus/Menu';
-import type Button from './Button';
-import type SortFilterSubMenu from './SortFilterSubMenu';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import type Menu from './menus/Menu.js';
+import type Button from './Button.js';
+import type SortFilterSubMenu from './SortFilterSubMenu.js';
+import { YTNode } from '../helpers.js';
 
 class LiveChatHeader extends YTNode {
   static type = 'LiveChatHeader';

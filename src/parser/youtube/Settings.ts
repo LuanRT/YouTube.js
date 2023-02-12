@@ -1,19 +1,19 @@
-import Parser, { ParsedResponse } from '..';
-import { InnertubeError } from '../../utils/Utils';
+import Parser, { ParsedResponse } from '../index.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
-import ItemSection from '../classes/ItemSection';
-import SectionList from '../classes/SectionList';
-import Tab from '../classes/Tab';
-import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults';
+import ItemSection from '../classes/ItemSection.js';
+import SectionList from '../classes/SectionList.js';
+import Tab from '../classes/Tab.js';
+import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
 
-import CompactLink from '../classes/CompactLink';
-import PageIntroduction from '../classes/PageIntroduction';
-import SettingsOptions from '../classes/SettingsOptions';
-import SettingsSidebar from '../classes/SettingsSidebar';
-import SettingsSwitch from '../classes/SettingsSwitch';
+import CompactLink from '../classes/CompactLink.js';
+import PageIntroduction from '../classes/PageIntroduction.js';
+import SettingsOptions from '../classes/SettingsOptions.js';
+import SettingsSidebar from '../classes/SettingsSidebar.js';
+import SettingsSwitch from '../classes/SettingsSwitch.js';
 
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
 class Settings {
   #page: ParsedResponse;

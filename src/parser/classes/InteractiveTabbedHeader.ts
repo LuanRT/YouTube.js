@@ -1,11 +1,11 @@
-import Parser from '..';
-import { ObservedArray, YTNode } from '../helpers';
+import Parser from '../index.js';
+import { ObservedArray, YTNode } from '../helpers.js';
 
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import SubscribeButton from './SubscribeButton';
-import MetadataBadge from './MetadataBadge';
-import Button from './Button';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import SubscribeButton from './SubscribeButton.js';
+import MetadataBadge from './MetadataBadge.js';
+import Button from './Button.js';
 
 class InteractiveTabbedHeader extends YTNode {
   static type = 'InteractiveTabbedHeader';

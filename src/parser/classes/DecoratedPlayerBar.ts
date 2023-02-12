@@ -1,7 +1,7 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
-import type Button from './Button';
-import type MultiMarkersPlayerBar from './MultiMarkersPlayerBar';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
+import type Button from './Button.js';
+import type MultiMarkersPlayerBar from './MultiMarkersPlayerBar.js';
 
 class DecoratedPlayerBar extends YTNode {
   static type = 'DecoratedPlayerBar';

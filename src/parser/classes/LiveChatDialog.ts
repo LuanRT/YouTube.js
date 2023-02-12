@@ -1,7 +1,7 @@
-import Parser from '..';
-import Text from './misc/Text';
-import Button from './Button';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import Button from './Button.js';
+import { YTNode } from '../helpers.js';
 
 class LiveChatDialog extends YTNode {
   static type = 'LiveChatDialog';

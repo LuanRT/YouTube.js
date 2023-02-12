@@ -1,5 +1,5 @@
-import { YTNode } from '../../../helpers';
-import Text from '../../misc/Text';
+import { YTNode } from '../../../helpers.js';
+import Text from '../../misc/Text.js';
 
 class LiveChatRestrictedParticipation extends YTNode {
   message: Text;

@@ -1,35 +1,35 @@
 
-import Session, { SessionOptions } from './core/Session';
-import type { ParsedResponse } from './parser';
-import type { ActionsResponse } from './core/Actions';
+import Session, { SessionOptions } from './core/Session.js';
+import type { ParsedResponse } from './parser/index.js';
+import type { ActionsResponse } from './core/Actions.js';
 
-import NavigationEndpoint from './parser/classes/NavigationEndpoint';
-import Channel from './parser/youtube/Channel';
-import Comments from './parser/youtube/Comments';
-import History from './parser/youtube/History';
-import Library from './parser/youtube/Library';
-import NotificationsMenu from './parser/youtube/NotificationsMenu';
-import Playlist from './parser/youtube/Playlist';
-import Search from './parser/youtube/Search';
-import VideoInfo from './parser/youtube/VideoInfo';
+import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
+import Channel from './parser/youtube/Channel.js';
+import Comments from './parser/youtube/Comments.js';
+import History from './parser/youtube/History.js';
+import Library from './parser/youtube/Library.js';
+import NotificationsMenu from './parser/youtube/NotificationsMenu.js';
+import Playlist from './parser/youtube/Playlist.js';
+import Search from './parser/youtube/Search.js';
+import VideoInfo from './parser/youtube/VideoInfo.js';
 
-import AccountManager from './core/AccountManager';
-import Feed from './core/Feed';
-import InteractionManager from './core/InteractionManager';
-import YTMusic from './core/Music';
-import PlaylistManager from './core/PlaylistManager';
-import YTStudio from './core/Studio';
-import YTKids from './core/Kids';
-import TabbedFeed from './core/TabbedFeed';
-import HomeFeed from './parser/youtube/HomeFeed';
-import Proto from './proto/index';
-import Constants from './utils/Constants';
+import AccountManager from './core/AccountManager.js';
+import Feed from './core/Feed.js';
+import InteractionManager from './core/InteractionManager.js';
+import YTMusic from './core/Music.js';
+import PlaylistManager from './core/PlaylistManager.js';
+import YTStudio from './core/Studio.js';
+import YTKids from './core/Kids.js';
+import TabbedFeed from './core/TabbedFeed.js';
+import HomeFeed from './parser/youtube/HomeFeed.js';
+import Proto from './proto/index.js';
+import Constants from './utils/Constants.js';
 
-import type Actions from './core/Actions';
-import type Format from './parser/classes/misc/Format';
+import type Actions from './core/Actions.js';
+import type Format from './parser/classes/misc/Format.js';
 
-import { generateRandomString, throwIfMissing } from './utils/Utils';
-import type { FormatOptions, DownloadOptions } from './utils/FormatUtils';
+import { generateRandomString, throwIfMissing } from './utils/Utils.js';
+import type { FormatOptions, DownloadOptions } from './utils/FormatUtils.js';
 
 export type InnertubeConfig = SessionOptions;
 

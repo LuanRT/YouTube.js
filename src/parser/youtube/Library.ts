@@ -1,17 +1,17 @@
-import Parser, { ParsedResponse } from '..';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import { InnertubeError } from '../../utils/Utils';
+import Parser, { ParsedResponse } from '../index.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
-import Feed from '../../core/Feed';
-import History from './History';
-import Playlist from './Playlist';
-import Menu from '../classes/menus/Menu';
-import Shelf from '../classes/Shelf';
-import Button from '../classes/Button';
+import Feed from '../../core/Feed.js';
+import History from './History.js';
+import Playlist from './Playlist.js';
+import Menu from '../classes/menus/Menu.js';
+import Shelf from '../classes/Shelf.js';
+import Button from '../classes/Button.js';
 
-import ProfileColumnStats from '../classes/ProfileColumnStats';
-import ProfileColumnUserInfo from '../classes/ProfileColumnUserInfo';
+import ProfileColumnStats from '../classes/ProfileColumnStats.js';
+import ProfileColumnUserInfo from '../classes/ProfileColumnUserInfo.js';
 
 class Library {
   #actions: Actions;

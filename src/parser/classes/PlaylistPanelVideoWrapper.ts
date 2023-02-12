@@ -1,6 +1,6 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
-import PlaylistPanelVideo from './PlaylistPanelVideo';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
+import PlaylistPanelVideo from './PlaylistPanelVideo.js';
 
 class PlaylistPanelVideoWrapper extends YTNode {
   static type = 'PlaylistPanelVideoWrapper';

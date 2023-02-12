@@ -1,7 +1,7 @@
-import Parser from '../index';
-import Tab from './Tab';
+import Parser from '../index.js';
+import Tab from './Tab.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class SingleColumnBrowseResults extends YTNode {
   static type = 'SingleColumnBrowseResults';

@@ -1,10 +1,10 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import MusicResponsiveListItem from './MusicResponsiveListItem';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import MusicResponsiveListItem from './MusicResponsiveListItem.js';
 
-import { YTNode } from '../helpers';
-import Button from './Button';
+import { YTNode } from '../helpers.js';
+import Button from './Button.js';
 
 class MusicShelf extends YTNode {
   static type = 'MusicShelf';

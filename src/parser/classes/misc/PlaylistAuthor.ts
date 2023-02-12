@@ -1,4 +1,4 @@
-import Author from './Author';
+import Author from './Author.js';
 
 class PlaylistAuthor extends Author {
   constructor(item: any, badges?: any, thumbs?: any) {

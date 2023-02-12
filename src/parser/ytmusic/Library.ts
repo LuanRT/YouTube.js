@@ -1,21 +1,21 @@
-import Parser, { ParsedResponse, SectionListContinuation } from '..';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
+import Parser, { ParsedResponse, SectionListContinuation } from '../index.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
-import Grid from '../classes/Grid';
-import MusicShelf from '../classes/MusicShelf';
-import MusicSideAlignedItem from '../classes/MusicSideAlignedItem';
-import NavigationEndpoint from '../classes/NavigationEndpoint';
-import SectionList from '../classes/SectionList';
+import Grid from '../classes/Grid.js';
+import MusicShelf from '../classes/MusicShelf.js';
+import MusicSideAlignedItem from '../classes/MusicSideAlignedItem.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import SectionList from '../classes/SectionList.js';
 
-import ChipCloud from '../classes/ChipCloud';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import MusicMultiSelectMenuItem from '../classes/menus/MusicMultiSelectMenuItem';
-import MusicSortFilterButton from '../classes/MusicSortFilterButton';
-import MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider';
+import ChipCloud from '../classes/ChipCloud.js';
+import ChipCloudChip from '../classes/ChipCloudChip.js';
+import MusicMultiSelectMenuItem from '../classes/menus/MusicMultiSelectMenuItem.js';
+import MusicSortFilterButton from '../classes/MusicSortFilterButton.js';
+import MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.js';
 
-import { InnertubeError } from '../../utils/Utils';
-import type { ObservedArray } from '../helpers';
+import { InnertubeError } from '../../utils/Utils.js';
+import type { ObservedArray } from '../helpers.js';
 
 class Library {
   #page: ParsedResponse;

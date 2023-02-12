@@ -1,4 +1,4 @@
-import Playlist from './Playlist';
+import Playlist from './Playlist.js';
 
 class CompactMix extends Playlist {
   static type = 'CompactMix';

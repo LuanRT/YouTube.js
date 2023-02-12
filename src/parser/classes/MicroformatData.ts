@@ -1,5 +1,5 @@
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Thumbnail from './misc/Thumbnail.js';
+import { YTNode } from '../helpers.js';
 
 class MicroformatData extends YTNode {
   static type = 'MicroformatData';

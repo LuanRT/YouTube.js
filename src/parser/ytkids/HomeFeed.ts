@@ -1,9 +1,9 @@
-import Feed from '../../core/Feed';
-import Actions from '../../core/Actions';
-import KidsCategoriesHeader from '../classes/ytkids/KidsCategoriesHeader';
-import KidsCategoryTab from '../classes/ytkids/KidsCategoryTab';
-import KidsHomeScreen from '../classes/ytkids/KidsHomeScreen';
-import { InnertubeError } from '../../utils/Utils';
+import Feed from '../../core/Feed.js';
+import Actions from '../../core/Actions.js';
+import KidsCategoriesHeader from '../classes/ytkids/KidsCategoriesHeader.js';
+import KidsCategoryTab from '../classes/ytkids/KidsCategoryTab.js';
+import KidsHomeScreen from '../classes/ytkids/KidsHomeScreen.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
 class HomeFeed extends Feed {
   header?: KidsCategoriesHeader;

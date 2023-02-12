@@ -1,17 +1,27 @@
-import { CLIENTS } from '../utils/Constants';
-import { u8ToBase64 } from '../utils/Utils';
-import { VideoMetadata } from '../core/Studio';
+import { CLIENTS } from '../utils/Constants.js';
+import { u8ToBase64 } from '../utils/Utils.js';
+import { VideoMetadata } from '../core/Studio.js';
 
-import { ChannelAnalytics, CreateCommentParams, GetCommentsSectionParams, InnertubePayload, LiveMessageParams, MusicSearchFilter, NotificationPreferences, PeformCommentActionParams, SearchFilter, SearchFilter_Filters, VisitorData } from './youtube';
+import * as VisitorData from './generated/messages/youtube/VisitorData.js';
+import * as ChannelAnalytics from './generated/messages/youtube/ChannelAnalytics.js';
+import * as SearchFilter from './generated/messages/youtube/SearchFilter.js';
+import * as SearchFilter_Filters from './generated/messages/youtube/(SearchFilter)/Filters.js';
+import * as MusicSearchFilter from './generated/messages/youtube/MusicSearchFilter.js';
+import * as LiveMessageParams from './generated/messages/youtube/LiveMessageParams.js';
+import * as GetCommentsSectionParams from './generated/messages/youtube/GetCommentsSectionParams.js';
+import * as CreateCommentParams from './generated/messages/youtube/CreateCommentParams.js';
+import * as PeformCommentActionParams from './generated/messages/youtube/PeformCommentActionParams.js';
+import * as NotificationPreferences from './generated/messages/youtube/NotificationPreferences.js';
+import * as InnertubePayload from './generated/messages/youtube/InnertubePayload.js';
 
 class Proto {
   static encodeVisitorData(id: string, timestamp: number): string {
-    const buf = VisitorData.toBinary({ id, timestamp });
+    const buf = VisitorData.encodeBinary({ id, timestamp });
     return encodeURIComponent(u8ToBase64(buf).replace(/\+/g, '-').replace(/\//g, '_'));
   }
 
   static encodeChannelAnalyticsParams(channel_id: string): string {
-    const buf = ChannelAnalytics.toBinary({
+    const buf = ChannelAnalytics.encodeBinary({
       params: {
         channelId: channel_id
       }
@@ -71,7 +81,7 @@ class Proto {
       vr180: 'featuresVr180'
     };
 
-    const data: SearchFilter = {};
+    const data: SearchFilter.Type = {};
 
     if (filters)
       data.filters = {};
@@ -97,19 +107,19 @@ class Proto {
 
       if (filters.features) {
         for (const feature of filters.features) {
-          data.filters[features[feature] as keyof SearchFilter_Filters] = 1;
+          data.filters[features[feature] as keyof SearchFilter_Filters.Type] = 1;
         }
       }
     }
 
-    const buf = SearchFilter.toBinary(data);
+    const buf = SearchFilter.encodeBinary(data);
     return encodeURIComponent(u8ToBase64(buf));
   }
 
   static encodeMusicSearchFilters(filters: {
     type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist'
   }): string {
-    const data: MusicSearchFilter = {
+    const data: MusicSearchFilter.Type = {
       filters: {
         type: {}
       }
@@ -119,12 +129,12 @@ class Proto {
     if (filters.type && filters.type !== 'all' && data.filters?.type)
       data.filters.type[filters.type] = 1;
 
-    const buf = MusicSearchFilter.toBinary(data);
+    const buf = MusicSearchFilter.encodeBinary(data);
     return encodeURIComponent(u8ToBase64(buf));
   }
 
   static encodeMessageParams(channel_id: string, video_id: string): string {
-    const buf = LiveMessageParams.toBinary({
+    const buf = LiveMessageParams.encodeBinary({
       params: {
         ids: {
           channelId: channel_id, videoId: video_id
@@ -145,7 +155,7 @@ class Proto {
       NEWEST_FIRST: 1
     };
 
-    const buf = GetCommentsSectionParams.toBinary({
+    const buf = GetCommentsSectionParams.encodeBinary({
       ctx: {
         videoId: video_id
       },
@@ -164,7 +174,7 @@ class Proto {
   }
 
   static encodeCommentParams(video_id: string): string {
-    const buf = CreateCommentParams.toBinary({
+    const buf = CreateCommentParams.encodeBinary({
       videoId: video_id,
       params: {
         index: 0
@@ -180,7 +190,7 @@ class Proto {
     text?: string,
     target_language?: string
   } = {}): string {
-    const data: PeformCommentActionParams = {
+    const data: PeformCommentActionParams.Type = {
       type,
       commentId: args.comment_id || ' ',
       videoId: args.video_id || ' ',
@@ -203,12 +213,12 @@ class Proto {
       };
     }
 
-    const buf = PeformCommentActionParams.toBinary(data);
+    const buf = PeformCommentActionParams.encodeBinary(data);
     return encodeURIComponent(u8ToBase64(buf));
   }
 
   static encodeNotificationPref(channel_id: string, index: number): string {
-    const buf = NotificationPreferences.toBinary({
+    const buf = NotificationPreferences.encodeBinary({
       channelId: channel_id,
       prefId: {
         index
@@ -220,7 +230,7 @@ class Proto {
   }
 
   static encodeVideoMetadataPayload(video_id: string, metadata: VideoMetadata): Uint8Array {
-    const data: InnertubePayload = {
+    const data: InnertubePayload.Type = {
       context: {
         client: {
           unkparam: 14,
@@ -276,13 +286,13 @@ class Proto {
       };
     }
 
-    const buf = InnertubePayload.toBinary(data);
+    const buf = InnertubePayload.encodeBinary(data);
 
     return buf;
   }
 
   static encodeCustomThumbnailPayload(video_id: string, bytes: Uint8Array): Uint8Array {
-    const data: InnertubePayload = {
+    const data: InnertubePayload.Type = {
       context: {
         client: {
           unkparam: 14,
@@ -299,7 +309,7 @@ class Proto {
       }
     };
 
-    const buf = InnertubePayload.toBinary(data);
+    const buf = InnertubePayload.encodeBinary(data);
 
     return buf;
   }

@@ -1,4 +1,4 @@
-import { YTNode } from '../../helpers';
+import { YTNode } from '../../helpers.js';
 
 class RemoveBannerForLiveChatCommand extends YTNode {
   static type = 'RemoveBannerForLiveChatCommand';

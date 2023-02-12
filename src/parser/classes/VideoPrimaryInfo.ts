@@ -1,7 +1,7 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
-import Menu from './menus/Menu';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import { YTNode } from '../helpers.js';
+import Menu from './menus/Menu.js';
 
 class VideoPrimaryInfo extends YTNode {
   static type = 'VideoPrimaryInfo';

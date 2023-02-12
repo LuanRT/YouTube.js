@@ -1,5 +1,5 @@
-import TextRun from './TextRun';
-import EmojiRun from './EmojiRun';
+import TextRun from './TextRun.js';
+import EmojiRun from './EmojiRun.js';
 
 export interface Run {
   text: string;

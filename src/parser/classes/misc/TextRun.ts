@@ -1,5 +1,5 @@
-import NavigationEndpoint from '../NavigationEndpoint';
-import { escape, Run } from './Text';
+import NavigationEndpoint from '../NavigationEndpoint.js';
+import { escape, Run } from './Text.js';
 
 class TextRun implements Run {
   text: string;

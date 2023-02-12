@@ -1,9 +1,7 @@
 import fs from 'fs';
-import Innertube from '..';
+import { Innertube, Utils } from '../bundle/node.cjs';
 import { CHANNELS, VIDEOS } from './constants';
-import { streamToIterable } from '../src/utils/Utils';
-import TextRun from '../src/parser/classes/misc/TextRun';
-import Comments from '../dist/src/parser/youtube/Comments';
+import type TextRun from '../src/parser/classes/misc/TextRun';
 
 describe('YouTube.js Tests', () => { 
   let yt: Innertube;
@@ -93,7 +91,7 @@ describe('YouTube.js Tests', () => {
   });
   
   describe('Comments', () => {
-    let comment_section: Comments;
+    let comment_section: Awaited<ReturnType<(typeof yt)['getComments']>>;
     
     it('should retrieve comments', async () => {
       comment_section = await yt.getComments(VIDEOS[1].ID);
@@ -279,7 +277,7 @@ async function download(id: string, yt: Innertube): Promise<boolean> {
   const stream = await yt.download(id, { type: 'video+audio' });
   const file = fs.createWriteStream(`./${id}.mp4`);
 
-  for await (const chunk of streamToIterable(stream)) {
+  for await (const chunk of Utils.streamToIterable(stream)) {
     file.write(chunk);
   }
   

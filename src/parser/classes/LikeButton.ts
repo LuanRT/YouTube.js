@@ -1,5 +1,5 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import { YTNode } from '../helpers.js';
 
 class LikeButton extends YTNode {
   static type = 'LikeButton';

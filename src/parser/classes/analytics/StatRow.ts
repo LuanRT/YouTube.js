@@ -1,6 +1,6 @@
-import Text from '../misc/Text';
+import Text from '../misc/Text.js';
 
-import { YTNode } from '../../helpers';
+import { YTNode } from '../../helpers.js';
 
 class StatRow extends YTNode {
   static type = 'StatRow';

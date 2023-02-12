@@ -1,10 +1,10 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import PlaylistAuthor from './misc/PlaylistAuthor';
-import NavigationEndpoint from './NavigationEndpoint';
-import NavigatableText from './misc/NavigatableText';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import Parser from '../index.js';
+import Thumbnail from './misc/Thumbnail.js';
+import PlaylistAuthor from './misc/PlaylistAuthor.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import NavigatableText from './misc/NavigatableText.js';
+import { YTNode } from '../helpers.js';
 
 class GridPlaylist extends YTNode {
   static type = 'GridPlaylist';

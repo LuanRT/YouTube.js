@@ -1,9 +1,9 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
-import Button from './Button';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
+import Button from './Button.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
 
 class RecognitionShelf extends YTNode {
   static type = 'RecognitionShelf';

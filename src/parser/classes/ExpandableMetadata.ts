@@ -1,12 +1,12 @@
-import Parser from '..';
+import Parser from '../index.js';
 
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
 
-import Button from './Button';
-import HorizontalCardList from './HorizontalCardList';
+import Button from './Button.js';
+import HorizontalCardList from './HorizontalCardList.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class ExpandableMetadata extends YTNode {
   static type = 'ExpandableMetadata';

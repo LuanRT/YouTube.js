@@ -1,8 +1,13 @@
-import Session, { Context } from '../core/Session';
-import Constants from './Constants';
-import { generateSidAuth, getRandomUserAgent, getStringBetweenStrings, InnertubeError, isServer } from './Utils';
-
-export type FetchFunction = typeof fetch;
+import Session, { Context } from '../core/Session.js';
+import { FetchFunction } from '../types/PlatformShim.js';
+import Constants from './Constants.js';
+import {
+  Platform,
+  generateSidAuth,
+  getRandomUserAgent,
+  getStringBetweenStrings,
+  InnertubeError
+} from './Utils.js';
 
 export interface HTTPClientInit {
   baseURL?: string;
@@ -16,7 +21,7 @@ export default class HTTPClient {
   constructor(session: Session, cookie?: string, fetch?: FetchFunction) {
     this.#session = session;
     this.#cookie = cookie;
-    this.#fetch = fetch || globalThis.fetch;
+    this.#fetch = fetch || Platform.shim.fetch;
   }
 
   get fetch_function(): FetchFunction {
@@ -40,12 +45,12 @@ export default class HTTPClient {
 
     const headers =
       init?.headers ||
-      (input instanceof Request ? input.headers : new Headers()) ||
-      new Headers();
+      (input instanceof Platform.shim.Request ? input.headers : new Platform.shim.Headers()) ||
+      new Platform.shim.Headers();
 
-    const body = init?.body || (input instanceof Request ? input.body : undefined);
+    const body = init?.body || (input instanceof Platform.shim.Request ? input.body : undefined);
 
-    const request_headers = new Headers(headers);
+    const request_headers = new Platform.shim.Headers(headers);
 
     request_headers.set('Accept', '*/*');
     request_headers.set('Accept-Language', '*');
@@ -53,7 +58,7 @@ export default class HTTPClient {
     request_headers.set('x-origin', request_url.origin);
     request_headers.set('x-youtube-client-version', this.#session.context.client.clientVersion || '');
 
-    if (isServer()) {
+    if (Platform.shim.server) {
       request_headers.set('User-Agent', getRandomUserAgent('desktop'));
       request_headers.set('origin', request_url.origin);
     }
@@ -115,13 +120,13 @@ export default class HTTPClient {
       }
     }
 
-    const request = new Request(request_url, input instanceof Request ? input : init);
+    const request = new Platform.shim.Request(request_url, input instanceof Platform.shim.Request ? input : init);
 
     const response = await this.#fetch(request, {
       body: request_body,
       headers: request_headers,
       credentials: 'include',
-      redirect: input instanceof Request ? input.redirect : init?.redirect || 'follow'
+      redirect: input instanceof Platform.shim.Request ? input.redirect : init?.redirect || 'follow'
     });
 
     // Check if 2xx

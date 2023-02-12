@@ -1,7 +1,7 @@
-import Parser from '../index';
-import Element from './Element';
+import Parser from '../index.js';
+import Element from './Element.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class MusicElementHeader extends YTNode {
   static type = 'MusicElementHeader';

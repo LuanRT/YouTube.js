@@ -1,8 +1,8 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import type Button from './Button';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import Parser from '../index.js';
+import Thumbnail from './misc/Thumbnail.js';
+import type Button from './Button.js';
+import { YTNode } from '../helpers.js';
 
 class LiveChatMessageInput extends YTNode {
   static type = 'LiveChatMessageInput';

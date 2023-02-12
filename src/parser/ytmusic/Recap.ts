@@ -1,22 +1,22 @@
-import Parser, { ParsedResponse } from '../index';
+import Parser, { ParsedResponse } from '../index.js';
 
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
-import HighlightsCarousel from '../classes/HighlightsCarousel';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import MusicElementHeader from '../classes/MusicElementHeader';
-import MusicHeader from '../classes/MusicHeader';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
-import Playlist from './Playlist';
+import HighlightsCarousel from '../classes/HighlightsCarousel.js';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
+import MusicElementHeader from '../classes/MusicElementHeader.js';
+import MusicHeader from '../classes/MusicHeader.js';
+import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';
+import Playlist from './Playlist.js';
 
-import ItemSection from '../classes/ItemSection';
-import Message from '../classes/Message';
-import SectionList from '../classes/SectionList';
-import Tab from '../classes/Tab';
+import ItemSection from '../classes/ItemSection.js';
+import Message from '../classes/Message.js';
+import SectionList from '../classes/SectionList.js';
+import Tab from '../classes/Tab.js';
 
-import { InnertubeError } from '../../utils/Utils';
-import type { ObservedArray } from '../helpers';
+import { InnertubeError } from '../../utils/Utils.js';
+import type { ObservedArray } from '../helpers.js';
 
 class Recap {
   #page: ParsedResponse;

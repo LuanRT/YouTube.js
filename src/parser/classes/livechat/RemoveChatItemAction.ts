@@ -1,4 +1,4 @@
-import { YTNode } from '../../helpers';
+import { YTNode } from '../../helpers.js';
 
 class RemoveChatItemAction extends YTNode {
   static type = 'RemoveChatItemAction';

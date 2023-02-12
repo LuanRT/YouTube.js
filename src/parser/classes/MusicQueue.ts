@@ -1,6 +1,6 @@
-import Parser from '../index';
-import PlaylistPanel from './PlaylistPanel';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import PlaylistPanel from './PlaylistPanel.js';
+import { YTNode } from '../helpers.js';
 
 class MusicQueue extends YTNode {
   static type = 'MusicQueue';

@@ -1,10 +1,10 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import SubscribeButton from './SubscribeButton';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import SubscribeButton from './SubscribeButton.js';
 
 class TopicChannelDetails extends YTNode {
   static type = 'TopicChannelDetails';

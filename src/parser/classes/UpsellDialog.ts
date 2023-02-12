@@ -1,7 +1,7 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
-import type Button from './Button';
-import Text from './misc/Text';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
+import type Button from './Button.js';
+import Text from './misc/Text.js';
 
 class UpsellDialog extends YTNode {
   static type = 'UpsellDialog';

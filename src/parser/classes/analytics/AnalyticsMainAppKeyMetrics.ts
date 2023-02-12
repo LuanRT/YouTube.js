@@ -1,5 +1,5 @@
-import DataModelSection from './DataModelSection';
-import { YTNode } from '../../helpers';
+import DataModelSection from './DataModelSection.js';
+import { YTNode } from '../../helpers.js';
 
 class AnalyticsMainAppKeyMetrics extends YTNode {
   static type = 'AnalyticsMainAppKeyMetrics';

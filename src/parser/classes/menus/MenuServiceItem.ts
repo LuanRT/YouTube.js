@@ -1,4 +1,4 @@
-import Button from '../Button';
+import Button from '../Button.js';
 
 class MenuServiceItem extends Button {
   static type = 'MenuServiceItem';
