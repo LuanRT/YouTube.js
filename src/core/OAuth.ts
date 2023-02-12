@@ -1,6 +1,6 @@
-import Constants from '../utils/Constants';
-import { OAuthError, uuidv4 } from '../utils/Utils';
-import type Session from './Session';
+import Constants from '../utils/Constants.js';
+import { OAuthError, Platform } from '../utils/Utils.js';
+import type Session from './Session.js';
 
 export interface Credentials {
   /**
@@ -95,7 +95,7 @@ class OAuth {
     const data = {
       client_id: this.#identity.client_id,
       scope: Constants.OAUTH.SCOPE,
-      device_id: uuidv4(),
+      device_id: Platform.shim.uuidv4(),
       model_name: Constants.OAUTH.MODEL_NAME
     };
 

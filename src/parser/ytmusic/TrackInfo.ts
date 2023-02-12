@@ -1,32 +1,32 @@
-import Parser from '..';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
+import Parser from '../index.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
-import Constants from '../../utils/Constants';
-import { InnertubeError } from '../../utils/Utils';
+import Constants from '../../utils/Constants.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
-import AutomixPreviewVideo from '../classes/AutomixPreviewVideo';
-import Endscreen from '../classes/Endscreen';
-import Message from '../classes/Message';
-import MicroformatData from '../classes/MicroformatData';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import MusicDescriptionShelf from '../classes/MusicDescriptionShelf';
-import MusicQueue from '../classes/MusicQueue';
-import PlayerOverlay from '../classes/PlayerOverlay';
-import PlaylistPanel from '../classes/PlaylistPanel';
-import RichGrid from '../classes/RichGrid';
-import SectionList from '../classes/SectionList';
-import Tab from '../classes/Tab';
-import WatchNextTabbedResults from '../classes/WatchNextTabbedResults';
+import AutomixPreviewVideo from '../classes/AutomixPreviewVideo.js';
+import Endscreen from '../classes/Endscreen.js';
+import Message from '../classes/Message.js';
+import MicroformatData from '../classes/MicroformatData.js';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
+import MusicDescriptionShelf from '../classes/MusicDescriptionShelf.js';
+import MusicQueue from '../classes/MusicQueue.js';
+import PlayerOverlay from '../classes/PlayerOverlay.js';
+import PlaylistPanel from '../classes/PlaylistPanel.js';
+import RichGrid from '../classes/RichGrid.js';
+import SectionList from '../classes/SectionList.js';
+import Tab from '../classes/Tab.js';
+import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.js';
 
-import type Format from '../classes/misc/Format';
-import type NavigationEndpoint from '../classes/NavigationEndpoint';
-import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec';
-import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec';
-import type { ObservedArray, YTNode } from '../helpers';
-import type { INextResponse, IPlayerResponse } from '../types';
+import type Format from '../classes/misc/Format.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
+import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
+import type { ObservedArray, YTNode } from '../helpers.js';
+import type { INextResponse, IPlayerResponse } from '../types/ParsedResponse.js';
 
-import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils';
+import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
 
 class TrackInfo {
   #page: [ IPlayerResponse, INextResponse? ];

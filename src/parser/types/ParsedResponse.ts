@@ -1,17 +1,22 @@
-import { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers';
+import { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.js';
 
-import type { ReloadContinuationItemsCommand, AppendContinuationItemsAction, Continuation, GridContinuation, ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation, PlaylistPanelContinuation, SectionListContinuation } from '..';
-import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist';
-import type CardCollection from '../classes/CardCollection';
-import type Endscreen from '../classes/Endscreen';
-import type AudioOnlyPlayability from '../classes/AudioOnlyPlayability';
-import type Format from '../classes/misc/Format';
-import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec';
-import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec';
-import type VideoDetails from '../classes/misc/VideoDetails';
-import type Alert from '../classes/Alert';
-import type NavigationEndpoint from '../classes/NavigationEndpoint';
-import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded';
+import type {
+  ReloadContinuationItemsCommand, AppendContinuationItemsAction, Continuation, GridContinuation,
+  ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
+  PlaylistPanelContinuation, SectionListContinuation
+} from '../index.js';
+
+import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
+import type CardCollection from '../classes/CardCollection.js';
+import type Endscreen from '../classes/Endscreen.js';
+import type AudioOnlyPlayability from '../classes/AudioOnlyPlayability.js';
+import type Format from '../classes/misc/Format.js';
+import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
+import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
+import type VideoDetails from '../classes/misc/VideoDetails.js';
+import type Alert from '../classes/Alert.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
 
 export interface IParsedResponse {
   actions?: SuperParsedResult<YTNode>;
@@ -32,7 +37,7 @@ export interface IParsedResponse {
   on_response_received_commands_memo?: Memo;
   continuation?: Continuation;
   continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
-   MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
+  MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
   continuation_contents_memo?: Memo;
   metadata?: SuperParsedResult<YTNode>;
   microformat?: YTNode;
@@ -108,7 +113,7 @@ export interface INextResponse {
 
 export interface IBrowseResponse {
   continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
-   MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
+  MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
   continuation_contents_memo?: Memo;
   on_response_received_actions: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
   on_response_received_actions_memo: Memo;
@@ -132,7 +137,7 @@ export interface ISearchResponse {
   contents_memo?: Memo;
   on_response_received_commands?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
   continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
-   MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
+  MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
   continuation_contents_memo?: Memo;
   refinements?: string[];
   estimated_results: number;

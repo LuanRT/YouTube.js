@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import { YTNode } from '../helpers.js';
 
 class PlayerMicroformat extends YTNode {
   static type = 'PlayerMicroformat';

@@ -1,9 +1,9 @@
-import Parser from '../index';
-import Actions, { ApiResponse } from '../../core/Actions';
-import { YTNode } from '../helpers';
-
-import CreatePlaylistDialog from './CreatePlaylistDialog';
-import type { IParsedResponse } from '../types';
+import Parser from '../index.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { IParsedResponse } from '../types/ParsedResponse.js';
+import { YTNode } from '../helpers.js';
+import CreatePlaylistDialog from './CreatePlaylistDialog.js';
 
 class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';
@@ -94,6 +94,17 @@ class NavigationEndpoint extends YTNode {
     if (!this.metadata.api_url)
       throw new Error('Expected an api_url, but none was found, this is a bug.');
     return actions.execute(this.metadata.api_url, { ...this.payload, ...args });
+  }
+
+  toURL(): string | undefined {
+    if (!this.metadata.url)
+      return undefined;
+    if (!this.metadata.page_type)
+      return undefined;
+    return (
+      this.metadata.page_type === 'WEB_PAGE_TYPE_UNKNOWN' ?
+        this.metadata.url : `https://www.youtube.com${this.metadata.url}`
+    );
   }
 }
 

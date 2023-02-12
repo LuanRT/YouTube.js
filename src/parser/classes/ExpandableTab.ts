@@ -1,6 +1,6 @@
-import Parser from '../index';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import { YTNode } from '../helpers.js';
 
 class ExpandableTab extends YTNode {
   static type = 'ExpandableTab';

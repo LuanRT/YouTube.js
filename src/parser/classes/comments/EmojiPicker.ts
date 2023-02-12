@@ -1,6 +1,6 @@
-import Text from '../misc/Text';
-import { YTNode } from '../../helpers';
-import Parser from '../..';
+import Text from '../misc/Text.js';
+import { YTNode } from '../../helpers.js';
+import Parser from '../../index.js';
 
 class EmojiPicker extends YTNode {
   static type = 'EmojiPicker';

@@ -1,8 +1,8 @@
-import type Feed from './Feed';
-import type Actions from './Actions';
-import Playlist from '../parser/youtube/Playlist';
+import type Feed from './Feed.js';
+import type Actions from './Actions.js';
+import Playlist from '../parser/youtube/Playlist.js';
 
-import { InnertubeError, throwIfMissing } from '../utils/Utils';
+import { InnertubeError, throwIfMissing } from '../utils/Utils.js';
 
 class PlaylistManager {
   #actions: Actions;

@@ -1,8 +1,8 @@
-import { ObservedArray, YTNode } from '../../../helpers';
-import Parser from '../../../index';
-import Button from '../../Button';
-import Text from '../../misc/Text';
-import NavigationEndpoint from '../../NavigationEndpoint';
+import { ObservedArray, YTNode } from '../../../helpers.js';
+import Parser from '../../../index.js';
+import Button from '../../Button.js';
+import Text from '../../misc/Text.js';
+import NavigationEndpoint from '../../NavigationEndpoint.js';
 
 class LiveChatAutoModMessage extends YTNode {
   static type = 'LiveChatAutoModMessage';

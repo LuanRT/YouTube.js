@@ -1,5 +1,5 @@
-import Player from '../../../core/Player';
-import { InnertubeError } from '../../../utils/Utils';
+import Player from '../../../core/Player.js';
+import { InnertubeError } from '../../../utils/Utils.js';
 
 class Format {
   itag: number;

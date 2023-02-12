@@ -1,9 +1,9 @@
-import Proto from '../proto';
-import { Constants } from '../utils';
-import { InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils';
+import Proto from '../proto/index.js';
+import { Constants } from '../utils/index.js';
+import { InnertubeError, MissingParamError, Platform } from '../utils/Utils.js';
 
-import type { ApiResponse } from './Actions';
-import type Session from './Session';
+import type { ApiResponse } from './Actions.js';
+import type Session from './Session.js';
 
 interface UploadResult {
   status: string;
@@ -120,12 +120,12 @@ class Studio {
   }
 
   async #getInitialUploadData(): Promise<InitialUploadData> {
-    const frontend_upload_id = `innertube_android:${uuidv4()}:0:v=3,api=1,cf=3`;
+    const frontend_upload_id = `innertube_android:${Platform.shim.uuidv4()}:0:v=3,api=1,cf=3`;
 
     const payload = {
       frontendUploadId: frontend_upload_id,
       deviceDisplayName: 'Pixel 6 Pro',
-      fileId: `goog-edited-video://generated?videoFileUri=content://media/external/video/media/${uuidv4()}`,
+      fileId: `goog-edited-video://generated?videoFileUri=content://media/external/video/media/${Platform.shim.uuidv4()}`,
       mp4MoovAtomRelocationStatus: 'UNSUPPORTED',
       transcodeResult: 'DISABLED',
       connectionType: 'WIFI'

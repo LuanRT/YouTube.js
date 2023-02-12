@@ -1,6 +1,6 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
-import type Button from './Button';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
+import type Button from './Button.js';
 
 class LiveChatItemList extends YTNode {
   static type = 'LiveChatItemList';

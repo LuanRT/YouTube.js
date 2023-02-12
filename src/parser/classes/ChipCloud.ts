@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Button from './Button';
-import ChipCloudChip from './ChipCloudChip';
+import Parser from '../index.js';
+import Button from './Button.js';
+import ChipCloudChip from './ChipCloudChip.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class ChipCloud extends YTNode {
   static type = 'ChipCloud';

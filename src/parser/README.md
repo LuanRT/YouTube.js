@@ -10,7 +10,7 @@ Structure:
 * [`/ytmusic`](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/ytmusic) - Contains the logic for parsing YouTube Music responses.
 * [`/ytkids`](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/ytkids) - Contains the logic for parsing YouTube Kids responses.
 * [`helpers.ts`](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/helpers.ts) - Helper functions/classes for the parser.
-* [`index.ts`](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/index.ts) - The core of the parser.
+* [`parser.ts`](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/index.ts) - The core of the parser.
 * [`map.ts`](https://github.com/LuanRT/YouTube.js/blob/main/src/parser/map.ts) - A list of all InnerTube nodes, it is used to determine which node to use for a given renderer. Note that this file is auto-generated and should not be edited manually.
 
 ## Table of Contents

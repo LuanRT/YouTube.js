@@ -1,10 +1,10 @@
-import Search from '../parser/ytkids/Search';
-import HomeFeed from '../parser/ytkids/HomeFeed';
-import VideoInfo from '../parser/ytkids/VideoInfo';
-import Channel from '../parser/ytkids/Channel';
-import type Session from './Session';
+import Search from '../parser/ytkids/Search.js';
+import HomeFeed from '../parser/ytkids/HomeFeed.js';
+import VideoInfo from '../parser/ytkids/VideoInfo.js';
+import Channel from '../parser/ytkids/Channel.js';
+import type Session from './Session.js';
 
-import { generateRandomString } from '../utils/Utils';
+import { generateRandomString } from '../utils/Utils.js';
 
 class Kids {
   #session: Session;

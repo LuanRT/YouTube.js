@@ -1,13 +1,13 @@
-import { InnertubeError } from '../../utils/Utils';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import SectionList from '../classes/SectionList';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
-import Parser, { SectionListContinuation } from '../index';
+import { InnertubeError } from '../../utils/Utils.js';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
+import SectionList from '../classes/SectionList.js';
+import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';
+import Parser, { SectionListContinuation } from '../index.js';
 
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import type { ObservedArray } from '../helpers';
-import type { IBrowseResponse } from '../types';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { ObservedArray } from '../helpers.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class HomeFeed {
   #page: IBrowseResponse;

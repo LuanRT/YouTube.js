@@ -1,12 +1,12 @@
-import type Actions from '../../core/Actions';
-import FilterableFeed from '../../core/FilterableFeed';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import FeedTabbedHeader from '../classes/FeedTabbedHeader';
-import RichGrid from '../classes/RichGrid';
+import type Actions from '../../core/Actions.js';
+import FilterableFeed from '../../core/FilterableFeed.js';
+import ChipCloudChip from '../classes/ChipCloudChip.js';
+import FeedTabbedHeader from '../classes/FeedTabbedHeader.js';
+import RichGrid from '../classes/RichGrid.js';
 
-import type { IBrowseResponse } from '../types/ParsedResponse';
-import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
-import type { ApiResponse } from '../../core/Actions';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '../index.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
 export default class HomeFeed extends FilterableFeed<IBrowseResponse> {
   contents: RichGrid | AppendContinuationItemsAction | ReloadContinuationItemsCommand;

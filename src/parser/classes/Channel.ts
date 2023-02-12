@@ -1,12 +1,12 @@
-import Parser from '..';
+import Parser from '../index.js';
 
-import Text from './misc/Text';
-import Author from './misc/Author';
-import NavigationEndpoint from './NavigationEndpoint';
+import Text from './misc/Text.js';
+import Author from './misc/Author.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
-import type SubscribeButton from './SubscribeButton';
+import type SubscribeButton from './SubscribeButton.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class Channel extends YTNode {
   static type = 'Channel';

@@ -1,2 +1,2 @@
-export * from './RawResponse';
-export * from './ParsedResponse';
+export * from './RawResponse.js';
+export * from './ParsedResponse.js';

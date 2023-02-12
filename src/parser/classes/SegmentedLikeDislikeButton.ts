@@ -1,6 +1,6 @@
-import Parser from '..';
-import ToggleButton from './ToggleButton';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import ToggleButton from './ToggleButton.js';
+import { YTNode } from '../helpers.js';
 
 class SegmentedLikeDislikeButton extends YTNode {
   static type = 'SegmentedLikeDislikeButton';

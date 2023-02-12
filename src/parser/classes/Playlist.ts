@@ -1,9 +1,9 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import PlaylistAuthor from './misc/PlaylistAuthor';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import Parser from '../index.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import PlaylistAuthor from './misc/PlaylistAuthor.js';
+import { YTNode } from '../helpers.js';
 
 class Playlist extends YTNode {
   static type = 'Playlist';

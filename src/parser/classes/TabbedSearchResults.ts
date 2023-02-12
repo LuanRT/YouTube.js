@@ -1,6 +1,6 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
-import Tab from './Tab';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
+import Tab from './Tab.js';
 
 class TabbedSearchResults extends YTNode {
   static type = 'TabbedSearchResults';

@@ -1,11 +1,11 @@
-import Parser from '../../../index';
-import LiveChatAuthorBadge from '../../LiveChatAuthorBadge';
-import MetadataBadge from '../../MetadataBadge';
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
-import NavigationEndpoint from '../../NavigationEndpoint';
+import Parser from '../../../index.js';
+import LiveChatAuthorBadge from '../../LiveChatAuthorBadge.js';
+import MetadataBadge from '../../MetadataBadge.js';
+import Text from '../../misc/Text.js';
+import Thumbnail from '../../misc/Thumbnail.js';
+import NavigationEndpoint from '../../NavigationEndpoint.js';
 
-import { observe, ObservedArray, YTNode } from '../../../helpers';
+import { observe, ObservedArray, YTNode } from '../../../helpers.js';
 
 class LiveChatTickerPaidStickerItem extends YTNode {
   static type = 'LiveChatTickerPaidStickerItem';

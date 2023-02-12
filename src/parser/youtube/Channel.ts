@@ -1,28 +1,28 @@
-import C4TabbedHeader from '../classes/C4TabbedHeader';
-import CarouselHeader from '../classes/CarouselHeader';
-import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata';
-import ChannelMetadata from '../classes/ChannelMetadata';
-import ChannelSubMenu from '../classes/ChannelSubMenu';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import ExpandableTab from '../classes/ExpandableTab';
-import FeedFilterChipBar from '../classes/FeedFilterChipBar';
-import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader';
-import MicroformatData from '../classes/MicroformatData';
-import SectionList from '../classes/SectionList';
-import SortFilterSubMenu from '../classes/SortFilterSubMenu';
-import SubscribeButton from '../classes/SubscribeButton';
-import Tab from '../classes/Tab';
+import TabbedFeed from '../../core/TabbedFeed.js';
+import C4TabbedHeader from '../classes/C4TabbedHeader.js';
+import CarouselHeader from '../classes/CarouselHeader.js';
+import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata.js';
+import ChannelMetadata from '../classes/ChannelMetadata.js';
+import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader.js';
+import MicroformatData from '../classes/MicroformatData.js';
+import SubscribeButton from '../classes/SubscribeButton.js';
+import ExpandableTab from '../classes/ExpandableTab.js';
+import SectionList from '../classes/SectionList.js';
+import Tab from '../classes/Tab.js';
 
-import Feed from '../../core/Feed';
-import FilterableFeed from '../../core/FilterableFeed';
-import TabbedFeed from '../../core/TabbedFeed';
+import Feed from '../../core/Feed.js';
+import FilterableFeed from '../../core/FilterableFeed.js';
+import ChipCloudChip from '../classes/ChipCloudChip.js';
+import FeedFilterChipBar from '../classes/FeedFilterChipBar.js';
+import ChannelSubMenu from '../classes/ChannelSubMenu.js';
+import SortFilterSubMenu from '../classes/SortFilterSubMenu.js';
 
-import { ChannelError, InnertubeError } from '../../utils/Utils';
+import { ChannelError, InnertubeError } from '../../utils/Utils.js';
 
-import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '..';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import type { IBrowseResponse } from '../types';
+import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '../index.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
   header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader;
@@ -201,6 +201,10 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     return new Channel(this.actions, page, true);
   }
 
+  get has_home(): boolean {
+    return this.hasTabWithURL('featured');
+  }
+
   get has_videos(): boolean {
     return this.hasTabWithURL('videos');
   }
@@ -219,6 +223,18 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 
   get has_community(): boolean {
     return this.hasTabWithURL('community');
+  }
+
+  get has_channels(): boolean {
+    return this.hasTabWithURL('channels');
+  }
+
+  get has_about(): boolean {
+    return this.hasTabWithURL('about');
+  }
+
+  get has_search(): boolean {
+    return this.memo.getType(ExpandableTab)?.length > 0;
   }
 
   /**

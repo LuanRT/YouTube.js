@@ -1,4 +1,4 @@
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class AudioOnlyPlayability extends YTNode {
   static type = 'AudioOnlyPlayability';

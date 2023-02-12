@@ -1,21 +1,21 @@
-import Feed from '../../core/Feed';
-import Message from '../classes/Message';
-import Thumbnail from '../classes/misc/Thumbnail';
-import NavigationEndpoint from '../classes/NavigationEndpoint';
-import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail';
-import PlaylistHeader from '../classes/PlaylistHeader';
-import PlaylistMetadata from '../classes/PlaylistMetadata';
-import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo';
-import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo';
-import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail';
-import VideoOwner from '../classes/VideoOwner';
+import Feed from '../../core/Feed.js';
+import Message from '../classes/Message.js';
+import Thumbnail from '../classes/misc/Thumbnail.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail.js';
+import PlaylistHeader from '../classes/PlaylistHeader.js';
+import PlaylistMetadata from '../classes/PlaylistMetadata.js';
+import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.js';
+import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.js';
+import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.js';
+import VideoOwner from '../classes/VideoOwner.js';
 
-import { InnertubeError } from '../../utils/Utils';
-import { ObservedArray } from '../helpers';
+import { InnertubeError } from '../../utils/Utils.js';
+import { ObservedArray } from '../helpers.js';
 
-import type Actions from '../../core/Actions';
-import type { IBrowseResponse } from '../types';
-import type { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class Playlist extends Feed<IBrowseResponse> {
   info;

@@ -1,8 +1,8 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Text from './misc/Text.js';
 
-import { timeToSeconds } from '../../utils/Utils';
-import { YTNode } from '../helpers';
+import { timeToSeconds } from '../../utils/Utils.js';
+import { YTNode } from '../helpers.js';
 
 class ChildVideo extends YTNode {
   static type = 'ChildVideo';

@@ -1,8 +1,8 @@
-import Parser from '..';
-import type Chapter from './Chapter';
-import type Heatmap from './Heatmap';
+import Parser from '../index.js';
+import type Chapter from './Chapter.js';
+import type Heatmap from './Heatmap.js';
 
-import { observe, ObservedArray, YTNode } from '../helpers';
+import { observe, ObservedArray, YTNode } from '../helpers.js';
 
 class Marker extends YTNode {
   static type = 'Marker';

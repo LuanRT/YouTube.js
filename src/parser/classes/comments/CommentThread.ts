@@ -1,12 +1,12 @@
-import Parser from '../../index';
-import Comment from './Comment';
-import ContinuationItem from '../ContinuationItem';
-import CommentReplies from './CommentReplies';
-import Button from '../Button';
-import type Actions from '../../../core/Actions';
-import type { ObservedArray } from '../../helpers';
-import { InnertubeError } from '../../../utils/Utils';
-import { observe, YTNode } from '../../helpers';
+import Parser from '../../index.js';
+import Comment from './Comment.js';
+import ContinuationItem from '../ContinuationItem.js';
+import CommentReplies from './CommentReplies.js';
+import Button from '../Button.js';
+import type Actions from '../../../core/Actions.js';
+import type { ObservedArray } from '../../helpers.js';
+import { InnertubeError } from '../../../utils/Utils.js';
+import { observe, YTNode } from '../../helpers.js';
 
 class CommentThread extends YTNode {
   static type = 'CommentThread';

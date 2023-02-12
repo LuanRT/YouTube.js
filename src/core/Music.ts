@@ -1,31 +1,32 @@
-import Album from '../parser/ytmusic/Album';
-import Artist from '../parser/ytmusic/Artist';
-import Explore from '../parser/ytmusic/Explore';
-import HomeFeed from '../parser/ytmusic/HomeFeed';
-import Library from '../parser/ytmusic/Library';
-import Playlist from '../parser/ytmusic/Playlist';
-import Recap from '../parser/ytmusic/Recap';
-import Search from '../parser/ytmusic/Search';
-import TrackInfo from '../parser/ytmusic/TrackInfo';
 
-import AutomixPreviewVideo from '../parser/classes/AutomixPreviewVideo';
-import Message from '../parser/classes/Message';
-import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf';
-import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf';
-import MusicQueue from '../parser/classes/MusicQueue';
-import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem';
-import PlaylistPanel from '../parser/classes/PlaylistPanel';
-import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection';
-import SectionList from '../parser/classes/SectionList';
-import Tab from '../parser/classes/Tab';
+import Album from '../parser/ytmusic/Album.js';
+import Artist from '../parser/ytmusic/Artist.js';
+import Explore from '../parser/ytmusic/Explore.js';
+import HomeFeed from '../parser/ytmusic/HomeFeed.js';
+import Library from '../parser/ytmusic/Library.js';
+import Playlist from '../parser/ytmusic/Playlist.js';
+import Recap from '../parser/ytmusic/Recap.js';
+import Search from '../parser/ytmusic/Search.js';
+import TrackInfo from '../parser/ytmusic/TrackInfo.js';
 
-import { observe } from '../parser/helpers';
-import Proto from '../proto';
-import { generateRandomString, InnertubeError, throwIfMissing } from '../utils/Utils';
+import AutomixPreviewVideo from '../parser/classes/AutomixPreviewVideo.js';
+import Message from '../parser/classes/Message.js';
+import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf.js';
+import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf.js';
+import MusicQueue from '../parser/classes/MusicQueue.js';
+import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem.js';
+import PlaylistPanel from '../parser/classes/PlaylistPanel.js';
+import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection.js';
+import SectionList from '../parser/classes/SectionList.js';
+import Tab from '../parser/classes/Tab.js';
 
-import type { ObservedArray, YTNode } from '../parser/helpers';
-import type Actions from './Actions';
-import type Session from './Session';
+import { observe } from '../parser/helpers.js';
+import Proto from '../proto/index.js';
+import { generateRandomString, InnertubeError, throwIfMissing } from '../utils/Utils.js';
+
+import type { ObservedArray, YTNode } from '../parser/helpers.js';
+import type Actions from './Actions.js';
+import type Session from './Session.js';
 
 class Music {
   #session: Session;

@@ -1,18 +1,18 @@
-import Parser, { MusicPlaylistShelfContinuation, SectionListContinuation } from '../index';
+import Parser, { MusicPlaylistShelfContinuation, SectionListContinuation } from '../index.js';
 
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import MusicDetailHeader from '../classes/MusicDetailHeader';
-import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader';
-import MusicPlaylistShelf from '../classes/MusicPlaylistShelf';
-import MusicResponsiveListItem from '../classes/MusicResponsiveListItem';
-import MusicShelf from '../classes/MusicShelf';
-import SectionList from '../classes/SectionList';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
+import MusicDetailHeader from '../classes/MusicDetailHeader.js';
+import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader.js';
+import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.js';
+import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
+import MusicShelf from '../classes/MusicShelf.js';
+import SectionList from '../classes/SectionList.js';
 
-import { InnertubeError } from '../../utils/Utils';
-import type { ObservedArray, YTNode } from '../helpers';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import type { IBrowseResponse } from '../types';
+import { InnertubeError } from '../../utils/Utils.js';
+import type { ObservedArray, YTNode } from '../helpers.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class Playlist {
   #page: IBrowseResponse;

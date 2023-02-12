@@ -1,10 +1,10 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import SubscribeButton from './SubscribeButton';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import SubscribeButton from './SubscribeButton.js';
 
 class TopicChannelDetails extends YTNode {
   static type = 'TopicChannelDetails';
@@ -19,8 +19,8 @@ class TopicChannelDetails extends YTNode {
     super();
 
     this.title = new Text(data.title);
-    this.avatar = Thumbnail.fromResponse(data.thumbnail);
-    this.subtitle = new Text(data.title);
+    this.avatar = Thumbnail.fromResponse(data.thumbnail ?? data.avatar);
+    this.subtitle = new Text(data.subtitle);
     this.subscribe_button = Parser.parseItem<SubscribeButton>(data.subscribeButton, SubscribeButton);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }

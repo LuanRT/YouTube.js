@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import { timeToSeconds } from '../../utils/Utils';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import { timeToSeconds } from '../../utils/Utils.js';
+import { YTNode } from '../helpers.js';
 
 class WatchCardCompactVideo extends YTNode {
   static type = 'WatchCardCompactVideo';

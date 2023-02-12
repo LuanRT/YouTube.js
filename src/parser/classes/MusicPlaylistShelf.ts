@@ -1,7 +1,7 @@
-import Parser from '../index';
-import MusicResponsiveListItem from './MusicResponsiveListItem';
+import Parser from '../index.js';
+import MusicResponsiveListItem from './MusicResponsiveListItem.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class MusicPlaylistShelf extends YTNode {
   static type = 'MusicPlaylistShelf';

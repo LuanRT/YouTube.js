@@ -1,17 +1,12 @@
-import Player from '../core/Player';
-import Actions from '../core/Actions';
+import Player from '../core/Player.js';
+import Actions from '../core/Actions.js';
 
-import type Format from '../parser/classes/misc/Format';
-import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability';
-import type { YTNode } from '../parser/helpers';
+import type Format from '../parser/classes/misc/Format.js';
+import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability.js';
+import type { YTNode } from '../parser/helpers.js';
 
-import { DOMParser } from 'linkedom';
-import type { Element } from 'linkedom/types/interface/element';
-import type { Node } from 'linkedom/types/interface/node';
-import type { XMLDocument } from 'linkedom/types/xml/document';
-
-import { Constants } from '.';
-import { getStringBetweenStrings, InnertubeError, streamToIterable } from './Utils';
+import { Constants } from './index.js';
+import { getStringBetweenStrings, InnertubeError, Platform, streamToIterable } from './Utils.js';
 
 export type URLTransformer = (url: URL) => URL;
 export type FormatFilter = (format: Format) => boolean;
@@ -111,7 +106,7 @@ class FormatUtils {
 
     let cancel: AbortController;
 
-    const readable_stream = new ReadableStream<Uint8Array>({
+    const readable_stream = new Platform.shim.ReadableStream<Uint8Array>({
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       start() { },
       pull: async (controller) => {
@@ -275,10 +270,11 @@ class FormatUtils {
 
     const length = adaptive_formats[0].approx_duration_ms / 1000;
 
-    const document = new DOMParser().parseFromString('', 'text/xml');
+    const document = new Platform.shim.DOMParser().parseFromString('<?xml version="1.0" encoding="utf-8"?><MPD />', 'application/xml');
+    const mpd = document.querySelector('MPD') as HTMLElement;
     const period = document.createElement('Period');
 
-    document.appendChild(this.#el(document, 'MPD', {
+    mpd.replaceWith(this.#el(document, 'MPD', {
       xmlns: 'urn:mpeg:dash:schema:mpd:2011',
       minBufferTime: 'PT1.500S',
       profiles: 'urn:mpeg:dash:profile:isoff-main:2011',
@@ -292,13 +288,13 @@ class FormatUtils {
 
     this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player);
 
-    return `${document}`;
+    return Platform.shim.serializeDOM(document);
   }
 
   static #el(document: XMLDocument, tag: string, attrs: Record<string, string | undefined>, children: Node[] = []) {
     const el = document.createElement(tag);
     for (const [ key, value ] of Object.entries(attrs)) {
-      el.setAttribute(key, value);
+      value && el.setAttribute(key, value);
     }
     for (const child of children) {
       if (typeof child === 'undefined') continue;
@@ -315,7 +311,7 @@ class FormatUtils {
       if (!video_format.index_range || !video_format.init_range) {
         return;
       }
-      const mime_type = video_format.mime_type;
+      const mime_type = video_format.mime_type.split(';')[0];
       const mime_type_index = mime_types.indexOf(mime_type);
       if (mime_type_index > -1) {
         mime_objects[mime_type_index].push(video_format);
@@ -326,23 +322,81 @@ class FormatUtils {
       }
     });
 
+    let set_id = 0;
     for (let i = 0; i < mime_types.length; i++) {
-      const set = this.#el(document, 'AdaptationSet', {
-        id: `${i}`,
-        mimeType: mime_types[i].split(';')[0],
-        startWithSAP: '1',
-        subsegmentAlignment: 'true'
-      });
 
-      period.appendChild(set);
+      // When the video has multiple different audio tracks/langues we want to include the extra information in the manifest
+      if (mime_objects[i][0].has_audio && mime_objects[i][0].language) {
+        const languages: string[] = [];
+        const language_objects: Format[][] = [ [] ];
 
-      mime_objects[i].forEach((format) => {
-        if (format.has_video) {
-          this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
-        } else {
-          this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+        mime_objects[i].forEach((format) => {
+          const language_index = languages.indexOf(format.language as string);
+          if (language_index > -1) {
+            language_objects[language_index].push(format);
+          } else {
+            languages.push(format.language as string);
+            language_objects.push([]);
+            language_objects[languages.length - 1].push(format);
+          }
+        });
+
+        // The lang attribute has to go on the AdaptationSet element, so we need a separate adaptation set for each language
+        for (let j = 0; j < languages.length; j++) {
+          const first_format = language_objects[j][0];
+
+          const children = [];
+
+          if (first_format.audio_track) {
+            let role;
+            if (first_format.audio_track.audio_is_default) {
+              role = 'main';
+            } else if (first_format.is_dubbed) {
+              role = 'dub';
+            } else {
+              role = 'alternate';
+            }
+
+            children.push(
+              this.#el(document, 'Role', {
+                schemeIdUri: 'urn:mpeg:dash:role:2011',
+                value: role
+              })
+            );
+          }
+
+          const set = this.#el(document, 'AdaptationSet', {
+            id: `${set_id++}`,
+            mimeType: mime_types[i],
+            startWithSAP: '1',
+            subsegmentAlignment: 'true',
+            lang: languages[j]
+          }, children);
+
+          period.appendChild(set);
+
+          language_objects[j].forEach((format) => {
+            this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+          });
         }
-      });
+      } else {
+        const set = this.#el(document, 'AdaptationSet', {
+          id: `${set_id++}`,
+          mimeType: mime_types[i],
+          startWithSAP: '1',
+          subsegmentAlignment: 'true'
+        });
+
+        period.appendChild(set);
+
+        mime_objects[i].forEach((format) => {
+          if (format.has_video) {
+            this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
+          } else {
+            this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+          }
+        });
+      }
     }
   }
 
@@ -377,7 +431,7 @@ class FormatUtils {
     ]));
   }
 
-  static #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static async #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
     if (!format.index_range || !format.init_range)
       throw new InnertubeError('Index and init ranges not available', { format });
@@ -388,7 +442,8 @@ class FormatUtils {
     set.appendChild(this.#el(document, 'Representation', {
       id: format.itag?.toString(),
       codecs,
-      bandwidth: format.bitrate?.toString()
+      bandwidth: format.bitrate?.toString(),
+      audioSamplingRate: format.audio_sample_rate?.toString()
     }, [
       this.#el(document, 'AudioChannelConfiguration', {
         schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',

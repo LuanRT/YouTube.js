@@ -1,9 +1,9 @@
-import Parser from '../index';
-import ItemSectionHeader from './ItemSectionHeader';
+import Parser from '../index.js';
+import ItemSectionHeader from './ItemSectionHeader.js';
 
-import { YTNode } from '../helpers';
-import ItemSectionTabbedHeader from './ItemSectionTabbedHeader';
-import CommentsHeader from './comments/CommentsHeader';
+import { YTNode } from '../helpers.js';
+import ItemSectionTabbedHeader from './ItemSectionTabbedHeader.js';
+import CommentsHeader from './comments/CommentsHeader.js';
 
 class ItemSection extends YTNode {
   static type = 'ItemSection';

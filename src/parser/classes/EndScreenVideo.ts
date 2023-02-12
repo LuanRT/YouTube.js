@@ -1,9 +1,9 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import Author from './misc/Author';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import Author from './misc/Author.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import { YTNode } from '../helpers.js';
 
 class EndScreenVideo extends YTNode {
   static type = 'EndScreenVideo';

@@ -1,9 +1,9 @@
-import Parser from '..';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import SubscribeButton from './SubscribeButton';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import SubscribeButton from './SubscribeButton.js';
+import { YTNode } from '../helpers.js';
 
 class SlimOwner extends YTNode {
   static type = 'SlimOwner';

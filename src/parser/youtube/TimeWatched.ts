@@ -1,12 +1,12 @@
-import Parser from '..';
-import ItemSection from '../classes/ItemSection';
-import SectionList from '../classes/SectionList';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
+import Parser from '../index.js';
+import ItemSection from '../classes/ItemSection.js';
+import SectionList from '../classes/SectionList.js';
+import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';
 
-import { InnertubeError } from '../../utils/Utils';
-import type { ApiResponse } from '../../core/Actions';
-import type { ObservedArray } from '../helpers';
-import type { IBrowseResponse } from '../types';
+import { InnertubeError } from '../../utils/Utils.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { ObservedArray } from '../helpers.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class TimeWatched {
   #page: IBrowseResponse;

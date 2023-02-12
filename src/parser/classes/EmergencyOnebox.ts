@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
 class EmergencyOnebox extends YTNode {
   static type = 'EmergencyOnebox';

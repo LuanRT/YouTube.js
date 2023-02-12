@@ -1,5 +1,5 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
 class SectionList extends YTNode {
   static type = 'SectionList';

@@ -1,14 +1,14 @@
-import Parser from '..';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import { InnertubeError } from '../../utils/Utils';
-import { observe, ObservedArray } from '../helpers';
-import type { INextResponse } from '../types';
+import Parser from '../index.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import { InnertubeError } from '../../utils/Utils.js';
+import { observe, ObservedArray } from '../helpers.js';
+import type { INextResponse } from '../types/ParsedResponse.js';
 
-import CommentsHeader from '../classes/comments/CommentsHeader';
-import CommentSimplebox from '../classes/comments/CommentSimplebox';
-import CommentThread from '../classes/comments/CommentThread';
-import ContinuationItem from '../classes/ContinuationItem';
+import CommentsHeader from '../classes/comments/CommentsHeader.js';
+import CommentSimplebox from '../classes/comments/CommentSimplebox.js';
+import CommentThread from '../classes/comments/CommentThread.js';
+import ContinuationItem from '../classes/ContinuationItem.js';
 
 class Comments {
   #page: INextResponse;

@@ -1,7 +1,7 @@
-import Parser from '../index';
-import BackstageImage from './BackstageImage';
+import Parser from '../index.js';
+import BackstageImage from './BackstageImage.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class PostMultiImage extends YTNode {
   static type = 'PostMultiImage';

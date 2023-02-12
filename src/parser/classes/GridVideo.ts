@@ -1,12 +1,12 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import Author from './misc/Author';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Author from './misc/Author.js';
 
-import type Menu from './menus/Menu';
+import type Menu from './menus/Menu.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class GridVideo extends YTNode {
   static type = 'GridVideo';

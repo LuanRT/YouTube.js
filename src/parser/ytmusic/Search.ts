@@ -1,22 +1,22 @@
-import type Actions from '../../core/Actions';
-import { InnertubeError } from '../../utils/Utils';
-import Parser, { MusicShelfContinuation } from '../index';
+import type Actions from '../../core/Actions.js';
+import { InnertubeError } from '../../utils/Utils.js';
+import Parser, { MusicShelfContinuation } from '../index.js';
 
-import ChipCloud from '../classes/ChipCloud';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import DidYouMean from '../classes/DidYouMean';
-import ItemSection from '../classes/ItemSection';
-import Message from '../classes/Message';
-import MusicHeader from '../classes/MusicHeader';
-import MusicResponsiveListItem from '../classes/MusicResponsiveListItem';
-import MusicShelf from '../classes/MusicShelf';
-import SectionList from '../classes/SectionList';
-import ShowingResultsFor from '../classes/ShowingResultsFor';
-import TabbedSearchResults from '../classes/TabbedSearchResults';
+import ChipCloud from '../classes/ChipCloud.js';
+import ChipCloudChip from '../classes/ChipCloudChip.js';
+import DidYouMean from '../classes/DidYouMean.js';
+import ItemSection from '../classes/ItemSection.js';
+import Message from '../classes/Message.js';
+import MusicHeader from '../classes/MusicHeader.js';
+import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
+import MusicShelf from '../classes/MusicShelf.js';
+import SectionList from '../classes/SectionList.js';
+import ShowingResultsFor from '../classes/ShowingResultsFor.js';
+import TabbedSearchResults from '../classes/TabbedSearchResults.js';
 
-import type { ObservedArray } from '../helpers';
-import type { ISearchResponse } from '../types';
-import type { ApiResponse } from '../../core/Actions';
+import type { ObservedArray } from '../helpers.js';
+import type { ISearchResponse } from '../types/ParsedResponse.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
 class Search {
   #page: ISearchResponse;

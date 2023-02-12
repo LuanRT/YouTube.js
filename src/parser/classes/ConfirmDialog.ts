@@ -1,8 +1,8 @@
-import Parser from '..';
-import Text from './misc/Text';
-import Button from './Button';
+import Parser from '../index.js';
+import Text from './misc/Text.js';
+import Button from './Button.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class ConfirmDialog extends YTNode {
   static type = 'ConfirmDialog';

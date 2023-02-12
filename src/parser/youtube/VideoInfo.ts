@@ -1,43 +1,41 @@
-import Constants from '../../utils/Constants';
-import Parser from '../index';
+import Constants from '../../utils/Constants.js';
+import Parser from '../index.js';
 
-import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults';
-import VideoPrimaryInfo from '../classes/VideoPrimaryInfo';
-import VideoSecondaryInfo from '../classes/VideoSecondaryInfo';
+import ChipCloud from '../classes/ChipCloud.js';
+import ChipCloudChip from '../classes/ChipCloudChip.js';
+import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader.js';
+import ContinuationItem from '../classes/ContinuationItem.js';
+import ItemSection from '../classes/ItemSection.js';
+import LiveChat from '../classes/LiveChat.js';
+import MerchandiseShelf from '../classes/MerchandiseShelf.js';
+import MicroformatData from '../classes/MicroformatData.js';
+import PlayerMicroformat from '../classes/PlayerMicroformat.js';
+import PlayerOverlay from '../classes/PlayerOverlay.js';
+import RelatedChipCloud from '../classes/RelatedChipCloud.js';
+import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton.js';
+import ToggleButton from '../classes/ToggleButton.js';
+import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
+import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
+import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.js';
+import LiveChatWrap from './LiveChat.js';
 
-import MerchandiseShelf from '../classes/MerchandiseShelf';
-import RelatedChipCloud from '../classes/RelatedChipCloud';
+import type CardCollection from '../classes/CardCollection.js';
+import type Endscreen from '../classes/Endscreen.js';
+import type Format from '../classes/misc/Format.js';
+import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
+import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
+import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
+import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 
-import ChipCloud from '../classes/ChipCloud';
-import ChipCloudChip from '../classes/ChipCloudChip';
-import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader';
-import ContinuationItem from '../classes/ContinuationItem';
-import ItemSection from '../classes/ItemSection';
-import LiveChat from '../classes/LiveChat';
-import MicroformatData from '../classes/MicroformatData';
-import PlayerMicroformat from '../classes/PlayerMicroformat';
-import PlayerOverlay from '../classes/PlayerOverlay';
-import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton';
-import ToggleButton from '../classes/ToggleButton';
-import LiveChatWrap from './LiveChat';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type Player from '../../core/Player.js';
+import type { ObservedArray, YTNode } from '../helpers.js';
+import type { INextResponse, IPlayerResponse } from '../types/ParsedResponse.js';
 
-import type CardCollection from '../classes/CardCollection';
-import type Endscreen from '../classes/Endscreen';
-import type Format from '../classes/misc/Format';
-import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded';
-import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist';
-import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec';
-import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec';
+import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
 
-import type Player from '../../core/Player';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import type { ObservedArray, YTNode } from '../helpers';
-import type { IPlayerResponse, INextResponse } from '../types';
-
-import FormatUtils, { FormatOptions, DownloadOptions, URLTransformer, FormatFilter } from '../../utils/FormatUtils';
-
-import { InnertubeError } from '../../utils/Utils';
+import { InnertubeError } from '../../utils/Utils.js';
 
 class VideoInfo {
   #page: [IPlayerResponse, INextResponse?];

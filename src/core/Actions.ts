@@ -1,14 +1,17 @@
-import Parser, { NavigateAction } from '../parser/index';
-import { InnertubeError } from '../utils/Utils';
+import Parser, { NavigateAction } from '../parser/index.js';
+import { InnertubeError } from '../utils/Utils.js';
 
-import type Session from './Session';
+import type Session from './Session.js';
 
 import type {
   IBrowseResponse, IGetNotificationsMenuResponse,
   INextResponse, IParsedResponse, IPlayerResponse,
-  IRawResponse, IResolveURLResponse, ISearchResponse,
+  IResolveURLResponse, ISearchResponse,
   IUpdatedMetadataResponse
-} from '../parser/types';
+} from '../parser/types/ParsedResponse.js';
+
+import type { IRawResponse } from '../parser/types/RawResponse.js';
+
 
 export interface ApiResponse {
   success: boolean;

@@ -1,5 +1,5 @@
-import Video from './AnalyticsVideo';
-import { YTNode } from '../../helpers';
+import Video from './AnalyticsVideo.js';
+import { YTNode } from '../../helpers.js';
 
 class AnalyticsVodCarouselCard extends YTNode {
   static type = 'AnalyticsVodCarouselCard';

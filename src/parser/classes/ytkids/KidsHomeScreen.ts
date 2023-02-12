@@ -1,6 +1,6 @@
-import Parser from '../..';
-import type AnchoredSection from './AnchoredSection';
-import { YTNode } from '../../helpers';
+import Parser from '../../index.js';
+import type AnchoredSection from './AnchoredSection.js';
+import { YTNode } from '../../helpers.js';
 
 class KidsHomeScreen extends YTNode {
   static type = 'kidsHomeScreen';

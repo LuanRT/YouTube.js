@@ -1,9 +1,9 @@
-import Text from './misc/Text';
-import TextRun from './misc/TextRun';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.js';
+import TextRun from './misc/TextRun.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Parser from '../index.js';
+import { YTNode } from '../helpers.js';
 
 class MusicDetailHeader extends YTNode {
   static type = 'MusicDetailHeader';

@@ -1,7 +1,7 @@
-import { YTNode } from '../../../helpers';
-import Parser from '../../../index';
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
+import { YTNode } from '../../../helpers.js';
+import Parser from '../../../index.js';
+import Text from '../../misc/Text.js';
+import Thumbnail from '../../misc/Thumbnail.js';
 
 class LiveChatBannerPoll extends YTNode {
   static type = 'LiveChatBannerPoll';

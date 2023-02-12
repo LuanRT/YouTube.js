@@ -1,9 +1,9 @@
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
-import MusicThumbnail from './MusicThumbnail';
-import Parser from '..';
-import Button from './Button';
-import IconLink from './IconLink';
+import Text from './misc/Text.js';
+import { YTNode } from '../helpers.js';
+import MusicThumbnail from './MusicThumbnail.js';
+import Parser from '../index.js';
+import Button from './Button.js';
+import IconLink from './IconLink.js';
 
 class MusicCarouselShelfBasicHeader extends YTNode {
   static type = 'MusicCarouselShelfBasicHeader';

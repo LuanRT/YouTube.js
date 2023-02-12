@@ -1,8 +1,8 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import MusicThumbnail from './MusicThumbnail';
+import Text from './misc/Text.js';
+import Parser from '../index.js';
+import MusicThumbnail from './MusicThumbnail.js';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.js';
 
 class MusicImmersiveHeader extends YTNode {
   static type = 'MusicImmersiveHeader';

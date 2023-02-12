@@ -1,21 +1,21 @@
-import Parser from '..';
+import Parser from '../index.js';
 
-import ItemSection from '../classes/ItemSection';
-import NavigationEndpoint from '../classes/NavigationEndpoint';
-import PlayerOverlay from '../classes/PlayerOverlay';
-import SlimVideoMetadata from '../classes/SlimVideoMetadata';
-import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults';
+import ItemSection from '../classes/ItemSection.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import PlayerOverlay from '../classes/PlayerOverlay.js';
+import SlimVideoMetadata from '../classes/SlimVideoMetadata.js';
+import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
 
-import type Format from '../classes/misc/Format';
-import type Actions from '../../core/Actions';
-import type { ApiResponse } from '../../core/Actions';
-import type { ObservedArray, YTNode } from '../helpers';
-import type { INextResponse, IPlayerResponse } from '../types';
+import type Format from '../classes/misc/Format.js';
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { ObservedArray, YTNode } from '../helpers.js';
+import type { INextResponse, IPlayerResponse } from '../types/ParsedResponse.js';
 
-import { Constants } from '../../utils';
-import { InnertubeError } from '../../utils/Utils';
+import { Constants } from '../../utils/index.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
-import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils';
+import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
 
 class VideoInfo {
   #page: [IPlayerResponse, INextResponse?];

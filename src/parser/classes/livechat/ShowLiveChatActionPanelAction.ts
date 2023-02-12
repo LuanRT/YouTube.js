@@ -1,6 +1,6 @@
-import Parser from '../../index';
-import { YTNode } from '../../helpers';
-import LiveChatActionPanel from './LiveChatActionPanel';
+import Parser from '../../index.js';
+import { YTNode } from '../../helpers.js';
+import LiveChatActionPanel from './LiveChatActionPanel.js';
 
 class ShowLiveChatActionPanelAction extends YTNode {
   static type = 'ShowLiveChatActionPanelAction';

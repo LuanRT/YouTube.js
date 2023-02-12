@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.js';
+import Thumbnail from './misc/Thumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Text from './misc/Text.js';
+import { YTNode } from '../helpers.js';
 
 class EndscreenElement extends YTNode {
   static type = 'EndscreenElement';

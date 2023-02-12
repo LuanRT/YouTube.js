@@ -1,9 +1,9 @@
-import type Actions from '../../core/Actions';
-import Feed from '../../core/Feed';
-import ItemSection from '../classes/ItemSection';
-import BrowseFeedActions from '../classes/BrowseFeedActions';
-import type { IBrowseResponse } from '../types';
-import type { ApiResponse } from '../../core/Actions';
+import type Actions from '../../core/Actions.js';
+import Feed from '../../core/Feed.js';
+import ItemSection from '../classes/ItemSection.js';
+import BrowseFeedActions from '../classes/BrowseFeedActions.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
 // TODO: make feed actions usable
 class History extends Feed<IBrowseResponse> {
