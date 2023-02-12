@@ -1,7 +1,5 @@
 
 import Session, { SessionOptions } from './core/Session.js';
-import type { ParsedResponse } from './parser/index.js';
-import type { ActionsResponse } from './core/Actions.js';
 
 import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
 import Channel from './parser/youtube/Channel.js';
@@ -30,6 +28,8 @@ import type Format from './parser/classes/misc/Format.js';
 
 import { generateRandomString, throwIfMissing } from './utils/Utils.js';
 import type { FormatOptions, DownloadOptions } from './utils/FormatUtils.js';
+import type { ApiResponse } from './core/Actions.js';
+import type { IBrowseResponse, IParsedResponse } from './parser/types/ParsedResponse.js';
 
 export type InnertubeConfig = SessionOptions;
 
@@ -116,7 +116,7 @@ class Innertube {
 
     const response = await this.actions.execute('/search', args);
 
-    return new Search(this.actions, response.data);
+    return new Search(this.actions, response);
   }
 
   /**
@@ -166,7 +166,7 @@ class Innertube {
    */
   async getHomeFeed(): Promise<HomeFeed> {
     const response = await this.actions.execute('/browse', { browseId: 'FEwhat_to_watch' });
-    return new HomeFeed(this.actions, response.data);
+    return new HomeFeed(this.actions, response);
   }
 
   /**
@@ -174,7 +174,7 @@ class Innertube {
    */
   async getLibrary(): Promise<Library> {
     const response = await this.actions.execute('/browse', { browseId: 'FElibrary' });
-    return new Library(response.data, this.actions);
+    return new Library(this.actions, response);
   }
 
   /**
@@ -183,23 +183,23 @@ class Innertube {
    */
   async getHistory(): Promise<History> {
     const response = await this.actions.execute('/browse', { browseId: 'FEhistory' });
-    return new History(this.actions, response.data);
+    return new History(this.actions, response);
   }
 
   /**
    * Retrieves trending content.
    */
-  async getTrending(): Promise<TabbedFeed> {
-    const response = await this.actions.execute('/browse', { browseId: 'FEtrending' });
-    return new TabbedFeed(this.actions, response.data);
+  async getTrending(): Promise<TabbedFeed<IBrowseResponse>> {
+    const response = await this.actions.execute('/browse', { browseId: 'FEtrending', parse: true });
+    return new TabbedFeed(this.actions, response);
   }
 
   /**
    * Retrieves subscriptions feed.
    */
-  async getSubscriptionsFeed(): Promise<Feed> {
-    const response = await this.actions.execute('/browse', { browseId: 'FEsubscriptions' });
-    return new Feed(this.actions, response.data);
+  async getSubscriptionsFeed(): Promise<Feed<IBrowseResponse>> {
+    const response = await this.actions.execute('/browse', { browseId: 'FEsubscriptions', parse: true });
+    return new Feed(this.actions, response);
   }
 
   /**
@@ -209,7 +209,7 @@ class Innertube {
   async getChannel(id: string): Promise<Channel> {
     throwIfMissing({ id });
     const response = await this.actions.execute('/browse', { browseId: id });
-    return new Channel(this.actions, response.data);
+    return new Channel(this.actions, response);
   }
 
   /**
@@ -241,7 +241,8 @@ class Innertube {
     }
 
     const response = await this.actions.execute('/browse', { browseId: id });
-    return new Playlist(this.actions, response.data);
+
+    return new Playlist(this.actions, response);
   }
 
   /**
@@ -274,7 +275,7 @@ class Innertube {
    */
   async resolveURL(url: string): Promise<NavigationEndpoint> {
     const response = await this.actions.execute('/navigation/resolve_url', { url, parse: true });
-    return response.endpoint as NavigationEndpoint;
+    return response.endpoint;
   }
 
   /**
@@ -282,9 +283,9 @@ class Innertube {
    * @param endpoint -The endpoint to call.
    * @param args - Call arguments.
    */
-  call(endpoint: NavigationEndpoint, args: { [key: string]: any; parse: true }): Promise<ParsedResponse>;
-  call(endpoint: NavigationEndpoint, args?: { [key: string]: any; parse?: false }): Promise<ActionsResponse>;
-  call(endpoint: NavigationEndpoint, args?: object): Promise<ActionsResponse | ParsedResponse> {
+  call<T extends IParsedResponse>(endpoint: NavigationEndpoint, args: { [key: string]: any; parse: true }): Promise<T>;
+  call(endpoint: NavigationEndpoint, args?: { [key: string]: any; parse?: false }): Promise<ApiResponse>;
+  call(endpoint: NavigationEndpoint, args?: object): Promise<IParsedResponse | ApiResponse> {
     return endpoint.call(this.actions, args);
   }
 }

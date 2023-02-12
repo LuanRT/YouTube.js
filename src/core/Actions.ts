@@ -1,14 +1,35 @@
-import Parser, { ParsedResponse } from '../parser/index.js';
+import Parser, { NavigateAction } from '../parser/index.js';
 import { InnertubeError } from '../utils/Utils.js';
+
 import type Session from './Session.js';
+
+import type {
+  IBrowseResponse, IGetNotificationsMenuResponse,
+  INextResponse, IParsedResponse, IPlayerResponse,
+  IResolveURLResponse, ISearchResponse,
+  IUpdatedMetadataResponse
+} from '../parser/types/ParsedResponse.js';
+
+import type { IRawResponse } from '../parser/types/RawResponse.js';
+
 
 export interface ApiResponse {
   success: boolean;
   status_code: number;
-  data: any;
+  data: IRawResponse;
 }
 
-export type ActionsResponse = Promise<ApiResponse>;
+export type InnertubeEndpoint = '/player' | '/search' | '/browse' | '/next' | '/updated_metadata' | '/notification/get_notification_menu' | string;
+
+export type ParsedResponse<T> =
+  T extends '/player' ? IPlayerResponse :
+  T extends '/search' ? ISearchResponse :
+  T extends '/browse' ? IBrowseResponse :
+  T extends '/next' ? INextResponse :
+  T extends '/updated_metadata' ? IUpdatedMetadataResponse :
+  T extends '/navigation/resolve_url' ? IResolveURLResponse :
+  T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
+  IParsedResponse;
 
 class Actions {
   #session: Session;
@@ -40,7 +61,7 @@ class Actions {
    * @param client - The client to use.
    * @param playlist_id - The playlist ID.
    */
-  async getVideoInfo(id: string, cpn?: string, client?: string, playlist_id?: string): Promise<ActionsResponse> {
+  async getVideoInfo(id: string, cpn?: string, client?: string, playlist_id?: string): Promise<ApiResponse> {
     const data: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
@@ -109,12 +130,12 @@ class Actions {
 
   /**
    * Executes an API call.
-   * @param action - The endpoint to call.
+   * @param endpoint - The endpoint to call.
    * @param args - Call arguments
    */
-  async execute(action: string, args: { [key: string]: any; parse: true; protobuf?: false; serialized_data?: any }) : Promise<ParsedResponse>;
-  async execute(action: string, args?: { [key: string]: any; parse?: false; protobuf?: true; serialized_data?: any }) : Promise<ActionsResponse>;
-  async execute(action: string, args?: { [key: string]: any; parse?: boolean; protobuf?: boolean; serialized_data?: any }): Promise<ParsedResponse | ActionsResponse> {
+  async execute<T extends InnertubeEndpoint>(endpoint: T, args: { [key: string]: any; parse: true; protobuf?: false; serialized_data?: any }): Promise<ParsedResponse<T>>;
+  async execute<T extends InnertubeEndpoint>(endpoint: T, args?: { [key: string]: any; parse?: false; protobuf?: true; serialized_data?: any }): Promise<ApiResponse>;
+  async execute<T extends InnertubeEndpoint>(endpoint: T, args?: { [key: string]: any; parse?: boolean; protobuf?: boolean; serialized_data?: any }): Promise<ParsedResponse<T> | ApiResponse> {
     let data;
 
     if (args && !args.protobuf) {
@@ -162,9 +183,9 @@ class Actions {
       data = args.serialized_data;
     }
 
-    const endpoint = Reflect.has(args || {}, 'override_endpoint') ? args?.override_endpoint : action;
+    const target_endpoint = Reflect.has(args || {}, 'override_endpoint') ? args?.override_endpoint : endpoint;
 
-    const response = await this.#session.http.fetch(endpoint, {
+    const response = await this.#session.http.fetch(target_endpoint, {
       method: 'POST',
       body: args?.protobuf ? data : JSON.stringify((data || {})),
       headers: {
@@ -175,10 +196,24 @@ class Actions {
     });
 
     if (args?.parse) {
-      return Parser.parseResponse(await response.json());
+      let parsed_response = Parser.parseResponse<ParsedResponse<T>>(await response.json());
+
+      // Handle redirects
+      if (this.#isBrowse(parsed_response) && parsed_response.on_response_received_actions?.first()?.type === 'navigateAction') {
+        const navigate_action = parsed_response.on_response_received_actions.firstOfType(NavigateAction);
+        if (navigate_action) {
+          parsed_response = await navigate_action.endpoint.call(this, { parse: true });
+        }
+      }
+
+      return parsed_response;
     }
 
     return this.#wrap(response);
+  }
+
+  #isBrowse(response: IParsedResponse): response is IBrowseResponse {
+    return 'on_response_received_actions' in response;
   }
 
   #needsLogin(id: string) {

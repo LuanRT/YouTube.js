@@ -16,7 +16,7 @@ Playlist management class.
 
 Creates a playlist.
 
-**Returns:** `Promise.<ActionsResponse>`
+**Returns:** `Promise.<ApiResponse>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ Creates a playlist.
 
 Deletes given playlist.
 
-**Returns:** `Promise.<ActionsResponse>`
+**Returns:** `Promise.<ApiResponse>`
 
 | Param | Type | Description |
 | --- | --- | --- |

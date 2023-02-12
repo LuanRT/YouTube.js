@@ -129,10 +129,11 @@ export function timeToSeconds(time: string): number {
   }
 }
 
-export function concatMemos(...iterables: Memo[]): Memo {
+export function concatMemos(...iterables: Array<Memo | undefined>): Memo {
   const memo = new Memo();
 
   for (const iterable of iterables) {
+    if (!iterable) continue;
     for (const item of iterable) {
       memo.set(...item);
     }

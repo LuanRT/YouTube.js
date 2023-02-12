@@ -1,5 +1,4 @@
-import Parser, { ParsedResponse } from '../index.js';
-import { InnertubeError } from '../../utils/Utils.js';
+import Parser from '../index.js';
 
 import ContinuationItem from '../classes/ContinuationItem.js';
 import SimpleMenuHeader from '../classes/menus/SimpleMenuHeader.js';
@@ -7,9 +6,11 @@ import Notification from '../classes/Notification.js';
 
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
+import type { IGetNotificationsMenuResponse } from '../types/ParsedResponse.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
 class NotificationsMenu {
-  #page: ParsedResponse;
+  #page: IGetNotificationsMenuResponse;
   #actions: Actions;
 
   header: SimpleMenuHeader;
@@ -17,14 +18,14 @@ class NotificationsMenu {
 
   constructor(actions: Actions, response: ApiResponse) {
     this.#actions = actions;
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IGetNotificationsMenuResponse>(response.data);
 
-    this.header = this.#page.actions_memo.getType(SimpleMenuHeader)?.[0];
+    this.header = this.#page.actions_memo.getType(SimpleMenuHeader).first();
     this.contents = this.#page.actions_memo.getType(Notification);
   }
 
   async getContinuation(): Promise<NotificationsMenu> {
-    const continuation = this.#page.actions_memo.getType(ContinuationItem)?.[0];
+    const continuation = this.#page.actions_memo.getType(ContinuationItem).first();
 
     if (!continuation)
       throw new InnertubeError('Continuation not found');
@@ -34,7 +35,7 @@ class NotificationsMenu {
     return new NotificationsMenu(this.#actions, response);
   }
 
-  get page(): ParsedResponse {
+  get page(): IGetNotificationsMenuResponse {
     return this.#page;
   }
 }

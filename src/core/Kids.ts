@@ -19,7 +19,7 @@ class Kids {
    */
   async search(query: string): Promise<Search> {
     const response = await this.#session.actions.execute('/search', { query, client: 'YTKIDS' });
-    return new Search(this.#session.actions, response.data);
+    return new Search(this.#session.actions, response);
   }
 
   /**
@@ -53,7 +53,7 @@ class Kids {
    */
   async getChannel(channel_id: string): Promise<Channel> {
     const response = await this.#session.actions.execute('/browse', { browseId: channel_id, client: 'YTKIDS' });
-    return new Channel(this.#session.actions, response.data);
+    return new Channel(this.#session.actions, response);
   }
 
   /**
@@ -61,7 +61,7 @@ class Kids {
    */
   async getHomeFeed(): Promise<HomeFeed> {
     const response = await this.#session.actions.execute('/browse', { browseId: 'FEkids_home', client: 'YTKIDS' });
-    return new HomeFeed(this.#session.actions, response.data);
+    return new HomeFeed(this.#session.actions, response);
   }
 }
 

@@ -72,8 +72,6 @@ export default class Player {
     const args = new URLSearchParams(url);
     const url_components = new URL(args.get('url') || url);
 
-    url_components.searchParams.set('alr', 'yes');
-
     if (signature_cipher || cipher) {
       const signature = Platform.shim.eval(this.#sig_sc, {
         sig: args.get('s')

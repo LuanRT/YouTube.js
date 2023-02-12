@@ -1,12 +1,5 @@
 import Constants from '../../utils/Constants.js';
-import Parser, { ParsedResponse } from '../index.js';
-
-import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
-import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
-import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.js';
-
-import MerchandiseShelf from '../classes/MerchandiseShelf.js';
-import RelatedChipCloud from '../classes/RelatedChipCloud.js';
+import Parser from '../index.js';
 
 import ChipCloud from '../classes/ChipCloud.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';
@@ -14,11 +7,16 @@ import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHead
 import ContinuationItem from '../classes/ContinuationItem.js';
 import ItemSection from '../classes/ItemSection.js';
 import LiveChat from '../classes/LiveChat.js';
+import MerchandiseShelf from '../classes/MerchandiseShelf.js';
 import MicroformatData from '../classes/MicroformatData.js';
 import PlayerMicroformat from '../classes/PlayerMicroformat.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
+import RelatedChipCloud from '../classes/RelatedChipCloud.js';
 import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton.js';
 import ToggleButton from '../classes/ToggleButton.js';
+import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
+import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
+import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.js';
 import LiveChatWrap from './LiveChat.js';
 
 import type CardCollection from '../classes/CardCollection.js';
@@ -29,17 +27,18 @@ import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js'
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 
-import type Player from '../../core/Player.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
+import type Player from '../../core/Player.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
+import type { INextResponse, IPlayerResponse } from '../types/ParsedResponse.js';
 
-import FormatUtils, { FormatOptions, DownloadOptions, URLTransformer, FormatFilter } from '../../utils/FormatUtils.js';
+import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 
 class VideoInfo {
-  #page: [ParsedResponse, ParsedResponse?];
+  #page: [IPlayerResponse, INextResponse?];
 
   #actions: Actions;
   #player?: Player;
@@ -49,11 +48,11 @@ class VideoInfo {
   basic_info;
   streaming_data;
   playability_status;
-  annotations: ObservedArray<PlayerAnnotationsExpanded>;
-  storyboards: PlayerStoryboardSpec | PlayerLiveStoryboardSpec | null;
-  endscreen: Endscreen | null;
-  captions: PlayerCaptionsTracklist | null;
-  cards: CardCollection | null;
+  annotations?: ObservedArray<PlayerAnnotationsExpanded>;
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
+  endscreen?: Endscreen;
+  captions?: PlayerCaptionsTracklist;
+  cards?: CardCollection;
 
   #playback_tracking;
 
@@ -77,8 +76,8 @@ class VideoInfo {
     this.#player = player;
     this.#cpn = cpn;
 
-    const info = Parser.parseResponse(data[0].data);
-    const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
+    const info = Parser.parseResponse<IPlayerResponse>(data[0].data);
+    const next = data?.[1]?.data ? Parser.parseResponse<INextResponse>(data[1].data) : undefined;
 
     this.#page = [ info, next ];
 
@@ -117,7 +116,7 @@ class VideoInfo {
 
     this.#playback_tracking = info.playback_tracking;
 
-    const two_col = next?.contents.item().as(TwoColumnWatchNextResults);
+    const two_col = next?.contents?.item().as(TwoColumnWatchNextResults);
 
     const results = two_col?.results;
     const secondary_results = two_col?.secondary_results;
@@ -133,7 +132,7 @@ class VideoInfo {
       if (this.watch_next_feed && Array.isArray(this.watch_next_feed) && this.watch_next_feed.at(-1)?.is(ContinuationItem))
         this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
 
-      this.player_overlays = next?.player_overlays.item().as(PlayerOverlay);
+      this.player_overlays = next?.player_overlays?.item().as(PlayerOverlay);
 
       const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
 
@@ -144,7 +143,7 @@ class VideoInfo {
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
       this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
-      this.livechat = next?.contents_memo.getType(LiveChat).first();
+      this.livechat = next?.contents_memo?.getType(LiveChat).first();
     }
   }
 
@@ -394,7 +393,7 @@ class VideoInfo {
   /**
    * Original parsed InnerTube response.
    */
-  get page(): [ParsedResponse, ParsedResponse?] {
+  get page(): [IPlayerResponse, INextResponse?] {
     return this.#page;
   }
 }

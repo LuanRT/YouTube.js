@@ -1,33 +1,36 @@
-import Parser, { ParsedResponse } from '../index.js';
+import Parser from '../index.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
-import ItemSection from '../classes/ItemSection.js';
-import SectionList from '../classes/SectionList.js';
-import Tab from '../classes/Tab.js';
-import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
-
 import CompactLink from '../classes/CompactLink.js';
+import ItemSection from '../classes/ItemSection.js';
 import PageIntroduction from '../classes/PageIntroduction.js';
+import SectionList from '../classes/SectionList.js';
 import SettingsOptions from '../classes/SettingsOptions.js';
 import SettingsSidebar from '../classes/SettingsSidebar.js';
 import SettingsSwitch from '../classes/SettingsSwitch.js';
+import Tab from '../classes/Tab.js';
+import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
 
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class Settings {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
   #actions: Actions;
 
-  sidebar: SettingsSidebar | null | undefined;
-  introduction: PageIntroduction | null | undefined;
+  sidebar?: SettingsSidebar;
+  introduction?: PageIntroduction;
   sections;
 
   constructor(actions: Actions, response: ApiResponse) {
     this.#actions = actions;
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
     this.sidebar = this.#page.sidebar?.as(SettingsSidebar);
+
+    if (!this.#page.contents)
+      throw new InnertubeError('Page contents not found');
 
     const tab = this.#page.contents.item().as(TwoColumnBrowseResults).tabs.array().as(Tab).get({ selected: true });
 
@@ -124,7 +127,7 @@ class Settings {
     return this.sidebar.items.map((item) => item.title.toString());
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }

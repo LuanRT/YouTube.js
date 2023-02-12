@@ -1,4 +1,4 @@
-import Parser, { ParsedResponse } from '../index.js';
+import Parser from '../index.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 
@@ -19,36 +19,37 @@ import SectionList from '../classes/SectionList.js';
 import Tab from '../classes/Tab.js';
 import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.js';
 
+import type Format from '../classes/misc/Format.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
-import type Format from '../classes/misc/Format.js';
-
 import type { ObservedArray, YTNode } from '../helpers.js';
-import FormatUtils, { URLTransformer, FormatOptions, DownloadOptions, FormatFilter } from '../../utils/FormatUtils.js';
+import type { INextResponse, IPlayerResponse } from '../types/ParsedResponse.js';
+
+import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
 
 class TrackInfo {
-  #page: [ ParsedResponse, ParsedResponse? ];
+  #page: [ IPlayerResponse, INextResponse? ];
   #actions: Actions;
   #cpn: string;
 
   basic_info;
   streaming_data;
   playability_status;
-  storyboards: PlayerStoryboardSpec | PlayerLiveStoryboardSpec | null;
-  endscreen: Endscreen | null;
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
+  endscreen?: Endscreen;
 
   #playback_tracking;
 
   tabs?: ObservedArray<Tab>;
-  current_video_endpoint?: NavigationEndpoint | null;
+  current_video_endpoint?: NavigationEndpoint;
   player_overlays?: PlayerOverlay;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;
 
-    const info = Parser.parseResponse(data[0].data);
-    const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
+    const info = Parser.parseResponse<IPlayerResponse>(data[0].data);
+    const next = data?.[1]?.data ? Parser.parseResponse<INextResponse>(data[1].data) : undefined;
 
     this.#page = [ info, next ];
     this.#cpn = cpn;
@@ -78,13 +79,13 @@ class TrackInfo {
     this.#playback_tracking = info.playback_tracking;
 
     if (next) {
-      const tabbed_results = next.contents_memo.getType(WatchNextTabbedResults)?.[0];
+      const tabbed_results = next.contents_memo?.getType(WatchNextTabbedResults)?.[0];
 
-      this.tabs = tabbed_results.tabs.array().as(Tab);
+      this.tabs = tabbed_results?.tabs.array().as(Tab);
       this.current_video_endpoint = next.current_video_endpoint;
 
       // TODO: update PlayerOverlay, YTMusic's is a little bit different.
-      this.player_overlays = next.player_overlays.item().as(PlayerOverlay);
+      this.player_overlays = next.player_overlays?.item().as(PlayerOverlay);
     }
   }
 
@@ -134,8 +135,11 @@ class TrackInfo {
 
     const page = await target_tab.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
 
-    if (page.contents.item().key('type').string() === 'Message')
+    if (page.contents?.item().key('type').string() === 'Message')
       return page.contents.item().as(Message);
+
+    if (!page.contents)
+      throw new InnertubeError('Page contents was empty', page);
 
     return page.contents.item().as(SectionList).contents;
   }
@@ -163,7 +167,7 @@ class TrackInfo {
         parse: true
       });
 
-      if (!page)
+      if (!page || !page.contents_memo)
         throw new InnertubeError('Could not fetch automix');
 
       return page.contents_memo.getType(PlaylistPanel)?.[0];
@@ -216,7 +220,7 @@ class TrackInfo {
     return this.tabs ? this.tabs.map((tab) => tab.title) : [];
   }
 
-  get page(): [ParsedResponse, ParsedResponse?] {
+  get page(): [IPlayerResponse, INextResponse?] {
     return this.#page;
   }
 }

@@ -1,4 +1,4 @@
-import Parser, { ParsedResponse } from '../index.js';
+import Parser from '../index.js';
 
 import ItemSection from '../classes/ItemSection.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
@@ -10,6 +10,7 @@ import type Format from '../classes/misc/Format.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
+import type { INextResponse, IPlayerResponse } from '../types/ParsedResponse.js';
 
 import { Constants } from '../../utils/index.js';
 import { InnertubeError } from '../../utils/Utils.js';
@@ -17,7 +18,7 @@ import { InnertubeError } from '../../utils/Utils.js';
 import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
 
 class VideoInfo {
-  #page: [ParsedResponse, ParsedResponse?];
+  #page: [IPlayerResponse, INextResponse?];
   #actions: Actions;
   #cpn: string;
 
@@ -28,16 +29,16 @@ class VideoInfo {
 
   #playback_tracking;
 
-  slim_video_metadata?: SlimVideoMetadata | null;
-  watch_next_feed?: ObservedArray<YTNode> | null;
-  current_video_endpoint?: NavigationEndpoint | null;
+  slim_video_metadata?: SlimVideoMetadata;
+  watch_next_feed?: ObservedArray<YTNode>;
+  current_video_endpoint?: NavigationEndpoint;
   player_overlays?: PlayerOverlay;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;
 
-    const info = Parser.parseResponse(data[0].data);
-    const next = data?.[1]?.data ? Parser.parseResponse(data[1].data) : undefined;
+    const info = Parser.parseResponse<IPlayerResponse>(data[0].data);
+    const next = data?.[1]?.data ? Parser.parseResponse<INextResponse>(data[1].data) : undefined;
 
     this.#page = [ info, next ];
     this.#cpn = cpn;
@@ -53,7 +54,7 @@ class VideoInfo {
 
     this.#playback_tracking = info.playback_tracking;
 
-    const two_col = next?.contents.item().as(TwoColumnWatchNextResults);
+    const two_col = next?.contents?.item().as(TwoColumnWatchNextResults);
 
     const results = two_col?.results;
     const secondary_results = two_col?.secondary_results;
@@ -62,7 +63,7 @@ class VideoInfo {
       this.slim_video_metadata = results.firstOfType(ItemSection)?.contents?.firstOfType(SlimVideoMetadata);
       this.watch_next_feed = secondary_results.firstOfType(ItemSection)?.contents || secondary_results;
       this.current_video_endpoint = next?.current_video_endpoint;
-      this.player_overlays = next?.player_overlays.item().as(PlayerOverlay);
+      this.player_overlays = next?.player_overlays?.item().as(PlayerOverlay);
     }
   }
 
@@ -130,7 +131,7 @@ class VideoInfo {
     return this.#cpn;
   }
 
-  get page(): [ParsedResponse, ParsedResponse?] {
+  get page(): [IPlayerResponse, INextResponse?] {
     return this.#page;
   }
 }

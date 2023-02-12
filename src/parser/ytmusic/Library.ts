@@ -1,4 +1,4 @@
-import Parser, { ParsedResponse, SectionListContinuation } from '../index.js';
+import Parser, { GridContinuation, MusicShelfContinuation, SectionListContinuation } from '../index.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 
@@ -16,9 +16,10 @@ import MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import type { ObservedArray } from '../helpers.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class Library {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
   #actions: Actions;
   #continuation?: string | null;
 
@@ -26,10 +27,10 @@ class Library {
   contents?: ObservedArray<Grid | MusicShelf>;
 
   constructor(response: ApiResponse, actions: Actions) {
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
     this.#actions = actions;
 
-    const section_list = this.#page.contents_memo.getType(SectionList).first();
+    const section_list = this.#page.contents_memo?.getType(SectionList).first();
 
     this.header = section_list?.header?.item().as(MusicSideAlignedItem);
     this.contents = section_list?.contents?.as(Grid, MusicShelf);
@@ -44,9 +45,9 @@ class Library {
     let target_item: MusicMultiSelectMenuItem | undefined;
 
     if (typeof sort_by === 'string') {
-      const button = this.#page.contents_memo.getType(MusicSortFilterButton)?.[0];
+      const button = this.#page.contents_memo?.getType(MusicSortFilterButton).first();
 
-      const options = button.menu?.options
+      const options = button?.menu?.options
         .filter(
           (item: MusicMultiSelectMenuItem | MusicMenuItemDivider) => item instanceof MusicMultiSelectMenuItem
         ) as MusicMultiSelectMenuItem[];
@@ -76,7 +77,7 @@ class Library {
       parse: true
     });
 
-    const previously_selected_item = this.#page.contents_memo.getType(MusicMultiSelectMenuItem)?.find((item) => item.selected);
+    const previously_selected_item = this.#page.contents_memo?.getType(MusicMultiSelectMenuItem)?.find((item) => item.selected);
     if (previously_selected_item)
       previously_selected_item.selected = false;
 
@@ -93,10 +94,10 @@ class Library {
   async applyFilter(filter: string | ChipCloudChip): Promise<Library> {
     let target_chip: ChipCloudChip | undefined;
 
-    const chip_cloud = this.#page.contents_memo.getType(ChipCloud)?.[0];
+    const chip_cloud = this.#page.contents_memo?.getType(ChipCloud).first();
 
     if (typeof filter === 'string') {
-      target_chip = chip_cloud.chips.get({ text: filter });
+      target_chip = chip_cloud?.chips.get({ text: filter });
 
       if (!target_chip)
         throw new InnertubeError(`Filter "${filter}" not found`, { available_filters: this.filters });
@@ -133,16 +134,16 @@ class Library {
   }
 
   get sort_options(): string[] {
-    const button = this.#page.contents_memo.getType(MusicSortFilterButton)?.[0];
-    const options = button.menu?.options.filter((item: MusicMultiSelectMenuItem | MusicMenuItemDivider) => item instanceof MusicMultiSelectMenuItem) as MusicMultiSelectMenuItem[];
+    const button = this.#page.contents_memo?.getType(MusicSortFilterButton).first();
+    const options = button?.menu?.options.filter((item: MusicMultiSelectMenuItem | MusicMenuItemDivider) => item instanceof MusicMultiSelectMenuItem) as MusicMultiSelectMenuItem[];
     return options.map((item) => item.title);
   }
 
   get filters(): string[] {
-    return this.#page.contents_memo.getType(ChipCloud)?.first()?.chips.map((chip: ChipCloudChip) => chip.text) || [];
+    return this.#page.contents_memo?.getType(ChipCloud)?.first().chips.map((chip: ChipCloudChip) => chip.text) || [];
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }
@@ -152,15 +153,16 @@ class LibraryContinuation {
   #actions;
   #continuation;
 
-  contents;
+  contents: GridContinuation | MusicShelfContinuation;
 
   constructor(response: ApiResponse, actions: Actions) {
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
     this.#actions = actions;
 
-    this.contents = this.#page.continuation_contents?.hasKey('contents')
-      ? this.#page.continuation_contents?.key('contents').array() :
-      this.#page.continuation_contents?.key('items').array();
+    if (!this.#page.continuation_contents)
+      throw new InnertubeError('No continuation contents found');
+
+    this.contents = this.#page.continuation_contents.as(MusicShelfContinuation, GridContinuation);
 
     this.#continuation = this.#page.continuation_contents?.key('continuation').isNull()
       ? null : this.#page.continuation_contents?.key('continuation').string();
@@ -170,19 +172,19 @@ class LibraryContinuation {
     if (!this.#continuation)
       throw new InnertubeError('No continuation available');
 
-    const page = await this.#actions.execute('/browse', {
+    const response = await this.#actions.execute('/browse', {
       client: 'YTMUSIC',
       continuation: this.#continuation
     });
 
-    return new LibraryContinuation(page, this.#actions);
+    return new LibraryContinuation(response, this.#actions);
   }
 
   get has_continuation(): boolean {
     return !!this.#continuation;
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }

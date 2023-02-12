@@ -451,13 +451,13 @@ Retrieves watch history.
 ### getTrending()
 Retrieves trending content.
 
-**Returns**: `Promise.<TabbedFeed>`
+**Returns**: `Promise.<TabbedFeed<IBrowseResponse>>`
 
 <a name="getsubscriptionsfeed"></a>
 ### getSubscriptionsFeed()
 Retrieves subscriptions feed.
 
-**Returns**: `Promise.<Feed>`
+**Returns**: `Promise.<Feed<IBrowseResponse>>`
 
 <a name="getchannel"></a>
 ### getChannel(id)
@@ -584,7 +584,7 @@ Resolves a given url.
 ### call(endpoint, args?)
 Utility to call navigation endpoints.
 
-**Returns**: `Promise.<ActionsResponse | ParsedResponse>`
+**Returns**: `Promise.<T extends IParsedResponse | IParsedResponse | ApiResponse>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -635,7 +635,7 @@ import { Innertube, YTNodes } from 'youtubei.js';
 
   if (button) {
     // After making sure it exists, we can call its navigation endpoint:
-    const page = await button.endpoint.call(yt.actions);
+    const page = await button.endpoint.call(yt.actions, { parse: true });
     console.info(page);
   }
 })();
@@ -667,7 +667,7 @@ console.info('Header:', header);
  * the parser to add type safety and many utility methods
  * that make working with InnerTube much easier.
  */
-const tab = page.contents.item().as(YTNodes.SingleColumnBrowseResults).tabs.firstOfType(YTNodes.Tab);
+const tab = page.contents?.item().as(YTNodes.SingleColumnBrowseResults).tabs.firstOfType(YTNodes.Tab);
 
 
 if (!tab)
@@ -676,7 +676,7 @@ if (!tab)
 if (!tab.content)
   throw new Error('Target tab appears to be empty');
   
-const sections = tab.content?.as(YTNodes.SectionList).contents.array().as(YTNodes.MusicCarouselShelf, YTNodes.MusicDescriptionShelf, YTNodes.MusicShelf);
+const sections = tab.content?.as(YTNodes.SectionList).contents.as(YTNodes.MusicCarouselShelf, YTNodes.MusicDescriptionShelf, YTNodes.MusicShelf);
 
 console.info('Sections:', sections);
 ```

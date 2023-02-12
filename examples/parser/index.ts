@@ -13,7 +13,7 @@ console.info('Header:', header);
 // A proxy intercepts access to the actual data, allowing
 // the parser to add type safety and many utility methods
 // that make working with InnerTube much easier.
-const tab = page.contents.item().as(YTNodes.SingleColumnBrowseResults).tabs.firstOfType(YTNodes.Tab);
+const tab = page.contents?.item().as(YTNodes.SingleColumnBrowseResults).tabs.firstOfType(YTNodes.Tab);
 
 if (!tab)
   throw new Error('Target tab not found');
@@ -21,6 +21,6 @@ if (!tab)
 if (!tab.content)
   throw new Error('Target tab appears to be empty');
 
-const sections = tab.content?.as(YTNodes.SectionList).contents.array().as(YTNodes.MusicCarouselShelf, YTNodes.MusicDescriptionShelf, YTNodes.MusicShelf);
+const sections = tab.content?.as(YTNodes.SectionList).contents.as(YTNodes.MusicCarouselShelf, YTNodes.MusicDescriptionShelf, YTNodes.MusicShelf);
 
 console.info('Sections:', sections);

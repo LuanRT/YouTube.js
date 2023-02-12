@@ -4,16 +4,16 @@ import MenuServiceItem from '../classes/menus/MenuServiceItem.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
 import type Actions from '../../core/Actions.js';
-import type { ParsedResponse } from '../index.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
+import type { IParsedResponse } from '../types/ParsedResponse.js';
 
 class ItemMenu {
-  #page: ParsedResponse;
+  #page: IParsedResponse;
   #actions: Actions;
   #items: ObservedArray<YTNode>;
 
-  constructor(data: ParsedResponse, actions: Actions) {
+  constructor(data: IParsedResponse, actions: Actions) {
     this.#page = data;
     this.#actions = actions;
 
@@ -25,9 +25,9 @@ class ItemMenu {
     this.#items = menu.as(Menu).items;
   }
 
-  async selectItem(icon_type: string): Promise<ParsedResponse>
-  async selectItem(button: Button): Promise<ParsedResponse>
-  async selectItem(item: string | Button): Promise<ParsedResponse> {
+  async selectItem(icon_type: string): Promise<IParsedResponse>
+  async selectItem(button: Button): Promise<IParsedResponse>
+  async selectItem(item: string | Button): Promise<IParsedResponse> {
     let endpoint: NavigationEndpoint | undefined;
 
     if (item instanceof Button) {
@@ -62,7 +62,7 @@ class ItemMenu {
     return this.#items;
   }
 
-  page(): ParsedResponse {
+  page(): IParsedResponse {
     return this.#page;
   }
 }

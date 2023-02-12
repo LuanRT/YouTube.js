@@ -45,7 +45,10 @@ class CommentThread extends YTNode {
 
     const response = await continuation.endpoint.call(this.#actions, { parse: true });
 
-    this.replies = observe(response.on_response_received_endpoints_memo?.getType(Comment).map((comment) => {
+    if (!response.on_response_received_endpoints_memo)
+      throw new InnertubeError('Unexpected response.', response);
+
+    this.replies = observe(response.on_response_received_endpoints_memo.getType(Comment).map((comment) => {
       comment.setActions(this.#actions);
       return comment;
     }));
@@ -75,12 +78,15 @@ class CommentThread extends YTNode {
 
     const response = await load_more_button.endpoint.call(this.#actions, { parse: true });
 
-    this.replies = observe(response?.on_response_received_endpoints_memo.getType(Comment).map((comment) => {
+    if (!response.on_response_received_endpoints_memo)
+      throw new InnertubeError('Unexpected response.', response);
+
+    this.replies = observe(response.on_response_received_endpoints_memo.getType(Comment).map((comment) => {
       comment.setActions(this.#actions);
       return comment;
     }));
 
-    this.#continuation = response?.on_response_received_endpoints_memo.getType(ContinuationItem)?.[0];
+    this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem)?.[0];
 
     return this;
   }

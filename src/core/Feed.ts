@@ -1,5 +1,5 @@
 import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../parser/helpers.js';
-import Parser, { ParsedResponse, ReloadContinuationItemsCommand } from '../parser/index.js';
+import Parser, { ReloadContinuationItemsCommand } from '../parser/index.js';
 import { concatMemos, InnertubeError } from '../utils/Utils.js';
 import type Actions from './Actions.js';
 
@@ -30,20 +30,23 @@ import type MusicQueue from '../parser/classes/MusicQueue.js';
 import type RichGrid from '../parser/classes/RichGrid.js';
 import type SectionList from '../parser/classes/SectionList.js';
 
-class Feed {
-  #page: ParsedResponse;
+import type { IParsedResponse } from '../parser/types/ParsedResponse.js';
+import type { ApiResponse } from './Actions.js';
+
+class Feed<T extends IParsedResponse = IParsedResponse> {
+  #page: T;
   #continuation?: ObservedArray<ContinuationItem>;
   #actions: Actions;
   #memo: Memo;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
-    if (data.on_response_received_actions || data.on_response_received_endpoints || already_parsed) {
-      this.#page = data;
+  constructor(actions: Actions, response: ApiResponse | IParsedResponse, already_parsed = false) {
+    if (this.#isParsed(response) || already_parsed) {
+      this.#page = response as T;
     } else {
-      this.#page = Parser.parseResponse(data);
+      this.#page = Parser.parseResponse<T>(response.data);
     }
 
-    const memo = concatMemos(
+    const memo = concatMemos(...[
       this.#page.contents_memo,
       this.#page.continuation_contents_memo,
       this.#page.on_response_received_commands_memo,
@@ -51,13 +54,17 @@ class Feed {
       this.#page.on_response_received_actions_memo,
       this.#page.sidebar_memo,
       this.#page.header_memo
-    );
+    ]);
 
     if (!memo)
       throw new InnertubeError('No memo found in feed');
 
     this.#memo = memo;
     this.#actions = actions;
+  }
+
+  #isParsed(response: IParsedResponse | ApiResponse): response is IParsedResponse {
+    return !('data' in response);
   }
 
   /**
@@ -143,10 +150,10 @@ class Feed {
    * Returns secondary contents from the page.
    */
   get secondary_contents(): SuperParsedResult<YTNode> | undefined {
-    if (!this.#page.contents.is_node)
+    if (!this.#page.contents?.is_node)
       return undefined;
 
-    const node = this.#page.contents.item();
+    const node = this.#page.contents?.item();
 
     if (!node.is(TwoColumnBrowseResults, TwoColumnSearchResults))
       return undefined;
@@ -161,7 +168,7 @@ class Feed {
   /**
    * Get the original page data
    */
-  get page(): ParsedResponse {
+  get page(): T {
     return this.#page;
   }
 
@@ -175,14 +182,14 @@ class Feed {
   /**
    * Retrieves continuation data as it is.
    */
-  async getContinuationData(): Promise<ParsedResponse | undefined> {
+  async getContinuationData(): Promise<T | undefined> {
     if (this.#continuation) {
       if (this.#continuation.length > 1)
         throw new InnertubeError('There are too many continuations, you\'ll need to find the correct one yourself in this.page');
       if (this.#continuation.length === 0)
         throw new InnertubeError('There are no continuations');
 
-      const response = await this.#continuation[0].endpoint.call(this.#actions, { parse: true });
+      const response = await this.#continuation[0].endpoint.call<T>(this.#actions, { parse: true });
 
       return response;
     }
@@ -196,9 +203,11 @@ class Feed {
   /**
    * Retrieves next batch of contents and returns a new {@link Feed} object.
    */
-  async getContinuation(): Promise<Feed> {
+  async getContinuation(): Promise<Feed<T>> {
     const continuation_data = await this.getContinuationData();
-    return new Feed(this.actions, continuation_data, true);
+    if (!continuation_data)
+      throw new InnertubeError('Could not get continuation data');
+    return new Feed<T>(this.actions, continuation_data, true);
   }
 }
 

@@ -1,6 +1,4 @@
-import Parser, { ParsedResponse } from '../index.js';
 import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
 import Feed from '../../core/Feed.js';
@@ -13,10 +11,10 @@ import Button from '../classes/Button.js';
 import ProfileColumnStats from '../classes/ProfileColumnStats.js';
 import ProfileColumnUserInfo from '../classes/ProfileColumnUserInfo.js';
 
-class Library {
-  #actions: Actions;
-  #page: ParsedResponse;
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import { ApiResponse } from '../../core/Actions.js';
 
+class Library extends Feed<IBrowseResponse> {
   profile: {
     stats?: ProfileColumnStats;
     user_info?: ProfileColumnUserInfo;
@@ -24,16 +22,18 @@ class Library {
 
   sections;
 
-  constructor(response: ApiResponse, actions: Actions) {
-    this.#actions = actions;
-    this.#page = Parser.parseResponse(response);
+  constructor(actions: Actions, data: ApiResponse | IBrowseResponse) {
+    super(actions, data);
 
-    const stats = this.#page.contents_memo.getType(ProfileColumnStats)?.[0];
-    const user_info = this.#page.contents_memo.getType(ProfileColumnUserInfo)?.[0];
+    if (!this.page.contents_memo)
+      throw new InnertubeError('Page contents not found');
+
+    const stats = this.page.contents_memo.getType(ProfileColumnStats)?.[0];
+    const user_info = this.page.contents_memo.getType(ProfileColumnUserInfo)?.[0];
 
     this.profile = { stats, user_info };
 
-    const shelves = this.#page.contents_memo.getType(Shelf);
+    const shelves = this.page.contents_memo.getType(Shelf);
 
     this.sections = shelves.map((shelf: Shelf) => ({
       type: shelf.icon_type,
@@ -52,16 +52,16 @@ class Library {
     if (!button)
       throw new InnertubeError('Did not find target button.');
 
-    const page = await button.as(Button).endpoint.call(this.#actions, { parse: true });
+    const page = await button.as(Button).endpoint.call<IBrowseResponse>(this.actions, { parse: true });
 
     switch (shelf.icon_type) {
       case 'LIKE':
       case 'WATCH_LATER':
-        return new Playlist(this.#actions, page, true);
+        return new Playlist(this.actions, page, true);
       case 'WATCH_HISTORY':
-        return new History(this.#actions, page, true);
+        return new History(this.actions, page, true);
       case 'CONTENT_CUT':
-        return new Feed(this.#actions, page, true);
+        return new Feed(this.actions, page, true);
       default:
         throw new InnertubeError('Target shelf not implemented.');
     }
@@ -79,16 +79,12 @@ class Library {
     return this.sections.find((section) => section.type === 'LIKE');
   }
 
-  get playlists() {
+  get playlists_section() {
     return this.sections.find((section) => section.type === 'PLAYLISTS');
   }
 
   get clips() {
     return this.sections.find((section) => section.type === 'CONTENT_CUT');
-  }
-
-  get page(): ParsedResponse {
-    return this.#page;
   }
 }
 

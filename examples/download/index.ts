@@ -3,7 +3,7 @@ import { readFileSync, existsSync, mkdirSync, createWriteStream } from 'fs';
 import { streamToIterable } from 'youtubei.js/dist/src/utils/Utils';
 
 (async () => {
-  const yt = await Innertube.create({ cache: new UniversalCache() });
+  const yt = await Innertube.create({ cache: new UniversalCache(), generate_session_locally: true });
 
   const search = await yt.music.search('No Copyright Background Music', { type: 'album' });
 
@@ -19,7 +19,7 @@ import { streamToIterable } from 'youtubei.js/dist/src/utils/Utils';
 
   for (const song of album.contents) {
     const stream = await yt.download(song.id as string, {
-      type: 'audio', // audio, video or audio+video
+      type: 'audio', // audio, video or video+audio
       quality: 'best', // best, bestefficiency, 144p, 240p, 480p, 720p and so on.
       format: 'mp4' // media container format 
     });

@@ -4,31 +4,36 @@ import ItemSection from '../classes/ItemSection.js';
 import SearchRefinementCard from '../classes/SearchRefinementCard.js';
 import SectionList from '../classes/SectionList.js';
 import UniversalWatchCard from '../classes/UniversalWatchCard.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
 import type Actions from '../../core/Actions.js';
-import { InnertubeError } from '../../utils/Utils.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
+import type { ISearchResponse } from '../types/ParsedResponse.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
-export default class Search extends Feed {
+class Search extends Feed<ISearchResponse> {
   results?: ObservedArray<YTNode> | null;
   refinements: string[];
-  estimated_results: number | null;
-  watch_card: UniversalWatchCard | null;
+  estimated_results: number;
+  watch_card?: UniversalWatchCard;
   refinement_cards?: HorizontalCardList | null;
 
-  constructor(actions: Actions, data: any, already_parsed = false) {
+  constructor(actions: Actions, data: ApiResponse | ISearchResponse, already_parsed = false) {
     super(actions, data, already_parsed);
 
     const contents =
-      this.page.contents_memo.getType(SectionList)?.[0]?.contents ||
-      this.page.on_response_received_commands?.[0].contents;
+      this.page.contents_memo?.getType(SectionList).first().contents ||
+      this.page.on_response_received_commands?.first().contents;
+
+    if (!contents)
+      throw new InnertubeError('No contents found in search response');
 
     this.results = contents.firstOfType(ItemSection)?.contents;
 
     this.refinements = this.page.refinements || [];
     this.estimated_results = this.page.estimated_results;
 
-    this.watch_card = this.page?.contents_memo.getType(UniversalWatchCard)?.[0];
+    this.watch_card = this.page.contents_memo?.getType(UniversalWatchCard).first();
     this.refinement_cards = this.results?.get({ type: 'HorizontalCardList' }, true)?.as(HorizontalCardList);
   }
 
@@ -49,7 +54,7 @@ export default class Search extends Feed {
       throw new InnertubeError('Invalid refinement card!');
     }
 
-    const page = await target_card.endpoint.call(this.actions, { parse: true });
+    const page = await target_card.endpoint.call<ISearchResponse>(this.actions, { parse: true });
 
     return new Search(this.actions, page, true);
   }
@@ -65,7 +70,11 @@ export default class Search extends Feed {
    * Retrieves next batch of results.
    */
   async getContinuation(): Promise<Search> {
-    const continuation = await this.getContinuationData();
-    return new Search(this.actions, continuation, true);
+    const response = await this.getContinuationData();
+    if (!response)
+      throw new InnertubeError('Could not get continuation data');
+    return new Search(this.actions, response, true);
   }
 }
+
+export default Search;

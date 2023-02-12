@@ -14,7 +14,7 @@ YouTube Studio class (WIP).
 
 Uploads a custom thumbnail and sets it for a video.
 
-**Returns:** `Promise.<ActionsResponse>`
+**Returns:** `Promise.<ApiResponse>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -26,7 +26,7 @@ Uploads a custom thumbnail and sets it for a video.
 
 Updates given video's metadata.
 
-**Returns:** `Promise.<ActionsResponse>`
+**Returns:** `Promise.<ApiResponse>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -38,7 +38,7 @@ Updates given video's metadata.
 
 Uploads a video to YouTube.
 
-**Returns:** `Promise.<ActionsResponse>`
+**Returns:** `Promise.<ApiResponse>`
 
 | Param | Type | Description |
 | --- | --- | --- |

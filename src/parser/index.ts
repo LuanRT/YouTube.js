@@ -1,5 +1,6 @@
 export { default as Parser } from './parser.js';
 export * from './parser.js';
+export * from './types/index.js';
 export { YTNodes, Misc } from '../parser/map.js';
 export * as YT from './youtube/index.js';
 export * as YTMusic from './ytmusic/index.js';

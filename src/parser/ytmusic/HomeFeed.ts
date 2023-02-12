@@ -1,29 +1,29 @@
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
-import type { ObservedArray } from '../helpers.js';
 import { InnertubeError } from '../../utils/Utils.js';
-
-import Parser, { ParsedResponse, SectionListContinuation } from '../index.js';
-
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import SectionList from '../classes/SectionList.js';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';
+import Parser, { SectionListContinuation } from '../index.js';
+
+import type Actions from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { ObservedArray } from '../helpers.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class HomeFeed {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
   #actions: Actions;
   #continuation?: string;
 
   sections?: ObservedArray<MusicCarouselShelf>;
 
-  constructor(response: ApiResponse | ParsedResponse, actions: Actions) {
+  constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
-    this.#page = Parser.parseResponse((response as ApiResponse).data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
-    const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
+    const tab = this.#page.contents?.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
 
     if (!tab)
-      throw new InnertubeError('Could not get Home tab.');
+      throw new InnertubeError('Could not find Home tab.');
 
     if (tab.key('content').isNull()) {
       if (!this.#page.continuation_contents)
@@ -58,7 +58,7 @@ class HomeFeed {
     return !!this.#continuation;
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }

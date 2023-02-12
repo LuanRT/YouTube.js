@@ -1,6 +1,6 @@
 import Proto from '../proto/index.js';
 import type Actions from './Actions.js';
-import type { ActionsResponse } from './Actions.js';
+import type { ApiResponse } from './Actions.js';
 
 import Analytics from '../parser/youtube/Analytics.js';
 import TimeWatched from '../parser/youtube/TimeWatched.js';
@@ -13,8 +13,8 @@ class AccountManager {
   #actions: Actions;
 
   channel: {
-    editName: (new_name: string) => Promise<ActionsResponse>;
-    editDescription: (new_description: string) => Promise<ActionsResponse>;
+    editName: (new_name: string) => Promise<ApiResponse>;
+    editDescription: (new_description: string) => Promise<ApiResponse>;
     getBasicAnalytics: () => Promise<Analytics>;
   };
 

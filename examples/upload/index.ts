@@ -31,5 +31,5 @@ const creds = existsSync(creds_path) ? JSON.parse(readFileSync(creds_path).toStr
     privacy: 'UNLISTED'
   });
 
-  console.info('Done!');
+  console.info('Done!', upload);
 })();

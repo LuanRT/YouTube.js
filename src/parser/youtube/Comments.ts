@@ -1,8 +1,9 @@
-import Parser, { ParsedResponse } from '../index.js';
+import Parser from '../index.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import { observe, ObservedArray } from '../helpers.js';
+import type { INextResponse } from '../types/ParsedResponse.js';
 
 import CommentsHeader from '../classes/comments/CommentsHeader.js';
 import CommentSimplebox from '../classes/comments/CommentSimplebox.js';
@@ -10,7 +11,7 @@ import CommentThread from '../classes/comments/CommentThread.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 
 class Comments {
-  #page: ParsedResponse;
+  #page: INextResponse;
   #actions: Actions;
   #continuation?: ContinuationItem;
 
@@ -18,7 +19,7 @@ class Comments {
   contents: ObservedArray<CommentThread>;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
-    this.#page = already_parsed ? data : Parser.parseResponse(data);
+    this.#page = already_parsed ? data : Parser.parseResponse<INextResponse>(data);
     this.#actions = actions;
 
     const contents = this.#page.on_response_received_endpoints;
@@ -116,7 +117,7 @@ class Comments {
     return !!this.#continuation;
   }
 
-  get page(): ParsedResponse {
+  get page(): INextResponse {
     return this.#page;
   }
 }

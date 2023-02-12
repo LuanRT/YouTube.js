@@ -11,6 +11,9 @@ import type LiveChatHeader from './classes/LiveChatHeader.js';
 import type LiveChatItemList from './classes/LiveChatItemList.js';
 import type Alert from './classes/Alert.js';
 
+import type { IParsedResponse } from './types/ParsedResponse.js';
+import type { IRawResponse, RawData, RawNode } from './types/RawResponse.js';
+
 import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem.js';
 import Format from './classes/misc/Format.js';
 import VideoDetails from './classes/misc/VideoDetails.js';
@@ -58,115 +61,209 @@ export default class Parser {
   }
 
   /**
-   * Parses InnerTube response.
-   * @param data - The response data.
+   * Parses given InnerTube response.
+   * @param data - Raw data.
    */
-  static parseResponse(data: any) {
-    // Memoize the response objects by classname
+  static parseResponse<T extends IParsedResponse = IParsedResponse>(data: IRawResponse): T {
+    const parsed_data = {} as T;
+
     this.#createMemo();
-    // TODO: should this parseItem?
-    const contents = Parser.parse(data.contents);
+    const contents = this.parse(data.contents);
     const contents_memo = this.#getMemo();
+    if (contents) {
+      parsed_data.contents = contents;
+      parsed_data.contents_memo = contents_memo;
+    }
     this.#clearMemo();
 
     this.#createMemo();
-    const on_response_received_actions = data.onResponseReceivedActions ? Parser.parseRR(data.onResponseReceivedActions) : null;
+    const on_response_received_actions = data.onResponseReceivedActions ? this.parseRR(data.onResponseReceivedActions) : null;
     const on_response_received_actions_memo = this.#getMemo();
+    if (on_response_received_actions) {
+      parsed_data.on_response_received_actions = on_response_received_actions;
+      parsed_data.on_response_received_actions_memo = on_response_received_actions_memo;
+    }
     this.#clearMemo();
 
     this.#createMemo();
-    const on_response_received_endpoints = data.onResponseReceivedEndpoints ? Parser.parseRR(data.onResponseReceivedEndpoints) : null;
+    const on_response_received_endpoints = data.onResponseReceivedEndpoints ? this.parseRR(data.onResponseReceivedEndpoints) : null;
     const on_response_received_endpoints_memo = this.#getMemo();
+    if (on_response_received_endpoints) {
+      parsed_data.on_response_received_endpoints = on_response_received_endpoints;
+      parsed_data.on_response_received_endpoints_memo = on_response_received_endpoints_memo;
+    }
     this.#clearMemo();
 
     this.#createMemo();
-    const on_response_received_commands = data.onResponseReceivedCommands ? Parser.parseRR(data.onResponseReceivedCommands) : null;
+    const on_response_received_commands = data.onResponseReceivedCommands ? this.parseRR(data.onResponseReceivedCommands) : null;
     const on_response_received_commands_memo = this.#getMemo();
+    if (on_response_received_commands) {
+      parsed_data.on_response_received_commands = on_response_received_commands;
+      parsed_data.on_response_received_commands_memo = on_response_received_commands_memo;
+    }
     this.#clearMemo();
 
     this.#createMemo();
-    const continuation_contents = data.continuationContents ? Parser.parseLC(data.continuationContents) : null;
+    const continuation_contents = data.continuationContents ? this.parseLC(data.continuationContents) : null;
     const continuation_contents_memo = this.#getMemo();
+    if (continuation_contents) {
+      parsed_data.continuation_contents = continuation_contents;
+      parsed_data.continuation_contents_memo = continuation_contents_memo;
+    }
     this.#clearMemo();
 
     this.#createMemo();
-    const actions = data.actions ? Parser.parseActions(data.actions) : null;
+    const actions = data.actions ? this.parseActions(data.actions) : null;
     const actions_memo = this.#getMemo();
+    if (actions) {
+      parsed_data.actions = actions;
+      parsed_data.actions_memo = actions_memo;
+    }
     this.#clearMemo();
 
     this.#createMemo();
-    const live_chat_item_context_menu_supported_renderers = data.liveChatItemContextMenuSupportedRenderers
-      ? Parser.parseItem(data.liveChatItemContextMenuSupportedRenderers)
-      : null;
+    const live_chat_item_context_menu_supported_renderers = data.liveChatItemContextMenuSupportedRenderers ? this.parseItem(data.liveChatItemContextMenuSupportedRenderers) : null;
     const live_chat_item_context_menu_supported_renderers_memo = this.#getMemo();
+    if (live_chat_item_context_menu_supported_renderers) {
+      parsed_data.live_chat_item_context_menu_supported_renderers = live_chat_item_context_menu_supported_renderers;
+      parsed_data.live_chat_item_context_menu_supported_renderers_memo = live_chat_item_context_menu_supported_renderers_memo;
+    }
     this.#clearMemo();
 
     this.#createMemo();
-    const header = data.header ? Parser.parse(data.header) : null;
+    const header = data.header ? this.parse(data.header) : null;
     const header_memo = this.#getMemo();
+    if (header) {
+      parsed_data.header = header;
+      parsed_data.header_memo = header_memo;
+    }
     this.#clearMemo();
 
     this.#createMemo();
-    const sidebar = data.sidebar ? Parser.parseItem(data.sidebar) : null;
+    const sidebar = data.sidebar ? this.parseItem(data.sidebar) : null;
     const sidebar_memo = this.#getMemo();
+    if (sidebar) {
+      parsed_data.sidebar = sidebar;
+      parsed_data.sidebar_memo = sidebar_memo;
+    }
     this.#clearMemo();
 
     this.applyMutations(contents_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
 
-    return {
-      actions,
-      actions_memo,
-      contents,
-      contents_memo,
-      header,
-      header_memo,
-      sidebar,
-      sidebar_memo,
-      live_chat_item_context_menu_supported_renderers,
-      live_chat_item_context_menu_supported_renderers_memo,
-      on_response_received_actions,
-      on_response_received_actions_memo,
-      on_response_received_endpoints,
-      on_response_received_endpoints_memo,
-      on_response_received_commands,
-      on_response_received_commands_memo,
-      continuation: data.continuation ? Parser.parseC(data.continuation) : null,
-      continuation_contents,
-      continuation_contents_memo,
-      metadata: Parser.parse(data.metadata),
-      microformat: data.microformat ? Parser.parseItem(data.microformat) : null,
-      overlay: Parser.parseItem(data.overlay),
-      alerts: Parser.parseArray<Alert>(data.alerts),
-      refinements: data.refinements || null,
-      estimated_results: data.estimatedResults ? parseInt(data.estimatedResults) : null,
-      player_overlays: Parser.parse(data.playerOverlays),
-      playback_tracking: data.playbackTracking ? {
-        videostats_watchtime_url: data.playbackTracking.videostatsWatchtimeUrl.baseUrl as string,
-        videostats_playback_url: data.playbackTracking.videostatsPlaybackUrl.baseUrl as string
-      } : null,
-      playability_status: data.playabilityStatus ? {
-        status: data.playabilityStatus.status as string,
-        error_screen: Parser.parseItem(data.playabilityStatus.errorScreen),
-        audio_only_playablility: Parser.parseItem<AudioOnlyPlayability>(data.playabilityStatus.audioOnlyPlayability),
-        embeddable: !!data.playabilityStatus.playableInEmbed || false,
-        reason: data.playabilityStatus?.reason || ''
-      } : undefined,
-      streaming_data: data.streamingData ? {
-        expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
-        formats: Parser.parseFormats(data.streamingData.formats),
-        adaptive_formats: Parser.parseFormats(data.streamingData.adaptiveFormats),
-        dash_manifest_url: data.streamingData?.dashManifestUrl as string || null,
-        hls_manifest_url: data.streamingData?.hlsManifestUrl as string || null
-      } : undefined,
-      current_video_endpoint: data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null,
-      endpoint: data.endpoint ? new NavigationEndpoint(data.endpoint) : null,
-      captions: Parser.parseItem<PlayerCaptionsTracklist>(data.captions),
-      video_details: data.videoDetails ? new VideoDetails(data.videoDetails) : undefined,
-      annotations: Parser.parseArray<PlayerAnnotationsExpanded>(data.annotations),
-      storyboards: Parser.parseItem<PlayerStoryboardSpec | PlayerLiveStoryboardSpec>(data.storyboards),
-      endscreen: Parser.parseItem<Endscreen>(data.endscreen),
-      cards: Parser.parseItem<CardCollection>(data.cards)
-    };
+    const continuation = data.continuation ? this.parseC(data.continuation) : null;
+    if (continuation) {
+      parsed_data.continuation = continuation;
+    }
+
+    const metadata = this.parse(data.metadata);
+    if (metadata) {
+      parsed_data.metadata = metadata;
+    }
+
+    const microformat = this.parseItem(data.microformat);
+    if (microformat) {
+      parsed_data.microformat = microformat;
+    }
+
+    const overlay = this.parseItem(data.overlay);
+    if (overlay) {
+      parsed_data.overlay = overlay;
+    }
+
+    const alerts = this.parseArray<Alert>(data.alerts);
+    if (alerts.length) {
+      parsed_data.alerts = alerts;
+    }
+
+    const refinements = data.refinements;
+    if (refinements) {
+      parsed_data.refinements = refinements;
+    }
+
+    const estimated_results = data.estimatedResults ? parseInt(data.estimatedResults) : null;
+    if (estimated_results) {
+      parsed_data.estimated_results = estimated_results;
+    }
+
+    const player_overlays = this.parse(data.playerOverlays);
+    if (player_overlays) {
+      parsed_data.player_overlays = player_overlays;
+    }
+
+    const playback_tracking = data.playbackTracking ? {
+      videostats_watchtime_url: data.playbackTracking.videostatsWatchtimeUrl.baseUrl,
+      videostats_playback_url: data.playbackTracking.videostatsPlaybackUrl.baseUrl
+    } : null;
+
+    if (playback_tracking) {
+      parsed_data.playback_tracking = playback_tracking;
+    }
+
+    const playability_status = data.playabilityStatus ? {
+      status: data.playabilityStatus.status,
+      reason: data.playabilityStatus.reason || '',
+      embeddable: !!data.playabilityStatus.playableInEmbed || false,
+      audio_only_playablility: this.parseItem<AudioOnlyPlayability>(data.playabilityStatus.audioOnlyPlayability),
+      error_screen: this.parseItem(data.playabilityStatus.errorScreen)
+    } : null;
+
+    if (playability_status) {
+      parsed_data.playability_status = playability_status;
+    }
+
+    const streaming_data = data.streamingData ? {
+      expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
+      formats: Parser.parseFormats(data.streamingData.formats),
+      adaptive_formats: Parser.parseFormats(data.streamingData.adaptiveFormats),
+      dash_manifest_url: data.streamingData.dashManifestUrl || null,
+      hls_manifest_url: data.streamingData.hlsManifestUrl || null
+    } : undefined;
+
+    if (streaming_data) {
+      parsed_data.streaming_data = streaming_data;
+    }
+
+    const current_video_endpoint = data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null;
+    if (current_video_endpoint) {
+      parsed_data.current_video_endpoint = current_video_endpoint;
+    }
+
+    const endpoint = data.endpoint ? new NavigationEndpoint(data.endpoint) : null;
+    if (endpoint) {
+      parsed_data.endpoint = endpoint;
+    }
+
+    const captions = this.parseItem<PlayerCaptionsTracklist>(data.captions);
+    if (captions) {
+      parsed_data.captions = captions;
+    }
+
+    const video_details = data.videoDetails ? new VideoDetails(data.videoDetails) : null;
+    if (video_details) {
+      parsed_data.video_details = video_details;
+    }
+
+    const annotations = this.parseArray<PlayerAnnotationsExpanded>(data.annotations);
+    if (annotations.length) {
+      parsed_data.annotations = annotations;
+    }
+
+    const storyboards = this.parseItem<PlayerStoryboardSpec | PlayerLiveStoryboardSpec>(data.storyboards);
+    if (storyboards) {
+      parsed_data.storyboards = storyboards;
+    }
+
+    const endscreen = this.parseItem<Endscreen>(data.endscreen);
+    if (endscreen) {
+      parsed_data.endscreen = endscreen;
+    }
+
+    const cards = this.parseItem<CardCollection>(data.cards);
+    if (cards) {
+      parsed_data.cards = cards;
+    }
+
+    return parsed_data;
   }
 
   /**
@@ -174,7 +271,7 @@ export default class Parser {
    * @param data - The data to parse.
    * @param validTypes - YTNode types that are allowed to be parsed.
    */
-  static parseItem<T extends YTNode = YTNode>(data: any, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+  static parseItem<T extends YTNode = YTNode>(data?: RawNode, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
     if (!data) return null;
 
     const keys = Object.keys(data);
@@ -214,7 +311,7 @@ export default class Parser {
    * @param data - The data to parse.
    * @param validTypes - YTNode types that are allowed to be parsed.
    */
-  static parseArray<T extends YTNode = YTNode>(data: any[], validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+  static parseArray<T extends YTNode = YTNode>(data?: RawNode[], validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
     if (Array.isArray(data)) {
       const results: T[] = [];
 
@@ -238,9 +335,9 @@ export default class Parser {
    * @param requireArray - Whether the data should be parsed as an array.
    * @param validTypes - YTNode types that are allowed to be parsed.
    */
-  static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]): ObservedArray<T> | null;
-  static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]): SuperParsedResult<T>;
-  static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+  static parse<T extends YTNode = YTNode>(data: RawData, requireArray: true, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]): ObservedArray<T> | null;
+  static parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]): SuperParsedResult<T>;
+  static parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
     if (!data) return null;
 
     if (Array.isArray(data)) {
@@ -263,12 +360,13 @@ export default class Parser {
     return new SuperParsedResult(this.parseItem(data, validTypes));
   }
 
-  static parseC(data: any) {
+  static parseC(data: RawNode) {
     if (data.timedContinuationData)
       return new Continuation({ continuation: data.timedContinuationData, type: 'timed' });
+    return null;
   }
 
-  static parseLC(data: any) {
+  static parseLC(data: RawNode) {
     if (data.itemSectionContinuation)
       return new ItemSectionContinuation(data.itemSectionContinuation);
     if (data.sectionListContinuation)
@@ -283,10 +381,14 @@ export default class Parser {
       return new GridContinuation(data.gridContinuation);
     if (data.playlistPanelContinuation)
       return new PlaylistPanelContinuation(data.playlistPanelContinuation);
+
+    return null;
   }
 
-  static parseRR(actions: any[]) {
+  static parseRR(actions: RawNode[]) {
     return observe(actions.map((action: any) => {
+      if (action.navigateAction)
+        return new NavigateAction(action.navigateAction);
       if (action.reloadContinuationItemsCommand)
         return new ReloadContinuationItemsCommand(action.reloadContinuationItemsCommand);
       if (action.appendContinuationItemsAction)
@@ -294,21 +396,21 @@ export default class Parser {
     }).filter((item) => item) as (ReloadContinuationItemsCommand | AppendContinuationItemsAction)[]);
   }
 
-  static parseActions(data: any) {
+  static parseActions(data: RawData) {
     if (Array.isArray(data)) {
       return Parser.parse(data.map((action) => {
         delete action.clickTrackingParams;
         return action;
       }));
     }
-    return new SuperParsedResult(Parser.parseItem(data));
+    return new SuperParsedResult(this.parseItem(data));
   }
 
-  static parseFormats(formats: any[]) {
+  static parseFormats(formats: RawNode[]): Format[] {
     return formats?.map((format) => new Format(format)) || [];
   }
 
-  static applyMutations(memo: Memo, mutations: Array<any>) {
+  static applyMutations(memo: Memo, mutations: RawNode[]) {
     // Apply mutations to MusicMultiSelectMenuItems
     const music_multi_select_menu_items = memo.getType(MusicMultiSelectMenuItem);
 
@@ -351,7 +453,7 @@ export default class Parser {
       return console.warn(
         new InnertubeError(
           `${classname} not found!\n` +
-          `This is a bug, want to help us fix it? Follow the instructions at ${Platform.shim.info.repo_url}/blob/main/docs/updating-the-parser.md or report it at ${Platform.shim.info.bugs_url}!`, classdata
+          `This is a bug, want to help us fix it? Follow the instructions at ${Platform.shim.info.repo_url.split('#')[0]}/blob/main/docs/updating-the-parser.md or report it at ${Platform.shim.info.bugs_url}!`, classdata
         )
       );
     }
@@ -379,15 +481,14 @@ export default class Parser {
     'PromotedSparklesWeb',
     'RunAttestationCommand',
     'CompactPromotedVideo',
-    'StatementBanner'
+    'StatementBanner',
+    'SearchSubMenu'
   ]);
 
   static shouldIgnore(classname: string) {
     return this.ignore_list.has(classname);
   }
 }
-
-export type ParsedResponse = ReturnType<typeof Parser.parseResponse>;
 
 // Continuation
 
@@ -397,12 +498,23 @@ export class ItemSectionContinuation extends YTNode {
   contents: ObservedArray<YTNode> | null;
   continuation?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Parser.parseArray(data.contents);
-    if (data.continuations) {
+    if (Array.isArray(data.continuations)) {
       this.continuation = data.continuations?.at(0)?.nextContinuationData?.continuation;
     }
+  }
+}
+
+export class NavigateAction extends YTNode {
+  static readonly type = 'navigateAction';
+
+  endpoint: NavigationEndpoint;
+
+  constructor(data: RawNode) {
+    super();
+    this.endpoint = new NavigationEndpoint(data.endpoint);
   }
 }
 
@@ -411,7 +523,7 @@ export class AppendContinuationItemsAction extends YTNode {
 
   contents: ObservedArray<YTNode> | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Parser.parse(data.continuationItems, true);
   }
@@ -424,7 +536,7 @@ export class ReloadContinuationItemsCommand extends YTNode {
   contents: ObservedArray<YTNode> | null;
   slot?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.target_id = data.targetId;
     this.contents = Parser.parse(data.continuationItems, true);
@@ -438,7 +550,7 @@ export class SectionListContinuation extends YTNode {
   continuation: string;
   contents: ObservedArray<YTNode> | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Parser.parse(data.contents, true);
     this.continuation =
@@ -453,7 +565,7 @@ export class MusicPlaylistShelfContinuation extends YTNode {
   continuation: string;
   contents: ObservedArray<YTNode> | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Parser.parse(data.contents, true);
     this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
@@ -466,9 +578,9 @@ export class MusicShelfContinuation extends YTNode {
   continuation: string;
   contents: ObservedArray<YTNode> | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.contents = Parser.parse(data.contents, true);
+    this.contents = Parser.parseArray(data.contents);
     this.continuation =
       data.continuations?.[0].nextContinuationData?.continuation ||
       data.continuations?.[0].reloadContinuationData?.continuation || null;
@@ -481,7 +593,7 @@ export class GridContinuation extends YTNode {
   continuation: string;
   items: ObservedArray<YTNode> | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.items = Parser.parse(data.items, true);
     this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
@@ -498,9 +610,9 @@ export class PlaylistPanelContinuation extends YTNode {
   continuation: string;
   contents: ObservedArray<YTNode> | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.contents = Parser.parse(data.contents, true);
+    this.contents = Parser.parseArray(data.contents);
     this.continuation = data.continuations?.[0]?.nextContinuationData?.continuation ||
       data.continuations?.[0]?.nextRadioContinuationData?.continuation || null;
   }
@@ -514,7 +626,7 @@ export class Continuation extends YTNode {
   time_until_last_message_ms?: number;
   token: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.continuation_type = data.type;
     this.timeout_ms = data.continuation?.timeoutMs;
@@ -541,7 +653,7 @@ export class LiveChatContinuation extends YTNode {
   continuation: Continuation;
   viewer_name: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.actions = Parser.parse(data.actions?.map((action: any) => {
       delete action.clickTrackingParams;

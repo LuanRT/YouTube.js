@@ -1,4 +1,4 @@
-import Parser, { ParsedResponse } from '../index.js';
+import Parser from '../index.js';
 
 import Grid from '../classes/Grid.js';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
@@ -7,19 +7,20 @@ import SectionList from '../classes/SectionList.js';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';
 
 import type { ApiResponse } from '../../core/Actions.js';
-import type { ObservedArray } from '../helpers.js';
 import { InnertubeError } from '../../utils/Utils.js';
+import type { ObservedArray } from '../helpers.js';
+import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class Explore {
-  #page: ParsedResponse;
+  #page: IBrowseResponse;
 
   top_buttons: MusicNavigationButton[];
   sections: ObservedArray<MusicCarouselShelf>;
 
   constructor(response: ApiResponse) {
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
-    const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
+    const tab = this.#page.contents?.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
@@ -33,7 +34,7 @@ class Explore {
     this.sections = section_list.contents.filterType(MusicCarouselShelf);
   }
 
-  get page(): ParsedResponse {
+  get page(): IBrowseResponse {
     return this.#page;
   }
 }
