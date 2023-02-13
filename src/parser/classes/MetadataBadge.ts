@@ -20,7 +20,7 @@ class MetadataBadge extends YTNode {
     }
 
     if (data?.label) {
-      this.style = data.label;
+      this.label = data.label;
     }
 
     if (data?.tooltip || data?.iconTooltip) {

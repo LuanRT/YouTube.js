@@ -58,18 +58,18 @@ class CompactVideo extends YTNode {
   }
 
   get is_fundraiser(): boolean {
-    return this.badges.some((badge) => badge.style === 'Fundraiser');
+    return this.badges.some((badge) => badge.label === 'Fundraiser');
   }
 
   get is_live(): boolean {
     return this.badges.some((badge) => {
-      if (badge.label === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.style === 'LIVE')
+      if (badge.style === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.label === 'LIVE')
         return true;
     });
   }
 
   get is_new(): boolean {
-    return this.badges.some((badge) => badge.style === 'New');
+    return this.badges.some((badge) => badge.label === 'New');
   }
 
   get is_premiere(): boolean {
