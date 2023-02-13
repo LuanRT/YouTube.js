@@ -26,6 +26,9 @@ async function main() {
       // now serialize the headers
       url.searchParams.set('__headers', JSON.stringify([...headers]));
 
+      // @ts-ignore
+      input.duplex = 'half';
+
       // copy over the request
       const request = new Request(
         url,
@@ -42,7 +45,7 @@ async function main() {
         headers
       });
     },
-    cache: new UniversalCache(),
+    cache: new UniversalCache(false),
   });
 
   const span = document.getElementById('video_name') as HTMLSpanElement;
@@ -66,7 +69,6 @@ async function main() {
     }
     try {
       const video = await yt.getInfo(video_id);
-
       console.log(video);
       span.textContent = video.basic_info.title || null;
 

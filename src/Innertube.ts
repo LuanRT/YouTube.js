@@ -14,10 +14,10 @@ import VideoInfo from './parser/youtube/VideoInfo.js';
 import AccountManager from './core/AccountManager.js';
 import Feed from './core/Feed.js';
 import InteractionManager from './core/InteractionManager.js';
+import YTKids from './core/Kids.js';
 import YTMusic from './core/Music.js';
 import PlaylistManager from './core/PlaylistManager.js';
 import YTStudio from './core/Studio.js';
-import YTKids from './core/Kids.js';
 import TabbedFeed from './core/TabbedFeed.js';
 import HomeFeed from './parser/youtube/HomeFeed.js';
 import Proto from './proto/index.js';
@@ -26,10 +26,10 @@ import Constants from './utils/Constants.js';
 import type Actions from './core/Actions.js';
 import type Format from './parser/classes/misc/Format.js';
 
-import { generateRandomString, throwIfMissing } from './utils/Utils.js';
-import type { FormatOptions, DownloadOptions } from './utils/FormatUtils.js';
 import type { ApiResponse } from './core/Actions.js';
-import type { IBrowseResponse, IParsedResponse } from './parser/types/ParsedResponse.js';
+import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
+import type { DownloadOptions, FormatOptions } from './utils/FormatUtils.js';
+import { generateRandomString, throwIfMissing } from './utils/Utils.js';
 
 export type InnertubeConfig = SessionOptions;
 

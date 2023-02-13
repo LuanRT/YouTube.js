@@ -311,7 +311,7 @@ class FormatUtils {
       if (!video_format.index_range || !video_format.init_range) {
         return;
       }
-      const mime_type = video_format.mime_type.split(';')[0];
+      const mime_type = video_format.mime_type;
       const mime_type_index = mime_types.indexOf(mime_type);
       if (mime_type_index > -1) {
         mime_objects[mime_type_index].push(video_format);
@@ -324,7 +324,6 @@ class FormatUtils {
 
     let set_id = 0;
     for (let i = 0; i < mime_types.length; i++) {
-
       // When the video has multiple different audio tracks/langues we want to include the extra information in the manifest
       if (mime_objects[i][0].has_audio && mime_objects[i][0].language) {
         const languages: string[] = [];
@@ -367,7 +366,7 @@ class FormatUtils {
 
           const set = this.#el(document, 'AdaptationSet', {
             id: `${set_id++}`,
-            mimeType: mime_types[i],
+            mimeType: mime_types[i].split(';')[0],
             startWithSAP: '1',
             subsegmentAlignment: 'true',
             lang: languages[j]
@@ -382,7 +381,7 @@ class FormatUtils {
       } else {
         const set = this.#el(document, 'AdaptationSet', {
           id: `${set_id++}`,
-          mimeType: mime_types[i],
+          mimeType: mime_types[i].split(';')[0],
           startWithSAP: '1',
           subsegmentAlignment: 'true'
         });
