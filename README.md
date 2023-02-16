@@ -584,8 +584,9 @@ Retrieves a given hashtag's page.
 ### getStreamingData(video_id, options)
 Returns deciphered streaming data.
 
-**Note**
-This will be deprecated in the future. It is recommended to retrieve streaming data from a `VideoInfo`/`TrackInfo` object instead if you want to select formats manually, example:
+> **Note**
+> This will be deprecated in the future. It is recommended to retrieve streaming data from a `VideoInfo`/`TrackInfo` object instead if you want to select formats manually, see the example below.
+
 ```ts
 const info = await yt.getBasicInfo('somevideoid');
 const url = info.streaming_data?.formats[0].decipher(yt.session.player);
