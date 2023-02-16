@@ -256,3 +256,12 @@ message SearchFilter {
   
   optional Filters filters = 2;
 }
+
+message Hashtag {
+  message Params {
+    required string hashtag = 1;
+    required int32 type = 3;
+  }
+  
+  required Params params = 93;
+}

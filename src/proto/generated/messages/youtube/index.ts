@@ -9,3 +9,4 @@ export type { Type as CreateCommentParams } from "./CreateCommentParams.js";
 export type { Type as PeformCommentActionParams } from "./PeformCommentActionParams.js";
 export type { Type as MusicSearchFilter } from "./MusicSearchFilter.js";
 export type { Type as SearchFilter } from "./SearchFilter.js";
+export type { Type as Hashtag } from "./Hashtag.js";
