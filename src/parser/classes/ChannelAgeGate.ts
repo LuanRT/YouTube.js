@@ -7,7 +7,7 @@ import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
 
 class ChannelAgeGate extends YTNode {
-  static type = 'channelAgeGate';
+  static type = 'ChannelAgeGate';
 
   channel_title: string;
   avatar: Thumbnail[];
