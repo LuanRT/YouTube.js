@@ -253,6 +253,7 @@ const yt = await Innertube.create({
   * [.getNotifications()](#getnotifications)
   * [.getUnseenNotificationsCount()](#getunseennotificationscount)
   * [.getPlaylist(id)](#getplaylist)
+  * [.getHashtag(hashtag)](#gethashtag)
   * [.getStreamingData(video_id, options)](#getstreamingdata)
   * [.download(video_id, options?)](#download)
   * [.resolveURL(url)](#resolveurl)
@@ -534,6 +535,28 @@ Retrieves playlist contents.
 
 - `<playlist>#items`
   - Returns the items of the playlist.
+
+</p>
+</details>
+
+<a name="gethashtag"></a>
+### getHashtag(hashtag)
+Retrieves a given hashtag's page.
+
+**Returns**: `Promise.<HashtagFeed>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hashtag | `string` | The hashtag |
+
+<details>
+<summary>Methods & Getter</summary>
+<p>
+
+- `<hashtag>#applyFilter(filter)`
+  - Applies given filter and returns a new `HashtagFeed` instance.
+- `<hashtag>#getContinuation()`
+  - Retrieves next batch of contents.
 
 </p>
 </details>

@@ -247,7 +247,7 @@ class Innertube {
   }
 
   /**
-   * Retrieves a given hashtag.
+   * Retrieves a given hashtag's page.
    * @param hashtag - The hashtag to fetch.
    */
   async getHashtag(hashtag: string): Promise<HashtagFeed> {
