@@ -10,13 +10,13 @@ import type ChipCloudChip from '../classes/ChipCloudChip.js';
 import type { IBrowseResponse } from '../index.js';
 
 export default class HashtagFeed extends FilterableFeed<IBrowseResponse> {
-  header: HashtagHeader;
+  header?: HashtagHeader;
   contents: RichGrid;
 
   constructor(actions: Actions, response: IBrowseResponse | ApiResponse) {
     super(actions, response);
 
-    if (!this.page.header || !this.page.contents_memo)
+    if (!this.page.contents_memo)
       throw new InnertubeError('Unexpected response', this.page);
 
     const tab = this.page.contents_memo.getType(Tab).first();
@@ -24,7 +24,10 @@ export default class HashtagFeed extends FilterableFeed<IBrowseResponse> {
     if (!tab.content)
       throw new InnertubeError('Content tab has no content', tab);
 
-    this.header = this.page.header.item().as(HashtagHeader);
+    if (this.page.header) {
+      this.header = this.page.header.item().as(HashtagHeader);
+    }
+
     this.contents = tab.content.as(RichGrid);
   }
 
