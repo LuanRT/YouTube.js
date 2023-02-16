@@ -33,6 +33,7 @@ import { default as CarouselHeader } from './classes/CarouselHeader.js';
 import { default as CarouselItem } from './classes/CarouselItem.js';
 import { default as Channel } from './classes/Channel.js';
 import { default as ChannelAboutFullMetadata } from './classes/ChannelAboutFullMetadata.js';
+import { default as ChannelAgeGate } from './classes/ChannelAgeGate.js';
 import { default as ChannelFeaturedContent } from './classes/ChannelFeaturedContent.js';
 import { default as ChannelHeaderLinks } from './classes/ChannelHeaderLinks.js';
 import { default as ChannelMetadata } from './classes/ChannelMetadata.js';
@@ -364,6 +365,7 @@ export const YTNodes = {
   CarouselItem,
   Channel,
   ChannelAboutFullMetadata,
+  ChannelAgeGate,
   ChannelFeaturedContent,
   ChannelHeaderLinks,
   ChannelMetadata,
