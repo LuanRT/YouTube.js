@@ -2,13 +2,11 @@
 
 YouTube.js works in the browser!
 
-## How to use
+## Usage
 
 To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in `examples/browser/proxy/deno.ts`.
 
 We'll use our own fetch implementation to proxy requests through our server. This is a simple example, but you can use any fetch implementation you want.
-
-This example is hosted on [Cloudflare Pages](https://pages.cloudflare.com/) at [ytjsexample.pages.dev](https://ytjsexample.pages.dev/).
 
 ```ts
 import { Innertube } from "youtubei.js/build/browser";
@@ -56,8 +54,10 @@ const yt = await Innertube.create({
 });
 ```
 
-after that you can use the library as normal.
+After that, you can use the library as normal.
 
 ## Example
 
 We've got a full example in `examples/browser/web` using vite.
+
+If you don't want to run the example yourself, you can see it in action here: [ytjsexample.pages.dev](https://ytjsexample.pages.dev/).
