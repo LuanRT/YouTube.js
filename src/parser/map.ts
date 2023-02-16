@@ -98,6 +98,7 @@ import { default as GridChannel } from './classes/GridChannel.js';
 import { default as GridHeader } from './classes/GridHeader.js';
 import { default as GridPlaylist } from './classes/GridPlaylist.js';
 import { default as GridVideo } from './classes/GridVideo.js';
+import { default as HashtagHeader } from './classes/HashtagHeader.js';
 import { default as Heatmap } from './classes/Heatmap.js';
 import { default as HeatMarker } from './classes/HeatMarker.js';
 import { default as HighlightsCarousel } from './classes/HighlightsCarousel.js';
@@ -428,6 +429,7 @@ export const YTNodes = {
   GridHeader,
   GridPlaylist,
   GridVideo,
+  HashtagHeader,
   Heatmap,
   HeatMarker,
   HighlightsCarousel,

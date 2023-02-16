@@ -187,6 +187,13 @@ describe('YouTube.js Tests', () => {
       expect(channel.has_search).toBe(false);
     })
 
+    it('should retrieve hashtags', async () => {
+      const hashtag = await yt.getHashtag('music');
+      expect(hashtag.header).toBeDefined();
+      expect(hashtag.contents).toBeDefined();
+      expect(hashtag.videos.length).toBeGreaterThan(0);
+    });
+
     it('should retrieve home feed', async () => {
       const homefeed = await yt.getHomeFeed();
       expect(homefeed.header).toBeDefined();
