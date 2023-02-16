@@ -10,6 +10,7 @@ import NotificationsMenu from './parser/youtube/NotificationsMenu.js';
 import Playlist from './parser/youtube/Playlist.js';
 import Search from './parser/youtube/Search.js';
 import VideoInfo from './parser/youtube/VideoInfo.js';
+import HashtagFeed from './parser/youtube/HashtagFeed.js';
 
 import AccountManager from './core/AccountManager.js';
 import Feed from './core/Feed.js';
@@ -243,6 +244,19 @@ class Innertube {
     const response = await this.actions.execute('/browse', { browseId: id });
 
     return new Playlist(this.actions, response);
+  }
+
+  /**
+   * Retrieves a given hashtag.
+   * @param hashtag - The hashtag to fetch.
+   */
+  async getHashtag(hashtag: string): Promise<HashtagFeed> {
+    throwIfMissing({ hashtag });
+
+    const params = Proto.encodeHashtag(hashtag);
+    const response = await this.actions.execute('/browse', { browseId: 'FEhashtag', params });
+
+    return new HashtagFeed(this.actions, response);
   }
 
   /**
