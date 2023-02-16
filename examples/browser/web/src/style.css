@@ -16,10 +16,11 @@ hr {
 
 form {
   margin: 0.5rem 0;
+  display: none;
 }
 
 #loader {
-  display: none;
+  display: block;
   border: 10px solid rgb(68, 68, 68);
   border-top: 10px solid rgb(255, 255, 255);
   border-radius: 50%;

@@ -2,6 +2,14 @@ import './style.css';
 import { Innertube, UniversalCache } from '../../../../bundle/browser';
 import dashjs from 'dashjs';
 
+const description = document.getElementById('description') as HTMLDivElement;
+const form = document.querySelector('form') as HTMLFormElement;
+const title = document.getElementById('title') as HTMLHeadingElement;
+const metadata = document.getElementById('metadata') as HTMLDivElement;
+const loader = document.getElementById('loader') as HTMLDivElement;
+const video = document.getElementById('video') as HTMLVideoElement;
+const video_container = document.getElementById('video_container') as HTMLDivElement;
+
 async function main() {
   const yt = await Innertube.create({
     generate_session_locally: true,
@@ -49,12 +57,10 @@ async function main() {
     cache: new UniversalCache(false),
   });
 
-  const description = document.getElementById('description') as HTMLDivElement;
-  const form = document.querySelector('form') as HTMLFormElement;
-  const title = document.getElementById('title') as HTMLHeadingElement;
-  const metadata = document.getElementById('metadata') as HTMLDivElement;
-  const loader = document.getElementById('loader') as HTMLDivElement;
-  const video_container = document.getElementById('video_container') as HTMLDivElement;
+  form.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
+  form.style.display = 'block';
+
+  showUI(false);
 
   let player: dashjs.MediaPlayerClass | undefined;
 
@@ -65,8 +71,7 @@ async function main() {
       player.reset();
     }
 
-    video_container.style.display = 'none';
-    loader.style.display = 'block';
+    hideUI();
 
     let video_id;
 
@@ -74,6 +79,7 @@ async function main() {
 
     if (!video_id_or_url) {
       title.textContent = 'No video id or URL provided';
+      showUI(false);
       return;
     }
 
@@ -83,6 +89,7 @@ async function main() {
 
         if (!endpoint.payload.videoId) {
           title.textContent = 'Could not resolve URL';
+          showUI(false);
           return;
         }
 
@@ -91,25 +98,22 @@ async function main() {
         video_id = video_id_or_url;
       }
 
-      const video = await yt.getInfo(video_id);
+      const info = await yt.getInfo(video_id);
 
-      loader.style.display = 'none';
+      title.textContent = info.basic_info.title || null;
+      description.innerHTML = info.secondary_info?.description.toHTML() || '';
+      title.textContent = info.basic_info.title || null;
 
-      title.textContent = video.basic_info.title || null;
-      description.innerHTML = video.secondary_info?.description.toHTML() || '';
-      title.textContent = video.basic_info.title || null;
-
-      document.title = video.basic_info.title || '';
+      document.title = info.basic_info.title || '';
 
       metadata!.innerHTML = '';
-      metadata!.innerHTML += `<div class="metadata_item">${video.primary_info?.published.toHTML()}</div>`;
-      metadata!.innerHTML += `<div class="metadata_item">${video.primary_info?.view_count.toHTML()}</div>`;
-      metadata!.innerHTML += `<div class="metadata_item">${video.basic_info.like_count} likes</div>`;
+      metadata!.innerHTML += `<div class="metadata_item">${info.primary_info?.published.toHTML()}</div>`;
+      metadata!.innerHTML += `<div class="metadata_item">${info.primary_info?.view_count.toHTML()}</div>`;
+      metadata!.innerHTML += `<div class="metadata_item">${info.basic_info.like_count} likes</div>`;
 
-      video_container.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
-      video_container.style.display = 'block';
+      showUI(true);
 
-      const dash = video.toDash((url) => {
+      const dash = info.toDash((url) => {
         url.searchParams.set('__host', url.host);
         url.host = 'localhost:8080';
         url.protocol = 'http';
@@ -121,7 +125,7 @@ async function main() {
       // create and append video element
       const video_element = document.querySelector('video') as HTMLVideoElement;
       video_element.setAttribute('controls', 'true');
-      video_element.poster = video.basic_info.thumbnail![0].url;
+      video_element.poster = info.basic_info.thumbnail![0].url;
 
       // use dash.js to parse the manifest
       if (player) {
@@ -133,9 +137,22 @@ async function main() {
       player.setInitialMediaSettingsFor('audio', { lang: 'en-US' });
     } catch (error) {
       title.textContent = 'An error occurred (see console)';
+      showUI(false);
       console.error(error);
     }
   });
+}
+
+function showUI(with_video = true) {
+  loader.style.display = 'none';
+  video.style.display = with_video ? 'block' : 'none';
+  video_container.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
+  video_container.style.display = 'block';
+}
+
+function hideUI() {
+  video_container.style.display = 'none';
+  loader.style.display = 'block';
 }
 
 main();
