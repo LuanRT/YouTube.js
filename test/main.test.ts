@@ -188,7 +188,7 @@ describe('YouTube.js Tests', () => {
     })
 
     it('should retrieve hashtags', async () => {
-      const hashtag = await yt.getHashtag('#music');
+      const hashtag = await yt.getHashtag('music');
       expect(hashtag.header).toBeDefined();
       expect(hashtag.contents).toBeDefined();
       expect(hashtag.videos.length).toBeGreaterThan(0);
