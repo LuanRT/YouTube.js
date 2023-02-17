@@ -1,0 +1,10 @@
+export type { Type as Context } from "./Context.ts";
+export type { Type as Title } from "./Title.ts";
+export type { Type as Description } from "./Description.ts";
+export type { Type as Tags } from "./Tags.ts";
+export type { Type as Privacy } from "./Privacy.ts";
+export type { Type as Category } from "./Category.ts";
+export type { Type as MadeForKids } from "./MadeForKids.ts";
+export type { Type as AgeRestricted } from "./AgeRestricted.ts";
+export type { Type as License } from "./License.ts";
+export type { Type as VideoThumbnail } from "./VideoThumbnail.ts";
