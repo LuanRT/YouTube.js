@@ -84,7 +84,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "jintr": "^0.3.1",
+    "jintr": "^0.4.1",
     "linkedom": "^0.14.12",
     "undici": "^5.19.1"
   },
