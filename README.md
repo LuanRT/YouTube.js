@@ -128,8 +128,13 @@ To use YouTube.js in the browser you must proxy requests through your own server
 You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for a simple example using [Vite](https://vitejs.dev/).
 
 ```ts
-// Pre-bundled version for the web
-import { Innertube } from 'youtubei.js/bundle/browser';
+// We provide multiple exports for the web.
+// Unbundled ESM version
+import { Innertube } from 'youtubei.js/web';
+// Bundled ESM version
+// import { Innertube } from 'youtubei.js/web.bundle';
+// Production Bundled ESM version
+// import { Innertube } from 'youtubei.js/web.bundle.min';
 await Innertube.create({
   fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
     // Modify the request
