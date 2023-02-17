@@ -112,7 +112,10 @@ yarn add youtubei.js@latest
 npm install github:LuanRT/YouTube.js
 ```
 
-**TODO:** Deno install instructions (deno.land)
+When using Deno, you can import YouTube.js directly from deno.land:
+```ts
+import { Innertube } from 'https://deno.land/x/youtubei/deno.ts';
+```
 
 ## Usage
 Create an InnerTube instance:
