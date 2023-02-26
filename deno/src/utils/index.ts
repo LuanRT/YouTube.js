@@ -4,6 +4,8 @@ export * as Constants from './Constants.ts';
 
 export { default as EventEmitter } from './EventEmitterLike.ts';
 
+export { default as FormatUtils } from './FormatUtils.ts';
+
 export { default as HTTPClient } from './HTTPClient.ts';
 export * from './HTTPClient.ts';
 

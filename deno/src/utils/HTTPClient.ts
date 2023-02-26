@@ -91,6 +91,13 @@ export default class HTTPClient {
 
       delete n_body.client;
 
+
+      if (Platform.shim.server) {
+        if (n_body.context.client.clientName === 'ANDROID' || n_body.context.client.clientName === 'ANDROID_MUSIC') {
+          request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
+        }
+      }
+
       is_web_kids = n_body.context.client.clientName === 'WEB_KIDS';
       request_body = JSON.stringify(n_body);
     }
@@ -146,12 +153,14 @@ export default class HTTPClient {
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
         ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
+        ctx.client.platform = 'MOBILE';
         break;
       case 'YTMUSIC_ANDROID':
         ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC_ANDROID.VERSION;
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.YTMUSIC_ANDROID.NAME;
         ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
+        ctx.client.platform = 'MOBILE';
         break;
       case 'YTSTUDIO_ANDROID':
         ctx.client.clientVersion = Constants.CLIENTS.YTSTUDIO_ANDROID.VERSION;

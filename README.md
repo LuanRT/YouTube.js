@@ -112,7 +112,10 @@ yarn add youtubei.js@latest
 npm install github:LuanRT/YouTube.js
 ```
 
-**TODO:** Deno install instructions (deno.land)
+When using Deno, you can import YouTube.js directly from deno.land:
+```ts
+import { Innertube } from 'https://deno.land/x/youtubei/deno.ts';
+```
 
 ## Usage
 Create an InnerTube instance:
@@ -128,8 +131,13 @@ To use YouTube.js in the browser you must proxy requests through your own server
 You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for a simple example using [Vite](https://vitejs.dev/).
 
 ```ts
-// Pre-bundled version for the web
-import { Innertube } from 'youtubei.js/bundle/browser';
+// We provide multiple exports for the web.
+// Unbundled ESM version
+import { Innertube } from 'youtubei.js/web';
+// Bundled ESM version
+// import { Innertube } from 'youtubei.js/web.bundle';
+// Production Bundled ESM version
+// import { Innertube } from 'youtubei.js/web.bundle.min';
 await Innertube.create({
   fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
     // Modify the request
@@ -147,7 +155,7 @@ YouTube.js supports streaming of videos in the browser by converting YouTube's s
 The example below uses [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) to play the video.
 
 ```ts
-import { Innertube } from 'youtubei.js';
+import { Innertube } from 'youtubei.js/web';
 import dashjs from 'dashjs';
 
 const youtube = await Innertube.create({ /* setup - see above */ });
@@ -202,7 +210,7 @@ Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` 
 import { Innertube, UniversalCache } from 'youtubei.js';
 // By default, cache stores files in the OS temp directory (or indexedDB in browsers).
 const yt = await Innertube.create({
-  cache: new UniversalCache()
+  cache: new UniversalCache(false)
 });
 
 // You may wish to make the cache persistent (on Node and Deno)
