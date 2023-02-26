@@ -4,6 +4,8 @@ export * as Constants from './Constants.js';
 
 export { default as EventEmitter } from './EventEmitterLike.js';
 
+export { default as FormatUtils } from './FormatUtils.js';
+
 export { default as HTTPClient } from './HTTPClient.js';
 export * from './HTTPClient.js';
 

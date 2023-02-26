@@ -19,7 +19,8 @@ glob.sync('../src/parser/classes/**/*.{js,ts}', { cwd: __dirname })
       import_list.push(`import { default as ${class_name} } from './classes/${file}.js';`);
       misc_exports.push(class_name);
     } else {
-      import_list.push(`import { default as ${import_name} } from './classes/${file}.js';`);
+      import_list.push(`import { default as ${import_name} } from './classes/${file}.js';
+export { ${import_name} };`);
       json.push(import_name);
     }
   });
@@ -32,15 +33,13 @@ import { YTNodeConstructor } from './helpers.js';
 
 ${import_list.join('\n')}
 
-export const YTNodes = {
+const map: Record<string, YTNodeConstructor> = {
   ${json.join(',\n  ')}
 };
 
 export const Misc = {
   ${misc_exports.join(',\n  ')}
 };
-
-const map: Record<string, YTNodeConstructor> = YTNodes;
 
 /**
  * @param name - Name of the node to be parsed
