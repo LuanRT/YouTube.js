@@ -1,9 +1,8 @@
-import { Innertube, UniversalCache } from 'youtubei.js';
-import { readFileSync, existsSync, mkdirSync, createWriteStream } from 'fs';
-import { streamToIterable } from 'youtubei.js/dist/src/utils/Utils';
+import { Innertube, UniversalCache, Utils } from 'youtubei.js';
+import { existsSync, mkdirSync, createWriteStream } from 'fs';
 
 (async () => {
-  const yt = await Innertube.create({ cache: new UniversalCache(), generate_session_locally: true });
+  const yt = await Innertube.create({ cache: new UniversalCache(false), generate_session_locally: true });
 
   const search = await yt.music.search('No Copyright Background Music', { type: 'album' });
 
@@ -34,7 +33,7 @@ import { streamToIterable } from 'youtubei.js/dist/src/utils/Utils';
 
     const file = createWriteStream(`${dir}/${song.title?.replace(/\//g, '')}.m4a`);
 
-    for await (const chunk of streamToIterable(stream)) {
+    for await (const chunk of Utils.streamToIterable(stream)) {
       file.write(chunk);
     }
 

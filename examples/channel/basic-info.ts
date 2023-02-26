@@ -1,7 +1,7 @@
 import { Innertube, UniversalCache, YTNodes } from 'youtubei.js';
 
 (async () => {
-  const yt = await Innertube.create({ cache: new UniversalCache(), generate_session_locally: true });
+  const yt = await Innertube.create({ cache: new UniversalCache(false), generate_session_locally: true });
 
   const channel = await yt.getChannel('UCX6OQ3DkcsbYNE6H8uQQuVA');
 

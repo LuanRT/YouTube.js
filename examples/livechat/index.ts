@@ -1,9 +1,8 @@
-import { Innertube, UniversalCache, YTNodes } from 'youtubei.js';
-import { LiveChatContinuation } from 'youtubei.js/dist/src/parser';
+import { Innertube, UniversalCache, YTNodes, LiveChatContinuation } from 'youtubei.js';
 import { ChatAction, LiveMetadata } from 'youtubei.js/dist/src/parser/youtube/LiveChat';
 
 (async () => {
-  const yt = await Innertube.create({ cache: new UniversalCache(), generate_session_locally: true });
+  const yt = await Innertube.create({ cache: new UniversalCache(false), generate_session_locally: true });
 
   const search = await yt.search('lofi hip hop radio - beats to relax/study to');
   const info = await yt.getInfo(search.videos[0].as(YTNodes.Video).id);

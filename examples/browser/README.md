@@ -9,7 +9,7 @@ To use YouTube.js in the browser you must proxy requests through your own server
 We'll use our own fetch implementation to proxy requests through our server. This is a simple example, but you can use any fetch implementation you want.
 
 ```ts
-import { Innertube } from "youtubei.js/build/browser";
+import { Innertube } from "youtubei.js/web.bundle.min";
 
 const yt = await Innertube.create({
     fetch: async (input, init) => {

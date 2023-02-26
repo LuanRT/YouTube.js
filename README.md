@@ -155,7 +155,7 @@ YouTube.js supports streaming of videos in the browser by converting YouTube's s
 The example below uses [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) to play the video.
 
 ```ts
-import { Innertube } from 'youtubei.js';
+import { Innertube } from 'youtubei.js/web';
 import dashjs from 'dashjs';
 
 const youtube = await Innertube.create({ /* setup - see above */ });
@@ -210,7 +210,7 @@ Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` 
 import { Innertube, UniversalCache } from 'youtubei.js';
 // By default, cache stores files in the OS temp directory (or indexedDB in browsers).
 const yt = await Innertube.create({
-  cache: new UniversalCache()
+  cache: new UniversalCache(false)
 });
 
 // You may wish to make the cache persistent (on Node and Deno)
