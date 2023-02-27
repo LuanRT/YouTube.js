@@ -31,11 +31,11 @@ export type MiscInferenceType = {
 
 export type InferenceType = {
   type: 'renderer',
-  renderers: Record<string, any>,
+  renderers: string[],
   optional: boolean,
 } | {
   type: 'renderer_list',
-  renderers: Record<string, any>,
+  renderers: string[],
   optional: boolean,
 } | MiscInferenceType | {
   type: 'unknown',
@@ -48,16 +48,20 @@ export class YTNodeGenerator {
   static #ignored_keys = new Set([
     'trackingParams', 'accessibility', 'accessibilityData'
   ]);
-  static get ignored_keys() {
-    return this.#ignored_keys;
-  }
-  static camelToSnake(str: string) {
+  static #renderers_examples: Record<string, any> = {};
+  static #camelToSnake(str: string) {
     return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
   }
-  static isIgnoredKey(key: string | symbol) {
-    return typeof key === 'string' && this.ignored_keys.has(key);
+  static #logNewClass(classname: string, key_info: KeyInfo) {
+    console.warn(`${classname} not found!\nThis is a bug, want to help us fix it? Follow the instructions at ${Platform.shim.info.repo_url}/blob/main/docs/updating-the-parser.md or report it at ${Platform.shim.info.bugs_url}!\nIntrospected and JIT generated this class in the meantime:\n${this.generateTypescriptClass(classname, key_info)}`);
   }
-  static resolveKeyInfo(key_info: KeyInfo, new_key_info: KeyInfo) {
+  static #logChangedKeys(classname: string, key_info: KeyInfo, changed_keys: KeyInfo) {
+    console.warn(`${classname} changed!\nThe following keys where altered: ${changed_keys.map(([ key ]) => this.#camelToSnake(key)).join(', ')}\nThe class has changed to:\n${this.generateTypescriptClass(classname, key_info)}`);
+  }
+  static isIgnoredKey(key: string | symbol) {
+    return typeof key === 'string' && this.#ignored_keys.has(key);
+  }
+  static mergeKeyInfo(key_info: KeyInfo, new_key_info: KeyInfo) {
     const changed_keys = new Map<string, InferenceType>();
     const current_keys = new Set(key_info.map(([ key ]) => key));
     const new_keys = new Set(new_key_info.map(([ key ]) => key));
@@ -186,7 +190,7 @@ export class YTNodeGenerator {
     };
   }
   static createRuntimeClass(classname: string, key_info: KeyInfo): YTNodeConstructor {
-    this.logNewClass(classname, key_info);
+    this.#logNewClass(classname, key_info);
     const node = class extends YTNode {
       static type = classname;
       static #key_info = new Map<string, InferenceType>();
@@ -201,30 +205,28 @@ export class YTNodeGenerator {
         const {
           key_info,
           unimplemented_dependencies
-        } = YTNodeGenerator.introspectWithDependencies(data);
+        } = YTNodeGenerator.introspect(data);
 
         const {
           resolved_key_info,
           changed_keys
-        } = YTNodeGenerator.resolveKeyInfo(node.key_info, key_info);
+        } = YTNodeGenerator.mergeKeyInfo(node.key_info, key_info);
 
         const did_change = changed_keys.length > 0;
 
         if (did_change) {
           node.key_info = resolved_key_info;
-          YTNodeGenerator.logChangedKeys(classname, node.key_info, changed_keys);
+          YTNodeGenerator.#logChangedKeys(classname, node.key_info, changed_keys);
         }
 
         for (const [ name, data ] of unimplemented_dependencies)
           YTNodeGenerator.generateRuntimeClass(name, data);
 
         for (const [ key, value ] of key_info) {
-          let snake_key = YTNodeGenerator.camelToSnake(key);
+          let snake_key = YTNodeGenerator.#camelToSnake(key);
           if (value.type === 'misc' && value.misc_type === 'NavigationEndpoint')
             snake_key = 'endpoint';
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          this[snake_key] = YTNodeGenerator.inferenceTypeParseValue(key, value, data);
+          Reflect.set(this, snake_key, YTNodeGenerator.parse(key, value, data));
         }
       }
     };
@@ -232,42 +234,18 @@ export class YTNodeGenerator {
     Object.defineProperty(node, 'name', { value: classname, writable: false });
     return node;
   }
-  static logNewClass(classname: string, key_info: KeyInfo) {
-    console.warn(`${classname} not found!\nThis is a bug, want to help us fix it? Follow the instructions at ${Platform.shim.info.repo_url}/blob/main/docs/updating-the-parser.md or report it at ${Platform.shim.info.bugs_url}!\nIntrospected and JIT generated this class in the meantime:\n${this.generateTypescriptClass(classname, key_info)}`);
-  }
-  static logChangedKeys(classname: string, key_info: KeyInfo, changed_keys: KeyInfo) {
-    console.warn(`${classname} changed!\nThe following keys where altered: ${changed_keys.map(([ key ]) => this.camelToSnake(key)).join(', ')}\nThe class has changed to:\n${this.generateTypescriptClass(classname, key_info)}`);
-  }
-  static stringifyKeyInfo(key_info: KeyInfo) {
-    return JSON.stringify(key_info, (key, value) => {
-      if (typeof value === 'object' && value !== null && Reflect.has(value, 'renderers')) {
-        return {
-          ...value,
-          renderers: Object.keys(value.renderers)
-        };
-      }
-      return value;
-    });
-  }
-  static parseKeyInfo(key_info: string) {
-    return JSON.parse(key_info, (key, value) => {
-      if (typeof value === 'object' && value !== null && Reflect.has(value, 'renderers')) {
-        return {
-          ...value,
-          renderers: Object.fromEntries(value.renderers.map((keys: any) => [ keys, null ]))
-        };
-      }
-      return value;
-    }) as KeyInfo;
-  }
-  static introspectWithDependencies(classdata: string) {
-    const key_info = this.introspect(classdata);
+  static introspect(classdata: string) {
+    const key_info = this.#introspect(classdata);
     const dependencies = new Map<string, any>();
     for (const [ , value ] of key_info) {
       if (value.type === 'renderer' || value.type === 'renderer_list')
-        Object.entries(value.renderers).forEach(([ key, value ]) => dependencies.set(key, value));
+        value.renderers.forEach((renderer) => {
+          const example = this.#renderers_examples.get(renderer);
+          if (example)
+            dependencies.set(renderer, example);
+        });
     }
-    const unimplemented_dependencies = Array.from(dependencies).filter(([ classname ]) => !this.isImplemented(classname));
+    const unimplemented_dependencies = Array.from(dependencies).filter(([ classname ]) => !Parser.hasParser(classname));
 
     return {
       key_info,
@@ -278,7 +256,7 @@ export class YTNodeGenerator {
     const {
       key_info,
       unimplemented_dependencies
-    } = this.introspectWithDependencies(classdata);
+    } = this.introspect(classdata);
 
     const JITNode = this.createRuntimeClass(classname, key_info);
     Parser.addRuntimeParser(classname, JITNode);
@@ -294,68 +272,51 @@ export class YTNodeGenerator {
       'super();'
     ];
     for (const [ key, value ] of key_info) {
-      let snake_key = this.camelToSnake(key);
+      let snake_key = this.#camelToSnake(key);
       if (value.type === 'misc' && value.misc_type === 'NavigationEndpoint')
         snake_key = 'endpoint';
-      props.push(`${snake_key}${value.optional ? '?' : ''}: ${this.inferenceTypeToTS(value)};`);
-      constructor_lines.push(`this.${snake_key} = ${this.inferenceTypeToParser(key, value)};`);
+      props.push(`${snake_key}${value.optional ? '?' : ''}: ${this.toTypeDeclaration(value)};`);
+      constructor_lines.push(`this.${snake_key} = ${this.toParser(key, value)};`);
     }
     return `class ${classname} extends YTNode {\n  static type = '${classname}';\n\n  ${props.join('\n  ')}\n\n  constructor(data: any) {\n    ${constructor_lines.join('\n    ')}\n  }\n}\n`;
   }
-  static isImplemented(classname: string) {
-    return Parser.hasParser(classname);
-  }
-  static inferenceTypeToTS(inference_type: InferenceType) {
+  static toTypeDeclaration(inference_type: InferenceType) {
     switch (inference_type.type) {
       case 'renderer':
       {
-        const renderers = Object.entries(inference_type.renderers);
-        return `${renderers.map(([ type ]) => `YTNodes.${type}`).join(' | ')}`;
+        return `${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')}`;
       }
       case 'renderer_list':
       {
-        const renderers = Object.entries(inference_type.renderers);
-        return `ObservedArray<${renderers.map(([ type ]) => `YTNodes.${type}`).join(' | ')}>`;
+        return `ObservedArray<${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')}>`;
       }
       case 'misc':
         switch (inference_type.misc_type) {
-          case 'NavigationEndpoint':
-            return 'NavigationEndpoint';
-          case 'Text':
-            return 'Text';
           case 'Thumbnail':
             return 'Thumbnail[]';
-          case 'Author':
-            return 'Author';
+          default:
+            return inference_type.misc_type;
         }
         throw new Error('Unreachable code reached! Switch missing case!');
       case 'unknown':
         return '/* TODO: determine correct type */ unknown';
     }
   }
-  static inferenceTypeToParser(key: string, inference_type: InferenceType) {
+  static toParser(key: string, inference_type: InferenceType) {
     let parser = 'undefined';
     switch (inference_type.type) {
       case 'renderer':
         {
-          const renderers = Object.entries(inference_type.renderers);
-          parser = `Parser.parseItem(data.${key}, [${renderers.map(([ type ]) => `YTNodes.${type}`).join(', ')}])`;
+          parser = `Parser.parseItem(data.${key}, [${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')}])`;
         }
         break;
       case 'renderer_list':
         {
-          const renderers = Object.entries(inference_type.renderers);
-          parser = `Parser.parse(data.${key}, true, [${renderers.map(([ type ]) => `YTNodes.${type}`).join(', ')}])`;
+          parser = `Parser.parse(data.${key}, true, [${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')}])`;
         }
         break;
       case 'misc':
         switch (inference_type.misc_type) {
-          case 'NavigationEndpoint':
-            parser = `new NavigationEndpoint(data.${key})`;
-            break;
-          case 'Text':
-            parser = `new Text(data.${key})`;
-            break;
           case 'Thumbnail':
             parser = `Thumbnail.fromResponse(data.${key})`;
             break;
@@ -366,6 +327,9 @@ export class YTNodeGenerator {
               return `Reflect.has(data, '${inference_type.params[0]}') ? ${author_parser} : undefined`;
             return author_parser;
           }
+          default:
+            parser = `new ${inference_type.misc_type}(data.${key})`;
+            break;
         }
         if (parser === 'undefined')
           throw new Error('Unreachable code reached! Switch missing case!');
@@ -378,18 +342,16 @@ export class YTNodeGenerator {
       return `Reflect.has(data, '${key}') ? ${parser} : undefined`;
     return parser;
   }
-  static inferenceTypeParseValue(key: string, inference_type: InferenceType, data: any) {
+  static parse(key: string, inference_type: InferenceType, data: any) {
     const should_optional = !inference_type.optional || Reflect.has(data, key);
     switch (inference_type.type) {
       case 'renderer':
       {
-        const renderers = Object.entries(inference_type.renderers);
-        return should_optional ? Parser.parseItem(data[key], renderers.map(([ type ]) => Parser.getParserByName(type))) : undefined;
+        return should_optional ? Parser.parseItem(data[key], inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
       }
       case 'renderer_list':
       {
-        const renderers = Object.entries(inference_type.renderers);
-        return should_optional ? Parser.parse(data[key], true, renderers.map(([ type ]) => Parser.getParserByName(type))) : undefined;
+        return should_optional ? Parser.parse(data[key], true, inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
       }
       case 'misc':
         switch (inference_type.misc_type) {
@@ -480,25 +442,27 @@ export class YTNodeGenerator {
 
     return key_info.filter(([ key ]) => !excluded_keys.has(key));
   }
-  static introspect(classdata: any) {
+  static #introspect(classdata: any) {
     const key_info = this.#passOne(classdata);
     return this.#passTwo(key_info);
   }
   static inferType(key: string, value: any): InferenceType {
     let return_value: string | Record<string, any> | boolean | MiscInferenceType = false;
     if (return_value = this.isRenderer(value)) {
+      this.#renderers_examples[return_value] = value[Reflect.ownKeys(value)[0]];
       return {
         type: 'renderer',
-        renderers: {
-          [return_value]: value[Reflect.ownKeys(value)[0]]
-        },
+        renderers: [ return_value ],
         optional: false
       };
     }
     if (return_value = this.isRendererList(value)) {
+      for (const [ key, value ] of Object.entries(return_value)) {
+        this.#renderers_examples[key] = value;
+      }
       return {
         type: 'renderer_list',
-        renderers: return_value,
+        renderers: Object.keys(return_value),
         optional: false
       };
     }
@@ -517,7 +481,7 @@ export class YTNodeGenerator {
       is_list ?
         Object.fromEntries(value.map((item) => {
           const key = Reflect.ownKeys(item)[0].toString();
-          return [ this.getRendererClass(key), item[key] ];
+          return [ Parser.sanitizeClassName(key), item[key] ];
         })) :
         false
     );
@@ -553,16 +517,12 @@ export class YTNodeGenerator {
     }
     return false;
   }
-  static getRendererClass(renderer: string) {
-    // Remove 'Renderer' from the end of the string and capitalize the first letter
-    return renderer.replace(/Renderer$/, '').replace(/^[a-z]/, (letter) => letter.toUpperCase());
-  }
   static isRenderer(value: any) {
     const is_object = typeof value === 'object';
     if (!is_object) return false;
     const keys = Reflect.ownKeys(value);
     if (keys.length === 1 && keys[0].toString().includes('Renderer')) {
-      return this.getRendererClass(keys[0].toString());
+      return Parser.sanitizeClassName(keys[0].toString());
     }
     return false;
   }
