@@ -254,7 +254,7 @@ export class ChannelListContinuation extends Feed<IBrowseResponse> {
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.contents =
-      this.page.on_response_received_actions.first() ||
+      this.page.on_response_received_actions?.first() ||
       this.page.on_response_received_endpoints?.first();
   }
 
