@@ -21,7 +21,7 @@ import Thumbnail from './classes/misc/Thumbnail.js';
 
 import { InnertubeError, ParsingError, Platform } from '../utils/Utils.js';
 import { Memo, observe, ObservedArray, SuperParsedResult, YTNode, YTNodeConstructor } from './helpers.js';
-import { YTNodes } from './map.js';
+import * as YTNodes from './nodes.js';
 import { YTNodeGenerator } from './generator.js';
 
 export type ParserError = { classname: string, classdata: any, err: any };
