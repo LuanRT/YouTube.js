@@ -3,16 +3,16 @@
 Thank you for taking the time to contribute! 
 The following is a set of guidelines for contributing to YouTube.js.
 ___
-* [Issues](#issues)
-  * [Create a new issue](#issue-1)
-  * [Solve an issue](#issue-2)
-
-* [Make changes](#changes)
-  * [Commit your updates](#changes-1)
-  * [Create a PR](#changes-2)
-  * [Run tests](#test)
-  * [Lint your code](#lint)
-  * [Build](#build)
+- [Contributing to YouTube.js](#contributing-to-youtubejs)
+  - [Issues](#issues)
+      - [Create a new issue](#create-a-new-issue)
+      - [Solve an issue](#solve-an-issue)
+  - [Make changes](#make-changes)
+      - [Commit your updates](#commit-your-updates)
+      - [Pull Request](#pull-request)
+      - [Test](#test)
+      - [Lint](#lint)
+      - [Build](#build)
   
 ## Issues
 
@@ -66,16 +66,26 @@ npm run lint:fix
 #### Build
 
 ```bash
-# Node
-npm run build:node
-
-# Browser
-npm run build:browser
-npm run build:browser:prod
+# Build all
+npm run build
 
 # Protobuf
 npm run build:proto
 
 # Parser map
 npm run build:parser-map
+
+# Deno
+npm run build:deno
+
+# ES Module
+npm run build:esm
+
+# Node
+npm run bundle:node
+
+# Browser
+npm run bundle:browser
+npm run bundle:browser:prod
+
 ```

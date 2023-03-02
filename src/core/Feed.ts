@@ -30,7 +30,7 @@ import type MusicQueue from '../parser/classes/MusicQueue.js';
 import type RichGrid from '../parser/classes/RichGrid.js';
 import type SectionList from '../parser/classes/SectionList.js';
 
-import type { IParsedResponse } from '../parser/types/ParsedResponse.js';
+import type { IParsedResponse } from '../parser/types/index.js';
 import type { ApiResponse } from './Actions.js';
 
 class Feed<T extends IParsedResponse = IParsedResponse> {
@@ -125,9 +125,9 @@ class Feed<T extends IParsedResponse = IParsedResponse> {
    * Returns contents from the page.
    */
   get page_contents(): SectionList | MusicQueue | RichGrid | ReloadContinuationItemsCommand {
-    const tab_content = this.#memo.getType(Tab)?.[0]?.content;
-    const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand)?.[0];
-    const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction)?.[0];
+    const tab_content = this.#memo.getType(Tab)?.first().content;
+    const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand).first();
+    const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction).first();
 
     return tab_content || reload_continuation_items || append_continuation_items;
   }

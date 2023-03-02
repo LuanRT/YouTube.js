@@ -5,13 +5,10 @@ import type Session from './Session.js';
 
 import type {
   IBrowseResponse, IGetNotificationsMenuResponse,
-  INextResponse, IParsedResponse, IPlayerResponse,
-  IResolveURLResponse, ISearchResponse,
-  IUpdatedMetadataResponse
-} from '../parser/types/ParsedResponse.js';
-
-import type { IRawResponse } from '../parser/types/RawResponse.js';
-
+  INextResponse, IPlayerResponse, IResolveURLResponse,
+  ISearchResponse, IUpdatedMetadataResponse,
+  IParsedResponse, IRawResponse
+} from '../parser/types/index.js';
 
 export interface ApiResponse {
   success: boolean;

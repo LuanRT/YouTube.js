@@ -112,7 +112,10 @@ yarn add youtubei.js@latest
 npm install github:LuanRT/YouTube.js
 ```
 
-**TODO:** Deno install instructions (deno.land)
+When using Deno, you can import YouTube.js directly from deno.land:
+```ts
+import { Innertube } from 'https://deno.land/x/youtubei/deno.ts';
+```
 
 ## Usage
 Create an InnerTube instance:
@@ -128,8 +131,13 @@ To use YouTube.js in the browser you must proxy requests through your own server
 You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for a simple example using [Vite](https://vitejs.dev/).
 
 ```ts
-// Pre-bundled version for the web
-import { Innertube } from 'youtubei.js/bundle/browser';
+// We provide multiple exports for the web.
+// Unbundled ESM version
+import { Innertube } from 'youtubei.js/web';
+// Bundled ESM version
+// import { Innertube } from 'youtubei.js/web.bundle';
+// Production Bundled ESM version
+// import { Innertube } from 'youtubei.js/web.bundle.min';
 await Innertube.create({
   fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
     // Modify the request
@@ -147,7 +155,7 @@ YouTube.js supports streaming of videos in the browser by converting YouTube's s
 The example below uses [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) to play the video.
 
 ```ts
-import { Innertube } from 'youtubei.js';
+import { Innertube } from 'youtubei.js/web';
 import dashjs from 'dashjs';
 
 const youtube = await Innertube.create({ /* setup - see above */ });
@@ -172,7 +180,8 @@ const player = dashjs.MediaPlayer().create();
 player.initialize(videoElement, uri, true);
 ```
 
-Our browser example in [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/blob/main/examples/browser/web) provides a fully working example.
+A fully working example can be found in [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/blob/main/examples/browser/web). Alternatively, you can view it live at [ytjsexample.pages.dev](https://ytjsexample.pages.dev/).
+
 <a name="custom-fetch"></a>
 
 ## Providing your own fetch implementation
@@ -201,7 +210,7 @@ Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` 
 import { Innertube, UniversalCache } from 'youtubei.js';
 // By default, cache stores files in the OS temp directory (or indexedDB in browsers).
 const yt = await Innertube.create({
-  cache: new UniversalCache()
+  cache: new UniversalCache(false)
 });
 
 // You may wish to make the cache persistent (on Node and Deno)
@@ -253,6 +262,7 @@ const yt = await Innertube.create({
   * [.getNotifications()](#getnotifications)
   * [.getUnseenNotificationsCount()](#getunseennotificationscount)
   * [.getPlaylist(id)](#getplaylist)
+  * [.getHashtag(hashtag)](#gethashtag)
   * [.getStreamingData(video_id, options)](#getstreamingdata)
   * [.download(video_id, options?)](#download)
   * [.resolveURL(url)](#resolveurl)
@@ -266,7 +276,7 @@ const yt = await Innertube.create({
 
 Retrieves video info, including playback data and even layout elements such as menus, buttons, etc — all nicely parsed.
 
-**Returns**: `Promise.<VideoInfo>`
+**Returns**: `Promise<VideoInfo>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -283,7 +293,7 @@ Retrieves video info, including playback data and even layout elements such as m
 - `<info>#dislike()`
   - Dislikes the video.
 
-- `<info>#removeLike()`
+- `<info>#removeRating()`
   - Removes like/dislike.
 
 - `<info>#getLiveChat()`
@@ -321,7 +331,7 @@ Retrieves video info, including playback data and even layout elements such as m
 
 Suitable for cases where you only need basic video metadata. Also, it is faster than [`getInfo()`](#getinfo).
 
-**Returns**: `Promise.<VideoInfo>`
+**Returns**: `Promise<VideoInfo>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -333,7 +343,10 @@ Suitable for cases where you only need basic video metadata. Also, it is faster 
 
 Searches the given query on YouTube.
 
-**Returns**: `Promise.<Search>`
+**Returns**: `Promise<Search>`
+
+> **Note**
+> `Search` extends the [`Feed`](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/feed.md) class.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -360,7 +373,7 @@ Searches the given query on YouTube.
 ### getSearchSuggestions(query)
 Retrieves search suggestions for given query.
 
-**Returns**: `Promise.<string[]>`
+**Returns**: `Promise<string[]>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -370,7 +383,7 @@ Retrieves search suggestions for given query.
 ### getComments(video_id, sort_by?)
 Retrieves comments for given video.
 
-**Returns**: `Promise.<Comments>`
+**Returns**: `Promise<Comments>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -383,7 +396,10 @@ See [`./examples/comments`](https://github.com/LuanRT/YouTube.js/blob/main/examp
 ### getHomeFeed()
 Retrieves YouTube's home feed.
 
-**Returns**: `Promise.<HomeFeed>`
+**Returns**: `Promise<HomeFeed>`
+
+> **Note**
+> `HomeFeed` extends the [`FilterableFeed`](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/filterable-feed.md) class.
 
 <details>
 <summary>Methods & Getters</summary>
@@ -414,7 +430,10 @@ Retrieves YouTube's home feed.
 ### getLibrary()
 Retrieves the account's library.
 
-**Returns**: `Promise.<Library>`
+**Returns**: `Promise<Library>`
+
+> **Note**
+> `Library` extends the [`Feed`](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/feed.md) class.
 
 <details>
 <summary>Methods & Getters</summary>
@@ -423,10 +442,8 @@ Retrieves the account's library.
 - `<library>#history`
 - `<library>#watch_later`
 - `<library>#liked_videos`
-- `<library>#playlists`
+- `<library>#playlists_section`
 - `<library>#clips`
-- `<library>#page`
-  - Returns original InnerTube response (sanitized).
 
 </p>
 </details> 
@@ -435,7 +452,10 @@ Retrieves the account's library.
 ### getHistory()
 Retrieves watch history.
 
-**Returns**: `Promise.<History>`
+**Returns**: `Promise<History>`
+
+> **Note**
+> `History` extends the [`Feed`](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/feed.md) class.
 
 <details>
 <summary>Methods & Getters</summary>
@@ -451,19 +471,22 @@ Retrieves watch history.
 ### getTrending()
 Retrieves trending content.
 
-**Returns**: `Promise.<TabbedFeed<IBrowseResponse>>`
+**Returns**: `Promise<TabbedFeed<IBrowseResponse>>`
 
 <a name="getsubscriptionsfeed"></a>
 ### getSubscriptionsFeed()
-Retrieves subscriptions feed.
+Retrieves the subscriptions feed.
 
-**Returns**: `Promise.<Feed<IBrowseResponse>>`
+**Returns**: `Promise<Feed<IBrowseResponse>>`
 
 <a name="getchannel"></a>
 ### getChannel(id)
 Retrieves contents for a given channel.
 
-**Returns**: `Promise.<Channel>`
+**Returns**: `Promise<Channel>`
+
+> **Note**
+> `Channel` extends the [`TabbedFeed`](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/tabbed-feed.md) class.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -500,7 +523,7 @@ See [`./examples/channel`](https://github.com/LuanRT/YouTube.js/blob/main/exampl
 ### getNotifications()
 Retrieves notifications.
 
-**Returns**: `Promise.<NotificationsMenu>`
+**Returns**: `Promise<NotificationsMenu>`
 
 <details>
 <summary>Methods & Getter</summary>
@@ -516,13 +539,16 @@ Retrieves notifications.
 ### getUnseenNotificationsCount()
 Retrieves unseen notifications count.
 
-**Returns**: `Promise.<number>`
+**Returns**: `Promise<number>`
 
 <a name="getplaylist"></a>
 ### getPlaylist(id)
 Retrieves playlist contents.
 
-**Returns**: `Promise.<Playlist>`
+**Returns**: `Promise<Playlist>`
+
+> **Note**
+> `Playlist` extends the [`Feed`](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/feed.md) class.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -538,19 +564,45 @@ Retrieves playlist contents.
 </p>
 </details>
 
+<a name="gethashtag"></a>
+### getHashtag(hashtag)
+Retrieves a given hashtag's page.
+
+**Returns**: `Promise<HashtagFeed>`
+
+> **Note**
+> `HashtagFeed` extends the [`FilterableFeed`](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/filterable-feed.md) class.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hashtag | `string` | The hashtag |
+
+<details>
+<summary>Methods & Getter</summary>
+<p>
+
+- `<hashtag>#applyFilter(filter)`
+  - Applies given filter and returns a new `HashtagFeed` instance.
+- `<hashtag>#getContinuation()`
+  - Retrieves next batch of contents.
+
+</p>
+</details>
+
 <a name="getstreamingdata"></a>
 ### getStreamingData(video_id, options)
 Returns deciphered streaming data.
 
-**Note:**
-It is recommended to retrieve streaming data from a `VideoInfo`/`TrackInfo` object instead if you want to select formats manually, example:
+> **Note**
+> This will be deprecated in the future. It is recommended to retrieve streaming data from a `VideoInfo`/`TrackInfo` object instead if you want to select formats manually, see the example below.
+
 ```ts
 const info = await yt.getBasicInfo('somevideoid');
 const url = info.streaming_data?.formats[0].decipher(yt.session.player);
 console.info('Playback url:', url);
 ```
 
-**Returns**: `Promise.<object>`
+**Returns**: `Promise<object>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -561,7 +613,7 @@ console.info('Playback url:', url);
 ### download(video_id, options?)
 Downloads a given video.
 
-**Returns**: `Promise.<ReadableStream<Uint8Array>>`
+**Returns**: `Promise<ReadableStream<Uint8Array>>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -574,7 +626,7 @@ See [`./examples/download`](https://github.com/LuanRT/YouTube.js/blob/main/examp
 ### resolveURL(url)
 Resolves a given url.
 
-**Returns**: `Promise.<NavigationEndpoint>`
+**Returns**: `Promise<NavigationEndpoint>`
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -584,7 +636,7 @@ Resolves a given url.
 ### call(endpoint, args?)
 Utility to call navigation endpoints.
 
-**Returns**: `Promise.<T extends IParsedResponse | IParsedResponse | ApiResponse>`
+**Returns**: `Promise<T extends IParsedResponse | IParsedResponse | ApiResponse>`
 
 | Param | Type | Description |
 | --- | --- | --- |

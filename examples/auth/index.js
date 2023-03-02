@@ -3,7 +3,7 @@ const { Innertube, UniversalCache } = require('youtubei.js');
 (async () => {
   const yt = await Innertube.create({
     // required if you wish to use OAuth#cacheCredentials
-    cache: new UniversalCache()
+    cache: new UniversalCache(false)
   });
 
   // 'auth-pending' is fired with the info needed to sign in via OAuth.

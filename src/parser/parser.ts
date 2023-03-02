@@ -11,8 +11,7 @@ import type LiveChatHeader from './classes/LiveChatHeader.js';
 import type LiveChatItemList from './classes/LiveChatItemList.js';
 import type Alert from './classes/Alert.js';
 
-import type { IParsedResponse } from './types/ParsedResponse.js';
-import type { IRawResponse, RawData, RawNode } from './types/RawResponse.js';
+import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
 import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem.js';
 import Format from './classes/misc/Format.js';

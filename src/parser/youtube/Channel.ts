@@ -22,7 +22,7 @@ import { ChannelError, InnertubeError } from '../../utils/Utils.js';
 import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '../index.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import type { IBrowseResponse } from '../types/index.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
   header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader;
@@ -179,7 +179,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
   }
 
   /**
-   * Retrieves the channel about page.
+   * Retrieves the about page.
    * Note that this does not return a new {@link Channel} object.
    */
   async getAbout(): Promise<ChannelAboutFullMetadata> {
@@ -249,13 +249,13 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 }
 
 export class ChannelListContinuation extends Feed<IBrowseResponse> {
-  contents: ReloadContinuationItemsCommand | AppendContinuationItemsAction | undefined;
+  contents?: ReloadContinuationItemsCommand | AppendContinuationItemsAction;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.contents =
-      this.page.on_response_received_actions?.[0] ||
-      this.page.on_response_received_endpoints?.[0];
+      this.page.on_response_received_actions?.first() ||
+      this.page.on_response_received_endpoints?.first();
   }
 
   /**

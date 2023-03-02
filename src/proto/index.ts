@@ -13,6 +13,7 @@ import * as CreateCommentParams from './generated/messages/youtube/CreateComment
 import * as PeformCommentActionParams from './generated/messages/youtube/PeformCommentActionParams.js';
 import * as NotificationPreferences from './generated/messages/youtube/NotificationPreferences.js';
 import * as InnertubePayload from './generated/messages/youtube/InnertubePayload.js';
+import * as Hashtag from './generated/messages/youtube/Hashtag.js';
 
 class Proto {
   static encodeVisitorData(id: string, timestamp: number): string {
@@ -312,6 +313,17 @@ class Proto {
     const buf = InnertubePayload.encodeBinary(data);
 
     return buf;
+  }
+
+  static encodeHashtag(hashtag: string): string {
+    const buf = Hashtag.encodeBinary({
+      params: {
+        hashtag,
+        type: 1
+      }
+    });
+
+    return encodeURIComponent(u8ToBase64(buf));
   }
 }
 

@@ -16,7 +16,7 @@ class PlayerMicroformat extends YTNode {
     // TODO: check these
     width: any;
     height: any;
-  };
+  } | null;
 
   length_seconds: number;
 
@@ -42,13 +42,17 @@ class PlayerMicroformat extends YTNode {
     this.description = new Text(data.description);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
 
-    this.embed = {
-      iframe_url: data.embed.iframeUrl,
-      flash_url: data.embed.flashUrl,
-      flash_secure_url: data.embed.flashSecureUrl,
-      width: data.embed.width,
-      height: data.embed.height
-    };
+    if (data.embed) {
+      this.embed = {
+        iframe_url: data.embed.iframeUrl,
+        flash_url: data.embed.flashUrl,
+        flash_secure_url: data.embed.flashSecureUrl,
+        width: data.embed.width,
+        height: data.embed.height
+      };
+    } else {
+      this.embed = null;
+    }
 
     this.length_seconds = parseInt(data.lengthSeconds);
 

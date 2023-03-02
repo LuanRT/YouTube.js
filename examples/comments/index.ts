@@ -1,7 +1,7 @@
 import { Innertube, UniversalCache } from 'youtubei.js';
 
 (async () => {
-  const yt = await Innertube.create({ cache: new UniversalCache(), generate_session_locally: true });
+  const yt = await Innertube.create({ cache: new UniversalCache(false), generate_session_locally: true });
 
   const comment_section = await yt.getComments('a-rqu-hjobc');
 

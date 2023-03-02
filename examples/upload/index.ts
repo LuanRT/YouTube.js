@@ -5,7 +5,7 @@ const creds_path = './my_yt_creds.json';
 const creds = existsSync(creds_path) ? JSON.parse(readFileSync(creds_path).toString()) : undefined;
 
 (async () => {
-  const yt = await Innertube.create({ cache: new UniversalCache() });
+  const yt = await Innertube.create({ cache: new UniversalCache(false) });
   
   yt.session.on('auth-pending', (data: any) => {
     console.info(`Hello!\nOn your phone or computer, go to ${data.verification_url} and enter the code ${data.user_code}`);

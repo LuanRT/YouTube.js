@@ -1,15 +1,23 @@
 {
   "name": "youtubei.js",
-  "version": "2.9.0",
-  "description": "Full-featured wrapper around YouTube's private API. Supports YouTube, YouTube Music and YouTube Studio (WIP).",
+  "version": "3.1.1",
+  "description": "A wrapper around YouTube's private API. Supports YouTube, YouTube Music, YouTube Kids and YouTube Studio (WIP).",
   "type": "module",
   "types": "./dist/src/platform/lib.d.ts",
   "typesVersions": {
     "*": {
-      "agnostic": ["./dist/src/platform/lib.d.ts"],
-      "web": ["./dist/src/platform/lib.d.ts"],
-      "web.bundle": ["./dist/src/platform/lib.d.ts"],
-      "web.bundle.min": ["./dist/src/platform/lib.d.ts"]
+      "agnostic": [
+        "./dist/src/platform/lib.d.ts"
+      ],
+      "web": [
+        "./dist/src/platform/lib.d.ts"
+      ],
+      "web.bundle": [
+        "./dist/src/platform/lib.d.ts"
+      ],
+      "web.bundle.min": [
+        "./dist/src/platform/lib.d.ts"
+      ]
     }
   },
   "exports": {
@@ -76,9 +84,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "jintr": "^0.3.1",
+    "jintr": "^0.4.1",
     "linkedom": "^0.14.12",
-    "undici": "^5.7.0"
+    "undici": "^5.19.1"
   },
   "devDependencies": {
     "@types/jest": "^28.1.7",
@@ -110,7 +118,6 @@
     "youtube-downloader",
     "youtube-music",
     "youtube-studio",
-    "innertubeapi",
     "innertube",
     "unofficial",
     "downloader",
@@ -119,7 +126,6 @@
     "upload",
     "ytmusic",
     "search",
-    "comment",
     "music",
     "api"
   ]
