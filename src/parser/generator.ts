@@ -300,11 +300,11 @@ export class YTNodeGenerator {
     switch (inference_type.type) {
       case 'renderer':
       {
-        return `${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')}`;
+        return `${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')} | null`;
       }
       case 'renderer_list':
       {
-        return `ObservedArray<${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')}>`;
+        return `ObservedArray<${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')}> | null`;
       }
       case 'misc':
         switch (inference_type.misc_type) {
@@ -325,12 +325,12 @@ export class YTNodeGenerator {
     switch (inference_type.type) {
       case 'renderer':
         {
-          parser = `Parser.parseItem(data.${key}, [${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')}])`;
+          parser = `Parser.parseItem(data.${key}, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
         }
         break;
       case 'renderer_list':
         {
-          parser = `Parser.parse(data.${key}, true, [${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')}])`;
+          parser = `Parser.parse(data.${key}, true, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
         }
         break;
       case 'misc':
