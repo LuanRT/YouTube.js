@@ -509,7 +509,7 @@ export class YTNodeGenerator {
   }
   static isMiscType(key: string, value: any): MiscInferenceType | false {
     // NavigationEndpoint
-    if ((key.endsWith('Endpoint') || key.endsWith('Command')) && typeof value === 'object') {
+    if ((key.endsWith('Endpoint') || key.endsWith('Command') || key === 'endpoint') && typeof value === 'object') {
       return {
         type: 'misc',
         endpoint: new NavigationEndpoint(value),
