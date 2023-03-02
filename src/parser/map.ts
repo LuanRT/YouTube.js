@@ -528,6 +528,8 @@ import { default as SettingsSidebar } from './classes/SettingsSidebar.js';
 export { SettingsSidebar };
 import { default as SettingsSwitch } from './classes/SettingsSwitch.js';
 export { SettingsSwitch };
+import { default as SharedPost } from './classes/SharedPost.js';
+export { SharedPost };
 import { default as Shelf } from './classes/Shelf.js';
 export { Shelf };
 import { default as ShowingResultsFor } from './classes/ShowingResultsFor.js';
@@ -912,6 +914,7 @@ const map: Record<string, YTNodeConstructor> = {
   SettingsOptions,
   SettingsSidebar,
   SettingsSwitch,
+  SharedPost,
   Shelf,
   ShowingResultsFor,
   SimpleCardContent,

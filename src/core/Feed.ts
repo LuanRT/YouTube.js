@@ -4,6 +4,7 @@ import { concatMemos, InnertubeError } from '../utils/Utils.js';
 import type Actions from './Actions.js';
 
 import BackstagePost from '../parser/classes/BackstagePost.js';
+import SharedPost from '../parser/classes/SharedPost.js';
 import Channel from '../parser/classes/Channel.js';
 import CompactVideo from '../parser/classes/CompactVideo.js';
 import GridChannel from '../parser/classes/GridChannel.js';
@@ -100,7 +101,7 @@ class Feed<T extends IParsedResponse = IParsedResponse> {
    * Get all the community posts in the feed
    */
   get posts() {
-    return this.#memo.getType<Post | BackstagePost>([ BackstagePost, Post ]);
+    return this.#memo.getType<Post | BackstagePost | SharedPost>([ BackstagePost, Post, SharedPost ]);
   }
 
   /**
