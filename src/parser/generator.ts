@@ -38,9 +38,13 @@ export type InferenceType = {
   renderers: string[],
   optional: boolean,
 } | MiscInferenceType | {
+  type: 'primative',
+  typeof: ('string' | 'number' | 'boolean' | 'bigint' | 'symbol' | 'undefined' | 'object' | 'function')[],
+  optional: boolean,
+} | {
   type: 'unknown',
   optional: boolean,
-};
+}
 
 export type KeyInfo = (readonly [string, InferenceType])[];
 
@@ -162,6 +166,18 @@ export class YTNodeGenerator {
             }
           }
           break;
+        case 'primative':
+          {
+            if (new_type.type !== 'primative') continue;
+            const resolved_key: InferenceType = {
+              type: 'primative',
+              typeof: Array.from(new Set([ ...new_type.typeof, ...type.typeof ])),
+              optional: type.optional || new_type.optional
+            };
+            const did_change = JSON.stringify(resolved_key) !== JSON.stringify(type);
+            if (did_change) changed_keys.set(key, resolved_key);
+          }
+          break;
       }
     }
 
@@ -239,11 +255,11 @@ export class YTNodeGenerator {
     const dependencies = new Map<string, any>();
     for (const [ , value ] of key_info) {
       if (value.type === 'renderer' || value.type === 'renderer_list')
-        value.renderers.forEach((renderer) => {
-          const example = this.#renderers_examples.get(renderer);
+        for (const renderer of value.renderers) {
+          const example = this.#renderers_examples[renderer];
           if (example)
             dependencies.set(renderer, example);
-        });
+        }
     }
     const unimplemented_dependencies = Array.from(dependencies).filter(([ classname ]) => !Parser.hasParser(classname));
 
@@ -298,6 +314,8 @@ export class YTNodeGenerator {
             return inference_type.misc_type;
         }
         throw new Error('Unreachable code reached! Switch missing case!');
+      case 'primative':
+        return inference_type.typeof.join(' | ');
       case 'unknown':
         return '/* TODO: determine correct type */ unknown';
     }
@@ -334,6 +352,7 @@ export class YTNodeGenerator {
         if (parser === 'undefined')
           throw new Error('Unreachable code reached! Switch missing case!');
         break;
+      case 'primative':
       case 'unknown':
         parser = `data.${key}`;
         break;
@@ -368,6 +387,7 @@ export class YTNodeGenerator {
           }
         }
         throw new Error('Unreachable code reached! Switch missing case!');
+      case 'primative':
       case 'unknown':
         return data[key];
     }
@@ -470,7 +490,8 @@ export class YTNodeGenerator {
       return return_value as MiscInferenceType;
     }
     return {
-      type: 'unknown',
+      type: 'primative',
+      typeof: [ typeof value ],
       optional: false
     };
   }
