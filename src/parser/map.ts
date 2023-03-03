@@ -500,6 +500,10 @@ import { default as RichItem } from './classes/RichItem.js';
 export { RichItem };
 import { default as RichListHeader } from './classes/RichListHeader.js';
 export { RichListHeader };
+import { default as RichMetadata } from './classes/RichMetadata.js';
+export { RichMetadata };
+import { default as RichMetadataRow } from './classes/RichMetadataRow.js';
+export { RichMetadataRow };
 import { default as RichSection } from './classes/RichSection.js';
 export { RichSection };
 import { default as RichShelf } from './classes/RichShelf.js';
@@ -900,6 +904,8 @@ const map: Record<string, YTNodeConstructor> = {
   RichGrid,
   RichItem,
   RichListHeader,
+  RichMetadata,
+  RichMetadataRow,
   RichSection,
   RichShelf,
   SearchBox,
