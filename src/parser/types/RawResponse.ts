@@ -51,5 +51,6 @@ export interface IRawResponse {
   storyboards?: RawNode;
   endscreen?: RawNode;
   cards?: RawNode;
+  items?: RawNode[];
   frameworkUpdates?: any;
 }

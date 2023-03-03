@@ -29,6 +29,7 @@ export interface IParsedResponse {
   sidebar_memo?: Memo;
   live_chat_item_context_menu_supported_renderers?: YTNode;
   live_chat_item_context_menu_supported_renderers_memo?: Memo;
+  items_memo?: Memo;
   on_response_received_actions?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
   on_response_received_actions_memo?: Memo;
   on_response_received_endpoints?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
@@ -72,6 +73,7 @@ export interface IParsedResponse {
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
   endscreen?: Endscreen;
   cards?: CardCollection;
+  items?: SuperParsedResult<YTNode>;
 }
 
 export interface IPlayerResponse {
@@ -156,4 +158,9 @@ export interface IUpdatedMetadataResponse {
   actions: SuperParsedResult<YTNode>;
   actions_memo: Memo;
   continuation?: Continuation;
+}
+
+export interface IGuideResponse {
+  contents: SuperParsedResult<YTNode>;
+  items_memo: Memo;
 }
