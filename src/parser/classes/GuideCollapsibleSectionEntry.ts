@@ -11,12 +11,12 @@ class GuideCollapsibleSectionEntry extends YTNode {
 
   constructor(data: any) {
     super();
-    
+
     this.header_entry = Parser.parseItem(data.headerEntry);
     this.expander_icon = data.expanderIcon.iconType;
     this.collapser_icon = data.collapserIcon.iconType;
     this.section_items = Parser.parseArray(data.sectionItems);
-    
+
   }
 }
 

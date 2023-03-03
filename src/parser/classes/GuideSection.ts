@@ -11,7 +11,7 @@ class GuideSection extends YTNode {
   constructor(data: any) {
     super();
     if (data.formattedTitle) {
-        this.title = new Text(data.formattedTitle);
+      this.title = new Text(data.formattedTitle);
     }
     this.items = Parser.parseArray(data.items);
   }

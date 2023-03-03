@@ -17,7 +17,7 @@ class GuideCollapsibleEntry extends YTNode {
 
   constructor(data: any) {
     super();
-    
+
     this.expander_item = {
       title: new Text(data.expanderItem.guideEntryRenderer.formattedTitle).toString(),
       icon_type: data.expanderItem.guideEntryRenderer.icon.iconType
