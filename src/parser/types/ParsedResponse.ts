@@ -161,6 +161,6 @@ export interface IUpdatedMetadataResponse {
 }
 
 export interface IGuideResponse {
-  contents: SuperParsedResult<YTNode>;
+  items: SuperParsedResult<YTNode>;
   items_memo: Memo;
 }
