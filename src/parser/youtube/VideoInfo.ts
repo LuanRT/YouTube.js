@@ -12,6 +12,8 @@ import MicroformatData from '../classes/MicroformatData.js';
 import PlayerMicroformat from '../classes/PlayerMicroformat.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
 import RelatedChipCloud from '../classes/RelatedChipCloud.js';
+import RichMetadata from '../classes/RichMetadata.js';
+import RichMetadataRow from '../classes/RichMetadataRow.js';
 import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton.js';
 import ToggleButton from '../classes/ToggleButton.js';
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
@@ -58,6 +60,7 @@ class VideoInfo {
 
   primary_info?: VideoPrimaryInfo | null;
   secondary_info?: VideoSecondaryInfo | null;
+  game_info?;
   merchandise?: MerchandiseShelf | null;
   related_chip_cloud?: ChipCloud | null;
   watch_next_feed?: ObservedArray<YTNode> | null;
@@ -98,6 +101,7 @@ class VideoInfo {
         channel: info.microformat?.is(PlayerMicroformat) ? info.microformat?.channel : null,
         is_unlisted: info.microformat?.is_unlisted,
         is_family_safe: info.microformat?.is_family_safe,
+        category: info.microformat?.is(PlayerMicroformat) ? info.microformat?.category : null,
         has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null,
         start_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.start_timestamp : null
       },
@@ -122,6 +126,16 @@ class VideoInfo {
     const secondary_results = two_col?.secondary_results;
 
     if (results && secondary_results) {
+      if (info.microformat?.is(PlayerMicroformat) && info.microformat?.category === 'Gaming') {
+        const row = results.firstOfType(VideoSecondaryInfo)?.metadata?.rows?.firstOfType(RichMetadataRow);
+        if (row?.is(RichMetadataRow)) {
+          this.game_info = {
+            title: row?.contents?.firstOfType(RichMetadata)?.title,
+            release_year: row?.contents?.firstOfType(RichMetadata)?.subtitle
+          };
+        }
+      }
+
       this.primary_info = results.firstOfType(VideoPrimaryInfo);
       this.secondary_info = results.firstOfType(VideoSecondaryInfo);
       this.merchandise = results.firstOfType(MerchandiseShelf);
