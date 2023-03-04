@@ -13,4 +13,8 @@ export default class Guide {
     this.#page = Parser.parseResponse<IGuideResponse>(data);
     this.contents = this.#page.items.array().as(GuideSection, GuideSubscriptionsSection);
   }
+
+  get page(): IGuideResponse {
+    return this.#page;
+  }
 }
