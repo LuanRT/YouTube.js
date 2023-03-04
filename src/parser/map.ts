@@ -214,6 +214,8 @@ import { default as Heatmap } from './classes/Heatmap.js';
 export { Heatmap };
 import { default as HeatMarker } from './classes/HeatMarker.js';
 export { HeatMarker };
+import { default as HeroPlaylistThumbnail } from './classes/HeroPlaylistThumbnail.js';
+export { HeroPlaylistThumbnail };
 import { default as HighlightsCarousel } from './classes/HighlightsCarousel.js';
 export { HighlightsCarousel };
 import { default as HistorySuggestion } from './classes/HistorySuggestion.js';
@@ -778,6 +780,7 @@ const map: Record<string, YTNodeConstructor> = {
   HashtagHeader,
   Heatmap,
   HeatMarker,
+  HeroPlaylistThumbnail,
   HighlightsCarousel,
   HistorySuggestion,
   HorizontalCardList,
