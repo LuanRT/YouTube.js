@@ -254,6 +254,7 @@ const yt = await Innertube.create({
   * [.getSearchSuggestions(query)](#getsearchsuggestions)
   * [.getComments(video_id, sort_by?)](#getcomments)
   * [.getHomeFeed()](#gethomefeed)
+  * [.getGuide()](#getguide)
   * [.getLibrary()](#getlibrary)
   * [.getHistory()](#gethistory)
   * [.getTrending()](#gettrending)
@@ -425,6 +426,12 @@ Retrieves YouTube's home feed.
 
 </p>
 </details> 
+
+<a name="getguide"></a>
+### getGuide()
+Retrieves YouTube's content guide.
+
+**Returns**: `Promise<Guide>`
 
 <a name="getlibrary"></a>
 ### getLibrary()

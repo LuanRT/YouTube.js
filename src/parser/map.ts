@@ -196,6 +196,18 @@ import { default as GridPlaylist } from './classes/GridPlaylist.js';
 export { GridPlaylist };
 import { default as GridVideo } from './classes/GridVideo.js';
 export { GridVideo };
+import { default as GuideCollapsibleEntry } from './classes/GuideCollapsibleEntry.js';
+export { GuideCollapsibleEntry };
+import { default as GuideCollapsibleSectionEntry } from './classes/GuideCollapsibleSectionEntry.js';
+export { GuideCollapsibleSectionEntry };
+import { default as GuideDownloadsEntry } from './classes/GuideDownloadsEntry.js';
+export { GuideDownloadsEntry };
+import { default as GuideEntry } from './classes/GuideEntry.js';
+export { GuideEntry };
+import { default as GuideSection } from './classes/GuideSection.js';
+export { GuideSection };
+import { default as GuideSubscriptionsSection } from './classes/GuideSubscriptionsSection.js';
+export { GuideSubscriptionsSection };
 import { default as HashtagHeader } from './classes/HashtagHeader.js';
 export { HashtagHeader };
 import { default as Heatmap } from './classes/Heatmap.js';
@@ -757,6 +769,12 @@ const map: Record<string, YTNodeConstructor> = {
   GridHeader,
   GridPlaylist,
   GridVideo,
+  GuideCollapsibleEntry,
+  GuideCollapsibleSectionEntry,
+  GuideDownloadsEntry,
+  GuideEntry,
+  GuideSection,
+  GuideSubscriptionsSection,
   HashtagHeader,
   Heatmap,
   HeatMarker,
