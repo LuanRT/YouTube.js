@@ -29,12 +29,12 @@ For example, say we found a new renderer named `verticalListRenderer`, to let th
 > `../classes/VerticalList.ts`
 
 ```ts
-import Parser from "..";
-import { YTNode } from "../helpers";
-import type { RawNode } from "../index.js";
+import Parser from '..';
+import { YTNode } from '../helpers';
+import type { RawNode } from '../index.js';
 
 class VerticalList extends YTNode {
-  static type = "VerticalList";
+  static type = 'VerticalList';
 
   header;
   contents;
