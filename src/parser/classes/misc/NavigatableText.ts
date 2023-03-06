@@ -1,12 +1,13 @@
 import Text from './Text.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
+import type { RawNode } from '../../index.js';
 
 class NavigatableText extends Text {
   static type = 'NavigatableText';
 
   endpoint: NavigationEndpoint | null;
 
-  constructor(node: any) {
+  constructor(node: RawNode) {
     super(node);
     // TODO: is this needed? Text now supports this itself
     this.endpoint =

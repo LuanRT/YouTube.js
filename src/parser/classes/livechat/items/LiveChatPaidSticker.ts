@@ -5,6 +5,7 @@ import MetadataBadge from '../../MetadataBadge.js';
 import Text from '../../misc/Text.js';
 import Thumbnail from '../../misc/Thumbnail.js';
 import NavigationEndpoint from '../../NavigationEndpoint.js';
+import type { RawNode } from '../../../index.js';
 
 class LiveChatPaidSticker extends YTNode {
   static type = 'LiveChatPaidSticker';
@@ -31,7 +32,7 @@ class LiveChatPaidSticker extends YTNode {
   menu_endpoint?: NavigationEndpoint;
   timestamp: number;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.id;
 

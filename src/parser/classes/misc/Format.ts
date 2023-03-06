@@ -1,5 +1,6 @@
 import Player from '../../../core/Player.js';
 import { InnertubeError } from '../../../utils/Utils.js';
+import type { RawNode } from '../../index.js';
 
 class Format {
   itag: number;
@@ -43,7 +44,7 @@ class Format {
   is_dubbed?: boolean;
   is_original?: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     this.itag = data.itag;
     this.mime_type = data.mimeType;
     this.bitrate = data.bitrate;

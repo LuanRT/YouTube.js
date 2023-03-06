@@ -4,6 +4,7 @@ import MetadataBadge from '../../MetadataBadge.js';
 import Text from '../../misc/Text.js';
 import Thumbnail from '../../misc/Thumbnail.js';
 import NavigationEndpoint from '../../NavigationEndpoint.js';
+import type { RawNode } from '../../../index.js';
 
 import { observe, ObservedArray, YTNode } from '../../../helpers.js';
 
@@ -27,7 +28,7 @@ class LiveChatTickerPaidMessageItem extends YTNode {
   show_item_endpoint: NavigationEndpoint;
   id: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.author = {
