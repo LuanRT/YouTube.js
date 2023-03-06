@@ -1,4 +1,4 @@
-import Parser, { RawData } from '../index.js';
+import Parser from '../index.js';
 import AccountChannel from './AccountChannel.js';
 import AccountItemSection from './AccountItemSection.js';
 
