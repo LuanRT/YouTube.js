@@ -524,8 +524,14 @@ import { default as RichShelf } from './classes/RichShelf.js';
 export { RichShelf };
 import { default as SearchBox } from './classes/SearchBox.js';
 export { SearchBox };
+import { default as SearchFilter } from './classes/SearchFilter.js';
+export { SearchFilter };
+import { default as SearchFilterGroup } from './classes/SearchFilterGroup.js';
+export { SearchFilterGroup };
 import { default as SearchRefinementCard } from './classes/SearchRefinementCard.js';
 export { SearchRefinementCard };
+import { default as SearchSubMenu } from './classes/SearchSubMenu.js';
+export { SearchSubMenu };
 import { default as SearchSuggestion } from './classes/SearchSuggestion.js';
 export { SearchSuggestion };
 import { default as SearchSuggestionsSection } from './classes/SearchSuggestionsSection.js';
@@ -930,7 +936,10 @@ const map: Record<string, YTNodeConstructor> = {
   RichSection,
   RichShelf,
   SearchBox,
+  SearchFilter,
+  SearchFilterGroup,
   SearchRefinementCard,
+  SearchSubMenu,
   SearchSuggestion,
   SearchSuggestionsSection,
   SecondarySearchContainer,
