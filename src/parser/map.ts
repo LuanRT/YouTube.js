@@ -448,6 +448,8 @@ import { default as PlayerCaptionsTracklist } from './classes/PlayerCaptionsTrac
 export { PlayerCaptionsTracklist };
 import { default as PlayerErrorMessage } from './classes/PlayerErrorMessage.js';
 export { PlayerErrorMessage };
+import { default as PlayerLegacyDesktopYpcOffer } from './classes/PlayerLegacyDesktopYpcOffer.js';
+export { PlayerLegacyDesktopYpcOffer };
 import { default as PlayerLiveStoryboardSpec } from './classes/PlayerLiveStoryboardSpec.js';
 export { PlayerLiveStoryboardSpec };
 import { default as PlayerMicroformat } from './classes/PlayerMicroformat.js';
@@ -898,6 +900,7 @@ const map: Record<string, YTNodeConstructor> = {
   PlayerAnnotationsExpanded,
   PlayerCaptionsTracklist,
   PlayerErrorMessage,
+  PlayerLegacyDesktopYpcOffer,
   PlayerLiveStoryboardSpec,
   PlayerMicroformat,
   PlayerOverlay,
