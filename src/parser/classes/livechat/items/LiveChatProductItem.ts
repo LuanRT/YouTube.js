@@ -1,5 +1,6 @@
 import Parser from '../../../index.js';
 import { YTNode } from '../../../helpers.js';
+import type { RawNode } from '../../../index.js';
 
 import Text from '../../misc/Text.js';
 import Thumbnail from '../../misc/Thumbnail.js';
@@ -23,7 +24,7 @@ class LiveChatProductItem extends YTNode {
   is_verified: boolean;
   creator_custom_message: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.title = data.title;

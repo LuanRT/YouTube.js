@@ -4,6 +4,7 @@ import LiveChatAuthorBadge from '../../LiveChatAuthorBadge.js';
 import MetadataBadge from '../../MetadataBadge.js';
 import Text from '../../misc/Text.js';
 import Thumbnail from '../../misc/Thumbnail.js';
+import type { RawNode } from '../../../index.js';
 
 class LiveChatTickerSponsorItem extends YTNode {
   static type = 'LiveChatTickerSponsorItem';
@@ -22,7 +23,7 @@ class LiveChatTickerSponsorItem extends YTNode {
 
   duration_sec: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.id;
     this.detail = new Text(data.detailText);

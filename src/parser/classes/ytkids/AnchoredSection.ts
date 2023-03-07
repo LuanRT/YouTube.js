@@ -2,6 +2,7 @@ import Parser from '../../index.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
 import type SectionList from '../SectionList.js';
 import { YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 
 class AnchoredSection extends YTNode {
   static type = 'AnchoredSection';
@@ -15,7 +16,7 @@ class AnchoredSection extends YTNode {
   };
   category_type: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.title;
     this.content = Parser.parseItem<SectionList>(data.content);

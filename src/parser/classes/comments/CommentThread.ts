@@ -7,6 +7,7 @@ import type Actions from '../../../core/Actions.js';
 import type { ObservedArray } from '../../helpers.js';
 import { InnertubeError } from '../../../utils/Utils.js';
 import { observe, YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 
 class CommentThread extends YTNode {
   static type = 'CommentThread';
@@ -20,7 +21,7 @@ class CommentThread extends YTNode {
   is_moderated_elq_comment: boolean;
   has_replies: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.comment = Parser.parseItem<Comment>(data.comment, Comment);
     this.comment_replies_data = Parser.parseItem<CommentReplies>(data.replies);

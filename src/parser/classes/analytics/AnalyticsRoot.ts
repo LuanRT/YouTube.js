@@ -1,4 +1,5 @@
 import { YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 
 class AnalyticsRoot extends YTNode {
   static type = 'AnalyticsRoot';
@@ -19,7 +20,7 @@ class AnalyticsRoot extends YTNode {
     }[];
   }[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     const cards = data.analyticsTableCarouselData.data.tableCards;
 

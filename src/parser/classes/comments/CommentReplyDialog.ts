@@ -3,6 +3,7 @@ import Thumbnail from '../misc/Thumbnail.js';
 import Text from '../misc/Text.js';
 import type Button from '../Button.js';
 import { YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 
 class CommentReplyDialog extends YTNode {
   static type = 'CommentReplyDialog';
@@ -13,7 +14,7 @@ class CommentReplyDialog extends YTNode {
   placeholder: Text;
   error_message: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.reply_button = Parser.parseItem<Button>(data.replyButton);
     this.cancel_button = Parser.parseItem<Button>(data.cancelButton);

@@ -4,6 +4,7 @@ import Thumbnail from '../misc/Thumbnail.js';
 import type Button from '../Button.js';
 import type EmojiPicker from './EmojiPicker.js';
 import { YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 
 class CommentDialog extends YTNode {
   static type = 'CommentDialog';
@@ -16,7 +17,7 @@ class CommentDialog extends YTNode {
   emoji_button: Button | null;
   emoji_picker: any | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.editable_text = new Text(data.editableText);
     this.author_thumbnail = Thumbnail.fromResponse(data.authorThumbnail);

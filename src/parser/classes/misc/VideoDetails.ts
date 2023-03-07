@@ -1,4 +1,5 @@
 import Thumbnail from './Thumbnail.js';
+import type { RawNode } from '../../index.js';
 
 class VideoDetails {
   id: string;
@@ -18,7 +19,7 @@ class VideoDetails {
   is_upcoming: boolean;
   is_crawlable: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     this.id = data.videoId;
     this.channel_id = data.channelId;
     this.title = data.title;

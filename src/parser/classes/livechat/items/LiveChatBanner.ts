@@ -1,6 +1,7 @@
 import { YTNode } from '../../../helpers.js';
 import Parser from '../../../index.js';
 import type LiveChatBannerHeader from './LiveChatBannerHeader.js';
+import type { RawNode } from '../../../index.js';
 
 class LiveChatBanner extends YTNode {
   static type = 'LiveChatBanner';
@@ -13,7 +14,7 @@ class LiveChatBanner extends YTNode {
   is_stackable: boolean;
   background_type: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.header = Parser.parseItem<LiveChatBannerHeader>(data.header);
     this.contents = Parser.parseItem(data.contents);

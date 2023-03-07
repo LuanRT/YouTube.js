@@ -5,7 +5,7 @@ import MetadataBadge from '../../MetadataBadge.js';
 import Text from '../../misc/Text.js';
 import Thumbnail from '../../misc/Thumbnail.js';
 import NavigationEndpoint from '../../NavigationEndpoint.js';
-
+import type { RawNode } from '../../../index.js';
 class LiveChatMembershipItem extends YTNode {
   static type = 'LiveChatMembershipItem';
 
@@ -25,7 +25,7 @@ class LiveChatMembershipItem extends YTNode {
 
   menu_endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.id;
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);

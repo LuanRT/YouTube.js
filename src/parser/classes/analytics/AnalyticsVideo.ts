@@ -1,5 +1,6 @@
 import Thumbnail from '../misc/Thumbnail.js';
 import { YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 
 class AnalyticsVideo extends YTNode {
   static type = 'AnalyticsVideo';
@@ -13,7 +14,7 @@ class AnalyticsVideo extends YTNode {
     is_short: boolean;
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.videoTitle;
 
