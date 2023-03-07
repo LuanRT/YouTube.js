@@ -150,9 +150,11 @@ class VideoInfo {
 
       const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
 
-      this.basic_info.like_count = segmented_like_dislike_button?.like_button?.as(ToggleButton)?.like_count;
-      this.basic_info.is_liked = segmented_like_dislike_button?.like_button?.as(ToggleButton)?.is_toggled;
-      this.basic_info.is_disliked = segmented_like_dislike_button?.dislike_button?.as(ToggleButton)?.is_toggled;
+      if (segmented_like_dislike_button?.like_button?.is(ToggleButton) && segmented_like_dislike_button?.dislike_button?.is(ToggleButton)) {
+        this.basic_info.like_count = segmented_like_dislike_button?.like_button?.like_count;
+        this.basic_info.is_liked = segmented_like_dislike_button?.like_button?.is_toggled;
+        this.basic_info.is_disliked = segmented_like_dislike_button?.dislike_button?.is_toggled;
+      }
 
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
@@ -247,10 +249,13 @@ class VideoInfo {
    */
   async like(): Promise<ApiResponse> {
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
-    const button = segmented_like_dislike_button?.like_button?.as(ToggleButton);
+    const button = segmented_like_dislike_button?.like_button;
 
     if (!button)
       throw new InnertubeError('Like button not found', { video_id: this.basic_info.id });
+
+    if (!button.is(ToggleButton))
+      throw new InnertubeError('Like button is not a toggle button. This action is likely disabled for this video.', { video_id: this.basic_info.id });
 
     if (button.is_toggled)
       throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
@@ -265,10 +270,13 @@ class VideoInfo {
    */
   async dislike(): Promise<ApiResponse> {
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
-    const button = segmented_like_dislike_button?.dislike_button?.as(ToggleButton);
+    const button = segmented_like_dislike_button?.dislike_button;
 
     if (!button)
       throw new InnertubeError('Dislike button not found', { video_id: this.basic_info.id });
+
+    if (!button.is(ToggleButton))
+      throw new InnertubeError('Dislike button is not a toggle button. This action is likely disabled for this video.', { video_id: this.basic_info.id });
 
     if (button.is_toggled)
       throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
@@ -285,8 +293,12 @@ class VideoInfo {
     let button;
 
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
-    const like_button = segmented_like_dislike_button?.like_button?.as(ToggleButton);
-    const dislike_button = segmented_like_dislike_button?.dislike_button?.as(ToggleButton);
+
+    const like_button = segmented_like_dislike_button?.like_button;
+    const dislike_button = segmented_like_dislike_button?.dislike_button;
+
+    if (!like_button?.is(ToggleButton) || !dislike_button?.is(ToggleButton))
+      throw new InnertubeError('Like/Dislike button is not a toggle button. This action is likely disabled for this video.', { video_id: this.basic_info.id });
 
     if (like_button?.is_toggled) {
       button = like_button;
