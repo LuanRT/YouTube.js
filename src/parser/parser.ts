@@ -489,7 +489,6 @@ export default class Parser {
     'RunAttestationCommand',
     'CompactPromotedVideo',
     'StatementBanner',
-    'SearchSubMenu',
     'GuideSigninPromo'
   ]);
 
