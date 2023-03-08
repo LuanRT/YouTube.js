@@ -12,6 +12,8 @@ import MicroformatData from '../classes/MicroformatData.js';
 import PlayerMicroformat from '../classes/PlayerMicroformat.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
 import RelatedChipCloud from '../classes/RelatedChipCloud.js';
+import RichMetadata from '../classes/RichMetadata.js';
+import RichMetadataRow from '../classes/RichMetadataRow.js';
 import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton.js';
 import ToggleButton from '../classes/ToggleButton.js';
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
@@ -58,6 +60,7 @@ class VideoInfo {
 
   primary_info?: VideoPrimaryInfo | null;
   secondary_info?: VideoSecondaryInfo | null;
+  game_info?;
   merchandise?: MerchandiseShelf | null;
   related_chip_cloud?: ChipCloud | null;
   watch_next_feed?: ObservedArray<YTNode> | null;
@@ -98,6 +101,7 @@ class VideoInfo {
         channel: info.microformat?.is(PlayerMicroformat) ? info.microformat?.channel : null,
         is_unlisted: info.microformat?.is_unlisted,
         is_family_safe: info.microformat?.is_family_safe,
+        category: info.microformat?.is(PlayerMicroformat) ? info.microformat?.category : null,
         has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null,
         start_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.start_timestamp : null
       },
@@ -122,6 +126,16 @@ class VideoInfo {
     const secondary_results = two_col?.secondary_results;
 
     if (results && secondary_results) {
+      if (info.microformat?.is(PlayerMicroformat) && info.microformat?.category === 'Gaming') {
+        const row = results.firstOfType(VideoSecondaryInfo)?.metadata?.rows?.firstOfType(RichMetadataRow);
+        if (row?.is(RichMetadataRow)) {
+          this.game_info = {
+            title: row?.contents?.firstOfType(RichMetadata)?.title,
+            release_year: row?.contents?.firstOfType(RichMetadata)?.subtitle
+          };
+        }
+      }
+
       this.primary_info = results.firstOfType(VideoPrimaryInfo);
       this.secondary_info = results.firstOfType(VideoSecondaryInfo);
       this.merchandise = results.firstOfType(MerchandiseShelf);
@@ -136,9 +150,11 @@ class VideoInfo {
 
       const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
 
-      this.basic_info.like_count = segmented_like_dislike_button?.like_button?.as(ToggleButton)?.like_count;
-      this.basic_info.is_liked = segmented_like_dislike_button?.like_button?.as(ToggleButton)?.is_toggled;
-      this.basic_info.is_disliked = segmented_like_dislike_button?.dislike_button?.as(ToggleButton)?.is_toggled;
+      if (segmented_like_dislike_button?.like_button?.is(ToggleButton) && segmented_like_dislike_button?.dislike_button?.is(ToggleButton)) {
+        this.basic_info.like_count = segmented_like_dislike_button?.like_button?.like_count;
+        this.basic_info.is_liked = segmented_like_dislike_button?.like_button?.is_toggled;
+        this.basic_info.is_disliked = segmented_like_dislike_button?.dislike_button?.is_toggled;
+      }
 
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
@@ -233,10 +249,13 @@ class VideoInfo {
    */
   async like(): Promise<ApiResponse> {
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
-    const button = segmented_like_dislike_button?.like_button?.as(ToggleButton);
+    const button = segmented_like_dislike_button?.like_button;
 
     if (!button)
       throw new InnertubeError('Like button not found', { video_id: this.basic_info.id });
+
+    if (!button.is(ToggleButton))
+      throw new InnertubeError('Like button is not a toggle button. This action is likely disabled for this video.', { video_id: this.basic_info.id });
 
     if (button.is_toggled)
       throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
@@ -251,10 +270,13 @@ class VideoInfo {
    */
   async dislike(): Promise<ApiResponse> {
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
-    const button = segmented_like_dislike_button?.dislike_button?.as(ToggleButton);
+    const button = segmented_like_dislike_button?.dislike_button;
 
     if (!button)
       throw new InnertubeError('Dislike button not found', { video_id: this.basic_info.id });
+
+    if (!button.is(ToggleButton))
+      throw new InnertubeError('Dislike button is not a toggle button. This action is likely disabled for this video.', { video_id: this.basic_info.id });
 
     if (button.is_toggled)
       throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
@@ -271,8 +293,12 @@ class VideoInfo {
     let button;
 
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
-    const like_button = segmented_like_dislike_button?.like_button?.as(ToggleButton);
-    const dislike_button = segmented_like_dislike_button?.dislike_button?.as(ToggleButton);
+
+    const like_button = segmented_like_dislike_button?.like_button;
+    const dislike_button = segmented_like_dislike_button?.dislike_button;
+
+    if (!like_button?.is(ToggleButton) || !dislike_button?.is(ToggleButton))
+      throw new InnertubeError('Like/Dislike button is not a toggle button. This action is likely disabled for this video.', { video_id: this.basic_info.id });
 
     if (like_button?.is_toggled) {
       button = like_button;

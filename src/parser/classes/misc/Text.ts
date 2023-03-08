@@ -1,6 +1,7 @@
 import TextRun from './TextRun.js';
 import EmojiRun from './EmojiRun.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
+import type { RawNode } from '../../index.js';
 
 export interface Run {
   text: string;
@@ -22,7 +23,7 @@ class Text {
   runs;
   endpoint?: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     if (data?.hasOwnProperty('runs') && Array.isArray(data.runs)) {
       this.runs = (data.runs as any[]).map((run: any) => run.emoji ?
         new EmojiRun(run) :

@@ -1,7 +1,7 @@
 import { YTNode } from '../../helpers.js';
 import Text from '../misc/Text.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
-
+import type { RawNode } from '../../index.js';
 class MusicMultiSelectMenuItem extends YTNode {
   static type = 'MusicMultiSelectMenuItem';
 
@@ -11,7 +11,7 @@ class MusicMultiSelectMenuItem extends YTNode {
   endpoint?: NavigationEndpoint | null;
   selected: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.title = new Text(data.title).toString();

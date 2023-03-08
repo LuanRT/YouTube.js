@@ -28,6 +28,10 @@ import type { ObservedArray, YTNode } from '../parser/helpers.js';
 import type Actions from './Actions.js';
 import type Session from './Session.js';
 
+export type SearchFilters = {
+  type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
+};
+
 class Music {
   #session: Session;
   #actions: Actions;
@@ -108,9 +112,7 @@ class Music {
    * @param query - Search query.
    * @param filters - Search filters.
    */
-  async search(query: string, filters: {
-    type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
-  } = {}): Promise<Search> {
+  async search(query: string, filters: SearchFilters = {}): Promise<Search> {
     throwIfMissing({ query });
 
     const payload: {

@@ -263,6 +263,14 @@ export default class Parser {
       parsed_data.cards = cards;
     }
 
+    this.#createMemo();
+    const items = this.parse(data.items);
+    if (items) {
+      parsed_data.items = items;
+      parsed_data.items_memo = this.#getMemo();
+    }
+    this.#clearMemo();
+
     return parsed_data;
   }
 
@@ -484,7 +492,7 @@ export default class Parser {
     'RunAttestationCommand',
     'CompactPromotedVideo',
     'StatementBanner',
-    'SearchSubMenu'
+    'GuideSigninPromo'
   ]);
 
   static shouldIgnore(classname: string) {

@@ -16,6 +16,7 @@ import type Actions from '../../../core/Actions.js';
 import Proto from '../../../proto/index.js';
 import { InnertubeError } from '../../../utils/Utils.js';
 import { YTNode, SuperParsedResult } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 
 class Comment extends YTNode {
   static type = 'Comment';
@@ -44,7 +45,7 @@ class Comment extends YTNode {
   is_pinned: boolean;
   is_member: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.content = new Text(data.contentText);
     this.published = new Text(data.publishedTimeText);

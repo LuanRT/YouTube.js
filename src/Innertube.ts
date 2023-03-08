@@ -21,6 +21,7 @@ import PlaylistManager from './core/PlaylistManager.js';
 import YTStudio from './core/Studio.js';
 import TabbedFeed from './core/TabbedFeed.js';
 import HomeFeed from './parser/youtube/HomeFeed.js';
+import Guide from './parser/youtube/Guide.js';
 import Proto from './proto/index.js';
 import Constants from './utils/Constants.js';
 
@@ -168,6 +169,14 @@ class Innertube {
   async getHomeFeed(): Promise<HomeFeed> {
     const response = await this.actions.execute('/browse', { browseId: 'FEwhat_to_watch' });
     return new HomeFeed(this.actions, response);
+  }
+
+  /**
+   * Retrieves YouTube's content guide.
+   */
+  async getGuide(): Promise<Guide> {
+    const response = await this.actions.execute('/guide');
+    return new Guide(response.data);
   }
 
   /**

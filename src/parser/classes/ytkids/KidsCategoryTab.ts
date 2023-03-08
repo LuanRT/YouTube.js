@@ -1,6 +1,7 @@
 import Text from '../misc/Text.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
 import { YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 
 class KidsCategoryTab extends YTNode {
   static type = 'KidsCategoryTab';
@@ -13,7 +14,7 @@ class KidsCategoryTab extends YTNode {
   category_type: string;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.category_assets = {

@@ -1,6 +1,6 @@
 import Parser from '../../index.js';
 import { YTNode } from '../../helpers.js';
-
+import type { RawNode } from '../../index.js';
 class Menu extends YTNode {
   static type = 'Menu';
 
@@ -8,7 +8,7 @@ class Menu extends YTNode {
   top_level_buttons;
   label;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
     this.top_level_buttons = Parser.parseArray(data.topLevelButtons);

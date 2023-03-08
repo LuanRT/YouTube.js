@@ -1,5 +1,6 @@
 import Player from '../../../core/Player.js';
 import { InnertubeError } from '../../../utils/Utils.js';
+import type { RawNode } from '../../index.js';
 
 class Format {
   itag: number;
@@ -41,9 +42,10 @@ class Format {
   has_video: boolean;
   language?: string | null;
   is_dubbed?: boolean;
+  is_descriptive?: boolean;
   is_original?: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     this.itag = data.itag;
     this.mime_type = data.mimeType;
     this.bitrate = data.bitrate;
@@ -83,6 +85,7 @@ class Format {
 
       this.language = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('lang='))?.split('=').at(1) || null;
       this.is_dubbed = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'dubbed';
+      this.is_descriptive = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'descriptive';
       this.is_original = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'original' || !this.is_dubbed;
 
       if (data.audioTrack) {

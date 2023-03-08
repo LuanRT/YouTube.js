@@ -1,6 +1,6 @@
 import Parser from '../../index.js';
 import { YTNode } from '../../helpers.js';
-
+import type { RawNode } from '../../index.js';
 class MultiPageMenu extends YTNode {
   static type = 'MultiPageMenu';
 
@@ -8,7 +8,7 @@ class MultiPageMenu extends YTNode {
   sections;
   style: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.header = Parser.parse(data.header);
     this.sections = Parser.parse(data.sections);
