@@ -72,7 +72,7 @@ class Innertube {
 
   /**
    * Retrieves video info.
-   * @param video_id - The video id.
+   * @param target - The video id or `NavigationEndpoint`.
    * @param client - The client to use.
    */
   async getInfo(target: string | NavigationEndpoint, client?: InnerTubeClient): Promise<VideoInfo> {
