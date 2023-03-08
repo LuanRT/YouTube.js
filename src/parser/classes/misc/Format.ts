@@ -42,6 +42,7 @@ class Format {
   has_video: boolean;
   language?: string | null;
   is_dubbed?: boolean;
+  is_descriptive?: boolean;
   is_original?: boolean;
 
   constructor(data: RawNode) {
@@ -84,6 +85,7 @@ class Format {
 
       this.language = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('lang='))?.split('=').at(1) || null;
       this.is_dubbed = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'dubbed';
+      this.is_descriptive = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'descriptive';
       this.is_original = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'original' || !this.is_dubbed;
 
       if (data.audioTrack) {
