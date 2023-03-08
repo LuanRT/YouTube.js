@@ -325,7 +325,7 @@ export class YTNodeGenerator {
       }
       case 'object':
       {
-        return `{\n${inference_type.keys.map(([ key, value ]) => `${' '.repeat((indentation + 2) * 2)}${key}${value.optional ? '?' : ''}: ${this.toTypeDeclaration(value, indentation + 1)}`).join(',\n')}\n${' '.repeat((indentation + 1) * 2)}}`;
+        return `{\n${inference_type.keys.map(([ key, value ]) => `${' '.repeat((indentation + 2) * 2)}${this.#camelToSnake(key)}${value.optional ? '?' : ''}: ${this.toTypeDeclaration(value, indentation + 1)}`).join(',\n')}\n${' '.repeat((indentation + 1) * 2)}}`;
       }
       case 'misc':
         switch (inference_type.misc_type) {
