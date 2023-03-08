@@ -270,6 +270,8 @@ class FormatUtils {
 
     const length = adaptive_formats[0].approx_duration_ms / 1000;
 
+    // DASH spec: https://standards.iso.org/ittf/PubliclyAvailableStandards/c083314_ISO_IEC%2023009-1_2022(en).zip
+
     const document = new Platform.shim.DOMParser().parseFromString('<?xml version="1.0" encoding="utf-8"?><MPD />', 'application/xml');
     const mpd = document.querySelector('MPD') as HTMLElement;
     const period = document.createElement('Period');
@@ -324,57 +326,57 @@ class FormatUtils {
 
     let set_id = 0;
     for (let i = 0; i < mime_types.length; i++) {
-      // When the video has multiple different audio tracks/langues we want to include the extra information in the manifest
-      if (mime_objects[i][0].has_audio && mime_objects[i][0].language) {
-        const languages: string[] = [];
-        const language_objects: Format[][] = [ [] ];
+      // When the video has multiple different audio tracks we want to include the extra information in the manifest
+      if (mime_objects[i][0].has_audio && mime_objects[i][0].audio_track) {
+        const track_ids: string[] = [];
+        const track_objects: Format[][] = [ [] ];
 
         mime_objects[i].forEach((format) => {
-          const language_index = languages.indexOf(format.language as string);
-          if (language_index > -1) {
-            language_objects[language_index].push(format);
+          const id_index = track_ids.indexOf(format.audio_track?.id as string);
+          if (id_index > -1) {
+            track_objects[id_index].push(format);
           } else {
-            languages.push(format.language as string);
-            language_objects.push([]);
-            language_objects[languages.length - 1].push(format);
+            track_ids.push(format.audio_track?.id as string);
+            track_objects.push([]);
+            track_objects[track_ids.length - 1].push(format);
           }
         });
 
-        // The lang attribute has to go on the AdaptationSet element, so we need a separate adaptation set for each language
-        for (let j = 0; j < languages.length; j++) {
-          const first_format = language_objects[j][0];
+        // The lang attribute has to go on the AdaptationSet element and the Role element goes inside the AdaptationSet too, so we need a separate adaptation set for each language and role
+        for (let j = 0; j < track_ids.length; j++) {
+          const first_format = track_objects[j][0];
 
           const children = [];
 
-          if (first_format.audio_track) {
-            let role;
-            if (first_format.audio_track.audio_is_default) {
-              role = 'main';
-            } else if (first_format.is_dubbed) {
-              role = 'dub';
-            } else {
-              role = 'alternate';
-            }
-
-            children.push(
-              this.#el(document, 'Role', {
-                schemeIdUri: 'urn:mpeg:dash:role:2011',
-                value: role
-              })
-            );
+          let role;
+          if (first_format.audio_track?.audio_is_default) {
+            role = 'main';
+          } else if (first_format.is_dubbed) {
+            role = 'dub';
+          } else if (first_format.is_descriptive) {
+            role = 'description';
+          } else {
+            role = 'alternate';
           }
+
+          children.push(
+            this.#el(document, 'Role', {
+              schemeIdUri: 'urn:mpeg:dash:role:2011',
+              value: role
+            })
+          );
 
           const set = this.#el(document, 'AdaptationSet', {
             id: `${set_id++}`,
             mimeType: mime_types[i].split(';')[0],
             startWithSAP: '1',
             subsegmentAlignment: 'true',
-            lang: languages[j]
+            lang: first_format.language as string
           }, children);
 
           period.appendChild(set);
 
-          language_objects[j].forEach((format) => {
+          track_objects[j].forEach((format) => {
             this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
           });
         }

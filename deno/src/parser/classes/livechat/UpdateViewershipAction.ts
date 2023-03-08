@@ -1,6 +1,6 @@
 import Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
-
+import type { RawNode } from '../../index.ts';
 class UpdateViewershipAction extends YTNode {
   static type = 'UpdateViewershipAction';
 
@@ -8,7 +8,7 @@ class UpdateViewershipAction extends YTNode {
   extra_short_view_count: Text;
   is_live: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     const view_count_renderer = data.viewCount.videoViewCountRenderer;
     this.view_count = new Text(view_count_renderer.viewCount);

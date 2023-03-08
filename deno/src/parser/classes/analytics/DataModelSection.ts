@@ -1,4 +1,5 @@
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class DataModelSection extends YTNode {
   static type = 'DataModelSection';
@@ -36,7 +37,7 @@ class DataModelSection extends YTNode {
     }
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.title = data.title;

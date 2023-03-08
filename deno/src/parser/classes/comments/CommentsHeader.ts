@@ -3,6 +3,7 @@ import Text from '../misc/Text.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
 import type SortFilterSubMenu from '../SortFilterSubMenu.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class CommentsHeader extends YTNode {
   static type = 'CommentsHeader';
@@ -21,7 +22,7 @@ class CommentsHeader extends YTNode {
     is_custom_emoji: boolean;
   }[] | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.titleText);
     this.count = new Text(data.countText);

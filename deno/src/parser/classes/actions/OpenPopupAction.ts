@@ -1,5 +1,6 @@
 import Parser from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class OpenPopupAction extends YTNode {
   static type = 'OpenPopupAction';
@@ -7,7 +8,7 @@ class OpenPopupAction extends YTNode {
   popup;
   popup_type;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.popup = Parser.parse(data.popup);
     this.popup_type = data.popupType;

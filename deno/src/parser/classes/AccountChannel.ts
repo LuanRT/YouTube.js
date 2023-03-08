@@ -1,6 +1,7 @@
 import Text from './misc/Text.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
 class AccountChannel extends YTNode {
   static type = 'AccountChannel';
@@ -8,7 +9,7 @@ class AccountChannel extends YTNode {
   title: Text;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);

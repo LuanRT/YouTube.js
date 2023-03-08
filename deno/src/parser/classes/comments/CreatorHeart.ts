@@ -1,5 +1,6 @@
 import { YTNode } from '../../helpers.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
+import type { RawNode } from '../../index.ts';
 
 class CreatorHeart extends YTNode {
   static type = 'CreatorHeart';
@@ -16,7 +17,7 @@ class CreatorHeart extends YTNode {
   is_enabled: boolean;
   kennedy_heart_color_string: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.creator_thumbnail = Thumbnail.fromResponse(data.creatorThumbnail);
     this.heart_icon_type = data.heartIcon?.iconType;

@@ -1,4 +1,5 @@
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class AuthorCommentBadge extends YTNode {
   static type = 'AuthorCommentBadge';
@@ -9,7 +10,7 @@ class AuthorCommentBadge extends YTNode {
   tooltip: string;
   style?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.icon_type = data.icon?.iconType || null;

@@ -1,5 +1,6 @@
 import Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class PdgCommentChip extends YTNode {
   static type = 'PdgCommentChip';
@@ -11,7 +12,7 @@ class PdgCommentChip extends YTNode {
   };
   icon_type: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.text = new Text(data.chipText);
     this.color_pallette = {

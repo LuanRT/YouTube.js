@@ -1,5 +1,6 @@
 import DataModelSection from './DataModelSection.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class AnalyticsMainAppKeyMetrics extends YTNode {
   static type = 'AnalyticsMainAppKeyMetrics';
@@ -7,7 +8,7 @@ class AnalyticsMainAppKeyMetrics extends YTNode {
   period: string;
   sections: DataModelSection[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.period = data.cardData.periodLabel;
     const metrics_data = data.cardData.sections[0].analyticsKeyMetricsData;

@@ -1,5 +1,6 @@
 import Thumbnail from '../misc/Thumbnail.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class SponsorCommentBadge extends YTNode {
   static type = 'SponsorCommentBadge';
@@ -7,7 +8,7 @@ class SponsorCommentBadge extends YTNode {
   custom_badge: Thumbnail[];
   tooltip: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.custom_badge = Thumbnail.fromResponse(data.customBadge);
     this.tooltip = data.tooltip;

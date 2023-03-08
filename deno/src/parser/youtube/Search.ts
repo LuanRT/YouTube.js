@@ -1,20 +1,22 @@
 import Feed from '../../core/Feed.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
 import HorizontalCardList from '../classes/HorizontalCardList.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import SearchRefinementCard from '../classes/SearchRefinementCard.ts';
+import SearchSubMenu from '../classes/SearchSubMenu.ts';
 import SectionList from '../classes/SectionList.ts';
 import UniversalWatchCard from '../classes/UniversalWatchCard.ts';
-import { InnertubeError } from '../../utils/Utils.ts';
 
 import type Actions from '../../core/Actions.ts';
+import type { ApiResponse } from '../../core/Actions.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
 import type { ISearchResponse } from '../types/ParsedResponse.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
 
 class Search extends Feed<ISearchResponse> {
   results?: ObservedArray<YTNode> | null;
   refinements: string[];
   estimated_results: number;
+  sub_menu?: SearchSubMenu;
   watch_card?: UniversalWatchCard;
   refinement_cards?: HorizontalCardList | null;
 
@@ -33,8 +35,9 @@ class Search extends Feed<ISearchResponse> {
     this.refinements = this.page.refinements || [];
     this.estimated_results = this.page.estimated_results;
 
+    this.sub_menu = this.page.contents_memo?.getType(SearchSubMenu).first();
     this.watch_card = this.page.contents_memo?.getType(UniversalWatchCard).first();
-    this.refinement_cards = this.results?.get({ type: 'HorizontalCardList' }, true)?.as(HorizontalCardList);
+    this.refinement_cards = this.results?.firstOfType(HorizontalCardList);
   }
 
   /**

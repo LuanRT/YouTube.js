@@ -1,9 +1,11 @@
+import type { RawNode } from '../../index.ts';
+
 class Thumbnail {
   url: string;
   width: number;
   height: number;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     this.url = data.url;
     this.width = data.width;
     this.height = data.height;

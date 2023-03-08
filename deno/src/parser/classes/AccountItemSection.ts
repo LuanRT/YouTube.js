@@ -6,6 +6,7 @@ import NavigationEndpoint from './NavigationEndpoint.ts';
 import AccountItemSectionHeader from './AccountItemSectionHeader.ts';
 
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
 class AccountItem {
   static type = 'AccountItem';
@@ -18,7 +19,7 @@ class AccountItem {
   endpoint: NavigationEndpoint;
   account_byline: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     this.account_name = new Text(data.accountName);
     this.account_photo = Thumbnail.fromResponse(data.accountPhoto);
     this.is_selected = data.isSelected;
@@ -35,7 +36,7 @@ class AccountItemSection extends YTNode {
   contents;
   header;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = data.contents.map((ac: any) => new AccountItem(ac.accountItem));
     this.header = Parser.parseItem<AccountItemSectionHeader>(data.header, AccountItemSectionHeader);

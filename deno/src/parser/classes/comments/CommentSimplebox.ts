@@ -3,6 +3,7 @@ import Thumbnail from '../misc/Thumbnail.ts';
 import Text from '../misc/Text.ts';
 import type Button from '../Button.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class CommentSimplebox extends YTNode {
   static type = 'CommentSimplebox';
@@ -13,7 +14,7 @@ class CommentSimplebox extends YTNode {
   placeholder: Text;
   avatar_size;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.submit_button = Parser.parseItem<Button>(data.submitButton);
     this.cancel_button = Parser.parseItem<Button>(data.cancelButton);

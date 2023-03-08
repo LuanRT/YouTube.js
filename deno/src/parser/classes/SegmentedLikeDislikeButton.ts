@@ -1,17 +1,19 @@
-import Parser from '../index.ts';
-import ToggleButton from './ToggleButton.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
+import Parser from '../index.ts';
+import Button from './Button.ts';
+import ToggleButton from './ToggleButton.ts';
 
 class SegmentedLikeDislikeButton extends YTNode {
   static type = 'SegmentedLikeDislikeButton';
 
-  like_button: ToggleButton | null;
-  dislike_button: ToggleButton | null;
+  like_button: ToggleButton | Button | null;
+  dislike_button: ToggleButton | Button | null;
 
-  constructor (data: any) {
+  constructor (data: RawNode) {
     super();
-    this.like_button = Parser.parseItem<ToggleButton>(data.likeButton, ToggleButton);
-    this.dislike_button = Parser.parseItem<ToggleButton>(data.dislikeButton, ToggleButton);
+    this.like_button = Parser.parseItem<ToggleButton | Button>(data.likeButton, [ ToggleButton, Button ]);
+    this.dislike_button = Parser.parseItem<ToggleButton | Button>(data.dislikeButton, [ ToggleButton, Button ]);
   }
 }
 

@@ -1,6 +1,6 @@
 import Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
-
+import type { RawNode } from '../../index.ts';
 class UpdateToggleButtonTextAction extends YTNode {
   static type = 'UpdateToggleButtonTextAction';
 
@@ -8,7 +8,7 @@ class UpdateToggleButtonTextAction extends YTNode {
   toggled_text: string;
   button_id: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.default_text = new Text(data.defaultText).toString();
     this.toggled_text = new Text(data.toggledText).toString();

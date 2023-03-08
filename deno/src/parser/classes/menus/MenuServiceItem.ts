@@ -1,9 +1,9 @@
 import Button from '../Button.ts';
-
+import type { RawNode } from '../../index.ts';
 class MenuServiceItem extends Button {
   static type = 'MenuServiceItem';
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super(data);
   }
 }

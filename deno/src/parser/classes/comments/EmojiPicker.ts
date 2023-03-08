@@ -1,6 +1,7 @@
 import Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 import Parser from '../../index.ts';
+import type { RawNode } from '../../index.ts';
 
 class EmojiPicker extends YTNode {
   static type = 'EmojiPicker';
@@ -19,7 +20,7 @@ class EmojiPicker extends YTNode {
   skin_tone_medium_dark_label: string;
   skin_tone_dark_label: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.id;
     this.categories = Parser.parseArray(data.categories);

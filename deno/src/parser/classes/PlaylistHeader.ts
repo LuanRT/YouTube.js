@@ -21,6 +21,7 @@ class PlaylistHeader extends YTNode {
   save_button;
   shuffle_play_button;
   menu;
+  banner;
 
   constructor(data: any) {
     super();
@@ -39,6 +40,7 @@ class PlaylistHeader extends YTNode {
     this.save_button = Parser.parse(data.saveButton);
     this.shuffle_play_button = Parser.parse(data.shufflePlayButton);
     this.menu = Parser.parse(data.moreActionsMenu);
+    this.banner = Parser.parseItem(data.playlistHeaderBanner);
   }
 }
 

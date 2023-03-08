@@ -1,6 +1,7 @@
 import Text from '../misc/Text.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class CommentsEntryPointHeader extends YTNode {
   static type = 'CommentsEntryPointHeader';
@@ -11,7 +12,7 @@ class CommentsEntryPointHeader extends YTNode {
   teaser_content?: Text;
   simplebox_placeholder?: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     if (data.header) {

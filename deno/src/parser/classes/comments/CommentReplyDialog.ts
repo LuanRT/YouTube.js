@@ -3,6 +3,7 @@ import Thumbnail from '../misc/Thumbnail.ts';
 import Text from '../misc/Text.ts';
 import type Button from '../Button.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class CommentReplyDialog extends YTNode {
   static type = 'CommentReplyDialog';
@@ -13,7 +14,7 @@ class CommentReplyDialog extends YTNode {
   placeholder: Text;
   error_message: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.reply_button = Parser.parseItem<Button>(data.replyButton);
     this.cancel_button = Parser.parseItem<Button>(data.cancelButton);

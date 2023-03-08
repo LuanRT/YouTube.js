@@ -196,12 +196,26 @@ import { default as GridPlaylist } from './classes/GridPlaylist.ts';
 export { GridPlaylist };
 import { default as GridVideo } from './classes/GridVideo.ts';
 export { GridVideo };
+import { default as GuideCollapsibleEntry } from './classes/GuideCollapsibleEntry.ts';
+export { GuideCollapsibleEntry };
+import { default as GuideCollapsibleSectionEntry } from './classes/GuideCollapsibleSectionEntry.ts';
+export { GuideCollapsibleSectionEntry };
+import { default as GuideDownloadsEntry } from './classes/GuideDownloadsEntry.ts';
+export { GuideDownloadsEntry };
+import { default as GuideEntry } from './classes/GuideEntry.ts';
+export { GuideEntry };
+import { default as GuideSection } from './classes/GuideSection.ts';
+export { GuideSection };
+import { default as GuideSubscriptionsSection } from './classes/GuideSubscriptionsSection.ts';
+export { GuideSubscriptionsSection };
 import { default as HashtagHeader } from './classes/HashtagHeader.ts';
 export { HashtagHeader };
 import { default as Heatmap } from './classes/Heatmap.ts';
 export { Heatmap };
 import { default as HeatMarker } from './classes/HeatMarker.ts';
 export { HeatMarker };
+import { default as HeroPlaylistThumbnail } from './classes/HeroPlaylistThumbnail.ts';
+export { HeroPlaylistThumbnail };
 import { default as HighlightsCarousel } from './classes/HighlightsCarousel.ts';
 export { HighlightsCarousel };
 import { default as HistorySuggestion } from './classes/HistorySuggestion.ts';
@@ -434,6 +448,8 @@ import { default as PlayerCaptionsTracklist } from './classes/PlayerCaptionsTrac
 export { PlayerCaptionsTracklist };
 import { default as PlayerErrorMessage } from './classes/PlayerErrorMessage.ts';
 export { PlayerErrorMessage };
+import { default as PlayerLegacyDesktopYpcOffer } from './classes/PlayerLegacyDesktopYpcOffer.ts';
+export { PlayerLegacyDesktopYpcOffer };
 import { default as PlayerLiveStoryboardSpec } from './classes/PlayerLiveStoryboardSpec.ts';
 export { PlayerLiveStoryboardSpec };
 import { default as PlayerMicroformat } from './classes/PlayerMicroformat.ts';
@@ -500,14 +516,24 @@ import { default as RichItem } from './classes/RichItem.ts';
 export { RichItem };
 import { default as RichListHeader } from './classes/RichListHeader.ts';
 export { RichListHeader };
+import { default as RichMetadata } from './classes/RichMetadata.ts';
+export { RichMetadata };
+import { default as RichMetadataRow } from './classes/RichMetadataRow.ts';
+export { RichMetadataRow };
 import { default as RichSection } from './classes/RichSection.ts';
 export { RichSection };
 import { default as RichShelf } from './classes/RichShelf.ts';
 export { RichShelf };
 import { default as SearchBox } from './classes/SearchBox.ts';
 export { SearchBox };
+import { default as SearchFilter } from './classes/SearchFilter.ts';
+export { SearchFilter };
+import { default as SearchFilterGroup } from './classes/SearchFilterGroup.ts';
+export { SearchFilterGroup };
 import { default as SearchRefinementCard } from './classes/SearchRefinementCard.ts';
 export { SearchRefinementCard };
+import { default as SearchSubMenu } from './classes/SearchSubMenu.ts';
+export { SearchSubMenu };
 import { default as SearchSuggestion } from './classes/SearchSuggestion.ts';
 export { SearchSuggestion };
 import { default as SearchSuggestionsSection } from './classes/SearchSuggestionsSection.ts';
@@ -528,6 +554,8 @@ import { default as SettingsSidebar } from './classes/SettingsSidebar.ts';
 export { SettingsSidebar };
 import { default as SettingsSwitch } from './classes/SettingsSwitch.ts';
 export { SettingsSwitch };
+import { default as SharedPost } from './classes/SharedPost.ts';
+export { SharedPost };
 import { default as Shelf } from './classes/Shelf.ts';
 export { Shelf };
 import { default as ShowingResultsFor } from './classes/ShowingResultsFor.ts';
@@ -751,9 +779,16 @@ const map: Record<string, YTNodeConstructor> = {
   GridHeader,
   GridPlaylist,
   GridVideo,
+  GuideCollapsibleEntry,
+  GuideCollapsibleSectionEntry,
+  GuideDownloadsEntry,
+  GuideEntry,
+  GuideSection,
+  GuideSubscriptionsSection,
   HashtagHeader,
   Heatmap,
   HeatMarker,
+  HeroPlaylistThumbnail,
   HighlightsCarousel,
   HistorySuggestion,
   HorizontalCardList,
@@ -865,6 +900,7 @@ const map: Record<string, YTNodeConstructor> = {
   PlayerAnnotationsExpanded,
   PlayerCaptionsTracklist,
   PlayerErrorMessage,
+  PlayerLegacyDesktopYpcOffer,
   PlayerLiveStoryboardSpec,
   PlayerMicroformat,
   PlayerOverlay,
@@ -898,10 +934,15 @@ const map: Record<string, YTNodeConstructor> = {
   RichGrid,
   RichItem,
   RichListHeader,
+  RichMetadata,
+  RichMetadataRow,
   RichSection,
   RichShelf,
   SearchBox,
+  SearchFilter,
+  SearchFilterGroup,
   SearchRefinementCard,
+  SearchSubMenu,
   SearchSuggestion,
   SearchSuggestionsSection,
   SecondarySearchContainer,
@@ -912,6 +953,7 @@ const map: Record<string, YTNodeConstructor> = {
   SettingsOptions,
   SettingsSidebar,
   SettingsSwitch,
+  SharedPost,
   Shelf,
   ShowingResultsFor,
   SimpleCardContent,

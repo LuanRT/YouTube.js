@@ -3,6 +3,7 @@ import Parser from '../../../index.ts';
 import Button from '../../Button.ts';
 import Text from '../../misc/Text.ts';
 import NavigationEndpoint from '../../NavigationEndpoint.ts';
+import type { RawNode } from '../../../index.ts';
 
 class LiveChatAutoModMessage extends YTNode {
   static type = 'LiveChatAutoModMessage';
@@ -15,7 +16,7 @@ class LiveChatAutoModMessage extends YTNode {
   timestamp: number;
   id: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
     this.moderation_buttons = Parser.parseArray<Button>(data.moderationButtons, [ Button ]);

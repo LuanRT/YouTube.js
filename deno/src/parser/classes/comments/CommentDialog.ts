@@ -4,6 +4,7 @@ import Thumbnail from '../misc/Thumbnail.ts';
 import type Button from '../Button.ts';
 import type EmojiPicker from './EmojiPicker.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class CommentDialog extends YTNode {
   static type = 'CommentDialog';
@@ -16,7 +17,7 @@ class CommentDialog extends YTNode {
   emoji_button: Button | null;
   emoji_picker: any | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.editable_text = new Text(data.editableText);
     this.author_thumbnail = Thumbnail.fromResponse(data.authorThumbnail);

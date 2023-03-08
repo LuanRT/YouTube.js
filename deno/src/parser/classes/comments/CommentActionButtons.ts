@@ -3,6 +3,7 @@ import type Button from '../Button.ts';
 import type ToggleButton from '../ToggleButton.ts';
 import type CreatorHeart from './CreatorHeart.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class CommentActionButtons extends YTNode {
   static type = 'CommentActionButtons';
@@ -12,7 +13,7 @@ class CommentActionButtons extends YTNode {
   reply_button;
   creator_heart;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.like_button = Parser.parseItem<ToggleButton>(data.likeButton);
     this.dislike_button = Parser.parseItem<ToggleButton>(data.dislikeButton);

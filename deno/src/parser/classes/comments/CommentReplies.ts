@@ -2,7 +2,7 @@ import Parser from '../../index.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
 import type Button from '../Button.ts';
 import { YTNode } from '../../helpers.ts';
-
+import type { RawNode } from '../../index.ts';
 class CommentReplies extends YTNode {
   static type = 'CommentReplies';
 
@@ -12,7 +12,7 @@ class CommentReplies extends YTNode {
   view_replies_creator_thumbnail: Thumbnail[];
   has_channel_owner_replied: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Parser.parseArray(data.contents);
     this.view_replies = Parser.parseItem<Button>(data.viewReplies);

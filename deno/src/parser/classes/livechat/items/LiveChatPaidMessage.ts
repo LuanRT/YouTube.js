@@ -5,7 +5,7 @@ import MetadataBadge from '../../MetadataBadge.ts';
 import Text from '../../misc/Text.ts';
 import Thumbnail from '../../misc/Thumbnail.ts';
 import NavigationEndpoint from '../../NavigationEndpoint.ts';
-
+import type { RawNode } from '../../../index.ts';
 class LiveChatPaidMessage extends YTNode {
   static type = 'LiveChatPaidMessage';
 
@@ -31,7 +31,7 @@ class LiveChatPaidMessage extends YTNode {
   timestamp_text: string;
   id: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.message = new Text(data.message);
 

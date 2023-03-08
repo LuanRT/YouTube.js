@@ -1,4 +1,5 @@
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 import NavigationEndpoint from '../NavigationEndpoint.ts';
 
 class AnalyticsShortsCarouselCard extends YTNode {
@@ -11,7 +12,7 @@ class AnalyticsShortsCarouselCard extends YTNode {
     endpoint: NavigationEndpoint;
   }[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.title;
     this.shorts = data.shortsCarouselData.shorts.map((short: any) => ({

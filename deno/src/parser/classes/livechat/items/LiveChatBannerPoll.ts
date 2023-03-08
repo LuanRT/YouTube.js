@@ -2,7 +2,7 @@ import { YTNode } from '../../../helpers.ts';
 import Parser from '../../../index.ts';
 import Text from '../../misc/Text.ts';
 import Thumbnail from '../../misc/Thumbnail.ts';
-
+import type { RawNode } from '../../../index.ts';
 class LiveChatBannerPoll extends YTNode {
   static type = 'LiveChatBannerPoll';
 
@@ -17,7 +17,7 @@ class LiveChatBannerPoll extends YTNode {
   live_chat_poll_state_entity_key: string;
   context_menu_button;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.poll_question = new Text(data.pollQuestion);
     this.author_photo = Thumbnail.fromResponse(data.authorPhoto);

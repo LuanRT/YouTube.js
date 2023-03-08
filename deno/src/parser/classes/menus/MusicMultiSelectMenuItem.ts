@@ -1,7 +1,7 @@
 import { YTNode } from '../../helpers.ts';
 import Text from '../misc/Text.ts';
 import NavigationEndpoint from '../NavigationEndpoint.ts';
-
+import type { RawNode } from '../../index.ts';
 class MusicMultiSelectMenuItem extends YTNode {
   static type = 'MusicMultiSelectMenuItem';
 
@@ -11,7 +11,7 @@ class MusicMultiSelectMenuItem extends YTNode {
   endpoint?: NavigationEndpoint | null;
   selected: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.title = new Text(data.title).text;

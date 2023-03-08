@@ -1,5 +1,6 @@
 import { escape, Run } from './Text.ts';
 import Thumbnail from './Thumbnail.ts';
+import type { RawNode } from '../../index.ts';
 
 class EmojiRun implements Run {
   text: string;
@@ -11,7 +12,7 @@ class EmojiRun implements Run {
     is_custom: boolean;
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     this.text =
       data.emoji?.emojiId ||
       data.emoji?.shortcuts?.[0] ||

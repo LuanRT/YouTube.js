@@ -1,6 +1,7 @@
 import Text from '../../misc/Text.ts';
 import Thumbnail from '../../misc/Thumbnail.ts';
 import Parser from '../../../index.ts';
+import type { RawNode } from '../../../index.ts';
 import { YTNode } from '../../../helpers.ts';
 
 class PollHeader extends YTNode {
@@ -12,7 +13,7 @@ class PollHeader extends YTNode {
   live_chat_poll_type: string;
   context_menu_button;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.poll_question = new Text(data.pollQuestion);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);

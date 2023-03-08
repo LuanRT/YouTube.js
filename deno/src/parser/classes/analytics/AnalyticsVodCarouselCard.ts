@@ -1,5 +1,6 @@
 import Video from './AnalyticsVideo.ts';
 import { YTNode } from '../../helpers.ts';
+import type { RawNode } from '../../index.ts';
 
 class AnalyticsVodCarouselCard extends YTNode {
   static type = 'AnalyticsVodCarouselCard';
@@ -8,7 +9,7 @@ class AnalyticsVodCarouselCard extends YTNode {
   videos: Video[] | null;
   no_data_message?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.title;
 
