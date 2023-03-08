@@ -138,6 +138,8 @@ import { default as ConfirmDialog } from './classes/ConfirmDialog.js';
 export { ConfirmDialog };
 import { default as ContinuationItem } from './classes/ContinuationItem.js';
 export { ContinuationItem };
+import { default as ConversationBar } from './classes/ConversationBar.js';
+export { ConversationBar };
 import { default as CopyLink } from './classes/CopyLink.js';
 export { CopyLink };
 import { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.js';
@@ -750,6 +752,7 @@ const map: Record<string, YTNodeConstructor> = {
   CompactVideo,
   ConfirmDialog,
   ContinuationItem,
+  ConversationBar,
   CopyLink,
   CreatePlaylistDialog,
   DecoratedPlayerBar,
