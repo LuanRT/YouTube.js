@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import { Menu } from '../map.js';
+import { Menu } from '../nodes.js';
 import Parser from '../parser.js';
 import BackstagePost from './BackstagePost.js';
 import Button from './Button.js';
