@@ -1,8 +1,8 @@
 import { YTNode } from '../helpers.js';
-import { Menu } from '../map.js';
 import Parser from '../parser.js';
 import BackstagePost from './BackstagePost.js';
 import Button from './Button.js';
+import Menu from './menus/Menu.js';
 import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
