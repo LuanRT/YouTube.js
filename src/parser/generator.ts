@@ -38,8 +38,12 @@ export type InferenceType = {
   renderers: string[],
   optional: boolean,
 } | MiscInferenceType | {
+  type: 'object',
+  keys: KeyInfo,
+  optional: boolean,
+} | {
   type: 'primative',
-  typeof: ('string' | 'number' | 'boolean' | 'bigint' | 'symbol' | 'undefined' | 'object' | 'function')[],
+  typeof: ('string' | 'number' | 'boolean' | 'bigint' | 'symbol' | 'undefined' | 'function')[],
   optional: boolean,
 } | {
   type: 'unknown',
@@ -90,6 +94,19 @@ export class YTNodeGenerator {
       }
       // We've got the same type, so we can now resolve the changes
       switch (type.type) {
+        case 'object':
+          {
+            if (new_type.type !== 'object') continue;
+            const { resolved_key_info } = this.mergeKeyInfo(type.keys, new_type.keys);
+            const resolved_key: InferenceType = {
+              type: 'object',
+              keys: resolved_key_info,
+              optional: type.optional || new_type.optional
+            };
+            const did_change = JSON.stringify(resolved_key) !== JSON.stringify(type);
+            if (did_change) changed_keys.set(key, resolved_key);
+          }
+          break;
         case 'renderer':
           {
             if (new_type.type !== 'renderer') continue;
@@ -294,9 +311,9 @@ export class YTNodeGenerator {
       props.push(`${snake_key}${value.optional ? '?' : ''}: ${this.toTypeDeclaration(value)};`);
       constructor_lines.push(`this.${snake_key} = ${this.toParser(key, value)};`);
     }
-    return `class ${classname} extends YTNode {\n  static type = '${classname}';\n\n  ${props.join('\n  ')}\n\n  constructor(data: any) {\n    ${constructor_lines.join('\n    ')}\n  }\n}\n`;
+    return `class ${classname} extends YTNode {\n  static type = '${classname}';\n\n  ${props.join('\n  ')}\n\n  constructor(data: RawNode) {\n    ${constructor_lines.join('\n    ')}\n  }\n}\n`;
   }
-  static toTypeDeclaration(inference_type: InferenceType) {
+  static toTypeDeclaration(inference_type: InferenceType, indentation = 0): string {
     switch (inference_type.type) {
       case 'renderer':
       {
@@ -305,6 +322,10 @@ export class YTNodeGenerator {
       case 'renderer_list':
       {
         return `ObservedArray<${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')}> | null`;
+      }
+      case 'object':
+      {
+        return `{\n${inference_type.keys.map(([ key, value ]) => `${' '.repeat((indentation + 2) * 2)}${key}${value.optional ? '?' : ''}: ${this.toTypeDeclaration(value, indentation + 1)}`).join(',\n')}\n${' '.repeat((indentation + 1) * 2)}}`;
       }
       case 'misc':
         switch (inference_type.misc_type) {
@@ -320,33 +341,39 @@ export class YTNodeGenerator {
         return '/* TODO: determine correct type */ unknown';
     }
   }
-  static toParser(key: string, inference_type: InferenceType) {
+  static toParser(key: string, inference_type: InferenceType, key_path: string[] = [ 'data' ], indentation = 1) {
     let parser = 'undefined';
     switch (inference_type.type) {
       case 'renderer':
         {
-          parser = `Parser.parseItem(data.${key}, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+          parser = `Parser.parseItem(${key_path.join('.')}.${key}, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
         }
         break;
       case 'renderer_list':
         {
-          parser = `Parser.parse(data.${key}, true, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+          parser = `Parser.parse(${key_path.join('.')}.${key}, true, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+        }
+        break;
+      case 'object':
+        {
+          const new_keypath = [ ...key_path, key ];
+          parser = `{\n${inference_type.keys.map(([ key, value ]) => `${' '.repeat((indentation + 2) * 2)}${this.#camelToSnake(key)}: ${this.toParser(key, value, new_keypath, indentation + 1)}`).join(',\n')}\n${' '.repeat((indentation + 1) * 2)}}`;
         }
         break;
       case 'misc':
         switch (inference_type.misc_type) {
           case 'Thumbnail':
-            parser = `Thumbnail.fromResponse(data.${key})`;
+            parser = `Thumbnail.fromResponse(${key_path.join('.')}.${key})`;
             break;
           case 'Author':
           {
-            const author_parser = `new Author(data.${inference_type.params[0]}, ${inference_type.params[1] ? `data.${inference_type.params[1]}` : 'undefined'})`;
+            const author_parser = `new Author(${key_path.join('.')}.${inference_type.params[0]}, ${inference_type.params[1] ? `${key_path.join('.')}.${inference_type.params[1]}` : 'undefined'})`;
             if (inference_type.optional)
-              return `Reflect.has(data, '${inference_type.params[0]}') ? ${author_parser} : undefined`;
+              return `Reflect.has(${key_path.join('.')}, '${inference_type.params[0]}') ? ${author_parser} : undefined`;
             return author_parser;
           }
           default:
-            parser = `new ${inference_type.misc_type}(data.${key})`;
+            parser = `new ${inference_type.misc_type}(${key_path.join('.')}.${key})`;
             break;
         }
         if (parser === 'undefined')
@@ -354,42 +381,70 @@ export class YTNodeGenerator {
         break;
       case 'primative':
       case 'unknown':
-        parser = `data.${key}`;
+        parser = `${key_path.join('.')}.${key}`;
         break;
     }
     if (inference_type.optional)
-      return `Reflect.has(data, '${key}') ? ${parser} : undefined`;
+      return `Reflect.has(${key_path.join('.')}, '${key}') ? ${parser} : undefined`;
     return parser;
   }
-  static parse(key: string, inference_type: InferenceType, data: any) {
-    const should_optional = !inference_type.optional || Reflect.has(data, key);
+  static #accessDataFromKeyPath(root: any, key_path: string[]) {
+    let data = root;
+    for (const key of key_path)
+      data = data[key];
+    return data;
+  }
+  static #hasDataFromKeyPath(root: any, key_path: string[]) {
+    let data = root;
+    for (const key of key_path)
+      if (!Reflect.has(data, key))
+        return false;
+      else
+        data = data[key];
+    return true;
+  }
+  static parse(key: string, inference_type: InferenceType, data: any, key_path: string[] = [ 'data' ]) {
+    const should_optional = !inference_type.optional || this.#hasDataFromKeyPath({data}, [ ...key_path, key ]);
     switch (inference_type.type) {
       case 'renderer':
       {
-        return should_optional ? Parser.parseItem(data[key], inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
+        return should_optional ? Parser.parseItem(this.#accessDataFromKeyPath({data}, [ ...key_path, key ]), inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
       }
       case 'renderer_list':
       {
-        return should_optional ? Parser.parse(data[key], true, inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
+        return should_optional ? Parser.parse(this.#accessDataFromKeyPath({data}, [ ...key_path, key ]), true, inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
+      }
+      case 'object':
+      {
+        const obj: any = {};
+        const new_key_path = [ ...key_path, key ];
+        for (const [ key, value ] of inference_type.keys) {
+          obj[key] = should_optional ? this.parse(key, value, data, new_key_path) : undefined;
+        }
+        return obj;
       }
       case 'misc':
         switch (inference_type.misc_type) {
           case 'NavigationEndpoint':
-            return should_optional ? new NavigationEndpoint(data[key]) : undefined;
+            return should_optional ? new NavigationEndpoint(this.#accessDataFromKeyPath({data}, [ ...key_path, key ])) : undefined;
           case 'Text':
-            return should_optional ? new Text(data[key]) : undefined;
+            return should_optional ? new Text(this.#accessDataFromKeyPath({data}, [ ...key_path, key ])) : undefined;
           case 'Thumbnail':
-            return should_optional ? Thumbnail.fromResponse(data[key]) : undefined;
+            return should_optional ? Thumbnail.fromResponse(this.#accessDataFromKeyPath({data}, [ ...key_path, key ])) : undefined;
           case 'Author':
           {
-            const author_should_optional = !inference_type.optional || Reflect.has(data, inference_type.params[0]);
-            return author_should_optional ? new Author(data[inference_type.params[0]], inference_type.params[1] ? data[inference_type.params[1]] : undefined) : undefined;
+            const author_should_optional = !inference_type.optional || this.#hasDataFromKeyPath({data}, [ ...key_path, inference_type.params[0] ]);
+            return author_should_optional ? new Author(
+              this.#accessDataFromKeyPath({data}, [ ...key_path, inference_type.params[0] ]),
+              inference_type.params[1] ?
+                this.#accessDataFromKeyPath({data}, [ ...key_path, inference_type.params[1] ]) : undefined
+            ) : undefined;
           }
         }
         throw new Error('Unreachable code reached! Switch missing case!');
       case 'primative':
       case 'unknown':
-        return data[key];
+        return this.#accessDataFromKeyPath({data}, [ ...key_path, key ]);
     }
   }
   static #passOne(classdata: any) {
@@ -489,9 +544,16 @@ export class YTNodeGenerator {
     if (return_value = this.isMiscType(key, value)) {
       return return_value as MiscInferenceType;
     }
+    const primative_type = typeof value;
+    if (primative_type === 'object')
+      return {
+        type: 'object',
+        keys: Object.entries(value).map(([ key, value ]) => [ key, this.inferType(key, value) ]),
+        optional: false
+      };
     return {
       type: 'primative',
-      typeof: [ typeof value ],
+      typeof: [ primative_type ],
       optional: false
     };
   }
