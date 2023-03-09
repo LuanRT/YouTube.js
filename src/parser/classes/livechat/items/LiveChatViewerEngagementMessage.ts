@@ -1,8 +1,9 @@
 import Parser from '../../../index.js';
-import LiveChatTextMessage from './LiveChatTextMessage.js';
+import { LiveChatMessageBase } from './LiveChatTextMessage.js';
 import type { RawNode } from '../../../index.js';
 
-class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
+
+class LiveChatViewerEngagementMessage extends LiveChatMessageBase {
   static type = 'LiveChatViewerEngagementMessage';
 
   icon_type: string;
@@ -10,8 +11,6 @@ class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
 
   constructor(data: RawNode) {
     super(data);
-    delete this.author;
-    delete this.menu_endpoint;
     this.icon_type = data.icon.iconType;
     this.action_button = Parser.parseItem(data.actionButton);
   }
