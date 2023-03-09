@@ -13,7 +13,7 @@ class Element extends YTNode {
     super();
 
     if (Reflect.has(data, 'elementRenderer')) {
-      return Parser.parseItem<Element>(data, Element) as Element;
+      return Parser.parseItem(data, Element) as Element;
     }
 
     const type = data.newElement.type.componentType;

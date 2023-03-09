@@ -3,9 +3,9 @@ import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 
-import type Button from './Button.js';
-import type ChannelHeaderLinks from './ChannelHeaderLinks.js';
-import type SubscribeButton from './SubscribeButton.js';
+import Button from './Button.js';
+import ChannelHeaderLinks from './ChannelHeaderLinks.js';
+import SubscribeButton from './SubscribeButton.js';
 
 import { YTNode } from '../helpers.js';
 
@@ -52,15 +52,15 @@ class C4TabbedHeader extends YTNode {
     }
 
     if (data.sponsorButton) {
-      this.sponsor_button = Parser.parseItem<Button>(data.sponsorButton);
+      this.sponsor_button = Parser.parseItem(data.sponsorButton, Button);
     }
 
     if (data.subscribeButton) {
-      this.subscribe_button = Parser.parseItem<SubscribeButton>(data.subscribeButton);
+      this.subscribe_button = Parser.parseItem(data.subscribeButton, SubscribeButton);
     }
 
     if (data.headerLinks) {
-      this.header_links = Parser.parseItem<ChannelHeaderLinks>(data.headerLinks);
+      this.header_links = Parser.parseItem(data.headerLinks, ChannelHeaderLinks);
     }
 
     if (data.channelHandleText) {

@@ -12,8 +12,8 @@ class AccountSectionList extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.contents = Parser.parseItem<AccountItemSection>(data.contents[0], AccountItemSection);
-    this.footers = Parser.parseItem<AccountChannel>(data.footers[0], AccountChannel);
+    this.contents = Parser.parseItem(data.contents[0], AccountItemSection);
+    this.footers = Parser.parseItem(data.footers[0], AccountChannel);
   }
 }
 

@@ -9,7 +9,7 @@ class ConversationBar extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.availability_message = Parser.parseItem<Message>(data.availabilityMessage, Message);
+    this.availability_message = Parser.parseItem(data.availabilityMessage, Message);
   }
 }
 

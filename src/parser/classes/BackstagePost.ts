@@ -2,8 +2,8 @@ import Parser from '../index.js';
 import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
-import type CommentActionButtons from './comments/CommentActionButtons.js';
-import type Menu from './menus/Menu.js';
+import CommentActionButtons from './comments/CommentActionButtons.js';
+import Menu from './menus/Menu.js';
 
 import { YTNode } from '../helpers.js';
 
@@ -49,15 +49,15 @@ class BackstagePost extends YTNode {
     }
 
     if (data.actionMenu) {
-      this.menu = Parser.parseItem<Menu>(data.actionMenu);
+      this.menu = Parser.parseItem(data.actionMenu, Menu);
     }
 
     if (data.actionButtons) {
-      this.action_buttons = Parser.parseItem<CommentActionButtons>(data.actionButtons);
+      this.action_buttons = Parser.parseItem(data.actionButtons, CommentActionButtons);
     }
 
     if (data.voteButton) {
-      this.vote_button = Parser.parseItem(data.voteButton);
+      this.vote_button = Parser.parseItem(data.voteButton, CommentActionButtons);
     }
 
     if (data.navigationEndpoint) {

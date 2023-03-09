@@ -4,7 +4,7 @@ import Author from './misc/Author.js';
 import { timeToSeconds } from '../../utils/Utils.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
-import type Menu from './menus/Menu.js';
+import Menu from './menus/Menu.js';
 import MetadataBadge from './MetadataBadge.js';
 
 import { YTNode } from '../helpers.js';
@@ -50,7 +50,7 @@ class CompactVideo extends YTNode {
 
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.menu = Parser.parseItem<Menu>(data.menu);
+    this.menu = Parser.parseItem(data.menu, Menu);
   }
 
   get best_thumbnail() {

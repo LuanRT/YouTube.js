@@ -4,7 +4,7 @@ import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
-import type Button from './Button.js';
+import Button from './Button.js';
 
 import { YTNode } from '../helpers.js';
 
@@ -49,7 +49,7 @@ class ChannelAboutFullMetadata extends YTNode {
     this.email_reveal = new NavigationEndpoint(data.onBusinessEmailRevealClickCommand);
     this.can_reveal_email = !data.signInForBusinessEmail;
     this.country = new Text(data.country);
-    this.buttons = Parser.parseArray<Button>(data.actionButtons);
+    this.buttons = Parser.parseArray(data.actionButtons, Button);
   }
 }
 

@@ -2,7 +2,7 @@ import Parser from '../index.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
-import type Menu from './menus/Menu.js';
+import Menu from './menus/Menu.js';
 import { YTNode } from '../helpers.js';
 
 class CompactChannel extends YTNode {
@@ -28,7 +28,7 @@ class CompactChannel extends YTNode {
     this.subscriber_count = new Text(data.subscriberCountText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.tv_banner = Thumbnail.fromResponse(data.tvBanner);
-    this.menu = Parser.parseItem<Menu>(data.menu);
+    this.menu = Parser.parseItem(data.menu, Menu);
   }
 }
 

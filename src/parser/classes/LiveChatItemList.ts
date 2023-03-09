@@ -1,6 +1,6 @@
 import Parser from '../index.js';
 import { YTNode } from '../helpers.js';
-import type Button from './Button.js';
+import Button from './Button.js';
 
 class LiveChatItemList extends YTNode {
   static type = 'LiveChatItemList';
@@ -11,7 +11,7 @@ class LiveChatItemList extends YTNode {
   constructor(data: any) {
     super();
     this.max_items_to_display = data.maxItemsToDisplay;
-    this.more_comments_below_button = Parser.parseItem<Button>(data.moreCommentsBelowButton);
+    this.more_comments_below_button = Parser.parseItem(data.moreCommentsBelowButton, Button);
   }
 }
 

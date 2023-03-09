@@ -38,7 +38,7 @@ class LiveChatTickerSponsorItem extends YTNode {
       is_verified_artist: null
     };
 
-    const badges = Parser.parseArray<LiveChatAuthorBadge | MetadataBadge>(data.authorBadges, [ MetadataBadge, LiveChatAuthorBadge ]);
+    const badges = Parser.parseArray(data.authorBadges, [ MetadataBadge, LiveChatAuthorBadge ]);
 
     this.author.badges = badges;
     this.author.is_moderator = badges ? badges.some((badge) => badge.icon_type == 'MODERATOR') : null;

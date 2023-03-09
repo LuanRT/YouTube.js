@@ -14,10 +14,10 @@ class HorizontalCardList extends YTNode {
 
   constructor(data: any) {
     super();
-    this.cards = Parser.parseArray<SearchRefinementCard | MacroMarkersListItem>(data.cards);
+    this.cards = Parser.parseArray(data.cards, [ SearchRefinementCard, MacroMarkersListItem ]);
     this.header = Parser.parseItem(data.header);
-    this.previous_button = Parser.parseItem<Button>(data.previousButton, Button);
-    this.next_button = Parser.parseItem<Button>(data.nextButton, Button);
+    this.previous_button = Parser.parseItem(data.previousButton, Button);
+    this.next_button = Parser.parseItem(data.nextButton, Button);
   }
 }
 

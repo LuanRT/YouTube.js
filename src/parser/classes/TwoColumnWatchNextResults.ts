@@ -4,7 +4,7 @@ import Text from './misc/Text.js';
 import PlaylistAuthor from './misc/PlaylistAuthor.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
-import type Menu from './menus/Menu.js';
+import Menu from './menus/Menu.js';
 
 type AutoplaySet = {
   autoplay_video: NavigationEndpoint,
@@ -49,7 +49,7 @@ class TwoColumnWatchNextResults extends YTNode {
         contents: Parser.parseArray(playlistData.contents),
         current_index: playlistData.currentIndex,
         is_infinite: !!playlistData.isInfinite,
-        menu: Parser.parseItem<Menu>(playlistData.menu)
+        menu: Parser.parseItem(playlistData.menu, Menu)
       };
     }
 

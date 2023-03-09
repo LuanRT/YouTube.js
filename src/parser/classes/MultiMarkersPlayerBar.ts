@@ -1,6 +1,6 @@
 import Parser from '../index.js';
-import type Chapter from './Chapter.js';
-import type Heatmap from './Heatmap.js';
+import Chapter from './Chapter.js';
+import Heatmap from './Heatmap.js';
 import type { RawNode } from '../index.js';
 
 import { observe, ObservedArray, YTNode } from '../helpers.js';
@@ -21,11 +21,11 @@ class Marker extends YTNode {
     this.value = {};
 
     if (data.value.heatmap) {
-      this.value.heatmap = Parser.parseItem<Heatmap>(data.value.heatmap);
+      this.value.heatmap = Parser.parseItem(data.value.heatmap, Heatmap);
     }
 
     if (data.value.chapters) {
-      this.value.chapters = Parser.parseArray<Chapter>(data.value.chapters);
+      this.value.chapters = Parser.parseArray(data.value.chapters, Chapter);
     }
   }
 }

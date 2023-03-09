@@ -32,9 +32,9 @@ class ExpandableMetadata extends YTNode {
       expanded_title: new Text(data.header.expandedTitle)
     };
 
-    this.expanded_content = Parser.parseItem<HorizontalCardList>(data.expandedContent);
-    this.expand_button = Parser.parseItem<Button>(data.expandButton);
-    this.collapse_button = Parser.parseItem<Button>(data.collapseButton);
+    this.expanded_content = Parser.parseItem(data.expandedContent, HorizontalCardList);
+    this.expand_button = Parser.parseItem(data.expandButton, Button);
+    this.collapse_button = Parser.parseItem(data.collapseButton, Button);
   }
 }
 

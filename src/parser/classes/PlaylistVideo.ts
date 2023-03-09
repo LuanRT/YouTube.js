@@ -4,7 +4,7 @@ import Thumbnail from './misc/Thumbnail.js';
 import PlaylistAuthor from './misc/PlaylistAuthor.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import ThumbnailOverlayTimeStatus from './ThumbnailOverlayTimeStatus.js';
-import type Menu from './menus/Menu.js';
+import Menu from './menus/Menu.js';
 
 import { YTNode } from '../helpers.js';
 
@@ -39,7 +39,7 @@ class PlaylistVideo extends YTNode {
     this.set_video_id = data?.setVideoId;
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.is_playable = data.isPlayable;
-    this.menu = Parser.parseItem<Menu>(data.menu);
+    this.menu = Parser.parseItem(data.menu, Menu);
 
     const upcoming = data.upcomingEventData && Number(`${data.upcomingEventData.startTime}000`);
     if (upcoming) {

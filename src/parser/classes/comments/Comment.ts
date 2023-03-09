@@ -6,10 +6,10 @@ import CommentReplyDialog from './CommentReplyDialog.js';
 import AuthorCommentBadge from './AuthorCommentBadge.js';
 import Author from '../misc/Author.js';
 
-import type Menu from '../menus/Menu.js';
-import type CommentActionButtons from './CommentActionButtons.js';
-import type SponsorCommentBadge from './SponsorCommentBadge.js';
-import type PdgCommentChip from './PdgCommentChip.js';
+import Menu from '../menus/Menu.js';
+import CommentActionButtons from './CommentActionButtons.js';
+import SponsorCommentBadge from './SponsorCommentBadge.js';
+import PdgCommentChip from './PdgCommentChip.js';
 import type { ApiResponse } from '../../../core/Actions.js';
 import type Actions from '../../../core/Actions.js';
 
@@ -51,9 +51,9 @@ class Comment extends YTNode {
     this.published = new Text(data.publishedTimeText);
     this.author_is_channel_owner = data.authorIsChannelOwner;
     this.current_user_reply_thumbnail = Thumbnail.fromResponse(data.currentUserReplyThumbnail);
-    this.sponsor_comment_badge = Parser.parseItem<SponsorCommentBadge>(data.sponsorCommentBadge);
-    this.paid_comment_chip = Parser.parseItem<PdgCommentChip>(data.paidCommentChipRenderer);
-    this.author_badge = Parser.parseItem<AuthorCommentBadge>(data.authorCommentBadge, AuthorCommentBadge);
+    this.sponsor_comment_badge = Parser.parseItem(data.sponsorCommentBadge, SponsorCommentBadge);
+    this.paid_comment_chip = Parser.parseItem(data.paidCommentChipRenderer, PdgCommentChip);
+    this.author_badge = Parser.parseItem(data.authorCommentBadge, AuthorCommentBadge);
 
     this.author = new Author({
       ...data.authorText,
@@ -62,8 +62,8 @@ class Comment extends YTNode {
       metadataBadgeRenderer: this.author_badge?.orig_badge
     } ] : null, data.authorThumbnail);
 
-    this.action_menu = Parser.parseItem<Menu>(data.actionMenu);
-    this.action_buttons = Parser.parseItem<CommentActionButtons>(data.actionButtons);
+    this.action_menu = Parser.parseItem(data.actionMenu, Menu);
+    this.action_buttons = Parser.parseItem(data.actionButtons, CommentActionButtons);
     this.comment_id = data.commentId;
     this.vote_status = data.voteStatus;
 

@@ -20,14 +20,14 @@ class VideoSecondaryInfo extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.owner = Parser.parseItem<VideoOwner>(data.owner);
+    this.owner = Parser.parseItem(data.owner, VideoOwner);
     this.description = new Text(data.description);
 
     if (Reflect.has(data, 'attributedDescription')) {
       this.description = new Text(this.#convertAttributedDescriptionToRuns(data.attributedDescription));
     }
 
-    this.subscribe_button = Parser.parseItem<SubscribeButton | Button>(data.subscribeButton, [ SubscribeButton, Button ]);
+    this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     this.metadata = Parser.parseItem<MetadataRowContainer>(data.metadataRowContainer, MetadataRowContainer);
     this.show_more_text = data.showMoreText;
     this.show_less_text = data.showLessText;

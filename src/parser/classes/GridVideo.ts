@@ -4,7 +4,7 @@ import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Author from './misc/Author.js';
 
-import type Menu from './menus/Menu.js';
+import Menu from './menus/Menu.js';
 
 import { YTNode } from '../helpers.js';
 
@@ -38,7 +38,7 @@ class GridVideo extends YTNode {
     this.views = new Text(data.viewCountText);
     this.short_view_count = new Text(data.shortViewCountText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.menu = Parser.parseItem<Menu>(data.menu);
+    this.menu = Parser.parseItem(data.menu, Menu);
   }
 }
 
