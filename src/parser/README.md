@@ -29,6 +29,7 @@ Structure:
     </ul>
   </li>
   <li><a href="#adding-new-nodes">Adding new nodes</a></li>
+  <li><a href="#generating-nodes-at-runtime">Generating nodes at runtime</a></li>
   <li><a href="#how-it-works">How it works</a></li>
 </ol>
 
@@ -257,6 +258,51 @@ const videos = response.contents_memo.getType(Video);
 
 ## Adding new nodes
 Instructions can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/docs/updating-the-parser.md).
+
+## Generating nodes at runtime
+YouTube constantly updates their client, and sometimes they add new nodes to the response. The parser needs to know about these new nodes in order to parse them correctly. Once a new node is dicovered by the parser, it will attempt to generate a new node class for it.
+
+Using our existing `YTNode` class, you may interact with these new nodes in a type-safe way, however will not be able to cast them to the node's specific type, as this requires the node to be defined at compile-time.
+
+The current implementation recognises the following values:
+- Renderers
+- Renderer arrays
+- Text
+- Navigation endpoints
+- Author (does not currently detect the author thumbnails)
+- Thumbnails
+- Objects (key-value pairs)
+- Primatives (string, number, boolean, etc.)
+
+This may be expanded in the future.
+
+At runtime, these JIT generated nodes will revalidate themselves when constructed, so that when the types changes, the node will be re-generated.
+
+You may also generate your own nodes ahead of time, given you have an example of one of the nodes.
+
+```ts
+import { Generator } from "youtube.js";
+
+// Provided you have an example of the node `Example`
+const example_data = {
+  "title": {
+    "runs": [
+      {
+        "text": "Example"
+      }
+    ]
+  }
+}
+
+// The first argument is the name of the class, the second is the data you have for the node.
+// It will return a class that extends YTNode.
+const Example = Generator.YTNodeGenerator.generateRuntimeClass('Example', example_data);
+
+// You may now use this class as you would any other node.
+const example = new Example(example_data);
+
+const title = example.key('title').instanceof(Text).toString();
+```
 
 ## How it works
 

@@ -7,5 +7,6 @@ export * as YT from './youtube/index.js';
 export * as YTMusic from './ytmusic/index.js';
 export * as YTKids from './ytkids/index.js';
 export * as Helpers from './helpers.js';
+export * as Generator from './generator.js';
 import Parser from './parser.js';
 export default Parser;
