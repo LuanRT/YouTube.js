@@ -69,6 +69,7 @@ export { default as CompactStation } from './classes/CompactStation.js';
 export { default as CompactVideo } from './classes/CompactVideo.js';
 export { default as ConfirmDialog } from './classes/ConfirmDialog.js';
 export { default as ContinuationItem } from './classes/ContinuationItem.js';
+export { default as ConversationBar } from './classes/ConversationBar.js';
 export { default as CopyLink } from './classes/CopyLink.js';
 export { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.js';
 export { default as DecoratedPlayerBar } from './classes/DecoratedPlayerBar.js';
