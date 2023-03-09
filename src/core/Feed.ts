@@ -72,7 +72,7 @@ class Feed<T extends IParsedResponse = IParsedResponse> {
    * Get all videos on a given page via memo
    */
   static getVideosFromMemo(memo: Memo) {
-    return memo.getType<Video | GridVideo | ReelItem | CompactVideo | PlaylistVideo | PlaylistPanelVideo | WatchCardCompactVideo>([
+    return memo.getType(
       Video,
       GridVideo,
       ReelItem,
@@ -80,14 +80,14 @@ class Feed<T extends IParsedResponse = IParsedResponse> {
       PlaylistVideo,
       PlaylistPanelVideo,
       WatchCardCompactVideo
-    ]);
+    );
   }
 
   /**
    * Get all playlists on a given page via memo
    */
   static getPlaylistsFromMemo(memo: Memo) {
-    return memo.getType<Playlist | GridPlaylist>([ Playlist, GridPlaylist ]);
+    return memo.getType(Playlist, GridPlaylist);
   }
 
   /**
@@ -101,14 +101,14 @@ class Feed<T extends IParsedResponse = IParsedResponse> {
    * Get all the community posts in the feed
    */
   get posts() {
-    return this.#memo.getType<Post | BackstagePost | SharedPost>([ BackstagePost, Post, SharedPost ]);
+    return this.#memo.getType(BackstagePost, Post, SharedPost);
   }
 
   /**
    * Get all the channels in the feed
    */
   get channels() {
-    return this.#memo.getType<Channel | GridChannel>([ Channel, GridChannel ]);
+    return this.#memo.getType(Channel, GridChannel);
   }
 
   /**
@@ -137,7 +137,7 @@ class Feed<T extends IParsedResponse = IParsedResponse> {
    * Returns all segments/sections from the page.
    */
   get shelves() {
-    return this.#memo.getType<Shelf | RichShelf | ReelShelf>([ Shelf, RichShelf, ReelShelf ]);
+    return this.#memo.getType(Shelf, RichShelf, ReelShelf);
   }
 
   /**
