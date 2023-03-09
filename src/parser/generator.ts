@@ -66,9 +66,20 @@ export class YTNodeGenerator {
   static #logChangedKeys(classname: string, key_info: KeyInfo, changed_keys: KeyInfo) {
     console.warn(`${classname} changed!\nThe following keys where altered: ${changed_keys.map(([ key ]) => this.#camelToSnake(key)).join(', ')}\nThe class has changed to:\n${this.generateTypescriptClass(classname, key_info)}`);
   }
+  /**
+   * Is this key ignored by the parser?
+   * @param key - The key to check
+   * @returns Whether or not the key is ignored
+   */
   static isIgnoredKey(key: string | symbol) {
     return typeof key === 'string' && this.#ignored_keys.has(key);
   }
+  /**
+   * Merges two sets of key info, resolving any conflicts
+   * @param key_info - The current key info
+   * @param new_key_info - The new key info
+   * @returns The merged key info
+   */
   static mergeKeyInfo(key_info: KeyInfo, new_key_info: KeyInfo) {
     const changed_keys = new Map<string, InferenceType>();
     const current_keys = new Set(key_info.map(([ key ]) => key));
@@ -222,6 +233,12 @@ export class YTNodeGenerator {
       changed_keys: [ ...changed_keys.entries() ]
     };
   }
+  /**
+   * Given a classname and its resolved key info, create a new class
+   * @param classname - The name of the class
+   * @param key_info - The resolved key info
+   * @returns Class based on the key info extending YTNode
+   */
   static createRuntimeClass(classname: string, key_info: KeyInfo): YTNodeConstructor {
     this.#logNewClass(classname, key_info);
     const node = class extends YTNode {
@@ -267,6 +284,11 @@ export class YTNodeGenerator {
     Object.defineProperty(node, 'name', { value: classname, writable: false });
     return node;
   }
+  /**
+   * Introspect an example of a class in order to determine its key info and dependencies
+   * @param classdata - The example of the class
+   * @returns The key info and any unimplemented dependencies
+   */
   static introspect(classdata: string) {
     const key_info = this.#introspect(classdata);
     const dependencies = new Map<string, any>();
@@ -285,6 +307,12 @@ export class YTNodeGenerator {
       unimplemented_dependencies
     };
   }
+  /**
+   * Given example data for a class, introspect, implement dependencies, and create a new class
+   * @param classname - The name of the class
+   * @param classdata - The example of the class
+   * @returns Class based on the example classdata extending YTNode
+   */
   static generateRuntimeClass(classname: string, classdata: any) {
     const {
       key_info,
@@ -299,6 +327,12 @@ export class YTNodeGenerator {
 
     return JITNode;
   }
+  /**
+   * Generate a typescript class based on the key info
+   * @param classname - The name of the class
+   * @param key_info - The key info, as returned by {@link YTNodeGenerator.introspect}
+   * @returns Typescript class file
+   */
   static generateTypescriptClass(classname: string, key_info: KeyInfo) {
     const props: string[] = [];
     const constructor_lines = [
@@ -313,6 +347,12 @@ export class YTNodeGenerator {
     }
     return `class ${classname} extends YTNode {\n  static type = '${classname}';\n\n  ${props.join('\n  ')}\n\n  constructor(data: RawNode) {\n    ${constructor_lines.join('\n    ')}\n  }\n}\n`;
   }
+  /**
+   * For a given inference type, get the typescript type declaration
+   * @param inference_type - The inference type to get the declaration for
+   * @param indentation - The indentation level (used for objects)
+   * @returns Typescript type declaration
+   */
   static toTypeDeclaration(inference_type: InferenceType, indentation = 0): string {
     switch (inference_type.type) {
       case 'renderer':
@@ -341,6 +381,14 @@ export class YTNodeGenerator {
         return '/* TODO: determine correct type */ unknown';
     }
   }
+  /**
+   * Generate statements to parse a given inference type
+   * @param key - The key to parse
+   * @param inference_type - The inference type to parse
+   * @param key_path - The path to the key (excluding the key itself)
+   * @param indentation - The indentation level (used for objects)
+   * @returns Statement to parse the given key
+   */
   static toParser(key: string, inference_type: InferenceType, key_path: string[] = [ 'data' ], indentation = 1) {
     let parser = 'undefined';
     switch (inference_type.type) {
@@ -403,6 +451,14 @@ export class YTNodeGenerator {
         data = data[key];
     return true;
   }
+  /**
+   * Parse a value from a given key path using the given inference type
+   * @param key - The key to parse
+   * @param inference_type - The inference type to parse
+   * @param data - The data to parse from
+   * @param key_path - The path to the key (excluding the key itself)
+   * @returns The parsed value
+   */
   static parse(key: string, inference_type: InferenceType, data: any, key_path: string[] = [ 'data' ]) {
     const should_optional = !inference_type.optional || this.#hasDataFromKeyPath({data}, [ ...key_path, key ]);
     switch (inference_type.type) {
@@ -521,6 +577,12 @@ export class YTNodeGenerator {
     const key_info = this.#passOne(classdata);
     return this.#passTwo(key_info);
   }
+  /**
+   * Infer the type of a key given its value
+   * @param key - The key to infer the type of
+   * @param value - The value of the key
+   * @returns The inferred type
+   */
   static inferType(key: string, value: any): InferenceType {
     let return_value: string | Record<string, any> | boolean | MiscInferenceType = false;
     if (return_value = this.isRenderer(value)) {
@@ -557,6 +619,12 @@ export class YTNodeGenerator {
       optional: false
     };
   }
+  /**
+   * Checks if the given value is a array of renderers
+   * @param value - The value to check
+   * @returns If it is a renderer list, return an object with keys being the classnames, and values being an example of that class.
+   * Otherwise, return false.
+   */
   static isRendererList(value: any) {
     const arr = Array.isArray(value);
     const is_list = arr && value.every((item) => this.isRenderer(item));
@@ -569,6 +637,12 @@ export class YTNodeGenerator {
         false
     );
   }
+  /**
+   * Check if the given value is a misc type.
+   * @param key - The key of the value
+   * @param value - The value to check
+   * @returns If it is a misc type, return the InferenceType. Otherwise, return false.
+   */
   static isMiscType(key: string, value: any): MiscInferenceType | false {
     // NavigationEndpoint
     if ((key.endsWith('Endpoint') || key.endsWith('Command') || key === 'endpoint') && typeof value === 'object') {
@@ -600,6 +674,11 @@ export class YTNodeGenerator {
     }
     return false;
   }
+  /**
+   * Check if the given value is a renderer
+   * @param value - The value to check
+   * @returns If it is a renderer, return the class name. Otherwise, return false.
+   */
   static isRenderer(value: any) {
     const is_object = typeof value === 'object';
     if (!is_object) return false;
