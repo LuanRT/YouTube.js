@@ -1,8 +1,8 @@
 import { YTNode } from '../helpers.ts';
-import { Menu } from '../map.ts';
 import Parser from '../parser.ts';
 import BackstagePost from './BackstagePost.ts';
 import Button from './Button.ts';
+import Menu from './menus/Menu.ts';
 import Author from './misc/Author.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';

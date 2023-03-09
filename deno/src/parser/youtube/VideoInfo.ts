@@ -20,6 +20,7 @@ import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.ts';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.ts';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.ts';
 import LiveChatWrap from './LiveChat.ts';
+import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
 import type CardCollection from '../classes/CardCollection.ts';
 import type Endscreen from '../classes/Endscreen.ts';
@@ -60,6 +61,7 @@ class VideoInfo {
 
   primary_info?: VideoPrimaryInfo | null;
   secondary_info?: VideoSecondaryInfo | null;
+  playlist?;
   game_info?;
   merchandise?: MerchandiseShelf | null;
   related_chip_cloud?: ChipCloud | null;
@@ -67,6 +69,7 @@ class VideoInfo {
   player_overlays?: PlayerOverlay | null;
   comments_entry_point_header?: CommentsEntryPointHeader | null;
   livechat?: LiveChat | null;
+  autoplay?;
 
   /**
    * @param data - API response.
@@ -141,12 +144,20 @@ class VideoInfo {
       this.merchandise = results.firstOfType(MerchandiseShelf);
       this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.item().as(ChipCloud);
 
+      if (two_col?.playlist) {
+        this.playlist = two_col.playlist;
+      }
+
       this.watch_next_feed = secondary_results.firstOfType(ItemSection)?.contents || secondary_results;
 
       if (this.watch_next_feed && Array.isArray(this.watch_next_feed) && this.watch_next_feed.at(-1)?.is(ContinuationItem))
         this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
 
       this.player_overlays = next?.player_overlays?.item().as(PlayerOverlay);
+
+      if (two_col?.autoplay) {
+        this.autoplay = two_col.autoplay;
+      }
 
       const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
 
@@ -375,6 +386,13 @@ class VideoInfo {
    */
   get wn_has_continuation(): boolean {
     return !!this.#watch_next_continuation;
+  }
+
+  /**
+   * Gets the endpoint of the autoplay video
+   */
+  get autoplay_video_endpoint(): NavigationEndpoint | null {
+    return this.autoplay?.sets?.[0]?.autoplay_video || null;
   }
 
   /**

@@ -1,6 +1,7 @@
 import Parser from '../index.ts';
 import type Chapter from './Chapter.ts';
 import type Heatmap from './Heatmap.ts';
+import type { RawNode } from '../index.ts';
 
 import { observe, ObservedArray, YTNode } from '../helpers.ts';
 
@@ -13,7 +14,7 @@ class Marker extends YTNode {
     chapters?: Chapter[];
   };
 
-  constructor (data: any) {
+  constructor (data: RawNode) {
     super();
     this.marker_key = data.key;
 
@@ -34,9 +35,12 @@ class MultiMarkersPlayerBar extends YTNode {
 
   markers_map: ObservedArray<Marker>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.markers_map = observe(data.markersMap?.map((marker: { key: string; value: { [key: string ]: any }}) => new Marker(marker)));
+    this.markers_map = observe(data.markersMap?.map((marker: {
+      key: string;
+      value: { [key: string ]: any
+    }}) => new Marker(marker)) || []);
   }
 }
 

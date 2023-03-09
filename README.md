@@ -248,7 +248,7 @@ const yt = await Innertube.create({
   <summary>Methods</summary>
   <p>
   
-  * [.getInfo(video_id, client?)](#getinfo)
+  * [.getInfo(target, client?)](#getinfo)
   * [.getBasicInfo(video_id, client?)](#getbasicinfo)
   * [.search(query, filters?)](#search)
   * [.getSearchSuggestions(query)](#getsearchsuggestions)
@@ -273,7 +273,7 @@ const yt = await Innertube.create({
   </details> 
 
 <a name="getinfo"></a>
-### getInfo(video_id, client?)
+### getInfo(target, client?)
 
 Retrieves video info, including playback data and even layout elements such as menus, buttons, etc — all nicely parsed.
 
@@ -281,7 +281,7 @@ Retrieves video info, including playback data and even layout elements such as m
 
 | Param | Type | Description |
 | --- | --- | --- |
-| video_id | `string` | The id of the video |
+| target | `string` \| `NavigationEndpoint` | If `string`, the id of the video. If `NavigationEndpoint`, the endpoint of watchable elements such as `Video`, `Mix` and `Playlist`. To clarify, valid endpoints have payloads containing at least `videoId` and optionally `playlistId`, `params` and `index`. |
 | client? | `InnerTubeClient` | `WEB`, `ANDROID`, `YTMUSIC`, `YTMUSIC_ANDROID` or `TV_EMBEDDED` |
 
 <details>
@@ -320,6 +320,9 @@ Retrieves video info, including playback data and even layout elements such as m
 
 - `<info>#addToWatchHistory()`
   - Adds the video to the watch history.
+
+- `<info>#autoplay_video_endpoint`
+  - Returns the endpoint of the video for Autoplay.
 
 - `<info>#page`
   - Returns original InnerTube response (sanitized).

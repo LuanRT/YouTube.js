@@ -4,7 +4,7 @@ import Actions from './Actions.ts';
 import Player from './Player.ts';
 
 import HTTPClient from '../utils/HTTPClient.ts';
-import { Platform, DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils.ts';
+import { Platform, DeviceCategory, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils.ts';
 import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.ts';
 import Proto from '../proto/index.ts';
 import { ICache } from '../types/Cache.ts';
@@ -232,7 +232,7 @@ export default class Session extends EventEmitterLike {
         'user-agent': getRandomUserAgent('desktop'),
         'accept': '*/*',
         'referer': 'https://www.youtube.com/sw.js',
-        'cookie': `PREF=tz=${options.time_zone.replace('/', '.')}`
+        'cookie': `PREF=tz=${options.time_zone.replace('/', '.')};VISITOR_INFO1_LIVE=${Constants.CLIENTS.WEB.STATIC_VISITOR_ID};`
       }
     });
 
@@ -294,7 +294,7 @@ export default class Session extends EventEmitterLike {
     client_name: string;
     enable_safety_mode: boolean
   }): SessionData {
-    const id = generateRandomString(11);
+    const id = Constants.CLIENTS.WEB.STATIC_VISITOR_ID;
     const timestamp = Math.floor(Date.now() / 1000);
 
     const context: Context = {
