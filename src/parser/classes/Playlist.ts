@@ -2,7 +2,7 @@ import Text from './misc/Text.js';
 import Parser from '../index.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
-import PlaylistAuthor from './misc/PlaylistAuthor.js';
+import Author from './misc/Author.js';
 import { YTNode } from '../helpers.js';
 
 class Playlist extends YTNode {
@@ -10,7 +10,7 @@ class Playlist extends YTNode {
 
   id: string;
   title: Text;
-  author: Text | PlaylistAuthor;
+  author: Text | Author;
   thumbnails: Thumbnail[];
   video_count: Text;
   video_count_short: Text;
@@ -28,7 +28,7 @@ class Playlist extends YTNode {
 
     this.author = data.shortBylineText?.simpleText ?
       new Text(data.shortBylineText) :
-      new PlaylistAuthor(data.longBylineText, data.ownerBadges, null);
+      new Author(data.longBylineText, data.ownerBadges, null);
 
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail || { thumbnails: data.thumbnails.map((th: any) => th.thumbnails).flat(1) });
     this.video_count = new Text(data.thumbnailText);

@@ -1,17 +1,17 @@
 import Text from './misc/Text.js';
 import Parser from '../index.js';
 import Thumbnail from './misc/Thumbnail.js';
-import PlaylistAuthor from './misc/PlaylistAuthor.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import NavigatableText from './misc/NavigatableText.js';
 import { YTNode } from '../helpers.js';
+import Author from './misc/Author.js';
 
 class GridPlaylist extends YTNode {
   static type = 'GridPlaylist';
 
   id: string;
   title: Text;
-  author?: PlaylistAuthor;
+  author?: Author;
   badges;
   endpoint: NavigationEndpoint;
   view_playlist: NavigatableText;
@@ -27,7 +27,7 @@ class GridPlaylist extends YTNode {
     this.title = new Text(data.title);
 
     if (data.shortBylineText) {
-      this.author = new PlaylistAuthor(data.shortBylineText, data.ownerBadges);
+      this.author = new Author(data.shortBylineText, data.ownerBadges);
     }
 
     this.badges = Parser.parse(data.ownerBadges);

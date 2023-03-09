@@ -1,7 +1,7 @@
 import Parser from '../index.js';
 import { YTNode } from '../helpers.js';
 import Text from './misc/Text.js';
-import PlaylistAuthor from './misc/PlaylistAuthor.js';
+import Author from './misc/Author.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
 import Menu from './menus/Menu.js';
@@ -20,7 +20,7 @@ class TwoColumnWatchNextResults extends YTNode {
   playlist?: {
     id: string,
     title: string,
-    author: Text | PlaylistAuthor,
+    author: Text | Author,
     contents: YTNode[],
     current_index: number,
     is_infinite: boolean,
@@ -45,7 +45,7 @@ class TwoColumnWatchNextResults extends YTNode {
         title: playlistData.title,
         author: playlistData.shortBylineText?.simpleText ?
           new Text(playlistData.shortBylineText) :
-          new PlaylistAuthor(playlistData.longBylineText),
+          new Author(playlistData.longBylineText),
         contents: Parser.parseArray(playlistData.contents),
         current_index: playlistData.currentIndex,
         is_infinite: !!playlistData.isInfinite,

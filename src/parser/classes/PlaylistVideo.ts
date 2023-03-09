@@ -1,7 +1,7 @@
 import Text from './misc/Text.js';
 import Parser from '../index.js';
 import Thumbnail from './misc/Thumbnail.js';
-import PlaylistAuthor from './misc/PlaylistAuthor.js';
+import Author from './misc/Author.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import ThumbnailOverlayTimeStatus from './ThumbnailOverlayTimeStatus.js';
 import Menu from './menus/Menu.js';
@@ -14,7 +14,7 @@ class PlaylistVideo extends YTNode {
   id: string;
   index: Text;
   title: Text;
-  author: PlaylistAuthor;
+  author: Author;
   thumbnails: Thumbnail[];
   thumbnail_overlays;
   set_video_id: string | undefined;
@@ -33,7 +33,7 @@ class PlaylistVideo extends YTNode {
     this.id = data.videoId;
     this.index = new Text(data.index);
     this.title = new Text(data.title);
-    this.author = new PlaylistAuthor(data.shortBylineText);
+    this.author = new Author(data.shortBylineText);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.set_video_id = data?.setVideoId;

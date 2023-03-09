@@ -375,7 +375,6 @@ import { default as ChildElement } from './classes/misc/ChildElement.js';
 import { default as EmojiRun } from './classes/misc/EmojiRun.js';
 import { default as Format } from './classes/misc/Format.js';
 import { default as NavigatableText } from './classes/misc/NavigatableText.js';
-import { default as PlaylistAuthor } from './classes/misc/PlaylistAuthor.js';
 import { default as Text } from './classes/misc/Text.js';
 import { default as TextRun } from './classes/misc/TextRun.js';
 import { default as Thumbnail } from './classes/misc/Thumbnail.js';
@@ -1027,7 +1026,6 @@ export const Misc = {
   EmojiRun,
   Format,
   NavigatableText,
-  PlaylistAuthor,
   Text,
   TextRun,
   Thumbnail,
