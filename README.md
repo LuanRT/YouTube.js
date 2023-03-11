@@ -300,6 +300,9 @@ Retrieves video info, including playback data and even layout elements such as m
 - `<info>#getLiveChat()`
   - Returns a LiveChat instance.
 
+- `<info>#getTrailerInfo()`
+  - Returns trailer info in a new `VideoInfo` instance, or `null` if none. Typically available for non-purchased movies or films.
+
 - `<info>#chooseFormat(options)`
   - Used to choose streaming data formats.
 
@@ -323,6 +326,9 @@ Retrieves video info, including playback data and even layout elements such as m
 
 - `<info>#autoplay_video_endpoint`
   - Returns the endpoint of the video for Autoplay.
+
+- `<info>#has_trailer`
+  - Checks if trailer is available.
 
 - `<info>#page`
   - Returns original InnerTube response (sanitized).
