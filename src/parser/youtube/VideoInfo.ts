@@ -21,6 +21,7 @@ import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.js';
 import LiveChatWrap from './LiveChat.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.js';
 
 import type CardCollection from '../classes/CardCollection.js';
 import type Endscreen from '../classes/Endscreen.js';
@@ -335,6 +336,20 @@ class VideoInfo {
   }
 
   /**
+   * Retrieves trailer info if available (typically for non-purchased movies or films).
+   * @returns `VideoInfo` for the trailer, or `null` if none.
+   */
+  getTrailerInfo(): VideoInfo | null {
+    if (this.has_trailer) {
+      const player_response = this.playability_status.error_screen?.as(PlayerLegacyDesktopYpcTrailer).trailer?.player_response;
+      if (player_response) {
+        return new VideoInfo([ { data: player_response } as ApiResponse ], this.#actions, this.#player, this.#cpn);
+      }
+    }
+    return null;
+  }
+
+  /**
    * Selects the format that best matches the given options.
    * @param options - Options
    */
@@ -393,6 +408,13 @@ class VideoInfo {
    */
   get autoplay_video_endpoint(): NavigationEndpoint | null {
     return this.autoplay?.sets?.[0]?.autoplay_video || null;
+  }
+
+  /**
+   * Checks if trailer is available.
+   */
+  get has_trailer(): boolean {
+    return !!this.playability_status.error_screen?.is(PlayerLegacyDesktopYpcTrailer);
   }
 
   /**
