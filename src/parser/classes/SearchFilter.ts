@@ -9,13 +9,26 @@ class SearchFilter extends YTNode {
   label: Text;
   endpoint: NavigationEndpoint;
   tooltip: string;
+  status?: string;
 
   constructor(data: RawNode) {
     super();
 
     this.label = new Text(data.label);
-    this.endpoint = new NavigationEndpoint(data.endpoint);
+    this.endpoint = new NavigationEndpoint(data.endpoint || data.navigationEndpoint);
     this.tooltip = data.tooltip;
+
+    if (data.status) {
+      this.status = data.status;
+    }
+  }
+
+  get disabled(): boolean {
+    return this.status === 'FILTER_STATUS_DISABLED';
+  }
+
+  get selected(): boolean {
+    return this.status === 'FILTER_STATUS_SELECTED';
   }
 }
 
