@@ -73,8 +73,8 @@ class VideoInfo {
    * @param format_filter - Function to filter the formats.
    * @returns DASH manifest
    */
-  toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter): string {
-    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player);
+  async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter): Promise<string> {
+    return await FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions);
   }
 
   /**
