@@ -19,7 +19,7 @@ class C4TabbedHeader extends YTNode {
   subscribers?: Text;
   videos_count?: Text;
   sponsor_button?: Button | null;
-  subscribe_button?: SubscribeButton | null;
+  subscribe_button?: SubscribeButton | Button | null;
   header_links?: ChannelHeaderLinks | null;
   channel_handle?: Text;
   channel_id?: string;
@@ -56,7 +56,7 @@ class C4TabbedHeader extends YTNode {
     }
 
     if (data.subscribeButton) {
-      this.subscribe_button = Parser.parseItem(data.subscribeButton, SubscribeButton);
+      this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     }
 
     if (data.headerLinks) {
