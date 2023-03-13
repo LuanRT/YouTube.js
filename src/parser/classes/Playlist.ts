@@ -20,6 +20,7 @@ class Playlist extends YTNode {
   badges;
   endpoint: NavigationEndpoint;
   thumbnail_overlays;
+  view_playlist?: Text;
 
   constructor(data: any) {
     super();
@@ -39,6 +40,10 @@ class Playlist extends YTNode {
     this.badges = Parser.parseArray(data.ownerBadges);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
+
+    if (data.viewPlaylistText) {
+      this.view_playlist = new Text(data.viewPlaylistText);
+    }
   }
 }
 
