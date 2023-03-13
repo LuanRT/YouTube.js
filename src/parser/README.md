@@ -278,10 +278,24 @@ This may be expanded in the future.
 
 At runtime, these JIT-generated nodes will revalidate themselves when constructed so that when the types change, the node will be re-generated.
 
+To access these nodes that have been generated at runtime, you may use the `Parser.getParserByName(name: string)` method. You may also check if a parser has been generated for a node by using the `Parser.hasParser(name: string)` method.
+
+```ts
+import { Parser } from "youtubei.js";
+
+// We may check if we have a parser for a node.
+if (Parser.hasParser('Example')) {
+  // Then retrieve it.
+  const Example = Parser.getParserByName('Example');
+  // We may then use the parser as normal.
+  const example = new Example(data);
+}
+```
+
 You may also generate your own nodes ahead of time, given you have an example of one of the nodes.
 
 ```ts
-import { Generator } from "youtube.js";
+import { Generator } from "youtubei.js";
 
 // Provided you have an example of the node `Example`
 const example_data = {
