@@ -5,6 +5,7 @@ import type { RawNode } from '../../index.js';
 class Format {
   itag: number;
   mime_type: string;
+  is_type_otf: boolean;
   bitrate: number;
   average_bitrate: number;
   width: number;
@@ -48,6 +49,7 @@ class Format {
   constructor(data: RawNode) {
     this.itag = data.itag;
     this.mime_type = data.mimeType;
+    this.is_type_otf = data.type === 'FORMAT_STREAM_TYPE_OTF';
     this.bitrate = data.bitrate;
     this.average_bitrate = data.averageBitrate;
     this.width = data.width || undefined;

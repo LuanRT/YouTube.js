@@ -36,7 +36,7 @@ export class MediaInfo {
    * @param format_filter - Function to filter the formats.
    * @returns DASH manifest
    */
-  toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter): string {
+  async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter): Promise<string> {
     return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player);
   }
 
@@ -90,7 +90,7 @@ export class MediaInfo {
   /**
    * Content Playback Nonce.
    */
-  get cpn(): string | undefined {
+  get cpn(): string {
     return this.#cpn;
   }
 

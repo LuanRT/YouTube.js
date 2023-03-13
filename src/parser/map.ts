@@ -194,6 +194,8 @@ import { default as GridChannel } from './classes/GridChannel.js';
 export { GridChannel };
 import { default as GridHeader } from './classes/GridHeader.js';
 export { GridHeader };
+import { default as GridMovie } from './classes/GridMovie.js';
+export { GridMovie };
 import { default as GridPlaylist } from './classes/GridPlaylist.js';
 export { GridPlaylist };
 import { default as GridVideo } from './classes/GridVideo.js';
@@ -226,8 +228,14 @@ import { default as HorizontalCardList } from './classes/HorizontalCardList.js';
 export { HorizontalCardList };
 import { default as HorizontalList } from './classes/HorizontalList.js';
 export { HorizontalList };
+import { default as HorizontalMovieList } from './classes/HorizontalMovieList.js';
+export { HorizontalMovieList };
 import { default as IconLink } from './classes/IconLink.js';
 export { IconLink };
+import { default as InfoPanelContainer } from './classes/InfoPanelContainer.js';
+export { InfoPanelContainer };
+import { default as InfoPanelContent } from './classes/InfoPanelContent.js';
+export { InfoPanelContent };
 import { default as InteractiveTabbedHeader } from './classes/InteractiveTabbedHeader.js';
 export { InteractiveTabbedHeader };
 import { default as ItemSection } from './classes/ItemSection.js';
@@ -451,6 +459,8 @@ import { default as PlayerErrorMessage } from './classes/PlayerErrorMessage.js';
 export { PlayerErrorMessage };
 import { default as PlayerLegacyDesktopYpcOffer } from './classes/PlayerLegacyDesktopYpcOffer.js';
 export { PlayerLegacyDesktopYpcOffer };
+import { default as PlayerLegacyDesktopYpcTrailer } from './classes/PlayerLegacyDesktopYpcTrailer.js';
+export { PlayerLegacyDesktopYpcTrailer };
 import { default as PlayerLiveStoryboardSpec } from './classes/PlayerLiveStoryboardSpec.js';
 export { PlayerLiveStoryboardSpec };
 import { default as PlayerMicroformat } from './classes/PlayerMicroformat.js';
@@ -673,6 +683,8 @@ import { default as WatchNextEndScreen } from './classes/WatchNextEndScreen.js';
 export { WatchNextEndScreen };
 import { default as WatchNextTabbedResults } from './classes/WatchNextTabbedResults.js';
 export { WatchNextTabbedResults };
+import { default as YpcTrailer } from './classes/YpcTrailer.js';
+export { YpcTrailer };
 import { default as AnchoredSection } from './classes/ytkids/AnchoredSection.js';
 export { AnchoredSection };
 import { default as KidsCategoriesHeader } from './classes/ytkids/KidsCategoriesHeader.js';
@@ -779,6 +791,7 @@ const map: Record<string, YTNodeConstructor> = {
   Grid,
   GridChannel,
   GridHeader,
+  GridMovie,
   GridPlaylist,
   GridVideo,
   GuideCollapsibleEntry,
@@ -795,7 +808,10 @@ const map: Record<string, YTNodeConstructor> = {
   HistorySuggestion,
   HorizontalCardList,
   HorizontalList,
+  HorizontalMovieList,
   IconLink,
+  InfoPanelContainer,
+  InfoPanelContent,
   InteractiveTabbedHeader,
   ItemSection,
   ItemSectionHeader,
@@ -903,6 +919,7 @@ const map: Record<string, YTNodeConstructor> = {
   PlayerCaptionsTracklist,
   PlayerErrorMessage,
   PlayerLegacyDesktopYpcOffer,
+  PlayerLegacyDesktopYpcTrailer,
   PlayerLiveStoryboardSpec,
   PlayerMicroformat,
   PlayerOverlay,
@@ -1014,6 +1031,7 @@ const map: Record<string, YTNodeConstructor> = {
   WatchCardSectionSequence,
   WatchNextEndScreen,
   WatchNextTabbedResults,
+  YpcTrailer,
   AnchoredSection,
   KidsCategoriesHeader,
   KidsCategoryTab,

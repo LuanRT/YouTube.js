@@ -166,7 +166,7 @@ const videoInfo = await youtube.getInfo('videoId');
 // now convert to a dash manifest
 // again - to be able to stream the video in the browser - we must proxy the requests through our own server
 // to do this, we provide a method to transform the URLs before writing them to the manifest
-const manifest = videoInfo.toDash(url => {
+const manifest = await videoInfo.toDash(url => {
   // modify the url
   // and return it
   return url;
@@ -300,6 +300,9 @@ Retrieves video info, including playback data and even layout elements such as m
 - `<info>#getLiveChat()`
   - Returns a LiveChat instance.
 
+- `<info>#getTrailerInfo()`
+  - Returns trailer info in a new `VideoInfo` instance, or `null` if none. Typically available for non-purchased movies or films.
+
 - `<info>#chooseFormat(options)`
   - Used to choose streaming data formats.
 
@@ -323,6 +326,9 @@ Retrieves video info, including playback data and even layout elements such as m
 
 - `<info>#autoplay_video_endpoint`
   - Returns the endpoint of the video for Autoplay.
+
+- `<info>#has_trailer`
+  - Checks if trailer is available.
 
 - `<info>#page`
   - Returns original InnerTube response (sanitized).
