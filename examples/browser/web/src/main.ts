@@ -113,7 +113,7 @@ async function main() {
 
       showUI(true);
 
-      const dash = info.toDash((url) => {
+      const dash = await info.toDash((url) => {
         url.searchParams.set('__host', url.host);
         url.host = 'localhost:8080';
         url.protocol = 'http';
