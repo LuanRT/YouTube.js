@@ -194,6 +194,8 @@ import { default as GridChannel } from './classes/GridChannel.js';
 export { GridChannel };
 import { default as GridHeader } from './classes/GridHeader.js';
 export { GridHeader };
+import { default as GridMix } from './classes/GridMix.js';
+export { GridMix };
 import { default as GridMovie } from './classes/GridMovie.js';
 export { GridMovie };
 import { default as GridPlaylist } from './classes/GridPlaylist.js';
@@ -792,6 +794,7 @@ const map: Record<string, YTNodeConstructor> = {
   Grid,
   GridChannel,
   GridHeader,
+  GridMix,
   GridMovie,
   GridPlaylist,
   GridVideo,
