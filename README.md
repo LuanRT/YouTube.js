@@ -166,7 +166,7 @@ const videoInfo = await youtube.getInfo('videoId');
 // now convert to a dash manifest
 // again - to be able to stream the video in the browser - we must proxy the requests through our own server
 // to do this, we provide a method to transform the URLs before writing them to the manifest
-const manifest = videoInfo.toDash(url => {
+const manifest = await videoInfo.toDash(url => {
   // modify the url
   // and return it
   return url;

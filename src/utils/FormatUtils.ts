@@ -239,13 +239,13 @@ class FormatUtils {
     return candidates[0];
   }
 
-  static toDash(streaming_data?: {
+  static async toDash(streaming_data?: {
     expires: Date;
     formats: Format[];
     adaptive_formats: Format[];
     dash_manifest_url: string | null;
     hls_manifest_url: string | null;
-  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player): string {
+  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player, actions?: Actions): Promise<string> {
     if (!streaming_data)
       throw new InnertubeError('Streaming data not available');
 
@@ -288,7 +288,7 @@ class FormatUtils {
       period
     ]));
 
-    this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player);
+    await this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player, actions);
 
     return Platform.shim.serializeDOM(document);
   }
@@ -305,12 +305,12 @@ class FormatUtils {
     return el;
   }
 
-  static #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static async #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer, cpn?: string, player?: Player, actions?: Actions) {
     const mime_types: string[] = [];
     const mime_objects: Format[][] = [ [] ];
 
     formats.forEach((video_format) => {
-      if (!video_format.index_range || !video_format.init_range) {
+      if ((!video_format.index_range || !video_format.init_range) && !video_format.is_type_otf) {
         return;
       }
       const mime_type = video_format.mime_type;
@@ -376,9 +376,9 @@ class FormatUtils {
 
           period.appendChild(set);
 
-          track_objects[j].forEach((format) => {
-            this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
-          });
+          for (const format of track_objects[j]) {
+            await this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player, actions);
+          }
         }
       } else {
         const set = this.#el(document, 'AdaptationSet', {
@@ -390,27 +390,24 @@ class FormatUtils {
 
         period.appendChild(set);
 
-        mime_objects[i].forEach((format) => {
+        for (const format of mime_objects[i]) {
           if (format.has_video) {
-            this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player);
+            await this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player, actions);
           } else {
-            this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player);
+            await this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player, actions);
           }
-        });
+        }
       }
     }
   }
 
-  static #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static async #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player, actions?: Actions) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
-
-    if (!format.index_range || !format.init_range)
-      throw new InnertubeError('Index and init ranges not available', { format });
 
     const url = new URL(format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
-    set.appendChild(this.#el(document, 'Representation', {
+    const representation = this.#el(document, 'Representation', {
       id: format.itag?.toString(),
       codecs,
       bandwidth: format.bitrate?.toString(),
@@ -418,29 +415,20 @@ class FormatUtils {
       height: format.height?.toString(),
       maxPlayoutRate: '1',
       frameRate: format.fps?.toString()
-    }, [
-      this.#el(document, 'BaseURL', {}, [
-        document.createTextNode(url_transformer(url)?.toString())
-      ]),
-      this.#el(document, 'SegmentBase', {
-        indexRange: `${format.index_range.start}-${format.index_range.end}`
-      }, [
-        this.#el(document, 'Initialization', {
-          range: `${format.init_range.start}-${format.init_range.end}`
-        })
-      ])
-    ]));
+    });
+
+    set.appendChild(representation);
+
+    await this.#generateSegmentInformation(document, representation, format, url_transformer(url)?.toString(), actions);
   }
 
-  static async #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player) {
+  static async #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player, actions?: Actions) {
     const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
-    if (!format.index_range || !format.init_range)
-      throw new InnertubeError('Index and init ranges not available', { format });
 
     const url = new URL(format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
-    set.appendChild(this.#el(document, 'Representation', {
+    const representation = this.#el(document, 'Representation', {
       id: format.itag?.toString(),
       codecs,
       bandwidth: format.bitrate?.toString(),
@@ -449,18 +437,127 @@ class FormatUtils {
       this.#el(document, 'AudioChannelConfiguration', {
         schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
         value: format.audio_channels?.toString() || '2'
-      }),
-      this.#el(document, 'BaseURL', {}, [
-        document.createTextNode(url_transformer(url)?.toString())
-      ]),
-      this.#el(document, 'SegmentBase', {
-        indexRange: `${format.index_range.start}-${format.index_range.end}`
-      }, [
-        this.#el(document, 'Initialization', {
-          range: `${format.init_range.start}-${format.init_range.end}`
-        })
-      ])
-    ]));
+      })
+    ]);
+
+    set.appendChild(representation);
+
+    await this.#generateSegmentInformation(document, representation, format, url_transformer(url)?.toString(), actions);
+  }
+
+  static async #generateSegmentInformation(document: XMLDocument, representation: Element, format: Format, url: string, actions?: Actions) {
+    if (format.is_type_otf) {
+      if (!actions) {
+        throw new InnertubeError('Unable to get segment durations for this OTF stream without an Actions instance', { format });
+      }
+
+      const { resolved_url, segment_durations } = await this.#getOTFSegmentInformation(url, actions);
+      const segment_elements = [];
+
+      for (const segment_duration of segment_durations) {
+        let attributes;
+
+        if (typeof segment_duration.repeat_count === 'undefined') {
+          attributes = {
+            d: segment_duration.duration.toString()
+          };
+        } else {
+          attributes = {
+            d: segment_duration.duration.toString(),
+            r: segment_duration.repeat_count.toString()
+          };
+        }
+        segment_elements.push(this.#el(document, 'S', attributes));
+      }
+
+      representation.appendChild(
+        this.#el(document, 'SegmentTemplate', {
+          startNumber: '1',
+          timescale: '1000',
+          initialization: `${resolved_url}&sq=0`,
+          media: `${resolved_url}&sq=$Number$`
+        }, [
+          this.#el(document, 'SegmentTimeline', {}, segment_elements)
+        ])
+      );
+    } else {
+      if (!format.index_range || !format.init_range)
+        throw new InnertubeError('Index and init ranges not available', { format });
+
+      representation.appendChild(
+        this.#el(document, 'BaseURL', {}, [
+          document.createTextNode(url)
+        ])
+      );
+      representation.appendChild(
+        this.#el(document, 'SegmentBase', {
+          indexRange: `${format.index_range.start}-${format.index_range.end}`
+        }, [
+          this.#el(document, 'Initialization', {
+            range: `${format.init_range.start}-${format.init_range.end}`
+          })
+        ])
+      );
+    }
+  }
+
+  static async #getOTFSegmentInformation(url: string, actions: Actions): Promise<{
+    resolved_url: string,
+    segment_durations: {
+      duration: number,
+      repeat_count?: number
+    }[]
+  }> {
+    // Fetch the first segment as it contains the segment durations which we need to generate the manifest
+    const response = await actions.session.http.fetch_function(`${url}&rn=0&sq=0`, {
+      method: 'GET',
+      headers: Constants.STREAM_HEADERS,
+      redirect: 'follow'
+    });
+
+    // Example OTF video: https://www.youtube.com/watch?v=DJ8GQUNUXGM
+
+    // There might have been redirects, if there were we want to write the resolved URL to the manifest
+    // So that the player doesn't have to follow the redirects every time it requests a segment
+    const resolved_url = response.url.replace('&rn=0', '').replace('&sq=0', '');
+
+    // In this function we only need the segment durations and how often the durations are repeated
+    // The segment count could be useful for other stuff though
+    // The response body contains a lot of junk but the useful stuff looks like this:
+    // Segment-Count: 922\r\n' +
+    //   'Segment-Durations-Ms: 5120(r=920),3600,\r\n'
+    const response_text = await response.text();
+
+    const segment_duration_strings = getStringBetweenStrings(response_text, 'Segment-Durations-Ms:', '\r\n')?.split(',');
+
+    if (!segment_duration_strings) {
+      throw new InnertubeError('Failed to extract the segment durations from this OTF stream', { url });
+    }
+
+    const segment_durations = [];
+    for (const segment_duration_string of segment_duration_strings) {
+      const trimmed_segment_duration = segment_duration_string.trim();
+      if (trimmed_segment_duration.length === 0) {
+        continue;
+      }
+
+      let repeat_count;
+
+      const repeat_count_string = getStringBetweenStrings(trimmed_segment_duration, '(r=', ')');
+      if (repeat_count_string) {
+        repeat_count = parseInt(repeat_count_string);
+      }
+
+      segment_durations.push({
+        duration: parseInt(trimmed_segment_duration),
+        repeat_count
+      });
+    }
+
+    return {
+      resolved_url,
+      segment_durations
+    };
   }
 }
 
