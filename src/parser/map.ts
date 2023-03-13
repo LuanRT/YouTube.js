@@ -232,6 +232,10 @@ import { default as HorizontalMovieList } from './classes/HorizontalMovieList.js
 export { HorizontalMovieList };
 import { default as IconLink } from './classes/IconLink.js';
 export { IconLink };
+import { default as InfoPanelContainer } from './classes/InfoPanelContainer.js';
+export { InfoPanelContainer };
+import { default as InfoPanelContent } from './classes/InfoPanelContent.js';
+export { InfoPanelContent };
 import { default as InteractiveTabbedHeader } from './classes/InteractiveTabbedHeader.js';
 export { InteractiveTabbedHeader };
 import { default as ItemSection } from './classes/ItemSection.js';
@@ -807,6 +811,8 @@ const map: Record<string, YTNodeConstructor> = {
   HorizontalList,
   HorizontalMovieList,
   IconLink,
+  InfoPanelContainer,
+  InfoPanelContent,
   InteractiveTabbedHeader,
   ItemSection,
   ItemSectionHeader,
