@@ -4,7 +4,7 @@
 [codefactor]: https://www.codefactor.io/repository/github/luanrt/youtube.js
 [actions]: https://github.com/LuanRT/YouTube.js/actions
 [say-thanks]: https://saythanks.io/to/LuanRT
-[github-sponsors]:https://github.com/sponsors/LuanRT
+[collaborators]: https://github.com/LuanRT/YouTube.js/blob/main/COLLABORATORS.md
 
 <!-- OTHER LINKS -->
 [project]: https://github.com/LuanRT/YouTube.js
@@ -25,7 +25,7 @@
   [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
   [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks]
   <br>
-  [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][github-sponsors]
+  [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][collaborators]
  
 </div>
 
@@ -51,40 +51,36 @@
   </body>
 </table>
 
-___
-
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about">About</a>
-    </li>
-    <li>
+## Table of Contents
+<ol>
+   <li>
+      <a href="#description">Description</a>
+   </li>
+   <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+         <li><a href="#prerequisites">Prerequisites</a></li>
+         <li><a href="#installation">Installation</a></li>
       </ul>
-    </li>
-    <li>
+   </li>
+   <li>
       <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#browser-usage">Browser Usage</a></li>
-        <li><a href="#caching">Caching</a></li>
-        <li><a href="#api">API</a></li>
+         <li><a href="#browser-usage">Browser Usage</a></li>
+         <li><a href="#caching">Caching</a></li>
+         <li><a href="#api">API</a></li>
       </ul>
-    </li>
-    <li><a href="#extending-the-library">Extending the library</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#disclaimer">Disclaimer</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
+   </li>
+   <li><a href="#extending-the-library">Extending the library</a></li>
+   <li><a href="#contributing">Contributing</a></li>
+   <li><a href="#contact">Contact</a></li>
+   <li><a href="#disclaimer">Disclaimer</a></li>
+   <li><a href="#license">License</a></li>
+</ol>
 
 ## Description
 
-InnerTube is an API used by all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform[^1]. This library handles all the low-level communication with InnerTube, providing a simple, and efficient way to interact with YouTube programmatically. It is designed to emulate an actual client as closely as possible, including how API responses are parsed.
+InnerTube is an API used by all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform [^1]. This library manages all low-level communication with InnerTube, providing a simple and efficient way to interact with YouTube programmatically. Its design aims to closely emulate an actual client, including the parsing of API responses.
 
 If you have any questions or need help, feel free to reach out to us on our [Discord server][discord] or open an issue [here](https://github.com/LuanRT/YouTube.js/issues).
 
@@ -95,7 +91,7 @@ YouTube.js runs on Node.js, Deno, and modern browsers.
 
 It requires a runtime with the following features:
 - [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-  - On Node we use [undici]()'s fetch implementation which requires Node.js 16.8+. You may provide your fetch implementation if you need to use an older version. See [providing your own fetch implementation](#custom-fetch) for more information. 
+  - On Node, we use [undici](https://github.com/nodejs/undici)'s fetch implementation, which requires Node.js 16.8+. If you need to use an older version, you may provide your own fetch implementation. See [providing your own fetch implementation](#custom-fetch) for more information. 
   - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` returns a non-standard `Readable` object.)
 - [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) are required.
 
@@ -122,16 +118,37 @@ Create an InnerTube instance:
 ```ts
 // const { Innertube } = require('youtubei.js');
 import { Innertube } from 'youtubei.js';
-const youtube = await Innertube.create();
+const youtube = await Innertube.create(/* options */);
 ```
 
-## Browser Usage
-To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
+### Initialization Options
+<details>
+<summary>Click to expand</summary>
 
-You may provide your own fetch implementation to be used by YouTube.js. Which we will use here to modify and send the requests through our proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for a simple example using [Vite](https://vitejs.dev/).
+| Option | Type | Description | Default |
+| --- | --- | --- | --- |
+| `lang` | `string` | Language. | `en` |
+| `location` | `string` | Geolocation. | `US` |
+| `account_index` | `number` | The account index to use. This is useful if you have multiple accounts logged in. **NOTE:** Only works if you are signed in with cookies. | `0` |
+| `retrieve_player` | `boolean` | Specifies whether to retrieve the JS player. Disabling this will make session creation faster. **NOTE:** Deciphering formats is not possible without the JS player. | `true` |
+| `enable_safety_mode` | `boolean` | Specifies whether to enable safety mode. This will prevent the session from loading any potentially unsafe content. | `false` |
+| `generate_session_locally` | `boolean` | Specifies whether to generate the session data locally or retrieve it from YouTube. This can be useful if you need more performance. | `false` |
+| `device_category` | `DeviceCategory` | Platform to use for the session. | `DESKTOP` |
+| `client_type` | `ClientType` | InnerTube client type. | `WEB` |
+| `timezone` | `string` | The time zone. | `*` |
+| `cache` | `ICache` | Used to cache the deciphering functions from the JS player. | `undefined` |
+| `cookie` | `string` | YouTube cookies. | `undefined` |
+| `fetch` | `FetchFunction` | Fetch function to use. | `fetch` |
+
+</details>
+
+## Browser Usage
+To use YouTube.js in the browser, you must proxy requests through your own server. You can see our simple reference implementation in Deno at [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
+
+You may provide your own fetch implementation to be used by YouTube.js, which we will use to modify and send the requests through a proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for a simple example using [Vite](https://vitejs.dev/).
 
 ```ts
-// We provide multiple exports for the web.
+// Multiple exports are available for the web.
 // Unbundled ESM version
 import { Innertube } from 'youtubei.js/web';
 // Bundled ESM version
@@ -202,23 +219,25 @@ const yt = await Innertube.create({
 <a name="caching"></a>
 
 ## Caching
-To improve performance, you may wish to cache the transformed player instance which we use to decode the streaming urls.
+Caching the transformed player instance can greatly improve the performance. Our `UniversalCache` implementation uses different caching methods depending on the environment.
 
-Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile` in Deno, and `indexedDB` in browsers.
+In Node.js, we use the `node:fs` module, `Deno.writeFile()` in Deno, and `indexedDB` in browsers.
+
+By default, the cache stores data in the operating system's temporary directory (or `indexedDB` in browsers). You can make this cache persistent by specifying the path to the cache directory, which will be created if it doesn't exist.
 
 ```ts
 import { Innertube, UniversalCache } from 'youtubei.js';
-// By default, cache stores files in the OS temp directory (or indexedDB in browsers).
+// Create a cache that stores files in the OS temp directory (or indexedDB in browsers) by default.
 const yt = await Innertube.create({
   cache: new UniversalCache(false)
 });
 
-// You may wish to make the cache persistent (on Node and Deno)
+// You may want to create a persistent cache instead (on Node and Deno).
 const yt = await Innertube.create({
   cache: new UniversalCache(
     // Enables persistent caching
     true, 
-    // Path to the cache directory will create the directory if it doesn't exist
+    // Path to the cache directory. The directory will be created if it doesn't exist
     './.cache' 
   )
 });
@@ -610,11 +629,17 @@ Retrieves a given hashtag's page.
 Returns deciphered streaming data.
 
 > **Note**
-> This will be deprecated in the future. It is recommended to retrieve streaming data from a `VideoInfo`/`TrackInfo` object instead if you want to select formats manually, see the example below.
+> This method will be deprecated in the future. We recommend retrieving streaming data from a `VideoInfo` or `TrackInfo` object instead if you want to select formats manually. Please refer to the following example:
 
 ```ts
 const info = await yt.getBasicInfo('somevideoid');
+
 const url = info.streaming_data?.formats[0].decipher(yt.session.player);
+console.info('Playback url:', url);
+
+// or:
+const format = info.chooseFormat({ type: 'audio', quality: 'best' });
+const url = format?.decipher(yt.session.player);
 console.info('Playback url:', url);
 ```
 
@@ -661,10 +686,9 @@ Utility to call navigation endpoints.
  
 ## Extending the library
 
-YouTube.js is completely modular and easy to extend. Almost all methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
+YouTube.js is modular and easy to extend. Most of the methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
 
-For example, let's say we want to implement a method to retrieve video info manually. We can do that by using an instance of the `Actions` class:
-
+For example, let's say we want to implement a method to retrieve video info. We can do that by using an instance of the `Actions` class:
 ```ts
 import { Innertube } from 'youtubei.js';
 
@@ -673,10 +697,10 @@ import { Innertube } from 'youtubei.js';
 
   async function getVideoInfo(videoId: string) {
     const videoInfo = await yt.actions.execute('/player', {
-      // anything added here will be merged with the default payload and sent to InnerTube.
+      // You can add any additional payloads here, and they'll merge with the default payload sent to InnerTube.
       videoId,
-      client: 'YTMUSIC', // InnerTube client, can be ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB or TV_EMBEDDED
-      parse: true // tells YouTube.js to parse the response, this is not sent to InnerTube.
+      client: 'YTMUSIC', // InnerTube client options: ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB, or TV_EMBEDDED.
+      parse: true // tells YouTube.js to parse the response (not sent to InnerTube).
     });
 
     return videoInfo;
@@ -687,8 +711,7 @@ import { Innertube } from 'youtubei.js';
 })();
 ```
 
-Or perhaps there's a `NavigationEndpoint` in a parsed response and we want to call it to see what happens:
-
+Alternatively, suppose we locate a `NavigationEndpoint` in a parsed response and want to see what happens when we call it:
 ```ts
 import { Innertube, YTNodes } from 'youtubei.js';
 
@@ -698,11 +721,11 @@ import { Innertube, YTNodes } from 'youtubei.js';
   const artist = await yt.music.getArtist('UC52ZqHVQz5OoGhvbWiRal6g');
   const albums = artist.sections[1].as(YTNodes.MusicCarouselShelf);
 
-  // Say we want to click the “More” button:
+  // Let's imagine that we wish to click on the “More” button:
   const button = albums.as(YTNodes.MusicCarouselShelf).header?.more_content;
 
   if (button) {
-    // After making sure it exists, we can call its navigation endpoint:
+    // Having ensured that it exists, we can then call its navigation endpoint using the following code:
     const page = await button.endpoint.call(yt.actions, { parse: true });
     console.info(page);
   }
@@ -711,16 +734,16 @@ import { Innertube, YTNodes } from 'youtubei.js';
 
 ### Parser
 
-YouTube.js' parser allows you to parse InnerTube responses and turn their nodes into strongly typed objects that can be easily manipulated. It also provides a set of utility methods that make working with InnerTube much easier.
+YouTube.js' parser enables you to parse InnerTube responses and convert their nodes into strongly-typed objects that are simple to manipulate. Additionally, it provides numerous utility methods that make working with InnerTube a breeze.
 
-Example:
+Here's an example of its usage:
 ```ts
 // See ./examples/parser
 
 import { Parser, YTNodes } from 'youtubei.js';
 import { readFileSync } from 'fs';
 
-// Artist page response from YouTube Music
+// YouTube Music's artist page response
 const data = readFileSync('./artist.json').toString();
 
 const page = Parser.parseResponse(JSON.parse(data));
@@ -729,14 +752,8 @@ const header = page.header?.item().as(YTNodes.MusicImmersiveHeader, YTNodes.Musi
 
 console.info('Header:', header);
 
-/**
- * The parser encapsulates all arrays in a proxy object.
- * A proxy intercepts access to the actual data, allowing
- * the parser to add type safety and many utility methods
- * that make working with InnerTube much easier.
- */
+// The parser uses a proxy object to add type safety and utility methods for working with InnerTube's data arrays:
 const tab = page.contents?.item().as(YTNodes.SingleColumnBrowseResults).tabs.firstOfType(YTNodes.Tab);
-
 
 if (!tab)
   throw new Error('Target tab not found');
@@ -751,12 +768,10 @@ console.info('Sections:', sections);
 
 Documentation for the parser can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/src/parser).
 
-<!-- CONTRIBUTING -->
 ## Contributing
-Contributions, issues, and feature requests are welcome.
-Feel free to check the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md) if you want to contribute.
+We welcome all contributions, issues and feature requests, whether small or large. If you want to contribute, feel free to check out our [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
 
-Thank you to all the wonderful people who have contributed to this project:
+We are immensely grateful to all the wonderful people who have contributed to this project. A special shoutout to all our contributors! 🎉
 <a href="https://github.com/LuanRT/YouTube.js/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=LuanRT/YouTube.js" />
 </a>
@@ -768,10 +783,9 @@ LuanRT  - [@thesciencephile][twitter] - luan.lrt4@gmail.com
 Project Link: [https://github.com/LuanRT/YouTube.js][project]
 
 ## Disclaimer
-This project is not affiliated with, endorsed, or sponsored by YouTube or any of its affiliates or subsidiaries.
-All trademarks, logos, and brand names are the property of their respective owners and are used only to directly describe the services being provided, as such, any usage of trademarks to refer to such services is considered nominative use.
+This project is not affiliated with, endorsed, or sponsored by YouTube or any of its affiliates or subsidiaries. All trademarks, logos, and brand names used in this project are the property of their respective owners and are used solely to describe the services provided.
 
-Should you have any questions or concerns please contact me directly via email.
+As such, any usage of trademarks to refer to such services is considered nominative use. If you have any questions or concerns, please contact me directly via email.
 
 [^1]: https://gizmodo.com/how-project-innertube-helped-pull-youtube-out-of-the-gu-1704946491
 
