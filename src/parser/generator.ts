@@ -374,7 +374,6 @@ export class YTNodeGenerator {
           default:
             return inference_type.misc_type;
         }
-        throw new Error('Unreachable code reached! Switch missing case!');
       case 'primative':
         return inference_type.typeof.join(' | ');
       case 'unknown':
@@ -620,7 +619,7 @@ export class YTNodeGenerator {
     };
   }
   /**
-   * Checks if the given value is a array of renderers
+   * Checks if the given value is an array of renderers
    * @param value - The value to check
    * @returns If it is a renderer list, return an object with keys being the classnames, and values being an example of that class.
    * Otherwise, return false.

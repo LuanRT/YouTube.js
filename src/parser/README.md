@@ -262,7 +262,7 @@ Instructions can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/
 ## Generating nodes at runtime
 YouTube constantly updates their client, and sometimes they add new nodes to the response. The parser needs to know about these new nodes in order to parse them correctly. Once a new node is dicovered by the parser, it will attempt to generate a new node class for it.
 
-Using our existing `YTNode` class, you may interact with these new nodes in a type-safe way, however will not be able to cast them to the node's specific type, as this requires the node to be defined at compile-time.
+Using the existing `YTNode` class, you may interact with these new nodes in a type-safe way. However, you will not be able to cast them to the node's specific type, as this requires the node to be defined at compile-time.
 
 The current implementation recognises the following values:
 - Renderers
@@ -276,7 +276,7 @@ The current implementation recognises the following values:
 
 This may be expanded in the future.
 
-At runtime, these JIT generated nodes will revalidate themselves when constructed, so that when the types changes, the node will be re-generated.
+At runtime, these JIT-generated nodes will revalidate themselves when constructed so that when the types change, the node will be re-generated.
 
 You may also generate your own nodes ahead of time, given you have an example of one of the nodes.
 
