@@ -1,71 +1,45 @@
-# Contributing to YouTube.js
+Welcome to YouTube.js! We're thrilled to have you interested in contributing to our project. As a community-driven project, we believe in the power of collaboration and look forward to working with you. To get started, please follow our easy-to-follow guidelines:
 
-Thank you for taking the time to contribute! 
-The following is a set of guidelines for contributing to YouTube.js.
-___
-- [Contributing to YouTube.js](#contributing-to-youtubejs)
-  - [Issues](#issues)
-      - [Create a new issue](#create-a-new-issue)
-      - [Solve an issue](#solve-an-issue)
-  - [Make changes](#make-changes)
-      - [Commit your updates](#commit-your-updates)
-      - [Pull Request](#pull-request)
-      - [Test](#test)
-      - [Lint](#lint)
-      - [Build](#build)
-  
 ## Issues
 
-<a id="issue-1"></a>
-#### Create a new issue
-If you find a problem, search if an issue already exists. If a related issue doesn't exist, you can open a new issue using a relevant issue form.
+### Creating a new issue
+Before creating a new issue, we recommend searching for similar or related issues to avoid duplication efforts. However, if you can't find one, you're more than welcome to create a new issue using a relevant issue form. Please make sure to describe the issue as clearly and concisely as possible.
 
-<a id="issue-2"></a>
-#### Solve an issue
-Scan through the existing issues to find one that interests you. You can narrow down the search using labels as filters. If you find an issue to work on, you are welcome to open a PR with a fix. Documentation updates and grammar fixes are also appreciated!
+### Solving an issue
+If you want to lend a hand by solving an issue, it's always good to browse existing issues to find one that grabs your attention. You can narrow down the search using tags as filters. If you find an issue you'd like to help with, please feel free to open a Pull Request with a fix. We appreciate documentation updates and grammar fixes too!
 
-<a id="changes"></a>
-## Make changes
+## Making Changes
 
-1. Fork the repository 
-2. Install or update to **Node.js v16**
-3. Create a working branch and start with your changes!
+1. Fork the repository on GitHub.
+2. Ensure that you have the latest Node.js v16 version installed.
+3. Create a working branch and start making your changes and improvements!
 
-<a id="changes-1"></a>
-#### Commit your updates
+### Committing updates
+When you're done with the changes, make sure to commit them. Don't forget to write a clear, descriptive commit message. We recommend following the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 
-Commit the changes once you're happy with them.
+### Creating a Pull Request
+Once you're happy with your updates, create a pull request on GitHub. This is the most efficient way to get your contribution reviewed and eventually merged into our codebase.
 
-<a id="changes-2"></a>
-#### Pull Request
+- Use the pull request template to fill in the necessary details.
+- If you're solving an issue, link the pull request to that issue.
+- Enable the checkbox to allow maintainers to edit the branch and update it for merging.
+- Changes may be required before we can merge your changes, and we'll let you know what needs to be done.
 
-When you think the code is ready for review a pull request should be created on Github. Owners of the repository will watch out for new PR‘s and review them in regular intervals.
+### Testing, Linting, and Building
+We have some automated processes set up for testing, linting, and building. Please run the following commands to test, lint, and build your code before submitting it:
 
-- Fill the template.
-- Link the PR to an issue, if you are solving one.
-- Enable the checkbox to allow maintainer edits so the branch can be updated for a merge.
-- Changes may be requested before a PR can be merged.
-- As you update your PR and apply changes, mark each conversation as resolved.
-
-<a id="test"></a>
-#### Test
-
-```bash
+Testing:
+```sh
 npm run test
 ```
 
-<a id="lint"></a>
-#### Lint
-
-```bash
+Linting:
+```sh
 npm run lint
-npm run lint:fix
 ```
 
-<a id="build"></a>
-#### Build
-
-```bash
+Building:
+```sh
 # Build all
 npm run build
 
@@ -87,5 +61,6 @@ npm run bundle:node
 # Browser
 npm run bundle:browser
 npm run bundle:browser:prod
-
 ```
+
+We appreciate your efforts and contributions to YouTube.js! Together, we can make this project even better.
