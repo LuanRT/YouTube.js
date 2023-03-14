@@ -37,7 +37,7 @@ export class MediaInfo {
    * @returns DASH manifest
    */
   async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter): Promise<string> {
-    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player);
+    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions);
   }
 
   /**
