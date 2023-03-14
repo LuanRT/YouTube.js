@@ -398,6 +398,10 @@ import { default as MovingThumbnail } from './classes/MovingThumbnail.js';
 export { MovingThumbnail };
 import { default as MultiMarkersPlayerBar } from './classes/MultiMarkersPlayerBar.js';
 export { MultiMarkersPlayerBar };
+import { default as MusicCardShelf } from './classes/MusicCardShelf.js';
+export { MusicCardShelf };
+import { default as MusicCardShelfHeaderBasic } from './classes/MusicCardShelfHeaderBasic.js';
+export { MusicCardShelfHeaderBasic };
 import { default as MusicCarouselShelf } from './classes/MusicCarouselShelf.js';
 export { MusicCarouselShelf };
 import { default as MusicCarouselShelfBasicHeader } from './classes/MusicCarouselShelfBasicHeader.js';
@@ -891,6 +895,8 @@ const map: Record<string, YTNodeConstructor> = {
   Movie,
   MovingThumbnail,
   MultiMarkersPlayerBar,
+  MusicCardShelf,
+  MusicCardShelfHeaderBasic,
   MusicCarouselShelf,
   MusicCarouselShelfBasicHeader,
   MusicDescriptionShelf,
