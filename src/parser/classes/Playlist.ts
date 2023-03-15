@@ -4,7 +4,6 @@ import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Author from './misc/Author.js';
 import { YTNode } from '../helpers.js';
-import NavigatableText from './misc/NavigatableText.js';
 
 class Playlist extends YTNode {
   static type = 'Playlist';
@@ -21,7 +20,7 @@ class Playlist extends YTNode {
   badges;
   endpoint: NavigationEndpoint;
   thumbnail_overlays;
-  view_playlist?: NavigatableText;
+  view_playlist?: Text;
 
   constructor(data: any) {
     super();
@@ -43,7 +42,7 @@ class Playlist extends YTNode {
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
 
     if (data.viewPlaylistText) {
-      this.view_playlist = new NavigatableText(data.viewPlaylistText);
+      this.view_playlist = new Text(data.viewPlaylistText);
     }
   }
 }

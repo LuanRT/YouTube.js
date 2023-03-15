@@ -1,6 +1,7 @@
 import TextRun from './TextRun.js';
 import EmojiRun from './EmojiRun.js';
 import type { RawNode } from '../../index.js';
+import NavigationEndpoint from '../NavigationEndpoint.js';
 
 export interface Run {
   text: string;
@@ -20,6 +21,7 @@ export function escape(text: string) {
 class Text {
   text: string;
   runs;
+  endpoint: NavigationEndpoint | null;
 
   constructor(data: RawNode) {
     if (data?.hasOwnProperty('runs') && Array.isArray(data.runs)) {
@@ -31,6 +33,13 @@ class Text {
     } else {
       this.text = data?.simpleText || 'N/A';
     }
+    this.endpoint =
+      data?.runs?.[0]?.navigationEndpoint ?
+        new NavigationEndpoint(data?.runs[0].navigationEndpoint) :
+        data?.navigationEndpoint ?
+          new NavigationEndpoint(data?.navigationEndpoint) :
+          data?.titleNavigationEndpoint ?
+            new NavigationEndpoint(data?.titleNavigationEndpoint) : null;
   }
 
   toHTML() {

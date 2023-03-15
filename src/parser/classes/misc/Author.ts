@@ -1,5 +1,5 @@
 import Parser, { RawNode } from '../../index.js';
-import NavigatableText from './NavigatableText.js';
+import Text from './Text.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
 import TextRun from './TextRun.js';
 import Thumbnail from './Thumbnail.js';
@@ -20,7 +20,7 @@ class Author {
   url: string | null;
 
   constructor(item: RawNode, badges?: any, thumbs?: any, id?: string) {
-    this.#nav_text = new NavigatableText(item);
+    this.#nav_text = new Text(item);
 
     this.id =
       id ||
