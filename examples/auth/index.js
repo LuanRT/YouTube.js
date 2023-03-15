@@ -17,8 +17,9 @@ const { Innertube, UniversalCache } = require('youtubei.js');
   });
 
   // 'update-credentials' is fired when the access token expires, if you do not save the updated credentials any subsequent request will fail 
-  yt.session.on('update-credentials', ({ credentials }) => {
+  yt.session.on('update-credentials', async ({ credentials }) => {
     console.log('Credentials updated:', credentials);
+    await yt.session.oauth.cacheCredentials();
   });
 
   // Attempt to sign in

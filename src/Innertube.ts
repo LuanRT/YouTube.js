@@ -45,25 +45,14 @@ export interface SearchFilters {
 
 export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS'
 
-class Innertube {
-  session: Session;
-  account: AccountManager;
-  playlist: PlaylistManager;
-  interact: InteractionManager;
-  music: YTMusic;
-  studio: YTStudio;
-  kids: YTKids;
-  actions: Actions;
+/**
+ * Provides access to various services and modules in the YouTube API.
+ */
+export default class Innertube {
+  #session: Session;
 
   constructor(session: Session) {
-    this.session = session;
-    this.account = new AccountManager(this.session.actions);
-    this.playlist = new PlaylistManager(this.session.actions);
-    this.interact = new InteractionManager(this.session.actions);
-    this.music = new YTMusic(this.session);
-    this.studio = new YTStudio(this.session);
-    this.kids = new YTKids(this.session);
-    this.actions = this.session.actions;
+    this.#session = session;
   }
 
   static async create(config: InnertubeConfig = {}): Promise<Innertube> {
@@ -87,18 +76,22 @@ class Innertube {
 
     if (target instanceof NavigationEndpoint) {
       const video_id = target.payload?.videoId;
-      if (!video_id) {
+
+      if (!video_id)
         throw new InnertubeError('Missing video id in endpoint payload.', target);
-      }
+
       payload = {
         videoId: video_id
       };
+
       if (target.payload.playlistId) {
         payload.playlistId = target.payload.playlistId;
       }
+
       if (target.payload.params) {
         payload.params = target.payload.params;
       }
+
       if (target.payload.index) {
         payload.playlistIndex = target.payload.index;
       }
@@ -162,14 +155,14 @@ class Innertube {
 
     const url = new URL(`${Constants.URLS.YT_SUGGESTIONS}search`);
     url.searchParams.set('q', query);
-    url.searchParams.set('hl', this.session.context.client.hl);
-    url.searchParams.set('gl', this.session.context.client.gl);
+    url.searchParams.set('hl', this.#session.context.client.hl);
+    url.searchParams.set('gl', this.#session.context.client.gl);
     url.searchParams.set('ds', 'yt');
     url.searchParams.set('client', 'youtube');
     url.searchParams.set('xssi', 't');
     url.searchParams.set('oe', 'UTF');
 
-    const response = await this.session.http.fetch(url);
+    const response = await this.#session.http.fetch(url);
     const response_data = await response.text();
 
     const data = JSON.parse(response_data.replace(')]}\'', ''));
@@ -343,6 +336,60 @@ class Innertube {
   call(endpoint: NavigationEndpoint, args?: object): Promise<IParsedResponse | ApiResponse> {
     return endpoint.call(this.actions, args);
   }
-}
 
-export default Innertube;
+  /**
+   * An instance of YTMusic for interacting with the YouTube Music service.
+   */
+  get music(): YTMusic {
+    return new YTMusic(this.#session);
+  }
+
+  /**
+   * An instance of YTStudio for interacting with the YouTube Studio service.
+   */
+  get studio(): YTStudio {
+    return new YTStudio(this.#session);
+  }
+
+  /**
+   * An instance of YTKids for interacting with the YouTube Kids service.
+   */
+  get kids(): YTKids {
+    return new YTKids(this.#session);
+  }
+
+  /**
+   * An instance of AccountManager for managing a user's account.
+   */
+  get account(): AccountManager {
+    return new AccountManager(this.#session.actions);
+  }
+
+  /**
+   * An instance of PlaylistManager for managing playlists.
+   */
+  get playlist(): PlaylistManager {
+    return new PlaylistManager(this.#session.actions);
+  }
+
+  /**
+   * An instance of InteractionManager for interacting with contents in YouTube.
+   */
+  get interact(): InteractionManager {
+    return new InteractionManager(this.#session.actions);
+  }
+
+  /**
+   * An instance of Actions.
+   */
+  get actions(): Actions {
+    return this.#session.actions;
+  }
+
+  /**
+   * Returns the InnerTube session instance.
+   */
+  get session(): Session {
+    return this.#session;
+  }
+}
