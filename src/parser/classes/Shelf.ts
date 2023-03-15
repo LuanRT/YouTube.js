@@ -33,7 +33,7 @@ class Shelf extends YTNode {
     }
 
     if (data.playAllButton) {
-      this.play_all_button = Parser.parseItem<Button>(data.playAllButton);
+      this.play_all_button = Parser.parseItem(data.playAllButton, Button);
     }
   }
 }

@@ -1,7 +1,7 @@
 import Parser from '../index.js';
-import type Menu from './menus/Menu.js';
-import type Button from './Button.js';
-import type SortFilterSubMenu from './SortFilterSubMenu.js';
+import Menu from './menus/Menu.js';
+import Button from './Button.js';
+import SortFilterSubMenu from './SortFilterSubMenu.js';
 import { YTNode } from '../helpers.js';
 
 class LiveChatHeader extends YTNode {
@@ -13,9 +13,9 @@ class LiveChatHeader extends YTNode {
 
   constructor(data: any) {
     super();
-    this.overflow_menu = Parser.parseItem<Menu>(data.overflowMenu);
-    this.collapse_button = Parser.parseItem<Button>(data.collapseButton);
-    this.view_selector = Parser.parseItem<SortFilterSubMenu>(data.viewSelector);
+    this.overflow_menu = Parser.parseItem(data.overflowMenu, Menu);
+    this.collapse_button = Parser.parseItem(data.collapseButton, Button);
+    this.view_selector = Parser.parseItem(data.viewSelector, SortFilterSubMenu);
   }
 }
 

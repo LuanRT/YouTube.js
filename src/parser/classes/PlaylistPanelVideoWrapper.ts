@@ -10,8 +10,8 @@ class PlaylistPanelVideoWrapper extends YTNode {
 
   constructor(data: any) {
     super();
-    this.primary = Parser.parseItem<PlaylistPanelVideo>(data.primaryRenderer);
-    this.counterpart = data.counterpart?.map((item: any) => Parser.parseItem<PlaylistPanelVideo>(item.counterpartRenderer)) || [];
+    this.primary = Parser.parseItem(data.primaryRenderer, PlaylistPanelVideo);
+    this.counterpart = data.counterpart?.map((item: any) => Parser.parseItem(item.counterpartRenderer, PlaylistPanelVideo)) || [];
   }
 }
 

@@ -116,7 +116,7 @@ class Innertube {
     const continuation = this.actions.execute('/next', payload);
 
     const response = await Promise.all([ initial_info, continuation ]);
-    return new VideoInfo(response, this.actions, this.session.player, cpn);
+    return new VideoInfo(response, this.actions, cpn);
   }
 
   /**
@@ -130,7 +130,7 @@ class Innertube {
     const cpn = generateRandomString(16);
     const response = await this.actions.getVideoInfo(video_id, cpn, client);
 
-    return new VideoInfo([ response ], this.actions, this.session.player, cpn);
+    return new VideoInfo([ response ], this.actions, cpn);
   }
 
   /**

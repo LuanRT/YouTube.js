@@ -37,7 +37,7 @@ class MusicShelf extends YTNode {
     }
 
     if (data.bottomButton) {
-      this.bottom_button = Parser.parseItem<Button>(data.bottomButton);
+      this.bottom_button = Parser.parseItem(data.bottomButton, Button);
     }
 
     if (data.subheaders) {

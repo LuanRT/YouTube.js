@@ -11,7 +11,7 @@ class CopyLink extends YTNode {
 
   constructor(data: any) {
     super();
-    this.copy_button = Parser.parseItem<Button>(data.copyButton, Button);
+    this.copy_button = Parser.parseItem(data.copyButton, Button);
     this.short_url = data.shortUrl;
     this.style = data.style;
   }

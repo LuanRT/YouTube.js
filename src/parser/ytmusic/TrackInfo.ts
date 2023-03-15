@@ -1,4 +1,3 @@
-import Parser from '../index.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 
@@ -19,43 +18,25 @@ import SectionList from '../classes/SectionList.js';
 import Tab from '../classes/Tab.js';
 import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.js';
 
-import type Format from '../classes/misc/Format.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import type { INextResponse, IPlayerResponse } from '../types/ParsedResponse.js';
+import { MediaInfo } from '../../core/MediaInfo.js';
 
-import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
-
-class TrackInfo {
-  #page: [ IPlayerResponse, INextResponse? ];
-  #actions: Actions;
-  #cpn: string;
-
+class TrackInfo extends MediaInfo {
   basic_info;
-  streaming_data;
-  playability_status;
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
   endscreen?: Endscreen;
-
-  #playback_tracking;
 
   tabs?: ObservedArray<Tab>;
   current_video_endpoint?: NavigationEndpoint;
   player_overlays?: PlayerOverlay;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
-    this.#actions = actions;
+    super(data, actions, cpn);
 
-    const info = Parser.parseResponse<IPlayerResponse>(data[0].data);
-    const next = data?.[1]?.data ? Parser.parseResponse<INextResponse>(data[1].data) : undefined;
-
-    this.#page = [ info, next ];
-    this.#cpn = cpn;
-
-    if (info.playability_status?.status === 'ERROR')
-      throw new InnertubeError('This video is unavailable', info.playability_status);
+    const [ info, next ] = this.page;
 
     if (!info.microformat?.is(MicroformatData))
       throw new InnertubeError('Invalid microformat', info.microformat);
@@ -71,12 +52,8 @@ class TrackInfo {
       }
     };
 
-    this.streaming_data = info.streaming_data;
-    this.playability_status = info.playability_status;
     this.storyboards = info.storyboards;
     this.endscreen = info.endscreen;
-
-    this.#playback_tracking = info.playback_tracking;
 
     if (next) {
       const tabbed_results = next.contents_memo?.getType(WatchNextTabbedResults)?.[0];
@@ -87,32 +64,6 @@ class TrackInfo {
       // TODO: update PlayerOverlay, YTMusic's is a little bit different.
       this.player_overlays = next.player_overlays?.item().as(PlayerOverlay);
     }
-  }
-
-  /**
- * Generates a DASH manifest from the streaming data.
- * @param url_transformer - Function to transform the URLs.
- * @param format_filter - Function to filter the formats.
- * @returns DASH manifest
- */
-  async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter): Promise<string> {
-    return await FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions);
-  }
-
-  /**
-   * Selects the format that best matches the given options.
-   * @param options - Options
-   */
-  chooseFormat(options: FormatOptions): Format {
-    return FormatUtils.chooseFormat(options, this.streaming_data);
-  }
-
-  /**
-   * Downloads the video.
-   * @param options - Download options.
-   */
-  async download(options: DownloadOptions = {}): Promise<ReadableStream<Uint8Array>> {
-    return FormatUtils.download(options, this.#actions, this.playability_status, this.streaming_data, this.#actions.session.player);
   }
 
   /**
@@ -133,7 +84,7 @@ class TrackInfo {
     if (target_tab.content)
       return target_tab.content;
 
-    const page = await target_tab.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
+    const page = await target_tab.endpoint.call(this.actions, { client: 'YTMUSIC', parse: true });
 
     if (page.contents?.item().key('type').string() === 'Message')
       return page.contents.item().as(Message);
@@ -161,7 +112,7 @@ class TrackInfo {
       if (!automix_preview_video)
         throw new InnertubeError('Automix item not found');
 
-      const page = await automix_preview_video.playlist_video?.endpoint.call(this.#actions, {
+      const page = await automix_preview_video.playlist_video?.endpoint.call(this.actions, {
         videoId: this.basic_info.id,
         client: 'YTMUSIC',
         parse: true
@@ -196,32 +147,11 @@ class TrackInfo {
    * Adds the song to the watch history.
    */
   async addToWatchHistory(): Promise<Response> {
-    if (!this.#playback_tracking)
-      throw new InnertubeError('Playback tracking not available');
-
-    const url_params = {
-      cpn: this.#cpn,
-      fmt: 251,
-      rtn: 0,
-      rt: 0
-    };
-
-    const url = this.#playback_tracking.videostats_playback_url.replace('https://s.', 'https://music.');
-
-    const response = await this.#actions.stats(url, {
-      client_name: Constants.CLIENTS.YTMUSIC.NAME,
-      client_version: Constants.CLIENTS.YTMUSIC.VERSION
-    }, url_params);
-
-    return response;
+    return super.addToWatchHistory(Constants.CLIENTS.YTMUSIC.NAME, Constants.CLIENTS.YTMUSIC.VERSION, 'https://music.');
   }
 
   get available_tabs(): string[] {
     return this.tabs ? this.tabs.map((tab) => tab.title) : [];
-  }
-
-  get page(): [IPlayerResponse, INextResponse?] {
-    return this.#page;
   }
 }
 

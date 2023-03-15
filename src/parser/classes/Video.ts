@@ -59,7 +59,7 @@ class Video extends YTNode {
       hover_text: new Text(snippet.snippetHoverText)
     })) || [];
 
-    this.expandable_metadata = Parser.parseItem<ExpandableMetadata>(data.expandableMetadata);
+    this.expandable_metadata = Parser.parseItem(data.expandableMetadata, ExpandableMetadata);
 
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);

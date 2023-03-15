@@ -12,7 +12,7 @@ class WatchNextEndScreen extends YTNode {
 
   constructor(data: any) {
     super();
-    this.results = Parser.parseArray<EndScreenVideo | EndScreenPlaylist>(data.results, [ EndScreenVideo, EndScreenPlaylist ]);
+    this.results = Parser.parseArray(data.results, [ EndScreenVideo, EndScreenPlaylist ]);
     this.title = new Text(data.title).toString();
   }
 }

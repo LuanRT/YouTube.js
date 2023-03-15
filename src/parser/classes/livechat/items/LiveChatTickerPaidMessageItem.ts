@@ -1,25 +1,15 @@
 import Parser from '../../../index.js';
-import LiveChatAuthorBadge from '../../LiveChatAuthorBadge.js';
-import MetadataBadge from '../../MetadataBadge.js';
 import Text from '../../misc/Text.js';
-import Thumbnail from '../../misc/Thumbnail.js';
 import NavigationEndpoint from '../../NavigationEndpoint.js';
 import type { RawNode } from '../../../index.js';
 
-import { observe, ObservedArray, YTNode } from '../../../helpers.js';
+import { YTNode } from '../../../helpers.js';
+import Author from '../../misc/Author.js';
 
 class LiveChatTickerPaidMessageItem extends YTNode {
   static type = 'LiveChatTickerPaidMessageItem';
 
-  author: {
-    id: string;
-    name: Text;
-    thumbnails: Thumbnail[];
-    badges: ObservedArray<LiveChatAuthorBadge | MetadataBadge>;
-    is_moderator: boolean | null;
-    is_verified: boolean | null;
-    is_verified_artist: boolean | null;
-  };
+  author: Author;
 
   amount: Text;
   duration_sec: string; // Or number?
@@ -31,27 +21,12 @@ class LiveChatTickerPaidMessageItem extends YTNode {
   constructor(data: RawNode) {
     super();
 
-    this.author = {
-      id: data.authorExternalChannelId,
-      name: new Text(data?.authorName),
-      thumbnails: Thumbnail.fromResponse(data.authorPhoto),
-      badges: observe([]).as(LiveChatAuthorBadge, MetadataBadge),
-      is_moderator: null,
-      is_verified: null,
-      is_verified_artist: null
-    };
-
-    const badges = Parser.parseArray<LiveChatAuthorBadge | MetadataBadge>(data.authorBadges, [ MetadataBadge, LiveChatAuthorBadge ]);
-
-    this.author.badges = badges;
-    this.author.is_moderator = badges ? badges.some((badge) => badge.icon_type == 'MODERATOR') : null;
-    this.author.is_verified = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED') : null;
-    this.author.is_verified_artist = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') : null;
+    this.author = new Author(data.authorName, data.authorBadges, data.authorPhoto, data.authorExternalChannelId);
 
     this.amount = new Text(data.amount);
     this.duration_sec = data.durationSec;
     this.full_duration_sec = data.fullDurationSec;
-    this.show_item = Parser.parse(data.showItemEndpoint?.showLiveChatItemEndpoint?.renderer);
+    this.show_item = Parser.parseItem(data.showItemEndpoint?.showLiveChatItemEndpoint?.renderer);
     this.show_item_endpoint = new NavigationEndpoint(data.showItemEndpoint);
     this.id = data.id;
   }

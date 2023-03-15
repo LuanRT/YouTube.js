@@ -25,7 +25,7 @@ class SettingsOptions extends YTNode {
     }
 
     if (Reflect.has(data, 'options')) {
-      this.options = Parser.parseArray<SettingsSwitch | Dropdown | CopyLink | SettingsCheckbox | ChannelOptions>(data.options, [
+      this.options = Parser.parseArray(data.options, [
         SettingsSwitch, Dropdown, CopyLink,
         SettingsCheckbox, ChannelOptions
       ]);
