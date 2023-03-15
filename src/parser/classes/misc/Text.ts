@@ -18,7 +18,7 @@ export function escape(text: string) {
     .replace(/'/g, '&#039;');
 }
 
-class Text {
+export default class Text {
   text?: string;
   runs;
   endpoint?: NavigationEndpoint;
@@ -39,8 +39,11 @@ class Text {
     if (typeof data === 'object' && data !== null && Reflect.has(data, 'titleNavigationEndpoint')) {
       this.endpoint = new NavigationEndpoint(data.titleNavigationEndpoint);
     }
-    if (!this.endpoint)
-      this.endpoint = (this.runs?.[0] as TextRun)?.endpoint;
+    if (!this.endpoint) {
+      if ((this.runs?.[0] as TextRun)?.endpoint) {
+        this.endpoint = (this.runs?.[0] as TextRun)?.endpoint;
+      }
+    }
   }
 
   toHTML() {
@@ -55,5 +58,3 @@ class Text {
     return this.text || 'N/A';
   }
 }
-
-export default Text;
