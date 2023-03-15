@@ -17,6 +17,7 @@ import os from 'os';
 import fs from 'fs/promises';
 import { readFileSync } from 'fs';
 import DOMParser from './polyfills/server-dom.js';
+import CustomEvent from './polyfills/node-custom-event.js';
 import { fileURLToPath } from 'url';
 import evaluate from './jsruntime/jinter.js';
 
@@ -123,7 +124,8 @@ Platform.load({
   Headers: Headers as unknown as typeof globalThis.Headers,
   FormData: FormData as unknown as typeof globalThis.FormData,
   File: File as unknown as typeof globalThis.File,
-  ReadableStream: ReadableStream as unknown as typeof globalThis.ReadableStream
+  ReadableStream: ReadableStream as unknown as typeof globalThis.ReadableStream,
+  CustomEvent: CustomEvent as unknown as typeof globalThis.CustomEvent
 });
 
 export * from './lib.js';
