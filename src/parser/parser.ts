@@ -21,7 +21,8 @@ import Thumbnail from './classes/misc/Thumbnail.js';
 
 import { InnertubeError, ParsingError, Platform } from '../utils/Utils.js';
 import { Memo, observe, ObservedArray, SuperParsedResult, YTNode, YTNodeConstructor } from './helpers.js';
-import GetParserByName from './map.js';
+import * as YTNodes from './nodes.js';
+import { YTNodeGenerator } from './generator.js';
 
 export type ParserError = { classname: string, classdata: any, err: any };
 export type ParserErrorHandler = (error: ParserError) => void;
@@ -290,7 +291,9 @@ export default class Parser {
 
     if (!this.shouldIgnore(classname)) {
       try {
-        const TargetClass = GetParserByName(classname);
+        const has_target_class = this.hasParser(classname);
+
+        const TargetClass = has_target_class ? this.getParserByName(classname) : YTNodeGenerator.generateRuntimeClass(classname, data[keys[0]]);
 
         if (validTypes) {
           if (Array.isArray(validTypes)) {
@@ -494,6 +497,34 @@ export default class Parser {
 
   static shouldIgnore(classname: string) {
     return this.ignore_list.has(classname);
+  }
+
+  static #rt_nodes = new Map<string, YTNodeConstructor>(Array.from(Object.entries(YTNodes)));
+  static #dynamic_nodes = new Map<string, YTNodeConstructor>();
+
+  static getParserByName(classname: string) {
+    const ParserConstructor = this.#rt_nodes.get(classname);
+
+    if (!ParserConstructor) {
+      const error = new Error(`Module not found: ${classname}`);
+      (error as any).code = 'MODULE_NOT_FOUND';
+      throw error;
+    }
+
+    return ParserConstructor;
+  }
+
+  static hasParser(classname: string) {
+    return this.#rt_nodes.has(classname);
+  }
+
+  static addRuntimeParser(classname: string, ParserConstructor: YTNodeConstructor) {
+    this.#rt_nodes.set(classname, ParserConstructor);
+    this.#dynamic_nodes.set(classname, ParserConstructor);
+  }
+
+  static getDynamicParsers() {
+    return Object.fromEntries(this.#dynamic_nodes);
   }
 }
 

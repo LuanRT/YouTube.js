@@ -5,16 +5,18 @@ YouTube is constantly changing, so it is not rare to see YouTube crawlers/scrape
 Our parser, on the other hand, was written so that it behaves similarly to an official client, parsing and mapping renderers (a.k.a YTNodes) dynamically without hard-coding their path in the response. This way, whenever a new renderer pops up (e.g; YouTube adds a new feature / minor UI changes) the library will print a warning similar to this:
 
 ```
-InnertubeError: SomeRenderer not found!
+SomeRenderer not found!
 This is a bug, want to help us fix it? Follow the instructions at https://github.com/LuanRT/YouTube.js/blob/main/docs/updating-the-parser.md or report it at https://github.com/LuanRT/YouTube.js/issues!
-    at Parser.printError (...)
-    at Parser.parseItem (...)
-    at Parser.parseArray (...) {
-  info: {
-    // renderer data, can be used as a reference to implement the renderer parser
-  },
-  date: 2022-05-22T22:16:06.831Z,
-  version: '2.2.3'
+Introspected and JIT generated this class in the meantime:
+class SomeRenderer extends YTNode {
+  static type = 'SomeRenderer';
+
+  // ...
+
+  constructor(data: RawNode) {
+    super();
+    // ...
+  }
 }
 ```
 
@@ -24,7 +26,7 @@ This warning **does not** throw an error. The parser itself will continue workin
 
 Thanks to the modularity of the parser, a renderer can be implemented by simply adding a new file anywhere in the [classes directory](../src/parser/classes)!
 
-For example, say we found a new renderer named `verticalListRenderer`, to let the parser know it exists we would have to create a file with the following structure:
+For example, say we found a new renderer named `verticalListRenderer`, to let the parser know it exists at compile-time we would have to create a file with the following structure:
 
 > `../classes/VerticalList.ts`
 
@@ -48,6 +50,8 @@ class VerticalList extends YTNode {
 
 export default VerticalList;
 ```
+
+You may use the parser's generated class for the new renderer as a starting point for your own implementation.
 
 Then update the parser map:
 
