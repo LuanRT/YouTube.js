@@ -1,13 +1,12 @@
-import Parser from '../index.js';
-import Text from './misc/Text.js';
-import Author from './misc/Author.js';
 import { timeToSeconds } from '../../utils/Utils.js';
+import { YTNode } from '../helpers.js';
+import Parser, { RawNode } from '../index.js';
+import Menu from './menus/Menu.js';
+import MetadataBadge from './MetadataBadge.js';
+import Author from './misc/Author.js';
+import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
-import type Menu from './menus/Menu.js';
-import MetadataBadge from './MetadataBadge.js';
-
-import { YTNode } from '../helpers.js';
 
 class CompactVideo extends YTNode {
   static type = 'CompactVideo';
@@ -31,7 +30,7 @@ class CompactVideo extends YTNode {
   endpoint: NavigationEndpoint;
   menu: Menu | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.videoId;
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail) || null;
@@ -50,7 +49,7 @@ class CompactVideo extends YTNode {
 
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.menu = Parser.parseItem<Menu>(data.menu);
+    this.menu = Parser.parseItem(data.menu, Menu);
   }
 
   get best_thumbnail() {

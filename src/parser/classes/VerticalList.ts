@@ -11,7 +11,7 @@ class VerticalList extends YTNode {
 
   constructor(data: any) {
     super();
-    this.items = Parser.parse(data.items);
+    this.items = Parser.parseArray(data.items);
     this.collapsed_item_count = data.collapsedItemCount;
     this.collapsed_state_button_text = new Text(data.collapsedStateButtonText);
   }

@@ -44,7 +44,7 @@ export default class Search {
     if (!tab_content)
       throw new InnertubeError('Target tab did not have any content.');
 
-    this.header = tab_content.header?.item().as(ChipCloud);
+    this.header = tab_content.header?.as(ChipCloud);
     this.contents = tab_content.contents.as(MusicShelf, MusicCardShelf, ItemSection);
 
     if (is_filtered) {

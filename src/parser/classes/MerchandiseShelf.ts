@@ -1,5 +1,5 @@
-import Parser from '../index.js';
 import { YTNode } from '../helpers.js';
+import Parser, { RawNode } from '../index.js';
 
 class MerchandiseShelf extends YTNode {
   static type = 'MerchandiseShelf';
@@ -8,11 +8,11 @@ class MerchandiseShelf extends YTNode {
   menu;
   items;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.title;
-    this.menu = Parser.parse(data.actionButton);
-    this.items = Parser.parse(data.items);
+    this.menu = Parser.parseItem(data.actionButton);
+    this.items = Parser.parseArray(data.items);
   }
 
   // XXX: alias for consistency

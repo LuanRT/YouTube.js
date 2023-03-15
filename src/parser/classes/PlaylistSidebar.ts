@@ -1,4 +1,4 @@
-import Parser from '../index.js';
+import Parser, { RawNode } from '../index.js';
 import { YTNode } from '../helpers.js';
 
 class PlaylistSidebar extends YTNode {
@@ -6,9 +6,9 @@ class PlaylistSidebar extends YTNode {
 
   items;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.items = Parser.parse(data.items);
+    this.items = Parser.parseArray(data.items);
   }
 
   // XXX: alias for consistency

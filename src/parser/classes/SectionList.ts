@@ -1,5 +1,5 @@
-import Parser from '../index.js';
 import { YTNode } from '../helpers.js';
+import Parser, { RawNode } from '../index.js';
 
 class SectionList extends YTNode {
   static type = 'SectionList';
@@ -10,13 +10,12 @@ class SectionList extends YTNode {
   header?;
   sub_menu?;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     if (data.targetId) {
       this.target_id = data.targetId;
     }
 
-    // TODO: this should be Parser#parseArray
     this.contents = Parser.parseArray(data.contents);
 
     if (data.continuations) {
@@ -28,7 +27,7 @@ class SectionList extends YTNode {
     }
 
     if (data.header) {
-      this.header = Parser.parse(data.header);
+      this.header = Parser.parseItem(data.header);
     }
 
     if (data.subMenu) {

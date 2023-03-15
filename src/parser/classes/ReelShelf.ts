@@ -13,7 +13,7 @@ class ReelShelf extends YTNode {
   constructor(data: any) {
     super();
     this.title = new Text(data.title);
-    this.items = Parser.parse(data.items);
+    this.items = Parser.parseArray(data.items);
     this.endpoint = data.endpoint ? new NavigationEndpoint(data.endpoint) : null;
   }
 
