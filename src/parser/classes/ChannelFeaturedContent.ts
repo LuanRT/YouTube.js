@@ -1,6 +1,6 @@
-import Parser from '../index.js';
-import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import Parser, { RawNode } from '../index.js';
+import Text from './misc/Text.js';
 
 class ChannelFeaturedContent extends YTNode {
   static type = 'ChannelFeaturedContent';
@@ -8,10 +8,10 @@ class ChannelFeaturedContent extends YTNode {
   title: Text;
   items;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
-    this.items = Parser.parse(data.items);
+    this.items = Parser.parseArray(data.items);
   }
 }
 

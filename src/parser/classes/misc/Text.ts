@@ -1,7 +1,7 @@
 import TextRun from './TextRun.js';
 import EmojiRun from './EmojiRun.js';
-import type { RawNode } from '../../index.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
+import type { RawNode } from '../../index.js';
 
 export interface Run {
   text: string;
@@ -18,10 +18,10 @@ export function escape(text: string) {
     .replace(/'/g, '&#039;');
 }
 
-class Text {
-  text: string;
+export default class Text {
+  text?: string;
   runs;
-  endpoint: NavigationEndpoint | null;
+  endpoint?: NavigationEndpoint;
 
   constructor(data: RawNode) {
     if (data?.hasOwnProperty('runs') && Array.isArray(data.runs)) {
@@ -31,24 +31,30 @@ class Text {
       );
       this.text = this.runs.map((run) => run.text).join('');
     } else {
-      this.text = data?.simpleText || 'N/A';
+      this.text = data?.simpleText;
     }
-    this.endpoint =
-      data?.runs?.[0]?.navigationEndpoint ?
-        new NavigationEndpoint(data?.runs[0].navigationEndpoint) :
-        data?.navigationEndpoint ?
-          new NavigationEndpoint(data?.navigationEndpoint) :
-          data?.titleNavigationEndpoint ?
-            new NavigationEndpoint(data?.titleNavigationEndpoint) : null;
+    if (typeof data === 'object' && data !== null && Reflect.has(data, 'navigationEndpoint')) {
+      this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    }
+    if (typeof data === 'object' && data !== null && Reflect.has(data, 'titleNavigationEndpoint')) {
+      this.endpoint = new NavigationEndpoint(data.titleNavigationEndpoint);
+    }
+    if (!this.endpoint) {
+      if ((this.runs?.[0] as TextRun)?.endpoint) {
+        this.endpoint = (this.runs?.[0] as TextRun)?.endpoint;
+      }
+    }
   }
 
   toHTML() {
     return this.runs ? this.runs.map((run) => run.toHTML()).join('') : this.text;
   }
 
+  isEmpty() {
+    return this.text === undefined;
+  }
+
   toString() {
-    return this.text;
+    return this.text || 'N/A';
   }
 }
-
-export default Text;

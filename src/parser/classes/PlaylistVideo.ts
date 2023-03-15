@@ -47,7 +47,7 @@ class PlaylistVideo extends YTNode {
     }
 
     this.duration = {
-      text: new Text(data.lengthText).text,
+      text: new Text(data.lengthText).toString(),
       seconds: parseInt(data.lengthSeconds)
     };
   }

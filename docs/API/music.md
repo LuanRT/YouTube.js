@@ -80,6 +80,15 @@ Searches on YouTube Music.
 | filters? | `object` | Search filters |
 
 <details>
+<summary>Search Filters</summary>
+
+| Filter | Type | Value | Description |
+| --- | --- | --- | --- |
+| type | `string` | `all`, `song`, `video`, `album`, `playlist`, `artist` | Search type |
+
+</details>
+
+<details>
 <summary>Methods & Getters</summary>
 <p>
 

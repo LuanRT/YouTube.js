@@ -36,7 +36,7 @@ import ItemMenu from './ItemMenu.js';
 
 import type Actions from '../../core/Actions.js';
 import type { IParsedResponse, IUpdatedMetadataResponse } from '../types/ParsedResponse.js';
-import { NavigationEndpoint } from '../map.js';
+import { NavigationEndpoint } from '../nodes.js';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |

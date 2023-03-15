@@ -1,6 +1,6 @@
-import Text from './misc/Text.js';
-import Parser from '../index.js';
 import { YTNode } from '../helpers.js';
+import Parser, { RawNode } from '../index.js';
+import Text from './misc/Text.js';
 
 class EmergencyOnebox extends YTNode {
   static type = 'EmergencyOnebox';
@@ -9,11 +9,11 @@ class EmergencyOnebox extends YTNode {
   first_option;
   menu;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
-    this.first_option = Parser.parse(data.firstOption);
-    this.menu = Parser.parse(data.menu);
+    this.first_option = Parser.parseItem(data.firstOption);
+    this.menu = Parser.parseItem(data.menu);
   }
 }
 

@@ -77,8 +77,8 @@ class Video extends YTNode {
     }
 
     this.duration = {
-      text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
-      seconds: timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+      text: data.lengthText ? new Text(data.lengthText).toString() : new Text(overlay_time_status).toString(),
+      seconds: timeToSeconds(data.lengthText ? new Text(data.lengthText).toString() : new Text(overlay_time_status).toString())
     };
 
     this.show_action_menu = data.showActionMenu;
