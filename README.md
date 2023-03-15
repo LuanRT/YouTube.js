@@ -294,7 +294,7 @@ const yt = await Innertube.create({
 <a name="getinfo"></a>
 ### getInfo(target, client?)
 
-Retrieves video info, including playback data and even layout elements such as menus, buttons, etc — all nicely parsed.
+Retrieves video info.
 
 **Returns**: `Promise<VideoInfo>`
 
@@ -381,6 +381,20 @@ Searches the given query on YouTube.
 | --- | --- | --- |
 | query | `string` | The search query |
 | filters? | `SearchFilters` | Search filters |
+
+
+<details>
+<summary>Search Filters</summary>
+
+| Filter | Type | Value | Description |
+| --- | --- | --- | --- |
+| upload_date | `string` | `all` \| `hour` \| `today` \| `week` \| `month` \| `year` | Filter by upload date |
+| type | `string` | `all` \| `video` \| `channel` \| `playlist` \| `movie` | Filter by type |
+| duration | `string` | `all` \| `short` \| `medium` \| `long` | Filter by duration |
+| sort_by | `string` | `relevance` \| `rating` \| `upload_date` \| `view_count` | Sort by |
+| features | `string[]` | `hd` \| `subtitles` \| `creative_commons` \| `3d` \| `live` \| `purchased` \| `4k` \| `360` \| `location` \| `hdr` \| `vr180` | Filter by features |
+
+</details>
 
 <details>
 <summary>Methods & Getters</summary>
