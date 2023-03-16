@@ -19,7 +19,7 @@ class Channel extends YTNode {
   long_byline: Text;
   short_byline: Text;
   endpoint: NavigationEndpoint;
-  subscribe_button: SubscribeButton | null;
+  subscribe_button: SubscribeButton | Button | null;
   description_snippet: Text;
 
   constructor(data: any) {
