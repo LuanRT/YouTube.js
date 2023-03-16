@@ -1,15 +1,15 @@
-import type AudioOnlyPlayability from './classes/AudioOnlyPlayability.ts';
-import type CardCollection from './classes/CardCollection.ts';
-import type Endscreen from './classes/Endscreen.ts';
-import type PlayerAnnotationsExpanded from './classes/PlayerAnnotationsExpanded.ts';
-import type PlayerCaptionsTracklist from './classes/PlayerCaptionsTracklist.ts';
-import type PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec.ts';
-import type PlayerStoryboardSpec from './classes/PlayerStoryboardSpec.ts';
-import type Message from './classes/Message.ts';
-import type LiveChatParticipantsList from './classes/LiveChatParticipantsList.ts';
-import type LiveChatHeader from './classes/LiveChatHeader.ts';
-import type LiveChatItemList from './classes/LiveChatItemList.ts';
-import type Alert from './classes/Alert.ts';
+import AudioOnlyPlayability from './classes/AudioOnlyPlayability.ts';
+import CardCollection from './classes/CardCollection.ts';
+import Endscreen from './classes/Endscreen.ts';
+import PlayerAnnotationsExpanded from './classes/PlayerAnnotationsExpanded.ts';
+import PlayerCaptionsTracklist from './classes/PlayerCaptionsTracklist.ts';
+import PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec.ts';
+import PlayerStoryboardSpec from './classes/PlayerStoryboardSpec.ts';
+import Message from './classes/Message.ts';
+import LiveChatParticipantsList from './classes/LiveChatParticipantsList.ts';
+import LiveChatHeader from './classes/LiveChatHeader.ts';
+import LiveChatItemList from './classes/LiveChatItemList.ts';
+import Alert from './classes/Alert.ts';
 
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.ts';
 
@@ -21,7 +21,8 @@ import Thumbnail from './classes/misc/Thumbnail.ts';
 
 import { InnertubeError, ParsingError, Platform } from '../utils/Utils.ts';
 import { Memo, observe, ObservedArray, SuperParsedResult, YTNode, YTNodeConstructor } from './helpers.ts';
-import GetParserByName from './map.ts';
+import * as YTNodes from './nodes.ts';
+import { YTNodeGenerator } from './generator.ts';
 
 export type ParserError = { classname: string, classdata: any, err: any };
 export type ParserErrorHandler = (error: ParserError) => void;
@@ -169,7 +170,7 @@ export default class Parser {
       parsed_data.overlay = overlay;
     }
 
-    const alerts = this.parseArray<Alert>(data.alerts);
+    const alerts = this.parseArray(data.alerts, Alert);
     if (alerts.length) {
       parsed_data.alerts = alerts;
     }
@@ -202,7 +203,7 @@ export default class Parser {
       status: data.playabilityStatus.status,
       reason: data.playabilityStatus.reason || '',
       embeddable: !!data.playabilityStatus.playableInEmbed || false,
-      audio_only_playablility: this.parseItem<AudioOnlyPlayability>(data.playabilityStatus.audioOnlyPlayability),
+      audio_only_playablility: this.parseItem(data.playabilityStatus.audioOnlyPlayability, AudioOnlyPlayability),
       error_screen: this.parseItem(data.playabilityStatus.errorScreen)
     } : null;
 
@@ -232,7 +233,7 @@ export default class Parser {
       parsed_data.endpoint = endpoint;
     }
 
-    const captions = this.parseItem<PlayerCaptionsTracklist>(data.captions);
+    const captions = this.parseItem(data.captions, PlayerCaptionsTracklist);
     if (captions) {
       parsed_data.captions = captions;
     }
@@ -242,22 +243,22 @@ export default class Parser {
       parsed_data.video_details = video_details;
     }
 
-    const annotations = this.parseArray<PlayerAnnotationsExpanded>(data.annotations);
+    const annotations = this.parseArray(data.annotations, PlayerAnnotationsExpanded);
     if (annotations.length) {
       parsed_data.annotations = annotations;
     }
 
-    const storyboards = this.parseItem<PlayerStoryboardSpec | PlayerLiveStoryboardSpec>(data.storyboards);
+    const storyboards = this.parseItem(data.storyboards, [ PlayerStoryboardSpec, PlayerLiveStoryboardSpec ]);
     if (storyboards) {
       parsed_data.storyboards = storyboards;
     }
 
-    const endscreen = this.parseItem<Endscreen>(data.endscreen);
+    const endscreen = this.parseItem(data.endscreen, Endscreen);
     if (endscreen) {
       parsed_data.endscreen = endscreen;
     }
 
-    const cards = this.parseItem<CardCollection>(data.cards);
+    const cards = this.parseItem(data.cards, CardCollection);
     if (cards) {
       parsed_data.cards = cards;
     }
@@ -278,7 +279,10 @@ export default class Parser {
    * @param data - The data to parse.
    * @param validTypes - YTNode types that are allowed to be parsed.
    */
-  static parseItem<T extends YTNode = YTNode>(data?: RawNode, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+  static parseItem<T extends YTNode, K extends YTNodeConstructor<T>[]>(data: RawNode | undefined, validTypes: K): InstanceType<K[number]> | null;
+  static parseItem<T extends YTNode>(data: RawNode | undefined, validTypes: YTNodeConstructor<T>): T | null;
+  static parseItem(data?: RawNode) : YTNode;
+  static parseItem(data?: RawNode, validTypes?: YTNodeConstructor | YTNodeConstructor[]) {
     if (!data) return null;
 
     const keys = Object.keys(data);
@@ -290,7 +294,9 @@ export default class Parser {
 
     if (!this.shouldIgnore(classname)) {
       try {
-        const TargetClass = GetParserByName(classname);
+        const has_target_class = this.hasParser(classname);
+
+        const TargetClass = has_target_class ? this.getParserByName(classname) : YTNodeGenerator.generateRuntimeClass(classname, data[keys[0]]);
 
         if (validTypes) {
           if (Array.isArray(validTypes)) {
@@ -303,7 +309,7 @@ export default class Parser {
         const result = new TargetClass(data[keys[0]]);
         this.#addToMemo(classname, result);
 
-        return result as T;
+        return result;
       } catch (err) {
         this.#errorHandler({ classname, classdata: data[keys[0]], err });
         return null;
@@ -313,17 +319,24 @@ export default class Parser {
     return null;
   }
 
+  extra() {
+    Parser.parseItem({}, [ MusicMultiSelectMenuItem, MusicMultiSelectMenuItem ]);
+  }
+
   /**
    * Parses an array of items.
    * @param data - The data to parse.
    * @param validTypes - YTNode types that are allowed to be parsed.
    */
-  static parseArray<T extends YTNode = YTNode>(data?: RawNode[], validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+  static parseArray<T extends YTNode, K extends YTNodeConstructor<T>[]>(data: RawNode[] | undefined, validTypes: K): ObservedArray<InstanceType<K[number]>>;
+  static parseArray<T extends YTNode = YTNode>(data: RawNode[] | undefined, validType: YTNodeConstructor<T>): ObservedArray<T>;
+  static parseArray(data: RawNode[] | undefined): ObservedArray<YTNode>;
+  static parseArray(data?: RawNode[], validTypes?: YTNodeConstructor | YTNodeConstructor[]) {
     if (Array.isArray(data)) {
-      const results: T[] = [];
+      const results: YTNode[] = [];
 
       for (const item of data) {
-        const result = this.parseItem(item, validTypes);
+        const result = this.parseItem(item, validTypes as YTNodeConstructor);
         if (result) {
           results.push(result);
         }
@@ -331,7 +344,7 @@ export default class Parser {
 
       return observe(results);
     } else if (!data) {
-      return observe([] as T[]);
+      return observe([] as YTNode[]);
     }
     throw new ParsingError('Expected array but got a single item');
   }
@@ -342,7 +355,7 @@ export default class Parser {
    * @param requireArray - Whether the data should be parsed as an array.
    * @param validTypes - YTNode types that are allowed to be parsed.
    */
-  static parse<T extends YTNode = YTNode>(data: RawData, requireArray: true, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]): ObservedArray<T> | null;
+  static parse<T extends YTNode, K extends YTNodeConstructor<T>[]>(data: RawData, requireArray: true, validTypes?: K): ObservedArray<InstanceType<K[number]>> | null;
   static parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]): SuperParsedResult<T>;
   static parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
     if (!data) return null;
@@ -351,7 +364,7 @@ export default class Parser {
       const results: T[] = [];
 
       for (const item of data) {
-        const result = this.parseItem(item, validTypes);
+        const result = this.parseItem(item, validTypes as YTNodeConstructor<T>);
         if (result) {
           results.push(result);
         }
@@ -364,7 +377,7 @@ export default class Parser {
       throw new ParsingError('Expected array but got a single item');
     }
 
-    return new SuperParsedResult(this.parseItem(data, validTypes));
+    return new SuperParsedResult(this.parseItem(data, validTypes as YTNodeConstructor<T>));
   }
 
   static parseC(data: RawNode) {
@@ -494,6 +507,34 @@ export default class Parser {
 
   static shouldIgnore(classname: string) {
     return this.ignore_list.has(classname);
+  }
+
+  static #rt_nodes = new Map<string, YTNodeConstructor>(Array.from(Object.entries(YTNodes)));
+  static #dynamic_nodes = new Map<string, YTNodeConstructor>();
+
+  static getParserByName(classname: string) {
+    const ParserConstructor = this.#rt_nodes.get(classname);
+
+    if (!ParserConstructor) {
+      const error = new Error(`Module not found: ${classname}`);
+      (error as any).code = 'MODULE_NOT_FOUND';
+      throw error;
+    }
+
+    return ParserConstructor;
+  }
+
+  static hasParser(classname: string) {
+    return this.#rt_nodes.has(classname);
+  }
+
+  static addRuntimeParser(classname: string, ParserConstructor: YTNodeConstructor) {
+    this.#rt_nodes.set(classname, ParserConstructor);
+    this.#dynamic_nodes.set(classname, ParserConstructor);
+  }
+
+  static getDynamicParsers() {
+    return Object.fromEntries(this.#dynamic_nodes);
   }
 }
 
@@ -668,10 +709,10 @@ export class LiveChatContinuation extends YTNode {
     }), true) || observe<YTNode>([]);
 
     this.action_panel = Parser.parseItem(data.actionPanel);
-    this.item_list = Parser.parseItem<LiveChatItemList>(data.itemList);
-    this.header = Parser.parseItem<LiveChatHeader>(data.header);
-    this.participants_list = Parser.parseItem<LiveChatParticipantsList>(data.participantsList);
-    this.popout_message = Parser.parseItem<Message>(data.popoutMessage);
+    this.item_list = Parser.parseItem(data.itemList, LiveChatItemList);
+    this.header = Parser.parseItem(data.header, LiveChatHeader);
+    this.participants_list = Parser.parseItem(data.participantsList, LiveChatParticipantsList);
+    this.popout_message = Parser.parseItem(data.popoutMessage, Message);
 
     this.emojis = data.emojis?.map((emoji: any) => ({
       emoji_id: emoji.emojiId,

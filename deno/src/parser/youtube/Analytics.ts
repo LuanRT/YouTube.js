@@ -9,7 +9,7 @@ class Analytics {
 
   constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
-    this.sections = this.#page.contents_memo?.getType(Element).map((el) => el.model?.item()).flatMap((el) => !el ? [] : el);
+    this.sections = this.#page.contents_memo?.getType(Element).map((el) => el.model).flatMap((el) => !el ? [] : el);
   }
 
   get page(): IBrowseResponse {

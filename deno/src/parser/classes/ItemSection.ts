@@ -15,7 +15,7 @@ class ItemSection extends YTNode {
 
   constructor(data: any) {
     super();
-    this.header = Parser.parseItem<CommentsHeader | ItemSectionHeader | ItemSectionTabbedHeader>(data.header);
+    this.header = Parser.parseItem(data.header, [ CommentsHeader, ItemSectionHeader, ItemSectionTabbedHeader ]);
     this.contents = Parser.parse(data.contents, true);
 
     if (data.targetId || data.sectionIdentifier) {

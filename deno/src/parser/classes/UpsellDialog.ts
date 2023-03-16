@@ -1,6 +1,6 @@
 import Parser from '../index.ts';
 import { YTNode } from '../helpers.ts';
-import type Button from './Button.ts';
+import Button from './Button.ts';
 import Text from './misc/Text.ts';
 
 class UpsellDialog extends YTNode {
@@ -16,8 +16,8 @@ class UpsellDialog extends YTNode {
     super();
     this.message_title = new Text(data.dialogMessageTitle);
     this.message_text = new Text(data.dialogMessageText);
-    this.action_button = Parser.parseItem<Button>(data.actionButton);
-    this.dismiss_button = Parser.parseItem<Button>(data.dismissButton);
+    this.action_button = Parser.parseItem(data.actionButton, Button);
+    this.dismiss_button = Parser.parseItem(data.dismissButton, Button);
     this.is_visible = data.isVisible;
   }
 }

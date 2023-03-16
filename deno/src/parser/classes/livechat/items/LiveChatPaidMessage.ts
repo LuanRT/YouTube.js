@@ -1,25 +1,15 @@
-import { observe, ObservedArray, YTNode } from '../../../helpers.ts';
-import Parser from '../../../index.ts';
-import LiveChatAuthorBadge from '../../LiveChatAuthorBadge.ts';
-import MetadataBadge from '../../MetadataBadge.ts';
+import { YTNode } from '../../../helpers.ts';
 import Text from '../../misc/Text.ts';
-import Thumbnail from '../../misc/Thumbnail.ts';
 import NavigationEndpoint from '../../NavigationEndpoint.ts';
 import type { RawNode } from '../../../index.ts';
+import Author from '../../misc/Author.ts';
+
 class LiveChatPaidMessage extends YTNode {
   static type = 'LiveChatPaidMessage';
 
   message: Text;
 
-  author: {
-    id: string;
-    name: Text;
-    thumbnails: Thumbnail[];
-    badges: ObservedArray<LiveChatAuthorBadge | MetadataBadge>;
-    is_moderator: boolean | null;
-    is_verified: boolean | null;
-    is_verified_artist: boolean | null;
-  };
+  author: Author;
 
   header_background_color: number;
   header_text_color: number;
@@ -35,22 +25,7 @@ class LiveChatPaidMessage extends YTNode {
     super();
     this.message = new Text(data.message);
 
-    this.author = {
-      id: data.authorExternalChannelId,
-      name: new Text(data.authorName),
-      thumbnails: Thumbnail.fromResponse(data.authorPhoto),
-      badges: observe([]).as(LiveChatAuthorBadge, MetadataBadge),
-      is_moderator: null,
-      is_verified: null,
-      is_verified_artist: null
-    };
-
-    const badges = Parser.parseArray<LiveChatAuthorBadge | MetadataBadge>(data.authorBadges, [ MetadataBadge, LiveChatAuthorBadge ]);
-
-    this.author.badges = badges;
-    this.author.is_moderator = badges ? badges.some((badge) => badge.icon_type == 'MODERATOR') : null;
-    this.author.is_verified = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED') : null;
-    this.author.is_verified_artist = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') : null;
+    this.author = new Author(data.authorName, data.authorBadges, data.authorPhoto, data.authorExternalChannelId);
 
     this.header_background_color = data.headerBackgroundColor;
     this.header_text_color = data.headerTextColor;

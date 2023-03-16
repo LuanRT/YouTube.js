@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import Parser, { RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import Author from './misc/Author.ts';
 import Thumbnail from './misc/Thumbnail.ts';
@@ -18,11 +18,11 @@ class PlayerOverlayAutoplay extends YTNode {
   background: Thumbnail[];
   thumbnail_overlays;
   author: Author;
-  cancel_button;
-  next_button;
-  close_button;
+  cancel_button: Button | null;
+  next_button: Button | null;
+  close_button: Button | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.video_id = data.videoId;
@@ -32,11 +32,11 @@ class PlayerOverlayAutoplay extends YTNode {
     this.count_down_secs_for_fullscreen = data.countDownSecsForFullscreen;
     this.published = new Text(data.publishedTimeText);
     this.background = Thumbnail.fromResponse(data.background);
-    this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+    this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.author = new Author(data.byline);
-    this.cancel_button = Parser.parseItem<Button>(data.cancelButton, Button);
-    this.next_button = Parser.parseItem<Button>(data.nextButton, Button);
-    this.close_button = Parser.parseItem<Button>(data.closeButton, Button);
+    this.cancel_button = Parser.parseItem(data.cancelButton, Button);
+    this.next_button = Parser.parseItem(data.nextButton, Button);
+    this.close_button = Parser.parseItem(data.closeButton, Button);
   }
 }
 

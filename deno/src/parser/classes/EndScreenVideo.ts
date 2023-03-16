@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
+import Parser, { RawNode } from '../index.ts';
 import Author from './misc/Author.ts';
+import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
-import { YTNode } from '../helpers.ts';
 
 class EndScreenVideo extends YTNode {
   static type = 'EndScreenVideo';
@@ -22,12 +22,12 @@ class EndScreenVideo extends YTNode {
     seconds: number;
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.videoId;
     this.title = new Text(data.title);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
-    this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
+    this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.author = new Author(data.shortBylineText, data.ownerBadges);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.short_view_count = new Text(data.shortViewCountText);

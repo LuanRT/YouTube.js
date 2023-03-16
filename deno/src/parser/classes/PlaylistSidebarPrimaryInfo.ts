@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import Parser, { RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 
@@ -14,10 +14,10 @@ class PlaylistSidebarPrimaryInfo extends YTNode {
   endpoint: NavigationEndpoint;
   description: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.stats = data.stats.map((stat: any) => new Text(stat));
-    this.thumbnail_renderer = Parser.parse(data.thumbnailRenderer);
+    this.thumbnail_renderer = Parser.parseItem(data.thumbnailRenderer);
     this.title = new Text(data.title);
     this.menu = Parser.parseItem(data.menu);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);

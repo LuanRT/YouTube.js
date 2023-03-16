@@ -24,7 +24,7 @@ class CommentThread extends YTNode {
   constructor(data: RawNode) {
     super();
     this.comment = Parser.parseItem<Comment>(data.comment, Comment);
-    this.comment_replies_data = Parser.parseItem<CommentReplies>(data.replies);
+    this.comment_replies_data = Parser.parseItem(data.replies, CommentReplies);
     this.is_moderated_elq_comment = data.isModeratedElqComment;
     this.has_replies = !!this.comment_replies_data;
   }

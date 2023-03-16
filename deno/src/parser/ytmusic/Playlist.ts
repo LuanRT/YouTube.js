@@ -37,7 +37,7 @@ class Playlist {
       this.#continuation = data.continuation;
     } else {
       if (this.#page.header?.item().type === 'MusicEditablePlaylistDetailHeader') {
-        this.header = this.#page.header?.item().as(MusicEditablePlaylistDetailHeader).header.item().as(MusicDetailHeader);
+        this.header = this.#page.header?.item().as(MusicEditablePlaylistDetailHeader).header?.as(MusicDetailHeader);
       } else {
         this.header = this.#page.header?.item().as(MusicDetailHeader);
       }

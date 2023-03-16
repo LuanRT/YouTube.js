@@ -1,5 +1,5 @@
 import Parser from '../../index.ts';
-import type AnchoredSection from './AnchoredSection.ts';
+import AnchoredSection from './AnchoredSection.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
 
@@ -10,7 +10,7 @@ class KidsHomeScreen extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.anchors = Parser.parseArray<AnchoredSection>(data.anchors);
+    this.anchors = Parser.parseArray(data.anchors, AnchoredSection);
   }
 }
 

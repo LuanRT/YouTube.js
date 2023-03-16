@@ -36,6 +36,7 @@ import ItemMenu from './ItemMenu.ts';
 
 import type Actions from '../../core/Actions.ts';
 import type { IParsedResponse, IUpdatedMetadataResponse } from '../types/ParsedResponse.ts';
+import { NavigationEndpoint } from '../nodes.ts';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
@@ -288,10 +289,10 @@ class LiveChat extends EventEmitter {
    * Retrieves given chat item's menu.
    */
   async getItemMenu(item: ChatItemWithMenu): Promise<ItemMenu> {
-    if (!item.menu_endpoint)
+    if (!item.hasKey('menu_endpoint') || !item.key('menu_endpoint').isInstanceof(NavigationEndpoint))
       throw new InnertubeError('This item does not have a menu.', item);
 
-    const response = await item.menu_endpoint.call(this.#actions, { parse: true });
+    const response = await item.key('menu_endpoint').instanceof(NavigationEndpoint).call(this.#actions, { parse: true });
 
     if (!response)
       throw new InnertubeError('Could not retrieve item menu.', item);

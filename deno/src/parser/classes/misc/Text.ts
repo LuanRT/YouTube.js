@@ -1,5 +1,6 @@
 import TextRun from './TextRun.ts';
 import EmojiRun from './EmojiRun.ts';
+import NavigationEndpoint from '../NavigationEndpoint.ts';
 import type { RawNode } from '../../index.ts';
 
 export interface Run {
@@ -17,9 +18,10 @@ export function escape(text: string) {
     .replace(/'/g, '&#039;');
 }
 
-class Text {
-  text: string;
+export default class Text {
+  text?: string;
   runs;
+  endpoint?: NavigationEndpoint;
 
   constructor(data: RawNode) {
     if (data?.hasOwnProperty('runs') && Array.isArray(data.runs)) {
@@ -29,7 +31,18 @@ class Text {
       );
       this.text = this.runs.map((run) => run.text).join('');
     } else {
-      this.text = data?.simpleText || 'N/A';
+      this.text = data?.simpleText;
+    }
+    if (typeof data === 'object' && data !== null && Reflect.has(data, 'navigationEndpoint')) {
+      this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    }
+    if (typeof data === 'object' && data !== null && Reflect.has(data, 'titleNavigationEndpoint')) {
+      this.endpoint = new NavigationEndpoint(data.titleNavigationEndpoint);
+    }
+    if (!this.endpoint) {
+      if ((this.runs?.[0] as TextRun)?.endpoint) {
+        this.endpoint = (this.runs?.[0] as TextRun)?.endpoint;
+      }
     }
   }
 
@@ -37,9 +50,11 @@ class Text {
     return this.runs ? this.runs.map((run) => run.toHTML()).join('') : this.text;
   }
 
+  isEmpty() {
+    return this.text === undefined;
+  }
+
   toString() {
-    return this.text;
+    return this.text || 'N/A';
   }
 }
-
-export default Text;

@@ -10,7 +10,7 @@ class OpenPopupAction extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.popup = Parser.parse(data.popup);
+    this.popup = Parser.parseItem(data.popup);
     this.popup_type = data.popupType;
   }
 }

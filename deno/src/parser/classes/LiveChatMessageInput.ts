@@ -1,7 +1,7 @@
 import Text from './misc/Text.ts';
 import Parser from '../index.ts';
 import Thumbnail from './misc/Thumbnail.ts';
-import type Button from './Button.ts';
+import Button from './Button.ts';
 import { YTNode } from '../helpers.ts';
 
 class LiveChatMessageInput extends YTNode {
@@ -16,7 +16,7 @@ class LiveChatMessageInput extends YTNode {
     super();
     this.author_name = new Text(data.authorName);
     this.author_photo = Thumbnail.fromResponse(data.authorPhoto);
-    this.send_button = Parser.parseItem<Button>(data.sendButton);
+    this.send_button = Parser.parseItem(data.sendButton, Button);
     this.target_id = data.targetId;
   }
 }

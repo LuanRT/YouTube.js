@@ -13,11 +13,11 @@ class Element extends YTNode {
     super();
 
     if (Reflect.has(data, 'elementRenderer')) {
-      return Parser.parseItem<Element>(data, Element) as Element;
+      return Parser.parseItem(data, Element) as Element;
     }
 
     const type = data.newElement.type.componentType;
-    this.model = Parser.parse(type?.model);
+    this.model = Parser.parseItem(type?.model);
 
     if (data.newElement?.childElements) {
       this.child_elements = data.newElement?.childElements?.map((el: any) => new ChildElement(el)) || null;

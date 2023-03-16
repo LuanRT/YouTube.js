@@ -1,9 +1,9 @@
+import { YTNode } from '../helpers.ts';
+import Parser, { RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import TextRun from './misc/TextRun.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
 
 class MusicDetailHeader extends YTNode {
   static type = 'MusicDetailHeader';
@@ -24,7 +24,7 @@ class MusicDetailHeader extends YTNode {
   };
   menu;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.description = new Text(data.description);
@@ -46,7 +46,7 @@ class MusicDetailHeader extends YTNode {
       };
     }
 
-    this.menu = Parser.parse(data.menu);
+    this.menu = Parser.parseItem(data.menu);
   }
 }
 

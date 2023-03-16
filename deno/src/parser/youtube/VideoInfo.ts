@@ -1,6 +1,3 @@
-import Constants from '../../utils/Constants.ts';
-import Parser from '../index.ts';
-
 import ChipCloud from '../classes/ChipCloud.ts';
 import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader.ts';
@@ -21,10 +18,10 @@ import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.ts';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.ts';
 import LiveChatWrap from './LiveChat.ts';
 import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.ts';
 
 import type CardCollection from '../classes/CardCollection.ts';
 import type Endscreen from '../classes/Endscreen.ts';
-import type Format from '../classes/misc/Format.ts';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.ts';
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.ts';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.ts';
@@ -32,32 +29,20 @@ import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.ts';
 
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
-import type Player from '../../core/Player.ts';
-import type { ObservedArray, YTNode } from '../helpers.ts';
-import type { INextResponse, IPlayerResponse } from '../types/ParsedResponse.ts';
-
-import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.ts';
+import { ObservedArray, YTNode } from '../helpers.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
+import { MediaInfo } from '../../core/MediaInfo.ts';
 
-class VideoInfo {
-  #page: [IPlayerResponse, INextResponse?];
-
-  #actions: Actions;
-  #player?: Player;
-  #cpn?: string;
+class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
 
   basic_info;
-  streaming_data;
-  playability_status;
   annotations?: ObservedArray<PlayerAnnotationsExpanded>;
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
   endscreen?: Endscreen;
   captions?: PlayerCaptionsTracklist;
   cards?: CardCollection;
-
-  #playback_tracking;
 
   primary_info?: VideoPrimaryInfo | null;
   secondary_info?: VideoSecondaryInfo | null;
@@ -77,18 +62,10 @@ class VideoInfo {
    * @param player - Player instance.
    * @param cpn - Client Playback Nonce.
    */
-  constructor(data: [ApiResponse, ApiResponse?], actions: Actions, player?: Player, cpn?: string) {
-    this.#actions = actions;
-    this.#player = player;
-    this.#cpn = cpn;
+  constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
+    super(data, actions, cpn);
 
-    const info = Parser.parseResponse<IPlayerResponse>(data[0].data);
-    const next = data?.[1]?.data ? Parser.parseResponse<INextResponse>(data[1].data) : undefined;
-
-    this.#page = [ info, next ];
-
-    if (info.playability_status?.status === 'ERROR')
-      throw new InnertubeError('This video is unavailable', info.playability_status);
+    const [ info, next ] = this.page;
 
     if (info.microformat && !info.microformat?.is(PlayerMicroformat, MicroformatData))
       throw new InnertubeError('Invalid microformat', info.microformat);
@@ -113,15 +90,11 @@ class VideoInfo {
       is_disliked: undefined as boolean | undefined
     };
 
-    this.streaming_data = info.streaming_data;
-    this.playability_status = info.playability_status;
     this.annotations = info.annotations;
     this.storyboards = info.storyboards;
     this.endscreen = info.endscreen;
     this.captions = info.captions;
     this.cards = info.cards;
-
-    this.#playback_tracking = info.playback_tracking;
 
     const two_col = next?.contents?.item().as(TwoColumnWatchNextResults);
 
@@ -199,7 +172,7 @@ class VideoInfo {
 
     if (cloud_chip.is_selected) return this;
 
-    const response = await cloud_chip.endpoint?.call(this.#actions, { parse: true });
+    const response = await cloud_chip.endpoint?.call(this.actions, { parse: true });
     const data = response?.on_response_received_endpoints?.get({ target_id: 'watch-next-feed' });
 
     this.watch_next_feed = data?.contents;
@@ -211,24 +184,7 @@ class VideoInfo {
    * Adds video to the watch history.
    */
   async addToWatchHistory(): Promise<Response> {
-    if (!this.#playback_tracking)
-      throw new InnertubeError('Playback tracking not available');
-
-    const url_params = {
-      cpn: this.#cpn,
-      fmt: 251,
-      rtn: 0,
-      rt: 0
-    };
-
-    const url = this.#playback_tracking.videostats_playback_url.replace('https://s.', 'https://www.');
-
-    const response = await this.#actions.stats(url, {
-      client_name: Constants.CLIENTS.WEB.NAME,
-      client_version: Constants.CLIENTS.WEB.VERSION
-    }, url_params);
-
-    return response;
+    return super.addToWatchHistory();
   }
 
 
@@ -239,7 +195,7 @@ class VideoInfo {
     if (!this.#watch_next_continuation)
       throw new InnertubeError('Watch next feed continuation not found');
 
-    const response = await this.#watch_next_continuation?.endpoint.call(this.#actions, { parse: true });
+    const response = await this.#watch_next_continuation?.endpoint.call(this.actions, { parse: true });
     const data = response?.on_response_received_endpoints?.get({ type: 'appendContinuationItemsAction' });
 
     if (!data)
@@ -271,7 +227,7 @@ class VideoInfo {
     if (button.is_toggled)
       throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
 
-    const response = await button.endpoint.call(this.#actions);
+    const response = await button.endpoint.call(this.actions);
 
     return response;
   }
@@ -292,7 +248,7 @@ class VideoInfo {
     if (button.is_toggled)
       throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
 
-    const response = await button.endpoint.call(this.#actions);
+    const response = await button.endpoint.call(this.actions);
 
     return response;
   }
@@ -320,7 +276,7 @@ class VideoInfo {
     if (!button)
       throw new InnertubeError('This video is not liked/disliked', { video_id: this.basic_info.id });
 
-    const response = await button.toggled_endpoint.call(this.#actions);
+    const response = await button.toggled_endpoint.call(this.actions);
 
     return response;
   }
@@ -335,29 +291,17 @@ class VideoInfo {
   }
 
   /**
-   * Selects the format that best matches the given options.
-   * @param options - Options
+   * Retrieves trailer info if available (typically for non-purchased movies or films).
+   * @returns `VideoInfo` for the trailer, or `null` if none.
    */
-  chooseFormat(options: FormatOptions): Format {
-    return FormatUtils.chooseFormat(options, this.streaming_data);
-  }
-
-  /**
-   * Generates a DASH manifest from the streaming data.
-   * @param url_transformer - Function to transform the URLs.
-   * @param format_filter - Function to filter the formats.
-   * @returns DASH manifest
-   */
-  toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter): string {
-    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#player);
-  }
-
-  /**
-   * Downloads the video.
-   * @param options - Download options.
-   */
-  async download(options: DownloadOptions = {}): Promise<ReadableStream<Uint8Array>> {
-    return FormatUtils.download(options, this.#actions, this.playability_status, this.streaming_data, this.#actions.session.player, this.cpn);
+  getTrailerInfo(): VideoInfo | null {
+    if (this.has_trailer) {
+      const player_response = this.playability_status.error_screen?.as(PlayerLegacyDesktopYpcTrailer).trailer?.player_response;
+      if (player_response) {
+        return new VideoInfo([ { data: player_response } as ApiResponse ], this.actions, this.cpn);
+      }
+    }
+    return null;
   }
 
   /**
@@ -365,20 +309,6 @@ class VideoInfo {
    */
   get filters(): string[] {
     return this.related_chip_cloud?.chips?.map((chip) => chip.text?.toString()) || [];
-  }
-
-  /**
-   * Actions instance.
-   */
-  get actions(): Actions {
-    return this.#actions;
-  }
-
-  /**
-   * Content Playback Nonce.
-   */
-  get cpn(): string | undefined {
-    return this.#cpn;
   }
 
   /**
@@ -393,6 +323,13 @@ class VideoInfo {
    */
   get autoplay_video_endpoint(): NavigationEndpoint | null {
     return this.autoplay?.sets?.[0]?.autoplay_video || null;
+  }
+
+  /**
+   * Checks if trailer is available.
+   */
+  get has_trailer(): boolean {
+    return !!this.playability_status.error_screen?.is(PlayerLegacyDesktopYpcTrailer);
   }
 
   /**
@@ -432,13 +369,6 @@ class VideoInfo {
         return songs;
         */
     return [];
-  }
-
-  /**
-   * Original parsed InnerTube response.
-   */
-  get page(): [IPlayerResponse, INextResponse?] {
-    return this.#page;
   }
 }
 

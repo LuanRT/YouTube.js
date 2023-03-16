@@ -4,7 +4,7 @@ import Text from './misc/Text.ts';
 import Author from './misc/Author.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 
-import type SubscribeButton from './SubscribeButton.ts';
+import SubscribeButton from './SubscribeButton.ts';
 
 import { YTNode } from '../helpers.ts';
 
@@ -36,7 +36,7 @@ class Channel extends YTNode {
     this.long_byline = new Text(data.longBylineText);
     this.short_byline = new Text(data.shortBylineText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.subscribe_button = Parser.parseItem<SubscribeButton>(data.subscribeButton);
+    this.subscribe_button = Parser.parseItem(data.subscribeButton, SubscribeButton);
     this.description_snippet = new Text(data.descriptionSnippet);
   }
 }

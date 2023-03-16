@@ -59,7 +59,7 @@ class Video extends YTNode {
       hover_text: new Text(snippet.snippetHoverText)
     })) || [];
 
-    this.expandable_metadata = Parser.parseItem<ExpandableMetadata>(data.expandableMetadata);
+    this.expandable_metadata = Parser.parseItem(data.expandableMetadata, ExpandableMetadata);
 
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
@@ -77,8 +77,8 @@ class Video extends YTNode {
     }
 
     this.duration = {
-      text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
-      seconds: timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+      text: data.lengthText ? new Text(data.lengthText).toString() : new Text(overlay_time_status).toString(),
+      seconds: timeToSeconds(data.lengthText ? new Text(data.lengthText).toString() : new Text(overlay_time_status).toString())
     };
 
     this.show_action_menu = data.showActionMenu;

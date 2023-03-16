@@ -27,6 +27,7 @@ interface PlatformShim {
     FormData: typeof FormData;
     File: typeof File;
     ReadableStream: typeof ReadableStream;
+    CustomEvent: typeof CustomEvent;
 }
 
 export default PlatformShim;

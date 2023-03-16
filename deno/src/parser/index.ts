@@ -1,11 +1,12 @@
 export { default as Parser } from './parser.ts';
 export * from './parser.ts';
 export * from './types/index.ts';
-export { Misc } from '../parser/map.ts';
-export * as YTNodes from '../parser/map.ts';
+export * as Misc from './misc.ts';
+export * as YTNodes from './nodes.ts';
 export * as YT from './youtube/index.ts';
 export * as YTMusic from './ytmusic/index.ts';
 export * as YTKids from './ytkids/index.ts';
 export * as Helpers from './helpers.ts';
+export * as Generator from './generator.ts';
 import Parser from './parser.ts';
 export default Parser;

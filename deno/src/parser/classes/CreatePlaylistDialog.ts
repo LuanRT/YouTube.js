@@ -19,8 +19,8 @@ class CreatePlaylistDialog extends YTNode {
     this.title = new Text(data.dialogTitle).toString();
     this.title_placeholder = data.titlePlaceholder || '';
     this.privacy_option = Parser.parseItem(data.privacyOption, Dropdown)?.entries || null;
-    this.create_button = Parser.parseItem(data.cancelButton);
-    this.cancel_button = Parser.parseItem(data.cancelButton);
+    this.create_button = Parser.parseItem(data.cancelButton, Button);
+    this.cancel_button = Parser.parseItem(data.cancelButton, Button);
   }
 }
 

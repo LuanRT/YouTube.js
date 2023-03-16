@@ -32,7 +32,7 @@ class Library {
 
     const section_list = this.#page.contents_memo?.getType(SectionList).first();
 
-    this.header = section_list?.header?.item().as(MusicSideAlignedItem);
+    this.header = section_list?.header?.as(MusicSideAlignedItem);
     this.contents = section_list?.contents?.as(Grid, MusicShelf);
 
     this.#continuation = this.contents?.find((list: Grid | MusicShelf) => list.continuation)?.continuation;

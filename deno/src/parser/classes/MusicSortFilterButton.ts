@@ -14,7 +14,7 @@ class MusicSortFilterButton extends YTNode {
   constructor(data: any) {
     super();
 
-    this.title = new Text(data.title).text;
+    this.title = new Text(data.title).toString();
     this.icon_type = data.icon?.icon_type || null;
     this.menu = Parser.parseItem(data.menu, MusicMultiSelectMenu);
   }

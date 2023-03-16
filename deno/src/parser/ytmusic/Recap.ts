@@ -32,7 +32,7 @@ class Recap {
     const header = this.#page.header?.item();
 
     this.header = header?.is(MusicElementHeader) ?
-      this.#page.header?.item().as(MusicElementHeader).element?.model?.item().as(HighlightsCarousel) :
+      this.#page.header?.item().as(MusicElementHeader).element?.model?.as(HighlightsCarousel) :
       this.#page.header?.item().as(MusicHeader);
 
     const tab = this.#page.contents?.item().as(SingleColumnBrowseResults).tabs.firstOfType(Tab);

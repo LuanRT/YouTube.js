@@ -28,9 +28,9 @@ import type { ObservedArray, YTNode } from '../parser/helpers.ts';
 import type Actions from './Actions.ts';
 import type Session from './Session.ts';
 
-export type SearchFilters = {
+export interface MusicSearchFilters {
   type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
-};
+}
 
 class Music {
   #session: Session;
@@ -112,7 +112,7 @@ class Music {
    * @param query - Search query.
    * @param filters - Search filters.
    */
-  async search(query: string, filters: SearchFilters = {}): Promise<Search> {
+  async search(query: string, filters: MusicSearchFilters = {}): Promise<Search> {
     throwIfMissing({ query });
 
     const payload: {

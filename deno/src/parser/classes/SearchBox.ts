@@ -14,8 +14,8 @@ class SearchBox extends YTNode {
   constructor(data: any) {
     super();
     this.endpoint = new NavigationEndpoint(data.endpoint);
-    this.search_button = Parser.parse(data.searchButton);
-    this.clear_button = Parser.parse(data.clearButton);
+    this.search_button = Parser.parseItem(data.searchButton);
+    this.clear_button = Parser.parseItem(data.clearButton);
     this.placeholder_text = new Text(data.placeholderText);
   }
 }

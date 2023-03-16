@@ -1,6 +1,6 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { RawNode } from '../index.ts';
+import Text from './misc/Text.ts';
 
 class LiveChat extends YTNode {
   static type = 'LiveChat';
@@ -19,9 +19,9 @@ class LiveChat extends YTNode {
 
   is_replay: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.header = Parser.parse(data.header);
+    this.header = Parser.parseItem(data.header);
     this.initial_display_state = data.initialDisplayState;
     this.continuation = data.continuations[0]?.reloadContinuationData?.continuation;
 

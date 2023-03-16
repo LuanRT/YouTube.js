@@ -1,7 +1,7 @@
 import Parser from '../../index.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
 import Text from '../misc/Text.ts';
-import type Button from '../Button.ts';
+import Button from '../Button.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
 
@@ -16,8 +16,8 @@ class CommentReplyDialog extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.reply_button = Parser.parseItem<Button>(data.replyButton);
-    this.cancel_button = Parser.parseItem<Button>(data.cancelButton);
+    this.reply_button = Parser.parseItem(data.replyButton, Button);
+    this.cancel_button = Parser.parseItem(data.cancelButton, Button);
     this.author_thumbnail = Thumbnail.fromResponse(data.authorThumbnail);
     this.placeholder = new Text(data.placeholderText);
     this.error_message = new Text(data.errorMessage);

@@ -1,8 +1,8 @@
-import Author from './misc/Author.ts';
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { RawNode } from '../index.ts';
+import Author from './misc/Author.ts';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
 class GridChannel extends YTNode {
   static type = 'GridChannel';
@@ -14,7 +14,7 @@ class GridChannel extends YTNode {
   endpoint: NavigationEndpoint;
   subscribe_button;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.channelId;
 
@@ -26,7 +26,7 @@ class GridChannel extends YTNode {
     this.subscribers = new Text(data.subscriberCountText);
     this.video_count = new Text(data.videoCountText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.subscribe_button = Parser.parse(data.subscribeButton);
+    this.subscribe_button = Parser.parseItem(data.subscribeButton);
   }
 }
 

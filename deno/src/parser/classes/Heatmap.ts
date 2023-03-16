@@ -1,5 +1,5 @@
 import Parser from '../index.ts';
-import type HeatMarker from './HeatMarker.ts';
+import HeatMarker from './HeatMarker.ts';
 
 import { YTNode } from '../helpers.ts';
 
@@ -17,7 +17,7 @@ class Heatmap extends YTNode {
     this.max_height_dp = data.maxHeightDp;
     this.min_height_dp = data.minHeightDp;
     this.show_hide_animation_duration_millis = data.showHideAnimationDurationMillis;
-    this.heat_markers = Parser.parseArray<HeatMarker>(data.heatMarkers);
+    this.heat_markers = Parser.parseArray(data.heatMarkers, HeatMarker);
     this.heat_markers_decorations = Parser.parseArray(data.heatMarkersDecorations);
   }
 }

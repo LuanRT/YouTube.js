@@ -1,6 +1,6 @@
 import { YTNode } from '../../../helpers.ts';
 import Parser from '../../../index.ts';
-import type LiveChatBannerHeader from './LiveChatBannerHeader.ts';
+import LiveChatBannerHeader from './LiveChatBannerHeader.ts';
 import type { RawNode } from '../../../index.ts';
 
 class LiveChatBanner extends YTNode {
@@ -16,7 +16,7 @@ class LiveChatBanner extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.header = Parser.parseItem<LiveChatBannerHeader>(data.header);
+    this.header = Parser.parseItem(data.header, LiveChatBannerHeader);
     this.contents = Parser.parseItem(data.contents);
     this.action_id = data.actionId;
     this.viewer_is_creator = data.viewerIsCreator;

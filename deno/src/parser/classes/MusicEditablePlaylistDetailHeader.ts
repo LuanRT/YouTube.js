@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import Parser, { RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
 class MusicEditablePlaylistDetailHeader extends YTNode {
@@ -6,9 +6,9 @@ class MusicEditablePlaylistDetailHeader extends YTNode {
 
   header;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.header = Parser.parse(data.header);
+    this.header = Parser.parseItem(data.header);
 
     // TODO: Should we also parse data.editHeader.musicPlaylistEditHeaderRenderer?
     // It doesn't seem practical to do so...

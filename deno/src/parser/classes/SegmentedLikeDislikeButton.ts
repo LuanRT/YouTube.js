@@ -12,8 +12,8 @@ class SegmentedLikeDislikeButton extends YTNode {
 
   constructor (data: RawNode) {
     super();
-    this.like_button = Parser.parseItem<ToggleButton | Button>(data.likeButton, [ ToggleButton, Button ]);
-    this.dislike_button = Parser.parseItem<ToggleButton | Button>(data.dislikeButton, [ ToggleButton, Button ]);
+    this.like_button = Parser.parseItem(data.likeButton, [ ToggleButton, Button ]);
+    this.dislike_button = Parser.parseItem(data.dislikeButton, [ ToggleButton, Button ]);
   }
 }
 

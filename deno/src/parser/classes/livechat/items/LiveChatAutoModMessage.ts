@@ -19,7 +19,7 @@ class LiveChatAutoModMessage extends YTNode {
   constructor(data: RawNode) {
     super();
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
-    this.moderation_buttons = Parser.parseArray<Button>(data.moderationButtons, [ Button ]);
+    this.moderation_buttons = Parser.parseArray(data.moderationButtons, [ Button ]);
     this.auto_moderated_item = Parser.parseItem(data.autoModeratedItem);
     this.header_text = new Text(data.headerText);
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);

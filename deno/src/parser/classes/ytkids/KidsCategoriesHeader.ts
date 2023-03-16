@@ -1,6 +1,6 @@
 import Parser from '../../index.ts';
-import type Button from '../Button.ts';
-import type KidsCategoryTab from './KidsCategoryTab.ts';
+import Button from '../Button.ts';
+import KidsCategoryTab from './KidsCategoryTab.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
 
@@ -12,8 +12,8 @@ class KidsCategoriesHeader extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.category_tabs = Parser.parseArray<KidsCategoryTab>(data.categoryTabs);
-    this.privacy_button = Parser.parseItem<Button>(data.privacyButtonRenderer);
+    this.category_tabs = Parser.parseArray(data.categoryTabs, KidsCategoryTab);
+    this.privacy_button = Parser.parseItem(data.privacyButtonRenderer, Button);
   }
 }
 

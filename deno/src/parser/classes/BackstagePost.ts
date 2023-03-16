@@ -2,8 +2,8 @@ import Parser from '../index.ts';
 import Author from './misc/Author.ts';
 import Text from './misc/Text.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
-import type CommentActionButtons from './comments/CommentActionButtons.ts';
-import type Menu from './menus/Menu.ts';
+import CommentActionButtons from './comments/CommentActionButtons.ts';
+import Menu from './menus/Menu.ts';
 
 import { YTNode } from '../helpers.ts';
 
@@ -49,15 +49,15 @@ class BackstagePost extends YTNode {
     }
 
     if (data.actionMenu) {
-      this.menu = Parser.parseItem<Menu>(data.actionMenu);
+      this.menu = Parser.parseItem(data.actionMenu, Menu);
     }
 
     if (data.actionButtons) {
-      this.action_buttons = Parser.parseItem<CommentActionButtons>(data.actionButtons);
+      this.action_buttons = Parser.parseItem(data.actionButtons, CommentActionButtons);
     }
 
     if (data.voteButton) {
-      this.vote_button = Parser.parseItem(data.voteButton);
+      this.vote_button = Parser.parseItem(data.voteButton, CommentActionButtons);
     }
 
     if (data.navigationEndpoint) {

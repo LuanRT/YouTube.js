@@ -3,9 +3,9 @@ import Author from './misc/Author.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
-import type Button from './Button.ts';
-import type ChannelHeaderLinks from './ChannelHeaderLinks.ts';
-import type SubscribeButton from './SubscribeButton.ts';
+import Button from './Button.ts';
+import ChannelHeaderLinks from './ChannelHeaderLinks.ts';
+import SubscribeButton from './SubscribeButton.ts';
 
 import { YTNode } from '../helpers.ts';
 
@@ -19,7 +19,7 @@ class C4TabbedHeader extends YTNode {
   subscribers?: Text;
   videos_count?: Text;
   sponsor_button?: Button | null;
-  subscribe_button?: SubscribeButton | null;
+  subscribe_button?: SubscribeButton | Button | null;
   header_links?: ChannelHeaderLinks | null;
   channel_handle?: Text;
   channel_id?: string;
@@ -52,15 +52,15 @@ class C4TabbedHeader extends YTNode {
     }
 
     if (data.sponsorButton) {
-      this.sponsor_button = Parser.parseItem<Button>(data.sponsorButton);
+      this.sponsor_button = Parser.parseItem(data.sponsorButton, Button);
     }
 
     if (data.subscribeButton) {
-      this.subscribe_button = Parser.parseItem<SubscribeButton>(data.subscribeButton);
+      this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     }
 
     if (data.headerLinks) {
-      this.header_links = Parser.parseItem<ChannelHeaderLinks>(data.headerLinks);
+      this.header_links = Parser.parseItem(data.headerLinks, ChannelHeaderLinks);
     }
 
     if (data.channelHandleText) {

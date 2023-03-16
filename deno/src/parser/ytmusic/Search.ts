@@ -7,6 +7,7 @@ import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import DidYouMean from '../classes/DidYouMean.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import Message from '../classes/Message.ts';
+import MusicCardShelf from '../classes/MusicCardShelf.ts';
 import MusicHeader from '../classes/MusicHeader.ts';
 import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
 import MusicShelf from '../classes/MusicShelf.ts';
@@ -18,13 +19,13 @@ import type { ObservedArray } from '../helpers.ts';
 import type { ISearchResponse } from '../types/ParsedResponse.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 
-class Search {
+export default class Search {
   #page: ISearchResponse;
   #actions: Actions;
   #continuation?: string;
 
   header?: ChipCloud;
-  contents?: ObservedArray<MusicShelf | ItemSection>;
+  contents?: ObservedArray<MusicShelf | MusicCardShelf | ItemSection>;
 
   constructor(response: ApiResponse, actions: Actions, is_filtered?: boolean) {
     this.#actions = actions;
@@ -43,8 +44,8 @@ class Search {
     if (!tab_content)
       throw new InnertubeError('Target tab did not have any content.');
 
-    this.header = tab_content.header?.item().as(ChipCloud);
-    this.contents = tab_content.contents.as(MusicShelf, ItemSection);
+    this.header = tab_content.header?.as(ChipCloud);
+    this.contents = tab_content.contents.as(MusicShelf, MusicCardShelf, ItemSection);
 
     if (is_filtered) {
       this.#continuation = this.contents.firstOfType(MusicShelf)?.continuation;
@@ -165,8 +166,6 @@ class Search {
     return this.#page;
   }
 }
-
-export default Search;
 
 export class SearchContinuation {
   #actions: Actions;

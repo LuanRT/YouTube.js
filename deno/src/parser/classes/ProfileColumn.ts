@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import Parser, { RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
 class ProfileColumn extends YTNode {
@@ -6,9 +6,9 @@ class ProfileColumn extends YTNode {
 
   items;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.items = Parser.parse(data.items);
+    this.items = Parser.parseArray(data.items);
   }
 
   // XXX: alias for consistency

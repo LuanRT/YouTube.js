@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import Parser, { RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
 class Grid extends YTNode {
@@ -11,13 +11,13 @@ class Grid extends YTNode {
   continuation: string | null;
   header?;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.items = Parser.parseArray(data.items);
 
     if (data.header) {
-      this.header = Parser.parse(data.header);
+      this.header = Parser.parseItem(data.header);
     }
 
     if (data.isCollapsible) {

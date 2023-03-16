@@ -13,7 +13,7 @@ class ItemSectionTabbedHeader extends YTNode {
   constructor(data: any) {
     super();
     this.title = new Text(data.title);
-    this.tabs = Parser.parseArray<ItemSectionTab>(data.tabs, ItemSectionTab);
+    this.tabs = Parser.parseArray(data.tabs, ItemSectionTab);
     if (data.endItems) {
       this.end_items = Parser.parseArray(data.endItems);
     }

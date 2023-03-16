@@ -115,7 +115,8 @@ Platform.load({
   Headers: globalThis.Headers,
   FormData: globalThis.FormData,
   File: globalThis.File,
-  ReadableStream: globalThis.ReadableStream
+  ReadableStream: globalThis.ReadableStream,
+  CustomEvent: globalThis.CustomEvent
 });
 
 export * from './lib.ts';

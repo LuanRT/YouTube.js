@@ -39,7 +39,7 @@ class AccountItemSection extends YTNode {
   constructor(data: RawNode) {
     super();
     this.contents = data.contents.map((ac: any) => new AccountItem(ac.accountItem));
-    this.header = Parser.parseItem<AccountItemSectionHeader>(data.header, AccountItemSectionHeader);
+    this.header = Parser.parseItem(data.header, AccountItemSectionHeader);
   }
 }
 

@@ -2,6 +2,7 @@ import Text from './misc/Text.ts';
 import Parser from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import Button from './Button.ts';
 
 class Shelf extends YTNode {
   static type = 'Shelf';
@@ -11,6 +12,7 @@ class Shelf extends YTNode {
   content: YTNode | null;
   icon_type?: string;
   menu?: YTNode | null;
+  play_all_button?: Button | null;
 
   constructor(data: any) {
     super();
@@ -28,6 +30,10 @@ class Shelf extends YTNode {
 
     if (data.menu) {
       this.menu = Parser.parseItem(data.menu);
+    }
+
+    if (data.playAllButton) {
+      this.play_all_button = Parser.parseItem(data.playAllButton, Button);
     }
   }
 }

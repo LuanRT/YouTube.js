@@ -3,6 +3,8 @@ import { YTNode } from '../helpers.ts';
 import SearchRefinementCard from './SearchRefinementCard.ts';
 import Button from './Button.ts';
 import MacroMarkersListItem from './MacroMarkersListItem.ts';
+import GameCard from './GameCard.ts';
+import VideoCard from './VideoCard.ts';
 
 class HorizontalCardList extends YTNode {
   static type = 'HorizontalCardList';
@@ -14,10 +16,10 @@ class HorizontalCardList extends YTNode {
 
   constructor(data: any) {
     super();
-    this.cards = Parser.parseArray<SearchRefinementCard | MacroMarkersListItem>(data.cards);
+    this.cards = Parser.parseArray(data.cards, [ SearchRefinementCard, MacroMarkersListItem, GameCard, VideoCard ]);
     this.header = Parser.parseItem(data.header);
-    this.previous_button = Parser.parseItem<Button>(data.previousButton, Button);
-    this.next_button = Parser.parseItem<Button>(data.nextButton, Button);
+    this.previous_button = Parser.parseItem(data.previousButton, Button);
+    this.next_button = Parser.parseItem(data.nextButton, Button);
   }
 }
 

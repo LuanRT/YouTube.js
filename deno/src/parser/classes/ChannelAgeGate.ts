@@ -22,7 +22,7 @@ class ChannelAgeGate extends YTNode {
     this.avatar = Thumbnail.fromResponse(data.avatar);
     this.header = new Text(data.header);
     this.main_text = new Text(data.mainText);
-    this.sign_in_button = Parser.parseItem<Button>(data.signInButton, Button);
+    this.sign_in_button = Parser.parseItem(data.signInButton, Button);
     this.secondary_text = new Text(data.secondaryText);
   }
 }

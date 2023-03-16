@@ -15,8 +15,8 @@ class ConfirmDialog extends YTNode {
   constructor (data: any) {
     super();
     this.title = new Text(data.title);
-    this.confirm_button = Parser.parseItem<Button>(data.confirmButton, Button);
-    this.cancel_button = Parser.parseItem<Button>(data.cancelButton, Button);
+    this.confirm_button = Parser.parseItem(data.confirmButton, Button);
+    this.cancel_button = Parser.parseItem(data.cancelButton, Button);
     this.dialog_messages = data.dialogMessages.map((txt: any) => new Text(txt));
   }
 }

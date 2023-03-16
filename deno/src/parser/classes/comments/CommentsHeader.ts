@@ -1,7 +1,7 @@
 import Parser from '../../index.ts';
 import Text from '../misc/Text.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
-import type SortFilterSubMenu from '../SortFilterSubMenu.ts';
+import SortFilterSubMenu from '../SortFilterSubMenu.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
 
@@ -28,7 +28,7 @@ class CommentsHeader extends YTNode {
     this.count = new Text(data.countText);
     this.comments_count = new Text(data.commentsCount);
     this.create_renderer = Parser.parseItem(data.createRenderer);
-    this.sort_menu = Parser.parseItem<SortFilterSubMenu>(data.sortMenu);
+    this.sort_menu = Parser.parseItem(data.sortMenu, SortFilterSubMenu);
 
     this.custom_emojis = data.customEmojis?.map((emoji: any) => ({
       emoji_id: emoji.emojiId,

@@ -1,6 +1,6 @@
 import Text from './misc/Text.ts';
-import PlaylistAuthor from './misc/PlaylistAuthor.ts';
-import Parser from '../index.ts';
+import Author from './misc/Author.ts';
+import Parser, { RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
 class PlaylistHeader extends YTNode {
@@ -10,7 +10,7 @@ class PlaylistHeader extends YTNode {
   title: Text;
   stats: Text[];
   brief_stats: Text[];
-  author: PlaylistAuthor;
+  author: Author;
   description: Text;
   num_videos: Text;
   view_count: Text;
@@ -23,13 +23,13 @@ class PlaylistHeader extends YTNode {
   menu;
   banner;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.playlistId;
     this.title = new Text(data.title);
     this.stats = data.stats.map((stat: any) => new Text(stat));
     this.brief_stats = data.briefStats.map((stat: any) => new Text(stat));
-    this.author = new PlaylistAuthor({ ...data.ownerText, navigationEndpoint: data.ownerEndpoint }, data.ownerBadges, null);
+    this.author = new Author({ ...data.ownerText, navigationEndpoint: data.ownerEndpoint }, data.ownerBadges, null);
     this.description = new Text(data.descriptionText);
     this.num_videos = new Text(data.numVideosText);
     this.view_count = new Text(data.viewCountText);
@@ -37,9 +37,9 @@ class PlaylistHeader extends YTNode {
     this.can_delete = data.editableDetails.canDelete;
     this.is_editable = data.isEditable;
     this.privacy = data.privacy;
-    this.save_button = Parser.parse(data.saveButton);
-    this.shuffle_play_button = Parser.parse(data.shufflePlayButton);
-    this.menu = Parser.parse(data.moreActionsMenu);
+    this.save_button = Parser.parseItem(data.saveButton);
+    this.shuffle_play_button = Parser.parseItem(data.shufflePlayButton);
+    this.menu = Parser.parseItem(data.moreActionsMenu);
     this.banner = Parser.parseItem(data.playlistHeaderBanner);
   }
 }
