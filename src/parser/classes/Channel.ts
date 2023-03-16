@@ -37,7 +37,7 @@ class Channel extends YTNode {
     this.long_byline = new Text(data.longBylineText);
     this.short_byline = new Text(data.shortBylineText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.subscribe_button = Parser.parseItem(data.subscribeButton, [SubscribeButton, Button]);
+    this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     this.description_snippet = new Text(data.descriptionSnippet);
   }
 }
