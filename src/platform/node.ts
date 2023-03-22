@@ -102,8 +102,8 @@ Platform.load({
   runtime: 'node',
   info: {
     version: package_json.version,
-    bugs_url: package_json.bugs.url,
-    repo_url: package_json.homepage.split('#')[0]
+    bugs_url: package_json.bugs?.url,
+    repo_url: package_json.homepage?.split('#')[0]
   },
   server: true,
   Cache: Cache,
