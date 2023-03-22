@@ -116,7 +116,7 @@ export function generateRandomString(length: number): string {
  * @returns seconds
  */
 export function timeToSeconds(time: string): number {
-  const params = time.split(':').map((param) => parseInt(param));
+  const params = time.split(':').map((param) => parseInt(param.replace(/\D/g, '')));
   switch (params.length) {
     case 1:
       return params[0];
