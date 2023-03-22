@@ -26,6 +26,7 @@ const is_cjs = !meta_url;
 const __dirname__ = is_cjs ? __dirname : path.dirname(fileURLToPath(meta_url));
 
 const package_json = JSON.parse(readFileSync(path.resolve(__dirname__, is_cjs ? '../package.json' : '../../package.json'), 'utf-8'));
+const repo_url = package_json.homepage?.split('#')[0];
 
 class Cache implements ICache {
   #persistent_directory: string;
@@ -102,8 +103,8 @@ Platform.load({
   runtime: 'node',
   info: {
     version: package_json.version,
-    bugs_url: package_json.bugs.url,
-    repo_url: package_json.homepage.split('#')[0]
+    bugs_url: package_json.bugs?.url || `${repo_url}/issues`,
+    repo_url
   },
   server: true,
   Cache: Cache,
