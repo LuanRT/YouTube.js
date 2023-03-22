@@ -6,6 +6,7 @@ import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import MetadataBadge from './MetadataBadge.js';
 import ExpandableMetadata from './ExpandableMetadata.js';
+import ThumbnailOverlayTimeStatus from './ThumbnailOverlayTimeStatus.js';
 
 import { timeToSeconds } from '../../utils/Utils.js';
 import { YTNode } from '../helpers.js';
@@ -98,7 +99,7 @@ class Video extends YTNode {
     return this.badges.some((badge) => {
       if (badge.style === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.label === 'LIVE')
         return true;
-    });
+    }) || this.thumbnail_overlays.firstOfType(ThumbnailOverlayTimeStatus)?.style === 'LIVE';
   }
 
   get is_upcoming(): boolean | undefined {
