@@ -1,5 +1,5 @@
 import { CLIENTS } from '../utils/Constants.js';
-import { u8ToBase64 } from '../utils/Utils.js';
+import { base64ToU8, u8ToBase64 } from '../utils/Utils.js';
 import { VideoMetadata } from '../core/Studio.js';
 
 import * as VisitorData from './generated/messages/youtube/VisitorData.js';
@@ -19,6 +19,11 @@ class Proto {
   static encodeVisitorData(id: string, timestamp: number): string {
     const buf = VisitorData.encodeBinary({ id, timestamp });
     return encodeURIComponent(u8ToBase64(buf).replace(/\+/g, '-').replace(/\//g, '_'));
+  }
+
+  static decodeVisitorData(visitor_data: string): VisitorData.Type {
+    const data = VisitorData.decodeBinary(base64ToU8(decodeURIComponent(visitor_data)));
+    return data;
   }
 
   static encodeChannelAnalyticsParams(channel_id: string): string {

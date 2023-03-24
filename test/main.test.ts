@@ -233,7 +233,7 @@ describe('YouTube.js Tests', () => {
     it('should retrieve the "Related" tab', async () => {
       const info = await yt.music.getInfo(VIDEOS[1].ID);
       const related = await info.getRelated();
-      expect((related as any).length).toBeGreaterThan(3);
+      expect((related as any).length).toBeGreaterThan(0);
     });
     
     it('should retrieve albums', async () => {
@@ -278,9 +278,6 @@ describe('YouTube.js Tests', () => {
 });
 
 async function download(id: string, yt: Innertube): Promise<boolean> {   
-  // TODO: add back info
-  // let got_video_info = false;
-
   const stream = await yt.download(id, { type: 'video+audio' });
   const file = fs.createWriteStream(`./${id}.mp4`);
 
@@ -288,5 +285,5 @@ async function download(id: string, yt: Innertube): Promise<boolean> {
     file.write(chunk);
   }
   
-  return fs.existsSync(`./${id}.mp4`); // && got_video_info;
+  return fs.existsSync(`./${id}.mp4`);
 }

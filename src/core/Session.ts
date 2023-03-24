@@ -3,12 +3,12 @@ import EventEmitterLike from '../utils/EventEmitterLike.js';
 import Actions from './Actions.js';
 import Player from './Player.js';
 
-import HTTPClient from '../utils/HTTPClient.js';
-import { Platform, DeviceCategory, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils.js';
-import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.js';
 import Proto from '../proto/index.js';
 import { ICache } from '../types/Cache.js';
 import { FetchFunction } from '../types/PlatformShim.js';
+import HTTPClient from '../utils/HTTPClient.js';
+import { DeviceCategory, getRandomUserAgent, InnertubeError, Platform, SessionError } from '../utils/Utils.js';
+import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.js';
 
 export enum ClientType {
   WEB = 'WEB',
@@ -119,6 +119,11 @@ export interface SessionOptions {
    */
   cookie?: string;
   /**
+   * Setting this to a valid and persistent visitor data string will allow YouTube to give this session tailored content even when not logged in.
+   * A good way to get a valid one is by either grabbing it from a browser or calling InnerTube's `/visitor_id` endpoint.
+   */
+  visitor_data?: string;
+  /**
    * Fetch function to use.
    */
   fetch?: FetchFunction;
@@ -179,6 +184,7 @@ export default class Session extends EventEmitterLike {
       options.lang,
       options.location,
       options.account_index,
+      options.visitor_data,
       options.enable_safety_mode,
       options.generate_session_locally,
       options.device_category,
@@ -198,6 +204,7 @@ export default class Session extends EventEmitterLike {
     lang = '',
     location = '',
     account_index = 0,
+    visitor_data = '',
     enable_safety_mode = false,
     generate_session_locally = false,
     device_category: DeviceCategory = 'desktop',
@@ -208,9 +215,9 @@ export default class Session extends EventEmitterLike {
     let session_data: SessionData;
 
     if (generate_session_locally) {
-      session_data = this.#generateSessionData({ lang, location, time_zone: tz, device_category, client_name, enable_safety_mode });
+      session_data = this.#generateSessionData({ lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data });
     } else {
-      session_data = await this.#retrieveSessionData({ lang, location, time_zone: tz, device_category, client_name, enable_safety_mode }, fetch);
+      session_data = await this.#retrieveSessionData({ lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data }, fetch);
     }
 
     return { ...session_data, account_index };
@@ -223,8 +230,16 @@ export default class Session extends EventEmitterLike {
     device_category: string;
     client_name: string;
     enable_safety_mode: boolean;
+    visitor_data: string;
   }, fetch: FetchFunction = Platform.shim.fetch): Promise<SessionData> {
     const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
+
+    let visitor_id = Constants.CLIENTS.WEB.STATIC_VISITOR_ID;
+
+    if (options.visitor_data) {
+      const decoded_visitor_data = Proto.decodeVisitorData(options.visitor_data);
+      visitor_id = decoded_visitor_data.id;
+    }
 
     const res = await fetch(url, {
       headers: {
@@ -232,7 +247,7 @@ export default class Session extends EventEmitterLike {
         'user-agent': getRandomUserAgent('desktop'),
         'accept': '*/*',
         'referer': 'https://www.youtube.com/sw.js',
-        'cookie': `PREF=tz=${options.time_zone.replace('/', '.')};VISITOR_INFO1_LIVE=${Constants.CLIENTS.WEB.STATIC_VISITOR_ID};`
+        'cookie': `PREF=tz=${options.time_zone.replace('/', '.')};VISITOR_INFO1_LIVE=${visitor_id};`
       }
     });
 
@@ -292,10 +307,15 @@ export default class Session extends EventEmitterLike {
     time_zone: string;
     device_category: DeviceCategory;
     client_name: string;
-    enable_safety_mode: boolean
+    enable_safety_mode: boolean;
+    visitor_data: string;
   }): SessionData {
-    const id = Constants.CLIENTS.WEB.STATIC_VISITOR_ID;
-    const timestamp = Math.floor(Date.now() / 1000);
+    let visitor_id = Constants.CLIENTS.WEB.STATIC_VISITOR_ID;
+
+    if (options.visitor_data) {
+      const decoded_visitor_data = Proto.decodeVisitorData(options.visitor_data);
+      visitor_id = decoded_visitor_data.id;
+    }
 
     const context: Context = {
       client: {
@@ -305,7 +325,7 @@ export default class Session extends EventEmitterLike {
         screenHeightPoints: 1080,
         screenPixelDensity: 1,
         screenWidthPoints: 1920,
-        visitorData: Proto.encodeVisitorData(id, timestamp),
+        visitorData: Proto.encodeVisitorData(visitor_id, Math.floor(Date.now() / 1000)),
         userAgent: getRandomUserAgent('desktop'),
         clientName: options.client_name,
         clientVersion: CLIENTS.WEB.VERSION,
