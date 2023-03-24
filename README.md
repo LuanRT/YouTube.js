@@ -130,6 +130,7 @@ const youtube = await Innertube.create(/* options */);
 | `lang` | `string` | Language. | `en` |
 | `location` | `string` | Geolocation. | `US` |
 | `account_index` | `number` | The account index to use. This is useful if you have multiple accounts logged in. **NOTE:** Only works if you are signed in with cookies. | `0` |
+| `visitor_data` | `string` | Setting this to a valid and persistent visitor data string will allow YouTube to give this session tailored content even when not logged in. A good way to get a valid one is by either grabbing it from a browser or calling InnerTube's `/visitor_id` endpoint. | `undefined` |
 | `retrieve_player` | `boolean` | Specifies whether to retrieve the JS player. Disabling this will make session creation faster. **NOTE:** Deciphering formats is not possible without the JS player. | `true` |
 | `enable_safety_mode` | `boolean` | Specifies whether to enable safety mode. This will prevent the session from loading any potentially unsafe content. | `false` |
 | `generate_session_locally` | `boolean` | Specifies whether to generate the session data locally or retrieve it from YouTube. This can be useful if you need more performance. | `false` |

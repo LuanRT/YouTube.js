@@ -169,6 +169,7 @@ export default class HTTPClient {
         ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
         break;
       case 'TV_EMBEDDED':
+        ctx.client.clientName = Constants.CLIENTS.TV_EMBEDDED.NAME;
         ctx.client.clientVersion = Constants.CLIENTS.TV_EMBEDDED.VERSION;
         ctx.client.clientScreen = 'EMBED';
         ctx.thirdParty = { embedUrl: Constants.URLS.YT_BASE };

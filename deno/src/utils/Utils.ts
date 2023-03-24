@@ -82,7 +82,7 @@ export function getRandomUserAgent(type: DeviceCategory): string {
 }
 
 /**
- * Generates an authentication token from a cookies' sid..js
+ * Generates an authentication token from a cookies' sid.
  * @param sid - Sid extracted from cookies
  */
 export async function generateSidAuth(sid: string): Promise<string> {
@@ -116,7 +116,7 @@ export function generateRandomString(length: number): string {
  * @returns seconds
  */
 export function timeToSeconds(time: string): number {
-  const params = time.split(':').map((param) => parseInt(param));
+  const params = time.split(':').map((param) => parseInt(param.replace(/\D/g, '')));
   switch (params.length) {
     case 1:
       return params[0];
@@ -217,4 +217,8 @@ export const debugFetch: FetchFunction = (input, init) => {
 
 export function u8ToBase64(u8: Uint8Array): string {
   return btoa(String.fromCharCode.apply(null, Array.from(u8)));
+}
+
+export function base64ToU8(base64: string): Uint8Array {
+  return new Uint8Array(atob(base64).split('').map((char) => char.charCodeAt(0)));
 }

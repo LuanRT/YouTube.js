@@ -1,20 +1,25 @@
+import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
-import { YTNode } from '../helpers.ts';
 
-class ShowingResultsFor extends YTNode {
+export default class ShowingResultsFor extends YTNode {
   static type = 'ShowingResultsFor';
 
   corrected_query: Text;
-  endpoint: NavigationEndpoint;
+  original_query: Text;
+  corrected_query_endpoint: NavigationEndpoint;
   original_query_endpoint: NavigationEndpoint;
+  search_instead_for: Text;
+  showing_results_for: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.corrected_query = new Text(data.correctedQuery);
-    this.endpoint = new NavigationEndpoint(data.correctedQueryEndpoint);
+    this.original_query = new Text(data.originalQuery);
+    this.corrected_query_endpoint = new NavigationEndpoint(data.correctedQueryEndpoint);
     this.original_query_endpoint = new NavigationEndpoint(data.originalQueryEndpoint);
+    this.search_instead_for = new Text(data.searchInsteadFor);
+    this.showing_results_for = new Text(data.showingResultsFor);
   }
 }
-
-export default ShowingResultsFor;

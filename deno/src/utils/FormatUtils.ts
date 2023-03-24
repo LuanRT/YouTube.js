@@ -428,8 +428,15 @@ class FormatUtils {
     const url = new URL(format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
+    let id;
+    if (format.audio_track) {
+      id = `${format.itag?.toString()}-${format.audio_track.id}`;
+    } else {
+      id = format.itag?.toString();
+    }
+
     const representation = this.#el(document, 'Representation', {
-      id: format.itag?.toString(),
+      id,
       codecs,
       bandwidth: format.bitrate?.toString(),
       audioSamplingRate: format.audio_sample_rate?.toString()
