@@ -3,12 +3,12 @@ import EventEmitterLike from '../utils/EventEmitterLike.js';
 import Actions from './Actions.js';
 import Player from './Player.js';
 
-import HTTPClient from '../utils/HTTPClient.js';
-import { Platform, DeviceCategory, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils.js';
-import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.js';
 import Proto from '../proto/index.js';
 import { ICache } from '../types/Cache.js';
 import { FetchFunction } from '../types/PlatformShim.js';
+import HTTPClient from '../utils/HTTPClient.js';
+import { DeviceCategory, getRandomUserAgent, InnertubeError, Platform, SessionError } from '../utils/Utils.js';
+import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.js';
 
 export enum ClientType {
   WEB = 'WEB',
