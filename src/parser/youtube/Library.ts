@@ -28,8 +28,8 @@ class Library extends Feed<IBrowseResponse> {
     if (!this.page.contents_memo)
       throw new InnertubeError('Page contents not found');
 
-    const stats = this.page.contents_memo.getType(ProfileColumnStats)?.[0];
-    const user_info = this.page.contents_memo.getType(ProfileColumnUserInfo)?.[0];
+    const stats = this.page.contents_memo.getType(ProfileColumnStats).first();
+    const user_info = this.page.contents_memo.getType(ProfileColumnUserInfo).first();
 
     this.profile = { stats, user_info };
 
