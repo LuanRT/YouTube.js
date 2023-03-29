@@ -13,7 +13,7 @@ class TimeWatched {
   contents?: ObservedArray<ItemSection>;
 
   constructor(response: ApiResponse) {
-    this.#page = Parser.parseResponse(response.data);
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
     if (!this.#page.contents)
       throw new InnertubeError('Page contents not found');
