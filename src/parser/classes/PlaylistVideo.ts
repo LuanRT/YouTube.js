@@ -22,6 +22,8 @@ class PlaylistVideo extends YTNode {
   is_playable: boolean;
   menu: Menu | null;
   upcoming;
+  video_info: Text;
+  accessibility_label?: string;
 
   duration: {
     text: string;
@@ -40,6 +42,8 @@ class PlaylistVideo extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.is_playable = data.isPlayable;
     this.menu = Parser.parseItem(data.menu, Menu);
+    this.video_info = new Text(data.videoInfo);
+    this.accessibility_label = data.title.accessibility.accessibilityData.label;
 
     const upcoming = data.upcomingEventData && Number(`${data.upcomingEventData.startTime}000`);
     if (upcoming) {
