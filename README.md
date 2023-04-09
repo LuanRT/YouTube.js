@@ -286,7 +286,7 @@ const yt = await Innertube.create({
   </details> 
 
 <a name="getinfo"></a>
-### getInfo(target, client?)
+### `getInfo(target, client?)`
 
 Retrieves video info.
 
@@ -350,7 +350,7 @@ Retrieves video info.
 </details> 
 
 <a name="getbasicinfo"></a>
-### getBasicInfo(video_id, client?)
+### `getBasicInfo(video_id, client?)`
 
 Suitable for cases where you only need basic video metadata. Also, it is faster than [`getInfo()`](#getinfo).
 
@@ -362,7 +362,7 @@ Suitable for cases where you only need basic video metadata. Also, it is faster 
 | client? | `InnerTubeClient` | `WEB`, `ANDROID`, `YTMUSIC_ANDROID`, `YTMUSIC`, `TV_EMBEDDED` |
 
 <a name="search"></a>
-### search(query, filters?)
+### `search(query, filters?)`
 
 Searches the given query on YouTube.
 
@@ -407,7 +407,7 @@ Searches the given query on YouTube.
 </details> 
 
 <a name="getsearchsuggestions"></a>
-### getSearchSuggestions(query)
+### `getSearchSuggestions(query)`
 Retrieves search suggestions for given query.
 
 **Returns**: `Promise<string[]>`
@@ -417,7 +417,7 @@ Retrieves search suggestions for given query.
 | query | `string` | The search query |
 
 <a name="getcomments"></a>
-### getComments(video_id, sort_by?)
+### `getComments(video_id, sort_by?)`
 Retrieves comments for given video.
 
 **Returns**: `Promise<Comments>`
@@ -430,7 +430,7 @@ Retrieves comments for given video.
 See [`./examples/comments`](https://github.com/LuanRT/YouTube.js/blob/main/examples/comments) for examples.
 
 <a name="gethomefeed"></a>
-### getHomeFeed()
+### `getHomeFeed()`
 Retrieves YouTube's home feed.
 
 **Returns**: `Promise<HomeFeed>`
@@ -464,13 +464,13 @@ Retrieves YouTube's home feed.
 </details> 
 
 <a name="getguide"></a>
-### getGuide()
+### `getGuide()`
 Retrieves YouTube's content guide.
 
 **Returns**: `Promise<Guide>`
 
 <a name="getlibrary"></a>
-### getLibrary()
+### `getLibrary()`
 Retrieves the account's library.
 
 **Returns**: `Promise<Library>`
@@ -492,7 +492,7 @@ Retrieves the account's library.
 </details> 
 
 <a name="gethistory"></a>
-### getHistory()
+### `getHistory()`
 Retrieves watch history.
 
 **Returns**: `Promise<History>`
@@ -511,19 +511,19 @@ Retrieves watch history.
 </details> 
 
 <a name="gettrending"></a>
-### getTrending()
+### `getTrending()`
 Retrieves trending content.
 
 **Returns**: `Promise<TabbedFeed<IBrowseResponse>>`
 
 <a name="getsubscriptionsfeed"></a>
-### getSubscriptionsFeed()
+### `getSubscriptionsFeed()`
 Retrieves the subscriptions feed.
 
 **Returns**: `Promise<Feed<IBrowseResponse>>`
 
 <a name="getchannel"></a>
-### getChannel(id)
+### `getChannel(id)`
 Retrieves contents for a given channel.
 
 **Returns**: `Promise<Channel>`
@@ -563,7 +563,7 @@ Retrieves contents for a given channel.
 See [`./examples/channel`](https://github.com/LuanRT/YouTube.js/blob/main/examples/channel) for examples.
 
 <a name="getnotifications"></a>
-### getNotifications()
+### `getNotifications()`
 Retrieves notifications.
 
 **Returns**: `Promise<NotificationsMenu>`
@@ -579,13 +579,13 @@ Retrieves notifications.
 </details>
 
 <a name="getunseennotificationscount"></a>
-### getUnseenNotificationsCount()
+### `getUnseenNotificationsCount()`
 Retrieves unseen notifications count.
 
 **Returns**: `Promise<number>`
 
 <a name="getplaylist"></a>
-### getPlaylist(id)
+### `getPlaylist(id)`
 Retrieves playlist contents.
 
 **Returns**: `Promise<Playlist>`
@@ -608,7 +608,7 @@ Retrieves playlist contents.
 </details>
 
 <a name="gethashtag"></a>
-### getHashtag(hashtag)
+### `getHashtag(hashtag)`
 Retrieves a given hashtag's page.
 
 **Returns**: `Promise<HashtagFeed>`
@@ -633,7 +633,7 @@ Retrieves a given hashtag's page.
 </details>
 
 <a name="getstreamingdata"></a>
-### getStreamingData(video_id, options)
+### `getStreamingData(video_id, options)`
 Returns deciphered streaming data.
 
 > **Note**
@@ -659,7 +659,7 @@ console.info('Playback url:', url);
 | options | `FormatOptions` | Format options |
 
 <a name="download"></a>
-### download(video_id, options?)
+### `download(video_id, options?)`
 Downloads a given video.
 
 **Returns**: `Promise<ReadableStream<Uint8Array>>`
@@ -672,7 +672,7 @@ Downloads a given video.
 See [`./examples/download`](https://github.com/LuanRT/YouTube.js/blob/main/examples/download) for examples.
 
 <a name="resolveurl"></a>
-### resolveURL(url)
+### `resolveURL(url)`
 Resolves a given url.
 
 **Returns**: `Promise<NavigationEndpoint>`
@@ -682,7 +682,7 @@ Resolves a given url.
 | url | `string` | Url to resolve |
 
 <a name="call"></a>
-### call(endpoint, args?)
+### `call(endpoint, args?)`
 Utility to call navigation endpoints.
 
 **Returns**: `Promise<T extends IParsedResponse | IParsedResponse | ApiResponse>`
