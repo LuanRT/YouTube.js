@@ -9,7 +9,6 @@
 [project]: https://github.com/LuanRT/YouTube.js
 [twitter]: https://twitter.com/thesciencephile
 [discord]: https://discord.gg/syDu7Yks54
-[nodejs]: https://nodejs.org
 
 <h1 align=center>YouTube.js</h1>
 
@@ -243,7 +242,7 @@ const yt = await Innertube.create({
 * `Innertube`
 
   <details>
-  <summary>Objects</summary>
+  <summary>Properties</summary>
   <p>
   
   * [.session](https://github.com/LuanRT/YouTube.js/blob/main/docs/API/session.md)
