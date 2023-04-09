@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.2.0](https://github.com/LuanRT/YouTube.js/compare/v4.1.1...v4.2.0) (2023-04-09)
+
+
+### Features
+
+* Enable importHelpers in tsconfig to reduce output size ([#378](https://github.com/LuanRT/YouTube.js/issues/378)) ([0b301de](https://github.com/LuanRT/YouTube.js/commit/0b301de6a1e1352a64881c1751a84360922a77cd))
+* **parser:** ignore PrimetimePromo node ([ce9d9c5](https://github.com/LuanRT/YouTube.js/commit/ce9d9c56b4f45c0139d74edc95c295ecfd1ee4b1))
+* **PlaylistVideo:** Extract video_info and accessibility_label texts ([#376](https://github.com/LuanRT/YouTube.js/issues/376)) ([c9135e6](https://github.com/LuanRT/YouTube.js/commit/c9135e66d3c9c72b8d063eedcf3cc2123800946d))
+
 ## [4.1.1](https://github.com/LuanRT/YouTube.js/compare/v4.1.0...v4.1.1) (2023-03-29)
 
 
