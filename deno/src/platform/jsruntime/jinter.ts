@@ -1,4 +1,4 @@
-import Jinter from 'https://esm.sh/jintr';
+import { Jinter } from 'https://esm.sh/jintr';
 import { VMPrimative } from '../../types/PlatformShim.ts';
 
 export default function evaluate(code: string, env: Record<string, VMPrimative>) {

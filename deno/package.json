@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "A wrapper around YouTube's private API. Supports YouTube, YouTube Music, YouTube Kids and YouTube Studio (WIP).",
   "type": "module",
   "types": "./dist/src/platform/lib.d.ts",
@@ -72,7 +72,7 @@
     "build:proto": "npx pb-gen-ts --entry-path=\"src/proto\" --out-dir=\"src/proto/generated\" --ext-in-import=\".js\"",
     "build:esm": "npx tsc",
     "build:deno": "npx cpy ./src ./deno && npx cpy ./package.json ./deno && npx replace \".ts';\" \".ts';\" ./deno -r && npx replace '.js\";' '.ts\";' ./deno -r && npx replace \"'https://esm.sh/linkedom';\" \"'https://esm.sh/linkedom';\" ./deno -r && npx replace \"'https://esm.sh/jintr';\" \"'https://esm.sh/jintr';\" ./deno -r && npx replace \"new Jinter\" \"new Jinter\" ./deno -r",
-    "bundle:node": "npx esbuild ./dist/src/platform/node.js --bundle --target=node10 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:jintr --external:undici --external:linkedom --sourcemap --banner:js=\"/* eslint-disable */\"",
+    "bundle:node": "npx esbuild ./dist/src/platform/node.js --bundle --target=node10 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:jintr --external:undici --external:linkedom --external:tslib --sourcemap --banner:js=\"/* eslint-disable */\"",
     "bundle:browser": "npx esbuild ./dist/src/platform/web.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --outfile=./bundle/browser.js --platform=browser",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
     "prepare": "npm run build",
@@ -84,8 +84,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "jintr": "^0.4.1",
+    "jintr": "^1.0.0",
     "linkedom": "^0.14.12",
+    "tslib": "^2.5.0",
     "undici": "^5.19.1"
   },
   "devDependencies": {
