@@ -102,9 +102,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.js",
-    "index.ts",
-    "browser.ts"
+    "src/**/*.js"
   ],
   "exclude": [
     "node_modules",

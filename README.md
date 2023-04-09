@@ -3,7 +3,6 @@
 [versions]: https://www.npmjs.com/package/youtubei.js?activeTab=versions
 [codefactor]: https://www.codefactor.io/repository/github/luanrt/youtube.js
 [actions]: https://github.com/LuanRT/YouTube.js/actions
-[say-thanks]: https://saythanks.io/to/LuanRT
 [collaborators]: https://github.com/LuanRT/YouTube.js/blob/main/COLLABORATORS.md
 
 <!-- OTHER LINKS -->
@@ -23,33 +22,28 @@
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
   [![Downloads](https://img.shields.io/npm/dt/youtubei.js)][npm]
   [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
-  [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks]
   <br>
   [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][collaborators]
  
 </div>
 
-<p align="center">
- <a><sub>Special thanks to:<sub></a>
-</p>
-
-<table align="center">
-  <body>
-    <tr>
-      <td align="center">
-        <a href="https://serpapi.com/" target="_blank">
-          <img width="80" alt="SerpApi" src="https://luanrt.is-a.dev/assets/img/serpapi.svg" />
-          <br>
-          <b>
-           <sub>
-             Scrape Google and other search engines from a fast, easy and complete API.
-           </sub>
-          </b>
-        </a>
-      </td>
-    </tr>
-  </body>
-</table>
+<div align="center">
+  <p>
+    <sup>Special thanks to:</sup>
+    <br>
+    <br>
+    <a href="https://serpapi.com#gh-light-mode-only" target="_blank">
+      <img width="80" alt="SerpApi" src="https://luanrt.is-a.dev/assets/img/serpapi.svg" />
+      <br>
+      <sub>
+        API to get search engine results with ease.
+      </sub>
+    </a>
+  </p>
+</div>
+<br>
+<hr>
+<br>
 
 ## Table of Contents
 <ol>
