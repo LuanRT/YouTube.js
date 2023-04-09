@@ -497,6 +497,7 @@ export default class Parser {
     'DisplayAd',
     'SearchPyv',
     'MealbarPromo',
+    'PrimetimePromo',
     'BackgroundPromo',
     'PromotedSparklesWeb',
     'RunAttestationCommand',
