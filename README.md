@@ -31,7 +31,7 @@
     <sup>Special thanks to:</sup>
     <br>
     <br>
-    <a href="https://serpapi.com#gh-light-mode-only" target="_blank">
+    <a href="https://serpapi.com" target="_blank">
       <img width="80" alt="SerpApi" src="https://luanrt.is-a.dev/assets/img/serpapi.svg" />
       <br>
       <sub>
