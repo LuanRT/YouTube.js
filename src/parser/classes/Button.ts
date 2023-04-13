@@ -2,8 +2,9 @@ import Text from './misc/Text.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class Button extends YTNode {
+export default class Button extends YTNode {
   static type = 'Button';
 
   text?: string;
@@ -15,7 +16,7 @@ class Button extends YTNode {
 
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     if (data.text) {
@@ -41,5 +42,3 @@ class Button extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint || data.command);
   }
 }
-
-export default Button;
