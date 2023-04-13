@@ -219,6 +219,8 @@ export { default as MusicResponsiveListItemFlexColumn } from './classes/MusicRes
 export { default as MusicShelf } from './classes/MusicShelf.ts';
 export { default as MusicSideAlignedItem } from './classes/MusicSideAlignedItem.ts';
 export { default as MusicSortFilterButton } from './classes/MusicSortFilterButton.ts';
+export { default as MusicTastebuilderShelf } from './classes/MusicTastebuilderShelf.ts';
+export { default as MusicTastebuilderShelfThumbnail } from './classes/MusicTastebuilderShelfThumbnail.ts';
 export { default as MusicThumbnail } from './classes/MusicThumbnail.ts';
 export { default as MusicTwoRowItem } from './classes/MusicTwoRowItem.ts';
 export { default as MusicVisualHeader } from './classes/MusicVisualHeader.ts';

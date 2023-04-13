@@ -1,9 +1,11 @@
-import Text from './misc/Text.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
-import { YTNode } from '../helpers.ts';
+import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
-class GuideEntry extends YTNode {
+import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
+
+export default class GuideEntry extends YTNode {
   static type = 'GuideEntry';
 
   title: Text;
@@ -13,21 +15,24 @@ class GuideEntry extends YTNode {
   badges?: any;
   is_primary: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.formattedTitle);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint);
-    if (data.icon?.iconType) {
+
+    if (Reflect.has(data, 'icon') && Reflect.has(data.icon, 'iconType')) {
       this.icon_type = data.icon.iconType;
     }
-    if (data.thumbnail) {
+
+    if (Reflect.has(data, 'thumbnail')) {
       this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     }
-    if (data.badges) {
+
+    // (LuanRT) XXX: Check this property's data and parse it.
+    if (Reflect.has(data, 'badges')) {
       this.badges = data.badges;
     }
+
     this.is_primary = !!data.isPrimary;
   }
 }
-
-export default GuideEntry;

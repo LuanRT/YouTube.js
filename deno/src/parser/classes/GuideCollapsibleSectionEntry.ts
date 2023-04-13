@@ -1,7 +1,8 @@
-import { YTNode } from '../helpers.ts';
 import Parser from '../parser.ts';
+import type { RawNode } from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
-class GuideCollapsibleSectionEntry extends YTNode {
+export default class GuideCollapsibleSectionEntry extends YTNode {
   static type = 'GuideCollapsibleSectionEntry';
 
   header_entry;
@@ -9,15 +10,11 @@ class GuideCollapsibleSectionEntry extends YTNode {
   collapser_icon: string;
   section_items;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-
     this.header_entry = Parser.parseItem(data.headerEntry);
     this.expander_icon = data.expanderIcon.iconType;
     this.collapser_icon = data.collapserIcon.iconType;
     this.section_items = Parser.parseArray(data.sectionItems);
-
   }
 }
-
-export default GuideCollapsibleSectionEntry;

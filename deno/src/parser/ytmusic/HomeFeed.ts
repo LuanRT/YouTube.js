@@ -1,20 +1,21 @@
-import { InnertubeError } from '../../utils/Utils.ts';
+import Parser, { SectionListContinuation } from '../index.ts';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
 import SectionList from '../classes/SectionList.ts';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';
-import Parser, { SectionListContinuation } from '../index.ts';
+import MusicTastebuilderShelf from '../classes/MusicTastebuilderShelf.ts';
 
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 import type { ObservedArray } from '../helpers.ts';
 import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
 
 class HomeFeed {
   #page: IBrowseResponse;
   #actions: Actions;
   #continuation?: string;
 
-  sections?: ObservedArray<MusicCarouselShelf>;
+  sections?: ObservedArray<MusicCarouselShelf | MusicTastebuilderShelf>;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
@@ -36,7 +37,7 @@ class HomeFeed {
     }
 
     this.#continuation = tab.content?.as(SectionList).continuation;
-    this.sections = tab.content?.as(SectionList).contents.as(MusicCarouselShelf);
+    this.sections = tab.content?.as(SectionList).contents.as(MusicCarouselShelf, MusicTastebuilderShelf);
   }
 
   /**

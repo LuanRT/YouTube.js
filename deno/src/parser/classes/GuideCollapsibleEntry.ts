@@ -1,35 +1,19 @@
-import Text from './misc/Text.ts';
-import { YTNode } from '../helpers.ts';
 import Parser from '../parser.ts';
+import GuideEntry from './GuideEntry.ts';
+import type { RawNode } from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
-class GuideCollapsibleEntry extends YTNode {
+export default class GuideCollapsibleEntry extends YTNode {
   static type = 'GuideCollapsibleEntry';
 
-  expander_item: {
-    title: string,
-    icon_type: string
-  };
-  collapser_item: {
-    title: string,
-    icon_type: string
-  };
+  expander_item: GuideEntry | null;
+  collapser_item: GuideEntry | null;
   expandable_items;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-
-    this.expander_item = {
-      title: new Text(data.expanderItem.guideEntryRenderer.formattedTitle).toString(),
-      icon_type: data.expanderItem.guideEntryRenderer.icon.iconType
-    };
-
-    this.collapser_item = {
-      title: new Text(data.collapserItem.guideEntryRenderer.formattedTitle).toString(),
-      icon_type: data.collapserItem.guideEntryRenderer.icon.iconType
-    };
-
+    this.expander_item = Parser.parseItem(data.expanderItem, GuideEntry);
+    this.collapser_item = Parser.parseItem(data.collapserItem, GuideEntry);
     this.expandable_items = Parser.parseArray(data.expandableItems);
   }
 }
-
-export default GuideCollapsibleEntry;

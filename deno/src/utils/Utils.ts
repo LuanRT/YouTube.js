@@ -1,4 +1,5 @@
 import { Memo } from '../parser/helpers.ts';
+import { EmojiRun, TextRun } from '../parser/misc.ts';
 import PlatformShim, { FetchFunction } from '../types/PlatformShim.ts';
 import userAgents from './user-agents.ts';
 
@@ -221,4 +222,8 @@ export function u8ToBase64(u8: Uint8Array): string {
 
 export function base64ToU8(base64: string): Uint8Array {
   return new Uint8Array(atob(base64).split('').map((char) => char.charCodeAt(0)));
+}
+
+export function isTextRun(run: TextRun | EmojiRun): run is TextRun {
+  return !('emoji' in run);
 }

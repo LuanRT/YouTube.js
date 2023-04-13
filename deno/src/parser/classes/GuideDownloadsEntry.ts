@@ -1,14 +1,13 @@
 import GuideEntry from './GuideEntry.ts';
+import type { RawNode } from '../index.ts';
 
-class GuideDownloadsEntry extends GuideEntry {
+export default class GuideDownloadsEntry extends GuideEntry {
   static type = 'GuideDownloadsEntry';
 
   always_show: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super(data.entryRenderer.guideEntryRenderer);
     this.always_show = !!data.alwaysShow;
   }
 }
-
-export default GuideDownloadsEntry;
