@@ -8,7 +8,7 @@ import Menu from './menus/Menu.js';
 
 import { YTNode } from '../helpers.js';
 
-class GridVideo extends YTNode {
+export default class GridVideo extends YTNode {
   static type = 'GridVideo';
 
   id: string;
@@ -23,10 +23,15 @@ class GridVideo extends YTNode {
   short_view_count: Text;
   endpoint: NavigationEndpoint;
   menu: Menu | null;
+  buttons?;
+  upcoming?: Date;
+  upcoming_text?: Text;
+  is_reminder_set?: boolean;
 
   constructor(data: RawNode) {
     super();
     const length_alt = data.thumbnailOverlays.find((overlay: any) => overlay.hasOwnProperty('thumbnailOverlayTimeStatusRenderer'))?.thumbnailOverlayTimeStatusRenderer;
+
     this.id = data.videoId;
     this.title = new Text(data.title);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
@@ -39,7 +44,19 @@ class GridVideo extends YTNode {
     this.short_view_count = new Text(data.shortViewCountText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.menu = Parser.parseItem(data.menu, Menu);
+
+    if (Reflect.has(data, 'buttons')) {
+      this.buttons = Parser.parseArray(data.buttons);
+    }
+
+    if (Reflect.has(data, 'upcomingEventData')) {
+      this.upcoming = new Date(Number(`${data.upcomingEventData.startTime}000`));
+      this.upcoming_text = new Text(data.upcomingEventData.upcomingEventText);
+      this.is_reminder_set = !!data.upcomingEventData?.isReminderSet;
+    }
+  }
+
+  get is_upcoming(): boolean {
+    return Boolean(this.upcoming && this.upcoming > new Date());
   }
 }
-
-export default GridVideo;
