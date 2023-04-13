@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.3.0](https://github.com/LuanRT/YouTube.js/compare/v4.2.0...v4.3.0) (2023-04-13)
+
+
+### Features
+
+* **GridVideo:** add `upcoming`, `upcoming_text`, `is_reminder_set` and `buttons` ([05de3ec](https://github.com/LuanRT/YouTube.js/commit/05de3ec97a1fea92543b5e5f84933b86a07ab830)), closes [#380](https://github.com/LuanRT/YouTube.js/issues/380)
+* **MusicResponsiveListItem:** make flex/fixed cols public ([#382](https://github.com/LuanRT/YouTube.js/issues/382)) ([096bf36](https://github.com/LuanRT/YouTube.js/commit/096bf362c9bd46a510ecb0d01623c70841e26e26))
+* **ToggleMenuServiceItem:** parse default nav endpoint ([a056696](https://github.com/LuanRT/YouTube.js/commit/a0566969ba436f31ca3722d09442a0c6302235d7))
+* **ytmusic:** add taste builder nodes ([#383](https://github.com/LuanRT/YouTube.js/issues/383)) ([a9cad49](https://github.com/LuanRT/YouTube.js/commit/a9cad49333aa85c98bbb96e5f2d5b57d9beeb0c7))
+
 ## [4.2.0](https://github.com/LuanRT/YouTube.js/compare/v4.1.1...v4.2.0) (2023-04-09)
 
 
