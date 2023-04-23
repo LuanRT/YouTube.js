@@ -499,6 +499,7 @@ export default class Parser {
     'RunAttestationCommand',
     'CompactPromotedVideo',
     'BrandVideoShelf',
+    'BrandVideoSingleton',
     'StatementBanner',
     'GuideSigninPromo'
   ]);
