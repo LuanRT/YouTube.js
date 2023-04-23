@@ -1,21 +1,19 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 
-class PlaylistVideoList extends YTNode {
+export default class PlaylistVideoList extends YTNode {
   static type = 'PlaylistVideoList';
 
   id: string;
   is_editable: boolean;
   can_reorder: boolean;
-  videos;
+  videos: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.playlistId;
     this.is_editable = data.isEditable;
     this.can_reorder = data.canReorder;
-    this.videos = Parser.parse(data.contents);
+    this.videos = Parser.parseArray(data.contents);
   }
 }
-
-export default PlaylistVideoList;

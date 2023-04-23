@@ -1,13 +1,12 @@
-import Parser from '../index.js';
-import Author from './misc/Author.js';
-import Text from './misc/Text.js';
+import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import CommentActionButtons from './comments/CommentActionButtons.js';
 import Menu from './menus/Menu.js';
+import Author from './misc/Author.js';
+import Text from './misc/Text.js';
 
-import { YTNode } from '../helpers.js';
-
-class BackstagePost extends YTNode {
+export default class BackstagePost extends YTNode {
   static type = 'BackstagePost';
 
   id: string;
@@ -18,13 +17,13 @@ class BackstagePost extends YTNode {
   vote_status?: string;
   vote_count?: Text;
   menu?: Menu | null;
-  action_buttons;
-  vote_button;
+  action_buttons?: CommentActionButtons | null;
+  vote_button?: CommentActionButtons | null;
   surface: string;
   endpoint?: NavigationEndpoint;
   attachment;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.postId;
 
@@ -36,40 +35,38 @@ class BackstagePost extends YTNode {
     this.content = new Text(data.contentText);
     this.published = new Text(data.publishedTimeText);
 
-    if (data.pollStatus) {
+    if (Reflect.has(data, 'pollStatus')) {
       this.poll_status = data.pollStatus;
     }
 
-    if (data.voteStatus) {
+    if (Reflect.has(data, 'voteStatus')) {
       this.vote_status = data.voteStatus;
     }
 
-    if (data.voteCount) {
+    if (Reflect.has(data, 'voteCount')) {
       this.vote_count = new Text(data.voteCount);
     }
 
-    if (data.actionMenu) {
+    if (Reflect.has(data, 'actionMenu')) {
       this.menu = Parser.parseItem(data.actionMenu, Menu);
     }
 
-    if (data.actionButtons) {
+    if (Reflect.has(data, 'actionButtons')) {
       this.action_buttons = Parser.parseItem(data.actionButtons, CommentActionButtons);
     }
 
-    if (data.voteButton) {
+    if (Reflect.has(data, 'voteButton')) {
       this.vote_button = Parser.parseItem(data.voteButton, CommentActionButtons);
     }
 
-    if (data.navigationEndpoint) {
+    if (Reflect.has(data, 'navigationEndpoint')) {
       this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     }
 
-    if (data.backstageAttachment) {
+    if (Reflect.has(data, 'backstageAttachment')) {
       this.attachment = Parser.parseItem(data.backstageAttachment);
     }
 
     this.surface = data.surface;
   }
 }
-
-export default BackstagePost;

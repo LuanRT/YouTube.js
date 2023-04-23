@@ -20,7 +20,6 @@ import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection
 import SectionList from '../parser/classes/SectionList.js';
 import Tab from '../parser/classes/Tab.js';
 
-import { observe } from '../parser/helpers.js';
 import Proto from '../proto/index.js';
 import { generateRandomString, InnertubeError, throwIfMissing } from '../utils/Utils.js';
 
@@ -327,7 +326,7 @@ class Music {
       throw new InnertubeError('Unexpected response', page);
 
     if (page.contents.item().key('type').string() === 'Message')
-      throw new InnertubeError(page.contents.item().as(Message).text, video_id);
+      throw new InnertubeError(page.contents.item().as(Message).text.toString(), video_id);
 
     const section_list = page.contents.item().as(SectionList).contents;
 
@@ -357,12 +356,12 @@ class Music {
       client: 'YTMUSIC'
     });
 
-    const search_suggestions_section = response.contents_memo?.getType(SearchSuggestionsSection)?.[0];
+    if (!response.contents_memo)
+      throw new InnertubeError('Unexpected response', response);
 
-    if (!search_suggestions_section?.contents.is_array)
-      return observe([] as YTNode[]);
+    const search_suggestions_section = response.contents_memo.getType(SearchSuggestionsSection).first();
 
-    return search_suggestions_section?.contents.array();
+    return search_suggestions_section.contents;
   }
 }
 

@@ -1,15 +1,13 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import { ObservedArray, YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 
-class WatchCardSectionSequence extends YTNode {
+export default class WatchCardSectionSequence extends YTNode {
   static type = 'WatchCardSectionSequence';
 
-  lists;
+  lists: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.lists = Parser.parseArray(data.lists);
   }
 }
-
-export default WatchCardSectionSequence;

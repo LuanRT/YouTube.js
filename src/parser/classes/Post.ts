@@ -1,11 +1,10 @@
+import type { RawNode } from '../index.js';
 import BackstagePost from './BackstagePost.js';
 
-class Post extends BackstagePost {
+export default class Post extends BackstagePost {
   static type = 'Post';
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super(data);
   }
 }
-
-export default Post;

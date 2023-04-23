@@ -2,8 +2,9 @@ import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
+import { type RawNode } from '../index.js';
 
-class EndScreenPlaylist extends YTNode {
+export default class EndScreenPlaylist extends YTNode {
   static type = 'EndScreenPlaylist';
 
   id: string;
@@ -13,7 +14,7 @@ class EndScreenPlaylist extends YTNode {
   thumbnails: Thumbnail[];
   video_count: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.playlistId;
     this.title = new Text(data.title);
@@ -23,5 +24,3 @@ class EndScreenPlaylist extends YTNode {
     this.video_count = new Text(data.videoCountText);
   }
 }
-
-export default EndScreenPlaylist;

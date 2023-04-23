@@ -1,7 +1,8 @@
 import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class MusicDescriptionShelf extends YTNode {
+export default class MusicDescriptionShelf extends YTNode {
   static type = 'MusicDescriptionShelf';
 
   description: Text;
@@ -9,20 +10,18 @@ class MusicDescriptionShelf extends YTNode {
   max_expanded_lines?: string;
   footer: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.description = new Text(data.description);
 
-    if (this.max_collapsed_lines) {
+    if (Reflect.has(data, 'maxCollapsedLines')) {
       this.max_collapsed_lines = data.maxCollapsedLines;
     }
 
-    if (this.max_expanded_lines) {
+    if (Reflect.has(data, 'maxExpandedLines')) {
       this.max_expanded_lines = data.maxExpandedLines;
     }
 
     this.footer = new Text(data.footer);
   }
 }
-
-export default MusicDescriptionShelf;

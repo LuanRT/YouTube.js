@@ -1,7 +1,8 @@
 import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class PageIntroduction extends YTNode {
+export default class PageIntroduction extends YTNode {
   static type = 'PageIntroduction';
 
   header_text: string;
@@ -9,7 +10,7 @@ class PageIntroduction extends YTNode {
   page_title: string;
   header_icon_type: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.header_text = new Text(data.headerText).toString();
     this.body_text = new Text(data.bodyText).toString();
@@ -17,5 +18,3 @@ class PageIntroduction extends YTNode {
     this.header_icon_type = data.headerIcon.iconType;
   }
 }
-
-export default PageIntroduction;

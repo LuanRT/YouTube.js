@@ -1,16 +1,15 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 
-class MetadataRowContainer extends YTNode {
+export default class MetadataRowContainer extends YTNode {
   static type = 'MetadataRowContainer';
-  rows;
-  collapsed_item_count: number; // TODO: validate this assumption
 
-  constructor(data: any) {
+  rows: ObservedArray<YTNode>;
+  collapsed_item_count: number;
+
+  constructor(data: RawNode) {
     super();
     this.rows = Parser.parseArray(data.rows);
     this.collapsed_item_count = data.collapsedItemCount;
   }
 }
-
-export default MetadataRowContainer;

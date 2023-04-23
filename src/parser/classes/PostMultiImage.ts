@@ -1,17 +1,14 @@
-import Parser from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import BackstageImage from './BackstageImage.js';
-
 import { YTNode } from '../helpers.js';
 
-class PostMultiImage extends YTNode {
+export default class PostMultiImage extends YTNode {
   static type = 'PostMultiImage';
 
   images : BackstageImage[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.images = Parser.parseArray(data.images, BackstageImage);
   }
 }
-
-export default PostMultiImage;

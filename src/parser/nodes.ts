@@ -54,6 +54,7 @@ export { default as CommentDialog } from './classes/comments/CommentDialog.js';
 export { default as CommentReplies } from './classes/comments/CommentReplies.js';
 export { default as CommentReplyDialog } from './classes/comments/CommentReplyDialog.js';
 export { default as CommentsEntryPointHeader } from './classes/comments/CommentsEntryPointHeader.js';
+export { default as CommentsEntryPointTeaser } from './classes/comments/CommentsEntryPointTeaser.js';
 export { default as CommentsHeader } from './classes/comments/CommentsHeader.js';
 export { default as CommentSimplebox } from './classes/comments/CommentSimplebox.js';
 export { default as CommentThread } from './classes/comments/CommentThread.js';

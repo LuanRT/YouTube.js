@@ -1,25 +1,25 @@
-import Parser from '../index.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 
-import MusicTwoRowItem from './MusicTwoRowItem.js';
-import MusicResponsiveListItem from './MusicResponsiveListItem.js';
 import MusicCarouselShelfBasicHeader from './MusicCarouselShelfBasicHeader.js';
 import MusicNavigationButton from './MusicNavigationButton.js';
+import MusicResponsiveListItem from './MusicResponsiveListItem.js';
+import MusicTwoRowItem from './MusicTwoRowItem.js';
 
-import { ObservedArray, YTNode } from '../helpers.js';
-
-class MusicCarouselShelf extends YTNode {
+export default class MusicCarouselShelf extends YTNode {
   static type = 'MusicCarouselShelf';
 
   header: MusicCarouselShelfBasicHeader | null;
   contents: ObservedArray<MusicTwoRowItem | MusicResponsiveListItem | MusicNavigationButton>;
-  num_items_per_column: number | null;
+  num_items_per_column?: number;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.header = Parser.parseItem<MusicCarouselShelfBasicHeader>(data.header, MusicCarouselShelfBasicHeader);
+    this.header = Parser.parseItem(data.header, MusicCarouselShelfBasicHeader);
     this.contents = Parser.parseArray(data.contents, [ MusicTwoRowItem, MusicResponsiveListItem, MusicNavigationButton ]);
-    this.num_items_per_column = Reflect.has(data, 'numItemsPerColumn') ? parseInt(data.numItemsPerColumn) : null;
+
+    if (Reflect.has(data, 'numItemsPerColumn')) {
+      this.num_items_per_column = parseInt(data.numItemsPerColumn);
+    }
   }
 }
-
-export default MusicCarouselShelf;

@@ -4,7 +4,7 @@ import Parser from '../index.js';
 import Button from './Button.js';
 import ToggleButton from './ToggleButton.js';
 
-class SegmentedLikeDislikeButton extends YTNode {
+export default class SegmentedLikeDislikeButton extends YTNode {
   static type = 'SegmentedLikeDislikeButton';
 
   like_button: ToggleButton | Button | null;
@@ -16,5 +16,3 @@ class SegmentedLikeDislikeButton extends YTNode {
     this.dislike_button = Parser.parseItem(data.dislikeButton, [ ToggleButton, Button ]);
   }
 }
-
-export default SegmentedLikeDislikeButton;

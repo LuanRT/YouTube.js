@@ -1,17 +1,16 @@
 import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class ThumbnailOverlayHoverText extends YTNode {
+export default class ThumbnailOverlayHoverText extends YTNode {
   static type = 'ThumbnailOverlayHoverText';
 
   text: Text;
   icon_type: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.text = new Text(data.text);
     this.icon_type = data.icon.iconType;
   }
 }
-
-export default ThumbnailOverlayHoverText;

@@ -1,16 +1,16 @@
-import Parser from '../index.js';
-import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
-class WatchCardHeroVideo extends YTNode {
+export default class WatchCardHeroVideo extends YTNode {
   static type = 'WatchCardHeroVideo';
 
   endpoint: NavigationEndpoint;
-  call_to_action_button;
-  hero_image;
+  call_to_action_button: YTNode;
+  hero_image: YTNode;
   label: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.call_to_action_button = Parser.parseItem(data.callToActionButton);
@@ -18,5 +18,3 @@ class WatchCardHeroVideo extends YTNode {
     this.label = data.lengthText?.accessibility.accessibilityData.label || '';
   }
 }
-
-export default WatchCardHeroVideo;

@@ -1,10 +1,11 @@
 import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class ThumbnailOverlayToggleButton extends YTNode {
+export default class ThumbnailOverlayToggleButton extends YTNode {
   static type = 'ThumbnailOverlayToggleButton';
 
-  is_toggled: boolean | null;
+  is_toggled?: boolean;
 
   icon_type: {
     toggled: string;
@@ -19,9 +20,11 @@ class ThumbnailOverlayToggleButton extends YTNode {
   toggled_endpoint: NavigationEndpoint;
   untoggled_endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.is_toggled = data.isToggled || null;
+    if (Reflect.has(data, 'isToggled')) {
+      this.is_toggled = data.isToggled;
+    }
 
     this.icon_type = {
       toggled: data.toggledIcon.iconType,
@@ -37,5 +40,3 @@ class ThumbnailOverlayToggleButton extends YTNode {
     this.untoggled_endpoint = new NavigationEndpoint(data.untoggledServiceEndpoint);
   }
 }
-
-export default ThumbnailOverlayToggleButton;

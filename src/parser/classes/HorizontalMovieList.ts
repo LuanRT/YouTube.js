@@ -1,25 +1,23 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 import Button from './Button.js';
 
-class HorizontalMovieList extends YTNode {
+export default class HorizontalMovieList extends YTNode {
   static type = 'HorizontalMovieList';
 
-  items;
+  items: ObservedArray<YTNode>;
   previous_button: Button | null;
   next_button: Button | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
-    this.previous_button = Parser.parseItem<Button>(data.previousButton, Button);
-    this.next_button = Parser.parseItem<Button>(data.nextButton, Button);
+    this.previous_button = Parser.parseItem(data.previousButton, Button);
+    this.next_button = Parser.parseItem(data.nextButton, Button);
   }
 
-  // XXX: alias for consistency
+  // XXX: Alias for consistency.
   get contents() {
     return this.items;
   }
 }
-
-export default HorizontalMovieList;

@@ -1,18 +1,19 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import { type ObservedArray, YTNode, observe } from '../helpers.js';
 import PlaylistPanelVideo from './PlaylistPanelVideo.js';
 
-class PlaylistPanelVideoWrapper extends YTNode {
+export default class PlaylistPanelVideoWrapper extends YTNode {
   static type = 'PlaylistPanelVideoWrapper';
 
   primary: PlaylistPanelVideo | null;
-  counterpart: Array<PlaylistPanelVideo | null>;
+  counterpart?: ObservedArray<PlaylistPanelVideo>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.primary = Parser.parseItem(data.primaryRenderer, PlaylistPanelVideo);
-    this.counterpart = data.counterpart?.map((item: any) => Parser.parseItem(item.counterpartRenderer, PlaylistPanelVideo)) || [];
+
+    if (Reflect.has(data, 'counterpart')) {
+      this.counterpart = observe(data.counterpart.map((item: RawNode) => Parser.parseItem(item.counterpartRenderer, PlaylistPanelVideo)) || []);
+    }
   }
 }
-
-export default PlaylistPanelVideoWrapper;

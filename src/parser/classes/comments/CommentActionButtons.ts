@@ -2,16 +2,17 @@ import Parser from '../../index.js';
 import Button from '../Button.js';
 import ToggleButton from '../ToggleButton.js';
 import CreatorHeart from './CreatorHeart.js';
+
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class CommentActionButtons extends YTNode {
+export default class CommentActionButtons extends YTNode {
   static type = 'CommentActionButtons';
 
-  like_button;
-  dislike_button;
-  reply_button;
-  creator_heart;
+  like_button: ToggleButton | null;
+  dislike_button: ToggleButton | null;
+  reply_button: Button | null;
+  creator_heart: CreatorHeart | null;
 
   constructor(data: RawNode) {
     super();
@@ -21,5 +22,3 @@ class CommentActionButtons extends YTNode {
     this.creator_heart = Parser.parseItem(data.creatorHeart, CreatorHeart);
   }
 }
-
-export default CommentActionButtons;

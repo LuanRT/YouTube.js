@@ -1,9 +1,9 @@
 import Text from './misc/Text.js';
 import Author from './misc/Author.js';
-import Parser, { RawNode } from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import { YTNode } from '../helpers.js';
 
-class PlaylistHeader extends YTNode {
+export default class PlaylistHeader extends YTNode {
   static type = 'PlaylistHeader';
 
   id: string;
@@ -18,17 +18,17 @@ class PlaylistHeader extends YTNode {
   can_delete: boolean;
   is_editable: boolean;
   privacy: string;
-  save_button;
-  shuffle_play_button;
-  menu;
-  banner;
+  save_button: YTNode;
+  shuffle_play_button: YTNode;
+  menu: YTNode;
+  banner: YTNode;
 
   constructor(data: RawNode) {
     super();
     this.id = data.playlistId;
     this.title = new Text(data.title);
-    this.stats = data.stats.map((stat: any) => new Text(stat));
-    this.brief_stats = data.briefStats.map((stat: any) => new Text(stat));
+    this.stats = data.stats.map((stat: RawNode) => new Text(stat));
+    this.brief_stats = data.briefStats.map((stat: RawNode) => new Text(stat));
     this.author = new Author({ ...data.ownerText, navigationEndpoint: data.ownerEndpoint }, data.ownerBadges, null);
     this.description = new Text(data.descriptionText);
     this.num_videos = new Text(data.numVideosText);
@@ -43,5 +43,3 @@ class PlaylistHeader extends YTNode {
     this.banner = Parser.parseItem(data.playlistHeaderBanner);
   }
 }
-
-export default PlaylistHeader;

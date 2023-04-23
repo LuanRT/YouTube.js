@@ -1,10 +1,10 @@
 import Text from './misc/Text.js';
-import Parser from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
 import Button from './Button.js';
 
-class Shelf extends YTNode {
+export default class Shelf extends YTNode {
   static type = 'Shelf';
 
   title: Text;
@@ -14,28 +14,26 @@ class Shelf extends YTNode {
   menu?: YTNode | null;
   play_all_button?: Button | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
 
-    if (data.endpoint) {
+    if (Reflect.has(data, 'endpoint')) {
       this.endpoint = new NavigationEndpoint(data.endpoint);
     }
 
-    this.content = Parser.parseItem(data.content) || null;
+    this.content = Parser.parseItem(data.content);
 
-    if (data.icon?.iconType) {
-      this.icon_type = data.icon?.iconType;
+    if (Reflect.has(data, 'icon')) {
+      this.icon_type = data.icon.iconType;
     }
 
-    if (data.menu) {
+    if (Reflect.has(data, 'menu')) {
       this.menu = Parser.parseItem(data.menu);
     }
 
-    if (data.playAllButton) {
+    if (Reflect.has(data, 'playAllButton')) {
       this.play_all_button = Parser.parseItem(data.playAllButton, Button);
     }
   }
 }
-
-export default Shelf;

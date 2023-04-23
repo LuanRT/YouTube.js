@@ -1,7 +1,8 @@
 import Text from '../misc/Text.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-class UpdateViewershipAction extends YTNode {
+
+export default class UpdateViewershipAction extends YTNode {
   static type = 'UpdateViewershipAction';
 
   view_count: Text;
@@ -16,5 +17,3 @@ class UpdateViewershipAction extends YTNode {
     this.is_live = view_count_renderer.isLive;
   }
 }
-
-export default UpdateViewershipAction;

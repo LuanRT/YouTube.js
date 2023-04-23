@@ -1,20 +1,20 @@
 import Parser from '../../index.js';
-import { YTNode } from '../../helpers.js';
+import { type ObservedArray, YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-class ReplayChatItemAction extends YTNode {
+
+export default class ReplayChatItemAction extends YTNode {
   static type = 'ReplayChatItemAction';
 
-  actions;
-  video_offset_time_msec: string; // Or number?
+  actions: ObservedArray<YTNode>;
+  video_offset_time_msec: string;
 
   constructor(data: RawNode) {
     super();
-    this.actions = Parser.parseArray(data.actions?.map((action: any) => {
+    this.actions = Parser.parseArray(data.actions?.map((action: RawNode) => {
       delete action.clickTrackingParams;
       return action;
     }));
+
     this.video_offset_time_msec = data.videoOffsetTimeMsec;
   }
 }
-
-export default ReplayChatItemAction;

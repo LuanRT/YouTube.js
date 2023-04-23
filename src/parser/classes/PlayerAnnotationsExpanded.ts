@@ -1,9 +1,9 @@
 import { YTNode } from '../helpers.js';
-import Parser, { RawNode } from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
-class PlayerAnnotationsExpanded extends YTNode {
+export default class PlayerAnnotationsExpanded extends YTNode {
   static type = 'PlayerAnnotationsExpanded';
 
   featured_channel?: {
@@ -36,5 +36,3 @@ class PlayerAnnotationsExpanded extends YTNode {
     this.annotation_id = data.annotationId;
   }
 }
-
-export default PlayerAnnotationsExpanded;

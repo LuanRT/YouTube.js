@@ -1,20 +1,18 @@
-import Parser, { RawNode } from '../index.js';
-import { YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 
-class ProfileColumn extends YTNode {
+export default class ProfileColumn extends YTNode {
   static type = 'ProfileColumn';
 
-  items;
+  items: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
   }
 
-  // XXX: alias for consistency
+  // XXX: Alias for consistency.
   get contents() {
     return this.items;
   }
 }
-
-export default ProfileColumn;

@@ -1,22 +1,21 @@
-import { YTNode } from '../helpers.js';
-import Parser, { RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
-class EndScreenVideo extends YTNode {
+export default class EndScreenVideo extends YTNode {
   static type = 'EndScreenVideo';
 
   id: string;
   title: Text;
   thumbnails: Thumbnail[];
-  thumbnail_overlays;
+  thumbnail_overlays: ObservedArray<YTNode>;
   author: Author;
   endpoint: NavigationEndpoint;
   short_view_count: Text;
-  badges;
-
+  badges: ObservedArray<YTNode>;
   duration: {
     text: string;
     seconds: number;
@@ -31,12 +30,10 @@ class EndScreenVideo extends YTNode {
     this.author = new Author(data.shortBylineText, data.ownerBadges);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.short_view_count = new Text(data.shortViewCountText);
-    this.badges = Parser.parse(data.badges);
+    this.badges = Parser.parseArray(data.badges);
     this.duration = {
       text: new Text(data.lengthText).toString(),
       seconds: data.lengthInSeconds
     };
   }
 }
-
-export default EndScreenVideo;

@@ -1,13 +1,12 @@
-import Parser from '../index.js';
+import { timeToSeconds } from '../../utils/Utils.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 import Text from './misc/Text.js';
 import TextRun from './misc/TextRun.js';
 import Thumbnail from './misc/Thumbnail.js';
-import NavigationEndpoint from './NavigationEndpoint.js';
-import { timeToSeconds } from '../../utils/Utils.js';
 
-import { YTNode } from '../helpers.js';
-
-class PlaylistPanelVideo extends YTNode {
+export default class PlaylistPanelVideo extends YTNode {
   static type = 'PlaylistPanelVideo';
 
   title: Text;
@@ -24,23 +23,23 @@ class PlaylistPanelVideo extends YTNode {
   author: string;
 
   album?: {
-    id: string | undefined;
+    id?: string;
     name: string;
-    year: string | undefined;
-    endpoint: NavigationEndpoint | undefined;
+    year?: string;
+    endpoint?: NavigationEndpoint;
   };
 
   artists?: {
     name: string;
-    channel_id: string | undefined;
-    endpoint: NavigationEndpoint | undefined;
+    channel_id?: string;
+    endpoint?: NavigationEndpoint;
   }[];
 
-  badges;
-  menu;
-  set_video_id: string | undefined;
+  badges: ObservedArray<YTNode>;
+  menu: YTNode;
+  set_video_id?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.title = new Text(data.title);
@@ -81,5 +80,3 @@ class PlaylistPanelVideo extends YTNode {
     this.set_video_id = data.playlistSetVideoId;
   }
 }
-
-export default PlaylistPanelVideo;

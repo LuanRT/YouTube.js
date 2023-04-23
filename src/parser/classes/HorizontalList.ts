@@ -1,22 +1,20 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 
-class HorizontalList extends YTNode {
+export default class HorizontalList extends YTNode {
   static type = 'HorizontalList';
 
   visible_item_count: string;
-  items;
+  items: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.visible_item_count = data.visibleItemCount;
     this.items = Parser.parseArray(data.items);
   }
 
-  // XXX: alias for consistency
+  // XXX: Alias for consistency.
   get contents() {
     return this.items;
   }
 }
-
-export default HorizontalList;

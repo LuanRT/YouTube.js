@@ -1,8 +1,8 @@
 import { YTNode } from '../helpers.js';
-import Parser, { RawNode } from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import Message from './Message.js';
 
-class ConversationBar extends YTNode {
+export default class ConversationBar extends YTNode {
   static type = 'ConversationBar';
 
   availability_message: Message | null;
@@ -12,5 +12,3 @@ class ConversationBar extends YTNode {
     this.availability_message = Parser.parseItem(data.availabilityMessage, Message);
   }
 }
-
-export default ConversationBar;

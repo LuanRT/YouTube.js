@@ -1,12 +1,10 @@
-import Parser, { RawNode } from '../index.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Menu from './menus/Menu.js';
+import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
-import NavigationEndpoint from './NavigationEndpoint.js';
-import Author from './misc/Author.js';
-
-import Menu from './menus/Menu.js';
-
-import { YTNode } from '../helpers.js';
 
 export default class GridVideo extends YTNode {
   static type = 'GridVideo';
@@ -14,8 +12,8 @@ export default class GridVideo extends YTNode {
   id: string;
   title: Text;
   thumbnails: Thumbnail[];
-  thumbnail_overlays;
-  rich_thumbnail;
+  thumbnail_overlays: ObservedArray<YTNode>;
+  rich_thumbnail: YTNode;
   published: Text;
   duration: Text | null;
   author: Author;
@@ -23,20 +21,20 @@ export default class GridVideo extends YTNode {
   short_view_count: Text;
   endpoint: NavigationEndpoint;
   menu: Menu | null;
-  buttons?;
+  buttons?: ObservedArray<YTNode>;
   upcoming?: Date;
   upcoming_text?: Text;
   is_reminder_set?: boolean;
 
   constructor(data: RawNode) {
     super();
-    const length_alt = data.thumbnailOverlays.find((overlay: any) => overlay.hasOwnProperty('thumbnailOverlayTimeStatusRenderer'))?.thumbnailOverlayTimeStatusRenderer;
+    const length_alt = data.thumbnailOverlays.find((overlay: RawNode) => overlay.hasOwnProperty('thumbnailOverlayTimeStatusRenderer'))?.thumbnailOverlayTimeStatusRenderer;
 
     this.id = data.videoId;
     this.title = new Text(data.title);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
-    this.rich_thumbnail = data.richThumbnail && Parser.parseItem(data.richThumbnail);
+    this.rich_thumbnail = Parser.parseItem(data.richThumbnail);
     this.published = new Text(data.publishedTimeText);
     this.duration = data.lengthText ? new Text(data.lengthText) : length_alt?.text ? new Text(length_alt.text) : null;
     this.author = data.shortBylineText && new Author(data.shortBylineText, data.ownerBadges);

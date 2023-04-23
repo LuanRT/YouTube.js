@@ -1,25 +1,23 @@
-import Parser from '../index.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import Text from './misc/Text.js';
-import { YTNode } from '../helpers.js';
 
-class VerticalList extends YTNode {
+export default class VerticalList extends YTNode {
   static type = 'VerticalList';
 
-  items;
+  items: ObservedArray<YTNode>;
   collapsed_item_count: string; // Number?
   collapsed_state_button_text: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
     this.collapsed_item_count = data.collapsedItemCount;
     this.collapsed_state_button_text = new Text(data.collapsedStateButtonText);
   }
 
-  // XXX: alias for consistency
+  // XXX: Alias for consistency.
   get contents() {
     return this.items;
   }
 }
-
-export default VerticalList;

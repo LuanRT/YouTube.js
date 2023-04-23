@@ -1,6 +1,7 @@
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class MetadataBadge extends YTNode {
+export default class MetadataBadge extends YTNode {
   static type = 'MetadataBadge';
 
   icon_type?: string;
@@ -8,25 +9,22 @@ class MetadataBadge extends YTNode {
   label?: string;
   tooltip?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-
-    if (data?.icon) {
+    if (Reflect.has(data, 'icon')) {
       this.icon_type = data.icon.iconType;
     }
 
-    if (data?.style) {
+    if (Reflect.has(data, 'style')) {
       this.style = data.style;
     }
 
-    if (data?.label) {
+    if (Reflect.has(data, 'label')) {
       this.label = data.label;
     }
 
-    if (data?.tooltip || data?.iconTooltip) {
+    if (Reflect.has(data, 'tooltip') || Reflect.has(data, 'iconTooltip')) {
       this.tooltip = data.tooltip || data.iconTooltip;
     }
   }
 }
-
-export default MetadataBadge;

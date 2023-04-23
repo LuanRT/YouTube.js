@@ -1,23 +1,21 @@
-import Text from './misc/Text.js';
-import { ObservedArray, YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import ItemSectionTab from './ItemSectionTab.js';
-import Parser from '../index.js';
+import Text from './misc/Text.js';
 
-class ItemSectionTabbedHeader extends YTNode {
+export default class ItemSectionTabbedHeader extends YTNode {
   static type = 'ItemSectionTabbedHeader';
 
   title: Text;
-  tabs: Array<ItemSectionTab>;
+  tabs: ObservedArray<ItemSectionTab>;
   end_items?: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.tabs = Parser.parseArray(data.tabs, ItemSectionTab);
-    if (data.endItems) {
+    if (Reflect.has(data, 'endItems')) {
       this.end_items = Parser.parseArray(data.endItems);
     }
   }
 }
-
-export default ItemSectionTabbedHeader;

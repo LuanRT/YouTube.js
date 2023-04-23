@@ -1,26 +1,27 @@
-import Parser from '../index.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Text from './misc/Text.js';
-import { YTNode } from '../helpers.js';
 
-class ReelShelf extends YTNode {
+export default class ReelShelf extends YTNode {
   static type = 'ReelShelf';
 
   title: Text;
-  items;
-  endpoint: NavigationEndpoint | null;
+  items: ObservedArray<YTNode>;
+  endpoint?: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.items = Parser.parseArray(data.items);
-    this.endpoint = data.endpoint ? new NavigationEndpoint(data.endpoint) : null;
+
+    if (Reflect.has(data, 'endpoint')) {
+      this.endpoint = new NavigationEndpoint(data.endpoint);
+    }
   }
 
-  // XXX: alias for consistency
+  // XXX: Alias for consistency.
   get contents() {
     return this.items;
   }
 }
-
-export default ReelShelf;

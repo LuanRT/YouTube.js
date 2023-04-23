@@ -1,8 +1,9 @@
 import Text from './misc/Text.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class ToggleButton extends YTNode {
+export default class ToggleButton extends YTNode {
   static type = 'ToggleButton';
 
   text: Text;
@@ -12,16 +13,14 @@ class ToggleButton extends YTNode {
   is_toggled: boolean;
   is_disabled: boolean;
   icon_type: string;
-
-  like_count;
-  short_like_count;
-
+  like_count?: number;
+  short_like_count?: string;
   endpoint: NavigationEndpoint;
   toggled_endpoint: NavigationEndpoint;
-  button_id: string | null;
-  target_id: string | null;
+  button_id?: string;
+  target_id?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.text = new Text(data.defaultText);
     this.toggled_text = new Text(data.toggledText);
@@ -47,9 +46,13 @@ class ToggleButton extends YTNode {
         new NavigationEndpoint(data.defaultServiceEndpoint);
 
     this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
-    this.button_id = data.toggleButtonSupportedData?.toggleButtonIdData?.id || null;
-    this.target_id = data.targetId || null;
+
+    if (Reflect.has(data, 'toggleButtonSupportedData') && Reflect.has(data.toggleButtonSupportedData, 'toggleButtonIdData')) {
+      this.button_id = data.toggleButtonSupportedData.toggleButtonIdData.id;
+    }
+
+    if (Reflect.has(data, 'targetId')) {
+      this.target_id = data.targetId;
+    }
   }
 }
-
-export default ToggleButton;

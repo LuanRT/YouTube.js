@@ -1,17 +1,16 @@
-import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+import Text from './misc/Text.js';
 
-class SimpleCardTeaser extends YTNode {
+export default class SimpleCardTeaser extends YTNode {
   static type = 'SimpleCardTeaser';
 
   message: Text;
-  prominent: boolean; // TODO: or string?
+  prominent: boolean; // @TODO: or string?
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.message = new Text(data.message);
     this.prominent = data.prominent;
   }
 }
-
-export default SimpleCardTeaser;

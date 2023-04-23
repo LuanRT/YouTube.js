@@ -1,19 +1,19 @@
-import Parser from '../index.js';
-import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import Text from './misc/Text.js';
 
-class SlimVideoMetadata extends YTNode {
+export default class SlimVideoMetadata extends YTNode {
   static type = 'SlimVideoMetadata';
 
   title: Text;
   collapsed_subtitle: Text;
   expanded_subtitle: Text;
-  owner: any;
+  owner: YTNode;
   description: Text;
   video_id: string;
   date: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.collapsed_subtitle = new Text(data.collapsedSubtitle);
@@ -24,5 +24,3 @@ class SlimVideoMetadata extends YTNode {
     this.date = new Text(data.dateText);
   }
 }
-
-export default SlimVideoMetadata;

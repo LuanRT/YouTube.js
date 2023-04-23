@@ -1,16 +1,14 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 import Tab from './Tab.js';
 
-class TabbedSearchResults extends YTNode {
+export default class TabbedSearchResults extends YTNode {
   static type = 'TabbedSearchResults';
 
-  tabs;
+  tabs: ObservedArray<Tab>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.tabs = Parser.parseArray<Tab>(data.tabs, Tab);
+    this.tabs = Parser.parseArray(data.tabs, Tab);
   }
 }
-
-export default TabbedSearchResults;

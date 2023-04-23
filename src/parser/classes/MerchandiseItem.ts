@@ -1,8 +1,9 @@
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class MerchandiseItem extends YTNode {
+export default class MerchandiseItem extends YTNode {
   static type = 'MerchandiseItem';
 
   title: string;
@@ -17,7 +18,7 @@ class MerchandiseItem extends YTNode {
   region_format: string;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.title;
     this.description = data.description;
@@ -32,5 +33,3 @@ class MerchandiseItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.buttonCommand);
   }
 }
-
-export default MerchandiseItem;

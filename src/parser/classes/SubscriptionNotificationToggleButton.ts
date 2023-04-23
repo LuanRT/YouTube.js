@@ -1,13 +1,13 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import { type SuperParsedResult, YTNode } from '../helpers.js';
 
-class SubscriptionNotificationToggleButton extends YTNode {
+export default class SubscriptionNotificationToggleButton extends YTNode {
   static type = 'SubscriptionNotificationToggleButton';
 
   states: {
     id: string;
     next_id: string;
-    state: any;
+    state: SuperParsedResult<YTNode>;
   };
 
   current_state_id: string;
@@ -15,7 +15,7 @@ class SubscriptionNotificationToggleButton extends YTNode {
 
   constructor(data: any) {
     super();
-    this.states = data.states.map((data: any) => ({
+    this.states = data.states.map((data: RawNode) => ({
       id: data.stateId,
       next_id: data.nextStateId,
       state: Parser.parse(data.state)
@@ -25,5 +25,3 @@ class SubscriptionNotificationToggleButton extends YTNode {
     this.target_id = data.targetId;
   }
 }
-
-export default SubscriptionNotificationToggleButton;

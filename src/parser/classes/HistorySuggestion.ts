@@ -1,11 +1,10 @@
+import type { RawNode } from '../index.js';
 import SearchSuggestion from './SearchSuggestion.js';
 
-class HistorySuggestion extends SearchSuggestion {
+export default class HistorySuggestion extends SearchSuggestion {
   static type = 'HistorySuggestion';
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super(data);
   }
 }
-
-export default HistorySuggestion;

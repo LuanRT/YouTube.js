@@ -1,28 +1,25 @@
-import Parser from '../index.js';
-
-import Text from './misc/Text.js';
-import Author from './misc/Author.js';
-import NavigationEndpoint from './NavigationEndpoint.js';
-
-import SubscribeButton from './SubscribeButton.js';
-import Button from './Button.js';
-
 import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import Button from './Button.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import SubscribeButton from './SubscribeButton.js';
+import Author from './misc/Author.js';
+import Text from './misc/Text.js';
 
-class Channel extends YTNode {
+export default class Channel extends YTNode {
   static type = 'Channel';
 
   id: string;
   author: Author;
-  subscribers: Text;
-  videos: Text;
+  subscriber_count: Text;
+  video_count: Text;
   long_byline: Text;
   short_byline: Text;
   endpoint: NavigationEndpoint;
   subscribe_button: SubscribeButton | Button | null;
   description_snippet: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.channelId;
 
@@ -31,15 +28,31 @@ class Channel extends YTNode {
       navigationEndpoint: data.navigationEndpoint
     }, data.ownerBadges, data.thumbnail);
 
-    // TODO: subscriberCountText is now the channel's handle and videoCountText is the subscriber count. Why haven't they renamed the properties?
-    this.subscribers = new Text(data.subscriberCountText);
-    this.videos = new Text(data.videoCountText);
+    // XXX: `subscriberCountText` is now the channel's handle and `videoCountText` is the subscriber count.
+    this.subscriber_count = new Text(data.subscriberCountText);
+    this.video_count = new Text(data.videoCountText);
     this.long_byline = new Text(data.longBylineText);
     this.short_byline = new Text(data.shortBylineText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     this.description_snippet = new Text(data.descriptionSnippet);
   }
-}
 
-export default Channel;
+  /**
+   * @deprecated
+   * This will be removed in a future release.
+   * Please use {@link Channel.subscriber_count} instead.
+   */
+  get subscribers(): Text {
+    return this.subscriber_count;
+  }
+
+  /**
+   * @deprecated
+   * This will be removed in a future release.
+   * Please use {@link Channel.video_count} instead.
+   */
+  get videos(): Text {
+    return this.video_count;
+  }
+}

@@ -1,16 +1,14 @@
-import Parser from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import PlaylistPanel from './PlaylistPanel.js';
 import { YTNode } from '../helpers.js';
 
-class MusicQueue extends YTNode {
+export default class MusicQueue extends YTNode {
   static type = 'MusicQueue';
 
   content: PlaylistPanel | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.content = Parser.parseItem<PlaylistPanel>(data.content, PlaylistPanel);
+    this.content = Parser.parseItem(data.content, PlaylistPanel);
   }
 }
-
-export default MusicQueue;

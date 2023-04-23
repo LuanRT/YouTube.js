@@ -1,15 +1,13 @@
-import Parser from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import { YTNode } from '../helpers.js';
 
-class BackstagePostThread extends YTNode {
+export default class BackstagePostThread extends YTNode {
   static type = 'BackstagePostThread';
 
-  post;
+  post: YTNode;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.post = Parser.parseItem(data.post);
   }
 }
-
-export default BackstagePostThread;

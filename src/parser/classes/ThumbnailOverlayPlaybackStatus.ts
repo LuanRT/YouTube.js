@@ -1,15 +1,14 @@
-import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import { type RawNode } from '../index.js';
+import Text from './misc/Text.js';
 
-class ThumbnailOverlayPlaybackStatus extends YTNode {
+export default class ThumbnailOverlayPlaybackStatus extends YTNode {
   static type = 'ThumbnailOverlayPlaybackStatus';
 
-  text: string;
+  texts: Text[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.text = data.texts.map((text: any) => new Text(text))[0].toString();
+    this.texts = data.texts.map((text: RawNode) => new Text(text));
   }
 }
-
-export default ThumbnailOverlayPlaybackStatus;

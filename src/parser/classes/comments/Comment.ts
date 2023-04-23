@@ -1,24 +1,25 @@
 import Parser from '../../index.js';
 
+import Author from '../misc/Author.js';
 import Text from '../misc/Text.js';
 import Thumbnail from '../misc/Thumbnail.js';
-import CommentReplyDialog from './CommentReplyDialog.js';
-import AuthorCommentBadge from './AuthorCommentBadge.js';
-import Author from '../misc/Author.js';
 
 import Menu from '../menus/Menu.js';
+import AuthorCommentBadge from './AuthorCommentBadge.js';
 import CommentActionButtons from './CommentActionButtons.js';
-import SponsorCommentBadge from './SponsorCommentBadge.js';
+import CommentReplyDialog from './CommentReplyDialog.js';
 import PdgCommentChip from './PdgCommentChip.js';
-import type { ApiResponse } from '../../../core/Actions.js';
-import type Actions from '../../../core/Actions.js';
+import SponsorCommentBadge from './SponsorCommentBadge.js';
 
 import Proto from '../../../proto/index.js';
 import { InnertubeError } from '../../../utils/Utils.js';
-import { YTNode, SuperParsedResult } from '../../helpers.js';
+import { SuperParsedResult, YTNode } from '../../helpers.js';
+
+import type Actions from '../../../core/Actions.js';
+import type { ApiResponse } from '../../../core/Actions.js';
 import type { RawNode } from '../../index.js';
 
-class Comment extends YTNode {
+export default class Comment extends YTNode {
   static type = 'Comment';
 
   #actions?: Actions;
@@ -35,9 +36,7 @@ class Comment extends YTNode {
   action_buttons: CommentActionButtons | null;
   comment_id: string;
   vote_status: string;
-
   vote_count: string;
-
   reply_count: number;
   is_liked: boolean;
   is_disliked: boolean;
@@ -146,7 +145,7 @@ class Comment extends YTNode {
   }
 
   /**
-   * Translates the comment to the given language.
+   * Translates the comment to a given language.
    * @param target_language - Ex; en, ja
    */
   async translate(target_language: string): Promise<{
@@ -170,7 +169,7 @@ class Comment extends YTNode {
     const action = Proto.encodeCommentActionParams(22, payload);
     const response = await this.#actions.execute('comment/perform_comment_action', { action, client: 'ANDROID' });
 
-    // TODO: maybe add these to Parser#parseResponse?
+    // XXX: Should move this to Parser#parseResponse
     const mutations = response.data.frameworkUpdates?.entityBatchUpdate?.mutations;
     const content = mutations?.[0]?.payload?.commentEntityPayload?.translatedContent?.content;
 
@@ -181,5 +180,3 @@ class Comment extends YTNode {
     this.#actions = actions;
   }
 }
-
-export default Comment;

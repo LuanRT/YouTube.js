@@ -1,23 +1,24 @@
-import Parser from '../index.js';
-
 import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import MusicMultiSelectMenu from './menus/MusicMultiSelectMenu.js';
 import Text from './misc/Text.js';
 
-class MusicSortFilterButton extends YTNode {
+export default class MusicSortFilterButton extends YTNode {
   static type = 'MusicSortFilterButton';
 
   title: string;
-  icon_type: string;
+  icon_type?: string;
   menu: MusicMultiSelectMenu | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.title = new Text(data.title).toString();
-    this.icon_type = data.icon?.icon_type || null;
+
+    if (Reflect.has(data, 'icon')) {
+      this.icon_type = data.icon.iconType;
+    }
+
     this.menu = Parser.parseItem(data.menu, MusicMultiSelectMenu);
   }
 }
-
-export default MusicSortFilterButton;

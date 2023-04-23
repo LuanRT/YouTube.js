@@ -1,10 +1,10 @@
 import { YTNode } from '../helpers.js';
-import Parser, { RawNode } from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
-class GridChannel extends YTNode {
+export default class GridChannel extends YTNode {
   static type = 'GridChannel';
 
   id: string;
@@ -12,7 +12,7 @@ class GridChannel extends YTNode {
   subscribers: Text;
   video_count: Text;
   endpoint: NavigationEndpoint;
-  subscribe_button;
+  subscribe_button: YTNode;
 
   constructor(data: RawNode) {
     super();
@@ -29,5 +29,3 @@ class GridChannel extends YTNode {
     this.subscribe_button = Parser.parseItem(data.subscribeButton);
   }
 }
-
-export default GridChannel;

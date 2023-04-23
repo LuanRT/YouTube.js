@@ -1,16 +1,14 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import ChipCloudChip from './ChipCloudChip.js';
 
-class FeedFilterChipBar extends YTNode {
+export default class FeedFilterChipBar extends YTNode {
   static type = 'FeedFilterChipBar';
 
-  contents;
+  contents: ObservedArray<ChipCloudChip>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.contents = Parser.parseArray<ChipCloudChip>(data.contents, ChipCloudChip);
+    this.contents = Parser.parseArray(data.contents, ChipCloudChip);
   }
 }
-
-export default FeedFilterChipBar;

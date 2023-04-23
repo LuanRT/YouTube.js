@@ -1,7 +1,8 @@
-import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
-class LikeButton extends YTNode {
+export default class LikeButton extends YTNode {
   static type = 'LikeButton';
 
   target: {
@@ -12,7 +13,7 @@ class LikeButton extends YTNode {
   likes_allowed: string;
   endpoints?: NavigationEndpoint[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.target = {
@@ -22,10 +23,8 @@ class LikeButton extends YTNode {
     this.like_status = data.likeStatus;
     this.likes_allowed = data.likesAllowed;
 
-    if (data.serviceEndpoints) {
-      this.endpoints = data.serviceEndpoints?.map((endpoint: any) => new NavigationEndpoint(endpoint));
+    if (Reflect.has(data, 'serviceEndpoints')) {
+      this.endpoints = data.serviceEndpoints.map((endpoint: RawNode) => new NavigationEndpoint(endpoint));
     }
   }
 }
-
-export default LikeButton;

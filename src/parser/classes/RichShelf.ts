@@ -1,21 +1,22 @@
-import Parser from '../index.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Text from './misc/Text.js';
-import { YTNode } from '../helpers.js';
 
-class RichShelf extends YTNode {
+export default class RichShelf extends YTNode {
   static type = 'RichShelf';
 
   title: Text;
-  contents;
-  endpoint: NavigationEndpoint | null;
+  contents: ObservedArray<YTNode>;
+  endpoint?: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.contents = Parser.parseArray(data.contents);
-    this.endpoint = data.endpoint ? new NavigationEndpoint(data.endpoint) : null;
+
+    if (Reflect.has(data, 'endpoint')) {
+      this.endpoint = new NavigationEndpoint(data.endpoint);
+    }
   }
 }
-
-export default RichShelf;

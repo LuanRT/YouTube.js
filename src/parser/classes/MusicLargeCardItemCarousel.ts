@@ -1,5 +1,6 @@
 import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
 class ActionButton {
   static type = 'ActionButton';
@@ -9,7 +10,7 @@ class ActionButton {
   a11y_text: string;
   style: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     this.icon_name = data.iconName;
     this.endpoint = new NavigationEndpoint(data.onTap);
     this.a11y_text = data.a11yText;
@@ -32,28 +33,26 @@ class Panel {
   caption: string;
   action_buttons: ActionButton[];
 
-  constructor (data: any) {
+  constructor (data: RawNode) {
     this.image = data.image.image.sources;
     this.content_mode = data.image.contentMode;
     this.crop_options = data.image.cropOptions;
     this.image_aspect_ratio = data.imageAspectRatio;
     this.caption = data.caption;
-    this.action_buttons = data.actionButtons.map((el: any) => new ActionButton(el));
+    this.action_buttons = data.actionButtons.map((el: RawNode) => new ActionButton(el));
   }
 }
 
-class MusicLargeCardItemCarousel extends YTNode {
+export default class MusicLargeCardItemCarousel extends YTNode {
   static type = 'MusicLargeCardItemCarousel';
 
   panels: Panel[];
   header;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     // TODO: check this
     this.header = data.shelf.header;
-    this.panels = data.shelf.panels.map((el: any) => new Panel(el));
+    this.panels = data.shelf.panels.map((el: RawNode) => new Panel(el));
   }
 }
-
-export default MusicLargeCardItemCarousel;

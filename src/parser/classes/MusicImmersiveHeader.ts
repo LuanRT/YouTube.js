@@ -1,21 +1,20 @@
-import Text from './misc/Text.js';
-import Parser from '../index.js';
-import MusicThumbnail from './MusicThumbnail.js';
-
 import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import MusicThumbnail from './MusicThumbnail.js';
+import Text from './misc/Text.js';
 
-class MusicImmersiveHeader extends YTNode {
+export default class MusicImmersiveHeader extends YTNode {
   static type = 'MusicImmersiveHeader';
 
   title: Text;
   description: Text;
   thumbnail: MusicThumbnail | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.description = new Text(data.description);
-    this.thumbnail = Parser.parseItem<MusicThumbnail>(data.thumbnail, MusicThumbnail);
+    this.thumbnail = Parser.parseItem(data.thumbnail, MusicThumbnail);
     /**
          Not useful for now.
          this.menu = Parser.parse(data.menu);
@@ -24,5 +23,3 @@ class MusicImmersiveHeader extends YTNode {
      */
   }
 }
-
-export default MusicImmersiveHeader;

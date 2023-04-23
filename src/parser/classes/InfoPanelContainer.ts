@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import Parser, { RawNode } from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import InfoPanelContent from './InfoPanelContent.js';
 import Menu from './menus/Menu.js';
 import Text from './misc/Text.js';
@@ -7,11 +7,11 @@ import Text from './misc/Text.js';
 export default class InfoPanelContainer extends YTNode {
   static type = 'InfoPanelContainer';
 
-  icon_type?: string;
   title: Text;
   menu: Menu | null;
-  content: YTNode | null;
+  content: InfoPanelContent | null;
   background: string;
+  icon_type?: string;
 
   constructor(data: RawNode) {
     super();
@@ -20,8 +20,8 @@ export default class InfoPanelContainer extends YTNode {
     this.content = Parser.parseItem(data.content, InfoPanelContent);
     this.background = data.background;
 
-    if (data.icon?.iconType) {
-      this.icon_type = data.icon.iconType;
+    if (Reflect.has(data, 'icon')) {
+      this.icon_type = data.icon?.iconType;
     }
   }
 }

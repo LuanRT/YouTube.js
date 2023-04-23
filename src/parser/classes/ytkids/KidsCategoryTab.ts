@@ -3,7 +3,7 @@ import NavigationEndpoint from '../NavigationEndpoint.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class KidsCategoryTab extends YTNode {
+export default class KidsCategoryTab extends YTNode {
   static type = 'KidsCategoryTab';
 
   title: Text;
@@ -25,5 +25,3 @@ class KidsCategoryTab extends YTNode {
     this.endpoint = new NavigationEndpoint(data.endpoint);
   }
 }
-
-export default KidsCategoryTab;

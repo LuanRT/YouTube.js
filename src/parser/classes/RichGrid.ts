@@ -1,20 +1,17 @@
-import Parser from '../index.js';
+import Parser, { type RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 
-import { YTNode } from '../helpers.js';
-
-class RichGrid extends YTNode {
+export default class RichGrid extends YTNode {
   static type = 'RichGrid';
 
-  header;
-  contents;
+  header: YTNode;
+  contents: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    // XXX: we don't parse the masthead since it is usually an advertisement
-    // XXX: reflowOptions aren't parsed, I think its only used internally for layout
+    // (Daniel Wykerd) XXX: we don't parse the masthead since it is usually an advertisement
+    // (Daniel Wykerd) XXX: reflowOptions aren't parsed, I think its only used internally for layout
     this.header = Parser.parseItem(data.header);
     this.contents = Parser.parseArray(data.contents);
   }
 }
-
-export default RichGrid;

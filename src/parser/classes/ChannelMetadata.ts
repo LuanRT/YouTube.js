@@ -1,13 +1,14 @@
 import Thumbnail from './misc/Thumbnail.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class ChannelMetadata extends YTNode {
+export default class ChannelMetadata extends YTNode {
   static type = 'ChannelMetadata';
 
   title: string;
   description: string;
   url: string;
-  rss_urls: any; // Array?
+  rss_url: string;
   vanity_channel_url: string;
   external_id: string;
   is_family_safe: boolean;
@@ -18,12 +19,12 @@ class ChannelMetadata extends YTNode {
   android_appindexing_link: string;
   ios_appindexing_link: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.title;
     this.description = data.description;
     this.url = data.channelUrl;
-    this.rss_urls = data.rssUrl;
+    this.rss_url = data.rssUrl;
     this.vanity_channel_url = data.vanityChannelUrl;
     this.external_id = data.externalId;
     this.is_family_safe = data.isFamilySafe;
@@ -35,5 +36,3 @@ class ChannelMetadata extends YTNode {
     this.ios_appindexing_link = data.iosAppindexingLink;
   }
 }
-
-export default ChannelMetadata;

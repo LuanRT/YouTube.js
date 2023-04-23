@@ -1,10 +1,10 @@
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
-
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class CollaboratorInfoCardContent extends YTNode {
+export default class CollaboratorInfoCardContent extends YTNode {
   static type = 'CollaboratorInfoCardContent';
 
   channel_avatar: Thumbnail[];
@@ -13,7 +13,7 @@ class CollaboratorInfoCardContent extends YTNode {
   subscriber_count: Text;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.channel_avatar = Thumbnail.fromResponse(data.channelAvatar);
     this.custom_text = new Text(data.customText);
@@ -22,5 +22,3 @@ class CollaboratorInfoCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.endpoint);
   }
 }
-
-export default CollaboratorInfoCardContent;

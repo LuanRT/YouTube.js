@@ -1,18 +1,21 @@
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class EmojiPickerCategoryButton extends YTNode {
+export default class EmojiPickerCategoryButton extends YTNode {
   static type = 'EmojiPickerCategoryButton';
 
   category_id: string;
-  icon_type: string;
+  icon_type?: string;
   tooltip: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.category_id = data.categoryId;
-    this.icon_type = data.icon?.iconType;
+
+    if (Reflect.has(data, 'icon')) {
+      this.icon_type = data.icon?.iconType;
+    }
+
     this.tooltip = data.tooltip;
   }
 }
-
-export default EmojiPickerCategoryButton;

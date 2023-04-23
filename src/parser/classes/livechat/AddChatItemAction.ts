@@ -2,17 +2,17 @@ import Parser from '../../index.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class AddChatItemAction extends YTNode {
+export default class AddChatItemAction extends YTNode {
   static type = 'AddChatItemAction';
 
-  item;
-  client_id: string | null;
+  item: YTNode;
+  client_id?: string;
 
   constructor(data: RawNode) {
     super();
     this.item = Parser.parseItem(data.item);
-    this.client_id = data.clientId || null;
+    if (Reflect.has(data, 'clientId')) {
+      this.client_id = data.clientId;
+    }
   }
 }
-
-export default AddChatItemAction;

@@ -574,7 +574,7 @@ export class AppendContinuationItemsAction extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.contents = Parser.parse(data.continuationItems, true);
+    this.contents = Parser.parseArray(data.continuationItems);
   }
 }
 

@@ -1,11 +1,11 @@
 import Parser from '../../index.js';
-import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
+import { type SuperParsedResult, YTNode } from '../../helpers.js';
 
-class AppendContinuationItemsAction extends YTNode {
+export default class AppendContinuationItemsAction extends YTNode {
   static type = 'AppendContinuationItemsAction';
 
-  items;
+  items: SuperParsedResult<YTNode>;
   target: string;
 
   constructor(data: RawNode) {
@@ -14,5 +14,3 @@ class AppendContinuationItemsAction extends YTNode {
     this.target = data.target;
   }
 }
-
-export default AppendContinuationItemsAction;

@@ -1,21 +1,19 @@
-import Parser from '../index.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
-import { YTNode } from '../helpers.js';
 
-class LiveChatParticipant extends YTNode {
+export default class LiveChatParticipant extends YTNode {
   static type = 'LiveChatParticipant';
 
   name: Text;
   photo: Thumbnail[];
-  badges;
+  badges: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.name = new Text(data.authorName);
     this.photo = Thumbnail.fromResponse(data.authorPhoto);
-    this.badges = Parser.parse(data.authorBadges);
+    this.badges = Parser.parseArray(data.authorBadges);
   }
 }
-
-export default LiveChatParticipant;

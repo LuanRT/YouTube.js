@@ -1,13 +1,13 @@
-import Parser from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import { YTNode } from '../helpers.js';
 
-class Card extends YTNode {
+export default class Card extends YTNode {
   static type = 'Card';
 
-  teaser;
-  content;
-  card_id: string | null;
-  feature: string | null;
+  teaser: YTNode;
+  content: YTNode;
+  card_id?: string;
+  feature?: string;
 
   cue_ranges: {
     start_card_active_ms: string;
@@ -16,12 +16,18 @@ class Card extends YTNode {
     icon_after_teaser_ms: string;
   }[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.teaser = Parser.parseItem(data.teaser);
     this.content = Parser.parseItem(data.content);
-    this.card_id = data.cardId || null;
-    this.feature = data.feature || null;
+
+    if (Reflect.has(data, 'cardId')) {
+      this.card_id = data.cardId;
+    }
+
+    if (Reflect.has(data, 'feature')) {
+      this.feature = data.feature;
+    }
 
     this.cue_ranges = data.cueRanges.map((cr: any) => ({
       start_card_active_ms: cr.startCardActiveMs,
@@ -31,5 +37,3 @@ class Card extends YTNode {
     }));
   }
 }
-
-export default Card;
