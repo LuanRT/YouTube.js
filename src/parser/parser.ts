@@ -498,6 +498,7 @@ export default class Parser {
     'PromotedSparklesWeb',
     'RunAttestationCommand',
     'CompactPromotedVideo',
+    'BrandVideoShelf',
     'StatementBanner',
     'GuideSigninPromo'
   ]);
