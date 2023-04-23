@@ -1,4 +1,4 @@
-Welcome to YouTube.js! We're thrilled to have you interested in contributing to our project. As a community-driven project, we believe in the power of collaboration and look forward to working with you. To get started, please follow our easy-to-follow guidelines:
+Welcome to YouTube.js! We're thrilled to have you interested in contributing to our project. As a community-driven project, we believe in the power of collaboration and look forward to working with you. To get started, please follow our guidelines:
 
 ## Issues
 
