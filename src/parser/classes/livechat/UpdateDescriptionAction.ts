@@ -1,7 +1,8 @@
 import Text from '../misc/Text.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-class UpdateDescriptionAction extends YTNode {
+
+export default class UpdateDescriptionAction extends YTNode {
   static type = 'UpdateDescriptionAction';
 
   description: Text;
@@ -11,5 +12,3 @@ class UpdateDescriptionAction extends YTNode {
     this.description = new Text(data.description);
   }
 }
-
-export default UpdateDescriptionAction;

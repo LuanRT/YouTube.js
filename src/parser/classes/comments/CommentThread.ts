@@ -1,15 +1,17 @@
 import Parser from '../../index.js';
-import Comment from './Comment.js';
-import ContinuationItem from '../ContinuationItem.js';
-import CommentReplies from './CommentReplies.js';
 import Button from '../Button.js';
-import type Actions from '../../../core/Actions.js';
-import type { ObservedArray } from '../../helpers.js';
+import ContinuationItem from '../ContinuationItem.js';
+import Comment from './Comment.js';
+import CommentReplies from './CommentReplies.js';
+
 import { InnertubeError } from '../../../utils/Utils.js';
 import { observe, YTNode } from '../../helpers.js';
+
+import type Actions from '../../../core/Actions.js';
+import type { ObservedArray } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class CommentThread extends YTNode {
+export default class CommentThread extends YTNode {
   static type = 'CommentThread';
 
   #actions?: Actions;
@@ -23,7 +25,7 @@ class CommentThread extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.comment = Parser.parseItem<Comment>(data.comment, Comment);
+    this.comment = Parser.parseItem(data.comment, Comment);
     this.comment_replies_data = Parser.parseItem(data.replies, CommentReplies);
     this.is_moderated_elq_comment = data.isModeratedElqComment;
     this.has_replies = !!this.comment_replies_data;
@@ -37,7 +39,7 @@ class CommentThread extends YTNode {
       throw new InnertubeError('Actions instance not set for this thread.');
 
     if (!this.comment_replies_data)
-      throw new InnertubeError('This comment has no replies.', { comment_id: this.comment?.comment_id });
+      throw new InnertubeError('This comment has no replies.', this);
 
     const continuation = this.comment_replies_data.contents?.firstOfType(ContinuationItem);
 
@@ -87,7 +89,7 @@ class CommentThread extends YTNode {
       return comment;
     }));
 
-    this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem)?.[0];
+    this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem).first();
 
     return this;
   }
@@ -102,5 +104,3 @@ class CommentThread extends YTNode {
     this.#actions = actions;
   }
 }
-
-export default CommentThread;

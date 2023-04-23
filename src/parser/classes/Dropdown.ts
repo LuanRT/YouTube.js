@@ -1,19 +1,16 @@
-import Parser from '../index.js';
-import { ObservedArray, YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import DropdownItem from './DropdownItem.js';
 
-class Dropdown extends YTNode {
+export default class Dropdown extends YTNode {
   static type = 'Dropdown';
 
   label: string;
   entries: ObservedArray<DropdownItem>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-
     this.label = data.label || '';
     this.entries = Parser.parseArray(data.entries, DropdownItem);
   }
 }
-
-export default Dropdown;

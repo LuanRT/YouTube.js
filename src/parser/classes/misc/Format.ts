@@ -2,43 +2,43 @@ import Player from '../../../core/Player.js';
 import { InnertubeError } from '../../../utils/Utils.js';
 import type { RawNode } from '../../index.js';
 
-class Format {
+export default class Format {
   itag: number;
   mime_type: string;
   is_type_otf: boolean;
   bitrate: number;
-  average_bitrate: number;
+  average_bitrate?: number;
   width: number;
   height: number;
 
-  init_range: {
+  init_range?: {
     start: number;
     end: number;
-  } | undefined;
+  };
 
-  index_range: {
+  index_range?: {
     start: number;
     end: number;
-  } | undefined;
+  };
 
   last_modified: Date;
-  content_length: number;
-  quality: string;
-  quality_label: string | undefined;
-  fps: number | undefined;
-  url: string;
-  cipher: string | undefined;
-  signature_cipher: string | undefined;
-  audio_quality: string | undefined;
+  content_length?: number;
+  quality?: string;
+  quality_label?: string;
+  fps?: number;
+  url?: string;
+  cipher?: string;
+  signature_cipher?: string;
+  audio_quality?: string;
   audio_track?: {
     audio_is_default: boolean;
     display_name: string;
     id: string;
   };
   approx_duration_ms: number;
-  audio_sample_rate: number;
-  audio_channels: number;
-  loudness_db: number;
+  audio_sample_rate?: number;
+  audio_channels?: number;
+  loudness_db?: number;
   has_audio: boolean;
   has_video: boolean;
   language?: string | null;
@@ -52,8 +52,8 @@ class Format {
     this.is_type_otf = data.type === 'FORMAT_STREAM_TYPE_OTF';
     this.bitrate = data.bitrate;
     this.average_bitrate = data.averageBitrate;
-    this.width = data.width || undefined;
-    this.height = data.height || undefined;
+    this.width = data.width;
+    this.height = data.height;
 
     this.init_range = data.initRange ? {
       start: parseInt(data.initRange.start),
@@ -68,12 +68,12 @@ class Format {
     this.last_modified = new Date(Math.floor(parseInt(data.lastModified) / 1000));
     this.content_length = parseInt(data.contentLength);
     this.quality = data.quality;
-    this.quality_label = data.qualityLabel || undefined;
-    this.fps = data.fps || undefined;
-    this.url = data.url || undefined;
-    this.cipher = data.cipher || undefined;
-    this.signature_cipher = data.signatureCipher || undefined;
-    this.audio_quality = data.audioQuality || undefined;
+    this.quality_label = data.qualityLabel;
+    this.fps = data.fps;
+    this.url = data.url;
+    this.cipher = data.cipher;
+    this.signature_cipher = data.signatureCipher;
+    this.audio_quality = data.audioQuality;
     this.approx_duration_ms = parseInt(data.approxDurationMs);
     this.audio_sample_rate = parseInt(data.audioSampleRate);
     this.audio_channels = data.audioChannels;
@@ -90,7 +90,7 @@ class Format {
       this.is_descriptive = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'descriptive';
       this.is_original = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'original' || !this.is_dubbed;
 
-      if (data.audioTrack) {
+      if (Reflect.has(data, 'audioTrack')) {
         this.audio_track = {
           audio_is_default: data.audioTrack.audioIsDefault,
           display_name: data.audioTrack.displayName,
@@ -101,7 +101,7 @@ class Format {
   }
 
   /**
-   * Decipher the streaming url of the format.
+   * Deciphers the streaming url of the format.
    * @returns Deciphered URL.
    */
   decipher(player: Player | undefined): string {
@@ -109,5 +109,3 @@ class Format {
     return player.decipher(this.url, this.signature_cipher, this.cipher);
   }
 }
-
-export default Format;

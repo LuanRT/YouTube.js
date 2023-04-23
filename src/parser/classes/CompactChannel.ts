@@ -1,11 +1,11 @@
-import Parser from '../index.js';
-import Text from './misc/Text.js';
-import Thumbnail from './misc/Thumbnail.js';
+import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Menu from './menus/Menu.js';
-import { YTNode } from '../helpers.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
 
-class CompactChannel extends YTNode {
+export default class CompactChannel extends YTNode {
   static type = 'CompactChannel';
 
   title: Text;
@@ -18,7 +18,7 @@ class CompactChannel extends YTNode {
   tv_banner: Thumbnail[];
   menu: Menu | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.channel_id = data.channelId;
@@ -31,5 +31,3 @@ class CompactChannel extends YTNode {
     this.menu = Parser.parseItem(data.menu, Menu);
   }
 }
-
-export default CompactChannel;

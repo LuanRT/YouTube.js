@@ -1,7 +1,8 @@
 import Text from '../misc/Text.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-class MarkChatItemAsDeletedAction extends YTNode {
+
+export default class MarkChatItemAsDeletedAction extends YTNode {
   static type = 'MarkChatItemAsDeletedAction';
 
   deleted_state_message: Text;
@@ -13,5 +14,3 @@ class MarkChatItemAsDeletedAction extends YTNode {
     this.target_item_id = data.targetItemId;
   }
 }
-
-export default MarkChatItemAsDeletedAction;

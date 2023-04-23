@@ -1,22 +1,21 @@
-import Parser, { RawNode } from '../index.js';
-import Text from './misc/Text.js';
-import NavigationEndpoint from './NavigationEndpoint.js';
-
 import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Text from './misc/Text.js';
 
-class PlaylistSidebarPrimaryInfo extends YTNode {
+export default class PlaylistSidebarPrimaryInfo extends YTNode {
   static type = 'PlaylistSidebarPrimaryInfo';
 
   stats: Text[];
-  thumbnail_renderer;
+  thumbnail_renderer: YTNode;
   title: Text;
-  menu;
+  menu: YTNode;
   endpoint: NavigationEndpoint;
   description: Text;
 
   constructor(data: RawNode) {
     super();
-    this.stats = data.stats.map((stat: any) => new Text(stat));
+    this.stats = data.stats.map((stat: RawNode) => new Text(stat));
     this.thumbnail_renderer = Parser.parseItem(data.thumbnailRenderer);
     this.title = new Text(data.title);
     this.menu = Parser.parseItem(data.menu);
@@ -24,5 +23,3 @@ class PlaylistSidebarPrimaryInfo extends YTNode {
     this.description = new Text(data.description);
   }
 }
-
-export default PlaylistSidebarPrimaryInfo;

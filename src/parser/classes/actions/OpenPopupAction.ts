@@ -2,11 +2,11 @@ import Parser from '../../index.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class OpenPopupAction extends YTNode {
+export default class OpenPopupAction extends YTNode {
   static type = 'OpenPopupAction';
 
-  popup;
-  popup_type;
+  popup: YTNode;
+  popup_type: string;
 
   constructor(data: RawNode) {
     super();
@@ -14,5 +14,3 @@ class OpenPopupAction extends YTNode {
     this.popup_type = data.popupType;
   }
 }
-
-export default OpenPopupAction;

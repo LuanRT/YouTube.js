@@ -1,15 +1,14 @@
 import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class GridHeader extends YTNode {
+export default class GridHeader extends YTNode {
   static type = 'GridHeader';
 
   title: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
   }
 }
-
-export default GridHeader;

@@ -1,8 +1,8 @@
-import Parser from '../index.js';
-import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
-class ChannelSubMenu extends YTNode {
+export default class ChannelSubMenu extends YTNode {
   static type = 'ChannelSubMenu';
 
   content_type_sub_menu_items: {
@@ -13,9 +13,9 @@ class ChannelSubMenu extends YTNode {
 
   sort_setting;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.content_type_sub_menu_items = data.contentTypeSubMenuItems.map((item: any) => ({
+    this.content_type_sub_menu_items = data.contentTypeSubMenuItems.map((item: RawNode) => ({
       endpoint: new NavigationEndpoint(item.navigationEndpoint || item.endpoint),
       selected: item.selected,
       title: item.title
@@ -23,5 +23,3 @@ class ChannelSubMenu extends YTNode {
     this.sort_setting = Parser.parseItem(data.sortSetting);
   }
 }
-
-export default ChannelSubMenu;

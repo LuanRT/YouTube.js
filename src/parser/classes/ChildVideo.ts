@@ -1,10 +1,10 @@
+import { timeToSeconds } from '../../utils/Utils.js';
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Text from './misc/Text.js';
 
-import { timeToSeconds } from '../../utils/Utils.js';
-import { YTNode } from '../helpers.js';
-
-class ChildVideo extends YTNode {
+export default class ChildVideo extends YTNode {
   static type = 'ChildVideo';
 
   id: string;
@@ -17,18 +17,14 @@ class ChildVideo extends YTNode {
 
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.videoId;
     this.title = new Text(data.title);
-
     this.duration = {
       text: data.lengthText.simpleText,
       seconds: timeToSeconds(data.lengthText.simpleText)
     };
-
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default ChildVideo;

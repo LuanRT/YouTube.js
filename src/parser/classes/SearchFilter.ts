@@ -3,7 +3,7 @@ import type { RawNode } from '../index.js';
 import Text from './misc/Text.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
-class SearchFilter extends YTNode {
+export default class SearchFilter extends YTNode {
   static type = 'SearchFilter';
 
   label: Text;
@@ -13,12 +13,11 @@ class SearchFilter extends YTNode {
 
   constructor(data: RawNode) {
     super();
-
     this.label = new Text(data.label);
     this.endpoint = new NavigationEndpoint(data.endpoint || data.navigationEndpoint);
     this.tooltip = data.tooltip;
 
-    if (data.status) {
+    if (Reflect.has(data, 'status')) {
       this.status = data.status;
     }
   }
@@ -31,5 +30,3 @@ class SearchFilter extends YTNode {
     return this.status === 'FILTER_STATUS_SELECTED';
   }
 }
-
-export default SearchFilter;

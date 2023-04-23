@@ -1,10 +1,10 @@
+import { YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
 import Parser from '../../index.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
 import SectionList from '../SectionList.js';
-import { YTNode } from '../../helpers.js';
-import type { RawNode } from '../../index.js';
 
-class AnchoredSection extends YTNode {
+export default class AnchoredSection extends YTNode {
   static type = 'AnchoredSection';
 
   title: string;
@@ -21,12 +21,12 @@ class AnchoredSection extends YTNode {
     this.title = data.title;
     this.content = Parser.parseItem(data.content, SectionList);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+
     this.category_assets = {
       asset_key: data.categoryAssets?.assetKey,
       background_color: data.categoryAssets?.backgroundColor
     };
+
     this.category_type = data.categoryType;
   }
 }
-
-export default AnchoredSection;

@@ -1,17 +1,15 @@
 import { YTNode } from '../../../helpers.js';
+import type { RawNode } from '../../../index.js';
+import NavigationEndpoint from '../../NavigationEndpoint.js';
+import Author from '../../misc/Author.js';
 import Text from '../../misc/Text.js';
 import Thumbnail from '../../misc/Thumbnail.js';
-import NavigationEndpoint from '../../NavigationEndpoint.js';
-import type { RawNode } from '../../../index.js';
-import Author from '../../misc/Author.js';
 
-class LiveChatPaidSticker extends YTNode {
+export default class LiveChatPaidSticker extends YTNode {
   static type = 'LiveChatPaidSticker';
 
   id: string;
-
   author: Author;
-
   money_chip_background_color: number;
   money_chip_text_color: number;
   background_color: number;
@@ -19,14 +17,19 @@ class LiveChatPaidSticker extends YTNode {
   sticker: Thumbnail[];
   purchase_amount: string;
   context_menu: NavigationEndpoint;
-  menu_endpoint?: NavigationEndpoint;
+  menu_endpoint: NavigationEndpoint;
   timestamp: number;
 
   constructor(data: RawNode) {
     super();
     this.id = data.id;
 
-    this.author = new Author(data.authorName, data.authorBadges, data.authorPhoto, data.authorExternalChannelId);
+    this.author = new Author(
+      data.authorName,
+      data.authorBadges,
+      data.authorPhoto,
+      data.authorExternalChannelId
+    );
 
     this.money_chip_background_color = data.moneyChipBackgroundColor;
     this.money_chip_text_color = data.moneyChipTextColor;
@@ -39,5 +42,3 @@ class LiveChatPaidSticker extends YTNode {
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);
   }
 }
-
-export default LiveChatPaidSticker;

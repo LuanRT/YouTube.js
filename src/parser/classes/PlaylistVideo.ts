@@ -1,14 +1,13 @@
-import Text from './misc/Text.js';
-import Parser from '../index.js';
-import Thumbnail from './misc/Thumbnail.js';
-import Author from './misc/Author.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import ThumbnailOverlayTimeStatus from './ThumbnailOverlayTimeStatus.js';
 import Menu from './menus/Menu.js';
+import Author from './misc/Author.js';
+import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
 
-import { YTNode } from '../helpers.js';
-
-class PlaylistVideo extends YTNode {
+export default class PlaylistVideo extends YTNode {
   static type = 'PlaylistVideo';
 
   id: string;
@@ -16,12 +15,12 @@ class PlaylistVideo extends YTNode {
   title: Text;
   author: Author;
   thumbnails: Thumbnail[];
-  thumbnail_overlays;
+  thumbnail_overlays: ObservedArray<YTNode>;
   set_video_id: string | undefined;
   endpoint: NavigationEndpoint;
   is_playable: boolean;
   menu: Menu | null;
-  upcoming;
+  upcoming?: Date;
   video_info: Text;
   accessibility_label?: string;
 
@@ -30,7 +29,7 @@ class PlaylistVideo extends YTNode {
     seconds: number;
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.videoId;
     this.index = new Text(data.index);
@@ -64,5 +63,3 @@ class PlaylistVideo extends YTNode {
     return this.thumbnail_overlays.firstOfType(ThumbnailOverlayTimeStatus)?.style === 'UPCOMING';
   }
 }
-
-export default PlaylistVideo;

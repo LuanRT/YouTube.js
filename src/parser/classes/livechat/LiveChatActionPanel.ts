@@ -1,11 +1,12 @@
 import Parser from '../../index.js';
-import { YTNode } from '../../helpers.js';
+import { type SuperParsedResult, YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-class LiveChatActionPanel extends YTNode {
+
+export default class LiveChatActionPanel extends YTNode {
   static type = 'LiveChatActionPanel';
 
   id: string;
-  contents;
+  contents: SuperParsedResult<YTNode>;
   target_id: string;
 
   constructor(data: RawNode) {
@@ -15,5 +16,3 @@ class LiveChatActionPanel extends YTNode {
     this.target_id = data.targetId;
   }
 }
-
-export default LiveChatActionPanel;

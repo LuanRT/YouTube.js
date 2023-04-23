@@ -1,20 +1,18 @@
-import Parser from '../index.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import Text from './misc/Text.js';
-import { YTNode } from '../helpers.js';
 
-class CardCollection extends YTNode {
+export default class CardCollection extends YTNode {
   static type = 'CardCollection';
 
-  cards;
+  cards: ObservedArray<YTNode>;
   header: Text;
   allow_teaser_dismiss: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.cards = Parser.parseArray(data.cards);
     this.header = new Text(data.headerText);
     this.allow_teaser_dismiss = data.allowTeaserDismiss;
   }
 }
-
-export default CardCollection;

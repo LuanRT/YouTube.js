@@ -1,27 +1,24 @@
-import Parser from '../index.js';
-import { ObservedArray, YTNode } from '../helpers.js';
+import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import Button from './Button.js';
 import Dropdown from './Dropdown.js';
-import DropdownItem from './DropdownItem.js';
 import Text from './misc/Text.js';
 
-class CreatePlaylistDialog extends YTNode {
+export default class CreatePlaylistDialog extends YTNode {
   static type = 'CreatePlaylistDialog';
 
   title: string;
   title_placeholder: string;
-  privacy_option: ObservedArray<DropdownItem> | null;
+  privacy_option: Dropdown | null;
   cancel_button: Button | null;
   create_button: Button | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.dialogTitle).toString();
     this.title_placeholder = data.titlePlaceholder || '';
-    this.privacy_option = Parser.parseItem(data.privacyOption, Dropdown)?.entries || null;
+    this.privacy_option = Parser.parseItem(data.privacyOption, Dropdown);
     this.create_button = Parser.parseItem(data.cancelButton, Button);
     this.cancel_button = Parser.parseItem(data.cancelButton, Button);
   }
 }
-
-export default CreatePlaylistDialog;

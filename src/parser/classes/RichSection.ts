@@ -1,15 +1,13 @@
-import Parser from '../index.js';
 import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 
-class RichSection extends YTNode {
+export default class RichSection extends YTNode {
   static type = 'RichSection';
 
-  content;
+  content: YTNode;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.content = Parser.parseItem(data.content);
   }
 }
-
-export default RichSection;

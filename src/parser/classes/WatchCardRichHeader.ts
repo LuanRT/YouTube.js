@@ -1,9 +1,10 @@
-import Author from './misc/Author.js';
-import NavigationEndpoint from './NavigationEndpoint.js';
-import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
+import { type RawNode } from '../index.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Author from './misc/Author.js';
+import Text from './misc/Text.js';
 
-class WatchCardRichHeader extends YTNode {
+export default class WatchCardRichHeader extends YTNode {
   static type = 'WatchCardRichHeader';
 
   title: Text;
@@ -12,7 +13,7 @@ class WatchCardRichHeader extends YTNode {
   author: Author;
   style: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.title_endpoint = new NavigationEndpoint(data.titleNavigationEndpoint);
@@ -22,5 +23,3 @@ class WatchCardRichHeader extends YTNode {
     this.style = data.style;
   }
 }
-
-export default WatchCardRichHeader;

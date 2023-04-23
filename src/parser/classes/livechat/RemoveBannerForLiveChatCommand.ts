@@ -1,6 +1,7 @@
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-class RemoveBannerForLiveChatCommand extends YTNode {
+
+export default class RemoveBannerForLiveChatCommand extends YTNode {
   static type = 'RemoveBannerForLiveChatCommand';
 
   target_action_id: string;
@@ -10,5 +11,3 @@ class RemoveBannerForLiveChatCommand extends YTNode {
     this.target_action_id = data.targetActionId;
   }
 }
-
-export default RemoveBannerForLiveChatCommand;

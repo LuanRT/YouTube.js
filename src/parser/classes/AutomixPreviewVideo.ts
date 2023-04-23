@@ -1,7 +1,8 @@
 import { YTNode } from '../helpers.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import type { RawNode } from '../index.js';
-class AutomixPreviewVideo extends YTNode {
+
+export default class AutomixPreviewVideo extends YTNode {
   static type = 'AutomixPreviewVideo';
 
   playlist_video?: { endpoint: NavigationEndpoint };
@@ -15,5 +16,3 @@ class AutomixPreviewVideo extends YTNode {
     }
   }
 }
-
-export default AutomixPreviewVideo;

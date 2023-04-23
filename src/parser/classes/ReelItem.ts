@@ -1,9 +1,10 @@
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
-import { YTNode } from '../helpers.js';
 
-class ReelItem extends YTNode {
+export default class ReelItem extends YTNode {
   static type = 'ReelItem';
 
   id: string;
@@ -12,7 +13,7 @@ class ReelItem extends YTNode {
   views: Text;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.videoId;
     this.title = new Text(data.headline);
@@ -21,5 +22,3 @@ class ReelItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default ReelItem;

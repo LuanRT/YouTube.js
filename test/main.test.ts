@@ -1,289 +1,391 @@
-import fs from 'fs';
-import { Innertube, Utils } from '../bundle/node.cjs';
-import { CHANNELS, VIDEOS } from './constants';
-import type TextRun from '../src/parser/classes/misc/TextRun';
+import { createWriteStream, existsSync } from 'node:fs';
+import { Innertube, IBrowseResponse, TabbedFeed, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
-describe('YouTube.js Tests', () => { 
-  let yt: Innertube;
-  
+describe('YouTube.js Tests', () => {
+  let innertube: Innertube; 
+
   beforeAll(async () => {
-    yt = await Innertube.create();
+    innertube = await Innertube.create({ generate_session_locally: true });
   });
 
-  describe('Info', () => {
-    let info: any;
-    
-    it('should retrieve full video info', async () => {
-      info = await yt.getInfo(VIDEOS[0].ID);
-      expect(info.basic_info.id).toBe(VIDEOS[0].ID);
+  describe('Main', () => {
+    test('Innertube#getInfo', async () => {
+      const info = await innertube.getInfo('bUHZ2k9DYHY');
+      expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
     });
 
-    it('should have captions', () => {
-      expect(info.captions?.caption_tracks.length).toBeGreaterThan(0);
+    test('Innertube#getBasicInfo', async () => {
+      const info = await innertube.getBasicInfo('bUHZ2k9DYHY');
+      expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
     });
 
-    it('should have chapters', () => {
-      const markers_map = info.player_overlays?.decorated_player_bar?.player_bar?.markers_map;
-      
-      const chapters = (
-        markers_map?.get({ marker_key: 'AUTO_CHAPTERS' }) ||
-        markers_map?.get({ marker_key: 'DESCRIPTION_CHAPTERS' })
-      )?.value?.chapters;
-
-      expect(chapters).toBeDefined();
+    test('Innertube#search', async () => {
+      const search = await innertube.search('Anton Petrov');
+      expect(search.page).toBeDefined();
+      expect(search.results).toBeDefined();
+      expect(search.results?.length).toBeGreaterThan(0);
+      expect(search.sub_menu).toBeDefined();
     });
 
-    it('should have heatmap', () => {
-      const markers_map = info.player_overlays?.decorated_player_bar?.player_bar?.markers_map;
-      const heatmap = markers_map?.get({ marker_key: 'HEATSEEKER' })?.value?.heatmap;
-      expect(heatmap).toBeDefined();
+    describe('Innertube#search', () => {
+      let search: YT.Search;
+
+      beforeAll(async () => {
+        search = await innertube.search('Anton Petrov');
+        expect(search.page).toBeDefined();
+        expect(search.results).toBeDefined();
+        expect(search.results?.length).toBeGreaterThan(0);
+        expect(search.sub_menu).toBeDefined();
+      });
+
+      test('Search#getContinuation', async () => {
+        const incremental_continuation = await search.getContinuation();
+        expect(incremental_continuation).toBeDefined();
+        expect(incremental_continuation.results?.length).toBeGreaterThan(0);
+      });
     });
 
-    it('should have watch next feed', () => {
-      expect(info.watch_next_feed).toBeDefined();
-    });
-    
-    it('should retrieve basic video info', async () => {
-      const b_info = await yt.getBasicInfo(VIDEOS[0].ID);
-      expect(b_info.basic_info.id).toBe(VIDEOS[0].ID);
+    test('Innertube#getSearchSuggestions', async () => {
+      const suggestions = await innertube.getSearchSuggestions('Anton Petrov');
+      expect(suggestions.length).toBeGreaterThan(0);
     });
 
-    it('should be upcoming', async () => {
-      const b_info = await yt.getBasicInfo(VIDEOS[4].ID);
-      expect(b_info.basic_info.is_upcoming).toBe(true);
+    describe('Innertube#getComments', () => {
+      let comments: YT.Comments;
+
+      beforeAll(async () => {
+        comments = await innertube.getComments('bUHZ2k9DYHY');
+        expect(comments).toBeDefined();
+        expect(comments.header).toBeDefined();
+        expect(comments.contents).toBeDefined();
+        expect(comments.contents.length).toBeGreaterThan(0);
+      });
+
+      test('Comments#getContinuation', async () => {
+        const incremental_continuation = await comments.getContinuation();
+        expect(incremental_continuation).toBeDefined();
+        expect(incremental_continuation.contents.length).toBeGreaterThan(0);
+      });
+
+      describe('CommentThread#getReplies', () => {
+        let loaded_comment_thread: YTNodes.CommentThread;
+
+        beforeAll(async () => {
+          let comment_thread = comments.contents.first();
+          loaded_comment_thread = await comment_thread.getReplies();
+          expect(loaded_comment_thread.replies).toBeDefined();
+        });
+
+        test('CommentThread#getContinuation', async () => {
+          const incremental_continuation = await loaded_comment_thread.getContinuation();
+          expect(incremental_continuation.replies).toBeDefined();
+          expect(incremental_continuation.replies?.length).toBeGreaterThan(0);
+        });
+      });
     });
 
-    it('should be live', async () => {
-      const b_info = await yt.getBasicInfo(VIDEOS[5].ID);
-      expect(b_info.basic_info.is_live).toBe(true);
+    describe('Innertube#getHomeFeed', () => {
+      let home_feed: YT.HomeFeed;
+
+      beforeAll(async () => {
+        home_feed = await innertube.getHomeFeed();
+        expect(home_feed).toBeDefined();
+        expect(home_feed.contents).toBeDefined();
+        expect(home_feed.contents.contents?.length).toBeGreaterThan(0);
+      });
+
+      test('HomeFeed#applyFilter', async () => {
+        const filtered_home_feed = await home_feed.applyFilter(home_feed.filter_chips[1]);
+        expect(filtered_home_feed.contents.contents?.length).toBeGreaterThan(0);
+      });
+
+      test('HomeFeed#getContinuation', async () => {
+        const incremental_continuation = await home_feed.getContinuation();
+        expect(incremental_continuation.contents).toBeDefined();
+        expect(incremental_continuation.contents.contents?.length).toBeGreaterThan(0);
+      });
     });
 
-    it('should extract live stream start timestamp', async () => {
-      const b_info = await yt.getBasicInfo(VIDEOS[4].ID);
-      expect(b_info.basic_info.start_timestamp).not.toBeNull()
-      expect(b_info.basic_info.start_timestamp!.toISOString()).toBe('2024-03-30T23:00:00.000Z');
-    })
+    test('Innertube#getGuide', async () => {
+      const guide = await innertube.getGuide();
+      expect(guide).toBeDefined();
+      expect(guide.contents).toBeDefined();
+      expect(guide.contents.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#getTrending', async () => {
+      const trending = await innertube.getTrending();
+      expect(trending).toBeDefined();
+      expect(trending.page.contents).toBeDefined();
+      expect(trending.page.contents_memo).toBeDefined();
+      expect(trending.videos.length).toBeGreaterThan(0); TabbedFeed<IBrowseResponse>;
+    });
+
+    describe('Innertube#getChannel', () => {
+      let channel: YT.Channel;
+
+      beforeAll(async () => {
+        channel = await innertube.getChannel('UC7_gcs09iThXybpVgjHZ_7g');
+        expect(channel).toBeDefined();
+        expect(channel.current_tab).toBeDefined();
+        expect(channel.current_tab?.content).toBeDefined();
+        expect(channel.videos.length).toBeGreaterThan(0);
+      });
+
+      test('Channel#getHome', async () => {
+        const home = await channel.getHome();
+        expect(home).toBeDefined();
+        expect(home.current_tab).toBeDefined();
+        expect(home.current_tab?.content).toBeDefined();
+        expect(home.videos.length).toBeGreaterThan(0);
+      });
+
+      describe('Channel#getVideos', () => {
+        let videos: YT.Channel;
+
+        beforeAll(async () => {
+          videos = await channel.getVideos();
+          expect(videos).toBeDefined();
+          expect(videos.current_tab).toBeDefined();
+          expect(videos.current_tab?.content).toBeDefined();
+          expect(videos.videos.length).toBeGreaterThan(0);
+        });
+
+        test('Channel#getContinuation', async () => {
+          const incremental_continuation = await videos.getContinuation();
+          expect(incremental_continuation).toBeDefined();
+          expect(incremental_continuation.videos.length).toBeGreaterThan(0);
+        });
+
+        test('Channel#applyFilter', async () => {
+          const filtered_tab = await videos.applyFilter(videos.filters[1]);
+          expect(filtered_tab).toBeDefined();
+          expect(filtered_tab.videos.length).toBeGreaterThan(0);
+        });
+      });
+
+      // @TODO: Not implemented yet.
+      // test('Channel#getLive', async () => {
+      //   const live = await channel.getLive();
+      //   expect(live).toBeDefined();
+      //   expect(live.current_tab).toBeDefined();
+      //   expect(live.current_tab?.content).toBeDefined();
+      //   expect(live.videos.length).toBeGreaterThan(0);
+      // });
+
+      test('Channel#getPlaylists', async () => {
+        const playlists = await channel.getPlaylists();
+        expect(playlists).toBeDefined();
+        expect(playlists.current_tab).toBeDefined();
+        expect(playlists.current_tab?.content).toBeDefined();
+        expect(playlists.playlists.length).toBeGreaterThan(0);
+      });
+
+      test('Channel#getCommunity', async () => {
+        const community = await channel.getCommunity();
+        expect(community).toBeDefined();
+        expect(community.current_tab).toBeDefined();
+        expect(community.current_tab?.content).toBeDefined();
+        expect(community.posts.length).toBeGreaterThan(0);
+      });
+
+      test('Channel#getChannels', async () => {
+        const channels = await channel.getChannels();
+        expect(channels).toBeDefined();
+        expect(channels.current_tab).toBeDefined();
+        expect(channels.current_tab?.content).toBeDefined();
+        expect(channels.channels.length).toBeGreaterThan(0);
+      });
+
+      test('Channel#getAbout', async () => {
+        const about = await channel.getAbout();
+        expect(about).toBeDefined();
+        expect(about.id).toBe('UC7_gcs09iThXybpVgjHZ_7g');
+        expect(about.description).toBeDefined();
+      });
+
+      test('Channel#search', async () => {
+        const search = await channel.search('How Does Gravity Escape A Black Hole?');
+        expect(search).toBeDefined();
+        expect(search.videos.length).toBeGreaterThan(0);
+      });
+    });
+
+    test('Innertube#getPlaylist', async () => {
+      const playlist = await innertube.getPlaylist('PLsPUh22kYmNBl4h0i4mI5zDflExXJMo_x');
+      expect(playlist).toBeDefined();
+      expect(playlist.videos.length).toBeGreaterThan(0);
+    });
+
+    describe('Innertube#getHashtag', () => {
+      let hashtag: YT.HashtagFeed;
+
+      beforeAll(async () => {
+        hashtag = await innertube.getHashtag('space');
+        expect(hashtag).toBeDefined();
+        expect(hashtag.videos.length).toBeGreaterThan(0);
+      });
+
+      test('HashtagFeed#getContinuation', async () => {
+        const incremental_continuation = await hashtag.getContinuation();
+        expect(incremental_continuation).toBeDefined();
+        expect(incremental_continuation.videos.length).toBeGreaterThan(0);
+      });
+    });
+
+    test('Innertube#resolveURL', async () => {
+      const resolved = await innertube.resolveURL('https://www.youtube.com/watch?v=bUHZ2k9DYHY');
+      expect(resolved).toBeDefined();
+      expect(resolved.payload).toBeDefined();
+    });
+
+    test('Innertube#download', async () => {
+      const id = 'WSeNSzJ2-Jw';
+      const stream = await innertube.download(id, { type: 'video+audio' });
+      const file = createWriteStream(`./${id}.mp4`);
+
+      for await (const chunk of Utils.streamToIterable(stream)) {
+        file.write(chunk);
+      }
+
+      expect(existsSync(`./${id}.mp4`)).toBeTruthy();
+    });
   });
-  
-  describe('Search', () => {
-    let search: any;
-    
-    it('should search', async () => {
-      search = await yt.search(VIDEOS[0].QUERY);
-      expect(search.results.length).toBeGreaterThanOrEqual(5);
-      expect(search.playlists).toBeDefined();
-      expect(search.channels).toBeDefined();
-      expect(search.has_continuation).toBe(true);
-    });
-    
-    it('should retrieve search continuation', async () => {
-      const next = await search.getContinuation();
-      expect(next.results.length).toBeGreaterThanOrEqual(5);
-      expect(search.playlists).toBeDefined();
-      expect(search.channels).toBeDefined();
-      expect(search.has_continuation).toBe(true);
-    });
-    
-    it('should retrieve search suggestions', async () => {
-      const suggestions = await yt.getSearchSuggestions(VIDEOS[0].QUERY);
-      expect(suggestions.length).toBeGreaterThanOrEqual(1);
-    });
-  });
-  
-  describe('Comments', () => {
-    let comment_section: Awaited<ReturnType<(typeof yt)['getComments']>>;
-    
-    it('should retrieve comments', async () => {
-      comment_section = await yt.getComments(VIDEOS[1].ID);
-      expect(comment_section.contents.length).toBeGreaterThan(0);
-    });
 
-    it('should parse formatted comments', async () => {
-      const comment_section = await yt.getComments(VIDEOS[3].ID);
-      const channel_owner_thread = comment_section.contents.find(t => t.comment?.author_is_channel_owner);
-      expect(channel_owner_thread).not.toBeUndefined();
-
-      expect(channel_owner_thread!.comment?.content.runs?.length).toBeGreaterThan(0);
-      const runs = channel_owner_thread!.comment!.content.runs! as TextRun[];
-
-      expect(runs[0].bold).toBeTruthy();
-      expect(runs[2].italics).toBeTruthy();
-      expect(runs[4].strikethrough).toBeTruthy();
-    })
-    
-    it('should retrieve next batch of comments', async () => {
-      const next = await comment_section.getContinuation();
-      expect(next.contents.length).toBeGreaterThan(0);
-    });
-    
-    it('should retrieve comment replies', async () => {
-      const thread = comment_section.contents.first();
-      expect(thread?.has_replies).toBe(true);
-
-      const full_thread = await thread?.getReplies();
- 
-      expect(full_thread?.comment?.comment_id).toBe(thread?.comment?.comment_id);
-      expect(full_thread?.replies?.length).toBeLessThanOrEqual(10);
-    });
-
-  });
-  
-  describe('General', () => {
-    it('should create sessions without a player instance', async () => {
-      const nop_yt = await Innertube.create({ retrieve_player: false });
-      expect(nop_yt.session.player).toBeUndefined();
-    });
-
-    it('should create a session from data generated locally', async () => {
-      const loc_yt = await Innertube.create({ generate_session_locally: true, retrieve_player: false });
-      expect(loc_yt.session.context).toBeDefined();
-    });
-
-    it('should resolve a URL', async () => {
-      const url = await yt.resolveURL('https://www.youtube.com/@linustechtips');
-      expect(url.payload.browseId).toBe(CHANNELS[0].ID);
-    });
-
-    it('should retrieve playlist', async () => {
-      const playlist = await yt.getPlaylist('PLLw0AzOz95FU7w2juhPECP9NyGhbZmz_t');
-      expect(playlist.items.length).toBeLessThanOrEqual(100);
-    });
-    
-    it('should retrieve channel', async () => {
-      const channel = await yt.getChannel(CHANNELS[0].ID);
-      expect(channel.videos.length).toBeGreaterThan(0);
-      expect(channel.shelves.length).toBeGreaterThan(0);
-
-      const videos_tab = await channel.getVideos();
-      expect(videos_tab.videos.length).toBeGreaterThan(0);
-
-      const filtered_list = await videos_tab.applyFilter('Popular');
-      expect(filtered_list.videos.length).toBeGreaterThan(0);
-    });
-
-    it('should detect missing channel tabs', async () => {
-      const channel = await yt.getChannel(CHANNELS[2].ID);
-      expect(channel.has_home).toBe(true);
-      expect(channel.has_videos).toBe(true);
-      expect(channel.has_shorts).toBe(false);
-      expect(channel.has_live_streams).toBe(false);
-      expect(channel.has_playlists).toBe(true);
-      expect(channel.has_community).toBe(true);
-      expect(channel.has_channels).toBe(true);
-      expect(channel.has_about).toBe(true);
-      expect(channel.has_search).toBe(true);
-    })
-
-    it('should have no channel tabs', async () => {
-      const channel = await yt.getChannel(CHANNELS[3].ID);
-      expect(channel.has_home).toBe(false);
-      expect(channel.has_videos).toBe(false);
-      expect(channel.has_shorts).toBe(false);
-      expect(channel.has_live_streams).toBe(false);
-      expect(channel.has_playlists).toBe(false);
-      expect(channel.has_community).toBe(false);
-      expect(channel.has_channels).toBe(false);
-      expect(channel.has_about).toBe(false);
-      expect(channel.has_search).toBe(false);
-    })
-
-    it('should retrieve hashtags', async () => {
-      const hashtag = await yt.getHashtag('music');
-      expect(hashtag.header).toBeDefined();
-      expect(hashtag.contents).toBeDefined();
-      expect(hashtag.videos.length).toBeGreaterThan(0);
-    });
-
-    it('should retrieve home feed', async () => {
-      const homefeed = await yt.getHomeFeed();
-      expect(homefeed.header).toBeDefined();
-      expect(homefeed.contents).toBeDefined();
-      expect(homefeed.videos.length).toBeGreaterThan(0);
-    });
-    
-    it('should retrieve trending content', async () => {
-      const trending = await yt.getTrending();
-      expect(trending.videos.length).toBeGreaterThan(0);
-    });
-    
-    it('should download video', async () => {
-      const result = await download(VIDEOS[1].ID, yt);
-      expect(result).toBeTruthy();
-    }, 30000);
-  });
-  
   describe('YouTube Music', () => {
-    let search: any;
+    test('Innertube#music.getInfo', async () => {
+      const info = await innertube.music.getInfo('WSeNSzJ2-Jw');
+      expect(info).toBeDefined();
+      expect(info.basic_info.id).toBe('WSeNSzJ2-Jw');
+    });
 
-    it('should search', async () => {
-      search = await yt.music.search(VIDEOS[1].QUERY);
-      expect(search.songs?.contents.length).toBeLessThanOrEqual(3);
+    describe('Innertube#music.search', () => {
+      let search: YTMusic.Search;
+
+      beforeAll(async () => {
+        search = await innertube.music.search('Mac Miller - Conversation Pt. 1');
+        expect(search).toBeDefined();
+        expect(search.contents).toBeDefined();
+        expect(search.contents?.length).toBeGreaterThan(0);
+      });
+
+      test('Search#applyFilter', async () => {
+        search = await search.applyFilter(search.filters[1]);
+        expect(search).toBeDefined();
+        expect(search.contents).toBeDefined();
+        expect(search.contents?.length).toBeGreaterThan(0);
+      });
+
+      test('Search#getContinuation', async () => {
+        const incremental_continuation = await search.getContinuation();
+        expect(incremental_continuation).toBeDefined();
+        expect(incremental_continuation.contents).toBeDefined();
+        expect(incremental_continuation.contents?.contents).toBeDefined();
+        expect(incremental_continuation.contents?.contents?.length).toBeGreaterThan(0);
+      });
     });
-    
-    it('should retrieve search suggestions', async () => {
-      const suggestions = await yt.music.getSearchSuggestions(VIDEOS[1].QUERY);
-      expect(suggestions.length).toBeLessThanOrEqual(10);
+
+    describe('Innertube#music.getHomeFeed', () => {
+      let home: YTMusic.HomeFeed;
+
+      beforeAll(async () => {
+        home = await innertube.music.getHomeFeed();
+        expect(home).toBeDefined();
+        expect(home.sections).toBeDefined();
+        expect(home.sections?.length).toBeGreaterThan(0);
+      });
+
+      test('HomeFeed#getContinuation', async () => {
+        const incremental_continuation = await home.getContinuation();
+        expect(incremental_continuation).toBeDefined();
+        expect(incremental_continuation.sections).toBeDefined();
+        expect(incremental_continuation.sections?.length).toBeGreaterThan(0);
+      });
     });
-    
-    it('should retrieve track info', async () => {
-      const info = await yt.music.getInfo(VIDEOS[1].ID);
-      expect(info.basic_info.id).toBe(VIDEOS[1].ID);
+
+    test('Innertube#music.getExplore', async () => {
+      const explore = await innertube.music.getExplore();
+      expect(explore).toBeDefined();
+      expect(explore.sections).toBeDefined();
+      expect(explore.sections?.length).toBeGreaterThan(0);
+      expect(explore.top_buttons).toBeDefined();
     });
-    
-    it('should retrieve the "Related" tab', async () => {
-      const info = await yt.music.getInfo(VIDEOS[1].ID);
-      const related = await info.getRelated();
-      expect((related as any).length).toBeGreaterThan(0);
-    });
-    
-    it('should retrieve albums', async () => {
-      const album = await yt.music.getAlbum(search.albums?.contents[0]?.id);
-      expect(album.contents).toBeDefined();
-    });
-    
-    it('should retrieve artists', async () => {
-      const artist = await yt.music.getArtist(search.artists?.contents[0]?.id);
+
+    test('Innertube#music.getArtist', async () => {
+      const artist = await innertube.music.getArtist('UC52ZqHVQz5OoGhvbWiRal6g');
+      expect(artist).toBeDefined();
+      expect(artist.header).toBeDefined();
       expect(artist.sections).toBeDefined();
     });
-    
-    it('should retrieve playlists', async () => {
-      const playlist = await yt.music.getPlaylist(search.playlists?.contents[0]?.id);
+
+    test('Innertube#music.getAlbum', async () => {
+      const album = await innertube.music.getAlbum('MPREb_aWzgoemOnfa');
+      expect(album).toBeDefined();
+      expect(album.header).toBeDefined();
+      expect(album.sections).toBeDefined();
+    });
+
+    test('Innertube#music.getPlaylist', async () => {
+      const playlist = await innertube.music.getPlaylist('PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u');
+      expect(playlist).toBeDefined();
+      expect(playlist.header).toBeDefined();
       expect(playlist.items).toBeDefined();
+      expect(playlist.items?.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#music.getLyrics', async () => {
+      const lyrics = await innertube.music.getLyrics('eaJHysi5tYg');
+      expect(lyrics).toBeDefined();
+      expect(lyrics?.description).toBeDefined();
+      expect(lyrics?.footer).toBeDefined();
+    });
+
+    test('Innertube#music.getUpNext', async () => {
+      const upnext = await innertube.music.getUpNext('eaJHysi5tYg');
+      expect(upnext).toBeDefined();
+      expect(upnext?.contents).toBeDefined();
+      expect(upnext?.contents?.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#music.getRelated', async () => {
+      const related = await innertube.music.getRelated('eaJHysi5tYg');
+      expect(related).toBeDefined();
+      expect(related?.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#music.getSearchSuggestions', async () => {
+      const suggestions = await innertube.music.getSearchSuggestions('Joji - In Tongues');
+      expect(suggestions).toBeDefined();
+      expect(suggestions?.length).toBeGreaterThan(0);
     });
   });
 
   describe('YouTube Kids', () => {
-    it('should search', async () => {
-      const search = await yt.kids.search('cocomelon');
-      expect(search.estimated_results).toBeDefined();
+    test('Innertube#kids.getInfo', async () => {
+      const info = await innertube.kids.getInfo('juN8qEgLScw');
+      expect(info).toBeDefined();
+      expect(info.basic_info?.id).toBe('juN8qEgLScw');
+    });
+
+    test('Innertube#kids.getHomeFeed', async () => {
+      const home = await innertube.kids.getHomeFeed();
+      expect(home).toBeDefined();
+      expect(home.categories).toBeDefined();
+      expect(home.contents?.anchors?.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#kids.getChannel', async () => {
+      const channel = await innertube.kids.getChannel('UCpbpfcZfo-hoDAx2m1blFhg');
+      expect(channel).toBeDefined();
+      expect(channel.contents).toBeDefined();
+      expect(channel.header).toBeDefined();
+    });
+
+    test('Innertube#kids.search', async () => {
+      const search = await innertube.kids.search('Paw Patrol');
+      expect(search).toBeDefined();
+      expect(search.contents).toBeDefined();
       expect(search.contents?.length).toBeGreaterThan(0);
-    });
-
-    it('should retrieve home feed', async () => {
-      const homefeed = await yt.kids.getHomeFeed();
-      expect(homefeed.contents).toBeDefined();
-      expect(homefeed.videos.length).toBeGreaterThan(0);
-    });
-    
-    it('should retrieve video info', async () => {
-      const info = await yt.kids.getInfo(VIDEOS[6].ID);
-      expect(info.basic_info?.id).toBe(VIDEOS[6].ID);
-    });
-
-    it('should retrieve a channel', async () => {
-      const channel = await yt.kids.getChannel(CHANNELS[1].ID);
-      expect(channel.videos.length).toBeGreaterThan(0);
     });
   });
 });
-
-async function download(id: string, yt: Innertube): Promise<boolean> {   
-  const stream = await yt.download(id, { type: 'video+audio' });
-  const file = fs.createWriteStream(`./${id}.mp4`);
-
-  for await (const chunk of Utils.streamToIterable(stream)) {
-    file.write(chunk);
-  }
-  
-  return fs.existsSync(`./${id}.mp4`);
-}

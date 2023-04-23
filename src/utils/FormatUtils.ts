@@ -115,7 +115,7 @@ class FormatUtils {
           return;
         }
 
-        if ((chunk_end >= format.content_length) || options.range) {
+        if ((chunk_end >= (format.content_length ? format.content_length : 0)) || options.range) {
           must_end = true;
         }
 

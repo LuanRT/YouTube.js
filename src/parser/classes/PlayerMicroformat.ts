@@ -1,22 +1,23 @@
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
-import { YTNode } from '../helpers.js';
 
-class PlayerMicroformat extends YTNode {
+export default class PlayerMicroformat extends YTNode {
   static type = 'PlayerMicroformat';
 
   title: Text;
   description: Text;
   thumbnails;
 
-  embed: {
+  embed?: {
     iframe_url: string;
     flash_url: string;
     flash_secure_url: string;
     // TODO: check these
     width: any;
     height: any;
-  } | null;
+  };
 
   length_seconds: number;
 
@@ -36,13 +37,13 @@ class PlayerMicroformat extends YTNode {
   available_countries: string[];
   start_timestamp: Date | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.description = new Text(data.description);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
 
-    if (data.embed) {
+    if (Reflect.has(data, 'embed')) {
       this.embed = {
         iframe_url: data.embed.iframeUrl,
         flash_url: data.embed.flashUrl,
@@ -50,8 +51,6 @@ class PlayerMicroformat extends YTNode {
         width: data.embed.width,
         height: data.embed.height
       };
-    } else {
-      this.embed = null;
     }
 
     this.length_seconds = parseInt(data.lengthSeconds);
@@ -73,5 +72,3 @@ class PlayerMicroformat extends YTNode {
     this.start_timestamp = data.liveBroadcastDetails?.startTimestamp ? new Date(data.liveBroadcastDetails.startTimestamp) : null;
   }
 }
-
-export default PlayerMicroformat;

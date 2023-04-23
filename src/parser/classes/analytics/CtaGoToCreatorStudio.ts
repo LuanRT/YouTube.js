@@ -1,7 +1,7 @@
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class CtaGoToCreatorStudio extends YTNode {
+export default class CtaGoToCreatorStudio extends YTNode {
   static type = 'CtaGoToCreatorStudio';
 
   title: string;
@@ -11,8 +11,5 @@ class CtaGoToCreatorStudio extends YTNode {
     super();
     this.title = data.buttonLabel;
     this.use_new_specs = data.useNewSpecs;
-    // Is this even useful?
   }
 }
-
-export default CtaGoToCreatorStudio;

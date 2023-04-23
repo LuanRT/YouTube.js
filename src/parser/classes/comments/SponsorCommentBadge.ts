@@ -2,7 +2,7 @@ import Thumbnail from '../misc/Thumbnail.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class SponsorCommentBadge extends YTNode {
+export default class SponsorCommentBadge extends YTNode {
   static type = 'SponsorCommentBadge';
 
   custom_badge: Thumbnail[];
@@ -14,5 +14,3 @@ class SponsorCommentBadge extends YTNode {
     this.tooltip = data.tooltip;
   }
 }
-
-export default SponsorCommentBadge;

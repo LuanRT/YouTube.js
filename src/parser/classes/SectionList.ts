@@ -1,39 +1,37 @@
-import { YTNode } from '../helpers.js';
-import Parser, { RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 
-class SectionList extends YTNode {
+export default class SectionList extends YTNode {
   static type = 'SectionList';
 
+  contents: ObservedArray<YTNode>;
   target_id?: string;
-  contents;
   continuation?: string;
-  header?;
-  sub_menu?;
+  header?: YTNode;
+  sub_menu?: YTNode;
 
   constructor(data: RawNode) {
     super();
-    if (data.targetId) {
+    this.contents = Parser.parseArray(data.contents);
+
+    if (Reflect.has(data, 'targetId')) {
       this.target_id = data.targetId;
     }
 
-    this.contents = Parser.parseArray(data.contents);
-
-    if (data.continuations) {
-      if (data.continuations[0].nextContinuationData) {
+    if (Reflect.has(data, 'continuations')) {
+      if (Reflect.has(data.continuations[0], 'nextContinuationData')) {
         this.continuation = data.continuations[0].nextContinuationData.continuation;
-      } else if (data.continuations[0].reloadContinuationData) {
+      } else if (Reflect.has(data.continuations[0], 'reloadContinuationData')) {
         this.continuation = data.continuations[0].reloadContinuationData.continuation;
       }
     }
 
-    if (data.header) {
+    if (Reflect.has(data, 'header')) {
       this.header = Parser.parseItem(data.header);
     }
 
-    if (data.subMenu) {
+    if (Reflect.has(data, 'subMenu')) {
       this.sub_menu = Parser.parseItem(data.subMenu);
     }
   }
 }
-
-export default SectionList;

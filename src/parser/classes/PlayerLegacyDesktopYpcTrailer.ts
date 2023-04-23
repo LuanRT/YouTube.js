@@ -1,8 +1,8 @@
 import { YTNode } from '../helpers.js';
-import { Parser, RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import YpcTrailer from './YpcTrailer.js';
 
-class PlayerLegacyDesktopYpcTrailer extends YTNode {
+export default class PlayerLegacyDesktopYpcTrailer extends YTNode {
   static type = 'PlayerLegacyDesktopYpcTrailer';
 
   video_id: string;
@@ -25,8 +25,6 @@ class PlayerLegacyDesktopYpcTrailer extends YTNode {
     this.offer_id = data.offerId;
     this.offer_button_text = data.offerButtonText;
     this.video_message = data.fullVideoMessage;
-    this.trailer = Parser.parseItem<YpcTrailer>(data.ypcTrailer, YpcTrailer);
+    this.trailer = Parser.parseItem(data.ypcTrailer, YpcTrailer);
   }
 }
-
-export default PlayerLegacyDesktopYpcTrailer;

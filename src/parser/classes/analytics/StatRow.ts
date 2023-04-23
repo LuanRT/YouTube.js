@@ -1,9 +1,8 @@
 import Text from '../misc/Text.js';
-
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class StatRow extends YTNode {
+export default class StatRow extends YTNode {
   static type = 'StatRow';
 
   title: Text;
@@ -15,5 +14,3 @@ class StatRow extends YTNode {
     this.contents = new Text(data.contents);
   }
 }
-
-export default StatRow;

@@ -1,17 +1,15 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import { YTNode, type SuperParsedResult } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 
-class TwoColumnBrowseResults extends YTNode {
+export default class TwoColumnBrowseResults extends YTNode {
   static type = 'TwoColumnBrowseResults';
 
-  tabs;
-  secondary_contents;
+  tabs: SuperParsedResult<YTNode>;
+  secondary_contents: SuperParsedResult<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.tabs = Parser.parse(data.tabs);
     this.secondary_contents = Parser.parse(data.secondaryContents);
   }
 }
-
-export default TwoColumnBrowseResults;

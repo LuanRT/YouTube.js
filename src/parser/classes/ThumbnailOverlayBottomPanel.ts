@@ -1,8 +1,8 @@
 import { YTNode } from '../helpers.js';
-import { RawNode } from '../index.js';
+import type { RawNode } from '../index.js';
 import Text from './misc/Text.js';
 
-class ThumbnailOverlayBottomPanel extends YTNode {
+export default class ThumbnailOverlayBottomPanel extends YTNode {
   static type = 'ThumbnailOverlayBottomPanel';
 
   text?: Text;
@@ -19,5 +19,3 @@ class ThumbnailOverlayBottomPanel extends YTNode {
     }
   }
 }
-
-export default ThumbnailOverlayBottomPanel;

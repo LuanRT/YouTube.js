@@ -1,15 +1,14 @@
-import Parser from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import ChildElement from './misc/ChildElement.js';
+import { type ObservedArray, YTNode, observe } from '../helpers.js';
 
-import { YTNode } from '../helpers.js';
-
-class Element extends YTNode {
+export default class Element extends YTNode {
   static type = 'Element';
 
-  model;
-  child_elements?: ChildElement[];
+  model?: YTNode;
+  child_elements?: ObservedArray<ChildElement>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     if (Reflect.has(data, 'elementRenderer')) {
@@ -17,12 +16,11 @@ class Element extends YTNode {
     }
 
     const type = data.newElement.type.componentType;
+
     this.model = Parser.parseItem(type?.model);
 
-    if (data.newElement?.childElements) {
-      this.child_elements = data.newElement?.childElements?.map((el: any) => new ChildElement(el)) || null;
+    if (Reflect.has(data, 'newElement') && Reflect.has(data.newElement, 'childElements')) {
+      this.child_elements = observe(data.newElement.childElements?.map((el: RawNode) => new ChildElement(el)) || []);
     }
   }
 }
-
-export default Element;

@@ -1,10 +1,10 @@
 import { YTNode } from '../helpers.js';
-import Parser, { RawNode } from '../index.js';
+import Parser, { type RawNode } from '../index.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
-class Notification extends YTNode {
+export default class Notification extends YTNode {
   static type = 'Notification';
 
   thumbnails: Thumbnail[];
@@ -14,7 +14,7 @@ class Notification extends YTNode {
   notification_id: string;
   endpoint: NavigationEndpoint;
   record_click_endpoint: NavigationEndpoint;
-  menu;
+  menu: YTNode;
   read: boolean;
 
   constructor(data: RawNode) {
@@ -30,5 +30,3 @@ class Notification extends YTNode {
     this.read = data.read;
   }
 }
-
-export default Notification;

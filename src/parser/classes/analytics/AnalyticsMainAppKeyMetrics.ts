@@ -2,7 +2,7 @@ import DataModelSection from './DataModelSection.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class AnalyticsMainAppKeyMetrics extends YTNode {
+export default class AnalyticsMainAppKeyMetrics extends YTNode {
   static type = 'AnalyticsMainAppKeyMetrics';
 
   period: string;
@@ -11,9 +11,11 @@ class AnalyticsMainAppKeyMetrics extends YTNode {
   constructor(data: RawNode) {
     super();
     this.period = data.cardData.periodLabel;
+
     const metrics_data = data.cardData.sections[0].analyticsKeyMetricsData;
-    this.sections = metrics_data.dataModel.sections.map((section: any) => new DataModelSection(section));
+
+    this.sections = metrics_data.dataModel.sections.map(
+      (section: any) => new DataModelSection(section)
+    );
   }
 }
-
-export default AnalyticsMainAppKeyMetrics;

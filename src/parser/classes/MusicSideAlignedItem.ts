@@ -1,24 +1,20 @@
-import Parser from '../index.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 
-import { YTNode } from '../helpers.js';
-
-class MusicSideAlignedItem extends YTNode {
+export default class MusicSideAlignedItem extends YTNode {
   static type = 'MusicSideAlignedItem';
 
-  start_items?;
-  end_items?;
+  start_items?: ObservedArray<YTNode>;
+  end_items?: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-
-    if (data.startItems) {
+    if (Reflect.has(data, 'startItems')) {
       this.start_items = Parser.parseArray(data.startItems);
     }
 
-    if (data.endItems) {
+    if (Reflect.has(data, 'endItems')) {
       this.end_items = Parser.parseArray(data.endItems);
     }
   }
 }
-
-export default MusicSideAlignedItem;

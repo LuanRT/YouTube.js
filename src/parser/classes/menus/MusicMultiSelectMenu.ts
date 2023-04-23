@@ -1,21 +1,22 @@
-import MusicMultiSelectMenuItem from './MusicMultiSelectMenuItem.js';
-import MusicMenuItemDivider from './MusicMenuItemDivider.js';
-import { YTNode } from '../../helpers.js';
-import Text from '../misc/Text.js';
-import Parser from '../../index.js';
+import { ObservedArray, YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-class MusicMultiSelectMenu extends YTNode {
+import Parser from '../../index.js';
+import Text from '../misc/Text.js';
+import MusicMenuItemDivider from './MusicMenuItemDivider.js';
+import MusicMultiSelectMenuItem from './MusicMultiSelectMenuItem.js';
+
+export default class MusicMultiSelectMenu extends YTNode {
   static type = 'MusicMultiSelectMenu';
 
-  title: string;
-  options: Array<MusicMultiSelectMenuItem | MusicMenuItemDivider>;
+  title?: Text;
+  options: ObservedArray<MusicMultiSelectMenuItem | MusicMenuItemDivider>;
 
   constructor(data: RawNode) {
     super();
+    if (Reflect.has(data.title, 'musicMenuTitleRenderer')) {
+      this.title = new Text(data.title.musicMenuTitleRenderer?.primaryText);
+    }
 
-    this.title = new Text(data.title.musicMenuTitleRenderer?.primaryText).toString();
     this.options = Parser.parseArray(data.options, [ MusicMultiSelectMenuItem, MusicMenuItemDivider ]);
   }
 }
-
-export default MusicMultiSelectMenu;

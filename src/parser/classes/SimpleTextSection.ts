@@ -1,18 +1,16 @@
 import Text from './misc/Text.js';
-
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class SimpleTextSection extends YTNode {
+export default class SimpleTextSection extends YTNode {
   static type = 'SimpleTextSection';
 
   lines: Text[];
   style: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.lines = data.lines.map((line: any) => new Text(line));
+    this.lines = data.lines.map((line: RawNode) => new Text(line));
     this.style = data.layoutStyle;
   }
 }
-
-export default SimpleTextSection;

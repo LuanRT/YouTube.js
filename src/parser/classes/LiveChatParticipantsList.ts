@@ -1,19 +1,17 @@
-import Parser from '../index.js';
-import Text from './misc/Text.js';
-import { ObservedArray, YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
 import LiveChatParticipant from './LiveChatParticipant.js';
+import Text from './misc/Text.js';
 
-class LiveChatParticipantsList extends YTNode {
+export default class LiveChatParticipantsList extends YTNode {
   static type = 'LiveChatParticipantsList';
 
   title: Text;
   participants: ObservedArray<LiveChatParticipant>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.participants = Parser.parseArray(data.participants, LiveChatParticipant);
   }
 }
-
-export default LiveChatParticipantsList;

@@ -2,7 +2,7 @@ import Thumbnail from '../misc/Thumbnail.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class AnalyticsVideo extends YTNode {
+export default class AnalyticsVideo extends YTNode {
   static type = 'AnalyticsVideo';
 
   title: string;
@@ -27,5 +27,3 @@ class AnalyticsVideo extends YTNode {
     };
   }
 }
-
-export default AnalyticsVideo;

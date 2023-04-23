@@ -1,10 +1,10 @@
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
-
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
 
-class ChannelOptions extends YTNode {
+export default class ChannelOptions extends YTNode {
   static type = 'ChannelOptions';
 
   avatar: Thumbnail[];
@@ -12,13 +12,11 @@ class ChannelOptions extends YTNode {
   name: string;
   links: Text[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.avatar = Thumbnail.fromResponse(data.avatar);
     this.endpoint = new NavigationEndpoint(data.avatarEndpoint);
     this.name = data.name;
-    this.links = data.links.map((link: any) => new Text(link));
+    this.links = data.links.map((link: RawNode) => new Text(link));
   }
 }
-
-export default ChannelOptions;

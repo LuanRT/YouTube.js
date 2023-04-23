@@ -1,11 +1,10 @@
+import type { RawNode } from '../index.js';
 import Playlist from './Playlist.js';
 
-class CompactMix extends Playlist {
+export default class CompactMix extends Playlist {
   static type = 'CompactMix';
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super(data);
   }
 }
-
-export default CompactMix;

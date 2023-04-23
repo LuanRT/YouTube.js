@@ -1,15 +1,13 @@
-import Parser from '../index.js';
-import { YTNode } from '../helpers.js';
+import Parser, { type RawNode } from '../index.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 
-class SecondarySearchContainer extends YTNode {
+export default class SecondarySearchContainer extends YTNode {
   static type = 'SecondarySearchContainer';
 
-  contents;
+  contents: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.contents = Parser.parse(data.contents);
+    this.contents = Parser.parseArray(data.contents);
   }
 }
-
-export default SecondarySearchContainer;

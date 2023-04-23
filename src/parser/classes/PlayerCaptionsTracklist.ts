@@ -1,8 +1,8 @@
 import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
-import { RawNode } from '../index.js';
+import type { RawNode } from '../index.js';
 
-class PlayerCaptionsTracklist extends YTNode {
+export default class PlayerCaptionsTracklist extends YTNode {
   static type = 'PlayerCaptionsTracklist';
 
   caption_tracks?: {
@@ -32,7 +32,6 @@ class PlayerCaptionsTracklist extends YTNode {
 
   constructor(data: RawNode) {
     super();
-
     if (Reflect.has(data, 'captionTracks')) {
       this.caption_tracks = data.captionTracks.map((ct: any) => ({
         base_url: ct.baseUrl,
@@ -67,5 +66,3 @@ class PlayerCaptionsTracklist extends YTNode {
     }
   }
 }
-
-export default PlayerCaptionsTracklist;

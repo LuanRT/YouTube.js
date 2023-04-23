@@ -4,7 +4,8 @@ import AccountItemSection from './AccountItemSection.js';
 
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-class AccountSectionList extends YTNode {
+
+export default class AccountSectionList extends YTNode {
   static type = 'AccountSectionList';
 
   contents;
@@ -16,5 +17,3 @@ class AccountSectionList extends YTNode {
     this.footers = Parser.parseItem(data.footers[0], AccountChannel);
   }
 }
-
-export default AccountSectionList;

@@ -319,10 +319,6 @@ export default class Parser {
     return null;
   }
 
-  extra() {
-    Parser.parseItem({}, [ MusicMultiSelectMenuItem, MusicMultiSelectMenuItem ]);
-  }
-
   /**
    * Parses an array of items.
    * @param data - The data to parse.
@@ -502,6 +498,8 @@ export default class Parser {
     'PromotedSparklesWeb',
     'RunAttestationCommand',
     'CompactPromotedVideo',
+    'BrandVideoShelf',
+    'BrandVideoSingleton',
     'StatementBanner',
     'GuideSigninPromo'
   ]);
@@ -574,7 +572,7 @@ export class AppendContinuationItemsAction extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.contents = Parser.parse(data.continuationItems, true);
+    this.contents = Parser.parseArray(data.continuationItems);
   }
 }
 

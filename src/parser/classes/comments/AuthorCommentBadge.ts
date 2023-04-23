@@ -1,19 +1,22 @@
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-class AuthorCommentBadge extends YTNode {
+export default class AuthorCommentBadge extends YTNode {
   static type = 'AuthorCommentBadge';
 
   #data;
 
-  icon_type: string | null;
+  icon_type?: string;
   tooltip: string;
   style?: string;
 
   constructor(data: RawNode) {
     super();
 
-    this.icon_type = data.icon?.iconType || null;
+    if (Reflect.has(data, 'icon') && Reflect.has(data.icon, 'iconType')) {
+      this.icon_type = data.icon.iconType;
+    }
+
     this.tooltip = data.iconTooltip;
 
     // *** For consistency
@@ -28,5 +31,3 @@ class AuthorCommentBadge extends YTNode {
     return this.#data;
   }
 }
-
-export default AuthorCommentBadge;

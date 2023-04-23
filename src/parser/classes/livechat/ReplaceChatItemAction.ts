@@ -1,11 +1,12 @@
 import Parser from '../../index.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-class ReplaceChatItemAction extends YTNode {
+
+export default class ReplaceChatItemAction extends YTNode {
   static type = 'ReplaceChatItemAction';
 
   target_item_id: string;
-  replacement_item;
+  replacement_item: YTNode;
 
   constructor(data: RawNode) {
     super();
@@ -13,5 +14,3 @@ class ReplaceChatItemAction extends YTNode {
     this.replacement_item = Parser.parseItem(data.replacementItem);
   }
 }
-
-export default ReplaceChatItemAction;

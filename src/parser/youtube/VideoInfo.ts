@@ -115,7 +115,7 @@ class VideoInfo extends MediaInfo {
       this.primary_info = results.firstOfType(VideoPrimaryInfo);
       this.secondary_info = results.firstOfType(VideoSecondaryInfo);
       this.merchandise = results.firstOfType(MerchandiseShelf);
-      this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.item().as(ChipCloud);
+      this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.as(ChipCloud);
 
       if (two_col?.playlist) {
         this.playlist = two_col.playlist;
