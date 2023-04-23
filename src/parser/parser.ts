@@ -319,10 +319,6 @@ export default class Parser {
     return null;
   }
 
-  extra() {
-    Parser.parseItem({}, [ MusicMultiSelectMenuItem, MusicMultiSelectMenuItem ]);
-  }
-
   /**
    * Parses an array of items.
    * @param data - The data to parse.
