@@ -27,7 +27,7 @@ export interface NextEndpointOptions {
   continuation?: string;
 }
 
-export interface INextEndpoint {
+export interface INextRequest {
   videoId?: string;
   playlistId?: string;
   params?: string;
@@ -37,7 +37,7 @@ export interface INextEndpoint {
 }
 
 /**
- * Builds a payload for InnerTube's `/next` endpoint.
+ * Represents InnerTube's `/next` endpoint.
  * @example
  * ```typescript
  * const next_payload = NextRequest.build({
@@ -60,7 +60,7 @@ export default class NextEndpoint {
    * @param opts - The options to use.
    * @returns The payload.
    */
-  static build(opts: NextEndpointOptions): INextEndpoint {
+  static build(opts: NextEndpointOptions): INextRequest {
     return {
       ...{
         videoId: opts.video_id,

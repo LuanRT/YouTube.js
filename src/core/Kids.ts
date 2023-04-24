@@ -1,11 +1,11 @@
-import Search from '../parser/ytkids/Search.js';
-import HomeFeed from '../parser/ytkids/HomeFeed.js';
-import VideoInfo from '../parser/ytkids/VideoInfo.js';
 import Channel from '../parser/ytkids/Channel.js';
+import HomeFeed from '../parser/ytkids/HomeFeed.js';
+import Search from '../parser/ytkids/Search.js';
+import VideoInfo from '../parser/ytkids/VideoInfo.js';
 import type Session from './Session.js';
 
 import { generateRandomString } from '../utils/Utils.js';
-import { NextEndpoint, PlayerEndpoint } from './endpoints/index.js';
+import { BrowseEndpoint, NextEndpoint, PlayerEndpoint, SearchEndpoint } from './endpoints/index.js';
 
 class Kids {
   #session: Session;
@@ -19,7 +19,7 @@ class Kids {
    * @param query - The query.
    */
   async search(query: string): Promise<Search> {
-    const response = await this.#session.actions.execute('/search', { query, client: 'YTKIDS' });
+    const response = await this.#session.actions.execute(SearchEndpoint.PATH, SearchEndpoint.build({ query, client: 'YTKIDS' }));
     return new Search(this.#session.actions, response);
   }
 
@@ -28,7 +28,6 @@ class Kids {
    * @param video_id - The video id.
    */
   async getInfo(video_id: string): Promise<VideoInfo> {
-
     const player_payload = PlayerEndpoint.build({
       video_id,
       client: 'YTKIDS',
@@ -54,7 +53,7 @@ class Kids {
   * @param channel_id - The channel id.
    */
   async getChannel(channel_id: string): Promise<Channel> {
-    const response = await this.#session.actions.execute('/browse', { browseId: channel_id, client: 'YTKIDS' });
+    const response = await this.#session.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: channel_id, client: 'YTKIDS' }));
     return new Channel(this.#session.actions, response);
   }
 
@@ -62,7 +61,7 @@ class Kids {
    * Retrieves the home feed.
    */
   async getHomeFeed(): Promise<HomeFeed> {
-    const response = await this.#session.actions.execute('/browse', { browseId: 'FEkids_home', client: 'YTKIDS' });
+    const response = await this.#session.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'FEkids_home', client: 'YTKIDS' }));
     return new HomeFeed(this.#session.actions, response);
   }
 }

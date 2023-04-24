@@ -8,6 +8,7 @@ import AccountInfo from '../parser/youtube/AccountInfo.js';
 import Settings from '../parser/youtube/Settings.js';
 
 import { InnertubeError } from '../utils/Utils.js';
+import { BrowseEndpoint } from './index.js';
 
 class AccountManager {
   #actions: Actions;
@@ -70,10 +71,12 @@ class AccountManager {
    * Retrieves time watched statistics.
    */
   async getTimeWatched(): Promise<TimeWatched> {
-    const response = await this.#actions.execute('/browse', {
-      browseId: 'SPtime_watched',
-      client: 'ANDROID'
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: 'SPtime_watched',
+        client: 'ANDROID'
+      })
+    );
 
     return new TimeWatched(response);
   }
@@ -82,10 +85,9 @@ class AccountManager {
    * Opens YouTube settings.
    */
   async getSettings(): Promise<Settings> {
-    const response = await this.#actions.execute('/browse', {
-      browseId: 'SPaccount_overview'
-    });
-
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'SPaccount_overview' })
+    );
     return new Settings(this.#actions, response);
   }
 
@@ -95,13 +97,13 @@ class AccountManager {
   async getAnalytics(): Promise<Analytics> {
     const info = await this.getInfo();
 
-    const params = Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId);
-
-    const response = await this.#actions.execute('/browse', {
-      browseId: 'FEanalytics_screen',
-      client: 'ANDROID',
-      params
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: 'FEanalytics_screen',
+        client: 'ANDROID',
+        params: Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId)
+      })
+    );
 
     return new Analytics(response);
   }

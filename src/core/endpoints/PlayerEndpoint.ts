@@ -4,44 +4,44 @@ export interface PlayerEndpointOptions {
   /**
    * The video ID.
    */
-  video_id: string,
+  video_id: string;
   /**
    * The player's signature timestamp.
    */
-  sts?: number,
+  sts?: number;
   /**
    * The client to use.
    */
-  client?: InnerTubeClient,
+  client?: InnerTubeClient;
   /**
    * The playlist ID.
    */
-  playlist_id?: string
+  playlist_id?: string;
 }
 
-export interface IPlayerEndpoint {
+export interface IPlayerRequest {
   playbackContext: {
     contentPlaybackContext: {
-      vis: number,
-      splay: boolean,
-      referer: string,
-      currentUrl: string,
-      autonavState: string,
-      signatureTimestamp?: number,
-      autoCaptionsDefaultOn: boolean,
-      html5Preference: string,
-      lactMilliseconds: string
+      vis: number;
+      splay: boolean;
+      referer: string;
+      currentUrl: string;
+      autonavState: string;
+      signatureTimestamp?: number;
+      autoCaptionsDefaultOn: boolean;
+      html5Preference: string;
+      lactMilliseconds: string;
     }
   },
-  videoId: string,
-  racyCheckOk: boolean,
-  contentCheckOk: boolean,
-  client?: InnerTubeClient,
-  playlistId?: string
+  videoId: string;
+  racyCheckOk: boolean;
+  contentCheckOk: boolean;
+  client?: InnerTubeClient;
+  playlistId?: string;
 }
 
 /**
- * Builds a payload for InnerTube's `/player` endpoint.
+ * Represents InnerTube's `/player` endpoint.
  * @example
  * ```typescript
  * const player_payload = PlayerEndpoint.build({
@@ -64,7 +64,7 @@ export default class PlayerEndpoint {
    * @param opts - The options to use.
    * @returns The payload.
    */
-  static build(opts: PlayerEndpointOptions): IPlayerEndpoint {
+  static build(opts: PlayerEndpointOptions): IPlayerRequest {
     return {
       playbackContext: {
         contentPlaybackContext: {
