@@ -40,8 +40,8 @@ class Kids {
       client: 'YTKIDS'
     });
 
-    const player_response = await this.#session.actions.execute(PlayerEndpoint.PATH, player_payload);
-    const next_response = await this.#session.actions.execute(NextEndpoint.PATH, next_payload);
+    const player_response = this.#session.actions.execute(PlayerEndpoint.PATH, player_payload);
+    const next_response = this.#session.actions.execute(NextEndpoint.PATH, next_payload);
     const response = await Promise.all([ player_response, next_response ]);
 
     const cpn = generateRandomString(16);
