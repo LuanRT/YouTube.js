@@ -5,6 +5,7 @@ import Channel from '../parser/ytkids/Channel.js';
 import type Session from './Session.js';
 
 import { generateRandomString } from '../utils/Utils.js';
+import { NextEndpoint, PlayerEndpoint } from './endpoints/index.js';
 
 class Kids {
   #session: Session;
@@ -27,22 +28,23 @@ class Kids {
    * @param video_id - The video id.
    */
   async getInfo(video_id: string): Promise<VideoInfo> {
-    const cpn = generateRandomString(16);
 
-    const initial_info = this.#session.actions.execute('/player', {
-      cpn,
+    const player_payload = PlayerEndpoint.build({
+      video_id,
       client: 'YTKIDS',
-      videoId: video_id,
-      playbackContext: {
-        contentPlaybackContext: {
-          signatureTimestamp: this.#session.player?.sts || 0
-        }
-      }
+      sts: this.#session.player?.sts
     });
 
-    const continuation = this.#session.actions.execute('/next', { videoId: video_id, client: 'YTKIDS' });
+    const next_payload = NextEndpoint.build({
+      video_id,
+      client: 'YTKIDS'
+    });
 
-    const response = await Promise.all([ initial_info, continuation ]);
+    const player_response = await this.#session.actions.execute(PlayerEndpoint.PATH, player_payload);
+    const next_response = await this.#session.actions.execute(NextEndpoint.PATH, next_payload);
+    const response = await Promise.all([ player_response, next_response ]);
+
+    const cpn = generateRandomString(16);
 
     return new VideoInfo(response, this.#session.actions, cpn);
   }

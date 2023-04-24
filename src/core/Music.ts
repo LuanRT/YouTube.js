@@ -26,6 +26,7 @@ import { generateRandomString, InnertubeError, throwIfMissing } from '../utils/U
 import type { ObservedArray, YTNode } from '../parser/helpers.js';
 import type Actions from './Actions.js';
 import type Session from './Session.js';
+import { PlayerEndpoint, NextEndpoint } from './endpoints/index.js';
 
 export interface MusicSearchFilters {
   type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
@@ -55,25 +56,23 @@ class Music {
   }
 
   async #fetchInfoFromVideoId(video_id: string): Promise<TrackInfo> {
+    const player_payload = PlayerEndpoint.build({
+      video_id,
+      sts: this.#session.player?.sts,
+      client: 'YTMUSIC'
+    });
+
+    const next_payload = NextEndpoint.build({
+      video_id,
+      client: 'YTMUSIC'
+    });
+
+    const player_response = this.#actions.execute(PlayerEndpoint.PATH, player_payload);
+    const next_response = this.#actions.execute(NextEndpoint.PATH, next_payload);
+    const response = await Promise.all([ player_response, next_response ]);
+
     const cpn = generateRandomString(16);
 
-    const initial_info = this.#actions.execute('/player', {
-      cpn,
-      client: 'YTMUSIC',
-      videoId: video_id,
-      playbackContext: {
-        contentPlaybackContext: {
-          signatureTimestamp: this.#session.player?.sts || 0
-        }
-      }
-    });
-
-    const continuation = this.#actions.execute('/next', {
-      client: 'YTMUSIC',
-      videoId: video_id
-    });
-
-    const response = await Promise.all([ initial_info, continuation ]);
     return new TrackInfo(response, this.#actions, cpn);
   }
 
@@ -84,25 +83,26 @@ class Music {
     if (!list_item.endpoint)
       throw new Error('This item does not have an endpoint.');
 
-    const cpn = generateRandomString(16);
-
-    const initial_info = list_item.endpoint.call(this.#actions, {
-      cpn,
+    const player_response = list_item.endpoint.call(this.#actions, {
       client: 'YTMUSIC',
       playbackContext: {
         contentPlaybackContext: {
-          signatureTimestamp: this.#session.player?.sts || 0
+          ...{
+            signatureTimestamp: this.#session.player?.sts
+          }
         }
       }
     });
 
-    const continuation = list_item.endpoint.call(this.#actions, {
+    const next_response = list_item.endpoint.call(this.#actions, {
       client: 'YTMUSIC',
       enablePersistentPlaylistPanel: true,
       override_endpoint: '/next'
     });
 
-    const response = await Promise.all([ initial_info, continuation ]);
+    const cpn = generateRandomString(16);
+
+    const response = await Promise.all([ player_response, next_response ]);
     return new TrackInfo(response, this.#actions, cpn);
   }
 

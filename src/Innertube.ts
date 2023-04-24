@@ -1,16 +1,15 @@
-
 import Session, { SessionOptions } from './core/Session.js';
 
 import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
 import Channel from './parser/youtube/Channel.js';
 import Comments from './parser/youtube/Comments.js';
+import HashtagFeed from './parser/youtube/HashtagFeed.js';
 import History from './parser/youtube/History.js';
 import Library from './parser/youtube/Library.js';
 import NotificationsMenu from './parser/youtube/NotificationsMenu.js';
 import Playlist from './parser/youtube/Playlist.js';
 import Search from './parser/youtube/Search.js';
 import VideoInfo from './parser/youtube/VideoInfo.js';
-import HashtagFeed from './parser/youtube/HashtagFeed.js';
 
 import AccountManager from './core/AccountManager.js';
 import Feed from './core/Feed.js';
@@ -20,8 +19,8 @@ import YTMusic from './core/Music.js';
 import PlaylistManager from './core/PlaylistManager.js';
 import YTStudio from './core/Studio.js';
 import TabbedFeed from './core/TabbedFeed.js';
-import HomeFeed from './parser/youtube/HomeFeed.js';
 import Guide from './parser/youtube/Guide.js';
+import HomeFeed from './parser/youtube/HomeFeed.js';
 import Proto from './proto/index.js';
 import Constants from './utils/Constants.js';
 
@@ -31,7 +30,8 @@ import type Format from './parser/classes/misc/Format.js';
 import type { ApiResponse } from './core/Actions.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
 import type { DownloadOptions, FormatOptions } from './utils/FormatUtils.js';
-import { generateRandomString, InnertubeError, throwIfMissing } from './utils/Utils.js';
+import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.js';
+import { type INextEndpoint, NextEndpoint, PlayerEndpoint } from './core/endpoints/index.js';
 
 export type InnertubeConfig = SessionOptions;
 
@@ -67,48 +67,39 @@ export default class Innertube {
   async getInfo(target: string | NavigationEndpoint, client?: InnerTubeClient): Promise<VideoInfo> {
     throwIfMissing({ target });
 
-    let payload: {
-      videoId: string,
-      playlistId?: string,
-      params?: string,
-      playlistIndex?: number
-    };
+    let next_payload: INextEndpoint;
 
     if (target instanceof NavigationEndpoint) {
-      const video_id = target.payload?.videoId;
-
-      if (!video_id)
-        throw new InnertubeError('Missing video id in endpoint payload.', target);
-
-      payload = {
-        videoId: video_id
-      };
-
-      if (target.payload.playlistId) {
-        payload.playlistId = target.payload.playlistId;
-      }
-
-      if (target.payload.params) {
-        payload.params = target.payload.params;
-      }
-
-      if (target.payload.index) {
-        payload.playlistIndex = target.payload.index;
-      }
+      next_payload = NextEndpoint.build({
+        video_id: target.payload?.videoId,
+        playlist_id: target.payload?.playlistId,
+        params: target.payload?.params,
+        playlist_index: target.payload?.index
+      });
     } else if (typeof target === 'string') {
-      payload = {
-        videoId: target
-      };
+      next_payload = NextEndpoint.build({
+        video_id: target
+      });
     } else {
       throw new InnertubeError('Invalid target, expected either a video id or a valid NavigationEndpoint', target);
     }
 
+    if (!next_payload.videoId)
+      throw new InnertubeError('Video id cannot be empty', next_payload);
+
+    const player_payload = PlayerEndpoint.build({
+      video_id: next_payload.videoId,
+      playlist_id: next_payload?.playlistId,
+      client: client,
+      sts: this.#session.player?.sts
+    });
+
+    const player_response = this.actions.execute(PlayerEndpoint.PATH, player_payload);
+    const next_response = this.actions.execute(NextEndpoint.PATH, next_payload);
+    const response = await Promise.all([ player_response, next_response ]);
+
     const cpn = generateRandomString(16);
 
-    const initial_info = this.actions.getVideoInfo(payload.videoId, cpn, client);
-    const continuation = this.actions.execute('/next', payload);
-
-    const response = await Promise.all([ initial_info, continuation ]);
     return new VideoInfo(response, this.actions, cpn);
   }
 
@@ -120,8 +111,15 @@ export default class Innertube {
   async getBasicInfo(video_id: string, client?: InnerTubeClient): Promise<VideoInfo> {
     throwIfMissing({ video_id });
 
+    const player_payload = PlayerEndpoint.build({
+      video_id: video_id,
+      client: client,
+      sts: this.#session.player?.sts
+    });
+
+    const response = await this.actions.execute(PlayerEndpoint.PATH, player_payload);
+
     const cpn = generateRandomString(16);
-    const response = await this.actions.getVideoInfo(video_id, cpn, client);
 
     return new VideoInfo([ response ], this.actions, cpn);
   }
@@ -183,9 +181,10 @@ export default class Innertube {
       sort_by: sort_by || 'TOP_COMMENTS'
     });
 
-    const response = await this.actions.execute('/next', { continuation: payload });
+    const next_payload = NextEndpoint.build({ continuation: payload });
+    const next_response = await this.actions.execute(NextEndpoint.PATH, next_payload);
 
-    return new Comments(this.actions, response.data);
+    return new Comments(this.actions, next_response.data);
   }
 
   /**

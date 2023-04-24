@@ -36,3 +36,6 @@ export * from './Studio.js';
 
 export { default as TabbedFeed } from './TabbedFeed.js';
 export * from './TabbedFeed.js';
+
+export * as Endpoints from './endpoints/index.js';
+export * from './endpoints/index.js';
