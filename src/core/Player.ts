@@ -104,6 +104,29 @@ export default class Player {
       url_components.searchParams.set('n', nsig);
     }
 
+    const client = url_components.searchParams.get('c');
+
+    switch (client) {
+      case 'WEB':
+        url_components.searchParams.set('cver', Constants.CLIENTS.WEB.VERSION);
+        break;
+      case 'WEB_REMIX':
+        url_components.searchParams.set('cver', Constants.CLIENTS.YTMUSIC.VERSION);
+        break;
+      case 'WEB_KIDS':
+        url_components.searchParams.set('cver', Constants.CLIENTS.WEB_KIDS.VERSION);
+        break;
+      case 'ANDROID':
+        url_components.searchParams.set('cver', Constants.CLIENTS.ANDROID.VERSION);
+        break;
+      case 'ANDROID_MUSIC':
+        url_components.searchParams.set('cver', Constants.CLIENTS.YTMUSIC_ANDROID.VERSION);
+        break;
+      case 'TVHTML5_SIMPLY_EMBEDDED_PLAYER':
+        url_components.searchParams.set('cver', Constants.CLIENTS.TV_EMBEDDED.VERSION);
+        break;
+    }
+
     return url_components.toString();
   }
 
