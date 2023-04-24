@@ -52,57 +52,6 @@ class Actions {
   }
 
   /**
-   * Used to retrieve video info.
-   * @param id - The video ID.
-   * @param cpn - Content Playback Nonce.
-   * @param client - The client to use.
-   * @param playlist_id - The playlist ID.
-   */
-  async getVideoInfo(id: string, cpn?: string, client?: string, playlist_id?: string): Promise<ApiResponse> {
-    const data: Record<string, any> = {
-      playbackContext: {
-        contentPlaybackContext: {
-          vis: 0,
-          splay: false,
-          referer: 'https://www.youtube.com',
-          currentUrl: `/watch?v=${id}`,
-          autonavState: 'STATE_NONE',
-          signatureTimestamp: this.#session.player?.sts || 0,
-          autoCaptionsDefaultOn: false,
-          html5Preference: 'HTML5_PREF_WANTS',
-          lactMilliseconds: '-1'
-        }
-      },
-      attestationRequest: {
-        omitBotguardData: true
-      },
-      videoId: id
-    };
-
-    if (client) {
-      data.client = client;
-    }
-
-    if (cpn) {
-      data.cpn = cpn;
-    }
-
-    if (playlist_id) {
-      data.playlistId = playlist_id;
-    }
-
-    const response = await this.#session.http.fetch('/player', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    return this.#wrap(response);
-  }
-
-  /**
    * Makes calls to the playback tracking API.
    * @param url - The URL to call.
    * @param client - The client to use.
