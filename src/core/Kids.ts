@@ -5,7 +5,11 @@ import VideoInfo from '../parser/ytkids/VideoInfo.js';
 import type Session from './Session.js';
 
 import { generateRandomString } from '../utils/Utils.js';
-import { BrowseEndpoint, NextEndpoint, PlayerEndpoint, SearchEndpoint } from './endpoints/index.js';
+
+import {
+  BrowseEndpoint, NextEndpoint,
+  PlayerEndpoint, SearchEndpoint
+} from './Endpoints.js';
 
 class Kids {
   #session: Session;

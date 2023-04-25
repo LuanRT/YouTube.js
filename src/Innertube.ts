@@ -40,9 +40,10 @@ import {
   NotificationGetUnseenCountEndpoint,
   PlayerEndpoint,
   ResolveUrlEndpoint,
-  SearchEndpoint,
-  type INextRequest
-} from './core/endpoints/index.js';
+  SearchEndpoint
+} from './core/Endpoints.js';
+
+import type { INextRequest } from './types/index.js';
 
 export type InnertubeConfig = SessionOptions;
 

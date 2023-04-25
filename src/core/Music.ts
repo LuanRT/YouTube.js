@@ -29,7 +29,7 @@ import {
   NextEndpoint,
   PlayerEndpoint,
   SearchEndpoint
-} from './endpoints/index.js';
+} from './Endpoints.js';
 
 import type { ObservedArray, YTNode } from '../parser/helpers.js';
 import type Actions from './Actions.js';

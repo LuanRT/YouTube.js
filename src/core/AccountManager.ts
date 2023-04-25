@@ -8,7 +8,7 @@ import AccountInfo from '../parser/youtube/AccountInfo.js';
 import Settings from '../parser/youtube/Settings.js';
 
 import { InnertubeError } from '../utils/Utils.js';
-import { BrowseEndpoint } from './index.js';
+import { BrowseEndpoint } from './Endpoints.js';
 
 class AccountManager {
   #actions: Actions;
