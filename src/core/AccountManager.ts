@@ -111,7 +111,7 @@ export default class AccountManager {
       BrowseEndpoint.PATH, BrowseEndpoint.build({
         browse_id: 'FEanalytics_screen',
         params: Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId),
-        client: 'ANDROID',
+        client: 'ANDROID'
       })
     );
 

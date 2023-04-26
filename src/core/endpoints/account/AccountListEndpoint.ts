@@ -1,4 +1,4 @@
-import type { IAccountListRequest } from "../../../types/index.js";
+import type { IAccountListRequest } from '../../../types/index.js';
 
 export const PATH = '/account/accounts_list';
 

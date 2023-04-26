@@ -88,7 +88,7 @@ export default class InteractionManager {
     const action = await this.#actions.execute(
       SubscribeEndpoint.PATH, SubscribeEndpoint.build({
         client: 'ANDROID',
-        channel_ids: [channel_id],
+        channel_ids: [ channel_id ],
         params: 'EgIIAhgA'
       })
     );
@@ -109,7 +109,7 @@ export default class InteractionManager {
     const action = await this.#actions.execute(
       UnsubscribeEndpoint.PATH, UnsubscribeEndpoint.build({
         client: 'ANDROID',
-        channel_ids: [channel_id],
+        channel_ids: [ channel_id ],
         params: 'CgIIAhgA'
       })
     );
@@ -153,7 +153,7 @@ export default class InteractionManager {
     const response = await this.#actions.execute(
       PerformCommentActionEndpoint.PATH, PerformCommentActionEndpoint.build({
         client: 'ANDROID',
-        actions: [target_action]
+        actions: [ target_action ]
       })
     );
 

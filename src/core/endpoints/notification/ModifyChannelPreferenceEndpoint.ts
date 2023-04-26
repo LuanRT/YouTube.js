@@ -1,4 +1,4 @@
-import type { IModifyChannelPreferenceRequest, ModifyChannelPreferenceEndpointOptions } from "../../../types/index.js";
+import type { IModifyChannelPreferenceRequest, ModifyChannelPreferenceEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/notification/modify_channel_preference';
 
@@ -13,5 +13,5 @@ export function build(options: ModifyChannelPreferenceEndpointOptions): IModifyC
     ...{
       client: options.client
     }
-  }
+  };
 }

@@ -1,4 +1,4 @@
-import type { ISubscribeRequest, SubscribeEndpointOptions } from "../../../types/index.js";
+import type { ISubscribeRequest, SubscribeEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/subscription/subscribe';
 

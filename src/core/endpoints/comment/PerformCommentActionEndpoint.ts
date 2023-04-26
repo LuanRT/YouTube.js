@@ -1,4 +1,4 @@
-import type { IPerformCommentActionRequest, PerformCommentActionEndpointOptions } from "../../../types/index.js";
+import type { IPerformCommentActionRequest, PerformCommentActionEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/comment/perform_comment_action';
 
@@ -13,5 +13,5 @@ export function build(options: PerformCommentActionEndpointOptions): IPerformCom
     ...{
       client: options.client
     }
-  }
+  };
 }

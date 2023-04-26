@@ -1,4 +1,4 @@
-import type { IChannelEditNameRequest, ChannelEditNameEndpointOptions } from "../../../types/index.js";
+import type { IChannelEditNameRequest, ChannelEditNameEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/channel/edit_name';
 

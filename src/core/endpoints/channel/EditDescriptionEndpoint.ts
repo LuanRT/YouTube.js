@@ -1,4 +1,4 @@
-import type { IChannelEditDescriptionRequest, ChannelEditDescriptionEndpointOptions } from "../../../types/Endpoints.js";
+import type { IChannelEditDescriptionRequest, ChannelEditDescriptionEndpointOptions } from '../../../types/Endpoints.js';
 
 export const PATH = '/channel/edit_description';
 

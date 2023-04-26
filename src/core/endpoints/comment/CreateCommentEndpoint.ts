@@ -1,4 +1,4 @@
-import type { ICreateCommentRequest, CreateCommentEndpointOptions } from "../../../types/index.js";
+import type { ICreateCommentRequest, CreateCommentEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/comment/create_comment';
 
@@ -14,5 +14,5 @@ export function build(options: CreateCommentEndpointOptions): ICreateCommentRequ
     ...{
       client: options.client
     }
-  }
+  };
 }

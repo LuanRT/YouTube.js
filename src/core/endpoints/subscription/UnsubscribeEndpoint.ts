@@ -1,4 +1,4 @@
-import type { IUnsubscribeRequest, UnsubscribeEndpointOptions } from "../../../types/index.js";
+import type { IUnsubscribeRequest, UnsubscribeEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/subscription/unsubscribe';
 

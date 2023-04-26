@@ -1,4 +1,4 @@
-import type { ILikeRequest, LikeEndpointOptions } from "../../../types/index.js";
+import type { ILikeRequest, LikeEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/like/like';
 

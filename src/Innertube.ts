@@ -19,9 +19,8 @@ import Feed from './core/Feed.js';
 import InteractionManager from './core/InteractionManager.js';
 import PlaylistManager from './core/PlaylistManager.js';
 import TabbedFeed from './core/TabbedFeed.js';
-import YTStudio from './core/clients/Studio.js';
 
-import { Kids, Music } from './core/clients/index.js';
+import { Studio, Kids, Music } from './core/clients/index.js';
 
 import Proto from './proto/index.js';
 import Constants from './utils/Constants.js';
@@ -108,7 +107,7 @@ export default class Innertube {
 
     const player_response = this.actions.execute(PlayerEndpoint.PATH, player_payload);
     const next_response = this.actions.execute(NextEndpoint.PATH, next_payload);
-    const response = await Promise.all([player_response, next_response]);
+    const response = await Promise.all([ player_response, next_response ]);
 
     const cpn = generateRandomString(16);
 
@@ -133,7 +132,7 @@ export default class Innertube {
 
     const cpn = generateRandomString(16);
 
-    return new VideoInfo([response], this.actions, cpn);
+    return new VideoInfo([ response ], this.actions, cpn);
   }
 
   /**
@@ -373,56 +372,56 @@ export default class Innertube {
   /**
    * An interface for interacting with YouTube Music.
    */
-  get music(): Music {
+  get music() {
     return new Music(this.#session);
   }
 
   /**
    * An interface for interacting with YouTube Studio.
    */
-  get studio(): YTStudio {
-    return new YTStudio(this.#session);
+  get studio() {
+    return new Studio(this.#session);
   }
 
   /**
    * An interface for interacting with YouTube Kids.
    */
-  get kids(): Kids {
+  get kids() {
     return new Kids(this.#session);
   }
 
   /**
    * An interface for managing and retrieving account information.
    */
-  get account(): AccountManager {
+  get account() {
     return new AccountManager(this.#session.actions);
   }
 
   /**
    * An interface for managing playlists.
    */
-  get playlist(): PlaylistManager {
+  get playlist() {
     return new PlaylistManager(this.#session.actions);
   }
 
   /**
    * An interface for directly interacting with certain YouTube features.
    */
-  get interact(): InteractionManager {
+  get interact() {
     return new InteractionManager(this.#session.actions);
   }
 
   /**
    * An internal class used to dispatch requests.
    */
-  get actions(): Actions {
+  get actions() {
     return this.#session.actions;
   }
 
   /**
    * The session used by this instance.
    */
-  get session(): Session {
+  get session() {
     return this.#session;
   }
 }
