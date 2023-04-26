@@ -13,12 +13,6 @@ export * from './FilterableFeed.js';
 export { default as InteractionManager } from './InteractionManager.js';
 export * from './InteractionManager.js';
 
-export { default as Kids } from './Kids.js';
-export * from './Kids.js';
-
-export { default as Music } from './Music.js';
-export * from './Music.js';
-
 export { default as OAuth } from './OAuth.js';
 export * from './OAuth.js';
 
@@ -31,10 +25,8 @@ export * from './PlaylistManager.js';
 export { default as Session } from './Session.js';
 export * from './Session.js';
 
-export { default as Studio } from './Studio.js';
-export * from './Studio.js';
-
 export { default as TabbedFeed } from './TabbedFeed.js';
 export * from './TabbedFeed.js';
 
+export * as Clients from './clients/index.js';
 export * as Endpoints from './endpoints/index.js';

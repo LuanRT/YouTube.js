@@ -1,16 +1,16 @@
+import AccountInfo from '../parser/youtube/AccountInfo.js';
+import Analytics from '../parser/youtube/Analytics.js';
+import Settings from '../parser/youtube/Settings.js';
+import TimeWatched from '../parser/youtube/TimeWatched.js';
+
 import Proto from '../proto/index.js';
+import { InnertubeError } from '../utils/Utils.js';
+import { Account, BrowseEndpoint, Channel } from './endpoints/index.js';
+
 import type Actions from './Actions.js';
 import type { ApiResponse } from './Actions.js';
 
-import Analytics from '../parser/youtube/Analytics.js';
-import TimeWatched from '../parser/youtube/TimeWatched.js';
-import AccountInfo from '../parser/youtube/AccountInfo.js';
-import Settings from '../parser/youtube/Settings.js';
-
-import { InnertubeError } from '../utils/Utils.js';
-import { BrowseEndpoint } from './endpoints/index.js';
-
-class AccountManager {
+export default class AccountManager {
   #actions: Actions;
 
   channel: {
@@ -31,10 +31,12 @@ class AccountManager {
         if (!this.#actions.session.logged_in)
           throw new InnertubeError('You must be signed in to perform this operation.');
 
-        return this.#actions.execute('/channel/edit_name', {
-          givenName: new_name,
-          client: 'ANDROID'
-        });
+        return this.#actions.execute(
+          Channel.EditNameEndpoint.PATH,
+          Channel.EditNameEndpoint.build({
+            given_name: new_name
+          })
+        );
       },
       /**
        * Edits channel description.
@@ -44,10 +46,12 @@ class AccountManager {
         if (!this.#actions.session.logged_in)
           throw new InnertubeError('You must be signed in to perform this operation.');
 
-        return this.#actions.execute('/channel/edit_description', {
-          givenDescription: new_description,
-          client: 'ANDROID'
-        });
+        return this.#actions.execute(
+          Channel.EditDescriptionEndpoint.PATH,
+          Channel.EditDescriptionEndpoint.build({
+            given_description: new_description
+          })
+        );
       },
       /**
        * Retrieves basic channel analytics.
@@ -63,7 +67,11 @@ class AccountManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const response = await this.#actions.execute('/account/accounts_list', { client: 'ANDROID' });
+    const response = await this.#actions.execute(
+      Account.AccountListEndpoint.PATH,
+      Account.AccountListEndpoint.build()
+    );
+
     return new AccountInfo(response);
   }
 
@@ -86,7 +94,9 @@ class AccountManager {
    */
   async getSettings(): Promise<Settings> {
     const response = await this.#actions.execute(
-      BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'SPaccount_overview' })
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: 'SPaccount_overview'
+      })
     );
     return new Settings(this.#actions, response);
   }
@@ -100,13 +110,11 @@ class AccountManager {
     const response = await this.#actions.execute(
       BrowseEndpoint.PATH, BrowseEndpoint.build({
         browse_id: 'FEanalytics_screen',
+        params: Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId),
         client: 'ANDROID',
-        params: Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId)
       })
     );
 
     return new Analytics(response);
   }
 }
-
-export default AccountManager;

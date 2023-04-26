@@ -17,19 +17,14 @@ import VideoInfo from './parser/youtube/VideoInfo.js';
 import AccountManager from './core/AccountManager.js';
 import Feed from './core/Feed.js';
 import InteractionManager from './core/InteractionManager.js';
-import YTKids from './core/Kids.js';
-import YTMusic from './core/Music.js';
 import PlaylistManager from './core/PlaylistManager.js';
-import YTStudio from './core/Studio.js';
 import TabbedFeed from './core/TabbedFeed.js';
+import YTStudio from './core/clients/Studio.js';
+
+import { Kids, Music } from './core/clients/index.js';
 
 import Proto from './proto/index.js';
 import Constants from './utils/Constants.js';
-
-import type Actions from './core/Actions.js';
-import type { ApiResponse } from './core/Actions.js';
-import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
-import type { DownloadOptions, FormatOptions } from './utils/FormatUtils.js';
 import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.js';
 
 import {
@@ -37,25 +32,30 @@ import {
   GetNotificationMenuEndpoint,
   GuideEndpoint,
   NextEndpoint,
-  NotificationGetUnseenCountEndpoint,
   PlayerEndpoint,
   ResolveURLEndpoint,
   SearchEndpoint
 } from './core/endpoints/index.js';
 
+import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.js';
+
+import type Actions from './core/Actions.js';
+import type { ApiResponse } from './core/Actions.js';
+import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
 import type { INextRequest } from './types/index.js';
+import type { DownloadOptions, FormatOptions } from './utils/FormatUtils.js';
 
 export type InnertubeConfig = SessionOptions;
 
-export interface SearchFilters {
-  upload_date?: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
-  type?: 'all' | 'video' | 'channel' | 'playlist' | 'movie';
-  duration?: 'all' | 'short' | 'medium' | 'long';
-  sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count';
-  features?: ('hd' | 'subtitles' | 'creative_commons' | '3d' | 'live' | 'purchased' | '4k' | '360' | 'location' | 'hdr' | 'vr180')[];
-}
-
 export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS'
+
+export type SearchFilters = Partial<{
+  upload_date: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
+  type: 'all' | 'video' | 'channel' | 'playlist' | 'movie';
+  duration: 'all' | 'short' | 'medium' | 'long';
+  sort_by: 'relevance' | 'rating' | 'upload_date' | 'view_count';
+  features: ('hd' | 'subtitles' | 'creative_commons' | '3d' | 'live' | 'purchased' | '4k' | '360' | 'location' | 'hdr' | 'vr180')[];
+}>;
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -108,7 +108,7 @@ export default class Innertube {
 
     const player_response = this.actions.execute(PlayerEndpoint.PATH, player_payload);
     const next_response = this.actions.execute(NextEndpoint.PATH, next_payload);
-    const response = await Promise.all([ player_response, next_response ]);
+    const response = await Promise.all([player_response, next_response]);
 
     const cpn = generateRandomString(16);
 
@@ -133,7 +133,7 @@ export default class Innertube {
 
     const cpn = generateRandomString(16);
 
-    return new VideoInfo([ response ], this.actions, cpn);
+    return new VideoInfo([response], this.actions, cpn);
   }
 
   /**
@@ -201,7 +201,9 @@ export default class Innertube {
    * Retrieves YouTube's home feed (aka recommendations).
    */
   async getHomeFeed(): Promise<HomeFeed> {
-    const response = await this.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'FEwhat_to_watch' }));
+    const response = await this.actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'FEwhat_to_watch' })
+    );
     return new HomeFeed(this.actions, response);
   }
 
@@ -217,7 +219,9 @@ export default class Innertube {
    * Returns the account's library.
    */
   async getLibrary(): Promise<Library> {
-    const response = await this.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'FElibrary' }));
+    const response = await this.actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'FElibrary' })
+    );
     return new Library(this.actions, response);
   }
 
@@ -226,7 +230,9 @@ export default class Innertube {
    * Which can also be achieved with {@link getLibrary}.
    */
   async getHistory(): Promise<History> {
-    const response = await this.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'FEhistory' }));
+    const response = await this.actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'FEhistory' })
+    );
     return new History(this.actions, response);
   }
 
@@ -234,7 +240,9 @@ export default class Innertube {
    * Retrieves trending content.
    */
   async getTrending(): Promise<TabbedFeed<IBrowseResponse>> {
-    const response = await this.actions.execute(BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: 'FEtrending' }), parse: true });
+    const response = await this.actions.execute(
+      BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: 'FEtrending' }), parse: true }
+    );
     return new TabbedFeed(this.actions, response);
   }
 
@@ -242,7 +250,9 @@ export default class Innertube {
    * Retrieves subscriptions feed.
    */
   async getSubscriptionsFeed(): Promise<Feed<IBrowseResponse>> {
-    const response = await this.actions.execute(BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: 'FEsubscriptions' }), parse: true });
+    const response = await this.actions.execute(
+      BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: 'FEsubscriptions' }), parse: true }
+    );
     return new Feed(this.actions, response);
   }
 
@@ -252,7 +262,9 @@ export default class Innertube {
    */
   async getChannel(id: string): Promise<Channel> {
     throwIfMissing({ id });
-    const response = await this.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: id }));
+    const response = await this.actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: id })
+    );
     return new Channel(this.actions, response);
   }
 
@@ -272,7 +284,7 @@ export default class Innertube {
    * Retrieves unseen notifications count.
    */
   async getUnseenNotificationsCount(): Promise<number> {
-    const response = await this.actions.execute(NotificationGetUnseenCountEndpoint.PATH);
+    const response = await this.actions.execute(GetUnseenCountEndpoint.PATH);
     // TODO: properly parse this
     return response.data?.unseenCount || response.data?.actions?.[0].updateNotificationsUnseenCountAction?.unseenCount || 0;
   }
@@ -288,7 +300,9 @@ export default class Innertube {
       id = `VL${id}`;
     }
 
-    const response = await this.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: id }));
+    const response = await this.actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: id })
+    );
 
     return new Playlist(this.actions, response);
   }
@@ -357,56 +371,56 @@ export default class Innertube {
   }
 
   /**
-   * An instance of YTMusic for interacting with the YouTube Music service.
+   * An interface for interacting with YouTube Music.
    */
-  get music(): YTMusic {
-    return new YTMusic(this.#session);
+  get music(): Music {
+    return new Music(this.#session);
   }
 
   /**
-   * An instance of YTStudio for interacting with the YouTube Studio service.
+   * An interface for interacting with YouTube Studio.
    */
   get studio(): YTStudio {
     return new YTStudio(this.#session);
   }
 
   /**
-   * An instance of YTKids for interacting with the YouTube Kids service.
+   * An interface for interacting with YouTube Kids.
    */
-  get kids(): YTKids {
-    return new YTKids(this.#session);
+  get kids(): Kids {
+    return new Kids(this.#session);
   }
 
   /**
-   * An instance of AccountManager for managing a user's account.
+   * An interface for managing and retrieving account information.
    */
   get account(): AccountManager {
     return new AccountManager(this.#session.actions);
   }
 
   /**
-   * An instance of PlaylistManager for managing playlists.
+   * An interface for managing playlists.
    */
   get playlist(): PlaylistManager {
     return new PlaylistManager(this.#session.actions);
   }
 
   /**
-   * An instance of InteractionManager for interacting with contents in YouTube.
+   * An interface for directly interacting with certain YouTube features.
    */
   get interact(): InteractionManager {
     return new InteractionManager(this.#session.actions);
   }
 
   /**
-   * An instance of Actions.
+   * An internal class used to dispatch requests.
    */
   get actions(): Actions {
     return this.#session.actions;
   }
 
   /**
-   * Returns the InnerTube session instance.
+   * The session used by this instance.
    */
   get session(): Session {
     return this.#session;

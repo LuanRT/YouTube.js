@@ -1,46 +1,41 @@
+import Album from '../../parser/ytmusic/Album.js';
+import Artist from '../../parser/ytmusic/Artist.js';
+import Explore from '../../parser/ytmusic/Explore.js';
+import HomeFeed from '../../parser/ytmusic/HomeFeed.js';
+import Library from '../../parser/ytmusic/Library.js';
+import Playlist from '../../parser/ytmusic/Playlist.js';
+import Recap from '../../parser/ytmusic/Recap.js';
+import Search from '../../parser/ytmusic/Search.js';
+import TrackInfo from '../../parser/ytmusic/TrackInfo.js';
 
-import Album from '../parser/ytmusic/Album.js';
-import Artist from '../parser/ytmusic/Artist.js';
-import Explore from '../parser/ytmusic/Explore.js';
-import HomeFeed from '../parser/ytmusic/HomeFeed.js';
-import Library from '../parser/ytmusic/Library.js';
-import Playlist from '../parser/ytmusic/Playlist.js';
-import Recap from '../parser/ytmusic/Recap.js';
-import Search from '../parser/ytmusic/Search.js';
-import TrackInfo from '../parser/ytmusic/TrackInfo.js';
+import AutomixPreviewVideo from '../../parser/classes/AutomixPreviewVideo.js';
+import Message from '../../parser/classes/Message.js';
+import MusicCarouselShelf from '../../parser/classes/MusicCarouselShelf.js';
+import MusicDescriptionShelf from '../../parser/classes/MusicDescriptionShelf.js';
+import MusicQueue from '../../parser/classes/MusicQueue.js';
+import MusicTwoRowItem from '../../parser/classes/MusicTwoRowItem.js';
+import PlaylistPanel from '../../parser/classes/PlaylistPanel.js';
+import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.js';
+import SectionList from '../../parser/classes/SectionList.js';
+import Tab from '../../parser/classes/Tab.js';
+import Proto from '../../proto/index.js';
 
-import AutomixPreviewVideo from '../parser/classes/AutomixPreviewVideo.js';
-import Message from '../parser/classes/Message.js';
-import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf.js';
-import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf.js';
-import MusicQueue from '../parser/classes/MusicQueue.js';
-import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem.js';
-import PlaylistPanel from '../parser/classes/PlaylistPanel.js';
-import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection.js';
-import SectionList from '../parser/classes/SectionList.js';
-import Tab from '../parser/classes/Tab.js';
-
-import Proto from '../proto/index.js';
-import { generateRandomString, InnertubeError, throwIfMissing } from '../utils/Utils.js';
+import type { ObservedArray, YTNode } from '../../parser/helpers.js';
+import type { MusicSearchFilters } from '../../types/index.js';
+import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.js';
+import type Actions from '../Actions.js';
+import type Session from '../Session.js';
 
 import {
   BrowseEndpoint,
-  MusicGetSearchSuggestionsEndpoint,
   NextEndpoint,
   PlayerEndpoint,
   SearchEndpoint
-} from './endpoints/index.js';
+} from '../endpoints/index.js';
 
-import type { ObservedArray, YTNode } from '../parser/helpers.js';
-import type Actions from './Actions.js';
-import type Session from './Session.js';
+import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.js';
 
-
-export interface MusicSearchFilters {
-  type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
-}
-
-class Music {
+export default class Music {
   #session: Session;
   #actions: Actions;
 
@@ -77,7 +72,7 @@ class Music {
 
     const player_response = this.#actions.execute(PlayerEndpoint.PATH, player_payload);
     const next_response = this.#actions.execute(NextEndpoint.PATH, next_payload);
-    const response = await Promise.all([ player_response, next_response ]);
+    const response = await Promise.all([player_response, next_response]);
 
     const cpn = generateRandomString(16);
 
@@ -110,7 +105,7 @@ class Music {
 
     const cpn = generateRandomString(16);
 
-    const response = await Promise.all([ player_response, next_response ]);
+    const response = await Promise.all([player_response, next_response]);
     return new TrackInfo(response, this.#actions, cpn);
   }
 
@@ -362,7 +357,8 @@ class Music {
    */
   async getSearchSuggestions(query: string): Promise<ObservedArray<YTNode>> {
     const response = await this.#actions.execute(
-      MusicGetSearchSuggestionsEndpoint.PATH, { ...MusicGetSearchSuggestionsEndpoint.build({ input: query }), parse: true }
+      GetSearchSuggestionsEndpoint.PATH,
+      { ...GetSearchSuggestionsEndpoint.build({ input: query }), parse: true }
     );
 
     if (!response.contents_memo)
@@ -373,5 +369,3 @@ class Music {
     return search_suggestions_section.contents;
   }
 }
-
-export default Music;

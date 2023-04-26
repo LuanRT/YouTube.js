@@ -1,9 +1,10 @@
-import Proto from '../proto/index.js';
-import { Constants } from '../utils/index.js';
-import { InnertubeError, MissingParamError, Platform } from '../utils/Utils.js';
+import Proto from '../../proto/index.js';
+import { Constants } from '../../utils/index.js';
+import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.js';
 
-import type { ApiResponse } from './Actions.js';
-import type Session from './Session.js';
+import type { ApiResponse } from '../Actions.js';
+import type Session from '../Session.js';
+import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.js';
 
 interface UploadResult {
   status: string;
@@ -18,25 +19,7 @@ interface InitialUploadData {
   chunk_granularity: string;
 }
 
-export interface VideoMetadata {
-  title?: string;
-  description?: string;
-  tags?: string[];
-  category?: number;
-  license?: string;
-  age_restricted?: boolean;
-  made_for_kids?: boolean;
-  privacy?: 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
-}
-
-export interface UploadedVideoMetadata {
-  title?: string;
-  description?: string;
-  privacy?: 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
-  is_draft?: boolean;
-}
-
-class Studio {
+export default class Studio {
   #session: Session;
 
   constructor(session: Session) {
@@ -69,7 +52,7 @@ class Studio {
   }
 
   /**
-   * Updates given video's metadata.
+   * Updates a given video's metadata.
    * @example
    * ```ts
    * const response = await yt.studio.updateVideoMetadata('videoid', {
@@ -82,7 +65,7 @@ class Studio {
    * });
    * ```
    */
-  async updateVideoMetadata(video_id: string, metadata: VideoMetadata): Promise<ApiResponse> {
+  async updateVideoMetadata(video_id: string, metadata: UpdateVideoMetadataOptions): Promise<ApiResponse> {
     if (!this.#session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
@@ -104,7 +87,7 @@ class Studio {
    * const response = await yt.studio.upload(file.buffer, { title: 'Wow!' });
    * ```
    */
-  async upload(file: BodyInit, metadata: UploadedVideoMetadata = {}): Promise<ApiResponse> {
+  async upload(file: BodyInit, metadata: UploadedVideoMetadataOptions = {}): Promise<ApiResponse> {
     if (!this.#session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
@@ -174,7 +157,7 @@ class Studio {
     return data;
   }
 
-  async #setVideoMetadata(initial_data: InitialUploadData, upload_result: UploadResult, metadata: UploadedVideoMetadata) {
+  async #setVideoMetadata(initial_data: InitialUploadData, upload_result: UploadResult, metadata: UploadedVideoMetadataOptions) {
     const metadata_payload = {
       resourceId: {
         scottyResourceId: {
@@ -207,5 +190,3 @@ class Studio {
     return response;
   }
 }
-
-export default Studio;

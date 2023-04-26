@@ -1,17 +1,17 @@
-import Channel from '../parser/ytkids/Channel.js';
-import HomeFeed from '../parser/ytkids/HomeFeed.js';
-import Search from '../parser/ytkids/Search.js';
-import VideoInfo from '../parser/ytkids/VideoInfo.js';
-import type Session from './Session.js';
+import Channel from '../../parser/ytkids/Channel.js';
+import HomeFeed from '../../parser/ytkids/HomeFeed.js';
+import Search from '../../parser/ytkids/Search.js';
+import VideoInfo from '../../parser/ytkids/VideoInfo.js';
+import type Session from '../Session.js';
 
-import { generateRandomString } from '../utils/Utils.js';
+import { generateRandomString } from '../../utils/Utils.js';
 
 import {
   BrowseEndpoint, NextEndpoint,
   PlayerEndpoint, SearchEndpoint
-} from './endpoints/index.js';
+} from '../endpoints/index.js';
 
-class Kids {
+export default class Kids {
   #session: Session;
 
   constructor(session: Session) {
@@ -23,7 +23,9 @@ class Kids {
    * @param query - The query.
    */
   async search(query: string): Promise<Search> {
-    const response = await this.#session.actions.execute(SearchEndpoint.PATH, SearchEndpoint.build({ query, client: 'YTKIDS' }));
+    const response = await this.#session.actions.execute(
+      SearchEndpoint.PATH, SearchEndpoint.build({ client: 'YTKIDS', query })
+    );
     return new Search(this.#session.actions, response);
   }
 
@@ -33,9 +35,9 @@ class Kids {
    */
   async getInfo(video_id: string): Promise<VideoInfo> {
     const player_payload = PlayerEndpoint.build({
-      video_id,
+      sts: this.#session.player?.sts,
       client: 'YTKIDS',
-      sts: this.#session.player?.sts
+      video_id
     });
 
     const next_payload = NextEndpoint.build({
@@ -45,7 +47,7 @@ class Kids {
 
     const player_response = this.#session.actions.execute(PlayerEndpoint.PATH, player_payload);
     const next_response = this.#session.actions.execute(NextEndpoint.PATH, next_payload);
-    const response = await Promise.all([ player_response, next_response ]);
+    const response = await Promise.all([player_response, next_response]);
 
     const cpn = generateRandomString(16);
 
@@ -57,7 +59,12 @@ class Kids {
   * @param channel_id - The channel id.
    */
   async getChannel(channel_id: string): Promise<Channel> {
-    const response = await this.#session.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: channel_id, client: 'YTKIDS' }));
+    const response = await this.#session.actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: channel_id,
+        client: 'YTKIDS'
+      })
+    );
     return new Channel(this.#session.actions, response);
   }
 
@@ -65,9 +72,12 @@ class Kids {
    * Retrieves the home feed.
    */
   async getHomeFeed(): Promise<HomeFeed> {
-    const response = await this.#session.actions.execute(BrowseEndpoint.PATH, BrowseEndpoint.build({ browse_id: 'FEkids_home', client: 'YTKIDS' }));
+    const response = await this.#session.actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: 'FEkids_home',
+        client: 'YTKIDS'
+      })
+    );
     return new HomeFeed(this.#session.actions, response);
   }
 }
-
-export default Kids;

@@ -1,6 +1,6 @@
 import { CLIENTS } from '../utils/Constants.js';
 import { base64ToU8, u8ToBase64 } from '../utils/Utils.js';
-import { VideoMetadata } from '../core/Studio.js';
+import { UpdateVideoMetadataOptions } from '../types/index.js';
 
 import * as VisitorData from './generated/messages/youtube/VisitorData.js';
 import * as ChannelAnalytics from './generated/messages/youtube/ChannelAnalytics.js';
@@ -235,7 +235,7 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  static encodeVideoMetadataPayload(video_id: string, metadata: VideoMetadata): Uint8Array {
+  static encodeVideoMetadataPayload(video_id: string, metadata: UpdateVideoMetadataOptions): Uint8Array {
     const data: InnertubePayload.Type = {
       context: {
         client: {
