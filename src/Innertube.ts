@@ -39,9 +39,9 @@ import {
   NextEndpoint,
   NotificationGetUnseenCountEndpoint,
   PlayerEndpoint,
-  ResolveUrlEndpoint,
+  ResolveURLEndpoint,
   SearchEndpoint
-} from './core/Endpoints.js';
+} from './core/endpoints/index.js';
 
 import type { INextRequest } from './types/index.js';
 
@@ -340,7 +340,7 @@ export default class Innertube {
    */
   async resolveURL(url: string): Promise<NavigationEndpoint> {
     const response = await this.actions.execute(
-      ResolveUrlEndpoint.PATH, { ...ResolveUrlEndpoint.build({ url }), parse: true }
+      ResolveURLEndpoint.PATH, { ...ResolveURLEndpoint.build({ url }), parse: true }
     );
     return response.endpoint;
   }

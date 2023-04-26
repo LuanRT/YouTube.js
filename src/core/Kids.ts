@@ -9,7 +9,7 @@ import { generateRandomString } from '../utils/Utils.js';
 import {
   BrowseEndpoint, NextEndpoint,
   PlayerEndpoint, SearchEndpoint
-} from './Endpoints.js';
+} from './endpoints/index.js';
 
 class Kids {
   #session: Session;

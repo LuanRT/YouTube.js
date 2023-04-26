@@ -123,14 +123,14 @@ export interface ISearchRequest {
 
 export type SearchEndpointOptions = ISearchRequest;
 
-export interface IResolveUrlRequest {
+export interface IResolveURLRequest {
   /**
    * The URL to resolve.
    */
   url: string;
 }
 
-export type ResolveUrlEndpointOptions = IResolveUrlRequest;
+export type ResolveURLEndpointOptions = IResolveURLRequest;
 
 export type GetNotificationMenuEndpointOptions = {
   /**
