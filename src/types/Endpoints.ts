@@ -1,5 +1,11 @@
 import type { InnerTubeClient } from '../Innertube.js';
 
+export type SnakeToCamel<S extends string> = S extends `${infer T}_${infer U}` ? `${Lowercase<T>}${Capitalize<SnakeToCamel<U>>}` : S;
+
+export type ObjectSnakeToCamel<T> = {
+  [K in keyof T as SnakeToCamel<K & string>]: T[K] extends object ? ObjectSnakeToCamel<T[K]> : T[K];
+}
+
 export interface IPlayerRequest {
   playbackContext: {
     contentPlaybackContext: {
@@ -67,14 +73,7 @@ export type NextEndpointOptions = {
   continuation?: string;
 }
 
-export interface INextRequest {
-  videoId?: string;
-  playlistId?: string;
-  params?: string;
-  playlistIndex?: number;
-  client?: InnerTubeClient;
-  continuation?: string;
-}
+export interface INextRequest extends ObjectSnakeToCamel<NextEndpointOptions> {};
 
 export type BrowseEndpointOptions = {
   /**
@@ -95,12 +94,7 @@ export type BrowseEndpointOptions = {
   client?: InnerTubeClient;
 }
 
-export interface IBrowseRequest {
-  browseId?: string;
-  params?: string;
-  continuation?: string;
-  client?: InnerTubeClient;
-}
+export interface IBrowseRequest extends ObjectSnakeToCamel<BrowseEndpointOptions> {};
 
 export interface ISearchRequest {
   /**
@@ -132,6 +126,7 @@ export interface IResolveURLRequest {
 
 export type ResolveURLEndpointOptions = IResolveURLRequest;
 
+
 export type GetNotificationMenuEndpointOptions = {
   /**
    * The type of notifications to request.
@@ -139,9 +134,7 @@ export type GetNotificationMenuEndpointOptions = {
   notifications_menu_request_type: 'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX' | 'NOTIFICATIONS_MENU_REQUEST_TYPE_COMMENTS';
 }
 
-export interface IGetNotificationMenuRequest {
-  notificationsMenuRequestType: string;
-}
+export interface IGetNotificationMenuRequest extends ObjectSnakeToCamel<GetNotificationMenuEndpointOptions> {};
 
 export type MusicGetSearchSuggestionsEndpointOptions = {
   /**
@@ -153,3 +146,113 @@ export type MusicGetSearchSuggestionsEndpointOptions = {
 export interface IMusicGetSearchSuggestionsRequest extends MusicGetSearchSuggestionsEndpointOptions {
   client: 'YTMUSIC';
 }
+
+export type ChannelEditNameEndpointOptions = {
+  /**
+   * The new channel name.
+   */
+  given_name: string;
+}
+
+export interface IChannelEditNameRequest extends ObjectSnakeToCamel<ChannelEditNameEndpointOptions> {
+  client: 'ANDROID';
+}
+
+export type ChannelEditDescriptionEndpointOptions = {
+  /**
+   * The new channel description.
+   */
+  given_description: string;
+}
+
+export interface IChannelEditDescriptionRequest extends ObjectSnakeToCamel<ChannelEditDescriptionEndpointOptions> {
+  client: 'ANDROID';
+}
+
+export interface IAccountListRequest {
+  client: 'ANDROID';
+}
+
+export type LikeEndpointOptions = {
+  /**
+   * The client to use.
+   */
+  client?: InnerTubeClient;
+  /**
+   * The target video.
+   */
+  target: {
+    video_id: string;
+  }
+}
+
+export interface ILikeRequest extends ObjectSnakeToCamel<LikeEndpointOptions> { };
+
+export interface IDislikeRequest extends ILikeRequest { };
+export type DislikeEndpointOptions = LikeEndpointOptions;
+
+export interface IRemoveLikeRequest extends ILikeRequest { };
+export type RemoveLikeEndpointOptions = LikeEndpointOptions;
+
+export type SubscribeEndpointOptions = {
+  /**
+   * The channel IDs to subscribe to/unsubscribe from.
+   */
+  channel_ids: string[];
+  /**
+   * Additional protobuf parameters.
+   */
+  params?: string;
+  /**
+   * The client to use.
+   */
+  client?: InnerTubeClient;
+}
+
+export interface ISubscribeRequest extends ObjectSnakeToCamel<SubscribeEndpointOptions> { };
+
+export interface IUnsubscribeRequest extends ISubscribeRequest { };
+export type UnsubscribeEndpointOptions = SubscribeEndpointOptions;
+
+export interface IPerformCommentActionRequest {
+  /**
+   * An array of protobuf-encoded actions.
+   */
+  actions: string[];
+  /**
+   * The client to use.
+   */
+  client?: InnerTubeClient;
+}
+
+export type PerformCommentActionEndpointOptions = IPerformCommentActionRequest;
+
+export type CreateCommentEndpointOptions = {
+  /**
+   * The comment text.
+   */
+  comment_text: string;
+  /**
+   * Additional protobuf parameters.
+   */
+  create_comment_params: string;
+  /**
+   * The client to use.
+   */
+  client?: InnerTubeClient;
+}
+
+export interface ICreateCommentRequest extends ObjectSnakeToCamel<CreateCommentEndpointOptions> { };
+
+export interface IModifyChannelPreferenceRequest {
+  /**
+   * Protobuf-encoded parameters.
+   */
+  params: string;
+  /**
+   * The client to use.
+   */
+  client?: InnerTubeClient;
+}
+
+export type ModifyChannelPreferenceEndpointOptions = IModifyChannelPreferenceRequest;
