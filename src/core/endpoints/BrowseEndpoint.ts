@@ -1,4 +1,4 @@
-import { IBrowseRequest, BrowseEndpointOptions } from '../../types/index.js';
+import type { IBrowseRequest, BrowseEndpointOptions } from '../../types/index.js';
 
 export const PATH = '/browse';
 

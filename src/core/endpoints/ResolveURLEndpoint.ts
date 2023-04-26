@@ -1,4 +1,4 @@
-import { IResolveURLRequest, ResolveURLEndpointOptions } from '../../types/index.js';
+import type { IResolveURLRequest, ResolveURLEndpointOptions } from '../../types/index.js';
 
 export const PATH = '/navigation/resolve_url';
 

@@ -1,4 +1,4 @@
-import { INextRequest, NextEndpointOptions } from '../../types/index.js';
+import type { INextRequest, NextEndpointOptions } from '../../types/index.js';
 
 export const PATH = '/next';
 

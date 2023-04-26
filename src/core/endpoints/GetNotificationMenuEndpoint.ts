@@ -1,4 +1,4 @@
-import { IGetNotificationMenuRequest, GetNotificationMenuEndpointOptions } from '../../types/index.js';
+import type { IGetNotificationMenuRequest, GetNotificationMenuEndpointOptions } from '../../types/index.js';
 
 export const PATH = '/notification/get_notification_menu';
 

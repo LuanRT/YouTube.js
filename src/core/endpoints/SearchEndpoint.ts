@@ -1,4 +1,4 @@
-import { ISearchRequest, SearchEndpointOptions } from '../../types/index.js';
+import type { ISearchRequest, SearchEndpointOptions } from '../../types/index.js';
 
 export const PATH = '/search';
 

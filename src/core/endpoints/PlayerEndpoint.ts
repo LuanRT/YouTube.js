@@ -1,4 +1,4 @@
-import { IPlayerRequest, PlayerEndpointOptions } from '../../types/index.js';
+import type { IPlayerRequest, PlayerEndpointOptions } from '../../types/index.js';
 
 export const PATH = '/player';
 
