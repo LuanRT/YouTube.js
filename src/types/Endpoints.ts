@@ -294,3 +294,16 @@ export type CreateVideoEndpointOptions = {
 }
 
 export type ICreateVideoRequest = ObjectSnakeToCamel<CreateVideoEndpointOptions>;
+
+export type CreatePlaylistEndpointOptions = {
+  /**
+   * The playlist title.
+   */
+  title: string;
+  /**
+   * The video IDs to add to the playlist.
+   */
+  ids: string[];
+}
+
+export type ICreatePlaylistRequest = CreatePlaylistEndpointOptions;
