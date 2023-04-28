@@ -19,12 +19,14 @@ export class Marker extends YTNode {
 
     this.value = {};
 
-    if (Reflect.has(data.value, 'heatmap')) {
-      this.value.heatmap = Parser.parseItem(data.value.heatmap, Heatmap);
-    }
+    if (Reflect.has(data, 'value')) {
+      if (Reflect.has(data.value, 'heatmap')) {
+        this.value.heatmap = Parser.parseItem(data.value.heatmap, Heatmap);
+      }
 
-    if (Reflect.has(data.value, 'chapters')) {
-      this.value.chapters = Parser.parseArray(data.value.chapters, Chapter);
+      if (Reflect.has(data.value, 'chapters')) {
+        this.value.chapters = Parser.parseArray(data.value.chapters, Chapter);
+      }
     }
   }
 }

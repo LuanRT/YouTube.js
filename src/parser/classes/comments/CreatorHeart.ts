@@ -21,7 +21,7 @@ export default class CreatorHeart extends YTNode {
     super();
     this.creator_thumbnail = Thumbnail.fromResponse(data.creatorThumbnail);
 
-    if (Reflect.has(data.heartIcon, 'iconType')) {
+    if (Reflect.has(data, 'heartIcon') && Reflect.has(data.heartIcon, 'iconType')) {
       this.heart_icon_type = data.heartIcon.iconType;
     }
 

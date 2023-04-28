@@ -17,7 +17,7 @@ export default class AnalyticsVodCarouselCard extends YTNode {
       this.no_data_message = data.noDataMessage;
     }
 
-    if (Reflect.has(data.videoCarouselData, 'videos')) {
+    if (Reflect.has(data, 'videoCarouselData') && Reflect.has(data.videoCarouselData, 'videos')) {
       this.videos = data.videoCarouselData.videos.map((video: RawNode) => new Video(video));
     }
   }

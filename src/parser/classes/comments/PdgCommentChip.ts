@@ -20,7 +20,7 @@ export default class PdgCommentChip extends YTNode {
       foreground_title_color: data.chipColorPalette?.foregroundTitleColor
     };
 
-    if (Reflect.has(data.chipIcon, 'iconType')) {
+    if (Reflect.has(data, 'chipIcon') && Reflect.has(data.chipIcon, 'iconType')) {
       this.icon_type = data.chipIcon.iconType;
     }
   }
