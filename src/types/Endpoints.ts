@@ -316,3 +316,28 @@ export type DeletePlaylistEndpointOptions = {
 }
 
 export type IDeletePlaylistRequest = ObjectSnakeToCamel<DeletePlaylistEndpointOptions>;
+
+export type EditPlaylistEndpointOptions = {
+  /**
+   * The ID of the playlist to edit.
+   */
+  playlist_id: string;
+  /**
+   * The changes to make to the playlist.
+   */
+  actions: {
+    action: 'ACTION_ADD_VIDEO' | 'ACTION_REMOVE_VIDEO' | 'ACTION_MOVE_VIDEO_AFTER';
+    added_video_id?: string;
+    set_video_id?: string;
+    moved_set_video_id_predecessor?: string;
+  }[];
+}
+
+export interface IEditPlaylistRequest extends ObjectSnakeToCamel<EditPlaylistEndpointOptions> {
+  actions: {
+    action: 'ACTION_ADD_VIDEO' | 'ACTION_REMOVE_VIDEO' | 'ACTION_MOVE_VIDEO_AFTER';
+    addedVideoId?: string;
+    setVideoId?: string;
+    movedSetVideoIdPredecessor?: string;
+  }[];
+}

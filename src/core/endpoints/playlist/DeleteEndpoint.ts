@@ -1,4 +1,4 @@
-import { IDeletePlaylistRequest, DeletePlaylistEndpointOptions } from '../../../types/index.js';
+import type { IDeletePlaylistRequest, DeletePlaylistEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/playlist/delete';
 

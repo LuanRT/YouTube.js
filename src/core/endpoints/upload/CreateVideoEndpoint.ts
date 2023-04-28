@@ -1,4 +1,4 @@
-import { ICreateVideoRequest, CreateVideoEndpointOptions } from '../../../types/index.js';
+import type { ICreateVideoRequest, CreateVideoEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/upload/createvideo';
 

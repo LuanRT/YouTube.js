@@ -1,8 +1,11 @@
-import type Feed from '../mixins/Feed.js';
-import type Actions from '../Actions.js';
 import Playlist from '../../parser/youtube/Playlist.js';
+import type Actions from '../Actions.js';
+import type Feed from '../mixins/Feed.js';
 
+import type { EditPlaylistEndpointOptions } from '../../types/index.js';
 import { InnertubeError, throwIfMissing } from '../../utils/Utils.js';
+import { EditPlaylistEndpoint } from '../endpoints/browse/index.js';
+import { BrowseEndpoint } from '../endpoints/index.js';
 import { CreateEndpoint, DeleteEndpoint } from '../endpoints/playlist/index.js';
 
 export default class PlaylistManager {
@@ -73,14 +76,15 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const response = await this.#actions.execute('/browse/edit_playlist', {
-      playlistId: playlist_id,
-      actions: video_ids.map((id) => ({
-        action: 'ACTION_ADD_VIDEO',
-        addedVideoId: id
-      })),
-      parse: false
-    });
+    const response = await this.#actions.execute(
+      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build({
+        actions: video_ids.map((id) => ({
+          action: 'ACTION_ADD_VIDEO',
+          added_video_id: id
+        })),
+        playlist_id
+      })
+    );
 
     return {
       playlist_id,
@@ -99,23 +103,16 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const info = await this.#actions.execute('/browse', {
-      browseId: `VL${playlist_id}`,
-      parse: true
-    });
+    const info = await this.#actions.execute(
+      BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: `VL${playlist_id}` }), parse: true }
+    );
 
     const playlist = new Playlist(this.#actions, info, true);
 
     if (!playlist.info.is_editable)
       throw new InnertubeError('This playlist cannot be edited.', playlist_id);
 
-    const payload = {
-      playlistId: playlist_id,
-      actions: [] as {
-        action: string;
-        setVideoId: string;
-      }[]
-    };
+    const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
 
     const getSetVideoIds = async (pl: Feed): Promise<void> => {
       const videos = pl.videos.filter((video) => video_ids.includes(video.key('id').string()));
@@ -123,7 +120,7 @@ export default class PlaylistManager {
       videos.forEach((video) =>
         payload.actions.push({
           action: 'ACTION_REMOVE_VIDEO',
-          setVideoId: video.key('set_video_id').string()
+          set_video_id: video.key('set_video_id').string()
         })
       );
 
@@ -138,7 +135,9 @@ export default class PlaylistManager {
     if (!payload.actions.length)
       throw new InnertubeError('Given video ids were not found in this playlist.', video_ids);
 
-    const response = await this.#actions.execute('/browse/edit_playlist', { ...payload, parse: false });
+    const response = await this.#actions.execute(
+      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build(payload)
+    );
 
     return {
       playlist_id,
@@ -158,24 +157,16 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const info = await this.#actions.execute('/browse', {
-      browseId: `VL${playlist_id}`,
-      parse: true
-    });
+    const info = await this.#actions.execute(
+      BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: `VL${playlist_id}` }), parse: true }
+    );
 
     const playlist = new Playlist(this.#actions, info, true);
 
     if (!playlist.info.is_editable)
       throw new InnertubeError('This playlist cannot be edited.', playlist_id);
 
-    const payload = {
-      playlistId: playlist_id,
-      actions: [] as {
-        action: string,
-        setVideoId?: string,
-        movedSetVideoIdPredecessor?: string
-      }[]
-    };
+    const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
 
     let set_video_id_0: string | undefined, set_video_id_1: string | undefined;
 
@@ -196,14 +187,13 @@ export default class PlaylistManager {
 
     payload.actions.push({
       action: 'ACTION_MOVE_VIDEO_AFTER',
-      setVideoId: set_video_id_0,
-      movedSetVideoIdPredecessor: set_video_id_1
+      set_video_id: set_video_id_0,
+      moved_set_video_id_predecessor: set_video_id_1
     });
 
-    const response = await this.#actions.execute('/browse/edit_playlist', {
-      ...payload,
-      parse: false
-    });
+    const response = await this.#actions.execute(
+      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build(payload)
+    );
 
     return {
       playlist_id,

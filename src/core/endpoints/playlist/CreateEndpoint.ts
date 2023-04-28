@@ -1,4 +1,4 @@
-import { ICreatePlaylistRequest, CreatePlaylistEndpointOptions } from '../../../types/index.js';
+import type { ICreatePlaylistRequest, CreatePlaylistEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/playlist/create';
 
