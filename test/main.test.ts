@@ -1,5 +1,5 @@
 import { createWriteStream, existsSync } from 'node:fs';
-import { Innertube, IBrowseResponse, TabbedFeed, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
+import { Innertube, IBrowseResponse, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
 describe('YouTube.js Tests', () => {
   let innertube: Innertube; 
@@ -118,7 +118,7 @@ describe('YouTube.js Tests', () => {
       expect(trending).toBeDefined();
       expect(trending.page.contents).toBeDefined();
       expect(trending.page.contents_memo).toBeDefined();
-      expect(trending.videos.length).toBeGreaterThan(0); TabbedFeed<IBrowseResponse>;
+      expect(trending.videos.length).toBeGreaterThan(0);
     });
 
     describe('Innertube#getChannel', () => {
