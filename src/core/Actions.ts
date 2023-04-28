@@ -28,7 +28,7 @@ export type ParsedResponse<T> =
   T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
   IParsedResponse;
 
-class Actions {
+export default class Actions {
   #session: Session;
 
   constructor(session: Session) {
@@ -176,5 +176,3 @@ class Actions {
     ].includes(id);
   }
 }
-
-export default Actions;

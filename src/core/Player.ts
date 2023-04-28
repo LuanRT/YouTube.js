@@ -5,6 +5,9 @@ import Constants from '../utils/Constants.js';
 import { ICache } from '../types/Cache.js';
 import { FetchFunction } from '../types/PlatformShim.js';
 
+/**
+ * Represents YouTube's player script. This is required to decipher signatures.
+ */
 export default class Player {
   #nsig_sc;
   #sig_sc;

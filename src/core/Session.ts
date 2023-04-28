@@ -132,6 +132,9 @@ export interface SessionData {
   api_version: string;
 }
 
+/**
+ * Represents an InnerTube session. This holds all the data needed to make requests to YouTube.
+ */
 export default class Session extends EventEmitterLike {
   #api_version: string;
   #key: string;
