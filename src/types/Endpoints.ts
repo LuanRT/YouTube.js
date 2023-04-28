@@ -73,7 +73,7 @@ export type NextEndpointOptions = {
   continuation?: string;
 }
 
-export interface INextRequest extends ObjectSnakeToCamel<NextEndpointOptions> {};
+export type INextRequest = ObjectSnakeToCamel<NextEndpointOptions>;
 
 export type BrowseEndpointOptions = {
   /**
@@ -94,7 +94,7 @@ export type BrowseEndpointOptions = {
   client?: InnerTubeClient;
 }
 
-export interface IBrowseRequest extends ObjectSnakeToCamel<BrowseEndpointOptions> {};
+export type IBrowseRequest = ObjectSnakeToCamel<BrowseEndpointOptions>;
 
 export interface ISearchRequest {
   /**
@@ -133,7 +133,7 @@ export type GetNotificationMenuEndpointOptions = {
   notifications_menu_request_type: 'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX' | 'NOTIFICATIONS_MENU_REQUEST_TYPE_COMMENTS';
 }
 
-export interface IGetNotificationMenuRequest extends ObjectSnakeToCamel<GetNotificationMenuEndpointOptions> {};
+export type IGetNotificationMenuRequest = ObjectSnakeToCamel<GetNotificationMenuEndpointOptions>;
 
 export type MusicGetSearchSuggestionsEndpointOptions = {
   /**
@@ -185,12 +185,12 @@ export type LikeEndpointOptions = {
   }
 }
 
-export interface ILikeRequest extends ObjectSnakeToCamel<LikeEndpointOptions> {};
+export type ILikeRequest = ObjectSnakeToCamel<LikeEndpointOptions>;
 
-export interface IDislikeRequest extends ILikeRequest {};
+export type IDislikeRequest = ILikeRequest;
 export type DislikeEndpointOptions = LikeEndpointOptions;
 
-export interface IRemoveLikeRequest extends ILikeRequest {};
+export type IRemoveLikeRequest = ILikeRequest;
 export type RemoveLikeEndpointOptions = LikeEndpointOptions;
 
 export type SubscribeEndpointOptions = {
@@ -208,9 +208,9 @@ export type SubscribeEndpointOptions = {
   client?: InnerTubeClient;
 }
 
-export interface ISubscribeRequest extends ObjectSnakeToCamel<SubscribeEndpointOptions> {};
+export type ISubscribeRequest = ObjectSnakeToCamel<SubscribeEndpointOptions>;
 
-export interface IUnsubscribeRequest extends ISubscribeRequest {};
+export type IUnsubscribeRequest = ISubscribeRequest;
 export type UnsubscribeEndpointOptions = SubscribeEndpointOptions;
 
 export interface IPerformCommentActionRequest {
@@ -241,7 +241,7 @@ export type CreateCommentEndpointOptions = {
   client?: InnerTubeClient;
 }
 
-export interface ICreateCommentRequest extends ObjectSnakeToCamel<CreateCommentEndpointOptions> {};
+export type ICreateCommentRequest = ObjectSnakeToCamel<CreateCommentEndpointOptions>;
 
 export interface IModifyChannelPreferenceRequest {
   /**
