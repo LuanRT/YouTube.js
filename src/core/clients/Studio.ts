@@ -5,6 +5,7 @@ import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.j
 import type { ApiResponse } from '../Actions.js';
 import type Session from '../Session.js';
 import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.js';
+import { CreateVideoEndpoint } from '../endpoints/upload/index.js';
 
 interface UploadResult {
   status: string;
@@ -158,34 +159,32 @@ export default class Studio {
   }
 
   async #setVideoMetadata(initial_data: InitialUploadData, upload_result: UploadResult, metadata: UploadedVideoMetadataOptions) {
-    const metadata_payload = {
-      resourceId: {
-        scottyResourceId: {
-          id: upload_result.scottyResourceId
-        }
-      },
-      frontendUploadId: initial_data.frontend_upload_id,
-      initialMetadata: {
-        title: {
-          newTitle: metadata.title || new Date().toDateString()
+    const response = await this.#session.actions.execute(
+      CreateVideoEndpoint.PATH, CreateVideoEndpoint.build({
+        resource_id: {
+          scotty_resource_id: {
+            id: upload_result.scottyResourceId
+          }
         },
-        description: {
-          newDescription: metadata.description || '',
-          shouldSegment: true
+        frontend_upload_id: initial_data.frontend_upload_id,
+        initial_metadata: {
+          title: {
+            new_title: metadata.title || new Date().toDateString()
+          },
+          description: {
+            new_description: metadata.description || '',
+            should_segment: true
+          },
+          privacy: {
+            new_privacy: metadata.privacy || 'PRIVATE'
+          },
+          draft_state: {
+            is_draft: metadata.is_draft
+          }
         },
-        privacy: {
-          newPrivacy: metadata.privacy || 'PRIVATE'
-        },
-        draftState: {
-          isDraft: metadata.is_draft || false
-        }
-      }
-    };
-
-    const response = await this.#session.actions.execute('/upload/createvideo', {
-      client: 'ANDROID',
-      ...metadata_payload
-    });
+        client: 'ANDROID'
+      })
+    );
 
     return response;
   }

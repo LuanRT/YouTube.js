@@ -256,3 +256,42 @@ export interface IModifyChannelPreferenceRequest {
 }
 
 export type ModifyChannelPreferenceEndpointOptions = IModifyChannelPreferenceRequest;
+
+export type CreateVideoEndpointOptions = {
+  /**
+   * The id of the uploaded resource.
+   */
+  resource_id: {
+    scotty_resource_id: {
+      id: string;
+    }
+  };
+  /**
+   * The id of the frontend.
+   */
+  frontend_upload_id: string;
+  /**
+   * The metadata to set after the video is uploaded.
+   */
+  initial_metadata: {
+    title: {
+      new_title: string;
+    };
+    description: {
+      new_description: string;
+      should_segment: boolean;
+    };
+    privacy: {
+      new_privacy: string;
+    };
+    draft_state: {
+      is_draft?: boolean;
+    };
+  };
+  /**
+   * The client to use.
+   */
+  client?: InnerTubeClient;
+}
+
+export type ICreateVideoRequest = ObjectSnakeToCamel<CreateVideoEndpointOptions>;
