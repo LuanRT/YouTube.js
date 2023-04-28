@@ -1,9 +1,14 @@
-import Proto from '../proto/index.js';
-import type Actions from './Actions.js';
-import type { ApiResponse } from './Actions.js';
-import { throwIfMissing } from '../utils/Utils.js';
+import Proto from '../../proto/index.js';
+import type Actions from '../Actions.js';
+import type { ApiResponse } from '../Actions.js';
 
-class InteractionManager {
+import { throwIfMissing } from '../../utils/Utils.js';
+import { LikeEndpoint, DislikeEndpoint, RemoveLikeEndpoint } from '../endpoints/like/index.js';
+import { SubscribeEndpoint, UnsubscribeEndpoint } from '../endpoints/subscription/index.js';
+import { CreateCommentEndpoint, PerformCommentActionEndpoint } from '../endpoints/comment/index.js';
+import { ModifyChannelPreferenceEndpoint } from '../endpoints/notification/index.js';
+
+export default class InteractionManager {
   #actions: Actions;
 
   constructor(actions: Actions) {
@@ -20,12 +25,12 @@ class InteractionManager {
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const action = await this.#actions.execute('/like/like', {
-      client: 'ANDROID',
-      target: {
-        videoId: video_id
-      }
-    });
+    const action = await this.#actions.execute(
+      LikeEndpoint.PATH, LikeEndpoint.build({
+        client: 'ANDROID',
+        target: { video_id }
+      })
+    );
 
     return action;
   }
@@ -40,12 +45,12 @@ class InteractionManager {
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const action = await this.#actions.execute('/like/dislike', {
-      client: 'ANDROID',
-      target: {
-        videoId: video_id
-      }
-    });
+    const action = await this.#actions.execute(
+      DislikeEndpoint.PATH, DislikeEndpoint.build({
+        client: 'ANDROID',
+        target: { video_id }
+      })
+    );
 
     return action;
   }
@@ -60,12 +65,12 @@ class InteractionManager {
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const action = await this.#actions.execute('/like/removelike', {
-      client: 'ANDROID',
-      target: {
-        videoId: video_id
-      }
-    });
+    const action = await this.#actions.execute(
+      RemoveLikeEndpoint.PATH, RemoveLikeEndpoint.build({
+        client: 'ANDROID',
+        target: { video_id }
+      })
+    );
 
     return action;
   }
@@ -80,11 +85,13 @@ class InteractionManager {
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const action = await this.#actions.execute('/subscription/subscribe', {
-      client: 'ANDROID',
-      channelIds: [ channel_id ],
-      params: 'EgIIAhgA'
-    });
+    const action = await this.#actions.execute(
+      SubscribeEndpoint.PATH, SubscribeEndpoint.build({
+        client: 'ANDROID',
+        channel_ids: [ channel_id ],
+        params: 'EgIIAhgA'
+      })
+    );
 
     return action;
   }
@@ -93,17 +100,19 @@ class InteractionManager {
    * Unsubscribes from a given channel.
    * @param channel_id - The channel ID
    */
-  async unsubscribe(channel_id: string): Promise<ApiResponse>{
+  async unsubscribe(channel_id: string): Promise<ApiResponse> {
     throwIfMissing({ channel_id });
 
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const action = await this.#actions.execute('/subscription/unsubscribe', {
-      client: 'ANDROID',
-      channelIds: [ channel_id ],
-      params: 'CgIIAhgA'
-    });
+    const action = await this.#actions.execute(
+      UnsubscribeEndpoint.PATH, UnsubscribeEndpoint.build({
+        client: 'ANDROID',
+        channel_ids: [ channel_id ],
+        params: 'CgIIAhgA'
+      })
+    );
 
     return action;
   }
@@ -119,11 +128,13 @@ class InteractionManager {
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const action = await this.#actions.execute('/comment/create_comment', {
-      client: 'ANDROID',
-      commentText: text,
-      createCommentParams: Proto.encodeCommentParams(video_id)
-    });
+    const action = await this.#actions.execute(
+      CreateCommentEndpoint.PATH, CreateCommentEndpoint.build({
+        comment_text: text,
+        create_comment_params: Proto.encodeCommentParams(video_id),
+        client: 'ANDROID'
+      })
+    );
 
     return action;
   }
@@ -139,10 +150,12 @@ class InteractionManager {
 
     const target_action = Proto.encodeCommentActionParams(22, { text, target_language, ...args });
 
-    const response = await this.#actions.execute('/comment/perform_comment_action', {
-      client: 'ANDROID',
-      actions: [ target_action ]
-    });
+    const response = await this.#actions.execute(
+      PerformCommentActionEndpoint.PATH, PerformCommentActionEndpoint.build({
+        client: 'ANDROID',
+        actions: [ target_action ]
+      })
+    );
 
     const mutation = response.data.frameworkUpdates.entityBatchUpdate.mutations[0].payload.commentEntityPayload;
 
@@ -175,13 +188,13 @@ class InteractionManager {
     if (!Object.keys(pref_types).includes(type.toUpperCase()))
       throw new Error(`Invalid notification preference type: ${type}`);
 
-    const action = await this.#actions.execute('/notification/modify_channel_preference', {
-      client: 'WEB',
-      params: Proto.encodeNotificationPref(channel_id, pref_types[type.toUpperCase() as keyof typeof pref_types])
-    });
+    const action = await this.#actions.execute(
+      ModifyChannelPreferenceEndpoint.PATH, ModifyChannelPreferenceEndpoint.build({
+        client: 'WEB',
+        params: Proto.encodeNotificationPref(channel_id, pref_types[type.toUpperCase() as keyof typeof pref_types])
+      })
+    );
 
     return action;
   }
 }
-
-export default InteractionManager;

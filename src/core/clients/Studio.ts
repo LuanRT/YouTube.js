@@ -1,9 +1,12 @@
-import Proto from '../proto/index.js';
-import { Constants } from '../utils/index.js';
-import { InnertubeError, MissingParamError, Platform } from '../utils/Utils.js';
+import Proto from '../../proto/index.js';
+import { Constants } from '../../utils/index.js';
+import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.js';
 
-import type { ApiResponse } from './Actions.js';
-import type Session from './Session.js';
+import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.js';
+import type { ApiResponse } from '../Actions.js';
+import type Session from '../Session.js';
+
+import { CreateVideoEndpoint } from '../endpoints/upload/index.js';
 
 interface UploadResult {
   status: string;
@@ -18,25 +21,7 @@ interface InitialUploadData {
   chunk_granularity: string;
 }
 
-export interface VideoMetadata {
-  title?: string;
-  description?: string;
-  tags?: string[];
-  category?: number;
-  license?: string;
-  age_restricted?: boolean;
-  made_for_kids?: boolean;
-  privacy?: 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
-}
-
-export interface UploadedVideoMetadata {
-  title?: string;
-  description?: string;
-  privacy?: 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
-  is_draft?: boolean;
-}
-
-class Studio {
+export default class Studio {
   #session: Session;
 
   constructor(session: Session) {
@@ -69,7 +54,7 @@ class Studio {
   }
 
   /**
-   * Updates given video's metadata.
+   * Updates a given video's metadata.
    * @example
    * ```ts
    * const response = await yt.studio.updateVideoMetadata('videoid', {
@@ -82,7 +67,7 @@ class Studio {
    * });
    * ```
    */
-  async updateVideoMetadata(video_id: string, metadata: VideoMetadata): Promise<ApiResponse> {
+  async updateVideoMetadata(video_id: string, metadata: UpdateVideoMetadataOptions): Promise<ApiResponse> {
     if (!this.#session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
@@ -104,7 +89,7 @@ class Studio {
    * const response = await yt.studio.upload(file.buffer, { title: 'Wow!' });
    * ```
    */
-  async upload(file: BodyInit, metadata: UploadedVideoMetadata = {}): Promise<ApiResponse> {
+  async upload(file: BodyInit, metadata: UploadedVideoMetadataOptions = {}): Promise<ApiResponse> {
     if (!this.#session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
@@ -174,38 +159,34 @@ class Studio {
     return data;
   }
 
-  async #setVideoMetadata(initial_data: InitialUploadData, upload_result: UploadResult, metadata: UploadedVideoMetadata) {
-    const metadata_payload = {
-      resourceId: {
-        scottyResourceId: {
-          id: upload_result.scottyResourceId
-        }
-      },
-      frontendUploadId: initial_data.frontend_upload_id,
-      initialMetadata: {
-        title: {
-          newTitle: metadata.title || new Date().toDateString()
+  async #setVideoMetadata(initial_data: InitialUploadData, upload_result: UploadResult, metadata: UploadedVideoMetadataOptions) {
+    const response = await this.#session.actions.execute(
+      CreateVideoEndpoint.PATH, CreateVideoEndpoint.build({
+        resource_id: {
+          scotty_resource_id: {
+            id: upload_result.scottyResourceId
+          }
         },
-        description: {
-          newDescription: metadata.description || '',
-          shouldSegment: true
+        frontend_upload_id: initial_data.frontend_upload_id,
+        initial_metadata: {
+          title: {
+            new_title: metadata.title || new Date().toDateString()
+          },
+          description: {
+            new_description: metadata.description || '',
+            should_segment: true
+          },
+          privacy: {
+            new_privacy: metadata.privacy || 'PRIVATE'
+          },
+          draft_state: {
+            is_draft: metadata.is_draft
+          }
         },
-        privacy: {
-          newPrivacy: metadata.privacy || 'PRIVATE'
-        },
-        draftState: {
-          isDraft: metadata.is_draft || false
-        }
-      }
-    };
-
-    const response = await this.#session.actions.execute('/upload/createvideo', {
-      client: 'ANDROID',
-      ...metadata_payload
-    });
+        client: 'ANDROID'
+      })
+    );
 
     return response;
   }
 }
-
-export default Studio;

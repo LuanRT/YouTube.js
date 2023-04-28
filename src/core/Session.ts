@@ -30,7 +30,6 @@ export interface Context {
     screenPixelDensity: number;
     screenWidthPoints: number;
     visitorData: string;
-    userAgent: string;
     clientName: string;
     clientVersion: string;
     clientScreen?: string,
@@ -41,6 +40,7 @@ export interface Context {
     clientFormFactor: string;
     userInterfaceTheme: string;
     timeZone: string;
+    userAgent?: string;
     browserName?: string;
     browserVersion?: string;
     originalUrl: string;
@@ -63,9 +63,6 @@ export interface Context {
   };
   thirdParty?: {
     embedUrl: string;
-  };
-  request: {
-    useSsl: true;
   };
 }
 
@@ -135,6 +132,9 @@ export interface SessionData {
   api_version: string;
 }
 
+/**
+ * Represents an InnerTube session. This holds all the data needed to make requests to YouTube.
+ */
 export default class Session extends EventEmitterLike {
   #api_version: string;
   #key: string;
@@ -273,7 +273,6 @@ export default class Session extends EventEmitterLike {
         screenPixelDensity: 1,
         screenWidthPoints: 1920,
         visitorData: device_info[13],
-        userAgent: device_info[14],
         clientName: options.client_name,
         clientVersion: device_info[16],
         osName: device_info[17],
@@ -287,14 +286,11 @@ export default class Session extends EventEmitterLike {
         originalUrl: Constants.URLS.YT_BASE,
         deviceMake: device_info[11],
         deviceModel: device_info[12],
-        utcOffsetMinutes: new Date().getTimezoneOffset()
+        utcOffsetMinutes: -new Date().getTimezoneOffset()
       },
       user: {
         enableSafetyMode: options.enable_safety_mode,
         lockedSafetyMode: false
-      },
-      request: {
-        useSsl: true
       }
     };
 
@@ -326,7 +322,6 @@ export default class Session extends EventEmitterLike {
         screenPixelDensity: 1,
         screenWidthPoints: 1920,
         visitorData: Proto.encodeVisitorData(visitor_id, Math.floor(Date.now() / 1000)),
-        userAgent: getRandomUserAgent('desktop'),
         clientName: options.client_name,
         clientVersion: CLIENTS.WEB.VERSION,
         osName: 'Windows',
@@ -338,14 +333,11 @@ export default class Session extends EventEmitterLike {
         originalUrl: Constants.URLS.YT_BASE,
         deviceMake: '',
         deviceModel: '',
-        utcOffsetMinutes: new Date().getTimezoneOffset()
+        utcOffsetMinutes: -new Date().getTimezoneOffset()
       },
       user: {
         enableSafetyMode: options.enable_safety_mode,
         lockedSafetyMode: false
-      },
-      request: {
-        useSsl: true
       }
     };
 

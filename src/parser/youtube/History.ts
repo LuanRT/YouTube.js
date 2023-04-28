@@ -1,5 +1,5 @@
 import type Actions from '../../core/Actions.js';
-import Feed from '../../core/Feed.js';
+import Feed from '../../core/mixins/Feed.js';
 import ItemSection from '../classes/ItemSection.js';
 import BrowseFeedActions from '../classes/BrowseFeedActions.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';

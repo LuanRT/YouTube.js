@@ -26,7 +26,7 @@ export default class InfoPanelContent extends YTNode {
     this.truncate_paragraphs = !!data.truncateParagraphs;
     this.background = data.background;
 
-    if (Reflect.has(data.inlineLinkIcon, 'iconType')) {
+    if (Reflect.has(data, 'inlineLinkIcon') && Reflect.has(data.inlineLinkIcon, 'iconType')) {
       this.inline_link_icon_type = data.inlineLinkIcon.iconType;
     }
   }

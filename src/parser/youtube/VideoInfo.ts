@@ -32,7 +32,7 @@ import type { ApiResponse } from '../../core/Actions.js';
 import { ObservedArray, YTNode } from '../helpers.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
-import { MediaInfo } from '../../core/MediaInfo.js';
+import { MediaInfo } from '../../core/mixins/index.js';
 
 class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;

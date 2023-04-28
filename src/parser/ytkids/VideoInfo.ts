@@ -7,7 +7,7 @@ import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import { MediaInfo } from '../../core/MediaInfo.js';
+import { MediaInfo } from '../../core/mixins/index.js';
 
 class VideoInfo extends MediaInfo {
   basic_info;

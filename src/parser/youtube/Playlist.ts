@@ -1,4 +1,4 @@
-import Feed from '../../core/Feed.js';
+import Feed from '../../core/mixins/Feed.js';
 import Message from '../classes/Message.js';
 import Thumbnail from '../classes/misc/Thumbnail.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';

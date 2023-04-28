@@ -54,9 +54,9 @@ export default class HTTPClient {
 
     request_headers.set('Accept', '*/*');
     request_headers.set('Accept-Language', '*');
-    request_headers.set('x-goog-visitor-id', this.#session.context.client.visitorData || '');
-    request_headers.set('x-origin', request_url.origin);
-    request_headers.set('x-youtube-client-version', this.#session.context.client.clientVersion || '');
+    request_headers.set('X-Goog-Visitor-Id', this.#session.context.client.visitorData || '');
+    request_headers.set('X-Origin', request_url.origin);
+    request_headers.set('X-Youtube-Client-Version', this.#session.context.client.clientVersion || '');
 
     if (Platform.shim.server) {
       request_headers.set('User-Agent', getRandomUserAgent('desktop'));
@@ -90,7 +90,6 @@ export default class HTTPClient {
       request_headers.set('x-youtube-client-version', n_body.context.client.clientVersion);
 
       delete n_body.client;
-
 
       if (Platform.shim.server) {
         if (n_body.context.client.clientName === 'ANDROID' || n_body.context.client.clientName === 'ANDROID_MUSIC') {
@@ -143,6 +142,19 @@ export default class HTTPClient {
   }
 
   #adjustContext(ctx: Context, client: string): void {
+    if (
+      client === 'ANDROID' ||
+      client === 'YTMUSIC_ANDROID' ||
+      client === 'YTMUSIC_ANDROID' ||
+      client === 'YTSTUDIO_ANDROID'
+    ) {
+      ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
+      ctx.client.userAgent = Constants.CLIENTS.ANDROID.USER_AGENT;
+      ctx.client.osName = 'Android';
+      ctx.client.osVersion = '10';
+      ctx.client.platform = 'MOBILE';
+    }
+
     switch (client) {
       case 'YTMUSIC':
         ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;
@@ -152,21 +164,16 @@ export default class HTTPClient {
         ctx.client.clientVersion = Constants.CLIENTS.ANDROID.VERSION;
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
-        ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
-        ctx.client.platform = 'MOBILE';
         break;
       case 'YTMUSIC_ANDROID':
         ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC_ANDROID.VERSION;
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.YTMUSIC_ANDROID.NAME;
-        ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
-        ctx.client.platform = 'MOBILE';
         break;
       case 'YTSTUDIO_ANDROID':
         ctx.client.clientVersion = Constants.CLIENTS.YTSTUDIO_ANDROID.VERSION;
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.YTSTUDIO_ANDROID.NAME;
-        ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
         break;
       case 'TV_EMBEDDED':
         ctx.client.clientName = Constants.CLIENTS.TV_EMBEDDED.NAME;

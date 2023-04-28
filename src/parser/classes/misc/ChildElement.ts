@@ -10,7 +10,7 @@ export default class ChildElement extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    if (Reflect.has(data.type, 'textType')) {
+    if (Reflect.has(data, 'type') && Reflect.has(data.type, 'textType')) {
       this.text = data.type.textType.text?.content;
     }
 

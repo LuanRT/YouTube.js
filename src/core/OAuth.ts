@@ -28,7 +28,7 @@ export type OAuthAuthEventHandler = (data: {
 export type OAuthAuthPendingEventHandler = (data: OAuthAuthPendingData) => any;
 export type OAuthAuthErrorEventHandler = (err: OAuthError) => any;
 
-class OAuth {
+export default class OAuth {
   #identity?: Record<string, string>;
   #session: Session;
   #credentials?: Credentials;
@@ -265,5 +265,3 @@ class OAuth {
       Reflect.has(this.#credentials, 'expires') || false;
   }
 }
-
-export default OAuth;

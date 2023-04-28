@@ -1,4 +1,4 @@
-import Feed from '../../core/Feed.js';
+import Feed from '../../core/mixins/Feed.js';
 import ItemSection from '../classes/ItemSection.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import type Actions from '../../core/Actions.js';

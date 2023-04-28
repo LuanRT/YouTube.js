@@ -13,7 +13,7 @@ export default class MusicMultiSelectMenu extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    if (Reflect.has(data.title, 'musicMenuTitleRenderer')) {
+    if (Reflect.has(data, 'title') && Reflect.has(data.title, 'musicMenuTitleRenderer')) {
       this.title = new Text(data.title.musicMenuTitleRenderer?.primaryText);
     }
 

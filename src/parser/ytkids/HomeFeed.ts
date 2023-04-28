@@ -1,4 +1,4 @@
-import Feed from '../../core/Feed.js';
+import Feed from '../../core/mixins/Feed.js';
 import KidsCategoriesHeader from '../classes/ytkids/KidsCategoriesHeader.js';
 import KidsCategoryTab from '../classes/ytkids/KidsCategoryTab.js';
 import KidsHomeScreen from '../classes/ytkids/KidsHomeScreen.js';

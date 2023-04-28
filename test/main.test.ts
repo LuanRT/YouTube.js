@@ -1,5 +1,5 @@
 import { createWriteStream, existsSync } from 'node:fs';
-import { Innertube, IBrowseResponse, TabbedFeed, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
+import { Innertube, IBrowseResponse, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
 describe('YouTube.js Tests', () => {
   let innertube: Innertube; 
@@ -94,11 +94,6 @@ describe('YouTube.js Tests', () => {
         expect(home_feed.contents.contents?.length).toBeGreaterThan(0);
       });
 
-      test('HomeFeed#applyFilter', async () => {
-        const filtered_home_feed = await home_feed.applyFilter(home_feed.filter_chips[1]);
-        expect(filtered_home_feed.contents.contents?.length).toBeGreaterThan(0);
-      });
-
       test('HomeFeed#getContinuation', async () => {
         const incremental_continuation = await home_feed.getContinuation();
         expect(incremental_continuation.contents).toBeDefined();
@@ -118,7 +113,7 @@ describe('YouTube.js Tests', () => {
       expect(trending).toBeDefined();
       expect(trending.page.contents).toBeDefined();
       expect(trending.page.contents_memo).toBeDefined();
-      expect(trending.videos.length).toBeGreaterThan(0); TabbedFeed<IBrowseResponse>;
+      expect(trending.videos.length).toBeGreaterThan(0);
     });
 
     describe('Innertube#getChannel', () => {
