@@ -1,4 +1,4 @@
-import Feed from '../../core/Feed.js';
+import Feed from '../../core/mixins/Feed.js';
 import C4TabbedHeader from '../classes/C4TabbedHeader.js';
 import ItemSection from '../classes/ItemSection.js';
 import { ItemSectionContinuation } from '../index.js';

@@ -1,12 +1,12 @@
-import Proto from '../proto/index.js';
-import type Actions from './Actions.js';
-import type { ApiResponse } from './Actions.js';
+import Proto from '../../proto/index.js';
+import type Actions from '../Actions.js';
+import type { ApiResponse } from '../Actions.js';
 
-import { throwIfMissing } from '../utils/Utils.js';
-import { LikeEndpoint, DislikeEndpoint, RemoveLikeEndpoint } from './endpoints/like/index.js';
-import { SubscribeEndpoint, UnsubscribeEndpoint } from './endpoints/subscription/index.js';
-import { CreateCommentEndpoint, PerformCommentActionEndpoint } from './endpoints/comment/index.js';
-import { ModifyChannelPreferenceEndpoint } from './endpoints/notification/index.js';
+import { throwIfMissing } from '../../utils/Utils.js';
+import { LikeEndpoint, DislikeEndpoint, RemoveLikeEndpoint } from '../endpoints/like/index.js';
+import { SubscribeEndpoint, UnsubscribeEndpoint } from '../endpoints/subscription/index.js';
+import { CreateCommentEndpoint, PerformCommentActionEndpoint } from '../endpoints/comment/index.js';
+import { ModifyChannelPreferenceEndpoint } from '../endpoints/notification/index.js';
 
 export default class InteractionManager {
   #actions: Actions;

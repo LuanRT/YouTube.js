@@ -1,14 +1,14 @@
-import ChipCloudChip from '../parser/classes/ChipCloudChip.js';
-import FeedFilterChipBar from '../parser/classes/FeedFilterChipBar.js';
-import { InnertubeError } from '../utils/Utils.js';
+import ChipCloudChip from '../../parser/classes/ChipCloudChip.js';
+import FeedFilterChipBar from '../../parser/classes/FeedFilterChipBar.js';
+import { InnertubeError } from '../../utils/Utils.js';
 import Feed from './Feed.js';
 
-import type { ObservedArray } from '../parser/helpers.js';
-import type { IParsedResponse } from '../parser/types/ParsedResponse.js';
-import type Actions from './Actions.js';
-import type { ApiResponse } from './Actions.js';
+import type { ObservedArray } from '../../parser/helpers.js';
+import type { IParsedResponse } from '../../parser/types/ParsedResponse.js';
+import type Actions from '../Actions.js';
+import type { ApiResponse } from '../Actions.js';
 
-class FilterableFeed<T extends IParsedResponse> extends Feed<T> {
+export default class FilterableFeed<T extends IParsedResponse> extends Feed<T> {
   #chips?: ObservedArray<ChipCloudChip>;
 
   constructor(actions: Actions, data: ApiResponse | T, already_parsed = false) {
@@ -70,5 +70,3 @@ class FilterableFeed<T extends IParsedResponse> extends Feed<T> {
     return new Feed(this.actions, response, true);
   }
 }
-
-export default FilterableFeed;

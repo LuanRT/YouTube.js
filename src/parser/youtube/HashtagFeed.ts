@@ -1,4 +1,4 @@
-import FilterableFeed from '../../core/FilterableFeed.js';
+import FilterableFeed from '../../core/mixins/FilterableFeed.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import HashtagHeader from '../classes/HashtagHeader.js';
 import RichGrid from '../classes/RichGrid.js';

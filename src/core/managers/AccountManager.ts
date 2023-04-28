@@ -1,14 +1,14 @@
-import AccountInfo from '../parser/youtube/AccountInfo.js';
-import Analytics from '../parser/youtube/Analytics.js';
-import Settings from '../parser/youtube/Settings.js';
-import TimeWatched from '../parser/youtube/TimeWatched.js';
+import AccountInfo from '../../parser/youtube/AccountInfo.js';
+import Analytics from '../../parser/youtube/Analytics.js';
+import Settings from '../../parser/youtube/Settings.js';
+import TimeWatched from '../../parser/youtube/TimeWatched.js';
 
-import Proto from '../proto/index.js';
-import { InnertubeError } from '../utils/Utils.js';
-import { Account, BrowseEndpoint, Channel } from './endpoints/index.js';
+import Proto from '../../proto/index.js';
+import { InnertubeError } from '../../utils/Utils.js';
+import { Account, BrowseEndpoint, Channel } from '../endpoints/index.js';
 
-import type Actions from './Actions.js';
-import type { ApiResponse } from './Actions.js';
+import type Actions from '../Actions.js';
+import type { ApiResponse } from '../Actions.js';
 
 export default class AccountManager {
   #actions: Actions;

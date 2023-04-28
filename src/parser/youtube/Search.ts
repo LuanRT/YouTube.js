@@ -1,4 +1,4 @@
-import Feed from '../../core/Feed.js';
+import Feed from '../../core/mixins/Feed.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import HorizontalCardList from '../classes/HorizontalCardList.js';
 import ItemSection from '../classes/ItemSection.js';

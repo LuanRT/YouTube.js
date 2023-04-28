@@ -22,7 +22,7 @@ import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import { MediaInfo } from '../../core/MediaInfo.js';
+import { MediaInfo } from '../../core/mixins/index.js';
 
 class TrackInfo extends MediaInfo {
   basic_info;

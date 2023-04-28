@@ -1,7 +1,7 @@
 import type Actions from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
-import Feed from '../../core/Feed.js';
+import Feed from '../../core/mixins/Feed.js';
 import History from './History.js';
 import Playlist from './Playlist.js';
 import Menu from '../classes/menus/Menu.js';

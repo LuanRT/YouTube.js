@@ -14,13 +14,9 @@ import Playlist from './parser/youtube/Playlist.js';
 import Search from './parser/youtube/Search.js';
 import VideoInfo from './parser/youtube/VideoInfo.js';
 
-import AccountManager from './core/AccountManager.js';
-import Feed from './core/Feed.js';
-import InteractionManager from './core/InteractionManager.js';
-import PlaylistManager from './core/PlaylistManager.js';
-import TabbedFeed from './core/TabbedFeed.js';
-
-import { Studio, Kids, Music } from './core/clients/index.js';
+import { Kids, Music, Studio } from './core/clients/index.js';
+import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
+import { Feed, TabbedFeed } from './core/mixins/index.js';
 
 import Proto from './proto/index.js';
 import Constants from './utils/Constants.js';
@@ -38,7 +34,6 @@ import {
 
 import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.js';
 
-import type Actions from './core/Actions.js';
 import type { ApiResponse } from './core/Actions.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
 import type { INextRequest } from './types/index.js';

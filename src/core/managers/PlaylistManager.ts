@@ -1,10 +1,10 @@
-import type Feed from './Feed.js';
-import type Actions from './Actions.js';
-import Playlist from '../parser/youtube/Playlist.js';
+import type Feed from '../mixins/Feed.js';
+import type Actions from '../Actions.js';
+import Playlist from '../../parser/youtube/Playlist.js';
 
-import { InnertubeError, throwIfMissing } from '../utils/Utils.js';
+import { InnertubeError, throwIfMissing } from '../../utils/Utils.js';
 
-class PlaylistManager {
+export default class PlaylistManager {
   #actions: Actions;
 
   constructor(actions: Actions) {
@@ -205,5 +205,3 @@ class PlaylistManager {
     };
   }
 }
-
-export default PlaylistManager;

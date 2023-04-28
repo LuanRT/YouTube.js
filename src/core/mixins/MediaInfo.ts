@@ -1,11 +1,11 @@
-import Actions, { ApiResponse } from './Actions.js';
-import Constants from '../utils/Constants.js';
-import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../utils/FormatUtils.js';
-import { InnertubeError } from '../utils/Utils.js';
-import Format from '../parser/classes/misc/Format.js';
-import Parser, { INextResponse, IPlayerResponse } from '../parser/index.js';
+import Actions, { ApiResponse } from '../Actions.js';
+import Constants from '../../utils/Constants.js';
+import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
+import { InnertubeError } from '../../utils/Utils.js';
+import Format from '../../parser/classes/misc/Format.js';
+import Parser, { INextResponse, IPlayerResponse } from '../../parser/index.js';
 
-export class MediaInfo {
+export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];
   #actions: Actions;
   #cpn: string;
