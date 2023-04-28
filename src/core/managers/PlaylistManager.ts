@@ -3,7 +3,7 @@ import type Actions from '../Actions.js';
 import Playlist from '../../parser/youtube/Playlist.js';
 
 import { InnertubeError, throwIfMissing } from '../../utils/Utils.js';
-import { CreateEndpoint } from '../endpoints/playlist/index.js';
+import { CreateEndpoint, DeleteEndpoint } from '../endpoints/playlist/index.js';
 
 export default class PlaylistManager {
   #actions: Actions;
@@ -48,7 +48,11 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const response = await this.#actions.execute('playlist/delete', { playlistId: playlist_id });
+    const response = await this.#actions.execute(
+      DeleteEndpoint.PATH, DeleteEndpoint.build({
+        playlist_id
+      })
+    );
 
     return {
       playlist_id,

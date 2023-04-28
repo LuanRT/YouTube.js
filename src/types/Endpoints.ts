@@ -307,3 +307,12 @@ export type CreatePlaylistEndpointOptions = {
 }
 
 export type ICreatePlaylistRequest = CreatePlaylistEndpointOptions;
+
+export type DeletePlaylistEndpointOptions = {
+  /**
+   * The ID of the playlist to delete.
+   */
+  playlist_id: string;
+}
+
+export type IDeletePlaylistRequest = ObjectSnakeToCamel<DeletePlaylistEndpointOptions>;
