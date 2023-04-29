@@ -13,7 +13,6 @@ import SponsorCommentBadge from './SponsorCommentBadge.js';
 
 import Proto from '../../../proto/index.js';
 import { InnertubeError } from '../../../utils/Utils.js';
-import type { SuperParsedResult} from '../../helpers.js';
 import { YTNode } from '../../helpers.js';
 
 import type Actions from '../../../core/Actions.js';
@@ -131,8 +130,8 @@ export default class Comment extends YTNode {
     if (!button.endpoint?.dialog)
       throw new InnertubeError('Reply button endpoint did not have a dialog.');
 
-    const dialog = button.endpoint.dialog as SuperParsedResult<YTNode>;
-    const dialog_button = dialog.item().as(CommentReplyDialog).reply_button;
+    const dialog = button.endpoint.dialog.as(CommentReplyDialog);
+    const dialog_button = dialog.reply_button;
 
     if (!dialog_button)
       throw new InnertubeError('Reply button was not found in the dialog.', { comment_id: this.comment_id });
