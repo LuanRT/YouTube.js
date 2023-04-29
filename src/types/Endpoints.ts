@@ -23,8 +23,9 @@ export interface IPlayerRequest {
   videoId: string;
   racyCheckOk: boolean;
   contentCheckOk: boolean;
-  client?: InnerTubeClient;
   playlistId?: string;
+  params?: string;
+  client?: InnerTubeClient;
 }
 
 export type PlayerEndpointOptions = {
@@ -44,6 +45,10 @@ export type PlayerEndpointOptions = {
    * The playlist ID.
    */
   playlist_id?: string;
+  /**
+   * Additional protobuf parameters.
+   */
+  params?: string;
 }
 
 export type NextEndpointOptions = {
