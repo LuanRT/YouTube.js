@@ -2,8 +2,8 @@ import { Platform, getRandomUserAgent, getStringBetweenStrings, PlayerError } fr
 
 import Constants from '../utils/Constants.js';
 
-import { ICache } from '../types/Cache.js';
-import { FetchFunction } from '../types/PlatformShim.js';
+import type { ICache } from '../types/Cache.js';
+import type { FetchFunction } from '../types/PlatformShim.js';
 
 /**
  * Represents YouTube's player script. This is required to decipher signatures.

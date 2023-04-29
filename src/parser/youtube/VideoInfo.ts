@@ -17,7 +17,7 @@ import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.js';
 import LiveChatWrap from './LiveChat.js';
-import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.js';
 
 import type CardCollection from '../classes/CardCollection.js';
@@ -29,7 +29,7 @@ import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
-import { ObservedArray, YTNode } from '../helpers.js';
+import type { ObservedArray, YTNode } from '../helpers.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import { MediaInfo } from '../../core/mixins/index.js';

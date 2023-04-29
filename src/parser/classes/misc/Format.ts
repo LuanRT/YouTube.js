@@ -1,4 +1,4 @@
-import Player from '../../../core/Player.js';
+import type Player from '../../../core/Player.js';
 import { InnertubeError } from '../../../utils/Utils.js';
 import type { RawNode } from '../../index.js';
 

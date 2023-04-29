@@ -20,7 +20,8 @@ import NavigationEndpoint from './classes/NavigationEndpoint.js';
 import Thumbnail from './classes/misc/Thumbnail.js';
 
 import { InnertubeError, ParsingError, Platform } from '../utils/Utils.js';
-import { Memo, observe, ObservedArray, SuperParsedResult, YTNode, YTNodeConstructor } from './helpers.js';
+import type { ObservedArray, YTNodeConstructor } from './helpers.js';
+import { Memo, observe, SuperParsedResult, YTNode } from './helpers.js';
 import * as YTNodes from './nodes.js';
 import { YTNodeGenerator } from './generator.js';
 

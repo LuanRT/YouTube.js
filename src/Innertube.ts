@@ -1,4 +1,5 @@
-import Session, { SessionOptions } from './core/Session.js';
+import type { SessionOptions } from './core/Session.js';
+import Session from './core/Session.js';
 
 import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
 import type Format from './parser/classes/misc/Format.js';

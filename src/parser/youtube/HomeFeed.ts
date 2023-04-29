@@ -1,6 +1,6 @@
 import type Actions from '../../core/Actions.js';
 import FilterableFeed from '../../core/mixins/FilterableFeed.js';
-import ChipCloudChip from '../classes/ChipCloudChip.js';
+import type ChipCloudChip from '../classes/ChipCloudChip.js';
 import FeedTabbedHeader from '../classes/FeedTabbedHeader.js';
 import RichGrid from '../classes/RichGrid.js';
 

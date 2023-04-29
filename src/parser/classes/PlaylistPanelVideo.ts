@@ -3,7 +3,7 @@ import { YTNode, type ObservedArray } from '../helpers.js';
 import Parser, { type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Text from './misc/Text.js';
-import TextRun from './misc/TextRun.js';
+import type TextRun from './misc/TextRun.js';
 import Thumbnail from './misc/Thumbnail.js';
 
 export default class PlaylistPanelVideo extends YTNode {

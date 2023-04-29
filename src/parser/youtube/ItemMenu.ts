@@ -1,7 +1,7 @@
 import Button from '../classes/Button.js';
 import Menu from '../classes/menus/Menu.js';
 import MenuServiceItem from '../classes/menus/MenuServiceItem.js';
-import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
 import type Actions from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';

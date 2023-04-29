@@ -8,10 +8,10 @@ import {
   FormData,
   File
 } from 'undici';
-import { ICache } from '../types/Cache.js';
+import type { ICache } from '../types/Cache.js';
 import { Platform } from '../utils/Utils.js';
 import crypto from 'crypto';
-import { FetchFunction } from '../types/PlatformShim.js';
+import type { FetchFunction } from '../types/PlatformShim.js';
 import path from 'path';
 import os from 'os';
 import fs from 'fs/promises';

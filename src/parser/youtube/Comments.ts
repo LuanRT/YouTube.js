@@ -2,7 +2,8 @@ import Parser from '../index.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';
-import { observe, ObservedArray } from '../helpers.js';
+import type { ObservedArray } from '../helpers.js';
+import { observe } from '../helpers.js';
 import type { INextResponse } from '../types/ParsedResponse.js';
 
 import CommentsHeader from '../classes/comments/CommentsHeader.js';

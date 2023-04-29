@@ -1,5 +1,5 @@
-import Player from '../core/Player.js';
-import Actions from '../core/Actions.js';
+import type Player from '../core/Player.js';
+import type Actions from '../core/Actions.js';
 
 import type Format from '../parser/classes/misc/Format.js';
 import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability.js';

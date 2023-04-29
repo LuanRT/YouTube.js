@@ -1,11 +1,11 @@
 import { CLIENTS } from '../utils/Constants.js';
 import { base64ToU8, u8ToBase64 } from '../utils/Utils.js';
-import { UpdateVideoMetadataOptions } from '../types/index.js';
+import type { UpdateVideoMetadataOptions } from '../types/index.js';
 
 import * as VisitorData from './generated/messages/youtube/VisitorData.js';
 import * as ChannelAnalytics from './generated/messages/youtube/ChannelAnalytics.js';
 import * as SearchFilter from './generated/messages/youtube/SearchFilter.js';
-import * as SearchFilter_Filters from './generated/messages/youtube/(SearchFilter)/Filters.js';
+import type * as SearchFilter_Filters from './generated/messages/youtube/(SearchFilter)/Filters.js';
 import * as MusicSearchFilter from './generated/messages/youtube/MusicSearchFilter.js';
 import * as LiveMessageParams from './generated/messages/youtube/LiveMessageParams.js';
 import * as GetCommentsSectionParams from './generated/messages/youtube/GetCommentsSectionParams.js';

@@ -1,9 +1,10 @@
 import Constants from '../../../utils/Constants.js';
-import { YTNode, observe, type ObservedArray } from '../../helpers.js';
+import type { YTNode} from '../../helpers.js';
+import { observe, type ObservedArray } from '../../helpers.js';
 import Parser, { type RawNode } from '../../index.js';
-import NavigationEndpoint from '../NavigationEndpoint.js';
+import type NavigationEndpoint from '../NavigationEndpoint.js';
 import Text from './Text.js';
-import TextRun from './TextRun.js';
+import type TextRun from './TextRun.js';
 import Thumbnail from './Thumbnail.js';
 
 export default class Author {

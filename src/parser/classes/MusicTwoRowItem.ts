@@ -6,7 +6,7 @@ import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Menu from './menus/Menu.js';
 import Text from './misc/Text.js';
-import TextRun from './misc/TextRun.js';
+import type TextRun from './misc/TextRun.js';
 import Thumbnail from './misc/Thumbnail.js';
 
 export default class MusicTwoRowItem extends YTNode {

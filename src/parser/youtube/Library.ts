@@ -12,7 +12,7 @@ import ProfileColumnStats from '../classes/ProfileColumnStats.js';
 import ProfileColumnUserInfo from '../classes/ProfileColumnUserInfo.js';
 
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
-import { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
 
 class Library extends Feed<IBrowseResponse> {
   profile: {

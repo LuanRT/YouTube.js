@@ -1,5 +1,5 @@
 import ItemSection from '../classes/ItemSection.js';
-import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
 import SlimVideoMetadata from '../classes/SlimVideoMetadata.js';
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';

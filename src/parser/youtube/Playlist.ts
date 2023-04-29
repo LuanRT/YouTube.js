@@ -1,7 +1,7 @@
 import Feed from '../../core/mixins/Feed.js';
 import Message from '../classes/Message.js';
-import Thumbnail from '../classes/misc/Thumbnail.js';
-import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import type Thumbnail from '../classes/misc/Thumbnail.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail.js';
 import PlaylistHeader from '../classes/PlaylistHeader.js';
 import PlaylistMetadata from '../classes/PlaylistMetadata.js';
@@ -11,7 +11,7 @@ import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.js';
 import VideoOwner from '../classes/VideoOwner.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
-import { ObservedArray } from '../helpers.js';
+import type { ObservedArray } from '../helpers.js';
 
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';

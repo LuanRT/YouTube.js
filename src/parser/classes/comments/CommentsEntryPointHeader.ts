@@ -1,7 +1,8 @@
 import Text from '../misc/Text.js';
 import Thumbnail from '../misc/Thumbnail.js';
 import { YTNode } from '../../helpers.js';
-import { Parser, RawNode } from '../../index.js';
+import type { RawNode } from '../../index.js';
+import { Parser } from '../../index.js';
 import CommentsEntryPointTeaser from './CommentsEntryPointTeaser.js';
 
 export default class CommentsEntryPointHeader extends YTNode {

@@ -1,5 +1,5 @@
 // Deno Platform Support
-import { ICache } from '../types/Cache.js';
+import type { ICache } from '../types/Cache.js';
 import { Platform } from '../utils/Utils.js';
 import sha1Hash from './polyfills/web-crypto.js';
 import package_json from '../../package.json' assert { type: 'json' };

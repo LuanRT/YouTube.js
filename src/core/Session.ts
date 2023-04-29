@@ -4,11 +4,13 @@ import Actions from './Actions.js';
 import Player from './Player.js';
 
 import Proto from '../proto/index.js';
-import { ICache } from '../types/Cache.js';
-import { FetchFunction } from '../types/PlatformShim.js';
+import type { ICache } from '../types/Cache.js';
+import type { FetchFunction } from '../types/PlatformShim.js';
 import HTTPClient from '../utils/HTTPClient.js';
-import { DeviceCategory, getRandomUserAgent, InnertubeError, Platform, SessionError } from '../utils/Utils.js';
-import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.js';
+import type { DeviceCategory} from '../utils/Utils.js';
+import { getRandomUserAgent, InnertubeError, Platform, SessionError } from '../utils/Utils.js';
+import type { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.js';
+import OAuth from './OAuth.js';
 
 export enum ClientType {
   WEB = 'WEB',

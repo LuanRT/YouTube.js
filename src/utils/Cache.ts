@@ -1,4 +1,4 @@
-import { ICache } from '../types/Cache.js';
+import type { ICache } from '../types/Cache.js';
 import { Platform } from './Utils.js';
 
 export default class UniversalCache implements ICache {

@@ -12,7 +12,7 @@ import ChipCloud from '../classes/ChipCloud.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';
 import MusicMultiSelectMenuItem from '../classes/menus/MusicMultiSelectMenuItem.js';
 import MusicSortFilterButton from '../classes/MusicSortFilterButton.js';
-import MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.js';
+import type MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import type { ObservedArray } from '../helpers.js';

@@ -1,9 +1,12 @@
-import Actions, { ApiResponse } from '../Actions.js';
+import type { ApiResponse } from '../Actions.js';
+import type Actions from '../Actions.js';
 import Constants from '../../utils/Constants.js';
-import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
+import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
+import FormatUtils from '../../utils/FormatUtils.js';
 import { InnertubeError } from '../../utils/Utils.js';
-import Format from '../../parser/classes/misc/Format.js';
-import Parser, { INextResponse, IPlayerResponse } from '../../parser/index.js';
+import type Format from '../../parser/classes/misc/Format.js';
+import type { INextResponse, IPlayerResponse } from '../../parser/index.js';
+import Parser from '../../parser/index.js';
 
 export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];

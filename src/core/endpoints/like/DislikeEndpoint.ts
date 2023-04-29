@@ -1,4 +1,4 @@
-import { IDislikeRequest, DislikeEndpointOptions } from '../../../types/index.js';
+import type { IDislikeRequest, DislikeEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/like/dislike';
 

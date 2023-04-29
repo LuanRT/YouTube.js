@@ -13,7 +13,8 @@ import SponsorCommentBadge from './SponsorCommentBadge.js';
 
 import Proto from '../../../proto/index.js';
 import { InnertubeError } from '../../../utils/Utils.js';
-import { SuperParsedResult, YTNode } from '../../helpers.js';
+import type { SuperParsedResult} from '../../helpers.js';
+import { YTNode } from '../../helpers.js';
 
 import type Actions from '../../../core/Actions.js';
 import type { ApiResponse } from '../../../core/Actions.js';

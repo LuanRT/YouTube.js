@@ -1,4 +1,4 @@
-import { YTNode } from '../helpers.js';
+import type { YTNode } from '../helpers.js';
 
 /**
  * Flattens the given queue.

@@ -1,4 +1,4 @@
-import { IRemoveLikeRequest, RemoveLikeEndpointOptions } from '../../../types/index.js';
+import type { IRemoveLikeRequest, RemoveLikeEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/like/removelike';
 

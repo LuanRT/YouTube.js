@@ -4,7 +4,8 @@ import Author from './classes/misc/Author.js';
 import Text from './classes/misc/Text.js';
 import Thumbnail from './classes/misc/Thumbnail.js';
 import NavigationEndpoint from './classes/NavigationEndpoint.js';
-import { YTNode, YTNodeConstructor } from './helpers.js';
+import type { YTNodeConstructor } from './helpers.js';
+import { YTNode } from './helpers.js';
 import Parser from './parser.js';
 
 export type MiscInferenceType = {
