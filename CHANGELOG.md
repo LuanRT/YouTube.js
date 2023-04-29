@@ -1,5 +1,26 @@
 # Changelog
 
+## [5.0.0](https://github.com/LuanRT/YouTube.js/compare/v4.3.0...v5.0.0) (2023-04-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* overhaul core classes and remove redundant code ([#388](https://github.com/LuanRT/YouTube.js/issues/388))
+
+### Features
+
+* **NavigationEndpoint:** parse `content` prop ([dd21f8c](https://github.com/LuanRT/YouTube.js/commit/dd21f8c75ae1d76180faab4f0ef9ee40920966e3))
+
+
+### Bug Fixes
+
+* **android:** workaround streaming URLs returning 403 ([#390](https://github.com/LuanRT/YouTube.js/issues/390)) ([75ea09d](https://github.com/LuanRT/YouTube.js/commit/75ea09dde86b1bdf13b197d6e02701899300a371))
+
+
+### Code Refactoring
+
+* overhaul core classes and remove redundant code ([#388](https://github.com/LuanRT/YouTube.js/issues/388)) ([95e0294](https://github.com/LuanRT/YouTube.js/commit/95e0294eabfdb20bbee2a4bfb751fd101402c5d6))
+
 ## [4.3.0](https://github.com/LuanRT/YouTube.js/compare/v4.2.0...v4.3.0) (2023-04-13)
 
 
