@@ -1,11 +1,11 @@
 import { CLIENTS } from '../utils/Constants.ts';
 import { base64ToU8, u8ToBase64 } from '../utils/Utils.ts';
-import { VideoMetadata } from '../core/Studio.ts';
+import type { UpdateVideoMetadataOptions } from '../types/index.ts';
 
 import * as VisitorData from './generated/messages/youtube/VisitorData.ts';
 import * as ChannelAnalytics from './generated/messages/youtube/ChannelAnalytics.ts';
 import * as SearchFilter from './generated/messages/youtube/SearchFilter.ts';
-import * as SearchFilter_Filters from './generated/messages/youtube/(SearchFilter)/Filters.ts';
+import type * as SearchFilter_Filters from './generated/messages/youtube/(SearchFilter)/Filters.ts';
 import * as MusicSearchFilter from './generated/messages/youtube/MusicSearchFilter.ts';
 import * as LiveMessageParams from './generated/messages/youtube/LiveMessageParams.ts';
 import * as GetCommentsSectionParams from './generated/messages/youtube/GetCommentsSectionParams.ts';
@@ -235,7 +235,7 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 
-  static encodeVideoMetadataPayload(video_id: string, metadata: VideoMetadata): Uint8Array {
+  static encodeVideoMetadataPayload(video_id: string, metadata: UpdateVideoMetadataOptions): Uint8Array {
     const data: InnertubePayload.Type = {
       context: {
         client: {

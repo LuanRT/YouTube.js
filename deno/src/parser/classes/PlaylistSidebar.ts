@@ -1,10 +1,10 @@
-import Parser, { RawNode } from '../index.ts';
-import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
 
-class PlaylistSidebar extends YTNode {
+export default class PlaylistSidebar extends YTNode {
   static type = 'PlaylistSidebar';
 
-  items;
+  items: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();
@@ -16,5 +16,3 @@ class PlaylistSidebar extends YTNode {
     return this.items;
   }
 }
-
-export default PlaylistSidebar;

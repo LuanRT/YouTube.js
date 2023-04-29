@@ -1,10 +1,10 @@
 import NavigationEndpoint from '../NavigationEndpoint.ts';
-import { escape, Run } from './Text.ts';
+import { escape, type Run } from './Text.ts';
 import type { RawNode } from '../../index.ts';
 
-class TextRun implements Run {
+export default class TextRun implements Run {
   text: string;
-  endpoint: NavigationEndpoint | undefined;
+  endpoint?: NavigationEndpoint;
   bold: boolean;
   italics: boolean;
   strikethrough: boolean;
@@ -15,11 +15,15 @@ class TextRun implements Run {
     this.bold = Boolean(data.bold);
     this.italics = Boolean(data.italics);
     this.strikethrough = Boolean(data.strikethrough);
-    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : undefined;
+
+    if (Reflect.has(data, 'navigationEndpoint')) {
+      this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    }
+
     this.attachment = data.attachment;
   }
 
-  toString() {
+  toString(): string {
     return this.text;
   }
 
@@ -52,5 +56,3 @@ class TextRun implements Run {
     return wrapped_text;
   }
 }
-
-export default TextRun;

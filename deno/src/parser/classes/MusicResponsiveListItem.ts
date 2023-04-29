@@ -19,7 +19,10 @@ export default class MusicResponsiveListItem extends YTNode {
 
   flex_columns: ObservedArray<MusicResponsiveListItemFlexColumn>;
   fixed_columns: ObservedArray<MusicResponsiveListItemFixedColumn>;
-  #playlist_item_data;
+  #playlist_item_data: {
+    video_id: string;
+    playlist_set_video_id: string;
+  };
 
   endpoint: NavigationEndpoint | null;
   item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'video' | 'song' | 'endpoint' | 'unknown' | undefined;

@@ -1,15 +1,14 @@
 import Thumbnail from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class MusicThumbnail extends YTNode {
+export default class MusicThumbnail extends YTNode {
   static type = 'MusicThumbnail';
 
-  contents;
+  contents: Thumbnail[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Thumbnail.fromResponse(data.thumbnail);
   }
 }
-
-export default MusicThumbnail;

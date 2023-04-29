@@ -1,11 +1,11 @@
-import { YTNode } from '../helpers.ts';
-import Parser, { RawNode } from '../index.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import type NavigationEndpoint from './NavigationEndpoint.ts';
 import Text from './misc/Text.ts';
-import TextRun from './misc/TextRun.ts';
+import type TextRun from './misc/TextRun.ts';
 import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
 
-class MusicDetailHeader extends YTNode {
+export default class MusicDetailHeader extends YTNode {
   static type = 'MusicDetailHeader';
 
   title: Text;
@@ -16,13 +16,13 @@ class MusicDetailHeader extends YTNode {
   song_count: string;
   total_duration: string;
   thumbnails: Thumbnail[];
-  badges;
+  badges: ObservedArray<YTNode>;
   author?: {
     name: string;
     channel_id: string | undefined;
     endpoint: NavigationEndpoint | undefined;
   };
-  menu;
+  menu: YTNode;
 
   constructor(data: RawNode) {
     super();
@@ -34,7 +34,7 @@ class MusicDetailHeader extends YTNode {
     this.song_count = this.second_subtitle.runs?.[0]?.text || '';
     this.total_duration = this.second_subtitle.runs?.[2]?.text || '';
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail.croppedSquareThumbnailRenderer.thumbnail);
-    this.badges = Parser.parse(data.subtitleBadges);
+    this.badges = Parser.parseArray(data.subtitleBadges);
 
     const author = this.subtitle.runs?.find((run) => (run as TextRun)?.endpoint?.payload?.browseId.startsWith('UC'));
 
@@ -49,5 +49,3 @@ class MusicDetailHeader extends YTNode {
     this.menu = Parser.parseItem(data.menu);
   }
 }
-
-export default MusicDetailHeader;

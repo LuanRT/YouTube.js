@@ -1,5 +1,5 @@
 import ItemSection from '../classes/ItemSection.ts';
-import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import PlayerOverlay from '../classes/PlayerOverlay.ts';
 import SlimVideoMetadata from '../classes/SlimVideoMetadata.ts';
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.ts';
@@ -7,7 +7,7 @@ import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.ts';
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
-import { MediaInfo } from '../../core/MediaInfo.ts';
+import { MediaInfo } from '../../core/mixins/index.ts';
 
 class VideoInfo extends MediaInfo {
   basic_info;

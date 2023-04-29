@@ -1,8 +1,9 @@
 import Text from './misc/Text.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class SingleActionEmergencySupport extends YTNode {
+export default class SingleActionEmergencySupport extends YTNode {
   static type = 'SingleActionEmergencySupport';
 
   action_text: Text;
@@ -11,7 +12,7 @@ class SingleActionEmergencySupport extends YTNode {
   icon_type: string;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.action_text = new Text(data.actionText);
     this.nav_text = new Text(data.navigationText);
@@ -20,5 +21,3 @@ class SingleActionEmergencySupport extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default SingleActionEmergencySupport;

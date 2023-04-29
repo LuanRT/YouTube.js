@@ -1,15 +1,13 @@
-import Parser from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class RichItem extends YTNode {
+export default class RichItem extends YTNode {
   static type = 'RichItem';
 
-  content;
+  content: YTNode;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.content = Parser.parseItem(data.content);
   }
 }
-
-export default RichItem;

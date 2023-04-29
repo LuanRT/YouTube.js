@@ -1,9 +1,10 @@
+import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import { YTNode } from '../helpers.ts';
 
-class VideoInfoCardContent extends YTNode {
+export default class VideoInfoCardContent extends YTNode {
   static type = 'VideoInfoCardContent';
 
   title: Text;
@@ -13,7 +14,7 @@ class VideoInfoCardContent extends YTNode {
   duration: Text;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.videoTitle);
     this.channel_name = new Text(data.channelName);
@@ -23,5 +24,3 @@ class VideoInfoCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.action);
   }
 }
-
-export default VideoInfoCardContent;

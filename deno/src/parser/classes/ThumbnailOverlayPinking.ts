@@ -1,14 +1,13 @@
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class ThumbnailOverlayPinking extends YTNode {
+export default class ThumbnailOverlayPinking extends YTNode {
   static type = 'ThumbnailOverlayPinking';
 
   hack: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.hack = data.hack;
   }
 }
-
-export default ThumbnailOverlayPinking;

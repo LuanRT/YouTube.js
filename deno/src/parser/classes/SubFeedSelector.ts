@@ -1,18 +1,17 @@
-import Parser from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
-import { YTNode } from '../helpers.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
+import SubFeedOption from './SubFeedOption.ts';
 
-class SubFeedSelector extends YTNode {
+export default class SubFeedSelector extends YTNode {
   static type = 'SubFeedSelector';
 
   title: Text;
-  options;
+  options: ObservedArray<SubFeedOption>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
-    this.options = Parser.parse(data.options);
+    this.options = Parser.parseArray(data.options, SubFeedOption);
   }
 }
-
-export default SubFeedSelector;

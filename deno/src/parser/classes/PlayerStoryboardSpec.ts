@@ -1,6 +1,7 @@
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class PlayerStoryboardSpec extends YTNode {
+export default class PlayerStoryboardSpec extends YTNode {
   static type = 'PlayerStoryboardSpec';
 
   boards: {
@@ -14,7 +15,7 @@ class PlayerStoryboardSpec extends YTNode {
     storyboard_count: number;
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     const parts = data.spec.split('|');
@@ -40,5 +41,3 @@ class PlayerStoryboardSpec extends YTNode {
     });
   }
 }
-
-export default PlayerStoryboardSpec;

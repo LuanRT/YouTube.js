@@ -1,18 +1,17 @@
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
-
+import Parser, { type RawNode } from '../index.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
-class CarouselItem extends YTNode {
+export default class CarouselItem extends YTNode {
   static type = 'CarouselItem';
 
-  items: YTNode[];
+  items: ObservedArray<YTNode>;
   background_color: string;
   layout_style: string;
   pagination_thumbnails: Thumbnail[];
   paginator_alignment: string;
 
-  constructor (data: any) {
+  constructor (data: RawNode) {
     super();
     this.items = Parser.parseArray(data.carouselItems);
     this.background_color = data.backgroundColor;
@@ -20,6 +19,9 @@ class CarouselItem extends YTNode {
     this.pagination_thumbnails = Thumbnail.fromResponse(data.paginationThumbnails);
     this.paginator_alignment = data.paginatorAlignment;
   }
-}
 
-export default CarouselItem;
+  // XXX: For consistency.
+  get contents() {
+    return this.items;
+  }
+}

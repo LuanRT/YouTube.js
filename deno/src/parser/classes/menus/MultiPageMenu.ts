@@ -1,11 +1,12 @@
-import Parser from '../../index.ts';
-import { YTNode } from '../../helpers.ts';
+import { YTNode, type SuperParsedResult } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
-class MultiPageMenu extends YTNode {
+import Parser from '../../index.ts';
+
+export default class MultiPageMenu extends YTNode {
   static type = 'MultiPageMenu';
 
-  header;
-  sections;
+  header: SuperParsedResult<YTNode>;
+  sections: SuperParsedResult<YTNode>;
   style: string;
 
   constructor(data: RawNode) {
@@ -15,5 +16,3 @@ class MultiPageMenu extends YTNode {
     this.style = data.style;
   }
 }
-
-export default MultiPageMenu;

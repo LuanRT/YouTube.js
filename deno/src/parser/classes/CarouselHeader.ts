@@ -1,15 +1,13 @@
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
 
-class CarouselHeader extends YTNode {
+export default class CarouselHeader extends YTNode {
   static type = 'CarouselHeader';
 
-  contents: YTNode[];
+  contents: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Parser.parseArray(data.contents);
   }
 }
-
-export default CarouselHeader;

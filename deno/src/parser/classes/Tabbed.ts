@@ -1,16 +1,13 @@
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
+import { YTNode, type SuperParsedResult } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 
-class Tabbed extends YTNode {
+export default class Tabbed extends YTNode {
   static type = 'Tabbed';
 
-  contents;
+  contents: SuperParsedResult<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    // TODO: use parseArray instead
     this.contents = Parser.parse(data);
   }
 }
-
-export default Tabbed;

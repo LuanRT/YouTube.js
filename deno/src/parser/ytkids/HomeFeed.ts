@@ -1,4 +1,4 @@
-import Feed from '../../core/Feed.ts';
+import Feed from '../../core/mixins/Feed.ts';
 import KidsCategoriesHeader from '../classes/ytkids/KidsCategoriesHeader.ts';
 import KidsCategoryTab from '../classes/ytkids/KidsCategoryTab.ts';
 import KidsHomeScreen from '../classes/ytkids/KidsHomeScreen.ts';

@@ -1,18 +1,23 @@
 import Parser from '../../index.ts';
+import type { ObservedArray} from '../../helpers.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
-class Menu extends YTNode {
+
+export default class Menu extends YTNode {
   static type = 'Menu';
 
-  items;
-  top_level_buttons;
-  label;
+  items: ObservedArray<YTNode>;
+  top_level_buttons: ObservedArray<YTNode>;
+  label?: string;
 
   constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
     this.top_level_buttons = Parser.parseArray(data.topLevelButtons);
-    this.label = data.accessibility?.accessibilityData?.label || null;
+
+    if (Reflect.has(data, 'accessibility') && Reflect.has(data.accessibility, 'accessibilityData')) {
+      this.label = data.accessibility.accessibilityData.label;
+    }
   }
 
   // XXX: alias for consistency
@@ -20,5 +25,3 @@ class Menu extends YTNode {
     return this.items;
   }
 }
-
-export default Menu;

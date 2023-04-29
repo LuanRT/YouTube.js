@@ -1,7 +1,8 @@
 import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
-class Alert extends YTNode {
+
+export default class Alert extends YTNode {
   static type = 'Alert';
 
   text: Text;
@@ -13,5 +14,3 @@ class Alert extends YTNode {
     this.alert_type = data.type;
   }
 }
-
-export default Alert;

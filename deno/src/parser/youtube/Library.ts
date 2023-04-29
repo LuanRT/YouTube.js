@@ -1,7 +1,7 @@
 import type Actions from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import Feed from '../../core/Feed.ts';
+import Feed from '../../core/mixins/Feed.ts';
 import History from './History.ts';
 import Playlist from './Playlist.ts';
 import Menu from '../classes/menus/Menu.ts';
@@ -12,7 +12,7 @@ import ProfileColumnStats from '../classes/ProfileColumnStats.ts';
 import ProfileColumnUserInfo from '../classes/ProfileColumnUserInfo.ts';
 
 import type { IBrowseResponse } from '../types/ParsedResponse.ts';
-import { ApiResponse } from '../../core/Actions.ts';
+import type { ApiResponse } from '../../core/Actions.ts';
 
 class Library extends Feed<IBrowseResponse> {
   profile: {

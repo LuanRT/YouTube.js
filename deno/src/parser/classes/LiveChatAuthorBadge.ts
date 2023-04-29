@@ -1,15 +1,14 @@
+import type { RawNode } from '../index.ts';
 import MetadataBadge from './MetadataBadge.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
-class LiveChatAuthorBadge extends MetadataBadge {
+export default class LiveChatAuthorBadge extends MetadataBadge {
   static type = 'LiveChatAuthorBadge';
 
-  custom_thumbnail: Thumbnail[] | null;
+  custom_thumbnail: Thumbnail[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super(data);
-    this.custom_thumbnail = data.customThumbnail ? Thumbnail.fromResponse(data.customThumbnail) : null;
+    this.custom_thumbnail = Thumbnail.fromResponse(data.customThumbnail);
   }
 }
-
-export default LiveChatAuthorBadge;

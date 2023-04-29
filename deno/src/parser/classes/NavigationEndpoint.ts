@@ -1,15 +1,15 @@
-import Parser from '../index.ts';
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
-import type { IParsedResponse } from '../types/ParsedResponse.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import type { IParsedResponse } from '../types/ParsedResponse.ts';
 import CreatePlaylistDialog from './CreatePlaylistDialog.ts';
 
-class NavigationEndpoint extends YTNode {
+export default class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';
 
   payload;
-  dialog?;
+  dialog?: CreatePlaylistDialog | YTNode | null;
 
   metadata: {
     url?: string;
@@ -18,7 +18,7 @@ class NavigationEndpoint extends YTNode {
     send_post?: boolean;
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     if (Reflect.has(data || {}, 'innertubeCommand'))
@@ -32,8 +32,8 @@ class NavigationEndpoint extends YTNode {
 
     this.payload = name ? Reflect.get(data, name) : {};
 
-    if (Reflect.has(this.payload, 'dialog')) {
-      this.dialog = Parser.parse(this.payload.dialog);
+    if (Reflect.has(this.payload, 'dialog') || Reflect.has(this.payload, 'content')) {
+      this.dialog = Parser.parseItem(this.payload.dialog || this.payload.content);
     }
 
     if (data?.serviceEndpoint) {
@@ -106,5 +106,3 @@ class NavigationEndpoint extends YTNode {
     );
   }
 }
-
-export default NavigationEndpoint;

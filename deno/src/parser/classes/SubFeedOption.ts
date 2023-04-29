@@ -1,20 +1,19 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
 
-class SubFeedOption extends YTNode {
+export default class SubFeedOption extends YTNode {
   static type = 'SubFeedOption';
 
   name: Text;
   is_selected: boolean;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.name = new Text(data.name);
     this.is_selected = data.isSelected;
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default SubFeedOption;

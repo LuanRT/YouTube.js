@@ -1,22 +1,21 @@
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
-import Text from './misc/Text.ts';
-import Author from './misc/Author.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
-
 import Menu from './menus/Menu.ts';
+import Author from './misc/Author.ts';
+import Text from './misc/Text.ts';
 
 type AutoplaySet = {
   autoplay_video: NavigationEndpoint,
   next_button_video?: NavigationEndpoint
 };
 
-class TwoColumnWatchNextResults extends YTNode {
+export default class TwoColumnWatchNextResults extends YTNode {
   static type = 'TwoColumnWatchNextResults';
 
-  results;
-  secondary_results;
-  conversation_bar;
+  results: ObservedArray<YTNode>;
+  secondary_results: ObservedArray<YTNode>;
+  conversation_bar: YTNode;
   playlist?: {
     id: string,
     title: string,
@@ -32,13 +31,14 @@ class TwoColumnWatchNextResults extends YTNode {
     count_down_secs?: number
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.results = Parser.parseArray(data.results?.results.contents);
     this.secondary_results = Parser.parseArray(data.secondaryResults?.secondaryResults.results);
     this.conversation_bar = Parser.parseItem(data?.conversationBar);
 
     const playlistData = data.playlist?.playlist;
+
     if (playlistData) {
       this.playlist = {
         id: playlistData.playlistId,
@@ -56,7 +56,7 @@ class TwoColumnWatchNextResults extends YTNode {
     const autoplayData = data.autoplay?.autoplay;
     if (autoplayData) {
       this.autoplay = {
-        sets: autoplayData.sets.map((set: any) => this.#parseAutoplaySet(set))
+        sets: autoplayData.sets.map((set: RawNode) => this.#parseAutoplaySet(set))
       };
       if (autoplayData.modifiedSets) {
         this.autoplay.modified_sets = autoplayData.modifiedSets.map((set: any) => this.#parseAutoplaySet(set));
@@ -67,7 +67,7 @@ class TwoColumnWatchNextResults extends YTNode {
     }
   }
 
-  #parseAutoplaySet(data: any): AutoplaySet {
+  #parseAutoplaySet(data: RawNode): AutoplaySet {
     const result = {
       autoplay_video: new NavigationEndpoint(data.autoplayVideo)
     } as AutoplaySet;
@@ -79,5 +79,3 @@ class TwoColumnWatchNextResults extends YTNode {
     return result;
   }
 }
-
-export default TwoColumnWatchNextResults;

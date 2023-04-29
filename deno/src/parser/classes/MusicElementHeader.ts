@@ -1,17 +1,14 @@
-import Parser from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Element from './Element.ts';
-
 import { YTNode } from '../helpers.ts';
 
-class MusicElementHeader extends YTNode {
+export default class MusicElementHeader extends YTNode {
   static type = 'MusicElementHeader';
 
   element: Element | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.element = Reflect.has(data, 'elementRenderer') ? Parser.parseItem<Element>(data, Element) : null;
+    this.element = Reflect.has(data, 'elementRenderer') ? Parser.parseItem(data, Element) : null;
   }
 }
-
-export default MusicElementHeader;

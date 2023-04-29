@@ -1,10 +1,10 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import Button from './Button.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import Button from './Button.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
-class LiveChatMessageInput extends YTNode {
+export default class LiveChatMessageInput extends YTNode {
   static type = 'LiveChatMessageInput';
 
   author_name: Text;
@@ -12,7 +12,7 @@ class LiveChatMessageInput extends YTNode {
   send_button: Button | null;
   target_id: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.author_name = new Text(data.authorName);
     this.author_photo = Thumbnail.fromResponse(data.authorPhoto);
@@ -20,5 +20,3 @@ class LiveChatMessageInput extends YTNode {
     this.target_id = data.targetId;
   }
 }
-
-export default LiveChatMessageInput;

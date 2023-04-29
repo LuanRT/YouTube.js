@@ -1,17 +1,14 @@
-import Parser from '../index.ts';
-
+import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import Button from './Button.ts';
+import HorizontalCardList from './HorizontalCardList.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
-import Button from './Button.ts';
-import HorizontalCardList from './HorizontalCardList.ts';
-
-import { YTNode } from '../helpers.ts';
-
-class ExpandableMetadata extends YTNode {
+export default class ExpandableMetadata extends YTNode {
   static type = 'ExpandableMetadata';
 
-  header: {
+  header?: {
     collapsed_title: Text;
     collapsed_thumbnail: Thumbnail[];
     collapsed_label: Text;
@@ -22,20 +19,20 @@ class ExpandableMetadata extends YTNode {
   expand_button: Button | null;
   collapse_button: Button | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
-    this.header = {
-      collapsed_title: new Text(data.header.collapsedTitle),
-      collapsed_thumbnail: Thumbnail.fromResponse(data.header.collapsedThumbnail),
-      collapsed_label: new Text(data.header.collapsedLabel),
-      expanded_title: new Text(data.header.expandedTitle)
-    };
+    if (Reflect.has(data, 'header')) {
+      this.header = {
+        collapsed_title: new Text(data.header.collapsedTitle),
+        collapsed_thumbnail: Thumbnail.fromResponse(data.header.collapsedThumbnail),
+        collapsed_label: new Text(data.header.collapsedLabel),
+        expanded_title: new Text(data.header.expandedTitle)
+      };
+    }
 
     this.expanded_content = Parser.parseItem(data.expandedContent, HorizontalCardList);
     this.expand_button = Parser.parseItem(data.expandButton, Button);
     this.collapse_button = Parser.parseItem(data.collapseButton, Button);
   }
 }
-
-export default ExpandableMetadata;

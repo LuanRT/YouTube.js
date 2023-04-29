@@ -2,7 +2,7 @@ import { YTNode } from '../helpers.ts';
 import Text from './misc/Text.ts';
 import type { RawNode } from '../index.ts';
 
-class HashtagHeader extends YTNode {
+export default class HashtagHeader extends YTNode {
   static type = 'HashtagHeader';
 
   hashtag: Text;
@@ -14,5 +14,3 @@ class HashtagHeader extends YTNode {
     this.hashtag_info = new Text(data.hashtagInfoText);
   }
 }
-
-export default HashtagHeader;

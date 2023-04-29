@@ -1,6 +1,7 @@
 import { Memo } from '../parser/helpers.ts';
-import { EmojiRun, TextRun } from '../parser/misc.ts';
-import PlatformShim, { FetchFunction } from '../types/PlatformShim.ts';
+import type { EmojiRun, TextRun } from '../parser/misc.ts';
+import type { FetchFunction } from '../types/PlatformShim.ts';
+import type PlatformShim from '../types/PlatformShim.ts';
 import userAgents from './user-agents.ts';
 
 export class Platform {

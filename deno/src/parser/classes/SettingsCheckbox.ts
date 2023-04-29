@@ -1,7 +1,8 @@
 import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class SettingsCheckbox extends YTNode {
+export default class SettingsCheckbox extends YTNode {
   static type = 'SettingsCheckbox';
 
   title: Text;
@@ -10,7 +11,7 @@ class SettingsCheckbox extends YTNode {
   disabled: boolean;
   id: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.help_text = new Text(data.helpText);
@@ -19,5 +20,3 @@ class SettingsCheckbox extends YTNode {
     this.id = data.id;
   }
 }
-
-export default SettingsCheckbox;

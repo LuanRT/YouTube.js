@@ -1,5 +1,5 @@
 import type Actions from '../../core/Actions.ts';
-import Feed from '../../core/Feed.ts';
+import Feed from '../../core/mixins/Feed.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import BrowseFeedActions from '../classes/BrowseFeedActions.ts';
 import type { IBrowseResponse } from '../types/ParsedResponse.ts';

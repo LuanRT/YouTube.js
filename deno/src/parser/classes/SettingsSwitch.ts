@@ -1,8 +1,9 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
 
-class SettingsSwitch extends YTNode {
+export default class SettingsSwitch extends YTNode {
   static type = 'SettingsSwitch';
 
   title: Text;
@@ -11,7 +12,7 @@ class SettingsSwitch extends YTNode {
   enable_endpoint: NavigationEndpoint;
   disable_endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.subtitle = new Text(data.subtitle);
@@ -20,5 +21,3 @@ class SettingsSwitch extends YTNode {
     this.disable_endpoint = new NavigationEndpoint(data.disableServiceEndpoint);
   }
 }
-
-export default SettingsSwitch;

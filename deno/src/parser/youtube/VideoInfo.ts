@@ -17,7 +17,7 @@ import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.ts';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.ts';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.ts';
 import LiveChatWrap from './LiveChat.ts';
-import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.ts';
 
 import type CardCollection from '../classes/CardCollection.ts';
@@ -29,10 +29,10 @@ import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.ts';
 
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
-import { ObservedArray, YTNode } from '../helpers.ts';
+import type { ObservedArray, YTNode } from '../helpers.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
-import { MediaInfo } from '../../core/MediaInfo.ts';
+import { MediaInfo } from '../../core/mixins/index.ts';
 
 class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
@@ -115,7 +115,7 @@ class VideoInfo extends MediaInfo {
       this.primary_info = results.firstOfType(VideoPrimaryInfo);
       this.secondary_info = results.firstOfType(VideoSecondaryInfo);
       this.merchandise = results.firstOfType(MerchandiseShelf);
-      this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.item().as(ChipCloud);
+      this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.as(ChipCloud);
 
       if (two_col?.playlist) {
         this.playlist = two_col.playlist;

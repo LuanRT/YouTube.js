@@ -1,7 +1,7 @@
 import Button from '../classes/Button.ts';
 import Menu from '../classes/menus/Menu.ts';
 import MenuServiceItem from '../classes/menus/MenuServiceItem.ts';
-import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
 import type Actions from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';

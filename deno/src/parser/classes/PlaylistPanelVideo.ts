@@ -1,13 +1,12 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import TextRun from './misc/TextRun.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
+import type TextRun from './misc/TextRun.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
-import { YTNode } from '../helpers.ts';
-
-class PlaylistPanelVideo extends YTNode {
+export default class PlaylistPanelVideo extends YTNode {
   static type = 'PlaylistPanelVideo';
 
   title: Text;
@@ -24,23 +23,23 @@ class PlaylistPanelVideo extends YTNode {
   author: string;
 
   album?: {
-    id: string | undefined;
+    id?: string;
     name: string;
-    year: string | undefined;
-    endpoint: NavigationEndpoint | undefined;
+    year?: string;
+    endpoint?: NavigationEndpoint;
   };
 
   artists?: {
     name: string;
-    channel_id: string | undefined;
-    endpoint: NavigationEndpoint | undefined;
+    channel_id?: string;
+    endpoint?: NavigationEndpoint;
   }[];
 
-  badges;
-  menu;
-  set_video_id: string | undefined;
+  badges: ObservedArray<YTNode>;
+  menu: YTNode;
+  set_video_id?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
     this.title = new Text(data.title);
@@ -81,5 +80,3 @@ class PlaylistPanelVideo extends YTNode {
     this.set_video_id = data.playlistSetVideoId;
   }
 }
-
-export default PlaylistPanelVideo;

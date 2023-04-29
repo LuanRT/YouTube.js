@@ -20,7 +20,8 @@ import NavigationEndpoint from './classes/NavigationEndpoint.ts';
 import Thumbnail from './classes/misc/Thumbnail.ts';
 
 import { InnertubeError, ParsingError, Platform } from '../utils/Utils.ts';
-import { Memo, observe, ObservedArray, SuperParsedResult, YTNode, YTNodeConstructor } from './helpers.ts';
+import type { ObservedArray, YTNodeConstructor } from './helpers.ts';
+import { Memo, observe, SuperParsedResult, YTNode } from './helpers.ts';
 import * as YTNodes from './nodes.ts';
 import { YTNodeGenerator } from './generator.ts';
 
@@ -319,10 +320,6 @@ export default class Parser {
     return null;
   }
 
-  extra() {
-    Parser.parseItem({}, [ MusicMultiSelectMenuItem, MusicMultiSelectMenuItem ]);
-  }
-
   /**
    * Parses an array of items.
    * @param data - The data to parse.
@@ -502,6 +499,8 @@ export default class Parser {
     'PromotedSparklesWeb',
     'RunAttestationCommand',
     'CompactPromotedVideo',
+    'BrandVideoShelf',
+    'BrandVideoSingleton',
     'StatementBanner',
     'GuideSigninPromo'
   ]);
@@ -574,7 +573,7 @@ export class AppendContinuationItemsAction extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.contents = Parser.parse(data.continuationItems, true);
+    this.contents = Parser.parseArray(data.continuationItems);
   }
 }
 

@@ -1,6 +1,6 @@
 import type Actions from '../../core/Actions.ts';
-import FilterableFeed from '../../core/FilterableFeed.ts';
-import ChipCloudChip from '../classes/ChipCloudChip.ts';
+import FilterableFeed from '../../core/mixins/FilterableFeed.ts';
+import type ChipCloudChip from '../classes/ChipCloudChip.ts';
 import FeedTabbedHeader from '../classes/FeedTabbedHeader.ts';
 import RichGrid from '../classes/RichGrid.ts';
 

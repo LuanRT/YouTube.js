@@ -4,7 +4,8 @@ import Author from './classes/misc/Author.ts';
 import Text from './classes/misc/Text.ts';
 import Thumbnail from './classes/misc/Thumbnail.ts';
 import NavigationEndpoint from './classes/NavigationEndpoint.ts';
-import { YTNode, YTNodeConstructor } from './helpers.ts';
+import type { YTNodeConstructor } from './helpers.ts';
+import { YTNode } from './helpers.ts';
 import Parser from './parser.ts';
 
 export type MiscInferenceType = {

@@ -1,19 +1,19 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import Text from './misc/Text.ts';
 
-class SlimVideoMetadata extends YTNode {
+export default class SlimVideoMetadata extends YTNode {
   static type = 'SlimVideoMetadata';
 
   title: Text;
   collapsed_subtitle: Text;
   expanded_subtitle: Text;
-  owner: any;
+  owner: YTNode;
   description: Text;
   video_id: string;
   date: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.collapsed_subtitle = new Text(data.collapsedSubtitle);
@@ -24,5 +24,3 @@ class SlimVideoMetadata extends YTNode {
     this.date = new Text(data.dateText);
   }
 }
-
-export default SlimVideoMetadata;

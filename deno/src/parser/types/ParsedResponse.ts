@@ -1,4 +1,4 @@
-import { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.ts';
+import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.ts';
 
 import type {
   ReloadContinuationItemsCommand, AppendContinuationItemsAction, Continuation, GridContinuation,

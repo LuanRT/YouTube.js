@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import SubscriptionNotificationToggleButton from './SubscriptionNotificationToggleButton.ts';
-import { YTNode } from '../helpers.ts';
+import Text from './misc/Text.ts';
 
-class SubscribeButton extends YTNode {
+export default class SubscribeButton extends YTNode {
   static type = 'SubscribeButton';
 
   title: Text;
@@ -18,7 +18,7 @@ class SubscribeButton extends YTNode {
   notification_preference_button: SubscriptionNotificationToggleButton | null;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.buttonText);
     this.subscribed = data.subscribed;
@@ -28,9 +28,7 @@ class SubscribeButton extends YTNode {
     this.show_preferences = data.showPreferences;
     this.subscribed_text = new Text(data.subscribedButtonText);
     this.unsubscribed_text = new Text(data.unsubscribedButtonText);
-    this.notification_preference_button = Parser.parseItem<SubscriptionNotificationToggleButton>(data.notificationPreferenceButton, SubscriptionNotificationToggleButton);
+    this.notification_preference_button = Parser.parseItem(data.notificationPreferenceButton, SubscriptionNotificationToggleButton);
     this.endpoint = new NavigationEndpoint(data.serviceEndpoints?.[0] || data.onSubscribeEndpoints?.[0]);
   }
 }
-
-export default SubscribeButton;

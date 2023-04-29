@@ -1,21 +1,21 @@
 import Text from './misc/Text.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class ChipCloudChip extends YTNode {
+export default class ChipCloudChip extends YTNode {
   static type = 'ChipCloudChip';
 
   is_selected: boolean;
-  endpoint: NavigationEndpoint | undefined;
+  endpoint?: NavigationEndpoint;
   text: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    // TODO: is this isSelected or just selected
     this.is_selected = data.isSelected;
-    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : undefined;
+    if (Reflect.has(data, 'navigationEndpoint')) {
+      this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    }
     this.text = new Text(data.text).toString();
   }
 }
-
-export default ChipCloudChip;

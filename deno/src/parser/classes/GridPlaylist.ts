@@ -1,17 +1,17 @@
-import { YTNode } from '../helpers.ts';
-import Parser, { RawNode } from '../index.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Author from './misc/Author.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 
-class GridPlaylist extends YTNode {
+export default class GridPlaylist extends YTNode {
   static type = 'GridPlaylist';
 
   id: string;
   title: Text;
   author?: Author;
-  badges;
+  badges: ObservedArray<YTNode>;
   endpoint: NavigationEndpoint;
   view_playlist: Text;
   thumbnails: Thumbnail[];
@@ -25,7 +25,7 @@ class GridPlaylist extends YTNode {
     this.id = data.playlistId;
     this.title = new Text(data.title);
 
-    if (data.shortBylineText) {
+    if (Reflect.has(data, 'shortBylineText')) {
       this.author = new Author(data.shortBylineText, data.ownerBadges);
     }
 
@@ -39,5 +39,3 @@ class GridPlaylist extends YTNode {
     this.video_count_short = new Text(data.videoCountShortText);
   }
 }
-
-export default GridPlaylist;

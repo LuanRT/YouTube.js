@@ -1,4 +1,4 @@
-import { ICache } from '../types/Cache.ts';
+import type { ICache } from '../types/Cache.ts';
 import { Platform } from './Utils.ts';
 
 export default class UniversalCache implements ICache {

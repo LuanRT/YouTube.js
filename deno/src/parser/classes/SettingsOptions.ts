@@ -1,22 +1,20 @@
-import Parser from '../index.ts';
-
-import Text from './misc/Text.ts';
-import Dropdown from './Dropdown.ts';
-import SettingsSwitch from './SettingsSwitch.ts';
-import SettingsCheckbox from './SettingsCheckbox.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import ChannelOptions from './ChannelOptions.ts';
 import CopyLink from './CopyLink.ts';
+import Dropdown from './Dropdown.ts';
+import SettingsCheckbox from './SettingsCheckbox.ts';
+import SettingsSwitch from './SettingsSwitch.ts';
+import Text from './misc/Text.ts';
 
-import { YTNode } from '../helpers.ts';
-
-class SettingsOptions extends YTNode {
+export default class SettingsOptions extends YTNode {
   static type = 'SettingsOptions';
 
   title: Text;
   text?: string;
-  options?;
+  options?: ObservedArray<SettingsSwitch | Dropdown | CopyLink | SettingsCheckbox | ChannelOptions>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
 
@@ -32,5 +30,3 @@ class SettingsOptions extends YTNode {
     }
   }
 }
-
-export default SettingsOptions;

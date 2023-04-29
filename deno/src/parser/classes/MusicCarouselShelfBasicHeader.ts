@@ -1,41 +1,37 @@
-import Text from './misc/Text.ts';
-import { YTNode } from '../helpers.ts';
-import MusicThumbnail from './MusicThumbnail.ts';
-import Parser from '../index.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import IconLink from './IconLink.ts';
+import MusicThumbnail from './MusicThumbnail.ts';
+import Text from './misc/Text.ts';
 
-class MusicCarouselShelfBasicHeader extends YTNode {
+export default class MusicCarouselShelfBasicHeader extends YTNode {
   static type = 'MusicCarouselShelfBasicHeader';
 
-  strapline?: Text;
   title: Text;
+  strapline?: Text;
   thumbnail?: MusicThumbnail | null;
   more_content?: Button | null;
-  end_icons?: Array<IconLink>;
+  end_icons?: ObservedArray<IconLink>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
+    this.title = new Text(data.title);
 
-    if (data.strapline) {
+    if (Reflect.has(data, 'strapline')) {
       this.strapline = new Text(data.strapline);
     }
 
-    this.title = new Text(data.title);
-    // This.label = data.accessibilityData.accessibilityData.label;
-    // ^^ redundant?
-    if (data.thumbnail) {
-      this.thumbnail = Parser.parseItem<MusicThumbnail>(data.thumbnail, MusicThumbnail);
+    if (Reflect.has(data, 'thumbnail')) {
+      this.thumbnail = Parser.parseItem(data.thumbnail, MusicThumbnail);
     }
 
-    if (data.moreContentButton) {
-      this.more_content = Parser.parseItem<Button>(data.moreContentButton, Button);
+    if (Reflect.has(data, 'moreContentButton')) {
+      this.more_content = Parser.parseItem(data.moreContentButton, Button);
     }
 
-    if (data.endIcons) {
-      this.end_icons = Parser.parseArray<IconLink>(data.endIcons, IconLink);
+    if (Reflect.has(data, 'endIcons')) {
+      this.end_icons = Parser.parseArray(data.endIcons, IconLink);
     }
   }
 }
-
-export default MusicCarouselShelfBasicHeader;

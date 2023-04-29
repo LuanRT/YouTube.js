@@ -1,17 +1,16 @@
-import Parser from '../index.ts';
 import { YTNode } from '../helpers.ts';
-
-import Text from './misc/Text.ts';
+import Parser, { type RawNode } from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
 
-class DefaultPromoPanel extends YTNode {
+export default class DefaultPromoPanel extends YTNode {
   static type = 'DefaultPromoPanel';
 
   title: Text;
   description: Text;
   endpoint: NavigationEndpoint;
-  large_form_factor_background_thumbnail;
-  small_form_factor_background_thumbnail;
+  large_form_factor_background_thumbnail: YTNode;
+  small_form_factor_background_thumbnail: YTNode;
   scrim_color_values: number[];
   min_panel_display_duration_ms: number;
   min_video_play_duration_ms: number;
@@ -19,7 +18,7 @@ class DefaultPromoPanel extends YTNode {
   metadata_order: string;
   panel_layout: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.description = new Text(data.description);
@@ -34,5 +33,3 @@ class DefaultPromoPanel extends YTNode {
     this.panel_layout = data.panelLayout;
   }
 }
-
-export default DefaultPromoPanel;

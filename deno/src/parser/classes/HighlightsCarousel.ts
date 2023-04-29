@@ -1,7 +1,8 @@
 import NavigationEndpoint from './NavigationEndpoint.ts';
-import { YTNode } from '../helpers.ts';
+import { YTNode, observe } from '../helpers.ts';
+import { type RawNode } from '../index.ts';
 
-class Panel {
+export class Panel extends YTNode {
   static type = 'Panel';
 
   thumbnail?: {
@@ -42,7 +43,9 @@ class Panel {
     state: string;
   };
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
+    super();
+
     if (data.thumbnail) {
       this.thumbnail = {
         image: data.thumbnail.image.sources,
@@ -74,15 +77,13 @@ class Panel {
   }
 }
 
-class HighlightsCarousel extends YTNode {
+export default class HighlightsCarousel extends YTNode {
   static type = 'HighlightsCarousel';
 
   panels: Panel[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.panels = data.highlightsCarousel.panels.map((el: any) => new Panel(el));
+    this.panels = observe(data.highlightsCarousel.panels.map((el: RawNode) => new Panel(el)));
   }
 }
-
-export default HighlightsCarousel;

@@ -1,7 +1,8 @@
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class DownloadButton extends YTNode {
+export default class DownloadButton extends YTNode {
   static type = 'DownloadButton';
 
   style: string;
@@ -9,7 +10,7 @@ class DownloadButton extends YTNode {
   endpoint: NavigationEndpoint;
   target_id: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.style = data.style;
     this.size = data.size;
@@ -17,5 +18,3 @@ class DownloadButton extends YTNode {
     this.target_id = data.targetId;
   }
 }
-
-export default DownloadButton;

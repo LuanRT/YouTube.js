@@ -1,17 +1,15 @@
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
+import { YTNode, type SuperParsedResult } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 
-class TwoColumnSearchResults extends YTNode {
+export default class TwoColumnSearchResults extends YTNode {
   static type = 'TwoColumnSearchResults';
 
-  primary_contents;
-  secondary_contents;
+  primary_contents: SuperParsedResult<YTNode>;
+  secondary_contents: SuperParsedResult<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.primary_contents = Parser.parse(data.primaryContents);
     this.secondary_contents = Parser.parse(data.secondaryContents);
   }
 }
-
-export default TwoColumnSearchResults;

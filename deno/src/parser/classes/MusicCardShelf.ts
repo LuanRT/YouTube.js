@@ -1,5 +1,5 @@
-import { ObservedArray, YTNode } from '../helpers.ts';
-import Parser, { RawNode } from '../index.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import Menu from './menus/Menu.ts';
 import Text from './misc/Text.ts';
@@ -15,14 +15,14 @@ export default class MusicCardShelf extends YTNode {
   thumbnail: MusicThumbnail | null;
   title: Text;
   subtitle: Text;
-  buttons: ObservedArray<Button> | null;
+  buttons: ObservedArray<Button>;
   menu: Menu | null;
   on_tap: NavigationEndpoint;
   header: MusicCardShelfHeaderBasic | null;
   end_icon_type?: string;
   subtitle_badges: ObservedArray<MusicInlineBadge>;
   thumbnail_overlay: MusicItemThumbnailOverlay | null;
-  contents?: ObservedArray<YTNode> | null;
+  contents?: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();

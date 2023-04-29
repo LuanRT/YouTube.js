@@ -1,15 +1,13 @@
-import Parser from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class RelatedChipCloud extends YTNode {
+export default class RelatedChipCloud extends YTNode {
   static type = 'RelatedChipCloud';
 
-  content;
+  content: YTNode;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.content = Parser.parse(data.content);
+    this.content = Parser.parseItem(data.content);
   }
 }
-
-export default RelatedChipCloud;

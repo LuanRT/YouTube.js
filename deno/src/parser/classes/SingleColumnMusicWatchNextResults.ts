@@ -1,15 +1,13 @@
-import Parser from '../index.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 
-class SingleColumnMusicWatchNextResults extends YTNode {
+export default class SingleColumnMusicWatchNextResults extends YTNode {
   static type = 'SingleColumnMusicWatchNextResults';
 
   contents;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Parser.parse(data);
   }
 }
-
-export default SingleColumnMusicWatchNextResults;

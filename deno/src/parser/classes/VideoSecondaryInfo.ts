@@ -1,4 +1,4 @@
-import Parser, { RawNode } from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import Button from './Button.ts';
 import VideoOwner from './VideoOwner.ts';
@@ -6,7 +6,7 @@ import SubscribeButton from './SubscribeButton.ts';
 import MetadataRowContainer from './MetadataRowContainer.ts';
 import { YTNode } from '../helpers.ts';
 
-class VideoSecondaryInfo extends YTNode {
+export default class VideoSecondaryInfo extends YTNode {
   static type = 'VideoSecondaryInfo';
 
   owner: VideoOwner | null;
@@ -28,7 +28,7 @@ class VideoSecondaryInfo extends YTNode {
     }
 
     this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
-    this.metadata = Parser.parseItem<MetadataRowContainer>(data.metadataRowContainer, MetadataRowContainer);
+    this.metadata = Parser.parseItem(data.metadataRowContainer, MetadataRowContainer);
     this.show_more_text = data.showMoreText;
     this.show_less_text = data.showLessText;
     this.default_expanded = data.defaultExpanded;
@@ -103,5 +103,3 @@ class VideoSecondaryInfo extends YTNode {
     return { runs };
   }
 }
-
-export default VideoSecondaryInfo;

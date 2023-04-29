@@ -1,4 +1,4 @@
-import Feed from '../../core/Feed.ts';
+import Feed from '../../core/mixins/Feed.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import type Actions from '../../core/Actions.ts';

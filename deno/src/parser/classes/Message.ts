@@ -1,15 +1,14 @@
 import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class Message extends YTNode {
+export default class Message extends YTNode {
   static type = 'Message';
 
-  text: string;
+  text: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.text = new Text(data.text).toString();
+    this.text = new Text(data.text);
   }
 }
-
-export default Message;

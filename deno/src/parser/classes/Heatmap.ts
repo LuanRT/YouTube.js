@@ -1,18 +1,17 @@
-import Parser from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import HeatMarker from './HeatMarker.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
 
-import { YTNode } from '../helpers.ts';
-
-class Heatmap extends YTNode {
+export default class Heatmap extends YTNode {
   static type = 'Heatmap';
 
   max_height_dp: number;
   min_height_dp: number;
   show_hide_animation_duration_millis: number;
-  heat_markers: HeatMarker[];
-  heat_markers_decorations: any;
+  heat_markers: ObservedArray<HeatMarker>;
+  heat_markers_decorations: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.max_height_dp = data.maxHeightDp;
     this.min_height_dp = data.minHeightDp;
@@ -21,5 +20,3 @@ class Heatmap extends YTNode {
     this.heat_markers_decorations = Parser.parseArray(data.heatMarkersDecorations);
   }
 }
-
-export default Heatmap;

@@ -1,24 +1,23 @@
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import Button from './Button.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
-class ContinuationItem extends YTNode {
+export default class ContinuationItem extends YTNode {
   static type = 'ContinuationItem';
 
   trigger: string;
-  button?;
+  button?: Button | null;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.trigger = data.trigger;
 
-    if (data.button) {
-      this.button = Parser.parseItem(data.button);
+    if (Reflect.has(data, 'button')) {
+      this.button = Parser.parseItem(data.button, Button);
     }
 
     this.endpoint = new NavigationEndpoint(data.continuationEndpoint);
   }
 }
-
-export default ContinuationItem;

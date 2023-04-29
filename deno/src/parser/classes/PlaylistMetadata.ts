@@ -1,17 +1,16 @@
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class PlaylistMetadata extends YTNode {
+export default class PlaylistMetadata extends YTNode {
   static type = 'PlaylistMetadata';
 
   title: string;
   description: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.title;
     this.description = data.description || null;
-    // XXX: Appindexing should be in microformat
+    // XXX: Appindexing should be in microformat.
   }
 }
-
-export default PlaylistMetadata;

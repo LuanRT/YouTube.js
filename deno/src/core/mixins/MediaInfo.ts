@@ -1,11 +1,14 @@
-import Actions, { ApiResponse } from './Actions.ts';
-import Constants from '../utils/Constants.ts';
-import FormatUtils, { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../utils/FormatUtils.ts';
-import { InnertubeError } from '../utils/Utils.ts';
-import Format from '../parser/classes/misc/Format.ts';
-import Parser, { INextResponse, IPlayerResponse } from '../parser/index.ts';
+import type { ApiResponse } from '../Actions.ts';
+import type Actions from '../Actions.ts';
+import Constants from '../../utils/Constants.ts';
+import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.ts';
+import FormatUtils from '../../utils/FormatUtils.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
+import type Format from '../../parser/classes/misc/Format.ts';
+import type { INextResponse, IPlayerResponse } from '../../parser/index.ts';
+import Parser from '../../parser/index.ts';
 
-export class MediaInfo {
+export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];
   #actions: Actions;
   #cpn: string;

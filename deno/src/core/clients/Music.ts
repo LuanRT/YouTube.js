@@ -1,38 +1,41 @@
+import Album from '../../parser/ytmusic/Album.ts';
+import Artist from '../../parser/ytmusic/Artist.ts';
+import Explore from '../../parser/ytmusic/Explore.ts';
+import HomeFeed from '../../parser/ytmusic/HomeFeed.ts';
+import Library from '../../parser/ytmusic/Library.ts';
+import Playlist from '../../parser/ytmusic/Playlist.ts';
+import Recap from '../../parser/ytmusic/Recap.ts';
+import Search from '../../parser/ytmusic/Search.ts';
+import TrackInfo from '../../parser/ytmusic/TrackInfo.ts';
 
-import Album from '../parser/ytmusic/Album.ts';
-import Artist from '../parser/ytmusic/Artist.ts';
-import Explore from '../parser/ytmusic/Explore.ts';
-import HomeFeed from '../parser/ytmusic/HomeFeed.ts';
-import Library from '../parser/ytmusic/Library.ts';
-import Playlist from '../parser/ytmusic/Playlist.ts';
-import Recap from '../parser/ytmusic/Recap.ts';
-import Search from '../parser/ytmusic/Search.ts';
-import TrackInfo from '../parser/ytmusic/TrackInfo.ts';
+import AutomixPreviewVideo from '../../parser/classes/AutomixPreviewVideo.ts';
+import Message from '../../parser/classes/Message.ts';
+import MusicCarouselShelf from '../../parser/classes/MusicCarouselShelf.ts';
+import MusicDescriptionShelf from '../../parser/classes/MusicDescriptionShelf.ts';
+import MusicQueue from '../../parser/classes/MusicQueue.ts';
+import MusicTwoRowItem from '../../parser/classes/MusicTwoRowItem.ts';
+import PlaylistPanel from '../../parser/classes/PlaylistPanel.ts';
+import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.ts';
+import SectionList from '../../parser/classes/SectionList.ts';
+import Tab from '../../parser/classes/Tab.ts';
+import Proto from '../../proto/index.ts';
 
-import AutomixPreviewVideo from '../parser/classes/AutomixPreviewVideo.ts';
-import Message from '../parser/classes/Message.ts';
-import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf.ts';
-import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf.ts';
-import MusicQueue from '../parser/classes/MusicQueue.ts';
-import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem.ts';
-import PlaylistPanel from '../parser/classes/PlaylistPanel.ts';
-import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection.ts';
-import SectionList from '../parser/classes/SectionList.ts';
-import Tab from '../parser/classes/Tab.ts';
+import type { ObservedArray, YTNode } from '../../parser/helpers.ts';
+import type { MusicSearchFilters } from '../../types/index.ts';
+import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.ts';
+import type Actions from '../Actions.ts';
+import type Session from '../Session.ts';
 
-import { observe } from '../parser/helpers.ts';
-import Proto from '../proto/index.ts';
-import { generateRandomString, InnertubeError, throwIfMissing } from '../utils/Utils.ts';
+import {
+  BrowseEndpoint,
+  NextEndpoint,
+  PlayerEndpoint,
+  SearchEndpoint
+} from '../endpoints/index.ts';
 
-import type { ObservedArray, YTNode } from '../parser/helpers.ts';
-import type Actions from './Actions.ts';
-import type Session from './Session.ts';
+import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.ts';
 
-export interface MusicSearchFilters {
-  type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
-}
-
-class Music {
+export default class Music {
   #session: Session;
   #actions: Actions;
 
@@ -56,25 +59,23 @@ class Music {
   }
 
   async #fetchInfoFromVideoId(video_id: string): Promise<TrackInfo> {
+    const player_payload = PlayerEndpoint.build({
+      video_id,
+      sts: this.#session.player?.sts,
+      client: 'YTMUSIC'
+    });
+
+    const next_payload = NextEndpoint.build({
+      video_id,
+      client: 'YTMUSIC'
+    });
+
+    const player_response = this.#actions.execute(PlayerEndpoint.PATH, player_payload);
+    const next_response = this.#actions.execute(NextEndpoint.PATH, next_payload);
+    const response = await Promise.all([ player_response, next_response ]);
+
     const cpn = generateRandomString(16);
 
-    const initial_info = this.#actions.execute('/player', {
-      cpn,
-      client: 'YTMUSIC',
-      videoId: video_id,
-      playbackContext: {
-        contentPlaybackContext: {
-          signatureTimestamp: this.#session.player?.sts || 0
-        }
-      }
-    });
-
-    const continuation = this.#actions.execute('/next', {
-      client: 'YTMUSIC',
-      videoId: video_id
-    });
-
-    const response = await Promise.all([ initial_info, continuation ]);
     return new TrackInfo(response, this.#actions, cpn);
   }
 
@@ -85,25 +86,26 @@ class Music {
     if (!list_item.endpoint)
       throw new Error('This item does not have an endpoint.');
 
-    const cpn = generateRandomString(16);
-
-    const initial_info = list_item.endpoint.call(this.#actions, {
-      cpn,
+    const player_response = list_item.endpoint.call(this.#actions, {
       client: 'YTMUSIC',
       playbackContext: {
         contentPlaybackContext: {
-          signatureTimestamp: this.#session.player?.sts || 0
+          ...{
+            signatureTimestamp: this.#session.player?.sts
+          }
         }
       }
     });
 
-    const continuation = list_item.endpoint.call(this.#actions, {
+    const next_response = list_item.endpoint.call(this.#actions, {
       client: 'YTMUSIC',
       enablePersistentPlaylistPanel: true,
       override_endpoint: '/next'
     });
 
-    const response = await Promise.all([ initial_info, continuation ]);
+    const cpn = generateRandomString(16);
+
+    const response = await Promise.all([ player_response, next_response ]);
     return new TrackInfo(response, this.#actions, cpn);
   }
 
@@ -115,17 +117,12 @@ class Music {
   async search(query: string, filters: MusicSearchFilters = {}): Promise<Search> {
     throwIfMissing({ query });
 
-    const payload: {
-      query: string;
-      client: string;
-      params?: string;
-    } = { query, client: 'YTMUSIC' };
-
-    if (filters.type && filters.type !== 'all') {
-      payload.params = Proto.encodeMusicSearchFilters(filters);
-    }
-
-    const response = await this.#actions.execute('/search', payload);
+    const response = await this.#actions.execute(
+      SearchEndpoint.PATH, SearchEndpoint.build({
+        query, client: 'YTMUSIC',
+        params: filters.type && filters.type !== 'all' ? Proto.encodeMusicSearchFilters(filters) : undefined
+      })
+    );
 
     return new Search(response, this.#actions, Reflect.has(filters, 'type') && filters.type !== 'all');
   }
@@ -134,10 +131,12 @@ class Music {
    * Retrieves the home feed.
    */
   async getHomeFeed(): Promise<HomeFeed> {
-    const response = await this.#actions.execute('/browse', {
-      client: 'YTMUSIC',
-      browseId: 'FEmusic_home'
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: 'FEmusic_home',
+        client: 'YTMUSIC'
+      })
+    );
 
     return new HomeFeed(response, this.#actions);
   }
@@ -146,10 +145,12 @@ class Music {
    * Retrieves the Explore feed.
    */
   async getExplore(): Promise<Explore> {
-    const response = await this.#actions.execute('/browse', {
-      client: 'YTMUSIC',
-      browseId: 'FEmusic_explore'
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        client: 'YTMUSIC',
+        browse_id: 'FEmusic_explore'
+      })
+    );
 
     return new Explore(response);
     // TODO: return new Explore(response, this.#actions);
@@ -159,10 +160,12 @@ class Music {
    * Retrieves the library.
    */
   async getLibrary(): Promise<Library> {
-    const response = await this.#actions.execute('/browse', {
-      client: 'YTMUSIC',
-      browseId: 'FEmusic_library_landing'
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        client: 'YTMUSIC',
+        browse_id: 'FEmusic_library_landing'
+      })
+    );
 
     return new Library(response, this.#actions);
   }
@@ -177,10 +180,12 @@ class Music {
     if (!artist_id.startsWith('UC') && !artist_id.startsWith('FEmusic_library_privately_owned_artist'))
       throw new InnertubeError('Invalid artist id', artist_id);
 
-    const response = await this.#actions.execute('/browse', {
-      client: 'YTMUSIC',
-      browseId: artist_id
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        client: 'YTMUSIC',
+        browse_id: artist_id
+      })
+    );
 
     return new Artist(response, this.#actions);
   }
@@ -195,10 +200,12 @@ class Music {
     if (!album_id.startsWith('MPR') && !album_id.startsWith('FEmusic_library_privately_owned_release'))
       throw new InnertubeError('Invalid album id', album_id);
 
-    const response = await this.#actions.execute('/browse', {
-      client: 'YTMUSIC',
-      browseId: album_id
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        client: 'YTMUSIC',
+        browse_id: album_id
+      })
+    );
 
     return new Album(response);
   }
@@ -214,10 +221,12 @@ class Music {
       playlist_id = `VL${playlist_id}`;
     }
 
-    const response = await this.#actions.execute('/browse', {
-      client: 'YTMUSIC',
-      browseId: playlist_id
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        client: 'YTMUSIC',
+        browse_id: playlist_id
+      })
+    );
 
     return new Playlist(response, this.#actions);
   }
@@ -230,13 +239,11 @@ class Music {
   async getUpNext(video_id: string, automix = true): Promise<PlaylistPanel> {
     throwIfMissing({ video_id });
 
-    const data = await this.#actions.execute('/next', {
-      videoId: video_id,
-      client: 'YTMUSIC',
-      parse: true
-    });
+    const response = await this.#actions.execute(
+      NextEndpoint.PATH, { ...NextEndpoint.build({ video_id, client: 'YTMUSIC' }), parse: true }
+    );
 
-    const tabs = data.contents_memo?.getType(Tab);
+    const tabs = response.contents_memo?.getType(Tab);
 
     const tab = tabs?.first();
 
@@ -278,13 +285,11 @@ class Music {
   async getRelated(video_id: string): Promise<ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>> {
     throwIfMissing({ video_id });
 
-    const data = await this.#actions.execute('/next', {
-      videoId: video_id,
-      client: 'YTMUSIC',
-      parse: true
-    });
+    const response = await this.#actions.execute(
+      NextEndpoint.PATH, { ...NextEndpoint.build({ video_id, client: 'YTMUSIC' }), parse: true }
+    );
 
-    const tabs = data.contents_memo?.getType(Tab);
+    const tabs = response.contents_memo?.getType(Tab);
 
     const tab = tabs?.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_RELATED');
 
@@ -308,13 +313,11 @@ class Music {
   async getLyrics(video_id: string): Promise<MusicDescriptionShelf | undefined> {
     throwIfMissing({ video_id });
 
-    const data = await this.#actions.execute('/next', {
-      videoId: video_id,
-      client: 'YTMUSIC',
-      parse: true
-    });
+    const response = await this.#actions.execute(
+      NextEndpoint.PATH, { ...NextEndpoint.build({ video_id, client: 'YTMUSIC' }), parse: true }
+    );
 
-    const tabs = data.contents_memo?.getType(Tab);
+    const tabs = response.contents_memo?.getType(Tab);
 
     const tab = tabs?.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_LYRICS');
 
@@ -327,7 +330,7 @@ class Music {
       throw new InnertubeError('Unexpected response', page);
 
     if (page.contents.item().key('type').string() === 'Message')
-      throw new InnertubeError(page.contents.item().as(Message).text, video_id);
+      throw new InnertubeError(page.contents.item().as(Message).text.toString(), video_id);
 
     const section_list = page.contents.item().as(SectionList).contents;
 
@@ -338,10 +341,12 @@ class Music {
    * Retrieves recap.
    */
   async getRecap(): Promise<Recap> {
-    const response = await this.#actions.execute('/browse', {
-      browseId: 'FEmusic_listening_review',
-      client: 'YTMUSIC_ANDROID'
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        client: 'YTMUSIC_ANDROID',
+        browse_id: 'FEmusic_listening_review'
+      })
+    );
 
     return new Recap(response, this.#actions);
   }
@@ -351,19 +356,16 @@ class Music {
    * @param query - The query.
    */
   async getSearchSuggestions(query: string): Promise<ObservedArray<YTNode>> {
-    const response = await this.#actions.execute('/music/get_search_suggestions', {
-      parse: true,
-      input: query,
-      client: 'YTMUSIC'
-    });
+    const response = await this.#actions.execute(
+      GetSearchSuggestionsEndpoint.PATH,
+      { ...GetSearchSuggestionsEndpoint.build({ input: query }), parse: true }
+    );
 
-    const search_suggestions_section = response.contents_memo?.getType(SearchSuggestionsSection)?.[0];
+    if (!response.contents_memo)
+      throw new InnertubeError('Unexpected response', response);
 
-    if (!search_suggestions_section?.contents.is_array)
-      return observe([] as YTNode[]);
+    const search_suggestions_section = response.contents_memo.getType(SearchSuggestionsSection).first();
 
-    return search_suggestions_section?.contents.array();
+    return search_suggestions_section.contents;
   }
 }
-
-export default Music;

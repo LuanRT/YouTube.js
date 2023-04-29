@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.ts';
-import { RawNode } from '../index.ts';
+import type { RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 
 export default class MusicCardShelfHeaderBasic extends YTNode {

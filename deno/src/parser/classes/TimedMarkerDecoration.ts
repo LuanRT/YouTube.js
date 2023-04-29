@@ -1,7 +1,8 @@
-import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
+import Text from './misc/Text.ts';
 
-class TimedMarkerDecoration extends YTNode {
+export default class TimedMarkerDecoration extends YTNode {
   static type = 'TimedMarkerDecoration';
 
   visible_time_range_start_millis: number;
@@ -10,7 +11,7 @@ class TimedMarkerDecoration extends YTNode {
   label: Text;
   icon: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.visible_time_range_start_millis = data.visibleTimeRangeStartMillis;
     this.visible_time_range_end_millis = data.visibleTimeRangeEndMillis;
@@ -19,5 +20,3 @@ class TimedMarkerDecoration extends YTNode {
     this.icon = data.icon;
   }
 }
-
-export default TimedMarkerDecoration;

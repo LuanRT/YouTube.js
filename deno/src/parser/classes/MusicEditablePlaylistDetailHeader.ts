@@ -1,18 +1,15 @@
-import Parser, { RawNode } from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicEditablePlaylistDetailHeader extends YTNode {
+export default class MusicEditablePlaylistDetailHeader extends YTNode {
   static type = 'MusicEditablePlaylistDetailHeader';
 
-  header;
+  header: YTNode;
 
   constructor(data: RawNode) {
     super();
     this.header = Parser.parseItem(data.header);
 
-    // TODO: Should we also parse data.editHeader.musicPlaylistEditHeaderRenderer?
-    // It doesn't seem practical to do so...
+    // TODO: Parse data.editHeader.musicPlaylistEditHeaderRenderer.
   }
 }
-
-export default MusicEditablePlaylistDetailHeader;

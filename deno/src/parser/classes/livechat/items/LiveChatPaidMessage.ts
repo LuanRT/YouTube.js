@@ -1,16 +1,14 @@
 import { YTNode } from '../../../helpers.ts';
-import Text from '../../misc/Text.ts';
-import NavigationEndpoint from '../../NavigationEndpoint.ts';
 import type { RawNode } from '../../../index.ts';
+import NavigationEndpoint from '../../NavigationEndpoint.ts';
 import Author from '../../misc/Author.ts';
+import Text from '../../misc/Text.ts';
 
-class LiveChatPaidMessage extends YTNode {
+export default class LiveChatPaidMessage extends YTNode {
   static type = 'LiveChatPaidMessage';
 
   message: Text;
-
   author: Author;
-
   header_background_color: number;
   header_text_color: number;
   body_background_color: number;
@@ -25,7 +23,12 @@ class LiveChatPaidMessage extends YTNode {
     super();
     this.message = new Text(data.message);
 
-    this.author = new Author(data.authorName, data.authorBadges, data.authorPhoto, data.authorExternalChannelId);
+    this.author = new Author(
+      data.authorName,
+      data.authorBadges,
+      data.authorPhoto,
+      data.authorExternalChannelId
+    );
 
     this.header_background_color = data.headerBackgroundColor;
     this.header_text_color = data.headerTextColor;
@@ -38,5 +41,3 @@ class LiveChatPaidMessage extends YTNode {
     this.id = data.id;
   }
 }
-
-export default LiveChatPaidMessage;

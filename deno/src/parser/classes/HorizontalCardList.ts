@@ -1,20 +1,20 @@
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
 import SearchRefinementCard from './SearchRefinementCard.ts';
 import Button from './Button.ts';
 import MacroMarkersListItem from './MacroMarkersListItem.ts';
 import GameCard from './GameCard.ts';
 import VideoCard from './VideoCard.ts';
 
-class HorizontalCardList extends YTNode {
+export default class HorizontalCardList extends YTNode {
   static type = 'HorizontalCardList';
 
-  cards;
-  header;
-  previous_button;
-  next_button;
+  cards: ObservedArray<SearchRefinementCard | MacroMarkersListItem | GameCard | VideoCard>;
+  header: YTNode;
+  previous_button: Button | null;
+  next_button: Button | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.cards = Parser.parseArray(data.cards, [ SearchRefinementCard, MacroMarkersListItem, GameCard, VideoCard ]);
     this.header = Parser.parseItem(data.header);
@@ -22,5 +22,3 @@ class HorizontalCardList extends YTNode {
     this.next_button = Parser.parseItem(data.nextButton, Button);
   }
 }
-
-export default HorizontalCardList;

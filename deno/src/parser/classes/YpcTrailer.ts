@@ -1,11 +1,11 @@
 import { YTNode } from '../helpers.ts';
-import { RawNode } from '../index.ts';
+import type { IRawResponse, RawNode } from '../index.ts';
 
-class YpcTrailer extends YTNode {
+export default class YpcTrailer extends YTNode {
   static type = 'YpcTrailer';
 
   video_message: string;
-  player_response;
+  player_response: IRawResponse;
 
   constructor(data: RawNode) {
     super();
@@ -13,5 +13,3 @@ class YpcTrailer extends YTNode {
     this.player_response = data.unserializedPlayerResponse;
   }
 }
-
-export default YpcTrailer;

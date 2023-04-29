@@ -1,8 +1,9 @@
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class CollageHeroImage extends YTNode {
+export default class CollageHeroImage extends YTNode {
   static type = 'CollageHeroImage';
 
   left: Thumbnail[];
@@ -10,7 +11,7 @@ class CollageHeroImage extends YTNode {
   bottom_right: Thumbnail[];
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.left = Thumbnail.fromResponse(data.leftThumbnail);
     this.top_right = Thumbnail.fromResponse(data.topRightThumbnail);
@@ -18,5 +19,3 @@ class CollageHeroImage extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default CollageHeroImage;

@@ -54,6 +54,7 @@ export { default as CommentDialog } from './classes/comments/CommentDialog.ts';
 export { default as CommentReplies } from './classes/comments/CommentReplies.ts';
 export { default as CommentReplyDialog } from './classes/comments/CommentReplyDialog.ts';
 export { default as CommentsEntryPointHeader } from './classes/comments/CommentsEntryPointHeader.ts';
+export { default as CommentsEntryPointTeaser } from './classes/comments/CommentsEntryPointTeaser.ts';
 export { default as CommentsHeader } from './classes/comments/CommentsHeader.ts';
 export { default as CommentSimplebox } from './classes/comments/CommentSimplebox.ts';
 export { default as CommentThread } from './classes/comments/CommentThread.ts';

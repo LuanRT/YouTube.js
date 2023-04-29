@@ -1,11 +1,11 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import SubscribeButton from './SubscribeButton.ts';
-import { YTNode } from '../helpers.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
-class SlimOwner extends YTNode {
+export default class SlimOwner extends YTNode {
   static type = 'SlimOwner';
 
   thumbnail: Thumbnail[];
@@ -13,13 +13,11 @@ class SlimOwner extends YTNode {
   endpoint: NavigationEndpoint;
   subscribe_button: SubscribeButton | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
     this.title = new Text(data.title);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.subscribe_button = Parser.parseItem<SubscribeButton>(data.subscribeButton, SubscribeButton);
+    this.subscribe_button = Parser.parseItem(data.subscribeButton, SubscribeButton);
   }
 }
-
-export default SlimOwner;

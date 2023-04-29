@@ -1,17 +1,14 @@
-import Parser from '../index.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Tab from './Tab.ts';
 
-import { YTNode } from '../helpers.ts';
-
-class SingleColumnBrowseResults extends YTNode {
+export default class SingleColumnBrowseResults extends YTNode {
   static type = 'SingleColumnBrowseResults';
 
-  tabs;
+  tabs: ObservedArray<Tab>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    this.tabs = Parser.parseArray<Tab>(data.tabs, Tab);
+    this.tabs = Parser.parseArray(data.tabs, Tab);
   }
 }
-
-export default SingleColumnBrowseResults;

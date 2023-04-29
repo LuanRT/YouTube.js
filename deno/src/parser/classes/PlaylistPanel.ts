@@ -1,17 +1,16 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import PlaylistPanelVideo from './PlaylistPanelVideo.ts';
-
-import { YTNode } from '../helpers.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import AutomixPreviewVideo from './AutomixPreviewVideo.ts';
+import PlaylistPanelVideo from './PlaylistPanelVideo.ts';
 import PlaylistPanelVideoWrapper from './PlaylistPanelVideoWrapper.ts';
+import Text from './misc/Text.ts';
 
-class PlaylistPanel extends YTNode {
+export default class PlaylistPanel extends YTNode {
   static type = 'PlaylistPanel';
 
   title: string;
   title_text: Text;
-  contents;
+  contents: ObservedArray<PlaylistPanelVideoWrapper | PlaylistPanelVideo | AutomixPreviewVideo>;
   playlist_id: string;
   is_infinite: boolean;
   continuation: string;
@@ -19,7 +18,7 @@ class PlaylistPanel extends YTNode {
   preview_description: string;
   num_items_to_show: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = data.title;
     this.title_text = new Text(data.titleText);
@@ -32,5 +31,3 @@ class PlaylistPanel extends YTNode {
     this.num_items_to_show = data.numItemsToShow;
   }
 }
-
-export default PlaylistPanel;

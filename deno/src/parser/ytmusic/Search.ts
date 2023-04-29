@@ -9,7 +9,7 @@ import ItemSection from '../classes/ItemSection.ts';
 import Message from '../classes/Message.ts';
 import MusicCardShelf from '../classes/MusicCardShelf.ts';
 import MusicHeader from '../classes/MusicHeader.ts';
-import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
+import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
 import MusicShelf from '../classes/MusicShelf.ts';
 import SectionList from '../classes/SectionList.ts';
 import ShowingResultsFor from '../classes/ShowingResultsFor.ts';

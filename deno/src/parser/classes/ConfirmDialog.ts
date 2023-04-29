@@ -1,10 +1,9 @@
-import Parser from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import Button from './Button.ts';
-
 import { YTNode } from '../helpers.ts';
 
-class ConfirmDialog extends YTNode {
+export default class ConfirmDialog extends YTNode {
   static type = 'ConfirmDialog';
 
   title: Text;
@@ -12,13 +11,11 @@ class ConfirmDialog extends YTNode {
   cancel_button: Button | null;
   dialog_messages: Text[];
 
-  constructor (data: any) {
+  constructor (data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.confirm_button = Parser.parseItem(data.confirmButton, Button);
     this.cancel_button = Parser.parseItem(data.cancelButton, Button);
-    this.dialog_messages = data.dialogMessages.map((txt: any) => new Text(txt));
+    this.dialog_messages = data.dialogMessages.map((txt: RawNode) => new Text(txt));
   }
 }
-
-export default ConfirmDialog;

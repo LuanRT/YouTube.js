@@ -1,13 +1,13 @@
 import { YTNode } from '../../../helpers.ts';
+import type { RawNode } from '../../../index.ts';
 import Parser from '../../../index.ts';
 import LiveChatBannerHeader from './LiveChatBannerHeader.ts';
-import type { RawNode } from '../../../index.ts';
 
-class LiveChatBanner extends YTNode {
+export default class LiveChatBanner extends YTNode {
   static type = 'LiveChatBanner';
 
   header: LiveChatBannerHeader | null;
-  contents;
+  contents: YTNode;
   action_id: string;
   viewer_is_creator: boolean;
   target_id: string;
@@ -25,5 +25,3 @@ class LiveChatBanner extends YTNode {
     this.background_type = data.backgroundType;
   }
 }
-
-export default LiveChatBanner;

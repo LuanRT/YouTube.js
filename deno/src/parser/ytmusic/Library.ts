@@ -12,7 +12,7 @@ import ChipCloud from '../classes/ChipCloud.ts';
 import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import MusicMultiSelectMenuItem from '../classes/menus/MusicMultiSelectMenuItem.ts';
 import MusicSortFilterButton from '../classes/MusicSortFilterButton.ts';
-import MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.ts';
+import type MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 import type { ObservedArray } from '../helpers.ts';

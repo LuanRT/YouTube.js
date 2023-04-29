@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import Text from './misc/Text.ts';
 
-class UpsellDialog extends YTNode {
+export default class UpsellDialog extends YTNode {
   static type = 'UpsellDialog';
 
   message_title: Text;
@@ -12,7 +12,7 @@ class UpsellDialog extends YTNode {
   dismiss_button: Button | null;
   is_visible: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.message_title = new Text(data.dialogMessageTitle);
     this.message_text = new Text(data.dialogMessageText);
@@ -21,5 +21,3 @@ class UpsellDialog extends YTNode {
     this.is_visible = data.isVisible;
   }
 }
-
-export default UpsellDialog;

@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.ts';
-import { RawNode } from '../index.ts';
+import type { RawNode } from '../index.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
 export default class ShowCustomThumbnail extends YTNode {

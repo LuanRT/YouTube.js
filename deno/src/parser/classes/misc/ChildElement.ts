@@ -1,20 +1,23 @@
-
+import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
-class ChildElement {
+
+export default class ChildElement extends YTNode {
   static type = 'ChildElement';
 
-  text: string | null;
+  text?: string;
   properties;
   child_elements?: ChildElement[];
 
   constructor(data: RawNode) {
-    this.text = data.type.textType?.text?.content || null;
+    super();
+    if (Reflect.has(data, 'type') && Reflect.has(data.type, 'textType')) {
+      this.text = data.type.textType.text?.content;
+    }
+
     this.properties = data.properties;
 
-    if (data.childElements) {
-      this.child_elements = data.childElements.map((el: any) => new ChildElement(el));
+    if (Reflect.has(data, 'childElements')) {
+      this.child_elements = data.childElements.map((el: RawNode) => new ChildElement(el));
     }
   }
 }
-
-export default ChildElement;

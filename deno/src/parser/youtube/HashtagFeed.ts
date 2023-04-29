@@ -1,4 +1,4 @@
-import FilterableFeed from '../../core/FilterableFeed.ts';
+import FilterableFeed from '../../core/mixins/FilterableFeed.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import HashtagHeader from '../classes/HashtagHeader.ts';
 import RichGrid from '../classes/RichGrid.ts';

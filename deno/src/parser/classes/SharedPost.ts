@@ -1,4 +1,5 @@
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 import Parser from '../parser.ts';
 import BackstagePost from './BackstagePost.ts';
 import Button from './Button.ts';
@@ -8,7 +9,7 @@ import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 
-class SharedPost extends YTNode {
+export default class SharedPost extends YTNode {
   static type = 'SharedPost';
 
   thumbnail: Thumbnail[];
@@ -21,7 +22,7 @@ class SharedPost extends YTNode {
   expand_button: Button | null;
   author: Author;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
     this.content = new Text(data.content);
@@ -34,5 +35,3 @@ class SharedPost extends YTNode {
     this.author = new Author(data.displayName, undefined);
   }
 }
-
-export default SharedPost;

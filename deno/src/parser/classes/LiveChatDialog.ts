@@ -1,19 +1,17 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Button from './Button.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import Button from './Button.ts';
+import Text from './misc/Text.ts';
 
-class LiveChatDialog extends YTNode {
+export default class LiveChatDialog extends YTNode {
   static type = 'LiveChatDialog';
 
   confirm_button: Button | null;
   dialog_messages: Text[];
 
-  constructor (data: any) {
+  constructor (data: RawNode) {
     super();
-    this.confirm_button = Parser.parseItem<Button>(data.confirmButton, Button);
-    this.dialog_messages = data.dialogMessages.map((el: any) => new Text(el));
+    this.confirm_button = Parser.parseItem(data.confirmButton, Button);
+    this.dialog_messages = data.dialogMessages.map((el: RawNode) => new Text(el));
   }
 }
-
-export default LiveChatDialog;

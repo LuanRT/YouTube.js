@@ -1,20 +1,19 @@
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class ChannelThumbnailWithLink extends YTNode {
+export default class ChannelThumbnailWithLink extends YTNode {
   static type = 'ChannelThumbnailWithLink';
 
   thumbnails: Thumbnail[];
   endpoint: NavigationEndpoint;
-  label: string;
+  label?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.label = data.accessibility.accessibilityData.label;
+    this.label = data.accessibility?.accessibilityData?.label;
   }
 }
-
-export default ChannelThumbnailWithLink;

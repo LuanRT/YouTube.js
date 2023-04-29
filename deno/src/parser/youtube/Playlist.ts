@@ -1,7 +1,7 @@
-import Feed from '../../core/Feed.ts';
+import Feed from '../../core/mixins/Feed.ts';
 import Message from '../classes/Message.ts';
-import Thumbnail from '../classes/misc/Thumbnail.ts';
-import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import type Thumbnail from '../classes/misc/Thumbnail.ts';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail.ts';
 import PlaylistHeader from '../classes/PlaylistHeader.ts';
 import PlaylistMetadata from '../classes/PlaylistMetadata.ts';
@@ -11,7 +11,7 @@ import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.ts';
 import VideoOwner from '../classes/VideoOwner.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
-import { ObservedArray } from '../helpers.ts';
+import type { ObservedArray } from '../helpers.ts';
 
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';

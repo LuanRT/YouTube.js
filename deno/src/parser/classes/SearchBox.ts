@@ -1,23 +1,22 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import Button from './Button.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
 
-class SearchBox extends YTNode {
+export default class SearchBox extends YTNode {
   static type = 'SearchBox';
 
   endpoint: NavigationEndpoint;
-  search_button;
-  clear_button;
+  search_button: Button | null;
+  clear_button: Button | null;
   placeholder_text: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.endpoint = new NavigationEndpoint(data.endpoint);
-    this.search_button = Parser.parseItem(data.searchButton);
-    this.clear_button = Parser.parseItem(data.clearButton);
+    this.search_button = Parser.parseItem(data.searchButton, Button);
+    this.clear_button = Parser.parseItem(data.clearButton, Button);
     this.placeholder_text = new Text(data.placeholderText);
   }
 }
-
-export default SearchBox;

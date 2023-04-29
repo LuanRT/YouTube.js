@@ -1,15 +1,13 @@
-import Parser from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class BackstagePostThread extends YTNode {
+export default class BackstagePostThread extends YTNode {
   static type = 'BackstagePostThread';
 
-  post;
+  post: YTNode;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.post = Parser.parseItem(data.post);
   }
 }
-
-export default BackstagePostThread;

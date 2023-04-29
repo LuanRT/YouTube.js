@@ -1,13 +1,13 @@
 import Parser from '../../index.ts';
 import Button from '../Button.ts';
 import KidsCategoryTab from './KidsCategoryTab.ts';
-import { YTNode } from '../../helpers.ts';
+import { type ObservedArray, YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
 
-class KidsCategoriesHeader extends YTNode {
+export default class KidsCategoriesHeader extends YTNode {
   static type = 'kidsCategoriesHeader';
 
-  category_tabs: KidsCategoryTab[];
+  category_tabs: ObservedArray<KidsCategoryTab>;
   privacy_button: Button | null;
 
   constructor(data: RawNode) {
@@ -16,5 +16,3 @@ class KidsCategoriesHeader extends YTNode {
     this.privacy_button = Parser.parseItem(data.privacyButtonRenderer, Button);
   }
 }
-
-export default KidsCategoriesHeader;

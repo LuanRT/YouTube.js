@@ -1,8 +1,8 @@
 import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
-import { RawNode } from '../index.ts';
+import type { RawNode } from '../index.ts';
 
-class PlayerCaptionsTracklist extends YTNode {
+export default class PlayerCaptionsTracklist extends YTNode {
   static type = 'PlayerCaptionsTracklist';
 
   caption_tracks?: {
@@ -32,7 +32,6 @@ class PlayerCaptionsTracklist extends YTNode {
 
   constructor(data: RawNode) {
     super();
-
     if (Reflect.has(data, 'captionTracks')) {
       this.caption_tracks = data.captionTracks.map((ct: any) => ({
         base_url: ct.baseUrl,
@@ -67,5 +66,3 @@ class PlayerCaptionsTracklist extends YTNode {
     }
   }
 }
-
-export default PlayerCaptionsTracklist;

@@ -1,7 +1,8 @@
 import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
+import { type RawNode } from '../index.ts';
 
-class EmojiPickerCategory extends YTNode {
+export default class EmojiPickerCategory extends YTNode {
   static type = 'EmojiPickerCategory';
 
   category_id: string;
@@ -10,7 +11,7 @@ class EmojiPickerCategory extends YTNode {
   image_loading_lazy: boolean;
   category_type: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.category_id = data.categoryId;
     this.title = new Text(data.title);
@@ -19,5 +20,3 @@ class EmojiPickerCategory extends YTNode {
     this.category_type = data.categoryType;
   }
 }
-
-export default EmojiPickerCategory;

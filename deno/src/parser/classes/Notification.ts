@@ -1,10 +1,10 @@
 import { YTNode } from '../helpers.ts';
-import Parser, { RawNode } from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 
-class Notification extends YTNode {
+export default class Notification extends YTNode {
   static type = 'Notification';
 
   thumbnails: Thumbnail[];
@@ -14,7 +14,7 @@ class Notification extends YTNode {
   notification_id: string;
   endpoint: NavigationEndpoint;
   record_click_endpoint: NavigationEndpoint;
-  menu;
+  menu: YTNode;
   read: boolean;
 
   constructor(data: RawNode) {
@@ -30,5 +30,3 @@ class Notification extends YTNode {
     this.read = data.read;
   }
 }
-
-export default Notification;

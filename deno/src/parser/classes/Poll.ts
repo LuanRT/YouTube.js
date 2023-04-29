@@ -1,9 +1,10 @@
+import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import { YTNode } from '../helpers.ts';
 
-class Poll extends YTNode {
+export default class Poll extends YTNode {
   static type = 'Poll';
 
   choices: {
@@ -21,10 +22,10 @@ class Poll extends YTNode {
   total_votes?: Text;
   live_chat_poll_id?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
 
-    this.choices = data.choices.map((choice: any) => ({
+    this.choices = data.choices.map((choice: RawNode) => ({
       text: new Text(choice.text),
       select_endpoint: choice.selectServiceEndpoint ? new NavigationEndpoint(choice.selectServiceEndpoint) : null,
       deselect_endpoint: choice.deselectServiceEndpoint ? new NavigationEndpoint(choice.deselectServiceEndpoint) : null,
@@ -35,15 +36,13 @@ class Poll extends YTNode {
       image: choice.image ? Thumbnail.fromResponse(choice.image) : null
     }));
 
-    if (data.type)
+    if (Reflect.has(data, 'type'))
       this.poll_type = data.type;
 
-    if (data.totalVotes)
+    if (Reflect.has(data, 'totalVotes'))
       this.total_votes = new Text(data.totalVotes);
 
-    if (data.liveChatPollId)
+    if (Reflect.has(data, 'liveChatPollId'))
       this.live_chat_poll_id = data.liveChatPollId;
   }
 }
-
-export default Poll;

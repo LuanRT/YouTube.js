@@ -1,21 +1,20 @@
-import Text from './misc/Text.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
+import Text from './misc/Text.ts';
 
-class WatchCardCompactVideo extends YTNode {
+export default class WatchCardCompactVideo extends YTNode {
   static type = 'WatchCardCompactVideo';
 
   title: Text;
   subtitle: Text;
-
   duration: {
     text: string;
     seconds: number;
   };
-
   style: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.subtitle = new Text(data.subtitle);
@@ -28,5 +27,3 @@ class WatchCardCompactVideo extends YTNode {
     this.style = data.style;
   }
 }
-
-export default WatchCardCompactVideo;

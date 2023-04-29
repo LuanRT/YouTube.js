@@ -1,12 +1,12 @@
-import { YTNode } from '../helpers.ts';
-import Parser, { RawNode } from '../index.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 
-class ChannelFeaturedContent extends YTNode {
+export default class ChannelFeaturedContent extends YTNode {
   static type = 'ChannelFeaturedContent';
 
   title: Text;
-  items;
+  items: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();
@@ -14,5 +14,3 @@ class ChannelFeaturedContent extends YTNode {
     this.items = Parser.parseArray(data.items);
   }
 }
-
-export default ChannelFeaturedContent;

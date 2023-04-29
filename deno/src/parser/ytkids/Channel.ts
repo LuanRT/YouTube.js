@@ -1,4 +1,4 @@
-import Feed from '../../core/Feed.ts';
+import Feed from '../../core/mixins/Feed.ts';
 import C4TabbedHeader from '../classes/C4TabbedHeader.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import { ItemSectionContinuation } from '../index.ts';

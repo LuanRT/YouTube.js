@@ -1,10 +1,10 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
-import { YTNode } from '../helpers.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
-class GridMix extends YTNode {
+export default class GridMix extends YTNode {
   static type = 'GridMix';
 
   id: string;
@@ -15,9 +15,9 @@ class GridMix extends YTNode {
   video_count_short: Text;
   endpoint: NavigationEndpoint;
   secondary_endpoint: NavigationEndpoint;
-  thumbnail_overlays;
+  thumbnail_overlays: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.playlistId;
     this.title = new Text(data.title);
@@ -34,5 +34,3 @@ class GridMix extends YTNode {
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
   }
 }
-
-export default GridMix;

@@ -1,5 +1,5 @@
-import Player from '../core/Player.ts';
-import Actions from '../core/Actions.ts';
+import type Player from '../core/Player.ts';
+import type Actions from '../core/Actions.ts';
 
 import type Format from '../parser/classes/misc/Format.ts';
 import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability.ts';
@@ -115,7 +115,7 @@ class FormatUtils {
           return;
         }
 
-        if ((chunk_end >= format.content_length) || options.range) {
+        if ((chunk_end >= (format.content_length ? format.content_length : 0)) || options.range) {
           must_end = true;
         }
 

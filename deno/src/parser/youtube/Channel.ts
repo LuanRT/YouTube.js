@@ -1,4 +1,4 @@
-import TabbedFeed from '../../core/TabbedFeed.ts';
+import TabbedFeed from '../../core/mixins/TabbedFeed.ts';
 import C4TabbedHeader from '../classes/C4TabbedHeader.ts';
 import CarouselHeader from '../classes/CarouselHeader.ts';
 import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata.ts';
@@ -10,8 +10,8 @@ import ExpandableTab from '../classes/ExpandableTab.ts';
 import SectionList from '../classes/SectionList.ts';
 import Tab from '../classes/Tab.ts';
 
-import Feed from '../../core/Feed.ts';
-import FilterableFeed from '../../core/FilterableFeed.ts';
+import Feed from '../../core/mixins/Feed.ts';
+import FilterableFeed from '../../core/mixins/FilterableFeed.ts';
 import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import FeedFilterChipBar from '../classes/FeedFilterChipBar.ts';
 import ChannelSubMenu from '../classes/ChannelSubMenu.ts';

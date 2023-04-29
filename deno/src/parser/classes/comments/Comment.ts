@@ -1,24 +1,25 @@
 import Parser from '../../index.ts';
 
+import Author from '../misc/Author.ts';
 import Text from '../misc/Text.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
-import CommentReplyDialog from './CommentReplyDialog.ts';
-import AuthorCommentBadge from './AuthorCommentBadge.ts';
-import Author from '../misc/Author.ts';
 
 import Menu from '../menus/Menu.ts';
+import AuthorCommentBadge from './AuthorCommentBadge.ts';
 import CommentActionButtons from './CommentActionButtons.ts';
-import SponsorCommentBadge from './SponsorCommentBadge.ts';
+import CommentReplyDialog from './CommentReplyDialog.ts';
 import PdgCommentChip from './PdgCommentChip.ts';
-import type { ApiResponse } from '../../../core/Actions.ts';
-import type Actions from '../../../core/Actions.ts';
+import SponsorCommentBadge from './SponsorCommentBadge.ts';
 
 import Proto from '../../../proto/index.ts';
 import { InnertubeError } from '../../../utils/Utils.ts';
-import { YTNode, SuperParsedResult } from '../../helpers.ts';
+import { YTNode } from '../../helpers.ts';
+
+import type Actions from '../../../core/Actions.ts';
+import type { ApiResponse } from '../../../core/Actions.ts';
 import type { RawNode } from '../../index.ts';
 
-class Comment extends YTNode {
+export default class Comment extends YTNode {
   static type = 'Comment';
 
   #actions?: Actions;
@@ -35,9 +36,7 @@ class Comment extends YTNode {
   action_buttons: CommentActionButtons | null;
   comment_id: string;
   vote_status: string;
-
   vote_count: string;
-
   reply_count: number;
   is_liked: boolean;
   is_disliked: boolean;
@@ -131,8 +130,8 @@ class Comment extends YTNode {
     if (!button.endpoint?.dialog)
       throw new InnertubeError('Reply button endpoint did not have a dialog.');
 
-    const dialog = button.endpoint.dialog as SuperParsedResult<YTNode>;
-    const dialog_button = dialog.item().as(CommentReplyDialog).reply_button;
+    const dialog = button.endpoint.dialog.as(CommentReplyDialog);
+    const dialog_button = dialog.reply_button;
 
     if (!dialog_button)
       throw new InnertubeError('Reply button was not found in the dialog.', { comment_id: this.comment_id });
@@ -146,7 +145,7 @@ class Comment extends YTNode {
   }
 
   /**
-   * Translates the comment to the given language.
+   * Translates the comment to a given language.
    * @param target_language - Ex; en, ja
    */
   async translate(target_language: string): Promise<{
@@ -170,7 +169,7 @@ class Comment extends YTNode {
     const action = Proto.encodeCommentActionParams(22, payload);
     const response = await this.#actions.execute('comment/perform_comment_action', { action, client: 'ANDROID' });
 
-    // TODO: maybe add these to Parser#parseResponse?
+    // XXX: Should move this to Parser#parseResponse
     const mutations = response.data.frameworkUpdates?.entityBatchUpdate?.mutations;
     const content = mutations?.[0]?.payload?.commentEntityPayload?.translatedContent?.content;
 
@@ -181,5 +180,3 @@ class Comment extends YTNode {
     this.#actions = actions;
   }
 }
-
-export default Comment;

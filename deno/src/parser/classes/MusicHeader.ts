@@ -1,24 +1,22 @@
-import Parser, { RawNode } from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 import Text from './misc/Text.ts';
 
-class MusicHeader extends YTNode {
+export default class MusicHeader extends YTNode {
   static type = 'MusicHeader';
 
-  header?;
+  header?: YTNode;
   title?: Text;
 
   constructor(data: RawNode) {
     super();
 
-    if (data.header) {
+    if (Reflect.has(data, 'header')) {
       this.header = Parser.parseItem(data.header);
     }
 
-    if (data.title) {
+    if (Reflect.has(data, 'title')) {
       this.title = new Text(data.title);
     }
   }
 }
-
-export default MusicHeader;

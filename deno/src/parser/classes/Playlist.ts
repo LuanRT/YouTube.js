@@ -1,11 +1,11 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import Author from './misc/Author.ts';
-import { YTNode } from '../helpers.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
-class Playlist extends YTNode {
+export default class Playlist extends YTNode {
   static type = 'Playlist';
 
   id: string;
@@ -14,15 +14,15 @@ class Playlist extends YTNode {
   thumbnails: Thumbnail[];
   video_count: Text;
   video_count_short: Text;
-  first_videos;
+  first_videos: ObservedArray<YTNode>;
   share_url: string | null;
-  menu;
-  badges;
+  menu: YTNode;
+  badges: ObservedArray<YTNode>;
   endpoint: NavigationEndpoint;
   thumbnail_overlays;
   view_playlist?: Text;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.id = data.playlistId;
     this.title = new Text(data.title);
@@ -41,10 +41,8 @@ class Playlist extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
 
-    if (data.viewPlaylistText) {
+    if (Reflect.has(data, 'viewPlaylistText')) {
       this.view_playlist = new Text(data.viewPlaylistText);
     }
   }
 }
-
-export default Playlist;

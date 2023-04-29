@@ -1,4 +1,4 @@
-import { ICacheConstructor } from './Cache.ts';
+import type { ICacheConstructor } from './Cache.ts';
 
 export type Runtime = 'deno' | 'node' | 'browser' | 'unknown';
 

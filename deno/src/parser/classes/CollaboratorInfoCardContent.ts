@@ -1,10 +1,10 @@
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
-
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class CollaboratorInfoCardContent extends YTNode {
+export default class CollaboratorInfoCardContent extends YTNode {
   static type = 'CollaboratorInfoCardContent';
 
   channel_avatar: Thumbnail[];
@@ -13,7 +13,7 @@ class CollaboratorInfoCardContent extends YTNode {
   subscriber_count: Text;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.channel_avatar = Thumbnail.fromResponse(data.channelAvatar);
     this.custom_text = new Text(data.customText);
@@ -22,5 +22,3 @@ class CollaboratorInfoCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.endpoint);
   }
 }
-
-export default CollaboratorInfoCardContent;

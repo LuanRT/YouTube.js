@@ -1,15 +1,13 @@
-import Parser from '../index.ts';
 import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 
-class GameCard extends YTNode {
+export default class GameCard extends YTNode {
   static type = 'GameCard';
 
-  game;
+  game: YTNode;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.game = Parser.parseItem(data.game);
   }
 }
-
-export default GameCard;

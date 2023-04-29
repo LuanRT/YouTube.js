@@ -1,20 +1,21 @@
-import Parser, { RawNode } from '../index.ts';
-import Author from './misc/Author.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Menu from './menus/Menu.ts';
+import Author from './misc/Author.ts';
 import Text from './misc/Text.ts';
-import { YTNode } from '../helpers.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
-class Movie extends YTNode {
+export default class Movie extends YTNode {
   static type = 'Movie';
 
   id: string;
   title: Text;
-  description_snippet: Text | null;
+  description_snippet?: Text;
   top_metadata_items: Text;
   thumbnails: Thumbnail[];
-  thumbnail_overlays;
+  thumbnail_overlays: ObservedArray<YTNode>;
   author: Author;
 
   duration: {
@@ -23,20 +24,24 @@ class Movie extends YTNode {
   };
 
   endpoint: NavigationEndpoint;
-  badges;
+  badges: ObservedArray<YTNode>;
   use_vertical_poster: boolean;
   show_action_menu: boolean;
-  menu;
+  menu: Menu | null;
 
   constructor(data: RawNode) {
     super();
     const overlay_time_status = data.thumbnailOverlays
-      .find((overlay: any) => overlay.thumbnailOverlayTimeStatusRenderer)
+      .find((overlay: RawNode) => overlay.thumbnailOverlayTimeStatusRenderer)
       ?.thumbnailOverlayTimeStatusRenderer.text || 'N/A';
 
     this.id = data.videoId;
     this.title = new Text(data.title);
-    this.description_snippet = data.descriptionSnippet ? new Text(data.descriptionSnippet) : null;
+
+    if (Reflect.has(data, 'descriptionSnippet')) {
+      this.description_snippet = new Text(data.descriptionSnippet);
+    }
+
     this.top_metadata_items = new Text(data.topMetadataItems);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
@@ -48,11 +53,9 @@ class Movie extends YTNode {
     };
 
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.badges = Parser.parse(data.badges);
+    this.badges = Parser.parseArray(data.badges);
     this.use_vertical_poster = data.useVerticalPoster;
     this.show_action_menu = data.showActionMenu;
-    this.menu = Parser.parseItem(data.menu);
+    this.menu = Parser.parseItem(data.menu, Menu);
   }
 }
-
-export default Movie;

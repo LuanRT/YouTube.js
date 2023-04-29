@@ -1,10 +1,10 @@
 import { YTNode } from '../helpers.ts';
-
+import type { RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 
-class CompactStation extends YTNode {
+export default class CompactStation extends YTNode {
   static type = 'CompactStation';
 
   title: Text;
@@ -13,9 +13,8 @@ class CompactStation extends YTNode {
   endpoint: NavigationEndpoint;
   thumbnail: Thumbnail[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-
     this.title = new Text(data.title);
     this.description = new Text(data.description);
     this.video_count = new Text(data.videoCountText);
@@ -23,5 +22,3 @@ class CompactStation extends YTNode {
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
   }
 }
-
-export default CompactStation;

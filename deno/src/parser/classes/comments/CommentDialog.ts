@@ -1,12 +1,13 @@
 import Parser from '../../index.ts';
+import Button from '../Button.ts';
 import Text from '../misc/Text.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
-import Button from '../Button.ts';
 import EmojiPicker from './EmojiPicker.ts';
+
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
 
-class CommentDialog extends YTNode {
+export default class CommentDialog extends YTNode {
   static type = 'CommentDialog';
 
   editable_text: Text;
@@ -15,7 +16,7 @@ class CommentDialog extends YTNode {
   cancel_button: Button | null;
   placeholder: Text;
   emoji_button: Button | null;
-  emoji_picker: any | null;
+  emoji_picker: EmojiPicker | null;
 
   constructor(data: RawNode) {
     super();
@@ -28,5 +29,3 @@ class CommentDialog extends YTNode {
     this.emoji_picker = Parser.parseItem(data.emojiPicker, EmojiPicker);
   }
 }
-
-export default CommentDialog;

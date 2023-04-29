@@ -2,8 +2,9 @@ import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class PlaylistInfoCardContent extends YTNode {
+export default class PlaylistInfoCardContent extends YTNode {
   static type = 'PlaylistInfoCardContent';
 
   title: Text;
@@ -12,7 +13,7 @@ class PlaylistInfoCardContent extends YTNode {
   channel_name: Text;
   endpoint: NavigationEndpoint;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.playlistTitle);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
@@ -21,5 +22,3 @@ class PlaylistInfoCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.action);
   }
 }
-
-export default PlaylistInfoCardContent;

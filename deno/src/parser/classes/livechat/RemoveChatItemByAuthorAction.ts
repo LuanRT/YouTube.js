@@ -1,6 +1,7 @@
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
-class RemoveChatItemByAuthorAction extends YTNode {
+
+export default class RemoveChatItemByAuthorAction extends YTNode {
   static type = 'RemoveChatItemByAuthorAction';
 
   external_channel_id: string;
@@ -10,5 +11,3 @@ class RemoveChatItemByAuthorAction extends YTNode {
     this.external_channel_id = data.externalChannelId;
   }
 }
-
-export default RemoveChatItemByAuthorAction;

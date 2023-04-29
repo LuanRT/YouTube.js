@@ -1,15 +1,16 @@
-import Proto from '../proto/index.ts';
-import type Actions from './Actions.ts';
-import type { ApiResponse } from './Actions.ts';
+import AccountInfo from '../../parser/youtube/AccountInfo.ts';
+import Analytics from '../../parser/youtube/Analytics.ts';
+import Settings from '../../parser/youtube/Settings.ts';
+import TimeWatched from '../../parser/youtube/TimeWatched.ts';
 
-import Analytics from '../parser/youtube/Analytics.ts';
-import TimeWatched from '../parser/youtube/TimeWatched.ts';
-import AccountInfo from '../parser/youtube/AccountInfo.ts';
-import Settings from '../parser/youtube/Settings.ts';
+import Proto from '../../proto/index.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
+import { Account, BrowseEndpoint, Channel } from '../endpoints/index.ts';
 
-import { InnertubeError } from '../utils/Utils.ts';
+import type Actions from '../Actions.ts';
+import type { ApiResponse } from '../Actions.ts';
 
-class AccountManager {
+export default class AccountManager {
   #actions: Actions;
 
   channel: {
@@ -30,10 +31,12 @@ class AccountManager {
         if (!this.#actions.session.logged_in)
           throw new InnertubeError('You must be signed in to perform this operation.');
 
-        return this.#actions.execute('/channel/edit_name', {
-          givenName: new_name,
-          client: 'ANDROID'
-        });
+        return this.#actions.execute(
+          Channel.EditNameEndpoint.PATH,
+          Channel.EditNameEndpoint.build({
+            given_name: new_name
+          })
+        );
       },
       /**
        * Edits channel description.
@@ -43,10 +46,12 @@ class AccountManager {
         if (!this.#actions.session.logged_in)
           throw new InnertubeError('You must be signed in to perform this operation.');
 
-        return this.#actions.execute('/channel/edit_description', {
-          givenDescription: new_description,
-          client: 'ANDROID'
-        });
+        return this.#actions.execute(
+          Channel.EditDescriptionEndpoint.PATH,
+          Channel.EditDescriptionEndpoint.build({
+            given_description: new_description
+          })
+        );
       },
       /**
        * Retrieves basic channel analytics.
@@ -62,7 +67,11 @@ class AccountManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const response = await this.#actions.execute('/account/accounts_list', { client: 'ANDROID' });
+    const response = await this.#actions.execute(
+      Account.AccountListEndpoint.PATH,
+      Account.AccountListEndpoint.build()
+    );
+
     return new AccountInfo(response);
   }
 
@@ -70,10 +79,12 @@ class AccountManager {
    * Retrieves time watched statistics.
    */
   async getTimeWatched(): Promise<TimeWatched> {
-    const response = await this.#actions.execute('/browse', {
-      browseId: 'SPtime_watched',
-      client: 'ANDROID'
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: 'SPtime_watched',
+        client: 'ANDROID'
+      })
+    );
 
     return new TimeWatched(response);
   }
@@ -82,10 +93,11 @@ class AccountManager {
    * Opens YouTube settings.
    */
   async getSettings(): Promise<Settings> {
-    const response = await this.#actions.execute('/browse', {
-      browseId: 'SPaccount_overview'
-    });
-
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: 'SPaccount_overview'
+      })
+    );
     return new Settings(this.#actions, response);
   }
 
@@ -95,16 +107,14 @@ class AccountManager {
   async getAnalytics(): Promise<Analytics> {
     const info = await this.getInfo();
 
-    const params = Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId);
-
-    const response = await this.#actions.execute('/browse', {
-      browseId: 'FEanalytics_screen',
-      client: 'ANDROID',
-      params
-    });
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        browse_id: 'FEanalytics_screen',
+        params: Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId),
+        client: 'ANDROID'
+      })
+    );
 
     return new Analytics(response);
   }
 }
-
-export default AccountManager;

@@ -3,8 +3,8 @@ import type { ApiResponse } from '../../core/Actions.ts';
 import type { IParsedResponse } from '../types/ParsedResponse.ts';
 
 import AccountSectionList from '../classes/AccountSectionList.ts';
-import AccountItemSection from '../classes/AccountItemSection.ts';
-import AccountChannel from '../classes/AccountChannel.ts';
+import type AccountItemSection from '../classes/AccountItemSection.ts';
+import type AccountChannel from '../classes/AccountChannel.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 

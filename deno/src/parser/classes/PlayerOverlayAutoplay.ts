@@ -1,22 +1,25 @@
-import Parser, { RawNode } from '../index.ts';
-import Text from './misc/Text.ts';
-import Author from './misc/Author.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Button from './Button.ts';
-import { YTNode } from '../helpers.ts';
+import Author from './misc/Author.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
-class PlayerOverlayAutoplay extends YTNode {
+export default class PlayerOverlayAutoplay extends YTNode {
   static type = 'PlayerOverlayAutoplay';
 
   title: Text;
   video_id: string;
   video_title: Text;
   short_view_count: Text;
-  prefer_immediate_redirect: any;
-  count_down_secs_for_fullscreen: any;
+
+  // @TODO: Find out what these are.
+  prefer_immediate_redirect;
+  count_down_secs_for_fullscreen;
+
   published: Text;
   background: Thumbnail[];
-  thumbnail_overlays;
+  thumbnail_overlays: ObservedArray<YTNode>;
   author: Author;
   cancel_button: Button | null;
   next_button: Button | null;
@@ -39,5 +42,3 @@ class PlayerOverlayAutoplay extends YTNode {
     this.close_button = Parser.parseItem(data.closeButton, Button);
   }
 }
-
-export default PlayerOverlayAutoplay;

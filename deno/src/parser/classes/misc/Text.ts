@@ -1,7 +1,7 @@
-import TextRun from './TextRun.ts';
-import EmojiRun from './EmojiRun.ts';
-import NavigationEndpoint from '../NavigationEndpoint.ts';
 import type { RawNode } from '../../index.ts';
+import NavigationEndpoint from '../NavigationEndpoint.ts';
+import EmojiRun from './EmojiRun.ts';
+import TextRun from './TextRun.ts';
 
 export interface Run {
   text: string;
@@ -20,12 +20,12 @@ export function escape(text: string) {
 
 export default class Text {
   text?: string;
-  runs;
+  runs?: (EmojiRun | TextRun)[];
   endpoint?: NavigationEndpoint;
 
   constructor(data: RawNode) {
-    if (data?.hasOwnProperty('runs') && Array.isArray(data.runs)) {
-      this.runs = (data.runs as any[]).map((run: any) => run.emoji ?
+    if (typeof data === 'object' && data !== null && Reflect.has(data, 'runs') && Array.isArray(data.runs)) {
+      this.runs = data.runs.map((run: RawNode) => run.emoji ?
         new EmojiRun(run) :
         new TextRun(run)
       );
@@ -46,15 +46,27 @@ export default class Text {
     }
   }
 
-  toHTML() {
+  /**
+   * Converts the text to HTML.
+   * @returns The HTML.
+   */
+  toHTML(): string | undefined {
     return this.runs ? this.runs.map((run) => run.toHTML()).join('') : this.text;
   }
 
-  isEmpty() {
+  /**
+   * Checks if the text is empty.
+   * @returns Whether the text is empty.
+   */
+  isEmpty(): boolean {
     return this.text === undefined;
   }
 
-  toString() {
+  /**
+   * Converts the text to a string.
+   * @returns The text.
+   */
+  toString(): string {
     return this.text || 'N/A';
   }
 }

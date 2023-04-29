@@ -1,26 +1,23 @@
-// TODO: refactor this
+// TODO: Refactor this.
 
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import TextRun from './misc/TextRun.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode, type SuperParsedResult } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 import Menu from './menus/Menu.ts';
+import Text from './misc/Text.ts';
+import type TextRun from './misc/TextRun.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
-import { YTNode } from '../helpers.ts';
-
-class MusicTwoRowItem extends YTNode {
+export default class MusicTwoRowItem extends YTNode {
   static type = 'MusicTwoRowItem';
 
   title: Text;
   endpoint: NavigationEndpoint;
   id: string | undefined;
   subtitle: Text;
-  badges;
-
+  badges: SuperParsedResult<YTNode> | null;
   item_type: string;
-
   subscribers?: string;
   item_count?: string | null;
   year?: string;
@@ -39,10 +36,10 @@ class MusicTwoRowItem extends YTNode {
   };
 
   thumbnail: Thumbnail[];
-  thumbnail_overlay;
-  menu;
+  thumbnail_overlay: MusicItemThumbnailOverlay | null;
+  menu: Menu | null;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
@@ -123,9 +120,7 @@ class MusicTwoRowItem extends YTNode {
     }
 
     this.thumbnail = Thumbnail.fromResponse(data.thumbnailRenderer.musicThumbnailRenderer.thumbnail);
-    this.thumbnail_overlay = Parser.parseItem<MusicItemThumbnailOverlay>(data.thumbnailOverlay, MusicItemThumbnailOverlay);
-    this.menu = Parser.parseItem<Menu>(data.menu, Menu);
+    this.thumbnail_overlay = Parser.parseItem(data.thumbnailOverlay, MusicItemThumbnailOverlay);
+    this.menu = Parser.parseItem(data.menu, Menu);
   }
 }
-
-export default MusicTwoRowItem;

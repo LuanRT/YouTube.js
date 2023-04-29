@@ -1,22 +1,21 @@
-import Parser, { RawNode } from '../index.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import DecoratedPlayerBar from './DecoratedPlayerBar.ts';
-import Menu from './menus/Menu.ts';
 import PlayerOverlayAutoplay from './PlayerOverlayAutoplay.ts';
 import WatchNextEndScreen from './WatchNextEndScreen.ts';
+import Menu from './menus/Menu.ts';
 
-import { YTNode } from '../helpers.ts';
-
-class PlayerOverlay extends YTNode {
+export default class PlayerOverlay extends YTNode {
   static type = 'PlayerOverlay';
 
   end_screen: WatchNextEndScreen | null;
   autoplay: PlayerOverlayAutoplay | null;
   share_button: Button | null;
   add_to_menu: Menu | null;
-  fullscreen_engagement;
-  actions;
-  browser_media_session;
+  fullscreen_engagement: YTNode | null;
+  actions: ObservedArray<YTNode>;
+  browser_media_session: YTNode | null;
   decorated_player_bar: DecoratedPlayerBar | null;
 
   constructor(data: RawNode) {
@@ -31,5 +30,3 @@ class PlayerOverlay extends YTNode {
     this.decorated_player_bar = Parser.parseItem(data.decoratedPlayerBarRenderer, DecoratedPlayerBar);
   }
 }
-
-export default PlayerOverlay;

@@ -1,18 +1,17 @@
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class BrowserMediaSession extends YTNode {
+export default class BrowserMediaSession extends YTNode {
   static type = 'BrowserMediaSession';
 
-  album;
-  thumbnails;
+  album: Text;
+  thumbnails: Thumbnail[];
 
-  constructor (data: any) {
+  constructor (data: RawNode) {
     super();
     this.album = new Text(data.album);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnailDetails);
   }
 }
-
-export default BrowserMediaSession;

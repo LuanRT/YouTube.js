@@ -1,15 +1,13 @@
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
 
-class RichMetadataRow extends YTNode {
+export default class RichMetadataRow extends YTNode {
   static type = 'RichMetadataRow';
 
-  contents;
+  contents: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.contents = Parser.parseArray(data.contents);
   }
 }
-
-export default RichMetadataRow;

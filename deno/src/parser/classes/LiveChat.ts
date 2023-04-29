@@ -1,11 +1,11 @@
 import { YTNode } from '../helpers.ts';
-import Parser, { RawNode } from '../index.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 
-class LiveChat extends YTNode {
+export default class LiveChat extends YTNode {
   static type = 'LiveChat';
 
-  header;
+  header: YTNode;
   initial_display_state: string;
   continuation: string;
 
@@ -33,8 +33,6 @@ class LiveChat extends YTNode {
       generic_error: new Text(data.clientMessages.genericError)
     };
 
-    this.is_replay = data.isReplay || false;
+    this.is_replay = !!data.isReplay;
   }
 }
-
-export default LiveChat;

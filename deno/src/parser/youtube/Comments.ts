@@ -2,7 +2,8 @@ import Parser from '../index.ts';
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
-import { observe, ObservedArray } from '../helpers.ts';
+import type { ObservedArray } from '../helpers.ts';
+import { observe } from '../helpers.ts';
 import type { INextResponse } from '../types/ParsedResponse.ts';
 
 import CommentsHeader from '../classes/comments/CommentsHeader.ts';

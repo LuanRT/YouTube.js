@@ -1,6 +1,7 @@
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
-class DimChatItemAction extends YTNode {
+
+export default class DimChatItemAction extends YTNode {
   static type = 'DimChatItemAction';
 
   client_assigned_id: string;
@@ -10,5 +11,3 @@ class DimChatItemAction extends YTNode {
     this.client_assigned_id = data.clientAssignedId;
   }
 }
-
-export default DimChatItemAction;

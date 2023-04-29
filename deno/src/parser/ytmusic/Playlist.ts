@@ -4,7 +4,7 @@ import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
 import MusicDetailHeader from '../classes/MusicDetailHeader.ts';
 import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader.ts';
 import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.ts';
-import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
+import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
 import MusicShelf from '../classes/MusicShelf.ts';
 import SectionList from '../classes/SectionList.ts';
 

@@ -1,12 +1,11 @@
+import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 import { Parser } from '../index.ts';
 import Button from './Button.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
-import { YTNode } from '../helpers.ts';
-import type { RawNode } from '../index.ts';
-
-class ChannelAgeGate extends YTNode {
+export default class ChannelAgeGate extends YTNode {
   static type = 'ChannelAgeGate';
 
   channel_title: string;
@@ -26,5 +25,3 @@ class ChannelAgeGate extends YTNode {
     this.secondary_text = new Text(data.secondaryText);
   }
 }
-
-export default ChannelAgeGate;

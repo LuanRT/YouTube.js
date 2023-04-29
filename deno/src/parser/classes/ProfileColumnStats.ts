@@ -1,20 +1,18 @@
-import Parser from '../index.ts';
-import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
 
-class ProfileColumnStats extends YTNode {
+export default class ProfileColumnStats extends YTNode {
   static type = 'ProfileColumnStats';
 
-  items;
+  items: ObservedArray<YTNode>;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
   }
 
-  // XXX: alias for consistency
+  // XXX: Alias for consistency.
   get contents() {
     return this.items;
   }
 }
-
-export default ProfileColumnStats;

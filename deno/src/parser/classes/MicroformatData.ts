@@ -1,13 +1,14 @@
 import Thumbnail from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
+import type { RawNode } from '../index.ts';
 
-class MicroformatData extends YTNode {
+export default class MicroformatData extends YTNode {
   static type = 'MicroformatData';
 
   url_canonical: string;
   title: string;
   description: string;
-  thumbnail: Thumbnail[] | null;
+  thumbnail: Thumbnail[];
   site_name: string;
   app_name: string;
   android_package: string;
@@ -25,15 +26,15 @@ class MicroformatData extends YTNode {
   noindex: string;
   is_unlisted: boolean;
   is_family_safe: boolean;
-  tags: any; // TODO: string array?
+  tags: string[];
   available_countries: string[];
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.url_canonical = data.urlCanonical;
     this.title = data.title;
     this.description = data.description;
-    this.thumbnail = data.thumbnail ? Thumbnail.fromResponse(data.thumbnail) : null;
+    this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
     this.site_name = data.siteName;
     this.app_name = data.appName;
     this.android_package = data.androidPackage;
@@ -56,5 +57,3 @@ class MicroformatData extends YTNode {
     // XXX: linkAlternatives?
   }
 }
-
-export default MicroformatData;

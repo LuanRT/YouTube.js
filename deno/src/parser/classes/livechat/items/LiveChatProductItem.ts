@@ -6,7 +6,7 @@ import Text from '../../misc/Text.ts';
 import Thumbnail from '../../misc/Thumbnail.ts';
 import NavigationEndpoint from '../../NavigationEndpoint.ts';
 
-class LiveChatProductItem extends YTNode {
+export default class LiveChatProductItem extends YTNode {
   static type = 'LiveChatProductItem';
 
   title: string;
@@ -15,18 +15,17 @@ class LiveChatProductItem extends YTNode {
   price: string;
   vendor_name: string;
   from_vendor_text: string;
-  information_button;
+  information_button: YTNode;
   endpoint: NavigationEndpoint;
   creator_message: string;
   creator_name: string;
   author_photo: Thumbnail[];
-  information_dialog;
+  information_dialog: YTNode;
   is_verified: boolean;
   creator_custom_message: Text;
 
   constructor(data: RawNode) {
     super();
-
     this.title = data.title;
     this.accessibility_title = data.accessibilityTitle;
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
@@ -43,5 +42,3 @@ class LiveChatProductItem extends YTNode {
     this.creator_custom_message = new Text(data.creatorCustomMessage);
   }
 }
-
-export default LiveChatProductItem;

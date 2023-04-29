@@ -2,9 +2,12 @@ import { Platform, getRandomUserAgent, getStringBetweenStrings, PlayerError } fr
 
 import Constants from '../utils/Constants.ts';
 
-import { ICache } from '../types/Cache.ts';
-import { FetchFunction } from '../types/PlatformShim.ts';
+import type { ICache } from '../types/Cache.ts';
+import type { FetchFunction } from '../types/PlatformShim.ts';
 
+/**
+ * Represents YouTube's player script. This is required to decipher signatures.
+ */
 export default class Player {
   #nsig_sc;
   #sig_sc;
@@ -102,6 +105,29 @@ export default class Player {
       }
 
       url_components.searchParams.set('n', nsig);
+    }
+
+    const client = url_components.searchParams.get('c');
+
+    switch (client) {
+      case 'WEB':
+        url_components.searchParams.set('cver', Constants.CLIENTS.WEB.VERSION);
+        break;
+      case 'WEB_REMIX':
+        url_components.searchParams.set('cver', Constants.CLIENTS.YTMUSIC.VERSION);
+        break;
+      case 'WEB_KIDS':
+        url_components.searchParams.set('cver', Constants.CLIENTS.WEB_KIDS.VERSION);
+        break;
+      case 'ANDROID':
+        url_components.searchParams.set('cver', Constants.CLIENTS.ANDROID.VERSION);
+        break;
+      case 'ANDROID_MUSIC':
+        url_components.searchParams.set('cver', Constants.CLIENTS.YTMUSIC_ANDROID.VERSION);
+        break;
+      case 'TVHTML5_SIMPLY_EMBEDDED_PLAYER':
+        url_components.searchParams.set('cver', Constants.CLIENTS.TV_EMBEDDED.VERSION);
+        break;
     }
 
     return url_components.toString();

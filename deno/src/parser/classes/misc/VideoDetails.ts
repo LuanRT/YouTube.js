@@ -1,7 +1,7 @@
 import Thumbnail from './Thumbnail.ts';
 import type { RawNode } from '../../index.ts';
 
-class VideoDetails {
+export default class VideoDetails {
   id: string;
   channel_id: string;
   title: string;
@@ -38,5 +38,3 @@ class VideoDetails {
     this.is_crawlable = !!data.isCrawlable;
   }
 }
-
-export default VideoDetails;

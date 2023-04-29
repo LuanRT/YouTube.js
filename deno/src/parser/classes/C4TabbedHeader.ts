@@ -1,15 +1,13 @@
-import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
+import Button from './Button.ts';
+import ChannelHeaderLinks from './ChannelHeaderLinks.ts';
+import SubscribeButton from './SubscribeButton.ts';
 import Author from './misc/Author.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
-import Button from './Button.ts';
-import ChannelHeaderLinks from './ChannelHeaderLinks.ts';
-import SubscribeButton from './SubscribeButton.ts';
-
-import { YTNode } from '../helpers.ts';
-
-class C4TabbedHeader extends YTNode {
+export default class C4TabbedHeader extends YTNode {
   static type = 'C4TabbedHeader';
 
   author: Author;
@@ -24,53 +22,51 @@ class C4TabbedHeader extends YTNode {
   channel_handle?: Text;
   channel_id?: string;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
     this.author = new Author({
       simpleText: data.title,
       navigationEndpoint: data.navigationEndpoint
     }, data.badges, data.avatar);
 
-    if (data.banner) {
+    if (Reflect.has(data, 'banner')) {
       this.banner = Thumbnail.fromResponse(data.banner);
     }
 
-    if (data.tv_banner) {
+    if (Reflect.has(data, 'tv_banner')) {
       this.tv_banner = Thumbnail.fromResponse(data.tvBanner);
     }
 
-    if (data.mobile_banner) {
+    if (Reflect.has(data, 'mobile_banner')) {
       this.mobile_banner = Thumbnail.fromResponse(data.mobileBanner);
     }
 
-    if (data.subscriberCountText) {
+    if (Reflect.has(data, 'subscriberCountText')) {
       this.subscribers = new Text(data.subscriberCountText);
     }
 
-    if (data.videosCountText) {
+    if (Reflect.has(data, 'videosCountText')) {
       this.videos_count = new Text(data.videosCountText);
     }
 
-    if (data.sponsorButton) {
+    if (Reflect.has(data, 'sponsorButton')) {
       this.sponsor_button = Parser.parseItem(data.sponsorButton, Button);
     }
 
-    if (data.subscribeButton) {
+    if (Reflect.has(data, 'subscribeButton')) {
       this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     }
 
-    if (data.headerLinks) {
+    if (Reflect.has(data, 'headerLinks')) {
       this.header_links = Parser.parseItem(data.headerLinks, ChannelHeaderLinks);
     }
 
-    if (data.channelHandleText) {
+    if (Reflect.has(data, 'channelHandleText')) {
       this.channel_handle = new Text(data.channelHandleText);
     }
 
-    if (data.channelId) {
+    if (Reflect.has(data, 'channelId')) {
       this.channel_id = data.channelId;
     }
   }
 }
-
-export default C4TabbedHeader;

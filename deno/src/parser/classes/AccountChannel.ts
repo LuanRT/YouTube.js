@@ -3,7 +3,7 @@ import NavigationEndpoint from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 
-class AccountChannel extends YTNode {
+export default class AccountChannel extends YTNode {
   static type = 'AccountChannel';
 
   title: Text;
@@ -15,5 +15,3 @@ class AccountChannel extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default AccountChannel;

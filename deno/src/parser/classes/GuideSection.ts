@@ -1,13 +1,13 @@
 import Text from './misc/Text.ts';
 import Parser from '../parser.ts';
-import { YTNode } from '../helpers.ts';
+import { type ObservedArray, YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 
 export default class GuideSection extends YTNode {
   static type = 'GuideSection';
 
   title?: Text;
-  items;
+  items: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();

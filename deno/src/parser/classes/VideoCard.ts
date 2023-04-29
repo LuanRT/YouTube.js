@@ -1,11 +1,10 @@
+import type { RawNode } from '../index.ts';
 import Video from './Video.ts';
 
-class VideoCard extends Video {
+export default class VideoCard extends Video {
   static type = 'VideoCard';
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super(data);
   }
 }
-
-export default VideoCard;

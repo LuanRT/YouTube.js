@@ -1,6 +1,6 @@
 import type { RawNode } from '../../index.ts';
 
-class Thumbnail {
+export default class Thumbnail {
   url: string;
   width: number;
   height: number;
@@ -19,5 +19,3 @@ class Thumbnail {
     return data.thumbnails.map((x: any) => new Thumbnail(x)).sort((a: Thumbnail, b: Thumbnail) => b.width - a.width);
   }
 }
-
-export default Thumbnail;

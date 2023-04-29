@@ -1,8 +1,8 @@
-import { escape, Run } from './Text.ts';
-import Thumbnail from './Thumbnail.ts';
 import type { RawNode } from '../../index.ts';
+import { escape, type Run } from './Text.ts';
+import Thumbnail from './Thumbnail.ts';
 
-class EmojiRun implements Run {
+export default class EmojiRun implements Run {
   text: string;
   emoji: {
     emoji_id: string;
@@ -27,7 +27,7 @@ class EmojiRun implements Run {
     };
   }
 
-  toString() {
+  toString(): string {
     return this.text;
   }
 
@@ -36,5 +36,3 @@ class EmojiRun implements Run {
     return `<img src="${this.emoji.image[0].url}" alt="${escaped_text}" title="${escaped_text}" style="display: inline-block; vertical-align: text-top; height: var(--yt-emoji-size, 1rem); width: var(--yt-emoji-size, 1rem);" loading="lazy" crossorigin="anonymous" />`;
   }
 }
-
-export default EmojiRun;

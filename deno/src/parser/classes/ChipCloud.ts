@@ -1,25 +1,21 @@
-import Parser from '../index.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+import Parser, { type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import ChipCloudChip from './ChipCloudChip.ts';
 
-import { YTNode } from '../helpers.ts';
-
-class ChipCloud extends YTNode {
+export default class ChipCloud extends YTNode {
   static type = 'ChipCloud';
 
-  chips;
-  next_button;
-  previous_button;
-  horizontal_scrollable;
+  chips: ObservedArray<ChipCloudChip>;
+  next_button: Button | null;
+  previous_button: Button | null;
+  horizontal_scrollable: boolean;
 
-  constructor(data: any) {
+  constructor(data: RawNode) {
     super();
-    // TODO: check this assumption that chipcloudchip is always returned
     this.chips = Parser.parseArray(data.chips, ChipCloudChip);
     this.next_button = Parser.parseItem(data.nextButton, Button);
     this.previous_button = Parser.parseItem(data.previousButton, Button);
     this.horizontal_scrollable = data.horizontalScrollable;
   }
 }
-
-export default ChipCloud;

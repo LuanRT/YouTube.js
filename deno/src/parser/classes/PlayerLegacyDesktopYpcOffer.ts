@@ -1,7 +1,7 @@
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 
-class PlayerLegacyDesktopYpcOffer extends YTNode {
+export default class PlayerLegacyDesktopYpcOffer extends YTNode {
   static type = 'PlayerLegacyDesktopYpcOffer';
 
   title: string;
@@ -17,5 +17,3 @@ class PlayerLegacyDesktopYpcOffer extends YTNode {
     this.offer_id = data.offerId;
   }
 }
-
-export default PlayerLegacyDesktopYpcOffer;

@@ -1,40 +1,40 @@
-import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../parser/helpers.ts';
-import Parser, { ReloadContinuationItemsCommand } from '../parser/index.ts';
-import { concatMemos, InnertubeError } from '../utils/Utils.ts';
-import type Actions from './Actions.ts';
+import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../../parser/helpers.ts';
+import Parser, { ReloadContinuationItemsCommand } from '../../parser/index.ts';
+import { concatMemos, InnertubeError } from '../../utils/Utils.ts';
+import type Actions from '../Actions.ts';
 
-import BackstagePost from '../parser/classes/BackstagePost.ts';
-import SharedPost from '../parser/classes/SharedPost.ts';
-import Channel from '../parser/classes/Channel.ts';
-import CompactVideo from '../parser/classes/CompactVideo.ts';
-import GridChannel from '../parser/classes/GridChannel.ts';
-import GridPlaylist from '../parser/classes/GridPlaylist.ts';
-import GridVideo from '../parser/classes/GridVideo.ts';
-import Playlist from '../parser/classes/Playlist.ts';
-import PlaylistPanelVideo from '../parser/classes/PlaylistPanelVideo.ts';
-import PlaylistVideo from '../parser/classes/PlaylistVideo.ts';
-import Post from '../parser/classes/Post.ts';
-import ReelItem from '../parser/classes/ReelItem.ts';
-import ReelShelf from '../parser/classes/ReelShelf.ts';
-import RichShelf from '../parser/classes/RichShelf.ts';
-import Shelf from '../parser/classes/Shelf.ts';
-import Tab from '../parser/classes/Tab.ts';
-import Video from '../parser/classes/Video.ts';
+import BackstagePost from '../../parser/classes/BackstagePost.ts';
+import SharedPost from '../../parser/classes/SharedPost.ts';
+import Channel from '../../parser/classes/Channel.ts';
+import CompactVideo from '../../parser/classes/CompactVideo.ts';
+import GridChannel from '../../parser/classes/GridChannel.ts';
+import GridPlaylist from '../../parser/classes/GridPlaylist.ts';
+import GridVideo from '../../parser/classes/GridVideo.ts';
+import Playlist from '../../parser/classes/Playlist.ts';
+import PlaylistPanelVideo from '../../parser/classes/PlaylistPanelVideo.ts';
+import PlaylistVideo from '../../parser/classes/PlaylistVideo.ts';
+import Post from '../../parser/classes/Post.ts';
+import ReelItem from '../../parser/classes/ReelItem.ts';
+import ReelShelf from '../../parser/classes/ReelShelf.ts';
+import RichShelf from '../../parser/classes/RichShelf.ts';
+import Shelf from '../../parser/classes/Shelf.ts';
+import Tab from '../../parser/classes/Tab.ts';
+import Video from '../../parser/classes/Video.ts';
 
-import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction.ts';
-import ContinuationItem from '../parser/classes/ContinuationItem.ts';
-import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults.ts';
-import TwoColumnSearchResults from '../parser/classes/TwoColumnSearchResults.ts';
-import WatchCardCompactVideo from '../parser/classes/WatchCardCompactVideo.ts';
+import AppendContinuationItemsAction from '../../parser/classes/actions/AppendContinuationItemsAction.ts';
+import ContinuationItem from '../../parser/classes/ContinuationItem.ts';
+import TwoColumnBrowseResults from '../../parser/classes/TwoColumnBrowseResults.ts';
+import TwoColumnSearchResults from '../../parser/classes/TwoColumnSearchResults.ts';
+import WatchCardCompactVideo from '../../parser/classes/WatchCardCompactVideo.ts';
 
-import type MusicQueue from '../parser/classes/MusicQueue.ts';
-import type RichGrid from '../parser/classes/RichGrid.ts';
-import type SectionList from '../parser/classes/SectionList.ts';
+import type MusicQueue from '../../parser/classes/MusicQueue.ts';
+import type RichGrid from '../../parser/classes/RichGrid.ts';
+import type SectionList from '../../parser/classes/SectionList.ts';
 
-import type { IParsedResponse } from '../parser/types/index.ts';
-import type { ApiResponse } from './Actions.ts';
+import type { IParsedResponse } from '../../parser/types/index.ts';
+import type { ApiResponse } from '../Actions.ts';
 
-class Feed<T extends IParsedResponse = IParsedResponse> {
+export default class Feed<T extends IParsedResponse = IParsedResponse> {
   #page: T;
   #continuation?: ObservedArray<ContinuationItem>;
   #actions: Actions;
@@ -211,5 +211,3 @@ class Feed<T extends IParsedResponse = IParsedResponse> {
     return new Feed<T>(this.actions, continuation_data, true);
   }
 }
-
-export default Feed;
