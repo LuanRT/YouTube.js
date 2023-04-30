@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/LuanRT/YouTube.js/compare/v5.0.0...v5.0.1) (2023-04-30)
+
+
+### Bug Fixes
+
+* **web:** slow downloads due to visitor data ([#391](https://github.com/LuanRT/YouTube.js/issues/391)) ([4f7ec07](https://github.com/LuanRT/YouTube.js/commit/4f7ec07c3f689219b07e8291877c23b6fbf45fb1))
+
 ## [5.0.0](https://github.com/LuanRT/YouTube.js/compare/v4.3.0...v5.0.0) (2023-04-29)
 
 
