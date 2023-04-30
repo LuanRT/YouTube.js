@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/LuanRT/YouTube.js/compare/v5.0.1...v5.0.2) (2023-04-30)
+
+
+### Bug Fixes
+
+* **VideoInfo:** Use microformat view_count when videoDetails view_count is NaN ([#393](https://github.com/LuanRT/YouTube.js/issues/393)) ([7c0abfc](https://github.com/LuanRT/YouTube.js/commit/7c0abfccd78a6c291d898f898d73a4f16170e2a9))
+
 ## [5.0.1](https://github.com/LuanRT/YouTube.js/compare/v5.0.0...v5.0.1) (2023-04-30)
 
 
