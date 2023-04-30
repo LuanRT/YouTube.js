@@ -7,8 +7,8 @@ import Proto from '../proto/index.ts';
 import type { ICache } from '../types/Cache.ts';
 import type { FetchFunction } from '../types/PlatformShim.ts';
 import HTTPClient from '../utils/HTTPClient.ts';
-import type { DeviceCategory} from '../utils/Utils.ts';
-import { getRandomUserAgent, InnertubeError, Platform, SessionError } from '../utils/Utils.ts';
+import type { DeviceCategory } from '../utils/Utils.ts';
+import { generateRandomString, getRandomUserAgent, InnertubeError, Platform, SessionError } from '../utils/Utils.ts';
 import type { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.ts';
 import OAuth from './OAuth.ts';
 
@@ -236,7 +236,7 @@ export default class Session extends EventEmitterLike {
   }, fetch: FetchFunction = Platform.shim.fetch): Promise<SessionData> {
     const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
 
-    let visitor_id = Constants.CLIENTS.WEB.STATIC_VISITOR_ID;
+    let visitor_id = generateRandomString(11);
 
     if (options.visitor_data) {
       const decoded_visitor_data = Proto.decodeVisitorData(options.visitor_data);
@@ -308,7 +308,7 @@ export default class Session extends EventEmitterLike {
     enable_safety_mode: boolean;
     visitor_data: string;
   }): SessionData {
-    let visitor_id = Constants.CLIENTS.WEB.STATIC_VISITOR_ID;
+    let visitor_id = generateRandomString(11);
 
     if (options.visitor_data) {
       const decoded_visitor_data = Proto.decodeVisitorData(options.visitor_data);
