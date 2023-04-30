@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "A wrapper around YouTube's private API. Supports YouTube, YouTube Music, YouTube Kids and YouTube Studio (WIP).",
   "type": "module",
   "types": "./dist/src/platform/lib.d.ts",
