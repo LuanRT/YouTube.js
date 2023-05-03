@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.3](https://github.com/LuanRT/YouTube.js/compare/v5.0.2...v5.0.3) (2023-05-03)
+
+
+### Bug Fixes
+
+* **Video:** typo causing node parsing to fail ([3b0498b](https://github.com/LuanRT/YouTube.js/commit/3b0498b68b5378e63283e792bd45571c0b919e0b))
+
 ## [5.0.2](https://github.com/LuanRT/YouTube.js/compare/v5.0.1...v5.0.2) (2023-04-30)
 
 
