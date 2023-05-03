@@ -28,6 +28,9 @@ export function build(opts: PlayerEndpointOptions): IPlayerRequest {
         }
       }
     },
+    attestationRequest: {
+      omitBotguardData: true
+    },
     racyCheckOk: true,
     contentCheckOk: true,
     videoId: opts.video_id,
