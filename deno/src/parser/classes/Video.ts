@@ -53,7 +53,7 @@ export default class Video extends YTNode {
       this.description_snippet = new Text(data.descriptionSnippet);
     }
 
-    if (Reflect.has(data, 'detaildMetadataSnippets')) {
+    if (Reflect.has(data, 'detailedMetadataSnippets')) {
       this.snippets = data.detailedMetadataSnippets.map((snippet: RawNode) => ({
         text: new Text(snippet.snippetText),
         hover_text: new Text(snippet.snippetHoverText)

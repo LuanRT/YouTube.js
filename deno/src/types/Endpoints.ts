@@ -20,6 +20,9 @@ export interface IPlayerRequest {
       lactMilliseconds: string;
     }
   },
+  attestationRequest: {
+    omitBotguardData: boolean;
+  },
   videoId: string;
   racyCheckOk: boolean;
   contentCheckOk: boolean;
