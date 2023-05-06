@@ -1,5 +1,6 @@
 import { Memo } from '../parser/helpers.js';
 import type { EmojiRun, TextRun } from '../parser/misc.js';
+import Text from '../parser/classes/misc/Text.js';
 import type { FetchFunction } from '../types/PlatformShim.js';
 import type PlatformShim from '../types/PlatformShim.js';
 import userAgents from './user-agents.js';
@@ -47,7 +48,7 @@ export class ChannelError extends Error { }
 export function deepCompare(obj1: any, obj2: any): boolean {
   const keys = Reflect.ownKeys(obj1);
   return keys.some((key) => {
-    const is_text = obj2[key]?.constructor.name === 'Text';
+    const is_text = obj2[key] instanceof Text;
     if (!is_text && typeof obj2[key] === 'object') {
       return JSON.stringify(obj1[key]) === JSON.stringify(obj2[key]);
     }
