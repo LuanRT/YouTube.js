@@ -1,6 +1,6 @@
 import type { ApiResponse } from '../Actions.js';
 import type Actions from '../Actions.js';
-import Constants from '../../utils/Constants.js';
+import * as Constants from '../../utils/Constants.js';
 import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.js';
 import FormatUtils from '../../utils/FormatUtils.js';
 import { InnertubeError } from '../../utils/Utils.js';
