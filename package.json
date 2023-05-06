@@ -73,7 +73,7 @@
     "build:esm": "npx tsc",
     "build:deno": "npx cpy ./src ./deno && npx cpy ./package.json ./deno && npx replace \".js';\" \".ts';\" ./deno -r && npx replace '.js\";' '.ts\";' ./deno -r && npx replace \"'linkedom';\" \"'https://esm.sh/linkedom';\" ./deno -r && npx replace \"'jintr';\" \"'https://esm.sh/jintr';\" ./deno -r && npx replace \"new Jinter.default\" \"new Jinter\" ./deno -r",
     "bundle:node": "npx esbuild ./dist/src/platform/node.js --bundle --target=node10 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:jintr --external:undici --external:linkedom --external:tslib --sourcemap --banner:js=\"/* eslint-disable */\"",
-    "bundle:browser": "npx esbuild ./dist/src/platform/web.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --outfile=./bundle/browser.js --platform=browser",
+    "bundle:browser": "npx esbuild ./dist/src/platform/web.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/browser.js --platform=browser",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
     "prepare": "npm run build",
     "watch": "npx tsc --watch"
