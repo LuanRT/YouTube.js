@@ -1,5 +1,5 @@
 import Proto from '../../proto/index.js';
-import { Constants } from '../../utils/index.js';
+import * as Constants from '../../utils/Constants.js';
 import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.js';
 
 import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.js';

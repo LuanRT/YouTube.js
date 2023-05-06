@@ -1,7 +1,7 @@
 import type { Context } from '../core/Session.js';
 import type Session from '../core/Session.js';
 import type { FetchFunction } from '../types/PlatformShim.js';
-import Constants from './Constants.js';
+import * as Constants from './Constants.js';
 import {
   Platform,
   generateSidAuth,

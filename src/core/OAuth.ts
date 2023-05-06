@@ -1,4 +1,4 @@
-import Constants from '../utils/Constants.js';
+import * as Constants from '../utils/Constants.js';
 import { OAuthError, Platform } from '../utils/Utils.js';
 import type Session from './Session.js';
 

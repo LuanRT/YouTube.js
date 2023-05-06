@@ -1,7 +1,7 @@
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 
-import Constants from '../../utils/Constants.js';
+import * as Constants from '../../utils/Constants.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
 import AutomixPreviewVideo from '../classes/AutomixPreviewVideo.js';

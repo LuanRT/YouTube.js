@@ -1,6 +1,6 @@
 import { Platform, getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils.js';
 
-import Constants from '../utils/Constants.js';
+import * as Constants from '../utils/Constants.js';
 
 import type { ICache } from '../types/Cache.js';
 import type { FetchFunction } from '../types/PlatformShim.js';
