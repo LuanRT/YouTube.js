@@ -1,6 +1,6 @@
 import { Memo } from '../parser/helpers.js';
 import type { EmojiRun, TextRun } from '../parser/misc.js';
-import Text from '../parser/classes/misc/Text.js';
+import { Text } from '../parser/misc.js';
 import type { FetchFunction } from '../types/PlatformShim.js';
 import type PlatformShim from '../types/PlatformShim.js';
 import userAgents from './user-agents.js';
