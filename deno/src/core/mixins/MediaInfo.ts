@@ -1,6 +1,6 @@
 import type { ApiResponse } from '../Actions.ts';
 import type Actions from '../Actions.ts';
-import Constants from '../../utils/Constants.ts';
+import * as Constants from '../../utils/Constants.ts';
 import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.ts';
 import FormatUtils from '../../utils/FormatUtils.ts';
 import { InnertubeError } from '../../utils/Utils.ts';

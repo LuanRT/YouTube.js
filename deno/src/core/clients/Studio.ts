@@ -1,5 +1,5 @@
 import Proto from '../../proto/index.ts';
-import { Constants } from '../../utils/index.ts';
+import * as Constants from '../../utils/Constants.ts';
 import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.ts';
 
 import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.ts';

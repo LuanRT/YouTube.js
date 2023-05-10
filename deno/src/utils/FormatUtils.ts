@@ -5,7 +5,7 @@ import type Format from '../parser/classes/misc/Format.ts';
 import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability.ts';
 import type { YTNode } from '../parser/helpers.ts';
 
-import { Constants } from './index.ts';
+import * as Constants from './Constants.ts';
 import { getStringBetweenStrings, InnertubeError, Platform, streamToIterable } from './Utils.ts';
 
 export type URLTransformer = (url: URL) => URL;

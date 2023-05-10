@@ -1,6 +1,6 @@
 import { Platform, getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils.ts';
 
-import Constants from '../utils/Constants.ts';
+import * as Constants from '../utils/Constants.ts';
 
 import type { ICache } from '../types/Cache.ts';
 import type { FetchFunction } from '../types/PlatformShim.ts';

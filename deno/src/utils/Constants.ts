@@ -78,11 +78,3 @@ export const INNERTUBE_HEADERS_BASE = Object.freeze({
   'accept-encoding': 'gzip, deflate',
   'content-type': 'application/json'
 });
-
-export default {
-  URLS,
-  OAUTH,
-  CLIENTS,
-  STREAM_HEADERS,
-  INNERTUBE_HEADERS_BASE
-};

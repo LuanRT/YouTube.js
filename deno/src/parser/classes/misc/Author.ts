@@ -1,4 +1,4 @@
-import Constants from '../../../utils/Constants.ts';
+import * as Constants from '../../../utils/Constants.ts';
 import type { YTNode} from '../../helpers.ts';
 import { observe, type ObservedArray } from '../../helpers.ts';
 import Parser, { type RawNode } from '../../index.ts';

@@ -1,4 +1,4 @@
-import Constants from '../utils/Constants.ts';
+import * as Constants from '../utils/Constants.ts';
 import { OAuthError, Platform } from '../utils/Utils.ts';
 import type Session from './Session.ts';
 

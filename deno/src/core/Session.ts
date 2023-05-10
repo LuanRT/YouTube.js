@@ -1,4 +1,4 @@
-import Constants, { CLIENTS } from '../utils/Constants.ts';
+import * as Constants from '../utils/Constants.ts';
 import EventEmitterLike from '../utils/EventEmitterLike.ts';
 import Actions from './Actions.ts';
 import Player from './Player.ts';
@@ -325,7 +325,7 @@ export default class Session extends EventEmitterLike {
         screenWidthPoints: 1920,
         visitorData: Proto.encodeVisitorData(visitor_id, Math.floor(Date.now() / 1000)),
         clientName: options.client_name,
-        clientVersion: CLIENTS.WEB.VERSION,
+        clientVersion: Constants.CLIENTS.WEB.VERSION,
         osName: 'Windows',
         osVersion: '10.0',
         platform: options.device_category.toUpperCase(),
@@ -343,7 +343,7 @@ export default class Session extends EventEmitterLike {
       }
     };
 
-    return { context, api_key: CLIENTS.WEB.API_KEY, api_version: CLIENTS.WEB.API_VERSION };
+    return { context, api_key: Constants.CLIENTS.WEB.API_KEY, api_version: Constants.CLIENTS.WEB.API_VERSION };
   }
 
   async signIn(credentials?: Credentials): Promise<void> {

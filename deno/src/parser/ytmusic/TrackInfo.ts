@@ -1,7 +1,7 @@
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 
-import Constants from '../../utils/Constants.ts';
+import * as Constants from '../../utils/Constants.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
 import AutomixPreviewVideo from '../classes/AutomixPreviewVideo.ts';

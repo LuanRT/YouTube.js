@@ -20,7 +20,7 @@ import { AccountManager, InteractionManager, PlaylistManager } from './core/mana
 import { Feed, TabbedFeed } from './core/mixins/index.ts';
 
 import Proto from './proto/index.ts';
-import Constants from './utils/Constants.ts';
+import * as Constants from './utils/Constants.ts';
 import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.ts';
 
 import {

@@ -1,7 +1,7 @@
 import type { Context } from '../core/Session.ts';
 import type Session from '../core/Session.ts';
 import type { FetchFunction } from '../types/PlatformShim.ts';
-import Constants from './Constants.ts';
+import * as Constants from './Constants.ts';
 import {
   Platform,
   generateSidAuth,
