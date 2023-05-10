@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.0.4](https://github.com/LuanRT/YouTube.js/compare/v5.0.3...v5.0.4) (2023-05-10)
+
+
+### Bug Fixes
+
+* **bundles:** Use ESM tslib build for the browser bundles ([#397](https://github.com/LuanRT/YouTube.js/issues/397)) ([2673419](https://github.com/LuanRT/YouTube.js/commit/26734194ab0bc5a9f57e1c509d7646ce8903d0c6))
+* **Utils:** Circular dependency introduced in 38a83c3c2aa814150d1d9b8ed99fca915c1d67fe ([#400](https://github.com/LuanRT/YouTube.js/issues/400)) ([66b026b](https://github.com/LuanRT/YouTube.js/commit/66b026bf493d71a39e12825938fe54dc63aefd16))
+* **Utils:** Use instanceof in deepCompare instead of the constructor name ([#398](https://github.com/LuanRT/YouTube.js/issues/398)) ([38a83c3](https://github.com/LuanRT/YouTube.js/commit/38a83c3c2aa814150d1d9b8ed99fca915c1d67fe))
+
 ## [5.0.3](https://github.com/LuanRT/YouTube.js/compare/v5.0.2...v5.0.3) (2023-05-03)
 
 
