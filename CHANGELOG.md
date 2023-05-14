@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.1.0](https://github.com/LuanRT/YouTube.js/compare/v5.0.4...v5.1.0) (2023-05-14)
+
+
+### Features
+
+* **ReelItem:** Add accessibility label ([#401](https://github.com/LuanRT/YouTube.js/issues/401)) ([046103a](https://github.com/LuanRT/YouTube.js/commit/046103a4d8af09fafefab6e9f971184eeca75c2e))
+* **toDash:** Add audio track labels to the manifest when available ([#402](https://github.com/LuanRT/YouTube.js/issues/402)) ([84b4f1e](https://github.com/LuanRT/YouTube.js/commit/84b4f1efd111321e4f3e5a87844790c4ec9b0b52))
+
 ## [5.0.4](https://github.com/LuanRT/YouTube.js/compare/v5.0.3...v5.0.4) (2023-05-10)
 
 
