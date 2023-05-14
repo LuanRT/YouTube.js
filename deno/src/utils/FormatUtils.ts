@@ -363,7 +363,12 @@ class FormatUtils {
             this.#el(document, 'Role', {
               schemeIdUri: 'urn:mpeg:dash:role:2011',
               value: role
-            })
+            }),
+            this.#el(document, 'Label', {
+              id: set_id.toString()
+            }, [
+              document.createTextNode(first_format.audio_track?.display_name as string)
+            ])
           );
 
           const set = this.#el(document, 'AdaptationSet', {
@@ -371,7 +376,9 @@ class FormatUtils {
             mimeType: mime_types[i].split(';')[0],
             startWithSAP: '1',
             subsegmentAlignment: 'true',
-            lang: first_format.language as string
+            lang: first_format.language as string,
+            // Non-standard attribute used by shaka instead of the standard Label element
+            label: first_format.audio_track?.display_name as string
           }, children);
 
           period.appendChild(set);

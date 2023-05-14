@@ -12,6 +12,7 @@ export default class ReelItem extends YTNode {
   thumbnails: Thumbnail[];
   views: Text;
   endpoint: NavigationEndpoint;
+  accessibility_label?: string;
 
   constructor(data: RawNode) {
     super();
@@ -20,5 +21,6 @@ export default class ReelItem extends YTNode {
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.views = new Text(data.viewCountText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    this.accessibility_label = data.accessibility.accessibilityData.label;
   }
 }
