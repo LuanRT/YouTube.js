@@ -9,6 +9,8 @@ import type { ApiResponse } from '../../core/Actions.js';
 import type { ObservedArray } from '../helpers.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
 import { InnertubeError } from '../../utils/Utils.js';
+import ChipCloud from '../classes/ChipCloud.js';
+import ChipCloudChip from '../classes/ChipCloudChip.js';
 
 class HomeFeed {
   #page: IBrowseResponse;
@@ -16,6 +18,7 @@ class HomeFeed {
   #continuation?: string;
 
   sections?: ObservedArray<MusicCarouselShelf | MusicTastebuilderShelf>;
+  header?: ChipCloud;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
@@ -36,6 +39,8 @@ class HomeFeed {
       return;
     }
 
+    const section_list = tab.content?.as(SectionList);
+    this.header = section_list?.header?.as(ChipCloud);
     this.#continuation = tab.content?.as(SectionList).continuation;
     this.sections = tab.content?.as(SectionList).contents.as(MusicCarouselShelf, MusicTastebuilderShelf);
   }
@@ -53,6 +58,10 @@ class HomeFeed {
     });
 
     return new HomeFeed(response, this.#actions);
+  }
+
+  get filters(): string[] {
+    return this.header?.chips?.as(ChipCloudChip).map((chip: ChipCloudChip) => chip.text) || [];
   }
 
   get has_continuation(): boolean {
