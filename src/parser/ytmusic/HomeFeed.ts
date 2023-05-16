@@ -61,7 +61,7 @@ class HomeFeed {
   }
 
   get filters(): string[] {
-    return this.header?.chips?.as(ChipCloudChip).map((chip: ChipCloudChip) => chip.text) || [];
+    return this.header?.chips?.as(ChipCloudChip).map((chip) => chip.text) || [];
   }
 
   get has_continuation(): boolean {
