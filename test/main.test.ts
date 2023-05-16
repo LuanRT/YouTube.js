@@ -296,6 +296,13 @@ describe('YouTube.js Tests', () => {
         expect(incremental_continuation.sections).toBeDefined();
         expect(incremental_continuation.sections?.length).toBeGreaterThan(0);
       });
+      
+      test('HomeFeed#applyFilter', async () => {
+        home = await home.applyFilter(home.filters[1]);
+        expect(home).toBeDefined();
+        expect(home.sections).toBeDefined();
+        expect(home.sections?.length).toBeGreaterThan(0);
+      });
     });
 
     test('Innertube#music.getExplore', async () => {
