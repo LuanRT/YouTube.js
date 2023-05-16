@@ -39,8 +39,7 @@ class HomeFeed {
       return;
     }
 
-    const section_list = tab.content?.as(SectionList);
-    this.header = section_list?.header?.as(ChipCloud);
+    this.header = tab.content?.as(SectionList).header?.as(ChipCloud);
     this.#continuation = tab.content?.as(SectionList).continuation;
     this.sections = tab.content?.as(SectionList).contents.as(MusicCarouselShelf, MusicTastebuilderShelf);
   }
