@@ -509,7 +509,7 @@ export default class Parser {
     return this.ignore_list.has(classname);
   }
 
-  static #rt_nodes = new Map<string, YTNodeConstructor>(Array.from(Object.entries(YTNodes)));
+  static #rt_nodes = new Map<string, YTNodeConstructor>(Object.entries(YTNodes));
   static #dynamic_nodes = new Map<string, YTNodeConstructor>();
 
   static getParserByName(classname: string) {
