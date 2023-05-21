@@ -53,4 +53,5 @@ export interface IRawResponse {
   cards?: RawNode;
   items?: RawNode[];
   frameworkUpdates?: any;
+  engagementPanels: RawNode[];
 }

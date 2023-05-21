@@ -264,6 +264,13 @@ export default class Parser {
       parsed_data.cards = cards;
     }
 
+    const engagement_panels = data.engagementPanels?.map((e) => {
+      const item = this.parseItem(e, YTNodes.EngagementPanelSectionList) as YTNodes.EngagementPanelSectionList;
+      return item;
+    });
+    if (engagement_panels) {
+      parsed_data.engagement_panels = engagement_panels;
+    }
     this.#createMemo();
     const items = this.parse(data.items);
     if (items) {

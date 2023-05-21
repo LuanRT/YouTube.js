@@ -33,6 +33,8 @@ import type { ObservedArray, YTNode } from '../helpers.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import { MediaInfo } from '../../core/mixins/index.js';
+import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.js';
+import { VideoDescriptionMusicSection } from '../nodes.js';
 
 class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
@@ -336,39 +338,32 @@ class VideoInfo extends MediaInfo {
   /**
    * Get songs used in the video.
    */
-  // TODO: this seems to be broken with the new UI, further investigation needed
   get music_tracks() {
-    /*
-        Const metadata = this.secondary_info?.metadata;
-        if (!metadata)
-            return [];
-        const songs = [];
-        let current_song: Record<string, Text[]> = {};
-        let is_music_section = false;
-        for (let i = 0; i < metadata.rows.length; i++) {
-            const row = metadata.rows[i];
-            if (row.is(MetadataRowHeader)) {
-                if (row.content?.toString().toLowerCase().startsWith('music')) {
-                    is_music_section = true;
-                    i++; // Skip the learn more link
-                }
-                continue;
+    const description_content = this.page[1]?.engagement_panels?.filter((panel) => panel.content?.is(StructuredDescriptionContent));
+    if (description_content !== undefined && description_content.length > 0) {
+      const music_section = (description_content[0].content as StructuredDescriptionContent)?.items.filter((item: YTNode) => item?.is(VideoDescriptionMusicSection)) as VideoDescriptionMusicSection[];
+      if (music_section !== undefined && music_section.length > 0) {
+        return music_section[0].carousel_lockups?.map((lookup) => {
+          let artist, album, license;
+          for (let i = 0; i < lookup.info_rows.length; i++) {
+            const info_row = lookup.info_rows[i];
+            if (info_row.info_row_expand_status_key === undefined) {
+              album = info_row.metadata;
+            } else {
+              if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-artists-row-state-id') !== -1) {
+                artist = info_row.metadata;
+              }
+              if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-licenses-row-state-id') !== -1) {
+                license = info_row.metadata;
+              }
             }
-            if (!is_music_section)
-                continue;
-            if (row.is(MetadataRow))
-                current_song[row.title?.toString().toLowerCase().replace(/ /g, '_')] = row.contents;
-            // TODO: this makes no sense, we continue above when
-            if (row.has_divider_line) {
-                songs.push(current_song);
-                current_song = {};
-            }
-
-        }
-        if (is_music_section)
-            songs.push(current_song);
-        return songs;
-        */
+          }
+          const song = lookup.video_lockup?.title.text;
+          const videoId = lookup.video_lockup?.endpoint.payload.videoId;
+          return { song, artist, album, license, videoId };
+        });
+      }
+    }
     return [];
   }
 }
