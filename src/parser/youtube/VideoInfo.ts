@@ -344,11 +344,16 @@ class VideoInfo extends MediaInfo {
       const music_section = (description_content[0].content as StructuredDescriptionContent)?.items.filter((item: YTNode) => item?.is(VideoDescriptionMusicSection)) as VideoDescriptionMusicSection[];
       if (music_section !== undefined && music_section.length > 0) {
         return music_section[0].carousel_lockups?.map((lookup) => {
-          let artist, album, license;
+          let song, artist, album, license;
+          song = lookup.video_lockup?.title.text;
           for (let i = 0; i < lookup.info_rows.length; i++) {
             const info_row = lookup.info_rows[i];
             if (info_row.info_row_expand_status_key === undefined) {
-              album = info_row.metadata;
+              if (song === undefined) {
+                song = info_row.metadata;
+              } else {
+                album = info_row.metadata;
+              }
             } else {
               if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-artists-row-state-id') !== -1) {
                 artist = info_row.metadata;
@@ -358,7 +363,6 @@ class VideoInfo extends MediaInfo {
               }
             }
           }
-          const song = lookup.video_lockup?.title.text;
           const videoId = lookup.video_lockup?.endpoint.payload.videoId;
           return { song, artist, album, license, videoId };
         });
