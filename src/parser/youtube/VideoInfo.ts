@@ -344,27 +344,35 @@ class VideoInfo extends MediaInfo {
       const music_section = (description_content[0].content as StructuredDescriptionContent)?.items.filter((item: YTNode) => item?.is(VideoDescriptionMusicSection)) as VideoDescriptionMusicSection[];
       if (music_section !== undefined && music_section.length > 0) {
         return music_section[0].carousel_lockups?.map((lookup) => {
-          let song, artist, album, license;
+          let song, artist, album, license, videoId, channelId;
+          // If the song isn't in the video_lockup, it should be in the info_rows
           song = lookup.video_lockup?.title.text;
+          // If the video id isn't in the video_lockup, it should be in the info_rows
+          videoId = lookup.video_lockup?.endpoint.payload.videoId;
           for (let i = 0; i < lookup.info_rows.length; i++) {
             const info_row = lookup.info_rows[i];
             if (info_row.info_row_expand_status_key === undefined) {
               if (song === undefined) {
-                song = info_row.metadata;
+                song = info_row.metadata_text;
+                if (videoId === undefined) {
+                  videoId = info_row.metadata_id;
+                }
               } else {
-                album = info_row.metadata;
+                album = info_row.metadata_text;
               }
             } else {
               if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-artists-row-state-id') !== -1) {
-                artist = info_row.metadata;
+                artist = info_row.metadata_text;
+                if (channelId === undefined) {
+                  channelId = info_row.metadata_id;
+                }
               }
               if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-licenses-row-state-id') !== -1) {
-                license = info_row.metadata;
+                license = info_row.metadata_text;
               }
             }
           }
-          const videoId = lookup.video_lockup?.endpoint.payload.videoId;
-          return { song, artist, album, license, videoId };
+          return { song, artist, album, license, videoId, channelId };
         });
       }
     }
