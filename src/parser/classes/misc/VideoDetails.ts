@@ -18,6 +18,7 @@ export default class VideoDetails {
   is_live_content: boolean;
   is_upcoming: boolean;
   is_crawlable: boolean;
+  is_post_live_dvr: boolean;
 
   constructor(data: RawNode) {
     this.id = data.videoId;
@@ -35,6 +36,7 @@ export default class VideoDetails {
     this.is_live = !!data.isLive;
     this.is_live_content = !!data.isLiveContent;
     this.is_upcoming = !!data.isUpcoming;
+    this.is_post_live_dvr = !!data.isPostLiveDvr;
     this.is_crawlable = !!data.isCrawlable;
   }
 }
