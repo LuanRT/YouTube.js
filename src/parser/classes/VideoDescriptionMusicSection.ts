@@ -9,7 +9,7 @@ export default class VideoDescriptionMusicSection extends YTNode {
   section_title: String;
   constructor(data: RawNode) {
     super();
-    this.carousel_lockups = data.carouselLockups.map((row: YTNode) => Parser.parseItem(row, CarouselLockup));
+    this.carousel_lockups = Parser.parseArray(data.carouselLockups, CarouselLockup);
     this.section_title = data.sectionTitle.simpleText;
   }
 }

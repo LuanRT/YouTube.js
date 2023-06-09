@@ -11,7 +11,7 @@ export default class CarouselLockup extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.info_rows = data.infoRows.map((row: YTNode) => Parser.parseItem(row, InfoRow));
+    this.info_rows = Parser.parseArray(data.infoRows, InfoRow);
     const video_lockup = Parser.parseItem(data.videoLockup, CompactVideo);
     if (video_lockup != null) {
       this.video_lockup = video_lockup;

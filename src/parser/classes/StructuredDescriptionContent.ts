@@ -11,8 +11,6 @@ export default class StructuredDescriptionContent extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.items = data.items.map((item: YTNode) => {
-      return Parser.parseItem(item, [ VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection ]);
-    });
+    this.items = Parser.parseArray(data.items, [ VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection ]);
   }
 }
