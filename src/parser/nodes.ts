@@ -7,7 +7,6 @@ export { default as AccountItemSectionHeader } from './classes/AccountItemSectio
 export { default as AccountSectionList } from './classes/AccountSectionList.js';
 export { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction.js';
 export { default as OpenPopupAction } from './classes/actions/OpenPopupAction.js';
-export { default as AdsEngagementPanelContent } from './classes/AdsEngagementPanelContent.js';
 export { default as Alert } from './classes/Alert.js';
 export { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics.js';
 export { default as AnalyticsRoot } from './classes/analytics/AnalyticsRoot.js';

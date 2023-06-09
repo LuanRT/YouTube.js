@@ -509,7 +509,8 @@ export default class Parser {
     'BrandVideoShelf',
     'BrandVideoSingleton',
     'StatementBanner',
-    'GuideSigninPromo'
+    'GuideSigninPromo',
+    'AdsEngagementPanelContent'
   ]);
 
   static shouldIgnore(classname: string) {
