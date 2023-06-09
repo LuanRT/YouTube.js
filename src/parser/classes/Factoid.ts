@@ -1,16 +1,17 @@
 import { YTNode } from '../helpers.js';
 import { type RawNode } from '../index.js';
+import { Text } from '../misc.js';
 
 export default class Factoid extends YTNode {
   static type = 'Factoid';
-  label: String;
-  value: String;
+  label: Text;
+  value: Text;
   accessibility_text: String;
 
   constructor(data: RawNode) {
     super();
-    this.label = data.label.simpleText;
-    this.value = data.label.simpleText;
+    this.label = new Text(data.label);
+    this.value = new Text(data.value);
     this.accessibility_text = data.accessibilityText;
   }
 }

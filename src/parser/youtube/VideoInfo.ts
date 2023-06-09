@@ -346,7 +346,7 @@ class VideoInfo extends MediaInfo {
         return music_section[0].carousel_lockups?.map((lookup) => {
           let song, artist, album, license, videoId, channelId;
           // If the song isn't in the video_lockup, it should be in the info_rows
-          song = lookup.video_lockup?.title.text;
+          song = lookup.video_lockup?.title;
           // If the video id isn't in the video_lockup, it should be in the info_rows
           videoId = lookup.video_lockup?.endpoint.payload.videoId;
           for (let i = 0; i < lookup.info_rows.length; i++) {
@@ -355,7 +355,7 @@ class VideoInfo extends MediaInfo {
               if (song === undefined) {
                 song = info_row.metadata_text;
                 if (videoId === undefined) {
-                  videoId = info_row.metadata_id;
+                  videoId = info_row.metadata_endpoint?.payload;
                 }
               } else {
                 album = info_row.metadata_text;
@@ -364,7 +364,7 @@ class VideoInfo extends MediaInfo {
               if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-artists-row-state-id') !== -1) {
                 artist = info_row.metadata_text;
                 if (channelId === undefined) {
-                  channelId = info_row.metadata_id;
+                  channelId = info_row.metadata_endpoint?.payload?.browseId;
                 }
               }
               if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-licenses-row-state-id') !== -1) {

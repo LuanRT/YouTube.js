@@ -1,12 +1,14 @@
 import { YTNode } from '../helpers.js';
-import { type RawNode } from '../index.js';
+import Parser, { type RawNode } from '../index.js';
+import { Text } from '../misc.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
 export default class InfoRow extends YTNode {
   static type = 'InfoRow';
-  metadata_text?: String;
-  metadata_id?: String;
+  metadata_text?: Text;
+  metadata_endpoint?: NavigationEndpoint;
   info_row_expand_status_key: String;
-  title: String;
+  title: Text;
 
   constructor(data: RawNode) {
     super();
@@ -16,22 +18,21 @@ export default class InfoRow extends YTNode {
         const run = runs[0];
         this.metadata_text = run?.text;
         if ('navigationEndpoint' in run) {
-          if ('watchEndpoint' in run.navigationEndpoint) {
-            this.metadata_id = run?.navigationEndpoint?.watchEndpoint?.videoId;
-          }
-          if ('browseEndpoint' in run.navigationEndpoint) {
-            this.metadata_id = run?.navigationEndpoint?.browseEndpoint?.browseId;
-          }
+          this.metadata_endpoint = Parser.parseItem({ navigationEndpoint: run.navigationEndpoint }, NavigationEndpoint) || undefined;
         }
       }
     }
     if ('expandedMetadata' in data && 'runs' in data.expandedMetadata) {
-      this.metadata_text = data.expandedMetadata.runs.map((run: any) => run.text).join('');
+      this.metadata_text = new Text(data.expandedMetadata);
     }
     if (this.metadata_text === undefined) {
-      this.metadata_text = data.expandedMetadata?.simpleText || data.defaultMetadata?.simpleText;
+      this.metadata_text = data.expandedMetadata?.simpleText
+        ? new Text(data.expandedMetadata)
+        : data.defaultMetadata?.simpleText
+          ? new Text(data.defaultMetadata)
+          : undefined;
     }
     this.info_row_expand_status_key = data.infoRowExpandStatusKey;
-    this.title = data.title.simpleText;
+    this.title = new Text(data.title);
   }
 }
