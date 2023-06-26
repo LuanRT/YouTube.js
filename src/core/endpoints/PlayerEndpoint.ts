@@ -38,7 +38,7 @@ export function build(opts: PlayerEndpointOptions): IPlayerRequest {
       client: opts.client,
       playlistId: opts.playlist_id,
       // Workaround streaming URLs returning 403 when using Android clients and throttling in web clients.
-      params: 'CgIQBg=='
+      params: '2AMBCgIQBg'
     }
   };
 }
