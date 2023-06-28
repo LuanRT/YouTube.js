@@ -29,7 +29,7 @@ export const OAUTH = Object.freeze({
   }),
   REGEX: Object.freeze({
     AUTH_SCRIPT: /<script id="base-js" src="(.*?)" nonce=".*?"><\/script>/,
-    CLIENT_IDENTITY: /.+?={};var .+?={clientId:"(?<client_id>.+?)",.+?:"(?<client_secret>.+?)"},/
+    CLIENT_IDENTITY: /var .+?={clientId:"(?<client_id>.+?)",.+?:"(?<client_secret>.+?)".+?}/
   })
 });
 export const CLIENTS = Object.freeze({
