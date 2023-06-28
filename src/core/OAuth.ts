@@ -96,7 +96,7 @@ export default class OAuth {
       client_id: this.#identity.client_id,
       scope: Constants.OAUTH.SCOPE,
       device_id: Platform.shim.uuidv4(),
-      model_name: Constants.OAUTH.MODEL_NAME
+      device_model: Constants.OAUTH.MODEL_NAME
     };
 
     const response = await this.#session.http.fetch_function(new URL('/o/oauth2/device/code', Constants.URLS.YT_BASE), {
