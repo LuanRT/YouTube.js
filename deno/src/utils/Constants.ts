@@ -29,13 +29,13 @@ export const OAUTH = Object.freeze({
   }),
   REGEX: Object.freeze({
     AUTH_SCRIPT: /<script id="base-js" src="(.*?)" nonce=".*?"><\/script>/,
-    CLIENT_IDENTITY: /.+?={};var .+?={clientId:"(?<client_id>.+?)",.+?:"(?<client_secret>.+?)"},/
+    CLIENT_IDENTITY: /var .+?={clientId:"(?<client_id>.+?)",.+?:"(?<client_secret>.+?)".+?}/
   })
 });
 export const CLIENTS = Object.freeze({
   WEB: {
     NAME: 'WEB',
-    VERSION: '2.20230104.01.00',
+    VERSION: '2.20230622.06.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'

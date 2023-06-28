@@ -17,7 +17,7 @@ import type VideoDetails from '../classes/misc/VideoDetails.ts';
 import type Alert from '../classes/Alert.ts';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.ts';
-
+import type EngagementPanelSectionList from '../classes/EngagementPanelSectionList.ts';
 export interface IParsedResponse {
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
@@ -73,6 +73,7 @@ export interface IParsedResponse {
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
   endscreen?: Endscreen;
   cards?: CardCollection;
+  engagement_panels?: EngagementPanelSectionList[];
   items?: SuperParsedResult<YTNode>;
 }
 
@@ -111,6 +112,7 @@ export interface INextResponse {
   on_response_received_endpoints?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
   on_response_received_endpoints_memo?: Memo;
   player_overlays?: SuperParsedResult<YTNode>;
+  engagement_panels?: EngagementPanelSectionList[];
 }
 
 export interface IBrowseResponse {

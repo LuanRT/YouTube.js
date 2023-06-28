@@ -249,21 +249,13 @@ class FormatUtils {
     if (!streaming_data)
       throw new InnertubeError('Streaming data not available');
 
-    let filtered_streaming_data;
+    let adaptive_formats;
 
     if (format_filter) {
-      filtered_streaming_data = {
-        formats: streaming_data.formats.filter((fmt: Format) => !(format_filter(fmt))),
-        adaptive_formats: streaming_data.adaptive_formats.filter((fmt: Format) => !(format_filter(fmt))),
-        expires: streaming_data.expires,
-        dash_manifest_url: streaming_data.dash_manifest_url,
-        hls_manifest_url: streaming_data.hls_manifest_url
-      };
+      adaptive_formats = streaming_data.adaptive_formats.filter((fmt: Format) => !(format_filter(fmt)));
     } else {
-      filtered_streaming_data = streaming_data;
+      adaptive_formats = streaming_data.adaptive_formats;
     }
-
-    const { adaptive_formats } = filtered_streaming_data;
 
     if (!adaptive_formats.length)
       throw new InnertubeError('No adaptive formats found');

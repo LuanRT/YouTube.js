@@ -30,7 +30,7 @@ class Search extends Feed<ISearchResponse> {
     if (!contents)
       throw new InnertubeError('No contents found in search response');
 
-    this.results = contents.filterType(ItemSection).find((section) => section.contents && section.contents.length > 0)?.contents;
+    this.results = contents.find((content) => content.is(ItemSection) && content.contents && content.contents.length > 0)?.as(ItemSection).contents;
 
     this.refinements = this.page.refinements || [];
     this.estimated_results = this.page.estimated_results;

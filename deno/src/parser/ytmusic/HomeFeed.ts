@@ -9,6 +9,8 @@ import type { ApiResponse } from '../../core/Actions.ts';
 import type { ObservedArray } from '../helpers.ts';
 import type { IBrowseResponse } from '../types/ParsedResponse.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
+import ChipCloud from '../classes/ChipCloud.ts';
+import ChipCloudChip from '../classes/ChipCloudChip.ts';
 
 class HomeFeed {
   #page: IBrowseResponse;
@@ -16,6 +18,7 @@ class HomeFeed {
   #continuation?: string;
 
   sections?: ObservedArray<MusicCarouselShelf | MusicTastebuilderShelf>;
+  header?: ChipCloud;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
@@ -36,6 +39,7 @@ class HomeFeed {
       return;
     }
 
+    this.header = tab.content?.as(SectionList).header?.as(ChipCloud);
     this.#continuation = tab.content?.as(SectionList).continuation;
     this.sections = tab.content?.as(SectionList).contents.as(MusicCarouselShelf, MusicTastebuilderShelf);
   }
@@ -53,6 +57,33 @@ class HomeFeed {
     });
 
     return new HomeFeed(response, this.#actions);
+  }
+
+  async applyFilter(target_filter: string | ChipCloudChip): Promise<HomeFeed> {
+    let cloud_chip: ChipCloudChip | undefined;
+
+    if (typeof target_filter === 'string') {
+      cloud_chip = this.header?.chips?.as(ChipCloudChip).get({ text: target_filter });
+      if (!cloud_chip)
+        throw new InnertubeError('Could not find filter with given name.', { available_filters: this.filters });
+    } else if (target_filter?.is(ChipCloudChip)) {
+      cloud_chip = target_filter;
+    }
+
+    if (!cloud_chip)
+      throw new InnertubeError('Invalid filter', { available_filters: this.filters });
+
+    if (cloud_chip?.is_selected) return this;
+
+    if (!cloud_chip.endpoint)
+      throw new InnertubeError('Selected filter does not have an endpoint.');
+
+    const response = await cloud_chip.endpoint.call(this.#actions, { client: 'YTMUSIC' });
+    return new HomeFeed(response, this.#actions);
+  }
+
+  get filters(): string[] {
+    return this.header?.chips?.as(ChipCloudChip).map((chip) => chip.text) || [];
   }
 
   get has_continuation(): boolean {
