@@ -1,6 +1,7 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
 import Parser, { type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
+import PlaylistVideoThumbnail from './PlaylistVideoThumbnail.js';
 import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
@@ -12,6 +13,7 @@ export default class Playlist extends YTNode {
   title: Text;
   author: Text | Author;
   thumbnails: Thumbnail[];
+  thumbnail_renderer?: PlaylistVideoThumbnail;
   video_count: Text;
   video_count_short: Text;
   first_videos: ObservedArray<YTNode>;
@@ -40,6 +42,10 @@ export default class Playlist extends YTNode {
     this.badges = Parser.parseArray(data.ownerBadges);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
+
+    if (Reflect.has(data, 'thumbnailRenderer')) {
+      this.thumbnail_renderer = Parser.parseItem(data.thumbnailRenderer, PlaylistVideoThumbnail) || undefined;
+    }
 
     if (Reflect.has(data, 'viewPlaylistText')) {
       this.view_playlist = new Text(data.viewPlaylistText);
