@@ -1,5 +1,27 @@
 # Changelog
 
+## [5.2.0](https://github.com/LuanRT/YouTube.js/compare/v5.1.0...v5.2.0) (2023-06-28)
+
+
+### Features
+
+* **VideoDetails:** Add is_post_live_dvr property ([#411](https://github.com/LuanRT/YouTube.js/issues/411)) ([a11e596](https://github.com/LuanRT/YouTube.js/commit/a11e5962c6eb73b14623a9de1e6c8c2534146b1e))
+* **ytmusic:** Add support for YouTube Music mood filters ([#404](https://github.com/LuanRT/YouTube.js/issues/404)) ([77b39c7](https://github.com/LuanRT/YouTube.js/commit/77b39c79ee0768eb203b7d47ea81286d470c21f2))
+
+
+### Bug Fixes
+
+* **OAuth:** client identity matching ([#421](https://github.com/LuanRT/YouTube.js/issues/421)) ([07c1b3e](https://github.com/LuanRT/YouTube.js/commit/07c1b3e0e57cb1fa42e4772775bfd1437bbc731f))
+* **PlayerEndpoint:** Use different player params ([#419](https://github.com/LuanRT/YouTube.js/issues/419)) ([519be72](https://github.com/LuanRT/YouTube.js/commit/519be72445b7ff392b396e16bcb1dc05c7df8976))
+* **Playlist:** Add thumbnail_renderer on Playlist when response includes it ([#424](https://github.com/LuanRT/YouTube.js/issues/424)) ([4f9427d](https://github.com/LuanRT/YouTube.js/commit/4f9427d752e89faec8dd1c4fd7a9607dca998c7a))
+* **VideoInfo.ts:** reimplement `get music_tracks` ([#409](https://github.com/LuanRT/YouTube.js/issues/409)) ([e434bb2](https://github.com/LuanRT/YouTube.js/commit/e434bb2632fe2b20aab6f1e707a93ca76f9d5c91))
+
+
+### Performance Improvements
+
+* **Search:** Speed up results parsing ([#408](https://github.com/LuanRT/YouTube.js/issues/408)) ([1e07a18](https://github.com/LuanRT/YouTube.js/commit/1e07a184ffaff508ad5ba869cb5e7dc9f095f744))
+* **toDash:** Speed up format filtering ([#405](https://github.com/LuanRT/YouTube.js/issues/405)) ([5de7b24](https://github.com/LuanRT/YouTube.js/commit/5de7b24dc55fca3eb8fccc6fa30d3c2cd60b8184))
+
 ## [5.1.0](https://github.com/LuanRT/YouTube.js/compare/v5.0.4...v5.1.0) (2023-05-14)
 
 
