@@ -1,5 +1,5 @@
 /* eslint-disable no-cond-assign */
-import { Platform } from '../utils/Utils.js';
+import { InnertubeError, Platform } from '../utils/Utils.js';
 import Author from './classes/misc/Author.js';
 import Text from './classes/misc/Text.js';
 import Thumbnail from './classes/misc/Thumbnail.js';
@@ -62,7 +62,9 @@ export class YTNodeGenerator {
     return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
   }
   static #logNewClass(classname: string, key_info: KeyInfo) {
-    console.warn(`${classname} not found!\nThis is a bug, want to help us fix it? Follow the instructions at ${Platform.shim.info.repo_url}/blob/main/docs/updating-the-parser.md or report it at ${Platform.shim.info.bugs_url}!\nIntrospected and JIT generated this class in the meantime:\n${this.generateTypescriptClass(classname, key_info)}`);
+    console.warn(
+      new InnertubeError(`${classname} not found!\nThis is a bug, want to help us fix it? Follow the instructions at ${Platform.shim.info.repo_url}/blob/main/docs/updating-the-parser.md or report it at ${Platform.shim.info.bugs_url}!\nIntrospected and JIT generated this class in the meantime:\n${this.generateTypescriptClass(classname, key_info)}`)
+    );
   }
   static #logChangedKeys(classname: string, key_info: KeyInfo, changed_keys: KeyInfo) {
     console.warn(`${classname} changed!\nThe following keys where altered: ${changed_keys.map(([ key ]) => this.#camelToSnake(key)).join(', ')}\nThe class has changed to:\n${this.generateTypescriptClass(classname, key_info)}`);
@@ -460,15 +462,15 @@ export class YTNodeGenerator {
    * @returns The parsed value
    */
   static parse(key: string, inference_type: InferenceType, data: any, key_path: string[] = [ 'data' ]) {
-    const should_optional = !inference_type.optional || this.#hasDataFromKeyPath({data}, [ ...key_path, key ]);
+    const should_optional = !inference_type.optional || this.#hasDataFromKeyPath({ data }, [ ...key_path, key ]);
     switch (inference_type.type) {
       case 'renderer':
       {
-        return should_optional ? Parser.parseItem(this.#accessDataFromKeyPath({data}, [ ...key_path, key ]), inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
+        return should_optional ? Parser.parseItem(this.#accessDataFromKeyPath({ data }, [ ...key_path, key ]), inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
       }
       case 'renderer_list':
       {
-        return should_optional ? Parser.parse(this.#accessDataFromKeyPath({data}, [ ...key_path, key ]), true, inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
+        return should_optional ? Parser.parse(this.#accessDataFromKeyPath({ data }, [ ...key_path, key ]), true, inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
       }
       case 'object':
       {
@@ -482,25 +484,25 @@ export class YTNodeGenerator {
       case 'misc':
         switch (inference_type.misc_type) {
           case 'NavigationEndpoint':
-            return should_optional ? new NavigationEndpoint(this.#accessDataFromKeyPath({data}, [ ...key_path, key ])) : undefined;
+            return should_optional ? new NavigationEndpoint(this.#accessDataFromKeyPath({ data }, [ ...key_path, key ])) : undefined;
           case 'Text':
-            return should_optional ? new Text(this.#accessDataFromKeyPath({data}, [ ...key_path, key ])) : undefined;
+            return should_optional ? new Text(this.#accessDataFromKeyPath({ data }, [ ...key_path, key ])) : undefined;
           case 'Thumbnail':
-            return should_optional ? Thumbnail.fromResponse(this.#accessDataFromKeyPath({data}, [ ...key_path, key ])) : undefined;
+            return should_optional ? Thumbnail.fromResponse(this.#accessDataFromKeyPath({ data }, [ ...key_path, key ])) : undefined;
           case 'Author':
           {
-            const author_should_optional = !inference_type.optional || this.#hasDataFromKeyPath({data}, [ ...key_path, inference_type.params[0] ]);
+            const author_should_optional = !inference_type.optional || this.#hasDataFromKeyPath({ data }, [ ...key_path, inference_type.params[0] ]);
             return author_should_optional ? new Author(
-              this.#accessDataFromKeyPath({data}, [ ...key_path, inference_type.params[0] ]),
+              this.#accessDataFromKeyPath({ data }, [ ...key_path, inference_type.params[0] ]),
               inference_type.params[1] ?
-                this.#accessDataFromKeyPath({data}, [ ...key_path, inference_type.params[1] ]) : undefined
+                this.#accessDataFromKeyPath({ data }, [ ...key_path, inference_type.params[1] ]) : undefined
             ) : undefined;
           }
         }
         throw new Error('Unreachable code reached! Switch missing case!');
       case 'primative':
       case 'unknown':
-        return this.#accessDataFromKeyPath({data}, [ ...key_path, key ]);
+        return this.#accessDataFromKeyPath({ data }, [ ...key_path, key ]);
     }
   }
   static #passOne(classdata: any) {
