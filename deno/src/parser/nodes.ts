@@ -90,6 +90,7 @@ export { default as EndscreenElement } from './classes/EndscreenElement.ts';
 export { default as EndScreenPlaylist } from './classes/EndScreenPlaylist.ts';
 export { default as EndScreenVideo } from './classes/EndScreenVideo.ts';
 export { default as EngagementPanelSectionList } from './classes/EngagementPanelSectionList.ts';
+export { default as EngagementPanelTitleHeader } from './classes/EngagementPanelTitleHeader.ts';
 export { default as ExpandableMetadata } from './classes/ExpandableMetadata.ts';
 export { default as ExpandableTab } from './classes/ExpandableTab.ts';
 export { default as ExpandableVideoDescriptionBody } from './classes/ExpandableVideoDescriptionBody.ts';
@@ -342,6 +343,7 @@ export { default as VerticalWatchCardList } from './classes/VerticalWatchCardLis
 export { default as Video } from './classes/Video.ts';
 export { default as VideoCard } from './classes/VideoCard.ts';
 export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHeader.ts';
+export { default as VideoDescriptionInfocardsSection } from './classes/VideoDescriptionInfocardsSection.ts';
 export { default as VideoDescriptionMusicSection } from './classes/VideoDescriptionMusicSection.ts';
 export { default as VideoInfoCardContent } from './classes/VideoInfoCardContent.ts';
 export { default as VideoOwner } from './classes/VideoOwner.ts';

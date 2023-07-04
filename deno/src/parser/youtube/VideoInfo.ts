@@ -339,36 +339,45 @@ class VideoInfo extends MediaInfo {
    * Get songs used in the video.
    */
   get music_tracks() {
+    // @TODO: Refactor this.
     const description_content = this.page[1]?.engagement_panels?.filter((panel) => panel.content?.is(StructuredDescriptionContent));
     if (description_content !== undefined && description_content.length > 0) {
-      const music_section = (description_content[0].content as StructuredDescriptionContent)?.items.filter((item: YTNode) => item?.is(VideoDescriptionMusicSection)) as VideoDescriptionMusicSection[];
+      const music_section = description_content[0].content?.as(StructuredDescriptionContent)?.items?.filterType(VideoDescriptionMusicSection);
       if (music_section !== undefined && music_section.length > 0) {
         return music_section[0].carousel_lockups?.map((lookup) => {
-          let song, artist, album, license, videoId, channelId;
+          let song: string | undefined;
+          let artist: string | undefined;
+          let album: string | undefined;
+          let license: string | undefined;
+          let videoId: string | undefined;
+          let channelId: string | undefined;
+
           // If the song isn't in the video_lockup, it should be in the info_rows
-          song = lookup.video_lockup?.title;
+          song = lookup.video_lockup?.title?.toString();
           // If the video id isn't in the video_lockup, it should be in the info_rows
           videoId = lookup.video_lockup?.endpoint.payload.videoId;
           for (let i = 0; i < lookup.info_rows.length; i++) {
             const info_row = lookup.info_rows[i];
             if (info_row.info_row_expand_status_key === undefined) {
               if (song === undefined) {
-                song = info_row.metadata_text;
+                song = info_row.default_metadata?.toString() || info_row.expanded_metadata?.toString();
                 if (videoId === undefined) {
-                  videoId = info_row.metadata_endpoint?.payload;
+                  const endpoint = info_row.default_metadata?.endpoint || info_row.expanded_metadata?.endpoint;
+                  videoId = endpoint?.payload?.videoId;
                 }
               } else {
-                album = info_row.metadata_text;
+                album = info_row.default_metadata?.toString() || info_row.expanded_metadata?.toString();
               }
             } else {
               if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-artists-row-state-id') !== -1) {
-                artist = info_row.metadata_text;
+                artist = info_row.default_metadata?.toString() || info_row.expanded_metadata?.toString();
                 if (channelId === undefined) {
-                  channelId = info_row.metadata_endpoint?.payload?.browseId;
+                  const endpoint = info_row.default_metadata?.endpoint || info_row.expanded_metadata?.endpoint;
+                  channelId = endpoint?.payload?.browseId;
                 }
               }
               if (info_row.info_row_expand_status_key?.indexOf('structured-description-music-section-licenses-row-state-id') !== -1) {
-                license = info_row.metadata_text;
+                license = info_row.default_metadata?.toString() || info_row.expanded_metadata?.toString();
               }
             }
           }

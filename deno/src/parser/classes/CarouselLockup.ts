@@ -7,14 +7,11 @@ export default class CarouselLockup extends YTNode {
   static type = 'CarouselLockup';
 
   info_rows: ObservedArray<InfoRow>;
-  video_lockup?: CompactVideo;
+  video_lockup?: CompactVideo | null;
 
   constructor(data: RawNode) {
     super();
     this.info_rows = Parser.parseArray(data.infoRows, InfoRow);
-    const video_lockup = Parser.parseItem(data.videoLockup, CompactVideo);
-    if (video_lockup != null) {
-      this.video_lockup = video_lockup;
-    }
+    this.video_lockup = Parser.parseItem(data.videoLockup, CompactVideo);
   }
 }

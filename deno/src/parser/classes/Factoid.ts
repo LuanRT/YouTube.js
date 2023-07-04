@@ -4,6 +4,7 @@ import { Text } from '../misc.ts';
 
 export default class Factoid extends YTNode {
   static type = 'Factoid';
+
   label: Text;
   value: Text;
   accessibility_text: String;
