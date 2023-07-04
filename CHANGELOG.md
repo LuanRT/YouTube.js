@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.1](https://github.com/LuanRT/YouTube.js/compare/v5.2.0...v5.2.1) (2023-07-04)
+
+
+### Bug Fixes
+
+* incorrect node parser implementations ([#428](https://github.com/LuanRT/YouTube.js/issues/428)) ([222dfce](https://github.com/LuanRT/YouTube.js/commit/222dfce6bbd13b2cd80ae11540cbc0edd9053fc5))
+
 ## [5.2.0](https://github.com/LuanRT/YouTube.js/compare/v5.1.0...v5.2.0) (2023-06-28)
 
 
