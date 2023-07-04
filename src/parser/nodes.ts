@@ -90,6 +90,7 @@ export { default as EndscreenElement } from './classes/EndscreenElement.js';
 export { default as EndScreenPlaylist } from './classes/EndScreenPlaylist.js';
 export { default as EndScreenVideo } from './classes/EndScreenVideo.js';
 export { default as EngagementPanelSectionList } from './classes/EngagementPanelSectionList.js';
+export { default as EngagementPanelTitleHeader } from './classes/EngagementPanelTitleHeader.js';
 export { default as ExpandableMetadata } from './classes/ExpandableMetadata.js';
 export { default as ExpandableTab } from './classes/ExpandableTab.js';
 export { default as ExpandableVideoDescriptionBody } from './classes/ExpandableVideoDescriptionBody.js';
@@ -342,6 +343,7 @@ export { default as VerticalWatchCardList } from './classes/VerticalWatchCardLis
 export { default as Video } from './classes/Video.js';
 export { default as VideoCard } from './classes/VideoCard.js';
 export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHeader.js';
+export { default as VideoDescriptionInfocardsSection } from './classes/VideoDescriptionInfocardsSection.js';
 export { default as VideoDescriptionMusicSection } from './classes/VideoDescriptionMusicSection.js';
 export { default as VideoInfoCardContent } from './classes/VideoInfoCardContent.js';
 export { default as VideoOwner } from './classes/VideoOwner.js';
