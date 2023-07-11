@@ -97,10 +97,14 @@ export default class Format {
       const args = new URLSearchParams(this.cipher || this.signature_cipher);
       const url_components = new URLSearchParams(args.get('url') || this.url);
 
-      this.language = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('lang='))?.split('=').at(1) || null;
-      this.is_dubbed = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'dubbed';
-      this.is_descriptive = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'descriptive';
-      this.is_original = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'original' || !this.is_dubbed;
+      const xtags = url_components.get('xtags')?.split(':');
+
+      const audio_content = xtags?.find((x) => x.startsWith('acont='))?.split('=')[1];
+
+      this.language = xtags?.find((x: string) => x.startsWith('lang='))?.split('=')[1] || null;
+      this.is_dubbed = audio_content === 'dubbed';
+      this.is_descriptive = audio_content === 'descriptive';
+      this.is_original = audio_content === 'original' || !this.is_dubbed || !this.is_descriptive;
 
       if (Reflect.has(data, 'audioTrack')) {
         this.audio_track = {
