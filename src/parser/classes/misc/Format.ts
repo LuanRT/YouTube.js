@@ -46,6 +46,12 @@ export default class Format {
   is_descriptive?: boolean;
   is_original?: boolean;
 
+  color_info?: {
+    primaries?: string;
+    transfer_characteristics?: string;
+    matrix_coefficients?: string;
+  };
+
   constructor(data: RawNode) {
     this.itag = data.itag;
     this.mime_type = data.mimeType;
@@ -80,6 +86,12 @@ export default class Format {
     this.loudness_db = data.loudnessDb;
     this.has_audio = !!data.audioBitrate || !!data.audioQuality;
     this.has_video = !!data.qualityLabel;
+
+    this.color_info = data.colorInfo ? {
+      primaries: data.colorInfo.primaries?.replace('COLOR_PRIMARIES_', ''),
+      transfer_characteristics: data.colorInfo.transferCharacteristics?.replace('COLOR_TRANSFER_CHARACTERISTICS_', ''),
+      matrix_coefficients: data.colorInfo.matrixCoefficients?.replace('COLOR_MATRIX_COEFFICIENTS_', '')
+    } : undefined;
 
     if (this.has_audio) {
       const args = new URLSearchParams(this.cipher || this.signature_cipher);

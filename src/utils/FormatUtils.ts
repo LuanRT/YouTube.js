@@ -387,6 +387,95 @@ class FormatUtils {
           subsegmentAlignment: 'true'
         });
 
+        const color_info = mime_objects[i][0].color_info;
+        if (typeof color_info !== 'undefined') {
+          // Section 5.5 Video source metadata signalling https://dashif.org/docs/IOP-Guidelines/DASH-IF-IOP-Part7-v5.0.0.pdf
+          // Section 8 Video code points https://www.itu.int/rec/T-REC-H.273-202107-I/en
+          // The player.js file was also helpful
+
+          if (color_info.primaries) {
+            let primaries = '';
+
+            switch (color_info.primaries) {
+              case 'BT709':
+                primaries = '1';
+                break;
+              case 'BT2020':
+                primaries = '9';
+                break;
+            }
+
+            if (primaries !== '') {
+              set.appendChild(this.#el(document, 'EssentialProperty', {
+                schemeIdUri: 'urn:mpeg:mpegB:cicp:ColourPrimaries',
+                value: primaries
+              }));
+            }
+          }
+
+          if (color_info.transfer_characteristics) {
+            let transfer_characteristics = '';
+
+            switch (color_info.transfer_characteristics) {
+              case 'BT709':
+                transfer_characteristics = '1';
+                break;
+              case 'BT2020_10':
+                transfer_characteristics = '14';
+                break;
+              case 'SMPTEST2084':
+                transfer_characteristics = '16';
+                break;
+              case 'ARIB_STD_B67':
+                transfer_characteristics = '18';
+                break;
+            }
+
+            if (transfer_characteristics !== '') {
+              set.appendChild(this.#el(document, 'EssentialProperty', {
+                schemeIdUri: 'urn:mpeg:mpegB:cicp:TransferCharacteristics',
+                value: transfer_characteristics
+              }));
+            }
+          }
+
+
+          if (color_info.matrix_coefficients) {
+            let matrix_coefficients = '';
+
+            // This list is incomplete, as the player.js doesn't currently have any code for matrix coefficients,
+            // So it doesn't have a list like with the other two, so this is just based on what we've seen in responses
+            switch (color_info.matrix_coefficients) {
+              case 'BT709':
+                matrix_coefficients = '1';
+                break;
+              case 'BT2020_NCL':
+                matrix_coefficients = '14';
+                break;
+              default: {
+                const format = mime_objects[i][0];
+                const url = new URL(format.url as string);
+
+                const anonymisedFormat = JSON.parse(JSON.stringify(format));
+                anonymisedFormat.url = 'REDACTED';
+                anonymisedFormat.signature_cipher = 'REDACTED';
+                anonymisedFormat.cipher = 'REDACTED';
+
+                console.warn(`YouTube.js toDash(): Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
+                  + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
+                  + `Innertube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
+              }
+            }
+
+            if (matrix_coefficients !== '') {
+              set.appendChild(this.#el(document, 'EssentialProperty', {
+                schemeIdUri: 'urn:mpeg:mpegB:cicp:MatrixCoefficients',
+                value: matrix_coefficients
+              }));
+            }
+          }
+        }
+
         period.appendChild(set);
 
         for (const format of mime_objects[i]) {
