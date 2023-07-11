@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.3.0](https://github.com/LuanRT/YouTube.js/compare/v5.2.1...v5.3.0) (2023-07-11)
+
+
+### Features
+
+* **toDash:** Add color information ([#430](https://github.com/LuanRT/YouTube.js/issues/430)) ([3500e92](https://github.com/LuanRT/YouTube.js/commit/3500e926327d560b1db036bfe503c276b91922ac))
+
+
+### Performance Improvements
+
+* **Format:** Cleanup the xtags parsing ([#434](https://github.com/LuanRT/YouTube.js/issues/434)) ([1ca2083](https://github.com/LuanRT/YouTube.js/commit/1ca20836bf343c78461fab7ad3b71db2b96e65c3))
+* **toDash:** Hoist duplicates from Representation to AdaptationSet ([#431](https://github.com/LuanRT/YouTube.js/issues/431)) ([5f058e6](https://github.com/LuanRT/YouTube.js/commit/5f058e69ae8594491133f7f96287bea4137f7822))
+
 ## [5.2.1](https://github.com/LuanRT/YouTube.js/compare/v5.2.0...v5.2.1) (2023-07-04)
 
 
