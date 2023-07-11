@@ -46,6 +46,12 @@ export default class Format {
   is_descriptive?: boolean;
   is_original?: boolean;
 
+  color_info?: {
+    primaries?: string;
+    transfer_characteristics?: string;
+    matrix_coefficients?: string;
+  };
+
   constructor(data: RawNode) {
     this.itag = data.itag;
     this.mime_type = data.mimeType;
@@ -81,14 +87,24 @@ export default class Format {
     this.has_audio = !!data.audioBitrate || !!data.audioQuality;
     this.has_video = !!data.qualityLabel;
 
+    this.color_info = data.colorInfo ? {
+      primaries: data.colorInfo.primaries?.replace('COLOR_PRIMARIES_', ''),
+      transfer_characteristics: data.colorInfo.transferCharacteristics?.replace('COLOR_TRANSFER_CHARACTERISTICS_', ''),
+      matrix_coefficients: data.colorInfo.matrixCoefficients?.replace('COLOR_MATRIX_COEFFICIENTS_', '')
+    } : undefined;
+
     if (this.has_audio) {
       const args = new URLSearchParams(this.cipher || this.signature_cipher);
       const url_components = new URLSearchParams(args.get('url') || this.url);
 
-      this.language = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('lang='))?.split('=').at(1) || null;
-      this.is_dubbed = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'dubbed';
-      this.is_descriptive = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'descriptive';
-      this.is_original = url_components.get('xtags')?.split(':').find((x: string) => x.startsWith('acont='))?.split('=').at(1) === 'original' || !this.is_dubbed;
+      const xtags = url_components.get('xtags')?.split(':');
+
+      const audio_content = xtags?.find((x) => x.startsWith('acont='))?.split('=')[1];
+
+      this.language = xtags?.find((x: string) => x.startsWith('lang='))?.split('=')[1] || null;
+      this.is_dubbed = audio_content === 'dubbed';
+      this.is_descriptive = audio_content === 'descriptive';
+      this.is_original = audio_content === 'original' || !this.is_dubbed || !this.is_descriptive;
 
       if (Reflect.has(data, 'audioTrack')) {
         this.audio_track = {
