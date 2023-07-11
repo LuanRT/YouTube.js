@@ -321,7 +321,7 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#music.getAlbum', async () => {
-      const album = await innertube.music.getAlbum('MPREb_aWzgoemOnfa');
+      const album = await innertube.music.getAlbum('MPREb_YpQ7SWMPLvu');
       expect(album).toBeDefined();
       expect(album.header).toBeDefined();
       expect(album.sections).toBeDefined();
