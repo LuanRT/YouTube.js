@@ -373,10 +373,17 @@ class FormatUtils {
             label: first_format.audio_track?.display_name as string
           }, children);
 
+          const hoisted: string[] = [];
+
+          this.#hoistCodecsIfPossible(set, track_objects[j], hoisted);
+          this.#hoistNumberAttributeIfPossible(set, track_objects[j], 'audioSamplingRate', 'audio_sample_rate', hoisted);
+
+          this.#hoistAudioChannelsIfPossible(document, set, track_objects[j], hoisted);
+
           period.appendChild(set);
 
           for (const format of track_objects[j]) {
-            await this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player, actions);
+            await this.#generateRepresentationAudio(document, set, format, url_transformer, hoisted, cpn, player, actions);
           }
         }
       } else {
@@ -476,43 +483,85 @@ class FormatUtils {
           }
         }
 
+        const hoisted: string[] = [];
+
+        this.#hoistCodecsIfPossible(set, mime_objects[i], hoisted);
+
+        if (mime_objects[i][0].has_audio) {
+          this.#hoistNumberAttributeIfPossible(set, mime_objects[i], 'audioSamplingRate', 'audio_sample_rate', hoisted);
+
+          this.#hoistAudioChannelsIfPossible(document, set, mime_objects[i], hoisted);
+        } else {
+          set.setAttribute('maxPlayoutRate', '1');
+
+          this.#hoistNumberAttributeIfPossible(set, mime_objects[i], 'frameRate', 'fps', hoisted);
+        }
+
         period.appendChild(set);
 
         for (const format of mime_objects[i]) {
           if (format.has_video) {
-            await this.#generateRepresentationVideo(document, set, format, url_transformer, cpn, player, actions);
+            await this.#generateRepresentationVideo(document, set, format, url_transformer, hoisted, cpn, player, actions);
           } else {
-            await this.#generateRepresentationAudio(document, set, format, url_transformer, cpn, player, actions);
+            await this.#generateRepresentationAudio(document, set, format, url_transformer, hoisted, cpn, player, actions);
           }
         }
       }
     }
   }
 
-  static async #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player, actions?: Actions) {
-    const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
+  static #hoistCodecsIfPossible(set: Element, formats: Format[], hoisted: string[]) {
+    if (formats.length > 1 && new Set(formats.map((format) => getStringBetweenStrings(format.mime_type, 'codecs="', '"'))).size === 1) {
+      set.setAttribute('codecs', getStringBetweenStrings(formats[0].mime_type, 'codecs="', '"') as string);
+      hoisted.push('codecs');
+    }
+  }
 
+  static #hoistNumberAttributeIfPossible(set: Element, formats: Format[], attribute: 'audioSamplingRate' | 'frameRate', property: 'audio_sample_rate' | 'fps', hoisted: string[]) {
+    if (formats.length > 1 && new Set(formats.map((format) => format.fps)).size === 1) {
+      set.setAttribute(attribute, formats[0][property]?.toString() as string);
+      hoisted.push(attribute);
+    }
+  }
+
+  static #hoistAudioChannelsIfPossible(document: XMLDocument, set: Element, formats: Format[], hoisted: string[]) {
+    if (formats.length > 1 && new Set(formats.map((format) => format.audio_channels?.toString() || '2')).size === 1) {
+      set.appendChild(
+        this.#el(document, 'AudioChannelConfiguration', {
+          schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
+          value: formats[0].audio_channels?.toString() || '2'
+        })
+      );
+      hoisted.push('AudioChannelConfiguration');
+    }
+  }
+
+  static async #generateRepresentationVideo(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, hoisted: string[], cpn?: string, player?: Player, actions?: Actions) {
     const url = new URL(format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
     const representation = this.#el(document, 'Representation', {
       id: format.itag?.toString(),
-      codecs,
       bandwidth: format.bitrate?.toString(),
       width: format.width?.toString(),
-      height: format.height?.toString(),
-      maxPlayoutRate: '1',
-      frameRate: format.fps?.toString()
+      height: format.height?.toString()
     });
+
+    if (!hoisted.includes('codecs')) {
+      const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
+      representation.setAttribute('codecs', codecs as string);
+    }
+
+    if (!hoisted.includes('frameRate')) {
+      representation.setAttribute('frameRate', format.fps?.toString() as string);
+    }
 
     set.appendChild(representation);
 
     await this.#generateSegmentInformation(document, representation, format, url_transformer(url)?.toString(), actions);
   }
 
-  static async #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, cpn?: string, player?: Player, actions?: Actions) {
-    const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
-
+  static async #generateRepresentationAudio(document: XMLDocument, set: Element, format: Format, url_transformer: URLTransformer, hoisted: string[], cpn?: string, player?: Player, actions?: Actions) {
     const url = new URL(format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
@@ -525,15 +574,26 @@ class FormatUtils {
 
     const representation = this.#el(document, 'Representation', {
       id,
-      codecs,
-      bandwidth: format.bitrate?.toString(),
-      audioSamplingRate: format.audio_sample_rate?.toString()
-    }, [
-      this.#el(document, 'AudioChannelConfiguration', {
-        schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
-        value: format.audio_channels?.toString() || '2'
-      })
-    ]);
+      bandwidth: format.bitrate?.toString()
+    });
+
+    if (!hoisted.includes('codecs')) {
+      const codecs = getStringBetweenStrings(format.mime_type, 'codecs="', '"');
+      representation.setAttribute('codecs', codecs as string);
+    }
+
+    if (!hoisted.includes('audioSamplingRate')) {
+      representation.setAttribute('audioSamplingRate', format.audio_sample_rate?.toString() as string);
+    }
+
+    if (!hoisted.includes('AudioChannelConfiguration')) {
+      representation.appendChild(
+        this.#el(document, 'AudioChannelConfiguration', {
+          schemeIdUri: 'urn:mpeg:dash:23003:3:audio_channel_configuration:2011',
+          value: format.audio_channels?.toString() || '2'
+        })
+      );
+    }
 
     set.appendChild(representation);
 
