@@ -543,6 +543,7 @@ Retrieves contents for a given channel.
 - `<channel>#getShorts()`
 - `<channel>#getLiveStreams()`
 - `<channel>#getReleases()`
+- `<channel>#getPodcasts()`
 - `<channel>#getPlaylists()`
 - `<channel>#getHome()`
 - `<channel>#getCommunity()`
