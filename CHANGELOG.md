@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.4.0](https://github.com/LuanRT/YouTube.js/compare/v5.3.0...v5.4.0) (2023-07-14)
+
+
+### Features
+
+* **Channel:** Add `getPodcasts()` method ([f267fcd](https://github.com/LuanRT/YouTube.js/commit/f267fcd8beccf237b8d1924463990273887cae28))
+* **Channel:** Add `getReleases()` method ([f267fcd](https://github.com/LuanRT/YouTube.js/commit/f267fcd8beccf237b8d1924463990273887cae28))
+* **parser:** Add `Quiz` ([#437](https://github.com/LuanRT/YouTube.js/issues/437)) ([cffa868](https://github.com/LuanRT/YouTube.js/commit/cffa868c6eeb579047653fac65da8e913fb3c621))
+
+
+### Bug Fixes
+
+* **Playlist:** Parse `PlaylistCustomThumbnail` for `thumbnail_renderer` ([f267fcd](https://github.com/LuanRT/YouTube.js/commit/f267fcd8beccf237b8d1924463990273887cae28))
+
 ## [5.3.0](https://github.com/LuanRT/YouTube.js/compare/v5.2.1...v5.3.0) (2023-07-11)
 
 
