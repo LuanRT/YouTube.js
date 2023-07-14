@@ -265,6 +265,7 @@ export { default as ProfileColumn } from './classes/ProfileColumn.js';
 export { default as ProfileColumnStats } from './classes/ProfileColumnStats.js';
 export { default as ProfileColumnStatsEntry } from './classes/ProfileColumnStatsEntry.js';
 export { default as ProfileColumnUserInfo } from './classes/ProfileColumnUserInfo.js';
+export { default as Quiz } from './classes/Quiz.js';
 export { default as RecognitionShelf } from './classes/RecognitionShelf.js';
 export { default as ReelItem } from './classes/ReelItem.js';
 export { default as ReelShelf } from './classes/ReelShelf.js';
