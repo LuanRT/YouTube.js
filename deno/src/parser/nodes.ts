@@ -265,6 +265,7 @@ export { default as ProfileColumn } from './classes/ProfileColumn.ts';
 export { default as ProfileColumnStats } from './classes/ProfileColumnStats.ts';
 export { default as ProfileColumnStatsEntry } from './classes/ProfileColumnStatsEntry.ts';
 export { default as ProfileColumnUserInfo } from './classes/ProfileColumnUserInfo.ts';
+export { default as Quiz } from './classes/Quiz.ts';
 export { default as RecognitionShelf } from './classes/RecognitionShelf.ts';
 export { default as ReelItem } from './classes/ReelItem.ts';
 export { default as ReelShelf } from './classes/ReelShelf.ts';
