@@ -413,6 +413,8 @@ export default class Parser {
     return observe(actions.map((action: any) => {
       if (action.navigateAction)
         return new NavigateAction(action.navigateAction);
+      if (action.showMiniplayerCommand)
+        return new ShowMiniplayerCommand(action.showMiniplayerCommand);
       if (action.reloadContinuationItemsCommand)
         return new ReloadContinuationItemsCommand(action.reloadContinuationItemsCommand);
       if (action.appendContinuationItemsAction)
@@ -571,6 +573,19 @@ export class NavigateAction extends YTNode {
   constructor(data: RawNode) {
     super();
     this.endpoint = new NavigationEndpoint(data.endpoint);
+  }
+}
+
+export class ShowMiniplayerCommand extends YTNode {
+  static readonly type = 'showMiniplayerCommand';
+
+  miniplayer_command: NavigationEndpoint;
+  show_premium_branding: boolean;
+
+  constructor(data: RawNode) {
+    super();
+    this.miniplayer_command = new NavigationEndpoint(data.miniplayerCommand);
+    this.show_premium_branding = data.showPremiumBranding;
   }
 }
 
