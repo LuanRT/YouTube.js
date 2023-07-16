@@ -146,7 +146,7 @@ class FormatUtils {
             chunk_end += chunk_size;
 
             resolve();
-            return;
+
           } catch (e: any) {
             reject(e);
           }
@@ -491,6 +491,11 @@ class FormatUtils {
           this.#hoistNumberAttributeIfPossible(set, mime_objects[i], 'audioSamplingRate', 'audio_sample_rate', hoisted);
 
           this.#hoistAudioChannelsIfPossible(document, set, mime_objects[i], hoisted);
+
+          const language = mime_objects[i][0].language;
+          if (language) {
+            set.setAttribute('lang', language);
+          }
         } else {
           set.setAttribute('maxPlayoutRate', '1');
 

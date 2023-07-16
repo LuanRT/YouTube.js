@@ -17,10 +17,10 @@ export default class PlayerCaptionsTracklist extends YTNode {
   audio_tracks?: {
     audio_track_id: string;
     captions_initial_state: string;
-    default_caption_track_index: number;
+    default_caption_track_index?: number;
     has_default_track: boolean;
     visibility: string;
-    caption_track_indices: number;
+    caption_track_indices: number[];
   }[];
 
   default_audio_track_index?: number;

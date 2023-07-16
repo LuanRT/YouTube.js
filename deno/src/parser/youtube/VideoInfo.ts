@@ -99,6 +99,28 @@ class VideoInfo extends MediaInfo {
     this.captions = info.captions;
     this.cards = info.cards;
 
+    if (this.streaming_data) {
+      const default_audio_track = this.streaming_data.adaptive_formats.find((format) => format.audio_track?.audio_is_default);
+      if (default_audio_track) {
+        // The combined formats only exist for the default language, even for videos with multiple audio tracks
+        // So we can copy the language from the default audio track to the combined formats
+        this.streaming_data.formats.forEach((format) => format.language = default_audio_track.language);
+      } else if (typeof this.captions?.default_audio_track_index !== 'undefined' && this.captions?.audio_tracks && this.captions.caption_tracks) {
+        // For videos with a single audio track and captions, we can use the captions to figure out the language of the audio and combined formats
+        const audioTrack = this.captions.audio_tracks[this.captions.default_audio_track_index];
+        const defaultCaptionTrackIndex = audioTrack.default_caption_track_index;
+        const index = audioTrack.caption_track_indices[defaultCaptionTrackIndex ? defaultCaptionTrackIndex : 0];
+        const language_code = this.captions.caption_tracks[index].language_code;
+
+        this.streaming_data.adaptive_formats.forEach((format) => {
+          if (format.has_audio) {
+            format.language = language_code;
+          }
+        });
+        this.streaming_data.formats.forEach((format) => format.language = language_code);
+      }
+    }
+
     const two_col = next?.contents?.item().as(TwoColumnWatchNextResults);
 
     const results = two_col?.results;
