@@ -180,6 +180,8 @@ export { default as LiveChatItemList } from './classes/LiveChatItemList.js';
 export { default as LiveChatMessageInput } from './classes/LiveChatMessageInput.js';
 export { default as LiveChatParticipant } from './classes/LiveChatParticipant.js';
 export { default as LiveChatParticipantsList } from './classes/LiveChatParticipantsList.js';
+export { default as MacroMarkersInfoItem } from './classes/MacroMarkersInfoItem.js';
+export { default as MacroMarkersList } from './classes/MacroMarkersList.js';
 export { default as MacroMarkersListItem } from './classes/MacroMarkersListItem.js';
 export { default as Menu } from './classes/menus/Menu.js';
 export { default as MenuNavigationItem } from './classes/menus/MenuNavigationItem.js';
