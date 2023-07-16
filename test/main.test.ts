@@ -1,5 +1,5 @@
 import { createWriteStream, existsSync } from 'node:fs';
-import { Innertube, IBrowseResponse, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
+import { Innertube, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
 describe('YouTube.js Tests', () => {
   let innertube: Innertube; 
@@ -18,6 +18,30 @@ describe('YouTube.js Tests', () => {
       const info = await innertube.getBasicInfo('bUHZ2k9DYHY');
       expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
     });
+
+    describe('Innertube#getBasicInfo', () => {
+      test('Format#language multiple audio tracks', async () => {
+        const info = await innertube.getBasicInfo('Kn56bMZ9OE8')
+        expect(info.streaming_data).toBeDefined()
+
+        const default_track_format = info.streaming_data?.adaptive_formats.find(format => format.audio_track?.audio_is_default)
+        expect(default_track_format).toBeDefined()
+        expect(default_track_format?.language).toBe('en')
+
+        // check that the language is properly propagated to the non-dash formats
+        expect(info.streaming_data?.formats[0].language).toBe('en')
+      })
+
+      test('Format#language single audio track with captions', async () => {
+        const info = await innertube.getBasicInfo('gisdyTBMNyQ')
+        expect(info.streaming_data).toBeDefined()
+
+        const audio_format = info.streaming_data?.adaptive_formats.find(format => format.has_audio)
+        expect(audio_format).toBeDefined()
+        expect(audio_format?.language).toBe('en')
+        expect(info.streaming_data?.formats[0].language).toBe('en')
+      })
+    })
 
     test('Innertube#search', async () => {
       const search = await innertube.search('Anton Petrov');
