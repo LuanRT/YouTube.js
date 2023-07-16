@@ -20,9 +20,12 @@ import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.js';
 
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
-import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
+import PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import { MediaInfo } from '../../core/mixins/index.js';
+import type { FormatFilter, URLTransformer } from '../../utils/FormatUtils.js';
+import FormatUtils from '../../utils/FormatUtils.js';
+import type { DashOptions } from '../../types/DashOptions.js';
 
 class TrackInfo extends MediaInfo {
   basic_info;
@@ -64,6 +67,23 @@ class TrackInfo extends MediaInfo {
       // TODO: update PlayerOverlay, YTMusic's is a little bit different.
       this.player_overlays = next.player_overlays?.item().as(PlayerOverlay);
     }
+  }
+
+  /**
+   * Generates a DASH manifest from the streaming data.
+   * @param url_transformer - Function to transform the URLs.
+   * @param format_filter - Function to filter the formats.
+   * @param options - Additional options to customise the manifest generation
+   * @returns DASH manifest
+   */
+  async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter, options: DashOptions = { include_thumbnails: false }): Promise<string> {
+    let storyboards;
+
+    if (options.include_thumbnails && this.storyboards?.is(PlayerStoryboardSpec)) {
+      storyboards = this.storyboards;
+    }
+
+    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.cpn, this.actions.session.player, this.actions, storyboards);
   }
 
   /**
