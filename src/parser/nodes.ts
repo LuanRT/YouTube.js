@@ -58,6 +58,7 @@ export { default as CommentsEntryPointHeader } from './classes/comments/Comments
 export { default as CommentsEntryPointTeaser } from './classes/comments/CommentsEntryPointTeaser.js';
 export { default as CommentsHeader } from './classes/comments/CommentsHeader.js';
 export { default as CommentSimplebox } from './classes/comments/CommentSimplebox.js';
+export { default as CommentsSimplebox } from './classes/comments/CommentsSimplebox.js';
 export { default as CommentThread } from './classes/comments/CommentThread.js';
 export { default as CreatorHeart } from './classes/comments/CreatorHeart.js';
 export { default as EmojiPicker } from './classes/comments/EmojiPicker.js';

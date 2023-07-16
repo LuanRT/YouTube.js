@@ -1,9 +1,10 @@
 import Text from '../misc/Text.js';
 import Thumbnail from '../misc/Thumbnail.js';
+import CommentsSimplebox from './CommentsSimplebox.js';
+import CommentsEntryPointTeaser from './CommentsEntryPointTeaser.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 import { Parser } from '../../index.js';
-import CommentsEntryPointTeaser from './CommentsEntryPointTeaser.js';
 
 export default class CommentsEntryPointHeader extends YTNode {
   static type = 'CommentsEntryPointHeader';
@@ -12,7 +13,7 @@ export default class CommentsEntryPointHeader extends YTNode {
   comment_count?: Text;
   teaser_avatar?: Thumbnail[];
   teaser_content?: Text;
-  content_renderer?: CommentsEntryPointTeaser | null;
+  content_renderer?: CommentsEntryPointTeaser | CommentsSimplebox | null;
   simplebox_placeholder?: Text;
 
   constructor(data: RawNode) {
@@ -35,7 +36,7 @@ export default class CommentsEntryPointHeader extends YTNode {
     }
 
     if (Reflect.has(data, 'contentRenderer')) {
-      this.content_renderer = Parser.parseItem(data.contentRenderer, CommentsEntryPointTeaser);
+      this.content_renderer = Parser.parseItem(data.contentRenderer, [ CommentsEntryPointTeaser, CommentsSimplebox ]);
     }
 
     if (Reflect.has(data, 'simpleboxPlaceholder')) {
