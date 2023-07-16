@@ -115,6 +115,7 @@ export { default as GuideEntry } from './classes/GuideEntry.js';
 export { default as GuideSection } from './classes/GuideSection.js';
 export { default as GuideSubscriptionsSection } from './classes/GuideSubscriptionsSection.js';
 export { default as HashtagHeader } from './classes/HashtagHeader.js';
+export { default as HashtagTile } from './classes/HashtagTile.js';
 export { default as Heatmap } from './classes/Heatmap.js';
 export { default as HeatMarker } from './classes/HeatMarker.js';
 export { default as HeroPlaylistThumbnail } from './classes/HeroPlaylistThumbnail.js';
