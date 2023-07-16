@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.5.0](https://github.com/LuanRT/YouTube.js/compare/v5.4.0...v5.5.0) (2023-07-16)
+
+
+### Features
+
+* **Format:** Populate audio language from captions when available ([#445](https://github.com/LuanRT/YouTube.js/issues/445)) ([bdd98a3](https://github.com/LuanRT/YouTube.js/commit/bdd98a3b9be39c11942043a300a6ebce9a15efc6))
+* **parser:** Add `CommentsSimplebox` parser ([#442](https://github.com/LuanRT/YouTube.js/issues/442)) ([555d257](https://github.com/LuanRT/YouTube.js/commit/555d257459b76d7c0158e9c6b189a75a82b10faf))
+* **parser:** Add `HashtagTile` ([#440](https://github.com/LuanRT/YouTube.js/issues/440)) ([ae2557d](https://github.com/LuanRT/YouTube.js/commit/ae2557d15c9df09bb92e0dc6191670d72b36631a))
+* **parser:** add `MacroMarkersList` ([#444](https://github.com/LuanRT/YouTube.js/issues/444)) ([708c5f7](https://github.com/LuanRT/YouTube.js/commit/708c5f7394b4ea140836b9483848cb61b97ea1af))
+* **parser:** Add `ShowMiniplayerCommand` ([#443](https://github.com/LuanRT/YouTube.js/issues/443)) ([a9cdbf7](https://github.com/LuanRT/YouTube.js/commit/a9cdbf7010e7b9b9cfde5db645d51bdad51006c5))
+
+
+### Bug Fixes
+
+* **package:** Bump Jinter to fix bad export order ([#439](https://github.com/LuanRT/YouTube.js/issues/439)) ([2aef678](https://github.com/LuanRT/YouTube.js/commit/2aef67876ec19118b37d3cecd429ccf8239989e0))
+* **StructuredDescriptionContent:** `items` can also be a `HorizontalCardList` ([b50d1ef](https://github.com/LuanRT/YouTube.js/commit/b50d1ef67d81276864818de10c61b5a7980cbc1a))
+
 ## [5.4.0](https://github.com/LuanRT/YouTube.js/compare/v5.3.0...v5.4.0) (2023-07-14)
 
 
