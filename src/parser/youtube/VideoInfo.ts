@@ -8,7 +8,6 @@ import MerchandiseShelf from '../classes/MerchandiseShelf.js';
 import MicroformatData from '../classes/MicroformatData.js';
 import PlayerMicroformat from '../classes/PlayerMicroformat.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
-import PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 import RelatedChipCloud from '../classes/RelatedChipCloud.js';
 import RichMetadata from '../classes/RichMetadata.js';
 import RichMetadataRow from '../classes/RichMetadataRow.js';
@@ -26,18 +25,16 @@ import type Endscreen from '../classes/Endscreen.js';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
+import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
-import type { DashOptions } from '../../types/DashOptions.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import type { FormatFilter, URLTransformer } from '../../utils/FormatUtils.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import { MediaInfo } from '../../core/mixins/index.js';
 import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.js';
 import { VideoDescriptionMusicSection } from '../nodes.js';
-import FormatUtils from '../../utils/FormatUtils.js';
 
 class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
@@ -151,23 +148,6 @@ class VideoInfo extends MediaInfo {
       this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
       this.livechat = next?.contents_memo?.getType(LiveChat).first();
     }
-  }
-
-  /**
-   * Generates a DASH manifest from the streaming data.
-   * @param url_transformer - Function to transform the URLs.
-   * @param format_filter - Function to filter the formats.
-   * @param options - Additional options to customise the manifest generation
-   * @returns DASH manifest
-   */
-  async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter, options: DashOptions = { include_thumbnails: false }): Promise<string> {
-    let storyboards;
-
-    if (options.include_thumbnails && this.storyboards?.is(PlayerStoryboardSpec)) {
-      storyboards = this.storyboards;
-    }
-
-    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.cpn, this.actions.session.player, this.actions, storyboards);
   }
 
   /**
