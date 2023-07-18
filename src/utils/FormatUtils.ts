@@ -3,6 +3,7 @@ import type Actions from '../core/Actions.js';
 
 import type Format from '../parser/classes/misc/Format.js';
 import type AudioOnlyPlayability from '../parser/classes/AudioOnlyPlayability.js';
+import type PlayerStoryboardSpec from '../parser/classes/PlayerStoryboardSpec.js';
 import type { YTNode } from '../parser/helpers.js';
 
 import * as Constants from './Constants.js';
@@ -245,7 +246,7 @@ class FormatUtils {
     adaptive_formats: Format[];
     dash_manifest_url: string | null;
     hls_manifest_url: string | null;
-  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player, actions?: Actions): Promise<string> {
+  }, url_transformer: URLTransformer = (url) => url, format_filter?: FormatFilter, cpn?: string, player?: Player, actions?: Actions, storyboards?: PlayerStoryboardSpec): Promise<string> {
     if (!streaming_data)
       throw new InnertubeError('Streaming data not available');
 
@@ -280,7 +281,7 @@ class FormatUtils {
       period
     ]));
 
-    await this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player, actions);
+    await this.#generateAdaptationSet(document, period, adaptive_formats, url_transformer, cpn, player, actions, storyboards);
 
     return Platform.shim.serializeDOM(document);
   }
@@ -297,7 +298,16 @@ class FormatUtils {
     return el;
   }
 
-  static async #generateAdaptationSet(document: XMLDocument, period: Element, formats: Format[], url_transformer: URLTransformer, cpn?: string, player?: Player, actions?: Actions) {
+  static async #generateAdaptationSet(
+    document: XMLDocument,
+    period: Element,
+    formats: Format[],
+    url_transformer: URLTransformer,
+    cpn?: string,
+    player?: Player,
+    actions?: Actions,
+    storyboards?: PlayerStoryboardSpec
+  ) {
     const mime_types: string[] = [];
     const mime_objects: Format[][] = [ [] ];
 
@@ -513,6 +523,64 @@ class FormatUtils {
         }
       }
     }
+
+    // We need to make requests to get the image sizes, so we'll skip the storyboards if we don't have an Actions instance
+    if (storyboards && actions) {
+      const mime_types: string[] = [];
+      const mime_objects: {
+        template_url: string;
+        thumbnail_width: number;
+        thumbnail_height: number;
+        thumbnail_count: number;
+        interval: number;
+        columns: number;
+        rows: number;
+        storyboard_count: number;
+      }[][] = [ [] ];
+
+      for (const storyboard of storyboards.boards) {
+        const extension = new URL(storyboard.template_url).pathname.split('.').at(-1);
+
+        let mime_type = '';
+
+        switch (extension) {
+          case 'jpg':
+            mime_type = 'image/jpeg';
+            break;
+          case 'png':
+            mime_type = 'image/png';
+            break;
+          case 'webp':
+            mime_type = 'image/webp';
+            break;
+        }
+
+        const mime_type_index = mime_types.indexOf(mime_type);
+        if (mime_type_index > -1) {
+          mime_objects[mime_type_index].push(storyboard);
+        } else {
+          mime_types.push(mime_type);
+          mime_objects.push([]);
+          mime_objects[mime_types.length - 1].push(storyboard);
+        }
+      }
+
+      const duration = formats[0].approx_duration_ms / 1000;
+
+      for (let i = 0; i < mime_types.length; i++) {
+        const set = this.#el(document, 'AdaptationSet', {
+          id: `${set_id++}`,
+          mimeType: mime_types[i],
+          contentType: 'image'
+        });
+
+        period.appendChild(set);
+
+        for (const storyboard of mime_objects[i]) {
+          await this.#generateRepresentationImage(document, set, storyboard, duration, url_transformer, actions);
+        }
+      }
+    }
   }
 
   static #hoistCodecsIfPossible(set: Element, formats: Format[], hoisted: string[]) {
@@ -603,6 +671,75 @@ class FormatUtils {
     set.appendChild(representation);
 
     await this.#generateSegmentInformation(document, representation, format, url_transformer(url)?.toString(), actions);
+  }
+
+  static async #generateRepresentationImage(document: XMLDocument, set: Element, storyboard: {
+    template_url: string;
+    thumbnail_width: number;
+    thumbnail_height: number;
+    thumbnail_count: number;
+    interval: number;
+    columns: number;
+    rows: number;
+    storyboard_count: number;
+  }, duration: number, url_transformer: URLTransformer, actions: Actions) {
+    const url = storyboard.template_url;
+
+    const response_promises: Promise<Response>[] = [];
+
+    // Set a limit so we don't take forever for long videos
+    const requestLimit = storyboard.storyboard_count > 10 ? 10 : storyboard.storyboard_count;
+    for (let i = 0; i < requestLimit; i++) {
+      const response_promise = actions.session.http.fetch_function(new URL(url.replace('$M', i.toString())), {
+        method: 'HEAD',
+        headers: Constants.STREAM_HEADERS
+      });
+
+      response_promises.push(response_promise);
+    }
+
+    // Run the requests in parallel to avoid causing too much delay
+    const responses = await Promise.all(response_promises);
+
+    const content_lengths = [];
+
+    for (const response of responses) {
+      content_lengths.push(parseInt(response.headers.get('Content-Length') || '0', 10));
+
+      const content_type = response.headers.get('Content-Type');
+
+      // Sometimes youtube returns webp instead of jpg despite the file extension being jpg
+      // So we need to update the mime type to reflect the actual mime type of the response
+
+      if (content_type && content_type.length > 0) {
+        if (set.getAttribute('mimeType') !== content_type) {
+          set.setAttribute('mimeType', content_type);
+        }
+      }
+    }
+
+    // This is a rough estimate, so it probably won't reflect that actual peak bitrate
+    // Hopefully it's close enough, because figuring out the actual peak bitrate would require downloading and analysing all storyboard tiles
+    const bandwidth = Math.ceil((Math.max(...content_lengths) / (storyboard.rows * storyboard.columns)) * 8);
+
+    const representation = this.#el(document, 'Representation', {
+      id: `thumbnails_${storyboard.thumbnail_width}x${storyboard.thumbnail_height}`,
+      bandwidth: bandwidth.toString(),
+      width: (storyboard.thumbnail_width * storyboard.columns).toString(),
+      height: (storyboard.thumbnail_height * storyboard.rows).toString()
+    }, [
+      this.#el(document, 'EssentialProperty', {
+        schemeIdUri: 'http://dashif.org/thumbnail_tile',
+        value: `${storyboard.columns}x${storyboard.rows}`
+      }),
+      this.#el(document, 'SegmentTemplate', {
+        media: url_transformer(new URL(url.replace('$M', '$Number$'))).toString(),
+        duration: (duration / storyboard.storyboard_count).toString(),
+        startNumber: '0'
+      })
+    ]);
+
+    set.appendChild(representation);
   }
 
   static async #generateSegmentInformation(document: XMLDocument, representation: Element, format: Format, url: string, actions?: Actions) {
