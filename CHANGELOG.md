@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.6.0](https://github.com/LuanRT/YouTube.js/compare/v5.5.0...v5.6.0) (2023-07-18)
+
+
+### Features
+
+* **parser:** Add `IncludingResultsFor` ([#447](https://github.com/LuanRT/YouTube.js/issues/447)) ([c477b82](https://github.com/LuanRT/YouTube.js/commit/c477b824c084552169062f72cde8890e77b31f59))
+* **toDash:** Add option to include thumbnails in the manifest ([#446](https://github.com/LuanRT/YouTube.js/issues/446)) ([1a03473](https://github.com/LuanRT/YouTube.js/commit/1a034733f6bb641e2d97df12de81ae3516c1f703))
+
 ## [5.5.0](https://github.com/LuanRT/YouTube.js/compare/v5.4.0...v5.5.0) (2023-07-16)
 
 
