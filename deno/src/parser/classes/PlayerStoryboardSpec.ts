@@ -13,7 +13,7 @@ export default class PlayerStoryboardSpec extends YTNode {
     columns: number;
     rows: number;
     storyboard_count: number;
-  };
+  }[];
 
   constructor(data: RawNode) {
     super();

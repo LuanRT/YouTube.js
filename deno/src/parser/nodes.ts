@@ -126,6 +126,7 @@ export { default as HorizontalCardList } from './classes/HorizontalCardList.ts';
 export { default as HorizontalList } from './classes/HorizontalList.ts';
 export { default as HorizontalMovieList } from './classes/HorizontalMovieList.ts';
 export { default as IconLink } from './classes/IconLink.ts';
+export { default as IncludingResultsFor } from './classes/IncludingResultsFor.ts';
 export { default as InfoPanelContainer } from './classes/InfoPanelContainer.ts';
 export { default as InfoPanelContent } from './classes/InfoPanelContent.ts';
 export { default as InfoRow } from './classes/InfoRow.ts';

@@ -7,6 +7,8 @@ import { InnertubeError } from '../../utils/Utils.ts';
 import type Format from '../../parser/classes/misc/Format.ts';
 import type { INextResponse, IPlayerResponse } from '../../parser/index.ts';
 import Parser from '../../parser/index.ts';
+import type { DashOptions } from '../../types/DashOptions.ts';
+import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
 
 export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];
@@ -37,10 +39,17 @@ export default class MediaInfo {
    * Generates a DASH manifest from the streaming data.
    * @param url_transformer - Function to transform the URLs.
    * @param format_filter - Function to filter the formats.
+   * @param options - Additional options to customise the manifest generation
    * @returns DASH manifest
    */
-  async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter): Promise<string> {
-    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions);
+  async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter, options: DashOptions = { include_thumbnails: false }): Promise<string> {
+    let storyboards;
+
+    if (options.include_thumbnails && this.#page[0].storyboards?.is(PlayerStoryboardSpec)) {
+      storyboards = this.#page[0].storyboards;
+    }
+
+    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions, storyboards);
   }
 
   /**
