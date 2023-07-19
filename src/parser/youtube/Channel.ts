@@ -9,6 +9,7 @@ import SubscribeButton from '../classes/SubscribeButton.js';
 import ExpandableTab from '../classes/ExpandableTab.js';
 import SectionList from '../classes/SectionList.js';
 import Tab from '../classes/Tab.js';
+import PageHeader from '../classes/PageHeader.js';
 
 import Feed from '../../core/mixins/Feed.js';
 import FilterableFeed from '../../core/mixins/FilterableFeed.js';
@@ -25,7 +26,7 @@ import type { ApiResponse } from '../../core/Actions.js';
 import type { IBrowseResponse } from '../types/index.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
-  header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader;
+  header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader | PageHeader;
   metadata;
   subscribe_button?: SubscribeButton;
   current_tab?: Tab | ExpandableTab;
@@ -33,7 +34,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
 
-    this.header = this.page.header?.item()?.as(C4TabbedHeader, CarouselHeader, InteractiveTabbedHeader);
+    this.header = this.page.header?.item()?.as(C4TabbedHeader, CarouselHeader, InteractiveTabbedHeader, PageHeader);
 
     const metadata = this.page.metadata?.item().as(ChannelMetadata);
     const microformat = this.page.microformat?.as(MicroformatData);
