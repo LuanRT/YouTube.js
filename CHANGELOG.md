@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.7.0](https://github.com/LuanRT/YouTube.js/compare/v5.6.0...v5.7.0) (2023-07-24)
+
+
+### Features
+
+* **parser:** Add `PageHeader` ([#450](https://github.com/LuanRT/YouTube.js/issues/450)) ([18cbc8c](https://github.com/LuanRT/YouTube.js/commit/18cbc8c038ddddffa1ba1519e56a8054b2996e42))
+* **parser:** Add `SearchHeader` ([6997982](https://github.com/LuanRT/YouTube.js/commit/6997982cf2db87edf4929e9a77e2690e7b630d3d)), closes [#452](https://github.com/LuanRT/YouTube.js/issues/452)
+
 ## [5.6.0](https://github.com/LuanRT/YouTube.js/compare/v5.5.0...v5.6.0) (2023-07-18)
 
 
