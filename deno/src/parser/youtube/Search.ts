@@ -2,6 +2,7 @@ import Feed from '../../core/mixins/Feed.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import HorizontalCardList from '../classes/HorizontalCardList.ts';
 import ItemSection from '../classes/ItemSection.ts';
+import SearchHeader from '../classes/SearchHeader.ts';
 import SearchRefinementCard from '../classes/SearchRefinementCard.ts';
 import SearchSubMenu from '../classes/SearchSubMenu.ts';
 import SectionList from '../classes/SectionList.ts';
@@ -11,8 +12,8 @@ import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
 import type { ISearchResponse } from '../types/ParsedResponse.ts';
-
 class Search extends Feed<ISearchResponse> {
+  header?: SearchHeader;
   results?: ObservedArray<YTNode> | null;
   refinements: string[];
   estimated_results: number;
@@ -29,6 +30,9 @@ class Search extends Feed<ISearchResponse> {
 
     if (!contents)
       throw new InnertubeError('No contents found in search response');
+
+    if (this.page.header)
+      this.header = this.page.header.item().as(SearchHeader);
 
     this.results = contents.find((content) => content.is(ItemSection) && content.contents && content.contents.length > 0)?.as(ItemSection).contents;
 

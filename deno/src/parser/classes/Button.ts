@@ -15,26 +15,20 @@ export default class Button extends YTNode {
 
   constructor(data: RawNode) {
     super();
-
-    if (Reflect.has(data, 'text')) {
+    if (Reflect.has(data, 'text'))
       this.text = new Text(data.text).toString();
-    }
 
-    if (Reflect.has(data, 'accessibility') && Reflect.has(data.accessibility, 'label')) {
+    if (Reflect.has(data, 'accessibility') && Reflect.has(data.accessibility, 'label'))
       this.label = data.accessibility.label;
-    }
 
-    if (Reflect.has(data, 'tooltip')) {
+    if (Reflect.has(data, 'tooltip'))
       this.tooltip = data.tooltip;
-    }
 
-    if (Reflect.has(data, 'icon') && Reflect.has(data.icon, 'iconType')) {
+    if (Reflect.has(data, 'icon') && Reflect.has(data.icon, 'iconType'))
       this.icon_type = data.icon.iconType;
-    }
 
-    if (Reflect.has(data, 'isDisabled')) {
+    if (Reflect.has(data, 'isDisabled'))
       this.is_disabled = data.isDisabled;
-    }
 
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint || data.command);
   }
