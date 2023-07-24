@@ -4,12 +4,14 @@ import { YTNode } from '../helpers.js';
 import Parser, { type RawNode } from '../index.js';
 import type { IParsedResponse } from '../types/ParsedResponse.js';
 import CreatePlaylistDialog from './CreatePlaylistDialog.js';
+import OpenPopupAction from './actions/OpenPopupAction.js';
 
 export default class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';
 
   payload;
   dialog?: CreatePlaylistDialog | YTNode | null;
+  open_popup?: OpenPopupAction | null;
 
   metadata: {
     url?: string;
@@ -24,6 +26,9 @@ export default class NavigationEndpoint extends YTNode {
     if (Reflect.has(data || {}, 'innertubeCommand'))
       data = data.innertubeCommand;
 
+    if (Reflect.has(data || {}, 'openPopupAction'))
+      this.open_popup = new OpenPopupAction(data.openPopupAction);
+
     const name = Object.keys(data || {})
       .find((item) =>
         item.endsWith('Endpoint') ||
@@ -35,6 +40,7 @@ export default class NavigationEndpoint extends YTNode {
     if (Reflect.has(this.payload, 'dialog') || Reflect.has(this.payload, 'content')) {
       this.dialog = Parser.parseItem(this.payload.dialog || this.payload.content);
     }
+
 
     if (data?.serviceEndpoint) {
       data = data.serviceEndpoint;
@@ -85,9 +91,9 @@ export default class NavigationEndpoint extends YTNode {
     }
   }
 
-  call<T extends IParsedResponse>(actions: Actions, args: { [ key: string ]: any; parse: true }): Promise<T>;
-  call(actions: Actions, args?: { [ key: string ]: any; parse?: false }): Promise<ApiResponse>;
-  call(actions: Actions, args?: { [ key: string ]: any; parse?: boolean }): Promise<IParsedResponse | ApiResponse> {
+  call<T extends IParsedResponse>(actions: Actions, args: { [key: string]: any; parse: true }): Promise<T>;
+  call(actions: Actions, args?: { [key: string]: any; parse?: false }): Promise<ApiResponse>;
+  call(actions: Actions, args?: { [key: string]: any; parse?: boolean }): Promise<IParsedResponse | ApiResponse> {
     if (!actions)
       throw new Error('An active caller must be provided');
     if (!this.metadata.api_url)

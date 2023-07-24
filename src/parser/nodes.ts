@@ -289,6 +289,8 @@ export { default as RichShelf } from './classes/RichShelf.js';
 export { default as SearchBox } from './classes/SearchBox.js';
 export { default as SearchFilter } from './classes/SearchFilter.js';
 export { default as SearchFilterGroup } from './classes/SearchFilterGroup.js';
+export { default as SearchFilterOptionsDialog } from './classes/SearchFilterOptionsDialog.js';
+export { default as SearchHeader } from './classes/SearchHeader.js';
 export { default as SearchRefinementCard } from './classes/SearchRefinementCard.js';
 export { default as SearchSubMenu } from './classes/SearchSubMenu.js';
 export { default as SearchSuggestion } from './classes/SearchSuggestion.js';
