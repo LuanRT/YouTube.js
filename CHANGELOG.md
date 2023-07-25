@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.1](https://github.com/LuanRT/YouTube.js/compare/v5.7.0...v5.7.1) (2023-07-25)
+
+
+### Bug Fixes
+
+* **SearchHeader:** remove console.log ([d91695a](https://github.com/LuanRT/YouTube.js/commit/d91695a9ec6c55445cbeedba4ace4ac1e0a72eee))
+
 ## [5.7.0](https://github.com/LuanRT/YouTube.js/compare/v5.6.0...v5.7.0) (2023-07-24)
 
 
