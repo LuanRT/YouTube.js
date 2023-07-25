@@ -13,6 +13,5 @@ export default class SearchHeader extends YTNode {
     super();
     this.chip_bar = Parser.parseItem(data.chipBar, ChipCloud);
     this.search_filter_button = Parser.parseItem(data.searchFilterButton, Button);
-    console.log(this.search_filter_button?.endpoint.open_popup);
   }
 }
