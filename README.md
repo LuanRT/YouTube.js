@@ -32,7 +32,7 @@
     <br>
     <br>
     <a href="https://serpapi.com" target="_blank">
-      <img width="80" alt="SerpApi" src="https://luanrt.is-a.dev/assets/img/serpapi.svg" />
+      <img width="80" alt="SerpApi" src="https://luanrt.github.io/assets/img/serpapi.svg" />
       <br>
       <sub>
         API to get search engine results with ease.
