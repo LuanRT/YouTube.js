@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.8.0](https://github.com/LuanRT/YouTube.js/compare/v5.7.1...v5.8.0) (2023-07-30)
+
+
+### Features
+
+* **YouTube Playlist:** Add subtitle and fix author optionality ([#458](https://github.com/LuanRT/YouTube.js/issues/458)) ([0fa5a85](https://github.com/LuanRT/YouTube.js/commit/0fa5a859ae15a35266297079e3e34fd9f3a5ebf4))
+
 ## [5.7.1](https://github.com/LuanRT/YouTube.js/compare/v5.7.0...v5.7.1) (2023-07-25)
 
 
