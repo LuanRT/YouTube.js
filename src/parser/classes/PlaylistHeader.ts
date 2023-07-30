@@ -8,9 +8,10 @@ export default class PlaylistHeader extends YTNode {
 
   id: string;
   title: Text;
+  subtitle: Text | null;
   stats: Text[];
   brief_stats: Text[];
-  author: Author;
+  author: Author | null;
   description: Text;
   num_videos: Text;
   view_count: Text;
@@ -27,9 +28,10 @@ export default class PlaylistHeader extends YTNode {
     super();
     this.id = data.playlistId;
     this.title = new Text(data.title);
+    this.subtitle = data.subtitle ? new Text(data.subtitle) : null;
     this.stats = data.stats.map((stat: RawNode) => new Text(stat));
     this.brief_stats = data.briefStats.map((stat: RawNode) => new Text(stat));
-    this.author = new Author({ ...data.ownerText, navigationEndpoint: data.ownerEndpoint }, data.ownerBadges, null);
+    this.author = data.ownerText || data.ownerEndpoint ? new Author({ ...data.ownerText, navigationEndpoint: data.ownerEndpoint }, data.ownerBadges, null) : null;
     this.description = new Text(data.descriptionText);
     this.num_videos = new Text(data.numVideosText);
     this.view_count = new Text(data.viewCountText);
