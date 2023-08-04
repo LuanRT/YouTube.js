@@ -308,50 +308,91 @@ class FormatUtils {
     actions?: Actions,
     storyboards?: PlayerStoryboardSpec
   ) {
-    const mime_types: string[] = [];
-    const mime_objects: Format[][] = [ [] ];
+    const group_ids: string[] = [];
+    const group_objects: Format[][] = [ [] ];
 
-    formats.forEach((video_format) => {
-      if ((!video_format.index_range || !video_format.init_range) && !video_format.is_type_otf) {
+    let has_multiple_audio_tracks = false;
+
+    formats.forEach((format) => {
+      if ((!format.index_range || !format.init_range) && !format.is_type_otf) {
         return;
       }
-      const mime_type = video_format.mime_type;
-      const mime_type_index = mime_types.indexOf(mime_type);
-      if (mime_type_index > -1) {
-        mime_objects[mime_type_index].push(video_format);
+
+      const mime_type = format.mime_type.split(';')[0];
+
+      // Codec without any profile or level information
+      const just_codec = getStringBetweenStrings(format.mime_type, 'codecs="', '"')?.split('.')[0];
+
+      let color_info = '';
+      // HDR videos have both SDR and HDR vp9 formats, so we want to stick them in different groups
+      if (format.color_info) {
+        const { primaries, transfer_characteristics, matrix_coefficients } = format.color_info;
+        color_info = `${primaries}-${transfer_characteristics}-${matrix_coefficients}`;
+      }
+
+      let audio_track_id = '';
+      if (format.audio_track) {
+        audio_track_id = format.audio_track.id;
+
+        if (!has_multiple_audio_tracks) {
+          has_multiple_audio_tracks = true;
+        }
+      }
+
+      const group_id = `${mime_type}-${just_codec}-${color_info}-${audio_track_id}`;
+
+      const group_index = group_ids.indexOf(group_id);
+      if (group_index > -1) {
+        group_objects[group_index].push(format);
       } else {
-        mime_types.push(mime_type);
-        mime_objects.push([]);
-        mime_objects[mime_types.length - 1].push(video_format);
+        group_ids.push(group_id);
+        group_objects.push([]);
+        group_objects[group_ids.length - 1].push(format);
       }
     });
 
+
     let set_id = 0;
-    for (let i = 0; i < mime_types.length; i++) {
-      // When the video has multiple different audio tracks we want to include the extra information in the manifest
-      if (mime_objects[i][0].has_audio && mime_objects[i][0].audio_track) {
-        const track_ids: string[] = [];
-        const track_objects: Format[][] = [ [] ];
 
-        mime_objects[i].forEach((format) => {
-          const id_index = track_ids.indexOf(format.audio_track?.id as string);
-          if (id_index > -1) {
-            track_objects[id_index].push(format);
-          } else {
-            track_ids.push(format.audio_track?.id as string);
-            track_objects.push([]);
-            track_objects[track_ids.length - 1].push(format);
-          }
-        });
+    for (let i = 0; i < group_ids.length; i++) {
+      const group_formats = group_objects[i];
+      const first_format = group_formats[0];
 
-        // The lang attribute has to go on the AdaptationSet element and the Role element goes inside the AdaptationSet too, so we need a separate adaptation set for each language and role
-        for (let j = 0; j < track_ids.length; j++) {
-          const first_format = track_objects[j][0];
+      if (has_multiple_audio_tracks && first_format.has_audio && !first_format.audio_track) {
+        // Some videos with multiple audio tracks, have a broken one, that doesn't have any audio track information
+        // It seems to be the same as default audio track but broken
+        // We want to ignore it, as it messes up audio track selection in players and YouTube ignores it too
+        // At the time of writing, this video has a broken audio track: https://youtu.be/UJeSWbR6W04
 
-          const children = [];
+        continue;
+      }
 
+      const set = this.#el(document, 'AdaptationSet', {
+        id: `${set_id}`,
+        mimeType: first_format.mime_type.split(';')[0],
+        startWithSAP: '1',
+        subsegmentAlignment: 'true'
+      });
+
+      const hoisted: string[] = [];
+
+      this.#hoistCodecsIfPossible(set, group_formats, hoisted);
+
+
+      if (first_format.has_audio) {
+        this.#hoistNumberAttributeIfPossible(set, group_formats, 'audioSamplingRate', 'audio_sample_rate', hoisted);
+
+        this.#hoistAudioChannelsIfPossible(document, set, group_formats, hoisted);
+
+        const language = first_format.language;
+        if (language) {
+          set.setAttribute('lang', language);
+        }
+
+        const audio_track = first_format.audio_track;
+        if (audio_track) {
           let role;
-          if (first_format.audio_track?.audio_is_default) {
+          if (audio_track.audio_is_default) {
             role = 'main';
           } else if (first_format.is_dubbed) {
             role = 'dub';
@@ -361,51 +402,30 @@ class FormatUtils {
             role = 'alternate';
           }
 
-          children.push(
-            this.#el(document, 'Role', {
-              schemeIdUri: 'urn:mpeg:dash:role:2011',
-              value: role
-            }),
+          set.appendChild(this.#el(document, 'Role', {
+            schemeIdUri: 'urn:mpeg:dash:role:2011',
+            value: role
+          }));
+
+          set.appendChild(
             this.#el(document, 'Label', {
               id: set_id.toString()
             }, [
-              document.createTextNode(first_format.audio_track?.display_name as string)
+              document.createTextNode(audio_track.display_name as string)
             ])
           );
+        }
 
-          const set = this.#el(document, 'AdaptationSet', {
-            id: `${set_id++}`,
-            mimeType: mime_types[i].split(';')[0],
-            startWithSAP: '1',
-            subsegmentAlignment: 'true',
-            lang: first_format.language as string,
-            // Non-standard attribute used by shaka instead of the standard Label element
-            label: first_format.audio_track?.display_name as string
-          }, children);
-
-          const hoisted: string[] = [];
-
-          this.#hoistCodecsIfPossible(set, track_objects[j], hoisted);
-          this.#hoistNumberAttributeIfPossible(set, track_objects[j], 'audioSamplingRate', 'audio_sample_rate', hoisted);
-
-          this.#hoistAudioChannelsIfPossible(document, set, track_objects[j], hoisted);
-
-          period.appendChild(set);
-
-          for (const format of track_objects[j]) {
-            await this.#generateRepresentationAudio(document, set, format, url_transformer, hoisted, cpn, player, actions);
-          }
+        for (const format of group_formats) {
+          await this.#generateRepresentationAudio(document, set, format, url_transformer, hoisted, cpn, player, actions);
         }
       } else {
-        const set = this.#el(document, 'AdaptationSet', {
-          id: `${set_id++}`,
-          mimeType: mime_types[i].split(';')[0],
-          startWithSAP: '1',
-          subsegmentAlignment: 'true'
-        });
+        set.setAttribute('maxPlayoutRate', '1');
 
-        const color_info = mime_objects[i][0].color_info;
-        if (typeof color_info !== 'undefined') {
+        this.#hoistNumberAttributeIfPossible(set, group_formats, 'frameRate', 'fps', hoisted);
+
+        const color_info = first_format.color_info;
+        if (color_info) {
           // Section 5.5 Video source metadata signalling https://dashif.org/docs/IOP-Guidelines/DASH-IF-IOP-Part7-v5.0.0.pdf
           // Section 8 Video code points https://www.itu.int/rec/T-REC-H.273-202107-I/en
           // The player.js file was also helpful
@@ -470,10 +490,9 @@ class FormatUtils {
                 matrix_coefficients = '14';
                 break;
               default: {
-                const format = mime_objects[i][0];
-                const url = new URL(format.url as string);
+                const url = new URL(first_format.url as string);
 
-                const anonymisedFormat = JSON.parse(JSON.stringify(format));
+                const anonymisedFormat = JSON.parse(JSON.stringify(first_format));
                 anonymisedFormat.url = 'REDACTED';
                 anonymisedFormat.signature_cipher = 'REDACTED';
                 anonymisedFormat.cipher = 'REDACTED';
@@ -493,35 +512,13 @@ class FormatUtils {
           }
         }
 
-        const hoisted: string[] = [];
-
-        this.#hoistCodecsIfPossible(set, mime_objects[i], hoisted);
-
-        if (mime_objects[i][0].has_audio) {
-          this.#hoistNumberAttributeIfPossible(set, mime_objects[i], 'audioSamplingRate', 'audio_sample_rate', hoisted);
-
-          this.#hoistAudioChannelsIfPossible(document, set, mime_objects[i], hoisted);
-
-          const language = mime_objects[i][0].language;
-          if (language) {
-            set.setAttribute('lang', language);
-          }
-        } else {
-          set.setAttribute('maxPlayoutRate', '1');
-
-          this.#hoistNumberAttributeIfPossible(set, mime_objects[i], 'frameRate', 'fps', hoisted);
-        }
-
-        period.appendChild(set);
-
-        for (const format of mime_objects[i]) {
-          if (format.has_video) {
-            await this.#generateRepresentationVideo(document, set, format, url_transformer, hoisted, cpn, player, actions);
-          } else {
-            await this.#generateRepresentationAudio(document, set, format, url_transformer, hoisted, cpn, player, actions);
-          }
+        for (const format of group_formats) {
+          await this.#generateRepresentationVideo(document, set, format, url_transformer, hoisted, cpn, player, actions);
         }
       }
+
+      set_id++;
+      period.appendChild(set);
     }
 
     // We need to make requests to get the image sizes, so we'll skip the storyboards if we don't have an Actions instance
