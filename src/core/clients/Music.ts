@@ -329,7 +329,7 @@ export default class Music {
     if (!page.contents)
       throw new InnertubeError('Unexpected response', page);
 
-    if (page.contents.item().key('type').string() === 'Message')
+    if (page.contents.item().type === 'Message')
       throw new InnertubeError(page.contents.item().as(Message).text.toString(), video_id);
 
     const section_list = page.contents.item().as(SectionList).contents;

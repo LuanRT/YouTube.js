@@ -29,7 +29,7 @@ class HomeFeed {
     if (!tab)
       throw new InnertubeError('Could not find Home tab.');
 
-    if (tab.key('content').isNull()) {
+    if (tab.content === null) {
       if (!this.#page.continuation_contents)
         throw new InnertubeError('Continuation did not have any content.');
 
