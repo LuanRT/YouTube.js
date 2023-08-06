@@ -124,7 +124,7 @@ export default class MusicResponsiveListItem extends YTNode {
   }
 
   #parseOther() {
-    this.title = this.flex_columns.first().key('title').instanceof(Text).toString();
+    this.title = this.flex_columns.first().title.toString();
 
     if (this.endpoint) {
       this.item_type = 'endpoint';
@@ -134,7 +134,7 @@ export default class MusicResponsiveListItem extends YTNode {
   }
 
   #parseVideoOrSong() {
-    const is_video = this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.some((run) => run.text.match(/(.*?) views/));
+    const is_video = this.flex_columns.at(1)?.title.runs?.some((run) => run.text.match(/(.*?) views/));
     if (is_video) {
       this.item_type = 'video';
       this.#parseVideo();
@@ -146,10 +146,10 @@ export default class MusicResponsiveListItem extends YTNode {
 
   #parseSong() {
     this.id = this.#playlist_item_data.video_id || this.endpoint?.payload?.videoId;
-    this.title = this.flex_columns.first().key('title').instanceof(Text).toString();
+    this.title = this.flex_columns.first().title.toString();
 
-    const duration_text = this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.find(
-      (run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text || this.fixed_columns.first()?.key('title').instanceof(Text)?.toString();
+    const duration_text = this.flex_columns.at(1)?.title.runs?.find(
+      (run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text || this.fixed_columns.first()?.title?.toString();
 
     if (duration_text) {
       this.duration = {
@@ -159,12 +159,12 @@ export default class MusicResponsiveListItem extends YTNode {
     }
 
     const album_run =
-      this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.find(
+      this.flex_columns.at(1)?.title.runs?.find(
         (run) =>
           (isTextRun(run) && run.endpoint) &&
           run.endpoint.payload.browseId.startsWith('MPR')
       ) ||
-      this.flex_columns.at(2)?.key('title').instanceof(Text).runs?.find(
+      this.flex_columns.at(2)?.title.runs?.find(
         (run) =>
           (isTextRun(run) && run.endpoint) &&
           run.endpoint.payload.browseId.startsWith('MPR')
@@ -178,7 +178,7 @@ export default class MusicResponsiveListItem extends YTNode {
       };
     }
 
-    const artist_runs = this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.filter(
+    const artist_runs = this.flex_columns.at(1)?.title.runs?.filter(
       (run) => (isTextRun(run) && run.endpoint) && run.endpoint.payload.browseId.startsWith('UC')
     );
 
@@ -193,10 +193,10 @@ export default class MusicResponsiveListItem extends YTNode {
 
   #parseVideo() {
     this.id = this.#playlist_item_data.video_id;
-    this.title = this.flex_columns.first().key('title').instanceof(Text).toString();
-    this.views = this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.find((run) => run.text.match(/(.*?) views/))?.toString();
+    this.title = this.flex_columns.first().title.toString();
+    this.views = this.flex_columns.at(1)?.title.runs?.find((run) => run.text.match(/(.*?) views/))?.toString();
 
-    const author_runs = this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.filter(
+    const author_runs = this.flex_columns.at(1)?.title.runs?.filter(
       (run) =>
         (isTextRun(run) && run.endpoint) &&
         run.endpoint.payload.browseId.startsWith('UC')
@@ -212,8 +212,8 @@ export default class MusicResponsiveListItem extends YTNode {
       });
     }
 
-    const duration_text = this.flex_columns[1].key('title').instanceof(Text).runs?.find(
-      (run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text || this.fixed_columns.first()?.key('title').instanceof(Text).runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text;
+    const duration_text = this.flex_columns[1].title.runs?.find(
+      (run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text || this.fixed_columns.first()?.title.runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text;
 
     if (duration_text) {
       this.duration = {
@@ -225,14 +225,14 @@ export default class MusicResponsiveListItem extends YTNode {
 
   #parseArtist() {
     this.id = this.endpoint?.payload?.browseId;
-    this.name = this.flex_columns.first().key('title').instanceof(Text).toString();
-    this.subtitle = this.flex_columns.at(1)?.key('title').instanceof(Text);
+    this.name = this.flex_columns.first().title.toString();
+    this.subtitle = this.flex_columns.at(1)?.title;
     this.subscribers = this.subtitle?.runs?.find((run) => (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text))?.text || '';
   }
 
   #parseLibraryArtist() {
-    this.name = this.flex_columns.first().key('title').instanceof(Text).toString();
-    this.subtitle = this.flex_columns.at(1)?.key('title').instanceof(Text);
+    this.name = this.flex_columns.first().title.toString();
+    this.subtitle = this.flex_columns.at(1)?.title;
     this.song_count = this.subtitle?.runs?.find((run) => (/^\d+(,\d+)? songs?$/i).test(run.text))?.text || '';
   }
 
@@ -240,7 +240,7 @@ export default class MusicResponsiveListItem extends YTNode {
     this.id = this.endpoint?.payload?.browseId;
     this.title = this.flex_columns.first().title.toString();
 
-    const author_run = this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.find(
+    const author_run = this.flex_columns.at(1)?.title.runs?.find(
       (run) =>
         (isTextRun(run) && run.endpoint) &&
         run.endpoint.payload.browseId.startsWith('UC')
@@ -254,7 +254,7 @@ export default class MusicResponsiveListItem extends YTNode {
       };
     }
 
-    this.year = this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.find(
+    this.year = this.flex_columns.at(1)?.title.runs?.find(
       (run) => (/^[12][0-9]{3}$/).test(run.text)
     )?.text;
   }
@@ -263,12 +263,12 @@ export default class MusicResponsiveListItem extends YTNode {
     this.id = this.endpoint?.payload?.browseId;
     this.title = this.flex_columns.first().title.toString();
 
-    const item_count_run = this.flex_columns.at(1)?.key('title')
-      .instanceof(Text).runs?.find((run) => run.text.match(/\d+ (song|songs)/));
+    const item_count_run = this.flex_columns.at(1)?.title
+      .runs?.find((run) => run.text.match(/\d+ (song|songs)/));
 
     this.item_count = item_count_run ? item_count_run.text : undefined;
 
-    const author_run = this.flex_columns.at(1)?.key('title').instanceof(Text).runs?.find(
+    const author_run = this.flex_columns.at(1)?.title.runs?.find(
       (run) =>
         (isTextRun(run) && run.endpoint) &&
         run.endpoint.payload.browseId.startsWith('UC')

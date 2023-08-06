@@ -86,7 +86,7 @@ class TrackInfo extends MediaInfo {
 
     const page = await target_tab.endpoint.call(this.actions, { client: 'YTMUSIC', parse: true });
 
-    if (page.contents?.item().key('type').string() === 'Message')
+    if (page.contents?.item().type === 'Message')
       return page.contents.item().as(Message);
 
     if (!page.contents)
