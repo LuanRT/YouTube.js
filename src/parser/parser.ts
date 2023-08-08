@@ -23,7 +23,7 @@ import { InnertubeError, ParsingError, Platform } from '../utils/Utils.js';
 import type { ObservedArray, YTNodeConstructor } from './helpers.js';
 import { Memo, observe, SuperParsedResult, YTNode } from './helpers.js';
 import * as YTNodes from './nodes.js';
-import { YTNodeGenerator } from './generator.js';
+import { generateRuntimeClass } from './generator.js';
 
 export type ParserError = { classname: string, classdata: any, err: any };
 export type ParserErrorHandler = (error: ParserError) => void;
@@ -304,7 +304,7 @@ export default class Parser {
       try {
         const has_target_class = this.hasParser(classname);
 
-        const TargetClass = has_target_class ? this.getParserByName(classname) : YTNodeGenerator.generateRuntimeClass(classname, data[keys[0]]);
+        const TargetClass = has_target_class ? this.getParserByName(classname) : generateRuntimeClass(classname, data[keys[0]]);
 
         if (validTypes) {
           if (Array.isArray(validTypes)) {
