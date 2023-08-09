@@ -340,6 +340,7 @@ function MutiTrackSet({
     {
       Array.from(tracks.values()).map((formats) => {
         const first_format = formats[0];
+        const { audio_track } = first_format;
         const set_id = getNextSetId();
         const hoisted: string[] = [];
 
@@ -350,23 +351,27 @@ function MutiTrackSet({
             startWithSAP="1"
             subsegmentAlignment="true"
             lang={first_format.language}
-            // Non-standard attribute used by shaka instead of the standard Label element
-            label={first_format.audio_track?.display_name}
             codecs={hoistCodecsIfPossible(formats, hoisted)}
             audioSamplingRate={hoistNumberAttributeIfPossible(formats, "audioSamplingRate", "audio_sample_rate", hoisted)}
           >
-            <role
-              schemeIdUri="urn:mpeg:dash:role:2011"
-              value={
-                first_format.audio_track?.audio_is_default ? 'main' :
-                  first_format.is_dubbed ? 'dub' :
-                    first_format.is_descriptive ? 'description' :
-                      'alternate'
-              }
-            />
-            <label id={set_id}>
-              {first_format.audio_track?.display_name}
-            </label>
+            {
+              audio_track &&
+              <role
+                schemeIdUri="urn:mpeg:dash:role:2011"
+                value={
+                  audio_track.audio_is_default ? 'main' :
+                    first_format.is_dubbed ? 'dub' :
+                      first_format.is_descriptive ? 'description' :
+                        'alternate'
+                }
+              />
+            }
+            {
+              audio_track &&
+              <label id={set_id}>
+                {audio_track.display_name}
+              </label>
+            }
             <HoistAudioChannelsIfPossible hoisted={hoisted} formats={formats} />
             {
               formats.map((format) => (
@@ -405,17 +410,31 @@ function DashManifest({
 
   const duration = formats[0].approx_duration_ms / 1000;
 
-  const mime_info = new Map<string, Format[]>();
+  const group_info = new Map<string, Format[]>();
 
-  for (const video_format of formats) {
-    if ((!video_format.index_range || !video_format.init_range) && !video_format.is_type_otf) {
+  let has_multiple_audio_tracks = false;
+
+  for (const format of formats) {
+    if ((!format.index_range || !format.init_range) && !format.is_type_otf) {
       continue;
     }
-    const mime_type = video_format.mime_type;
-    if (!mime_info.has(mime_type)) {
-      mime_info.set(mime_type, []);
+    const mime_type = format.mime_type.split(';')[0];
+
+    // Codec without any profile or level information
+    const just_codec = getStringBetweenStrings(format.mime_type, 'codecs="', '"')?.split('.')[0];
+
+    // HDR videos have both SDR and HDR vp9 formats, so we want to stick them in different groups
+    const color_info = format.color_info ? `${format.color_info.primaries}-${format.color_info.transfer_characteristics}-${format.color_info.matrix_coefficients}` : '';
+
+    has_multiple_audio_tracks = has_multiple_audio_tracks || !!format.audio_track;
+    const audio_track_id = format.audio_track?.id || '';
+
+    const group_id = `${mime_type}-${just_codec}-${color_info}-${audio_track_id}`;
+
+    if (!group_info.has(group_id)) {
+      group_info.set(group_id, []);
     }
-    mime_info.get(mime_type)?.push(video_format);
+    group_info.get(group_id)?.push(format);
   }
 
   let set_id = 0;
@@ -431,12 +450,24 @@ function DashManifest({
   >
     <period>
       {
-        Array.from(mime_info.entries()).map(([ type, formats ]) => {
+        Array.from(group_info.entries()).map(([ group_id, formats ]) => {
+          const first_format = formats[0];
+          const mimeType = first_format.mime_type.split(';')[0];
+
+          if (has_multiple_audio_tracks && first_format.has_audio && !first_format.audio_track) {
+            // Some videos with multiple audio tracks, have a broken one, that doesn't have any audio track information
+            // It seems to be the same as default audio track but broken
+            // We want to ignore it, as it messes up audio track selection in players and YouTube ignores it too
+            // At the time of writing, this video has a broken audio track: https://youtu.be/UJeSWbR6W04
+    
+            return null;
+          }
+
           // When the video has multiple different audio tracks we want to include the extra information in the manifest
-          if (formats[0].has_audio && formats[0].audio_track) {
+          if (formats[0].has_audio) {
             return <MutiTrackSet
               formats={formats} 
-              type={type} 
+              type={mimeType} 
               player={player} 
               cpn={cpn} 
               actions={actions} 
@@ -445,7 +476,7 @@ function DashManifest({
             />;
           }
 
-          const color_info = formats[0].color_info;
+          const color_info = first_format.color_info;
           const color_primaries = 
             color_info?.primaries && (
               color_info.primaries === 'BT709' ? '1' :
@@ -476,10 +507,9 @@ function DashManifest({
                     matrix_coefficients = '14';
                     break;
                   default: {
-                    const format = formats[0];
-                    const url = new URL(format.url as string);
+                    const url = new URL(first_format.url as string);
 
-                    const anonymisedFormat = JSON.parse(JSON.stringify(format));
+                    const anonymisedFormat = JSON.parse(JSON.stringify(first_format));
                     anonymisedFormat.url = 'REDACTED';
                     anonymisedFormat.signature_cipher = 'REDACTED';
                     anonymisedFormat.cipher = 'REDACTED';
@@ -499,14 +529,12 @@ function DashManifest({
           return (
             <adaptation-set
               id={set_id++}
-              mimeType={type.split(';').shift()}
+              mimeType={mimeType}
               startWithSAP="1"
               subsegmentAlignment="true"
               codecs={hoistCodecsIfPossible(formats, hoisted)}
-              audioSamplingRate={formats[0].has_audio ? hoistNumberAttributeIfPossible(formats, 'audioSamplingRate', 'audio_sample_rate', hoisted) : undefined}
-              lang={formats[0].has_audio ? formats[0].language : undefined}
-              maxPlayoutRate={!formats[0].has_audio ? '1' : undefined}
-              frameRate={!formats[0].has_audio ? hoistNumberAttributeIfPossible(formats, 'frameRate', 'fps', hoisted) : undefined}
+              maxPlayoutRate="1"
+              frameRate={hoistNumberAttributeIfPossible(formats, 'frameRate', 'fps', hoisted)}
             >
               {
                 color_primaries &&
@@ -530,30 +558,16 @@ function DashManifest({
                 />
               }
               {
-                formats[0].has_audio &&
-                <HoistAudioChannelsIfPossible formats={formats} hoisted={hoisted} />
-              }
-              {
-                formats.map((format) => {
-                  if (format.has_video)
-                    return <VideoRepresentation
+                formats.map((format) => (
+                  <VideoRepresentation
                       format={format}
                       player={player}
                       cpn={cpn}
                       actions={actions}
                       transformURL={transformURL}
                       hoisted={hoisted}
-                    />;
-
-                  return <AudioRepresentation
-                    format={format}
-                    player={player}
-                    cpn={cpn}
-                    actions={actions}
-                    transformURL={transformURL}
-                    hoisted={hoisted}
-                  />;
-                })
+                    />
+                ))
               }
             </adaptation-set>
           )
