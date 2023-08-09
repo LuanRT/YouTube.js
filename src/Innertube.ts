@@ -42,7 +42,7 @@ import type { DownloadOptions, FormatOptions } from './utils/FormatUtils.js';
 
 export type InnertubeConfig = SessionOptions;
 
-export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS'
+export type InnerTubeClient = 'WEB' | 'iOS' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS';
 
 export type SearchFilters = Partial<{
   upload_date: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
