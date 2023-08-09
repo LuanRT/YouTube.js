@@ -1,6 +1,6 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../parser.js';
+import * as Parser from '../parser.js';
 import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import NavigationEndpoint from './NavigationEndpoint.js';

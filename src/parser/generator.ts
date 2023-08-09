@@ -1,12 +1,12 @@
 /* eslint-disable no-cond-assign */
-import { InnertubeError, Platform } from '../utils/Utils.js';
+import { InnertubeError } from '../utils/Utils.js';
 import Author from './classes/misc/Author.js';
 import Text from './classes/misc/Text.js';
 import Thumbnail from './classes/misc/Thumbnail.js';
 import NavigationEndpoint from './classes/NavigationEndpoint.js';
 import type { YTNodeConstructor } from './helpers.js';
 import { YTNode } from './helpers.js';
-import Parser from './parser.js';
+import * as Parser from './parser.js';
 
 export type MiscInferenceType = {
   type: 'misc',
@@ -59,7 +59,7 @@ const IGNORED_KEYS = new Set([
 
 const RENDERER_EXAMPLES: Record<string, unknown> = {};
 
-function camelToSnake(str: string) {
+export function camelToSnake(str: string) {
   return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 }
 
@@ -301,9 +301,13 @@ export function isIgnoredKey(key: string | symbol) {
  * @param key_info - The resolved key info
  * @returns Class based on the key info extending YTNode
  */
-export function createRuntimeClass(classname: string, key_info: KeyInfo, suppress_logs = false): YTNodeConstructor {
-  if (!suppress_logs)
-    logNewClass(classname, key_info);
+export function createRuntimeClass(classname: string, key_info: KeyInfo, logger: Parser.ParserErrorHandler): YTNodeConstructor {
+  logger({
+    error_type: 'class_not_found',
+    classname,
+    key_info
+  });
+
   const node = class extends YTNode {
     static type = classname;
     static #key_info = new Map<string, InferenceType>();
@@ -329,12 +333,16 @@ export function createRuntimeClass(classname: string, key_info: KeyInfo, suppres
 
       if (did_change) {
         node.key_info = resolved_key_info;
-        if (!suppress_logs)
-          logChangedKeys(classname, node.key_info, changed_keys);
+        logger({
+          error_type: 'class_changed',
+          classname,
+          key_info: node.key_info,
+          changed_keys
+        });
       }
 
       for (const [ name, data ] of unimplemented_dependencies)
-        generateRuntimeClass(name, data, suppress_logs);
+        generateRuntimeClass(name, data, logger);
 
       for (const [ key, value ] of key_info) {
         let snake_key = camelToSnake(key);
@@ -355,17 +363,17 @@ export function createRuntimeClass(classname: string, key_info: KeyInfo, suppres
  * @param classdata - The example of the class
  * @returns Class based on the example classdata extending YTNode
  */
-export function generateRuntimeClass(classname: string, classdata: unknown, suppress_logs = false) {
+export function generateRuntimeClass(classname: string, classdata: unknown, logger: Parser.ParserErrorHandler) {
   const {
     key_info,
     unimplemented_dependencies
   } = introspect(classdata);
 
-  const JITNode = createRuntimeClass(classname, key_info, suppress_logs);
+  const JITNode = createRuntimeClass(classname, key_info, logger);
   Parser.addRuntimeParser(classname, JITNode);
 
   for (const [ name, data ] of unimplemented_dependencies)
-    generateRuntimeClass(name, data, suppress_logs);
+    generateRuntimeClass(name, data, logger);
 
   return JITNode;
 }
@@ -709,14 +717,4 @@ export function mergeKeyInfo(key_info: KeyInfo, new_key_info: KeyInfo) {
     resolved_key_info,
     changed_keys: [ ...changed_keys.entries() ]
   };
-}
-
-function logNewClass(classname: string, key_info: KeyInfo) {
-  console.warn(
-    new InnertubeError(`${classname} not found!\nThis is a bug, want to help us fix it? Follow the instructions at ${Platform.shim.info.repo_url}/blob/main/docs/updating-the-parser.md or report it at ${Platform.shim.info.bugs_url}!\nIntrospected and JIT generated this class in the meantime:\n${generateTypescriptClass(classname, key_info)}`)
-  );
-}
-
-function logChangedKeys(classname: string, key_info: KeyInfo, changed_keys: KeyInfo) {
-  console.warn(`${classname} changed!\nThe following keys where altered: ${changed_keys.map(([ key ]) => camelToSnake(key)).join(', ')}\nThe class has changed to:\n${generateTypescriptClass(classname, key_info)}`);
 }

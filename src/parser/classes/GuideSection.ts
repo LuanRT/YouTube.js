@@ -1,5 +1,5 @@
 import Text from './misc/Text.js';
-import Parser from '../parser.js';
+import * as Parser from '../parser.js';
 import { type ObservedArray, YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
 
