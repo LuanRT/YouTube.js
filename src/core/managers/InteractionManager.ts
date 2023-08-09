@@ -1,4 +1,4 @@
-import Proto from '../../proto/index.js';
+import * as Proto from '../../proto/index.js';
 import type Actions from '../Actions.js';
 import type { ApiResponse } from '../Actions.js';
 

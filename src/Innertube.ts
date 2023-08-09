@@ -19,7 +19,7 @@ import { Kids, Music, Studio } from './core/clients/index.js';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
 import { Feed, TabbedFeed } from './core/mixins/index.js';
 
-import Proto from './proto/index.js';
+import * as Proto from './proto/index.js';
 import * as Constants from './utils/Constants.js';
 import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.js';
 

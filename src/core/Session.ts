@@ -3,7 +3,7 @@ import EventEmitterLike from '../utils/EventEmitterLike.js';
 import Actions from './Actions.js';
 import Player from './Player.js';
 
-import Proto from '../proto/index.js';
+import * as Proto from '../proto/index.js';
 import type { ICache } from '../types/Cache.js';
 import type { FetchFunction } from '../types/PlatformShim.js';
 import HTTPClient from '../utils/HTTPClient.js';

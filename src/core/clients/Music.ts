@@ -18,7 +18,7 @@ import PlaylistPanel from '../../parser/classes/PlaylistPanel.js';
 import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.js';
 import SectionList from '../../parser/classes/SectionList.js';
 import Tab from '../../parser/classes/Tab.js';
-import Proto from '../../proto/index.js';
+import * as Proto from '../../proto/index.js';
 
 import type { ObservedArray, YTNode } from '../../parser/helpers.js';
 import type { MusicSearchFilters } from '../../types/index.js';
