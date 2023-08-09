@@ -16,7 +16,6 @@ import path from 'path';
 import os from 'os';
 import fs from 'fs/promises';
 import { readFileSync } from 'fs';
-import DOMParser from './polyfills/server-dom.js';
 import CustomEvent from './polyfills/node-custom-event.js';
 import { fileURLToPath } from 'url';
 import evaluate from './jsruntime/jinter.js';
@@ -114,11 +113,7 @@ Platform.load({
   uuidv4() {
     return crypto.randomUUID();
   },
-  serializeDOM(document) {
-    return document.toString();
-  },
   eval: evaluate,
-  DOMParser,
   fetch: defaultFetch as unknown as FetchFunction,
   Request: Request as unknown as typeof globalThis.Request,
   Response: Response as unknown as typeof globalThis.Response,

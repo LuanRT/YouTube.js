@@ -18,8 +18,6 @@ interface PlatformShim {
     sha1Hash(data: string): Promise<string>;
     uuidv4(): string;
     eval(code: string, env: Record<string, VMPrimative>): unknown;
-    DOMParser: typeof globalThis.DOMParser;
-    serializeDOM: (document: Document) => string;
     fetch: FetchFunction;
     Request: typeof Request;
     Response: typeof Response;

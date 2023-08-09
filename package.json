@@ -85,7 +85,6 @@
   "license": "MIT",
   "dependencies": {
     "jintr": "^1.1.0",
-    "linkedom": "^0.15.1",
     "tslib": "^2.5.0",
     "undici": "^5.19.1"
   },

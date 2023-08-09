@@ -52,20 +52,8 @@ export interface IParsedResponse {
     videostats_watchtime_url: string;
     videostats_playback_url: string;
   };
-  playability_status?: {
-    status: string;
-    error_screen: YTNode | null;
-    audio_only_playablility: AudioOnlyPlayability | null;
-    embeddable: boolean;
-    reason: string;
-  };
-  streaming_data?: {
-    expires: Date;
-    formats: Format[];
-    adaptive_formats: Format[];
-    dash_manifest_url: string | null;
-    hls_manifest_url: string | null;
-  };
+  playability_status?: IPlayabilityStatus;
+  streaming_data?: IStreamingData;
   current_video_endpoint?: NavigationEndpoint;
   endpoint?: NavigationEndpoint;
   captions?: PlayerCaptionsTracklist;
@@ -78,19 +66,21 @@ export interface IParsedResponse {
   items?: SuperParsedResult<YTNode>;
 }
 
+export interface IStreamingData {
+  expires: Date;
+  formats: Format[];
+  adaptive_formats: Format[];
+  dash_manifest_url: string | null;
+  hls_manifest_url: string | null;
+}
+
 export interface IPlayerResponse {
   captions?: PlayerCaptionsTracklist;
   cards?: CardCollection;
   endscreen?: Endscreen;
   microformat?: YTNode;
   annotations?: ObservedArray<PlayerAnnotationsExpanded>;
-  playability_status: {
-    status: string;
-    error_screen: YTNode | null;
-    audio_only_playablility: AudioOnlyPlayability | null;
-    embeddable: boolean;
-    reason: string;
-  };
+  playability_status: IPlayabilityStatus;
   streaming_data?: {
     expires: Date;
     formats: Format[];
@@ -105,6 +95,14 @@ export interface IPlayerResponse {
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
   video_details?: VideoDetails;
 }
+
+export interface IPlayabilityStatus {
+  status: string;
+  error_screen: YTNode | null;
+  audio_only_playablility: AudioOnlyPlayability | null;
+  embeddable: boolean;
+  reason: string;
+};
 
 export interface INextResponse {
   contents?: SuperParsedResult<YTNode>;
