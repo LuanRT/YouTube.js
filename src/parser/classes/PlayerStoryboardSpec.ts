@@ -10,7 +10,7 @@ export interface StoryboardData {
   columns: number;
   rows: number;
   storyboard_count: number;
-};
+}
 
 export default class PlayerStoryboardSpec extends YTNode {
   static type = 'PlayerStoryboardSpec';

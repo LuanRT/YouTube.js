@@ -5,7 +5,7 @@ import type Format from '../parser/classes/misc/Format.js';
 
 import * as Constants from './Constants.js';
 import { InnertubeError, Platform, streamToIterable } from './Utils.js';
-import { IPlayabilityStatus, IStreamingData } from '../parser/index.js';
+import type { IPlayabilityStatus, IStreamingData } from '../parser/index.js';
 
 export type URLTransformer = (url: URL) => URL;
 export type FormatFilter = (format: Format) => boolean;
@@ -44,11 +44,11 @@ export interface DownloadOptions extends FormatOptions {
 }
 
 export async function download(
-  options: DownloadOptions, 
-  actions: Actions, 
-  playability_status?: IPlayabilityStatus, 
-  streaming_data?: IStreamingData, 
-  player?: Player, 
+  options: DownloadOptions,
+  actions: Actions,
+  playability_status?: IPlayabilityStatus,
+  streaming_data?: IStreamingData,
+  player?: Player,
   cpn?: string
 ): Promise<ReadableStream<Uint8Array>> {
   if (playability_status?.status === 'UNPLAYABLE')
@@ -232,4 +232,4 @@ export function chooseFormat(options: FormatOptions, streaming_data?: {
   return candidates[0];
 }
 
-export { toDash } from './DashManifest.js'
+export { toDash } from './DashManifest.js';

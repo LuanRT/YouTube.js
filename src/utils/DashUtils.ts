@@ -18,17 +18,17 @@ export interface DashNode {
 }
 
 const XML_CHARACTER_MAP = {
-    '&': '&amp;',
-    '"': '&quot;',
-    "'": '&apos;',
-    '<': '&lt;',
-    '>': '&gt;'
+  '&': '&amp;',
+  '"': '&quot;',
+  '\'': '&apos;',
+  '<': '&lt;',
+  '>': '&gt;'
 } as const;
 
 function escapeXMLString(str: string) {
-    return str.replace(/([&"<>'])/g, (_, item: keyof typeof XML_CHARACTER_MAP) => {
-        return XML_CHARACTER_MAP[item];
-    });
+  return str.replace(/([&"<>'])/g, (_, item: keyof typeof XML_CHARACTER_MAP) => {
+    return XML_CHARACTER_MAP[item];
+  });
 }
 
 function normalizeTag(tag: string) {
@@ -78,7 +78,7 @@ export async function renderToString(element: DashNode): Promise<string> {
       .map((name) => `${name}="${escapeXMLString(`${element.props[name]}`)}"`);
 
     if (properties.length > 0)
-      dom += ' ' + properties.join(' ');
+      dom += ` ${properties.join(' ')}`;
   }
 
   if (element.props.children) {
@@ -89,7 +89,7 @@ export async function renderToString(element: DashNode): Promise<string> {
     }
   }
 
-  return dom + '/>';
+  return `${dom}/>`;
 }
 
 export function Fragment(props: DashProps) {

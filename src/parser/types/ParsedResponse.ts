@@ -102,7 +102,7 @@ export interface IPlayabilityStatus {
   audio_only_playablility: AudioOnlyPlayability | null;
   embeddable: boolean;
   reason: string;
-};
+}
 
 export interface INextResponse {
   contents?: SuperParsedResult<YTNode>;

@@ -1,9 +1,9 @@
 import type Actions from '../core/Actions.js';
 import type Player from '../core/Player.js';
-import { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.js';
+import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.js';
 import type { IStreamingData } from '../parser/index.js';
 import type { Format } from '../parser/misc.js';
-import { PlayerStoryboardSpec } from '../parser/nodes.js';
+import type { PlayerStoryboardSpec } from '../parser/nodes.js';
 import * as DashUtils from './DashUtils.js';
 import type { FormatFilter, URLTransformer } from './FormatUtils.js';
 import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.js';
@@ -91,9 +91,9 @@ function hoistCodecsIfPossible(formats: Format[], hoisted: string[]) {
 }
 
 function hoistNumberAttributeIfPossible(
-  formats: Format[], 
+  formats: Format[],
   attribute: 'audioSamplingRate' | 'frameRate',
-  property: 'audio_sample_rate' | 'fps', 
+  property: 'audio_sample_rate' | 'fps',
   hoisted: string[]
 ) {
   if (formats.length > 1 && new Set(formats.map((format) => format.fps)).size === 1) {
@@ -140,7 +140,7 @@ function HoistAudioChannelsIfPossible({formats, hoisted}: {formats: Format[], ho
     return <audio-channel-configuration
       schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011"
       value={formats[0].audio_channels?.toString() || '2'}
-    />
+    />;
   }
   return null;
 }
@@ -191,11 +191,11 @@ function SegmentInfo({ format, url, actions }: { format: Format, url: string, ac
 function AudioRepresentation({
   format, transformURL, hoisted, actions, cpn, player
 }: {
-  format: Format, 
-  transformURL?: URLTransformer, 
-  hoisted: string[], 
-  cpn?: string, 
-  player?: Player, 
+  format: Format,
+  transformURL?: URLTransformer,
+  hoisted: string[],
+  cpn?: string,
+  player?: Player,
   actions?: Actions
 }) {
   const url = new URL(format.decipher(player));
@@ -218,13 +218,13 @@ function AudioRepresentation({
   </representation>;
 }
 
-function VideoRepresentation({ 
+function VideoRepresentation({
   format, player, cpn, actions, transformURL, hoisted
-}: { 
-  format: Format, 
-  player?: Player, 
-  cpn?: string, 
-  actions?: Actions, 
+}: {
+  format: Format,
+  player?: Player,
+  cpn?: string,
+  actions?: Actions,
   transformURL?: URLTransformer,
   hoisted: string[]
 }) {
@@ -245,7 +245,7 @@ function VideoRepresentation({
 }
 
 async function ImageRepresentation({
-  storyboard, 
+  storyboard,
   duration,
   transformURL,
   currentMimeType,
@@ -289,7 +289,7 @@ async function ImageRepresentation({
 
     if (content_type && content_type.length > 0) {
       if (currentMimeType !== content_type) {
-        onMimeTypeConflict(content_type)
+        onMimeTypeConflict(content_type);
       }
     }
   }
@@ -315,7 +315,7 @@ async function ImageRepresentation({
       duration={duration / storyboard.storyboard_count}
       startNumber="0"
     />
-  </representation>
+  </representation>;
 }
 
 function MutiTrackSet({
@@ -327,14 +327,14 @@ function MutiTrackSet({
 }) {
   const tracks = new Map<string, Format[]>();
   for (const format of formats) {
-    if (!format.audio_track) 
+    if (!format.audio_track)
       continue;
     if (!tracks.has(format.audio_track.id)) {
       tracks.set(format.audio_track.id, []);
     }
     tracks.get(format.audio_track.id)?.push(format);
   }
-  
+
   // The lang attribute has to go on the AdaptationSet element and the Role element goes inside the AdaptationSet too, so we need a separate adaptation set for each language and role
   return <>
     {
@@ -352,7 +352,7 @@ function MutiTrackSet({
             subsegmentAlignment="true"
             lang={first_format.language}
             codecs={hoistCodecsIfPossible(formats, hoisted)}
-            audioSamplingRate={hoistNumberAttributeIfPossible(formats, "audioSamplingRate", "audio_sample_rate", hoisted)}
+            audioSamplingRate={hoistNumberAttributeIfPossible(formats, 'audioSamplingRate', 'audio_sample_rate', hoisted)}
           >
             {
               audio_track &&
@@ -386,10 +386,10 @@ function MutiTrackSet({
               ))
             }
           </adaptation-set>
-        )
+        );
       })
     }
-  </>
+  </>;
 }
 
 function DashManifest({
@@ -450,7 +450,7 @@ function DashManifest({
   >
     <period>
       {
-        Array.from(group_info.entries()).map(([ group_id, formats ]) => {
+        Array.from(group_info.values()).map((formats) => {
           const first_format = formats[0];
           const mimeType = first_format.mime_type.split(';')[0];
 
@@ -459,40 +459,40 @@ function DashManifest({
             // It seems to be the same as default audio track but broken
             // We want to ignore it, as it messes up audio track selection in players and YouTube ignores it too
             // At the time of writing, this video has a broken audio track: https://youtu.be/UJeSWbR6W04
-    
+
             return null;
           }
 
           // When the video has multiple different audio tracks we want to include the extra information in the manifest
           if (formats[0].has_audio) {
             return <MutiTrackSet
-              formats={formats} 
-              type={mimeType} 
-              player={player} 
-              cpn={cpn} 
-              actions={actions} 
-              transformURL={transformURL} 
+              formats={formats}
+              type={mimeType}
+              player={player}
+              cpn={cpn}
+              actions={actions}
+              transformURL={transformURL}
               getNextSetId={() => set_id++}
             />;
           }
 
           const color_info = first_format.color_info;
-          const color_primaries = 
+          const color_primaries =
             color_info?.primaries && (
               color_info.primaries === 'BT709' ? '1' :
-              color_info.primaries === 'BT2020' ? '9' :
-              false
+                color_info.primaries === 'BT2020' ? '9' :
+                  false
             );
           const color_transfer_characteristics =
             color_info?.transfer_characteristics && (
               color_info?.transfer_characteristics === 'BT709' ? '1' :
-              color_info?.transfer_characteristics === 'BT2020_10' ? '14' :
-              color_info?.transfer_characteristics === 'SMPTEST2084' ? '16' :
-              color_info?.transfer_characteristics === 'ARIB_STD_B67' ? '18' :
-              false
+                color_info?.transfer_characteristics === 'BT2020_10' ? '14' :
+                  color_info?.transfer_characteristics === 'SMPTEST2084' ? '16' :
+                    color_info?.transfer_characteristics === 'ARIB_STD_B67' ? '18' :
+                      false
             );
 
-          const color_matrix_coefficients = color_info !== undefined && 
+          const color_matrix_coefficients = color_info !== undefined &&
             (() => {
               if (color_info.matrix_coefficients) {
                 let matrix_coefficients = '';
@@ -560,17 +560,17 @@ function DashManifest({
               {
                 formats.map((format) => (
                   <VideoRepresentation
-                      format={format}
-                      player={player}
-                      cpn={cpn}
-                      actions={actions}
-                      transformURL={transformURL}
-                      hoisted={hoisted}
-                    />
+                    format={format}
+                    player={player}
+                    cpn={cpn}
+                    actions={actions}
+                    transformURL={transformURL}
+                    hoisted={hoisted}
+                  />
                 ))
               }
             </adaptation-set>
-          )
+          );
         })
       }
       {
@@ -596,12 +596,12 @@ function DashManifest({
             {
               boards
             }
-          </adaptation-set>
+          </adaptation-set>;
         })
       }
     </period>
-  </mpd>
-} 
+  </mpd>;
+}
 
 export function toDash(
   streaming_data?: IStreamingData,
@@ -609,7 +609,7 @@ export function toDash(
   format_filter?: FormatFilter,
   cpn?: string,
   player?: Player,
-  actions?: Actions, 
+  actions?: Actions,
   storyboards?: PlayerStoryboardSpec
 ) {
   if (!streaming_data)
