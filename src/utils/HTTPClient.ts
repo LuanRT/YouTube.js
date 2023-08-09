@@ -95,6 +95,8 @@ export default class HTTPClient {
       if (Platform.shim.server) {
         if (n_body.context.client.clientName === 'ANDROID' || n_body.context.client.clientName === 'ANDROID_MUSIC') {
           request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
+        } else if (n_body.context.client.clientName === 'iOS') {
+          request_headers.set('User-Agent', Constants.CLIENTS.iOS.USER_AGENT);
         }
       }
 
@@ -139,7 +141,8 @@ export default class HTTPClient {
     // Check if 2xx
     if (response.ok) {
       return response;
-    } throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, await response.text());
+    }
+    throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, await response.text());
   }
 
   #adjustContext(ctx: Context, client: string): void {
@@ -157,6 +160,12 @@ export default class HTTPClient {
     }
 
     switch (client) {
+      case 'iOS':
+        ctx.client.deviceModel = Constants.CLIENTS.iOS.DEVICE_MODEL;
+        ctx.client.clientVersion = Constants.CLIENTS.iOS.VERSION;
+        ctx.client.clientName = Constants.CLIENTS.iOS.NAME;
+        ctx.client.platform = 'MOBILE';
+        break;
       case 'YTMUSIC':
         ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;
         ctx.client.clientName = Constants.CLIENTS.YTMUSIC.NAME;
