@@ -66,7 +66,7 @@ export function createTextElement(text: string): DashNode {
   };
 }
 
-export async function renderToString(element: DashNode): Promise<string> {
+export async function renderElementToString(element: DashNode): Promise<string> {
   if (element.type === 'TEXT_ELEMENT')
     return escapeXMLString(typeof element.props.nodeValue === 'string' ? element.props.nodeValue : '');
 
@@ -90,6 +90,12 @@ export async function renderToString(element: DashNode): Promise<string> {
   }
 
   return `${dom}/>`;
+}
+
+export async function renderToString(root: DashNode) {
+  const dom = await renderElementToString(root);
+
+  return `<?xml version="1.0" encoding="utf-8"?>${dom}`;
 }
 
 export function Fragment(props: DashProps) {
