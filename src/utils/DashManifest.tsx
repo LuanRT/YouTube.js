@@ -1,3 +1,5 @@
+/** @jsxFactory DashUtils.createElement */
+/** @jsxFragmentFactory DashUtils.Fragment */
 import type Actions from '../core/Actions.js';
 import type Player from '../core/Player.js';
 import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.js';
