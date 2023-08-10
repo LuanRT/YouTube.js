@@ -82,7 +82,7 @@ export async function renderElementToString(element: DashNode): Promise<string> 
   }
 
   if (element.props.children) {
-    const children = await Promise.all((await Promise.all(element.props.children.flat())).flat().filter((child) => !!child).map((child) => renderToString(child)));
+    const children = await Promise.all((await Promise.all(element.props.children.flat())).flat().filter((child) => !!child).map((child) => renderElementToString(child)));
     if (children.length > 0) {
       dom += `>${children.join('')}</${element.type}>`;
       return dom;
