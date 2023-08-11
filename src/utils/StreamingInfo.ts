@@ -1,12 +1,12 @@
-import Actions from "../core/Actions.js";
-import Player from "../core/Player.js";
-import { StoryboardData } from "../parser/classes/PlayerStoryboardSpec.js";
-import { IStreamingData } from "../parser/index.js";
-import { Format } from "../parser/misc.js";
-import { PlayerStoryboardSpec } from "../parser/nodes.js";
-import { FormatFilter, URLTransformer } from "./FormatUtils.js";
-import { InnertubeError, Platform, getStringBetweenStrings } from "./Utils.js";
-import { Constants } from "./index.js";
+import type Actions from '../core/Actions.js';
+import type Player from '../core/Player.js';
+import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.js';
+import type { IStreamingData } from '../parser/index.js';
+import type { Format } from '../parser/misc.js';
+import type { PlayerStoryboardSpec } from '../parser/nodes.js';
+import type { FormatFilter, URLTransformer } from './FormatUtils.js';
+import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.js';
+import { Constants } from './index.js';
 
 export interface StreamingInfo {
   duration: number;
@@ -29,7 +29,7 @@ export interface AudioSet {
 export interface Range {
   start: number;
   end: number;
-};
+}
 
 export type SegmentInfo = {
   is_oft: false,
@@ -240,7 +240,7 @@ function getSegmentInfo(
   url_transformer: URLTransformer,
   actions?: Actions,
   player?: Player,
-  cpn?: string,
+  cpn?: string
 ) {
   const url = new URL(format.decipher(player));
   url.searchParams.set('cpn', cpn || '');
@@ -255,8 +255,8 @@ function getSegmentInfo(
       is_oft: true,
       getSegmentTemplate() {
         return getOTFSegmentTemplate(transformed_url, actions);
-      },
-    }
+      }
+    };
 
     return info;
   }
@@ -269,7 +269,7 @@ function getSegmentInfo(
     base_url: transformed_url,
     index_range: format.index_range,
     init_range: format.init_range
-  }
+  };
 
   return info;
 }
@@ -280,7 +280,7 @@ function getAudioRepresentation(
   url_transformer: URLTransformer,
   actions?: Actions,
   player?: Player,
-  cpn?: string,
+  cpn?: string
 ) {
   const url = new URL(format.decipher(player));
   url.searchParams.set('cpn', cpn || '');
@@ -314,15 +314,15 @@ function getTrackSet(
     codecs: hoistCodecsIfPossible(formats, hoisted),
     audio_sample_rate: hoistNumberAttributeIfPossible(formats, 'audio_sample_rate', hoisted),
     track_name: audio_track?.display_name,
-    track_role: 
+    track_role:
       audio_track ?
         audio_track.audio_is_default ? 'main' :
-        first_format.is_dubbed ? 'dub' :
-        first_format.is_descriptive ? 'description' :
-        'alternate' : undefined,
+          first_format.is_dubbed ? 'dub' :
+            first_format.is_descriptive ? 'description' :
+              'alternate' : undefined,
     channels: hoistAudioChannelsIfPossible(formats, hoisted),
     representations: formats.map((format) => getAudioRepresentation(format, hoisted, url_transformer, actions, player, cpn))
-  }
+  };
 
   return set;
 }
@@ -344,17 +344,17 @@ function getColorInfo(format: Format) {
   const primaries =
     color_info?.primaries ? (
       color_info.primaries === 'BT709' ? '1' :
-      color_info.primaries === 'BT2020' ? '9' :
-      undefined
+        color_info.primaries === 'BT2020' ? '9' :
+          undefined
     ) : undefined;
-  
+
   const transfer_characteristics =
     color_info?.transfer_characteristics ? (
       color_info?.transfer_characteristics === 'BT709' ? '1' :
-      color_info?.transfer_characteristics === 'BT2020_10' ? '14' :
-      color_info?.transfer_characteristics === 'SMPTEST2084' ? '16' :
-      color_info?.transfer_characteristics === 'ARIB_STD_B67' ? '18' :
-      undefined
+        color_info?.transfer_characteristics === 'BT2020_10' ? '14' :
+          color_info?.transfer_characteristics === 'SMPTEST2084' ? '16' :
+            color_info?.transfer_characteristics === 'ARIB_STD_B67' ? '18' :
+              undefined
     ) : undefined;
 
   let matrix_coefficients: '1' | '14' | undefined;
@@ -388,7 +388,7 @@ function getColorInfo(format: Format) {
     primaries,
     transfer_characteristics,
     matrix_coefficients
-  }
+  };
 
   return info;
 }
@@ -409,7 +409,7 @@ function getVideoRepresentation(
     codecs: !hoisted.includes('codecs') ? getStringBetweenStrings(format.mime_type, 'codecs="', '"') : undefined,
     fps: !hoisted.includes('frameRate') ? format.fps : undefined,
     segment_info: getSegmentInfo(format, url_transformer, actions, player, cpn)
-  }
+  };
 
   return rep;
 }
@@ -431,7 +431,7 @@ function getVideoSet(
     codecs: hoistCodecsIfPossible(formats, hoisted),
     fps: hoistNumberAttributeIfPossible(formats, 'fps', hoisted),
     representations: formats.map((format) => getVideoRepresentation(format, url_transformer, hoisted, player, actions, cpn))
-  }
+  };
 
   return set;
 }
@@ -468,8 +468,8 @@ function getStoryboardInfo(
 }
 
 async function getStoryboardMimeType(
-  actions: Actions, 
-  board: StoryboardData,  
+  actions: Actions,
+  board: StoryboardData,
   transform_url: URLTransformer,
   probable_mime_type: string
 ) {
@@ -486,8 +486,8 @@ async function getStoryboardMimeType(
 }
 
 async function getStoryboardBitrate(
-  actions: Actions, 
-  board: StoryboardData,  
+  actions: Actions,
+  board: StoryboardData,
   transform_url: URLTransformer
 ) {
   const url = board.template_url;
@@ -535,7 +535,7 @@ function getImageRepresentation(
   const rep: ImageRepresentation = {
     uid: `thumbnails_${board.thumbnail_width}x${board.thumbnail_height}`,
     getBitrate() {
-      return getStoryboardBitrate(actions, board, transform_url)
+      return getStoryboardBitrate(actions, board, transform_url);
     },
     sheet_width: board.thumbnail_width * board.columns,
     sheet_height: board.thumbnail_height * board.rows,
@@ -546,9 +546,9 @@ function getImageRepresentation(
     template_duration: duration / board.storyboard_count,
     template_url,
     getURL(n) {
-      return template_url.replace('$Number$', n.toString())
+      return template_url.replace('$Number$', n.toString());
     }
-  }
+  };
 
   return rep;
 }
@@ -564,10 +564,10 @@ function getImageSets(
   return Array.from(mime_info.entries()).map<ImageSet>(([ type, boards ]) => ({
     probable_mime_type: type,
     getMimeType() {
-      return getStoryboardMimeType(actions, boards[0], transform_url, type)
+      return getStoryboardMimeType(actions, boards[0], transform_url, type);
     },
     representations: boards.map((board) => getImageRepresentation(duration, actions, board, transform_url))
-  }))
+  }));
 }
 
 export function getStreamingInfo(
@@ -602,9 +602,9 @@ export function getStreamingInfo(
       // It seems to be the same as default audio track but broken
       // We want to ignore it, as it messes up audio track selection in players and YouTube ignores it too
       // At the time of writing, this video has a broken audio track: https://youtu.be/UJeSWbR6W04
-      if (has_multiple_audio_tracks && !formats[0].audio_track) 
+      if (has_multiple_audio_tracks && !formats[0].audio_track)
         return acc;
-      
+
       acc.audio_groups.push(formats);
       return acc;
     }
@@ -628,7 +628,7 @@ export function getStreamingInfo(
     audio_sets,
     video_sets,
     image_sets
-  }
+  };
 
   return info;
 }

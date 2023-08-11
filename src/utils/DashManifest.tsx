@@ -5,7 +5,8 @@ import type Player from '../core/Player.js';
 import type { IStreamingData } from '../parser/index.js';
 import type { PlayerStoryboardSpec } from '../parser/nodes.js';
 import * as DashUtils from './DashUtils.js';
-import { getStreamingInfo, SegmentInfo as FSegmentInfo } from './StreamingInfo.js';
+import type { SegmentInfo as FSegmentInfo } from './StreamingInfo.js';
+import { getStreamingInfo } from './StreamingInfo.js';
 import type { FormatFilter, URLTransformer } from './FormatUtils.js';
 import { InnertubeError } from './Utils.js';
 
@@ -134,7 +135,8 @@ function DashManifest({
               ))
             }
           </adaptation-set>
-        ))}
+        ))
+      }
       {
         video_sets.map((set, index) => (
           <adaptation-set

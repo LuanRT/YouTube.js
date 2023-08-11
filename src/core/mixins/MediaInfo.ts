@@ -65,7 +65,7 @@ export default class MediaInfo {
       this.#actions.session.player,
       this.#actions,
       this.#page[0].storyboards?.is(PlayerStoryboardSpec) ? this.#page[0].storyboards : undefined
-    )
+    );
   }
 
   /**
