@@ -1,9 +1,12 @@
-const glob = require('glob');
-const fs = require('fs');
-const path = require('path');
+import glob from "glob";
+import path from 'path';
+import fs from 'fs';
+import url from 'url';
 
 const import_list = [];
 const misc_imports = [];
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 glob.sync('../src/parser/classes/**/*.{js,ts}', { cwd: __dirname })
   .forEach((file) => {

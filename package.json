@@ -68,7 +68,7 @@
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint --fix ./src",
     "build": "npm run build:parser-map && npm run build:proto && npm run build:esm && npm run bundle:node && npm run bundle:browser && npm run bundle:browser:prod",
-    "build:parser-map": "node ./scripts/build-parser-map.cjs",
+    "build:parser-map": "node ./scripts/gen-parser-map.mjs",
     "build:proto": "npx pb-gen-ts --entry-path=\"src/proto\" --out-dir=\"src/proto/generated\" --ext-in-import=\".js\"",
     "build:esm": "npx tsc",
     "build:deno": "npx cpy ./src ./deno && npx cpy ./package.json ./deno && npx replace \".js';\" \".ts';\" ./deno -r && npx replace '.js\";' '.ts\";' ./deno -r && npx replace \"'linkedom';\" \"'https://esm.sh/linkedom';\" ./deno -r && npx replace \"'jintr';\" \"'https://esm.sh/jintr';\" ./deno -r && npx replace \"new Jinter.default\" \"new Jinter\" ./deno -r",
@@ -90,6 +90,7 @@
     "undici": "^5.19.1"
   },
   "devDependencies": {
+    "@types/glob": "^8.1.0",
     "@types/jest": "^28.1.7",
     "@types/node": "^17.0.45",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
