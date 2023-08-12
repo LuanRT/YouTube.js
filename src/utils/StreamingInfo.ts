@@ -108,7 +108,7 @@ export interface ImageRepresentation {
 function getFormatGroupings(formats: Format[]) {
   const group_info = new Map<string, Format[]>();
 
-  let has_multiple_audio_tracks = false;
+  const has_multiple_audio_tracks = formats.some((fmt) => !!fmt.audio_track);
 
   for (const format of formats) {
     if ((!format.index_range || !format.init_range) && !format.is_type_otf) {
@@ -120,9 +120,8 @@ function getFormatGroupings(formats: Format[]) {
     const just_codec = getStringBetweenStrings(format.mime_type, 'codecs="', '"')?.split('.')[0];
 
     // HDR videos have both SDR and HDR vp9 formats, so we want to stick them in different groups
-    const color_info = format.color_info ? `${format.color_info.primaries}-${format.color_info.transfer_characteristics}-${format.color_info.matrix_coefficients}` : '';
+    const color_info = format.color_info ? Object.values(format.color_info).join('-') : '';
 
-    has_multiple_audio_tracks = has_multiple_audio_tracks || !!format.audio_track;
     const audio_track_id = format.audio_track?.id || '';
 
     const group_id = `${mime_type}-${just_codec}-${color_info}-${audio_track_id}`;
@@ -161,24 +160,10 @@ function hoistNumberAttributeIfPossible(
 }
 
 function hoistAudioChannelsIfPossible(formats: Format[], hoisted: string[]) {
-  if (formats.length > 1 && new Set(formats.map((format) => format.audio_channels?.toString() || '2')).size === 1) {
+  if (formats.length > 1 && new Set(formats.map((format) => format.audio_channels || 2)).size === 1) {
     hoisted.push('AudioChannelConfiguration');
     return formats[0].audio_channels;
   }
-}
-
-const notrackid = Symbol('ytjs:notrackid');
-
-function getAudioTrackGroups(formats: Format[]) {
-  const tracks = new Map<string | symbol, Format[]>();
-  for (const format of formats) {
-    const tracks_id = !format.audio_track ? notrackid : format.audio_track.id;
-    if (!tracks.has(tracks_id)) {
-      tracks.set(tracks_id, []);
-    }
-    tracks.get(tracks_id)?.push(format);
-  }
-  return Array.from(tracks.values());
 }
 
 async function getOTFSegmentTemplate(url: string, actions: Actions): Promise<SegmentTemplate> {
@@ -297,7 +282,25 @@ function getAudioRepresentation(
   return rep;
 }
 
-function getTrackSet(
+function getTrackRole(format: Format) {
+  const { audio_track } = format;
+
+  if (!audio_track)
+    return;
+  
+  if (audio_track.audio_is_default)
+    return 'main';
+
+  if (format.is_dubbed)
+    return 'dub';
+
+  if (format.is_descriptive)
+    return 'description';
+
+  return 'alternate';
+}
+
+function getAudioSet(
   formats: Format[],
   url_transformer: URLTransformer,
   actions?: Actions,
@@ -314,12 +317,7 @@ function getTrackSet(
     codecs: hoistCodecsIfPossible(formats, hoisted),
     audio_sample_rate: hoistNumberAttributeIfPossible(formats, 'audio_sample_rate', hoisted),
     track_name: audio_track?.display_name,
-    track_role:
-      audio_track ?
-        audio_track.audio_is_default ? 'main' :
-          first_format.is_dubbed ? 'dub' :
-            first_format.is_descriptive ? 'description' :
-              'alternate' : undefined,
+    track_role: getTrackRole(first_format),
     channels: hoistAudioChannelsIfPossible(formats, hoisted),
     representations: formats.map((format) => getAudioRepresentation(format, hoisted, url_transformer, actions, player, cpn))
   };
@@ -327,62 +325,48 @@ function getTrackSet(
   return set;
 }
 
-function getAudioTrackSets(
-  formats: Format[],
-  url_transformer: URLTransformer,
-  actions?: Actions,
-  player?: Player,
-  cpn?: string
-) {
-  const track_groups = getAudioTrackGroups(formats);
+const COLOR_PRIMARIES: Record<string, ColorInfo['primaries']> = {
+  BT709: '1',
+  BT2020: '9'
+};
 
-  return track_groups.map((tracks) => getTrackSet(tracks, url_transformer, actions, player, cpn));
+const COLOR_TRANSFER_CHARACTERISTICS: Record<string, ColorInfo['transfer_characteristics']> = {
+  BT709: '1',
+  BT2020_10: '14',
+  SMPTEST2084: '16',
+  ARIB_STD_B67: '18'
+}
+
+// This list is incomplete, as the player.js doesn't currently have any code for matrix coefficients,
+// So it doesn't have a list like with the other two, so this is just based on what we've seen in responses
+const COLOR_MATRIX_COEFFICIENTS: Record<string, ColorInfo['matrix_coefficients']> = {
+  BT709: '1',
+  BT2020_NCL: '14'
 }
 
 function getColorInfo(format: Format) {
   const color_info = format.color_info;
   const primaries =
-    color_info?.primaries ? (
-      color_info.primaries === 'BT709' ? '1' :
-        color_info.primaries === 'BT2020' ? '9' :
-          undefined
-    ) : undefined;
+    color_info?.primaries ? COLOR_PRIMARIES[color_info.primaries] : undefined;
 
   const transfer_characteristics =
-    color_info?.transfer_characteristics ? (
-      color_info?.transfer_characteristics === 'BT709' ? '1' :
-        color_info?.transfer_characteristics === 'BT2020_10' ? '14' :
-          color_info?.transfer_characteristics === 'SMPTEST2084' ? '16' :
-            color_info?.transfer_characteristics === 'ARIB_STD_B67' ? '18' :
-              undefined
-    ) : undefined;
+    color_info?.transfer_characteristics ? COLOR_TRANSFER_CHARACTERISTICS[color_info.transfer_characteristics] : undefined;
 
-  let matrix_coefficients: '1' | '14' | undefined;
-  if (color_info?.matrix_coefficients) {
+  const matrix_coefficients = 
+    color_info?.matrix_coefficients ? COLOR_MATRIX_COEFFICIENTS[color_info.matrix_coefficients] : undefined;
 
-    // This list is incomplete, as the player.js doesn't currently have any code for matrix coefficients,
-    // So it doesn't have a list like with the other two, so this is just based on what we've seen in responses
-    switch (color_info.matrix_coefficients) {
-      case 'BT709':
-        matrix_coefficients = '1';
-        break;
-      case 'BT2020_NCL':
-        matrix_coefficients = '14';
-        break;
-      default: {
-        const url = new URL(format.url as string);
+  if (color_info?.matrix_coefficients && !matrix_coefficients) {
+    const url = new URL(format.url as string);
 
-        const anonymisedFormat = JSON.parse(JSON.stringify(format));
-        anonymisedFormat.url = 'REDACTED';
-        anonymisedFormat.signature_cipher = 'REDACTED';
-        anonymisedFormat.cipher = 'REDACTED';
+    const anonymisedFormat = JSON.parse(JSON.stringify(format));
+    anonymisedFormat.url = 'REDACTED';
+    anonymisedFormat.signature_cipher = 'REDACTED';
+    anonymisedFormat.cipher = 'REDACTED';
 
-        console.warn(`YouTube.js toDash(): Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
-          + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
-          + `Innertube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
-      }
-    }
-  }
+    console.warn(`YouTube.js toDash(): Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
+      + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
+      + `Innertube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
+  } 
 
   const info: ColorInfo = {
     primaries,
@@ -407,7 +391,7 @@ function getVideoRepresentation(
     width: format.width,
     height: format.height,
     codecs: !hoisted.includes('codecs') ? getStringBetweenStrings(format.mime_type, 'codecs="', '"') : undefined,
-    fps: !hoisted.includes('frameRate') ? format.fps : undefined,
+    fps: !hoisted.includes('fps') ? format.fps : undefined,
     segment_info: getSegmentInfo(format, url_transformer, actions, player, cpn)
   };
 
@@ -442,21 +426,9 @@ function getStoryboardInfo(
   const mime_info = new Map<string, StoryboardData[]>();
 
   for (const storyboard of storyboards.boards) {
-    const extension = new URL(storyboard.template_url).pathname.split('.').at(-1);
+    const extension = new URL(storyboard.template_url).pathname.split('.').pop();
 
-    let mime_type = '';
-
-    switch (extension) {
-      case 'jpg':
-        mime_type = 'image/jpeg';
-        break;
-      case 'png':
-        mime_type = 'image/png';
-        break;
-      case 'webp':
-        mime_type = 'image/webp';
-        break;
-    }
+    const mime_type = `image/${extension === 'jpg' ? 'jpeg' : extension}`;
 
     if (!mime_info.has(mime_type)) {
       mime_info.set(mime_type, []);
@@ -467,20 +439,29 @@ function getStoryboardInfo(
   return mime_info;
 }
 
+interface SharedStoryboardResponse { 
+  response?: Promise<Response>
+};
+
 async function getStoryboardMimeType(
   actions: Actions,
   board: StoryboardData,
   transform_url: URLTransformer,
-  probable_mime_type: string
+  probable_mime_type: string,
+  shared_response: SharedStoryboardResponse
 ) {
   const url = board.template_url;
 
   const req_url = transform_url(new URL(url.replace('$M', '0')));
 
-  const res = await actions.session.http.fetch_function(req_url, {
+  const res_promise = shared_response.response ? shared_response.response : actions.session.http.fetch_function(req_url, {
     method: 'HEAD',
     headers: Constants.STREAM_HEADERS
   });
+
+  shared_response.response = res_promise;
+
+  const res = await res_promise;
 
   return res.headers.get('Content-Type') || probable_mime_type;
 }
@@ -488,21 +469,27 @@ async function getStoryboardMimeType(
 async function getStoryboardBitrate(
   actions: Actions,
   board: StoryboardData,
-  transform_url: URLTransformer
+  shared_response: SharedStoryboardResponse
 ) {
   const url = board.template_url;
 
   const response_promises: Promise<Response>[] = [];
 
   // Set a limit so we don't take forever for long videos
-  const requestLimit = board.storyboard_count > 10 ? 10 : board.storyboard_count;
-  for (let i = 0; i < requestLimit; i++) {
-    const req_url = transform_url(new URL(url.replace('$M', i.toString())));
+  const request_limit = Math.min(board.storyboard_count, 10);
+  for (let i = 0; i < request_limit; i++) {
+    const req_url = new URL(url.replace('$M', i.toString()));
 
-    const response_promise = actions.session.http.fetch_function(req_url, {
-      method: 'HEAD',
-      headers: Constants.STREAM_HEADERS
-    });
+    const response_promise = 
+      i === 0 && shared_response.response ? 
+        shared_response.response :
+        actions.session.http.fetch_function(req_url, {
+          method: 'HEAD',
+          headers: Constants.STREAM_HEADERS
+        });
+
+    if (i === 0)
+        shared_response.response = response_promise;
 
     response_promises.push(response_promise);
   }
@@ -513,7 +500,7 @@ async function getStoryboardBitrate(
   const content_lengths = [];
 
   for (const response of responses) {
-    content_lengths.push(parseInt(response.headers.get('Content-Length') || '0', 10));
+    content_lengths.push(parseInt(response.headers.get('Content-Length') || '0'));
   }
 
   // This is a rough estimate, so it probably won't reflect that actual peak bitrate
@@ -527,15 +514,16 @@ function getImageRepresentation(
   duration: number,
   actions: Actions,
   board: StoryboardData,
-  transform_url: URLTransformer
+  transform_url: URLTransformer,
+  shared_response: SharedStoryboardResponse
 ) {
   const url = board.template_url;
-  const template_url = new URL(url.replace('$M', '$Number$')).toString();
+  const template_url = new URL(url.replace('$M', '$Number$'));
 
   const rep: ImageRepresentation = {
     uid: `thumbnails_${board.thumbnail_width}x${board.thumbnail_height}`,
     getBitrate() {
-      return getStoryboardBitrate(actions, board, transform_url);
+      return getStoryboardBitrate(actions, board, shared_response);
     },
     sheet_width: board.thumbnail_width * board.columns,
     sheet_height: board.thumbnail_height * board.rows,
@@ -544,9 +532,9 @@ function getImageRepresentation(
     rows: board.rows,
     columns: board.columns,
     template_duration: duration / board.storyboard_count,
-    template_url,
+    template_url: transform_url(template_url).toString(),
     getURL(n) {
-      return template_url.replace('$Number$', n.toString());
+      return template_url.toString().replace('$Number$', n.toString());
     }
   };
 
@@ -561,12 +549,14 @@ function getImageSets(
 ) {
   const mime_info = getStoryboardInfo(storyboards);
 
+  const shared_response: SharedStoryboardResponse = {};
+
   return Array.from(mime_info.entries()).map<ImageSet>(([ type, boards ]) => ({
     probable_mime_type: type,
     getMimeType() {
-      return getStoryboardMimeType(actions, boards[0], transform_url, type);
+      return getStoryboardMimeType(actions, boards[0], transform_url, type, shared_response);
     },
-    representations: boards.map((board) => getImageRepresentation(duration, actions, board, transform_url))
+    representations: boards.map((board) => getImageRepresentation(duration, actions, board, transform_url, shared_response))
   }));
 }
 
@@ -617,7 +607,7 @@ export function getStreamingInfo(
     audio_groups: [] as Format[][]
   });
 
-  const audio_sets = audio_groups.map((formats) => getAudioTrackSets(formats, url_transformer, actions, player, cpn)).flat();
+  const audio_sets = audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn));
 
   const video_sets = video_groups.map((formats) => getVideoSet(formats, url_transformer, player, actions, cpn));
 

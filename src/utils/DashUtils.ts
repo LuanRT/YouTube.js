@@ -7,9 +7,10 @@ declare global {
   }
 }
 
+export type DashChild = (DashNode | (DashNode | Promise<DashNode | DashNode[]>) | Promise<DashNode | DashNode[]>);
 export interface DashProps {
     [key: string]: unknown,
-    children?: (DashNode | (DashNode | Promise<DashNode | DashNode[]>)[] | Promise<DashNode | DashNode[]>)[]
+    children?: DashChild[]
 }
 
 export interface DashNode {
@@ -42,7 +43,7 @@ function normalizeTag(tag: string) {
 export function createElement(
   tagNameOrFunction: string | ((props: DashProps) => DashNode | Promise<DashNode>),
   props: { [key: string] : unknown } | null | undefined,
-  ...children: (DashNode | string)[]
+  ...children: DashChild[]
 ): DashNode | Promise<DashNode> {
   const normalizedChildren = children.flat().map((child) => typeof child === 'string' ? createTextElement(child) : child);
 
@@ -92,8 +93,8 @@ export async function renderElementToString(element: DashNode): Promise<string> 
   return `${dom}/>`;
 }
 
-export async function renderToString(root: DashNode) {
-  const dom = await renderElementToString(root);
+export async function renderToString(root: DashNode | Promise<DashNode>) {
+  const dom = await renderElementToString(await root);
 
   return `<?xml version="1.0" encoding="utf-8"?>${dom}`;
 }
