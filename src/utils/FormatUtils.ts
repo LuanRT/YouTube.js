@@ -6,42 +6,7 @@ import type Format from '../parser/classes/misc/Format.js';
 import * as Constants from './Constants.js';
 import { InnertubeError, Platform, streamToIterable } from './Utils.js';
 import type { IPlayabilityStatus, IStreamingData } from '../parser/index.js';
-
-export type URLTransformer = (url: URL) => URL;
-export type FormatFilter = (format: Format) => boolean;
-
-export interface FormatOptions {
-  /**
-   * Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
-   */
-  quality?: string;
-  /**
-   * Download type, can be: video, audio or video+audio
-   */
-  type?: 'video' | 'audio' | 'video+audio';
-  /**
-   * Language code, defaults to 'original'.
-   */
-  language?: string;
-  /**
-   * File format, use 'any' to download any format
-   */
-  format?: string;
-  /**
-   * InnerTube client, can be ANDROID, WEB, YTMUSIC, YTMUSIC_ANDROID, YTSTUDIO_ANDROID or TV_EMBEDDED
-   */
-  client?: 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED';
-}
-
-export interface DownloadOptions extends FormatOptions {
-  /**
-   * Download range, indicates which bytes should be downloaded.
-   */
-  range?: {
-    start: number;
-    end: number;
-  }
-}
+import type { DownloadOptions, FormatOptions } from '../types/FormatUtils.js';
 
 export async function download(
   options: DownloadOptions,
@@ -163,13 +128,7 @@ export async function download(
  * @param options - Options
  * @param streaming_data - Streaming data
  */
-export function chooseFormat(options: FormatOptions, streaming_data?: {
-  expires: Date;
-  formats: Format[];
-  adaptive_formats: Format[];
-  dash_manifest_url: string | null;
-  hls_manifest_url: string | null;
-}): Format {
+export function chooseFormat(options: FormatOptions, streaming_data?: IStreamingData): Format {
   if (!streaming_data)
     throw new InnertubeError('Streaming data not available');
 

@@ -4,7 +4,7 @@ import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.js';
 import type { IStreamingData } from '../parser/index.js';
 import type { Format } from '../parser/misc.js';
 import type { PlayerStoryboardSpec } from '../parser/nodes.js';
-import type { FormatFilter, URLTransformer } from './FormatUtils.js';
+import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
 import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.js';
 import { Constants } from './index.js';
 

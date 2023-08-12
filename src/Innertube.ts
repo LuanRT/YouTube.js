@@ -38,7 +38,7 @@ import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.js';
 import type { ApiResponse } from './core/Actions.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
 import type { INextRequest } from './types/index.js';
-import type { DownloadOptions, FormatOptions } from './utils/FormatUtils.js';
+import type { DownloadOptions, FormatOptions } from './types/FormatUtils.js';
 
 export type InnertubeConfig = SessionOptions;
 

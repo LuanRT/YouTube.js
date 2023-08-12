@@ -81,13 +81,7 @@ export interface IPlayerResponse {
   microformat?: YTNode;
   annotations?: ObservedArray<PlayerAnnotationsExpanded>;
   playability_status: IPlayabilityStatus;
-  streaming_data?: {
-    expires: Date;
-    formats: Format[];
-    adaptive_formats: Format[];
-    dash_manifest_url: string | null;
-    hls_manifest_url: string | null;
-  };
+  streaming_data?: IStreamingData;
   playback_tracking?: {
     videostats_watchtime_url: string;
     videostats_playback_url: string;

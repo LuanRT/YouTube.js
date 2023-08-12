@@ -7,7 +7,7 @@ import type { PlayerStoryboardSpec } from '../parser/nodes.js';
 import * as DashUtils from './DashUtils.js';
 import type { SegmentInfo as FSegmentInfo } from './StreamingInfo.js';
 import { getStreamingInfo } from './StreamingInfo.js';
-import type { FormatFilter, URLTransformer } from './FormatUtils.js';
+import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
 import { InnertubeError } from './Utils.js';
 
 interface DashManifestProps {
