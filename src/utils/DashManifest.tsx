@@ -74,6 +74,8 @@ function DashManifest({
     image_sets
   } = getStreamingInfo(streamingData, transformURL, rejectFormat, cpn, player, actions, storyboards);
 
+  // XXX: DASH spec: https://standards.iso.org/ittf/PubliclyAvailableStandards/c083314_ISO_IEC%2023009-1_2022(en).zip
+
   return <mpd
     xmlns="urn:mpeg:dash:schema:mpd:2011"
     minBufferTime="PT1.500S"

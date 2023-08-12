@@ -87,6 +87,10 @@ export interface ColorInfo {
 
 export interface ImageSet {
   probable_mime_type: string;
+  /**
+   * @note Sometimes youtube returns webp instead of jpg despite the file extension being jpg
+   * So we need to update the mime type to reflect the actual mime type of the response
+   */
   getMimeType(): Promise<string>;
   representations: ImageRepresentation[]
 }
@@ -345,6 +349,10 @@ const COLOR_MATRIX_COEFFICIENTS: Record<string, ColorInfo['matrix_coefficients']
 }
 
 function getColorInfo(format: Format) {
+  // Section 5.5 Video source metadata signalling https://dashif.org/docs/IOP-Guidelines/DASH-IF-IOP-Part7-v5.0.0.pdf
+  // Section 8 Video code points https://www.itu.int/rec/T-REC-H.273-202107-I/en
+  // The player.js file was also helpful
+
   const color_info = format.color_info;
   const primaries =
     color_info?.primaries ? COLOR_PRIMARIES[color_info.primaries] : undefined;
@@ -611,6 +619,7 @@ export function getStreamingInfo(
 
   const video_sets = video_groups.map((formats) => getVideoSet(formats, url_transformer, player, actions, cpn));
 
+  // XXX: We need to make requests to get the image sizes, so we'll skip the storyboards if we don't have an Actions instance
   const image_sets = storyboards && actions ? getImageSets(duration, actions, storyboards, url_transformer) : [];
 
   const info : StreamingInfo = {
