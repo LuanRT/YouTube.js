@@ -788,7 +788,7 @@ We are immensely grateful to all the wonderful people who have contributed to th
 
 ## Contact
 
-LuanRT  - [@thesciencephile][twitter] - luan.lrt4@gmail.com
+LuanRT  - [@thesciencephile][twitter] - luanrt@thatsciencephile.com
 
 Project Link: [https://github.com/LuanRT/YouTube.js][project]
 
