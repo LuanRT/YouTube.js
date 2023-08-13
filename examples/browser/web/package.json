@@ -13,6 +13,6 @@
     "vite": "^3.0.0"
   },
   "dependencies": {
-    "dashjs": "^4.4.0"
+    "shaka-player": "^4.3.8"
   }
 }
