@@ -16,3 +16,6 @@ Bug fixes and TypeScript support.
 
 ## [patrickkfkan](https://github.com/patrickkfkan)
 Major refactorings, improved YouTube Music support, and bug fixes.
+
+## [Absidue](https://github.com/absidue)
+Several bug fixes, new features & improved MPD support.
