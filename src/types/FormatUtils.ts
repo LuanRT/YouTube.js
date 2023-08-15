@@ -1,4 +1,4 @@
-import type { Format } from "../parser/misc.js";
+import type { Format } from '../parser/misc.js';
 
 export type URLTransformer = (url: URL) => URL;
 export type FormatFilter = (format: Format) => boolean;

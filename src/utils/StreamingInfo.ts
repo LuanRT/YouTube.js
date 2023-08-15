@@ -88,7 +88,7 @@ export interface ColorInfo {
 export interface ImageSet {
   probable_mime_type: string;
   /**
-   * @note Sometimes youtube returns webp instead of jpg despite the file extension being jpg
+   * Sometimes youtube returns webp instead of jpg despite the file extension being jpg
    * So we need to update the mime type to reflect the actual mime type of the response
    */
   getMimeType(): Promise<string>;
@@ -291,7 +291,7 @@ function getTrackRole(format: Format) {
 
   if (!audio_track)
     return;
-  
+
   if (audio_track.audio_is_default)
     return 'main';
 
@@ -339,14 +339,14 @@ const COLOR_TRANSFER_CHARACTERISTICS: Record<string, ColorInfo['transfer_charact
   BT2020_10: '14',
   SMPTEST2084: '16',
   ARIB_STD_B67: '18'
-}
+};
 
 // This list is incomplete, as the player.js doesn't currently have any code for matrix coefficients,
 // So it doesn't have a list like with the other two, so this is just based on what we've seen in responses
 const COLOR_MATRIX_COEFFICIENTS: Record<string, ColorInfo['matrix_coefficients']> = {
   BT709: '1',
   BT2020_NCL: '14'
-}
+};
 
 function getColorInfo(format: Format) {
   // Section 5.5 Video source metadata signalling https://dashif.org/docs/IOP-Guidelines/DASH-IF-IOP-Part7-v5.0.0.pdf
@@ -360,7 +360,7 @@ function getColorInfo(format: Format) {
   const transfer_characteristics =
     color_info?.transfer_characteristics ? COLOR_TRANSFER_CHARACTERISTICS[color_info.transfer_characteristics] : undefined;
 
-  const matrix_coefficients = 
+  const matrix_coefficients =
     color_info?.matrix_coefficients ? COLOR_MATRIX_COEFFICIENTS[color_info.matrix_coefficients] : undefined;
 
   if (color_info?.matrix_coefficients && !matrix_coefficients) {
@@ -374,7 +374,7 @@ function getColorInfo(format: Format) {
     console.warn(`YouTube.js toDash(): Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
       + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
       + `Innertube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
-  } 
+  }
 
   const info: ColorInfo = {
     primaries,
@@ -447,9 +447,9 @@ function getStoryboardInfo(
   return mime_info;
 }
 
-interface SharedStoryboardResponse { 
+interface SharedStoryboardResponse {
   response?: Promise<Response>
-};
+}
 
 async function getStoryboardMimeType(
   actions: Actions,
@@ -488,8 +488,8 @@ async function getStoryboardBitrate(
   for (let i = 0; i < request_limit; i++) {
     const req_url = new URL(url.replace('$M', i.toString()));
 
-    const response_promise = 
-      i === 0 && shared_response.response ? 
+    const response_promise =
+      i === 0 && shared_response.response ?
         shared_response.response :
         actions.session.http.fetch_function(req_url, {
           method: 'HEAD',
@@ -497,7 +497,7 @@ async function getStoryboardBitrate(
         });
 
     if (i === 0)
-        shared_response.response = response_promise;
+      shared_response.response = response_promise;
 
     response_promises.push(response_promise);
   }
