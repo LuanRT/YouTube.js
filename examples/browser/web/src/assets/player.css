@@ -1,0 +1,423 @@
+@import url(https://fonts.googleapis.com/css?family=Material+Icons+Sharp);
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9vAw.ttf) format('truetype');
+}
+
+.shaka-container {
+  font-family: 'Roboto', sans-serif;
+}
+
+.shaka-container .shaka-bottom-controls {
+  width: 100%;
+  padding: 0;
+  padding-bottom: 0;
+  z-index: 1;
+}
+
+.shaka-container .shaka-bottom-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.shaka-container .shaka-ad-controls {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+}
+
+.shaka-container .shaka-spinner .shaka-spinner-path {
+  stroke: #ffffff;
+}
+
+.shaka-container .shaka-scrim-container {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity cubic-bezier(.4, 0, .6, 1) .6s;
+  background: linear-gradient(to top, hsla(0, 0%, 0%, 0.61), transparent 15%);
+}
+
+.shaka-container .shaka-play-button {
+  width: 100px;
+  height: 100px;
+  border-radius: 0;
+  background-color: transparent;
+  filter: invert();
+  box-shadow: none;
+  -webkit-box-ordinal-group: -3;
+  -ms-flex-order: -4;
+  order: -4;
+}
+
+.shaka-container .shaka-small-play-button {
+  -webkit-box-ordinal-group: -2;
+  -ms-flex-order: -3;
+  order: -3;
+}
+
+.shaka-container .shaka-mute-button {
+  -webkit-box-ordinal-group: -1;
+  -ms-flex-order: -2;
+  order: -2;
+}
+
+.shaka-container .shaka-controls-button-panel>* {
+  margin: 0;
+  padding: 3px 8px;
+  color: #EEE;
+  height: 40px;
+}
+
+.shaka-container .shaka-controls-button-panel>*:hover {
+  color: #FFF;
+}
+
+.shaka-container .shaka-controls-button-panel .shaka-volume-bar-container {
+  position: relative;
+  z-index: 10;
+  left: -1px;
+  -webkit-box-ordinal-group: 0;
+  -ms-flex-order: -1;
+  order: -1;
+  opacity: 0;
+  width: 0px;
+  -webkit-transition: width 0.2s cubic-bezier(0.4, 0, 1, 1);
+  height: 3px;
+  transition: width 0.2s cubic-bezier(0.4, 0, 1, 1);
+  padding: 0;
+}
+
+.shaka-container .shaka-controls-button-panel .shaka-volume-bar-container:hover,
+.shaka-container .shaka-controls-button-panel .shaka-volume-bar-container:focus {
+  display: block;
+  width: 50px;
+  opacity: 1;
+  padding: 0 6px;
+}
+
+.shaka-container .shaka-mute-button:hover+div {
+  opacity: 1;
+  width: 50px;
+  padding: 0 6px;
+}
+
+.shaka-container .shaka-current-time {
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.shaka-container .shaka-seek-bar-container {
+  height: 3px;
+  position: relative;
+  top: -1px;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.shaka-container .shaka-seek-bar-container .shaka-range-element {
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.shaka-container .shaka-seek-bar-container:hover {
+  height: 5px;
+  top: 0;
+  cursor: pointer;
+}
+
+.shaka-container .shaka-seek-bar-container:hover .shaka-range-element {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.shaka-container .shaka-seek-bar-container input[type=range]::-webkit-slider-thumb {
+  background: #FF0000;
+  cursor: pointer;
+}
+
+.shaka-container .shaka-seek-bar-container input[type=range]::-moz-range-thumb {
+  background: #FF0000;
+  cursor: pointer;
+}
+
+.shaka-container .shaka-seek-bar-container input[type=range]::-ms-thumb {
+  background: #FF0000;
+  cursor: pointer;
+}
+
+.shaka-container .shaka-video-container * {
+  font-family: 'Roboto', sans-serif;
+}
+
+.shaka-container .shaka-video-container .material-icons-round {
+  font-family: 'Material Icons Sharp';
+}
+
+.shaka-container .shaka-overflow-menu,
+.shaka-container .shaka-settings-menu {
+  border-radius: 2px;
+  background: rgba(37, 37, 37, 0.9);
+  text-shadow: 0 0 2px rgb(0 0 0%);
+  -webkit-transition: opacity 0.1s cubic-bezier(0, 0, 0.2, 1);
+  transition: opacity 0.1s cubic-bezier(0, 0, 0.2, 1);
+  -moz-user-select: none;
+  -ms-user-select: none;
+  animation: fade 0.3s;
+  -webkit-user-select: none;
+  right: 10px;
+  bottom: 50px;
+  padding: 0;
+  min-width: 200px;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.shaka-container .shaka-settings-menu {
+  padding: 0 0 8px;
+}
+
+.shaka-container .shaka-settings-menu button {
+  font-size: 12px;
+}
+
+.shaka-container .shaka-settings-menu button span {
+  margin-left: 33px;
+  font-size: 13px;
+}
+
+.shaka-container .shaka-settings-menu button[aria-selected="true"] {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.shaka-container .shaka-settings-menu button[aria-selected="true"] span {
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+  margin-left: 0;
+}
+
+.shaka-container .shaka-settings-menu button[aria-selected="true"] i {
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+  font-size: 18px;
+  padding-left: 5px;
+}
+
+.shaka-container .shaka-overflow-menu button {
+  padding: 0;
+}
+
+.shaka-container .shaka-overflow-menu button i {
+  display: none;
+}
+
+.shaka-container .shaka-overflow-menu button .shaka-overflow-button-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: default;
+  outline: none;
+  height: 40px;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+}
+
+.shaka-container .shaka-overflow-menu button .shaka-overflow-button-label span {
+  -ms-flex-negative: initial;
+  flex-shrink: initial;
+  padding-left: 15px;
+  font-size: 13px;
+  font-weight: 500;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.shaka-container .shaka-overflow-menu span+span {
+  color: #FFF;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  padding-right: 8px;
+  padding-left: 0 !important;
+}
+
+.shaka-container .shaka-overflow-menu span+span:after {
+  content: "navigate_next";
+  font-family: 'Material Icons Sharp';
+  font-size: 20px;
+}
+
+.shaka-container .shaka-overflow-menu .shaka-pip-button span+span {
+  padding-right: 15px !important;
+}
+
+.shaka-container .shaka-overflow-menu .shaka-pip-button span+span:after {
+  content: "";
+}
+
+.shaka-container .shaka-back-to-overflow-button {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  color: #eee;
+  height: 40px;
+}
+
+.shaka-container .shaka-back-to-overflow-button .material-icons-round {
+  font-size: 15px;
+  padding-right: 10px;
+}
+
+.shaka-container .shaka-back-to-overflow-button span {
+  margin-left: 3px !important;
+}
+
+.shaka-container .shaka-overflow-menu button:hover,
+.shaka-container .shaka-settings-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.shaka-container .shaka-overflow-menu button:hover label,
+.shaka-container .shaka-settings-menu button:hover label {
+  cursor: pointer;
+}
+
+.shaka-container .shaka-overflow-menu button,
+.shaka-container .shaka-settings-menu button {
+  color: #EEE;
+}
+
+.shaka-container .shaka-captions-off {
+  color: #BFBFBF;
+}
+
+.shaka-container .shaka-overflow-menu-button {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.shaka-container .shaka-fullscreen-button:hover {
+  font-size: 25px;
+  -webkit-transition: font-size 0.1s cubic-bezier(0, 0, 0.2, 1);
+  transition: font-size 0.1s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.shaka-container .shaka-overflow-menu,
+.shaka-container .shaka-settings-menu {
+  border-radius: 10px;
+}
+
+@media (prefers-color-scheme: light) {
+
+  .shaka-container .shaka-overflow-menu,
+  .shaka-container .shaka-settings-menu {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .shaka-container .shaka-overflow-menu span+span,
+  .shaka-container .shaka-overflow-menu button,
+  .shaka-container .shaka-settings-menu button {
+    color: #000000;
+  }
+}
+
+@media (min-width: 800px) {
+  .shaka-container .shaka-controls-button-panel {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+    height: 40px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .shaka-container .shaka-scrim-container {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .shaka-container .shaka-range-container {
+    margin: 0;
+    top: 0;
+  }
+
+  .shaka-container .shaka-mute-button {
+    display: none;
+  }
+
+  .shaka-container .shaka-overflow-menu,
+  .shaka-container .shaka-settings-menu {
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 80%;
+    margin: 10px;
+    border-radius: 10px;
+  }
+
+  .shaka-container .shaka-overflow-menu button,
+  .shaka-container .shaka-settings-menu button {
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .shaka-container .shaka-overflow-menu button span,
+  .shaka-container .shaka-settings-menu button span {
+    margin-left: 0;
+    padding-left: 15px;
+  }
+}

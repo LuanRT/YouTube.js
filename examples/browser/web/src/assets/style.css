@@ -1,0 +1,135 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #202020;
+  color: rgb(255, 255, 255);
+  line-height: 1.6;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+hr {
+  width: 100%;
+  border: 1px solid transparent;
+  background-color: rgb(68, 68, 68);
+}
+
+form {
+  margin: 0.5rem 0;
+  display: none;
+  border-radius: 0.3rem;
+  background-color: rgb(68, 68, 68);
+}
+
+form input {
+  padding: 0.5rem;
+  border: none;
+  color: rgb(255, 255, 255);
+}
+
+form input[type="text"] {
+  background: transparent;
+}
+
+form input[type="text"]:focus {
+  outline: none;
+}
+
+form input[type="submit"] {
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.244);
+  cursor: pointer;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+#loader {
+  display: block;
+  border: 10px solid rgb(68, 68, 68);
+  border-top: 10px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  align-self: center;
+  animation: spin 1s linear infinite;
+  margin: 0.5rem 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#shaka-container {
+  height: 40vw;
+}
+
+#video-container {
+  display: none;
+  flex-direction: column;
+  position: relative;
+  width: 70vw !important;
+  margin: 0.5rem 0;
+}
+
+#metadata {
+  display: flex;
+  flex-direction: row;
+  align-self: left;
+  margin: 0.5rem 0;
+}
+
+#metadata>#metadata-item {
+  margin: 0 0.3rem;
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 0.757);
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+}
+
+#video-container>#description {
+  align-self: left;
+  margin-left: 0.5rem;
+  font-size: medium;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+}
+
+footer {
+  margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 768px) {
+  video {
+    height: auto;
+  }
+
+  #shaka-container {
+    height: auto;
+  }
+  
+  #video-container {
+    width: 100% !important;
+  }
+}

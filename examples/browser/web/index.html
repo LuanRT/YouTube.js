@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/src/assets/style.css" />
+  <link rel="stylesheet" href="/src/assets/player.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YouTube.js Example</title>
 </head>
-
 <body>
   <form>
     <input type="text" name="id" placeholder="Video ID or URL" />
     <input type="submit" value="Play" />
   </form>
-  <div id="loader"></div>
-  <div id="video_container">
-    <video id="video"></video>
+  <div class="loader" id="loader"></div>
+  <div id="video-container">
+    <div class="shaka-container" id="shaka-container" data-shaka-player-container>
+      <video class="videoel" id="videoel" data-shaka-player autoplay></video>
+    </div>
     <h2 id="title"></h2>
     <div id="metadata"></div>
     <hr />
@@ -26,5 +28,4 @@
   </footer>
   <script type="module" src="/src/main.ts"></script>
 </body>
-
 </html>
