@@ -115,12 +115,7 @@ async function main() {
 
       showUI({ hidePlayer: false });
 
-      const dash = await info.toDash((url) => {
-        url.searchParams.set('__host', url.host);
-        url.host = 'localhost:8080';
-        url.protocol = 'http';
-        return url;
-      });
+      const dash = await info.toDash();
 
       const uri = 'data:application/dash+xml;charset=utf-8;base64,' + btoa(dash);
 
@@ -182,6 +177,12 @@ async function main() {
           const uri = request.uris[0];
           const url = new URL(uri);
           const headers = request.headers;
+
+          if (url.host.endsWith(".googlevideo.com") || headers.Range) {
+            url.searchParams.set('__host', url.host);
+            url.host = 'localhost:8080';
+            url.protocol = 'http';
+          }
 
           request.method = 'POST';
 
