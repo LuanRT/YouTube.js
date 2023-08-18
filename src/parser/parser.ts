@@ -90,7 +90,8 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
     case 'typecheck':
       console.warn(
         new ParsingError(
-          `Type mismatch, got ${classname} expected ${Array.isArray(context.expected) ? context.expected.join(' | ') : context.expected} at ${context.classdata}`
+          `Type mismatch, got ${classname} expected ${Array.isArray(context.expected) ? context.expected.join(' | ') : context.expected}.`, 
+          context.classdata
         )
       );
       break;
