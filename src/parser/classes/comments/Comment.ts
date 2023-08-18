@@ -11,7 +11,7 @@ import CommentReplyDialog from './CommentReplyDialog.js';
 import PdgCommentChip from './PdgCommentChip.js';
 import SponsorCommentBadge from './SponsorCommentBadge.js';
 
-import Proto from '../../../proto/index.js';
+import * as Proto from '../../../proto/index.js';
 import { InnertubeError } from '../../../utils/Utils.js';
 import { YTNode } from '../../helpers.js';
 

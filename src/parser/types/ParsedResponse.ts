@@ -1,7 +1,7 @@
 import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.js';
 
 import type {
-  ReloadContinuationItemsCommand, AppendContinuationItemsAction, Continuation, GridContinuation,
+  ReloadContinuationItemsCommand, Continuation, GridContinuation,
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
   PlaylistPanelContinuation, SectionListContinuation
 } from '../index.js';
@@ -18,6 +18,7 @@ import type Alert from '../classes/Alert.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
 import type EngagementPanelSectionList from '../classes/EngagementPanelSectionList.js';
+import type { AppendContinuationItemsAction } from '../nodes.js';
 export interface IParsedResponse {
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
@@ -51,20 +52,8 @@ export interface IParsedResponse {
     videostats_watchtime_url: string;
     videostats_playback_url: string;
   };
-  playability_status?: {
-    status: string;
-    error_screen: YTNode | null;
-    audio_only_playablility: AudioOnlyPlayability | null;
-    embeddable: boolean;
-    reason: string;
-  };
-  streaming_data?: {
-    expires: Date;
-    formats: Format[];
-    adaptive_formats: Format[];
-    dash_manifest_url: string | null;
-    hls_manifest_url: string | null;
-  };
+  playability_status?: IPlayabilityStatus;
+  streaming_data?: IStreamingData;
   current_video_endpoint?: NavigationEndpoint;
   endpoint?: NavigationEndpoint;
   captions?: PlayerCaptionsTracklist;
@@ -77,32 +66,36 @@ export interface IParsedResponse {
   items?: SuperParsedResult<YTNode>;
 }
 
+export interface IStreamingData {
+  expires: Date;
+  formats: Format[];
+  adaptive_formats: Format[];
+  dash_manifest_url: string | null;
+  hls_manifest_url: string | null;
+}
+
 export interface IPlayerResponse {
   captions?: PlayerCaptionsTracklist;
   cards?: CardCollection;
   endscreen?: Endscreen;
   microformat?: YTNode;
   annotations?: ObservedArray<PlayerAnnotationsExpanded>;
-  playability_status: {
-    status: string;
-    error_screen: YTNode | null;
-    audio_only_playablility: AudioOnlyPlayability | null;
-    embeddable: boolean;
-    reason: string;
-  };
-  streaming_data?: {
-    expires: Date;
-    formats: Format[];
-    adaptive_formats: Format[];
-    dash_manifest_url: string | null;
-    hls_manifest_url: string | null;
-  };
+  playability_status: IPlayabilityStatus;
+  streaming_data?: IStreamingData;
   playback_tracking?: {
     videostats_watchtime_url: string;
     videostats_playback_url: string;
   };
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
   video_details?: VideoDetails;
+}
+
+export interface IPlayabilityStatus {
+  status: string;
+  error_screen: YTNode | null;
+  audio_only_playablility: AudioOnlyPlayability | null;
+  embeddable: boolean;
+  reason: string;
 }
 
 export interface INextResponse {

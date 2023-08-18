@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../parser.js';
+import * as Parser from '../parser.js';
 import BackstagePost from './BackstagePost.js';
 import Button from './Button.js';
 import Menu from './menus/Menu.js';

@@ -19,7 +19,7 @@ import { Kids, Music, Studio } from './core/clients/index.js';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
 import { Feed, TabbedFeed } from './core/mixins/index.js';
 
-import Proto from './proto/index.js';
+import * as Proto from './proto/index.js';
 import * as Constants from './utils/Constants.js';
 import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.js';
 
@@ -38,7 +38,7 @@ import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.js';
 import type { ApiResponse } from './core/Actions.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
 import type { INextRequest } from './types/index.js';
-import type { DownloadOptions, FormatOptions } from './utils/FormatUtils.js';
+import type { DownloadOptions, FormatOptions } from './types/FormatUtils.js';
 
 export type InnertubeConfig = SessionOptions;
 

@@ -310,7 +310,7 @@ const example_data = {
 
 // The first argument is the name of the class, the second is the data you have for the node.
 // It will return a class that extends YTNode.
-const Example = Generator.YTNodeGenerator.generateRuntimeClass('Example', example_data);
+const Example = Generator.generateRuntimeClass('Example', example_data);
 
 // You may now use this class as you would any other node.
 const example = new Example(example_data);
