@@ -16,6 +16,7 @@ export enum ClientType {
   WEB = 'WEB',
   KIDS = 'WEB_KIDS',
   MUSIC = 'WEB_REMIX',
+  IOS = 'iOS',
   ANDROID = 'ANDROID',
   ANDROID_MUSIC = 'ANDROID_MUSIC',
   ANDROID_CREATOR = 'ANDROID_CREATOR',
