@@ -1,5 +1,10 @@
 // TODO: Clean up and refactor this.
 
+import { YTNode } from '../helpers.js';
+import { isTextRun, timeToSeconds } from '../../utils/Utils.js';
+import type { ObservedArray } from '../helpers.js';
+import type { RawNode } from '../index.js';
+
 import Parser from '../index.js';
 import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.js';
 import MusicResponsiveListItemFixedColumn from './MusicResponsiveListItemFixedColumn.js';
@@ -8,11 +13,6 @@ import MusicThumbnail from './MusicThumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Menu from './menus/Menu.js';
 import Text from './misc/Text.js';
-
-import { isTextRun, timeToSeconds } from '../../utils/Utils.js';
-import type { ObservedArray } from '../helpers.js';
-import { YTNode } from '../helpers.js';
-import type { RawNode } from '../index.js';
 
 export default class MusicResponsiveListItem extends YTNode {
   static type = 'MusicResponsiveListItem';
@@ -24,8 +24,8 @@ export default class MusicResponsiveListItem extends YTNode {
     playlist_set_video_id: string;
   };
 
-  endpoint: NavigationEndpoint | null;
-  item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'video' | 'song' | 'endpoint' | 'unknown' | undefined;
+  endpoint?: NavigationEndpoint;
+  item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'non_music_track' | 'video' | 'song' | 'endpoint' | 'unknown' | undefined;
   index?: Text;
   thumbnail?: MusicThumbnail | null;
   badges;
@@ -82,9 +82,21 @@ export default class MusicResponsiveListItem extends YTNode {
       playlist_set_video_id: data?.playlistItemData?.playlistSetVideoId || null
     };
 
-    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : null;
+    if (Reflect.has(data, 'navigationEndpoint')) {
+      this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    }
 
-    const page_type = this.endpoint?.payload?.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType;
+    let page_type = this.endpoint?.payload?.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType;
+
+    if (!page_type) {
+      const is_non_music_track = this.flex_columns.find(
+        (col) => col.title.endpoint?.payload?.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_NON_MUSIC_AUDIO_TRACK_PAGE'
+      );
+
+      if (is_non_music_track) {
+        page_type = 'MUSIC_PAGE_TYPE_NON_MUSIC_AUDIO_TRACK_PAGE';
+      }
+    }
 
     switch (page_type) {
       case 'MUSIC_PAGE_TYPE_ALBUM':
@@ -104,23 +116,37 @@ export default class MusicResponsiveListItem extends YTNode {
         this.item_type = 'library_artist';
         this.#parseLibraryArtist();
         break;
+      case 'MUSIC_PAGE_TYPE_NON_MUSIC_AUDIO_TRACK_PAGE':
+        this.item_type = 'non_music_track';
+        this.#parseNonMusicTrack();
+        break;
       default:
         if (this.flex_columns[1]) {
           this.#parseVideoOrSong();
         } else {
           this.#parseOther();
         }
-        break;
     }
 
-    if (data.index) {
+    if (Reflect.has(data, 'index')) {
       this.index = new Text(data.index);
     }
 
-    this.thumbnail = Parser.parseItem(data.thumbnail, MusicThumbnail);
-    this.badges = Parser.parseArray(data.badges);
-    this.menu = Parser.parseItem(data.menu, Menu);
-    this.overlay = Parser.parseItem(data.overlay, MusicItemThumbnailOverlay);
+    if (Reflect.has(data, 'thumbnail')) {
+      this.thumbnail = Parser.parseItem(data.thumbnail, MusicThumbnail);
+    }
+
+    if (Reflect.has(data, 'badges')) {
+      this.badges = Parser.parseArray(data.badges);
+    }
+
+    if (Reflect.has(data, 'menu')) {
+      this.menu = Parser.parseItem(data.menu, Menu);
+    }
+
+    if (Reflect.has(data, 'overlay')) {
+      this.overlay = Parser.parseItem(data.overlay, MusicItemThumbnailOverlay);
+    }
   }
 
   #parseOther() {
@@ -234,6 +260,11 @@ export default class MusicResponsiveListItem extends YTNode {
     this.name = this.flex_columns.first().title.toString();
     this.subtitle = this.flex_columns.at(1)?.title;
     this.song_count = this.subtitle?.runs?.find((run) => (/^\d+(,\d+)? songs?$/i).test(run.text))?.text || '';
+  }
+
+  #parseNonMusicTrack() {
+    this.id = this.#playlist_item_data.video_id || this.endpoint?.payload?.videoId;
+    this.title = this.flex_columns.first().title.toString();
   }
 
   #parseAlbum() {
