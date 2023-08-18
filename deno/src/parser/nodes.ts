@@ -223,6 +223,7 @@ export { default as MusicImmersiveHeader } from './classes/MusicImmersiveHeader.
 export { default as MusicInlineBadge } from './classes/MusicInlineBadge.ts';
 export { default as MusicItemThumbnailOverlay } from './classes/MusicItemThumbnailOverlay.ts';
 export { default as MusicLargeCardItemCarousel } from './classes/MusicLargeCardItemCarousel.ts';
+export { default as MusicMultiRowListItem } from './classes/MusicMultiRowListItem.ts';
 export { default as MusicNavigationButton } from './classes/MusicNavigationButton.ts';
 export { default as MusicPlayButton } from './classes/MusicPlayButton.ts';
 export { default as MusicPlaylistShelf } from './classes/MusicPlaylistShelf.ts';

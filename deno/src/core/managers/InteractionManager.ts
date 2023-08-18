@@ -1,4 +1,4 @@
-import Proto from '../../proto/index.ts';
+import * as Proto from '../../proto/index.ts';
 import type Actions from '../Actions.ts';
 import type { ApiResponse } from '../Actions.ts';
 

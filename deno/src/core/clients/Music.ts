@@ -18,7 +18,7 @@ import PlaylistPanel from '../../parser/classes/PlaylistPanel.ts';
 import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.ts';
 import SectionList from '../../parser/classes/SectionList.ts';
 import Tab from '../../parser/classes/Tab.ts';
-import Proto from '../../proto/index.ts';
+import * as Proto from '../../proto/index.ts';
 
 import type { ObservedArray, YTNode } from '../../parser/helpers.ts';
 import type { MusicSearchFilters } from '../../types/index.ts';
@@ -329,7 +329,7 @@ export default class Music {
     if (!page.contents)
       throw new InnertubeError('Unexpected response', page);
 
-    if (page.contents.item().key('type').string() === 'Message')
+    if (page.contents.item().type === 'Message')
       throw new InnertubeError(page.contents.item().as(Message).text.toString(), video_id);
 
     const section_list = page.contents.item().as(SectionList).contents;

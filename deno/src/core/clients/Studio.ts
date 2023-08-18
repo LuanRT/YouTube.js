@@ -1,4 +1,4 @@
-import Proto from '../../proto/index.ts';
+import * as Proto from '../../proto/index.ts';
 import * as Constants from '../../utils/Constants.ts';
 import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.ts';
 

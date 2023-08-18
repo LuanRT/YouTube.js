@@ -33,6 +33,12 @@ export const OAUTH = Object.freeze({
   })
 });
 export const CLIENTS = Object.freeze({
+  iOS: {
+    NAME: 'iOS',
+    VERSION: '18.06.35',
+    USER_AGENT: 'com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)',
+    DEVICE_MODEL: 'iPhone10,6'
+  },
   WEB: {
     NAME: 'WEB',
     VERSION: '2.20230622.06.00',

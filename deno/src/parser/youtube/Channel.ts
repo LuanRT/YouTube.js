@@ -10,6 +10,7 @@ import ExpandableTab from '../classes/ExpandableTab.ts';
 import SectionList from '../classes/SectionList.ts';
 import Tab from '../classes/Tab.ts';
 import PageHeader from '../classes/PageHeader.ts';
+import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
 
 import Feed from '../../core/mixins/Feed.ts';
 import FilterableFeed from '../../core/mixins/FilterableFeed.ts';
@@ -53,7 +54,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 
     this.subscribe_button = this.page.header_memo?.getType(SubscribeButton).first();
 
-    this.current_tab = this.page.contents?.item().key('tabs').parsed().array().filterType(Tab, ExpandableTab).get({ selected: true });
+    this.current_tab = this.page.contents?.item().as(TwoColumnBrowseResults).tabs.array().filterType(Tab, ExpandableTab).get({ selected: true });
   }
 
   /**

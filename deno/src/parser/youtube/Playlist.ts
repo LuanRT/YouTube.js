@@ -36,7 +36,7 @@ class Playlist extends Feed<IBrowseResponse> {
     this.info = {
       ...this.page.metadata?.item().as(PlaylistMetadata),
       ...{
-        subtitle: header.subtitle,
+        subtitle: header ? header.subtitle : null,
         author: secondary_info?.owner?.as(VideoOwner).author ?? header?.author,
         thumbnails: primary_info?.thumbnail_renderer?.as(PlaylistVideoThumbnail, PlaylistCustomThumbnail).thumbnail as Thumbnail[],
         total_items: this.#getStat(0, primary_info),

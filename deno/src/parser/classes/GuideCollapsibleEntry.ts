@@ -1,4 +1,4 @@
-import Parser from '../parser.ts';
+import * as Parser from '../parser.ts';
 import GuideEntry from './GuideEntry.ts';
 import type { RawNode } from '../index.ts';
 import { type ObservedArray, YTNode } from '../helpers.ts';

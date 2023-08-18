@@ -1,5 +1,5 @@
 import Text from './misc/Text.ts';
-import Parser from '../parser.ts';
+import * as Parser from '../parser.ts';
 import { type ObservedArray, YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 

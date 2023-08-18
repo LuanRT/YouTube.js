@@ -1,19 +1,21 @@
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 
+export interface StoryboardData {
+  template_url: string;
+  thumbnail_width: number;
+  thumbnail_height: number;
+  thumbnail_count: number;
+  interval: number;
+  columns: number;
+  rows: number;
+  storyboard_count: number;
+}
+
 export default class PlayerStoryboardSpec extends YTNode {
   static type = 'PlayerStoryboardSpec';
 
-  boards: {
-    template_url: string;
-    thumbnail_width: number;
-    thumbnail_height: number;
-    thumbnail_count: number;
-    interval: number;
-    columns: number;
-    rows: number;
-    storyboard_count: number;
-  }[];
+  boards: StoryboardData[];
 
   constructor(data: RawNode) {
     super();

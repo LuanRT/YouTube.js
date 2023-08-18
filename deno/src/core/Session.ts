@@ -3,7 +3,7 @@ import EventEmitterLike from '../utils/EventEmitterLike.ts';
 import Actions from './Actions.ts';
 import Player from './Player.ts';
 
-import Proto from '../proto/index.ts';
+import * as Proto from '../proto/index.ts';
 import type { ICache } from '../types/Cache.ts';
 import type { FetchFunction } from '../types/PlatformShim.ts';
 import HTTPClient from '../utils/HTTPClient.ts';
@@ -16,6 +16,7 @@ export enum ClientType {
   WEB = 'WEB',
   KIDS = 'WEB_KIDS',
   MUSIC = 'WEB_REMIX',
+  IOS = 'iOS',
   ANDROID = 'ANDROID',
   ANDROID_MUSIC = 'ANDROID_MUSIC',
   ANDROID_CREATOR = 'ANDROID_CREATOR',

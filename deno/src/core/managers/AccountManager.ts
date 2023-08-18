@@ -3,7 +3,7 @@ import Analytics from '../../parser/youtube/Analytics.ts';
 import Settings from '../../parser/youtube/Settings.ts';
 import TimeWatched from '../../parser/youtube/TimeWatched.ts';
 
-import Proto from '../../proto/index.ts';
+import * as Proto from '../../proto/index.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import { Account, BrowseEndpoint, Channel } from '../endpoints/index.ts';
 

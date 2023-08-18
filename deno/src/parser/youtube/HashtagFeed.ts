@@ -8,9 +8,10 @@ import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 import type ChipCloudChip from '../classes/ChipCloudChip.ts';
 import type { IBrowseResponse } from '../index.ts';
+import { PageHeader } from '../nodes.ts';
 
 export default class HashtagFeed extends FilterableFeed<IBrowseResponse> {
-  header?: HashtagHeader;
+  header?: HashtagHeader | PageHeader;
   contents: RichGrid;
 
   constructor(actions: Actions, response: IBrowseResponse | ApiResponse) {
@@ -25,7 +26,7 @@ export default class HashtagFeed extends FilterableFeed<IBrowseResponse> {
       throw new InnertubeError('Content tab has no content', tab);
 
     if (this.page.header) {
-      this.header = this.page.header.item().as(HashtagHeader);
+      this.header = this.page.header.item().as(HashtagHeader, PageHeader);
     }
 
     this.contents = tab.content.as(RichGrid);

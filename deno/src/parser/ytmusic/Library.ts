@@ -164,8 +164,7 @@ class LibraryContinuation {
 
     this.contents = this.#page.continuation_contents.as(MusicShelfContinuation, GridContinuation);
 
-    this.#continuation = this.#page.continuation_contents?.key('continuation').isNull()
-      ? null : this.#page.continuation_contents?.key('continuation').string();
+    this.#continuation = this.contents.continuation || null;
   }
 
   async getContinuation(): Promise<LibraryContinuation> {

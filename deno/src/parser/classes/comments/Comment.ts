@@ -11,7 +11,7 @@ import CommentReplyDialog from './CommentReplyDialog.ts';
 import PdgCommentChip from './PdgCommentChip.ts';
 import SponsorCommentBadge from './SponsorCommentBadge.ts';
 
-import Proto from '../../../proto/index.ts';
+import * as Proto from '../../../proto/index.ts';
 import { InnertubeError } from '../../../utils/Utils.ts';
 import { YTNode } from '../../helpers.ts';
 

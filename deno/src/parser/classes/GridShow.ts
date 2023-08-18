@@ -1,6 +1,6 @@
 import { YTNode, type ObservedArray } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
-import Parser from '../parser.ts';
+import * as Parser from '../parser.ts';
 import Author from './misc/Author.ts';
 import Text from './misc/Text.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';

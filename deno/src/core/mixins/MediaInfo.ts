@@ -1,14 +1,15 @@
 import type { ApiResponse } from '../Actions.ts';
 import type Actions from '../Actions.ts';
 import * as Constants from '../../utils/Constants.ts';
-import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../utils/FormatUtils.ts';
-import FormatUtils from '../../utils/FormatUtils.ts';
+import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../types/FormatUtils.ts';
+import * as FormatUtils from '../../utils/FormatUtils.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import type Format from '../../parser/classes/misc/Format.ts';
 import type { INextResponse, IPlayerResponse } from '../../parser/index.ts';
 import Parser from '../../parser/index.ts';
 import type { DashOptions } from '../../types/DashOptions.ts';
 import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
+import { getStreamingInfo } from '../../utils/StreamingInfo.ts';
 
 export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];
@@ -50,6 +51,21 @@ export default class MediaInfo {
     }
 
     return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions, storyboards);
+  }
+
+  /**
+   * Get a cleaned up representation of the adaptive_formats
+   */
+  getStreamingInfo(url_transformer?: URLTransformer, format_filter?: FormatFilter) {
+    return getStreamingInfo(
+      this.streaming_data,
+      url_transformer,
+      format_filter,
+      this.cpn,
+      this.#actions.session.player,
+      this.#actions,
+      this.#page[0].storyboards?.is(PlayerStoryboardSpec) ? this.#page[0].storyboards : undefined
+    );
   }
 
   /**

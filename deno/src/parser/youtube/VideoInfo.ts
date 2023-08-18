@@ -108,8 +108,7 @@ class VideoInfo extends MediaInfo {
       } else if (typeof this.captions?.default_audio_track_index !== 'undefined' && this.captions?.audio_tracks && this.captions.caption_tracks) {
         // For videos with a single audio track and captions, we can use the captions to figure out the language of the audio and combined formats
         const audioTrack = this.captions.audio_tracks[this.captions.default_audio_track_index];
-        const defaultCaptionTrackIndex = audioTrack.default_caption_track_index;
-        const index = audioTrack.caption_track_indices[defaultCaptionTrackIndex ? defaultCaptionTrackIndex : 0];
+        const index = audioTrack.default_caption_track_index || 0;
         const language_code = this.captions.caption_tracks[index].language_code;
 
         this.streaming_data.adaptive_formats.forEach((format) => {

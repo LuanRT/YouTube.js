@@ -21,7 +21,7 @@ import type AddBannerToLiveChatCommand from '../classes/livechat/AddBannerToLive
 import type RemoveBannerForLiveChatCommand from '../classes/livechat/RemoveBannerForLiveChatCommand.ts';
 import type ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipCommand.ts';
 
-import Proto from '../../proto/index.ts';
+import * as Proto from '../../proto/index.ts';
 import { InnertubeError, Platform } from '../../utils/Utils.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
 

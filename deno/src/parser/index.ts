@@ -1,5 +1,5 @@
-export { default as Parser } from './parser.ts';
-export * from './parser.ts';
+export * as Parser from './parser.ts';
+export * from './continuations.ts';
 export * from './types/index.ts';
 export * as Misc from './misc.ts';
 export * as YTNodes from './nodes.ts';
@@ -8,5 +8,5 @@ export * as YTMusic from './ytmusic/index.ts';
 export * as YTKids from './ytkids/index.ts';
 export * as Helpers from './helpers.ts';
 export * as Generator from './generator.ts';
-import Parser from './parser.ts';
+import * as Parser from './parser.ts';
 export default Parser;

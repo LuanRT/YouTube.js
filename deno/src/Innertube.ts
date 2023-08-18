@@ -19,7 +19,7 @@ import { Kids, Music, Studio } from './core/clients/index.ts';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.ts';
 import { Feed, TabbedFeed } from './core/mixins/index.ts';
 
-import Proto from './proto/index.ts';
+import * as Proto from './proto/index.ts';
 import * as Constants from './utils/Constants.ts';
 import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.ts';
 
@@ -38,11 +38,11 @@ import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.ts';
 import type { ApiResponse } from './core/Actions.ts';
 import type { IBrowseResponse, IParsedResponse } from './parser/types/index.ts';
 import type { INextRequest } from './types/index.ts';
-import type { DownloadOptions, FormatOptions } from './utils/FormatUtils.ts';
+import type { DownloadOptions, FormatOptions } from './types/FormatUtils.ts';
 
 export type InnertubeConfig = SessionOptions;
 
-export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS'
+export type InnerTubeClient = 'WEB' | 'iOS' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS';
 
 export type SearchFilters = Partial<{
   upload_date: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
