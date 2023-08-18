@@ -17,7 +17,7 @@ export default class MusicCarouselShelf extends YTNode {
   constructor(data: RawNode) {
     super();
     this.header = Parser.parseItem(data.header, MusicCarouselShelfBasicHeader);
-    this.contents = Parser.parseArray(data.contents, [MusicTwoRowItem, MusicResponsiveListItem, MusicMultiRowListItem, MusicNavigationButton ]);
+    this.contents = Parser.parseArray(data.contents, [ MusicTwoRowItem, MusicResponsiveListItem, MusicMultiRowListItem, MusicNavigationButton ]);
 
     if (Reflect.has(data, 'numItemsPerColumn')) {
       this.num_items_per_column = parseInt(data.numItemsPerColumn);

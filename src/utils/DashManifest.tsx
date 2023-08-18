@@ -1,3 +1,4 @@
+/* eslint-disable tsdoc/syntax */
 /** @jsxFactory DashUtils.createElement */
 /** @jsxFragmentFactory DashUtils.Fragment */
 import type Actions from '../core/Actions.js';

@@ -1,11 +1,11 @@
-import { YTNode } from "../helpers.js";
-import { Parser, type RawNode } from "../index.js";
-import { Text } from "../misc.js";
+import { YTNode } from '../helpers.js';
+import { Parser, type RawNode } from '../index.js';
+import { Text } from '../misc.js';
 
-import Menu from "./menus/Menu.js";
-import MusicItemThumbnailOverlay from "./MusicItemThumbnailOverlay.js";
-import MusicThumbnail from "./MusicThumbnail.js";
-import NavigationEndpoint from "./NavigationEndpoint.js";
+import Menu from './menus/Menu.js';
+import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.js';
+import MusicThumbnail from './MusicThumbnail.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
 export default class MusicMultiRowListItem extends YTNode {
   static type = 'MusicMultiRowListItem';
