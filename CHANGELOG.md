@@ -1,5 +1,38 @@
 # Changelog
 
+## [6.0.0](https://github.com/LuanRT/YouTube.js/compare/v5.8.0...v6.0.0) (2023-08-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace unnecessary classes with pure functions ([#468](https://github.com/LuanRT/YouTube.js/issues/468))
+
+### Features
+
+* **MusicResponsiveListItem:** Detect non music tracks properly ([815e54b](https://github.com/LuanRT/YouTube.js/commit/815e54b854fcda3f5423231c8495ce1fb69d8237))
+* **parser:** add `MusicMultiRowListItem` ([494ee87](https://github.com/LuanRT/YouTube.js/commit/494ee8776af0839d3ee2cca3d2fd836680cfdb9e))
+* **Session:** Add `IOS` to `ClientType` enum ([22a38c0](https://github.com/LuanRT/YouTube.js/commit/22a38c0762499de74f0aeb3ef01332f893518b08))
+* **VideoInfo:** support iOS client ([#467](https://github.com/LuanRT/YouTube.js/issues/467)) ([46fe18b](https://github.com/LuanRT/YouTube.js/commit/46fe18b763e0c943b24ea10fdf25456ab9ade709))
+
+
+### Bug Fixes
+
+* **Format:** Extracting audio language from captions ([#470](https://github.com/LuanRT/YouTube.js/issues/470)) ([31d27b1](https://github.com/LuanRT/YouTube.js/commit/31d27b1bca489ee0053d2783f1a956609845a901))
+* **parser:** Allow any property in the `RawResponse` interface ([3bc53a8](https://github.com/LuanRT/YouTube.js/commit/3bc53a8c12e65b22f19a3e337641196b692a94db))
+* **parser:** Logger logging `classdata` as `[Object object]` ([bf1510b](https://github.com/LuanRT/YouTube.js/commit/bf1510b235e3ee7d13d51f092babd1105c3d6b9f))
+* **Playlist:** Only try extracting the subtitle for the first page ([#465](https://github.com/LuanRT/YouTube.js/issues/465)) ([e370116](https://github.com/LuanRT/YouTube.js/commit/e3701160928e9e959b88ca215c6b0a44c70ca6e6))
+* **toDash:** Format grouping into AdaptationSets ([#462](https://github.com/LuanRT/YouTube.js/issues/462)) ([1ff3e1a](https://github.com/LuanRT/YouTube.js/commit/1ff3e1a440389e71055d4b201c29021ca5b39254))
+
+
+### Performance Improvements
+
+* Cleanup some unnecessary uses of `YTNode#key` and `Maybe` ([#463](https://github.com/LuanRT/YouTube.js/issues/463)) ([0dda97e](https://github.com/LuanRT/YouTube.js/commit/0dda97e0b03171de52d7f11a5abf78911e74cead))
+
+
+### Code Refactoring
+
+* replace unnecessary classes with pure functions ([#468](https://github.com/LuanRT/YouTube.js/issues/468)) ([87ed396](https://github.com/LuanRT/YouTube.js/commit/87ed3960ffa1c738b6f3b5acaf423647db4d367e))
+
 ## [5.8.0](https://github.com/LuanRT/YouTube.js/compare/v5.7.1...v5.8.0) (2023-07-30)
 
 
