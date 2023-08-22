@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/LuanRT/YouTube.js/compare/v6.0.0...v6.0.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* **SearchSubMenu:** Groups not being parsed due to a typo ([90be877](https://github.com/LuanRT/YouTube.js/commit/90be877d28e0ef013056eaeaa4f2765c91addd61))
+
 ## [6.0.0](https://github.com/LuanRT/YouTube.js/compare/v5.8.0...v6.0.0) (2023-08-18)
 
 
