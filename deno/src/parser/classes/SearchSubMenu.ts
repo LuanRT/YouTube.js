@@ -17,7 +17,7 @@ export default class SearchSubMenu extends YTNode {
     if (Reflect.has(data, 'title'))
       this.title = new Text(data.title);
 
-    if (!Reflect.has(data, 'groups'))
+    if (Reflect.has(data, 'groups'))
       this.groups = Parser.parseArray(data.groups, SearchFilterGroup);
 
     if (Reflect.has(data, 'button'))
