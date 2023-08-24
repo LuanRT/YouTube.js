@@ -55,7 +55,7 @@ function DashManifest({
     "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
     "xsi:schemaLocation": "urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd"
   }, /* @__PURE__ */ DashUtils.createElement("period", null, audio_sets.map((set, index) => /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
-    id: `audio_${index}`,
+    id: index,
     mimeType: set.mime_type,
     startWithSAP: "1",
     subsegmentAlignment: "true",
@@ -66,7 +66,7 @@ function DashManifest({
     schemeIdUri: "urn:mpeg:dash:role:2011",
     value: set.track_role
   }), set.track_name && /* @__PURE__ */ DashUtils.createElement("label", {
-    id: `audio_${index}`
+    id: index
   }, set.track_name), set.channels && /* @__PURE__ */ DashUtils.createElement("audio-channel-configuration", {
     schemeIdUri: "urn:mpeg:dash:23003:3:audio_channel_configuration:2011",
     value: set.channels
@@ -81,7 +81,7 @@ function DashManifest({
   }), /* @__PURE__ */ DashUtils.createElement(SegmentInfo, {
     info: rep.segment_info
   }))))), video_sets.map((set, index) => /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
-    id: `video_${index}`,
+    id: index + audio_sets.length,
     mimeType: set.mime_type,
     startWithSAP: "1",
     subsegmentAlignment: "true",
@@ -108,7 +108,7 @@ function DashManifest({
     info: rep.segment_info
   }))))), image_sets.map(async (set, index) => {
     return /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
-      id: `thumbs_${index}`,
+      id: index + audio_sets.length + video_sets.length,
       mimeType: await set.getMimeType(),
       contentType: "image"
     }, set.representations.map(async (rep) => /* @__PURE__ */ DashUtils.createElement("representation", {

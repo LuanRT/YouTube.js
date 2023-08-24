@@ -90,7 +90,7 @@ function DashManifest({
       {
         audio_sets.map((set, index) => (
           <adaptation-set
-            id={`audio_${index}`}
+            id={index}
             mimeType={set.mime_type}
             startWithSAP="1"
             subsegmentAlignment="true"
@@ -107,7 +107,7 @@ function DashManifest({
             }
             {
               set.track_name &&
-              <label id={`audio_${index}`}>
+              <label id={index}>
                 {set.track_name}
               </label>
             }
@@ -143,7 +143,7 @@ function DashManifest({
       {
         video_sets.map((set, index) => (
           <adaptation-set
-            id={`video_${index}`}
+            id={index + audio_sets.length}
             mimeType={set.mime_type}
             startWithSAP="1"
             subsegmentAlignment="true"
@@ -192,7 +192,7 @@ function DashManifest({
       {
         image_sets.map(async (set, index) => {
           return <adaptation-set
-            id={`thumbs_${index}`}
+            id={index + audio_sets.length + video_sets.length}
             mimeType={await set.getMimeType()}
             contentType="image"
           >
