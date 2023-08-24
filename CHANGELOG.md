@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.2](https://github.com/LuanRT/YouTube.js/compare/v6.0.1...v6.0.2) (2023-08-24)
+
+
+### Bug Fixes
+
+* invalid set ids in dash manifest ([#480](https://github.com/LuanRT/YouTube.js/issues/480)) ([1c3ea2a](https://github.com/LuanRT/YouTube.js/commit/1c3ea2acd38652c6b40a0817a7836c672a776c4e))
+
 ## [6.0.1](https://github.com/LuanRT/YouTube.js/compare/v6.0.0...v6.0.1) (2023-08-22)
 
 
