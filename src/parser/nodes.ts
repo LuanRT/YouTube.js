@@ -8,6 +8,7 @@ export { default as AccountSectionList } from './classes/AccountSectionList.js';
 export { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction.js';
 export { default as OpenPopupAction } from './classes/actions/OpenPopupAction.js';
 export { default as Alert } from './classes/Alert.js';
+export { default as AlertWithButton } from './classes/AlertWithButton.js';
 export { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics.js';
 export { default as AnalyticsRoot } from './classes/analytics/AnalyticsRoot.js';
 export { default as AnalyticsShortsCarouselCard } from './classes/analytics/AnalyticsShortsCarouselCard.js';
