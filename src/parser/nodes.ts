@@ -67,6 +67,7 @@ export { default as SponsorCommentBadge } from './classes/comments/SponsorCommen
 export { default as CompactChannel } from './classes/CompactChannel.js';
 export { default as CompactLink } from './classes/CompactLink.js';
 export { default as CompactMix } from './classes/CompactMix.js';
+export { default as CompactMovie } from './classes/CompactMovie.js';
 export { default as CompactPlaylist } from './classes/CompactPlaylist.js';
 export { default as CompactStation } from './classes/CompactStation.js';
 export { default as CompactVideo } from './classes/CompactVideo.js';
