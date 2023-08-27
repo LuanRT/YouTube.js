@@ -8,6 +8,7 @@ export { default as AccountSectionList } from './classes/AccountSectionList.ts';
 export { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction.ts';
 export { default as OpenPopupAction } from './classes/actions/OpenPopupAction.ts';
 export { default as Alert } from './classes/Alert.ts';
+export { default as AlertWithButton } from './classes/AlertWithButton.ts';
 export { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics.ts';
 export { default as AnalyticsRoot } from './classes/analytics/AnalyticsRoot.ts';
 export { default as AnalyticsShortsCarouselCard } from './classes/analytics/AnalyticsShortsCarouselCard.ts';
@@ -36,6 +37,7 @@ export { default as ChannelAboutFullMetadata } from './classes/ChannelAboutFullM
 export { default as ChannelAgeGate } from './classes/ChannelAgeGate.ts';
 export { default as ChannelFeaturedContent } from './classes/ChannelFeaturedContent.ts';
 export { default as ChannelHeaderLinks } from './classes/ChannelHeaderLinks.ts';
+export { default as ChannelHeaderLinksView } from './classes/ChannelHeaderLinksView.ts';
 export { default as ChannelMetadata } from './classes/ChannelMetadata.ts';
 export { default as ChannelMobileHeader } from './classes/ChannelMobileHeader.ts';
 export { default as ChannelOptions } from './classes/ChannelOptions.ts';
@@ -67,6 +69,7 @@ export { default as SponsorCommentBadge } from './classes/comments/SponsorCommen
 export { default as CompactChannel } from './classes/CompactChannel.ts';
 export { default as CompactLink } from './classes/CompactLink.ts';
 export { default as CompactMix } from './classes/CompactMix.ts';
+export { default as CompactMovie } from './classes/CompactMovie.ts';
 export { default as CompactPlaylist } from './classes/CompactPlaylist.ts';
 export { default as CompactStation } from './classes/CompactStation.ts';
 export { default as CompactVideo } from './classes/CompactVideo.ts';

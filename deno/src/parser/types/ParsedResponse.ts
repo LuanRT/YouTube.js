@@ -15,6 +15,7 @@ import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.t
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.ts';
 import type VideoDetails from '../classes/misc/VideoDetails.ts';
 import type Alert from '../classes/Alert.ts';
+import type AlertWithButton from '../classes/AlertWithButton.ts';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.ts';
 import type EngagementPanelSectionList from '../classes/EngagementPanelSectionList.ts';
@@ -44,7 +45,7 @@ export interface IParsedResponse {
   metadata?: SuperParsedResult<YTNode>;
   microformat?: YTNode;
   overlay?: YTNode;
-  alerts?: ObservedArray<Alert>;
+  alerts?: ObservedArray<Alert | AlertWithButton>;
   refinements?: string[];
   estimated_results?: number;
   player_overlays?: SuperParsedResult<YTNode>;
@@ -122,7 +123,7 @@ export interface IBrowseResponse {
   header_memo?: Memo;
   metadata?: SuperParsedResult<YTNode>;
   microformat?: YTNode;
-  alerts?: ObservedArray<Alert>;
+  alerts?: ObservedArray<Alert | AlertWithButton>;
   sidebar?: YTNode;
   sidebar_memo?: Memo;
 }

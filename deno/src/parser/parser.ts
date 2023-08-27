@@ -6,6 +6,7 @@ import PlayerCaptionsTracklist from './classes/PlayerCaptionsTracklist.ts';
 import PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec.ts';
 import PlayerStoryboardSpec from './classes/PlayerStoryboardSpec.ts';
 import Alert from './classes/Alert.ts';
+import AlertWithButton from './classes/AlertWithButton.ts';
 
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.ts';
 
@@ -310,7 +311,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.overlay = overlay;
   }
 
-  const alerts = parseArray(data.alerts, Alert);
+  const alerts = parseArray(data.alerts, [ Alert, AlertWithButton ]);
   if (alerts.length) {
     parsed_data.alerts = alerts;
   }

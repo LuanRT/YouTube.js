@@ -46,6 +46,74 @@ export default class Text {
     }
   }
 
+  static fromAttributed(data: RawNode): Text {
+    const runs: {
+      text: string,
+      navigationEndpoint?: RawNode,
+      attachment?: RawNode
+    }[] = [];
+
+    const content = data.content;
+    const command_runs = data.commandRuns;
+
+    let last_end_index = 0;
+
+    if (command_runs) {
+      for (const item of command_runs) {
+        const length: number = item.length;
+        const start_index: number = item.startIndex;
+
+        if (start_index > last_end_index) {
+          runs.push({
+            text: content.slice(last_end_index, start_index)
+          });
+        }
+
+        if (Reflect.has(item, 'onTap')) {
+          let attachment = null;
+
+          if (Reflect.has(data, 'attachmentRuns')) {
+            const attachment_runs = data.attachmentRuns;
+
+            for (const attatchment_run of attachment_runs) {
+              if ((attatchment_run.startIndex - 2) == start_index) {
+                attachment = attatchment_run;
+                break;
+              }
+            }
+          }
+
+          if (attachment) {
+            runs.push({
+              text: content.slice(start_index, start_index + length),
+              navigationEndpoint: item.onTap,
+              attachment
+            });
+          } else {
+            runs.push({
+              text: content.slice(start_index, start_index + length),
+              navigationEndpoint: item.onTap
+            });
+          }
+        }
+
+        last_end_index = start_index + length;
+      }
+
+      if (last_end_index < content.length) {
+        runs.push({
+          text: content.slice(last_end_index)
+        });
+      }
+    } else {
+      runs.push({
+        text: content
+      });
+    }
+
+    return new Text({ runs });
+  }
+
   /**
    * Converts the text to HTML.
    * @returns The HTML.
