@@ -36,6 +36,7 @@ export { default as ChannelAboutFullMetadata } from './classes/ChannelAboutFullM
 export { default as ChannelAgeGate } from './classes/ChannelAgeGate.js';
 export { default as ChannelFeaturedContent } from './classes/ChannelFeaturedContent.js';
 export { default as ChannelHeaderLinks } from './classes/ChannelHeaderLinks.js';
+export { default as ChannelHeaderLinksView } from './classes/ChannelHeaderLinksView.js';
 export { default as ChannelMetadata } from './classes/ChannelMetadata.js';
 export { default as ChannelMobileHeader } from './classes/ChannelMobileHeader.js';
 export { default as ChannelOptions } from './classes/ChannelOptions.js';
