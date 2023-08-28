@@ -217,10 +217,17 @@ export default class Session extends EventEmitterLike {
   ) {
     let session_data: SessionData;
 
+    let session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data };
+
     if (generate_session_locally) {
-      session_data = this.#generateSessionData({ lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data });
+      session_data = this.#generateSessionData(session_args);
     } else {
-      session_data = await this.#retrieveSessionData({ lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data }, fetch);
+      try {
+        // This can fail if the data changes or the request is blocked for some reason.
+        session_data = await this.#retrieveSessionData(session_args, fetch);
+      } catch (err) {
+        session_data = this.#generateSessionData(session_args);
+      }
     }
 
     return { ...session_data, account_index };
@@ -264,7 +271,7 @@ export default class Session extends EventEmitterLike {
 
     const api_version = `v${ytcfg[0][0][6]}`;
 
-    const [ [ device_info ], api_key ] = ytcfg;
+    const [[device_info], api_key] = ytcfg;
 
     const context: Context = {
       client: {
