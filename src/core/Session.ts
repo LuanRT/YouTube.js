@@ -217,7 +217,7 @@ export default class Session extends EventEmitterLike {
   ) {
     let session_data: SessionData;
 
-    let session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data };
+    const session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data };
 
     if (generate_session_locally) {
       session_data = this.#generateSessionData(session_args);
@@ -271,7 +271,7 @@ export default class Session extends EventEmitterLike {
 
     const api_version = `v${ytcfg[0][0][6]}`;
 
-    const [[device_info], api_key] = ytcfg;
+    const [ [ device_info ], api_key ] = ytcfg;
 
     const context: Context = {
       client: {
