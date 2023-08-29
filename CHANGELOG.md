@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.2.0](https://github.com/LuanRT/YouTube.js/compare/v6.1.0...v6.2.0) (2023-08-29)
+
+
+### Features
+
+* **Session:** Add fallback for session data retrieval ([#490](https://github.com/LuanRT/YouTube.js/issues/490)) ([10c15bf](https://github.com/LuanRT/YouTube.js/commit/10c15bfb9f131a2acea2f26ff3328993d8d8f4aa))
+
+
+### Bug Fixes
+
+* **Format:** Fix `is_original` always being `true` ([#492](https://github.com/LuanRT/YouTube.js/issues/492)) ([0412fa0](https://github.com/LuanRT/YouTube.js/commit/0412fa05ff1f00960b398c2f18d5ce39ce0cb864))
+
 ## [6.1.0](https://github.com/LuanRT/YouTube.js/compare/v6.0.2...v6.1.0) (2023-08-27)
 
 
