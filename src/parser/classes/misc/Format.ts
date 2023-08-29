@@ -104,7 +104,7 @@ export default class Format {
       this.language = xtags?.find((x: string) => x.startsWith('lang='))?.split('=')[1] || null;
       this.is_dubbed = audio_content === 'dubbed';
       this.is_descriptive = audio_content === 'descriptive';
-      this.is_original = audio_content === 'original' || !this.is_dubbed || !this.is_descriptive;
+      this.is_original = audio_content === 'original' || (!this.is_dubbed && !this.is_descriptive);
 
       if (Reflect.has(data, 'audioTrack')) {
         this.audio_track = {
