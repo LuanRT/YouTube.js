@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.3.0](https://github.com/LuanRT/YouTube.js/compare/v6.2.0...v6.3.0) (2023-08-31)
+
+
+### Features
+
+* **ChannelMetadata:** Add `music_artist_name` ([#497](https://github.com/LuanRT/YouTube.js/issues/497)) ([91de6e5](https://github.com/LuanRT/YouTube.js/commit/91de6e5c0e5b27e6d12ce5db2f500c5ff78b9830))
+* **Session:** Add on_behalf_of_user session option. ([#494](https://github.com/LuanRT/YouTube.js/issues/494)) ([8bc2aaa](https://github.com/LuanRT/YouTube.js/commit/8bc2aaa3587fcf79f69eedbc2bf422a4c6fa7eb1))
+
+
+### Bug Fixes
+
+* **CompactMovie:** Add missing import and remove unnecessary console.log ([#496](https://github.com/LuanRT/YouTube.js/issues/496)) ([c26972c](https://github.com/LuanRT/YouTube.js/commit/c26972c42a6368822ac254c00f1bbee5a1542486))
+
 ## [6.2.0](https://github.com/LuanRT/YouTube.js/compare/v6.1.0...v6.2.0) (2023-08-29)
 
 
