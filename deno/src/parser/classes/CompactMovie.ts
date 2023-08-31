@@ -3,6 +3,7 @@ import type { RawNode } from '../index.ts';
 import Parser from '../index.ts';
 import Author from './misc/Author.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 import Menu from './menus/Menu.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
@@ -29,7 +30,6 @@ export default class CompactMovie extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    console.log(data);
     const overlay_time_status = data.thumbnailOverlays
       .find((overlay: RawNode) => overlay.thumbnailOverlayTimeStatusRenderer)
       ?.thumbnailOverlayTimeStatusRenderer.text || 'N/A';

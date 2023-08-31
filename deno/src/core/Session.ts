@@ -63,6 +63,7 @@ export interface Context {
   user: {
     enableSafetyMode: boolean;
     lockedSafetyMode: boolean;
+    onBehalfOfUser?: string;
   };
   thirdParty?: {
     embedUrl: string;
@@ -84,6 +85,10 @@ export interface SessionOptions {
    * Only works if you are signed in with cookies.
    */
   account_index?: number;
+  /**
+   * Specify the Page ID of the YouTube profile/channel to use, if the logged-in account has multiple profiles.
+   */
+  on_behalf_of_user?: string;
   /**
    * Specifies whether to retrieve the JS player. Disabling this will make session creation faster.
    * **NOTE:** Deciphering formats is not possible without the JS player.
@@ -193,7 +198,8 @@ export default class Session extends EventEmitterLike {
       options.device_category,
       options.client_type,
       options.timezone,
-      options.fetch
+      options.fetch,
+      options.on_behalf_of_user
     );
 
     return new Session(
@@ -213,11 +219,12 @@ export default class Session extends EventEmitterLike {
     device_category: DeviceCategory = 'desktop',
     client_name: ClientType = ClientType.WEB,
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
-    fetch: FetchFunction = Platform.shim.fetch
+    fetch: FetchFunction = Platform.shim.fetch,
+    on_behalf_of_user?: string
   ) {
     let session_data: SessionData;
 
-    const session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data };
+    const session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data, on_behalf_of_user };
 
     if (generate_session_locally) {
       session_data = this.#generateSessionData(session_args);
@@ -241,6 +248,7 @@ export default class Session extends EventEmitterLike {
     client_name: string;
     enable_safety_mode: boolean;
     visitor_data: string;
+    on_behalf_of_user?: string;
   }, fetch: FetchFunction = Platform.shim.fetch): Promise<SessionData> {
     const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
 
@@ -300,7 +308,8 @@ export default class Session extends EventEmitterLike {
       },
       user: {
         enableSafetyMode: options.enable_safety_mode,
-        lockedSafetyMode: false
+        lockedSafetyMode: false,
+        onBehalfOfUser: options.on_behalf_of_user
       }
     };
 
@@ -315,6 +324,7 @@ export default class Session extends EventEmitterLike {
     client_name: string;
     enable_safety_mode: boolean;
     visitor_data: string;
+    on_behalf_of_user?: string;
   }): SessionData {
     let visitor_id = generateRandomString(11);
 
@@ -347,7 +357,8 @@ export default class Session extends EventEmitterLike {
       },
       user: {
         enableSafetyMode: options.enable_safety_mode,
-        lockedSafetyMode: false
+        lockedSafetyMode: false,
+        onBehalfOfUser: options.on_behalf_of_user
       }
     };
 
