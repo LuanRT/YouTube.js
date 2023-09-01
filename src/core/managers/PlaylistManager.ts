@@ -200,4 +200,60 @@ export default class PlaylistManager {
       action_result: response.data.actions // TODO: implement actions in the parser
     };
   }
+
+  /**
+   * Sets the name (title) for the given playlist.
+   * @param playlist_id - The playlist ID.
+   * @param name - The name / title to use for the playlist.
+   */
+  async setName(playlist_id: string, name: string): Promise<{ playlist_id: string; action_result: any; }> {
+    throwIfMissing({ playlist_id, name });
+
+    if (!this.#actions.session.logged_in)
+      throw new InnertubeError('You must be signed in to perform this operation.');
+
+    const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
+
+    payload.actions.push({
+      action: 'ACTION_SET_PLAYLIST_NAME',
+      playlist_name: name
+    });
+
+    const response = await this.#actions.execute(
+      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build(payload)
+    );
+
+    return {
+      playlist_id,
+      action_result: response.data.actions
+    };
+  }
+
+  /**
+   * Sets the description for the given playlist.
+   * @param playlist_id - The playlist ID.
+   * @param description - The description to use for the playlist.
+   */
+  async setDescription(playlist_id: string, description: string): Promise<{ playlist_id: string; action_result: any; }> {
+    throwIfMissing({ playlist_id, description });
+
+    if (!this.#actions.session.logged_in)
+      throw new InnertubeError('You must be signed in to perform this operation.');
+
+    const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
+
+    payload.actions.push({
+      action: 'ACTION_SET_PLAYLIST_DESCRIPTION',
+      playlist_description: description
+    });
+
+    const response = await this.#actions.execute(
+      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build(payload)
+    );
+
+    return {
+      playlist_id,
+      action_result: response.data.actions
+    };
+  }
 }
