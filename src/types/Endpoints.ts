@@ -334,18 +334,22 @@ export type EditPlaylistEndpointOptions = {
    * The changes to make to the playlist.
    */
   actions: {
-    action: 'ACTION_ADD_VIDEO' | 'ACTION_REMOVE_VIDEO' | 'ACTION_MOVE_VIDEO_AFTER';
+    action: 'ACTION_ADD_VIDEO' | 'ACTION_REMOVE_VIDEO' | 'ACTION_MOVE_VIDEO_AFTER' | 'ACTION_SET_PLAYLIST_DESCRIPTION' | 'ACTION_SET_PLAYLIST_NAME';
     added_video_id?: string;
     set_video_id?: string;
     moved_set_video_id_predecessor?: string;
+    playlist_description?: string;
+    playlist_name?: string;
   }[];
 }
 
 export interface IEditPlaylistRequest extends ObjectSnakeToCamel<EditPlaylistEndpointOptions> {
   actions: {
-    action: 'ACTION_ADD_VIDEO' | 'ACTION_REMOVE_VIDEO' | 'ACTION_MOVE_VIDEO_AFTER';
+    action: 'ACTION_ADD_VIDEO' | 'ACTION_REMOVE_VIDEO' | 'ACTION_MOVE_VIDEO_AFTER' | 'ACTION_SET_PLAYLIST_DESCRIPTION' | 'ACTION_SET_PLAYLIST_NAME';
     addedVideoId?: string;
     setVideoId?: string;
     movedSetVideoIdPredecessor?: string;
+    playlistDescription?: string;
+    playlistName?: string;
   }[];
 }

@@ -10,6 +10,8 @@ Playlist management class.
   * [.addVideos(playlist_id, video_ids)](#addvideos) 
   * [.removeVideos(playlist_id, video_ids)](#removevideos) 
   * [.moveVideo(playlist_id, moved_video_id, predecessor_video_id)](#movevideo) 
+  * [.setName(playlist_id, name)](#setname) 
+  * [.setDescription(playlist_id, description)](#setdescription) 
 
 <a name="create"></a>
 ### create(title, video_ids)
@@ -70,3 +72,28 @@ Moves a video to a new position within a given playlist.
 | playlist_id | `string` | Playlist id |
 | moved_video_id | `string` | the video to be moved |
 | predecessor_video_id | `string` | the video present in the target position |
+
+<a name="setname"></a>
+### setName(playlist_id, name)
+
+Sets the name / title for the given playlist.
+
+**Returns:** `Promise.<ApiResponse>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| playlist_id | `string` | Playlist id |
+| name | `string` | Name / title |
+
+
+<a name="setdescription"></a>
+### setDescription(playlist_id, description)
+
+Sets the description for the given playlist.
+
+**Returns:** `Promise.<ApiResponse>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| playlist_id | `string` | Playlist id |
+| description | `string` | Description |
