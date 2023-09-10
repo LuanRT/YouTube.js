@@ -344,19 +344,19 @@ export default class Innertube {
     const next_response = await this.actions.execute(NextEndpoint.PATH, { ...NextEndpoint.build({ video_id }), parse: true });
 
     if (!next_response.engagement_panels)
-      throw new InnertubeError('Engagement panels not found. Video likely has no transcript.', next_response);
+      throw new InnertubeError('Engagement panels not found. Video likely has no transcript.');
 
     const transcript_panel = next_response.engagement_panels.get({
       panel_identifier: 'engagement-panel-searchable-transcript'
     });
 
     if (!transcript_panel)
-      throw new InnertubeError('Transcript panel not found.', next_response);
+      throw new InnertubeError('Transcript panel not found.');
 
     const transcript_continuation = transcript_panel.content?.as(ContinuationItem);
 
     if (!transcript_continuation)
-      throw new InnertubeError('Transcript continuation not found.', transcript_panel);
+      throw new InnertubeError('Transcript continuation not found.');
 
     const transcript_response = await transcript_continuation.endpoint.call<IGetTranscriptResponse>(this.actions, { parse: true });
 
