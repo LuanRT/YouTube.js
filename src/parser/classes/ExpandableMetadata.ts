@@ -32,7 +32,7 @@ export default class ExpandableMetadata extends YTNode {
       };
     }
 
-    this.expanded_content = Parser.parseItem(data.expandedContent, [HorizontalCardList, HorizontalList]);
+    this.expanded_content = Parser.parseItem(data.expandedContent, [ HorizontalCardList, HorizontalList ]);
     this.expand_button = Parser.parseItem(data.expandButton, Button);
     this.collapse_button = Parser.parseItem(data.collapseButton, Button);
   }
