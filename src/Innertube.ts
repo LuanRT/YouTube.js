@@ -351,7 +351,7 @@ export default class Innertube {
     });
 
     if (!transcript_panel)
-      throw new InnertubeError('Transcript panel not found.');
+      throw new InnertubeError('Transcript panel not found. Video likely has no transcript.');
 
     const transcript_continuation = transcript_panel.content?.as(ContinuationItem);
 
