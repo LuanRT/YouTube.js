@@ -7,6 +7,7 @@ import PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec.js';
 import PlayerStoryboardSpec from './classes/PlayerStoryboardSpec.js';
 import Alert from './classes/Alert.js';
 import AlertWithButton from './classes/AlertWithButton.js';
+import EngagementPanelSectionList from './classes/EngagementPanelSectionList.js';
 
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
@@ -21,7 +22,13 @@ import { Memo, observe, SuperParsedResult } from './helpers.js';
 import * as YTNodes from './nodes.js';
 import type { KeyInfo } from './generator.js';
 import { camelToSnake, generateRuntimeClass, generateTypescriptClass } from './generator.js';
-import { Continuation, ItemSectionContinuation, SectionListContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation, GridContinuation, PlaylistPanelContinuation, NavigateAction, ShowMiniplayerCommand, ReloadContinuationItemsCommand } from './continuations.js';
+
+import {
+  Continuation, ItemSectionContinuation, SectionListContinuation,
+  LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
+  GridContinuation, PlaylistPanelContinuation, NavigateAction, ShowMiniplayerCommand,
+  ReloadContinuationItemsCommand
+} from './continuations.js';
 
 export type ParserError = {
   classname: string,
@@ -82,8 +89,8 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
           new InnertubeError(
             `Something went wrong at ${classname}!\n` +
             `This is a bug, please report it at ${Platform.shim.info.bugs_url}`, {
-              stack: context.error.stack
-            }
+            stack: context.error.stack
+          }
           )
         );
       }
@@ -125,7 +132,7 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
     case 'class_changed':
       console.warn(
         `${classname} changed!\n` +
-        `The following keys where altered: ${context.changed_keys.map(([ key ]) => camelToSnake(key)).join(', ')}\n` +
+        `The following keys where altered: ${context.changed_keys.map(([key]) => camelToSnake(key)).join(', ')}\n` +
         `The class has changed to:\n${generateTypescriptClass(classname, context.key_info)}`
       );
       break;
@@ -155,7 +162,7 @@ function _addToMemo(classname: string, result: YTNode) {
 
   const list = MEMO.get(classname);
   if (!list)
-    return MEMO.set(classname, [ result ]);
+    return MEMO.set(classname, [result]);
 
   list.push(result);
 }
@@ -289,6 +296,14 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   }
   _clearMemo();
 
+  _createMemo();
+  const items = parse(data.items);
+  if (items) {
+    parsed_data.items = items;
+    parsed_data.items_memo = _getMemo();
+  }
+  _clearMemo();
+
   applyMutations(contents_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
 
   const continuation = data.continuation ? parseC(data.continuation) : null;
@@ -311,7 +326,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.overlay = overlay;
   }
 
-  const alerts = parseArray(data.alerts, [ Alert, AlertWithButton ]);
+  const alerts = parseArray(data.alerts, [Alert, AlertWithButton]);
   if (alerts.length) {
     parsed_data.alerts = alerts;
   }
@@ -389,7 +404,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.annotations = annotations;
   }
 
-  const storyboards = parseItem(data.storyboards, [ PlayerStoryboardSpec, PlayerLiveStoryboardSpec ]);
+  const storyboards = parseItem(data.storyboards, [PlayerStoryboardSpec, PlayerLiveStoryboardSpec]);
   if (storyboards) {
     parsed_data.storyboards = storyboards;
   }
@@ -404,20 +419,10 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.cards = cards;
   }
 
-  const engagement_panels = data.engagementPanels?.map((e) => {
-    const item = parseItem(e, YTNodes.EngagementPanelSectionList) as YTNodes.EngagementPanelSectionList;
-    return item;
-  });
-  if (engagement_panels) {
+  const engagement_panels = parseArray(data.engagementPanels, EngagementPanelSectionList);
+  if (engagement_panels.length) {
     parsed_data.engagement_panels = engagement_panels;
   }
-  _createMemo();
-  const items = parse(data.items);
-  if (items) {
-    parsed_data.items = items;
-    parsed_data.items_memo = _getMemo();
-  }
-  _clearMemo();
 
   return parsed_data;
 }
@@ -429,7 +434,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
  */
 export function parseItem<T extends YTNode, K extends YTNodeConstructor<T>[]>(data: RawNode | undefined, validTypes: K): InstanceType<K[number]> | null;
 export function parseItem<T extends YTNode>(data: RawNode | undefined, validTypes: YTNodeConstructor<T>): T | null;
-export function parseItem(data?: RawNode) : YTNode;
+export function parseItem(data?: RawNode): YTNode;
 export function parseItem(data?: RawNode, validTypes?: YTNodeConstructor | YTNodeConstructor[]) {
   if (!data) return null;
 
