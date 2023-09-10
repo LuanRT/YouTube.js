@@ -278,6 +278,7 @@ const yt = await Innertube.create({
   * [.getPlaylist(id)](#getplaylist)
   * [.getHashtag(hashtag)](#gethashtag)
   * [.getStreamingData(video_id, options)](#getstreamingdata)
+  * [.getTranscript(video_id)](#gettranscript)
   * [.download(video_id, options?)](#download)
   * [.resolveURL(url)](#resolveurl)
   * [.call(endpoint, args?)](#call)
