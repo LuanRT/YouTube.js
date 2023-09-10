@@ -660,6 +660,16 @@ console.info('Playback url:', url);
 | video_id | `string` | Video id |
 | options | `FormatOptions` | Format options |
 
+<a name="gettranscript"></a>
+### `getTranscript(video_id)`
+Retrieves a given video's transcript.
+
+**Returns**: `Promise<Transcript>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| video_id | `string` | Video id |
+
 <a name="download"></a>
 ### `download(video_id, options?)`
 Downloads a given video.

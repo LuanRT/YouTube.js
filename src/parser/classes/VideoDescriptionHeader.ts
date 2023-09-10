@@ -3,6 +3,8 @@ import Parser, { type RawNode } from '../index.js';
 import { Text, Thumbnail } from '../misc.js';
 import Factoid from './Factoid.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
+import UploadTimeFactoid from './UploadTimeFactoid.js';
+import ViewCountFactoid from './ViewCountFactoid.js';
 
 export default class VideoDescriptionHeader extends YTNode {
   static type = 'VideoDescriptionHeader';
@@ -10,7 +12,7 @@ export default class VideoDescriptionHeader extends YTNode {
   channel: Text;
   channel_navigation_endpoint?: NavigationEndpoint;
   channel_thumbnail: Thumbnail[];
-  factoids: ObservedArray<Factoid>;
+  factoids: ObservedArray<Factoid | ViewCountFactoid | UploadTimeFactoid>;
   publish_date: Text;
   title: Text;
   views: Text;
@@ -23,6 +25,6 @@ export default class VideoDescriptionHeader extends YTNode {
     this.channel_thumbnail = Thumbnail.fromResponse(data.channelThumbnail);
     this.publish_date = new Text(data.publishDate);
     this.views = new Text(data.views);
-    this.factoids = Parser.parseArray(data.factoid, Factoid);
+    this.factoids = Parser.parseArray(data.factoid, [ Factoid, ViewCountFactoid, UploadTimeFactoid ]);
   }
 }
