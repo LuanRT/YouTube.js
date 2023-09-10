@@ -2,6 +2,7 @@ import { YTNode } from '../helpers.ts';
 import Parser, { type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import HorizontalCardList from './HorizontalCardList.ts';
+import HorizontalList from './HorizontalList.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';
 
@@ -15,7 +16,7 @@ export default class ExpandableMetadata extends YTNode {
     expanded_title: Text;
   };
 
-  expanded_content: HorizontalCardList | null;
+  expanded_content: HorizontalCardList | HorizontalList | null;
   expand_button: Button | null;
   collapse_button: Button | null;
 
@@ -31,7 +32,7 @@ export default class ExpandableMetadata extends YTNode {
       };
     }
 
-    this.expanded_content = Parser.parseItem(data.expandedContent, HorizontalCardList);
+    this.expanded_content = Parser.parseItem(data.expandedContent, [ HorizontalCardList, HorizontalList ]);
     this.expand_button = Parser.parseItem(data.expandButton, Button);
     this.collapse_button = Parser.parseItem(data.collapseButton, Button);
   }

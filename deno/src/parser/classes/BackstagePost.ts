@@ -1,5 +1,6 @@
 import { YTNode } from '../helpers.ts';
 import Parser, { type RawNode } from '../index.ts';
+import Button from './Button.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import CommentActionButtons from './comments/CommentActionButtons.ts';
 import Menu from './menus/Menu.ts';
@@ -18,7 +19,7 @@ export default class BackstagePost extends YTNode {
   vote_count?: Text;
   menu?: Menu | null;
   action_buttons?: CommentActionButtons | null;
-  vote_button?: CommentActionButtons | null;
+  vote_button?: Button | null;
   surface: string;
   endpoint?: NavigationEndpoint;
   attachment;
@@ -56,7 +57,7 @@ export default class BackstagePost extends YTNode {
     }
 
     if (Reflect.has(data, 'voteButton')) {
-      this.vote_button = Parser.parseItem(data.voteButton, CommentActionButtons);
+      this.vote_button = Parser.parseItem(data.voteButton, Button);
     }
 
     if (Reflect.has(data, 'navigationEndpoint')) {
