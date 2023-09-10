@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.4.0](https://github.com/LuanRT/YouTube.js/compare/v6.3.0...v6.4.0) (2023-09-10)
+
+
+### Features
+
+* Add support for retrieving transcripts ([#500](https://github.com/LuanRT/YouTube.js/issues/500)) ([f94ea6c](https://github.com/LuanRT/YouTube.js/commit/f94ea6cf917f63f30dd66514b22a4cf43b948f07))
+* **PlaylistManager:** add .setName() and .setDescription() functions for editing playlists ([#498](https://github.com/LuanRT/YouTube.js/issues/498)) ([86fb33e](https://github.com/LuanRT/YouTube.js/commit/86fb33ed03a127d9fd4caa695ca97642bffe61bd))
+
+
+### Bug Fixes
+
+* **BackstagePost:** `vote_button` type mismatch ([fba3fc9](https://github.com/LuanRT/YouTube.js/commit/fba3fc971454d66d80d4920fbd60889a221de381))
+
 ## [6.3.0](https://github.com/LuanRT/YouTube.js/compare/v6.2.0...v6.3.0) (2023-08-31)
 
 
