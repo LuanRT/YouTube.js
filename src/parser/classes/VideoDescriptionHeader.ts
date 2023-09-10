@@ -25,6 +25,6 @@ export default class VideoDescriptionHeader extends YTNode {
     this.channel_thumbnail = Thumbnail.fromResponse(data.channelThumbnail);
     this.publish_date = new Text(data.publishDate);
     this.views = new Text(data.views);
-    this.factoids = Parser.parseArray(data.factoid, [Factoid, ViewCountFactoid, UploadTimeFactoid]);
+    this.factoids = Parser.parseArray(data.factoid, [ Factoid, ViewCountFactoid, UploadTimeFactoid ]);
   }
 }

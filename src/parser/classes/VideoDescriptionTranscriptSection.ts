@@ -1,7 +1,8 @@
-import { YTNode } from "../helpers.js";
-import Parser, { RawNode } from "../index.js";
-import { Text } from "../misc.js";
-import Button from "./Button.js";
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+import Parser from '../index.js';
+import { Text } from '../misc.js';
+import Button from './Button.js';
 
 export default class VideoDescriptionTranscriptSection extends YTNode {
   static type = 'VideoDescriptionTranscriptSection';

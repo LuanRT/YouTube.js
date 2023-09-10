@@ -19,7 +19,7 @@ export default class EngagementPanelSectionList extends YTNode {
   constructor(data: RawNode) {
     super();
     this.header = Parser.parseItem(data.header, EngagementPanelTitleHeader);
-    this.content = Parser.parseItem(data.content, [ SectionList, ContinuationItem, StructuredDescriptionContent, MacroMarkersList, ProductList]);
+    this.content = Parser.parseItem(data.content, [ SectionList, ContinuationItem, StructuredDescriptionContent, MacroMarkersList, ProductList ]);
     this.panel_identifier = data.panelIdentifier;
     this.target_id = data.targetId;
     this.visibility = data.visibility;

@@ -89,8 +89,8 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
           new InnertubeError(
             `Something went wrong at ${classname}!\n` +
             `This is a bug, please report it at ${Platform.shim.info.bugs_url}`, {
-            stack: context.error.stack
-          }
+              stack: context.error.stack
+            }
           )
         );
       }
@@ -132,7 +132,7 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
     case 'class_changed':
       console.warn(
         `${classname} changed!\n` +
-        `The following keys where altered: ${context.changed_keys.map(([key]) => camelToSnake(key)).join(', ')}\n` +
+        `The following keys where altered: ${context.changed_keys.map(([ key ]) => camelToSnake(key)).join(', ')}\n` +
         `The class has changed to:\n${generateTypescriptClass(classname, context.key_info)}`
       );
       break;
@@ -162,7 +162,7 @@ function _addToMemo(classname: string, result: YTNode) {
 
   const list = MEMO.get(classname);
   if (!list)
-    return MEMO.set(classname, [result]);
+    return MEMO.set(classname, [ result ]);
 
   list.push(result);
 }
@@ -326,7 +326,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.overlay = overlay;
   }
 
-  const alerts = parseArray(data.alerts, [Alert, AlertWithButton]);
+  const alerts = parseArray(data.alerts, [ Alert, AlertWithButton ]);
   if (alerts.length) {
     parsed_data.alerts = alerts;
   }
@@ -404,7 +404,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.annotations = annotations;
   }
 
-  const storyboards = parseItem(data.storyboards, [PlayerStoryboardSpec, PlayerLiveStoryboardSpec]);
+  const storyboards = parseItem(data.storyboards, [ PlayerStoryboardSpec, PlayerLiveStoryboardSpec ]);
   if (storyboards) {
     parsed_data.storyboards = storyboards;
   }

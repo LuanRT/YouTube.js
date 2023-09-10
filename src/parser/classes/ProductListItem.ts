@@ -1,8 +1,9 @@
-import { YTNode } from "../helpers.js";
-import Parser, { RawNode } from "../index.js";
-import { Text, Thumbnail } from "../misc.js";
-import Button from "./Button.js";
-import NavigationEndpoint from "./NavigationEndpoint.js";
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+import Parser from '../index.js';
+import { Text, Thumbnail } from '../misc.js';
+import Button from './Button.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
 export default class ProductListItem extends YTNode {
   static type = 'ProductListItem';

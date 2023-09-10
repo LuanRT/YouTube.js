@@ -5,12 +5,15 @@ import HorizontalCardList from './HorizontalCardList.js';
 import VideoDescriptionHeader from './VideoDescriptionHeader.js';
 import VideoDescriptionInfocardsSection from './VideoDescriptionInfocardsSection.js';
 import VideoDescriptionMusicSection from './VideoDescriptionMusicSection.js';
-import VideoDescriptionTranscriptSection from './VideoDescriptionTranscriptSection.js';
+import type VideoDescriptionTranscriptSection from './VideoDescriptionTranscriptSection.js';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
 
-  items: ObservedArray<VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection | VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | HorizontalCardList>;
+  items: ObservedArray<
+    VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
+    VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | HorizontalCardList
+  >;
 
   constructor(data: RawNode) {
     super();

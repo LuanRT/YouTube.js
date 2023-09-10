@@ -1,7 +1,9 @@
-import { ObservedArray, YTNode } from "../helpers.js";
-import Parser, { RawNode } from "../index.js";
-import { Text } from "../misc.js";
-import TranscriptSegment from "./TranscriptSegment.js";
+import type { ObservedArray} from '../helpers.js';
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+import Parser from '../index.js';
+import { Text } from '../misc.js';
+import TranscriptSegment from './TranscriptSegment.js';
 
 export default class TranscriptSegmentList extends YTNode {
   static type = 'TranscriptSegmentList';

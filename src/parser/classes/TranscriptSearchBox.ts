@@ -1,8 +1,9 @@
-import { YTNode } from "../helpers.js";
-import Parser, { RawNode } from "../index.js";
-import Button from "./Button.js";
-import NavigationEndpoint from "./NavigationEndpoint.js";
-import { Text } from "../misc.js";
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+import Parser from '../index.js';
+import Button from './Button.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import { Text } from '../misc.js';
 
 export default class TranscriptSearchBox extends YTNode {
   static type = 'TranscriptSearchBox';

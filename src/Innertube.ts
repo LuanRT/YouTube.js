@@ -342,7 +342,7 @@ export default class Innertube {
     throwIfMissing({ video_id });
 
     const next_response = await this.actions.execute(NextEndpoint.PATH, { ...NextEndpoint.build({ video_id }), parse: true });
-    
+
     if (!next_response.engagement_panels)
       throw new InnertubeError('Engagement panels not found. Video likely has no transcript.', next_response);
 
@@ -357,7 +357,7 @@ export default class Innertube {
 
     if (!transcript_continuation)
       throw new InnertubeError('Transcript continuation not found.', transcript_panel);
-    
+
     const transcript_response = await transcript_continuation.endpoint.call<IGetTranscriptResponse>(this.actions, { parse: true });
 
     return transcript_response.actions_memo.getType(Transcript).first();

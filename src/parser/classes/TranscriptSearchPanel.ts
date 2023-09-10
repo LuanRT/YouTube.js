@@ -1,8 +1,9 @@
-import { YTNode } from "../helpers.js";
-import Parser, { RawNode } from "../index.js";
-import TranscriptFooter from "./TranscriptFooter.js";
-import TranscriptSearchBox from "./TranscriptSearchBox.js";
-import TranscriptSegmentList from "./TranscriptSegmentList.js";
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+import Parser from '../index.js';
+import TranscriptFooter from './TranscriptFooter.js';
+import TranscriptSearchBox from './TranscriptSearchBox.js';
+import TranscriptSegmentList from './TranscriptSegmentList.js';
 
 export default class TranscriptSearchPanel extends YTNode {
   static type = 'TranscriptSearchPanel';
@@ -13,7 +14,7 @@ export default class TranscriptSearchPanel extends YTNode {
   target_id: string;
 
   constructor(data: RawNode) {
-    super();  
+    super();
     this.header = Parser.parseItem(data.header, TranscriptSearchBox);
     this.body = Parser.parseItem(data.body, TranscriptSegmentList);
     this.footer = Parser.parseItem(data.footer, TranscriptFooter);

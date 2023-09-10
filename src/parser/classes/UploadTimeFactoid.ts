@@ -1,6 +1,7 @@
-import { YTNode } from "../helpers.js";
-import Parser, { RawNode } from "../index.js";
-import Factoid from "./Factoid.js";
+import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+import Parser from '../index.js';
+import Factoid from './Factoid.js';
 
 export default class UploadTimeFactoid extends YTNode {
   static type = 'UploadTimeFactoid';

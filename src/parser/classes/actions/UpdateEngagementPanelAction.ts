@@ -1,6 +1,7 @@
-import { YTNode } from "../../helpers.js";
-import Parser, { RawNode } from "../../index.js";
-import Transcript from "../Transcript.js";
+import { YTNode } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
+import Parser from '../../index.js';
+import Transcript from '../Transcript.js';
 
 export default class UpdateEngagementPanelAction extends YTNode {
   static type = 'UpdateEngagementPanelAction';
