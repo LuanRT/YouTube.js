@@ -28,7 +28,7 @@ export default class ToggleButton extends YTNode {
     this.toggled_tooltip = data.toggledTooltip;
     this.is_toggled = data.isToggled;
     this.is_disabled = data.isDisabled;
-    this.icon_type = data.defaultIcon.iconType;
+    this.icon_type = data.defaultIcon?.iconType; // In some cases there are no icons on buttons. See block_button on src/parser/classes/channels/KidsBlocklistPickerItem.ts
 
     const acc_label =
       data?.defaultText?.accessibility?.accessibilityData?.label ||

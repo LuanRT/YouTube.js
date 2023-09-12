@@ -13,7 +13,7 @@ Handles direct interactions.
   * [.comment(video_id, text)](#comment) 
   * [.translate(text, target_language, args?)](#translate) 
   * [.setNotificationPreferences(channel_id, type)](#setnotificationpreferences) 
-
+  * [.blockChannel(channel_id)](#blockChannel)
 <a name="like"></a>
 ### like(video_id)
 
@@ -106,3 +106,14 @@ Only works with channels you are subscribed to.
 | --- | --- | --- |
 | channel_id | `string` | Channel id |
 | type | `string` | `PERSONALIZED`, `ALL` or `NONE` |
+
+<a name="blockChannel"></a>
+### blockChannel(channel_id)
+
+Retrieves the list of supervised accounts that the signed-in user has access to and blocks the given channel for each of them.
+
+**Returns:** `Promise.<ApiResponse[]>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| channel_id | `string` | Channel id |

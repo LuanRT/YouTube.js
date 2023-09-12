@@ -42,6 +42,8 @@ export { default as ChannelHeaderLinksView } from './classes/ChannelHeaderLinksV
 export { default as ChannelMetadata } from './classes/ChannelMetadata.js';
 export { default as ChannelMobileHeader } from './classes/ChannelMobileHeader.js';
 export { default as ChannelOptions } from './classes/ChannelOptions.js';
+export { default as KidsBlocklistPicker } from './classes/channels/KidsBlocklistPicker.js';
+export { default as KidsBlocklistPickerItem } from './classes/channels/KidsBlocklistPickerItem.js';
 export { default as ChannelSubMenu } from './classes/ChannelSubMenu.js';
 export { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailWithLink.js';
 export { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer.js';

@@ -353,3 +353,13 @@ export interface IEditPlaylistRequest extends ObjectSnakeToCamel<EditPlaylistEnd
     playlistName?: string;
   }[];
 }
+
+export type BlocklistPickerRequestEndpointOptions = {    
+  channel_id: string;  
+}
+
+export type IBlocklistPickerRequest = {
+  blockedForKidsContent: {
+      external_channel_id: string;
+  }
+}
