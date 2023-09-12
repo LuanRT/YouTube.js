@@ -31,24 +31,22 @@ For example, suppose we have found a new renderer named `verticalListRenderer`. 
 > `../classes/VerticalList.ts`
 
 ```ts
-import Parser from '..';
-import { YTNode } from '../helpers';
-import type { RawNode } from '../index.js';
+import Parser, { RawNode } from '../index.js';
+import { YTNode } from '../helpers.js';
 
-class VerticalList extends YTNode {
+export default class VerticalList extends YTNode {
   static type = 'VerticalList';
 
   header;
   contents;
 
   constructor(data: RawNode) {
+    super();
     // parse the data here, ex;
     this.header = Parser.parseItem(data.header);
     this.contents = Parser.parseArray(data.contents);
   }
 }
-
-export default VerticalList;
 ```
 
 You may use the parser's generated class for the new renderer as a starting point for your own implementation.
