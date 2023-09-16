@@ -1,11 +1,11 @@
 import Text from '../misc/Text.js';
 import { YTNode } from '../../helpers.js';
-import Parser, { RawNode } from '../../index.js';
+import Parser, { type RawNode } from '../../index.js';
 import ToggleButton from '../ToggleButton.js';
 import Thumbnail from '../misc/Thumbnail.js';
 import type Actions from '../../../core/Actions.js';
 import { InnertubeError } from '../../../utils/Utils.js';
-import { ApiResponse } from '../../../core/Actions.js';
+import { type ApiResponse } from '../../../core/Actions.js';
 
 export default class KidsBlocklistPickerItem extends YTNode {
   static type = 'KidsBlocklistPickerItem';
@@ -37,9 +37,9 @@ export default class KidsBlocklistPickerItem extends YTNode {
       throw new InnertubeError('Block button was not found.', { child_display_name: this.child_display_name });
 
     if (button.is_toggled)
-      throw new InnertubeError('This channel is already blocked.', { child_display_name: this.child_display_name });      
-        
-    const response = await button.endpoint.call(this.#actions, { parse: false });    
+      throw new InnertubeError('This channel is already blocked.', { child_display_name: this.child_display_name });
+
+    const response = await button.endpoint.call(this.#actions, { parse: false });
     return response;
   }
 

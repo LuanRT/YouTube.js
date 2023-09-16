@@ -354,8 +354,8 @@ export interface IEditPlaylistRequest extends ObjectSnakeToCamel<EditPlaylistEnd
   }[];
 }
 
-export type BlocklistPickerRequestEndpointOptions = {    
-  channel_id: string;  
+export type BlocklistPickerRequestEndpointOptions = {
+  channel_id: string;
 }
 
 export type IBlocklistPickerRequest = {

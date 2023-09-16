@@ -4,7 +4,7 @@ import HomeFeed from '../../parser/ytkids/HomeFeed.js';
 import Search from '../../parser/ytkids/Search.js';
 import VideoInfo from '../../parser/ytkids/VideoInfo.js';
 import type Session from '../Session.js';
-import type { ApiResponse } from '../Actions.js';
+import { type ApiResponse } from '../Actions.js';
 
 import { InnertubeError, generateRandomString } from '../../utils/Utils.js';
 
@@ -106,9 +106,9 @@ export default class Kids {
       throw new InnertubeError('Could not find any kids profiles or supervised accounts.');
 
     // Iterate through the kids and block the channel if not already blocked.
-    var responses: ApiResponse[] = [];
-      for (const kid of kids) {
-      if(!kid.block_button?.is_toggled) {
+    const responses: ApiResponse[] = [];
+    for (const kid of kids) {
+      if (!kid.block_button?.is_toggled) {
         kid.setActions(this.#session.actions);
         // Block channel and add to the response list.
         responses.push(await kid.blockchannel());

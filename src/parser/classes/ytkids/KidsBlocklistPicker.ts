@@ -1,7 +1,7 @@
 import Text from '../misc/Text.js';
 import { YTNode } from '../../helpers.js';
 import Button from '../Button.js';
-import Parser, { RawNode } from '../../index.js';
+import Parser, { type RawNode } from '../../index.js';
 import KidsBlocklistPickerItem from './KidsBlocklistPickerItem.js';
 
 export default class KidsBlocklistPicker extends YTNode {
@@ -17,6 +17,6 @@ export default class KidsBlocklistPicker extends YTNode {
     this.title = new Text(data.title);
     this.child_rows = Parser.parse(data.childRows, true, [ KidsBlocklistPickerItem ]);
     this.done_button = Parser.parseItem(data.doneButton, [ Button ]);
-    this.successful_toast_action_message = new Text(data.successfulToastActionMessage);    
+    this.successful_toast_action_message = new Text(data.successfulToastActionMessage);
   }
 }
