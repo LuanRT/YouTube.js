@@ -1,5 +1,6 @@
 import Album from '../../parser/ytmusic/Album.js';
 import Artist from '../../parser/ytmusic/Artist.js';
+import Profile from '../../parser/ytmusic/Profile.js';
 import Explore from '../../parser/ytmusic/Explore.js';
 import HomeFeed from '../../parser/ytmusic/HomeFeed.js';
 import Library from '../../parser/ytmusic/Library.js';
@@ -367,5 +368,25 @@ export default class Music {
     const search_suggestions_section = response.contents_memo.getType(SearchSuggestionsSection).first();
 
     return search_suggestions_section.contents;
+  }
+
+  /**
+   * Retrieves artist's profile.
+   * @param artist_id - The artist id.
+   */
+  async getProfile(artist_id: string): Promise<Profile> {
+    throwIfMissing({ artist_id });
+
+    if (!artist_id.startsWith('UC') && !artist_id.startsWith('FEmusic_library_privately_owned_artist'))
+      throw new InnertubeError('Invalid artist id', artist_id);
+
+    const response = await this.#actions.execute(
+      BrowseEndpoint.PATH, BrowseEndpoint.build({
+        client: 'YTMUSIC',
+        browse_id: artist_id
+      })
+    );
+
+    return new Profile(response, this.#actions);
   }
 }

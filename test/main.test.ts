@@ -344,6 +344,13 @@ describe('YouTube.js Tests', () => {
       expect(artist.sections).toBeDefined();
     });
 
+    test('Innertube#music.getProfile', async () => {
+      const profile = await innertube.music.getProfile('UC52ZqHVQz5OoGhvbWiRal6g');
+      expect(profile).toBeDefined();
+      expect(profile.header).toBeDefined();
+      expect(profile.sections).toBeDefined();
+    });
+
     test('Innertube#music.getAlbum', async () => {
       const album = await innertube.music.getAlbum('MPREb_YpQ7SWMPLvu');
       expect(album).toBeDefined();
