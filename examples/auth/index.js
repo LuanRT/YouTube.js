@@ -1,4 +1,4 @@
-const { Innertube, UniversalCache } = require('youtubei.js');
+import { Innertube, UniversalCache } from  'youtubei.js';
 
 (async () => {
   const yt = await Innertube.create({
