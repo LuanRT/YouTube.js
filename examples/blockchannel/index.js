@@ -18,6 +18,6 @@ import { Innertube, UniversalCache } from 'youtubei.js';
     await yt.session.signIn();
 
     // Block Channel for all kids / profiles on the signed-in account.
-    const resp = await yt.interact.blockChannel('UCHhJhAulX3aJs20LpsFPuMQ');
+    const resp = await yt.kids.blockChannel('UCpbpfcZfo-hoDAx2m1blFhg');
     console.info('Blocked channel for ', resp.length, ' profiles.');    
 })();

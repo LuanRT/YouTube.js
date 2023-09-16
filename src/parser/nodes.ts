@@ -42,8 +42,6 @@ export { default as ChannelHeaderLinksView } from './classes/ChannelHeaderLinksV
 export { default as ChannelMetadata } from './classes/ChannelMetadata.js';
 export { default as ChannelMobileHeader } from './classes/ChannelMobileHeader.js';
 export { default as ChannelOptions } from './classes/ChannelOptions.js';
-export { default as KidsBlocklistPicker } from './classes/channels/KidsBlocklistPicker.js';
-export { default as KidsBlocklistPickerItem } from './classes/channels/KidsBlocklistPickerItem.js';
 export { default as ChannelSubMenu } from './classes/ChannelSubMenu.js';
 export { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailWithLink.js';
 export { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer.js';
@@ -390,6 +388,8 @@ export { default as WatchNextEndScreen } from './classes/WatchNextEndScreen.js';
 export { default as WatchNextTabbedResults } from './classes/WatchNextTabbedResults.js';
 export { default as YpcTrailer } from './classes/YpcTrailer.js';
 export { default as AnchoredSection } from './classes/ytkids/AnchoredSection.js';
+export { default as KidsBlocklistPicker } from './classes/ytkids/KidsBlocklistPicker.js';
+export { default as KidsBlocklistPickerItem } from './classes/ytkids/KidsBlocklistPickerItem.js';
 export { default as KidsCategoriesHeader } from './classes/ytkids/KidsCategoriesHeader.js';
 export { default as KidsCategoryTab } from './classes/ytkids/KidsCategoryTab.js';
 export { default as KidsHomeScreen } from './classes/ytkids/KidsHomeScreen.js';
