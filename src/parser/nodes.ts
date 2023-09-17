@@ -198,6 +198,7 @@ export { default as MenuServiceItem } from './classes/menus/MenuServiceItem.js';
 export { default as MenuServiceItemDownload } from './classes/menus/MenuServiceItemDownload.js';
 export { default as MultiPageMenu } from './classes/menus/MultiPageMenu.js';
 export { default as MultiPageMenuNotificationSection } from './classes/menus/MultiPageMenuNotificationSection.js';
+export { default as MultiPageMenuSection } from './classes/menus/MultiPageMenuSection.js';
 export { default as MusicMenuItemDivider } from './classes/menus/MusicMenuItemDivider.js';
 export { default as MusicMultiSelectMenu } from './classes/menus/MusicMultiSelectMenu.js';
 export { default as MusicMultiSelectMenuItem } from './classes/menus/MusicMultiSelectMenuItem.js';
@@ -391,3 +392,4 @@ export { default as AnchoredSection } from './classes/ytkids/AnchoredSection.js'
 export { default as KidsCategoriesHeader } from './classes/ytkids/KidsCategoriesHeader.js';
 export { default as KidsCategoryTab } from './classes/ytkids/KidsCategoryTab.js';
 export { default as KidsHomeScreen } from './classes/ytkids/KidsHomeScreen.js';
+export { default as ActiveAccountHeader } from './classes/ytmusic/ActiveAccountHeader.js';
