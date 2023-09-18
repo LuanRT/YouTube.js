@@ -10,6 +10,8 @@ import Parser from '../../parser/index.js';
 import type { DashOptions } from '../../types/DashOptions.js';
 import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.js';
 import { getStreamingInfo } from '../../utils/StreamingInfo.js';
+import ContinuationItem from '../../parser/classes/ContinuationItem.js';
+import TranscriptInfo from '../../parser/youtube/TranscriptInfo.js';
 
 export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];
@@ -82,6 +84,36 @@ export default class MediaInfo {
    */
   async download(options: DownloadOptions = {}): Promise<ReadableStream<Uint8Array>> {
     return FormatUtils.download(options, this.#actions, this.playability_status, this.streaming_data, this.#actions.session.player, this.cpn);
+  }
+
+  /**
+   * Retrieves the video's transcript.
+   * @param video_id - The video id.
+   */
+  async getTranscript(): Promise<TranscriptInfo> {
+    const next_response = this.page[1];
+
+    if (!next_response)
+      throw new InnertubeError('Cannot get transcript from basic video info.');
+
+    if (!next_response.engagement_panels)
+      throw new InnertubeError('Engagement panels not found. Video likely has no transcript.');
+
+    const transcript_panel = next_response.engagement_panels.get({
+      panel_identifier: 'engagement-panel-searchable-transcript'
+    });
+
+    if (!transcript_panel)
+      throw new InnertubeError('Transcript panel not found. Video likely has no transcript.');
+
+    const transcript_continuation = transcript_panel.content?.as(ContinuationItem);
+
+    if (!transcript_continuation)
+      throw new InnertubeError('Transcript continuation not found.');
+
+    const response = await transcript_continuation.endpoint.call(this.actions);
+
+    return new TranscriptInfo(this.actions, response);
   }
 
   /**
