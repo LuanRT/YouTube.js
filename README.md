@@ -278,7 +278,6 @@ const yt = await Innertube.create({
   * [.getPlaylist(id)](#getplaylist)
   * [.getHashtag(hashtag)](#gethashtag)
   * [.getStreamingData(video_id, options)](#getstreamingdata)
-  * [.getTranscript(video_id)](#gettranscript)
   * [.download(video_id, options?)](#download)
   * [.resolveURL(url)](#resolveurl)
   * [.call(endpoint, args?)](#call)
@@ -325,6 +324,9 @@ Retrieves video info.
 
 - `<info>#download(options)`
   - Downloads the video. See [download](#download).
+
+- `<info>#getTranscript()`
+  - Retrieves the video's transcript.
 
 - `<info>#filters`
   - Returns filters that can be applied to the watch next feed.
@@ -660,16 +662,6 @@ console.info('Playback url:', url);
 | --- | --- | --- |
 | video_id | `string` | Video id |
 | options | `FormatOptions` | Format options |
-
-<a name="gettranscript"></a>
-### `getTranscript(video_id)`
-Retrieves a given video's transcript.
-
-**Returns**: `Promise<Transcript>`
-
-| Param | Type | Description |
-| --- | --- | --- |
-| video_id | `string` | Video id |
 
 <a name="download"></a>
 ### `download(video_id, options?)`
