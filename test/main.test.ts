@@ -19,6 +19,27 @@ describe('YouTube.js Tests', () => {
       expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
     });
 
+    test('Innertube#getShortsWatchItem', async () => {
+      const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
+      console.log(JSON.stringify(info))
+      expect(info.watch_next_feed?.length).toBeGreaterThan(0);
+      // expect(info?.basic_info.id).toBe('jOydBrmmjfk');
+    });
+
+    test('Innertube#getShortsWatchItem#Continue', async () => {
+      const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
+      console.log(JSON.stringify(info))
+      console.log(info.watch_next_feed?.length)
+      console.log(info.watch_next_feed?.map((v : any) => v.endpoint.payload.videoId))
+      expect(info.watch_next_feed?.length).toBeGreaterThan(0);
+      const cont = await info.getWatchNextContinuation()
+      console.log(cont.watch_next_feed?.length)
+      console.log(cont.watch_next_feed?.map((v : any) => v.endpoint.payload.videoId))
+      
+      expect(cont.watch_next_feed?.length).toBeGreaterThan(0);
+      // expect(info?.basic_info.id).toBe('jOydBrmmjfk');
+    });
+
     describe('Innertube#getBasicInfo', () => {
       test('Format#language multiple audio tracks', async () => {
         const info = await innertube.getBasicInfo('Kn56bMZ9OE8')

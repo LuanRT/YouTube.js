@@ -265,3 +265,14 @@ message Hashtag {
   
   required Params params = 93;
 }
+
+message ReelSequence {
+  required string short_id = 1;
+  message Params {
+    required int32 number = 3;
+  }
+
+  required Params params = 5;
+  required int32 feature_2 = 10;
+  required int32 feature_3 = 13;
+}

@@ -14,6 +14,7 @@ import NotificationsMenu from './parser/youtube/NotificationsMenu.js';
 import Playlist from './parser/youtube/Playlist.js';
 import Search from './parser/youtube/Search.js';
 import VideoInfo from './parser/youtube/VideoInfo.js';
+import ShortsVideoInfo from './parser/ytshorts/VideoInfo.js';
 
 import { Kids, Music, Studio } from './core/clients/index.js';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
@@ -30,7 +31,8 @@ import {
   NextEndpoint,
   PlayerEndpoint,
   ResolveURLEndpoint,
-  SearchEndpoint
+  SearchEndpoint,
+  Reel
 } from './core/endpoints/index.js';
 
 import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.js';
@@ -39,6 +41,7 @@ import type { ApiResponse } from './core/Actions.js';
 import { type IBrowseResponse, type IParsedResponse } from './parser/types/index.js';
 import type { INextRequest } from './types/index.js';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.js';
+import {encodeReelSequence} from './proto/index.js';
 
 export type InnertubeConfig = SessionOptions;
 
@@ -129,6 +132,30 @@ export default class Innertube {
     const cpn = generateRandomString(16);
 
     return new VideoInfo([ response ], this.actions, cpn);
+  }
+
+  /**
+   * Retrieves shorts info.
+   * @param short_id - The short id.
+   * @param client - The client to use.
+   */
+  async getShortsWatchItem(short_id: string, client?: InnerTubeClient): Promise<ShortsVideoInfo> {
+    throwIfMissing({ short_id });
+
+    const response = await this.actions.execute(
+      Reel.WatchEndpoint.PATH, Reel.WatchEndpoint.build({
+        short_id: short_id,
+        client: client
+      })
+    );
+
+    const sequenceResponse = await this.actions.execute(
+      Reel.WatchSequenceEndpoint.PATH, Reel.WatchSequenceEndpoint.build({
+        sequenceParams: encodeReelSequence(short_id)
+      })
+    );
+
+    return new ShortsVideoInfo([ response, sequenceResponse ], this.actions);
   }
 
   /**

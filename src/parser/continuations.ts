@@ -209,3 +209,16 @@ export class LiveChatContinuation extends YTNode {
     this.viewer_name = data.viewerName;
   }
 }
+
+export class ContinuationCommand extends YTNode {
+  static readonly type = 'continuationCommand';
+
+  request: string;
+  token: string;
+
+  constructor(data: RawNode) {
+    super();
+    this.request = data.request;
+    this.token = data.token;
+  }
+}
