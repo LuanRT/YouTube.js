@@ -1,4 +1,4 @@
-import type {IReelSequenceRequest, ReelWatchSequenceEndpointOptions} from '../../../types/index.js';
+import type { IReelSequenceRequest, ReelWatchSequenceEndpointOptions } from '../../../types/index.js';
 
 export const PATH = '/reel/reel_watch_sequence';
 

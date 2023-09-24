@@ -1,5 +1,5 @@
 import Parser, { type RawNode } from '../index.js';
-import {YTNode} from '../helpers.js';
+import { YTNode } from '../helpers.js';
 import Button from './Button.js';
 import Menu from './menus/Menu.js';
 import InfoPanelContainer from './InfoPanelContainer.js';

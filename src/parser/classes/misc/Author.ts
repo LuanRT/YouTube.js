@@ -1,5 +1,5 @@
 import * as Constants from '../../../utils/Constants.js';
-import type { YTNode} from '../../helpers.js';
+import type { YTNode } from '../../helpers.js';
 import { observe, type ObservedArray } from '../../helpers.js';
 import Parser, { type RawNode } from '../../index.js';
 import type NavigationEndpoint from '../NavigationEndpoint.js';

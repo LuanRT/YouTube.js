@@ -1,13 +1,10 @@
-import ItemSection from '../classes/ItemSection.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerOverlay from '../classes/PlayerOverlay.js';
-import type SlimVideoMetadata from '../classes/SlimVideoMetadata.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import ContinuationItem from '../classes/ContinuationItem.js';
-import Parser, {ContinuationCommand} from '../index.js';
-import {InnertubeError} from '../../utils/Utils.js';
+import Parser, { ContinuationCommand } from '../index.js';
+import { InnertubeError } from '../../utils/Utils.js';
 import {
   Reel
 } from '../../core/endpoints/index.js';

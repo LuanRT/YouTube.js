@@ -1,4 +1,4 @@
-import type { ObservedArray} from './helpers.js';
+import type { ObservedArray } from './helpers.js';
 import { YTNode, observe } from './helpers.js';
 import type { RawNode } from './index.js';
 import { Thumbnail } from './misc.js';

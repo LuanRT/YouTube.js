@@ -3,7 +3,7 @@ import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.
 import type {
   ReloadContinuationItemsCommand, Continuation, GridContinuation,
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  PlaylistPanelContinuation, SectionListContinuation
+  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand
 } from '../index.js';
 
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
@@ -20,7 +20,6 @@ import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
 import type EngagementPanelSectionList from '../classes/EngagementPanelSectionList.js';
 import type { AppendContinuationItemsAction } from '../nodes.js';
-import type {ContinuationCommand} from '../index.js';
 
 export interface IParsedResponse {
   actions?: SuperParsedResult<YTNode>;

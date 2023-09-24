@@ -1,4 +1,4 @@
-import {YTNode} from '../helpers.js';
+import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
