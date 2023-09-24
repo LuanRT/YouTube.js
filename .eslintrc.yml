@@ -79,6 +79,7 @@ rules:
   prefer-template: error
 
   keyword-spacing: ["error", { "before": true } ]
+  object-curly-spacing: ["warn", "always"]
   array-bracket-spacing: ["error", "always"]
   arrow-parens: ["error", "always"]
   comma-dangle: ["error", "never"]
