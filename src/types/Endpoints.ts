@@ -365,7 +365,6 @@ export type IBlocklistPickerRequest = {
 }
 
 export interface IReelWatchRequest {
-  context: {},
   playerRequest: {
     videoId: string,
     params: string,
@@ -389,7 +388,6 @@ export type ReelWatchEndpointOptions = {
 }
 
 export interface IReelSequenceRequest {
-  context: {},
   sequenceParams: string;
 }
 

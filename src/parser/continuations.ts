@@ -211,7 +211,7 @@ export class LiveChatContinuation extends YTNode {
 }
 
 export class ContinuationCommand extends YTNode {
-  static readonly type = 'continuationCommand';
+  static readonly type = 'ContinuationCommand';
 
   request: string;
   token: string;

@@ -9,7 +9,6 @@ export const PATH = '/reel/reel_item_watch';
  */
 export function build(opts: ReelWatchEndpointOptions): IReelWatchRequest {
   return {
-    context: {},
     playerRequest: {
       videoId: opts.short_id,
       params: opts.params ?? 'CAUwAg%3D%3D'

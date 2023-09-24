@@ -9,7 +9,6 @@ export const PATH = '/reel/reel_watch_sequence';
  */
 export function build(opts: ReelWatchSequenceEndpointOptions): IReelSequenceRequest {
   return {
-    context: {},
     sequenceParams: opts.sequenceParams
   };
 }
