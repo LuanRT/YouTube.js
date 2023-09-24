@@ -41,7 +41,7 @@ import type { ApiResponse } from './core/Actions.js';
 import { type IBrowseResponse, type IParsedResponse } from './parser/types/index.js';
 import type { INextRequest } from './types/index.js';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.js';
-import {encodeReelSequence} from './proto/index.js';
+import { encodeReelSequence } from './proto/index.js';
 
 export type InnertubeConfig = SessionOptions;
 
