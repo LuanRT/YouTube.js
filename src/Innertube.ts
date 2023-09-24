@@ -142,20 +142,22 @@ export default class Innertube {
   async getShortsWatchItem(short_id: string, client?: InnerTubeClient): Promise<ShortsVideoInfo> {
     throwIfMissing({ short_id });
 
-    const response = await this.actions.execute(
+    const watchResponse = this.actions.execute(
       Reel.WatchEndpoint.PATH, Reel.WatchEndpoint.build({
         short_id: short_id,
         client: client
       })
     );
 
-    const sequenceResponse = await this.actions.execute(
+    const sequenceResponse = this.actions.execute(
       Reel.WatchSequenceEndpoint.PATH, Reel.WatchSequenceEndpoint.build({
         sequenceParams: encodeReelSequence(short_id)
       })
     );
 
-    return new ShortsVideoInfo([ response, sequenceResponse ], this.actions);
+    const response = await Promise.all([ watchResponse, sequenceResponse ]);
+
+    return new ShortsVideoInfo(response, this.actions);
   }
 
   /**
