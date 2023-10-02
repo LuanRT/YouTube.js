@@ -9,6 +9,7 @@ import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.js
 import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.js';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.js';
 import VideoOwner from '../classes/VideoOwner.js';
+import Alert from '../classes/Alert.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import type { ObservedArray } from '../helpers.js';
@@ -17,7 +18,7 @@ import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
-class Playlist extends Feed<IBrowseResponse> {
+export default class Playlist extends Feed<IBrowseResponse> {
   info;
   menu;
   endpoint?: NavigationEndpoint;
@@ -29,9 +30,13 @@ class Playlist extends Feed<IBrowseResponse> {
     const header = this.memo.getType(PlaylistHeader).first();
     const primary_info = this.memo.getType(PlaylistSidebarPrimaryInfo).first();
     const secondary_info = this.memo.getType(PlaylistSidebarSecondaryInfo).first();
+    const alert = this.page.alerts?.firstOfType(Alert);
 
-    if (!primary_info && !secondary_info)
-      throw new InnertubeError('This playlist does not exist');
+    if (alert && alert.alert_type === 'ERROR')
+      throw new InnertubeError(alert.text.toString(), alert);
+
+    if (!primary_info && !secondary_info && Object.keys(this.page).length === 0)
+      throw new InnertubeError('Got empty continuation response. This is likely the end of the playlist.');
 
     this.info = {
       ...this.page.metadata?.item().as(PlaylistMetadata),
@@ -70,5 +75,3 @@ class Playlist extends Feed<IBrowseResponse> {
     return new Playlist(this.actions, page, true);
   }
 }
-
-export default Playlist;
