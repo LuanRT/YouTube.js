@@ -5,18 +5,24 @@ import HorizontalCardList from './HorizontalCardList.ts';
 import VideoDescriptionHeader from './VideoDescriptionHeader.ts';
 import VideoDescriptionInfocardsSection from './VideoDescriptionInfocardsSection.ts';
 import VideoDescriptionMusicSection from './VideoDescriptionMusicSection.ts';
-import type VideoDescriptionTranscriptSection from './VideoDescriptionTranscriptSection.ts';
+import VideoDescriptionTranscriptSection from './VideoDescriptionTranscriptSection.ts';
+import VideoDescriptionCourseSection from './VideoDescriptionCourseSection.ts';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
 
   items: ObservedArray<
     VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
-    VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | HorizontalCardList
+    VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | VideoDescriptionTranscriptSection |
+    VideoDescriptionCourseSection | HorizontalCardList
   >;
 
   constructor(data: RawNode) {
     super();
-    this.items = Parser.parseArray(data.items, [ VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection, VideoDescriptionInfocardsSection, HorizontalCardList ]);
+    this.items = Parser.parseArray(data.items, [
+      VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
+      VideoDescriptionInfocardsSection, VideoDescriptionCourseSection, VideoDescriptionTranscriptSection,
+      VideoDescriptionTranscriptSection, HorizontalCardList
+    ]);
   }
 }

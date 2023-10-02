@@ -185,10 +185,8 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
    */
   async getContinuationData(): Promise<T | undefined> {
     if (this.#continuation) {
-      if (this.#continuation.length > 1)
-        throw new InnertubeError('There are too many continuations, you\'ll need to find the correct one yourself in this.page');
       if (this.#continuation.length === 0)
-        throw new InnertubeError('There are no continuations');
+        throw new InnertubeError('There are no continuations.');
 
       const response = await this.#continuation[0].endpoint.call<T>(this.#actions, { parse: true });
 

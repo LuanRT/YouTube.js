@@ -14,8 +14,6 @@ import NotificationsMenu from './parser/youtube/NotificationsMenu.ts';
 import Playlist from './parser/youtube/Playlist.ts';
 import Search from './parser/youtube/Search.ts';
 import VideoInfo from './parser/youtube/VideoInfo.ts';
-import ContinuationItem from './parser/classes/ContinuationItem.ts';
-import Transcript from './parser/classes/Transcript.ts';
 
 import { Kids, Music, Studio } from './core/clients/index.ts';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.ts';
@@ -38,7 +36,7 @@ import {
 import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.ts';
 
 import type { ApiResponse } from './core/Actions.ts';
-import { type IGetTranscriptResponse, type IBrowseResponse, type IParsedResponse } from './parser/types/index.ts';
+import { type IBrowseResponse, type IParsedResponse } from './parser/types/index.ts';
 import type { INextRequest } from './types/index.ts';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.ts';
 
@@ -332,35 +330,6 @@ export default class Innertube {
   async getStreamingData(video_id: string, options: FormatOptions = {}): Promise<Format> {
     const info = await this.getBasicInfo(video_id);
     return info.chooseFormat(options);
-  }
-
-  /**
-   * Retrieves a video's transcript.
-   * @param video_id - The video id.
-   */
-  async getTranscript(video_id: string): Promise<Transcript> {
-    throwIfMissing({ video_id });
-
-    const next_response = await this.actions.execute(NextEndpoint.PATH, { ...NextEndpoint.build({ video_id }), parse: true });
-
-    if (!next_response.engagement_panels)
-      throw new InnertubeError('Engagement panels not found. Video likely has no transcript.');
-
-    const transcript_panel = next_response.engagement_panels.get({
-      panel_identifier: 'engagement-panel-searchable-transcript'
-    });
-
-    if (!transcript_panel)
-      throw new InnertubeError('Transcript panel not found. Video likely has no transcript.');
-
-    const transcript_continuation = transcript_panel.content?.as(ContinuationItem);
-
-    if (!transcript_continuation)
-      throw new InnertubeError('Transcript continuation not found.');
-
-    const transcript_response = await transcript_continuation.endpoint.call<IGetTranscriptResponse>(this.actions, { parse: true });
-
-    return transcript_response.actions_memo.getType(Transcript).first();
   }
 
   /**

@@ -10,6 +10,7 @@ import type { FetchFunction } from '../types/PlatformShim.ts';
  */
 export default class Player {
   #nsig_sc;
+  #nsig_cache;
   #sig_sc;
   #sig_sc_timestamp;
   #player_id;
@@ -21,6 +22,8 @@ export default class Player {
     this.#sig_sc_timestamp = signature_timestamp;
 
     this.#player_id = player_id;
+
+    this.#nsig_cache = new Map<string, string>();
   }
 
   static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch): Promise<Player> {
@@ -66,7 +69,7 @@ export default class Player {
     return await Player.fromSource(cache, sig_timestamp, sig_sc, nsig_sc, player_id);
   }
 
-  decipher(url?: string, signature_cipher?: string, cipher?: string): string {
+  decipher(url?: string, signature_cipher?: string, cipher?: string, this_response_nsig_cache?: Map<string, string>): string {
     url = url || signature_cipher || cipher;
 
     if (!url)
@@ -93,15 +96,23 @@ export default class Player {
     const n = url_components.searchParams.get('n');
 
     if (n) {
-      const nsig = Platform.shim.eval(this.#nsig_sc, {
-        nsig: n
-      });
+      let nsig;
 
-      if (typeof nsig !== 'string')
-        throw new PlayerError('Failed to decipher nsig');
+      if (this_response_nsig_cache && this_response_nsig_cache.has(n)) {
+        nsig = this_response_nsig_cache.get(n) as string;
+      } else {
+        nsig = Platform.shim.eval(this.#nsig_sc, {
+          nsig: n
+        });
 
-      if (nsig.startsWith('enhanced_except_')) {
-        console.warn('Warning:\nCould not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!');
+        if (typeof nsig !== 'string')
+          throw new PlayerError('Failed to decipher nsig');
+
+        if (nsig.startsWith('enhanced_except_')) {
+          console.warn('Warning:\nCould not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!');
+        } else if (this_response_nsig_cache) {
+          this_response_nsig_cache.set(n, nsig);
+        }
       }
 
       url_components.searchParams.set('n', nsig);
