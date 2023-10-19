@@ -59,5 +59,3 @@ After that, you can use the library as normal.
 ## Example
 
 We've got a full example in `examples/browser/web` using vite.
-
-If you don't want to run the example yourself, you can see it in action here: [ytjsexample.pages.dev](https://ytjsexample.pages.dev/).
