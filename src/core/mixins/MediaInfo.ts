@@ -46,10 +46,16 @@ export default class MediaInfo {
    * @returns DASH manifest
    */
   async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter, options: DashOptions = { include_thumbnails: false }): Promise<string> {
+    const playerResponse = this.#page[0];
+
+    if (playerResponse.video_details && (playerResponse.video_details.is_live || playerResponse.video_details.is_post_live_dvr)) {
+      throw new InnertubeError('Generating DASH manifests for live and Post-Live-DVR videos, is not supported. Please use the DASH and HLS manifests provided by YouTube in `streaming_data.dash_manifest_url` and `streaming_data.hls_manifest_url` instead.');
+    }
+
     let storyboards;
 
-    if (options.include_thumbnails && this.#page[0].storyboards?.is(PlayerStoryboardSpec)) {
-      storyboards = this.#page[0].storyboards;
+    if (options.include_thumbnails && playerResponse.storyboards?.is(PlayerStoryboardSpec)) {
+      storyboards = playerResponse.storyboards;
     }
 
     return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions, storyboards);
@@ -83,6 +89,12 @@ export default class MediaInfo {
    * @param options - Download options.
    */
   async download(options: DownloadOptions = {}): Promise<ReadableStream<Uint8Array>> {
+    const playerResponse = this.#page[0];
+
+    if (playerResponse.video_details && (playerResponse.video_details.is_live || playerResponse.video_details.is_post_live_dvr)) {
+      throw new InnertubeError('Downloading is not supported for live and Post-Live-DVR videos, as they are split up into 5 second segments that are individual files, which require using a tool like ffmpeg to stitch them together, so they cannot be returned in a single stream.');
+    }
+
     return FormatUtils.download(options, this.#actions, this.playability_status, this.streaming_data, this.#actions.session.player, this.cpn);
   }
 
