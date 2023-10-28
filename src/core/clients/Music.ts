@@ -72,7 +72,7 @@ export default class Music {
 
     const player_response = this.#actions.execute(PlayerEndpoint.PATH, player_payload);
     const next_response = this.#actions.execute(NextEndpoint.PATH, next_payload);
-    const response = await Promise.all([player_response, next_response]);
+    const response = await Promise.all([ player_response, next_response ]);
 
     const cpn = generateRandomString(16);
 
@@ -105,7 +105,7 @@ export default class Music {
 
     const cpn = generateRandomString(16);
 
-    const response = await Promise.all([player_response, next_response]);
+    const response = await Promise.all([ player_response, next_response ]);
     return new TrackInfo(response, this.#actions, cpn);
   }
 
