@@ -16,3 +16,4 @@ export * as Notification from './notification/index.ts';
 export * as Playlist from './playlist/index.ts';
 export * as Subscription from './subscription/index.ts';
 export * as Upload from './upload/index.ts';
+export * as Kids from './kids/index.ts';

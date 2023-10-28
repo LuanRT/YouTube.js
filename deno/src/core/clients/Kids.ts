@@ -1,15 +1,21 @@
+import Parser from '../../parser/index.ts';
 import Channel from '../../parser/ytkids/Channel.ts';
 import HomeFeed from '../../parser/ytkids/HomeFeed.ts';
 import Search from '../../parser/ytkids/Search.ts';
 import VideoInfo from '../../parser/ytkids/VideoInfo.ts';
 import type Session from '../Session.ts';
+import { type ApiResponse } from '../Actions.ts';
 
-import { generateRandomString } from '../../utils/Utils.ts';
+import { InnertubeError, generateRandomString } from '../../utils/Utils.ts';
 
 import {
   BrowseEndpoint, NextEndpoint,
   PlayerEndpoint, SearchEndpoint
 } from '../endpoints/index.ts';
+
+import { BlocklistPickerEndpoint } from '../endpoints/kids/index.ts';
+
+import KidsBlocklistPickerItem from '../../parser/classes/ytkids/KidsBlocklistPickerItem.ts';
 
 export default class Kids {
   #session: Session;
@@ -79,5 +85,39 @@ export default class Kids {
       })
     );
     return new HomeFeed(this.#session.actions, response);
+  }
+
+  /**
+   * Retrieves the list of supervised accounts that the signed-in user has
+   * access to, and blocks the given channel for each of them.
+   * @param channel_id - The channel id to block.
+   * @returns A list of API responses.
+   */
+  async blockChannel(channel_id: string): Promise<ApiResponse[]> {
+    if (!this.#session.logged_in)
+      throw new InnertubeError('You must be signed in to perform this operation.');
+
+    const blocklist_payload = BlocklistPickerEndpoint.build({ channel_id: channel_id });
+    const response = await this.#session.actions.execute(BlocklistPickerEndpoint.PATH, blocklist_payload );
+    const popup = response.data.command.confirmDialogEndpoint;
+    const popup_fragment = { contents: popup.content, engagementPanels: [] };
+    const kid_picker = Parser.parseResponse(popup_fragment);
+    const kids = kid_picker.contents_memo?.getType(KidsBlocklistPickerItem);
+
+    if (!kids)
+      throw new InnertubeError('Could not find any kids profiles or supervised accounts.');
+
+    // Iterate through the kids and block the channel if not already blocked.
+    const responses: ApiResponse[] = [];
+
+    for (const kid of kids) {
+      if (!kid.block_button?.is_toggled) {
+        kid.setActions(this.#session.actions);
+        // Block channel and add to the response list.
+        responses.push(await kid.blockChannel());
+      }
+    }
+
+    return responses;
   }
 }

@@ -15,17 +15,17 @@ import type { FetchFunction } from '../types/PlatformShim.ts';
 import path from 'path';
 import os from 'os';
 import fs from 'fs/promises';
-import { readFileSync } from 'fs';
 import CustomEvent from './polyfills/node-custom-event.ts';
 import { fileURLToPath } from 'url';
 import evaluate from './jsruntime/jinter.ts';
+import { $INLINE_JSON } from 'ts-transformer-inline-file';
 
 const meta_url = import.meta.url;
 const is_cjs = !meta_url;
 const __dirname__ = is_cjs ? __dirname : path.dirname(fileURLToPath(meta_url));
 
-const package_json = JSON.parse(readFileSync(path.resolve(__dirname__, is_cjs ? '../package.json' : '../../package.json'), 'utf-8'));
-const repo_url = package_json.homepage?.split('#')[0];
+const { homepage, version, bugs } = $INLINE_JSON('../../package.json');
+const repo_url = homepage?.split('#')[0];
 
 class Cache implements ICache {
   #persistent_directory: string;
@@ -101,8 +101,8 @@ class Cache implements ICache {
 Platform.load({
   runtime: 'node',
   info: {
-    version: package_json.version,
-    bugs_url: package_json.bugs?.url || `${repo_url}/issues`,
+    version: version,
+    bugs_url: bugs?.url || `${repo_url}/issues`,
     repo_url
   },
   server: true,

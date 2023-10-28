@@ -20,7 +20,7 @@ import SectionList from '../../parser/classes/SectionList.ts';
 import Tab from '../../parser/classes/Tab.ts';
 import * as Proto from '../../proto/index.ts';
 
-import type { ObservedArray, YTNode } from '../../parser/helpers.ts';
+import type { ObservedArray } from '../../parser/helpers.ts';
 import type { MusicSearchFilters } from '../../types/index.ts';
 import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.ts';
 import type Actions from '../Actions.ts';
@@ -355,17 +355,17 @@ export default class Music {
    * Retrieves search suggestions for the given query.
    * @param query - The query.
    */
-  async getSearchSuggestions(query: string): Promise<ObservedArray<YTNode>> {
+  async getSearchSuggestions(query: string): Promise<ObservedArray<SearchSuggestionsSection>> {
     const response = await this.#actions.execute(
       GetSearchSuggestionsEndpoint.PATH,
       { ...GetSearchSuggestionsEndpoint.build({ input: query }), parse: true }
     );
 
     if (!response.contents_memo)
-      throw new InnertubeError('Unexpected response', response);
+      return [] as unknown as ObservedArray<SearchSuggestionsSection>;
 
-    const search_suggestions_section = response.contents_memo.getType(SearchSuggestionsSection).first();
+    const search_suggestions_sections = response.contents_memo.getType(SearchSuggestionsSection);
 
-    return search_suggestions_section.contents;
+    return search_suggestions_sections;
   }
 }

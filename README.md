@@ -171,7 +171,7 @@ import dashjs from 'dashjs';
 
 const youtube = await Innertube.create({ /* setup - see above */ });
 
-// get the video info
+// Get the video info
 const videoInfo = await youtube.getInfo('videoId');
 
 // now convert to a dash manifest
@@ -191,7 +191,7 @@ const player = dashjs.MediaPlayer().create();
 player.initialize(videoElement, uri, true);
 ```
 
-A fully working example can be found in [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/blob/main/examples/browser/web). Alternatively, you can view it live at [ytjsexample.pages.dev](https://ytjsexample.pages.dev/).
+A fully working example can be found in [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/blob/main/examples/browser/web).
 
 <a name="custom-fetch"></a>
 

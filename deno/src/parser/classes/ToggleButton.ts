@@ -28,7 +28,7 @@ export default class ToggleButton extends YTNode {
     this.toggled_tooltip = data.toggledTooltip;
     this.is_toggled = data.isToggled;
     this.is_disabled = data.isDisabled;
-    this.icon_type = data.defaultIcon.iconType;
+    this.icon_type = data.defaultIcon?.iconType;
 
     const acc_label =
       data?.defaultText?.accessibility?.accessibilityData?.label ||
