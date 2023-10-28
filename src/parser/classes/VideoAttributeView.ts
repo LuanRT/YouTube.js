@@ -22,13 +22,6 @@ export default class VideoAttributeView extends YTNode {
     innertube_command: NavigationEndpoint
   };
   overflow_menu_a11y_label: string;
-  logging_directives: {
-    tracking_params: string,
-    visibility: {
-      types: string
-    },
-    enable_displaylogger_experiment: boolean
-  };
 
   constructor(data: RawNode) {
     super();
@@ -45,12 +38,5 @@ export default class VideoAttributeView extends YTNode {
       innertube_command: new NavigationEndpoint(data.overflowMenuOnTap.innertubeCommand)
     };
     this.overflow_menu_a11y_label = data.overflowMenuA11yLabel;
-    this.logging_directives = {
-      tracking_params: data.loggingDirectives.trackingParams,
-      visibility: {
-        types: data.loggingDirectives.visibility.types
-      },
-      enable_displaylogger_experiment: data.loggingDirectives.enableDisplayloggerExperiment
-    };
   }
 }
