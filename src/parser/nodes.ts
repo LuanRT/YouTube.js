@@ -393,6 +393,8 @@ export { default as WatchNextEndScreen } from './classes/WatchNextEndScreen.js';
 export { default as WatchNextTabbedResults } from './classes/WatchNextTabbedResults.js';
 export { default as YpcTrailer } from './classes/YpcTrailer.js';
 export { default as AnchoredSection } from './classes/ytkids/AnchoredSection.js';
+export { default as KidsBlocklistPicker } from './classes/ytkids/KidsBlocklistPicker.js';
+export { default as KidsBlocklistPickerItem } from './classes/ytkids/KidsBlocklistPickerItem.js';
 export { default as KidsCategoriesHeader } from './classes/ytkids/KidsCategoriesHeader.js';
 export { default as KidsCategoryTab } from './classes/ytkids/KidsCategoryTab.js';
 export { default as KidsHomeScreen } from './classes/ytkids/KidsHomeScreen.js';

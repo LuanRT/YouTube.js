@@ -9,6 +9,7 @@ YouTube Kids is a modified version of the YouTube app, with a simplified interfa
   * [.getInfo(video_id)](#getinfo)
   * [.getChannel(channel_id)](#getchannel)
   * [.getHomeFeed()](#gethomefeed)
+  * [.blockChannel(channel_id)](#blockchannel)
 
 <a name="search"></a>
 ### search(query)
@@ -111,3 +112,16 @@ Retrieves the home feed.
 
 - `<feed>#page`
   - Returns the original InnerTube response(s), parsed and sanitized.
+
+</details>
+
+<a name="blockChannel"></a>
+### blockChannel(channel_id)
+
+Retrieves the list of supervised accounts that the signed-in user has access to and blocks the given channel for each of them.
+
+**Returns:** `Promise.<ApiResponse[]>`
+
+| Param | Type | Description |
+| --- | --- | --- |
+| channel_id | `string` | Channel id |  
