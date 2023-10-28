@@ -27,7 +27,7 @@ export default class KidsBlocklistPickerItem extends YTNode {
     this.blocked_entity_key = data.blockedEntityKey;
   }
 
-  async blockchannel(): Promise<ApiResponse> {
+  async blockChannel(): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('An active caller must be provide to perform this operation.');
 

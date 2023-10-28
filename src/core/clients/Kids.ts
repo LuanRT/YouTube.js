@@ -12,7 +12,9 @@ import {
   BrowseEndpoint, NextEndpoint,
   PlayerEndpoint, SearchEndpoint
 } from '../endpoints/index.js';
-import { KidsBlocklistPickerEndpoint } from '../endpoints/channel/index.js';
+
+import { BlocklistPickerEndpoint } from '../endpoints/kids/index.js';
+
 import KidsBlocklistPickerItem from '../../parser/classes/ytkids/KidsBlocklistPickerItem.js';
 
 export default class Kids {
@@ -95,25 +97,27 @@ export default class Kids {
     if (!this.#session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const blocklist_payload = KidsBlocklistPickerEndpoint.build({ channel_id: channel_id });
-    const response = (await this.#session.actions.execute( KidsBlocklistPickerEndpoint.PATH, blocklist_payload ));
+    const blocklist_payload = BlocklistPickerEndpoint.build({ channel_id: channel_id });
+    const response = await this.#session.actions.execute(BlocklistPickerEndpoint.PATH, blocklist_payload );
     const popup = response.data.command.confirmDialogEndpoint;
-    const popupFragment = { contents: popup.content, engagementPanels: [] };
-    const kidPicker = Parser.parseResponse(popupFragment);
-    const kids = kidPicker.contents_memo?.getType(KidsBlocklistPickerItem);
+    const popup_fragment = { contents: popup.content, engagementPanels: [] };
+    const kid_picker = Parser.parseResponse(popup_fragment);
+    const kids = kid_picker.contents_memo?.getType(KidsBlocklistPickerItem);
 
     if (!kids)
       throw new InnertubeError('Could not find any kids profiles or supervised accounts.');
 
     // Iterate through the kids and block the channel if not already blocked.
     const responses: ApiResponse[] = [];
+
     for (const kid of kids) {
       if (!kid.block_button?.is_toggled) {
         kid.setActions(this.#session.actions);
         // Block channel and add to the response list.
-        responses.push(await kid.blockchannel());
+        responses.push(await kid.blockChannel());
       }
     }
+
     return responses;
   }
 }
