@@ -24,7 +24,7 @@ jobs:
           node-version: "16.x"
       - name: Build for Deno
         run: |
-          npm ci --legacy-peer-deps
+          npm ci
           npm run build:deno
         if: ${{ steps.release.outputs.release_created }}
       - name: Move Deno files
@@ -55,7 +55,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - name: Publish package to npmjs
         run: |
-          npm ci --legacy-peer-deps
+          npm ci
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

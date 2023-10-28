@@ -89,6 +89,9 @@
     "tslib": "^2.5.0",
     "undici": "^5.19.1"
   },
+  "overrides": {
+    "typescript": "^5.0.0"
+  },
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/jest": "^28.1.7",
