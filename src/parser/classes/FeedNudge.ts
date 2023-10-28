@@ -1,5 +1,6 @@
 import { YTNode } from '../helpers.js';
 import { NavigationEndpoint } from '../nodes.js';
+
 import type { RawNode } from '../types/index.js';
 
 export default class FeedNudge extends YTNode {
