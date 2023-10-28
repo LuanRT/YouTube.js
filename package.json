@@ -71,7 +71,7 @@
     "build": "npm run build:parser-map && npm run build:proto && npm run build:esm && npm run bundle:node && npm run bundle:browser && npm run bundle:browser:prod",
     "build:parser-map": "node ./scripts/gen-parser-map.mjs",
     "build:proto": "npx pb-gen-ts --entry-path=\"src/proto\" --out-dir=\"src/proto/generated\" --ext-in-import=\".js\"",
-    "build:esm": "npx tsc",
+    "build:esm": "npx tspc",
     "build:deno": "npx cpy ./src ./deno && npx esbuild ./src/utils/DashManifest.tsx --keep-names --format=esm --platform=neutral --target=es2020 --outfile=./deno/src/utils/DashManifest.js && npx cpy ./package.json ./deno && npx replace \".js';\" \".ts';\" ./deno -r && npx replace '.js\";' '.ts\";' ./deno -r && npx replace \"'./DashManifest.ts';\" \"'./DashManifest.js';\" ./deno -r && npx replace \"'jintr';\" \"'https://esm.sh/jintr';\" ./deno -r",
     "bundle:node": "npx esbuild ./dist/src/platform/node.js --bundle --target=node10 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:jintr --external:undici --external:linkedom --external:tslib --sourcemap --banner:js=\"/* eslint-disable */\"",
     "bundle:browser": "npx esbuild ./dist/src/platform/web.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/browser.js --platform=browser",
@@ -104,6 +104,8 @@
     "pbkit": "^0.0.59",
     "replace": "^1.2.2",
     "ts-jest": "^28.0.8",
+    "ts-patch": "^3.0.2",
+    "ts-transformer-inline-file": "^0.2.0",
     "typescript": "^5.0.0"
   },
   "bugs": {
