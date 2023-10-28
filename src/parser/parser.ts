@@ -367,15 +367,21 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.playability_status = playability_status;
   }
 
-  const streaming_data = data.streamingData ? {
-    expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
-    formats: parseFormats(data.streamingData.formats),
-    adaptive_formats: parseFormats(data.streamingData.adaptiveFormats),
-    dash_manifest_url: data.streamingData.dashManifestUrl || null,
-    hls_manifest_url: data.streamingData.hlsManifestUrl || null
-  } : undefined;
+  if (data.streamingData) {
+    // Currently each response with streaming data only has two n param values
+    // One for the adaptive formats and another for the combined formats
+    // As they are the same for a response, we only need to decipher them once
+    // For all futher deciphering calls on formats from that response, we can use the cached output, given the same input n param
+    const this_response_nsig_cache = new Map<string, string>();
 
-  if (streaming_data) {
+    const streaming_data = {
+      expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
+      formats: parseFormats(data.streamingData.formats, this_response_nsig_cache),
+      adaptive_formats: parseFormats(data.streamingData.adaptiveFormats, this_response_nsig_cache),
+      dash_manifest_url: data.streamingData.dashManifestUrl || null,
+      hls_manifest_url: data.streamingData.hlsManifestUrl || null
+    };
+
     parsed_data.streaming_data = streaming_data;
   }
 
@@ -598,8 +604,8 @@ export function parseActions(data: RawData) {
   return new SuperParsedResult(parseItem(data));
 }
 
-export function parseFormats(formats: RawNode[]): Format[] {
-  return formats?.map((format) => new Format(format)) || [];
+export function parseFormats(formats: RawNode[], this_response_nsig_cache: Map<string, string>): Format[] {
+  return formats?.map((format) => new Format(format, this_response_nsig_cache)) || [];
 }
 
 export function applyMutations(memo: Memo, mutations: RawNode[]) {

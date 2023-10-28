@@ -3,6 +3,8 @@ import { InnertubeError } from '../../../utils/Utils.js';
 import type { RawNode } from '../../index.js';
 
 export default class Format {
+  #this_response_nsig_cache?: Map<string, string>;
+
   itag: number;
   mime_type: string;
   is_type_otf: boolean;
@@ -52,7 +54,11 @@ export default class Format {
     matrix_coefficients?: string;
   };
 
-  constructor(data: RawNode) {
+  constructor(data: RawNode, this_response_nsig_cache?: Map<string, string>) {
+    if (this_response_nsig_cache) {
+      this.#this_response_nsig_cache = this_response_nsig_cache;
+    }
+
     this.itag = data.itag;
     this.mime_type = data.mimeType;
     this.is_type_otf = data.type === 'FORMAT_STREAM_TYPE_OTF';
@@ -122,6 +128,6 @@ export default class Format {
    */
   decipher(player: Player | undefined): string {
     if (!player) throw new InnertubeError('Cannot decipher format, this session appears to have no valid player.');
-    return player.decipher(this.url, this.signature_cipher, this.cipher);
+    return player.decipher(this.url, this.signature_cipher, this.cipher, this.#this_response_nsig_cache);
   }
 }

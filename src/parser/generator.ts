@@ -134,33 +134,35 @@ export function isRendererList(value: unknown) {
  * @returns If it is a misc type, return the InferenceType. Otherwise, return false.
  */
 export function isMiscType(key: string, value: unknown): MiscInferenceType | false {
-  // NavigationEndpoint
-  if ((key.endsWith('Endpoint') || key.endsWith('Command') || key === 'endpoint') && typeof value === 'object' && value !== null) {
-    return {
-      type: 'misc',
-      endpoint: new NavigationEndpoint(value),
-      optional: false,
-      misc_type: 'NavigationEndpoint'
-    };
-  }
-  // Text
-  if (typeof value === 'object' && value !== null && (Reflect.has(value, 'simpleText') || Reflect.has(value, 'runs'))) {
-    const textNode = new Text(value);
-    return {
-      type: 'misc',
-      misc_type: 'Text',
-      optional: false,
-      endpoint: textNode.endpoint,
-      text: textNode.toString()
-    };
-  }
-  // Thumbnail
-  if (typeof value === 'object' && value !== null && Reflect.has(value, 'thumbnails') && Array.isArray(Reflect.get(value, 'thumbnails'))) {
-    return {
-      type: 'misc',
-      misc_type: 'Thumbnail',
-      optional: false
-    };
+  if (typeof value === 'object' && value !== null) {
+    // NavigationEndpoint
+    if (key.endsWith('Endpoint') || key.endsWith('Command') || key === 'endpoint') {
+      return {
+        type: 'misc',
+        endpoint: new NavigationEndpoint(value),
+        optional: false,
+        misc_type: 'NavigationEndpoint'
+      };
+    }
+    // Text
+    if (Reflect.has(value, 'simpleText') || Reflect.has(value, 'runs')) {
+      const textNode = new Text(value);
+      return {
+        type: 'misc',
+        misc_type: 'Text',
+        optional: false,
+        endpoint: textNode.endpoint,
+        text: textNode.toString()
+      };
+    }
+    // Thumbnail
+    if (Reflect.has(value, 'thumbnails') && Array.isArray(Reflect.get(value, 'thumbnails'))) {
+      return {
+        type: 'misc',
+        misc_type: 'Thumbnail',
+        optional: false
+      };
+    }
   }
   return false;
 }
