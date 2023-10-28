@@ -105,6 +105,7 @@ export { default as ExpandedShelfContents } from './classes/ExpandedShelfContent
 export { default as Factoid } from './classes/Factoid.js';
 export { default as FancyDismissibleDialog } from './classes/FancyDismissibleDialog.js';
 export { default as FeedFilterChipBar } from './classes/FeedFilterChipBar.js';
+export { default as FeedNudge } from './classes/FeedNudge.js';
 export { default as FeedTabbedHeader } from './classes/FeedTabbedHeader.js';
 export { default as GameCard } from './classes/GameCard.js';
 export { default as GameDetails } from './classes/GameDetails.js';
