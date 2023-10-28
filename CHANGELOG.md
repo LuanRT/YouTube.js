@@ -1,5 +1,24 @@
 # Changelog
 
+## [7.0.0](https://github.com/LuanRT/YouTube.js/compare/v6.4.1...v7.0.0) (2023-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **music#getSearchSuggestions:** Return array of `SearchSuggestionsSection` instead of a single node
+
+### Features
+
+* **Kids:** Add `blockChannel` command to easily block channels ([#503](https://github.com/LuanRT/YouTube.js/issues/503)) ([9ab528e](https://github.com/LuanRT/YouTube.js/commit/9ab528ec823dcd527a97150009eed632c6d3eb6a))
+* **music#getSearchSuggestions:** Return array of `SearchSuggestionsSection` instead of a single node ([beaa28f](https://github.com/LuanRT/YouTube.js/commit/beaa28f4c68de8366caa84ce5a026bf9e12e1b9d))
+* **parser:** Add `PlayerOverflow` and `PlayerControlsOverlay` ([a45273f](https://github.com/LuanRT/YouTube.js/commit/a45273fec498df87eecd364ffb708c9f787793d5))
+* **UpdateViewerShipAction:** Add `original_view_count` and `unlabeled_view_count_value` ([#527](https://github.com/LuanRT/YouTube.js/issues/527)) ([bc97e07](https://github.com/LuanRT/YouTube.js/commit/bc97e07ac6d1cdc45194e214c6001cf92190e1d5))
+
+
+### Bug Fixes
+
+* **build:** Inline package.json import to avoid runtime erros ([#509](https://github.com/LuanRT/YouTube.js/issues/509)) ([4c0de19](https://github.com/LuanRT/YouTube.js/commit/4c0de199e85dd5cc8b3719920b24dec9613acaab))
+
 ## [6.4.1](https://github.com/LuanRT/YouTube.js/compare/v6.4.0...v6.4.1) (2023-10-02)
 
 
