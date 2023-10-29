@@ -1,4 +1,4 @@
-import Parser, { NavigateAction} from '../parser/index.js';
+import Parser, { NavigateAction } from '../parser/index.js';
 import { InnertubeError } from '../utils/Utils.js';
 
 import type Session from './Session.js';
