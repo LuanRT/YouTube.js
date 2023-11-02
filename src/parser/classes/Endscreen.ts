@@ -1,4 +1,4 @@
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import { type ObservedArray, YTNode } from '../helpers.js';
 
 export default class Endscreen extends YTNode {

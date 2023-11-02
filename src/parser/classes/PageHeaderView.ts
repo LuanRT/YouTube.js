@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import ContentPreviewImageView from './ContentPreviewImageView.js';
 import DynamicTextView from './DynamicTextView.js';
 

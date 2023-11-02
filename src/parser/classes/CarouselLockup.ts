@@ -1,6 +1,6 @@
 import { type ObservedArray, YTNode } from '../helpers.js';
 import InfoRow from './InfoRow.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import CompactVideo from './CompactVideo.js';
 
 export default class CarouselLockup extends YTNode {

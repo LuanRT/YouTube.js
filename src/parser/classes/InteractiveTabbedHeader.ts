@@ -5,7 +5,7 @@ import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 
 export default class InteractiveTabbedHeader extends YTNode {
   static type = 'InteractiveTabbedHeader';

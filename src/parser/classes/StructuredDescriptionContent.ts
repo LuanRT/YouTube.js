@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import ExpandableVideoDescriptionBody from './ExpandableVideoDescriptionBody.js';
 import HorizontalCardList from './HorizontalCardList.js';
 import VideoDescriptionHeader from './VideoDescriptionHeader.js';

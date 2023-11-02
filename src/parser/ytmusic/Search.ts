@@ -1,6 +1,6 @@
 import type Actions from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';
-import Parser, { MusicShelfContinuation } from '../index.js';
+import { Parser, MusicShelfContinuation } from '../index.js';
 
 import ChipCloud from '../classes/ChipCloud.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';

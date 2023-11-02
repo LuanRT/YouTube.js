@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import ThumbnailOverlayTimeStatus from './ThumbnailOverlayTimeStatus.js';
 import Menu from './menus/Menu.js';

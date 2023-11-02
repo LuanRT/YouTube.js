@@ -1,7 +1,7 @@
 import type { ObservedArray } from '../helpers.js';
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import MetadataBadge from './MetadataBadge.js';
 import Menu from './menus/Menu.js';
 import Text from './misc/Text.js';

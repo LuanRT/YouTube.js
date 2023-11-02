@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import type NavigationEndpoint from './NavigationEndpoint.js';
 import Text from './misc/Text.js';
 import type TextRun from './misc/TextRun.js';

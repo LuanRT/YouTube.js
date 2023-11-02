@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import Button from './Button.js';
 import MultiMarkersPlayerBar from './MultiMarkersPlayerBar.js';
 

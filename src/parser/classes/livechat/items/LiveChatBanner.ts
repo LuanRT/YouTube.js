@@ -1,6 +1,6 @@
 import { YTNode } from '../../../helpers.js';
 import type { RawNode } from '../../../index.js';
-import Parser from '../../../index.js';
+import { Parser } from '../../../index.js';
 import LiveChatBannerHeader from './LiveChatBannerHeader.js';
 
 export default class LiveChatBanner extends YTNode {

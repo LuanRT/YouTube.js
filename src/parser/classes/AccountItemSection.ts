@@ -1,4 +1,4 @@
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import AccountItemSectionHeader from './AccountItemSectionHeader.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Text from './misc/Text.js';

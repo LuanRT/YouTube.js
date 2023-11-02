@@ -1,6 +1,6 @@
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-import Parser from '../../index.js';
+import { Parser } from '../../index.js';
 import Transcript from '../Transcript.js';
 
 export default class UpdateEngagementPanelAction extends YTNode {

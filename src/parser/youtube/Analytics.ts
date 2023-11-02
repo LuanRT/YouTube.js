@@ -1,4 +1,4 @@
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import Element from '../classes/Element.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';

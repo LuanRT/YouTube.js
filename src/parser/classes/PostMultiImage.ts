@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import BackstageImage from './BackstageImage.js';
 import { YTNode } from '../helpers.js';
 

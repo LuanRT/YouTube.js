@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import TranscriptFooter from './TranscriptFooter.js';
 import TranscriptSearchBox from './TranscriptSearchBox.js';
 import TranscriptSegmentList from './TranscriptSegmentList.js';
