@@ -3,7 +3,7 @@ import type PlayerOverlay from '../classes/PlayerOverlay.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import Parser, { ContinuationCommand } from '../index.js';
+import { Parser, ContinuationCommand } from '../index.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import {
   Reel
