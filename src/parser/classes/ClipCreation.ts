@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
-import { Thumbnail } from '../misc.js';
-import { Button } from '../nodes.js';
+import Thumbnail from './misc/Thumbnail.js';
+import Button from './Button.js';
 import ClipCreationTextInput from './ClipCreationTextInput.js';
 import ClipCreationScrubber from './ClipCreationScrubber.js';
 import ClipAdState from './ClipAdState.js';
