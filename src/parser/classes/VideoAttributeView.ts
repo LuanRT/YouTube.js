@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import { NavigationEndpoint } from '../nodes.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 
 import ContentPreviewImageView from './ContentPreviewImageView.js';
 import { Parser } from '../index.js';
