@@ -3,7 +3,7 @@ import { YTNode } from '../helpers.js';
 
 import ClipCreation from './ClipCreation.js';
 
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 
 import type { RawNode } from '../types/index.js';
 
