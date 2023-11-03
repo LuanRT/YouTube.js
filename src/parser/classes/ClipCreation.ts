@@ -6,7 +6,7 @@ import ClipCreationScrubber from './ClipCreationScrubber.js';
 import ClipAdState from './ClipAdState.js';
 import Text from './misc/Text.js';
 
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 
 import type { RawNode } from '../types/index.js';
 
