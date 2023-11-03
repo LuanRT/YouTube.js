@@ -2,7 +2,7 @@ import { YTNode } from '../helpers.js';
 import { NavigationEndpoint } from '../nodes.js';
 
 import ContentPreviewImageView from './ContentPreviewImageView.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 
 import type { RawNode } from '../types/index.js';
 
