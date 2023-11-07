@@ -1,7 +1,7 @@
-import type { RawNode } from '../../../platform/lib.js';
+import type { RawNode } from '../../index.js';
 import { YTNode } from '../../helpers.js';
-import { Thumbnail } from '../../misc.js';
-import { NavigationEndpoint } from '../../nodes.js';
+import Thumbnail from '../misc/Thumbnail.js';
+import NavigationEndpoint from '../NavigationEndpoint.js';
 import Text from '../misc/Text.js';
 
 export default class ActiveAccountHeader extends YTNode {

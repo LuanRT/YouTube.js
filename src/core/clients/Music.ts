@@ -1,3 +1,4 @@
+import Account from '../../parser/ytmusic/Account.js';
 import Album from '../../parser/ytmusic/Album.js';
 import Artist from '../../parser/ytmusic/Artist.js';
 import Explore from '../../parser/ytmusic/Explore.js';
@@ -34,7 +35,6 @@ import {
 } from '../endpoints/index.js';
 
 import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.js';
-import Account from '../../parser/ytmusic/Account.js';
 
 export default class Music {
   #session: Session;
