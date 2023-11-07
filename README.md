@@ -171,7 +171,7 @@ import dashjs from 'dashjs';
 
 const youtube = await Innertube.create({ /* setup - see above */ });
 
-// get the video info
+// Get the video info
 const videoInfo = await youtube.getInfo('videoId');
 
 // now convert to a dash manifest
@@ -191,7 +191,7 @@ const player = dashjs.MediaPlayer().create();
 player.initialize(videoElement, uri, true);
 ```
 
-A fully working example can be found in [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/blob/main/examples/browser/web). Alternatively, you can view it live at [ytjsexample.pages.dev](https://ytjsexample.pages.dev/).
+A fully working example can be found in [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/blob/main/examples/browser/web).
 
 <a name="custom-fetch"></a>
 
@@ -278,7 +278,6 @@ const yt = await Innertube.create({
   * [.getPlaylist(id)](#getplaylist)
   * [.getHashtag(hashtag)](#gethashtag)
   * [.getStreamingData(video_id, options)](#getstreamingdata)
-  * [.getTranscript(video_id)](#gettranscript)
   * [.download(video_id, options?)](#download)
   * [.resolveURL(url)](#resolveurl)
   * [.call(endpoint, args?)](#call)
@@ -325,6 +324,9 @@ Retrieves video info.
 
 - `<info>#download(options)`
   - Downloads the video. See [download](#download).
+
+- `<info>#getTranscript()`
+  - Retrieves the video's transcript.
 
 - `<info>#filters`
   - Returns filters that can be applied to the watch next feed.
@@ -660,16 +662,6 @@ console.info('Playback url:', url);
 | --- | --- | --- |
 | video_id | `string` | Video id |
 | options | `FormatOptions` | Format options |
-
-<a name="gettranscript"></a>
-### `getTranscript(video_id)`
-Retrieves a given video's transcript.
-
-**Returns**: `Promise<Transcript>`
-
-| Param | Type | Description |
-| --- | --- | --- |
-| video_id | `string` | Video id |
 
 <a name="download"></a>
 ### `download(video_id, options?)`

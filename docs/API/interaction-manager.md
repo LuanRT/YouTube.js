@@ -12,7 +12,7 @@ Handles direct interactions.
   * [.unsubscribe(video_id)](#unsubscribe) 
   * [.comment(video_id, text)](#comment) 
   * [.translate(text, target_language, args?)](#translate) 
-  * [.setNotificationPreferences(channel_id, type)](#setnotificationpreferences) 
+  * [.setNotificationPreferences(channel_id, type)](#setnotificationpreferences)
 
 <a name="like"></a>
 ### like(video_id)
