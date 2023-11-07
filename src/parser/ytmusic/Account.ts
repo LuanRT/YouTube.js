@@ -1,12 +1,12 @@
 import { BrowseEndpoint } from '../../core/endpoints/index.js';
 import type Actions from '../../core/Actions.js';
-import { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/Actions.js';
 import type { IParsedResponse } from '../types/ParsedResponse.js';
 import { Parser } from '../../platform/lib.js';
 import type { Memo, ObservedArray } from '../helpers.js';
 import type Thumbnail from '../classes/misc/Thumbnail.js';
 import ActiveAccountHeader from '../classes/ytmusic/ActiveAccountHeader.js';
-import CompactLink  from '../classes/CompactLink.js';
+import CompactLink from '../classes/CompactLink.js';
 import Artist from './Artist.js';
 
 export default class Account {
