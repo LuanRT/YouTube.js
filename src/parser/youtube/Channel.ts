@@ -29,7 +29,6 @@ import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } fr
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import type { IBrowseResponse } from '../types/index.js';
-import { BrowseEndpoint } from '../../core/endpoints/index.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
   header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader | PageHeader;
@@ -212,16 +211,14 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
         return tab.memo.getType(ChannelAboutFullMetadata)[0];
       }
 
-      const token = this.header.tagline.more_endpoint.show_engagement_panel_endpoint.engagement_panel?.content
-        ?.as(SectionList).contents?.[0].as(ItemSection).contents[0].as(ContinuationItem).endpoint.payload?.token as string | undefined;
+      const endpoint = this.header.tagline.more_endpoint.show_engagement_panel_endpoint.engagement_panel?.content
+        ?.as(SectionList).contents?.[0].as(ItemSection).contents[0].as(ContinuationItem).endpoint;
 
-      if (!token) {
-        throw new InnertubeError('Failed to extract continuation token to get channel about');
+      if (!endpoint) {
+        throw new InnertubeError('Failed to extract continuation to get channel about');
       }
-      const response = await this.actions.execute(BrowseEndpoint.PATH, {
-        parse: true,
-        ...BrowseEndpoint.build({ continuation: token })
-      });
+
+      const response = await endpoint.call<IBrowseResponse>(this.actions, { parse: true });
 
       if (!response.on_response_received_endpoints_memo) {
         throw new InnertubeError('Unexpected response while fetching channel about', { response });
