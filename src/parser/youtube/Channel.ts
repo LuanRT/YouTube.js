@@ -211,8 +211,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
         return tab.memo.getType(ChannelAboutFullMetadata)[0];
       }
 
-      const endpoint = this.header.tagline.more_endpoint.show_engagement_panel_endpoint.engagement_panel?.content
-        ?.as(SectionList).contents?.[0].as(ItemSection).contents[0].as(ContinuationItem).endpoint;
+      const endpoint = this.page.header_memo?.getType(ContinuationItem)[0]?.endpoint;
 
       if (!endpoint) {
         throw new InnertubeError('Failed to extract continuation to get channel about');
