@@ -21,7 +21,6 @@ import ChannelSubMenu from '../classes/ChannelSubMenu.js';
 import SortFilterSubMenu from '../classes/SortFilterSubMenu.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
-import ItemSection from '../classes/ItemSection.js';
 
 import { ChannelError, InnertubeError } from '../../utils/Utils.js';
 
