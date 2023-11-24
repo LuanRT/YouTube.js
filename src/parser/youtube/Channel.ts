@@ -185,11 +185,6 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getChannels(): Promise<Channel> {
-    const tab = await this.getTabByURL('channels');
-    return new Channel(this.actions, tab.page, true);
-  }
-
   /**
    * Retrieves the about page.
    * Note that this does not return a new {@link Channel} object.
@@ -243,10 +238,6 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 
   get has_community(): boolean {
     return this.hasTabWithURL('community');
-  }
-
-  get has_channels(): boolean {
-    return this.hasTabWithURL('channels');
   }
 
   get has_about(): boolean {
