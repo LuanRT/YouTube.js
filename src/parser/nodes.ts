@@ -80,6 +80,7 @@ export { default as ContinuationItem } from './classes/ContinuationItem.js';
 export { default as ConversationBar } from './classes/ConversationBar.js';
 export { default as CopyLink } from './classes/CopyLink.js';
 export { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.js';
+export { default as DecoratedAvatarView } from './classes/DecoratedAvatarView.js';
 export { default as DecoratedPlayerBar } from './classes/DecoratedPlayerBar.js';
 export { default as DefaultPromoPanel } from './classes/DefaultPromoPanel.js';
 export { default as DidYouMean } from './classes/DidYouMean.js';
