@@ -2,7 +2,7 @@ import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
 import { NavigationEndpoint } from '../nodes.js';
 
-class DecoratedAvatarView extends YTNode {
+export default class DecoratedAvatarView extends YTNode {
   static type = 'DecoratedAvatarView';
 
   avatar: {
