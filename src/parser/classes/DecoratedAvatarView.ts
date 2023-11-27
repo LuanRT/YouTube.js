@@ -1,6 +1,7 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
 import { NavigationEndpoint } from '../nodes.js';
+import Thumbnail from './misc/Thumbnail.js';
 
 export default class DecoratedAvatarView extends YTNode {
   static type = 'DecoratedAvatarView';
@@ -8,23 +9,7 @@ export default class DecoratedAvatarView extends YTNode {
   avatar: {
       avatar_view_model: {
         image: {
-          sources: {
-            0: {
-              url: string,
-              width: number,
-              height: number
-            },
-            1: {
-              url: string,
-              width: number,
-              height: number
-            },
-            2: {
-              url: string,
-              width: number,
-              height: number
-            }
-          },
+          sources: Thumbnail[],
           processor: {
             border_image_processor: {
               circular: boolean
@@ -48,23 +33,7 @@ export default class DecoratedAvatarView extends YTNode {
     this.avatar = {
       avatar_view_model: {
         image: {
-          sources: {
-            0: {
-              url: data.avatar.avatarViewModel.image.sources[0].url,
-              width: data.avatar.avatarViewModel.image.sources[0].width,
-              height: data.avatar.avatarViewModel.image.sources[0].height
-            },
-            1: {
-              url: data.avatar.avatarViewModel.image.sources[1].url,
-              width: data.avatar.avatarViewModel.image.sources[1].width,
-              height: data.avatar.avatarViewModel.image.sources[1].height
-            },
-            2: {
-              url: data.avatar.avatarViewModel.image.sources[2].url,
-              width: data.avatar.avatarViewModel.image.sources[2].width,
-              height: data.avatar.avatarViewModel.image.sources[2].height
-            }
-          },
+          sources: data.avatar.avatarViewModel.image.sources.map((x: any) => new Thumbnail(x)).sort((a: Thumbnail, b: Thumbnail) => b.width - a.width),
           processor: {
             border_image_processor: {
               circular: data.avatar.avatarViewModel.image.processor.borderImageProcessor.circular
