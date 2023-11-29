@@ -435,6 +435,18 @@ export function toTypeDeclaration(inference_type: InferenceType, indentation = 0
   }
 }
 
+function arrayToKeyPathString(arr: string[]) {
+  let formattedString = '';
+  
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    const isInteger = Number.isInteger(Number(element));
+    formattedString += isInteger ? `[${element}]` : `.${element}`;
+  }
+
+  return formattedString.slice(1);
+}
+
 /**
  * Generate statements to parse a given inference type
  * @param key - The key to parse
@@ -448,12 +460,12 @@ export function toParser(key: string, inference_type: InferenceType, key_path: s
   switch (inference_type.type) {
     case 'renderer':
       {
-        parser = `Parser.parseItem(${key_path.join('.')}.${key}, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+        parser = `Parser.parseItem(${arrayToKeyPathString(key_path)}.${key}, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
       }
       break;
     case 'renderer_list':
       {
-        parser = `Parser.parse(${key_path.join('.')}.${key}, true, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+        parser = `Parser.parse(${arrayToKeyPathString(key_path)}.${key}, true, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
       }
       break;
     case 'object':
@@ -465,17 +477,17 @@ export function toParser(key: string, inference_type: InferenceType, key_path: s
     case 'misc':
       switch (inference_type.misc_type) {
         case 'Thumbnail':
-          parser = `Thumbnail.fromResponse(${key_path.join('.')}.${key})`;
+          parser = `Thumbnail.fromResponse(${arrayToKeyPathString(key_path)}.${key})`;
           break;
         case 'Author':
         {
-          const author_parser = `new Author(${key_path.join('.')}.${inference_type.params[0]}, ${inference_type.params[1] ? `${key_path.join('.')}.${inference_type.params[1]}` : 'undefined'})`;
+          const author_parser = `new Author(${arrayToKeyPathString(key_path)}.${inference_type.params[0]}, ${inference_type.params[1] ? `${arrayToKeyPathString(key_path)}.${inference_type.params[1]}` : 'undefined'})`;
           if (inference_type.optional)
-            return `Reflect.has(${key_path.join('.')}, '${inference_type.params[0]}') ? ${author_parser} : undefined`;
+            return `Reflect.has(${arrayToKeyPathString(key_path)}, '${inference_type.params[0]}') ? ${author_parser} : undefined`;
           return author_parser;
         }
         default:
-          parser = `new ${inference_type.misc_type}(${key_path.join('.')}.${key})`;
+          parser = `new ${inference_type.misc_type}(${arrayToKeyPathString(key_path)}.${key})`;
           break;
       }
       if (parser === 'undefined')
@@ -483,11 +495,11 @@ export function toParser(key: string, inference_type: InferenceType, key_path: s
       break;
     case 'primative':
     case 'unknown':
-      parser = `${key_path.join('.')}.${key}`;
+      parser = `${arrayToKeyPathString(key_path)}.${key}`;
       break;
   }
   if (inference_type.optional)
-    return `Reflect.has(${key_path.join('.')}, '${key}') ? ${parser} : undefined`;
+    return `Reflect.has(${arrayToKeyPathString(key_path)}, '${key}') ? ${parser} : undefined`;
   return parser;
 }
 
