@@ -21,7 +21,6 @@ describe('YouTube.js Tests', () => {
 
     test('Innertube#getShortsWatchItem', async () => {
       const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
-      console.log(JSON.stringify(info))
       expect(info.watch_next_feed?.length).toBeGreaterThan(0);
     });
 
