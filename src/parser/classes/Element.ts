@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import ChildElement from './misc/ChildElement.js';
 import { type ObservedArray, YTNode, observe } from '../helpers.js';
 

@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import Button from './Button.js';
 import SortFilterSubMenu from './SortFilterSubMenu.js';
 import Menu from './menus/Menu.js';

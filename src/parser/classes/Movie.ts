@@ -1,6 +1,6 @@
 import { timeToSeconds } from '../../utils/Utils.js';
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import Menu from './menus/Menu.js';
 import Author from './misc/Author.js';

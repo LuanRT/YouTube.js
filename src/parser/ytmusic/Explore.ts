@@ -1,4 +1,4 @@
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 
 import Grid from '../classes/Grid.js';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';

@@ -1,7 +1,7 @@
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import { YTNode } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import type { IParsedResponse } from '../types/ParsedResponse.js';
 import CreatePlaylistDialog from './CreatePlaylistDialog.js';
 import OpenPopupAction from './actions/OpenPopupAction.js';

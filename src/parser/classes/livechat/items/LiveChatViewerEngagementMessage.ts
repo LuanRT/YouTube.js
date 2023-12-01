@@ -1,4 +1,4 @@
-import Parser from '../../../index.js';
+import { Parser } from '../../../index.js';
 import { LiveChatMessageBase } from './LiveChatTextMessage.js';
 import type { RawNode } from '../../../index.js';
 import type { YTNode } from '../../../helpers.js';

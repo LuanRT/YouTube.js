@@ -5,7 +5,7 @@ import { isTextRun, timeToSeconds } from '../../utils/Utils.js';
 import type { ObservedArray } from '../helpers.js';
 import type { RawNode } from '../index.js';
 
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.js';
 import MusicResponsiveListItemFixedColumn from './MusicResponsiveListItemFixedColumn.js';
 import MusicResponsiveListItemFlexColumn from './MusicResponsiveListItemFlexColumn.js';

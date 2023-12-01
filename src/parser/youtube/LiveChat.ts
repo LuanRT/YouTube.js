@@ -1,5 +1,5 @@
 import EventEmitter from '../../utils/EventEmitterLike.js';
-import Parser, { LiveChatContinuation } from '../index.js';
+import { Parser, LiveChatContinuation } from '../index.js';
 import type VideoInfo from './VideoInfo.js';
 import SmoothedQueue from './SmoothedQueue.js';
 

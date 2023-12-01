@@ -1,6 +1,6 @@
 import Text from '../misc/Text.js';
 import { YTNode } from '../../helpers.js';
-import Parser, { type RawNode } from '../../index.js';
+import { Parser, type RawNode } from '../../index.js';
 import ToggleButton from '../ToggleButton.js';
 import Thumbnail from '../misc/Thumbnail.js';
 import type Actions from '../../../core/Actions.js';

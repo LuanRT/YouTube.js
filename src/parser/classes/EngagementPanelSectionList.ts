@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import ClipSection from './ClipSection.js';
 import ContinuationItem from './ContinuationItem.js';
 import EngagementPanelTitleHeader from './EngagementPanelTitleHeader.js';

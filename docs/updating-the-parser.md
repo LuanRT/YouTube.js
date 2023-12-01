@@ -31,7 +31,7 @@ For example, suppose we have found a new renderer named `verticalListRenderer`. 
 > `../classes/VerticalList.ts`
 
 ```ts
-import Parser, { RawNode } from '../index.js';
+import { Parser, RawNode } from '../index.js';
 import { YTNode } from '../helpers.js';
 
 export default class VerticalList extends YTNode {

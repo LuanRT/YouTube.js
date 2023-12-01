@@ -1,6 +1,6 @@
 import type { ApiResponse } from '../../core/Actions.js';
 import type { ObservedArray } from '../helpers.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 
 import MicroformatData from '../classes/MicroformatData.js';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';

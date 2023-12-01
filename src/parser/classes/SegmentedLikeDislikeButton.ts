@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import Button from './Button.js';
 import ToggleButton from './ToggleButton.js';
 

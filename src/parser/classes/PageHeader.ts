@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import PageHeaderView from './PageHeaderView.js';
 
 export default class PageHeader extends YTNode {

@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import ItemSectionHeader from './ItemSectionHeader.js';
 import ItemSectionTabbedHeader from './ItemSectionTabbedHeader.js';
 import CommentsHeader from './comments/CommentsHeader.js';

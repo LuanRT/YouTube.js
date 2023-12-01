@@ -1,6 +1,6 @@
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-import Parser from '../../index.js';
+import { Parser } from '../../index.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
 import SectionList from '../SectionList.js';
 

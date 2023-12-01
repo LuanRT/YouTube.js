@@ -1,4 +1,4 @@
-import Parser, { SectionListContinuation } from '../index.js';
+import { Parser, SectionListContinuation } from '../index.js';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import SectionList from '../classes/SectionList.js';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';

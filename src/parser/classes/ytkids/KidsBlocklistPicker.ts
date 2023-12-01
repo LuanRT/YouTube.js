@@ -1,7 +1,7 @@
 import Text from '../misc/Text.js';
 import { YTNode } from '../../helpers.js';
 import Button from '../Button.js';
-import Parser, { type RawNode } from '../../index.js';
+import { Parser, type RawNode } from '../../index.js';
 import KidsBlocklistPickerItem from './KidsBlocklistPickerItem.js';
 
 export default class KidsBlocklistPicker extends YTNode {

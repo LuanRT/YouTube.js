@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import SortFilterSubMenu from './SortFilterSubMenu.js';
 
 export default class TranscriptFooter extends YTNode {

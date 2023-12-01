@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import Button from './Button.js';
 import ChannelHeaderLinks from './ChannelHeaderLinks.js';
 import ChannelHeaderLinksView from './ChannelHeaderLinksView.js';

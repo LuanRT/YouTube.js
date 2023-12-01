@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 
 export default class MusicSideAlignedItem extends YTNode {
   static type = 'MusicSideAlignedItem';

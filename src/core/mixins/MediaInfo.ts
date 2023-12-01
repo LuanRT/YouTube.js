@@ -6,7 +6,7 @@ import * as FormatUtils from '../../utils/FormatUtils.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import type Format from '../../parser/classes/misc/Format.js';
 import type { INextResponse, IPlayerResponse } from '../../parser/index.js';
-import Parser from '../../parser/index.js';
+import { Parser } from '../../parser/index.js';
 import type { DashOptions } from '../../types/DashOptions.js';
 import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.js';
 import { getStreamingInfo } from '../../utils/StreamingInfo.js';

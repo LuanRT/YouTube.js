@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import MusicPlayButton from './MusicPlayButton.js';
 import { YTNode } from '../helpers.js';
 

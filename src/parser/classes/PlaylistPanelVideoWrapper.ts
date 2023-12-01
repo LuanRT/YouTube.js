@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import { type ObservedArray, YTNode, observe } from '../helpers.js';
 import PlaylistPanelVideo from './PlaylistPanelVideo.js';
 

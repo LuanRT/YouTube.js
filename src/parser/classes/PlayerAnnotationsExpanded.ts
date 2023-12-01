@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 

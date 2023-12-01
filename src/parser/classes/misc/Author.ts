@@ -1,7 +1,7 @@
 import * as Constants from '../../../utils/Constants.js';
 import type { YTNode} from '../../helpers.js';
 import { observe, type ObservedArray } from '../../helpers.js';
-import Parser, { type RawNode } from '../../index.js';
+import { Parser, type RawNode } from '../../index.js';
 import type NavigationEndpoint from '../NavigationEndpoint.js';
 import Text from './Text.js';
 import type TextRun from './TextRun.js';

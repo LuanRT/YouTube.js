@@ -1,4 +1,4 @@
-import Parser, { MusicPlaylistShelfContinuation, SectionListContinuation } from '../index.js';
+import { Parser, MusicPlaylistShelfContinuation, SectionListContinuation } from '../index.js';
 
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import MusicDetailHeader from '../classes/MusicDetailHeader.js';

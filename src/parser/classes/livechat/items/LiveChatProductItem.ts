@@ -1,4 +1,4 @@
-import Parser from '../../../index.js';
+import { Parser } from '../../../index.js';
 import { YTNode } from '../../../helpers.js';
 import type { RawNode } from '../../../index.js';
 

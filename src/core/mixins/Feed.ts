@@ -1,5 +1,5 @@
 import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../../parser/helpers.js';
-import Parser, { ReloadContinuationItemsCommand } from '../../parser/index.js';
+import { Parser, ReloadContinuationItemsCommand } from '../../parser/index.js';
 import { concatMemos, InnertubeError } from '../../utils/Utils.js';
 import type Actions from '../Actions.js';
 

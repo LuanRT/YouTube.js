@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import MusicMultiSelectMenu from './menus/MusicMultiSelectMenu.js';
 import Text from './misc/Text.js';
 
