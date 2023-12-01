@@ -1,6 +1,8 @@
 // This file was auto generated, do not edit.
 // See ./scripts/build-parser-map.js
 
+export { default as AboutChannel } from './classes/AboutChannel.js';
+export { default as AboutChannelView } from './classes/AboutChannelView.js';
 export { default as AccountChannel } from './classes/AccountChannel.js';
 export { default as AccountItemSection } from './classes/AccountItemSection.js';
 export { default as AccountItemSectionHeader } from './classes/AccountItemSectionHeader.js';
@@ -36,6 +38,7 @@ export { default as CarouselLockup } from './classes/CarouselLockup.js';
 export { default as Channel } from './classes/Channel.js';
 export { default as ChannelAboutFullMetadata } from './classes/ChannelAboutFullMetadata.js';
 export { default as ChannelAgeGate } from './classes/ChannelAgeGate.js';
+export { default as ChannelExternalLinkView } from './classes/ChannelExternalLinkView.js';
 export { default as ChannelFeaturedContent } from './classes/ChannelFeaturedContent.js';
 export { default as ChannelHeaderLinks } from './classes/ChannelHeaderLinks.js';
 export { default as ChannelHeaderLinksView } from './classes/ChannelHeaderLinksView.js';
@@ -43,6 +46,7 @@ export { default as ChannelMetadata } from './classes/ChannelMetadata.js';
 export { default as ChannelMobileHeader } from './classes/ChannelMobileHeader.js';
 export { default as ChannelOptions } from './classes/ChannelOptions.js';
 export { default as ChannelSubMenu } from './classes/ChannelSubMenu.js';
+export { default as ChannelTagline } from './classes/ChannelTagline.js';
 export { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailWithLink.js';
 export { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer.js';
 export { default as Chapter } from './classes/Chapter.js';
