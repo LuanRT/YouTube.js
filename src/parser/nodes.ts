@@ -61,6 +61,7 @@ export { default as ClipCreationTextInput } from './classes/ClipCreationTextInpu
 export { default as ClipSection } from './classes/ClipSection.js';
 export { default as CollaboratorInfoCardContent } from './classes/CollaboratorInfoCardContent.js';
 export { default as CollageHeroImage } from './classes/CollageHeroImage.js';
+export { default as Command } from './classes/Command.js';
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.js';
 export { default as Comment } from './classes/comments/Comment.js';
 export { default as CommentActionButtons } from './classes/comments/CommentActionButtons.js';
@@ -261,6 +262,7 @@ export { default as Notification } from './classes/Notification.js';
 export { default as PageHeader } from './classes/PageHeader.js';
 export { default as PageHeaderView } from './classes/PageHeaderView.js';
 export { default as PageIntroduction } from './classes/PageIntroduction.js';
+export { default as PivotButton } from './classes/PivotButton.js';
 export { default as PlayerAnnotationsExpanded } from './classes/PlayerAnnotationsExpanded.js';
 export { default as PlayerCaptionsTracklist } from './classes/PlayerCaptionsTracklist.js';
 export { default as PlayerControlsOverlay } from './classes/PlayerControlsOverlay.js';
@@ -300,6 +302,8 @@ export { default as ProfileColumnUserInfo } from './classes/ProfileColumnUserInf
 export { default as Quiz } from './classes/Quiz.js';
 export { default as RecognitionShelf } from './classes/RecognitionShelf.js';
 export { default as ReelItem } from './classes/ReelItem.js';
+export { default as ReelPlayerHeader } from './classes/ReelPlayerHeader.js';
+export { default as ReelPlayerOverlay } from './classes/ReelPlayerOverlay.js';
 export { default as ReelShelf } from './classes/ReelShelf.js';
 export { default as RelatedChipCloud } from './classes/RelatedChipCloud.js';
 export { default as RichGrid } from './classes/RichGrid.js';

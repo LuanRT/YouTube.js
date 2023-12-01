@@ -15,5 +15,6 @@ export * as Music from './music/index.js';
 export * as Notification from './notification/index.js';
 export * as Playlist from './playlist/index.js';
 export * as Subscription from './subscription/index.js';
+export * as Reel from './reel/index.js';
 export * as Upload from './upload/index.js';
 export * as Kids from './kids/index.js';

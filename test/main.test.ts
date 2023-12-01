@@ -19,6 +19,22 @@ describe('YouTube.js Tests', () => {
       expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
     });
 
+    test('Innertube#getShortsWatchItem', async () => {
+      const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
+      expect(info.watch_next_feed?.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#getShortsWatchItem#Continue', async () => {
+      const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
+      expect(info.watch_next_feed?.length).toBeGreaterThan(0);
+      const previousData = info.watch_next_feed?.map(value => value.as(YTNodes.Command).endpoint)
+      const cont = await info.getWatchNextContinuation()
+      
+      expect(cont.watch_next_feed?.length).toBeGreaterThan(0);
+      const newData = cont.watch_next_feed?.map(value => value.as(YTNodes.Command).endpoint)
+      expect(previousData).not.toEqual(newData)
+    });
+
     describe('Innertube#getBasicInfo', () => {
       test('Format#language multiple audio tracks', async () => {
         const info = await innertube.getBasicInfo('Kn56bMZ9OE8')
