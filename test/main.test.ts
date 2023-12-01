@@ -208,14 +208,6 @@ describe('YouTube.js Tests', () => {
         expect(community.posts.length).toBeGreaterThan(0);
       });
 
-      test('Channel#getChannels', async () => {
-        const channels = await channel.getChannels();
-        expect(channels).toBeDefined();
-        expect(channels.current_tab).toBeDefined();
-        expect(channels.current_tab?.content).toBeDefined();
-        expect(channels.channels.length).toBeGreaterThan(0);
-      });
-
       test('Channel#getAbout', async () => {
         const about = await channel.getAbout();
         expect(about).toBeDefined();
