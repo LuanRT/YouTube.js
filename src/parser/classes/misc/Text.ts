@@ -56,6 +56,10 @@ export default class Text {
     const content = data.content;
     const command_runs = data.commandRuns;
 
+    // Haven't found an actually useful one yet, but they look like this:
+    // [ { startIndex: 0, length: 19 } ] (for a string that is 19 characters long)
+    // Const style_runs = data.styleRuns;
+
     let last_end_index = 0;
 
     if (command_runs) {

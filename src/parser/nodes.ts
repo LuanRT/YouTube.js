@@ -1,6 +1,8 @@
 // This file was auto generated, do not edit.
 // See ./scripts/build-parser-map.js
 
+export { default as AboutChannel } from './classes/AboutChannel.js';
+export { default as AboutChannelView } from './classes/AboutChannelView.js';
 export { default as AccountChannel } from './classes/AccountChannel.js';
 export { default as AccountItemSection } from './classes/AccountItemSection.js';
 export { default as AccountItemSectionHeader } from './classes/AccountItemSectionHeader.js';
@@ -36,19 +38,27 @@ export { default as CarouselLockup } from './classes/CarouselLockup.js';
 export { default as Channel } from './classes/Channel.js';
 export { default as ChannelAboutFullMetadata } from './classes/ChannelAboutFullMetadata.js';
 export { default as ChannelAgeGate } from './classes/ChannelAgeGate.js';
+export { default as ChannelExternalLinkView } from './classes/ChannelExternalLinkView.js';
 export { default as ChannelFeaturedContent } from './classes/ChannelFeaturedContent.js';
 export { default as ChannelHeaderLinks } from './classes/ChannelHeaderLinks.js';
 export { default as ChannelHeaderLinksView } from './classes/ChannelHeaderLinksView.js';
 export { default as ChannelMetadata } from './classes/ChannelMetadata.js';
 export { default as ChannelMobileHeader } from './classes/ChannelMobileHeader.js';
 export { default as ChannelOptions } from './classes/ChannelOptions.js';
+export { default as ChannelOwnerEmptyState } from './classes/ChannelOwnerEmptyState.js';
 export { default as ChannelSubMenu } from './classes/ChannelSubMenu.js';
+export { default as ChannelTagline } from './classes/ChannelTagline.js';
 export { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailWithLink.js';
 export { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer.js';
 export { default as Chapter } from './classes/Chapter.js';
 export { default as ChildVideo } from './classes/ChildVideo.js';
 export { default as ChipCloud } from './classes/ChipCloud.js';
 export { default as ChipCloudChip } from './classes/ChipCloudChip.js';
+export { default as ClipAdState } from './classes/ClipAdState.js';
+export { default as ClipCreation } from './classes/ClipCreation.js';
+export { default as ClipCreationScrubber } from './classes/ClipCreationScrubber.js';
+export { default as ClipCreationTextInput } from './classes/ClipCreationTextInput.js';
+export { default as ClipSection } from './classes/ClipSection.js';
 export { default as CollaboratorInfoCardContent } from './classes/CollaboratorInfoCardContent.js';
 export { default as CollageHeroImage } from './classes/CollageHeroImage.js';
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.js';
@@ -375,6 +385,7 @@ export { default as UpsellDialog } from './classes/UpsellDialog.js';
 export { default as VerticalList } from './classes/VerticalList.js';
 export { default as VerticalWatchCardList } from './classes/VerticalWatchCardList.js';
 export { default as Video } from './classes/Video.js';
+export { default as VideoAttributeView } from './classes/VideoAttributeView.js';
 export { default as VideoCard } from './classes/VideoCard.js';
 export { default as VideoDescriptionCourseSection } from './classes/VideoDescriptionCourseSection.js';
 export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHeader.js';

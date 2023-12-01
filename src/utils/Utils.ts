@@ -138,6 +138,13 @@ export function concatMemos(...iterables: Array<Memo | undefined>): Memo {
   for (const iterable of iterables) {
     if (!iterable) continue;
     for (const item of iterable) {
+      // Update existing items.
+      const memo_item = memo.get(item[0]);
+      if (memo_item) {
+        memo.set(item[0], [ ...memo_item, ...item[1] ]);
+        continue;
+      }
+
       memo.set(...item);
     }
   }

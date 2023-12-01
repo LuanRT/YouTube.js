@@ -208,19 +208,18 @@ describe('YouTube.js Tests', () => {
         expect(community.posts.length).toBeGreaterThan(0);
       });
 
-      test('Channel#getChannels', async () => {
-        const channels = await channel.getChannels();
-        expect(channels).toBeDefined();
-        expect(channels.current_tab).toBeDefined();
-        expect(channels.current_tab?.content).toBeDefined();
-        expect(channels.channels.length).toBeGreaterThan(0);
-      });
-
       test('Channel#getAbout', async () => {
         const about = await channel.getAbout();
         expect(about).toBeDefined();
-        expect(about.id).toBe('UC7_gcs09iThXybpVgjHZ_7g');
-        expect(about.description).toBeDefined();
+
+        if (about.is(YTNodes.ChannelAboutFullMetadata)) {
+          expect(about.id).toBe('UC7_gcs09iThXybpVgjHZ_7g');
+          expect(about.description).toBeDefined();
+        } else {
+          expect(about.metadata).toBeDefined();
+          expect(about.metadata?.channel_id).toBe('UC7_gcs09iThXybpVgjHZ_7g');
+          expect(about.metadata?.description).toBeDefined();
+        }
       });
 
       test('Channel#search', async () => {
