@@ -28,6 +28,7 @@ export { default as BackstagePostThread } from './classes/BackstagePostThread.js
 export { default as BrowseFeedActions } from './classes/BrowseFeedActions.js';
 export { default as BrowserMediaSession } from './classes/BrowserMediaSession.js';
 export { default as Button } from './classes/Button.js';
+export { default as ButtonView } from './classes/ButtonView.js';
 export { default as C4TabbedHeader } from './classes/C4TabbedHeader.js';
 export { default as CallToActionButton } from './classes/CallToActionButton.js';
 export { default as Card } from './classes/Card.js';
@@ -86,6 +87,7 @@ export { default as CompactPlaylist } from './classes/CompactPlaylist.js';
 export { default as CompactStation } from './classes/CompactStation.js';
 export { default as CompactVideo } from './classes/CompactVideo.js';
 export { default as ConfirmDialog } from './classes/ConfirmDialog.js';
+export { default as ContentMetadataView } from './classes/ContentMetadataView.js';
 export { default as ContentPreviewImageView } from './classes/ContentPreviewImageView.js';
 export { default as ContinuationItem } from './classes/ContinuationItem.js';
 export { default as ConversationBar } from './classes/ConversationBar.js';
@@ -118,6 +120,7 @@ export { default as FancyDismissibleDialog } from './classes/FancyDismissibleDia
 export { default as FeedFilterChipBar } from './classes/FeedFilterChipBar.js';
 export { default as FeedNudge } from './classes/FeedNudge.js';
 export { default as FeedTabbedHeader } from './classes/FeedTabbedHeader.js';
+export { default as FlexibleActionsView } from './classes/FlexibleActionsView.js';
 export { default as GameCard } from './classes/GameCard.js';
 export { default as GameDetails } from './classes/GameDetails.js';
 export { default as Grid } from './classes/Grid.js';
