@@ -10,7 +10,6 @@ import type { FetchFunction } from '../types/PlatformShim.js';
  */
 export default class Player {
   #nsig_sc;
-  #nsig_cache;
   #sig_sc;
   #sig_sc_timestamp;
   #player_id;
@@ -22,8 +21,6 @@ export default class Player {
     this.#sig_sc_timestamp = signature_timestamp;
 
     this.#player_id = player_id;
-
-    this.#nsig_cache = new Map<string, string>();
   }
 
   static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch): Promise<Player> {
