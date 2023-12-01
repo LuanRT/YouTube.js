@@ -401,18 +401,18 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   if (data.playerConfig) {
     const player_config = {
       audio_config: {
-        loudness_db: data.playerConfig.audioConfig.loudnessDb,
-        perceptual_loudness_db: data.playerConfig.audioConfig.perceptualLoudnessDb,
-        enable_per_format_loudness: data.playerConfig.audioConfig.enablePerFormatLoudness
+        loudness_db: data.playerConfig.audioConfig?.loudnessDb,
+        perceptual_loudness_db: data.playerConfig.audioConfig?.perceptualLoudnessDb,
+        enable_per_format_loudness: data.playerConfig.audioConfig?.enablePerFormatLoudness
       },
       stream_selection_config: {
-        max_bitrate: data.playerConfig.streamSelectionConfig.maxBitrate
+        max_bitrate: data.playerConfig.streamSelectionConfig?.maxBitrate || '0'
       },
       media_common_config: {
         dynamic_readahead_config: {
-          max_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig.dynamicReadaheadConfig.maxReadAheadMediaTimeMs,
-          min_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig.dynamicReadaheadConfig.minReadAheadMediaTimeMs,
-          read_ahead_growth_rate_ms: data.playerConfig.mediaCommonConfig.dynamicReadaheadConfig.readAheadGrowthRateMs
+          max_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.maxReadAheadMediaTimeMs || 0,
+          min_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.minReadAheadMediaTimeMs || 0,
+          read_ahead_growth_rate_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.readAheadGrowthRateMs || 0
         }
       }
     };

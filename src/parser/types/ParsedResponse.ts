@@ -74,8 +74,8 @@ export interface IParsedResponse {
 
 export interface IPlayerConfig {
   audio_config: {
-    loudness_db: number;
-    perceptual_loudness_db: number;
+    loudness_db?: number;
+    perceptual_loudness_db?: number;
     enable_per_format_loudness: boolean;
   };
   stream_selection_config: {

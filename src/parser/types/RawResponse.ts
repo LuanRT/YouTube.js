@@ -3,8 +3,8 @@ export type RawData = RawNode | RawNode[];
 
 export interface IRawPlayerConfig {
   audioConfig: {
-    loudnessDb: number;
-    perceptualLoudnessDb: number;
+    loudnessDb?: number;
+    perceptualLoudnessDb?: number;
     enablePerFormatLoudness: boolean;
   };
   streamSelectionConfig: {
