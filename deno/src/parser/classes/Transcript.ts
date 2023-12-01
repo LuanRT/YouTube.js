@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import TranscriptSearchPanel from './TranscriptSearchPanel.ts';
 
 export default class Transcript extends YTNode {

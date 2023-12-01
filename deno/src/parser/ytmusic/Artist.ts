@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';

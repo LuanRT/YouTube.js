@@ -1,4 +1,4 @@
-import Parser from '../../parser/index.ts';
+import { Parser } from '../../parser/index.ts';
 import Channel from '../../parser/ytkids/Channel.ts';
 import HomeFeed from '../../parser/ytkids/HomeFeed.ts';
 import Search from '../../parser/ytkids/Search.ts';

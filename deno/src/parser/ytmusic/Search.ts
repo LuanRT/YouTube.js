@@ -1,6 +1,6 @@
 import type Actions from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
-import Parser, { MusicShelfContinuation } from '../index.ts';
+import { Parser, MusicShelfContinuation } from '../index.ts';
 
 import ChipCloud from '../classes/ChipCloud.ts';
 import ChipCloudChip from '../classes/ChipCloudChip.ts';

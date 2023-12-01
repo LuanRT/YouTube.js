@@ -1,6 +1,6 @@
 import Text from './misc/Text.ts';
 import Author from './misc/Author.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
 export default class PlaylistHeader extends YTNode {

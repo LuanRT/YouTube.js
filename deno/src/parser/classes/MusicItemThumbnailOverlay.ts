@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import MusicPlayButton from './MusicPlayButton.ts';
 import { YTNode } from '../helpers.ts';
 

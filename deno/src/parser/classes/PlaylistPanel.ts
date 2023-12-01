@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import AutomixPreviewVideo from './AutomixPreviewVideo.ts';
 import PlaylistPanelVideo from './PlaylistPanelVideo.ts';
 import PlaylistPanelVideoWrapper from './PlaylistPanelVideoWrapper.ts';

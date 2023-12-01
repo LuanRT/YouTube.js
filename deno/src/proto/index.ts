@@ -14,6 +14,7 @@ import * as PeformCommentActionParams from './generated/messages/youtube/PeformC
 import * as NotificationPreferences from './generated/messages/youtube/NotificationPreferences.ts';
 import * as InnertubePayload from './generated/messages/youtube/InnertubePayload.ts';
 import * as Hashtag from './generated/messages/youtube/Hashtag.ts';
+import * as ReelSequence from './generated/messages/youtube/ReelSequence.ts';
 
 export function encodeVisitorData(id: string, timestamp: number): string {
   const buf = VisitorData.encodeBinary({ id, timestamp });
@@ -327,5 +328,17 @@ export function encodeHashtag(hashtag: string): string {
     }
   });
 
+  return encodeURIComponent(u8ToBase64(buf));
+}
+
+export function encodeReelSequence(short_id: string): string {
+  const buf = ReelSequence.encodeBinary({
+    shortId: short_id,
+    params: {
+      number: 5
+    },
+    feature2: 25,
+    feature3: 0
+  });
   return encodeURIComponent(u8ToBase64(buf));
 }

@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import Button from './Button.ts';
 import MultiMarkersPlayerBar from './MultiMarkersPlayerBar.ts';
 

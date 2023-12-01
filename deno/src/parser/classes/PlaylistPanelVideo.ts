@@ -1,6 +1,6 @@
 import { timeToSeconds } from '../../utils/Utils.ts';
 import { YTNode, type ObservedArray } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import Text from './misc/Text.ts';
 import type TextRun from './misc/TextRun.ts';

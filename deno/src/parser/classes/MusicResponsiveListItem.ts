@@ -5,7 +5,7 @@ import { isTextRun, timeToSeconds } from '../../utils/Utils.ts';
 import type { ObservedArray } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.ts';
 import MusicResponsiveListItemFixedColumn from './MusicResponsiveListItemFixedColumn.ts';
 import MusicResponsiveListItemFlexColumn from './MusicResponsiveListItemFlexColumn.ts';

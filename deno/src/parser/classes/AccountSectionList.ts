@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import AccountChannel from './AccountChannel.ts';
 import AccountItemSection from './AccountItemSection.ts';
 

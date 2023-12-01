@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import MusicMultiSelectMenu from './menus/MusicMultiSelectMenu.ts';
 import Text from './misc/Text.ts';
 

@@ -1,7 +1,7 @@
 import Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 import Button from '../Button.ts';
-import Parser, { type RawNode } from '../../index.ts';
+import { Parser, type RawNode } from '../../index.ts';
 import KidsBlocklistPickerItem from './KidsBlocklistPickerItem.ts';
 
 export default class KidsBlocklistPicker extends YTNode {

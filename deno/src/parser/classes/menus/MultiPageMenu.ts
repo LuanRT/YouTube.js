@@ -1,6 +1,6 @@
 import { YTNode, type SuperParsedResult } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 
 export default class MultiPageMenu extends YTNode {
   static type = 'MultiPageMenu';

@@ -363,3 +363,41 @@ export type IBlocklistPickerRequest = {
       external_channel_id: string;
   }
 }
+
+export interface IReelWatchRequest {
+  playerRequest: {
+    videoId: string,
+    params: string,
+  },
+  params?: string;
+}
+
+export type ReelWatchEndpointOptions = {
+  /**
+   * The shorts ID.
+   */
+  short_id: string;
+  /**
+   * The client to use.
+   */
+  client?: InnerTubeClient;
+  /**
+   * Additional protobuf parameters.
+   */
+  params?: string;
+}
+
+export interface IReelSequenceRequest {
+  sequenceParams: string;
+}
+
+export type ReelWatchSequenceEndpointOptions = {
+  /**
+   * The protobuf parameters.
+   */
+  sequenceParams: string;
+  /**
+   * The client to use.
+   */
+  client?: InnerTubeClient;
+}

@@ -27,7 +27,7 @@ import {
   Continuation, ItemSectionContinuation, SectionListContinuation,
   LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
   GridContinuation, PlaylistPanelContinuation, NavigateAction, ShowMiniplayerCommand,
-  ReloadContinuationItemsCommand
+  ReloadContinuationItemsCommand, ContinuationCommand
 } from './continuations.ts';
 
 export type ParserError = {
@@ -304,11 +304,24 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   }
   _clearMemo();
 
+  _createMemo();
+  const entries = parse(data.entries);
+  if (entries) {
+    parsed_data.entries = entries;
+    parsed_data.entries_memo = _getMemo();
+  }
+  _clearMemo();
+
   applyMutations(contents_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
 
   const continuation = data.continuation ? parseC(data.continuation) : null;
   if (continuation) {
     parsed_data.continuation = continuation;
+  }
+
+  const continuationEndpoint = data.continuationEndpoint ? parseLC(data.continuationEndpoint) : null;
+  if (continuationEndpoint) {
+    parsed_data.continuationEndpoint = continuationEndpoint;
   }
 
   const metadata = parse(data.metadata);
@@ -577,6 +590,8 @@ export function parseLC(data: RawNode) {
     return new GridContinuation(data.gridContinuation);
   if (data.playlistPanelContinuation)
     return new PlaylistPanelContinuation(data.playlistPanelContinuation);
+  if (data.continuationCommand)
+    return new ContinuationCommand(data.continuationCommand);
 
   return null;
 }

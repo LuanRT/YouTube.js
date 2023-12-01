@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
 export default class Card extends YTNode {

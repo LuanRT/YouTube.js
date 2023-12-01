@@ -1,5 +1,5 @@
 import { type ObservedArray, YTNode } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 
 export default class SectionList extends YTNode {
   static type = 'SectionList';

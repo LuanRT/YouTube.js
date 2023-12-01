@@ -1,5 +1,5 @@
 import EventEmitter from '../../utils/EventEmitterLike.ts';
-import Parser, { LiveChatContinuation } from '../index.ts';
+import { Parser, LiveChatContinuation } from '../index.ts';
 import type VideoInfo from './VideoInfo.ts';
 import SmoothedQueue from './SmoothedQueue.ts';
 

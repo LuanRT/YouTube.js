@@ -1,4 +1,4 @@
-import Parser, { MusicPlaylistShelfContinuation, SectionListContinuation } from '../index.ts';
+import { Parser, MusicPlaylistShelfContinuation, SectionListContinuation } from '../index.ts';
 
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
 import MusicDetailHeader from '../classes/MusicDetailHeader.ts';

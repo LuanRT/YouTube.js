@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 
 export default class Grid extends YTNode {
   static type = 'Grid';

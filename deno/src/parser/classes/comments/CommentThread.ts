@@ -1,4 +1,4 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import Button from '../Button.ts';
 import ContinuationItem from '../ContinuationItem.ts';
 import Comment from './Comment.ts';

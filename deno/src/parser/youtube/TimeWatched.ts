@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import SectionList from '../classes/SectionList.ts';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';

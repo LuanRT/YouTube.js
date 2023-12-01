@@ -1,6 +1,6 @@
 import Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
-import Parser, { type RawNode } from '../../index.ts';
+import { Parser, type RawNode } from '../../index.ts';
 import ToggleButton from '../ToggleButton.ts';
 import Thumbnail from '../misc/Thumbnail.ts';
 import type Actions from '../../../core/Actions.ts';

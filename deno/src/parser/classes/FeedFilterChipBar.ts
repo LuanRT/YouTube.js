@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import ChipCloudChip from './ChipCloudChip.ts';
 
 export default class FeedFilterChipBar extends YTNode {

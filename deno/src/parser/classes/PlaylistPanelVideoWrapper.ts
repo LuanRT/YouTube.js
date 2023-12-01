@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import { type ObservedArray, YTNode, observe } from '../helpers.ts';
 import PlaylistPanelVideo from './PlaylistPanelVideo.ts';
 

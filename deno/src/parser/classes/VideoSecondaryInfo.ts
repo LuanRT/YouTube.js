@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import Button from './Button.ts';
 import VideoOwner from './VideoOwner.ts';

@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
 import ContinuationItem from '../classes/ContinuationItem.ts';
 import SimpleMenuHeader from '../classes/menus/SimpleMenuHeader.ts';

@@ -14,6 +14,7 @@ import NotificationsMenu from './parser/youtube/NotificationsMenu.ts';
 import Playlist from './parser/youtube/Playlist.ts';
 import Search from './parser/youtube/Search.ts';
 import VideoInfo from './parser/youtube/VideoInfo.ts';
+import ShortsVideoInfo from './parser/ytshorts/VideoInfo.ts';
 
 import { Kids, Music, Studio } from './core/clients/index.ts';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.ts';
@@ -30,7 +31,8 @@ import {
   NextEndpoint,
   PlayerEndpoint,
   ResolveURLEndpoint,
-  SearchEndpoint
+  SearchEndpoint,
+  Reel
 } from './core/endpoints/index.ts';
 
 import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.ts';
@@ -39,6 +41,7 @@ import type { ApiResponse } from './core/Actions.ts';
 import { type IBrowseResponse, type IParsedResponse } from './parser/types/index.ts';
 import type { INextRequest } from './types/index.ts';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.ts';
+import { encodeReelSequence } from './proto/index.ts';
 
 export type InnertubeConfig = SessionOptions;
 
@@ -129,6 +132,32 @@ export default class Innertube {
     const cpn = generateRandomString(16);
 
     return new VideoInfo([ response ], this.actions, cpn);
+  }
+
+  /**
+   * Retrieves shorts info.
+   * @param short_id - The short id.
+   * @param client - The client to use.
+   */
+  async getShortsWatchItem(short_id: string, client?: InnerTubeClient): Promise<ShortsVideoInfo> {
+    throwIfMissing({ short_id });
+
+    const watchResponse = this.actions.execute(
+      Reel.WatchEndpoint.PATH, Reel.WatchEndpoint.build({
+        short_id: short_id,
+        client: client
+      })
+    );
+
+    const sequenceResponse = this.actions.execute(
+      Reel.WatchSequenceEndpoint.PATH, Reel.WatchSequenceEndpoint.build({
+        sequenceParams: encodeReelSequence(short_id)
+      })
+    );
+
+    const response = await Promise.all([ watchResponse, sequenceResponse ]);
+
+    return new ShortsVideoInfo(response, this.actions);
   }
 
   /**

@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
 import Grid from '../classes/Grid.ts';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';

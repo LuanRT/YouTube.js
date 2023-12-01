@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
 import CompactLink from '../classes/CompactLink.ts';

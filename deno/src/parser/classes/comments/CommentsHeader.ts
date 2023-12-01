@@ -1,4 +1,4 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import SortFilterSubMenu from '../SortFilterSubMenu.ts';
 import Text from '../misc/Text.ts';
 import Thumbnail from '../misc/Thumbnail.ts';

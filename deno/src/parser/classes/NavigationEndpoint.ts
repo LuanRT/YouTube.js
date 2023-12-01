@@ -1,7 +1,7 @@
 import type Actions from '../../core/Actions.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 import { YTNode } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import type { IParsedResponse } from '../types/ParsedResponse.ts';
 import CreatePlaylistDialog from './CreatePlaylistDialog.ts';
 import OpenPopupAction from './actions/OpenPopupAction.ts';

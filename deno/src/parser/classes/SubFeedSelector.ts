@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 import { type ObservedArray, YTNode } from '../helpers.ts';
 import SubFeedOption from './SubFeedOption.ts';

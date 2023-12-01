@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import SectionList from './SectionList.ts';
 import MusicQueue from './MusicQueue.ts';

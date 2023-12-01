@@ -1,5 +1,5 @@
 import { type ObservedArray, YTNode } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import IconLink from './IconLink.ts';
 import MusicThumbnail from './MusicThumbnail.ts';

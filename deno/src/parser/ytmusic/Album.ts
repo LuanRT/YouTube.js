@@ -1,6 +1,6 @@
 import type { ApiResponse } from '../../core/Actions.ts';
 import type { ObservedArray } from '../helpers.ts';
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
 import MicroformatData from '../classes/MicroformatData.ts';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';

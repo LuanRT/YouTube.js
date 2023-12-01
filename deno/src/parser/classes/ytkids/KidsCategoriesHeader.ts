@@ -1,4 +1,4 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import Button from '../Button.ts';
 import KidsCategoryTab from './KidsCategoryTab.ts';
 import { type ObservedArray, YTNode } from '../../helpers.ts';

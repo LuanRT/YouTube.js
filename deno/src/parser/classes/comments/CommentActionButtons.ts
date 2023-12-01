@@ -1,4 +1,4 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import Button from '../Button.ts';
 import ToggleButton from '../ToggleButton.ts';
 import CreatorHeart from './CreatorHeart.ts';

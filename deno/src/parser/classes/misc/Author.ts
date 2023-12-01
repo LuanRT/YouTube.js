@@ -1,15 +1,13 @@
 import * as Constants from '../../../utils/Constants.ts';
-import type { YTNode} from '../../helpers.ts';
+import type { YTNode } from '../../helpers.ts';
 import { observe, type ObservedArray } from '../../helpers.ts';
-import Parser, { type RawNode } from '../../index.ts';
+import { Parser, type RawNode } from '../../index.ts';
 import type NavigationEndpoint from '../NavigationEndpoint.ts';
 import Text from './Text.ts';
 import type TextRun from './TextRun.ts';
 import Thumbnail from './Thumbnail.ts';
 
 export default class Author {
-  #nav_text;
-
   id: string;
   name: string;
   thumbnails: Thumbnail[];
@@ -21,12 +19,12 @@ export default class Author {
   url: string;
 
   constructor(item: RawNode, badges?: any, thumbs?: any, id?: string) {
-    this.#nav_text = new Text(item);
+    const nav_text = new Text(item);
 
-    this.id = id || (this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.browseId || this.#nav_text?.endpoint?.payload?.browseId || 'N/A';
-    this.name = this.#nav_text?.text || 'N/A';
+    this.id = id || (nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.browseId || nav_text?.endpoint?.payload?.browseId || 'N/A';
+    this.name = nav_text?.text || 'N/A';
     this.thumbnails = thumbs ? Thumbnail.fromResponse(thumbs) : [];
-    this.endpoint = ((this.#nav_text?.runs?.[0] as TextRun) as TextRun)?.endpoint || this.#nav_text?.endpoint;
+    this.endpoint = ((nav_text?.runs?.[0] as TextRun) as TextRun)?.endpoint || nav_text?.endpoint;
     this.badges = Array.isArray(badges) ? Parser.parseArray(badges) : observe([] as YTNode[]);
     this.is_moderator = this.badges?.some((badge: any) => badge.icon_type == 'MODERATOR');
     this.is_verified = this.badges?.some((badge: any) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED');
@@ -34,9 +32,9 @@ export default class Author {
 
     // @TODO: Refactor this mess.
     this.url =
-      (this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.metadata?.api_url === '/browse' &&
-        `${Constants.URLS.YT_BASE}${(this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.canonicalBaseUrl || `/u/${(this.#nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.browseId}`}` ||
-        `${Constants.URLS.YT_BASE}${this.#nav_text?.endpoint?.payload?.canonicalBaseUrl || `/u/${this.#nav_text?.endpoint?.payload?.browseId}`}`;
+      (nav_text?.runs?.[0] as TextRun)?.endpoint?.metadata?.api_url === '/browse' &&
+        `${Constants.URLS.YT_BASE}${(nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.canonicalBaseUrl || `/u/${(nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.browseId}`}` ||
+        `${Constants.URLS.YT_BASE}${nav_text?.endpoint?.payload?.canonicalBaseUrl || `/u/${nav_text?.endpoint?.payload?.browseId}`}`;
   }
 
   get best_thumbnail(): Thumbnail | undefined {

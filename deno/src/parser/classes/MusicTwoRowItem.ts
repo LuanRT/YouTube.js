@@ -1,7 +1,7 @@
 // TODO: Refactor this.
 
 import { YTNode, type SuperParsedResult } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import Menu from './menus/Menu.ts';

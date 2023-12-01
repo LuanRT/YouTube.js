@@ -1,4 +1,4 @@
-import Parser, { NavigateAction } from '../parser/index.ts';
+import { Parser, NavigateAction } from '../parser/index.ts';
 import { InnertubeError } from '../utils/Utils.ts';
 
 import type Session from './Session.ts';
@@ -16,7 +16,7 @@ export interface ApiResponse {
   data: IRawResponse;
 }
 
-export type InnertubeEndpoint = '/player' | '/search' | '/browse' | '/next' | '/updated_metadata' | '/notification/get_notification_menu' | string;
+export type InnertubeEndpoint = '/player' | '/search' | '/browse' | '/next' | '/reel' | '/updated_metadata' | '/notification/get_notification_menu' | string;
 
 export type ParsedResponse<T> =
   T extends '/player' ? IPlayerResponse :

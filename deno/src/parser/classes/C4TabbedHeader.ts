@@ -1,8 +1,9 @@
 import { YTNode } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import ChannelHeaderLinks from './ChannelHeaderLinks.ts';
 import ChannelHeaderLinksView from './ChannelHeaderLinksView.ts';
+import ChannelTagline from './ChannelTagline.ts';
 import SubscribeButton from './SubscribeButton.ts';
 import Author from './misc/Author.ts';
 import Text from './misc/Text.ts';
@@ -22,6 +23,7 @@ export default class C4TabbedHeader extends YTNode {
   header_links?: ChannelHeaderLinks | ChannelHeaderLinksView | null;
   channel_handle?: Text;
   channel_id?: string;
+  tagline?: ChannelTagline | null;
 
   constructor(data: RawNode) {
     super();
@@ -68,6 +70,10 @@ export default class C4TabbedHeader extends YTNode {
 
     if (Reflect.has(data, 'channelId')) {
       this.channel_id = data.channelId;
+    }
+
+    if (Reflect.has(data, 'tagline')) {
+      this.tagline = Parser.parseItem(data.tagline, ChannelTagline);
     }
   }
 }

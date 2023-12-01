@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import Factoid from './Factoid.ts';
 
 export default class UploadTimeFactoid extends YTNode {

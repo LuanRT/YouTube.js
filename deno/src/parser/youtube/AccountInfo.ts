@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import type { ApiResponse } from '../../core/Actions.ts';
 import type { IParsedResponse } from '../types/ParsedResponse.ts';
 

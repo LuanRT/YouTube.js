@@ -1,7 +1,7 @@
 import type { SuperParsedResult} from '../../helpers.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import Text from '../misc/Text.ts';
 
 export default class SimpleMenuHeader extends YTNode {

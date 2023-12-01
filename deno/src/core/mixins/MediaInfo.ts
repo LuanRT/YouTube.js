@@ -6,7 +6,7 @@ import * as FormatUtils from '../../utils/FormatUtils.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import type Format from '../../parser/classes/misc/Format.ts';
 import type { INextResponse, IPlayerResponse } from '../../parser/index.ts';
-import Parser from '../../parser/index.ts';
+import { Parser } from '../../parser/index.ts';
 import type { DashOptions } from '../../types/DashOptions.ts';
 import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
 import { getStreamingInfo } from '../../utils/StreamingInfo.ts';

@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import ItemSectionTab from './ItemSectionTab.ts';
 import Text from './misc/Text.ts';
 

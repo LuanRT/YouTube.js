@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import { Text, Thumbnail } from '../misc.ts';
 import Factoid from './Factoid.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';

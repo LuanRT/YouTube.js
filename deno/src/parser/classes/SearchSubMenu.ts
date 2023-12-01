@@ -1,6 +1,6 @@
 import { type ObservedArray, YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import Text from './misc/Text.ts';
 import SearchFilterGroup from './SearchFilterGroup.ts';
 import ToggleButton from './ToggleButton.ts';

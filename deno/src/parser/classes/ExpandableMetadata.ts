@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import Button from './Button.ts';
 import HorizontalCardList from './HorizontalCardList.ts';
 import HorizontalList from './HorizontalList.ts';

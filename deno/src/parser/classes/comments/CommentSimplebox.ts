@@ -1,4 +1,4 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import Button from '../Button.ts';
 import Text from '../misc/Text.ts';
 import Thumbnail from '../misc/Thumbnail.ts';

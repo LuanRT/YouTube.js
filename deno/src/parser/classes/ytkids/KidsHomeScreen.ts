@@ -1,4 +1,4 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import AnchoredSection from './AnchoredSection.ts';
 import { type ObservedArray, YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';

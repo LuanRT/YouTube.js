@@ -1,5 +1,5 @@
 import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../../parser/helpers.ts';
-import Parser, { ReloadContinuationItemsCommand } from '../../parser/index.ts';
+import { Parser, ReloadContinuationItemsCommand } from '../../parser/index.ts';
 import { concatMemos, InnertubeError } from '../../utils/Utils.ts';
 import type Actions from '../Actions.ts';
 
@@ -177,7 +177,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
    * Checks if the feed has continuation.
    */
   get has_continuation(): boolean {
-    return (this.#memo.get('ContinuationItem') || []).length > 0;
+    return this.#getBodyContinuations().length > 0;
   }
 
   /**
@@ -193,7 +193,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
       return response;
     }
 
-    this.#continuation = this.#memo.getType(ContinuationItem);
+    this.#continuation = this.#getBodyContinuations();
 
     if (this.#continuation)
       return this.getContinuationData();
@@ -207,5 +207,15 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
     if (!continuation_data)
       throw new InnertubeError('Could not get continuation data');
     return new Feed<T>(this.actions, continuation_data, true);
+  }
+
+  #getBodyContinuations(): ObservedArray<ContinuationItem> {
+    if (this.#page.header_memo) {
+      const header_continuations = this.#page.header_memo.getType(ContinuationItem);
+
+      return this.#memo.getType(ContinuationItem).filter((continuation) => !header_continuations.includes(continuation)) as ObservedArray<ContinuationItem>;
+    }
+
+    return this.#memo.getType(ContinuationItem);
   }
 }

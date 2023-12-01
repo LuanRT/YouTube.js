@@ -97,6 +97,7 @@ function DashManifest({
             lang={set.language}
             codecs={set.codecs}
             audioSamplingRate={set.audio_sample_rate}
+            contentType="audio"
           >
             {
               set.track_role &&
@@ -150,6 +151,7 @@ function DashManifest({
             codecs={set.codecs}
             maxPlayoutRate="1"
             frameRate={set.fps}
+            contentType="video"
           >
             {
               set.color_info.primaries &&

@@ -2,6 +2,7 @@ import TabbedFeed from '../../core/mixins/TabbedFeed.ts';
 import C4TabbedHeader from '../classes/C4TabbedHeader.ts';
 import CarouselHeader from '../classes/CarouselHeader.ts';
 import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata.ts';
+import AboutChannel from '../classes/AboutChannel.ts';
 import ChannelMetadata from '../classes/ChannelMetadata.ts';
 import InteractiveTabbedHeader from '../classes/InteractiveTabbedHeader.ts';
 import MicroformatData from '../classes/MicroformatData.ts';
@@ -18,6 +19,8 @@ import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import FeedFilterChipBar from '../classes/FeedFilterChipBar.ts';
 import ChannelSubMenu from '../classes/ChannelSubMenu.ts';
 import SortFilterSubMenu from '../classes/SortFilterSubMenu.ts';
+import ContinuationItem from '../classes/ContinuationItem.ts';
+import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
 import { ChannelError, InnertubeError } from '../../utils/Utils.ts';
 
@@ -185,18 +188,39 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     return new Channel(this.actions, tab.page, true);
   }
 
-  async getChannels(): Promise<Channel> {
-    const tab = await this.getTabByURL('channels');
-    return new Channel(this.actions, tab.page, true);
-  }
-
   /**
    * Retrieves the about page.
    * Note that this does not return a new {@link Channel} object.
    */
-  async getAbout(): Promise<ChannelAboutFullMetadata> {
-    const tab = await this.getTabByURL('about');
-    return tab.memo.getType(ChannelAboutFullMetadata)?.[0];
+  async getAbout(): Promise<ChannelAboutFullMetadata | AboutChannel> {
+    if (this.hasTabWithURL('about')) {
+      const tab = await this.getTabByURL('about');
+      return tab.memo.getType(ChannelAboutFullMetadata)[0];
+    } else if (this.header?.is(C4TabbedHeader) && this.header.tagline) {
+
+      if (this.header.tagline.more_endpoint instanceof NavigationEndpoint) {
+        const response = await this.header.tagline.more_endpoint.call(this.actions);
+
+        const tab = new TabbedFeed<IBrowseResponse>(this.actions, response, false);
+        return tab.memo.getType(ChannelAboutFullMetadata)[0];
+      }
+
+      const endpoint = this.page.header_memo?.getType(ContinuationItem)[0]?.endpoint;
+
+      if (!endpoint) {
+        throw new InnertubeError('Failed to extract continuation to get channel about');
+      }
+
+      const response = await endpoint.call<IBrowseResponse>(this.actions, { parse: true });
+
+      if (!response.on_response_received_endpoints_memo) {
+        throw new InnertubeError('Unexpected response while fetching channel about', { response });
+      }
+
+      return response.on_response_received_endpoints_memo.getType(AboutChannel)[0];
+    }
+
+    throw new InnertubeError('About not found');
   }
 
   /**
@@ -245,12 +269,9 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     return this.hasTabWithURL('community');
   }
 
-  get has_channels(): boolean {
-    return this.hasTabWithURL('channels');
-  }
-
   get has_about(): boolean {
-    return this.hasTabWithURL('about');
+    // Game topic channels still have an about tab, user channels have switched to the popup
+    return this.hasTabWithURL('about') || !!(this.header?.is(C4TabbedHeader) && this.header.tagline?.more_endpoint);
   }
 
   get has_search(): boolean {

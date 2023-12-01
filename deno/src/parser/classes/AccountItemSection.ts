@@ -1,4 +1,4 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import AccountItemSectionHeader from './AccountItemSectionHeader.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
 import Text from './misc/Text.ts';

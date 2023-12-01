@@ -1,5 +1,5 @@
 import { YTNode, type SuperParsedResult } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 
 export default class Tabbed extends YTNode {
   static type = 'Tabbed';

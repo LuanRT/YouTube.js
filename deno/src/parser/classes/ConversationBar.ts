@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import Message from './Message.ts';
 
 export default class ConversationBar extends YTNode {

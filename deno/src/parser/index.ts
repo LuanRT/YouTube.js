@@ -6,7 +6,6 @@ export * as YTNodes from './nodes.ts';
 export * as YT from './youtube/index.ts';
 export * as YTMusic from './ytmusic/index.ts';
 export * as YTKids from './ytkids/index.ts';
+export * as YTShorts from './ytshorts/index.ts';
 export * as Helpers from './helpers.ts';
 export * as Generator from './generator.ts';
-import * as Parser from './parser.ts';
-export default Parser;

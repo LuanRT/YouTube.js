@@ -1,7 +1,7 @@
 import type Actions from '../../core/Actions.ts';
 import { type ApiResponse } from '../../core/Actions.ts';
 import type { IGetTranscriptResponse } from '../index.ts';
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import Transcript from '../classes/Transcript.ts';
 
 export default class TranscriptInfo {

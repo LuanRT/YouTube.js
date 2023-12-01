@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import TranscriptFooter from './TranscriptFooter.ts';
 import TranscriptSearchBox from './TranscriptSearchBox.ts';
 import TranscriptSegmentList from './TranscriptSegmentList.ts';

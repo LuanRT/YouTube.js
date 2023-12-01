@@ -1,6 +1,6 @@
 import { timeToSeconds } from '../../utils/Utils.ts';
 import { YTNode, type ObservedArray, type SuperParsedResult } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import Menu from './menus/Menu.ts';
 import MetadataBadge from './MetadataBadge.ts';
 import Author from './misc/Author.ts';

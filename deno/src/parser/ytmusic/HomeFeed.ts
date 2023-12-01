@@ -1,4 +1,4 @@
-import Parser, { SectionListContinuation } from '../index.ts';
+import { Parser, SectionListContinuation } from '../index.ts';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
 import SectionList from '../classes/SectionList.ts';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';

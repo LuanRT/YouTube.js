@@ -61,7 +61,8 @@ function DashManifest({
     subsegmentAlignment: "true",
     lang: set.language,
     codecs: set.codecs,
-    audioSamplingRate: set.audio_sample_rate
+    audioSamplingRate: set.audio_sample_rate,
+    contentType: "audio"
   }, set.track_role && /* @__PURE__ */ DashUtils.createElement("role", {
     schemeIdUri: "urn:mpeg:dash:role:2011",
     value: set.track_role
@@ -87,7 +88,8 @@ function DashManifest({
     subsegmentAlignment: "true",
     codecs: set.codecs,
     maxPlayoutRate: "1",
-    frameRate: set.fps
+    frameRate: set.fps,
+    contentType: "video"
   }, set.color_info.primaries && /* @__PURE__ */ DashUtils.createElement("essential-property", {
     schemeIdUri: "urn:mpeg:mpegB:cicp:ColourPrimaries",
     value: set.color_info.primaries

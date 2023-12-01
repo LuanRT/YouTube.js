@@ -1,4 +1,4 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 
 import Author from '../misc/Author.ts';
 import Text from '../misc/Text.ts';

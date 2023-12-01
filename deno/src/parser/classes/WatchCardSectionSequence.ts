@@ -1,6 +1,6 @@
 import type { ObservedArray} from '../helpers.ts';
 import { YTNode } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 
 export default class WatchCardSectionSequence extends YTNode {
   static type = 'WatchCardSectionSequence';

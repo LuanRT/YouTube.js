@@ -1,4 +1,4 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import LiveChatActionPanel from './LiveChatActionPanel.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';

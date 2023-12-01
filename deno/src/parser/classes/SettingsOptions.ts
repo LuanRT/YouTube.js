@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.ts';
-import Parser, { type RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import ChannelOptions from './ChannelOptions.ts';
 import CopyLink from './CopyLink.ts';
 import Dropdown from './Dropdown.ts';

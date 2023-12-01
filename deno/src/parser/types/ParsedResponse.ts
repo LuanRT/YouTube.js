@@ -3,7 +3,7 @@ import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.
 import type {
   ReloadContinuationItemsCommand, Continuation, GridContinuation,
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  PlaylistPanelContinuation, SectionListContinuation
+  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand
 } from '../index.ts';
 
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.ts';
@@ -41,7 +41,7 @@ export interface IParsedResponse {
   on_response_received_commands_memo?: Memo;
   continuation?: Continuation;
   continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
-  MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
+  MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation | ContinuationCommand;
   continuation_contents_memo?: Memo;
   metadata?: SuperParsedResult<YTNode>;
   microformat?: YTNode;
@@ -66,6 +66,9 @@ export interface IParsedResponse {
   cards?: CardCollection;
   engagement_panels?: ObservedArray<EngagementPanelSectionList>;
   items?: SuperParsedResult<YTNode>;
+  entries?: SuperParsedResult<YTNode>;
+  entries_memo?: Memo;
+  continuationEndpoint?: YTNode;
 }
 
 export interface IStreamingData {
