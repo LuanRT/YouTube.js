@@ -1,5 +1,37 @@
 # Changelog
 
+## [8.0.0](https://github.com/LuanRT/YouTube.js/compare/v7.0.0...v8.0.0) (2023-12-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Library:** Add support for the new layout and remove profile & stats info
+* **Channel:** YouTube removed the "Channels" tab on channels, so this pull request removes the `getChannels()` method and `has_channels` getter from the `YT.Channel` class, as they are no longer useful. The featured channels are now shown on the channel home tab. To get them you can use the `channels` getter on the home tab of the channel. Please note that some channel owners might not have added that section to their home page yet, so you won't be able to get the featured channels for those channels. The home tab is the default tab that is returned when you call `InnerTube#getChannel()`, you can also access that tab by calling `getHome()` on a `YT.Channel` object.
+
+### Features
+
+* add `FeedNudge` ([#533](https://github.com/LuanRT/YouTube.js/issues/533)) ([e021395](https://github.com/LuanRT/YouTube.js/commit/e02139532b2c07aaf72dd1bd8610f63b6780001d))
+* add `VideoAttributeView` ([#531](https://github.com/LuanRT/YouTube.js/issues/531)) ([ff4ab16](https://github.com/LuanRT/YouTube.js/commit/ff4ab1680e110fc32e09d09215fd3e05dbde2c85))
+* Add Shorts endpoint ([#512](https://github.com/LuanRT/YouTube.js/issues/512)) ([a32aa8c](https://github.com/LuanRT/YouTube.js/commit/a32aa8c633b6f3c3bb0695ad1878cbb313867346))
+* **Channel:** Support new about popup ([#537](https://github.com/LuanRT/YouTube.js/issues/537)) ([c66eb1f](https://github.com/LuanRT/YouTube.js/commit/c66eb1fecf0e66d9eca841be0ca56b39ad4466eb))
+* **parser:** Add `ChannelOwnerEmptyState` ([#541](https://github.com/LuanRT/YouTube.js/issues/541)) ([b60930a](https://github.com/LuanRT/YouTube.js/commit/b60930a0c1ce419dddb753846c84d4e46ddf04e1))
+* **Parser:** Add `ClipSection` ([#532](https://github.com/LuanRT/YouTube.js/issues/532)) ([9007b65](https://github.com/LuanRT/YouTube.js/commit/9007b652375e1ca3c3844bdf091fe3670f98dc2c))
+* **toDash:** Add `contentType` to audio and video adaption sets ([#539](https://github.com/LuanRT/YouTube.js/issues/539)) ([4806fc6](https://github.com/LuanRT/YouTube.js/commit/4806fc6c112cb3cf0584f7d253f3c4aeaffa9927))
+* Use `overrides` instead of `--legacy-peer-deps` ([#529](https://github.com/LuanRT/YouTube.js/issues/529)) ([db7f620](https://github.com/LuanRT/YouTube.js/commit/db7f6209b2329bf18b8b35aababfdb9b750c3b0f))
+
+
+### Bug Fixes
+
+* **Channel:** Remove `getChannels()` and `has_channels`, as YouTube removed the tab ([#542](https://github.com/LuanRT/YouTube.js/issues/542)) ([6a5a579](https://github.com/LuanRT/YouTube.js/commit/6a5a579e3947109af0e7c2a318aef40edb8484f8))
+* **Library:** Add support for the new layout and remove profile & stats info ([4261915](https://github.com/LuanRT/YouTube.js/commit/4261915fd4aa84f7619a45d678910be0ae30e13e))
+* **StructuredDescriptionContent:** Add `ReelShelf` to list of possible nodes ([f74ed5a](https://github.com/LuanRT/YouTube.js/commit/f74ed5a1cf352a7b57fa84b9373f9ed9ba1911fc))
+* **VideoAttributeView:** Fix `image` and `overflow_menu_on_tap` props ([5ae15be](https://github.com/LuanRT/YouTube.js/commit/5ae15be63dee2a2393a1aa2a308ca5378140760a))
+
+
+### Performance Improvements
+
+* Use named Parser import, to allow bundlers to create direct function references ([#535](https://github.com/LuanRT/YouTube.js/issues/535)) ([95ed602](https://github.com/LuanRT/YouTube.js/commit/95ed60207a1219f4891f28d2b2b90cf816f11831))
+
 ## [7.0.0](https://github.com/LuanRT/YouTube.js/compare/v6.4.1...v7.0.0) (2023-10-28)
 
 
