@@ -380,6 +380,7 @@ export { default as UpsellDialog } from './classes/UpsellDialog.js';
 export { default as VerticalList } from './classes/VerticalList.js';
 export { default as VerticalWatchCardList } from './classes/VerticalWatchCardList.js';
 export { default as Video } from './classes/Video.js';
+export { default as VideoAttributeView } from './classes/VideoAttributeView.js';
 export { default as VideoCard } from './classes/VideoCard.js';
 export { default as VideoDescriptionCourseSection } from './classes/VideoDescriptionCourseSection.js';
 export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHeader.js';
