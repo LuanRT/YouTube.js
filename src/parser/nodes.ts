@@ -45,6 +45,7 @@ export { default as ChannelHeaderLinksView } from './classes/ChannelHeaderLinksV
 export { default as ChannelMetadata } from './classes/ChannelMetadata.js';
 export { default as ChannelMobileHeader } from './classes/ChannelMobileHeader.js';
 export { default as ChannelOptions } from './classes/ChannelOptions.js';
+export { default as ChannelOwnerEmptyState } from './classes/ChannelOwnerEmptyState.js';
 export { default as ChannelSubMenu } from './classes/ChannelSubMenu.js';
 export { default as ChannelTagline } from './classes/ChannelTagline.js';
 export { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailWithLink.js';
