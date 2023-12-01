@@ -56,6 +56,7 @@ export interface IParsedResponse {
   };
   playability_status?: IPlayabilityStatus;
   streaming_data?: IStreamingData;
+  player_config?: IPlayerConfig;
   current_video_endpoint?: NavigationEndpoint;
   endpoint?: NavigationEndpoint;
   captions?: PlayerCaptionsTracklist;
@@ -69,6 +70,24 @@ export interface IParsedResponse {
   entries?: SuperParsedResult<YTNode>;
   entries_memo?: Memo;
   continuationEndpoint?: YTNode;
+}
+
+export interface IPlayerConfig {
+  audio_config: {
+    loudness_db: number;
+    perceptual_loudness_db: number;
+    enable_per_format_loudness: boolean;
+  };
+  stream_selection_config: {
+    max_bitrate: string;
+  };
+  media_common_config: {
+    dynamic_readahead_config: {
+      max_read_ahead_media_time_ms: number;
+      min_read_ahead_media_time_ms: number;
+      read_ahead_growth_rate_ms: number;
+    };
+  };
 }
 
 export interface IStreamingData {
@@ -87,6 +106,7 @@ export interface IPlayerResponse {
   annotations?: ObservedArray<PlayerAnnotationsExpanded>;
   playability_status: IPlayabilityStatus;
   streaming_data?: IStreamingData;
+  player_config: IPlayerConfig;
   playback_tracking?: {
     videostats_watchtime_url: string;
     videostats_playback_url: string;

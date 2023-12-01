@@ -1,6 +1,24 @@
 export type RawNode = Record<string, any>;
 export type RawData = RawNode | RawNode[];
 
+export interface IRawPlayerConfig {
+  audioConfig: {
+    loudnessDb: number;
+    perceptualLoudnessDb: number;
+    enablePerFormatLoudness: boolean;
+  };
+  streamSelectionConfig: {
+    maxBitrate: string;
+  };
+  mediaCommonConfig: {
+    dynamicReadaheadConfig: {
+      maxReadAheadMediaTimeMs: number;
+      minReadAheadMediaTimeMs: number;
+      readAheadGrowthRateMs: number;
+    };
+  };
+}
+
 export interface IRawResponse {
   contents?: RawData;
   onResponseReceivedActions?: RawNode[];
@@ -41,6 +59,7 @@ export interface IRawResponse {
     dashManifestUrl?: string;
     hlsManifestUrl?: string;
   };
+  playerConfig?: IRawPlayerConfig;
   currentVideoEndpoint?: RawNode;
   unseenCount?: number;
   playlistId?: string;

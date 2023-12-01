@@ -398,6 +398,28 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.streaming_data = streaming_data;
   }
 
+  if (data.playerConfig) {
+    const player_config = {
+      audio_config: {
+        loudness_db: data.playerConfig.audioConfig.loudnessDb,
+        perceptual_loudness_db: data.playerConfig.audioConfig.perceptualLoudnessDb,
+        enable_per_format_loudness: data.playerConfig.audioConfig.enablePerFormatLoudness
+      },
+      stream_selection_config: {
+        max_bitrate: data.playerConfig.streamSelectionConfig.maxBitrate
+      },
+      media_common_config: {
+        dynamic_readahead_config: {
+          max_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig.dynamicReadaheadConfig.maxReadAheadMediaTimeMs,
+          min_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig.dynamicReadaheadConfig.minReadAheadMediaTimeMs,
+          read_ahead_growth_rate_ms: data.playerConfig.mediaCommonConfig.dynamicReadaheadConfig.readAheadGrowthRateMs
+        }
+      }
+    };
+
+    parsed_data.player_config = player_config;
+  }
+
   const current_video_endpoint = data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null;
   if (current_video_endpoint) {
     parsed_data.current_video_endpoint = current_video_endpoint;
