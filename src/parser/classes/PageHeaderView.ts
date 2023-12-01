@@ -10,8 +10,8 @@ export default class PageHeaderView extends YTNode {
 
   title: DynamicTextView | null;
   image: ContentPreviewImageView | null;
-  metadata: YTNode | null;
-  actions: YTNode | null;
+  metadata: ContentMetadataView | null;
+  actions: FlexibleActionsView | null;
 
   constructor(data: RawNode) {
     super();

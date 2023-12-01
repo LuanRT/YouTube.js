@@ -7,10 +7,10 @@ import Playlist from './Playlist.js';
 import Menu from '../classes/menus/Menu.js';
 import Shelf from '../classes/Shelf.js';
 import Button from '../classes/Button.js';
+import PageHeader from '../classes/PageHeader.js';
 
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
 import type { ApiResponse } from '../../core/Actions.js';
-import { PageHeader } from '../nodes.js';
 
 class Library extends Feed<IBrowseResponse> {
   header: PageHeader | null;
