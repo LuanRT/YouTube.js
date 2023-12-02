@@ -1,4 +1,5 @@
 import NavigationEndpoint from './NavigationEndpoint.js';
+import Thumbnail from './misc/Thumbnail.js';
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
 
@@ -21,11 +22,7 @@ class ActionButton {
 class Panel {
   static type = 'Panel';
 
-  image: {
-    url: string;
-    width: number;
-    height: number;
-  }[];
+  image: Thumbnail[];
 
   content_mode: string;
   crop_options: string;
@@ -34,7 +31,7 @@ class Panel {
   action_buttons: ActionButton[];
 
   constructor (data: RawNode) {
-    this.image = data.image.image.sources;
+    this.image = Thumbnail.fromResponse(data.image.image);
     this.content_mode = data.image.contentMode;
     this.crop_options = data.image.cropOptions;
     this.image_aspect_ratio = data.imageAspectRatio;

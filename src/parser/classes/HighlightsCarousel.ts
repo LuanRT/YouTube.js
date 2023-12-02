@@ -1,4 +1,5 @@
 import NavigationEndpoint from './NavigationEndpoint.js';
+import Thumbnail from './misc/Thumbnail.js';
 import { YTNode, observe } from '../helpers.js';
 import { type RawNode } from '../index.js';
 
@@ -6,11 +7,7 @@ export class Panel extends YTNode {
   static type = 'Panel';
 
   thumbnail?: {
-    image: {
-      url: string;
-      width: number;
-      height: number;
-    }[];
+    image: Thumbnail[];
     endpoint: NavigationEndpoint;
     on_long_press_endpoint: NavigationEndpoint;
     content_mode: string;
@@ -18,16 +15,8 @@ export class Panel extends YTNode {
   };
 
   background_image: {
-    image: {
-      url: string;
-      width: number;
-      height: number;
-    }[];
-    gradient_image: {
-      url: string;
-      width: number;
-      height: number;
-    }[];
+    image: Thumbnail[];
+    gradient_image: Thumbnail[];
   };
 
   strapline: string;
@@ -48,7 +37,7 @@ export class Panel extends YTNode {
 
     if (data.thumbnail) {
       this.thumbnail = {
-        image: data.thumbnail.image.sources,
+        image: Thumbnail.fromResponse(data.thumbnail.image),
         endpoint: new NavigationEndpoint(data.thumbnail.onTap),
         on_long_press_endpoint: new NavigationEndpoint(data.thumbnail.onLongPress),
         content_mode: data.thumbnail.contentMode,
@@ -57,8 +46,8 @@ export class Panel extends YTNode {
     }
 
     this.background_image = {
-      image: data.backgroundImage.image.sources,
-      gradient_image: data.backgroundImage.gradientImage.sources
+      image: Thumbnail.fromResponse(data.backgroundImage.image),
+      gradient_image: Thumbnail.fromResponse(data.backgroundImage.gradientImage)
     };
 
     this.strapline = data.strapline;

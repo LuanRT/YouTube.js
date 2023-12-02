@@ -10,9 +10,7 @@ import Thumbnail from './misc/Thumbnail.js';
 export default class VideoAttributeView extends YTNode {
   static type = 'VideoAttributeView';
 
-  image: ContentPreviewImageView | {
-    sources: Thumbnail[];
-  } | null;
+  image: ContentPreviewImageView | Thumbnail[] | null;
   image_style: string;
   title: string;
   subtitle: string;
@@ -26,11 +24,9 @@ export default class VideoAttributeView extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    // @NOTE: "image" is not a renderer so not sure why we're parsing it as one. Leaving this hack here for now to avoid breaking things.
+
     if (data.image?.sources) {
-      this.image = {
-        sources: data.image.sources.map((x: any) => new Thumbnail(x)).sort((a: Thumbnail, b: Thumbnail) => b.width - a.width)
-      };
+      this.image = Thumbnail.fromResponse(data.image);
     } else {
       this.image = Parser.parseItem(data.image, ContentPreviewImageView);
     }

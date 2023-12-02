@@ -15,6 +15,6 @@ export default class ChannelExternalLinkView extends YTNode {
 
     this.title = Text.fromAttributed(data.title);
     this.link = Text.fromAttributed(data.link);
-    this.favicon = data.favicon.sources.map((x: any) => new Thumbnail(x)).sort((a: Thumbnail, b: Thumbnail) => b.width - a.width);
+    this.favicon = Thumbnail.fromResponse(data.favicon);
   }
 }
