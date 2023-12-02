@@ -176,8 +176,13 @@ export function isRenderer(value: unknown) {
   const is_object = typeof value === 'object';
   if (!is_object) return false;
   const keys = Reflect.ownKeys(value as object);
-  if (keys.length === 1 && keys[0].toString().includes('Renderer')) {
-    return Parser.sanitizeClassName(keys[0].toString());
+
+  if (keys.length === 1) {
+    const first_key = keys[0].toString();
+
+    if (first_key.endsWith('Renderer') || first_key.endsWith('Model')) {
+      return Parser.sanitizeClassName(first_key);
+    }
   }
   return false;
 }
