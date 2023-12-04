@@ -1,5 +1,6 @@
 import { YTNode } from '../helpers.js';
-import { NavigationEndpoint } from '../nodes.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
+import Text from './misc/Text.js';
 
 import type { RawNode } from '../types/index.js';
 
