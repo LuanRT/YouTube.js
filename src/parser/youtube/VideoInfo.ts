@@ -105,11 +105,10 @@ class VideoInfo extends MediaInfo {
         // The combined formats only exist for the default language, even for videos with multiple audio tracks
         // So we can copy the language from the default audio track to the combined formats
         this.streaming_data.formats.forEach((format) => format.language = default_audio_track.language);
-      } else if (typeof this.captions?.default_audio_track_index !== 'undefined' && this.captions?.audio_tracks && this.captions.caption_tracks) {
+      } else if (this.captions?.caption_tracks && this.captions?.caption_tracks.length > 0) {
         // For videos with a single audio track and captions, we can use the captions to figure out the language of the audio and combined formats
-        const audioTrack = this.captions.audio_tracks[this.captions.default_audio_track_index];
-        const index = audioTrack.default_caption_track_index || 0;
-        const language_code = this.captions.caption_tracks[index].language_code;
+        const auto_generated_caption_track = this.captions.caption_tracks.find((caption) => caption.kind === 'asr');
+        const language_code = auto_generated_caption_track?.language_code;
 
         this.streaming_data.adaptive_formats.forEach((format) => {
           if (format.has_audio) {
