@@ -7,19 +7,13 @@ import Playlist from './Playlist.js';
 import Menu from '../classes/menus/Menu.js';
 import Shelf from '../classes/Shelf.js';
 import Button from '../classes/Button.js';
-
-import ProfileColumnStats from '../classes/ProfileColumnStats.js';
-import ProfileColumnUserInfo from '../classes/ProfileColumnUserInfo.js';
+import PageHeader from '../classes/PageHeader.js';
 
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
 import type { ApiResponse } from '../../core/Actions.js';
 
 class Library extends Feed<IBrowseResponse> {
-  profile: {
-    stats?: ProfileColumnStats;
-    user_info?: ProfileColumnUserInfo;
-  };
-
+  header: PageHeader | null;
   sections;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse) {
@@ -28,10 +22,7 @@ class Library extends Feed<IBrowseResponse> {
     if (!this.page.contents_memo)
       throw new InnertubeError('Page contents not found');
 
-    const stats = this.page.contents_memo.getType(ProfileColumnStats).first();
-    const user_info = this.page.contents_memo.getType(ProfileColumnUserInfo).first();
-
-    this.profile = { stats, user_info };
+    this.header = this.memo.getType(PageHeader).first();
 
     const shelves = this.page.contents_memo.getType(Shelf);
 

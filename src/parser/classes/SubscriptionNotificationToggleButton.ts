@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import { type SuperParsedResult, YTNode } from '../helpers.js';
 
 export default class SubscriptionNotificationToggleButton extends YTNode {

@@ -1,4 +1,4 @@
-import Parser from '../../parser/index.js';
+import { Parser } from '../../parser/index.js';
 import Channel from '../../parser/ytkids/Channel.js';
 import HomeFeed from '../../parser/ytkids/HomeFeed.js';
 import Search from '../../parser/ytkids/Search.js';

@@ -1,4 +1,4 @@
-import type { ObservedArray} from './helpers.js';
+import type { ObservedArray } from './helpers.js';
 import { YTNode, observe } from './helpers.js';
 import type { RawNode } from './index.js';
 import { Thumbnail } from './misc.js';
@@ -207,5 +207,18 @@ export class LiveChatContinuation extends YTNode {
     this.continuation = new Continuation({ continuation, type });
 
     this.viewer_name = data.viewerName;
+  }
+}
+
+export class ContinuationCommand extends YTNode {
+  static readonly type = 'ContinuationCommand';
+
+  request: string;
+  token: string;
+
+  constructor(data: RawNode) {
+    super();
+    this.request = data.request;
+    this.token = data.token;
   }
 }

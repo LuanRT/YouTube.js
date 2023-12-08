@@ -1,4 +1,4 @@
-import Parser from '../../index.js';
+import { Parser } from '../../index.js';
 import Button from '../Button.js';
 import KidsCategoryTab from './KidsCategoryTab.js';
 import { type ObservedArray, YTNode } from '../../helpers.js';

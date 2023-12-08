@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import Factoid from './Factoid.js';
 
 export default class ViewCountFactoid extends YTNode {

@@ -176,8 +176,13 @@ export function isRenderer(value: unknown) {
   const is_object = typeof value === 'object';
   if (!is_object) return false;
   const keys = Reflect.ownKeys(value as object);
-  if (keys.length === 1 && keys[0].toString().includes('Renderer')) {
-    return Parser.sanitizeClassName(keys[0].toString());
+
+  if (keys.length === 1) {
+    const first_key = keys[0].toString();
+
+    if (first_key.endsWith('Renderer') || first_key.endsWith('Model')) {
+      return Parser.sanitizeClassName(first_key);
+    }
   }
   return false;
 }
@@ -448,12 +453,12 @@ export function toParser(key: string, inference_type: InferenceType, key_path: s
   switch (inference_type.type) {
     case 'renderer':
       {
-        parser = `Parser.parseItem(${key_path.join('.')}.${key}, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+        parser = `Parser.parseItem(${key_path.join('.')}.${key}, ${toParserValidTypes(inference_type.renderers)})`;
       }
       break;
     case 'renderer_list':
       {
-        parser = `Parser.parse(${key_path.join('.')}.${key}, true, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+        parser = `Parser.parse(${key_path.join('.')}.${key}, true, ${toParserValidTypes(inference_type.renderers)})`;
       }
       break;
     case 'object':
@@ -489,6 +494,14 @@ export function toParser(key: string, inference_type: InferenceType, key_path: s
   if (inference_type.optional)
     return `Reflect.has(${key_path.join('.')}, '${key}') ? ${parser} : undefined`;
   return parser;
+}
+
+function toParserValidTypes(types: string[]) {
+  if (types.length === 1) {
+    return `YTNodes.${types[0]}`;
+  }
+
+  return `[ ${types.map((type) => `YTNodes.${type}`).join(', ')} ]`;
 }
 
 function accessDataFromKeyPath(root: any, key_path: string[]) {

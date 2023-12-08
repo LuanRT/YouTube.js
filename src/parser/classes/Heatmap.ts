@@ -1,4 +1,4 @@
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import HeatMarker from './HeatMarker.js';
 import { type ObservedArray, YTNode } from '../helpers.js';
 

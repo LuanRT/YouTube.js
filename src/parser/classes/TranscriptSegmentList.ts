@@ -1,7 +1,7 @@
 import type { ObservedArray } from '../helpers.js';
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import { Text } from '../misc.js';
 import TranscriptSectionHeader from './TranscriptSectionHeader.js';
 import TranscriptSegment from './TranscriptSegment.js';

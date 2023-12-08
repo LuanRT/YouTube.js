@@ -1,6 +1,6 @@
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
-import Parser from '../../index.js';
+import { Parser } from '../../index.js';
 import LiveChatBanner from './items/LiveChatBanner.js';
 
 export default class AddBannerToLiveChatCommand extends YTNode {

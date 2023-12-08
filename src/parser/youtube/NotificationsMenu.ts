@@ -1,4 +1,4 @@
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 
 import ContinuationItem from '../classes/ContinuationItem.js';
 import SimpleMenuHeader from '../classes/menus/SimpleMenuHeader.js';

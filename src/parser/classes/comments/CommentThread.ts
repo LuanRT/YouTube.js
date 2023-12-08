@@ -1,4 +1,4 @@
-import Parser from '../../index.js';
+import { Parser } from '../../index.js';
 import Button from '../Button.js';
 import ContinuationItem from '../ContinuationItem.js';
 import Comment from './Comment.js';

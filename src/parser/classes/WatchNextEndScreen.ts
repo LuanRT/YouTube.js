@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import EndScreenPlaylist from './EndScreenPlaylist.js';
 import EndScreenVideo from './EndScreenVideo.js';
 import Text from './misc/Text.js';

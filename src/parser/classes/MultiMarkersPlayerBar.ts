@@ -1,6 +1,6 @@
 import { YTNode, observe, type ObservedArray } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import Chapter from './Chapter.js';
 import Heatmap from './Heatmap.js';
 

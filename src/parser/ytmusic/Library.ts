@@ -1,4 +1,4 @@
-import Parser, { GridContinuation, MusicShelfContinuation, SectionListContinuation } from '../index.js';
+import { Parser, GridContinuation, MusicShelfContinuation, SectionListContinuation } from '../index.js';
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 

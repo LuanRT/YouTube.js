@@ -1,5 +1,5 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
-import Parser, { type RawNode } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
 import MusicResponsiveListItem from './MusicResponsiveListItem.js';
 
 export default class MusicPlaylistShelf extends YTNode {

@@ -1,4 +1,4 @@
-import Parser from '../index.js';
+import { Parser } from '../index.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
 import CompactLink from '../classes/CompactLink.js';

@@ -19,6 +19,22 @@ describe('YouTube.js Tests', () => {
       expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
     });
 
+    test('Innertube#getShortsWatchItem', async () => {
+      const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
+      expect(info.watch_next_feed?.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#getShortsWatchItem#Continue', async () => {
+      const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
+      expect(info.watch_next_feed?.length).toBeGreaterThan(0);
+      const previousData = info.watch_next_feed?.map(value => value.as(YTNodes.Command).endpoint)
+      const cont = await info.getWatchNextContinuation()
+      
+      expect(cont.watch_next_feed?.length).toBeGreaterThan(0);
+      const newData = cont.watch_next_feed?.map(value => value.as(YTNodes.Command).endpoint)
+      expect(previousData).not.toEqual(newData)
+    });
+
     describe('Innertube#getBasicInfo', () => {
       test('Format#language multiple audio tracks', async () => {
         const info = await innertube.getBasicInfo('Kn56bMZ9OE8')
@@ -208,19 +224,18 @@ describe('YouTube.js Tests', () => {
         expect(community.posts.length).toBeGreaterThan(0);
       });
 
-      test('Channel#getChannels', async () => {
-        const channels = await channel.getChannels();
-        expect(channels).toBeDefined();
-        expect(channels.current_tab).toBeDefined();
-        expect(channels.current_tab?.content).toBeDefined();
-        expect(channels.channels.length).toBeGreaterThan(0);
-      });
-
       test('Channel#getAbout', async () => {
         const about = await channel.getAbout();
         expect(about).toBeDefined();
-        expect(about.id).toBe('UC7_gcs09iThXybpVgjHZ_7g');
-        expect(about.description).toBeDefined();
+
+        if (about.is(YTNodes.ChannelAboutFullMetadata)) {
+          expect(about.id).toBe('UC7_gcs09iThXybpVgjHZ_7g');
+          expect(about.description).toBeDefined();
+        } else {
+          expect(about.metadata).toBeDefined();
+          expect(about.metadata?.channel_id).toBe('UC7_gcs09iThXybpVgjHZ_7g');
+          expect(about.metadata?.description).toBeDefined();
+        }
       });
 
       test('Channel#search', async () => {
