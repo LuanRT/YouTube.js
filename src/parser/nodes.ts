@@ -22,6 +22,7 @@ export { default as DataModelSection } from './classes/analytics/DataModelSectio
 export { default as StatRow } from './classes/analytics/StatRow.js';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.js';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.js';
+export { default as AvatarView } from './classes/AvatarView.js';
 export { default as BackstageImage } from './classes/BackstageImage.js';
 export { default as BackstagePost } from './classes/BackstagePost.js';
 export { default as BackstagePostThread } from './classes/BackstagePostThread.js';
