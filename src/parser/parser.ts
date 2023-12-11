@@ -567,6 +567,7 @@ export function parseArray(data?: RawNode[], validTypes?: YTNodeConstructor | YT
  * @param validTypes - YTNode types that are allowed to be parsed.
  */
 export function parse<T extends YTNode, K extends YTNodeConstructor<T>[]>(data: RawData, requireArray: true, validTypes?: K): ObservedArray<InstanceType<K[number]>> | null;
+export function parse<T extends YTNode, K extends YTNodeConstructor<T>>(data: RawData, requireArray: true, validTypes?: K): ObservedArray<InstanceType<K>> | null;
 export function parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]): SuperParsedResult<T>;
 export function parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
   if (!data) return null;
