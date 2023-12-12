@@ -96,6 +96,7 @@ export { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.
 export { default as DecoratedPlayerBar } from './classes/DecoratedPlayerBar.js';
 export { default as DefaultPromoPanel } from './classes/DefaultPromoPanel.js';
 export { default as DidYouMean } from './classes/DidYouMean.js';
+export { default as DislikeButtonView } from './classes/DislikeButtonView.js';
 export { default as DownloadButton } from './classes/DownloadButton.js';
 export { default as Dropdown } from './classes/Dropdown.js';
 export { default as DropdownItem } from './classes/DropdownItem.js';
@@ -158,6 +159,7 @@ export { default as ItemSectionHeader } from './classes/ItemSectionHeader.js';
 export { default as ItemSectionTab } from './classes/ItemSectionTab.js';
 export { default as ItemSectionTabbedHeader } from './classes/ItemSectionTabbedHeader.js';
 export { default as LikeButton } from './classes/LikeButton.js';
+export { default as LikeButtonView } from './classes/LikeButtonView.js';
 export { default as LiveChat } from './classes/LiveChat.js';
 export { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBannerToLiveChatCommand.js';
 export { default as AddChatItemAction } from './classes/livechat/AddChatItemAction.js';
@@ -328,6 +330,7 @@ export { default as SearchSuggestionsSection } from './classes/SearchSuggestions
 export { default as SecondarySearchContainer } from './classes/SecondarySearchContainer.js';
 export { default as SectionList } from './classes/SectionList.js';
 export { default as SegmentedLikeDislikeButton } from './classes/SegmentedLikeDislikeButton.js';
+export { default as SegmentedLikeDislikeButtonView } from './classes/SegmentedLikeDislikeButtonView.js';
 export { default as SettingBoolean } from './classes/SettingBoolean.js';
 export { default as SettingsCheckbox } from './classes/SettingsCheckbox.js';
 export { default as SettingsOptions } from './classes/SettingsOptions.js';
@@ -373,6 +376,7 @@ export { default as ThumbnailOverlayToggleButton } from './classes/ThumbnailOver
 export { default as TimedMarkerDecoration } from './classes/TimedMarkerDecoration.js';
 export { default as TitleAndButtonListHeader } from './classes/TitleAndButtonListHeader.js';
 export { default as ToggleButton } from './classes/ToggleButton.js';
+export { default as ToggleButtonView } from './classes/ToggleButtonView.js';
 export { default as ToggleMenuServiceItem } from './classes/ToggleMenuServiceItem.js';
 export { default as Tooltip } from './classes/Tooltip.js';
 export { default as TopicChannelDetails } from './classes/TopicChannelDetails.js';
