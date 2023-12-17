@@ -281,6 +281,16 @@ export default class Innertube {
   }
 
   /**
+   * Retrieves channels feed.
+   */
+  async getChannelsFeed(): Promise<Feed<IBrowseResponse>> {
+    const response = await this.actions.execute(
+      BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: 'FEchannels' }), parse: true }
+    );
+    return new Feed(this.actions, response);
+  }
+
+  /**
    * Retrieves contents for a given channel.
    * @param id - Channel id
    */
