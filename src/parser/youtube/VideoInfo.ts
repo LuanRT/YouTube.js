@@ -12,6 +12,7 @@ import RelatedChipCloud from '../classes/RelatedChipCloud.js';
 import RichMetadata from '../classes/RichMetadata.js';
 import RichMetadataRow from '../classes/RichMetadataRow.js';
 import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton.js';
+import SegmentedLikeDislikeButtonView from '../classes/SegmentedLikeDislikeButtonView.js';
 import ToggleButton from '../classes/ToggleButton.js';
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
@@ -161,6 +162,17 @@ class VideoInfo extends MediaInfo {
         this.basic_info.like_count = segmented_like_dislike_button?.like_button?.like_count;
         this.basic_info.is_liked = segmented_like_dislike_button?.like_button?.is_toggled;
         this.basic_info.is_disliked = segmented_like_dislike_button?.dislike_button?.is_toggled;
+      }
+
+      const segmented_like_dislike_button_view = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButtonView);
+      if (segmented_like_dislike_button_view) {
+        this.basic_info.like_count = segmented_like_dislike_button_view.like_count;
+
+        if (segmented_like_dislike_button_view.like_button) {
+          const like_status = segmented_like_dislike_button_view.like_button.like_status_entity.like_status;
+          this.basic_info.is_liked = like_status === 'LIKE';
+          this.basic_info.is_disliked = like_status === 'DISLIKE';
+        }
       }
 
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
