@@ -167,6 +167,7 @@ export default class Actions {
       'FElibrary',
       'FEhistory',
       'FEsubscriptions',
+      'FEchannels',
       'FEmusic_listening_review',
       'FEmusic_library_landing',
       'SPaccount_overview',
