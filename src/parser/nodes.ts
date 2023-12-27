@@ -22,6 +22,7 @@ export { default as DataModelSection } from './classes/analytics/DataModelSectio
 export { default as StatRow } from './classes/analytics/StatRow.js';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.js';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.js';
+export { default as AvatarView } from './classes/AvatarView.js';
 export { default as BackstageImage } from './classes/BackstageImage.js';
 export { default as BackstagePost } from './classes/BackstagePost.js';
 export { default as BackstagePostThread } from './classes/BackstagePostThread.js';
@@ -93,6 +94,7 @@ export { default as ContinuationItem } from './classes/ContinuationItem.js';
 export { default as ConversationBar } from './classes/ConversationBar.js';
 export { default as CopyLink } from './classes/CopyLink.js';
 export { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.js';
+export { default as DecoratedAvatarView } from './classes/DecoratedAvatarView.js';
 export { default as DecoratedPlayerBar } from './classes/DecoratedPlayerBar.js';
 export { default as DefaultPromoPanel } from './classes/DefaultPromoPanel.js';
 export { default as DidYouMean } from './classes/DidYouMean.js';
