@@ -1,5 +1,6 @@
 import { YTNode } from '../helpers.ts';
-import { NavigationEndpoint } from '../nodes.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
 
 import type { RawNode } from '../types/index.ts';
 

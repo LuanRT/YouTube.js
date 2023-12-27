@@ -1,4 +1,4 @@
-import type { SuperParsedResult} from '../../helpers.ts';
+import type { SuperParsedResult } from '../../helpers.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
 import { Parser } from '../../index.ts';

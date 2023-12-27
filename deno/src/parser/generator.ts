@@ -30,26 +30,42 @@ export type MiscInferenceType = {
   params: [string, string?],
 }
 
-export type InferenceType = {
-  type: 'renderer',
-  renderers: string[],
-  optional: boolean,
-} | {
-  type: 'renderer_list',
-  renderers: string[],
-  optional: boolean,
-} | MiscInferenceType | {
+export interface ObjectInferenceType {
   type: 'object',
   keys: KeyInfo,
   optional: boolean,
-} | {
+}
+
+export interface RendererInferenceType {
+  type: 'renderer',
+  renderers: string[],
+  optional: boolean
+}
+
+export interface PrimativeInferenceType {
   type: 'primative',
-  typeof: ('string' | 'number' | 'boolean' | 'bigint' | 'symbol' | 'undefined' | 'function')[],
-  optional: boolean,
-} | {
-  type: 'unknown',
+  typeof: ('string' | 'number' | 'boolean' | 'bigint' | 'symbol' | 'undefined' | 'function' | 'never' | 'unknown')[],
   optional: boolean,
 }
+
+export type ArrayInferenceType = {
+  type: 'array',
+  array_type: 'primitive',
+  items: PrimativeInferenceType,
+  optional: boolean,
+} | {
+  type: 'array',
+  array_type: 'object',
+  items: ObjectInferenceType,
+  optional: boolean,
+} | {
+  type: 'array',
+  array_type: 'renderer',
+  renderers: string[],
+  optional: boolean,
+};
+
+export type InferenceType = RendererInferenceType | MiscInferenceType | ObjectInferenceType | PrimativeInferenceType | ArrayInferenceType;
 
 export type KeyInfo = (readonly [string, InferenceType])[];
 
@@ -70,7 +86,7 @@ export function camelToSnake(str: string) {
  * @returns The inferred type
  */
 export function inferType(key: string, value: unknown): InferenceType {
-  let return_value: string | Record<string, any> | boolean | MiscInferenceType = false;
+  let return_value: string | Record<string, any> | false | MiscInferenceType | ArrayInferenceType = false;
   if (typeof value === 'object' && value != null) {
     if (return_value = isRenderer(value)) {
       RENDERER_EXAMPLES[return_value] = Reflect.get(value, Reflect.ownKeys(value)[0]);
@@ -85,13 +101,17 @@ export function inferType(key: string, value: unknown): InferenceType {
         RENDERER_EXAMPLES[key] = value;
       }
       return {
-        type: 'renderer_list',
+        type: 'array',
+        array_type: 'renderer',
         renderers: Object.keys(return_value),
         optional: false
       };
     }
     if (return_value = isMiscType(key, value)) {
       return return_value as MiscInferenceType;
+    }
+    if (return_value = isArrayType(value)) {
+      return return_value as ArrayInferenceType;
     }
   }
   const primative_type = typeof value;
@@ -116,6 +136,9 @@ export function inferType(key: string, value: unknown): InferenceType {
  */
 export function isRendererList(value: unknown) {
   const arr = Array.isArray(value);
+  if (arr && value.length === 0)
+    return false;
+
   const is_list = arr && value.every((item) => isRenderer(item));
   return (
     is_list ?
@@ -176,10 +199,87 @@ export function isRenderer(value: unknown) {
   const is_object = typeof value === 'object';
   if (!is_object) return false;
   const keys = Reflect.ownKeys(value as object);
-  if (keys.length === 1 && keys[0].toString().includes('Renderer')) {
-    return Parser.sanitizeClassName(keys[0].toString());
+
+  if (keys.length === 1) {
+    const first_key = keys[0].toString();
+
+    if (first_key.endsWith('Renderer') || first_key.endsWith('Model')) {
+      return Parser.sanitizeClassName(first_key);
+    }
   }
   return false;
+}
+
+/**
+ * Checks if the given value is an array
+ * @param value - The value to check
+ * @returns If it is an array, return the InferenceType. Otherwise, return false.
+ */
+export function isArrayType(value: unknown): false | ArrayInferenceType {
+  if (!Array.isArray(value))
+    return false;
+
+  // If the array is empty, we can't infer anything
+  if (value.length === 0)
+    return {
+      type: 'array',
+      array_type: 'primitive',
+      items: {
+        type: 'primative',
+        typeof: [ 'never' ],
+        optional: false
+      },
+      optional: false
+    };
+  // We'll infer the primative type of the array entries
+  const array_entry_types = value.map((item) => typeof item);
+  // We only support arrays that have the same primative type throughout
+  const all_same_type = array_entry_types.every((type) => type === array_entry_types[0]);
+  if (!all_same_type)
+    return {
+      type: 'array',
+      array_type: 'primitive',
+      items: {
+        type: 'primative',
+        typeof: [ 'unknown' ],
+        optional: false
+      },
+      optional: false
+    };
+
+  const type = array_entry_types[0];
+  if (type !== 'object')
+    return {
+      type: 'array',
+      array_type: 'primitive',
+      items: {
+        type: 'primative',
+        typeof: [ type ],
+        optional: false
+      },
+      optional: false
+    };
+
+  let key_type: KeyInfo = [];
+  for (let i = 0; i < value.length; i++) {
+    const current_keys = Object.entries(value[i] as object).map(([ key, value ]) => [ key, inferType(key, value) ] as const);
+    if (i === 0) {
+      key_type = current_keys;
+      continue;
+    }
+    key_type = mergeKeyInfo(key_type, current_keys).resolved_key_info;
+  }
+
+  return {
+    type: 'array',
+    array_type: 'object',
+    items: {
+      type: 'object',
+      keys: key_type,
+      optional: false
+    },
+    optional: false
+  };
 }
 
 function introspectKeysFirstPass(classdata: unknown): KeyInfo {
@@ -236,7 +336,7 @@ function introspectKeysSecondPass(key_info: KeyInfo) {
     // Verify that its actually badges
     const badge_key_info = key_info.find(([ key ]) => key === cannonical_badges);
     const is_badges = badge_key_info ?
-      badge_key_info[1].type === 'renderer_list' && Reflect.has(badge_key_info[1].renderers, 'MetadataBadge') :
+      badge_key_info[1].type === 'array' && badge_key_info[1].array_type === 'renderer' && Reflect.has(badge_key_info[1].renderers, 'MetadataBadge') :
       false;
 
     if (is_badges && cannonical_badges) excluded_keys.add(cannonical_badges);
@@ -273,7 +373,7 @@ export function introspect(classdata: unknown) {
   const key_info = introspect2(classdata);
   const dependencies = new Map<string, any>();
   for (const [ , value ] of key_info) {
-    if (value.type === 'renderer' || value.type === 'renderer_list')
+    if (value.type === 'renderer' || (value.type === 'array' && value.array_type === 'renderer'))
       for (const renderer of value.renderers) {
         const example = RENDERER_EXAMPLES[renderer];
         if (example)
@@ -401,6 +501,10 @@ export function generateTypescriptClass(classname: string, key_info: KeyInfo) {
   return `class ${classname} extends YTNode {\n  static type = '${classname}';\n\n  ${props.join('\n  ')}\n\n  constructor(data: RawNode) {\n    ${constructor_lines.join('\n    ')}\n  }\n}\n`;
 }
 
+function toTypeDeclarationObject(indentation: number, keys: KeyInfo) {
+  return `{\n${keys.map(([ key, value ]) => `${' '.repeat((indentation + 2) * 2)}${camelToSnake(key)}${value.optional ? '?' : ''}: ${toTypeDeclaration(value, indentation + 1)}`).join(',\n')}\n${' '.repeat((indentation + 1) * 2)}}`;
+}
+
 /**
  * For a given inference type, get the typescript type declaration
  * @param inference_type - The inference type to get the declaration for
@@ -413,13 +517,33 @@ export function toTypeDeclaration(inference_type: InferenceType, indentation = 0
     {
       return `${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')} | null`;
     }
-    case 'renderer_list':
+    case 'array':
     {
-      return `ObservedArray<${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')}> | null`;
+      switch (inference_type.array_type) {
+        case 'renderer':
+          return `ObservedArray<${inference_type.renderers.map((type) => `YTNodes.${type}`).join(' | ')}> | null`;
+
+        case 'primitive':
+        {
+          const items_list = inference_type.items.typeof;
+          if (inference_type.items.optional && !items_list.includes('undefined'))
+            items_list.push('undefined');
+          const items =
+            items_list.length === 1 ?
+              `${items_list[0]}` : `(${items_list.join(' | ')})`;
+          return `${items}[]`;
+        }
+
+        case 'object':
+          return `${toTypeDeclarationObject(indentation, inference_type.items.keys)}[]`;
+
+        default:
+          throw new Error('Unreachable code reached! Switch missing case!');
+      }
     }
     case 'object':
     {
-      return `{\n${inference_type.keys.map(([ key, value ]) => `${' '.repeat((indentation + 2) * 2)}${camelToSnake(key)}${value.optional ? '?' : ''}: ${toTypeDeclaration(value, indentation + 1)}`).join(',\n')}\n${' '.repeat((indentation + 1) * 2)}}`;
+      return toTypeDeclarationObject(indentation, inference_type.keys);
     }
     case 'misc':
       switch (inference_type.misc_type) {
@@ -430,9 +554,12 @@ export function toTypeDeclaration(inference_type: InferenceType, indentation = 0
       }
     case 'primative':
       return inference_type.typeof.join(' | ');
-    case 'unknown':
-      return '/* TODO: determine correct type */ unknown';
   }
+}
+
+function toParserObject(indentation: number, keys: KeyInfo, key_path: string[], key: string) {
+  const new_keypath = [ ...key_path, key ];
+  return `{\n${keys.map(([ key, value ]) => `${' '.repeat((indentation + 2) * 2)}${camelToSnake(key)}: ${toParser(key, value, new_keypath, indentation + 1)}`).join(',\n')}\n${' '.repeat((indentation + 1) * 2)}}`;
 }
 
 /**
@@ -448,18 +575,32 @@ export function toParser(key: string, inference_type: InferenceType, key_path: s
   switch (inference_type.type) {
     case 'renderer':
       {
-        parser = `Parser.parseItem(${key_path.join('.')}.${key}, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+        parser = `Parser.parseItem(${key_path.join('.')}.${key}, ${toParserValidTypes(inference_type.renderers)})`;
       }
       break;
-    case 'renderer_list':
+    case 'array':
       {
-        parser = `Parser.parse(${key_path.join('.')}.${key}, true, [ ${inference_type.renderers.map((type) => `YTNodes.${type}`).join(', ')} ])`;
+        switch (inference_type.array_type) {
+          case 'renderer':
+            parser = `Parser.parse(${key_path.join('.')}.${key}, true, ${toParserValidTypes(inference_type.renderers)})`;
+            break;
+
+          case 'object':
+            parser = `${key_path.join('.')}.${key}.map((item: any) => (${toParserObject(indentation, inference_type.items.keys, [], 'item')}))`;
+            break;
+
+          case 'primitive':
+            parser = `${key_path.join('.')}.${key}`;
+            break;
+
+          default:
+            throw new Error('Unreachable code reached! Switch missing case!');
+        }
       }
       break;
     case 'object':
       {
-        const new_keypath = [ ...key_path, key ];
-        parser = `{\n${inference_type.keys.map(([ key, value ]) => `${' '.repeat((indentation + 2) * 2)}${camelToSnake(key)}: ${toParser(key, value, new_keypath, indentation + 1)}`).join(',\n')}\n${' '.repeat((indentation + 1) * 2)}}`;
+        parser = toParserObject(indentation, inference_type.keys, key_path, key);
       }
       break;
     case 'misc':
@@ -482,13 +623,20 @@ export function toParser(key: string, inference_type: InferenceType, key_path: s
         throw new Error('Unreachable code reached! Switch missing case!');
       break;
     case 'primative':
-    case 'unknown':
       parser = `${key_path.join('.')}.${key}`;
       break;
   }
   if (inference_type.optional)
     return `Reflect.has(${key_path.join('.')}, '${key}') ? ${parser} : undefined`;
   return parser;
+}
+
+function toParserValidTypes(types: string[]) {
+  if (types.length === 1) {
+    return `YTNodes.${types[0]}`;
+  }
+
+  return `[ ${types.map((type) => `YTNodes.${type}`).join(', ')} ]`;
 }
 
 function accessDataFromKeyPath(root: any, key_path: string[]) {
@@ -508,6 +656,15 @@ function hasDataFromKeyPath(root: any, key_path: string[]) {
   return true;
 }
 
+function parseObject(key: string, data: unknown, key_path: string[], keys: KeyInfo, should_optional: boolean) {
+  const obj: any = {};
+  const new_key_path = [ ...key_path, key ];
+  for (const [ key, value ] of keys) {
+    obj[key] = should_optional ? parse(key, value, data, new_key_path) : undefined;
+  }
+  return obj;
+}
+
 /**
  * Parse a value from a given key path using the given inference type
  * @param key - The key to parse
@@ -523,18 +680,26 @@ export function parse(key: string, inference_type: InferenceType, data: unknown,
     {
       return should_optional ? Parser.parseItem(accessDataFromKeyPath({ data }, [ ...key_path, key ]), inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
     }
-    case 'renderer_list':
+    case 'array':
     {
-      return should_optional ? Parser.parse(accessDataFromKeyPath({ data }, [ ...key_path, key ]), true, inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
+      switch (inference_type.array_type) {
+        case 'renderer':
+          return should_optional ? Parser.parse(accessDataFromKeyPath({ data }, [ ...key_path, key ]), true, inference_type.renderers.map((type) => Parser.getParserByName(type))) : undefined;
+          break;
+
+        case 'object':
+          return should_optional ? accessDataFromKeyPath({ data }, [ ...key_path, key ]).map((_: any, idx: number) => {
+            return parseObject(`${idx}`, data, [ ...key_path, key ], inference_type.items.keys, should_optional);
+          }) : undefined;
+
+        case 'primitive':
+          return should_optional ? accessDataFromKeyPath({ data }, [ ...key_path, key ]) : undefined;
+      }
+      throw new Error('Unreachable code reached! Switch missing case!');
     }
     case 'object':
     {
-      const obj: any = {};
-      const new_key_path = [ ...key_path, key ];
-      for (const [ key, value ] of inference_type.keys) {
-        obj[key] = should_optional ? parse(key, value, data, new_key_path) : undefined;
-      }
-      return obj;
+      return parseObject(key, data, key_path, inference_type.keys, should_optional);
     }
     case 'misc':
       switch (inference_type.misc_type) {
@@ -556,7 +721,6 @@ export function parse(key: string, inference_type: InferenceType, data: unknown,
       }
       throw new Error('Unreachable code reached! Switch missing case!');
     case 'primative':
-    case 'unknown':
       return accessDataFromKeyPath({ data }, [ ...key_path, key ]);
   }
 }
@@ -585,7 +749,8 @@ export function mergeKeyInfo(key_info: KeyInfo, new_key_info: KeyInfo) {
     if (type.type !== new_type.type) {
       // We've got a type mismatch, this is unknown, we do not resolve unions
       changed_keys.set(key, {
-        type: 'unknown',
+        type: 'primative',
+        typeof: [ 'unknown' ],
         optional: true
       });
       continue;
@@ -628,27 +793,128 @@ export function mergeKeyInfo(key_info: KeyInfo, new_key_info: KeyInfo) {
           if (did_change) changed_keys.set(key, resolved_key);
         }
         break;
-      case 'renderer_list':
+      case 'array':
         {
-          if (new_type.type !== 'renderer_list') continue;
-          const union_map = {
-            ...type.renderers,
-            ...new_type.renderers
-          };
-          const either_optional = type.optional || new_type.optional;
-          const resolved_key: InferenceType = {
-            type: 'renderer_list',
-            renderers: union_map,
-            optional: either_optional
-          };
-          const did_change = JSON.stringify({
-            ...resolved_key,
-            renderers: Object.keys(resolved_key.renderers)
-          }) !== JSON.stringify({
-            ...type,
-            renderers: Object.keys(type.renderers)
-          });
-          if (did_change) changed_keys.set(key, resolved_key);
+          if (new_type.type !== 'array') continue;
+          switch (type.array_type) {
+            case 'renderer':
+              {
+                if (new_type.array_type !== 'renderer') {
+                  // Type mismatch
+                  changed_keys.set(key, {
+                    type: 'array',
+                    array_type: 'primitive',
+                    items: {
+                      type: 'primative',
+                      typeof: [ 'unknown' ],
+                      optional: true
+                    },
+                    optional: true
+                  });
+                  continue;
+                }
+                const union_map = {
+                  ...type.renderers,
+                  ...new_type.renderers
+                };
+                const either_optional = type.optional || new_type.optional;
+                const resolved_key: InferenceType = {
+                  type: 'array',
+                  array_type: 'renderer',
+                  renderers: union_map,
+                  optional: either_optional
+                };
+                const did_change = JSON.stringify({
+                  ...resolved_key,
+                  renderers: Object.keys(resolved_key.renderers)
+                }) !== JSON.stringify({
+                  ...type,
+                  renderers: Object.keys(type.renderers)
+                });
+                if (did_change) changed_keys.set(key, resolved_key);
+              }
+              break;
+
+            case 'object':
+              {
+                if (new_type.array_type === 'primitive' && new_type.items.typeof.length == 1 && new_type.items.typeof[0] === 'never') {
+                  // It's an empty array. We assume the type is unchanged
+                  continue;
+                }
+                if (new_type.array_type !== 'object') {
+                  // Type mismatch
+                  changed_keys.set(key, {
+                    type: 'array',
+                    array_type: 'primitive',
+                    items: {
+                      type: 'primative',
+                      typeof: [ 'unknown' ],
+                      optional: true
+                    },
+                    optional: true
+                  });
+                  continue;
+                }
+                const { resolved_key_info } = mergeKeyInfo(type.items.keys, new_type.items.keys);
+                const resolved_key: InferenceType = {
+                  type: 'array',
+                  array_type: 'object',
+                  items: {
+                    type: 'object',
+                    keys: resolved_key_info,
+                    optional: type.items.optional || new_type.items.optional
+                  },
+                  optional: type.optional || new_type.optional
+                };
+                const did_change = JSON.stringify(resolved_key) !== JSON.stringify(type);
+                if (did_change) changed_keys.set(key, resolved_key);
+              }
+              break;
+
+            case 'primitive':
+              {
+                if (type.items.typeof.includes('never') && new_type.array_type === 'object') {
+                  // Type is now known from previosly unknown
+                  changed_keys.set(key, new_type);
+                  continue;
+                }
+                if (new_type.array_type !== 'primitive') {
+                  // Type mismatch
+                  changed_keys.set(key, {
+                    type: 'array',
+                    array_type: 'primitive',
+                    items: {
+                      type: 'primative',
+                      typeof: [ 'unknown' ],
+                      optional: true
+                    },
+                    optional: true
+                  });
+                  continue;
+                }
+
+                const key_types = new Set([ ...new_type.items.typeof, ...type.items.typeof ]);
+                if (key_types.size > 1 && key_types.has('never'))
+                  key_types.delete('never');
+
+                const resolved_key: InferenceType = {
+                  type: 'array',
+                  array_type: 'primitive',
+                  items: {
+                    type: 'primative',
+                    typeof: Array.from(key_types),
+                    optional: type.items.optional || new_type.items.optional
+                  },
+                  optional: type.optional || new_type.optional
+                };
+                const did_change = JSON.stringify(resolved_key) !== JSON.stringify(type);
+                if (did_change) changed_keys.set(key, resolved_key);
+              }
+              break;
+
+            default:
+              throw new Error('Unreachable code reached! Switch missing case!');
+          }
         }
         break;
       case 'misc':
@@ -657,7 +923,8 @@ export function mergeKeyInfo(key_info: KeyInfo, new_key_info: KeyInfo) {
           if (type.misc_type !== new_type.misc_type) {
             // We've got a type mismatch, this is unknown, we do not resolve unions
             changed_keys.set(key, {
-              type: 'unknown',
+              type: 'primative',
+              typeof: [ 'unknown' ],
               optional: true
             });
           }

@@ -10,7 +10,7 @@ export default class ContentPreviewImageView extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.image = data.image.sources.map((x: any) => new Thumbnail(x)).sort((a: Thumbnail, b: Thumbnail) => b.width - a.width);
+    this.image = Thumbnail.fromResponse(data.image);
     this.style = data.style;
   }
 }

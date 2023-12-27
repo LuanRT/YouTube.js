@@ -12,13 +12,14 @@ import RelatedChipCloud from '../classes/RelatedChipCloud.ts';
 import RichMetadata from '../classes/RichMetadata.ts';
 import RichMetadataRow from '../classes/RichMetadataRow.ts';
 import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton.ts';
+import SegmentedLikeDislikeButtonView from '../classes/SegmentedLikeDislikeButtonView.ts';
 import ToggleButton from '../classes/ToggleButton.ts';
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.ts';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.ts';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.ts';
-import LiveChatWrap from './LiveChat.ts';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.ts';
+import LiveChatWrap from './LiveChat.ts';
 
 import type CardCollection from '../classes/CardCollection.ts';
 import type Endscreen from '../classes/Endscreen.ts';
@@ -35,6 +36,7 @@ import { InnertubeError } from '../../utils/Utils.ts';
 import { MediaInfo } from '../../core/mixins/index.ts';
 import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.ts';
 import { VideoDescriptionMusicSection } from '../nodes.ts';
+import type { RawNode } from '../index.ts';
 
 class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
@@ -105,11 +107,10 @@ class VideoInfo extends MediaInfo {
         // The combined formats only exist for the default language, even for videos with multiple audio tracks
         // So we can copy the language from the default audio track to the combined formats
         this.streaming_data.formats.forEach((format) => format.language = default_audio_track.language);
-      } else if (typeof this.captions?.default_audio_track_index !== 'undefined' && this.captions?.audio_tracks && this.captions.caption_tracks) {
+      } else if (this.captions?.caption_tracks && this.captions?.caption_tracks.length > 0) {
         // For videos with a single audio track and captions, we can use the captions to figure out the language of the audio and combined formats
-        const audioTrack = this.captions.audio_tracks[this.captions.default_audio_track_index];
-        const index = audioTrack.default_caption_track_index || 0;
-        const language_code = this.captions.caption_tracks[index].language_code;
+        const auto_generated_caption_track = this.captions.caption_tracks.find((caption) => caption.kind === 'asr');
+        const language_code = auto_generated_caption_track?.language_code;
 
         this.streaming_data.adaptive_formats.forEach((format) => {
           if (format.has_audio) {
@@ -162,6 +163,17 @@ class VideoInfo extends MediaInfo {
         this.basic_info.like_count = segmented_like_dislike_button?.like_button?.like_count;
         this.basic_info.is_liked = segmented_like_dislike_button?.like_button?.is_toggled;
         this.basic_info.is_disliked = segmented_like_dislike_button?.dislike_button?.is_toggled;
+      }
+
+      const segmented_like_dislike_button_view = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButtonView);
+      if (segmented_like_dislike_button_view) {
+        this.basic_info.like_count = segmented_like_dislike_button_view.like_count;
+
+        if (segmented_like_dislike_button_view.like_button) {
+          const like_status = segmented_like_dislike_button_view.like_button.like_status_entity.like_status;
+          this.basic_info.is_liked = like_status === 'LIKE';
+          this.basic_info.is_disliked = like_status === 'DISLIKE';
+        }
       }
 
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
@@ -239,6 +251,26 @@ class VideoInfo extends MediaInfo {
    * Likes the video.
    */
   async like(): Promise<ApiResponse> {
+    const segmented_like_dislike_button_view = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButtonView);
+
+    if (segmented_like_dislike_button_view) {
+      const button = segmented_like_dislike_button_view?.like_button?.toggle_button;
+
+      if (!button || !button.default_button || !segmented_like_dislike_button_view.like_button)
+        throw new InnertubeError('Like button not found', { video_id: this.basic_info.id });
+
+      const like_status = segmented_like_dislike_button_view.like_button.like_status_entity.like_status;
+
+      if (like_status === 'LIKE')
+        throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
+
+      const endpoint = new NavigationEndpoint(button.default_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
+
+      const response = await endpoint.call(this.actions);
+
+      return response;
+    }
+
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
     const button = segmented_like_dislike_button?.like_button;
 
@@ -260,6 +292,26 @@ class VideoInfo extends MediaInfo {
    * Dislikes the video.
    */
   async dislike(): Promise<ApiResponse> {
+    const segmented_like_dislike_button_view = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButtonView);
+
+    if (segmented_like_dislike_button_view) {
+      const button = segmented_like_dislike_button_view?.dislike_button?.toggle_button;
+
+      if (!button || !button.default_button || !segmented_like_dislike_button_view.dislike_button || !segmented_like_dislike_button_view.like_button)
+        throw new InnertubeError('Dislike button not found', { video_id: this.basic_info.id });
+
+      const like_status = segmented_like_dislike_button_view.like_button.like_status_entity.like_status;
+
+      if (like_status === 'DISLIKE')
+        throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
+
+      const endpoint = new NavigationEndpoint(button.default_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
+
+      const response = await endpoint.call(this.actions);
+
+      return response;
+    }
+
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
     const button = segmented_like_dislike_button?.dislike_button;
 
@@ -282,6 +334,34 @@ class VideoInfo extends MediaInfo {
    */
   async removeRating(): Promise<ApiResponse> {
     let button;
+
+    const segmented_like_dislike_button_view = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButtonView);
+
+    if (segmented_like_dislike_button_view) {
+      const toggle_button = segmented_like_dislike_button_view?.like_button?.toggle_button;
+
+      if (!toggle_button || !toggle_button.default_button || !segmented_like_dislike_button_view.like_button)
+        throw new InnertubeError('Like button not found', { video_id: this.basic_info.id });
+
+      const like_status = segmented_like_dislike_button_view.like_button.like_status_entity.like_status;
+
+      if (like_status === 'LIKE') {
+        button = segmented_like_dislike_button_view?.like_button?.toggle_button;
+      } else if (like_status === 'DISLIKE') {
+        button = segmented_like_dislike_button_view?.dislike_button?.toggle_button;
+      } else {
+        throw new InnertubeError('This video is not liked/disliked', { video_id: this.basic_info.id });
+      }
+
+      if (!button || !button.toggled_button)
+        throw new InnertubeError('Like/Dislike button not found', { video_id: this.basic_info.id });
+
+      const endpoint = new NavigationEndpoint(button.toggled_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
+
+      const response = await endpoint.call(this.actions);
+
+      return response;
+    }
 
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
 

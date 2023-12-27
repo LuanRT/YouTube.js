@@ -5,7 +5,7 @@ import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } fro
 import * as FormatUtils from '../../utils/FormatUtils.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import type Format from '../../parser/classes/misc/Format.ts';
-import type { INextResponse, IPlayerResponse } from '../../parser/index.ts';
+import type { INextResponse, IPlayerConfig, IPlayerResponse } from '../../parser/index.ts';
 import { Parser } from '../../parser/index.ts';
 import type { DashOptions } from '../../types/DashOptions.ts';
 import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
@@ -20,6 +20,7 @@ export default class MediaInfo {
   #playback_tracking;
   streaming_data;
   playability_status;
+  player_config: IPlayerConfig;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;
@@ -35,6 +36,7 @@ export default class MediaInfo {
 
     this.streaming_data = info.streaming_data;
     this.playability_status = info.playability_status;
+    this.player_config = info.player_config;
     this.#playback_tracking = info.playback_tracking;
   }
 

@@ -398,6 +398,28 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.streaming_data = streaming_data;
   }
 
+  if (data.playerConfig) {
+    const player_config = {
+      audio_config: {
+        loudness_db: data.playerConfig.audioConfig?.loudnessDb,
+        perceptual_loudness_db: data.playerConfig.audioConfig?.perceptualLoudnessDb,
+        enable_per_format_loudness: data.playerConfig.audioConfig?.enablePerFormatLoudness
+      },
+      stream_selection_config: {
+        max_bitrate: data.playerConfig.streamSelectionConfig?.maxBitrate || '0'
+      },
+      media_common_config: {
+        dynamic_readahead_config: {
+          max_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.maxReadAheadMediaTimeMs || 0,
+          min_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.minReadAheadMediaTimeMs || 0,
+          read_ahead_growth_rate_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.readAheadGrowthRateMs || 0
+        }
+      }
+    };
+
+    parsed_data.player_config = player_config;
+  }
+
   const current_video_endpoint = data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null;
   if (current_video_endpoint) {
     parsed_data.current_video_endpoint = current_video_endpoint;
@@ -545,6 +567,7 @@ export function parseArray(data?: RawNode[], validTypes?: YTNodeConstructor | YT
  * @param validTypes - YTNode types that are allowed to be parsed.
  */
 export function parse<T extends YTNode, K extends YTNodeConstructor<T>[]>(data: RawData, requireArray: true, validTypes?: K): ObservedArray<InstanceType<K[number]>> | null;
+export function parse<T extends YTNode, K extends YTNodeConstructor<T>>(data: RawData, requireArray: true, validTypes?: K): ObservedArray<InstanceType<K>> | null;
 export function parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]): SuperParsedResult<T>;
 export function parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
   if (!data) return null;
