@@ -42,7 +42,7 @@ class Settings {
     this.introduction = contents?.shift()?.contents?.firstOfType(PageIntroduction);
 
     this.sections = contents?.map((el: ItemSection) => ({
-      title: el.header?.title.toString() || null,
+      title: el.header?.hasKey('title') ? el.header?.key('title').string : null,
       contents: el.contents
     }));
   }
