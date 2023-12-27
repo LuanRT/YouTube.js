@@ -1,5 +1,24 @@
 # Changelog
 
+## [8.1.0](https://github.com/LuanRT/YouTube.js/compare/v8.0.0...v8.1.0) (2023-12-27)
+
+
+### Features
+
+* **generator:** add support for arrays ([#556](https://github.com/LuanRT/YouTube.js/issues/556)) ([e4f2a00](https://github.com/LuanRT/YouTube.js/commit/e4f2a00c843fe453cc7904f79e35597cc6e2e619))
+* **generator:** Add support for generating view models ([#550](https://github.com/LuanRT/YouTube.js/issues/550)) ([f938c34](https://github.com/LuanRT/YouTube.js/commit/f938c34ee81186774096b3d24d06250211ce2851))
+* **MediaInfo:** Parse player config ([5c9c231](https://github.com/LuanRT/YouTube.js/commit/5c9c231cc2f17c49da03daa8262043b985320e9a))
+* **parser:** Support new like and dislike nodes ([#557](https://github.com/LuanRT/YouTube.js/issues/557)) ([fcd3044](https://github.com/LuanRT/YouTube.js/commit/fcd30449821763e9b5b57718dd02eff15d964d2b))
+* **Thumbnail:** Support `sources` in `Thumbnail.fromResponse` ([#552](https://github.com/LuanRT/YouTube.js/issues/552)) ([48a5d4e](https://github.com/LuanRT/YouTube.js/commit/48a5d4e7c37b76f8980f9b68e8815aef7a6d91ab))
+* **YouTube:** Add FEchannels feed ([#560](https://github.com/LuanRT/YouTube.js/issues/560)) ([14578ac](https://github.com/LuanRT/YouTube.js/commit/14578ac96af4b8bee652cce87d043173de964113))
+
+
+### Bug Fixes
+
+* **Format:** Extract correct audio language from captions ([#553](https://github.com/LuanRT/YouTube.js/issues/553)) ([5c83e99](https://github.com/LuanRT/YouTube.js/commit/5c83e999dfa00386d18369f42aa9aa10123ba578))
+* **generator:** Output Parser.parseItem() calls with one valid type, without the array ([#551](https://github.com/LuanRT/YouTube.js/issues/551)) ([bd487f8](https://github.com/LuanRT/YouTube.js/commit/bd487f8befe7f62022c61ff3aae7f487104e81eb))
+* **VideoInfo:** Restore `like`, `dislike` & `removeRating` methods ([9c503f4](https://github.com/LuanRT/YouTube.js/commit/9c503f4fa8a750558cedbeca974faf36e304147e))
+
 ## [8.0.0](https://github.com/LuanRT/YouTube.js/compare/v7.0.0...v8.0.0) (2023-12-01)
 
 
