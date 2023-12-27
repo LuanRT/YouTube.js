@@ -37,7 +37,7 @@ Dislikes given video.
 | video_id | `string` | Video id |
 
 <a name="removerating"></a>
-### removeLike(video_id)
+### removeRating(video_id)
 
 Remover like/dislike.
 
