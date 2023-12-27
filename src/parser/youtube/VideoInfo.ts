@@ -17,9 +17,9 @@ import ToggleButton from '../classes/ToggleButton.js';
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
 import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.js';
-import LiveChatWrap from './LiveChat.js';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.js';
+import LiveChatWrap from './LiveChat.js';
 
 import type CardCollection from '../classes/CardCollection.js';
 import type Endscreen from '../classes/Endscreen.js';
@@ -36,6 +36,7 @@ import { InnertubeError } from '../../utils/Utils.js';
 import { MediaInfo } from '../../core/mixins/index.js';
 import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.js';
 import { VideoDescriptionMusicSection } from '../nodes.js';
+import type { RawNode } from '../index.js';
 
 class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
@@ -250,6 +251,26 @@ class VideoInfo extends MediaInfo {
    * Likes the video.
    */
   async like(): Promise<ApiResponse> {
+    const segmented_like_dislike_button_view = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButtonView);
+
+    if (segmented_like_dislike_button_view) {
+      const button = segmented_like_dislike_button_view?.like_button?.toggle_button;
+
+      if (!button || !button.default_button || !segmented_like_dislike_button_view.like_button)
+        throw new InnertubeError('Like button not found', { video_id: this.basic_info.id });
+
+      const like_status = segmented_like_dislike_button_view.like_button.like_status_entity.like_status;
+
+      if (like_status === 'LIKE')
+        throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
+
+      const endpoint = new NavigationEndpoint(button.default_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
+
+      const response = await endpoint.call(this.actions);
+
+      return response;
+    }
+
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
     const button = segmented_like_dislike_button?.like_button;
 
@@ -271,6 +292,26 @@ class VideoInfo extends MediaInfo {
    * Dislikes the video.
    */
   async dislike(): Promise<ApiResponse> {
+    const segmented_like_dislike_button_view = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButtonView);
+
+    if (segmented_like_dislike_button_view) {
+      const button = segmented_like_dislike_button_view?.dislike_button?.toggle_button;
+
+      if (!button || !button.default_button || !segmented_like_dislike_button_view.dislike_button || !segmented_like_dislike_button_view.like_button)
+        throw new InnertubeError('Dislike button not found', { video_id: this.basic_info.id });
+
+      const like_status = segmented_like_dislike_button_view.like_button.like_status_entity.like_status;
+
+      if (like_status === 'DISLIKE')
+        throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
+
+      const endpoint = new NavigationEndpoint(button.default_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
+
+      const response = await endpoint.call(this.actions);
+
+      return response;
+    }
+
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
     const button = segmented_like_dislike_button?.dislike_button;
 
@@ -293,6 +334,34 @@ class VideoInfo extends MediaInfo {
    */
   async removeRating(): Promise<ApiResponse> {
     let button;
+
+    const segmented_like_dislike_button_view = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButtonView);
+
+    if (segmented_like_dislike_button_view) {
+      const toggle_button = segmented_like_dislike_button_view?.like_button?.toggle_button;
+
+      if (!toggle_button || !toggle_button.default_button || !segmented_like_dislike_button_view.like_button)
+        throw new InnertubeError('Like button not found', { video_id: this.basic_info.id });
+
+      const like_status = segmented_like_dislike_button_view.like_button.like_status_entity.like_status;
+
+      if (like_status === 'LIKE') {
+        button = segmented_like_dislike_button_view?.like_button?.toggle_button;
+      } else if (like_status === 'DISLIKE') {
+        button = segmented_like_dislike_button_view?.dislike_button?.toggle_button;
+      } else {
+        throw new InnertubeError('This video is not liked/disliked', { video_id: this.basic_info.id });
+      }
+
+      if (!button || !button.toggled_button)
+        throw new InnertubeError('Like/Dislike button not found', { video_id: this.basic_info.id });
+
+      const endpoint = new NavigationEndpoint(button.toggled_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
+
+      const response = await endpoint.call(this.actions);
+
+      return response;
+    }
 
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
 
