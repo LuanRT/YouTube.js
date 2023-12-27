@@ -1,5 +1,5 @@
 import { Parser } from '../../index.js';
-import type { ObservedArray} from '../../helpers.js';
+import type { ObservedArray } from '../../helpers.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 

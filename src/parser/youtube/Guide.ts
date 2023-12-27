@@ -1,5 +1,5 @@
 import type { IGuideResponse } from '../types/ParsedResponse.js';
-import type { IRawResponse} from '../index.js';
+import type { IRawResponse } from '../index.js';
 import { Parser } from '../index.js';
 import type { ObservedArray } from '../helpers.js';
 import GuideSection from '../classes/GuideSection.js';
