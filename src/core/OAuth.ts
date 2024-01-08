@@ -2,6 +2,9 @@ import * as Constants from '../utils/Constants.js';
 import { OAuthError, Platform } from '../utils/Utils.js';
 import type Session from './Session.js';
 
+/**
+ * Represents the credentials used for authentication.
+ */
 export interface Credentials {
   /**
    * Token used to sign in.
@@ -15,6 +18,14 @@ export interface Credentials {
    * Access token's expiration date, which is usually 24hrs-ish.
    */
   expires: Date;
+  /**
+   * Optional client ID.
+   */
+  client_id?: string;
+  /**
+   * Optional client secret.
+   */
+  client_secret?: string;
 }
 
 // TODO: actual type info for this.
@@ -27,6 +38,11 @@ export type OAuthAuthEventHandler = (data: {
 
 export type OAuthAuthPendingEventHandler = (data: OAuthAuthPendingData) => any;
 export type OAuthAuthErrorEventHandler = (err: OAuthError) => any;
+
+export type OAuthClientIdentity = {
+  client_id: string;
+  client_secret: string;
+};
 
 export default class OAuth {
   #identity?: Record<string, string>;
@@ -71,6 +87,8 @@ export default class OAuth {
     this.#credentials = {
       access_token: credentials.access_token,
       refresh_token: credentials.refresh_token,
+      client_id: credentials.client_id,
+      client_secret: credentials.client_secret,
       expires: new Date(credentials.expires)
     };
 
@@ -157,6 +175,8 @@ export default class OAuth {
         this.#credentials = {
           access_token: response_data.access_token,
           refresh_token: response_data.refresh_token,
+          client_id: this.#identity?.client_id,
+          client_secret: this.#identity?.client_secret,
           expires: expiration_date
         };
 
@@ -206,6 +226,8 @@ export default class OAuth {
     this.#credentials = {
       access_token: response_data.access_token,
       refresh_token: response_data.refresh_token || this.#credentials.refresh_token,
+      client_id: this.#identity.client_id,
+      client_secret: this.#identity.client_secret,
       expires: expiration_date
     };
 
@@ -226,7 +248,14 @@ export default class OAuth {
   /**
    * Retrieves client identity from YouTube TV.
    */
-  async #getClientIdentity(): Promise<{ [key: string]: string; }> {
+  async #getClientIdentity(): Promise<OAuthClientIdentity> {
+    if (this.#credentials?.client_id && this.credentials?.client_secret) {
+      return {
+        client_id: this.#credentials.client_id,
+        client_secret: this.credentials.client_secret
+      };
+    }
+
     const response = await this.#session.http.fetch_function(new URL('/tv', Constants.URLS.YT_BASE), { headers: Constants.OAUTH.HEADERS });
 
     const response_data = await response.text();
@@ -241,7 +270,7 @@ export default class OAuth {
       .replace(/\n/g, '')
       .match(Constants.OAUTH.REGEX.CLIENT_IDENTITY);
 
-    const groups = client_identity?.groups;
+    const groups = client_identity?.groups as OAuthClientIdentity | null;
 
     if (!groups)
       throw new OAuthError('Could not obtain client identity.', { status: 'FAILED' });
