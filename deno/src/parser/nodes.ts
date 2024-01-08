@@ -351,6 +351,7 @@ export { default as SingleColumnMusicWatchNextResults } from './classes/SingleCo
 export { default as SingleHeroImage } from './classes/SingleHeroImage.ts';
 export { default as SlimOwner } from './classes/SlimOwner.ts';
 export { default as SlimVideoMetadata } from './classes/SlimVideoMetadata.ts';
+export { default as SortFilterHeader } from './classes/SortFilterHeader.ts';
 export { default as SortFilterSubMenu } from './classes/SortFilterSubMenu.ts';
 export { default as StructuredDescriptionContent } from './classes/StructuredDescriptionContent.ts';
 export { default as StructuredDescriptionPlaylistLockup } from './classes/StructuredDescriptionPlaylistLockup.ts';
