@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.2.0](https://github.com/LuanRT/YouTube.js/compare/v8.1.0...v8.2.0) (2024-01-08)
+
+
+### Features
+
+* **OAuth:** Allow passing custom client identity ([#566](https://github.com/LuanRT/YouTube.js/issues/566)) ([7ffd0fc](https://github.com/LuanRT/YouTube.js/commit/7ffd0fc25edef99a938e7986b1c74af05b8f954e))
+
+
+### Bug Fixes
+
+* **Parser:** Add `SortFilterHeader` ([#563](https://github.com/LuanRT/YouTube.js/issues/563)) ([8f07e49](https://github.com/LuanRT/YouTube.js/commit/8f07e49512c59eb72debc80a9d9623ca62330858))
+
 ## [8.1.0](https://github.com/LuanRT/YouTube.js/compare/v8.0.0...v8.1.0) (2023-12-27)
 
 
