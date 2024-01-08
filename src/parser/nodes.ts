@@ -351,6 +351,7 @@ export { default as SingleColumnMusicWatchNextResults } from './classes/SingleCo
 export { default as SingleHeroImage } from './classes/SingleHeroImage.js';
 export { default as SlimOwner } from './classes/SlimOwner.js';
 export { default as SlimVideoMetadata } from './classes/SlimVideoMetadata.js';
+export { default as SortFilterHeader } from './classes/SortFilterHeader.js';
 export { default as SortFilterSubMenu } from './classes/SortFilterSubMenu.js';
 export { default as StructuredDescriptionContent } from './classes/StructuredDescriptionContent.js';
 export { default as StructuredDescriptionPlaylistLockup } from './classes/StructuredDescriptionPlaylistLockup.js';

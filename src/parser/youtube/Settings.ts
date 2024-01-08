@@ -8,9 +8,11 @@ import SectionList from '../classes/SectionList.js';
 import SettingsOptions from '../classes/SettingsOptions.js';
 import SettingsSidebar from '../classes/SettingsSidebar.js';
 import SettingsSwitch from '../classes/SettingsSwitch.js';
+import CommentsHeader from '../classes/comments/CommentsHeader.js';
+import ItemSectionHeader from '../classes/ItemSectionHeader.js';
+import ItemSectionTabbedHeader from '../classes/ItemSectionTabbedHeader.js';
 import Tab from '../classes/Tab.js';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
-
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
@@ -42,7 +44,7 @@ class Settings {
     this.introduction = contents?.shift()?.contents?.firstOfType(PageIntroduction);
 
     this.sections = contents?.map((el: ItemSection) => ({
-      title: el.header?.title.toString() || null,
+      title: el.header?.is(CommentsHeader, ItemSectionHeader, ItemSectionTabbedHeader) ? el.header.title.toString() : null,
       contents: el.contents
     }));
   }
