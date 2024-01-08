@@ -1,8 +1,11 @@
-# Authentication via OAuth
+# OAuth2
 
-## Usage
+## Custom OAuth2 Credentials
+Just like the official Data API, YouTube.js supports using your own OAuth2 credentials. A working example can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/examples/auth/custom-oauth2-creds).
 
-Before using any methods which require authentication, you have to authenticate the session:
+## YouTube TV OAuth2
+
+The library supports signing in using YouTube TV's client id. This is the recommended way to sign in as it doesn't require you to create your own OAuth2 credentials.
 
 ```js
 // 'auth-pending' is fired with the info needed to sign in via OAuth.
@@ -25,9 +28,11 @@ yt.session.on('update-credentials', ({ credentials }) => {
 await yt.session.signIn(/* credentials */);
 ```
 
-### Cache Credentials
+A working example can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/examples/auth/yttv-oauth2.js).
 
-If you don't wish to sign in every time you start the session, you can cache the credentials. Note that this SHOULD NOT be used in production, save your credentials in a database/file instead and pass them to `Session#signIn(creds?)` when signing in.
+## Cache Credentials
+
+If you don't want to start the sign in flow every time you initialize the session, you can cache the credentials. Note that this SHOULD NOT be used in production, save your credentials in a database/file instead and pass them to `Session#signIn(creds?)` when signing in.
 
 ```js
 // If you use this, the next call to signIn won't fire 'auth-pending' instead just 'auth'
@@ -36,9 +41,9 @@ await yt.session.oauth.cacheCredentials();
 
 **Note:** When using cached credentials, you are still required to make a call to `Session#signIn()`.
 
-### Sign Out
+## Sign Out
 
-The sign out method may be used to sign out of the current session. This should also remove the cached credentials.
+The sign out method may be used to sign out of the current session. This removes and revokes the credentials.
 
 ```js
 await yt.session.signOut();
@@ -46,4 +51,15 @@ await yt.session.signOut();
 // if you don't want to sign out of the current session
 // and only want to delete the cached credentials, use:
 await yt.session.oauth.removeCache();
+```
+
+# Cookies
+
+> **Note**
+> This is not as reliable as OAuth2 as cookies expire and can be completely revoked at any time.
+
+```js
+const yt = await Innertube.create({
+  cookie: '...'
+});
 ```
