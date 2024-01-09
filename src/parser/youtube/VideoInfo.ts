@@ -88,6 +88,7 @@ class VideoInfo extends MediaInfo {
         category: info.microformat?.is(PlayerMicroformat) ? info.microformat?.category : null,
         has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null,
         start_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.start_timestamp : null,
+        end_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.end_timestamp : null,
         view_count: info.microformat?.is(PlayerMicroformat) && isNaN(info.video_details?.view_count as number) ? info.microformat.view_count : info.video_details?.view_count
       },
       like_count: undefined as number | undefined,
