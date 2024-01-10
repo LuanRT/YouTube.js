@@ -354,26 +354,38 @@ function getColorInfo(format: Format) {
   // The player.js file was also helpful
 
   const color_info = format.color_info;
-  const primaries =
-    color_info?.primaries ? COLOR_PRIMARIES[color_info.primaries] : undefined;
+  let primaries;
+  let transfer_characteristics;
+  let matrix_coefficients;
 
-  const transfer_characteristics =
-    color_info?.transfer_characteristics ? COLOR_TRANSFER_CHARACTERISTICS[color_info.transfer_characteristics] : undefined;
+  if (color_info) {
+    if (color_info.primaries) {
+      primaries = COLOR_PRIMARIES[color_info.primaries];
+    }
 
-  const matrix_coefficients =
-    color_info?.matrix_coefficients ? COLOR_MATRIX_COEFFICIENTS[color_info.matrix_coefficients] : undefined;
+    if (color_info.transfer_characteristics) {
+      transfer_characteristics = COLOR_TRANSFER_CHARACTERISTICS[color_info.transfer_characteristics];
+    } else if (getStringBetweenStrings(format.mime_type, 'codecs="', '"')?.startsWith('avc1')) {
+      // YouTube's h264 streams always seem to be SDR, so this is a pretty safe bet.
+      transfer_characteristics = COLOR_TRANSFER_CHARACTERISTICS.BT709;
+    }
 
-  if (color_info?.matrix_coefficients && !matrix_coefficients) {
-    const url = new URL(format.url as string);
+    if (color_info.matrix_coefficients) {
+      matrix_coefficients = COLOR_MATRIX_COEFFICIENTS[color_info.matrix_coefficients];
 
-    const anonymisedFormat = JSON.parse(JSON.stringify(format));
-    anonymisedFormat.url = 'REDACTED';
-    anonymisedFormat.signature_cipher = 'REDACTED';
-    anonymisedFormat.cipher = 'REDACTED';
+      if (!matrix_coefficients) {
+        const url = new URL(format.url as string);
 
-    console.warn(`YouTube.js toDash(): Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
-      + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
-      + `Innertube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
+        const anonymisedFormat = JSON.parse(JSON.stringify(format));
+        anonymisedFormat.url = 'REDACTED';
+        anonymisedFormat.signature_cipher = 'REDACTED';
+        anonymisedFormat.cipher = 'REDACTED';
+
+        console.warn(`YouTube.js toDash(): Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
+          + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
+          + `Innertube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
+      }
+    }
   }
 
   const info: ColorInfo = {
