@@ -20,6 +20,7 @@ export { default as AnalyticsVodCarouselCard } from './classes/analytics/Analyti
 export { default as CtaGoToCreatorStudio } from './classes/analytics/CtaGoToCreatorStudio.js';
 export { default as DataModelSection } from './classes/analytics/DataModelSection.js';
 export { default as StatRow } from './classes/analytics/StatRow.js';
+export { default as AttributionView } from './classes/AttributionView.js';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.js';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.js';
 export { default as AvatarView } from './classes/AvatarView.js';
@@ -97,6 +98,7 @@ export { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.
 export { default as DecoratedAvatarView } from './classes/DecoratedAvatarView.js';
 export { default as DecoratedPlayerBar } from './classes/DecoratedPlayerBar.js';
 export { default as DefaultPromoPanel } from './classes/DefaultPromoPanel.js';
+export { default as DescriptionPreviewView } from './classes/DescriptionPreviewView.js';
 export { default as DidYouMean } from './classes/DidYouMean.js';
 export { default as DislikeButtonView } from './classes/DislikeButtonView.js';
 export { default as DownloadButton } from './classes/DownloadButton.js';
@@ -231,6 +233,7 @@ export { default as MetadataRowHeader } from './classes/MetadataRowHeader.js';
 export { default as MetadataScreen } from './classes/MetadataScreen.js';
 export { default as MicroformatData } from './classes/MicroformatData.js';
 export { default as Mix } from './classes/Mix.js';
+export { default as ModalWithTitleAndButton } from './classes/ModalWithTitleAndButton.js';
 export { default as Movie } from './classes/Movie.js';
 export { default as MovingThumbnail } from './classes/MovingThumbnail.js';
 export { default as MultiMarkersPlayerBar } from './classes/MultiMarkersPlayerBar.js';
