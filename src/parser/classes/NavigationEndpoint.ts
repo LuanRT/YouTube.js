@@ -4,6 +4,7 @@ import { YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import type { IParsedResponse } from '../types/ParsedResponse.js';
 import CreatePlaylistDialog from './CreatePlaylistDialog.js';
+import type ModalWithTitleAndButton from './ModalWithTitleAndButton.js';
 import OpenPopupAction from './actions/OpenPopupAction.js';
 
 export default class NavigationEndpoint extends YTNode {
@@ -11,7 +12,10 @@ export default class NavigationEndpoint extends YTNode {
 
   payload;
   dialog?: CreatePlaylistDialog | YTNode | null;
+  modal?: ModalWithTitleAndButton | YTNode | null;
   open_popup?: OpenPopupAction | null;
+
+  next_endpoint?: NavigationEndpoint;
 
   metadata: {
     url?: string;
@@ -41,6 +45,13 @@ export default class NavigationEndpoint extends YTNode {
       this.dialog = Parser.parseItem(this.payload.dialog || this.payload.content);
     }
 
+    if (Reflect.has(this.payload, 'modal')) {
+      this.modal = Parser.parseItem(this.payload.modal);
+    }
+
+    if (Reflect.has(this.payload, 'nextEndpoint')) {
+      this.next_endpoint = new NavigationEndpoint(this.payload.nextEndpoint);
+    }
 
     if (data?.serviceEndpoint) {
       data = data.serviceEndpoint;

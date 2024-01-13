@@ -5,6 +5,8 @@ import ContentPreviewImageView from './ContentPreviewImageView.js';
 import DecoratedAvatarView from './DecoratedAvatarView.js';
 import DynamicTextView from './DynamicTextView.js';
 import FlexibleActionsView from './FlexibleActionsView.js';
+import DescriptionPreviewView from './DescriptionPreviewView.js';
+import AttributionView from './AttributionView.js';
 
 export default class PageHeaderView extends YTNode {
   static type = 'PageHeaderView';
@@ -13,6 +15,8 @@ export default class PageHeaderView extends YTNode {
   image: ContentPreviewImageView | DecoratedAvatarView | null;
   metadata: ContentMetadataView | null;
   actions: FlexibleActionsView | null;
+  description: DescriptionPreviewView | null;
+  attributation: AttributionView | null;
 
   constructor(data: RawNode) {
     super();
@@ -20,5 +24,7 @@ export default class PageHeaderView extends YTNode {
     this.image = Parser.parseItem(data.image, [ ContentPreviewImageView, DecoratedAvatarView ]);
     this.metadata = Parser.parseItem(data.metadata, ContentMetadataView);
     this.actions = Parser.parseItem(data.actions, FlexibleActionsView);
+    this.description = Parser.parseItem(data.description, DescriptionPreviewView);
+    this.attributation = Parser.parseItem(data.attributation, AttributionView);
   }
 }
