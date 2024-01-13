@@ -196,10 +196,13 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     if (this.hasTabWithURL('about')) {
       const tab = await this.getTabByURL('about');
       return tab.memo.getType(ChannelAboutFullMetadata)[0];
-    } else if (this.header?.is(C4TabbedHeader) && this.header.tagline) {
+    }
 
-      if (this.header.tagline.more_endpoint instanceof NavigationEndpoint) {
-        const response = await this.header.tagline.more_endpoint.call(this.actions);
+    const tagline = this.header?.is(C4TabbedHeader) && this.header.tagline;
+
+    if (tagline || this.header?.is(PageHeader) && this.header.content?.description) {
+      if (tagline && tagline.more_endpoint instanceof NavigationEndpoint) {
+        const response = await tagline.more_endpoint.call(this.actions);
 
         const tab = new TabbedFeed<IBrowseResponse>(this.actions, response, false);
         return tab.memo.getType(ChannelAboutFullMetadata)[0];
@@ -271,7 +274,9 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 
   get has_about(): boolean {
     // Game topic channels still have an about tab, user channels have switched to the popup
-    return this.hasTabWithURL('about') || !!(this.header?.is(C4TabbedHeader) && this.header.tagline?.more_endpoint);
+    return this.hasTabWithURL('about') ||
+      !!(this.header?.is(C4TabbedHeader) && this.header.tagline?.more_endpoint) ||
+      !!(this.header?.is(PageHeader) && this.header.content?.description?.more_endpoint);
   }
 
   get has_search(): boolean {
