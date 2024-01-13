@@ -8,7 +8,6 @@ import type Format from '../../parser/classes/misc/Format.js';
 import type { INextResponse, IPlayerConfig, IPlayerResponse } from '../../parser/index.js';
 import { Parser } from '../../parser/index.js';
 import type { DashOptions } from '../../types/DashOptions.js';
-import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.js';
 import { getStreamingInfo } from '../../utils/StreamingInfo.js';
 import ContinuationItem from '../../parser/classes/ContinuationItem.js';
 import TranscriptInfo from '../../parser/youtube/TranscriptInfo.js';
@@ -50,17 +49,17 @@ export default class MediaInfo {
   async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter, options: DashOptions = { include_thumbnails: false }): Promise<string> {
     const player_response = this.#page[0];
 
-    if (player_response.video_details && (player_response.video_details.is_live || player_response.video_details.is_post_live_dvr)) {
-      throw new InnertubeError('Generating DASH manifests for live and Post-Live-DVR videos is not supported. Please use the DASH and HLS manifests provided by YouTube in `streaming_data.dash_manifest_url` and `streaming_data.hls_manifest_url` instead.');
+    if (player_response.video_details && (player_response.video_details.is_live)) {
+      throw new InnertubeError('Generating DASH manifests for live videos is not supported. Please use the DASH and HLS manifests provided by YouTube in `streaming_data.dash_manifest_url` and `streaming_data.hls_manifest_url` instead.');
     }
 
     let storyboards;
 
-    if (options.include_thumbnails && player_response.storyboards?.is(PlayerStoryboardSpec)) {
+    if (options.include_thumbnails && player_response.storyboards) {
       storyboards = player_response.storyboards;
     }
 
-    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions, storyboards);
+    return FormatUtils.toDash(this.streaming_data, this.page[0].video_details?.is_post_live_dvr, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions, storyboards);
   }
 
   /**
@@ -69,12 +68,13 @@ export default class MediaInfo {
   getStreamingInfo(url_transformer?: URLTransformer, format_filter?: FormatFilter) {
     return getStreamingInfo(
       this.streaming_data,
+      this.page[0].video_details?.is_post_live_dvr,
       url_transformer,
       format_filter,
       this.cpn,
       this.#actions.session.player,
       this.#actions,
-      this.#page[0].storyboards?.is(PlayerStoryboardSpec) ? this.#page[0].storyboards : undefined
+      this.#page[0].storyboards ? this.#page[0].storyboards : undefined
     );
   }
 
