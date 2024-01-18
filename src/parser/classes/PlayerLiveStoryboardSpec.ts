@@ -1,11 +1,32 @@
 import { YTNode } from '../helpers.js';
+import type { RawNode } from '../index.js';
+
+export interface LiveStoryboardData {
+  type: 'live',
+  template_url: string,
+  thumbnail_width: number,
+  thumbnail_height: number,
+  columns: number,
+  rows: number
+}
 
 export default class PlayerLiveStoryboardSpec extends YTNode {
   static type = 'PlayerLiveStoryboardSpec';
 
-  constructor() {
+  board: LiveStoryboardData;
+
+  constructor(data: RawNode) {
     super();
-    // TODO: A little bit different from PlayerLiveStoryboardSpec
-    // https://i.ytimg.com/sb/5qap5aO4i9A/storyboard_live_90_2x2_b2/M$M.jpg?rs=AOn4CLC9s6IeOsw_gKvEbsbU9y-e2FVRTw#159#90#2#2
+
+    const [ template_url, thumbnail_width, thumbnail_height, columns, rows ] = data.spec.split('#');
+
+    this.board = {
+      type: 'live',
+      template_url,
+      thumbnail_width: parseInt(thumbnail_width, 10),
+      thumbnail_height: parseInt(thumbnail_height, 10),
+      columns: parseInt(columns, 10),
+      rows: parseInt(rows, 10)
+    };
   }
 }
