@@ -10,9 +10,12 @@ import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInf
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.js';
 import VideoOwner from '../classes/VideoOwner.js';
 import Alert from '../classes/Alert.js';
+import ContinuationItem from '../classes/ContinuationItem.js';
+import PlaylistVideo from '../classes/PlaylistVideo.js';
+import SectionList from '../classes/SectionList.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
-import type { ObservedArray } from '../helpers.js';
+import { observe, type ObservedArray } from '../helpers.js';
 
 import type Actions from '../../core/Actions.js';
 import type { ApiResponse } from '../../core/Actions.js';
@@ -64,8 +67,38 @@ export default class Playlist extends Feed<IBrowseResponse> {
     return primary_info.stats[index]?.toString() || 'N/A';
   }
 
-  get items() {
-    return this.videos;
+  get items(): ObservedArray<PlaylistVideo> {
+    return observe(this.videos.as(PlaylistVideo).filter((video) => video.style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
+  }
+
+  get has_continuation() {
+    const section_list = this.memo.getType(SectionList).first();
+
+    if (!section_list)
+      return super.has_continuation;
+
+    return !!this.memo.getType(ContinuationItem).find((node) => !section_list.contents.includes(node));
+  }
+
+  async getContinuationData(): Promise<IBrowseResponse | undefined> {
+    const section_list = this.memo.getType(SectionList).first();
+
+    /**
+     * No section list means there can't be additional continuation nodes here,
+     * so no need to check.
+     */
+    if (!section_list)
+      return await super.getContinuationData();
+
+    const playlist_contents_continuation = this.memo.getType(ContinuationItem)
+      .find((node) => !section_list.contents.includes(node));
+
+    if (!playlist_contents_continuation)
+      throw new InnertubeError('There are no continuations.');
+
+    const response = await playlist_contents_continuation.endpoint.call<IBrowseResponse>(this.actions, { parse: true });
+
+    return response;
   }
 
   async getContinuation(): Promise<Playlist> {
