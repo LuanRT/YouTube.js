@@ -10,7 +10,7 @@ export default class PlayerCaptionsTracklist extends YTNode {
     name: Text;
     vss_id: string;
     language_code: string;
-    kind: string;
+    kind?: 'asr' | 'frc';
     is_translatable: boolean;
   }[];
 
