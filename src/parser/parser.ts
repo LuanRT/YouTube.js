@@ -1,4 +1,4 @@
-import { YTNodes } from './index.js';
+import * as YTNodes from './nodes.js';
 import { InnertubeError, ParsingError, Platform } from '../utils/Utils.js';
 import { Memo, observe, SuperParsedResult } from './helpers.js';
 import { camelToSnake, generateRuntimeClass, generateTypescriptClass } from './generator.js';

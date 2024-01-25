@@ -10,7 +10,8 @@ import {
 
 import { BlocklistPickerEndpoint } from '../endpoints/kids/index.js';
 
-import type { Session, ApiResponse } from '../index.js';
+import type Session from '../Session.js';
+import type { ApiResponse } from '../index.js';
 
 export default class Kids {
   #session: Session;

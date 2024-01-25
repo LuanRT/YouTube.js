@@ -1,6 +1,6 @@
 /* eslint-disable no-cond-assign */
 import { YTNode } from './helpers.js';
-import { Parser } from './index.js';
+import * as Parser from './parser.js';
 import { InnertubeError } from '../utils/Utils.js';
 
 import Author from './classes/misc/Author.js';

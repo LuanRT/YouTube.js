@@ -25,7 +25,6 @@ import TwoColumnBrowseResults from '../../parser/classes/TwoColumnBrowseResults.
 import TwoColumnSearchResults from '../../parser/classes/TwoColumnSearchResults.js';
 import WatchCardCompactVideo from '../../parser/classes/WatchCardCompactVideo.js';
 
-import type { ApiResponse, Actions } from '../index.js';
 import type {
   Memo, ObservedArray,
   SuperParsedResult, YTNode
@@ -34,6 +33,8 @@ import type MusicQueue from '../../parser/classes/MusicQueue.js';
 import type RichGrid from '../../parser/classes/RichGrid.js';
 import type SectionList from '../../parser/classes/SectionList.js';
 import type { IParsedResponse } from '../../parser/types/index.js';
+import type Actions from '../Actions.js';
+import type { ApiResponse } from '../Actions.js';
 
 export default class Feed<T extends IParsedResponse = IParsedResponse> {
   #page: T;

@@ -1,4 +1,4 @@
-import { Constants } from './index.js';
+import * as Constants from './Constants.js';
 import { InnertubeError, Platform, streamToIterable } from './Utils.js';
 
 import type Player from '../core/Player.js';

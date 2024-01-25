@@ -1,4 +1,4 @@
-import Log from '../utils/Log.js';
+import { Log } from '../utils/index.js';
 import { deepCompare, ParsingError } from '../utils/Utils.js';
 
 const isObserved = Symbol('ObservedArray.isObserved');
@@ -66,7 +66,7 @@ export class Maybe {
   #TAG = 'Maybe';
   #value;
 
-  constructor (value: any) {
+  constructor(value: any) {
     this.#value = value;
   }
 
@@ -309,12 +309,12 @@ export class Maybe {
 }
 
 export interface Constructor<T> {
-    new (...args: any[]): T;
+  new(...args: any[]): T;
 }
 
 export interface YTNodeConstructor<T extends YTNode = YTNode> {
-    new(data: any): T;
-    readonly type: string;
+  new(data: any): T;
+  readonly type: string;
 }
 
 /**
@@ -354,38 +354,38 @@ export class SuperParsedResult<T extends YTNode = YTNode> {
 
 
 export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
-    /**
-     * Returns the first object to match the rule.
-     */
-    get: (rule: object, del_item?: boolean) => T | undefined;
-    /**
-     * Returns all objects that match the rule.
-     */
-    getAll: (rule: object, del_items?: boolean) => T[];
-    /**
-     * Returns the first object to match the condition.
-     */
-    matchCondition: (condition: (node: T) => boolean) => T | undefined;
-    /**
-     * Removes the item at the given index.
-     */
-    remove: (index: number) => T[];
-    /**
-     * Get all items of a specific type
-     */
-    filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
-    /**
-     * Get the first of a specific type
-     */
-    firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
-    /**
-     * Get the first item
-     */
-    first: () => T;
-    /**
-     * This is similar to filter but throws if there's a type mismatch.
-     */
-    as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
+  /**
+   * Returns the first object to match the rule.
+   */
+  get: (rule: object, del_item?: boolean) => T | undefined;
+  /**
+   * Returns all objects that match the rule.
+   */
+  getAll: (rule: object, del_items?: boolean) => T[];
+  /**
+   * Returns the first object to match the condition.
+   */
+  matchCondition: (condition: (node: T) => boolean) => T | undefined;
+  /**
+   * Removes the item at the given index.
+   */
+  remove: (index: number) => T[];
+  /**
+   * Get all items of a specific type
+   */
+  filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
+  /**
+   * Get the first of a specific type
+   */
+  firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
+  /**
+   * Get the first item
+   */
+  first: () => T;
+  /**
+   * This is similar to filter but throws if there's a type mismatch.
+   */
+  as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
 };
 
 /**

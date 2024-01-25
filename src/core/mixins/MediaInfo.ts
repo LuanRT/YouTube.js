@@ -4,14 +4,14 @@ import { getStreamingInfo } from '../../utils/StreamingInfo.js';
 
 import { Parser } from '../../parser/index.js';
 import { TranscriptInfo } from '../../parser/youtube/index.js';
-import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.js';
 import ContinuationItem from '../../parser/classes/ContinuationItem.js';
 
-import type { ApiResponse, Actions } from '../index.js';
 import type { INextResponse, IPlayerConfig, IPlayerResponse } from '../../parser/index.js';
 import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../types/FormatUtils.js';
 import type Format from '../../parser/classes/misc/Format.js';
 import type { DashOptions } from '../../types/DashOptions.js';
+import type Actions from '../Actions.js';
+import type { ApiResponse } from '../Actions.js';
 
 export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];

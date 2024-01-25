@@ -29,7 +29,8 @@ import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.js';
 
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { MusicSearchFilters } from '../../types/index.js';
-import type { Actions, Session } from '../index.js';
+import type Session from '../Session.js';
+import type Actions from '../Actions.js';
 
 export default class Music {
   #session: Session;
