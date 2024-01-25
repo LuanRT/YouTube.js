@@ -11,6 +11,7 @@ import type { IStreamingData } from '../parser/index.js';
 import type { PlayerStoryboardSpec } from '../parser/nodes.js';
 import type { SegmentInfo as FSegmentInfo } from './StreamingInfo.js';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
+import type PlayerLiveStoryboardSpec from '../parser/classes/PlayerLiveStoryboardSpec.js';
 
 interface DashManifestProps {
   streamingData: IStreamingData;

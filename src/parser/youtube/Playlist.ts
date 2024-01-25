@@ -13,8 +13,8 @@ import Alert from '../classes/Alert.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 import PlaylistVideo from '../classes/PlaylistVideo.js';
 import SectionList from '../classes/SectionList.js';
+import { observe, type ObservedArray } from '../helpers.js';
 
-import type { ObservedArray } from '../helpers.js';
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
 import type Thumbnail from '../classes/misc/Thumbnail.js';
