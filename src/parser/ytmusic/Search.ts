@@ -1,4 +1,3 @@
-import type Actions from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import { Parser, MusicShelfContinuation } from '../index.js';
 
@@ -9,7 +8,6 @@ import ItemSection from '../classes/ItemSection.js';
 import Message from '../classes/Message.js';
 import MusicCardShelf from '../classes/MusicCardShelf.js';
 import MusicHeader from '../classes/MusicHeader.js';
-import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
 import MusicShelf from '../classes/MusicShelf.js';
 import SectionList from '../classes/SectionList.js';
 import ShowingResultsFor from '../classes/ShowingResultsFor.js';
@@ -17,7 +15,8 @@ import TabbedSearchResults from '../classes/TabbedSearchResults.js';
 
 import type { ObservedArray } from '../helpers.js';
 import type { ISearchResponse } from '../types/ParsedResponse.js';
-import type { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
+import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
 
 export default class Search {
   #page: ISearchResponse;

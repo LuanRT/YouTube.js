@@ -1,12 +1,11 @@
-import Album from '../../parser/ytmusic/Album.js';
-import Artist from '../../parser/ytmusic/Artist.js';
-import Explore from '../../parser/ytmusic/Explore.js';
-import HomeFeed from '../../parser/ytmusic/HomeFeed.js';
-import Library from '../../parser/ytmusic/Library.js';
-import Playlist from '../../parser/ytmusic/Playlist.js';
-import Recap from '../../parser/ytmusic/Recap.js';
-import Search from '../../parser/ytmusic/Search.js';
-import TrackInfo from '../../parser/ytmusic/TrackInfo.js';
+import * as Proto from '../../proto/index.js';
+import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.js';
+
+import {
+  Album, Artist, Explore,
+  HomeFeed, Library, Playlist,
+  Recap, Search, TrackInfo
+} from '../../parser/ytmusic/index.js';
 
 import AutomixPreviewVideo from '../../parser/classes/AutomixPreviewVideo.js';
 import Message from '../../parser/classes/Message.js';
@@ -18,13 +17,6 @@ import PlaylistPanel from '../../parser/classes/PlaylistPanel.js';
 import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.js';
 import SectionList from '../../parser/classes/SectionList.js';
 import Tab from '../../parser/classes/Tab.js';
-import * as Proto from '../../proto/index.js';
-
-import type { ObservedArray } from '../../parser/helpers.js';
-import type { MusicSearchFilters } from '../../types/index.js';
-import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.js';
-import type Actions from '../Actions.js';
-import type Session from '../Session.js';
 
 import {
   BrowseEndpoint,
@@ -34,6 +26,10 @@ import {
 } from '../endpoints/index.js';
 
 import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.js';
+
+import type { ObservedArray } from '../../parser/helpers.js';
+import type { MusicSearchFilters } from '../../types/index.js';
+import type { Actions, Session } from '../index.js';
 
 export default class Music {
   #session: Session;

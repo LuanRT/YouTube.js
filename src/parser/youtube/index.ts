@@ -17,3 +17,4 @@ export { default as Settings } from './Settings.js';
 export { default as SmoothedQueue } from './SmoothedQueue.js';
 export { default as TimeWatched } from './TimeWatched.js';
 export { default as VideoInfo } from './VideoInfo.js';
+export { default as TranscriptInfo } from './TranscriptInfo.js';

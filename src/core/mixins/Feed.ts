@@ -1,7 +1,5 @@
-import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../../parser/helpers.js';
 import { Parser, ReloadContinuationItemsCommand } from '../../parser/index.js';
 import { concatMemos, InnertubeError } from '../../utils/Utils.js';
-import type Actions from '../Actions.js';
 
 import BackstagePost from '../../parser/classes/BackstagePost.js';
 import SharedPost from '../../parser/classes/SharedPost.js';
@@ -27,12 +25,15 @@ import TwoColumnBrowseResults from '../../parser/classes/TwoColumnBrowseResults.
 import TwoColumnSearchResults from '../../parser/classes/TwoColumnSearchResults.js';
 import WatchCardCompactVideo from '../../parser/classes/WatchCardCompactVideo.js';
 
+import type { ApiResponse, Actions } from '../index.js';
+import type {
+  Memo, ObservedArray,
+  SuperParsedResult, YTNode
+} from '../../parser/helpers.js';
 import type MusicQueue from '../../parser/classes/MusicQueue.js';
 import type RichGrid from '../../parser/classes/RichGrid.js';
 import type SectionList from '../../parser/classes/SectionList.js';
-
 import type { IParsedResponse } from '../../parser/types/index.js';
-import type { ApiResponse } from '../Actions.js';
 
 export default class Feed<T extends IParsedResponse = IParsedResponse> {
   #page: T;
@@ -212,10 +213,10 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
   #getBodyContinuations(): ObservedArray<ContinuationItem> {
     if (this.#page.header_memo) {
       const header_continuations = this.#page.header_memo.getType(ContinuationItem);
-
-      return this.#memo.getType(ContinuationItem).filter((continuation) => !header_continuations.includes(continuation)) as ObservedArray<ContinuationItem>;
+      return this.#memo.getType(ContinuationItem).filter(
+        (continuation) => !header_continuations.includes(continuation)
+      ) as ObservedArray<ContinuationItem>;
     }
-
     return this.#memo.getType(ContinuationItem);
   }
 }

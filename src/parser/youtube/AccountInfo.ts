@@ -1,12 +1,11 @@
 import { Parser } from '../index.js';
-import type { ApiResponse } from '../../core/Actions.js';
-import type { IParsedResponse } from '../types/ParsedResponse.js';
-
+import { InnertubeError } from '../../utils/Utils.js';
 import AccountSectionList from '../classes/AccountSectionList.js';
+
+import type { ApiResponse } from '../../core/index.js';
+import type { IParsedResponse } from '../types/index.js';
 import type AccountItemSection from '../classes/AccountItemSection.js';
 import type AccountChannel from '../classes/AccountChannel.js';
-
-import { InnertubeError } from '../../utils/Utils.js';
 
 class AccountInfo {
   #page: IParsedResponse;

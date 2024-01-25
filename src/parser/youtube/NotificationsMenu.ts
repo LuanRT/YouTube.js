@@ -1,13 +1,12 @@
 import { Parser } from '../index.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
 import ContinuationItem from '../classes/ContinuationItem.js';
 import SimpleMenuHeader from '../classes/menus/SimpleMenuHeader.js';
 import Notification from '../classes/Notification.js';
 
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
-import type { IGetNotificationsMenuResponse } from '../types/ParsedResponse.js';
-import { InnertubeError } from '../../utils/Utils.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
+import type { IGetNotificationsMenuResponse } from '../types/index.js';
 
 class NotificationsMenu {
   #page: IGetNotificationsMenuResponse;

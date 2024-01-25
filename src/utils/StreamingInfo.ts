@@ -6,7 +6,9 @@ import type { Format } from '../parser/misc.js';
 import type { PlayerStoryboardSpec } from '../parser/nodes.js';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
 import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.js';
-import { Constants } from './index.js';
+import { Constants, Log } from './index.js';
+
+const TAG_ = 'StreamingInfo';
 
 export interface StreamingInfo {
   duration: number;
@@ -381,9 +383,9 @@ function getColorInfo(format: Format) {
         anonymisedFormat.signature_cipher = 'REDACTED';
         anonymisedFormat.cipher = 'REDACTED';
 
-        console.warn(`YouTube.js toDash(): Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
+        Log.warn(TAG_, `Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
           + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
-          + `Innertube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
+          + `InnerTube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
       }
     }
   }

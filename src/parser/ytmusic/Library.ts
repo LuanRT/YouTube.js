@@ -1,6 +1,4 @@
 import { Parser, GridContinuation, MusicShelfContinuation, SectionListContinuation } from '../index.js';
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
 
 import Grid from '../classes/Grid.js';
 import MusicShelf from '../classes/MusicShelf.js';
@@ -12,11 +10,12 @@ import ChipCloud from '../classes/ChipCloud.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';
 import MusicMultiSelectMenuItem from '../classes/menus/MusicMultiSelectMenuItem.js';
 import MusicSortFilterButton from '../classes/MusicSortFilterButton.js';
-import type MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import type { ObservedArray } from '../helpers.js';
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import type { IBrowseResponse } from '../types/index.js';
+import type MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
 
 class Library {
   #page: IBrowseResponse;

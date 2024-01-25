@@ -1,3 +1,7 @@
+import Feed from '../../core/mixins/Feed.js';
+import FilterableFeed from '../../core/mixins/FilterableFeed.js';
+import { ChannelError, InnertubeError } from '../../utils/Utils.js';
+
 import TabbedFeed from '../../core/mixins/TabbedFeed.js';
 import C4TabbedHeader from '../classes/C4TabbedHeader.js';
 import CarouselHeader from '../classes/CarouselHeader.js';
@@ -12,9 +16,6 @@ import SectionList from '../classes/SectionList.js';
 import Tab from '../classes/Tab.js';
 import PageHeader from '../classes/PageHeader.js';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
-
-import Feed from '../../core/mixins/Feed.js';
-import FilterableFeed from '../../core/mixins/FilterableFeed.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';
 import FeedFilterChipBar from '../classes/FeedFilterChipBar.js';
 import ChannelSubMenu from '../classes/ChannelSubMenu.js';
@@ -22,11 +23,8 @@ import SortFilterSubMenu from '../classes/SortFilterSubMenu.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
-import { ChannelError, InnertubeError } from '../../utils/Utils.js';
-
 import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '../index.js';
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {

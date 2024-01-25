@@ -4,9 +4,9 @@ import SectionList from '../classes/SectionList.js';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
-import type { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse } from '../../core/index.js';
 import type { ObservedArray } from '../helpers.js';
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import type { IBrowseResponse } from '../types/index.js';
 
 class TimeWatched {
   #page: IBrowseResponse;

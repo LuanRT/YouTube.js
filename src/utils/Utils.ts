@@ -1,9 +1,13 @@
 import { Memo } from '../parser/helpers.js';
-import type { EmojiRun, TextRun } from '../parser/misc.js';
 import { Text } from '../parser/misc.js';
+import Log from './Log.js';
+import userAgents from './user-agents.js';
+
+import type { EmojiRun, TextRun } from '../parser/misc.js';
 import type { FetchFunction } from '../types/PlatformShim.js';
 import type PlatformShim from '../types/PlatformShim.js';
-import userAgents from './user-agents.js';
+
+const TAG_ = 'Utils';
 
 export class Platform {
   static #shim: PlatformShim | undefined;
@@ -214,8 +218,8 @@ export const debugFetch: FetchFunction = (input, init) => {
       `${arr_headers.map(([ key, value ]) => `    ${key}: ${value}`).join('\n')}` :
       '    (none)';
 
-  console.log(
-    'YouTube.js Fetch:\n' +
+  Log.warn(TAG_,
+    'Fetch:\n' +
     `  url: ${url.toString()}\n` +
     `  method: ${init?.method || 'GET'}\n` +
     `  headers:\n${headers_serialized}\n' + 

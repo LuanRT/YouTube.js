@@ -1,16 +1,15 @@
+import { InnertubeError } from '../../utils/Utils.js';
 import { Parser, SectionListContinuation } from '../index.js';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import SectionList from '../classes/SectionList.js';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.js';
 import MusicTastebuilderShelf from '../classes/MusicTastebuilderShelf.js';
-
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
-import type { ObservedArray } from '../helpers.js';
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
-import { InnertubeError } from '../../utils/Utils.js';
 import ChipCloud from '../classes/ChipCloud.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';
+
+import type { ApiResponse, Actions } from '../../core/index.js';
+import type { ObservedArray } from '../helpers.js';
+import type { IBrowseResponse } from '../types/index.js';
 
 class HomeFeed {
   #page: IBrowseResponse;

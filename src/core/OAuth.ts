@@ -1,4 +1,4 @@
-import * as Constants from '../utils/Constants.js';
+import { Log, Constants } from '../utils/index.js';
 import { OAuthError, Platform } from '../utils/Utils.js';
 import type Session from './Session.js';
 
@@ -45,6 +45,8 @@ export type OAuthClientIdentity = {
 };
 
 export default class OAuth {
+  static TAG = 'OAuth';
+
   #identity?: Record<string, string>;
   #session: Session;
   #credentials?: Credentials;
@@ -250,6 +252,7 @@ export default class OAuth {
    */
   async #getClientIdentity(): Promise<OAuthClientIdentity> {
     if (this.#credentials?.client_id && this.credentials?.client_secret) {
+      Log.info(OAuth.TAG, 'Using custom OAuth2 credentials.\n');
       return {
         client_id: this.#credentials.client_id,
         client_secret: this.credentials.client_secret
@@ -264,6 +267,8 @@ export default class OAuth {
     if (!url_body)
       throw new OAuthError('Could not obtain script url.', { status: 'FAILED' });
 
+    Log.info(OAuth.TAG, `Got YouTubeTV script URL (${url_body})`);
+
     const script = await this.#session.http.fetch(url_body, { baseURL: Constants.URLS.YT_BASE });
 
     const client_identity = (await script.text())
@@ -274,6 +279,8 @@ export default class OAuth {
 
     if (!groups)
       throw new OAuthError('Could not obtain client identity.', { status: 'FAILED' });
+
+    Log.info(OAuth.TAG, 'OAuth2 credentials retrieved.\n', groups);
 
     return groups;
   }

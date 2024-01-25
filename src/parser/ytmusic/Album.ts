@@ -1,5 +1,3 @@
-import type { ApiResponse } from '../../core/Actions.js';
-import type { ObservedArray } from '../helpers.js';
 import { Parser } from '../index.js';
 
 import MicroformatData from '../classes/MicroformatData.js';
@@ -7,8 +5,10 @@ import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import MusicDetailHeader from '../classes/MusicDetailHeader.js';
 import MusicShelf from '../classes/MusicShelf.js';
 
+import type { ApiResponse } from '../../core/index.js';
+import type { ObservedArray } from '../helpers.js';
+import type { IBrowseResponse } from '../types/index.js';
 import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class Album {
   #page: IBrowseResponse;

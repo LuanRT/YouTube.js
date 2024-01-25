@@ -1,13 +1,12 @@
+import { MediaInfo } from '../../core/mixins/index.js';
 import ItemSection from '../classes/ItemSection.js';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
 import SlimVideoMetadata from '../classes/SlimVideoMetadata.js';
 import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.js';
 
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import { MediaInfo } from '../../core/mixins/index.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
 class VideoInfo extends MediaInfo {
   basic_info;

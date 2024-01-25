@@ -1,6 +1,4 @@
 import { Parser } from '../index.js';
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
 import MusicShelf from '../classes/MusicShelf.js';
@@ -9,6 +7,8 @@ import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.js';
 import MusicImmersiveHeader from '../classes/MusicImmersiveHeader.js';
 import MusicVisualHeader from '../classes/MusicVisualHeader.js';
 import MusicHeader from '../classes/MusicHeader.js';
+
+import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
 
 class Artist {

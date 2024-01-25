@@ -1,11 +1,10 @@
-import Tab from '../../parser/classes/Tab.js';
-import Feed from './Feed.js';
+import { Feed } from './index.js';
 import { InnertubeError } from '../../utils/Utils.js';
+import Tab from '../../parser/classes/Tab.js';
 
-import type Actions from '../Actions.js';
+import type { Actions, ApiResponse } from '../index.js';
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { IParsedResponse } from '../../parser/types/ParsedResponse.js';
-import type { ApiResponse } from '../Actions.js';
 
 export default class TabbedFeed<T extends IParsedResponse> extends Feed<T> {
   #tabs?: ObservedArray<Tab>;

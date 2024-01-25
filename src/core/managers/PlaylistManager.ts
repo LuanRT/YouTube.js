@@ -1,12 +1,12 @@
-import Playlist from '../../parser/youtube/Playlist.js';
-import type Actions from '../Actions.js';
-import type Feed from '../mixins/Feed.js';
-
-import type { EditPlaylistEndpointOptions } from '../../types/index.js';
 import { InnertubeError, throwIfMissing } from '../../utils/Utils.js';
 import { EditPlaylistEndpoint } from '../endpoints/browse/index.js';
 import { BrowseEndpoint } from '../endpoints/index.js';
 import { CreateEndpoint, DeleteEndpoint } from '../endpoints/playlist/index.js';
+import Playlist from '../../parser/youtube/Playlist.js';
+
+import type { Actions } from '../index.js';
+import type { Feed } from '../mixins/index.js';
+import type { EditPlaylistEndpointOptions } from '../../types/index.js';
 
 export default class PlaylistManager {
   #actions: Actions;
