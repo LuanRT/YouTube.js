@@ -1,28 +1,26 @@
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
-
-import * as Constants from '../../utils/Constants.js';
+import { Constants } from '../../utils/index.js';
 import { InnertubeError } from '../../utils/Utils.js';
+import { MediaInfo } from '../../core/mixins/index.js';
 
+import Tab from '../classes/Tab.js';
 import AutomixPreviewVideo from '../classes/AutomixPreviewVideo.js';
-import type Endscreen from '../classes/Endscreen.js';
 import Message from '../classes/Message.js';
 import MicroformatData from '../classes/MicroformatData.js';
-import type MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import MusicDescriptionShelf from '../classes/MusicDescriptionShelf.js';
-import type MusicQueue from '../classes/MusicQueue.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
 import PlaylistPanel from '../classes/PlaylistPanel.js';
-import type RichGrid from '../classes/RichGrid.js';
 import SectionList from '../classes/SectionList.js';
-import Tab from '../classes/Tab.js';
 import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.js';
 
+import type RichGrid from '../classes/RichGrid.js';
+import type MusicQueue from '../classes/MusicQueue.js';
+import type Endscreen from '../classes/Endscreen.js';
+import type MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import { MediaInfo } from '../../core/mixins/index.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
 
 class TrackInfo extends MediaInfo {
   basic_info;

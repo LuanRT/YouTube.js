@@ -1,12 +1,10 @@
 import * as Proto from '../../proto/index.js';
-import * as Constants from '../../utils/Constants.js';
+import { Constants } from '../../utils/index.js';
 import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.js';
+import { CreateVideoEndpoint } from '../endpoints/upload/index.js';
 
 import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.js';
-import type { ApiResponse } from '../Actions.js';
-import type Session from '../Session.js';
-
-import { CreateVideoEndpoint } from '../endpoints/upload/index.js';
+import type { ApiResponse, Session } from '../index.js';
 
 interface UploadResult {
   status: string;

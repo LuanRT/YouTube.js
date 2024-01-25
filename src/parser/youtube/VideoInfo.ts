@@ -1,3 +1,6 @@
+import { InnertubeError } from '../../utils/Utils.js';
+import { MediaInfo } from '../../core/mixins/index.js';
+
 import ChipCloud from '../classes/ChipCloud.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';
 import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader.js';
@@ -19,8 +22,11 @@ import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.js';
+import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.js';
+import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSection.js';
 import LiveChatWrap from './LiveChat.js';
 
+import type { RawNode } from '../index.js';
 import type CardCollection from '../classes/CardCollection.js';
 import type Endscreen from '../classes/Endscreen.js';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
@@ -28,15 +34,8 @@ import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js'
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-
-import { InnertubeError } from '../../utils/Utils.js';
-import { MediaInfo } from '../../core/mixins/index.js';
-import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.js';
-import { VideoDescriptionMusicSection } from '../nodes.js';
-import type { RawNode } from '../index.js';
 
 class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
@@ -223,7 +222,6 @@ class VideoInfo extends MediaInfo {
   async addToWatchHistory(): Promise<Response> {
     return super.addToWatchHistory();
   }
-
 
   /**
    * Retrieves watch next feed continuation.

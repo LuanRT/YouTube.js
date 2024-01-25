@@ -1,15 +1,17 @@
 /* eslint-disable tsdoc/syntax */
 /** @jsxFactory DashUtils.createElement */
 /** @jsxFragmentFactory DashUtils.Fragment */
+import * as DashUtils from './DashUtils.js';
+import { getStreamingInfo } from './StreamingInfo.js';
+import { InnertubeError } from './Utils.js';
+
 import type Actions from '../core/Actions.js';
 import type Player from '../core/Player.js';
 import type { IStreamingData } from '../parser/index.js';
-import type { PlayerLiveStoryboardSpec, PlayerStoryboardSpec } from '../parser/nodes.js';
-import * as DashUtils from './DashUtils.js';
+import type { PlayerStoryboardSpec } from '../parser/nodes.js';
 import type { SegmentInfo as FSegmentInfo } from './StreamingInfo.js';
-import { getStreamingInfo } from './StreamingInfo.js';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
-import { InnertubeError } from './Utils.js';
+import type PlayerLiveStoryboardSpec from '../parser/classes/PlayerLiveStoryboardSpec.js';
 
 interface DashManifestProps {
   streamingData: IStreamingData;

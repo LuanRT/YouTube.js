@@ -13,9 +13,9 @@ import ItemSectionHeader from '../classes/ItemSectionHeader.js';
 import ItemSectionTabbedHeader from '../classes/ItemSectionTabbedHeader.js';
 import Tab from '../classes/Tab.js';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
+
+import type { ApiResponse, Actions } from '../../core/index.js';
+import type { IBrowseResponse } from '../types/index.js';
 
 class Settings {
   #page: IBrowseResponse;

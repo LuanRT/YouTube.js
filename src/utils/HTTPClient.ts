@@ -1,7 +1,5 @@
-import type { Context } from '../core/Session.js';
-import type Session from '../core/Session.js';
-import type { FetchFunction } from '../types/PlatformShim.js';
 import * as Constants from './Constants.js';
+
 import {
   Platform,
   generateSidAuth,
@@ -9,6 +7,9 @@ import {
   getStringBetweenStrings,
   InnertubeError
 } from './Utils.js';
+
+import type { Context, Session } from '../core/index.js';
+import type { FetchFunction } from '../types/index.js';
 
 export interface HTTPClientInit {
   baseURL?: string;

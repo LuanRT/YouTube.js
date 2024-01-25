@@ -8,10 +8,10 @@ import SearchSubMenu from '../classes/SearchSubMenu.js';
 import SectionList from '../classes/SectionList.js';
 import UniversalWatchCard from '../classes/UniversalWatchCard.js';
 
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import type { ISearchResponse } from '../types/ParsedResponse.js';
+import type { ISearchResponse } from '../types/index.js';
+
 class Search extends Feed<ISearchResponse> {
   header?: SearchHeader;
   results?: ObservedArray<YTNode> | null;

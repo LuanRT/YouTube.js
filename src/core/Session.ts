@@ -1,16 +1,19 @@
+import { Player, OAuth, Actions } from './index.js';
+import { Log, EventEmitter, HTTPClient } from '../utils/index.js';
 import * as Constants from '../utils/Constants.js';
-import EventEmitterLike from '../utils/EventEmitterLike.js';
-import Actions from './Actions.js';
-import Player from './Player.js';
-
 import * as Proto from '../proto/index.js';
-import type { ICache } from '../types/Cache.js';
-import type { FetchFunction } from '../types/PlatformShim.js';
-import HTTPClient from '../utils/HTTPClient.js';
+
+import {
+  generateRandomString, getRandomUserAgent,
+  InnertubeError, Platform, SessionError
+} from '../utils/Utils.js';
+
 import type { DeviceCategory } from '../utils/Utils.js';
-import { generateRandomString, getRandomUserAgent, InnertubeError, Platform, SessionError } from '../utils/Utils.js';
-import type { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth.js';
-import OAuth from './OAuth.js';
+import type { FetchFunction, ICache } from '../types/index.js';
+import type {
+  Credentials, OAuthAuthErrorEventHandler,
+  OAuthAuthEventHandler, OAuthAuthPendingEventHandler
+} from './OAuth.js';
 
 export enum ClientType {
   WEB = 'WEB',
@@ -140,10 +143,23 @@ export interface SessionData {
   api_version: string;
 }
 
+export type SessionArgs = {
+  lang: string;
+  location: string;
+  time_zone: string;
+  device_category: DeviceCategory;
+  client_name: ClientType;
+  enable_safety_mode: boolean;
+  visitor_data: string;
+  on_behalf_of_user: string | undefined;
+}
+
 /**
  * Represents an InnerTube session. This holds all the data needed to make requests to YouTube.
  */
-export default class Session extends EventEmitterLike {
+export default class Session extends EventEmitter {
+  static TAG = 'Session';
+
   #api_version: string;
   #key: string;
   #context: Context;
@@ -226,6 +242,8 @@ export default class Session extends EventEmitterLike {
 
     const session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data, on_behalf_of_user };
 
+    Log.info(Session.TAG, 'Retrieving InnerTube session.');
+
     if (generate_session_locally) {
       session_data = this.#generateSessionData(session_args);
     } else {
@@ -233,30 +251,29 @@ export default class Session extends EventEmitterLike {
         // This can fail if the data changes or the request is blocked for some reason.
         session_data = await this.#retrieveSessionData(session_args, fetch);
       } catch (err) {
+        Log.error(Session.TAG, 'Failed to retrieve session data from server. Will try to generate it locally.');
         session_data = this.#generateSessionData(session_args);
       }
     }
 
+    Log.info(Session.TAG, 'Got session data.\n', session_data);
+
     return { ...session_data, account_index };
   }
 
-  static async #retrieveSessionData(options: {
-    lang: string;
-    location: string;
-    time_zone: string;
-    device_category: string;
-    client_name: string;
-    enable_safety_mode: boolean;
-    visitor_data: string;
-    on_behalf_of_user?: string;
-  }, fetch: FetchFunction = Platform.shim.fetch): Promise<SessionData> {
+  static #getVisitorID(visitor_data: string) {
+    const decoded_visitor_data = Proto.decodeVisitorData(visitor_data);
+    Log.info(Session.TAG, 'Custom visitor data decoded successfully.\n', decoded_visitor_data);
+    return decoded_visitor_data.id;
+  }
+
+  static async #retrieveSessionData(options: SessionArgs, fetch: FetchFunction = Platform.shim.fetch): Promise<SessionData> {
     const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
 
     let visitor_id = generateRandomString(11);
 
     if (options.visitor_data) {
-      const decoded_visitor_data = Proto.decodeVisitorData(options.visitor_data);
-      visitor_id = decoded_visitor_data.id;
+      visitor_id = this.#getVisitorID(options.visitor_data);
     }
 
     const res = await fetch(url, {
@@ -316,21 +333,11 @@ export default class Session extends EventEmitterLike {
     return { context, api_key, api_version };
   }
 
-  static #generateSessionData(options: {
-    lang: string;
-    location: string;
-    time_zone: string;
-    device_category: DeviceCategory;
-    client_name: string;
-    enable_safety_mode: boolean;
-    visitor_data: string;
-    on_behalf_of_user?: string;
-  }): SessionData {
+  static #generateSessionData(options: SessionArgs): SessionData {
     let visitor_id = generateRandomString(11);
 
     if (options.visitor_data) {
-      const decoded_visitor_data = Proto.decodeVisitorData(options.visitor_data);
-      visitor_id = decoded_visitor_data.id;
+      visitor_id = this.#getVisitorID(options.visitor_data);
     }
 
     const context: Context = {

@@ -1,6 +1,4 @@
-import type Actions from '../../core/Actions.js';
 import { InnertubeError } from '../../utils/Utils.js';
-
 import Feed from '../../core/mixins/Feed.js';
 import History from './History.js';
 import Playlist from './Playlist.js';
@@ -9,8 +7,8 @@ import Shelf from '../classes/Shelf.js';
 import Button from '../classes/Button.js';
 import PageHeader from '../classes/PageHeader.js';
 
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
-import type { ApiResponse } from '../../core/Actions.js';
+import type { Actions, ApiResponse } from '../../core/index.js';
+import type { IBrowseResponse } from '../types/index.js';
 
 class Library extends Feed<IBrowseResponse> {
   header: PageHeader | null;

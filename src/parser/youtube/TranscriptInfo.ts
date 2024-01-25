@@ -1,8 +1,8 @@
-import type Actions from '../../core/Actions.js';
-import { type ApiResponse } from '../../core/Actions.js';
-import type { IGetTranscriptResponse } from '../index.js';
 import { Parser } from '../index.js';
 import Transcript from '../classes/Transcript.js';
+
+import type { ApiResponse, Actions } from '../../core/index.js';
+import type { IGetTranscriptResponse } from '../index.js';
 
 export default class TranscriptInfo {
   #page: IGetTranscriptResponse;

@@ -1,7 +1,7 @@
+import { InnertubeError } from '../../utils/Utils.js';
+
 import Feed from '../../core/mixins/Feed.js';
 import Message from '../classes/Message.js';
-import type Thumbnail from '../classes/misc/Thumbnail.js';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail.js';
 import PlaylistHeader from '../classes/PlaylistHeader.js';
 import PlaylistMetadata from '../classes/PlaylistMetadata.js';
@@ -13,13 +13,12 @@ import Alert from '../classes/Alert.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 import PlaylistVideo from '../classes/PlaylistVideo.js';
 import SectionList from '../classes/SectionList.js';
-
-import { InnertubeError } from '../../utils/Utils.js';
 import { observe, type ObservedArray } from '../helpers.js';
 
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
+import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import type Thumbnail from '../classes/misc/Thumbnail.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
 export default class Playlist extends Feed<IBrowseResponse> {
   info;

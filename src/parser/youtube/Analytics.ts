@@ -1,7 +1,7 @@
 import { Parser } from '../index.js';
 import Element from '../classes/Element.js';
-import type { ApiResponse } from '../../core/Actions.js';
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import type { ApiResponse } from '../../core/index.js';
+import type { IBrowseResponse } from '../types/index.js';
 
 class Analytics {
   #page: IBrowseResponse;

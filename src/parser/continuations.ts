@@ -1,9 +1,10 @@
-import type { ObservedArray } from './helpers.js';
 import { YTNode, observe } from './helpers.js';
-import type { RawNode } from './index.js';
 import { Thumbnail } from './misc.js';
 import { NavigationEndpoint, LiveChatItemList, LiveChatHeader, LiveChatParticipantsList, Message } from './nodes.js';
 import * as Parser from './parser.js';
+
+import type { RawNode } from './index.js';
+import type { ObservedArray } from './helpers.js';
 
 export class ItemSectionContinuation extends YTNode {
   static readonly type = 'itemSectionContinuation';
