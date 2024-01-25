@@ -1,6 +1,6 @@
 import PlayerStoryboardSpec from '../parser/classes/PlayerStoryboardSpec.js';
 import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.js';
-import * as Constants from './Constants.js'
+import * as Constants from './Constants.js';
 import Log from './Log.js';
 
 import type Actions from '../core/Actions.js';
