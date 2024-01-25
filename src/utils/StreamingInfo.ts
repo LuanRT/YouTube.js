@@ -1,17 +1,19 @@
 import type Actions from '../core/Actions.js';
 import type Player from '../core/Player.js';
+import type { LiveStoryboardData } from '../parser/classes/PlayerLiveStoryboardSpec.js';
 import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.js';
 import type { IStreamingData } from '../parser/index.js';
 import type { Format } from '../parser/misc.js';
-import type { PlayerStoryboardSpec } from '../parser/nodes.js';
+import type { PlayerLiveStoryboardSpec } from '../parser/nodes.js';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
+import PlayerStoryboardSpec from '../parser/classes/PlayerStoryboardSpec.js';
 import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.js';
 import { Constants, Log } from './index.js';
 
 const TAG_ = 'StreamingInfo';
 
 export interface StreamingInfo {
-  duration: number;
+  getDuration(): Promise<number>;
   audio_sets: AudioSet[];
   video_sets: VideoSet[];
   image_sets: ImageSet[];
@@ -35,11 +37,17 @@ export interface Range {
 
 export type SegmentInfo = {
   is_oft: false,
+  is_post_live_dvr: false
   base_url: string;
   index_range: Range;
   init_range: Range;
 } | {
   is_oft: true,
+  is_post_live_dvr: false
+  getSegmentTemplate(): Promise<SegmentTemplate>
+} | {
+  is_oft: false,
+  is_post_live_dvr: true,
   getSegmentTemplate(): Promise<SegmentTemplate>
 }
 
@@ -49,7 +57,7 @@ export interface Segment {
 }
 
 export interface SegmentTemplate {
-  init_url: string,
+  init_url?: string,
   media_url: string,
   timeline: Segment[]
 }
@@ -111,13 +119,22 @@ export interface ImageRepresentation {
   getURL(n: number): string;
 }
 
-function getFormatGroupings(formats: Format[]) {
+interface PostLiveDvrInfo {
+  duration: number,
+  segment_count: number
+}
+
+interface SharedPostLiveDvrInfo {
+  item?: PostLiveDvrInfo
+}
+
+function getFormatGroupings(formats: Format[], is_post_live_dvr: boolean) {
   const group_info = new Map<string, Format[]>();
 
   const has_multiple_audio_tracks = formats.some((fmt) => !!fmt.audio_track);
 
   for (const format of formats) {
-    if ((!format.index_range || !format.init_range) && !format.is_type_otf) {
+    if ((!format.index_range || !format.init_range) && !format.is_type_otf && !is_post_live_dvr) {
       continue;
     }
     const mime_type = format.mime_type.split(';')[0];
@@ -226,12 +243,53 @@ async function getOTFSegmentTemplate(url: string, actions: Actions): Promise<Seg
   };
 }
 
+async function getPostLiveDvrInfo(transformed_url: string, actions: Actions): Promise<PostLiveDvrInfo> {
+  const response = await actions.session.http.fetch_function(`${transformed_url}&rn=0&sq=0`, {
+    method: 'HEAD',
+    headers: Constants.STREAM_HEADERS,
+    redirect: 'follow'
+  });
+
+  const duration_ms = parseInt(response.headers.get('X-Head-Time-Millis') || '');
+  const segment_count = parseInt(response.headers.get('X-Head-Seqnum') || '');
+
+  if (isNaN(duration_ms) || isNaN(segment_count)) {
+    throw new InnertubeError('Failed to extract the duration or segment count for this Post Live DVR video');
+  }
+
+  return {
+    duration: duration_ms / 1000,
+    segment_count
+  };
+}
+
+async function getPostLiveDvrDuration(
+  shared_post_live_dvr_info: SharedPostLiveDvrInfo,
+  format: Format,
+  url_transformer: URLTransformer,
+  actions: Actions,
+  player?: Player,
+  cpn?: string
+) {
+  if (!shared_post_live_dvr_info.item) {
+    const url = new URL(format.decipher(player));
+    url.searchParams.set('cpn', cpn || '');
+
+    const transformed_url = url_transformer(url).toString();
+
+    shared_post_live_dvr_info.item = await getPostLiveDvrInfo(transformed_url, actions);
+  }
+
+  return shared_post_live_dvr_info.item.duration;
+}
+
 function getSegmentInfo(
   format: Format,
   url_transformer: URLTransformer,
   actions?: Actions,
   player?: Player,
-  cpn?: string
+  cpn?: string,
+  shared_post_live_dvr_info?: SharedPostLiveDvrInfo
 ) {
   const url = new URL(format.decipher(player));
   url.searchParams.set('cpn', cpn || '');
@@ -244,8 +302,43 @@ function getSegmentInfo(
 
     const info: SegmentInfo = {
       is_oft: true,
+      is_post_live_dvr: false,
       getSegmentTemplate() {
         return getOTFSegmentTemplate(transformed_url, actions);
+      }
+    };
+
+    return info;
+  }
+
+  if (shared_post_live_dvr_info) {
+    if (!actions) {
+      throw new InnertubeError('Unable to get segment count for this Post Live DVR video without an Actions instance', { format });
+    }
+
+    const target_duration_dec = format.target_duration_dec;
+
+    if (typeof target_duration_dec !== 'number') {
+      throw new InnertubeError('Format is missing target_duration_dec', { format });
+    }
+
+    const info: SegmentInfo = {
+      is_oft: false,
+      is_post_live_dvr: true,
+      async getSegmentTemplate(): Promise<SegmentTemplate> {
+        if (!shared_post_live_dvr_info.item) {
+          shared_post_live_dvr_info.item = await getPostLiveDvrInfo(transformed_url, actions);
+        }
+
+        return {
+          media_url: `${transformed_url}&sq=$Number$`,
+          timeline: [
+            {
+              duration: target_duration_dec * 1000,
+              repeat_count: shared_post_live_dvr_info.item.segment_count
+            }
+          ]
+        };
       }
     };
 
@@ -257,6 +350,7 @@ function getSegmentInfo(
 
   const info: SegmentInfo = {
     is_oft: false,
+    is_post_live_dvr: false,
     base_url: transformed_url,
     index_range: format.index_range,
     init_range: format.init_range
@@ -271,7 +365,8 @@ function getAudioRepresentation(
   url_transformer: URLTransformer,
   actions?: Actions,
   player?: Player,
-  cpn?: string
+  cpn?: string,
+  shared_post_live_dvr_info?: SharedPostLiveDvrInfo
 ) {
   const url = new URL(format.decipher(player));
   url.searchParams.set('cpn', cpn || '');
@@ -282,7 +377,7 @@ function getAudioRepresentation(
     codecs: !hoisted.includes('codecs') ? getStringBetweenStrings(format.mime_type, 'codecs="', '"') : undefined,
     audio_sample_rate: !hoisted.includes('audio_sample_rate') ? format.audio_sample_rate : undefined,
     channels: !hoisted.includes('AudioChannelConfiguration') ? format.audio_channels || 2 : undefined,
-    segment_info: getSegmentInfo(format, url_transformer, actions, player, cpn)
+    segment_info: getSegmentInfo(format, url_transformer, actions, player, cpn, shared_post_live_dvr_info)
   };
 
   return rep;
@@ -311,7 +406,8 @@ function getAudioSet(
   url_transformer: URLTransformer,
   actions?: Actions,
   player?: Player,
-  cpn?: string
+  cpn?: string,
+  shared_post_live_dvr_info?: SharedPostLiveDvrInfo
 ) {
   const first_format = formats[0];
   const { audio_track } = first_format;
@@ -325,7 +421,7 @@ function getAudioSet(
     track_name: audio_track?.display_name,
     track_role: getTrackRole(first_format),
     channels: hoistAudioChannelsIfPossible(formats, hoisted),
-    representations: formats.map((format) => getAudioRepresentation(format, hoisted, url_transformer, actions, player, cpn))
+    representations: formats.map((format) => getAudioRepresentation(format, hoisted, url_transformer, actions, player, cpn, shared_post_live_dvr_info))
   };
 
   return set;
@@ -405,7 +501,8 @@ function getVideoRepresentation(
   hoisted: string[],
   player?: Player,
   actions?: Actions,
-  cpn?: string
+  cpn?: string,
+  shared_post_live_dvr_info?: SharedPostLiveDvrInfo
 ) {
   const rep: VideoRepresentation = {
     uid: format.itag.toString(),
@@ -414,7 +511,7 @@ function getVideoRepresentation(
     height: format.height,
     codecs: !hoisted.includes('codecs') ? getStringBetweenStrings(format.mime_type, 'codecs="', '"') : undefined,
     fps: !hoisted.includes('fps') ? format.fps : undefined,
-    segment_info: getSegmentInfo(format, url_transformer, actions, player, cpn)
+    segment_info: getSegmentInfo(format, url_transformer, actions, player, cpn, shared_post_live_dvr_info)
   };
 
   return rep;
@@ -425,7 +522,8 @@ function getVideoSet(
   url_transformer: URLTransformer,
   player?: Player,
   actions?: Actions,
-  cpn?: string
+  cpn?: string,
+  shared_post_live_dvr_info?: SharedPostLiveDvrInfo
 ) {
   const first_format = formats[0];
   const color_info = getColorInfo(first_format);
@@ -436,18 +534,23 @@ function getVideoSet(
     color_info,
     codecs: hoistCodecsIfPossible(formats, hoisted),
     fps: hoistNumberAttributeIfPossible(formats, 'fps', hoisted),
-    representations: formats.map((format) => getVideoRepresentation(format, url_transformer, hoisted, player, actions, cpn))
+    representations: formats.map((format) => getVideoRepresentation(format, url_transformer, hoisted, player, actions, cpn, shared_post_live_dvr_info))
   };
 
   return set;
 }
 
 function getStoryboardInfo(
-  storyboards: PlayerStoryboardSpec
+  storyboards: PlayerStoryboardSpec | PlayerLiveStoryboardSpec
 ) {
-  const mime_info = new Map<string, StoryboardData[]>();
+  // Can't seem to combine the types in the Map, so create an alias here
+  type AnyStoryboardData = StoryboardData | LiveStoryboardData
 
-  for (const storyboard of storyboards.boards) {
+  const mime_info = new Map<string, AnyStoryboardData[]>();
+
+  const boards = storyboards.is(PlayerStoryboardSpec) ? storyboards.boards : [ storyboards.board ];
+
+  for (const storyboard of boards) {
     const extension = new URL(storyboard.template_url).pathname.split('.').pop();
 
     const mime_type = `image/${extension === 'jpg' ? 'jpeg' : extension}`;
@@ -467,7 +570,7 @@ interface SharedStoryboardResponse {
 
 async function getStoryboardMimeType(
   actions: Actions,
-  board: StoryboardData,
+  board: StoryboardData | LiveStoryboardData,
   transform_url: URLTransformer,
   probable_mime_type: string,
   shared_response: SharedStoryboardResponse
@@ -490,7 +593,7 @@ async function getStoryboardMimeType(
 
 async function getStoryboardBitrate(
   actions: Actions,
-  board: StoryboardData,
+  board: StoryboardData | LiveStoryboardData,
   shared_response: SharedStoryboardResponse
 ) {
   const url = board.template_url;
@@ -498,7 +601,7 @@ async function getStoryboardBitrate(
   const response_promises: Promise<Response>[] = [];
 
   // Set a limit so we don't take forever for long videos
-  const request_limit = Math.min(board.storyboard_count, 10);
+  const request_limit = Math.min(board.type === 'vod' ? board.storyboard_count : 5, 10);
   for (let i = 0; i < request_limit; i++) {
     const req_url = new URL(url.replace('$M', i.toString()));
 
@@ -535,12 +638,23 @@ async function getStoryboardBitrate(
 function getImageRepresentation(
   duration: number,
   actions: Actions,
-  board: StoryboardData,
+  board: StoryboardData | LiveStoryboardData,
   transform_url: URLTransformer,
   shared_response: SharedStoryboardResponse
 ) {
   const url = board.template_url;
   const template_url = new URL(url.replace('$M', '$Number$'));
+
+  let template_duration;
+
+  if (board.type === 'vod') {
+    // Here duration is the duration of the video
+    template_duration = duration / board.storyboard_count;
+  } else {
+    // Here duration is the duration of one of the video/audio segments,
+    // As there is one tile per segment, we need to multiple it by the number of tiles
+    template_duration = duration * board.columns * board.rows;
+  }
 
   const rep: ImageRepresentation = {
     uid: `thumbnails_${board.thumbnail_width}x${board.thumbnail_height}`,
@@ -553,7 +667,7 @@ function getImageRepresentation(
     thumbnail_width: board.thumbnail_width,
     rows: board.rows,
     columns: board.columns,
-    template_duration: duration / board.storyboard_count,
+    template_duration: template_duration,
     template_url: transform_url(template_url).toString(),
     getURL(n) {
       return template_url.toString().replace('$Number$', n.toString());
@@ -566,7 +680,7 @@ function getImageRepresentation(
 function getImageSets(
   duration: number,
   actions: Actions,
-  storyboards: PlayerStoryboardSpec,
+  storyboards: PlayerStoryboardSpec | PlayerLiveStoryboardSpec,
   transform_url: URLTransformer
 ) {
   const mime_info = getStoryboardInfo(storyboards);
@@ -584,12 +698,13 @@ function getImageSets(
 
 export function getStreamingInfo(
   streaming_data?: IStreamingData,
+  is_post_live_dvr = false,
   url_transformer: URLTransformer = (url) => url,
   format_filter?: FormatFilter,
   cpn?: string,
   player?: Player,
   actions?: Actions,
-  storyboards?: PlayerStoryboardSpec
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec
 ) {
   if (!streaming_data)
     throw new InnertubeError('Streaming data not available');
@@ -598,12 +713,34 @@ export function getStreamingInfo(
     streaming_data.adaptive_formats.filter((fmt) => !format_filter(fmt)) :
     streaming_data.adaptive_formats;
 
-  const duration = formats[0].approx_duration_ms / 1000;
+  let getDuration;
+  let shared_post_live_dvr_info: SharedPostLiveDvrInfo | undefined;
+
+  if (is_post_live_dvr) {
+    shared_post_live_dvr_info = {};
+
+    if (!actions) {
+      throw new InnertubeError('Unable to get duration or segment count for this Post Live DVR video without an Actions instance');
+    }
+
+    getDuration = () => {
+      // Should never happen, as we set it just a few lines above, but this stops TypeScript complaining
+      if (!shared_post_live_dvr_info) {
+        return Promise.resolve(0);
+      }
+
+      return getPostLiveDvrDuration(shared_post_live_dvr_info, formats[0], url_transformer, actions, player, cpn);
+    };
+  } else {
+    const duration = formats[0].approx_duration_ms / 1000;
+
+    getDuration = () => Promise.resolve(duration);
+  }
 
   const {
     groups,
     has_multiple_audio_tracks
-  } = getFormatGroupings(formats);
+  } = getFormatGroupings(formats, is_post_live_dvr);
 
   const {
     video_groups,
@@ -629,15 +766,31 @@ export function getStreamingInfo(
     audio_groups: [] as Format[][]
   });
 
-  const audio_sets = audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn));
+  const audio_sets = audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn, shared_post_live_dvr_info));
 
-  const video_sets = video_groups.map((formats) => getVideoSet(formats, url_transformer, player, actions, cpn));
+  const video_sets = video_groups.map((formats) => getVideoSet(formats, url_transformer, player, actions, cpn, shared_post_live_dvr_info));
+
+  let image_sets: ImageSet[] = [];
 
   // XXX: We need to make requests to get the image sizes, so we'll skip the storyboards if we don't have an Actions instance
-  const image_sets = storyboards && actions ? getImageSets(duration, actions, storyboards, url_transformer) : [];
+  if (storyboards && actions) {
+    let duration;
+
+    if (storyboards.is(PlayerStoryboardSpec)) {
+      duration = formats[0].approx_duration_ms / 1000;
+    } else {
+      const target_duration_dec = formats[0].target_duration_dec;
+      if (typeof target_duration_dec !== 'number') {
+        throw new InnertubeError('Format is missing target_duration_dec', { format: formats[0] });
+      }
+      duration = target_duration_dec;
+    }
+
+    image_sets = getImageSets(duration, actions, storyboards, url_transformer);
+  }
 
   const info : StreamingInfo = {
-    duration,
+    getDuration,
     audio_sets,
     video_sets,
     image_sets
