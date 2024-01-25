@@ -1,5 +1,30 @@
 # Changelog
 
+## [9.0.0](https://github.com/LuanRT/YouTube.js/compare/v8.2.0...v9.0.0) (2024-01-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **toDash:** Add support for generating manifests for Post Live DVR videos ([#580](https://github.com/LuanRT/YouTube.js/issues/580))
+
+### Features
+
+* **Channel:** Support getting about with PageHeader ([#581](https://github.com/LuanRT/YouTube.js/issues/581)) ([2e710dc](https://github.com/LuanRT/YouTube.js/commit/2e710dc9f7e206627f189df19be17009b270bc8b))
+* **Channel:** Support PageHeader being used on user channels ([#577](https://github.com/LuanRT/YouTube.js/issues/577)) ([6082b4a](https://github.com/LuanRT/YouTube.js/commit/6082b4a52ee07a622735e6e9128a0531a5ae3bfb))
+* **Format:** Add `max_dvr_duration_sec` and `target_duration_dec` ([#570](https://github.com/LuanRT/YouTube.js/issues/570)) ([586bb5f](https://github.com/LuanRT/YouTube.js/commit/586bb5f1398d68bfabfb9449f527e53c398c3767))
+* **parser:** Add `ImageBannerView` ([#583](https://github.com/LuanRT/YouTube.js/issues/583)) ([2073aa9](https://github.com/LuanRT/YouTube.js/commit/2073aa910a0e441a8ec1a9ba0434051ec0e2e6a9))
+* **toDash:** Add support for generating manifests for Post Live DVR videos ([#580](https://github.com/LuanRT/YouTube.js/issues/580)) ([6dd03e1](https://github.com/LuanRT/YouTube.js/commit/6dd03e1658036c2fba0696de81033b5e16abb379))
+* **VideoDetails:** Add `is_live_dvr_enabled`, `is_low_latency_live_stream` and `live_chunk_readahead` ([#569](https://github.com/LuanRT/YouTube.js/issues/569)) ([254f779](https://github.com/LuanRT/YouTube.js/commit/254f77944fcd398cc19cb62b82b0fdfbe6ed70ed))
+* **VideoInfo:** Add live stream `end_timestamp` ([#571](https://github.com/LuanRT/YouTube.js/issues/571)) ([562e6a2](https://github.com/LuanRT/YouTube.js/commit/562e6a20f06ef5302af427861355215630d91edc))
+
+
+### Bug Fixes
+
+* **DecoratedAvatarView:** Fix parsing and optional properties ([#584](https://github.com/LuanRT/YouTube.js/issues/584)) ([fed3512](https://github.com/LuanRT/YouTube.js/commit/fed3512461277b7fc41e26c770e2bd3d4a7d5eb5))
+* **PlayerCaptionTracklist:** Fix `captions_tracks[].kind` type ([#586](https://github.com/LuanRT/YouTube.js/issues/586)) ([7fbc37f](https://github.com/LuanRT/YouTube.js/commit/7fbc37f9d1c109e448085d5736326dce82ca2c9a))
+* **proto:** Fix visitor data base64url decoding ([#576](https://github.com/LuanRT/YouTube.js/issues/576)) ([3980f97](https://github.com/LuanRT/YouTube.js/commit/3980f97b8fca05f95cda1ab347db9402c55b8b3c))
+* **toDash:** Add missing transfer characteristics for h264 streams ([#573](https://github.com/LuanRT/YouTube.js/issues/573)) ([59f4cfb](https://github.com/LuanRT/YouTube.js/commit/59f4cfb4db6184d47f0a6634832055e9ce71f644))
+
 ## [8.2.0](https://github.com/LuanRT/YouTube.js/compare/v8.1.0...v8.2.0) (2024-01-08)
 
 
