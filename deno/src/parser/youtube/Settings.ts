@@ -13,9 +13,9 @@ import ItemSectionHeader from '../classes/ItemSectionHeader.ts';
 import ItemSectionTabbedHeader from '../classes/ItemSectionTabbedHeader.ts';
 import Tab from '../classes/Tab.ts';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+
+import type { ApiResponse, Actions } from '../../core/index.ts';
+import type { IBrowseResponse } from '../types/index.ts';
 
 class Settings {
   #page: IBrowseResponse;

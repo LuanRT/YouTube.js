@@ -1,15 +1,15 @@
 import { Parser } from '../index.ts';
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
-import type { ObservedArray } from '../helpers.ts';
 import { observe } from '../helpers.ts';
-import type { INextResponse } from '../types/ParsedResponse.ts';
 
 import CommentsHeader from '../classes/comments/CommentsHeader.ts';
 import CommentSimplebox from '../classes/comments/CommentSimplebox.ts';
 import CommentThread from '../classes/comments/CommentThread.ts';
 import ContinuationItem from '../classes/ContinuationItem.ts';
+
+import type { Actions, ApiResponse } from '../../core/index.ts';
+import type { ObservedArray } from '../helpers.ts';
+import type { INextResponse } from '../types/index.ts';
 
 class Comments {
   #page: INextResponse;

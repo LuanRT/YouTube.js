@@ -3,12 +3,12 @@ var __name = (target, value) => __defProp(target, "name", { value, configurable:
 import * as DashUtils from "./DashUtils.ts";
 import { getStreamingInfo } from "./StreamingInfo.ts";
 import { InnertubeError } from "./Utils.ts";
-async function OTFSegmentInfo({ info }) {
-  if (!info.is_oft)
+async function OTFPostLiveDvrSegmentInfo({ info }) {
+  if (!info.is_oft && !info.is_post_live_dvr)
     return null;
   const template = await info.getSegmentTemplate();
   return /* @__PURE__ */ DashUtils.createElement("segment-template", {
-    startNumber: "1",
+    startNumber: template.init_url ? "1" : "0",
     timescale: "1000",
     initialization: template.init_url,
     media: template.media_url
@@ -17,10 +17,10 @@ async function OTFSegmentInfo({ info }) {
     r: segment_duration.repeat_count
   }))));
 }
-__name(OTFSegmentInfo, "OTFSegmentInfo");
+__name(OTFPostLiveDvrSegmentInfo, "OTFPostLiveDvrSegmentInfo");
 function SegmentInfo({ info }) {
-  if (info.is_oft) {
-    return /* @__PURE__ */ DashUtils.createElement(OTFSegmentInfo, {
+  if (info.is_oft || info.is_post_live_dvr) {
+    return /* @__PURE__ */ DashUtils.createElement(OTFPostLiveDvrSegmentInfo, {
       info
     });
   }
@@ -31,8 +31,9 @@ function SegmentInfo({ info }) {
   })));
 }
 __name(SegmentInfo, "SegmentInfo");
-function DashManifest({
+async function DashManifest({
   streamingData,
+  isPostLiveDvr,
   transformURL,
   rejectFormat,
   cpn,
@@ -41,17 +42,17 @@ function DashManifest({
   storyboards
 }) {
   const {
-    duration,
+    getDuration,
     audio_sets,
     video_sets,
     image_sets
-  } = getStreamingInfo(streamingData, transformURL, rejectFormat, cpn, player, actions, storyboards);
+  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards);
   return /* @__PURE__ */ DashUtils.createElement("mpd", {
     xmlns: "urn:mpeg:dash:schema:mpd:2011",
     minBufferTime: "PT1.500S",
     profiles: "urn:mpeg:dash:profile:isoff-main:2011",
     type: "static",
-    mediaPresentationDuration: `PT${duration}S`,
+    mediaPresentationDuration: `PT${await getDuration()}S`,
     "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
     "xsi:schemaLocation": "urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd"
   }, /* @__PURE__ */ DashUtils.createElement("period", null, audio_sets.map((set, index) => /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
@@ -129,12 +130,13 @@ function DashManifest({
   })));
 }
 __name(DashManifest, "DashManifest");
-function toDash(streaming_data, url_transformer = (url) => url, format_filter, cpn, player, actions, storyboards) {
+function toDash(streaming_data, is_post_live_dvr = false, url_transformer = (url) => url, format_filter, cpn, player, actions, storyboards) {
   if (!streaming_data)
     throw new InnertubeError("Streaming data not available");
   return DashUtils.renderToString(
     /* @__PURE__ */ DashUtils.createElement(DashManifest, {
       streamingData: streaming_data,
+      isPostLiveDvr: is_post_live_dvr,
       transformURL: url_transformer,
       rejectFormat: format_filter,
       cpn,

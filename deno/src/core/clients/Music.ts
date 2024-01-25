@@ -1,12 +1,11 @@
-import Album from '../../parser/ytmusic/Album.ts';
-import Artist from '../../parser/ytmusic/Artist.ts';
-import Explore from '../../parser/ytmusic/Explore.ts';
-import HomeFeed from '../../parser/ytmusic/HomeFeed.ts';
-import Library from '../../parser/ytmusic/Library.ts';
-import Playlist from '../../parser/ytmusic/Playlist.ts';
-import Recap from '../../parser/ytmusic/Recap.ts';
-import Search from '../../parser/ytmusic/Search.ts';
-import TrackInfo from '../../parser/ytmusic/TrackInfo.ts';
+import * as Proto from '../../proto/index.ts';
+import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.ts';
+
+import {
+  Album, Artist, Explore,
+  HomeFeed, Library, Playlist,
+  Recap, Search, TrackInfo
+} from '../../parser/ytmusic/index.ts';
 
 import AutomixPreviewVideo from '../../parser/classes/AutomixPreviewVideo.ts';
 import Message from '../../parser/classes/Message.ts';
@@ -18,13 +17,6 @@ import PlaylistPanel from '../../parser/classes/PlaylistPanel.ts';
 import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.ts';
 import SectionList from '../../parser/classes/SectionList.ts';
 import Tab from '../../parser/classes/Tab.ts';
-import * as Proto from '../../proto/index.ts';
-
-import type { ObservedArray } from '../../parser/helpers.ts';
-import type { MusicSearchFilters } from '../../types/index.ts';
-import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.ts';
-import type Actions from '../Actions.ts';
-import type Session from '../Session.ts';
 
 import {
   BrowseEndpoint,
@@ -34,6 +26,10 @@ import {
 } from '../endpoints/index.ts';
 
 import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.ts';
+
+import type { ObservedArray } from '../../parser/helpers.ts';
+import type { MusicSearchFilters } from '../../types/index.ts';
+import type { Actions, Session } from '../index.ts';
 
 export default class Music {
   #session: Session;

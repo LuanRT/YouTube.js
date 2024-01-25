@@ -1,3 +1,4 @@
+import { Log } from '../../utils/index.ts';
 import { YTNode, type ObservedArray } from '../helpers.ts';
 import { Parser, type RawNode } from '../index.ts';
 import Button from './Button.ts';
@@ -55,6 +56,7 @@ export default class ChannelAboutFullMetadata extends YTNode {
    * Please use {@link Channel.view_count} instead.
    */
   get views() {
+    Log.warnOnce(ChannelAboutFullMetadata.type, 'ChannelAboutFullMetadata#views is deprecated. Please use ChannelAboutFullMetadata#view_count instead.');
     return this.view_count;
   }
 
@@ -64,6 +66,7 @@ export default class ChannelAboutFullMetadata extends YTNode {
    * Please use {@link Channel.joined_date} instead.
    */
   get joined(): Text {
+    Log.warnOnce(ChannelAboutFullMetadata.type, 'ChannelAboutFullMetadata#joined is deprecated. Please use ChannelAboutFullMetadata#joined_date instead.');
     return this.joined_date;
   }
 }

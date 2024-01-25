@@ -2,9 +2,9 @@ import Feed from '../../core/mixins/Feed.ts';
 import C4TabbedHeader from '../classes/C4TabbedHeader.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import { ItemSectionContinuation } from '../index.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+
+import type { IBrowseResponse } from '../types/index.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
 
 class Channel extends Feed<IBrowseResponse> {
   header?: C4TabbedHeader;

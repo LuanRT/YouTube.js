@@ -1,3 +1,7 @@
+import Feed from '../../core/mixins/Feed.ts';
+import FilterableFeed from '../../core/mixins/FilterableFeed.ts';
+import { ChannelError, InnertubeError } from '../../utils/Utils.ts';
+
 import TabbedFeed from '../../core/mixins/TabbedFeed.ts';
 import C4TabbedHeader from '../classes/C4TabbedHeader.ts';
 import CarouselHeader from '../classes/CarouselHeader.ts';
@@ -12,9 +16,6 @@ import SectionList from '../classes/SectionList.ts';
 import Tab from '../classes/Tab.ts';
 import PageHeader from '../classes/PageHeader.ts';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
-
-import Feed from '../../core/mixins/Feed.ts';
-import FilterableFeed from '../../core/mixins/FilterableFeed.ts';
 import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import FeedFilterChipBar from '../classes/FeedFilterChipBar.ts';
 import ChannelSubMenu from '../classes/ChannelSubMenu.ts';
@@ -22,11 +23,8 @@ import SortFilterSubMenu from '../classes/SortFilterSubMenu.ts';
 import ContinuationItem from '../classes/ContinuationItem.ts';
 import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
-import { ChannelError, InnertubeError } from '../../utils/Utils.ts';
-
 import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '../index.ts';
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
@@ -196,10 +194,13 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     if (this.hasTabWithURL('about')) {
       const tab = await this.getTabByURL('about');
       return tab.memo.getType(ChannelAboutFullMetadata)[0];
-    } else if (this.header?.is(C4TabbedHeader) && this.header.tagline) {
+    }
 
-      if (this.header.tagline.more_endpoint instanceof NavigationEndpoint) {
-        const response = await this.header.tagline.more_endpoint.call(this.actions);
+    const tagline = this.header?.is(C4TabbedHeader) && this.header.tagline;
+
+    if (tagline || this.header?.is(PageHeader) && this.header.content?.description) {
+      if (tagline && tagline.more_endpoint instanceof NavigationEndpoint) {
+        const response = await tagline.more_endpoint.call(this.actions);
 
         const tab = new TabbedFeed<IBrowseResponse>(this.actions, response, false);
         return tab.memo.getType(ChannelAboutFullMetadata)[0];
@@ -271,7 +272,9 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 
   get has_about(): boolean {
     // Game topic channels still have an about tab, user channels have switched to the popup
-    return this.hasTabWithURL('about') || !!(this.header?.is(C4TabbedHeader) && this.header.tagline?.more_endpoint);
+    return this.hasTabWithURL('about') ||
+      !!(this.header?.is(C4TabbedHeader) && this.header.tagline?.more_endpoint) ||
+      !!(this.header?.is(PageHeader) && this.header.content?.description?.more_endpoint);
   }
 
   get has_search(): boolean {

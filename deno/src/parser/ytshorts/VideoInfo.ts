@@ -1,13 +1,11 @@
-import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
-import type PlayerOverlay from '../classes/PlayerOverlay.ts';
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
-import type { ObservedArray, YTNode } from '../helpers.ts';
 import { Parser, ContinuationCommand } from '../index.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
-import {
-  Reel
-} from '../../core/endpoints/index.ts';
+import { Reel } from '../../core/endpoints/index.ts';
+
+import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import type PlayerOverlay from '../classes/PlayerOverlay.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
+import type { ObservedArray, YTNode } from '../helpers.ts';
 
 class VideoInfo {
   #watch_next_continuation?: ContinuationCommand;
@@ -23,12 +21,12 @@ class VideoInfo {
 
     const info = Parser.parseResponse(data[0].data);
 
-    const watchNext = Parser.parseResponse(data[1].data);
+    const watch_next = Parser.parseResponse(data[1].data);
 
     this.basic_info = info.video_details;
 
-    this.watch_next_feed = watchNext.entries?.array();
-    this.#watch_next_continuation = watchNext.continuationEndpoint?.as(ContinuationCommand);
+    this.watch_next_feed = watch_next.entries?.array();
+    this.#watch_next_continuation = watch_next.continuation_endpoint?.as(ContinuationCommand);
   }
 
   /**
@@ -49,7 +47,7 @@ class VideoInfo {
     const parsed = Parser.parseResponse(response.data);
 
     this.watch_next_feed = parsed.entries?.array();
-    this.#watch_next_continuation = parsed.continuationEndpoint?.as(ContinuationCommand);
+    this.#watch_next_continuation = parsed.continuation_endpoint?.as(ContinuationCommand);
 
     return this;
   }

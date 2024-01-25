@@ -36,6 +36,7 @@ export default class PlayerMicroformat extends YTNode {
   upload_date: string;
   available_countries: string[];
   start_timestamp: Date | null;
+  end_timestamp: Date | null;
 
   constructor(data: RawNode) {
     super();
@@ -70,5 +71,6 @@ export default class PlayerMicroformat extends YTNode {
     this.upload_date = data.uploadDate;
     this.available_countries = data.availableCountries;
     this.start_timestamp = data.liveBroadcastDetails?.startTimestamp ? new Date(data.liveBroadcastDetails.startTimestamp) : null;
+    this.end_timestamp = data.liveBroadcastDetails?.endTimestamp ? new Date(data.liveBroadcastDetails.endTimestamp) : null;
   }
 }

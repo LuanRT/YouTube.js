@@ -4,9 +4,9 @@ import SectionList from '../classes/SectionList.ts';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+import type { ApiResponse } from '../../core/index.ts';
 import type { ObservedArray } from '../helpers.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+import type { IBrowseResponse } from '../types/index.ts';
 
 class TimeWatched {
   #page: IBrowseResponse;

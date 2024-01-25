@@ -1,12 +1,7 @@
 import { Parser } from '../../parser/index.ts';
-import Channel from '../../parser/ytkids/Channel.ts';
-import HomeFeed from '../../parser/ytkids/HomeFeed.ts';
-import Search from '../../parser/ytkids/Search.ts';
-import VideoInfo from '../../parser/ytkids/VideoInfo.ts';
-import type Session from '../Session.ts';
-import { type ApiResponse } from '../Actions.ts';
-
+import { Channel, HomeFeed, Search, VideoInfo } from '../../parser/ytkids/index.ts';
 import { InnertubeError, generateRandomString } from '../../utils/Utils.ts';
+import KidsBlocklistPickerItem from '../../parser/classes/ytkids/KidsBlocklistPickerItem.ts';
 
 import {
   BrowseEndpoint, NextEndpoint,
@@ -15,7 +10,7 @@ import {
 
 import { BlocklistPickerEndpoint } from '../endpoints/kids/index.ts';
 
-import KidsBlocklistPickerItem from '../../parser/classes/ytkids/KidsBlocklistPickerItem.ts';
+import type { Session, ApiResponse } from '../index.ts';
 
 export default class Kids {
   #session: Session;

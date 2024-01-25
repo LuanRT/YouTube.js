@@ -1,11 +1,11 @@
+import { InnertubeError } from '../../utils/Utils.ts';
+
 import Feed from '../../core/mixins/Feed.ts';
 import KidsCategoriesHeader from '../classes/ytkids/KidsCategoriesHeader.ts';
 import KidsCategoryTab from '../classes/ytkids/KidsCategoryTab.ts';
 import KidsHomeScreen from '../classes/ytkids/KidsHomeScreen.ts';
-import { InnertubeError } from '../../utils/Utils.ts';
 
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/ParsedResponse.ts';
 
 class HomeFeed extends Feed<IBrowseResponse> {

@@ -1,6 +1,4 @@
 import { Parser, GridContinuation, MusicShelfContinuation, SectionListContinuation } from '../index.ts';
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
 
 import Grid from '../classes/Grid.ts';
 import MusicShelf from '../classes/MusicShelf.ts';
@@ -12,11 +10,12 @@ import ChipCloud from '../classes/ChipCloud.ts';
 import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import MusicMultiSelectMenuItem from '../classes/menus/MusicMultiSelectMenuItem.ts';
 import MusicSortFilterButton from '../classes/MusicSortFilterButton.ts';
-import type MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 import type { ObservedArray } from '../helpers.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+import type { IBrowseResponse } from '../types/index.ts';
+import type MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
 
 class Library {
   #page: IBrowseResponse;

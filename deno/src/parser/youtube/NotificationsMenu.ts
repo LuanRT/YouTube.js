@@ -1,13 +1,12 @@
 import { Parser } from '../index.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
 
 import ContinuationItem from '../classes/ContinuationItem.ts';
 import SimpleMenuHeader from '../classes/menus/SimpleMenuHeader.ts';
 import Notification from '../classes/Notification.ts';
 
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
-import type { IGetNotificationsMenuResponse } from '../types/ParsedResponse.ts';
-import { InnertubeError } from '../../utils/Utils.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
+import type { IGetNotificationsMenuResponse } from '../types/index.ts';
 
 class NotificationsMenu {
   #page: IGetNotificationsMenuResponse;

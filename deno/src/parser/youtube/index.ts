@@ -17,3 +17,4 @@ export { default as Settings } from './Settings.ts';
 export { default as SmoothedQueue } from './SmoothedQueue.ts';
 export { default as TimeWatched } from './TimeWatched.ts';
 export { default as VideoInfo } from './VideoInfo.ts';
+export { default as TranscriptInfo } from './TranscriptInfo.ts';

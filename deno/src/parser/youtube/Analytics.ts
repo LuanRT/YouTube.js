@@ -1,7 +1,7 @@
 import { Parser } from '../index.ts';
 import Element from '../classes/Element.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+import type { ApiResponse } from '../../core/index.ts';
+import type { IBrowseResponse } from '../types/index.ts';
 
 class Analytics {
   #page: IBrowseResponse;

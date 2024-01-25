@@ -1,3 +1,4 @@
+import { Log } from '../../utils/index.ts';
 import { YTNode } from '../helpers.ts';
 import { Parser, type RawNode } from '../index.ts';
 import Button from './Button.ts';
@@ -44,6 +45,7 @@ export default class Channel extends YTNode {
    * Please use {@link Channel.subscriber_count} instead.
    */
   get subscribers(): Text {
+    Log.warnOnce(Channel.type, 'Channel#subscribers is deprecated. Please use Channel#subscriber_count instead.');
     return this.subscriber_count;
   }
 
@@ -53,6 +55,7 @@ export default class Channel extends YTNode {
    * Please use {@link Channel.video_count} instead.
    */
   get videos(): Text {
+    Log.warnOnce(Channel.type, 'Channel#videos is deprecated. Please use Channel#video_count instead.');
     return this.video_count;
   }
 }

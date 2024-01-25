@@ -1,4 +1,3 @@
-import type Actions from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import { Parser, MusicShelfContinuation } from '../index.ts';
 
@@ -9,7 +8,6 @@ import ItemSection from '../classes/ItemSection.ts';
 import Message from '../classes/Message.ts';
 import MusicCardShelf from '../classes/MusicCardShelf.ts';
 import MusicHeader from '../classes/MusicHeader.ts';
-import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
 import MusicShelf from '../classes/MusicShelf.ts';
 import SectionList from '../classes/SectionList.ts';
 import ShowingResultsFor from '../classes/ShowingResultsFor.ts';
@@ -17,7 +15,8 @@ import TabbedSearchResults from '../classes/TabbedSearchResults.ts';
 
 import type { ObservedArray } from '../helpers.ts';
 import type { ISearchResponse } from '../types/ParsedResponse.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
+import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
 
 export default class Search {
   #page: ISearchResponse;

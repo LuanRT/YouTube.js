@@ -1,3 +1,4 @@
+import Log from '../utils/Log.ts';
 import { deepCompare, ParsingError } from '../utils/Utils.ts';
 
 const isObserved = Symbol('ObservedArray.isObserved');
@@ -62,6 +63,7 @@ export class YTNode {
 }
 
 export class Maybe {
+  #TAG = 'Maybe';
   #value;
 
   constructor (value: any) {
@@ -275,10 +277,11 @@ export class Maybe {
   }
 
   /**
-   * @deprecated This call is not meant to be used outside of debugging. Please use the specific type getter instead.
+   * @deprecated
+   * This call is not meant to be used outside of debugging. Please use the specific type getter instead.
    */
   any(): any {
-    console.warn('This call is not meant to be used outside of debugging. Please use the specific type getter instead.');
+    Log.warn(this.#TAG, 'This call is not meant to be used outside of debugging. Please use the specific type getter instead.');
     return this.#value;
   }
 

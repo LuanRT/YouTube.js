@@ -1,12 +1,12 @@
 import * as Proto from '../../proto/index.ts';
-import type Actions from '../Actions.ts';
-import type { ApiResponse } from '../Actions.ts';
 
 import { throwIfMissing } from '../../utils/Utils.ts';
 import { LikeEndpoint, DislikeEndpoint, RemoveLikeEndpoint } from '../endpoints/like/index.ts';
 import { SubscribeEndpoint, UnsubscribeEndpoint } from '../endpoints/subscription/index.ts';
 import { CreateCommentEndpoint, PerformCommentActionEndpoint } from '../endpoints/comment/index.ts';
 import { ModifyChannelPreferenceEndpoint } from '../endpoints/notification/index.ts';
+
+import type { Actions, ApiResponse } from '../index.ts';
 
 export default class InteractionManager {
   #actions: Actions;

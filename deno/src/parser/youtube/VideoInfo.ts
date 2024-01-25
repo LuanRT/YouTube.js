@@ -1,3 +1,6 @@
+import { InnertubeError } from '../../utils/Utils.ts';
+import { MediaInfo } from '../../core/mixins/index.ts';
+
 import ChipCloud from '../classes/ChipCloud.ts';
 import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader.ts';
@@ -19,8 +22,11 @@ import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.ts';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.ts';
 import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.ts';
+import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.ts';
+import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSection.ts';
 import LiveChatWrap from './LiveChat.ts';
 
+import type { RawNode } from '../index.ts';
 import type CardCollection from '../classes/CardCollection.ts';
 import type Endscreen from '../classes/Endscreen.ts';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.ts';
@@ -28,15 +34,8 @@ import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.ts'
 import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.ts';
 import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.ts';
 
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
-
-import { InnertubeError } from '../../utils/Utils.ts';
-import { MediaInfo } from '../../core/mixins/index.ts';
-import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.ts';
-import { VideoDescriptionMusicSection } from '../nodes.ts';
-import type { RawNode } from '../index.ts';
 
 class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
@@ -88,6 +87,7 @@ class VideoInfo extends MediaInfo {
         category: info.microformat?.is(PlayerMicroformat) ? info.microformat?.category : null,
         has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null,
         start_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.start_timestamp : null,
+        end_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.end_timestamp : null,
         view_count: info.microformat?.is(PlayerMicroformat) && isNaN(info.video_details?.view_count as number) ? info.microformat.view_count : info.video_details?.view_count
       },
       like_count: undefined as number | undefined,
@@ -222,7 +222,6 @@ class VideoInfo extends MediaInfo {
   async addToWatchHistory(): Promise<Response> {
     return super.addToWatchHistory();
   }
-
 
   /**
    * Retrieves watch next feed continuation.

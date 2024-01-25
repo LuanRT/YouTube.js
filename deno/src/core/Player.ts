@@ -1,14 +1,13 @@
+import { Log, Constants } from '../utils/index.ts';
 import { Platform, getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils.ts';
-
-import * as Constants from '../utils/Constants.ts';
-
-import type { ICache } from '../types/Cache.ts';
-import type { FetchFunction } from '../types/PlatformShim.ts';
+import type { ICache, FetchFunction } from '../types/index.ts';
 
 /**
  * Represents YouTube's player script. This is required to decipher signatures.
  */
 export default class Player {
+  static TAG = 'Player';
+
   #nsig_sc;
   #sig_sc;
   #sig_sc_timestamp;
@@ -17,9 +16,7 @@ export default class Player {
   constructor(signature_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string) {
     this.#nsig_sc = nsig_sc;
     this.#sig_sc = sig_sc;
-
     this.#sig_sc_timestamp = signature_timestamp;
-
     this.#player_id = player_id;
   }
 
@@ -34,17 +31,22 @@ export default class Player {
 
     const player_id = getStringBetweenStrings(js, 'player\\/', '\\/');
 
+    Log.info(Player.TAG, `Got player id (${player_id}). Checking for cached players..`);
+
     if (!player_id)
       throw new PlayerError('Failed to get player id');
 
-    // We have the playerID now we can check if we have a cached player
+    // We have the player id, now we can check if we have a cached player.
     if (cache) {
+      Log.info(Player.TAG, 'Found a cached player.');
       const cached_player = await Player.fromCache(cache, player_id);
       if (cached_player)
         return cached_player;
     }
 
     const player_url = new URL(`/s/player/${player_id}/player_ias.vflset/en_US/base.js`, Constants.URLS.YT_BASE);
+
+    Log.info(Player.TAG, `Could not find any cached player. Will download a new player from ${player_url}.`);
 
     const player_res = await fetch(player_url, {
       headers: {
@@ -59,9 +61,10 @@ export default class Player {
     const player_js = await player_res.text();
 
     const sig_timestamp = this.extractSigTimestamp(player_js);
-
     const sig_sc = this.extractSigSourceCode(player_js);
     const nsig_sc = this.extractNSigSourceCode(player_js);
+
+    Log.info(Player.TAG, `Got signature timestamp (${sig_timestamp}) and algorithms needed to decipher signatures.`);
 
     return await Player.fromSource(cache, sig_timestamp, sig_sc, nsig_sc, player_id);
   }
@@ -79,6 +82,8 @@ export default class Player {
       const signature = Platform.shim.eval(this.#sig_sc, {
         sig: args.get('s')
       });
+
+      Log.info(Player.TAG, `Transformed signature ${args.get('s')} to ${signature}.`);
 
       if (typeof signature !== 'string')
         throw new PlayerError('Failed to decipher signature');
@@ -102,11 +107,13 @@ export default class Player {
           nsig: n
         });
 
+        Log.info(Player.TAG, `Transformed nsig ${n} to ${nsig}.`);
+
         if (typeof nsig !== 'string')
           throw new PlayerError('Failed to decipher nsig');
 
         if (nsig.startsWith('enhanced_except_')) {
-          console.warn('Warning:\nCould not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!');
+          Log.warn(Player.TAG, 'Could not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!');
         } else if (this_response_nsig_cache) {
           this_response_nsig_cache.set(n, nsig);
         }
@@ -137,6 +144,10 @@ export default class Player {
         url_components.searchParams.set('cver', Constants.CLIENTS.TV_EMBEDDED.VERSION);
         break;
     }
+
+    const result = url_components.toString();
+
+    Log.info(Player.TAG, `Full deciphered URL: ${result}`);
 
     return url_components.toString();
   }
@@ -204,7 +215,7 @@ export default class Player {
     const functions = getStringBetweenStrings(data, `var ${obj_name}={`, '};');
 
     if (!functions || !calls)
-      console.warn(new PlayerError('Failed to extract signature decipher algorithm'));
+      Log.warn(Player.TAG, 'Failed to extract signature decipher algorithm.');
 
     return `function descramble_sig(a) { a = a.split(""); let ${obj_name}={${functions}}${calls} return a.join("") } descramble_sig(sig);`;
   }
@@ -213,7 +224,7 @@ export default class Player {
     const sc = `function descramble_nsig(a) { let b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join(""); } descramble_nsig(nsig)`;
 
     if (!sc)
-      console.warn(new PlayerError('Failed to extract n-token decipher algorithm'));
+      Log.warn(Player.TAG, 'Failed to extract n-token decipher algorithm');
 
     return sc;
   }

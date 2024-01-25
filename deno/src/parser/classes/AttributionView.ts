@@ -2,15 +2,16 @@ import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 import Text from './misc/Text.ts';
 
-export default class DynamicTextView extends YTNode {
-  static type = 'DynamicTextView';
+export default class AttributionView extends YTNode {
+  static type = 'AttributionView';
 
   text: Text;
-  max_lines: number;
+  suffix: Text;
 
   constructor(data: RawNode) {
     super();
+
     this.text = Text.fromAttributed(data.text);
-    this.max_lines = parseInt(data.maxLines);
+    this.suffix = Text.fromAttributed(data.suffix);
   }
 }

@@ -1,7 +1,5 @@
-import type { Context } from '../core/Session.ts';
-import type Session from '../core/Session.ts';
-import type { FetchFunction } from '../types/PlatformShim.ts';
 import * as Constants from './Constants.ts';
+
 import {
   Platform,
   generateSidAuth,
@@ -9,6 +7,9 @@ import {
   getStringBetweenStrings,
   InnertubeError
 } from './Utils.ts';
+
+import type { Context, Session } from '../core/index.ts';
+import type { FetchFunction } from '../types/index.ts';
 
 export interface HTTPClientInit {
   baseURL?: string;

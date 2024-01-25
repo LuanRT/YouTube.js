@@ -1,17 +1,17 @@
-import type { ApiResponse } from '../Actions.ts';
-import type Actions from '../Actions.ts';
-import * as Constants from '../../utils/Constants.ts';
-import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../types/FormatUtils.ts';
-import * as FormatUtils from '../../utils/FormatUtils.ts';
+import { Constants, FormatUtils } from '../../utils/index.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
-import type Format from '../../parser/classes/misc/Format.ts';
-import type { INextResponse, IPlayerConfig, IPlayerResponse } from '../../parser/index.ts';
-import { Parser } from '../../parser/index.ts';
-import type { DashOptions } from '../../types/DashOptions.ts';
-import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
 import { getStreamingInfo } from '../../utils/StreamingInfo.ts';
+
+import { Parser } from '../../parser/index.ts';
+import { TranscriptInfo } from '../../parser/youtube/index.ts';
+import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
 import ContinuationItem from '../../parser/classes/ContinuationItem.ts';
-import TranscriptInfo from '../../parser/youtube/TranscriptInfo.ts';
+
+import type { ApiResponse, Actions } from '../index.ts';
+import type { INextResponse, IPlayerConfig, IPlayerResponse } from '../../parser/index.ts';
+import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../types/FormatUtils.ts';
+import type Format from '../../parser/classes/misc/Format.ts';
+import type { DashOptions } from '../../types/DashOptions.ts';
 
 export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];
@@ -50,17 +50,17 @@ export default class MediaInfo {
   async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter, options: DashOptions = { include_thumbnails: false }): Promise<string> {
     const player_response = this.#page[0];
 
-    if (player_response.video_details && (player_response.video_details.is_live || player_response.video_details.is_post_live_dvr)) {
-      throw new InnertubeError('Generating DASH manifests for live and Post-Live-DVR videos is not supported. Please use the DASH and HLS manifests provided by YouTube in `streaming_data.dash_manifest_url` and `streaming_data.hls_manifest_url` instead.');
+    if (player_response.video_details && (player_response.video_details.is_live)) {
+      throw new InnertubeError('Generating DASH manifests for live videos is not supported. Please use the DASH and HLS manifests provided by YouTube in `streaming_data.dash_manifest_url` and `streaming_data.hls_manifest_url` instead.');
     }
 
     let storyboards;
 
-    if (options.include_thumbnails && player_response.storyboards?.is(PlayerStoryboardSpec)) {
+    if (options.include_thumbnails && player_response.storyboards) {
       storyboards = player_response.storyboards;
     }
 
-    return FormatUtils.toDash(this.streaming_data, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions, storyboards);
+    return FormatUtils.toDash(this.streaming_data, this.page[0].video_details?.is_post_live_dvr, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions, storyboards);
   }
 
   /**
@@ -69,12 +69,13 @@ export default class MediaInfo {
   getStreamingInfo(url_transformer?: URLTransformer, format_filter?: FormatFilter) {
     return getStreamingInfo(
       this.streaming_data,
+      this.page[0].video_details?.is_post_live_dvr,
       url_transformer,
       format_filter,
       this.cpn,
       this.#actions.session.player,
       this.#actions,
-      this.#page[0].storyboards?.is(PlayerStoryboardSpec) ? this.#page[0].storyboards : undefined
+      this.#page[0].storyboards ? this.#page[0].storyboards : undefined
     );
   }
 

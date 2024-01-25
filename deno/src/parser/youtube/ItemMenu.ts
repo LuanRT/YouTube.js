@@ -1,12 +1,12 @@
-import Button from '../classes/Button.ts';
 import Menu from '../classes/menus/Menu.ts';
+import Button from '../classes/Button.ts';
 import MenuServiceItem from '../classes/menus/MenuServiceItem.ts';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
-import type Actions from '../../core/Actions.ts';
+import type { Actions } from '../../core/index.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
-import type { IParsedResponse } from '../types/ParsedResponse.ts';
+import type { IParsedResponse } from '../types/index.ts';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
 class ItemMenu {
   #page: IParsedResponse;

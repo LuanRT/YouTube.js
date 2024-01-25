@@ -1,5 +1,3 @@
-import type { ApiResponse } from '../../core/Actions.ts';
-import type { ObservedArray } from '../helpers.ts';
 import { Parser } from '../index.ts';
 
 import MicroformatData from '../classes/MicroformatData.ts';
@@ -7,8 +5,10 @@ import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
 import MusicDetailHeader from '../classes/MusicDetailHeader.ts';
 import MusicShelf from '../classes/MusicShelf.ts';
 
+import type { ApiResponse } from '../../core/index.ts';
+import type { ObservedArray } from '../helpers.ts';
+import type { IBrowseResponse } from '../types/index.ts';
 import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
 
 class Album {
   #page: IBrowseResponse;

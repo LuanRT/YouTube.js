@@ -4,15 +4,14 @@ import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
 import MusicDetailHeader from '../classes/MusicDetailHeader.ts';
 import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader.ts';
 import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.ts';
-import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
 import MusicShelf from '../classes/MusicShelf.ts';
 import SectionList from '../classes/SectionList.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
+import type { IBrowseResponse } from '../types/index.ts';
+import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
 
 class Playlist {
   #page: IBrowseResponse;

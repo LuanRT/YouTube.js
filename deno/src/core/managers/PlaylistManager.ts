@@ -1,12 +1,12 @@
-import Playlist from '../../parser/youtube/Playlist.ts';
-import type Actions from '../Actions.ts';
-import type Feed from '../mixins/Feed.ts';
-
-import type { EditPlaylistEndpointOptions } from '../../types/index.ts';
 import { InnertubeError, throwIfMissing } from '../../utils/Utils.ts';
 import { EditPlaylistEndpoint } from '../endpoints/browse/index.ts';
 import { BrowseEndpoint } from '../endpoints/index.ts';
 import { CreateEndpoint, DeleteEndpoint } from '../endpoints/playlist/index.ts';
+import Playlist from '../../parser/youtube/Playlist.ts';
+
+import type { Actions } from '../index.ts';
+import type { Feed } from '../mixins/index.ts';
+import type { EditPlaylistEndpointOptions } from '../../types/index.ts';
 
 export default class PlaylistManager {
   #actions: Actions;

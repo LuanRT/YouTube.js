@@ -1,9 +1,10 @@
-import type { IGuideResponse } from '../types/ParsedResponse.ts';
-import type { IRawResponse } from '../index.ts';
 import { Parser } from '../index.ts';
-import type { ObservedArray } from '../helpers.ts';
 import GuideSection from '../classes/GuideSection.ts';
 import GuideSubscriptionsSection from '../classes/GuideSubscriptionsSection.ts';
+
+import type { ObservedArray } from '../helpers.ts';
+import type { IGuideResponse } from '../types/index.ts';
+import type { IRawResponse } from '../index.ts';
 
 export default class Guide {
 

@@ -2,6 +2,7 @@ import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 
 export interface StoryboardData {
+  type: 'vod'
   template_url: string;
   thumbnail_width: number;
   thumbnail_height: number;
@@ -31,6 +32,7 @@ export default class PlayerStoryboardSpec extends YTNode {
       const storyboard_count = Math.ceil(parseInt(thumbnail_count, 10) / (parseInt(columns, 10) * parseInt(rows, 10)));
 
       return {
+        type: 'vod',
         template_url: url.toString().replace('$L', i).replace('$N', name),
         thumbnail_width: parseInt(thumbnail_width, 10),
         thumbnail_height: parseInt(thumbnail_height, 10),

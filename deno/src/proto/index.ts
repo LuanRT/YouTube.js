@@ -22,7 +22,7 @@ export function encodeVisitorData(id: string, timestamp: number): string {
 }
 
 export function decodeVisitorData(visitor_data: string): VisitorData.Type {
-  const data = VisitorData.decodeBinary(base64ToU8(decodeURIComponent(visitor_data)));
+  const data = VisitorData.decodeBinary(base64ToU8(decodeURIComponent(visitor_data).replace(/-/g, '+').replace(/_/g, '/')));
   return data;
 }
 

@@ -1,12 +1,10 @@
 import * as Proto from '../../proto/index.ts';
-import * as Constants from '../../utils/Constants.ts';
+import { Constants } from '../../utils/index.ts';
 import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.ts';
+import { CreateVideoEndpoint } from '../endpoints/upload/index.ts';
 
 import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.ts';
-import type { ApiResponse } from '../Actions.ts';
-import type Session from '../Session.ts';
-
-import { CreateVideoEndpoint } from '../endpoints/upload/index.ts';
+import type { ApiResponse, Session } from '../index.ts';
 
 interface UploadResult {
   status: string;

@@ -1,6 +1,4 @@
 import { Parser } from '../index.ts';
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
 import MusicShelf from '../classes/MusicShelf.ts';
@@ -9,6 +7,8 @@ import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.ts';
 import MusicImmersiveHeader from '../classes/MusicImmersiveHeader.ts';
 import MusicVisualHeader from '../classes/MusicVisualHeader.ts';
 import MusicHeader from '../classes/MusicHeader.ts';
+
+import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/ParsedResponse.ts';
 
 class Artist {

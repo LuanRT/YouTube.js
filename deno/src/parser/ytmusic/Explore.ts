@@ -1,4 +1,5 @@
 import { Parser } from '../index.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
 
 import Grid from '../classes/Grid.ts';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
@@ -6,10 +7,9 @@ import MusicNavigationButton from '../classes/MusicNavigationButton.ts';
 import SectionList from '../classes/SectionList.ts';
 import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';
 
-import type { ApiResponse } from '../../core/Actions.ts';
-import { InnertubeError } from '../../utils/Utils.ts';
+import type { ApiResponse } from '../../core/index.ts';
 import type { ObservedArray } from '../helpers.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+import type { IBrowseResponse } from '../types/index.ts';
 
 class Explore {
   #page: IBrowseResponse;

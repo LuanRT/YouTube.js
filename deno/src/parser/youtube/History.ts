@@ -1,9 +1,9 @@
-import type Actions from '../../core/Actions.ts';
 import Feed from '../../core/mixins/Feed.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import BrowseFeedActions from '../classes/BrowseFeedActions.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+
+import type { Actions, ApiResponse } from '../../core/index.ts';
+import type { IBrowseResponse } from '../types/index.ts';
 
 // TODO: make feed actions usable
 class History extends Feed<IBrowseResponse> {

@@ -69,7 +69,7 @@ export interface IParsedResponse {
   items?: SuperParsedResult<YTNode>;
   entries?: SuperParsedResult<YTNode>;
   entries_memo?: Memo;
-  continuationEndpoint?: YTNode;
+  continuation_endpoint?: YTNode;
 }
 
 export interface IPlayerConfig {

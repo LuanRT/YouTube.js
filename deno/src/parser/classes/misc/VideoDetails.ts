@@ -16,9 +16,12 @@ export default class VideoDetails {
   is_private: boolean;
   is_live: boolean;
   is_live_content: boolean;
+  is_live_dvr_enabled: boolean;
   is_upcoming: boolean;
   is_crawlable: boolean;
   is_post_live_dvr: boolean;
+  is_low_latency_live_stream: boolean;
+  live_chunk_readahead?: number;
 
   constructor(data: RawNode) {
     this.id = data.videoId;
@@ -35,8 +38,11 @@ export default class VideoDetails {
     this.is_private = !!data.isPrivate;
     this.is_live = !!data.isLive;
     this.is_live_content = !!data.isLiveContent;
+    this.is_live_dvr_enabled = !!data.isLiveDvrEnabled;
+    this.is_low_latency_live_stream = !!data.isLowLatencyLiveStream;
     this.is_upcoming = !!data.isUpcoming;
     this.is_post_live_dvr = !!data.isPostLiveDvr;
     this.is_crawlable = !!data.isCrawlable;
+    this.live_chunk_readahead = data.liveChunkReadahead;
   }
 }

@@ -8,10 +8,10 @@ import SearchSubMenu from '../classes/SearchSubMenu.ts';
 import SectionList from '../classes/SectionList.ts';
 import UniversalWatchCard from '../classes/UniversalWatchCard.ts';
 
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
-import type { ISearchResponse } from '../types/ParsedResponse.ts';
+import type { ISearchResponse } from '../types/index.ts';
+
 class Search extends Feed<ISearchResponse> {
   header?: SearchHeader;
   results?: ObservedArray<YTNode> | null;

@@ -41,6 +41,8 @@ export default class Format {
   audio_sample_rate?: number;
   audio_channels?: number;
   loudness_db?: number;
+  max_dvr_duration_sec?: number;
+  target_duration_dec?: number;
   has_audio: boolean;
   has_video: boolean;
   language?: string | null;
@@ -90,6 +92,8 @@ export default class Format {
     this.audio_sample_rate = parseInt(data.audioSampleRate);
     this.audio_channels = data.audioChannels;
     this.loudness_db = data.loudnessDb;
+    this.max_dvr_duration_sec = data.maxDvrDurationSec;
+    this.target_duration_dec = data.targetDurationSec;
     this.has_audio = !!data.audioBitrate || !!data.audioQuality;
     this.has_video = !!data.qualityLabel;
 

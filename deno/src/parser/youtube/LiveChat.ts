@@ -1,42 +1,40 @@
-import EventEmitter from '../../utils/EventEmitterLike.ts';
+import * as Proto from '../../proto/index.ts';
+import { EventEmitter } from '../../utils/index.ts';
+import { InnertubeError, Platform } from '../../utils/Utils.ts';
 import { Parser, LiveChatContinuation } from '../index.ts';
-import type VideoInfo from './VideoInfo.ts';
 import SmoothedQueue from './SmoothedQueue.ts';
 
 import AddChatItemAction from '../classes/livechat/AddChatItemAction.ts';
-import type AddLiveChatTickerItemAction from '../classes/livechat/AddLiveChatTickerItemAction.ts';
-import type MarkChatItemAsDeletedAction from '../classes/livechat/MarkChatItemAsDeletedAction.ts';
-import type MarkChatItemsByAuthorAsDeletedAction from '../classes/livechat/MarkChatItemsByAuthorAsDeletedAction.ts';
-import type ReplaceChatItemAction from '../classes/livechat/ReplaceChatItemAction.ts';
-import type ReplayChatItemAction from '../classes/livechat/ReplayChatItemAction.ts';
-import type ShowLiveChatActionPanelAction from '../classes/livechat/ShowLiveChatActionPanelAction.ts';
-
 import UpdateDateTextAction from '../classes/livechat/UpdateDateTextAction.ts';
 import UpdateDescriptionAction from '../classes/livechat/UpdateDescriptionAction.ts';
 import UpdateTitleAction from '../classes/livechat/UpdateTitleAction.ts';
 import UpdateToggleButtonTextAction from '../classes/livechat/UpdateToggleButtonTextAction.ts';
 import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction.ts';
+import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import ItemMenu from './ItemMenu.ts';
 
+import type { ObservedArray, YTNode } from '../helpers.ts';
+
+import type VideoInfo from './VideoInfo.ts';
 import type AddBannerToLiveChatCommand from '../classes/livechat/AddBannerToLiveChatCommand.ts';
 import type RemoveBannerForLiveChatCommand from '../classes/livechat/RemoveBannerForLiveChatCommand.ts';
 import type ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipCommand.ts';
-
-import * as Proto from '../../proto/index.ts';
-import { InnertubeError, Platform } from '../../utils/Utils.ts';
-import type { ObservedArray, YTNode } from '../helpers.ts';
-
-import type Button from '../classes/Button.ts';
 import type LiveChatAutoModMessage from '../classes/livechat/items/LiveChatAutoModMessage.ts';
 import type LiveChatMembershipItem from '../classes/livechat/items/LiveChatMembershipItem.ts';
 import type LiveChatPaidMessage from '../classes/livechat/items/LiveChatPaidMessage.ts';
 import type LiveChatPaidSticker from '../classes/livechat/items/LiveChatPaidSticker.ts';
 import type LiveChatTextMessage from '../classes/livechat/items/LiveChatTextMessage.ts';
 import type LiveChatViewerEngagementMessage from '../classes/livechat/items/LiveChatViewerEngagementMessage.ts';
-import ItemMenu from './ItemMenu.ts';
+import type AddLiveChatTickerItemAction from '../classes/livechat/AddLiveChatTickerItemAction.ts';
+import type MarkChatItemAsDeletedAction from '../classes/livechat/MarkChatItemAsDeletedAction.ts';
+import type MarkChatItemsByAuthorAsDeletedAction from '../classes/livechat/MarkChatItemsByAuthorAsDeletedAction.ts';
+import type ReplaceChatItemAction from '../classes/livechat/ReplaceChatItemAction.ts';
+import type ReplayChatItemAction from '../classes/livechat/ReplayChatItemAction.ts';
+import type ShowLiveChatActionPanelAction from '../classes/livechat/ShowLiveChatActionPanelAction.ts';
+import type Button from '../classes/Button.ts';
 
-import type Actions from '../../core/Actions.ts';
-import type { IParsedResponse, IUpdatedMetadataResponse } from '../types/ParsedResponse.ts';
-import { NavigationEndpoint } from '../nodes.ts';
+import type { Actions } from '../../core/index.ts';
+import type { IParsedResponse, IUpdatedMetadataResponse } from '../types/index.ts';
 
 export type ChatAction =
   AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |

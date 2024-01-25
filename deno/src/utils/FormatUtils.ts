@@ -1,10 +1,9 @@
+import { Constants } from './index.ts';
+import { InnertubeError, Platform, streamToIterable } from './Utils.ts';
+
 import type Player from '../core/Player.ts';
 import type Actions from '../core/Actions.ts';
-
 import type Format from '../parser/classes/misc/Format.ts';
-
-import * as Constants from './Constants.ts';
-import { InnertubeError, Platform, streamToIterable } from './Utils.ts';
 import type { IPlayabilityStatus, IStreamingData } from '../parser/index.ts';
 import type { DownloadOptions, FormatOptions } from '../types/FormatUtils.ts';
 

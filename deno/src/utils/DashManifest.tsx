@@ -1,33 +1,36 @@
 /* eslint-disable tsdoc/syntax */
 /** @jsxFactory DashUtils.createElement */
 /** @jsxFragmentFactory DashUtils.Fragment */
+import * as DashUtils from './DashUtils.ts';
+import { getStreamingInfo } from './StreamingInfo.ts';
+import { InnertubeError } from './Utils.ts';
+
 import type Actions from '../core/Actions.ts';
 import type Player from '../core/Player.ts';
 import type { IStreamingData } from '../parser/index.ts';
 import type { PlayerStoryboardSpec } from '../parser/nodes.ts';
-import * as DashUtils from './DashUtils.ts';
 import type { SegmentInfo as FSegmentInfo } from './StreamingInfo.ts';
-import { getStreamingInfo } from './StreamingInfo.ts';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.ts';
-import { InnertubeError } from './Utils.ts';
+import type PlayerLiveStoryboardSpec from '../parser/classes/PlayerLiveStoryboardSpec.ts';
 
 interface DashManifestProps {
   streamingData: IStreamingData;
+  isPostLiveDvr: boolean;
   transformURL?: URLTransformer;
   rejectFormat?: FormatFilter;
   cpn?: string;
   player?: Player;
   actions?: Actions;
-  storyboards?: PlayerStoryboardSpec;
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
 }
 
-async function OTFSegmentInfo({ info }: { info: FSegmentInfo }) {
-  if (!info.is_oft) return null;
+async function OTFPostLiveDvrSegmentInfo({ info }: { info: FSegmentInfo }) {
+  if (!info.is_oft && !info.is_post_live_dvr) return null;
 
   const template = await info.getSegmentTemplate();
 
   return <segment-template
-    startNumber="1"
+    startNumber={template.init_url ? '1' : '0'}
     timescale="1000"
     initialization={template.init_url}
     media={template.media_url}
@@ -46,8 +49,8 @@ async function OTFSegmentInfo({ info }: { info: FSegmentInfo }) {
 }
 
 function SegmentInfo({ info }: { info: FSegmentInfo }) {
-  if (info.is_oft) {
-    return <OTFSegmentInfo info={info} />;
+  if (info.is_oft || info.is_post_live_dvr) {
+    return <OTFPostLiveDvrSegmentInfo info={info} />;
   }
   return <>
     <base-url>
@@ -59,8 +62,9 @@ function SegmentInfo({ info }: { info: FSegmentInfo }) {
   </>;
 }
 
-function DashManifest({
+async function DashManifest({
   streamingData,
+  isPostLiveDvr,
   transformURL,
   rejectFormat,
   cpn,
@@ -69,11 +73,11 @@ function DashManifest({
   storyboards
 }: DashManifestProps) {
   const {
-    duration,
+    getDuration,
     audio_sets,
     video_sets,
     image_sets
-  } = getStreamingInfo(streamingData, transformURL, rejectFormat, cpn, player, actions, storyboards);
+  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards);
 
   // XXX: DASH spec: https://standards.iso.org/ittf/PubliclyAvailableStandards/c083314_ISO_IEC%2023009-1_2022(en).zip
 
@@ -82,7 +86,7 @@ function DashManifest({
     minBufferTime="PT1.500S"
     profiles="urn:mpeg:dash:profile:isoff-main:2011"
     type="static"
-    mediaPresentationDuration={`PT${duration}S`}
+    mediaPresentationDuration={`PT${await getDuration()}S`}
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd"
   >
@@ -227,12 +231,13 @@ function DashManifest({
 
 export function toDash(
   streaming_data?: IStreamingData,
+  is_post_live_dvr = false,
   url_transformer: URLTransformer = (url) => url,
   format_filter?: FormatFilter,
   cpn?: string,
   player?: Player,
   actions?: Actions,
-  storyboards?: PlayerStoryboardSpec
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec
 ) {
   if (!streaming_data)
     throw new InnertubeError('Streaming data not available');
@@ -240,6 +245,7 @@ export function toDash(
   return DashUtils.renderToString(
     <DashManifest
       streamingData={streaming_data}
+      isPostLiveDvr={is_post_live_dvr}
       transformURL={url_transformer}
       rejectFormat={format_filter}
       cpn={cpn}

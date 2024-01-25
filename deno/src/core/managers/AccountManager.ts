@@ -1,3 +1,5 @@
+import type { Actions, ApiResponse } from '../index.ts';
+
 import AccountInfo from '../../parser/youtube/AccountInfo.ts';
 import Analytics from '../../parser/youtube/Analytics.ts';
 import Settings from '../../parser/youtube/Settings.ts';
@@ -6,9 +8,6 @@ import TimeWatched from '../../parser/youtube/TimeWatched.ts';
 import * as Proto from '../../proto/index.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import { Account, BrowseEndpoint, Channel } from '../endpoints/index.ts';
-
-import type Actions from '../Actions.ts';
-import type { ApiResponse } from '../Actions.ts';
 
 export default class AccountManager {
   #actions: Actions;

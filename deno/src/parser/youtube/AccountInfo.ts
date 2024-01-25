@@ -1,12 +1,11 @@
 import { Parser } from '../index.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
-import type { IParsedResponse } from '../types/ParsedResponse.ts';
-
+import { InnertubeError } from '../../utils/Utils.ts';
 import AccountSectionList from '../classes/AccountSectionList.ts';
+
+import type { ApiResponse } from '../../core/index.ts';
+import type { IParsedResponse } from '../types/index.ts';
 import type AccountItemSection from '../classes/AccountItemSection.ts';
 import type AccountChannel from '../classes/AccountChannel.ts';
-
-import { InnertubeError } from '../../utils/Utils.ts';
 
 class AccountInfo {
   #page: IParsedResponse;

@@ -1,12 +1,11 @@
+import Feed from './Feed.ts';
 import ChipCloudChip from '../../parser/classes/ChipCloudChip.ts';
 import FeedFilterChipBar from '../../parser/classes/FeedFilterChipBar.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
-import Feed from './Feed.ts';
 
 import type { ObservedArray } from '../../parser/helpers.ts';
-import type { IParsedResponse } from '../../parser/types/ParsedResponse.ts';
-import type Actions from '../Actions.ts';
-import type { ApiResponse } from '../Actions.ts';
+import type { IParsedResponse } from '../../parser/types/index.ts';
+import type { ApiResponse, Actions } from '../index.ts';
 
 export default class FilterableFeed<T extends IParsedResponse> extends Feed<T> {
   #chips?: ObservedArray<ChipCloudChip>;

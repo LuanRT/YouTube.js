@@ -1,28 +1,7 @@
-import type { SessionOptions } from './core/Session.ts';
 import Session from './core/Session.ts';
-
-import NavigationEndpoint from './parser/classes/NavigationEndpoint.ts';
-import type Format from './parser/classes/misc/Format.ts';
-import Channel from './parser/youtube/Channel.ts';
-import Comments from './parser/youtube/Comments.ts';
-import Guide from './parser/youtube/Guide.ts';
-import HashtagFeed from './parser/youtube/HashtagFeed.ts';
-import History from './parser/youtube/History.ts';
-import HomeFeed from './parser/youtube/HomeFeed.ts';
-import Library from './parser/youtube/Library.ts';
-import NotificationsMenu from './parser/youtube/NotificationsMenu.ts';
-import Playlist from './parser/youtube/Playlist.ts';
-import Search from './parser/youtube/Search.ts';
-import VideoInfo from './parser/youtube/VideoInfo.ts';
-import ShortsVideoInfo from './parser/ytshorts/VideoInfo.ts';
-
 import { Kids, Music, Studio } from './core/clients/index.ts';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.ts';
 import { Feed, TabbedFeed } from './core/mixins/index.ts';
-
-import * as Proto from './proto/index.ts';
-import * as Constants from './utils/Constants.ts';
-import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.ts';
 
 import {
   BrowseEndpoint,
@@ -32,16 +11,39 @@ import {
   PlayerEndpoint,
   ResolveURLEndpoint,
   SearchEndpoint,
-  Reel
+  Reel,
+  Notification
 } from './core/endpoints/index.ts';
 
-import { GetUnseenCountEndpoint } from './core/endpoints/notification/index.ts';
+import {
+  Channel,
+  Comments,
+  Guide,
+  HashtagFeed,
+  History,
+  HomeFeed,
+  Library,
+  NotificationsMenu,
+  Playlist,
+  Search,
+  VideoInfo
+} from './parser/youtube/index.ts';
+
+import { VideoInfo as ShortsVideoInfo } from './parser/ytshorts/index.ts';
+
+import NavigationEndpoint from './parser/classes/NavigationEndpoint.ts';
+
+import * as Proto from './proto/index.ts';
+import * as Constants from './utils/Constants.ts';
+import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.ts';
+
 
 import type { ApiResponse } from './core/Actions.ts';
-import { type IBrowseResponse, type IParsedResponse } from './parser/types/index.ts';
 import type { INextRequest } from './types/index.ts';
+import type { IBrowseResponse, IParsedResponse } from './parser/types/index.ts';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.ts';
-import { encodeReelSequence } from './proto/index.ts';
+import type { SessionOptions } from './core/Session.ts';
+import type Format from './parser/classes/misc/Format.ts';
 
 export type InnertubeConfig = SessionOptions;
 
@@ -151,7 +153,7 @@ export default class Innertube {
 
     const sequenceResponse = this.actions.execute(
       Reel.WatchSequenceEndpoint.PATH, Reel.WatchSequenceEndpoint.build({
-        sequenceParams: encodeReelSequence(short_id)
+        sequenceParams: Proto.encodeReelSequence(short_id)
       })
     );
 
@@ -261,7 +263,7 @@ export default class Innertube {
   }
 
   /**
-   * Retrieves trending content.
+   * Retrieves Trending content.
    */
   async getTrending(): Promise<TabbedFeed<IBrowseResponse>> {
     const response = await this.actions.execute(
@@ -271,7 +273,7 @@ export default class Innertube {
   }
 
   /**
-   * Retrieves subscriptions feed.
+   * Retrieves Subscriptions feed.
    */
   async getSubscriptionsFeed(): Promise<Feed<IBrowseResponse>> {
     const response = await this.actions.execute(
@@ -281,7 +283,7 @@ export default class Innertube {
   }
 
   /**
-   * Retrieves channels feed.
+   * Retrieves Channels feed.
    */
   async getChannelsFeed(): Promise<Feed<IBrowseResponse>> {
     const response = await this.actions.execute(
@@ -318,7 +320,7 @@ export default class Innertube {
    * Retrieves unseen notifications count.
    */
   async getUnseenNotificationsCount(): Promise<number> {
-    const response = await this.actions.execute(GetUnseenCountEndpoint.PATH);
+    const response = await this.actions.execute(Notification.GetUnseenCountEndpoint.PATH);
     // TODO: properly parse this
     return response.data?.unseenCount || response.data?.actions?.[0].updateNotificationsUnseenCountAction?.unseenCount || 0;
   }

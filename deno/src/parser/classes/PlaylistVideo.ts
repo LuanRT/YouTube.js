@@ -23,6 +23,7 @@ export default class PlaylistVideo extends YTNode {
   upcoming?: Date;
   video_info: Text;
   accessibility_label?: string;
+  style?: string;
 
   duration: {
     text: string;
@@ -43,6 +44,10 @@ export default class PlaylistVideo extends YTNode {
     this.menu = Parser.parseItem(data.menu, Menu);
     this.video_info = new Text(data.videoInfo);
     this.accessibility_label = data.title.accessibility.accessibilityData.label;
+
+    if (Reflect.has(data, 'style')) {
+      this.style = data.style;
+    }
 
     const upcoming = data.upcomingEventData && Number(`${data.upcomingEventData.startTime}000`);
     if (upcoming) {

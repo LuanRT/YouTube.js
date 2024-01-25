@@ -1,3 +1,16 @@
+import { YTNodes } from './index.ts';
+import { InnertubeError, ParsingError, Platform } from '../utils/Utils.ts';
+import { Memo, observe, SuperParsedResult } from './helpers.ts';
+import { camelToSnake, generateRuntimeClass, generateTypescriptClass } from './generator.ts';
+import { Log } from '../utils/index.ts';
+
+import {
+  Continuation, ItemSectionContinuation, SectionListContinuation,
+  LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
+  GridContinuation, PlaylistPanelContinuation, NavigateAction, ShowMiniplayerCommand,
+  ReloadContinuationItemsCommand, ContinuationCommand
+} from './continuations.ts';
+
 import AudioOnlyPlayability from './classes/AudioOnlyPlayability.ts';
 import CardCollection from './classes/CardCollection.ts';
 import Endscreen from './classes/Endscreen.ts';
@@ -8,27 +21,16 @@ import PlayerStoryboardSpec from './classes/PlayerStoryboardSpec.ts';
 import Alert from './classes/Alert.ts';
 import AlertWithButton from './classes/AlertWithButton.ts';
 import EngagementPanelSectionList from './classes/EngagementPanelSectionList.ts';
-
-import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.ts';
-
 import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem.ts';
 import Format from './classes/misc/Format.ts';
 import VideoDetails from './classes/misc/VideoDetails.ts';
 import NavigationEndpoint from './classes/NavigationEndpoint.ts';
 
-import { InnertubeError, ParsingError, Platform } from '../utils/Utils.ts';
-import type { ObservedArray, YTNodeConstructor, YTNode } from './helpers.ts';
-import { Memo, observe, SuperParsedResult } from './helpers.ts';
-import * as YTNodes from './nodes.ts';
 import type { KeyInfo } from './generator.ts';
-import { camelToSnake, generateRuntimeClass, generateTypescriptClass } from './generator.ts';
+import type { ObservedArray, YTNodeConstructor, YTNode } from './helpers.ts';
+import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.ts';
 
-import {
-  Continuation, ItemSectionContinuation, SectionListContinuation,
-  LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  GridContinuation, PlaylistPanelContinuation, NavigateAction, ShowMiniplayerCommand,
-  ReloadContinuationItemsCommand, ContinuationCommand
-} from './continuations.ts';
+const TAG = 'Parser';
 
 export type ParserError = {
   classname: string,
@@ -85,7 +87,7 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
   switch (context.error_type) {
     case 'parse':
       if (context.error instanceof Error) {
-        console.warn(
+        Log.warn(TAG,
           new InnertubeError(
             `Something went wrong at ${classname}!\n` +
             `This is a bug, please report it at ${Platform.shim.info.bugs_url}`, {
@@ -96,7 +98,7 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
       }
       break;
     case 'typecheck':
-      console.warn(
+      Log.warn(TAG,
         new ParsingError(
           `Type mismatch, got ${classname} expected ${Array.isArray(context.expected) ? context.expected.join(' | ') : context.expected}.`,
           context.classdata
@@ -104,7 +106,7 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
       );
       break;
     case 'mutation_data_missing':
-      console.warn(
+      Log.warn(TAG,
         new InnertubeError(
           'Mutation data required for processing MusicMultiSelectMenuItems, but none found.\n' +
           `This is a bug, please report it at ${Platform.shim.info.bugs_url}`
@@ -112,7 +114,7 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
       );
       break;
     case 'mutation_data_invalid':
-      console.warn(
+      Log.warn(TAG,
         new InnertubeError(
           `Mutation data missing or invalid for ${context.failed} out of ${context.total} MusicMultiSelectMenuItems. ` +
           `The titles of the failed items are: ${context.titles.join(', ')}.\n` +
@@ -121,7 +123,7 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
       );
       break;
     case 'class_not_found':
-      console.warn(
+      Log.warn(TAG,
         new InnertubeError(
           `${classname} not found!\n` +
           `This is a bug, want to help us fix it? Follow the instructions at ${Platform.shim.info.repo_url}/blob/main/docs/updating-the-parser.md or report it at ${Platform.shim.info.bugs_url}!\n` +
@@ -130,14 +132,14 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
       );
       break;
     case 'class_changed':
-      console.warn(
+      Log.warn(TAG,
         `${classname} changed!\n` +
         `The following keys where altered: ${context.changed_keys.map(([ key ]) => camelToSnake(key)).join(', ')}\n` +
         `The class has changed to:\n${generateTypescriptClass(classname, context.key_info)}`
       );
       break;
     default:
-      console.warn(
+      Log.warn(TAG,
         'Unreachable code reached at ParserErrorHandler'
       );
       break;
@@ -319,9 +321,9 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.continuation = continuation;
   }
 
-  const continuationEndpoint = data.continuationEndpoint ? parseLC(data.continuationEndpoint) : null;
-  if (continuationEndpoint) {
-    parsed_data.continuationEndpoint = continuationEndpoint;
+  const continuation_endpoint = data.continuationEndpoint ? parseLC(data.continuationEndpoint) : null;
+  if (continuation_endpoint) {
+    parsed_data.continuation_endpoint = continuation_endpoint;
   }
 
   const metadata = parse(data.metadata);

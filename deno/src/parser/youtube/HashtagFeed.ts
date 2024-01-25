@@ -1,14 +1,13 @@
-import FilterableFeed from '../../core/mixins/FilterableFeed.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
+import FilterableFeed from '../../core/mixins/FilterableFeed.ts';
 import HashtagHeader from '../classes/HashtagHeader.ts';
 import RichGrid from '../classes/RichGrid.ts';
+import PageHeader from '../classes/PageHeader.ts';
 import Tab from '../classes/Tab.ts';
 
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
-import type ChipCloudChip from '../classes/ChipCloudChip.ts';
+import type { Actions, ApiResponse } from '../../core/index.ts';
 import type { IBrowseResponse } from '../index.ts';
-import { PageHeader } from '../nodes.ts';
+import type ChipCloudChip from '../classes/ChipCloudChip.ts';
 
 export default class HashtagFeed extends FilterableFeed<IBrowseResponse> {
   header?: HashtagHeader | PageHeader;

@@ -1,7 +1,7 @@
+import { InnertubeError } from '../../utils/Utils.ts';
+
 import Feed from '../../core/mixins/Feed.ts';
 import Message from '../classes/Message.ts';
-import type Thumbnail from '../classes/misc/Thumbnail.ts';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail.ts';
 import PlaylistHeader from '../classes/PlaylistHeader.ts';
 import PlaylistMetadata from '../classes/PlaylistMetadata.ts';
@@ -10,13 +10,15 @@ import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInf
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.ts';
 import VideoOwner from '../classes/VideoOwner.ts';
 import Alert from '../classes/Alert.ts';
+import ContinuationItem from '../classes/ContinuationItem.ts';
+import PlaylistVideo from '../classes/PlaylistVideo.ts';
+import SectionList from '../classes/SectionList.ts';
+import { observe, type ObservedArray } from '../helpers.ts';
 
-import { InnertubeError } from '../../utils/Utils.ts';
-import type { ObservedArray } from '../helpers.ts';
-
-import type Actions from '../../core/Actions.ts';
-import type { ApiResponse } from '../../core/Actions.ts';
+import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+import type Thumbnail from '../classes/misc/Thumbnail.ts';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
 export default class Playlist extends Feed<IBrowseResponse> {
   info;
@@ -64,8 +66,38 @@ export default class Playlist extends Feed<IBrowseResponse> {
     return primary_info.stats[index]?.toString() || 'N/A';
   }
 
-  get items() {
-    return this.videos;
+  get items(): ObservedArray<PlaylistVideo> {
+    return observe(this.videos.as(PlaylistVideo).filter((video) => video.style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
+  }
+
+  get has_continuation() {
+    const section_list = this.memo.getType(SectionList).first();
+
+    if (!section_list)
+      return super.has_continuation;
+
+    return !!this.memo.getType(ContinuationItem).find((node) => !section_list.contents.includes(node));
+  }
+
+  async getContinuationData(): Promise<IBrowseResponse | undefined> {
+    const section_list = this.memo.getType(SectionList).first();
+
+    /**
+     * No section list means there can't be additional continuation nodes here,
+     * so no need to check.
+     */
+    if (!section_list)
+      return await super.getContinuationData();
+
+    const playlist_contents_continuation = this.memo.getType(ContinuationItem)
+      .find((node) => !section_list.contents.includes(node));
+
+    if (!playlist_contents_continuation)
+      throw new InnertubeError('There are no continuations.');
+
+    const response = await playlist_contents_continuation.endpoint.call<IBrowseResponse>(this.actions, { parse: true });
+
+    return response;
   }
 
   async getContinuation(): Promise<Playlist> {
