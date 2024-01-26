@@ -4,7 +4,6 @@ import { getStreamingInfo } from '../../utils/StreamingInfo.ts';
 
 import { Parser } from '../../parser/index.ts';
 import { TranscriptInfo } from '../../parser/youtube/index.ts';
-import PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
 import ContinuationItem from '../../parser/classes/ContinuationItem.ts';
 
 import type { ApiResponse, Actions } from '../index.ts';

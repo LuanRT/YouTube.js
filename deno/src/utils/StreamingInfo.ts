@@ -1,3 +1,8 @@
+import PlayerStoryboardSpec from '../parser/classes/PlayerStoryboardSpec.ts';
+import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.ts';
+import * as Constants from './Constants.ts';
+import Log from './Log.ts';
+
 import type Actions from '../core/Actions.ts';
 import type Player from '../core/Player.ts';
 import type { LiveStoryboardData } from '../parser/classes/PlayerLiveStoryboardSpec.ts';
@@ -6,9 +11,6 @@ import type { IStreamingData } from '../parser/index.ts';
 import type { Format } from '../parser/misc.ts';
 import type { PlayerLiveStoryboardSpec } from '../parser/nodes.ts';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.ts';
-import PlayerStoryboardSpec from '../parser/classes/PlayerStoryboardSpec.ts';
-import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.ts';
-import { Constants, Log } from './index.ts';
 
 const TAG_ = 'StreamingInfo';
 

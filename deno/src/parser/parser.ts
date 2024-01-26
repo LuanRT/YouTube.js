@@ -1,4 +1,4 @@
-import { YTNodes } from './index.ts';
+import * as YTNodes from './nodes.ts';
 import { InnertubeError, ParsingError, Platform } from '../utils/Utils.ts';
 import { Memo, observe, SuperParsedResult } from './helpers.ts';
 import { camelToSnake, generateRuntimeClass, generateTypescriptClass } from './generator.ts';

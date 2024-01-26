@@ -1,7 +1,9 @@
-import { Player, OAuth, Actions } from './index.ts';
+import OAuth from './OAuth.ts';
 import { Log, EventEmitter, HTTPClient } from '../utils/index.ts';
 import * as Constants from '../utils/Constants.ts';
 import * as Proto from '../proto/index.ts';
+import Actions from './Actions.ts';
+import Player from './Player.ts';
 
 import {
   generateRandomString, getRandomUserAgent,

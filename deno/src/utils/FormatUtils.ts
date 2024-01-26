@@ -1,4 +1,4 @@
-import { Constants } from './index.ts';
+import * as Constants from './Constants.ts';
 import { InnertubeError, Platform, streamToIterable } from './Utils.ts';
 
 import type Player from '../core/Player.ts';
