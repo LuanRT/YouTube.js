@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/LuanRT/YouTube.js/compare/v9.0.0...v9.0.1) (2024-01-26)
+
+
+### Bug Fixes
+
+* **build:** Circular imports causing issues with webpack ([81dd5d3](https://github.com/LuanRT/YouTube.js/commit/81dd5d3288771132e7fb904b620e58277f639ccc))
+
 ## [9.0.0](https://github.com/LuanRT/YouTube.js/compare/v8.2.0...v9.0.0) (2024-01-25)
 
 
