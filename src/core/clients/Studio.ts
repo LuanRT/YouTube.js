@@ -4,8 +4,7 @@ import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.j
 import { CreateVideoEndpoint } from '../endpoints/upload/index.js';
 
 import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.js';
-import type Session from '../Session.js';
-import type { ApiResponse } from '../Actions.js';
+import type { ApiResponse, Session } from '../index.js';
 
 interface UploadResult {
   status: string;

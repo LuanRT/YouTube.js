@@ -6,8 +6,7 @@ import { SubscribeEndpoint, UnsubscribeEndpoint } from '../endpoints/subscriptio
 import { CreateCommentEndpoint, PerformCommentActionEndpoint } from '../endpoints/comment/index.js';
 import { ModifyChannelPreferenceEndpoint } from '../endpoints/notification/index.js';
 
-import type Actions from '../Actions.js';
-import type { ApiResponse } from '../Actions.js';
+import type { Actions, ApiResponse } from '../index.js';
 
 export default class InteractionManager {
   #actions: Actions;

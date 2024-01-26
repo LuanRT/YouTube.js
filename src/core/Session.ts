@@ -1,9 +1,9 @@
-import Player from './Player.js';
 import OAuth from './OAuth.js';
-import Actions from './Actions.js';
 import { Log, EventEmitter, HTTPClient } from '../utils/index.js';
 import * as Constants from '../utils/Constants.js';
 import * as Proto from '../proto/index.js';
+import Actions from './Actions.js';
+import Player from './Player.js';
 
 import {
   generateRandomString, getRandomUserAgent,

@@ -1,7 +1,7 @@
 import { Parser, NavigateAction } from '../parser/index.js';
 import { InnertubeError } from '../utils/Utils.js';
 
-import type Session from './Session.js';
+import type { Session } from './index.js';
 
 import type {
   IBrowseResponse, IGetNotificationsMenuResponse,

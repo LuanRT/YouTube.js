@@ -5,8 +5,7 @@ import { InnertubeError } from '../../utils/Utils.js';
 
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { IParsedResponse } from '../../parser/types/index.js';
-import type Actions from '../Actions.js';
-import type { ApiResponse } from '../Actions.js';
+import type { ApiResponse, Actions } from '../index.js';
 
 export default class FilterableFeed<T extends IParsedResponse> extends Feed<T> {
   #chips?: ObservedArray<ChipCloudChip>;
