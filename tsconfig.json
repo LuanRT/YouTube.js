@@ -106,7 +106,8 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.js"
+    "src/**/*.js",
+    "scripts/**/*.mjs",
   ],
   "exclude": [
     "node_modules",
