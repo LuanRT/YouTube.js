@@ -231,7 +231,7 @@ class VideoInfo extends MediaInfo {
       throw new InnertubeError('Watch next feed continuation not found');
 
     const response = await this.#watch_next_continuation?.endpoint.call(this.actions, { parse: true });
-    const data = response?.on_response_received_endpoints?.get({ type: 'appendContinuationItemsAction' });
+    const data = response?.on_response_received_endpoints?.get({ type: 'AppendContinuationItemsAction' });
 
     if (!data)
       throw new InnertubeError('AppendContinuationItemsAction not found');
