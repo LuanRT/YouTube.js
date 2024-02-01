@@ -9,6 +9,7 @@ We provide shims for the following platforms:
 - Modern Browsers
 - Node.js
 - Deno
+- [React-Native](./react-native.md)
 
 ## Contributing Support for a New Platform
 

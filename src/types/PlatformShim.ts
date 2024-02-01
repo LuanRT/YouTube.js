@@ -1,6 +1,6 @@
 import type { ICacheConstructor } from './Cache.js';
 
-export type Runtime = 'deno' | 'node' | 'browser' | 'unknown';
+export type Runtime = 'deno' | 'node' | 'browser' | 'unknown' | 'react-native';
 
 export type FetchFunction = typeof fetch;
 
