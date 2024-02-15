@@ -169,9 +169,9 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
   if (requires_audio && !requires_video) {
     const audio_only = candidates.filter((format) => {
       if (language !== 'original') {
-        return !format.has_video && format.language === language;
+        return !format.has_video && !format.has_text && format.language === language;
       }
-      return !format.has_video && format.is_original;
+      return !format.has_video && !format.has_text && format.is_original;
 
     });
     if (audio_only.length > 0) {
