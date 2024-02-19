@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.2](https://github.com/LuanRT/YouTube.js/compare/v9.0.1...v9.0.2) (2024-01-31)
+
+
+### Bug Fixes
+
+* **VideoInfo:** Fix error because of typo in getWatchNextContinuation ([#590](https://github.com/LuanRT/YouTube.js/issues/590)) ([b21eb9f](https://github.com/LuanRT/YouTube.js/commit/b21eb9f33d956e130bac98712384125ae04ace47))
+
 ## [9.0.1](https://github.com/LuanRT/YouTube.js/compare/v9.0.0...v9.0.1) (2024-01-26)
 
 
