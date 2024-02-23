@@ -45,6 +45,7 @@ export default class Format {
   target_duration_dec?: number;
   has_audio: boolean;
   has_video: boolean;
+  has_text: boolean;
   language?: string | null;
   is_dubbed?: boolean;
   is_descriptive?: boolean;
@@ -54,6 +55,14 @@ export default class Format {
     primaries?: string;
     transfer_characteristics?: string;
     matrix_coefficients?: string;
+  };
+
+  caption_track?: {
+    display_name: string;
+    vss_id: string;
+    language_code: string;
+    kind?: 'asr' | 'frc';
+    id: string;
   };
 
   constructor(data: RawNode, this_response_nsig_cache?: Map<string, string>) {
@@ -96,6 +105,7 @@ export default class Format {
     this.target_duration_dec = data.targetDurationSec;
     this.has_audio = !!data.audioBitrate || !!data.audioQuality;
     this.has_video = !!data.qualityLabel;
+    this.has_text = !!data.captionTrack;
 
     this.color_info = data.colorInfo ? {
       primaries: data.colorInfo.primaries?.replace('COLOR_PRIMARIES_', ''),
@@ -103,25 +113,42 @@ export default class Format {
       matrix_coefficients: data.colorInfo.matrixCoefficients?.replace('COLOR_MATRIX_COEFFICIENTS_', '')
     } : undefined;
 
-    if (this.has_audio) {
+    if (Reflect.has(data, 'audioTrack')) {
+      this.audio_track = {
+        audio_is_default: data.audioTrack.audioIsDefault,
+        display_name: data.audioTrack.displayName,
+        id: data.audioTrack.id
+      };
+    }
+
+    if (Reflect.has(data, 'captionTrack')) {
+      this.caption_track = {
+        display_name: data.captionTrack.displayName,
+        vss_id: data.captionTrack.vssId,
+        language_code: data.captionTrack.languageCode,
+        kind: data.captionTrack.kind,
+        id: data.captionTrack.id
+      };
+    }
+
+    if (this.has_audio || this.has_text) {
       const args = new URLSearchParams(this.cipher || this.signature_cipher);
       const url_components = new URLSearchParams(args.get('url') || this.url);
 
       const xtags = url_components.get('xtags')?.split(':');
 
-      const audio_content = xtags?.find((x) => x.startsWith('acont='))?.split('=')[1];
-
       this.language = xtags?.find((x: string) => x.startsWith('lang='))?.split('=')[1] || null;
-      this.is_dubbed = audio_content === 'dubbed';
-      this.is_descriptive = audio_content === 'descriptive';
-      this.is_original = audio_content === 'original' || (!this.is_dubbed && !this.is_descriptive);
 
-      if (Reflect.has(data, 'audioTrack')) {
-        this.audio_track = {
-          audio_is_default: data.audioTrack.audioIsDefault,
-          display_name: data.audioTrack.displayName,
-          id: data.audioTrack.id
-        };
+      if (this.has_audio) {
+        const audio_content = xtags?.find((x) => x.startsWith('acont='))?.split('=')[1];
+        this.is_dubbed = audio_content === 'dubbed';
+        this.is_descriptive = audio_content === 'descriptive';
+        this.is_original = audio_content === 'original' || (!this.is_dubbed && !this.is_descriptive);
+      }
+
+      // Some text tracks don't have xtags while others do
+      if (this.has_text && !this.language && this.caption_track) {
+        this.language = this.caption_track.language_code;
       }
     }
   }

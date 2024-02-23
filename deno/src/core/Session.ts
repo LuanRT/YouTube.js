@@ -296,7 +296,7 @@ export default class Session extends EventEmitter {
 
     const ytcfg = data[0][2];
 
-    const api_version = `v${ytcfg[0][0][6]}`;
+    const api_version = Constants.CLIENTS.WEB.API_VERSION;
 
     const [ [ device_info ], api_key ] = ytcfg;
 
