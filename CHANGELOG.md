@@ -1,5 +1,18 @@
 # Changelog
 
+## [9.1.0](https://github.com/LuanRT/YouTube.js/compare/v9.0.2...v9.1.0) (2024-02-23)
+
+
+### Features
+
+* **Format:** Support caption tracks in adaptive formats ([#598](https://github.com/LuanRT/YouTube.js/issues/598)) ([bff65f8](https://github.com/LuanRT/YouTube.js/commit/bff65f8889c32813ec05bd187f3a4386fc6127c0))
+
+
+### Bug Fixes
+
+* **Playlist:** `items` getter failing if a playlist contains Shorts ([89fa3b2](https://github.com/LuanRT/YouTube.js/commit/89fa3b27a839d98aaf8bd70dd75220ee309c2bea))
+* **Session:** Don't try to extract api version from service worker ([2068dfb](https://github.com/LuanRT/YouTube.js/commit/2068dfb73eefc0e40157421d4e5b4096c0c8429c))
+
 ## [9.0.2](https://github.com/LuanRT/YouTube.js/compare/v9.0.1...v9.0.2) (2024-01-31)
 
 
