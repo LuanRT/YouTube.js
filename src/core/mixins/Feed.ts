@@ -8,6 +8,7 @@ import CompactVideo from '../../parser/classes/CompactVideo.js';
 import GridChannel from '../../parser/classes/GridChannel.js';
 import GridPlaylist from '../../parser/classes/GridPlaylist.js';
 import GridVideo from '../../parser/classes/GridVideo.js';
+import LockupView from '../../parser/classes/LockupView.js';
 import Playlist from '../../parser/classes/Playlist.js';
 import PlaylistPanelVideo from '../../parser/classes/PlaylistPanelVideo.js';
 import PlaylistVideo from '../../parser/classes/PlaylistVideo.js';
@@ -88,7 +89,18 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
    * Get all playlists on a given page via memo
    */
   static getPlaylistsFromMemo(memo: Memo) {
-    return memo.getType(Playlist, GridPlaylist);
+    const playlists: ObservedArray<Playlist | GridPlaylist | LockupView> = memo.getType(Playlist, GridPlaylist);
+
+    const lockup_views = memo.getType(LockupView)
+      .filter((lockup) => {
+        return [ 'PLAYLIST', 'ALBUM', 'PODCAST' ].includes(lockup.content_type);
+      });
+
+    if (lockup_views.length > 0) {
+      playlists.push(...lockup_views);
+    }
+
+    return playlists;
   }
 
   /**
