@@ -109,4 +109,4 @@ Sends a message.
 **Returns:** `Promise<ObservedArray<AddChatItemAction>>`
 
 ## Example
-See [`index.ts`]('./index.ts').
+See [`index.ts`](./index.ts).

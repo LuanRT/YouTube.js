@@ -62,4 +62,4 @@ Returns original InnerTube response (sanitized).
 **Returns:** `ParsedResponse`
 
 ## Example
-See [`index.ts`]('./index.ts').
+See [`index.ts`](./index.ts).
