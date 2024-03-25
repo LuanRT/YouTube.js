@@ -21,7 +21,5 @@ export default class LockupView extends YTNode {
     this.content_id = data.contentId;
     this.content_type = data.contentType.replace('LOCKUP_CONTENT_TYPE_', '');
     this.on_tap_endpoint = new NavigationEndpoint(data.rendererContext.commandContext.onTap);
-    console.log(data);
-    console.log(this);
   }
 }
