@@ -2,7 +2,7 @@ import { createWriteStream, existsSync } from 'node:fs';
 import { Innertube, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
 describe('YouTube.js Tests', () => {
-  let innertube: Innertube; 
+  let innertube: Innertube;
 
   beforeAll(async () => {
     innertube = await Innertube.create({ generate_session_locally: true });
@@ -29,7 +29,7 @@ describe('YouTube.js Tests', () => {
       expect(info.watch_next_feed?.length).toBeGreaterThan(0);
       const previousData = info.watch_next_feed?.map(value => value.as(YTNodes.Command).endpoint)
       const cont = await info.getWatchNextContinuation()
-      
+
       expect(cont.watch_next_feed?.length).toBeGreaterThan(0);
       const newData = cont.watch_next_feed?.map(value => value.as(YTNodes.Command).endpoint)
       expect(previousData).not.toEqual(newData)
@@ -124,15 +124,13 @@ describe('YouTube.js Tests', () => {
       });
     });
 
-    describe('Innertube#getHomeFeed', () => {
+    describe('Innertube#getHomeFeed', async () => {
       let home_feed: YT.HomeFeed;
 
-      beforeAll(async () => {
-        home_feed = await innertube.getHomeFeed();
-        expect(home_feed).toBeDefined();
-        expect(home_feed.contents).toBeDefined();
-        expect(home_feed.contents.contents?.length).toBeGreaterThan(0);
-      });
+      home_feed = await innertube.getHomeFeed();
+      expect(home_feed).toBeDefined();
+      expect(home_feed.contents).toBeDefined();
+      expect(home_feed.contents.contents?.length).toBeGreaterThan(0);
 
       // YouTube tells anonymous users to sign in or search something first before showing them a valid home feed.
       // Otherwise, you get the following message:
@@ -141,7 +139,7 @@ describe('YouTube.js Tests', () => {
       // Start watching videos to help us build a feed of videos you'll love"
       // 
       // - Removing this test for now.
-  
+
       // test('HomeFeed#getContinuation', async () => {
       //   const incremental_continuation = await home_feed.getContinuation();
       //   expect(incremental_continuation.contents).toBeDefined();
@@ -343,7 +341,7 @@ describe('YouTube.js Tests', () => {
         expect(incremental_continuation.sections).toBeDefined();
         expect(incremental_continuation.sections?.length).toBeGreaterThan(0);
       });
-      
+
       test('HomeFeed#applyFilter', async () => {
         home = await home.applyFilter(home.filters[1]);
         expect(home).toBeDefined();
