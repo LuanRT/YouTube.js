@@ -16,6 +16,7 @@ export default class EmojiRun implements Run {
     this.text =
       data.emoji?.emojiId ||
       data.emoji?.shortcuts?.[0] ||
+      data.text ||
       '';
 
     this.emoji = {
