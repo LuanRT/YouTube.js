@@ -4,6 +4,7 @@ import { YTNode } from '../helpers.js';
 import { isTextRun, timeToSeconds } from '../../utils/Utils.js';
 import type { ObservedArray } from '../helpers.js';
 import type { RawNode } from '../index.js';
+import type TextRun from './misc/TextRun.js';
 
 import { Parser } from '../index.js';
 import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.js';
@@ -25,7 +26,7 @@ export default class MusicResponsiveListItem extends YTNode {
   };
 
   endpoint?: NavigationEndpoint;
-  item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'non_music_track' | 'video' | 'song' | 'endpoint' | 'unknown' | undefined;
+  item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'non_music_track' | 'video' | 'song' | 'endpoint' | 'unknown' | 'podcast_show' | undefined;
   index?: Text;
   thumbnail?: MusicThumbnail | null;
   badges;
@@ -120,6 +121,10 @@ export default class MusicResponsiveListItem extends YTNode {
         this.item_type = 'non_music_track';
         this.#parseNonMusicTrack();
         break;
+      case 'MUSIC_PAGE_TYPE_PODCAST_SHOW_DETAIL_PAGE':
+        this.item_type = 'podcast_show';
+        this.#parsePodcastShow();
+        break;
       default:
         if (this.flex_columns[1]) {
           this.#parseVideoOrSong();
@@ -160,13 +165,19 @@ export default class MusicResponsiveListItem extends YTNode {
   }
 
   #parseVideoOrSong() {
-    const is_video = this.flex_columns.at(1)?.title.runs?.some((run) => run.text.match(/(.*?) views/));
-    if (is_video) {
-      this.item_type = 'video';
-      this.#parseVideo();
-    } else {
-      this.item_type = 'song';
-      this.#parseSong();
+    const music_video_type = (this.flex_columns.at(0)?.title.runs?.at(0) as TextRun)?.endpoint?.payload?.watchEndpointMusicSupportedConfigs?.watchEndpointMusicConfig?.musicVideoType;
+    switch (music_video_type) {
+      case 'MUSIC_VIDEO_TYPE_UGC':
+      case 'MUSIC_VIDEO_TYPE_OMV':
+        this.item_type = 'video';
+        this.#parseVideo();
+        break;
+      case 'MUSIC_VIDEO_TYPE_ATV':
+        this.item_type = 'song';
+        this.#parseSong();
+        break;
+      default:
+        this.#parseOther();
     }
   }
 
@@ -264,6 +275,11 @@ export default class MusicResponsiveListItem extends YTNode {
 
   #parseNonMusicTrack() {
     this.id = this.#playlist_item_data.video_id || this.endpoint?.payload?.videoId;
+    this.title = this.flex_columns.first().title.toString();
+  }
+
+  #parsePodcastShow() {
+    this.id = this.endpoint?.payload?.browseId;
     this.title = this.flex_columns.first().title.toString();
   }
 
