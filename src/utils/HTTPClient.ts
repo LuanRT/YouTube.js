@@ -65,7 +65,6 @@ export default class HTTPClient {
       request_headers.set('origin', request_url.origin);
     }
 
-    request_url.searchParams.set('key', this.#session.key);
     request_url.searchParams.set('prettyPrint', 'false');
     request_url.searchParams.set('alt', 'json');
 
@@ -113,9 +112,6 @@ export default class HTTPClient {
         await oauth.refreshIfRequired();
 
         request_headers.set('authorization', `Bearer ${oauth.credentials.access_token}`);
-
-        // Remove API key as it is not required when using oauth.
-        request_url.searchParams.delete('key');
       }
 
       if (this.#cookie) {
