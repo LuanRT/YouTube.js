@@ -78,6 +78,7 @@ export { default as CommentsHeader } from './classes/comments/CommentsHeader.js'
 export { default as CommentSimplebox } from './classes/comments/CommentSimplebox.js';
 export { default as CommentsSimplebox } from './classes/comments/CommentsSimplebox.js';
 export { default as CommentThread } from './classes/comments/CommentThread.js';
+export { default as CommentView } from './classes/comments/CommentView.js';
 export { default as CreatorHeart } from './classes/comments/CreatorHeart.js';
 export { default as EmojiPicker } from './classes/comments/EmojiPicker.js';
 export { default as PdgCommentChip } from './classes/comments/PdgCommentChip.js';
