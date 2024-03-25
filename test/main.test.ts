@@ -124,10 +124,8 @@ describe('YouTube.js Tests', () => {
       });
     });
 
-    describe('Innertube#getHomeFeed', async () => {
-      let home_feed: YT.HomeFeed;
-
-      home_feed = await innertube.getHomeFeed();
+    test('Innertube#getHomeFeed', async () => {
+      const home_feed = await innertube.getHomeFeed();
       expect(home_feed).toBeDefined();
       expect(home_feed.contents).toBeDefined();
       expect(home_feed.contents.contents?.length).toBeGreaterThan(0);
