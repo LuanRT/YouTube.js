@@ -134,11 +134,19 @@ describe('YouTube.js Tests', () => {
         expect(home_feed.contents.contents?.length).toBeGreaterThan(0);
       });
 
-      test('HomeFeed#getContinuation', async () => {
-        const incremental_continuation = await home_feed.getContinuation();
-        expect(incremental_continuation.contents).toBeDefined();
-        expect(incremental_continuation.contents.contents?.length).toBeGreaterThan(0);
-      });
+      // YouTube tells anonymous users to sign in or search something first before showing them a valid home feed.
+      // Otherwise, you get the following message:
+      //
+      // "Try searching to get started
+      // Start watching videos to help us build a feed of videos you'll love"
+      // 
+      // - Removing this test for now.
+  
+      // test('HomeFeed#getContinuation', async () => {
+      //   const incremental_continuation = await home_feed.getContinuation();
+      //   expect(incremental_continuation.contents).toBeDefined();
+      //   expect(incremental_continuation.contents.contents?.length).toBeGreaterThan(0);
+      // });
     });
 
     test('Innertube#getGuide', async () => {
