@@ -140,8 +140,8 @@ export default class HTTPClient {
     const response = await this.#fetch(request, {
       body: request_body,
       headers: request_headers,
-      credentials: 'include',
-      redirect: input instanceof Platform.shim.Request ? input.redirect : init?.redirect || 'follow'
+      redirect: input instanceof Platform.shim.Request ? input.redirect : init?.redirect || 'follow',
+      ...(Platform.shim.runtime !== 'cf-worker' ? { credentials: 'include' } : {})
     });
 
     // Check if 2xx
