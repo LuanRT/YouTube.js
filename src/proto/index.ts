@@ -15,6 +15,7 @@ import * as NotificationPreferences from './generated/messages/youtube/Notificat
 import * as InnertubePayload from './generated/messages/youtube/InnertubePayload.js';
 import * as Hashtag from './generated/messages/youtube/Hashtag.js';
 import * as ReelSequence from './generated/messages/youtube/ReelSequence.js';
+import * as ShortsParam from './generated/messages/youtube/ShortsParam.js';
 
 export function encodeVisitorData(id: string, timestamp: number): string {
   const buf = VisitorData.encodeBinary({ id, timestamp });
@@ -339,6 +340,16 @@ export function encodeReelSequence(short_id: string): string {
     },
     feature2: 25,
     feature3: 0
+  });
+  return encodeURIComponent(u8ToBase64(buf));
+}
+
+export function encodeShortsParam() {
+  const buf = ShortsParam.encodeBinary({
+    f1: {
+      p1: 1
+    },
+    p59: 1
   });
   return encodeURIComponent(u8ToBase64(buf));
 }
