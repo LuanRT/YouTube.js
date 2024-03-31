@@ -1,5 +1,21 @@
 # Changelog
 
+## [9.2.0](https://github.com/LuanRT/YouTube.js/compare/v9.1.0...v9.2.0) (2024-03-31)
+
+
+### Features
+
+* add support of cloudflare workers ([#596](https://github.com/LuanRT/YouTube.js/issues/596)) ([2029aec](https://github.com/LuanRT/YouTube.js/commit/2029aec90de3c0fdb022094d7b704a2feed4133b))
+* **parser:** Support CommentView nodes ([#614](https://github.com/LuanRT/YouTube.js/issues/614)) ([900f557](https://github.com/LuanRT/YouTube.js/commit/900f5572021d348e7012909f2080e52eac06adae))
+* **parser:** Support LockupView and it's child nodes ([#609](https://github.com/LuanRT/YouTube.js/issues/609)) ([7ca2a0c](https://github.com/LuanRT/YouTube.js/commit/7ca2a0c3e43ebd4b9443e69b7432f302b09e9c7a))
+* **Text:** Support formatting and emojis in `fromAttributed` ([#615](https://github.com/LuanRT/YouTube.js/issues/615)) ([e6f1f07](https://github.com/LuanRT/YouTube.js/commit/e6f1f078a828f8ea5db1fe7aec9f677bc53694e3))
+
+
+### Bug Fixes
+
+* **Cache:** handle the value read from the db correctly according to its type ([#620](https://github.com/LuanRT/YouTube.js/issues/620)) ([3170659](https://github.com/LuanRT/YouTube.js/commit/317065988007c860bf6173b0ac3c3d685ed81d20))
+* **PlayerEndpoint:** Workaround for "The following content is not available on this app" (Android) ([#624](https://github.com/LuanRT/YouTube.js/issues/624)) ([d589365](https://github.com/LuanRT/YouTube.js/commit/d589365ea27f540ff36e33a65362c932cd28c274))
+
 ## [9.1.0](https://github.com/LuanRT/YouTube.js/compare/v9.0.2...v9.1.0) (2024-02-23)
 
 
