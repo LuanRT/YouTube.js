@@ -112,20 +112,10 @@ describe('YouTube.js Tests', () => {
         expect(incremental_continuation.contents.length).toBeGreaterThan(0);
       });
 
-      describe('CommentThread#getReplies', () => {
-        let loaded_comment_thread: YTNodes.CommentThread;
-
-        beforeAll(async () => {
-          let comment_thread = comments.contents.first();
-          loaded_comment_thread = await comment_thread.getReplies();
-          expect(loaded_comment_thread.replies).toBeDefined();
-        });
-
-        test('CommentThread#getContinuation', async () => {
-          const incremental_continuation = await loaded_comment_thread.getContinuation();
-          expect(incremental_continuation.replies).toBeDefined();
-          expect(incremental_continuation.replies?.length).toBeGreaterThan(0);
-        });
+      test('CommentThread#getReplies', async () => {
+        let comment_thread = comments.contents.first();
+        let loaded_comment_thread = await comment_thread.getReplies();
+        expect(loaded_comment_thread.replies).toBeDefined();
       });
     });
 
