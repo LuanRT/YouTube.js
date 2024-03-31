@@ -19,6 +19,11 @@ describe('YouTube.js Tests', () => {
       expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
     });
 
+    test('Innertube#getBasicInfo (Android)', async () => {
+      const info = await innertube.getBasicInfo('ksEYRaIpP7A');
+      expect(info.basic_info.id).toBe('ksEYRaIpP7A');
+    });
+
     test('Innertube#getShortsWatchItem', async () => {
       const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
       expect(info.watch_next_feed?.length).toBeGreaterThan(0);
