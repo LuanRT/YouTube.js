@@ -25,10 +25,21 @@ export default class Author {
     this.name = nav_text?.text || 'N/A';
     this.thumbnails = thumbs ? Thumbnail.fromResponse(thumbs) : [];
     this.endpoint = ((nav_text?.runs?.[0] as TextRun) as TextRun)?.endpoint || nav_text?.endpoint;
-    this.badges = Array.isArray(badges) ? Parser.parseArray(badges) : observe([] as YTNode[]);
-    this.is_moderator = this.badges?.some((badge: any) => badge.icon_type == 'MODERATOR');
-    this.is_verified = this.badges?.some((badge: any) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED');
-    this.is_verified_artist = this.badges?.some((badge: any) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST');
+
+    if (badges) {
+      if (Array.isArray(badges)) {
+        this.badges = Parser.parseArray(badges);
+        this.is_moderator = this.badges?.some((badge: any) => badge.icon_type == 'MODERATOR');
+        this.is_verified = this.badges?.some((badge: any) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED');
+        this.is_verified_artist = this.badges?.some((badge: any) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST');
+      } else {
+        this.badges = observe([] as YTNode[]);
+        this.is_verified = !!badges.isVerified;
+        this.is_verified_artist = !!badges.isArtist;
+      }
+    } else {
+      this.badges = observe([] as YTNode[]);
+    }
 
     // @TODO: Refactor this mess.
     this.url =

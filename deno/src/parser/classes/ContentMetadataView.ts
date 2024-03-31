@@ -3,7 +3,7 @@ import type { RawNode } from '../index.ts';
 import { Text } from '../misc.ts';
 
 export type MetadataRow = {
-  metadata_parts: {
+  metadata_parts?: {
     text: Text;
   }[];
 };
@@ -17,7 +17,7 @@ export default class ContentMetadataView extends YTNode {
   constructor(data: RawNode) {
     super();
     this.metadata_rows = data.metadataRows.map((row: RawNode) => ({
-      metadata_parts: row.metadataParts.map((part: RawNode) => ({
+      metadata_parts: row.metadataParts?.map((part: RawNode) => ({
         text: Text.fromAttributed(part.text)
       }))
     }));

@@ -276,3 +276,11 @@ message ReelSequence {
   required int32 feature_2 = 10;
   required int32 feature_3 = 13;
 }
+
+message ShortsParam {
+  message Field1 {
+    int32 p1 = 1;
+  }
+  Field1 f1 = 1;
+  int32 p59 = 59;
+}

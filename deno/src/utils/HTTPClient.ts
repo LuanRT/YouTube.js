@@ -65,7 +65,6 @@ export default class HTTPClient {
       request_headers.set('origin', request_url.origin);
     }
 
-    request_url.searchParams.set('key', this.#session.key);
     request_url.searchParams.set('prettyPrint', 'false');
     request_url.searchParams.set('alt', 'json');
 
@@ -96,6 +95,7 @@ export default class HTTPClient {
       if (Platform.shim.server) {
         if (n_body.context.client.clientName === 'ANDROID' || n_body.context.client.clientName === 'ANDROID_MUSIC') {
           request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
+          request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
         } else if (n_body.context.client.clientName === 'iOS') {
           request_headers.set('User-Agent', Constants.CLIENTS.iOS.USER_AGENT);
         }
@@ -103,6 +103,14 @@ export default class HTTPClient {
 
       is_web_kids = n_body.context.client.clientName === 'WEB_KIDS';
       request_body = JSON.stringify(n_body);
+    } else if (content_type === 'application/x-protobuf') {
+      // Assume it is always an Android request.
+      if (Platform.shim.server) {
+        request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
+        request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
+        request_headers.delete('X-Youtube-Client-Version');
+        request_headers.delete('X-Origin');
+      }
     }
 
     // Authenticate (NOTE: YouTube Kids does not support regular bearer tokens)
@@ -113,9 +121,6 @@ export default class HTTPClient {
         await oauth.refreshIfRequired();
 
         request_headers.set('authorization', `Bearer ${oauth.credentials.access_token}`);
-
-        // Remove API key as it is not required when using oauth.
-        request_url.searchParams.delete('key');
       }
 
       if (this.#cookie) {
@@ -135,8 +140,8 @@ export default class HTTPClient {
     const response = await this.#fetch(request, {
       body: request_body,
       headers: request_headers,
-      credentials: 'include',
-      redirect: input instanceof Platform.shim.Request ? input.redirect : init?.redirect || 'follow'
+      redirect: input instanceof Platform.shim.Request ? input.redirect : init?.redirect || 'follow',
+      ...(Platform.shim.runtime !== 'cf-worker' ? { credentials: 'include' } : {})
     });
 
     // Check if 2xx
@@ -156,7 +161,7 @@ export default class HTTPClient {
       ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
       ctx.client.userAgent = Constants.CLIENTS.ANDROID.USER_AGENT;
       ctx.client.osName = 'Android';
-      ctx.client.osVersion = '10';
+      ctx.client.osVersion = '13';
       ctx.client.platform = 'MOBILE';
     }
 

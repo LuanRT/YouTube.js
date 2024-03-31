@@ -2,6 +2,7 @@ import { Parser } from '../../index.ts';
 import Button from '../Button.ts';
 import ContinuationItem from '../ContinuationItem.ts';
 import Comment from './Comment.ts';
+import CommentView from './CommentView.ts';
 import CommentReplies from './CommentReplies.ts';
 
 import { InnertubeError } from '../../../utils/Utils.ts';
@@ -17,15 +18,20 @@ export default class CommentThread extends YTNode {
   #actions?: Actions;
   #continuation?: ContinuationItem;
 
-  comment: Comment | null;
-  replies?: ObservedArray<Comment>;
+  comment: Comment | CommentView | null;
+  replies?: ObservedArray<Comment | CommentView>;
   comment_replies_data: CommentReplies | null;
   is_moderated_elq_comment: boolean;
   has_replies: boolean;
 
   constructor(data: RawNode) {
     super();
-    this.comment = Parser.parseItem(data.comment, Comment);
+
+    if (Reflect.has(data, 'commentViewModel')) {
+      this.comment = Parser.parseItem(data.commentViewModel, CommentView);
+    } else {
+      this.comment = Parser.parseItem(data.comment, Comment);
+    }
     this.comment_replies_data = Parser.parseItem(data.replies, CommentReplies);
     this.is_moderated_elq_comment = data.isModeratedElqComment;
     this.has_replies = !!this.comment_replies_data;
@@ -51,7 +57,7 @@ export default class CommentThread extends YTNode {
     if (!response.on_response_received_endpoints_memo)
       throw new InnertubeError('Unexpected response.', response);
 
-    this.replies = observe(response.on_response_received_endpoints_memo.getType(Comment).map((comment) => {
+    this.replies = observe(response.on_response_received_endpoints_memo.getType(Comment, CommentView).map((comment) => {
       comment.setActions(this.#actions);
       return comment;
     }));

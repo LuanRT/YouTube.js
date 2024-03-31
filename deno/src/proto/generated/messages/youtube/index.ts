@@ -11,3 +11,4 @@ export type { Type as MusicSearchFilter } from "./MusicSearchFilter.ts";
 export type { Type as SearchFilter } from "./SearchFilter.ts";
 export type { Type as Hashtag } from "./Hashtag.ts";
 export type { Type as ReelSequence } from "./ReelSequence.ts";
+export type { Type as ShortsParam } from "./ShortsParam.ts";

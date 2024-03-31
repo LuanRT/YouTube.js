@@ -1,3 +1,4 @@
+import { Log } from '../../../utils/index.ts';
 import type { RawNode } from '../../index.ts';
 import NavigationEndpoint from '../NavigationEndpoint.ts';
 import EmojiRun from './EmojiRun.ts';
@@ -17,6 +18,10 @@ export function escape(text: string) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
+
+// Place this here, instead of in a private static property,
+// To avoid the performance penalty of the private field polyfill
+const TAG = 'Text';
 
 export default class Text {
   text?: string;
@@ -46,73 +51,132 @@ export default class Text {
     }
   }
 
-  static fromAttributed(data: RawNode): Text {
-    const runs: {
-      text: string,
-      navigationEndpoint?: RawNode,
-      attachment?: RawNode
-    }[] = [];
+  static fromAttributed(data: AttributedText) {
+    const {
+      content,
+      styleRuns: style_runs,
+      commandRuns: command_runs,
+      attachmentRuns: attachment_runs
+    } = data;
 
-    const content = data.content;
-    const command_runs = data.commandRuns;
+    const runs: RawRun[] = [
+      {
+        text: content,
+        startIndex: 0
+      }
+    ];
 
-    // Haven't found an actually useful one yet, but they look like this:
-    // [ { startIndex: 0, length: 19 } ] (for a string that is 19 characters long)
-    // Const style_runs = data.styleRuns;
+    if (style_runs || command_runs || attachment_runs) {
+      if (style_runs) {
+        for (const style_run of style_runs) {
+          if (
+            style_run.italic ||
+            style_run.strikethrough === 'LINE_STYLE_SINGLE' ||
+            style_run.weightLabel === 'FONT_WEIGHT_MEDIUM' ||
+            style_run.weightLabel === 'FONT_WEIGHT_BOLD'
+          ) {
+            const matching_run = findMatchingRun(runs, style_run);
 
-    let last_end_index = 0;
+            if (!matching_run) {
+              Log.warn(TAG, 'Unable to find matching run for style run. Skipping...', {
+                style_run,
+                input_data: data,
+                // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
+                // So if we log the original runs object, it might have changed by the time the user looks at it.
+                // Deep clone, so that we log the exact state of the runs at this point.
+                parsed_runs: JSON.parse(JSON.stringify(runs))
+              });
 
-    if (command_runs) {
-      for (const item of command_runs) {
-        const length: number = item.length;
-        const start_index: number = item.startIndex;
-
-        if (start_index > last_end_index) {
-          runs.push({
-            text: content.slice(last_end_index, start_index)
-          });
-        }
-
-        if (Reflect.has(item, 'onTap')) {
-          let attachment = null;
-
-          if (Reflect.has(data, 'attachmentRuns')) {
-            const attachment_runs = data.attachmentRuns;
-
-            for (const attatchment_run of attachment_runs) {
-              if ((attatchment_run.startIndex - 2) == start_index) {
-                attachment = attatchment_run;
-                break;
-              }
+              continue;
             }
-          }
 
-          if (attachment) {
-            runs.push({
-              text: content.slice(start_index, start_index + length),
-              navigationEndpoint: item.onTap,
-              attachment
+            // Comments use MEDIUM for bold text and video descriptions use BOLD for bold text
+            insertSubRun(runs, matching_run, style_run, {
+              bold: style_run.weightLabel === 'FONT_WEIGHT_MEDIUM' || style_run.weightLabel === 'FONT_WEIGHT_BOLD',
+              italics: style_run.italic,
+              strikethrough: style_run.strikethrough === 'LINE_STYLE_SINGLE'
             });
           } else {
-            runs.push({
-              text: content.slice(start_index, start_index + length),
-              navigationEndpoint: item.onTap
+            Log.debug(TAG, 'Skipping style run as it is doesn\'t have any information that we parse.', {
+              style_run,
+              input_data: data
             });
           }
         }
-
-        last_end_index = start_index + length;
       }
 
-      if (last_end_index < content.length) {
-        runs.push({
-          text: content.slice(last_end_index)
-        });
+      if (command_runs) {
+        for (const command_run of command_runs) {
+          if (command_run.onTap) {
+            const matching_run = findMatchingRun(runs, command_run);
+
+            if (!matching_run) {
+              Log.warn(TAG, 'Unable to find matching run for command run. Skipping...', {
+                command_run,
+                input_data: data,
+                // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
+                // So if we log the original runs object, it might have changed by the time the user looks at it.
+                // Deep clone, so that we log the exact state of the runs at this point.
+                parsed_runs: JSON.parse(JSON.stringify(runs))
+              });
+
+              continue;
+            }
+
+            insertSubRun(runs, matching_run, command_run, {
+              navigationEndpoint: command_run.onTap
+            });
+          } else {
+            Log.debug(TAG, 'Skipping command run as it is missing the "doTap" property.', {
+              command_run,
+              input_data: data
+            });
+          }
+        }
       }
-    } else {
-      runs.push({
-        text: content
-      });
+
+      if (attachment_runs) {
+        for (const attachment_run of attachment_runs) {
+          const matching_run = findMatchingRun(runs, attachment_run);
+
+          if (!matching_run) {
+            Log.warn(TAG, 'Unable to find matching run for attachment run. Skipping...', {
+              attachment_run,
+              input_data: data,
+              // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
+              // So if we log the original runs object, it might have changed by the time the user looks at it.
+              // Deep clone, so that we log the exact state of the runs at this point.
+              parsed_runs: JSON.parse(JSON.stringify(runs))
+            });
+
+            continue;
+          }
+
+          if (attachment_run.length === 0) {
+            matching_run.attachment = attachment_run;
+          } else {
+            const offset_start_index = attachment_run.startIndex - matching_run.startIndex;
+
+            const text = matching_run.text.substring(offset_start_index, offset_start_index + attachment_run.length);
+
+            const is_custom_emoji = (/^:[^:]+:$/).test(text);
+
+            if (attachment_run.element?.type?.imageType?.image && (is_custom_emoji || (/^(?:\p{Emoji}|\u200d)+$/u).test(text))) {
+              const emoji = {
+                image: attachment_run.element.type.imageType.image,
+                isCustomEmoji: is_custom_emoji,
+                shortcuts: is_custom_emoji ? [ text ] : undefined
+              };
+
+              insertSubRun(runs, matching_run, attachment_run, { emoji });
+            } else {
+              insertSubRun(runs, matching_run, attachment_run, {
+                attachment: attachment_run
+              });
+            }
+          }
+        }
+      }
     }
 
     return new Text({ runs });
@@ -141,4 +205,100 @@ export default class Text {
   toString(): string {
     return this.text || 'N/A';
   }
+}
+
+function findMatchingRun(runs: RawRun[], response_run: ResponseRun) {
+  return runs.find((run) => {
+    return run.startIndex <= response_run.startIndex &&
+      response_run.startIndex + response_run.length <= run.startIndex + run.text.length;
+  });
+}
+
+function insertSubRun(runs: RawRun[], original_run: RawRun, response_run: ResponseRun, properties_to_add: Omit<RawRun, 'text' | 'startIndex'>) {
+  const replace_index = runs.indexOf(original_run);
+  const replacement_runs = [];
+
+  const offset_start_index = response_run.startIndex - original_run.startIndex;
+
+  // Stuff before the run
+  if (response_run.startIndex > original_run.startIndex) {
+    replacement_runs.push({
+      ...original_run,
+      text: original_run.text.substring(0, offset_start_index)
+    });
+  }
+
+  replacement_runs.push({
+    ...original_run,
+    text: original_run.text.substring(offset_start_index, offset_start_index + response_run.length),
+    startIndex: response_run.startIndex,
+    ...properties_to_add
+  });
+
+  // Stuff after the run
+  if (response_run.startIndex + response_run.length < original_run.startIndex + original_run.text.length) {
+    replacement_runs.push({
+      ...original_run,
+      text: original_run.text.substring(offset_start_index + response_run.length),
+      startIndex: response_run.startIndex + response_run.length
+    });
+  }
+
+  runs.splice(replace_index, 1, ...replacement_runs);
+}
+
+interface RawRun {
+  text: string,
+  bold?: boolean;
+  italics?: boolean;
+  strikethrough?: boolean;
+  navigationEndpoint?: RawNode;
+  attachment?: RawNode;
+  emoji?: RawNode;
+  startIndex: number;
+}
+
+interface AttributedText {
+  content: string;
+  styleRuns?: StyleRun[];
+  commandRuns?: CommandRun[];
+  attachmentRuns?: AttachmentRun[];
+  decorationRuns?: ResponseRun[];
+}
+
+interface ResponseRun {
+  startIndex: number;
+  length: number;
+}
+
+interface StyleRun extends ResponseRun {
+  italic?: boolean;
+  weightLabel?: string;
+  strikethrough?: string;
+  fontFamilyName?: string;
+  styleRunExtensions?: {
+    styleRunColorMapExtension?: {
+      colorMap?: {
+        key: string,
+        value: number
+      }[]
+    }
+  }
+}
+
+interface CommandRun extends ResponseRun {
+  onTap?: RawNode;
+}
+
+interface AttachmentRun extends ResponseRun {
+  alignment?: string;
+  element?: {
+    type?: {
+      imageType?: {
+        image: RawNode,
+        playbackState?: string;
+      }
+    };
+    properties?: RawNode
+  };
 }

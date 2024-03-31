@@ -25,6 +25,7 @@ import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem.t
 import Format from './classes/misc/Format.ts';
 import VideoDetails from './classes/misc/VideoDetails.ts';
 import NavigationEndpoint from './classes/NavigationEndpoint.ts';
+import CommentView from './classes/comments/CommentView.ts';
 
 import type { KeyInfo } from './generator.ts';
 import type { ObservedArray, YTNodeConstructor, YTNode } from './helpers.ts';
@@ -43,7 +44,8 @@ export type ParserError = {
   classdata: RawNode,
   error: unknown
 } | {
-  error_type: 'mutation_data_missing'
+  error_type: 'mutation_data_missing',
+  classname: string
 } | {
   error_type: 'mutation_data_invalid',
   total: number,
@@ -108,7 +110,7 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
     case 'mutation_data_missing':
       Log.warn(TAG,
         new InnertubeError(
-          'Mutation data required for processing MusicMultiSelectMenuItems, but none found.\n' +
+          `Mutation data required for processing ${classname}, but none found.\n` +
           `This is a bug, please report it at ${Platform.shim.info.bugs_url}`
         )
       );
@@ -315,6 +317,10 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   _clearMemo();
 
   applyMutations(contents_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
+
+  if (on_response_received_endpoints_memo) {
+    applyCommentsMutations(on_response_received_endpoints_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
+  }
 
   const continuation = data.continuation ? parseC(data.continuation) : null;
   if (continuation) {
@@ -680,6 +686,31 @@ export function applyMutations(memo: Memo, mutations: RawNode[]) {
         failed: missing_or_invalid_mutations.length,
         titles: missing_or_invalid_mutations
       });
+    }
+  }
+}
+
+export function applyCommentsMutations(memo: Memo, mutations: RawNode[]) {
+  const comment_view_items = memo.getType(CommentView);
+
+  if (comment_view_items.length > 0) {
+    if (!mutations) {
+      ERROR_HANDLER({
+        error_type: 'mutation_data_missing',
+        classname: 'CommentView'
+      });
+    }
+
+    for (const comment_view of comment_view_items) {
+      const comment_mutation = mutations
+        .find((mutation) => mutation.payload?.commentEntityPayload?.key === comment_view.keys.comment)
+        ?.payload?.commentEntityPayload;
+
+      const toolbar_state_mutation = mutations
+        .find((mutation) => mutation.payload?.engagementToolbarStateEntityPayload?.key === comment_view.keys.toolbar_state)
+        ?.payload?.engagementToolbarStateEntityPayload;
+
+      comment_view.applyMutations(comment_mutation, toolbar_state_mutation);
     }
   }
 }

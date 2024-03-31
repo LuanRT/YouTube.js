@@ -33,25 +33,25 @@ export interface Context {
     hl: string;
     gl: string;
     remoteHost?: string;
-    screenDensityFloat: number;
-    screenHeightPoints: number;
-    screenPixelDensity: number;
-    screenWidthPoints: number;
-    visitorData: string;
+    screenDensityFloat?: number;
+    screenHeightPoints?: number;
+    screenPixelDensity?: number;
+    screenWidthPoints?: number;
+    visitorData?: string;
     clientName: string;
     clientVersion: string;
     clientScreen?: string,
-    androidSdkVersion?: string;
+    androidSdkVersion?: number;
     osName: string;
     osVersion: string;
     platform: string;
     clientFormFactor: string;
-    userInterfaceTheme: string;
+    userInterfaceTheme?: string;
     timeZone: string;
     userAgent?: string;
     browserName?: string;
     browserVersion?: string;
-    originalUrl: string;
+    originalUrl?: string;
     deviceMake: string;
     deviceModel: string;
     utcOffsetMinutes: number;
@@ -72,6 +72,10 @@ export interface Context {
   };
   thirdParty?: {
     embedUrl: string;
+  };
+  request?: {
+    useSsl: boolean;
+    internalExperimentFlags: any[];
   };
 }
 
@@ -327,10 +331,16 @@ export default class Session extends EventEmitter {
       },
       user: {
         enableSafetyMode: options.enable_safety_mode,
-        lockedSafetyMode: false,
-        onBehalfOfUser: options.on_behalf_of_user
+        lockedSafetyMode: false
+      },
+      request: {
+        useSsl: true,
+        internalExperimentFlags: []
       }
     };
+
+    if (options.on_behalf_of_user)
+      context.user.onBehalfOfUser = options.on_behalf_of_user;
 
     return { context, api_key, api_version };
   }
@@ -366,10 +376,16 @@ export default class Session extends EventEmitter {
       },
       user: {
         enableSafetyMode: options.enable_safety_mode,
-        lockedSafetyMode: false,
-        onBehalfOfUser: options.on_behalf_of_user
+        lockedSafetyMode: false
+      },
+      request: {
+        useSsl: true,
+        internalExperimentFlags: []
       }
     };
+
+    if (options.on_behalf_of_user)
+      context.user.onBehalfOfUser = options.on_behalf_of_user;
 
     return { context, api_key: Constants.CLIENTS.WEB.API_KEY, api_version: Constants.CLIENTS.WEB.API_VERSION };
   }

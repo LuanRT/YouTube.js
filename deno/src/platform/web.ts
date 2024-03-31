@@ -56,8 +56,14 @@ class Cache implements ICache {
       const request = db.transaction('kv-store', 'readonly').objectStore('kv-store').get(key);
       request.onerror = reject;
       request.onsuccess = function () {
-        const result: Uint8Array | undefined = this.result?.v;
-        resolve(result ? result.buffer : undefined);
+        const result: unknown = this.result?.v;
+        if (result instanceof ArrayBuffer) {
+          resolve(result);
+        } else if (ArrayBuffer.isView(result)) {
+          resolve(result.buffer);
+        } else {
+          resolve(undefined);
+        }
       };
     });
   }

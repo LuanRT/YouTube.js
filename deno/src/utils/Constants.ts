@@ -56,9 +56,9 @@ export const CLIENTS = Object.freeze({
   },
   ANDROID: {
     NAME: 'ANDROID',
-    VERSION: '18.06.35',
-    SDK_VERSION: '29',
-    USER_AGENT: 'com.google.android.youtube/18.06.35 (Linux; U; Android 10; US)'
+    VERSION: '18.48.37',
+    SDK_VERSION: 33,
+    USER_AGENT: 'com.google.android.youtube/18.48.37(Linux; U; Android 13; en_US; sdk_gphone64_x86_64 Build/UPB4.230623.005) gzip'
   },
   YTSTUDIO_ANDROID: {
     NAME: 'ANDROID_CREATOR',
