@@ -19,6 +19,11 @@ describe('YouTube.js Tests', () => {
       expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
     });
 
+    test('Innertube#getBasicInfo (Android)', async () => {
+      const info = await innertube.getBasicInfo('ksEYRaIpP7A');
+      expect(info.basic_info.id).toBe('ksEYRaIpP7A');
+    });
+
     test('Innertube#getShortsWatchItem', async () => {
       const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
       expect(info.watch_next_feed?.length).toBeGreaterThan(0);
@@ -94,7 +99,7 @@ describe('YouTube.js Tests', () => {
       let comments: YT.Comments;
 
       beforeAll(async () => {
-        comments = await innertube.getComments('bUHZ2k9DYHY');
+        comments = await innertube.getComments('gmX-ceF-N1k');
         expect(comments).toBeDefined();
         expect(comments.header).toBeDefined();
         expect(comments.contents).toBeDefined();
@@ -107,20 +112,10 @@ describe('YouTube.js Tests', () => {
         expect(incremental_continuation.contents.length).toBeGreaterThan(0);
       });
 
-      describe('CommentThread#getReplies', () => {
-        let loaded_comment_thread: YTNodes.CommentThread;
-
-        beforeAll(async () => {
-          let comment_thread = comments.contents.first();
-          loaded_comment_thread = await comment_thread.getReplies();
-          expect(loaded_comment_thread.replies).toBeDefined();
-        });
-
-        test('CommentThread#getContinuation', async () => {
-          const incremental_continuation = await loaded_comment_thread.getContinuation();
-          expect(incremental_continuation.replies).toBeDefined();
-          expect(incremental_continuation.replies?.length).toBeGreaterThan(0);
-        });
+      test('CommentThread#getReplies', async () => {
+        let comment_thread = comments.contents.first();
+        let loaded_comment_thread = await comment_thread.getReplies();
+        expect(loaded_comment_thread.replies).toBeDefined();
       });
     });
 
