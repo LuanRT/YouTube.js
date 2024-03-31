@@ -12,6 +12,9 @@
       "web": [
         "./dist/src/platform/lib.d.ts"
       ],
+      "react-native": [
+        "./dist/src/platform/lib.d.ts"
+      ],
       "web.bundle": [
         "./dist/src/platform/lib.d.ts"
       ],
@@ -32,6 +35,7 @@
       "deno": "./dist/src/platform/deno.js",
       "types": "./dist/src/platform/lib.d.ts",
       "browser": "./dist/src/platform/web.js",
+      "react-native": "./dist/src/platform/react-native.js",
       "default": "./dist/src/platform/web.js"
     },
     "./agnostic": {
@@ -41,6 +45,10 @@
     "./web": {
       "types": "./dist/src/platform/lib.d.ts",
       "default": "./dist/src/platform/web.js"
+    },
+    "./react-native": {
+      "types": "./dist/src/platform/lib.d.ts",
+      "default": "./dist/src/platform/react-native.js"
     },
     "./web.bundle": {
       "types": "./dist/src/platform/lib.d.ts",
@@ -75,14 +83,15 @@
     "test": "npx jest --verbose",
     "lint": "npx eslint ./src",
     "lint:fix": "npx eslint --fix ./src",
-    "clean": "npx rimraf ./dist/src ./dist/package.json ./bundle/browser.js ./bundle/browser.js.map ./bundle/browser.min.js ./bundle/browser.min.js.map ./bundle/node.cjs ./bundle/node.cjs.map ./bundle/cf-worker.js ./bundle/cf-worker.js.map ./deno",
-    "build": "npm run clean && npm run build:parser-map && npm run build:proto && npm run build:esm && npm run bundle:node && npm run bundle:browser && npm run bundle:browser:prod && npm run bundle:cf-worker",
+    "clean": "npx rimraf ./dist/src ./dist/package.json ./bundle/browser.js ./bundle/browser.js.map ./bundle/browser.min.js ./bundle/browser.min.js.map ./bundle/node.cjs ./bundle/node.cjs.map ./bundle/cf-worker.js ./bundle/cf-worker.js.map ./bundle/react-native.js ./bundle/react-native.js.map ./deno",
+    "build": "npm run clean && npm run build:parser-map && npm run build:proto && npm run build:esm && npm run bundle:node && npm run bundle:browser && npm run bundle:browser:prod && npm run bundle:cf-worker && npm run bundle:react-native",
     "build:parser-map": "node ./dev-scripts/gen-parser-map.mjs",
     "build:proto": "npx pb-gen-ts --entry-path=\"src/proto\" --out-dir=\"src/proto/generated\" --ext-in-import=\".js\"",
     "build:esm": "npx tspc",
     "build:deno": "npx cpy ./src ./deno && npx esbuild ./src/utils/DashManifest.tsx --keep-names --format=esm --platform=neutral --target=es2020 --outfile=./deno/src/utils/DashManifest.js && npx cpy ./package.json ./deno && npx replace \".js';\" \".ts';\" ./deno -r && npx replace '.js\";' '.ts\";' ./deno -r && npx replace \"'./DashManifest.ts';\" \"'./DashManifest.js';\" ./deno -r && npx replace \"'jintr';\" \"'https://esm.sh/jintr';\" ./deno -r",
     "bundle:node": "npx esbuild ./dist/src/platform/node.js --bundle --target=node10 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:jintr --external:undici --external:linkedom --external:tslib --sourcemap --banner:js=\"/* eslint-disable */\"",
     "bundle:browser": "npx esbuild ./dist/src/platform/web.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/browser.js --platform=browser",
+    "bundle:react-native": "npx esbuild ./dist/src/platform/react-native.js --bundle --target=es2020 --keep-names --format=esm --platform=neutral --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/react-native.js",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
     "bundle:cf-worker": "npx esbuild ./dist/src/platform/cf-worker.js --banner:js=\"/* eslint-disable */\" --bundle --target=es2020 --keep-names --format=esm --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/cf-worker.js --platform=node",
     "prepare": "npm run build",
