@@ -465,9 +465,6 @@ function getColorInfo(format: Format) {
 
     if (color_info.transfer_characteristics) {
       transfer_characteristics = COLOR_TRANSFER_CHARACTERISTICS[color_info.transfer_characteristics];
-    } else if (getStringBetweenStrings(format.mime_type, 'codecs="', '"')?.startsWith('avc1')) {
-      // YouTube's h264 streams always seem to be SDR, so this is a pretty safe bet.
-      transfer_characteristics = COLOR_TRANSFER_CHARACTERISTICS.BT709;
     }
 
     if (color_info.matrix_coefficients) {
@@ -486,6 +483,9 @@ function getColorInfo(format: Format) {
           + `InnerTube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
       }
     }
+  } else if (getStringBetweenStrings(format.mime_type, 'codecs="', '"')?.startsWith('avc1')) {
+    // YouTube's h264 streams always seem to be SDR, so this is a pretty safe bet.
+    transfer_characteristics = COLOR_TRANSFER_CHARACTERISTICS.BT709;
   }
 
   const info: ColorInfo = {
