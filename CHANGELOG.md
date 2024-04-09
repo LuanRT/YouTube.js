@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.2.1](https://github.com/LuanRT/YouTube.js/compare/v9.2.0...v9.2.1) (2024-04-09)
+
+
+### Bug Fixes
+
+* **toDash:** Add missing transfer characteristics for h264 streams ([#631](https://github.com/LuanRT/YouTube.js/issues/631)) ([0107049](https://github.com/LuanRT/YouTube.js/commit/010704929fa4b737f68a5a1f10bf0b166cfbf905))
+
 ## [9.2.0](https://github.com/LuanRT/YouTube.js/compare/v9.1.0...v9.2.0) (2024-03-31)
 
 
