@@ -90,7 +90,7 @@ export default class CommentThread extends YTNode {
     if (!response.on_response_received_endpoints_memo)
       throw new InnertubeError('Unexpected response.', response);
 
-    this.replies = observe(response.on_response_received_endpoints_memo.getType(Comment).map((comment) => {
+    this.replies = observe(response.on_response_received_endpoints_memo.getType(Comment, CommentView).map((comment) => {
       comment.setActions(this.#actions);
       return comment;
     }));

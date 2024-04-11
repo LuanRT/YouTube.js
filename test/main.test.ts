@@ -1,6 +1,8 @@
 import { createWriteStream, existsSync } from 'node:fs';
 import { Innertube, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
+jest.useRealTimers();
+
 describe('YouTube.js Tests', () => {
   let innertube: Innertube;
 
@@ -99,7 +101,7 @@ describe('YouTube.js Tests', () => {
       let comments: YT.Comments;
 
       beforeAll(async () => {
-        comments = await innertube.getComments('gmX-ceF-N1k');
+        comments = await innertube.getComments('bUHZ2k9DYHY');
         expect(comments).toBeDefined();
         expect(comments.header).toBeDefined();
         expect(comments.contents).toBeDefined();
@@ -112,10 +114,20 @@ describe('YouTube.js Tests', () => {
         expect(incremental_continuation.contents.length).toBeGreaterThan(0);
       });
 
-      test('CommentThread#getReplies', async () => {
-        let comment_thread = comments.contents.first();
-        let loaded_comment_thread = await comment_thread.getReplies();
-        expect(loaded_comment_thread.replies).toBeDefined();
+      describe('CommentThread#getReplies', () => {
+        let loaded_comment_thread: YTNodes.CommentThread;
+
+        beforeAll(async () => {
+          let comment_thread = comments.contents.first();
+          loaded_comment_thread = await comment_thread.getReplies();
+          expect(loaded_comment_thread.replies).toBeDefined();
+        });
+
+        test('CommentThread#getContinuation', async () => {
+          const incremental_continuation = await loaded_comment_thread.getContinuation();
+          expect(incremental_continuation.replies).toBeDefined();
+          expect(incremental_continuation.replies?.length).toBeGreaterThan(0);
+        });
       });
     });
 
