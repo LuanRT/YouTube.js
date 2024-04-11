@@ -5,8 +5,8 @@ A `CommentThread` represents a top-level comment and its replies.
 ## API
 
 * CommentThread
-  * [.comment](#comment) ⇒ `Comment`
-  * [.replies](#replies) ⇒ `Comment[]`
+  * [.comment](#comment) ⇒ `Comment | CommentView`
+  * [.replies](#replies) ⇒ `(Comment | CommentView)[]`
   * [.getReplies](#getreplies) ⇒ `function`
   * [.getContinuation](#getcontinuation) ⇒ `function`
   * [.has_continuation](#hascontinuation) ⇒ `boolean`
@@ -14,7 +14,7 @@ A `CommentThread` represents a top-level comment and its replies.
 
 <a name="comment"></a>
 ### comment
-The top-level comment. **Note:** More about `Comment` [here](./Comment.md).
+The top-level comment. **Note:** More about the `Comment` node [here](./Comment.md) (OUTDATED! `Comment` has been replaced by [`CommentView`](./CommentView.md) nodes).
 
 **Type:** [`Comment`](../../src/parser/classes/comments/Comment.ts)
 
@@ -22,7 +22,7 @@ The top-level comment. **Note:** More about `Comment` [here](./Comment.md).
 ### replies
 An array of replies to the top-level comment. (not populated until [`getReplies()`](#getreplies) is called).
 
-**Type:** [`Comment[]`](../../src/parser/classes/comments/Comment.ts)
+**Type:** [`(Comment | CommentView)[]`](../../src/parser/classes/comments/Comment.ts)
 
 <a name="getreplies"></a>
 ### getReplies()

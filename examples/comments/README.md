@@ -60,6 +60,3 @@ Returns whether there are more comments to be fetched.
 Returns original InnerTube response (sanitized).
 
 **Returns:** `ParsedResponse`
-
-## Example
-See [`index.ts`](./index.ts).
