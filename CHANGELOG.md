@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.3.0](https://github.com/LuanRT/YouTube.js/compare/v9.2.1...v9.3.0) (2024-04-11)
+
+
+### Features
+
+* **CommentView:** Implement comment interaction methods ([1c08bfe](https://github.com/LuanRT/YouTube.js/commit/1c08bfe113804c69fbc4e49b42442d9a63d73be6))
+
+
+### Bug Fixes
+
+* **CommentThread:** Replies not being parsed correctly ([66e34f9](https://github.com/LuanRT/YouTube.js/commit/66e34f9388429a2088d5c5835d19eebdc881c957))
+
 ## [9.2.1](https://github.com/LuanRT/YouTube.js/compare/v9.2.0...v9.2.1) (2024-04-09)
 
 
