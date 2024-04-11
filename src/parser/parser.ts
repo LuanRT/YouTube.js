@@ -710,7 +710,10 @@ export function applyCommentsMutations(memo: Memo, mutations: RawNode[]) {
         .find((mutation) => mutation.payload?.engagementToolbarStateEntityPayload?.key === comment_view.keys.toolbar_state)
         ?.payload?.engagementToolbarStateEntityPayload;
 
-      comment_view.applyMutations(comment_mutation, toolbar_state_mutation);
+      const engagement_toolbar = mutations.find((mutation) => mutation.entityKey === comment_view.keys.toolbar_surface)
+        ?.payload?.engagementToolbarSurfaceEntityPayload;
+
+      comment_view.applyMutations(comment_mutation, toolbar_state_mutation, engagement_toolbar);
     }
   }
 }
