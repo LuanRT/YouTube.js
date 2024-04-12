@@ -43,8 +43,6 @@ export default class CommentView extends YTNode {
   };
   author?: Author;
 
-  test: any;
-
   is_liked?: boolean;
   is_disliked?: boolean;
   is_hearted?: boolean;
