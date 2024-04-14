@@ -19,7 +19,7 @@ export default class ItemSection extends YTNode {
     this.contents = Parser.parseArray(data.contents);
 
     if (data.targetId || data.sectionIdentifier) {
-      this.target_id = data.target_id || data.sectionIdentifier;
+      this.target_id = data.targetId || data.sectionIdentifier;
     }
 
     if (data.continuations) {

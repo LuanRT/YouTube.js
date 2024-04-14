@@ -9,6 +9,7 @@ import PageHeader from '../classes/PageHeader.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
+import { ItemSection } from '../nodes.js';
 
 class Library extends Feed<IBrowseResponse> {
   header: PageHeader | null;
@@ -22,14 +23,19 @@ class Library extends Feed<IBrowseResponse> {
 
     this.header = this.memo.getType(PageHeader).first();
 
-    const shelves = this.page.contents_memo.getType(Shelf);
+    const sections = this.page.contents_memo.getType(ItemSection);
 
-    this.sections = shelves.map((shelf: Shelf) => ({
-      type: shelf.icon_type,
-      title: shelf.title,
-      contents: shelf.content?.key('items').array() || [],
-      getAll: () => this.#getAll(shelf)
-    }));
+    this.sections = sections.filter((section) => section.contents.length > 0 && section.contents.first().type === 'Shelf')
+      .map((section) => {
+        const shelf = section.contents.first().as(Shelf);
+
+        return {
+          type: section.target_id,
+          title: shelf.title,
+          contents: shelf.content?.key('items').array() || [],
+          getAll: () => this.#getAll(shelf)
+        };
+      });
   }
 
   async #getAll(shelf: Shelf): Promise<Playlist | History | Feed> {
@@ -47,7 +53,7 @@ class Library extends Feed<IBrowseResponse> {
       case 'LIKE':
       case 'WATCH_LATER':
         return new Playlist(this.actions, page, true);
-      case 'WATCH_HISTORY':
+      case 'library-recent':
         return new History(this.actions, page, true);
       case 'CONTENT_CUT':
         return new Feed(this.actions, page, true);
@@ -57,7 +63,7 @@ class Library extends Feed<IBrowseResponse> {
   }
 
   get history() {
-    return this.sections.find((section) => section.type === 'WATCH_HISTORY');
+    return this.sections.find((section) => section.type === 'library-recent');
   }
 
   get watch_later() {
@@ -69,7 +75,7 @@ class Library extends Feed<IBrowseResponse> {
   }
 
   get playlists_section() {
-    return this.sections.find((section) => section.type === 'PLAYLISTS');
+    return this.sections.find((section) => section.type === 'library-playlists-shelf');
   }
 
   get clips() {
