@@ -12,6 +12,8 @@ export default class Format {
   average_bitrate?: number;
   width: number;
   height: number;
+  projection_type?: 'RECTANGULAR' | 'EQUIRECTANGULAR' | 'EQUIRECTANGULAR_THREED_TOP_BOTTOM' |'MESH';
+  stereo_layout?: 'LEFT_RIGHT' | 'TOP_BOTTOM';
 
   init_range?: {
     start: number;
@@ -77,6 +79,8 @@ export default class Format {
     this.average_bitrate = data.averageBitrate;
     this.width = data.width;
     this.height = data.height;
+    this.projection_type = data.projectionType;
+    this.stereo_layout = data.stereoLayout?.replace('STEREO_LAYOUT_', '');
 
     this.init_range = data.initRange ? {
       start: parseInt(data.initRange.start),
