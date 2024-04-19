@@ -278,7 +278,7 @@ export default class Music {
    * Retrieves related content.
    * @param video_id - The video id.
    */
-  async getRelated(video_id: string): Promise<ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>> {
+  async getRelated(video_id: string): Promise<SectionList | Message> {
     throwIfMissing({ video_id });
 
     const response = await this.#actions.execute(
@@ -297,9 +297,9 @@ export default class Music {
     if (!page.contents)
       throw new InnertubeError('Unexpected response', page);
 
-    const shelves = page.contents.item().as(SectionList).contents.as(MusicCarouselShelf, MusicDescriptionShelf);
+    const contents = page.contents.item().as(SectionList, Message);
 
-    return shelves;
+    return contents;
   }
 
   /**
