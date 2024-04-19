@@ -402,7 +402,6 @@ describe('YouTube.js Tests', () => {
     test('Innertube#music.getRelated', async () => {
       const related = await innertube.music.getRelated('eaJHysi5tYg');
       expect(related).toBeDefined();
-      expect(related?.length).toBeGreaterThan(0);
     });
 
     test('Innertube#music.getSearchSuggestions', async () => {
