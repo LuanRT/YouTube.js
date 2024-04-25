@@ -12,7 +12,7 @@ export default class Format {
   average_bitrate?: number;
   width: number;
   height: number;
-  projection_type?: 'RECTANGULAR' | 'EQUIRECTANGULAR' | 'EQUIRECTANGULAR_THREED_TOP_BOTTOM' |'MESH';
+  projection_type?: 'RECTANGULAR' | 'EQUIRECTANGULAR' | 'EQUIRECTANGULAR_THREED_TOP_BOTTOM' | 'MESH';
   stereo_layout?: 'LEFT_RIGHT' | 'TOP_BOTTOM';
 
   init_range?: {
@@ -43,6 +43,7 @@ export default class Format {
   audio_sample_rate?: number;
   audio_channels?: number;
   loudness_db?: number;
+  spatial_audio_type?: 'AMBISONICS_5_1' | 'AMBISONICS_QUAD' | 'FOA_WITH_NON_DIEGETIC';
   max_dvr_duration_sec?: number;
   target_duration_dec?: number;
   has_audio: boolean;
@@ -105,6 +106,7 @@ export default class Format {
     this.audio_sample_rate = parseInt(data.audioSampleRate);
     this.audio_channels = data.audioChannels;
     this.loudness_db = data.loudnessDb;
+    this.spatial_audio_type = data.spatialAudioType?.replace('SPATIAL_AUDIO_TYPE_', '');
     this.max_dvr_duration_sec = data.maxDvrDurationSec;
     this.target_duration_dec = data.targetDurationSec;
     this.has_audio = !!data.audioBitrate || !!data.audioQuality;
