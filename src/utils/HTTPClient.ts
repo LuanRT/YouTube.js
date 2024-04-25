@@ -57,8 +57,15 @@ export default class HTTPClient {
     request_headers.set('Accept', '*/*');
     request_headers.set('Accept-Language', '*');
     request_headers.set('X-Goog-Visitor-Id', this.#session.context.client.visitorData || '');
-    request_headers.set('X-Origin', request_url.origin);
     request_headers.set('X-Youtube-Client-Version', this.#session.context.client.clientVersion || '');
+
+    const client_constant = Object.values(Constants.CLIENTS).find((client) => {
+      return client.NAME === this.#session.context.client.clientName;
+    });
+
+    if (client_constant) {
+      request_headers.set('X-Youtube-Client-Name', client_constant.NAME_ID);
+    }
 
     if (Platform.shim.server) {
       request_headers.set('User-Agent', getRandomUserAgent('desktop'));
@@ -90,6 +97,14 @@ export default class HTTPClient {
       this.#adjustContext(n_body.context, n_body.client);
       request_headers.set('x-youtube-client-version', n_body.context.client.clientVersion);
 
+      const client_constant = Object.values(Constants.CLIENTS).find((client) => {
+        return client.NAME === n_body.context.client.clientName;
+      });
+
+      if (client_constant) {
+        request_headers.set('X-Youtube-Client-Name', client_constant.NAME_ID);
+      }
+
       delete n_body.client;
 
       if (Platform.shim.server) {
@@ -109,7 +124,6 @@ export default class HTTPClient {
         request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
         request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
         request_headers.delete('X-Youtube-Client-Version');
-        request_headers.delete('X-Origin');
       }
     }
 
