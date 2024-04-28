@@ -55,8 +55,10 @@ export { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailW
 export { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer.js';
 export { default as Chapter } from './classes/Chapter.js';
 export { default as ChildVideo } from './classes/ChildVideo.js';
+export { default as ChipBarView } from './classes/ChipBarView.js';
 export { default as ChipCloud } from './classes/ChipCloud.js';
 export { default as ChipCloudChip } from './classes/ChipCloudChip.js';
+export { default as ChipView } from './classes/ChipView.js';
 export { default as ClipAdState } from './classes/ClipAdState.js';
 export { default as ClipCreation } from './classes/ClipCreation.js';
 export { default as ClipCreationScrubber } from './classes/ClipCreationScrubber.js';
