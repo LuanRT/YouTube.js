@@ -263,6 +263,7 @@ export { default as MusicNavigationButton } from './classes/MusicNavigationButto
 export { default as MusicPlayButton } from './classes/MusicPlayButton.js';
 export { default as MusicPlaylistShelf } from './classes/MusicPlaylistShelf.js';
 export { default as MusicQueue } from './classes/MusicQueue.js';
+export { default as MusicResponsiveHeader } from './classes/MusicResponsiveHeader.js';
 export { default as MusicResponsiveListItem } from './classes/MusicResponsiveListItem.js';
 export { default as MusicResponsiveListItemFixedColumn } from './classes/MusicResponsiveListItemFixedColumn.js';
 export { default as MusicResponsiveListItemFlexColumn } from './classes/MusicResponsiveListItemFlexColumn.js';
