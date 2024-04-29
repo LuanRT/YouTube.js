@@ -1,4 +1,3 @@
-import { encodeShortsParam } from '../../proto/index.ts';
 import type { IPlayerRequest, PlayerEndpointOptions } from '../../types/index.ts';
 
 export const PATH = '/player';
@@ -9,11 +8,6 @@ export const PATH = '/player';
  * @returns The payload.
  */
 export function build(opts: PlayerEndpointOptions): IPlayerRequest {
-  const is_android =
-    opts.client === 'ANDROID' ||
-    opts.client === 'YTMUSIC_ANDROID' ||
-    opts.client === 'YTSTUDIO_ANDROID';
-
   return {
     playbackContext: {
       contentPlaybackContext: {
@@ -43,8 +37,7 @@ export function build(opts: PlayerEndpointOptions): IPlayerRequest {
     ...{
       client: opts.client,
       playlistId: opts.playlist_id,
-      // Workaround streaming URLs returning 403 or getting throttled when using Android based clients.
-      params: is_android ? encodeShortsParam() : opts.params
+      params: opts.params
     }
   };
 }

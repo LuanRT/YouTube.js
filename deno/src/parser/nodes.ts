@@ -55,8 +55,10 @@ export { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailW
 export { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer.ts';
 export { default as Chapter } from './classes/Chapter.ts';
 export { default as ChildVideo } from './classes/ChildVideo.ts';
+export { default as ChipBarView } from './classes/ChipBarView.ts';
 export { default as ChipCloud } from './classes/ChipCloud.ts';
 export { default as ChipCloudChip } from './classes/ChipCloudChip.ts';
+export { default as ChipView } from './classes/ChipView.ts';
 export { default as ClipAdState } from './classes/ClipAdState.ts';
 export { default as ClipCreation } from './classes/ClipCreation.ts';
 export { default as ClipCreationScrubber } from './classes/ClipCreationScrubber.ts';
@@ -261,6 +263,7 @@ export { default as MusicNavigationButton } from './classes/MusicNavigationButto
 export { default as MusicPlayButton } from './classes/MusicPlayButton.ts';
 export { default as MusicPlaylistShelf } from './classes/MusicPlaylistShelf.ts';
 export { default as MusicQueue } from './classes/MusicQueue.ts';
+export { default as MusicResponsiveHeader } from './classes/MusicResponsiveHeader.ts';
 export { default as MusicResponsiveListItem } from './classes/MusicResponsiveListItem.ts';
 export { default as MusicResponsiveListItemFixedColumn } from './classes/MusicResponsiveListItemFixedColumn.ts';
 export { default as MusicResponsiveListItemFlexColumn } from './classes/MusicResponsiveListItemFlexColumn.ts';
