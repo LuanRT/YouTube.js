@@ -1,5 +1,14 @@
 # Changelog
 
+## [9.4.0](https://github.com/LuanRT/YouTube.js/compare/v9.3.0...v9.4.0) (2024-04-29)
+
+
+### Features
+
+* **Format:** Add `projection_type` and `stereo_layout` ([#643](https://github.com/LuanRT/YouTube.js/issues/643)) ([064436c](https://github.com/LuanRT/YouTube.js/commit/064436cef30e892d8f569d4f7b146557fd72b09f))
+* **Format:** Add `spatial_audio_type` ([#647](https://github.com/LuanRT/YouTube.js/issues/647)) ([0ba8c54](https://github.com/LuanRT/YouTube.js/commit/0ba8c54257b068d7e4518c982396acb42f1dd41d))
+* **Parser:** Add `MusicResponsiveHeader` node ([ea82bea](https://github.com/LuanRT/YouTube.js/commit/ea82beaa10f6c877d6dd3102e10f6ae382560e0f))
+
 ## [9.3.0](https://github.com/LuanRT/YouTube.js/compare/v9.2.1...v9.3.0) (2024-04-11)
 
 
