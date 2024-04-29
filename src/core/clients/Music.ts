@@ -9,7 +9,6 @@ import {
 
 import AutomixPreviewVideo from '../../parser/classes/AutomixPreviewVideo.js';
 import Message from '../../parser/classes/Message.js';
-import MusicCarouselShelf from '../../parser/classes/MusicCarouselShelf.js';
 import MusicDescriptionShelf from '../../parser/classes/MusicDescriptionShelf.js';
 import MusicQueue from '../../parser/classes/MusicQueue.js';
 import MusicTwoRowItem from '../../parser/classes/MusicTwoRowItem.js';
