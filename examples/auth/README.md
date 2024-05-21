@@ -8,22 +8,21 @@ Just like the official Data API, YouTube.js supports using your own OAuth2 crede
 The library supports signing in using YouTube TV's client id. This is the recommended way to sign in as it doesn't require you to create your own OAuth2 credentials.
 
 ```js
-// 'auth-pending' is fired with the info needed to sign in via OAuth.
+
+// Fired when waiting for the user to authorize the sign in attempt.
 yt.session.on('auth-pending', (data) => {
-    // data.verification_url contains the URL to visit to authenticate.
-    // data.user_code contains the code to enter on the website.
+  // data.verification_url contains the authorization URL.
+  // data.user_code contains the code to enter on the website.
 });
 
-// 'auth' is fired once the authentication is complete
+// Fired when authentication is successful.
 yt.session.on('auth', ({ credentials }) => {
-  // do something with the credentials, eg; save them in a database.
+  // Do something with the credentials, eg; save them in a database.
   console.log('Sign in successful');
 });
 
-// 'update-credentials' is fired when the access token expires, if you do not save the updated credentials any subsequent request will fail 
-yt.session.on('update-credentials', ({ credentials }) => {
-  // do something with the updated credentials
-});
+// Fired when the access token expires.
+yt.session.on('update-credentials', ({ credentials }) => { /** do something with the updated credentials. */ });
   
 await yt.session.signIn(/* credentials */);
 ```
@@ -56,7 +55,7 @@ await yt.session.oauth.removeCache();
 # Cookies
 
 > **Note**
-> This is not as reliable as OAuth2 as cookies expire and can be completely revoked at any time.
+> This is not as reliable as OAuth2. Cookies can expire and are not very secure.
 
 ```js
 const yt = await Innertube.create({

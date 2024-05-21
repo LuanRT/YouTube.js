@@ -6,17 +6,17 @@ import { Innertube, UniversalCache } from  'youtubei.js';
     cache: new UniversalCache(false)
   });
 
-  // 'auth-pending' is fired with the info needed to sign in via OAuth.
+  // Fired when waiting for the user to authorize the sign in attempt.
   yt.session.on('auth-pending', (data) => {
     console.log(`Go to ${data.verification_url} in your browser and enter code ${data.user_code} to authenticate.`);
   });
 
-  // 'auth' is fired once the authentication is complete
+  // Fired when authentication is successful.
   yt.session.on('auth', ({ credentials }) => {
     console.log('Sign in successful:', credentials);
   });
 
-  // 'update-credentials' is fired when the access token expires, if you do not save the updated credentials any subsequent request will fail 
+  // Fired when the access token expires.
   yt.session.on('update-credentials', async ({ credentials }) => {
     console.log('Credentials updated:', credentials);
     await yt.session.oauth.cacheCredentials();

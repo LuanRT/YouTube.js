@@ -7,8 +7,8 @@ export * from './Actions.js';
 export { default as Player } from './Player.js';
 export * from './Player.js';
 
-export { default as OAuth } from './OAuth.js';
-export * from './OAuth.js';
+export { default as OAuth2 } from './OAuth2.js';
+export * from './OAuth2.js';
 
 export * as Clients from './clients/index.js';
 export * as Endpoints from './endpoints/index.js';

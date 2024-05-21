@@ -38,10 +38,11 @@ export default class Player {
 
     // We have the player id, now we can check if we have a cached player.
     if (cache) {
-      Log.info(Player.TAG, 'Found a cached player.');
       const cached_player = await Player.fromCache(cache, player_id);
-      if (cached_player)
+      if (cached_player) {
+        Log.info(Player.TAG, 'Found a cached player.');
         return cached_player;
+      }
     }
 
     const player_url = new URL(`/s/player/${player_id}/player_ias.vflset/en_US/base.js`, Constants.URLS.YT_BASE);

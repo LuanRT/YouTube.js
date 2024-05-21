@@ -40,7 +40,7 @@ export class InnertubeError extends Error {
 
 export class ParsingError extends InnertubeError { }
 export class MissingParamError extends InnertubeError { }
-export class OAuthError extends InnertubeError { }
+export class OAuth2Error extends InnertubeError { }
 export class PlayerError extends Error { }
 export class SessionError extends Error { }
 export class ChannelError extends Error { }

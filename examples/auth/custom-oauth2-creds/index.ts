@@ -111,9 +111,11 @@ app.get('/login', async (req, res) => {
     await innertube.session.signIn({
       access_token: tokens.access_token,
       refresh_token: tokens.refresh_token,
-      expires: new Date(tokens.expiry_date),
-      client_id: clientId,
-      client_secret: clientSecret,
+      expiry_date: new Date(tokens.expiry_date).toISOString(),
+      client: {
+        client_id: clientId,
+        client_secret: clientSecret
+      }
     });
 
     await innertube.session.oauth.cacheCredentials();
