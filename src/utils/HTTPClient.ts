@@ -131,21 +131,23 @@ export default class HTTPClient {
     if (this.#session.logged_in && is_innertube_req && !is_web_kids) {
       const oauth = this.#session.oauth;
 
-      if (oauth.validateCredentials()) {
-        await oauth.refreshIfRequired();
+      if (oauth.oauth2_tokens) {
+        if (oauth.shouldRefreshToken()) {
+          await oauth.refreshAccessToken();
+        }
 
-        request_headers.set('authorization', `Bearer ${oauth.credentials.access_token}`);
+        request_headers.set('Authorization', `Bearer ${oauth.oauth2_tokens.access_token}`);
       }
 
       if (this.#cookie) {
         const papisid = getStringBetweenStrings(this.#cookie, 'PAPISID=', ';');
 
         if (papisid) {
-          request_headers.set('authorization', await generateSidAuth(papisid));
-          request_headers.set('x-goog-authuser', this.#session.account_index.toString());
+          request_headers.set('Authorization', await generateSidAuth(papisid));
+          request_headers.set('X-Goog-Authuser', this.#session.account_index.toString());
         }
 
-        request_headers.set('cookie', this.#cookie);
+        request_headers.set('Cookie', this.#cookie);
       }
     }
 

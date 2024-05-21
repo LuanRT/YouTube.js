@@ -1,4 +1,4 @@
-import OAuth from './OAuth.js';
+import OAuth2 from './OAuth2.js';
 import { Log, EventEmitter, HTTPClient } from '../utils/index.js';
 import * as Constants from '../utils/Constants.js';
 import * as Proto from '../proto/index.js';
@@ -12,10 +12,7 @@ import {
 
 import type { DeviceCategory } from '../utils/Utils.js';
 import type { FetchFunction, ICache } from '../types/index.js';
-import type {
-  Credentials, OAuthAuthErrorEventHandler,
-  OAuthAuthEventHandler, OAuthAuthPendingEventHandler
-} from './OAuth.js';
+import type { OAuth2Tokens, OAuth2AuthErrorEventHandler, OAuth2AuthPendingEventHandler, OAuth2AuthEventHandler } from './OAuth2.js';
 
 export enum ClientType {
   WEB = 'WEB',
@@ -172,7 +169,7 @@ export default class Session extends EventEmitter {
   #account_index: number;
   #player?: Player;
 
-  oauth: OAuth;
+  oauth: OAuth2;
   http: HTTPClient;
   logged_in: boolean;
   actions: Actions;
@@ -187,23 +184,23 @@ export default class Session extends EventEmitter {
     this.#player = player;
     this.http = new HTTPClient(this, cookie, fetch);
     this.actions = new Actions(this);
-    this.oauth = new OAuth(this);
+    this.oauth = new OAuth2(this);
     this.logged_in = !!cookie;
     this.cache = cache;
   }
 
-  on(type: 'auth', listener: OAuthAuthEventHandler): void;
-  on(type: 'auth-pending', listener: OAuthAuthPendingEventHandler): void;
-  on(type: 'auth-error', listener: OAuthAuthErrorEventHandler): void;
-  on(type: 'update-credentials', listener: OAuthAuthEventHandler): void;
+  on(type: 'auth', listener: OAuth2AuthEventHandler): void;
+  on(type: 'auth-pending', listener: OAuth2AuthPendingEventHandler): void;
+  on(type: 'auth-error', listener: OAuth2AuthErrorEventHandler): void;
+  on(type: 'update-credentials', listener: OAuth2AuthEventHandler): void;
 
   on(type: string, listener: (...args: any[]) => void): void {
     super.on(type, listener);
   }
 
-  once(type: 'auth', listener: OAuthAuthEventHandler): void;
-  once(type: 'auth-pending', listener: OAuthAuthPendingEventHandler): void;
-  once(type: 'auth-error', listener: OAuthAuthErrorEventHandler): void;
+  once(type: 'auth', listener: OAuth2AuthEventHandler): void;
+  once(type: 'auth-pending', listener: OAuth2AuthPendingEventHandler): void;
+  once(type: 'auth-error', listener: OAuth2AuthErrorEventHandler): void;
 
   once(type: string, listener: (...args: any[]) => void): void {
     super.once(type, listener);
@@ -390,31 +387,20 @@ export default class Session extends EventEmitter {
     return { context, api_key: Constants.CLIENTS.WEB.API_KEY, api_version: Constants.CLIENTS.WEB.API_VERSION };
   }
 
-  async signIn(credentials?: Credentials): Promise<void> {
+  async signIn(credentials?: OAuth2Tokens): Promise<void> {
     return new Promise(async (resolve, reject) => {
-      const error_handler: OAuthAuthErrorEventHandler = (err) => reject(err);
-
-      this.once('auth', (data) => {
-        this.off('auth-error', error_handler);
-
-        if (data.status === 'SUCCESS') {
-          this.logged_in = true;
-          resolve();
-        }
-
-        reject(data);
-      });
+      const error_handler: OAuth2AuthErrorEventHandler = (err) => reject(err);
 
       this.once('auth-error', error_handler);
 
+      this.once('auth', () => {
+        this.off('auth-error', error_handler);
+        this.logged_in = true;
+        resolve();
+      });
+
       try {
         await this.oauth.init(credentials);
-
-        if (this.oauth.validateCredentials()) {
-          await this.oauth.refreshIfRequired();
-          this.logged_in = true;
-          resolve();
-        }
       } catch (err) {
         reject(err);
       }

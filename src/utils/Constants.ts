@@ -16,20 +16,9 @@ export const URLS = Object.freeze({
   })
 });
 export const OAUTH = Object.freeze({
-  SCOPE: 'http://gdata.youtube.com https://www.googleapis.com/auth/youtube-paid-content',
-  GRANT_TYPE: 'http://oauth.net/grant_type/device/1.0',
-  MODEL_NAME: 'ytlr::',
-  HEADERS: Object.freeze({
-    'accept': '*/*',
-    'origin': 'https://www.youtube.com',
-    'user-agent': 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version',
-    'content-type': 'application/json',
-    'referer': 'https://www.youtube.com/tv',
-    'accept-language': 'en-US'
-  }),
   REGEX: Object.freeze({
-    AUTH_SCRIPT: /<script id="base-js" src="(.*?)" nonce=".*?"><\/script>/,
-    CLIENT_IDENTITY: /var .+?={clientId:"(?<client_id>.+?)",.+?:"(?<client_secret>.+?)".+?}/
+    TV_SCRIPT: new RegExp('<script\\s+id="base-js"\\s+src="([^"]+)"[^>]*><\\/script>'),
+    CLIENT_IDENTITY: new RegExp('clientId:"(?<client_id>[^"]+)",[^"]*?:"(?<client_secret>[^"]+)"')
   })
 });
 export const CLIENTS = Object.freeze({
