@@ -14,7 +14,6 @@ import type { FetchFunction } from '../types/index.js';
 export interface HTTPClientInit {
   baseURL?: string;
 }
-
 export default class HTTPClient {
   #session: Session;
   #cookie?: string;
@@ -69,7 +68,7 @@ export default class HTTPClient {
 
     if (Platform.shim.server) {
       request_headers.set('User-Agent', getRandomUserAgent('desktop'));
-      request_headers.set('origin', request_url.origin);
+      request_headers.set('Origin', request_url.origin);
     }
 
     request_url.searchParams.set('prettyPrint', 'false');
@@ -95,7 +94,7 @@ export default class HTTPClient {
       };
 
       this.#adjustContext(n_body.context, n_body.client);
-      request_headers.set('x-youtube-client-version', n_body.context.client.clientVersion);
+      request_headers.set('X-Youtube-Client-Version', n_body.context.client.clientVersion);
 
       const client_constant = Object.values(Constants.CLIENTS).find((client) => {
         return client.NAME === n_body.context.client.clientName;
@@ -107,13 +106,11 @@ export default class HTTPClient {
 
       delete n_body.client;
 
-      if (Platform.shim.server) {
-        if (n_body.context.client.clientName === 'ANDROID' || n_body.context.client.clientName === 'ANDROID_MUSIC') {
-          request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
-          request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
-        } else if (n_body.context.client.clientName === 'iOS') {
-          request_headers.set('User-Agent', Constants.CLIENTS.iOS.USER_AGENT);
-        }
+      if (n_body.context.client.clientName === 'ANDROID' || n_body.context.client.clientName === 'ANDROID_MUSIC') {
+        request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
+        request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
+      } else if (n_body.context.client.clientName === 'iOS') {
+        request_headers.set('User-Agent', Constants.CLIENTS.iOS.USER_AGENT);
       }
 
       is_web_kids = n_body.context.client.clientName === 'WEB_KIDS';
