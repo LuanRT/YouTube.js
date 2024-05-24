@@ -6,7 +6,9 @@ import {
   Response,
   Headers,
   FormData,
-  File
+  File,
+  setGlobalDispatcher,
+  Agent
 } from 'undici';
 import type { ICache } from '../types/Cache.js';
 import { Platform } from '../utils/Utils.js';
@@ -26,6 +28,12 @@ const __dirname__ = is_cjs ? __dirname : path.dirname(fileURLToPath(meta_url));
 
 const { homepage, version, bugs } = $INLINE_JSON('../../package.json');
 const repo_url = homepage?.split('#')[0];
+
+setGlobalDispatcher(new Agent({
+  connect: {
+    timeout: 60_000
+  }
+}));
 
 class Cache implements ICache {
   #persistent_directory: string;

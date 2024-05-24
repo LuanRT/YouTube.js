@@ -141,7 +141,8 @@ async function main() {
       if (shaka.Player.isBrowserSupported()) {
         videoEl.poster = info.basic_info.thumbnail![0].url;
 
-        player = new shaka.Player(videoEl);
+        player = new shaka.Player();
+        await player.attach(videoEl);
         ui = new shaka.ui.Overlay(player, shakaContainer, videoEl);
 
         const config = {
@@ -194,6 +195,7 @@ async function main() {
               request.headers = {};
               url.searchParams.set("range", headers.Range.split("=")[1]);
               url.searchParams.set("alr", "yes");
+              delete headers.Range;
             }
           }
 
@@ -207,14 +209,12 @@ async function main() {
 
         player.getNetworkingEngine()?.registerResponseFilter(async (type: any, response: any) => {
           const dataView = new DataView(response.data);
-          
+
           if (response.data.byteLength < 4 ||
             dataView.getUint32(0) != HTTP_IN_HEX) {
-            // This doesn't start with "http", so it is not an ALR.
             return;
           }
 
-          // Interpret the response data as a URL string.
           const response_as_string = shaka.util.StringUtils.fromUTF8(response.data);
 
           let retry_parameters;
