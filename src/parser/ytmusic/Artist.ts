@@ -1,4 +1,5 @@
 import { Parser } from '../index.js';
+import { observe } from '../helpers.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
 import MusicShelf from '../classes/MusicShelf.js';
@@ -10,13 +11,14 @@ import MusicHeader from '../classes/MusicHeader.js';
 
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
+import type { ObservedArray } from '../helpers.js';
 
 class Artist {
   #page: IBrowseResponse;
   #actions: Actions;
 
   header?: MusicImmersiveHeader | MusicVisualHeader | MusicHeader;
-  sections: (MusicCarouselShelf | MusicShelf)[];
+  sections: ObservedArray<MusicCarouselShelf | MusicShelf>;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
@@ -27,7 +29,7 @@ class Artist {
     const music_shelf = this.#page.contents_memo?.getType(MusicShelf) || [];
     const music_carousel_shelf = this.#page.contents_memo?.getType(MusicCarouselShelf) || [];
 
-    this.sections = [ ...music_shelf, ...music_carousel_shelf ];
+    this.sections = observe([ ...music_shelf, ...music_carousel_shelf ]);
   }
 
   async getAllSongs(): Promise<MusicPlaylistShelf | undefined> {
