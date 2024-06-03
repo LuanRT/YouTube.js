@@ -140,6 +140,10 @@ export type SessionOptions = {
    */
   generate_session_locally?: boolean;
   /**
+   * Specifies whether the session data should be cached.
+   */
+  enable_session_cache?: boolean;
+  /**
    * Platform to use for the session.
    */
   device_category?: DeviceCategory;
@@ -254,7 +258,8 @@ export default class Session extends EventEmitter {
       options.timezone,
       options.fetch,
       options.on_behalf_of_user,
-      options.cache
+      options.cache,
+      options.enable_session_cache
     );
 
     return new Session(
@@ -317,13 +322,14 @@ export default class Session extends EventEmitter {
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
     fetch: FetchFunction = Platform.shim.fetch,
     on_behalf_of_user?: string,
-    cache?: ICache
+    cache?: ICache,
+    enable_session_cache = true
   ) {
     const session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data, on_behalf_of_user };
 
     let session_data: SessionData | undefined;
 
-    if (cache) {
+    if (cache && enable_session_cache) {
       const cached_session_data = await this.fromCache(cache, session_args);
       if (cached_session_data) {
         Log.info(TAG, 'Found session data in cache.');
@@ -372,7 +378,8 @@ export default class Session extends EventEmitter {
         context: this.#buildContext(context_data)
       };
 
-      await this.#storeSession(session_data, cache);
+      if (enable_session_cache)
+        await this.#storeSession(session_data, cache);
     }
 
     Log.debug(TAG, 'Session data:', session_data);
