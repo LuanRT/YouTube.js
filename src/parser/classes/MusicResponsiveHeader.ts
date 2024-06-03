@@ -6,6 +6,7 @@ import MusicInlineBadge from './MusicInlineBadge.js';
 import MusicPlayButton from './MusicPlayButton.js';
 import ToggleButton from './ToggleButton.js';
 import Menu from './menus/Menu.js';
+import Text from './misc/Text.js';
 
 import type { ObservedArray } from '../helpers.js';
 
