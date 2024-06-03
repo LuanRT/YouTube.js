@@ -59,7 +59,17 @@ export default class MediaInfo {
       storyboards = player_response.storyboards;
     }
 
-    return FormatUtils.toDash(this.streaming_data, this.page[0].video_details?.is_post_live_dvr, url_transformer, format_filter, this.#cpn, this.#actions.session.player, this.#actions, storyboards);
+    return FormatUtils.toDash(
+      this.streaming_data,
+      this.page[0].video_details?.is_post_live_dvr,
+      url_transformer,
+      format_filter,
+      this.#cpn,
+      this.#actions.session.player,
+      this.#actions,
+      storyboards,
+      options
+    );
   }
 
   /**

@@ -11,6 +11,7 @@ import type { IStreamingData } from '../parser/index.js';
 import type { Format } from '../parser/misc.js';
 import type { PlayerLiveStoryboardSpec } from '../parser/nodes.js';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
+import type { StreamingInfoOptions } from '../types/StreamingInfoOptions.js';
 
 const TAG_ = 'StreamingInfo';
 
@@ -27,7 +28,7 @@ export interface AudioSet {
   codecs?: string;
   audio_sample_rate?: number;
   track_name?: string;
-  track_role?: 'main' | 'dub' | 'description' | 'alternate';
+  track_roles?: ('main' | 'dub' | 'description' | 'enhanced-audio-intelligibility' | 'alternate')[];
   channels?: number;
   representations: AudioRepresentation[];
 }
@@ -130,6 +131,12 @@ interface SharedPostLiveDvrInfo {
   item?: PostLiveDvrInfo
 }
 
+interface DrcLabels {
+  label_original: string;
+  label_drc: string;
+  label_drc_mutiple: (audio_track_display_name: string) => string;
+}
+
 function getFormatGroupings(formats: Format[], is_post_live_dvr: boolean) {
   const group_info = new Map<string, Format[]>();
 
@@ -149,7 +156,9 @@ function getFormatGroupings(formats: Format[], is_post_live_dvr: boolean) {
 
     const audio_track_id = format.audio_track?.id || '';
 
-    const group_id = `${mime_type}-${just_codec}-${color_info}-${audio_track_id}`;
+    const drc = format.is_drc ? 'drc' : '';
+
+    const group_id = `${mime_type}-${just_codec}-${color_info}-${audio_track_id}-${drc}`;
 
     if (!group_info.has(group_id)) {
       group_info.set(group_id, []);
@@ -373,8 +382,18 @@ function getAudioRepresentation(
   const url = new URL(format.decipher(player));
   url.searchParams.set('cpn', cpn || '');
 
+  const uid_parts = [ format.itag.toString() ];
+
+  if (format.audio_track) {
+    uid_parts.push(format.audio_track.id);
+  }
+
+  if (format.is_drc) {
+    uid_parts.push('drc');
+  }
+
   const rep: AudioRepresentation = {
-    uid: format.audio_track ? `${format.itag}-${format.audio_track.id}` : format.itag.toString(),
+    uid: uid_parts.join('-'),
     bitrate: format.bitrate,
     codecs: !hoisted.includes('codecs') ? getStringBetweenStrings(format.mime_type, 'codecs="', '"') : undefined,
     audio_sample_rate: !hoisted.includes('audio_sample_rate') ? format.audio_sample_rate : undefined,
@@ -385,22 +404,25 @@ function getAudioRepresentation(
   return rep;
 }
 
-function getTrackRole(format: Format) {
-  const { audio_track } = format;
-
-  if (!audio_track)
+function getTrackRoles(format: Format, has_drc_streams: boolean) {
+  if (!format.audio_track && !has_drc_streams) {
     return;
+  }
 
-  if (audio_track.audio_is_default)
-    return 'main';
+  const roles: ('main' | 'dub' | 'description' | 'enhanced-audio-intelligibility' | 'alternate')[] = [
+    format.is_original ? 'main' : 'alternate'
+  ];
 
   if (format.is_dubbed)
-    return 'dub';
+    roles.push('dub');
 
   if (format.is_descriptive)
-    return 'description';
+    roles.push('description');
 
-  return 'alternate';
+  if (format.is_drc)
+    roles.push('enhanced-audio-intelligibility');
+
+  return roles;
 }
 
 function getAudioSet(
@@ -409,19 +431,34 @@ function getAudioSet(
   actions?: Actions,
   player?: Player,
   cpn?: string,
-  shared_post_live_dvr_info?: SharedPostLiveDvrInfo
+  shared_post_live_dvr_info?: SharedPostLiveDvrInfo,
+  drc_labels?: DrcLabels
 ) {
   const first_format = formats[0];
   const { audio_track } = first_format;
   const hoisted: string[] = [];
+
+  const has_drc_streams = !!drc_labels;
+
+  let track_name;
+
+  if (audio_track) {
+    if (has_drc_streams && first_format.is_drc) {
+      track_name = drc_labels.label_drc_mutiple(audio_track.display_name);
+    } else {
+      track_name = audio_track.display_name;
+    }
+  } else if (has_drc_streams) {
+    track_name = first_format.is_drc ? drc_labels.label_drc : drc_labels.label_original;
+  }
 
   const set: AudioSet = {
     mime_type: first_format.mime_type.split(';')[0],
     language: first_format.language ?? undefined,
     codecs: hoistCodecsIfPossible(formats, hoisted),
     audio_sample_rate: hoistNumberAttributeIfPossible(formats, 'audio_sample_rate', hoisted),
-    track_name: audio_track?.display_name,
-    track_role: getTrackRole(first_format),
+    track_name,
+    track_roles: getTrackRoles(first_format, has_drc_streams),
     channels: hoistAudioChannelsIfPossible(formats, hoisted),
     representations: formats.map((format) => getAudioRepresentation(format, hoisted, url_transformer, actions, player, cpn, shared_post_live_dvr_info))
   };
@@ -706,7 +743,8 @@ export function getStreamingInfo(
   cpn?: string,
   player?: Player,
   actions?: Actions,
-  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec,
+  options?: StreamingInfoOptions
 ) {
   if (!streaming_data)
     throw new InnertubeError('Streaming data not available');
@@ -768,7 +806,17 @@ export function getStreamingInfo(
     audio_groups: [] as Format[][]
   });
 
-  const audio_sets = audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn, shared_post_live_dvr_info));
+  let drc_labels: DrcLabels | undefined;
+
+  if (audio_groups.flat().some((format) => format.is_drc)) {
+    drc_labels = {
+      label_original: options?.label_original || 'Original',
+      label_drc: options?.label_drc || 'Stable Volume',
+      label_drc_mutiple: options?.label_drc_mutiple || ((display_name) => `${display_name} (Stable Volume)`)
+    };
+  }
+
+  const audio_sets = audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn, shared_post_live_dvr_info, drc_labels));
 
   const video_sets = video_groups.map((formats) => getVideoSet(formats, url_transformer, player, actions, cpn, shared_post_live_dvr_info));
 
