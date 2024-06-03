@@ -4,8 +4,8 @@ import {
   Platform,
   generateSidAuth,
   getRandomUserAgent,
-  getStringBetweenStrings,
-  InnertubeError
+  InnertubeError,
+  getCookie
 } from './Utils.js';
 
 import type { Context, Session } from '../core/index.js';
@@ -14,6 +14,7 @@ import type { FetchFunction } from '../types/index.js';
 export interface HTTPClientInit {
   baseURL?: string;
 }
+
 export default class HTTPClient {
   #session: Session;
   #cookie?: string;
@@ -137,10 +138,10 @@ export default class HTTPClient {
       }
 
       if (this.#cookie) {
-        const papisid = getStringBetweenStrings(this.#cookie, 'PAPISID=', ';');
+        const sapisid = getCookie(this.#cookie, 'SAPISID');
 
-        if (papisid) {
-          request_headers.set('Authorization', await generateSidAuth(papisid));
+        if (sapisid) {
+          request_headers.set('Authorization', await generateSidAuth(sapisid));
           request_headers.set('X-Goog-Authuser', this.#session.account_index.toString());
         }
 

@@ -240,3 +240,9 @@ export function base64ToU8(base64: string): Uint8Array {
 export function isTextRun(run: TextRun | EmojiRun): run is TextRun {
   return !('emoji' in run);
 }
+
+export function getCookie(cookies: string, name: string, matchWholeName = false): string | undefined {
+  const regex = matchWholeName ? `(^|\\s?)\\b${name}\\b=([^;]+)` : `(^|s?)${name}=([^;]+)`;
+  const match = cookies.match(new RegExp(regex));
+  return match ? match[2] : undefined;
+}
