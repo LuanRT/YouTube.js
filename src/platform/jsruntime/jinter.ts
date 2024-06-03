@@ -5,7 +5,7 @@ import { Log } from '../lib.js';
 const TAG = 'JsRuntime';
 
 export default function evaluate(code: string, env: Record<string, VMPrimative>) {
-  Log.info(TAG, 'Evaluating JavaScript.\n', code);
+  Log.debug(TAG, 'Evaluating JavaScript:\n', code);
 
   const runtime = new Jinter(code);
 
@@ -15,7 +15,7 @@ export default function evaluate(code: string, env: Record<string, VMPrimative>)
 
   const result = runtime.interpret();
 
-  Log.info(TAG, 'Done. Result:', result);
+  Log.debug(TAG, 'Done. Result:', result);
 
   return result;
 }
