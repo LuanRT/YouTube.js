@@ -136,7 +136,7 @@ export type SessionOptions = {
    * This can be useful if you need more performance.
    *
    * **NOTE:** If you are using the cache option and a session has already been generated, this will be ignored.
-   * If you want to force a new session to be generated, you must clear the cache.
+   * If you want to force a new session to be generated, you must clear the cache or disable session caching.
    */
   generate_session_locally?: boolean;
   /**

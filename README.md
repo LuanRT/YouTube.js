@@ -102,11 +102,12 @@ const youtube = await Innertube.create(/* options */);
 | `visitor_data` | `string` | Setting this to a valid and persistent visitor data string will allow YouTube to give this session tailored content even when not logged in. A good way to get a valid one is by either grabbing it from a browser or calling InnerTube's `/visitor_id` endpoint. | `undefined` |
 | `retrieve_player` | `boolean` | Specifies whether to retrieve the JS player. Disabling this will make session creation faster. **NOTE:** Deciphering formats is not possible without the JS player. | `true` |
 | `enable_safety_mode` | `boolean` | Specifies whether to enable safety mode. This will prevent the session from loading any potentially unsafe content. | `false` |
-| `generate_session_locally` | `boolean` | Specifies whether to generate the session data locally or retrieve it from YouTube. This can be useful if you need more performance. | `false` |
+| `generate_session_locally` | `boolean` | Specifies whether to generate the session data locally or retrieve it from YouTube. This can be useful if you need more performance. **NOTE:** If you are using the cache option and a session has already been generated, this will be ignored. If you want to force a new session to be generated, you must clear the cache or disable session caching. | `false` |
+| `enable_session_cache` | `boolean` | Specifies whether to cache the session data. | `true` |
 | `device_category` | `DeviceCategory` | Platform to use for the session. | `DESKTOP` |
 | `client_type` | `ClientType` | InnerTube client type. | `WEB` |
 | `timezone` | `string` | The time zone. | `*` |
-| `cache` | `ICache` | Used to cache the deciphering functions from the JS player. | `undefined` |
+| `cache` | `ICache` | Used to cache algorithms, session data, and OAuth2 tokens. | `undefined` |
 | `cookie` | `string` | YouTube cookies. | `undefined` |
 | `fetch` | `FetchFunction` | Fetch function to use. | `fetch` |
 
