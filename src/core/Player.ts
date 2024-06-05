@@ -186,8 +186,10 @@ export default class Player {
   async cache(cache?: ICache): Promise<void> {
     if (!cache) return;
 
-    const sig_buf = Buffer.from(LZW.compress(this.sig_sc));
-    const nsig_buf = Buffer.from(LZW.compress(this.nsig_sc));
+    const encoder = new TextEncoder();
+
+    const sig_buf = encoder.encode(LZW.compress(this.sig_sc));
+    const nsig_buf = encoder.encode(LZW.compress(this.nsig_sc));
 
     const buffer = new ArrayBuffer(12 + sig_buf.byteLength + nsig_buf.byteLength);
     const view = new DataView(buffer);

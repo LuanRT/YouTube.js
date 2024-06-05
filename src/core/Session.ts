@@ -392,7 +392,7 @@ export default class Session extends EventEmitter {
 
     Log.info(TAG, 'Compressing and caching session data.');
 
-    const compressed_session_data = Buffer.from(LZW.compress(JSON.stringify(session_data)));
+    const compressed_session_data = new TextEncoder().encode(LZW.compress(JSON.stringify(session_data)));
 
     const buffer = new ArrayBuffer(4 + compressed_session_data.byteLength);
     new DataView(buffer).setUint32(0, compressed_session_data.byteLength, true); // (Luan) XX: Leave this here for debugging purposes
