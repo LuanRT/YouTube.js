@@ -38,8 +38,8 @@ If you have any questions or need help, feel free to reach out to us on our [Dis
 
 ### Table of Contents
 <ol>
-   <li><a href="#installation">Installation</a></li>
    <li><a href="#prerequisites">Prerequisites</a></li>
+   <li><a href="#installation">Installation</a></li>
    <li>
       <a href="#usage">Usage</a>
       <ul>
@@ -61,7 +61,7 @@ YouTube.js runs on Node.js, Deno, and modern browsers.
 It requires a runtime with the following features:
 - [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
   - On Node, we use [undici](https://github.com/nodejs/undici)'s fetch implementation, which requires Node.js 16.8+. If you need to use an older version, you may provide your own fetch implementation. See [providing your own fetch implementation](#custom-fetch) for more information. 
-  - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` returns a non-standard `Readable` object.)
+  - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` return a non-standard `Readable` object.)
 - [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) are required.
 
 ### Installation
