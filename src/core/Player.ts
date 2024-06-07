@@ -114,7 +114,7 @@ export default class Player {
           throw new PlayerError('Failed to decipher nsig');
 
         if (nsig.startsWith('enhanced_except_')) {
-          Log.warn(TAG, 'Could not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!');
+          Log.warn(TAG, 'Could not transform nsig, download may be throttled.');
         } else if (this_response_nsig_cache) {
           this_response_nsig_cache.set(n, nsig);
         }
