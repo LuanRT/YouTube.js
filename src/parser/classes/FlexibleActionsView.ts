@@ -1,9 +1,10 @@
 import { type ObservedArray, YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import ButtonView from './ButtonView.js';
+import ToggleButtonView from './ToggleButtonView.js';
 
 export type ActionRow = {
-  actions: ObservedArray<ButtonView>;
+  actions: ObservedArray<ButtonView | ToggleButtonView>;
 };
 
 export default class FlexibleActionsView extends YTNode {
@@ -15,7 +16,7 @@ export default class FlexibleActionsView extends YTNode {
   constructor(data: RawNode) {
     super();
     this.actions_rows = data.actionsRows.map((row: RawNode) => ({
-      actions: Parser.parseArray(row.actions, ButtonView)
+      actions: Parser.parseArray(row.actions, [ ButtonView, ToggleButtonView ])
     }));
     this.style = data.style;
   }
