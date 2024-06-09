@@ -1,5 +1,41 @@
 # Changelog
 
+## [10.0.0](https://github.com/LuanRT/YouTube.js/compare/v9.4.0...v10.0.0) (2024-06-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Innertube#getPlaylists:** Return a `Feed` instance instead of items
+* **OAuth2:** Rewrite auth module ([#661](https://github.com/LuanRT/YouTube.js/issues/661))
+
+### Features
+
+* **Format:** Add `is_drc` ([#656](https://github.com/LuanRT/YouTube.js/issues/656)) ([6bb2086](https://github.com/LuanRT/YouTube.js/commit/6bb2086875d089f47c5f86ce94db9e32cb051319))
+* **Platform:** Add support for `react-native` platform ([#593](https://github.com/LuanRT/YouTube.js/issues/593)) ([2980a60](https://github.com/LuanRT/YouTube.js/commit/2980a608b67f18416d7f73f1bdbcf4b897307b26))
+* **Session:** Add `enable_session_cache` option ([#664](https://github.com/LuanRT/YouTube.js/issues/664)) ([7953296](https://github.com/LuanRT/YouTube.js/commit/795329658033652625d2d61b275ccf703573a437))
+* **toDash:** Add support for stable volume/DRC ([#662](https://github.com/LuanRT/YouTube.js/issues/662)) ([031ffb6](https://github.com/LuanRT/YouTube.js/commit/031ffb696e3b7e160779e8b55a49b0cfa9f95620))
+
+
+### Bug Fixes
+
+* **ButtonView:** Rename `type` property to `button_type` ([15f3b5f](https://github.com/LuanRT/YouTube.js/commit/15f3b5fdba17f11cddada168de268546875e48f9))
+* **Cache:** Use `TextEncoder` to encode compressed data ([384b80e](https://github.com/LuanRT/YouTube.js/commit/384b80ee41d7547a00d8dc17c50c8542629264b5))
+* **FlexibleActionsView:** Update actions array type to include `ToggleButtonView` ([040a091](https://github.com/LuanRT/YouTube.js/commit/040a09163903b914f546d5083dbfdeab7175b24c))
+* **InfoPanelContainer:** Use new attributed text prop ([5cdb9e1](https://github.com/LuanRT/YouTube.js/commit/5cdb9e1e2fa4ad5abdb3659bb35d0b3edc60123c))
+* **ItemSection:** Fix `target_id` not being set because of a typo. ([#655](https://github.com/LuanRT/YouTube.js/issues/655)) ([8106654](https://github.com/LuanRT/YouTube.js/commit/810665407e91b2890a8e555fd759d67ccd800379))
+* **MusicResponsiveHeader:** Add `Text` import ([583fd9f](https://github.com/LuanRT/YouTube.js/commit/583fd9f8d70735d071b34bd1d68faa62eeac593a))
+
+
+### Performance Improvements
+
+* **general:** Add session cache and LZW compression ([#663](https://github.com/LuanRT/YouTube.js/issues/663)) ([cf29664](https://github.com/LuanRT/YouTube.js/commit/cf29664d376ff792602400ef9a4ac301c676735c))
+
+
+### Code Refactoring
+
+* **Innertube#getPlaylists:** Return a `Feed` instance instead of items ([7660450](https://github.com/LuanRT/YouTube.js/commit/766045049d7154866e6fe32f6d965025d736d77d))
+* **OAuth2:** Rewrite auth module ([#661](https://github.com/LuanRT/YouTube.js/issues/661)) ([b6ce5f9](https://github.com/LuanRT/YouTube.js/commit/b6ce5f903fa2285cb381d73aedf02cc5e2712478))
+
 ## [9.4.0](https://github.com/LuanRT/YouTube.js/compare/v9.3.0...v9.4.0) (2024-04-29)
 
 
