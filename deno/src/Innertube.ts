@@ -328,13 +328,11 @@ export default class Innertube {
   /**
    * Retrieves playlists.
    */
-  async getPlaylists() {
+  async getPlaylists(): Promise<Feed<IBrowseResponse>> {
     const response = await this.actions.execute(
       BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: 'FEplaylist_aggregation' }), parse: true }
     );
-
-    const feed = new Feed(this.actions, response);
-    return feed.playlists;
+    return new Feed(this.actions, response);
   }
 
   /**

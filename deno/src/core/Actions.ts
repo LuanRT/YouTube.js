@@ -29,14 +29,10 @@ export type ParsedResponse<T> =
   IParsedResponse;
 
 export default class Actions {
-  #session: Session;
+  session: Session;
 
   constructor(session: Session) {
-    this.#session = session;
-  }
-
-  get session(): Session {
-    return this.#session;
+    this.session = session;
   }
 
   /**
@@ -69,7 +65,7 @@ export default class Actions {
       s_url.searchParams.set(key, params[key]);
     }
 
-    const response = await this.#session.http.fetch(s_url);
+    const response = await this.session.http.fetch(s_url);
 
     return response;
   }
@@ -88,7 +84,7 @@ export default class Actions {
       data = { ...args };
 
       if (Reflect.has(data, 'browseId')) {
-        if (this.#needsLogin(data.browseId) && !this.#session.logged_in)
+        if (this.#needsLogin(data.browseId) && !this.session.logged_in)
           throw new InnertubeError('You must be signed in to perform this operation.');
       }
 
@@ -131,7 +127,7 @@ export default class Actions {
 
     const target_endpoint = Reflect.has(args || {}, 'override_endpoint') ? args?.override_endpoint : endpoint;
 
-    const response = await this.#session.http.fetch(target_endpoint, {
+    const response = await this.session.http.fetch(target_endpoint, {
       method: 'POST',
       body: args?.protobuf ? data : JSON.stringify((data || {})),
       headers: {

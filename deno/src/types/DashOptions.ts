@@ -1,4 +1,6 @@
-export interface DashOptions {
+import type { StreamingInfoOptions } from './StreamingInfoOptions.ts';
+
+export interface DashOptions extends StreamingInfoOptions {
   /**
    * Include the storyboards in the DASH manifest when YouTube provides them.
    * Not all players support parsing and displaying storyboards.

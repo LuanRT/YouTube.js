@@ -12,12 +12,14 @@ import type { PlayerStoryboardSpec } from '../parser/nodes.ts';
 import type { SegmentInfo as FSegmentInfo } from './StreamingInfo.ts';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.ts';
 import type PlayerLiveStoryboardSpec from '../parser/classes/PlayerLiveStoryboardSpec.ts';
+import type { StreamingInfoOptions } from '../types/StreamingInfoOptions.ts';
 
 interface DashManifestProps {
   streamingData: IStreamingData;
   isPostLiveDvr: boolean;
   transformURL?: URLTransformer;
   rejectFormat?: FormatFilter;
+  options?: StreamingInfoOptions,
   cpn?: string;
   player?: Player;
   actions?: Actions;
@@ -70,14 +72,15 @@ async function DashManifest({
   cpn,
   player,
   actions,
-  storyboards
+  storyboards,
+  options
 }: DashManifestProps) {
   const {
     getDuration,
     audio_sets,
     video_sets,
     image_sets
-  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards);
+  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, options);
 
   // XXX: DASH spec: https://standards.iso.org/ittf/PubliclyAvailableStandards/c083314_ISO_IEC%2023009-1_2022(en).zip
 
@@ -104,11 +107,12 @@ async function DashManifest({
             contentType="audio"
           >
             {
-              set.track_role &&
-              <role
-                schemeIdUri="urn:mpeg:dash:role:2011"
-                value={set.track_role}
-              />
+              set.track_roles && set.track_roles.map((role) => (
+                <role
+                  schemeIdUri="urn:mpeg:dash:role:2011"
+                  value={role}
+                />
+              ))
             }
             {
               set.track_name &&
@@ -237,7 +241,8 @@ export function toDash(
   cpn?: string,
   player?: Player,
   actions?: Actions,
-  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec,
+  options?: StreamingInfoOptions
 ) {
   if (!streaming_data)
     throw new InnertubeError('Streaming data not available');
@@ -247,6 +252,7 @@ export function toDash(
       streamingData={streaming_data}
       isPostLiveDvr={is_post_live_dvr}
       transformURL={url_transformer}
+      options={options}
       rejectFormat={format_filter}
       cpn={cpn}
       player={player}

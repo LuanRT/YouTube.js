@@ -39,14 +39,15 @@ async function DashManifest({
   cpn,
   player,
   actions,
-  storyboards
+  storyboards,
+  options
 }) {
   const {
     getDuration,
     audio_sets,
     video_sets,
     image_sets
-  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards);
+  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, options);
   return /* @__PURE__ */ DashUtils.createElement("mpd", {
     xmlns: "urn:mpeg:dash:schema:mpd:2011",
     minBufferTime: "PT1.500S",
@@ -64,10 +65,10 @@ async function DashManifest({
     codecs: set.codecs,
     audioSamplingRate: set.audio_sample_rate,
     contentType: "audio"
-  }, set.track_role && /* @__PURE__ */ DashUtils.createElement("role", {
+  }, set.track_roles && set.track_roles.map((role) => /* @__PURE__ */ DashUtils.createElement("role", {
     schemeIdUri: "urn:mpeg:dash:role:2011",
-    value: set.track_role
-  }), set.track_name && /* @__PURE__ */ DashUtils.createElement("label", {
+    value: role
+  })), set.track_name && /* @__PURE__ */ DashUtils.createElement("label", {
     id: index
   }, set.track_name), set.channels && /* @__PURE__ */ DashUtils.createElement("audio-channel-configuration", {
     schemeIdUri: "urn:mpeg:dash:23003:3:audio_channel_configuration:2011",
@@ -130,7 +131,7 @@ async function DashManifest({
   })));
 }
 __name(DashManifest, "DashManifest");
-function toDash(streaming_data, is_post_live_dvr = false, url_transformer = (url) => url, format_filter, cpn, player, actions, storyboards) {
+function toDash(streaming_data, is_post_live_dvr = false, url_transformer = (url) => url, format_filter, cpn, player, actions, storyboards, options) {
   if (!streaming_data)
     throw new InnertubeError("Streaming data not available");
   return DashUtils.renderToString(
@@ -138,6 +139,7 @@ function toDash(streaming_data, is_post_live_dvr = false, url_transformer = (url
       streamingData: streaming_data,
       isPostLiveDvr: is_post_live_dvr,
       transformURL: url_transformer,
+      options,
       rejectFormat: format_filter,
       cpn,
       player,

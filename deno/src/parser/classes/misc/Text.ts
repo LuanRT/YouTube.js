@@ -258,7 +258,7 @@ interface RawRun {
   startIndex: number;
 }
 
-interface AttributedText {
+export interface AttributedText {
   content: string;
   styleRuns?: StyleRun[];
   commandRuns?: CommandRun[];

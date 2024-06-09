@@ -4,8 +4,8 @@ import {
   Platform,
   generateSidAuth,
   getRandomUserAgent,
-  getStringBetweenStrings,
-  InnertubeError
+  InnertubeError,
+  getCookie
 } from './Utils.ts';
 
 import type { Context, Session } from '../core/index.ts';
@@ -69,7 +69,7 @@ export default class HTTPClient {
 
     if (Platform.shim.server) {
       request_headers.set('User-Agent', getRandomUserAgent('desktop'));
-      request_headers.set('origin', request_url.origin);
+      request_headers.set('Origin', request_url.origin);
     }
 
     request_url.searchParams.set('prettyPrint', 'false');
@@ -95,7 +95,7 @@ export default class HTTPClient {
       };
 
       this.#adjustContext(n_body.context, n_body.client);
-      request_headers.set('x-youtube-client-version', n_body.context.client.clientVersion);
+      request_headers.set('X-Youtube-Client-Version', n_body.context.client.clientVersion);
 
       const client_constant = Object.values(Constants.CLIENTS).find((client) => {
         return client.NAME === n_body.context.client.clientName;
@@ -107,13 +107,11 @@ export default class HTTPClient {
 
       delete n_body.client;
 
-      if (Platform.shim.server) {
-        if (n_body.context.client.clientName === 'ANDROID' || n_body.context.client.clientName === 'ANDROID_MUSIC') {
-          request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
-          request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
-        } else if (n_body.context.client.clientName === 'iOS') {
-          request_headers.set('User-Agent', Constants.CLIENTS.iOS.USER_AGENT);
-        }
+      if (n_body.context.client.clientName === 'ANDROID' || n_body.context.client.clientName === 'ANDROID_MUSIC') {
+        request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
+        request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
+      } else if (n_body.context.client.clientName === 'iOS') {
+        request_headers.set('User-Agent', Constants.CLIENTS.iOS.USER_AGENT);
       }
 
       is_web_kids = n_body.context.client.clientName === 'WEB_KIDS';
@@ -131,21 +129,23 @@ export default class HTTPClient {
     if (this.#session.logged_in && is_innertube_req && !is_web_kids) {
       const oauth = this.#session.oauth;
 
-      if (oauth.validateCredentials()) {
-        await oauth.refreshIfRequired();
+      if (oauth.oauth2_tokens) {
+        if (oauth.shouldRefreshToken()) {
+          await oauth.refreshAccessToken();
+        }
 
-        request_headers.set('authorization', `Bearer ${oauth.credentials.access_token}`);
+        request_headers.set('Authorization', `Bearer ${oauth.oauth2_tokens.access_token}`);
       }
 
       if (this.#cookie) {
-        const papisid = getStringBetweenStrings(this.#cookie, 'PAPISID=', ';');
+        const sapisid = getCookie(this.#cookie, 'SAPISID');
 
-        if (papisid) {
-          request_headers.set('authorization', await generateSidAuth(papisid));
-          request_headers.set('x-goog-authuser', this.#session.account_index.toString());
+        if (sapisid) {
+          request_headers.set('Authorization', await generateSidAuth(sapisid));
+          request_headers.set('X-Goog-Authuser', this.#session.account_index.toString());
         }
 
-        request_headers.set('cookie', this.#cookie);
+        request_headers.set('Cookie', this.#cookie);
       }
     }
 

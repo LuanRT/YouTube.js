@@ -10,74 +10,47 @@
 [twitter]: https://twitter.com/thesciencephile
 [discord]: https://discord.gg/syDu7Yks54
 
-<h1 align=center>YouTube.js</h1>
-
-<p align=center>A full-featured wrapper around the InnerTube API</p>
-
 <div align="center">
+  <br/>
+  <p>
+    <a href="https://github.com/LuanRT/YouTube.js"><img src="https://luanrt.github.io/assets/img/ytjs.svg" title="youtube.js" alt="YouTube.js' Github Page" width="200" /></a>
+  </p>
+  <p align="center">A full-featured wrapper around the InnerTube API</p>
 
+  [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
   [![CI](https://github.com/LuanRT/YouTube.js/actions/workflows/test.yml/badge.svg)][actions]
   [![NPM Version](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)][versions]
-  [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
   [![Downloads](https://img.shields.io/npm/dt/youtubei.js)][npm]
-  [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
+  [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
+
+  <h5>
+  Sponsored by&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://serpapi.com"><img src="https://luanrt.github.io/assets/img/serpapi.svg" alt="SerpApi - API to get search engine results with ease." height=35 valign="middle"></a>
+  </h5>
   <br>
-  [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][collaborators]
- 
 </div>
 
-<div align="center">
-  <p>
-    <sup>Special thanks to:</sup>
-    <br>
-    <br>
-    <a href="https://serpapi.com" target="_blank">
-      <img width="80" alt="SerpApi" src="https://luanrt.github.io/assets/img/serpapi.svg" />
-      <br>
-      <sub>
-        API to get search engine results with ease.
-      </sub>
-    </a>
-  </p>
-</div>
-<br>
-<hr>
-<br>
+InnerTube is an API used by all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform [^1]. This library manages all low-level communication with InnerTube, providing a simple and efficient way to interact with YouTube programmatically. Its design aims to closely emulate an actual client, including the parsing of API responses.
 
-## Table of Contents
+If you have any questions or need help, feel free to reach out to us on our [Discord server][discord] or open an issue [here](https://github.com/LuanRT/YouTube.js/issues).
+
+### Table of Contents
 <ol>
-   <li>
-      <a href="#description">Description</a>
-   </li>
-   <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-         <li><a href="#prerequisites">Prerequisites</a></li>
-         <li><a href="#installation">Installation</a></li>
-      </ul>
-   </li>
+   <li><a href="#prerequisites">Prerequisites</a></li>
+   <li><a href="#installation">Installation</a></li>
    <li>
       <a href="#usage">Usage</a>
       <ul>
          <li><a href="#browser-usage">Browser Usage</a></li>
          <li><a href="#caching">Caching</a></li>
          <li><a href="#api">API</a></li>
+         <li><a href="#extending-the-library">Extending the library</a></li>
       </ul>
    </li>
-   <li><a href="#extending-the-library">Extending the library</a></li>
    <li><a href="#contributing">Contributing</a></li>
    <li><a href="#contact">Contact</a></li>
    <li><a href="#disclaimer">Disclaimer</a></li>
    <li><a href="#license">License</a></li>
 </ol>
-
-## Description
-
-InnerTube is an API used by all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform [^1]. This library manages all low-level communication with InnerTube, providing a simple and efficient way to interact with YouTube programmatically. Its design aims to closely emulate an actual client, including the parsing of API responses.
-
-If you have any questions or need help, feel free to reach out to us on our [Discord server][discord] or open an issue [here](https://github.com/LuanRT/YouTube.js/issues).
-
-## Getting Started
 
 ### Prerequisites
 YouTube.js runs on Node.js, Deno, and modern browsers.
@@ -85,7 +58,7 @@ YouTube.js runs on Node.js, Deno, and modern browsers.
 It requires a runtime with the following features:
 - [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
   - On Node, we use [undici](https://github.com/nodejs/undici)'s fetch implementation, which requires Node.js 16.8+. If you need to use an older version, you may provide your own fetch implementation. See [providing your own fetch implementation](#custom-fetch) for more information. 
-  - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` returns a non-standard `Readable` object.)
+  - The `Response` object returned by fetch must thus be spec compliant and return a `ReadableStream` object if you want to use the `VideoInfo#download` method. (Implementations like `node-fetch` return a non-standard `Readable` object.)
 - [`EventTarget`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) and [`CustomEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) are required.
 
 ### Installation
@@ -114,7 +87,7 @@ import { Innertube } from 'youtubei.js';
 const youtube = await Innertube.create(/* options */);
 ```
 
-### Initialization Options
+### Options
 <details>
 <summary>Click to expand</summary>
 
@@ -126,17 +99,18 @@ const youtube = await Innertube.create(/* options */);
 | `visitor_data` | `string` | Setting this to a valid and persistent visitor data string will allow YouTube to give this session tailored content even when not logged in. A good way to get a valid one is by either grabbing it from a browser or calling InnerTube's `/visitor_id` endpoint. | `undefined` |
 | `retrieve_player` | `boolean` | Specifies whether to retrieve the JS player. Disabling this will make session creation faster. **NOTE:** Deciphering formats is not possible without the JS player. | `true` |
 | `enable_safety_mode` | `boolean` | Specifies whether to enable safety mode. This will prevent the session from loading any potentially unsafe content. | `false` |
-| `generate_session_locally` | `boolean` | Specifies whether to generate the session data locally or retrieve it from YouTube. This can be useful if you need more performance. | `false` |
+| `generate_session_locally` | `boolean` | Specifies whether to generate the session data locally or retrieve it from YouTube. This can be useful if you need more performance. **NOTE:** If you are using the cache option and a session has already been generated, this will be ignored. If you want to force a new session to be generated, you must clear the cache or disable session caching. | `false` |
+| `enable_session_cache` | `boolean` | Specifies whether to cache the session data. | `true` |
 | `device_category` | `DeviceCategory` | Platform to use for the session. | `DESKTOP` |
 | `client_type` | `ClientType` | InnerTube client type. | `WEB` |
 | `timezone` | `string` | The time zone. | `*` |
-| `cache` | `ICache` | Used to cache the deciphering functions from the JS player. | `undefined` |
+| `cache` | `ICache` | Used to cache algorithms, session data, and OAuth2 tokens. | `undefined` |
 | `cookie` | `string` | YouTube cookies. | `undefined` |
 | `fetch` | `FetchFunction` | Fetch function to use. | `fetch` |
 
 </details>
 
-## Browser Usage
+### Browser Usage
 To use YouTube.js in the browser, you must proxy requests through your own server. You can see our simple reference implementation in Deno at [`examples/browser/proxy/deno.ts`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/proxy/deno.ts).
 
 You may provide your own fetch implementation to be used by YouTube.js, which we will use to modify and send the requests through a proxy. See [`examples/browser/web`](https://github.com/LuanRT/YouTube.js/tree/main/examples/browser/web) for a simple example using [Vite](https://vitejs.dev/).
@@ -195,7 +169,7 @@ A fully working example can be found in [`examples/browser/web`](https://github.
 
 <a name="custom-fetch"></a>
 
-## Providing your own fetch implementation
+### Providing your own fetch implementation
 You may provide your own fetch implementation to be used by YouTube.js. This can be useful in some cases to modify the requests before they are sent and transform the responses before they are returned (eg. for proxies).
 ```ts
 // provide a fetch implementation
@@ -212,7 +186,7 @@ const yt = await Innertube.create({
 
 <a name="caching"></a>
 
-## Caching
+### Caching
 Caching the transformed player instance can greatly improve the performance. Our `UniversalCache` implementation uses different caching methods depending on the environment.
 
 In Node.js, we use the `node:fs` module, `Deno.writeFile()` in Deno, and `indexedDB` in browsers.
@@ -237,7 +211,7 @@ const yt = await Innertube.create({
 });
 ```
 
-## API
+### API
 
 * `Innertube`
 
@@ -697,7 +671,7 @@ Utility to call navigation endpoints.
 | endpoint | `NavigationEndpoint` | The target endpoint |
 | args? | `object` | Additional payload arguments |
  
-## Extending the library
+### Extending the library
 
 YouTube.js is modular and easy to extend. Most of the methods, classes, and utilities used internally are exposed and can be used to implement your own extensions without having to modify the library's source code.
 
@@ -805,6 +779,6 @@ As such, any usage of trademarks to refer to such services is considered nominat
 ## License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License.
 
-<p align=" right">
+<p align="right">
 (<a href="#top">back to top</a>)
 </p>

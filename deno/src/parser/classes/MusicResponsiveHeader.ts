@@ -6,6 +6,7 @@ import MusicInlineBadge from './MusicInlineBadge.ts';
 import MusicPlayButton from './MusicPlayButton.ts';
 import ToggleButton from './ToggleButton.ts';
 import Menu from './menus/Menu.ts';
+import Text from './misc/Text.ts';
 
 import type { ObservedArray } from '../helpers.ts';
 
