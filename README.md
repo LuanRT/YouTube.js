@@ -10,15 +10,12 @@
 [twitter]: https://twitter.com/thesciencephile
 [discord]: https://discord.gg/syDu7Yks54
 
-<h1 align="center">
-  YouTube.js
-  <br>
-  <br>
-</h1>
-
-<p align="center">A full-featured wrapper around the InnerTube API</p>
-
 <div align="center">
+  <br/>
+  <p>
+    <a href="https://github.com/LuanRT/YouTube.js"><img src="https://luanrt.github.io/assets/img/ytjs.svg" title="youtube.js" alt="YouTube.js' Github Page" width="200" /></a>
+  </p>
+  <p align="center">A full-featured wrapper around the InnerTube API</p>
 
   [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
   [![CI](https://github.com/LuanRT/YouTube.js/actions/workflows/test.yml/badge.svg)][actions]
@@ -26,11 +23,11 @@
   [![Downloads](https://img.shields.io/npm/dt/youtubei.js)][npm]
   [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
 
-</div>
-<h5 align="center">
+  <h5>
   Sponsored by&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://serpapi.com"><img src="https://luanrt.github.io/assets/img/serpapi.svg" alt="SerpApi - API to get search engine results with ease." height=35 valign="middle"></a>
-</h5>
-<br>
+  </h5>
+  <br>
+</div>
 
 InnerTube is an API used by all YouTube clients. It was created to simplify the deployment of new features and experiments across the platform [^1]. This library manages all low-level communication with InnerTube, providing a simple and efficient way to interact with YouTube programmatically. Its design aims to closely emulate an actual client, including the parsing of API responses.
 
