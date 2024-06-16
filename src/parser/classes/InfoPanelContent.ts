@@ -10,7 +10,8 @@ export default class InfoPanelContent extends YTNode {
 
   title: Text;
   source: Text;
-  attributed_paragraphs: Text[];
+  paragraphs?: Text[];
+  attributed_paragraphs?: Text[];
   thumbnail: Thumbnail[];
   source_endpoint: NavigationEndpoint;
   truncate_paragraphs: boolean;
@@ -21,7 +22,13 @@ export default class InfoPanelContent extends YTNode {
     super();
     this.title = new Text(data.title);
     this.source = new Text(data.source);
-    this.attributed_paragraphs = data.attributedParagraphs.map((p: AttributedText) => Text.fromAttributed(p));
+
+    if (Reflect.has(data, 'paragraphs'))
+      this.paragraphs = data.paragraphs.map((p: RawNode) => new Text(p));
+
+    if (Reflect.has(data, 'attributedParagraphs'))
+      this.attributed_paragraphs = data.attributedParagraphs.map((p: AttributedText) => Text.fromAttributed(p));
+
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
     this.source_endpoint = new NavigationEndpoint(data.sourceEndpoint);
     this.truncate_paragraphs = !!data.truncateParagraphs;
