@@ -155,7 +155,7 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
       return false;
     if (!is_best && format.quality_label !== quality)
       return false;
-    if (best_width < format.width)
+    if (format.width && (best_width < format.width))
       best_width = format.width;
     return true;
   });

@@ -85,8 +85,8 @@ export interface VideoSet {
 export interface VideoRepresentation {
   uid: string;
   bitrate: number;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   fps?: number;
   codecs?: string;
   segment_info: SegmentInfo;
