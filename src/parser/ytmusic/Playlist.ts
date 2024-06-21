@@ -7,12 +7,12 @@ import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.js';
 import MusicShelf from '../classes/MusicShelf.js';
 import SectionList from '../classes/SectionList.js';
 import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
-import MusicThumbnail from '../classes/MusicThumbnail.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import { observe, type ObservedArray } from '../helpers.js';
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
+import type MusicThumbnail from '../classes/MusicThumbnail.js';
 
 class Playlist {
   #page: IBrowseResponse;
