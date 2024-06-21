@@ -381,8 +381,8 @@ describe('YouTube.js Tests', () => {
       const playlist = await innertube.music.getPlaylist('PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u');
       expect(playlist).toBeDefined();
       expect(playlist.header).toBeDefined();
-      expect(playlist.items).toBeDefined();
-      expect(playlist.items?.length).toBeGreaterThan(0);
+      expect(playlist.contents).toBeDefined();
+      expect(playlist.contents?.length).toBeGreaterThan(0);
     });
 
     test('Innertube#music.getLyrics', async () => {

@@ -140,6 +140,10 @@ class Playlist {
     return this.#page;
   }
 
+  get items(): ObservedArray<MusicResponsiveListItem> {
+    return this.contents || observe([]);
+  }
+
   get has_continuation(): boolean {
     return !!this.#continuation;
   }
