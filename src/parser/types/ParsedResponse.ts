@@ -19,9 +19,10 @@ import type AlertWithButton from '../classes/AlertWithButton.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
 import type EngagementPanelSectionList from '../classes/EngagementPanelSectionList.js';
-import type { AppendContinuationItemsAction } from '../nodes.js';
+import type { AppendContinuationItemsAction, MusicThumbnail } from '../nodes.js';
 
 export interface IParsedResponse {
+  background?: MusicThumbnail;
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
   contents?: SuperParsedResult<YTNode>;
@@ -134,6 +135,7 @@ export interface INextResponse {
 }
 
 export interface IBrowseResponse {
+  background?: MusicThumbnail;
   continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
   MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
   continuation_contents_memo?: Memo;

@@ -261,6 +261,7 @@ export { default as MusicLargeCardItemCarousel } from './classes/MusicLargeCardI
 export { default as MusicMultiRowListItem } from './classes/MusicMultiRowListItem.js';
 export { default as MusicNavigationButton } from './classes/MusicNavigationButton.js';
 export { default as MusicPlayButton } from './classes/MusicPlayButton.js';
+export { default as MusicPlaylistEditHeader } from './classes/MusicPlaylistEditHeader.js';
 export { default as MusicPlaylistShelf } from './classes/MusicPlaylistShelf.js';
 export { default as MusicQueue } from './classes/MusicQueue.js';
 export { default as MusicResponsiveHeader } from './classes/MusicResponsiveHeader.js';

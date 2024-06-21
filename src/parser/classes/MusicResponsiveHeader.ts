@@ -7,6 +7,8 @@ import MusicPlayButton from './MusicPlayButton.js';
 import ToggleButton from './ToggleButton.js';
 import Menu from './menus/Menu.js';
 import Text from './misc/Text.js';
+import Button from './Button.js';
+import DownloadButton from './DownloadButton.js';
 
 import type { ObservedArray } from '../helpers.js';
 
@@ -14,7 +16,7 @@ export default class MusicResponsiveHeader extends YTNode {
   static type = 'MusicResponsiveHeader';
 
   thumbnail: MusicThumbnail | null;
-  buttons: ObservedArray<ToggleButton | MusicPlayButton | Menu> | null;
+  buttons: ObservedArray<DownloadButton | ToggleButton | MusicPlayButton | Button | Menu>;
   title: Text;
   subtitle: Text;
   strapline_text_one: Text;
@@ -26,7 +28,7 @@ export default class MusicResponsiveHeader extends YTNode {
   constructor(data: RawNode) {
     super();
     this.thumbnail = Parser.parseItem(data.thumbnail, MusicThumbnail);
-    this.buttons = Parser.parseArray(data.buttons, [ ToggleButton, MusicPlayButton, Menu ]);
+    this.buttons = Parser.parseArray(data.buttons, [ DownloadButton, ToggleButton, MusicPlayButton, Button, Menu ]);
     this.title = new Text(data.title);
     this.subtitle = new Text(data.subtitle);
     this.strapline_text_one = new Text(data.straplineTextOne);

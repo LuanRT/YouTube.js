@@ -20,6 +20,7 @@ export interface IRawPlayerConfig {
 }
 
 export interface IRawResponse {
+  background?: RawNode;
   contents?: RawData;
   onResponseReceivedActions?: RawNode[];
   onResponseReceivedEndpoints?: RawNode[];
