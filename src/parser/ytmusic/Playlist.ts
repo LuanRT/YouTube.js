@@ -7,6 +7,7 @@ import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.js';
 import MusicShelf from '../classes/MusicShelf.js';
 import SectionList from '../classes/SectionList.js';
 import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
+import MusicResponsiveHeader from '../classes/MusicResponsiveHeader.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import { observe, type ObservedArray } from '../helpers.js';
@@ -21,7 +22,7 @@ class Playlist {
   #last_fetched_suggestions: ObservedArray<MusicResponsiveListItem> | null;
   #suggestions_continuation: string | null;
 
-  header?: MusicDetailHeader | MusicEditablePlaylistDetailHeader;
+  header?: MusicResponsiveHeader | MusicDetailHeader | MusicEditablePlaylistDetailHeader;
   contents?: ObservedArray<MusicResponsiveListItem>;
   background?: MusicThumbnail;
 
@@ -41,7 +42,7 @@ class Playlist {
     } else {
       if (!this.#page.contents_memo)
         throw new InnertubeError('No contents found in the response');
-      this.header = this.#page.contents_memo.getType(MusicEditablePlaylistDetailHeader, MusicDetailHeader)?.first();
+      this.header = this.#page.contents_memo.getType(MusicResponsiveHeader, MusicEditablePlaylistDetailHeader, MusicDetailHeader)?.first();
       this.contents = this.#page.contents_memo.getType(MusicPlaylistShelf)?.first()?.contents || observe([]);
       this.background = this.#page.background;
       this.#continuation = this.#page.contents_memo.getType(MusicPlaylistShelf)?.first()?.continuation || null;
