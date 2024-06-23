@@ -286,35 +286,48 @@ message ShortsParam {
 }
 
 message MediaHeader {
-  enum CompressionType { // Not used on web it seems
-		CompressionType_0 = 0;
-		CompressionType_1 = 1;
-		GZIP = 2;
-	}
+  //  a = {
+  //   Xp: GN(a, 1),
+  //   videoId: JN(a, 2),
+  //   itag: GN(a, 3),
+  //   lmt: GN(a, 4),
+  //   xtags: JN(a, 5),
+  //   cC: GN(a, 6),
+  //   uo: HN(a, 8),
+  //   Gq: GN(a, 9),
+  //   dpb: GN(a, 10),
+  //   startMs: GN(a, 11),
+  //   durationMs: GN(a, 12),
+  //   zs: GN(a, 14),
+  //   timeRange: KN(a, 15, aQa),
+  //   Lj: GN(a, 16),
+  //   ZK: GN(a, 17),
+  //   clipId: JN(a, 1E3)
+  //  };
 
-    int32 field1 = 1; 
-    string video_id = 2;
-    int32 itag = 3;
-    int64 lmt = 4;
-    int32 start_data_range = 6;
-	  optional CompressionType compression_type = 7;
-    int32 field8 = 8;
-    int32 field9 = 9;
-    optional int32 field10 = 10;
-    optional int32 field11 = 11;
-    optional int32 field12 = 12;
-    ItagData itag_data = 13;
-    int32 content_length = 14;
-    optional Field15 f15 = 15;
 
-    message Field15 {
-        required int32 field1 = 1;
-        required int32 field2 = 2;
-        required int32 field3 = 3;
-    }
+  int32 field1 = 1; 
+  string video_id = 2;
+  int32 itag = 3;
+  int64 lmt = 4;
+  int32 start_data_range = 6;
+  int32 field8 = 8;
+  int32 field9 = 9;
+  optional int32 field10 = 10;
+  optional int32 start_ms = 11;
+  optional int32 duration_ms = 12;
+  ItagData itag_data = 13;
+  int32 content_length = 14;
+  optional TimeRange time_range = 15;
 
-    message ItagData {
-        required int32 itag = 1;
-        required int64 lmt = 2;
-    }
+  message TimeRange {
+    required int32 field1 = 1;
+    required int32 field2 = 2;
+    required int32 field3 = 3;
+  }
+
+  message ItagData {
+    required int32 itag = 1;
+    required int64 lmt = 2;
+  }
 }

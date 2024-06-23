@@ -107,8 +107,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.js",
-    "examples/**/*.js",
-    "examples/**/*.ts",
     "dev-scripts/**/*.mjs",
     "jest.config.js",
   ],
