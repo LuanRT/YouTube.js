@@ -208,6 +208,8 @@ async function main() {
           if (type == RequestType.SEGMENT) {
             const umpDecoder = new UMPParser(new Uint8Array(response.data));
             const umpParts = umpDecoder.parse();
+
+            // Check if there are multiple media data parts. If so, we need to concatenate them.
             const multipleMD = umpParts.filter((part) => part.type === 21).length > 1;
 
             let mediaData = new Uint8Array(0);
