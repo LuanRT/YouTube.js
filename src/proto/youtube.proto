@@ -284,3 +284,37 @@ message ShortsParam {
   Field1 f1 = 1;
   int32 p59 = 59;
 }
+
+message MediaHeader {
+  enum CompressionType{
+		CompressionType_value_0 = 0;
+		CompressionType_value_1 = 1;
+		GZIP = 2;
+	}
+
+    int32 field1 = 1; 
+    string video_id = 2;
+    int32 itag = 3;
+    int64 lmt = 4;
+    int32 start_data_range = 6;
+	  optional MediaHeader.CompressionType compression_type = 7;
+    int32 field8 = 8;
+    int32 field9 = 9;
+    optional int32 field10 = 10;
+    optional int32 field11 = 11;
+    optional int32 field12 = 12;
+    ItagData itag_data = 13;
+    int32 content_length = 14;
+    optional Field15 f15 = 15;
+
+    message Field15 {
+        required int32 field1 = 1;
+        required int32 field2 = 2;
+        required int32 field3 = 3;
+    }
+
+    message ItagData {
+        required int32 itag = 1;
+        required int64 lmt = 2;
+    }
+}
