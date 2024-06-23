@@ -286,9 +286,9 @@ message ShortsParam {
 }
 
 message MediaHeader {
-  enum CompressionType{
-		CompressionType_value_0 = 0;
-		CompressionType_value_1 = 1;
+  enum CompressionType { // Not used on web it seems
+		CompressionType_0 = 0;
+		CompressionType_1 = 1;
 		GZIP = 2;
 	}
 
@@ -297,7 +297,7 @@ message MediaHeader {
     int32 itag = 3;
     int64 lmt = 4;
     int32 start_data_range = 6;
-	  optional MediaHeader.CompressionType compression_type = 7;
+	  optional CompressionType compression_type = 7;
     int32 field8 = 8;
     int32 field9 = 9;
     optional int32 field10 = 10;
