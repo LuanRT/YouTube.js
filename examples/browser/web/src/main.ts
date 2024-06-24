@@ -234,18 +234,6 @@ async function main() {
             response.uri = redirectResponse.uri;
           }
 
-          const retryRequest = async () => {
-            console.log('Got SABR error, retrying');
-
-            const sabrRetryRequest = shaka.net.NetworkingEngine.makeRequest([response.uri], player!.getConfiguration().streaming.retryParameters);
-            const requestOperation = player!.getNetworkingEngine()!.request(type, sabrRetryRequest);
-            const sabrRetryResponse = await requestOperation.promise;
-
-            response.data = sabrRetryResponse.data;
-            response.headers = sabrRetryResponse.headers;
-            response.uri = sabrRetryResponse.uri;
-          }
-
           const handleMediaData = async (data: Uint8Array, multipleMD: boolean) => {
             if (!multipleMD) {
               mediaData = data.slice(1); // Remove header id
@@ -276,8 +264,6 @@ async function main() {
                     break;
                   case 43:
                     return await handleRedirect(Proto.decodeRedirect(part.data));
-                  case 44:
-                    return await retryRequest();
                   default:
                     break;
                 }
