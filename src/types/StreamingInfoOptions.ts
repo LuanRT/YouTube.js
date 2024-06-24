@@ -1,5 +1,14 @@
 export interface StreamingInfoOptions {
   /**
+   * The format to use for the captions, when the video has captions.
+   * If this option is not set, the DASH manifest will not include the captions.
+   *
+   * Possible values:
+   * * `vtt`: Tells YouTube to return the captions in the WebVTT format
+   * * `ttml`: Tells YouTube to return the captions in the TTML format
+   */
+  captions_format?: 'vtt' | 'ttml';
+  /**
    * The label to use for the non-DRC streams when a video has DRC and streams.
    *
    * Defaults to `"Original"`
