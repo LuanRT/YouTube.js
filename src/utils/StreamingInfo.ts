@@ -706,7 +706,7 @@ function getImageRepresentation(
     thumbnail_width: board.thumbnail_width,
     rows: board.rows,
     columns: board.columns,
-    template_duration: template_duration,
+    template_duration: Math.round(template_duration),
     template_url: transform_url(template_url).toString(),
     getURL(n) {
       return template_url.toString().replace('$Number$', n.toString());
