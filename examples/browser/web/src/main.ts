@@ -246,8 +246,7 @@ async function main() {
                     break;
                   case 44:
                     if (retryCount >= 3) {
-                      console.error('Exceeded retry count');
-                      break;
+                      throw new Error('Exceeded retry count');
                     }
 
                     console.log('Got SABR error, retrying');
@@ -260,9 +259,8 @@ async function main() {
                     response.data = sabr_retry_response.data;
                     response.headers = sabr_retry_response.headers;
                     response.uri = sabr_retry_response.uri;
+                    retryCount += 1;
                     await parseUMPResponse();
-
-                    retryCount++;
                     break;
                   default:
                     const base64 = Utils.u8ToBase64(part.data);
