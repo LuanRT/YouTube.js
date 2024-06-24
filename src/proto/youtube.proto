@@ -331,3 +331,7 @@ message MediaHeader {
     required int64 lmt = 2;
   }
 }
+
+message Redirect {
+  required string url = 1;
+}

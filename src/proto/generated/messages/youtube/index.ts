@@ -13,3 +13,4 @@ export type { Type as Hashtag } from "./Hashtag.js";
 export type { Type as ReelSequence } from "./ReelSequence.js";
 export type { Type as ShortsParam } from "./ShortsParam.js";
 export type { Type as MediaHeader } from "./MediaHeader.js";
+export type { Type as Redirect } from "./Redirect.js";

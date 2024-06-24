@@ -17,9 +17,14 @@ import * as Hashtag from './generated/messages/youtube/Hashtag.js';
 import * as ReelSequence from './generated/messages/youtube/ReelSequence.js';
 import * as ShortsParam from './generated/messages/youtube/ShortsParam.js';
 import * as MediaHeader from './generated/messages/youtube/MediaHeader.js';
+import * as Redirect from './generated/messages/youtube/Redirect.js';
 
 export function decodeMHeader(data: Uint8Array): MediaHeader.Type {
   return MediaHeader.decodeBinary(data);
+}
+
+export function decodeRedirect(data: Uint8Array): Redirect.Type {
+  return Redirect.decodeBinary(data);
 }
 
 export function encodeVisitorData(id: string, timestamp: number): string {

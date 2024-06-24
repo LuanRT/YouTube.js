@@ -1,11 +1,10 @@
-import { Innertube, UniversalCache, Utils } from '../../../../bundle/browser';
+import { Innertube, Proto, UniversalCache } from '../../../../bundle/browser';
+import UMPParser from './UMPParser';
 
 // @ts-expect-error shaka-player does not have good types
 import shaka from 'shaka-player/dist/shaka-player.ui.js';
 
 import 'shaka-player/dist/controls.css';
-import { decodeMHeader } from '../../../../dist/src/proto';
-import UMPParser from './UMPParser';
 
 const title = document.getElementById('title') as HTMLHeadingElement;
 const description = document.getElementById('description') as HTMLDivElement;
@@ -184,6 +183,8 @@ async function main() {
           },
         });
 
+        let rn = 0;
+
         player.getNetworkingEngine()?.registerRequestFilter((_type: any, request: any) => {
           const uri = request.uris[0];
           const url = new URL(uri);
@@ -202,7 +203,11 @@ async function main() {
             if (headers.Range) {
               request.headers = {};
               url.searchParams.set('range', headers.Range.split('=')[1]);
-              url.searchParams.set('ump', '1');
+              url.searchParams.set("ump", "1");
+              url.searchParams.set("srfvp", "1");
+              url.searchParams.set("rn", rn.toString());
+              // Default value when pot generation fails. Here only for testing purposes.
+              url.searchParams.set("pot", "AAAAAAAAAAABAAAAAAkAAAAAAAAAAAEAAAADAAAJAAAAAAAEAgYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAwAGAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAYAAQAAAAgIAAAAAAMAAAUABQAAAAAAAAAAAAAAAAAA");
               delete headers.Range;
             }
           }
@@ -211,11 +216,46 @@ async function main() {
         });
 
         const RequestType = shaka.net.NetworkingEngine.RequestType;
-        let retryCount = 0;
 
         player.getNetworkingEngine()?.registerResponseFilter(async (type: any, response: any) => {
+          let mediaData = new Uint8Array(0);
 
-          const parseUMPResponse = async () => {
+          const handleRedirect = async (redirectData: any) => {
+            console.log('Handling redirect');
+
+            const redirectRequest = shaka.net.NetworkingEngine.makeRequest([redirectData.url], player!.getConfiguration().streaming.retryParameters);
+            const requestOperation = player!.getNetworkingEngine()!.request(type, redirectRequest);
+            const redirectResponse = await requestOperation.promise;
+
+            response.data = redirectResponse.data;
+            response.headers = redirectResponse.headers;
+            response.uri = redirectResponse.uri;
+          }
+
+          const retryRequest = async () => {
+            console.log('Got SABR error, retrying');
+
+            const sabrRetryRequest = shaka.net.NetworkingEngine.makeRequest([response.uri], player!.getConfiguration().streaming.retryParameters);
+            const requestOperation = player!.getNetworkingEngine()!.request(type, sabrRetryRequest);
+            const sabrRetryResponse = await requestOperation.promise;
+
+            response.data = sabrRetryResponse.data;
+            response.headers = sabrRetryResponse.headers;
+            response.uri = sabrRetryResponse.uri;
+          }
+
+          const handleMediaData = async (data: Uint8Array, multipleMD: boolean) => {
+            if (!multipleMD) {
+              mediaData = data.slice(1); // Remove header id
+            } else {
+              mediaData = new Uint8Array([...mediaData, ...data.slice(1)]);
+            }
+
+            if (mediaData.length)
+              response.data = mediaData;
+          }
+
+          const parseUMPResponse = async (): Promise<void> => {
             if (type == RequestType.SEGMENT) {
               const umpDecoder = new UMPParser(new Uint8Array(response.data));
               const umpParts = umpDecoder.parse();
@@ -223,50 +263,20 @@ async function main() {
               // Check if there are multiple media data parts. If so, we need to concatenate them.
               const multipleMD = umpParts.filter((part) => part.type === 21).length > 1;
 
-              let mediaData = new Uint8Array(0);
-
               for (const part of umpParts) {
                 switch (part.type) {
                   case 20:
-                    const mediaHeader = decodeMHeader(part.data);
-                    console.log('Media header', mediaHeader);
-                    response.headers['content-type'] = info.streaming_data?.adaptive_formats.find((format) => format.itag === mediaHeader.itag)?.mime_type.split(';')[0];
+                    const mediaHeader = Proto.decodeMHeader(part.data);
+                    console.log('Media header:', mediaHeader);
                     break;
                   case 21:
-                    retryCount = 0
-
-                    if (!multipleMD) {
-                      mediaData = part.data.slice(1); // Remove header id
-                    } else {
-                      mediaData = new Uint8Array([...mediaData, ...part.data.slice(1)]);
-                    }
-
-                    if (mediaData.length)
-                      response.data = mediaData;
+                    handleMediaData(part.data, multipleMD);
                     break;
-                  case 22:
-                    break;
+                  case 43:
+                    return await handleRedirect(Proto.decodeRedirect(part.data));
                   case 44:
-                    if (retryCount >= 3) {
-                      throw new Error('Exceeded retry count');
-                    }
-
-                    console.log('Got SABR error, retrying');
-
-                    const retry_parameters = player!.getConfiguration().streaming.retryParameters;
-                    const sabr_retry_request = shaka.net.NetworkingEngine.makeRequest([response.uri], retry_parameters);
-                    const request_operation = player!.getNetworkingEngine()!.request(type, sabr_retry_request);
-                    const sabr_retry_response = await request_operation.promise;
-
-                    response.data = sabr_retry_response.data;
-                    response.headers = sabr_retry_response.headers;
-                    response.uri = sabr_retry_response.uri;
-                    retryCount += 1;
-                    await parseUMPResponse();
-                    break;
+                    return await retryRequest();
                   default:
-                    const base64 = Utils.u8ToBase64(part.data);
-                    console.log('UMP Part', part.type, base64);
                     break;
                 }
               }
