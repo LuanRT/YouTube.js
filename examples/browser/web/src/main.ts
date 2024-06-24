@@ -211,9 +211,9 @@ async function main() {
         });
 
         const RequestType = shaka.net.NetworkingEngine.RequestType;
+        let retryCount = 0;
 
         player.getNetworkingEngine()?.registerResponseFilter(async (type: any, response: any) => {
-          let retryCount = 0;
 
           const parseUMPResponse = async () => {
             if (type == RequestType.SEGMENT) {
@@ -233,6 +233,8 @@ async function main() {
                     response.headers['content-type'] = info.streaming_data?.adaptive_formats.find((format) => format.itag === mediaHeader.itag)?.mime_type.split(';')[0];
                     break;
                   case 21:
+                    retryCount = 0
+
                     if (!multipleMD) {
                       mediaData = part.data.slice(1); // Remove header id
                     } else {
