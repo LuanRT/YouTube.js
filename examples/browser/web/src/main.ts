@@ -245,33 +245,29 @@ async function main() {
               response.data = mediaData;
           }
 
-          const parseUMPResponse = async (): Promise<void> => {
-            if (type == RequestType.SEGMENT) {
-              const umpDecoder = new UMPParser(new Uint8Array(response.data));
-              const umpParts = umpDecoder.parse();
+          if (type == RequestType.SEGMENT) {
+            const umpDecoder = new UMPParser(new Uint8Array(response.data));
+            const umpParts = umpDecoder.parse();
 
-              // Check if there are multiple media data parts. If so, we need to concatenate them.
-              const multipleMD = umpParts.filter((part) => part.type === 21).length > 1;
+            // Check if there are multiple media data parts. If so, we need to concatenate them.
+            const multipleMD = umpParts.filter((part) => part.type === 21).length > 1;
 
-              for (const part of umpParts) {
-                switch (part.type) {
-                  case 20:
-                    const mediaHeader = Proto.decodeMHeader(part.data);
-                    console.log('Media header:', mediaHeader);
-                    break;
-                  case 21:
-                    handleMediaData(part.data, multipleMD);
-                    break;
-                  case 43:
-                    return await handleRedirect(Proto.decodeRedirect(part.data));
-                  default:
-                    break;
-                }
+            for (const part of umpParts) {
+              switch (part.type) {
+                case 20:
+                  const mediaHeader = Proto.decodeMHeader(part.data);
+                  console.log('Media header:', mediaHeader);
+                  break;
+                case 21:
+                  handleMediaData(part.data, multipleMD);
+                  break;
+                case 43:
+                  return await handleRedirect(Proto.decodeRedirect(part.data));
+                default:
+                  break;
               }
             }
           }
-
-          await parseUMPResponse();
         });
 
         try {
