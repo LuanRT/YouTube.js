@@ -1,4 +1,4 @@
-import { Innertube, UniversalCache } from '../../../../bundle/browser';
+import { Innertube, UniversalCache, Utils } from '../../../../bundle/browser';
 
 // @ts-expect-error shaka-player does not have good types
 import shaka from 'shaka-player/dist/shaka-player.ui.js';
@@ -35,7 +35,7 @@ async function main() {
           : new Headers();
 
       // Now serialize the headers.
-      url.searchParams.set('__headers', JSON.stringify([ ...headers ]));
+      url.searchParams.set('__headers', JSON.stringify([...headers]));
 
       if (input instanceof Request) {
         // @ts-expect-error - x
@@ -60,7 +60,7 @@ async function main() {
     cache: new UniversalCache(false)
   });
 
-  form.animate({ opacity: [ 0, 1 ] }, { duration: 300, easing: 'ease-in-out' });
+  form.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
   form.style.display = 'block';
 
   showUI({ hidePlayer: true });
@@ -169,11 +169,19 @@ async function main() {
         }
 
         player.configure({
+          preferredVideoCodecs: ["avc1", "avc"],
           streaming: {
-            bufferingGoal: 180,
-            rebufferingGoal: 0.02,
-            bufferBehind: 300
-          }
+            bufferingGoal: info.page[0].player_config.media_common_config.dynamic_readahead_config.max_read_ahead_media_time_ms / 1000,
+            rebufferingGoal: info.page[0].player_config.media_common_config.dynamic_readahead_config.read_ahead_growth_rate_ms / 1000,
+            bufferBehind: 300,
+            autoLowLatencyMode: true,
+          },
+          abr: {
+            enabled: true,
+            restrictions: {
+              maxBandwidth: Number(info.page[0].player_config.stream_selection_config.max_bitrate),
+            },
+          },
         });
 
         player.getNetworkingEngine()?.registerRequestFilter((_type: any, request: any) => {
@@ -188,7 +196,7 @@ async function main() {
           }
 
           request.method = 'POST';
-          request.body = new Uint8Array([ 120, 0 ]);
+          request.body = new Uint8Array([120, 0]);
 
           if (url.pathname === '/videoplayback') {
             if (headers.Range) {
@@ -205,37 +213,67 @@ async function main() {
         const RequestType = shaka.net.NetworkingEngine.RequestType;
 
         player.getNetworkingEngine()?.registerResponseFilter(async (type: any, response: any) => {
-          if (type == RequestType.SEGMENT) {
-            const umpDecoder = new UMPParser(new Uint8Array(response.data));
-            const umpParts = umpDecoder.parse();
+          let retryCount = 0;
 
-            // Check if there are multiple media data parts. If so, we need to concatenate them.
-            const multipleMD = umpParts.filter((part) => part.type === 21).length > 1;
+          const parseUMPResponse = async () => {
+            if (type == RequestType.SEGMENT) {
+              const umpDecoder = new UMPParser(new Uint8Array(response.data));
+              const umpParts = umpDecoder.parse();
 
-            let mediaData = new Uint8Array(0);
+              // Check if there are multiple media data parts. If so, we need to concatenate them.
+              const multipleMD = umpParts.filter((part) => part.type === 21).length > 1;
 
-            for (const part of umpParts) {
-              switch (part.type) {
-                case 20:
-                  const mediaHeader = decodeMHeader(part.data);
-                  console.log('Media header', mediaHeader);
-                  response.headers['content-type'] = info.streaming_data?.adaptive_formats.find((format) => format.itag === mediaHeader.itag)?.mime_type.split(';')[0];
-                  break;
-                case 21:
-                  if (!multipleMD) {
-                    mediaData = part.data.slice(1); // Remove header id
-                  } else {
-                    mediaData = new Uint8Array([ ...mediaData, ...part.data.slice(1) ]);
-                  }
+              let mediaData = new Uint8Array(0);
 
-                  if (mediaData.length)
-                    response.data = mediaData;
-                  break;
-                case 22:
-                  break;
+              for (const part of umpParts) {
+                switch (part.type) {
+                  case 20:
+                    const mediaHeader = decodeMHeader(part.data);
+                    console.log('Media header', mediaHeader);
+                    response.headers['content-type'] = info.streaming_data?.adaptive_formats.find((format) => format.itag === mediaHeader.itag)?.mime_type.split(';')[0];
+                    break;
+                  case 21:
+                    if (!multipleMD) {
+                      mediaData = part.data.slice(1); // Remove header id
+                    } else {
+                      mediaData = new Uint8Array([...mediaData, ...part.data.slice(1)]);
+                    }
+
+                    if (mediaData.length)
+                      response.data = mediaData;
+                    break;
+                  case 22:
+                    break;
+                  case 44:
+                    if (retryCount >= 3) {
+                      console.error('Exceeded retry count');
+                      break;
+                    }
+
+                    console.log('Got SABR error, retrying');
+
+                    const retry_parameters = player!.getConfiguration().streaming.retryParameters;
+                    const sabr_retry_request = shaka.net.NetworkingEngine.makeRequest([response.uri], retry_parameters);
+                    const request_operation = player!.getNetworkingEngine()!.request(type, sabr_retry_request);
+                    const sabr_retry_response = await request_operation.promise;
+
+                    response.data = sabr_retry_response.data;
+                    response.headers = sabr_retry_response.headers;
+                    response.uri = sabr_retry_response.uri;
+                    await parseUMPResponse();
+
+                    retryCount++;
+                    break;
+                  default:
+                    const base64 = Utils.u8ToBase64(part.data);
+                    console.log('UMP Part', part.type, base64);
+                    break;
+                }
               }
             }
           }
+
+          await parseUMPResponse();
         });
 
         try {
@@ -262,7 +300,7 @@ function showUI(args: { hidePlayer?: boolean } = {
   ytplayer.style.display = args.hidePlayer ? 'none' : 'block';
 
   const video_container = document.getElementById('video-container') as HTMLDivElement;
-  video_container.animate({ opacity: [ 0, 1 ] }, { duration: 300, easing: 'ease-in-out' });
+  video_container.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
   video_container.style.display = 'block';
 
   loader.style.display = 'none';
