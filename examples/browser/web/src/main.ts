@@ -238,11 +238,15 @@ async function main() {
             if (!multipleMD) {
               mediaData = data.slice(1); // Remove header id
             } else {
-              mediaData = new Uint8Array([...mediaData, ...data.slice(1)]);
-            }
+              const newData = data.slice(1);
+              const combinedLength = mediaData.length + newData.length;
+              const tempMediaData = new Uint8Array(combinedLength);
 
-            if (mediaData.length)
-              response.data = mediaData;
+              tempMediaData.set(mediaData);
+              tempMediaData.set(newData, mediaData.length);
+
+              mediaData = tempMediaData;
+            }
           }
 
           if (type == RequestType.SEGMENT) {
@@ -256,7 +260,7 @@ async function main() {
               switch (part.type) {
                 case 20:
                   const mediaHeader = Proto.decodeMHeader(part.data);
-                  console.log('Media header:', mediaHeader);
+                  console.info('Media header', mediaHeader);
                   break;
                 case 21:
                   handleMediaData(part.data, multipleMD);
@@ -267,6 +271,9 @@ async function main() {
                   break;
               }
             }
+
+            if (mediaData.length)
+              response.data = mediaData;
           }
         });
 
