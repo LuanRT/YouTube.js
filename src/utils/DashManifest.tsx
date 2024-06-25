@@ -13,6 +13,7 @@ import type { SegmentInfo as FSegmentInfo } from './StreamingInfo.js';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
 import type PlayerLiveStoryboardSpec from '../parser/classes/PlayerLiveStoryboardSpec.js';
 import type { StreamingInfoOptions } from '../types/StreamingInfoOptions.js';
+import type { CaptionTrackData } from '../parser/classes/PlayerCaptionsTracklist.js';
 
 interface DashManifestProps {
   streamingData: IStreamingData;
@@ -24,6 +25,7 @@ interface DashManifestProps {
   player?: Player;
   actions?: Actions;
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
+  captionTracks?: CaptionTrackData[];
 }
 
 async function OTFPostLiveDvrSegmentInfo({ info }: { info: FSegmentInfo }) {
@@ -73,14 +75,16 @@ async function DashManifest({
   player,
   actions,
   storyboards,
+  captionTracks,
   options
 }: DashManifestProps) {
   const {
     getDuration,
     audio_sets,
     video_sets,
-    image_sets
-  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, options);
+    image_sets,
+    text_sets
+  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, captionTracks, options);
 
   // XXX: DASH spec: https://standards.iso.org/ittf/PubliclyAvailableStandards/c083314_ISO_IEC%2023009-1_2022(en).zip
 
@@ -229,6 +233,32 @@ async function DashManifest({
           </adaptation-set>;
         })
       }
+      {
+        text_sets.map((set, index) => {
+          return <adaptation-set
+            id={index + audio_sets.length + video_sets.length + image_sets.length}
+            mimeType={set.mime_type}
+            lang={set.language}
+            contentType="text"
+          >
+            <role
+              schemeIdUri="urn:mpeg:dash:role:2011"
+              value="caption"
+            />
+            <label id={index + audio_sets.length}>
+              {set.track_name}
+            </label>
+            <representation
+              id={set.representation.uid}
+              bandwidth="0"
+            >
+              <base-url>
+                {set.representation.base_url}
+              </base-url>
+            </representation>
+          </adaptation-set>;
+        })
+      }
     </period>
   </mpd>;
 }
@@ -242,6 +272,7 @@ export function toDash(
   player?: Player,
   actions?: Actions,
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec,
+  caption_tracks?: CaptionTrackData[],
   options?: StreamingInfoOptions
 ) {
   if (!streaming_data)
@@ -258,6 +289,7 @@ export function toDash(
       player={player}
       actions={actions}
       storyboards={storyboards}
+      captionTracks={caption_tracks}
     />
   );
 }
