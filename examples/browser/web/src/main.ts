@@ -168,7 +168,6 @@ async function main() {
         }
 
         player.configure({
-          preferredVideoCodecs: ["avc1", "avc"],
           streaming: {
             bufferingGoal: info.page[0].player_config.media_common_config.dynamic_readahead_config.max_read_ahead_media_time_ms / 1000,
             rebufferingGoal: info.page[0].player_config.media_common_config.dynamic_readahead_config.read_ahead_growth_rate_ms / 1000,
