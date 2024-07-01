@@ -184,6 +184,7 @@ export { default as LiveChatPaidSticker } from './classes/livechat/items/LiveCha
 export { default as LiveChatPlaceholderItem } from './classes/livechat/items/LiveChatPlaceholderItem.js';
 export { default as LiveChatProductItem } from './classes/livechat/items/LiveChatProductItem.js';
 export { default as LiveChatRestrictedParticipation } from './classes/livechat/items/LiveChatRestrictedParticipation.js';
+export { default as LiveChatSponsorshipsGiftPurchaseAnnouncement } from './classes/livechat/items/LiveChatSponsorshipsGiftPurchaseAnnouncement.js';
 export { default as LiveChatTextMessage } from './classes/livechat/items/LiveChatTextMessage.js';
 export { default as LiveChatTickerPaidMessageItem } from './classes/livechat/items/LiveChatTickerPaidMessageItem.js';
 export { default as LiveChatTickerPaidStickerItem } from './classes/livechat/items/LiveChatTickerPaidStickerItem.js';

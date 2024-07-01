@@ -24,6 +24,7 @@ import type LiveChatMembershipItem from '../classes/livechat/items/LiveChatMembe
 import type LiveChatPaidMessage from '../classes/livechat/items/LiveChatPaidMessage.js';
 import type LiveChatPaidSticker from '../classes/livechat/items/LiveChatPaidSticker.js';
 import type LiveChatTextMessage from '../classes/livechat/items/LiveChatTextMessage.js';
+import type LiveChatSponsorshipsGiftPurchaseAnnouncement from '../classes/livechat/items/LiveChatSponsorshipsGiftPurchaseAnnouncement.js';
 import type LiveChatViewerEngagementMessage from '../classes/livechat/items/LiveChatViewerEngagementMessage.js';
 import type AddLiveChatTickerItemAction from '../classes/livechat/AddLiveChatTickerItemAction.js';
 import type MarkChatItemAsDeletedAction from '../classes/livechat/MarkChatItemAsDeletedAction.js';
@@ -41,7 +42,7 @@ export type ChatAction =
   MarkChatItemAsDeletedAction | MarkChatItemsByAuthorAsDeletedAction | RemoveBannerForLiveChatCommand |
   ReplaceChatItemAction | ReplayChatItemAction | ShowLiveChatActionPanelAction | ShowLiveChatTooltipCommand;
 
-export type ChatItemWithMenu = LiveChatAutoModMessage | LiveChatMembershipItem | LiveChatPaidMessage | LiveChatPaidSticker | LiveChatTextMessage | LiveChatViewerEngagementMessage;
+export type ChatItemWithMenu = LiveChatAutoModMessage | LiveChatMembershipItem | LiveChatPaidMessage | LiveChatPaidSticker | LiveChatTextMessage | LiveChatViewerEngagementMessage | LiveChatSponsorshipsGiftPurchaseAnnouncement;
 
 export interface LiveMetadata {
   title?: UpdateTitleAction;
