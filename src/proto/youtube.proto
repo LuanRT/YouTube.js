@@ -335,3 +335,60 @@ message MediaHeader {
 message Redirect {
   required string url = 1;
 }
+
+message Playback {
+  int32 target_audio_readahead_ms = 1;
+  int32 target_video_readahead_ms = 2;
+  optional int32 backoff_time_ms = 4;
+  optional string playback_cookie = 7;
+  optional string video_id = 8;
+}
+
+// {
+//     "1": "JAs6WyK-Kr0",
+//     "2": {
+//         "1": 251,
+//         "2": 1714583453709660
+//     },
+//     "3": 437341,
+//     "4": 44,
+//     "5": "audio/webm; codecs=\"opus\"",
+//     "6": {
+//         "1": 0,
+//         "2": 257
+//     },
+//     "7": {
+//         "1": 258,
+//         "2": 1002
+//     },
+//     "9": 437341,
+//     "10": 1000
+// }
+
+message Format {
+  string video_id = 1;
+  ItagData itag_data = 2;
+  int32 end_time_ms = 3;
+  int32 kpb = 4;
+  string mime_type = 5;
+  InitRange init_range = 6;
+  IndexRange index_range = 7;
+  optional int32 iP = 8;
+  optional int32 duration_ms = 9;
+  optional int32 field10_ms = 10;
+
+  message ItagData {
+    required int32 itag = 1;
+    required int64 lmt = 2;
+  }
+
+  message InitRange {
+    required int32 start = 1;
+    required int32 end = 2;
+  }
+
+  message IndexRange {
+    required int32 start = 1;
+    required int32 end = 2;
+  }
+}
