@@ -488,7 +488,7 @@ export default class Session extends EventEmitter {
         deviceModel: args.device_model,
         browserName: args.browser_name,
         browserVersion: args.browser_version,
-        utcOffsetMinutes: -new Date().getTimezoneOffset(),
+        utcOffsetMinutes: -Math.floor((new Date()).getTimezoneOffset()),
         memoryTotalKbytes: '8000000',
         mainAppWebInfo: {
           graftUrl: Constants.URLS.YT_BASE,
