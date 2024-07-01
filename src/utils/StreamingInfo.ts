@@ -128,6 +128,7 @@ export interface TextSet {
   mime_type: string;
   language: string;
   track_name: string;
+  track_roles: ('caption' | 'dub')[];
   representation: TextRepresentation;
 }
 
@@ -760,10 +761,17 @@ function getTextSets(
     const url = new URL(caption_track.base_url);
     url.searchParams.set('fmt', format);
 
+    const track_roles: ('caption' | 'dub')[] = [ 'caption' ];
+
+    if (url.searchParams.has('tlang')) {
+      track_roles.push('dub');
+    }
+
     return {
       mime_type,
       language: caption_track.language_code,
       track_name: caption_track.name.toString(),
+      track_roles,
       representation: {
         uid: `text-${caption_track.vss_id}`,
         base_url: transform_url(url).toString()
