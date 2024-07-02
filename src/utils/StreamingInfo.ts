@@ -12,6 +12,7 @@ import type { Format } from '../parser/misc.js';
 import type { PlayerLiveStoryboardSpec } from '../parser/nodes.js';
 import type { FormatFilter, URLTransformer } from '../types/FormatUtils.js';
 import type { StreamingInfoOptions } from '../types/StreamingInfoOptions.js';
+import type { CaptionTrackData } from '../parser/classes/PlayerCaptionsTracklist.js';
 
 const TAG_ = 'StreamingInfo';
 
@@ -20,6 +21,7 @@ export interface StreamingInfo {
   audio_sets: AudioSet[];
   video_sets: VideoSet[];
   image_sets: ImageSet[];
+  text_sets: TextSet[];
 }
 
 export interface AudioSet {
@@ -120,6 +122,19 @@ export interface ImageRepresentation {
   template_url: string;
   template_duration: number;
   getURL(n: number): string;
+}
+
+export interface TextSet {
+  mime_type: string;
+  language: string;
+  track_name: string;
+  track_roles: ('caption' | 'dub')[];
+  representation: TextRepresentation;
+}
+
+export interface TextRepresentation {
+  uid: string;
+  base_url: string;
 }
 
 interface PostLiveDvrInfo {
@@ -706,7 +721,7 @@ function getImageRepresentation(
     thumbnail_width: board.thumbnail_width,
     rows: board.rows,
     columns: board.columns,
-    template_duration: template_duration,
+    template_duration: Math.round(template_duration),
     template_url: transform_url(template_url).toString(),
     getURL(n) {
       return template_url.toString().replace('$Number$', n.toString());
@@ -735,6 +750,36 @@ function getImageSets(
   }));
 }
 
+function getTextSets(
+  caption_tracks: CaptionTrackData[],
+  format: 'vtt' | 'ttml',
+  transform_url: URLTransformer
+): TextSet[] {
+  const mime_type = format === 'vtt' ? 'text/vtt' : 'application/ttml+xml';
+
+  return caption_tracks.map((caption_track) => {
+    const url = new URL(caption_track.base_url);
+    url.searchParams.set('fmt', format);
+
+    const track_roles: ('caption' | 'dub')[] = [ 'caption' ];
+
+    if (url.searchParams.has('tlang')) {
+      track_roles.push('dub');
+    }
+
+    return {
+      mime_type,
+      language: caption_track.language_code,
+      track_name: caption_track.name.toString(),
+      track_roles,
+      representation: {
+        uid: `text-${caption_track.vss_id}`,
+        base_url: transform_url(url).toString()
+      }
+    };
+  });
+}
+
 export function getStreamingInfo(
   streaming_data?: IStreamingData,
   is_post_live_dvr = false,
@@ -744,6 +789,7 @@ export function getStreamingInfo(
   player?: Player,
   actions?: Actions,
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec,
+  caption_tracks?: CaptionTrackData[],
   options?: StreamingInfoOptions
 ) {
   if (!streaming_data)
@@ -839,11 +885,21 @@ export function getStreamingInfo(
     image_sets = getImageSets(duration, actions, storyboards, url_transformer);
   }
 
+  let text_sets: TextSet[] = [];
+
+  if (caption_tracks && options?.captions_format) {
+    if ((options.captions_format as string) !== 'vtt' && (options.captions_format as string) !== 'ttml') {
+      throw new InnertubeError('Invalid captions format', options.captions_format);
+    }
+    text_sets = getTextSets(caption_tracks, options.captions_format, url_transformer);
+  }
+
   const info : StreamingInfo = {
     getDuration,
     audio_sets,
     video_sets,
-    image_sets
+    image_sets,
+    text_sets
   };
 
   return info;
