@@ -205,8 +205,6 @@ async function main() {
               url.searchParams.set("ump", "1");
               url.searchParams.set("srfvp", "1");
               url.searchParams.set("rn", rn.toString());
-              // Default value when pot generation fails. Here only for testing purposes.
-              url.searchParams.set("pot", "AAAAAAAAAAABAAAAAAkAAAAAAAAAAAEAAAADAAAJAAAAAAAEAgYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAAAAwAGAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAYAAQAAAAgIAAAAAAMAAAUABQAAAAAAAAAAAAAAAAAA");
               delete headers.Range;
             }
 
