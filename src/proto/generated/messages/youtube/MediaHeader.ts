@@ -1,10 +1,10 @@
 import {
-  Type as ItagData,
+  Type as FormatId,
   encodeJson as encodeJson_1,
   decodeJson as decodeJson_1,
   encodeBinary as encodeBinary_1,
   decodeBinary as decodeBinary_1,
-} from "./(MediaHeader)/ItagData.js";
+} from "./FormatId.js";
 import {
   Type as TimeRange,
   encodeJson as encodeJson_2,
@@ -43,7 +43,7 @@ export declare namespace $.youtube {
     field10?: number;
     startMs?: number;
     durationMs?: number;
-    itagData?: ItagData;
+    formatId?: FormatId;
     contentLength: number;
     timeRange?: TimeRange;
   }
@@ -63,7 +63,7 @@ export function getDefaultValue(): $.youtube.MediaHeader {
     field10: undefined,
     startMs: undefined,
     durationMs: undefined,
-    itagData: undefined,
+    formatId: undefined,
     contentLength: 0,
     timeRange: undefined,
   };
@@ -88,7 +88,7 @@ export function encodeJson(value: $.youtube.MediaHeader): unknown {
   if (value.field10 !== undefined) result.field10 = tsValueToJsonValueFns.int32(value.field10);
   if (value.startMs !== undefined) result.startMs = tsValueToJsonValueFns.int32(value.startMs);
   if (value.durationMs !== undefined) result.durationMs = tsValueToJsonValueFns.int32(value.durationMs);
-  if (value.itagData !== undefined) result.itagData = encodeJson_1(value.itagData);
+  if (value.formatId !== undefined) result.formatId = encodeJson_1(value.formatId);
   if (value.contentLength !== undefined) result.contentLength = tsValueToJsonValueFns.int32(value.contentLength);
   if (value.timeRange !== undefined) result.timeRange = encodeJson_2(value.timeRange);
   return result;
@@ -106,7 +106,7 @@ export function decodeJson(value: any): $.youtube.MediaHeader {
   if (value.field10 !== undefined) result.field10 = jsonValueToTsValueFns.int32(value.field10);
   if (value.startMs !== undefined) result.startMs = jsonValueToTsValueFns.int32(value.startMs);
   if (value.durationMs !== undefined) result.durationMs = jsonValueToTsValueFns.int32(value.durationMs);
-  if (value.itagData !== undefined) result.itagData = decodeJson_1(value.itagData);
+  if (value.formatId !== undefined) result.formatId = decodeJson_1(value.formatId);
   if (value.contentLength !== undefined) result.contentLength = jsonValueToTsValueFns.int32(value.contentLength);
   if (value.timeRange !== undefined) result.timeRange = decodeJson_2(value.timeRange);
   return result;
@@ -174,8 +174,8 @@ export function encodeBinary(value: $.youtube.MediaHeader): Uint8Array {
       [12, tsValueToWireValueFns.int32(tsValue)],
     );
   }
-  if (value.itagData !== undefined) {
-    const tsValue = value.itagData;
+  if (value.formatId !== undefined) {
+    const tsValue = value.formatId;
     result.push(
       [13, { type: WireType.LengthDelimited as const, value: encodeBinary_1(tsValue) }],
     );
@@ -274,7 +274,7 @@ export function decodeBinary(binary: Uint8Array): $.youtube.MediaHeader {
     if (wireValue === undefined) break field;
     const value = wireValue.type === WireType.LengthDelimited ? decodeBinary_1(wireValue.value) : undefined;
     if (value === undefined) break field;
-    result.itagData = value;
+    result.formatId = value;
   }
   field: {
     const wireValue = wireFields.get(14);

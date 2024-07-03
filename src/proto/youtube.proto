@@ -285,27 +285,82 @@ message ShortsParam {
   int32 p59 = 59;
 }
 
+message FormatId {
+  required int32 itag = 1;
+  required int64 last_modified = 2;
+  map<int32, string> field3 = 3;  // Assuming it's a map since it's always an empty object
+}
+
+message InitRange {
+  required int32 start = 1;
+  required int32 end = 2;
+}
+
+message IndexRange {
+  required int32 start = 1;
+  required int32 end = 2;
+}
+
+message PlaybackCookie {
+  int32 field1 = 1; // Always 999999??
+  int32 field2 = 2;
+  FormatId video_fmt = 7;
+  FormatId audio_fmt = 8;
+}
+
+message Redirect {
+  required string url = 1;
+}
+
+message PlaybackStartPolicy {
+  message ReadaheadPolicy {
+    int32 min_readahead_ms = 2;
+    optional int32 min_bandwidth_bytes_per_sec = 1;
+  }
+
+  ReadaheadPolicy start_min_readahead_policy = 1;
+  ReadaheadPolicy resume_min_readahead_policy = 2;
+}
+
+message RequestCancellationPolicy {
+  message Item {
+    int32 fR = 1;
+    int32 NK = 2;
+    optional int32 minReadaheadMs = 3;
+  }
+
+  int32 N0 = 1;
+  repeated Item items = 2;
+  optional int32 jq = 3;
+}
+
+message NextRequestPolicy {
+  int32 target_audio_readahead_ms = 1;
+  int32 target_video_readahead_ms = 2;
+  optional int32 backoff_time_ms = 4;
+  optional PlaybackCookie playback_cookie = 7;
+  optional string video_id = 8;
+}
+
+message StreamProtectionStatus {
+  int32 status = 1;
+  optional int32 field2 = 2;
+}
+
+message FormatInitializationMetadata {
+  string video_id = 1;
+  FormatId format_id = 2;
+  int32 end_time_ms = 3;
+  int32 field4 = 4;
+  string mime_type = 5;
+  InitRange init_range = 6;
+  IndexRange index_range = 7;
+  optional int32 field8 = 8;
+  optional int32 duration_ms = 9;
+  optional int32 field10 = 10; 
+}
+
 message MediaHeader {
-  //  a = {
-  //   Xp: GN(a, 1),
-  //   videoId: JN(a, 2),
-  //   itag: GN(a, 3),
-  //   lmt: GN(a, 4),
-  //   xtags: JN(a, 5),
-  //   cC: GN(a, 6),
-  //   uo: HN(a, 8),
-  //   Gq: GN(a, 9),
-  //   dpb: GN(a, 10),
-  //   startMs: GN(a, 11),
-  //   durationMs: GN(a, 12),
-  //   zs: GN(a, 14),
-  //   timeRange: KN(a, 15, aQa),
-  //   Lj: GN(a, 16),
-  //   ZK: GN(a, 17),
-  //   clipId: JN(a, 1E3)
-  //  };
-
-
   int32 field1 = 1; 
   string video_id = 2;
   int32 itag = 3;
@@ -316,7 +371,7 @@ message MediaHeader {
   optional int32 field10 = 10;
   optional int32 start_ms = 11;
   optional int32 duration_ms = 12;
-  ItagData itag_data = 13;
+  FormatId format_id = 13;
   int32 content_length = 14;
   optional TimeRange time_range = 15;
 
@@ -324,71 +379,5 @@ message MediaHeader {
     required int32 field1 = 1;
     required int32 field2 = 2;
     required int32 field3 = 3;
-  }
-
-  message ItagData {
-    required int32 itag = 1;
-    required int64 lmt = 2;
-  }
-}
-
-message Redirect {
-  required string url = 1;
-}
-
-message Playback {
-  int32 target_audio_readahead_ms = 1;
-  int32 target_video_readahead_ms = 2;
-  optional int32 backoff_time_ms = 4;
-  optional string playback_cookie = 7;
-  optional string video_id = 8;
-}
-
-// {
-//     "1": "JAs6WyK-Kr0",
-//     "2": {
-//         "1": 251,
-//         "2": 1714583453709660
-//     },
-//     "3": 437341,
-//     "4": 44,
-//     "5": "audio/webm; codecs=\"opus\"",
-//     "6": {
-//         "1": 0,
-//         "2": 257
-//     },
-//     "7": {
-//         "1": 258,
-//         "2": 1002
-//     },
-//     "9": 437341,
-//     "10": 1000
-// }
-
-message Format {
-  string video_id = 1;
-  ItagData itag_data = 2;
-  int32 end_time_ms = 3;
-  int32 kpb = 4;
-  string mime_type = 5;
-  InitRange init_range = 6;
-  IndexRange index_range = 7;
-  optional int32 iP = 8;
-  optional int32 duration_ms = 9;
-  optional int32 field10_ms = 10;
-
-  message ItagData {
-    required int32 itag = 1;
-    required int64 lmt = 2;
-  }
-
-  message InitRange {
-    required int32 start = 1;
-    required int32 end = 2;
-  }
-
-  message IndexRange {
-    required int32 start = 1;
-    required int32 end = 2;
   }
 }
