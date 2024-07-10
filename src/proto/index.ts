@@ -250,12 +250,20 @@ export function encodeVideoMetadataPayload(video_id: string, metadata: UpdateVid
   const data: InnertubePayload.Type = {
     context: {
       client: {
-        unkparam: 14,
-        clientName: CLIENTS.ANDROID.NAME,
-        clientVersion: CLIENTS.YTSTUDIO_ANDROID.VERSION
+        nameId: 3,
+        osName: 'Android',
+        androidSdkVersion: CLIENTS.ANDROID.SDK_VERSION,
+        osVersion: '13',
+        acceptLanguage: 'en-US',
+        acceptRegion: 'US',
+        deviceMake: 'Google',
+        deviceModel: 'sdk_gphone64_x86_64',
+        windowHeightPoints: 840,
+        windowWidthPoints: 432,
+        clientVersion: CLIENTS.ANDROID.VERSION
       }
     },
-    target: video_id
+    videoId: video_id
   };
 
   if (Reflect.has(metadata, 'title'))
@@ -312,12 +320,20 @@ export function encodeCustomThumbnailPayload(video_id: string, bytes: Uint8Array
   const data: InnertubePayload.Type = {
     context: {
       client: {
-        unkparam: 14,
-        clientName: CLIENTS.ANDROID.NAME,
-        clientVersion: CLIENTS.YTSTUDIO_ANDROID.VERSION
+        nameId: 3,
+        osName: 'Android',
+        androidSdkVersion: CLIENTS.ANDROID.SDK_VERSION,
+        osVersion: '13',
+        acceptLanguage: 'en-US',
+        acceptRegion: 'US',
+        deviceMake: 'Google',
+        deviceModel: 'sdk_gphone64_x86_64',
+        windowHeightPoints: 840,
+        windowWidthPoints: 432,
+        clientVersion: CLIENTS.ANDROID.VERSION
       }
     },
-    target: video_id,
+    videoId: video_id,
     videoThumbnail: {
       type: 3,
       thumbnail: {

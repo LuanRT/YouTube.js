@@ -90,7 +90,7 @@ import {
 export declare namespace $.youtube {
   export type InnertubePayload = {
     context?: Context;
-    target?: string;
+    videoId?: string;
     title?: Title;
     description?: Description;
     tags?: Tags;
@@ -100,6 +100,7 @@ export declare namespace $.youtube {
     privacy?: Privacy;
     madeForKids?: MadeForKids;
     ageRestricted?: AgeRestricted;
+    field83?: number;
   }
 }
 
@@ -108,7 +109,7 @@ export type Type = $.youtube.InnertubePayload;
 export function getDefaultValue(): $.youtube.InnertubePayload {
   return {
     context: undefined,
-    target: undefined,
+    videoId: undefined,
     title: undefined,
     description: undefined,
     tags: undefined,
@@ -118,6 +119,7 @@ export function getDefaultValue(): $.youtube.InnertubePayload {
     privacy: undefined,
     madeForKids: undefined,
     ageRestricted: undefined,
+    field83: undefined,
   };
 }
 
@@ -131,7 +133,7 @@ export function createValue(partialValue: Partial<$.youtube.InnertubePayload>): 
 export function encodeJson(value: $.youtube.InnertubePayload): unknown {
   const result: any = {};
   if (value.context !== undefined) result.context = encodeJson_1(value.context);
-  if (value.target !== undefined) result.target = tsValueToJsonValueFns.string(value.target);
+  if (value.videoId !== undefined) result.videoId = tsValueToJsonValueFns.string(value.videoId);
   if (value.title !== undefined) result.title = encodeJson_2(value.title);
   if (value.description !== undefined) result.description = encodeJson_3(value.description);
   if (value.tags !== undefined) result.tags = encodeJson_4(value.tags);
@@ -141,13 +143,14 @@ export function encodeJson(value: $.youtube.InnertubePayload): unknown {
   if (value.privacy !== undefined) result.privacy = encodeJson_8(value.privacy);
   if (value.madeForKids !== undefined) result.madeForKids = encodeJson_9(value.madeForKids);
   if (value.ageRestricted !== undefined) result.ageRestricted = encodeJson_10(value.ageRestricted);
+  if (value.field83 !== undefined) result.field83 = tsValueToJsonValueFns.int32(value.field83);
   return result;
 }
 
 export function decodeJson(value: any): $.youtube.InnertubePayload {
   const result = getDefaultValue();
   if (value.context !== undefined) result.context = decodeJson_1(value.context);
-  if (value.target !== undefined) result.target = jsonValueToTsValueFns.string(value.target);
+  if (value.videoId !== undefined) result.videoId = jsonValueToTsValueFns.string(value.videoId);
   if (value.title !== undefined) result.title = decodeJson_2(value.title);
   if (value.description !== undefined) result.description = decodeJson_3(value.description);
   if (value.tags !== undefined) result.tags = decodeJson_4(value.tags);
@@ -157,6 +160,7 @@ export function decodeJson(value: any): $.youtube.InnertubePayload {
   if (value.privacy !== undefined) result.privacy = decodeJson_8(value.privacy);
   if (value.madeForKids !== undefined) result.madeForKids = decodeJson_9(value.madeForKids);
   if (value.ageRestricted !== undefined) result.ageRestricted = decodeJson_10(value.ageRestricted);
+  if (value.field83 !== undefined) result.field83 = jsonValueToTsValueFns.int32(value.field83);
   return result;
 }
 
@@ -168,8 +172,8 @@ export function encodeBinary(value: $.youtube.InnertubePayload): Uint8Array {
       [1, { type: WireType.LengthDelimited as const, value: encodeBinary_1(tsValue) }],
     );
   }
-  if (value.target !== undefined) {
-    const tsValue = value.target;
+  if (value.videoId !== undefined) {
+    const tsValue = value.videoId;
     result.push(
       [2, tsValueToWireValueFns.string(tsValue)],
     );
@@ -228,6 +232,12 @@ export function encodeBinary(value: $.youtube.InnertubePayload): Uint8Array {
       [69, { type: WireType.LengthDelimited as const, value: encodeBinary_10(tsValue) }],
     );
   }
+  if (value.field83 !== undefined) {
+    const tsValue = value.field83;
+    result.push(
+      [83, tsValueToWireValueFns.int32(tsValue)],
+    );
+  }
   return serialize(result);
 }
 
@@ -247,7 +257,7 @@ export function decodeBinary(binary: Uint8Array): $.youtube.InnertubePayload {
     if (wireValue === undefined) break field;
     const value = wireValueToTsValueFns.string(wireValue);
     if (value === undefined) break field;
-    result.target = value;
+    result.videoId = value;
   }
   field: {
     const wireValue = wireFields.get(3);
@@ -311,6 +321,13 @@ export function decodeBinary(binary: Uint8Array): $.youtube.InnertubePayload {
     const value = wireValue.type === WireType.LengthDelimited ? decodeBinary_10(wireValue.value) : undefined;
     if (value === undefined) break field;
     result.ageRestricted = value;
+  }
+  field: {
+    const wireValue = wireFields.get(83);
+    if (wireValue === undefined) break field;
+    const value = wireValueToTsValueFns.int32(wireValue);
+    if (value === undefined) break field;
+    result.field83 = value;
   }
   return result;
 }
