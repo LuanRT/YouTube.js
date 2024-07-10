@@ -1,5 +1,25 @@
 # Changelog
 
+## [10.1.0](https://github.com/LuanRT/YouTube.js/compare/v10.0.0...v10.1.0) (2024-07-10)
+
+
+### Features
+
+* **Session:** Add `configInfo` to InnerTube context ([5a8fd3a](https://github.com/LuanRT/YouTube.js/commit/5a8fd3ad37bce1decad28ec3727453ddd430a561))
+* **toDash:** Add option to include WebVTT or TTML captions ([#673](https://github.com/LuanRT/YouTube.js/issues/673)) ([bd9f6ac](https://github.com/LuanRT/YouTube.js/commit/bd9f6ac64ca9ba96e856aabe5fcc175fd9c294dc))
+* **toDash:** Add the "dub" role to translated captions ([#677](https://github.com/LuanRT/YouTube.js/issues/677)) ([858cdd1](https://github.com/LuanRT/YouTube.js/commit/858cdd197cb2bb1e1d7a7285966cb56043ad8961))
+
+
+### Bug Fixes
+
+* **FormatUtils:** Throw an error if download requests fails ([a19511d](https://github.com/LuanRT/YouTube.js/commit/a19511de24bb82007aab072844efe64bbb8698da))
+* **InfoPanelContent:** Update InfoPanelContent node to also support `paragraphs` ([4cbaa79](https://github.com/LuanRT/YouTube.js/commit/4cbaa7983f35a82b9907197769672ac3b300bfbe))
+* **Player:** Fix extracting the n-token decipher algorithm ([#682](https://github.com/LuanRT/YouTube.js/issues/682)) ([142a7d0](https://github.com/LuanRT/YouTube.js/commit/142a7d042885188605bdc0655d3733502d1e20fa))
+* **proto:** Update `Context` message ([62ac2f6](https://github.com/LuanRT/YouTube.js/commit/62ac2f6f32d35fec3c31b5f5d556bd4569fa49f9)), closes [#681](https://github.com/LuanRT/YouTube.js/issues/681)
+* **Session:** Round UTC offset minutes ([84f90aa](https://github.com/LuanRT/YouTube.js/commit/84f90aaf2908ecacb9dfb6ce5497c4c4d14a72c3))
+* **toDash:** Fix image representations not being spec compliant ([#672](https://github.com/LuanRT/YouTube.js/issues/672)) ([e5aab9a](https://github.com/LuanRT/YouTube.js/commit/e5aab9a9b35f0752cd5ca50bfa25936dce4718c6))
+* **YTMusic:** Add support for new header layouts ([14c3a06](https://github.com/LuanRT/YouTube.js/commit/14c3a06d402989e98a9d32c79b2dc26f74fb0219))
+
 ## [10.0.0](https://github.com/LuanRT/YouTube.js/compare/v9.4.0...v10.0.0) (2024-06-09)
 
 
