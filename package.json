@@ -103,7 +103,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "jintr": "^1.1.0",
+    "jintr": "^2.0.0",
     "tslib": "^2.5.0",
     "undici": "^5.19.1"
   },

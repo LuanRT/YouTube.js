@@ -220,12 +220,20 @@ export default class Player {
   }
 
   static extractNSigSourceCode(data: string): string {
-    const sc = `function descramble_nsig(a) { let b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join(""); } descramble_nsig(nsig)`;
+    let sc = getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}');
 
-    if (!sc)
-      Log.warn(TAG, 'Failed to extract n-token decipher algorithm');
+    if (sc)
+      return `function descramble_nsig(a) { let b=a.split("")${sc}} return b.join(""); } descramble_nsig(nsig)`;
 
-    return sc;
+    sc = getStringBetweenStrings(data, 'b=String.prototype.split.call(a,"")', '}return Array.prototype.join.call(b,"")}');
+
+    if (sc)
+      return `function descramble_nsig(a) { let b=String.prototype.split.call(a, "")${sc}} return Array.prototype.join.call(b, ""); } descramble_nsig(nsig)`;
+
+    // We really should throw an error here to avoid errors later, returning a pass-through function for backwards-compatibility
+    Log.warn(TAG, 'Failed to extract n-token decipher algorithm');
+
+    return 'function descramble_nsig(a) { return a; } descramble_nsig(nsig)';
   }
 
   get url(): string {
