@@ -2,17 +2,19 @@ import Text from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
 
+export interface CaptionTrackData {
+  base_url: string;
+  name: Text;
+  vss_id: string;
+  language_code: string;
+  kind?: 'asr' | 'frc';
+  is_translatable: boolean;
+}
+
 export default class PlayerCaptionsTracklist extends YTNode {
   static type = 'PlayerCaptionsTracklist';
 
-  caption_tracks?: {
-    base_url: string;
-    name: Text;
-    vss_id: string;
-    language_code: string;
-    kind?: 'asr' | 'frc';
-    is_translatable: boolean;
-  }[];
+  caption_tracks?: CaptionTrackData[];
 
   audio_tracks?: {
     audio_track_id: string;

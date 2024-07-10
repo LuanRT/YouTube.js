@@ -26,6 +26,7 @@ import Format from './classes/misc/Format.ts';
 import VideoDetails from './classes/misc/VideoDetails.ts';
 import NavigationEndpoint from './classes/NavigationEndpoint.ts';
 import CommentView from './classes/comments/CommentView.ts';
+import MusicThumbnail from './classes/MusicThumbnail.ts';
 
 import type { KeyInfo } from './generator.ts';
 import type { ObservedArray, YTNodeConstructor, YTNode } from './helpers.ts';
@@ -365,6 +366,11 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   const player_overlays = parse(data.playerOverlays);
   if (player_overlays) {
     parsed_data.player_overlays = player_overlays;
+  }
+
+  const background = parseItem(data.background, MusicThumbnail);
+  if (background) {
+    parsed_data.background = background;
   }
 
   const playback_tracking = data.playbackTracking ? {

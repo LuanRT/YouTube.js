@@ -90,6 +90,10 @@ export async function download(
             signal: cancel.signal
           });
 
+          // Throw if the response is not 2xx
+          if (!response.ok)
+            throw new InnertubeError('The server responded with a non 2xx status code', { error_type: 'FETCH_FAILED', response });
+
           const body = response.body;
 
           if (!body)
@@ -155,7 +159,7 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
       return false;
     if (!is_best && format.quality_label !== quality)
       return false;
-    if (best_width < format.width)
+    if (format.width && (best_width < format.width))
       best_width = format.width;
     return true;
   });

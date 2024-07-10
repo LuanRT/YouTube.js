@@ -3,33 +3,35 @@ import { Parser } from '../index.ts';
 import MicroformatData from '../classes/MicroformatData.ts';
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
 import MusicDetailHeader from '../classes/MusicDetailHeader.ts';
+import MusicResponsiveHeader from '../classes/MusicResponsiveHeader.ts';
 import MusicShelf from '../classes/MusicShelf.ts';
+import type MusicThumbnail from '../classes/MusicThumbnail.ts';
 
 import type { ApiResponse } from '../../core/index.ts';
-import type { ObservedArray } from '../helpers.ts';
+import { observe, type ObservedArray } from '../helpers.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
 
 class Album {
   #page: IBrowseResponse;
 
-  header?: MusicDetailHeader;
+  header?: MusicDetailHeader | MusicResponsiveHeader;
   contents: ObservedArray<MusicResponsiveListItem>;
   sections: ObservedArray<MusicCarouselShelf>;
-
-  url: string | null;
+  background?: MusicThumbnail;
+  url?: string;
 
   constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
-    this.header = this.#page.header?.item().as(MusicDetailHeader);
-    this.url = this.#page.microformat?.as(MicroformatData).url_canonical || null;
-
     if (!this.#page.contents_memo)
       throw new Error('No contents found in the response');
 
-    this.contents = this.#page.contents_memo.getType(MusicShelf)?.first().contents;
-    this.sections = this.#page.contents_memo.getType(MusicCarouselShelf) || [];
+    this.header = this.#page.contents_memo.getType(MusicDetailHeader, MusicResponsiveHeader)?.first();
+    this.contents = this.#page.contents_memo.getType(MusicShelf)?.first().contents || observe([]);
+    this.sections = this.#page.contents_memo.getType(MusicCarouselShelf) || observe([]);
+    this.background = this.#page.background;
+    this.url = this.#page.microformat?.as(MicroformatData).url_canonical;
   }
 
   get page(): IBrowseResponse {

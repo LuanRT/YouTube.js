@@ -40,14 +40,16 @@ async function DashManifest({
   player,
   actions,
   storyboards,
+  captionTracks,
   options
 }) {
   const {
     getDuration,
     audio_sets,
     video_sets,
-    image_sets
-  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, options);
+    image_sets,
+    text_sets
+  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, captionTracks, options);
   return /* @__PURE__ */ DashUtils.createElement("mpd", {
     xmlns: "urn:mpeg:dash:schema:mpd:2011",
     minBufferTime: "PT1.500S",
@@ -128,10 +130,25 @@ async function DashManifest({
       duration: rep.template_duration,
       startNumber: "0"
     }))));
+  }), text_sets.map((set, index) => {
+    return /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
+      id: index + audio_sets.length + video_sets.length + image_sets.length,
+      mimeType: set.mime_type,
+      lang: set.language,
+      contentType: "text"
+    }, set.track_roles.map((role) => /* @__PURE__ */ DashUtils.createElement("role", {
+      schemeIdUri: "urn:mpeg:dash:role:2011",
+      value: role
+    })), /* @__PURE__ */ DashUtils.createElement("label", {
+      id: index + audio_sets.length
+    }, set.track_name), /* @__PURE__ */ DashUtils.createElement("representation", {
+      id: set.representation.uid,
+      bandwidth: "0"
+    }, /* @__PURE__ */ DashUtils.createElement("base-url", null, set.representation.base_url)));
   })));
 }
 __name(DashManifest, "DashManifest");
-function toDash(streaming_data, is_post_live_dvr = false, url_transformer = (url) => url, format_filter, cpn, player, actions, storyboards, options) {
+function toDash(streaming_data, is_post_live_dvr = false, url_transformer = (url) => url, format_filter, cpn, player, actions, storyboards, caption_tracks, options) {
   if (!streaming_data)
     throw new InnertubeError("Streaming data not available");
   return DashUtils.renderToString(
@@ -144,7 +161,8 @@ function toDash(streaming_data, is_post_live_dvr = false, url_transformer = (url
       cpn,
       player,
       actions,
-      storyboards
+      storyboards,
+      captionTracks: caption_tracks
     })
   );
 }

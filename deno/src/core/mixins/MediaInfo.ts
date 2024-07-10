@@ -54,9 +54,14 @@ export default class MediaInfo {
     }
 
     let storyboards;
+    let captions;
 
     if (options.include_thumbnails && player_response.storyboards) {
       storyboards = player_response.storyboards;
+    }
+
+    if (typeof options.captions_format === 'string' && player_response.captions?.caption_tracks) {
+      captions = player_response.captions.caption_tracks;
     }
 
     return FormatUtils.toDash(
@@ -68,6 +73,7 @@ export default class MediaInfo {
       this.#actions.session.player,
       this.#actions,
       storyboards,
+      captions,
       options
     );
   }
