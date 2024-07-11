@@ -9,7 +9,7 @@ export default class ThumbnailView extends YTNode {
 
   image: Thumbnail[];
   overlays: (ThumbnailOverlayBadgeView | ThumbnailHoverOverlayView)[];
-  background_color: {
+  background_color?: {
     light_theme: number;
     dark_theme: number;
   };
@@ -19,9 +19,11 @@ export default class ThumbnailView extends YTNode {
 
     this.image = Thumbnail.fromResponse(data.image);
     this.overlays = Parser.parseArray(data.overlays, [ ThumbnailOverlayBadgeView, ThumbnailHoverOverlayView ]);
-    this.background_color = {
-      light_theme: data.backgroundColor.lightTheme,
-      dark_theme: data.backgroundColor.darkTheme
-    };
+    if (data.backgroundColor) {
+      this.background_color = {
+        light_theme: data.backgroundColor.lightTheme,
+        dark_theme: data.backgroundColor.darkTheme
+      };
+    }
   }
 }
