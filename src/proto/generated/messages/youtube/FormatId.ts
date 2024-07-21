@@ -4,7 +4,6 @@ import {
 } from "../../runtime/json/scalar.js";
 import {
   WireMessage,
-  WireType,
 } from "../../runtime/wire/index.js";
 import {
   default as serialize,
@@ -21,7 +20,7 @@ export declare namespace $.youtube {
   export type FormatId = {
     itag: number;
     lastModified: string;
-    field3: Map<number, string>;
+    xtags?: string;
   }
 }
 
@@ -31,7 +30,7 @@ export function getDefaultValue(): $.youtube.FormatId {
   return {
     itag: 0,
     lastModified: "0",
-    field3: new Map(),
+    xtags: undefined,
   };
 }
 
@@ -46,7 +45,7 @@ export function encodeJson(value: $.youtube.FormatId): unknown {
   const result: any = {};
   if (value.itag !== undefined) result.itag = tsValueToJsonValueFns.int32(value.itag);
   if (value.lastModified !== undefined) result.lastModified = tsValueToJsonValueFns.int64(value.lastModified);
-  if (value.field3 !== undefined) result.field3 = Object.fromEntries([...value.field3.entries()].map(([key, value]) => [key, tsValueToJsonValueFns.string(value)]));
+  if (value.xtags !== undefined) result.xtags = tsValueToJsonValueFns.string(value.xtags);
   return result;
 }
 
@@ -54,7 +53,7 @@ export function decodeJson(value: any): $.youtube.FormatId {
   const result = getDefaultValue();
   if (value.itag !== undefined) result.itag = jsonValueToTsValueFns.int32(value.itag);
   if (value.lastModified !== undefined) result.lastModified = jsonValueToTsValueFns.int64(value.lastModified);
-  if (value.field3 !== undefined) result.field3 = Object.fromEntries([...value.field3.entries()].map(([key, value]) => [key, jsonValueToTsValueFns.string(value)]));
+  if (value.xtags !== undefined) result.xtags = jsonValueToTsValueFns.string(value.xtags);
   return result;
 }
 
@@ -72,13 +71,11 @@ export function encodeBinary(value: $.youtube.FormatId): Uint8Array {
       [2, tsValueToWireValueFns.int64(tsValue)],
     );
   }
-  {
-    const fields = value.field3.entries();
-    for (const [key, value] of fields) {
-      result.push(
-        [3, { type: WireType.LengthDelimited as const, value: serialize([[1, tsValueToWireValueFns.int32(key)], [2, tsValueToWireValueFns.string(value)]]) }],
-      );
-    }
+  if (value.xtags !== undefined) {
+    const tsValue = value.xtags;
+    result.push(
+      [3, tsValueToWireValueFns.string(tsValue)],
+    );
   }
   return serialize(result);
 }
@@ -101,11 +98,12 @@ export function decodeBinary(binary: Uint8Array): $.youtube.FormatId {
     if (value === undefined) break field;
     result.lastModified = value;
   }
-  collection: {
-    const wireValues = wireMessage.filter(([fieldNumber]) => fieldNumber === 3).map(([, wireValue]) => wireValue);
-    const value = wireValues.map((wireValue) => (() => { if (wireValue.type !== WireType.LengthDelimited) { return; } const { 1: key, 2: value } = Object.fromEntries(deserialize(wireValue.value)); if (key === undefined || value === undefined) return; return [wireValueToTsValueFns.int32(key), wireValueToTsValueFns.string(value)] as const;})()).filter(x => x !== undefined);
-    if (!value.length) break collection;
-    result.field3 = new Map(value as any);
+  field: {
+    const wireValue = wireFields.get(3);
+    if (wireValue === undefined) break field;
+    const value = wireValueToTsValueFns.string(wireValue);
+    if (value === undefined) break field;
+    result.xtags = value;
   }
   return result;
 }

@@ -18,13 +18,53 @@ import * as ReelSequence from './generated/messages/youtube/ReelSequence.js';
 import * as ShortsParam from './generated/messages/youtube/ShortsParam.js';
 import * as MediaHeader from './generated/messages/youtube/MediaHeader.js';
 import * as Redirect from './generated/messages/youtube/Redirect.js';
+import * as FormatInitializationMetadata from './generated/messages/youtube/FormatInitializationMetadata.js';
+import * as StreamProtectionStatus from './generated/messages/youtube/StreamProtectionStatus.js';
+import * as NextRequestPolicy from './generated/messages/youtube/NextRequestPolicy.js';
+import * as RequestCancellationPolicy from './generated/messages/youtube/RequestCancellationPolicy.js';
+import * as PlaybackStartPolicy from './generated/messages/youtube/PlaybackStartPolicy.js';
+import * as PlaybackCookie from './generated/messages/youtube/PlaybackCookie.js';
+import * as OnesieRequest from './generated/messages/youtube/OnesieRequest.js';
+import * as SabrRequest from './generated/messages/youtube/SabrRequest.js';
+
+export function encodeSabrRequest(data: SabrRequest.Type): Uint8Array {
+  return SabrRequest.encodeBinary(data);
+}
+
+export function encodeOnesieRequest(data: OnesieRequest.Type): Uint8Array {
+  return OnesieRequest.encodeBinary(data);
+}
 
 export function decodeMHeader(data: Uint8Array): MediaHeader.Type {
   return MediaHeader.decodeBinary(data);
 }
 
-export function decodeRedirect(data: Uint8Array): Redirect.Type {
+export function decodeSABRRedirect(data: Uint8Array): Redirect.Type {
   return Redirect.decodeBinary(data);
+}
+
+export function encodePlaybackCookie(data: PlaybackCookie.Type): Uint8Array {
+  return PlaybackCookie.encodeBinary(data);
+}
+
+export function decodeFormatInitializationMetadata(data: Uint8Array): FormatInitializationMetadata.Type {
+  return FormatInitializationMetadata.decodeBinary(data);
+}
+
+export function decodeStreamProtectionStatus(data: Uint8Array): StreamProtectionStatus.Type {
+  return StreamProtectionStatus.decodeBinary(data);
+}
+
+export function decodeNextRequestPolicy(data: Uint8Array): NextRequestPolicy.Type {
+  return NextRequestPolicy.decodeBinary(data);
+}
+
+export function decodeRequestCancellationPolicy(data: Uint8Array): RequestCancellationPolicy.Type {
+  return RequestCancellationPolicy.decodeBinary(data);
+}
+
+export function decodePlaybackStartPolicy(data: Uint8Array): PlaybackStartPolicy.Type {
+  return PlaybackStartPolicy.decodeBinary(data);
 }
 
 export function encodeVisitorData(id: string, timestamp: number): string {
