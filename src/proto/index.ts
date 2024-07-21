@@ -24,6 +24,7 @@ import * as NextRequestPolicy from './generated/messages/youtube/NextRequestPoli
 import * as RequestCancellationPolicy from './generated/messages/youtube/RequestCancellationPolicy.js';
 import * as PlaybackStartPolicy from './generated/messages/youtube/PlaybackStartPolicy.js';
 import * as PlaybackCookie from './generated/messages/youtube/PlaybackCookie.js';
+import * as SabrError from './generated/messages/youtube/SabrError.js';
 import * as OnesieRequest from './generated/messages/youtube/OnesieRequest.js';
 import * as SabrRequest from './generated/messages/youtube/SabrRequest.js';
 
@@ -37,6 +38,10 @@ export function encodeOnesieRequest(data: OnesieRequest.Type): Uint8Array {
 
 export function decodeMHeader(data: Uint8Array): MediaHeader.Type {
   return MediaHeader.decodeBinary(data);
+}
+
+export function decodeSABRError(data: Uint8Array): SabrError.Type {
+  return SabrError.decodeBinary(data);
 }
 
 export function decodeSABRRedirect(data: Uint8Array): Redirect.Type {
