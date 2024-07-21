@@ -73,8 +73,8 @@ export declare namespace $.youtube {
     ud: Zpa[];
     videoPlaybackUstreamerConfig?: Uint8Array;
     lo?: Lo;
-    formatIds2: FormatId[];
-    formatIds3: FormatId[];
+    audioFormatIds: FormatId[];
+    videoFormatIds: FormatId[];
     sc?: Upa;
     field21?: OQa;
     field22?: number;
@@ -92,8 +92,8 @@ export function getDefaultValue(): $.youtube.SabrRequest {
     ud: [],
     videoPlaybackUstreamerConfig: undefined,
     lo: undefined,
-    formatIds2: [],
-    formatIds3: [],
+    audioFormatIds: [],
+    videoFormatIds: [],
     sc: undefined,
     field21: undefined,
     field22: undefined,
@@ -116,8 +116,8 @@ export function encodeJson(value: $.youtube.SabrRequest): unknown {
   result.ud = value.ud.map(value => encodeJson_3(value));
   if (value.videoPlaybackUstreamerConfig !== undefined) result.videoPlaybackUstreamerConfig = tsValueToJsonValueFns.bytes(value.videoPlaybackUstreamerConfig);
   if (value.lo !== undefined) result.lo = encodeJson_4(value.lo);
-  result.formatIds2 = value.formatIds2.map(value => encodeJson_2(value));
-  result.formatIds3 = value.formatIds3.map(value => encodeJson_2(value));
+  result.audioFormatIds = value.audioFormatIds.map(value => encodeJson_2(value));
+  result.videoFormatIds = value.videoFormatIds.map(value => encodeJson_2(value));
   if (value.sc !== undefined) result.sc = encodeJson_5(value.sc);
   if (value.field21 !== undefined) result.field21 = encodeJson_6(value.field21);
   if (value.field22 !== undefined) result.field22 = tsValueToJsonValueFns.int32(value.field22);
@@ -133,8 +133,8 @@ export function decodeJson(value: any): $.youtube.SabrRequest {
   result.ud = value.ud?.map((value: any) => decodeJson_3(value)) ?? [];
   if (value.videoPlaybackUstreamerConfig !== undefined) result.videoPlaybackUstreamerConfig = jsonValueToTsValueFns.bytes(value.videoPlaybackUstreamerConfig);
   if (value.lo !== undefined) result.lo = decodeJson_4(value.lo);
-  result.formatIds2 = value.formatIds2?.map((value: any) => decodeJson_2(value)) ?? [];
-  result.formatIds3 = value.formatIds3?.map((value: any) => decodeJson_2(value)) ?? [];
+  result.audioFormatIds = value.audioFormatIds?.map((value: any) => decodeJson_2(value)) ?? [];
+  result.videoFormatIds = value.videoFormatIds?.map((value: any) => decodeJson_2(value)) ?? [];
   if (value.sc !== undefined) result.sc = decodeJson_5(value.sc);
   if (value.field21 !== undefined) result.field21 = decodeJson_6(value.field21);
   if (value.field22 !== undefined) result.field22 = jsonValueToTsValueFns.int32(value.field22);
@@ -173,12 +173,12 @@ export function encodeBinary(value: $.youtube.SabrRequest): Uint8Array {
       [6, { type: WireType.LengthDelimited as const, value: encodeBinary_4(tsValue) }],
     );
   }
-  for (const tsValue of value.formatIds2) {
+  for (const tsValue of value.audioFormatIds) {
     result.push(
       [16, { type: WireType.LengthDelimited as const, value: encodeBinary_2(tsValue) }],
     );
   }
-  for (const tsValue of value.formatIds3) {
+  for (const tsValue of value.videoFormatIds) {
     result.push(
       [17, { type: WireType.LengthDelimited as const, value: encodeBinary_2(tsValue) }],
     );
@@ -256,13 +256,13 @@ export function decodeBinary(binary: Uint8Array): $.youtube.SabrRequest {
     const wireValues = wireMessage.filter(([fieldNumber]) => fieldNumber === 16).map(([, wireValue]) => wireValue);
     const value = wireValues.map((wireValue) => wireValue.type === WireType.LengthDelimited ? decodeBinary_2(wireValue.value) : undefined).filter(x => x !== undefined);
     if (!value.length) break collection;
-    result.formatIds2 = value as any;
+    result.audioFormatIds = value as any;
   }
   collection: {
     const wireValues = wireMessage.filter(([fieldNumber]) => fieldNumber === 17).map(([, wireValue]) => wireValue);
     const value = wireValues.map((wireValue) => wireValue.type === WireType.LengthDelimited ? decodeBinary_2(wireValue.value) : undefined).filter(x => x !== undefined);
     if (!value.length) break collection;
-    result.formatIds3 = value as any;
+    result.videoFormatIds = value as any;
   }
   field: {
     const wireValue = wireFields.get(19);

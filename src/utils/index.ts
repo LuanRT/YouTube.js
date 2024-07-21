@@ -14,3 +14,6 @@ export * as Utils from './Utils.js';
 
 export { default as Log } from './Log.js';
 export * as LZW from './LZW.js';
+
+export { default as UMPParser } from './UMPParser.js';
+export * from './UMPParser.js';

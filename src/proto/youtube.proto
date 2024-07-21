@@ -389,6 +389,11 @@ message MediaHeader {
   }
 }
 
+message SabrError {
+  string type = 1;
+  int32 code = 2;
+}
+
 message HttpHeader {
 	optional string name = 1;
 	optional string value = 2;
@@ -552,8 +557,8 @@ message SabrRequest {
   repeated Zpa ud = 3;
   optional bytes video_playback_ustreamer_config = 5;
   optional Lo lo = 6;
-  repeated FormatId format_ids_2 = 16;
-  repeated FormatId format_ids_3 = 17;
+  repeated FormatId audio_format_ids = 16;
+  repeated FormatId video_format_ids = 17;
   optional Upa sc = 19; 
   optional OQa field21 = 21;
   optional int32 field22 = 22;

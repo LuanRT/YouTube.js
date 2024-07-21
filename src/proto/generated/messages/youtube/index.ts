@@ -23,6 +23,7 @@ export type { Type as NextRequestPolicy } from "./NextRequestPolicy.js";
 export type { Type as StreamProtectionStatus } from "./StreamProtectionStatus.js";
 export type { Type as FormatInitializationMetadata } from "./FormatInitializationMetadata.js";
 export type { Type as MediaHeader } from "./MediaHeader.js";
+export type { Type as SabrError } from "./SabrError.js";
 export type { Type as HttpHeader } from "./HttpHeader.js";
 export type { Type as OnesieRequest } from "./OnesieRequest.js";
 export type { Type as MediaInfo } from "./MediaInfo.js";
