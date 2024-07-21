@@ -479,7 +479,7 @@ message Lo {
 message Kob {
   message Pa {
     required string video_id = 1;
-    required int32 lmt = 2;
+    required int64 lmt = 2;
   }
   repeated Pa EW = 1;
 }
