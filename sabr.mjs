@@ -24,7 +24,6 @@ if (!ustreamerConfig)
 
 const url = innertube.session.player.decipher(playerResponse.data.streamingData.serverAbrStreamingUrl);
 
-
 const sabrRequest = Proto.encodeSabrRequest({
   mediaInfo: {
     j: 144,
@@ -110,7 +109,7 @@ const response = await fetch(url, {
   headers: { 
     'Accept': '*/*',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-   },
+  },
   referrer: 'https://www.youtube.com/',
   body: sabrRequest,
   method: 'POST',
