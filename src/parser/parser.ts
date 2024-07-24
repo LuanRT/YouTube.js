@@ -77,7 +77,8 @@ const IGNORED_LIST = new Set([
   'BrandVideoSingleton',
   'StatementBanner',
   'GuideSigninPromo',
-  'AdsEngagementPanelContent'
+  'AdsEngagementPanelContent',
+  'MiniGameCardView'
 ]);
 
 const RUNTIME_NODES = new Map<string, YTNodeConstructor>(Object.entries(YTNodes));
