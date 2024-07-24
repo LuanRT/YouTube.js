@@ -220,11 +220,10 @@ export default class Player {
   }
 
   static extractNSigSourceCode(data: string): string {
-    let sc = getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}');
-
+    let sc = getStringBetweenStrings(data, 'b=String.prototype.split.call(a,"")', '}return b.join("")}');
     if (sc)
-      return `function descramble_nsig(a) { let b=a.split("")${sc}} return b.join(""); } descramble_nsig(nsig)`;
-
+        return `function descramble_nsig(a) { let b=String.prototype.split.call(a,"")${sc}} return b.join(""); } descramble_nsig(nsig)`
+    
     sc = getStringBetweenStrings(data, 'b=String.prototype.split.call(a,"")', '}return Array.prototype.join.call(b,"")}');
 
     if (sc)
