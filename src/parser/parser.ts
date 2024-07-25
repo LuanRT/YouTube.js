@@ -77,7 +77,8 @@ const IGNORED_LIST = new Set([
   'BrandVideoSingleton',
   'StatementBanner',
   'GuideSigninPromo',
-  'AdsEngagementPanelContent'
+  'AdsEngagementPanelContent',
+  'MiniGameCardView'
 ]);
 
 const RUNTIME_NODES = new Map<string, YTNodeConstructor>(Object.entries(YTNodes));
@@ -94,7 +95,8 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
           new InnertubeError(
             `Something went wrong at ${classname}!\n` +
             `This is a bug, please report it at ${Platform.shim.info.bugs_url}`, {
-              stack: context.error.stack
+              stack: context.error.stack,
+              classdata: JSON.stringify(context.classdata, null, 2)
             }
           )
         );

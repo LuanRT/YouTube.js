@@ -210,7 +210,8 @@ export function encodeMessageParams(channel_id: string, video_id: string): strin
 
 export function encodeCommentsSectionParams(video_id: string, options: {
   type?: number,
-  sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'
+  sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST',
+  comment_id?: string
 } = {}): string {
   const sort_options = {
     TOP_COMMENTS: 0,
@@ -226,7 +227,8 @@ export function encodeCommentsSectionParams(video_id: string, options: {
       opts: {
         videoId: video_id,
         sortBy: sort_options[options.sort_by || 'TOP_COMMENTS'],
-        type: options.type || 2
+        type: options.type || 2,
+        commentId: options.comment_id || ''
       },
       target: 'comments-section'
     }
