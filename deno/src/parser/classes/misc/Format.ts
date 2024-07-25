@@ -57,6 +57,7 @@ export default class Format {
   language?: string | null;
   is_dubbed?: boolean;
   is_descriptive?: boolean;
+  is_secondary?: boolean;
   is_original?: boolean;
   color_info?: {
     primaries?: string;
@@ -213,7 +214,8 @@ export default class Format {
         const audio_content = xtags?.find((x) => x.startsWith('acont='))?.split('=')[1];
         this.is_dubbed = audio_content === 'dubbed';
         this.is_descriptive = audio_content === 'descriptive';
-        this.is_original = audio_content === 'original' || (!this.is_dubbed && !this.is_descriptive && !this.is_drc);
+        this.is_secondary = audio_content === 'secondary';
+        this.is_original = audio_content === 'original' || (!this.is_dubbed && !this.is_descriptive && !this.is_secondary && !this.is_drc);
       }
 
       // Some text tracks don't have xtags while others do

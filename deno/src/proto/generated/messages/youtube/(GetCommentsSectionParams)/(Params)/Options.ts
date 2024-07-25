@@ -21,6 +21,7 @@ export declare namespace $.youtube.GetCommentsSectionParams.Params {
     videoId: string;
     sortBy: number;
     type: number;
+    commentId?: string;
   }
 }
 
@@ -31,6 +32,7 @@ export function getDefaultValue(): $.youtube.GetCommentsSectionParams.Params.Opt
     videoId: "",
     sortBy: 0,
     type: 0,
+    commentId: undefined,
   };
 }
 
@@ -46,6 +48,7 @@ export function encodeJson(value: $.youtube.GetCommentsSectionParams.Params.Opti
   if (value.videoId !== undefined) result.videoId = tsValueToJsonValueFns.string(value.videoId);
   if (value.sortBy !== undefined) result.sortBy = tsValueToJsonValueFns.int32(value.sortBy);
   if (value.type !== undefined) result.type = tsValueToJsonValueFns.int32(value.type);
+  if (value.commentId !== undefined) result.commentId = tsValueToJsonValueFns.string(value.commentId);
   return result;
 }
 
@@ -54,6 +57,7 @@ export function decodeJson(value: any): $.youtube.GetCommentsSectionParams.Param
   if (value.videoId !== undefined) result.videoId = jsonValueToTsValueFns.string(value.videoId);
   if (value.sortBy !== undefined) result.sortBy = jsonValueToTsValueFns.int32(value.sortBy);
   if (value.type !== undefined) result.type = jsonValueToTsValueFns.int32(value.type);
+  if (value.commentId !== undefined) result.commentId = jsonValueToTsValueFns.string(value.commentId);
   return result;
 }
 
@@ -75,6 +79,12 @@ export function encodeBinary(value: $.youtube.GetCommentsSectionParams.Params.Op
     const tsValue = value.type;
     result.push(
       [15, tsValueToWireValueFns.int32(tsValue)],
+    );
+  }
+  if (value.commentId !== undefined) {
+    const tsValue = value.commentId;
+    result.push(
+      [16, tsValueToWireValueFns.string(tsValue)],
     );
   }
   return serialize(result);
@@ -104,6 +114,13 @@ export function decodeBinary(binary: Uint8Array): $.youtube.GetCommentsSectionPa
     const value = wireValueToTsValueFns.int32(wireValue);
     if (value === undefined) break field;
     result.type = value;
+  }
+  field: {
+    const wireValue = wireFields.get(16);
+    if (wireValue === undefined) break field;
+    const value = wireValueToTsValueFns.string(wireValue);
+    if (value === undefined) break field;
+    result.commentId = value;
   }
   return result;
 }

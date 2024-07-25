@@ -7,7 +7,7 @@ export default class ThumbnailBadgeView extends YTNode {
   icon_name: string;
   text: string;
   badge_style: string;
-  background_color: {
+  background_color?: {
     light_theme: number;
     dark_theme: number;
   };
@@ -18,9 +18,11 @@ export default class ThumbnailBadgeView extends YTNode {
     this.icon_name = data.icon.sources[0].clientResource.imageName;
     this.text = data.text;
     this.badge_style = data.badgeStyle;
-    this.background_color = {
-      light_theme: data.backgroundColor.lightTheme,
-      dark_theme: data.backgroundColor.darkTheme
-    };
+    if (data.backgroundColor) {
+      this.background_color = {
+        light_theme: data.backgroundColor.lightTheme,
+        dark_theme: data.backgroundColor.darkTheme
+      };
+    }
   }
 }

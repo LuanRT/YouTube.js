@@ -6,7 +6,7 @@ export default class CollectionThumbnailView extends YTNode {
   static type = 'CollectionThumbnailView';
 
   primary_thumbnail: ThumbnailView | null;
-  stack_color: {
+  stack_color?: {
     light_theme: number;
     dark_theme: number;
   };
@@ -15,9 +15,11 @@ export default class CollectionThumbnailView extends YTNode {
     super();
 
     this.primary_thumbnail = Parser.parseItem(data.primaryThumbnail, ThumbnailView);
-    this.stack_color = {
-      light_theme: data.stackColor.lightTheme,
-      dark_theme: data.stackColor.darkTheme
-    };
+    if (data.stackColor) {
+      this.stack_color = {
+        light_theme: data.stackColor.lightTheme,
+        dark_theme: data.stackColor.darkTheme
+      };
+    }
   }
 }

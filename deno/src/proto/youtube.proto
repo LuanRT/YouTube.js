@@ -162,6 +162,7 @@ message GetCommentsSectionParams {
       required string video_id = 4;
       required int32 sort_by = 6;
       required int32 type = 15;
+      optional string comment_id = 16;
     }
     
     message RepliesOptions {
