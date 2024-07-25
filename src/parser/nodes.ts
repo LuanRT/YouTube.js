@@ -120,6 +120,7 @@ export { default as EndScreenPlaylist } from './classes/EndScreenPlaylist.js';
 export { default as EndScreenVideo } from './classes/EndScreenVideo.js';
 export { default as EngagementPanelSectionList } from './classes/EngagementPanelSectionList.js';
 export { default as EngagementPanelTitleHeader } from './classes/EngagementPanelTitleHeader.js';
+export { default as EomSettingsDisclaimer } from './classes/EomSettingsDisclaimer.js';
 export { default as ExpandableMetadata } from './classes/ExpandableMetadata.js';
 export { default as ExpandableTab } from './classes/ExpandableTab.js';
 export { default as ExpandableVideoDescriptionBody } from './classes/ExpandableVideoDescriptionBody.js';
