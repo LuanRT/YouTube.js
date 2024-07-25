@@ -234,6 +234,6 @@ export default class Player {
   }
 
   static get LIBRARY_VERSION(): number {
-    return 10;
+    return 11;
   }
 }
