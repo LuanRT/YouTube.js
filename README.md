@@ -107,6 +107,7 @@ const youtube = await Innertube.create(/* options */);
 | `cache` | `ICache` | Used to cache algorithms, session data, and OAuth2 tokens. | `undefined` |
 | `cookie` | `string` | YouTube cookies. | `undefined` |
 | `fetch` | `FetchFunction` | Fetch function to use. | `fetch` |
+| `po_token` | `string` | Send Google session information for solving the error "LOGIN_REQUIRED: This helps protect our community." | `undefined` |
 
 </details>
 

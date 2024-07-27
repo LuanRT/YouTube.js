@@ -265,7 +265,8 @@ export default class Session extends EventEmitter {
       options.fetch,
       options.on_behalf_of_user,
       options.cache,
-      options.enable_session_cache
+      options.enable_session_cache,
+      options.po_token,
     );
 
     return new Session(
@@ -329,9 +330,10 @@ export default class Session extends EventEmitter {
     fetch: FetchFunction = Platform.shim.fetch,
     on_behalf_of_user?: string,
     cache?: ICache,
-    enable_session_cache = true
+    enable_session_cache = true,
+    po_token?: string,
   ) {
-    const session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data, on_behalf_of_user };
+    const session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data, on_behalf_of_user, po_token };
 
     let session_data: SessionData | undefined;
 
