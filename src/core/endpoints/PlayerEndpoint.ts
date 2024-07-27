@@ -39,8 +39,8 @@ export function build(opts: PlayerEndpointOptions): IPlayerRequest {
       playlistId: opts.playlist_id,
       params: opts.params,
       serviceIntegrityDimensions: {
-        poToken: opts.po_token || ""
-      },
-    },
+        poToken: opts.po_token || ''
+      }
+    }
   };
 }

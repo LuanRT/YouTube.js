@@ -104,7 +104,7 @@ export default class Innertube {
       playlist_id: next_payload?.playlistId,
       client: client,
       sts: this.#session.player?.sts,
-      po_token: this.#session.po_token,
+      po_token: this.#session.po_token
     });
 
     const player_response = this.actions.execute(PlayerEndpoint.PATH, player_payload);
@@ -129,7 +129,7 @@ export default class Innertube {
         video_id: video_id,
         client: client,
         sts: this.#session.player?.sts,
-        po_token: this.#session.po_token,
+        po_token: this.#session.po_token
       })
     );
 
