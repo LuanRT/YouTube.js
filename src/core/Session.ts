@@ -172,6 +172,10 @@ export type SessionOptions = {
    * Fetch function to use.
    */
   fetch?: FetchFunction;
+  /**
+   * Token for serviceIntegrityDimensions
+   */
+  po_token?: string;
 }
 
 export type SessionData = {
@@ -213,8 +217,9 @@ export default class Session extends EventEmitter {
   key: string;
   api_version: string;
   account_index: number;
+  po_token?: string;
 
-  constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: ICache) {
+  constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: ICache, po_token?: string) {
     super();
     this.http = new HTTPClient(this, cookie, fetch);
     this.actions = new Actions(this);
@@ -226,6 +231,7 @@ export default class Session extends EventEmitter {
     this.api_version = api_version;
     this.context = context;
     this.player = player;
+    this.po_token = po_token;
   }
 
   on(type: 'auth', listener: OAuth2AuthEventHandler): void;

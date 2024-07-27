@@ -37,7 +37,10 @@ export function build(opts: PlayerEndpointOptions): IPlayerRequest {
     ...{
       client: opts.client,
       playlistId: opts.playlist_id,
-      params: opts.params
-    }
+      params: opts.params,
+      serviceIntegrityDimensions: {
+        poToken: session.po_token.toString(),
+      },
+    },
   };
 }
