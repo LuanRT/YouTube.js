@@ -222,8 +222,10 @@ export default class Player {
   static extractNSigSourceCode(data: string): string {
     const match = data.match(/b=(?:a\.split\(|String\.prototype\.split\.call\(a,)\n?(?:""|\("",""\))\).*?\}return (?:b\.join\(|Array\.prototype\.join\.call\(b,)\n?(?:""|\("",""\))\)\}/s);
 
+    // Don't throw an error here.
     if (!match) {
-      throw new PlayerError('Failed to extract n-token decipher algorithm');
+      Log.warn(TAG, 'Failed to extract nsig decipher algorithm.');
+      return 'function descramble_nsig(a) { return a } descramble_nsig(nsig);';
     }
 
     return `function descramble_nsig(a) { let ${match[0]} descramble_nsig(nsig)`;

@@ -1,11 +1,10 @@
 import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.js';
-
 import type {
   ReloadContinuationItemsCommand, Continuation, GridContinuation,
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand
+  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand,
+  CpnSource
 } from '../index.js';
-
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
 import type CardCollection from '../classes/CardCollection.js';
 import type Endscreen from '../classes/Endscreen.js';
@@ -51,10 +50,7 @@ export interface IParsedResponse {
   refinements?: string[];
   estimated_results?: number;
   player_overlays?: SuperParsedResult<YTNode>;
-  playback_tracking?: {
-    videostats_watchtime_url: string;
-    videostats_playback_url: string;
-  };
+  playback_tracking?: IPlaybackTracking;
   playability_status?: IPlayabilityStatus;
   streaming_data?: IStreamingData;
   player_config?: IPlayerConfig;
@@ -66,11 +62,29 @@ export interface IParsedResponse {
   storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
   endscreen?: Endscreen;
   cards?: CardCollection;
+  cpn_info?: {
+    cpn: string;
+    cpn_source: CpnSource;
+  },
   engagement_panels?: ObservedArray<EngagementPanelSectionList>;
   items?: SuperParsedResult<YTNode>;
-  entries?: SuperParsedResult<YTNode>;
+  entries?: NavigationEndpoint[];
   entries_memo?: Memo;
   continuation_endpoint?: YTNode;
+  player_response?: IPlayerResponse;
+  watch_next_response?: INextResponse;
+}
+
+export interface IPlaybackTracking {
+  videostats_watchtime_url: string;
+  videostats_playback_url: string;
+}
+export interface IPlayabilityStatus {
+  status: string;
+  error_screen: YTNode | null;
+  audio_only_playablility: AudioOnlyPlayability | null;
+  embeddable: boolean;
+  reason: string;
 }
 
 export interface IPlayerConfig {
@@ -99,95 +113,12 @@ export interface IStreamingData {
   hls_manifest_url: string | null;
 }
 
-export interface IPlayerResponse {
-  captions?: PlayerCaptionsTracklist;
-  cards?: CardCollection;
-  endscreen?: Endscreen;
-  microformat?: YTNode;
-  annotations?: ObservedArray<PlayerAnnotationsExpanded>;
-  playability_status: IPlayabilityStatus;
-  streaming_data?: IStreamingData;
-  player_config: IPlayerConfig;
-  playback_tracking?: {
-    videostats_watchtime_url: string;
-    videostats_playback_url: string;
-  };
-  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
-  video_details?: VideoDetails;
-}
-
-export interface IPlayabilityStatus {
-  status: string;
-  error_screen: YTNode | null;
-  audio_only_playablility: AudioOnlyPlayability | null;
-  embeddable: boolean;
-  reason: string;
-}
-
-export interface INextResponse {
-  contents?: SuperParsedResult<YTNode>;
-  contents_memo?: Memo;
-  current_video_endpoint?: NavigationEndpoint;
-  on_response_received_endpoints?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
-  on_response_received_endpoints_memo?: Memo;
-  player_overlays?: SuperParsedResult<YTNode>;
-  engagement_panels?: ObservedArray<EngagementPanelSectionList>;
-}
-
-export interface IBrowseResponse {
-  background?: MusicThumbnail;
-  continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
-  MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
-  continuation_contents_memo?: Memo;
-  on_response_received_actions: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
-  on_response_received_actions_memo: Memo;
-  on_response_received_endpoints?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
-  on_response_received_endpoints_memo?: Memo;
-  contents?: SuperParsedResult<YTNode>;
-  contents_memo?: Memo;
-  header?: SuperParsedResult<YTNode>;
-  header_memo?: Memo;
-  metadata?: SuperParsedResult<YTNode>;
-  microformat?: YTNode;
-  alerts?: ObservedArray<Alert | AlertWithButton>;
-  sidebar?: YTNode;
-  sidebar_memo?: Memo;
-}
-
-export interface ISearchResponse {
-  header?: SuperParsedResult<YTNode>;
-  header_memo?: Memo;
-  contents?: SuperParsedResult<YTNode>;
-  contents_memo?: Memo;
-  on_response_received_commands?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
-  continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
-  MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation;
-  continuation_contents_memo?: Memo;
-  refinements?: string[];
-  estimated_results: number;
-}
-
-export interface IResolveURLResponse {
-  endpoint: NavigationEndpoint;
-}
-
-export interface IGetTranscriptResponse {
-  actions: SuperParsedResult<YTNode>;
-  actions_memo: Memo;
-}
-
-export interface IGetNotificationsMenuResponse {
-  actions: SuperParsedResult<YTNode>;
-  actions_memo: Memo;
-}
-
-export interface IUpdatedMetadataResponse {
-  actions: SuperParsedResult<YTNode>;
-  actions_memo: Memo;
-  continuation?: Continuation;
-}
-
-export interface IGuideResponse {
-  items: SuperParsedResult<YTNode>;
-  items_memo: Memo;
-}
+export type IPlayerResponse = Pick<IParsedResponse, 'captions' | 'cards' | 'endscreen' | 'microformat' | 'annotations' | 'playability_status' | 'streaming_data' | 'player_config' | 'playback_tracking' | 'storyboards' | 'video_details'>;
+export type INextResponse = Pick<IParsedResponse, 'contents' | 'contents_memo' | 'current_video_endpoint' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'player_overlays' | 'engagement_panels'>
+export type IBrowseResponse = Pick<IParsedResponse, 'background' | 'continuation_contents' | 'continuation_contents_memo' | 'on_response_received_actions' | 'on_response_received_actions_memo' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'contents' | 'contents_memo' | 'header' | 'header_memo' | 'metadata' | 'microformat' | 'alerts' | 'sidebar' | 'sidebar_memo'>
+export type ISearchResponse = Pick<IParsedResponse, 'header' | 'header_memo' | 'contents' | 'contents_memo' | 'on_response_received_commands' | 'continuation_contents' | 'continuation_contents_memo' | 'refinements' | 'estimated_results'>;
+export type IResolveURLResponse = Pick<IParsedResponse, 'endpoint'>;
+export type IGetTranscriptResponse = Pick<IParsedResponse, 'actions' | 'actions_memo'>
+export type IGetNotificationsMenuResponse = Pick<IParsedResponse, 'actions' | 'actions_memo'>
+export type IUpdatedMetadataResponse = Pick<IParsedResponse, 'actions' | 'actions_memo' | 'continuation'>
+export type IGuideResponse = Pick<IParsedResponse, 'items' | 'items_memo'>

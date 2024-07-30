@@ -67,7 +67,6 @@ export { default as ClipSection } from './classes/ClipSection.js';
 export { default as CollaboratorInfoCardContent } from './classes/CollaboratorInfoCardContent.js';
 export { default as CollageHeroImage } from './classes/CollageHeroImage.js';
 export { default as CollectionThumbnailView } from './classes/CollectionThumbnailView.js';
-export { default as Command } from './classes/Command.js';
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.js';
 export { default as Comment } from './classes/comments/Comment.js';
 export { default as CommentActionButtons } from './classes/comments/CommentActionButtons.js';

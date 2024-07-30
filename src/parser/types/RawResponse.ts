@@ -1,6 +1,21 @@
 export type RawNode = Record<string, any>;
 export type RawData = RawNode | RawNode[];
 
+export type CpnSource = 'CPN_SOURCE_TYPE_CLIENT' | 'CPN_SOURCE_TYPE_WATCH_SERVER';
+
+export interface IServiceTrackingParams {
+  service: string;
+  params?: {
+    key: string;
+    value: string;
+  }[];
+}
+
+export interface IResponseContext {
+  serviceTrackingParams: IServiceTrackingParams[];
+  maxAgeSeconds: number;
+}
+
 export interface IRawPlayerConfig {
   audioConfig: {
     loudnessDb?: number;
@@ -19,7 +34,9 @@ export interface IRawPlayerConfig {
   };
 }
 
+
 export interface IRawResponse {
+  responseContext?: IResponseContext;
   background?: RawNode;
   contents?: RawData;
   onResponseReceivedActions?: RawNode[];
@@ -61,6 +78,8 @@ export interface IRawResponse {
     hlsManifestUrl?: string;
   };
   playerConfig?: IRawPlayerConfig;
+  playerResponse?: IRawResponse;
+  watchNextResponse?: IRawResponse;
   currentVideoEndpoint?: RawNode;
   unseenCount?: number;
   playlistId?: string;
@@ -71,8 +90,13 @@ export interface IRawResponse {
   storyboards?: RawNode;
   endscreen?: RawNode;
   cards?: RawNode;
+  cpnInfo?: {
+    cpn: string;
+    cpnSource: CpnSource;
+  },
   items?: RawNode[];
   frameworkUpdates?: any;
-  engagementPanels: RawNode[];
+  engagementPanels?: RawNode[];
+  entries?: RawNode[];
   [key: string]: any;
 }

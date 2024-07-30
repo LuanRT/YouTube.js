@@ -17,7 +17,7 @@ import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 
-class Settings {
+export default class Settings {
   #page: IBrowseResponse;
   #actions: Actions;
 
@@ -133,5 +133,3 @@ class Settings {
     return this.#page;
   }
 }
-
-export default Settings;

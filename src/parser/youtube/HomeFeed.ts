@@ -8,13 +8,13 @@ import type { ApiResponse, Actions } from '../../core/index.js';
 import type ChipCloudChip from '../classes/ChipCloudChip.js';
 
 export default class HomeFeed extends FilterableFeed<IBrowseResponse> {
-  contents: RichGrid | AppendContinuationItemsAction | ReloadContinuationItemsCommand;
-  header: FeedTabbedHeader;
+  contents?: RichGrid | AppendContinuationItemsAction | ReloadContinuationItemsCommand;
+  header?: FeedTabbedHeader;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.header = this.memo.getType(FeedTabbedHeader).first();
-    this.contents = this.memo.getType(RichGrid).first() || this.page.on_response_received_actions.first();
+    this.contents = this.memo.getType(RichGrid).first() || this.page.on_response_received_actions?.first();
   }
 
   /**
@@ -34,7 +34,9 @@ export default class HomeFeed extends FilterableFeed<IBrowseResponse> {
 
     // Keep the page header
     feed.page.header = this.page.header;
-    feed.page.header_memo?.set(this.header.type, [ this.header ]);
+
+    if (this.header)
+      feed.page.header_memo?.set(this.header.type, [ this.header ]);
 
     return new HomeFeed(this.actions, feed.page, true);
   }
