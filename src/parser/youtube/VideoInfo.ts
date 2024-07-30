@@ -27,26 +27,11 @@ import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSectio
 import LiveChatWrap from './LiveChat.js';
 
 import type { RawNode } from '../index.js';
-import type CardCollection from '../classes/CardCollection.js';
-import type Endscreen from '../classes/Endscreen.js';
-import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
-import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
-import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
-import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
-
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 
-class VideoInfo extends MediaInfo {
+export default class VideoInfo extends MediaInfo {
   #watch_next_continuation?: ContinuationItem;
-
-  basic_info;
-  annotations?: ObservedArray<PlayerAnnotationsExpanded>;
-  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
-  endscreen?: Endscreen;
-  captions?: PlayerCaptionsTracklist;
-  cards?: CardCollection;
-
   primary_info?: VideoPrimaryInfo | null;
   secondary_info?: VideoSecondaryInfo | null;
   playlist?;
@@ -69,37 +54,6 @@ class VideoInfo extends MediaInfo {
     super(data, actions, cpn);
 
     const [ info, next ] = this.page;
-
-    if (info.microformat && !info.microformat?.is(PlayerMicroformat, MicroformatData))
-      throw new InnertubeError('Invalid microformat', info.microformat);
-
-    this.basic_info = { // This type is inferred so no need for an explicit type
-      ...info.video_details,
-      /**
-       * Microformat is a bit redundant, so only
-       * a few things there are interesting to us.
-       */
-      ...{
-        embed: info.microformat?.is(PlayerMicroformat) ? info.microformat?.embed : null,
-        channel: info.microformat?.is(PlayerMicroformat) ? info.microformat?.channel : null,
-        is_unlisted: info.microformat?.is_unlisted,
-        is_family_safe: info.microformat?.is_family_safe,
-        category: info.microformat?.is(PlayerMicroformat) ? info.microformat?.category : null,
-        has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null,
-        start_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.start_timestamp : null,
-        end_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.end_timestamp : null,
-        view_count: info.microformat?.is(PlayerMicroformat) && isNaN(info.video_details?.view_count as number) ? info.microformat.view_count : info.video_details?.view_count
-      },
-      like_count: undefined as number | undefined,
-      is_liked: undefined as boolean | undefined,
-      is_disliked: undefined as boolean | undefined
-    };
-
-    this.annotations = info.annotations;
-    this.storyboards = info.storyboards;
-    this.endscreen = info.endscreen;
-    this.captions = info.captions;
-    this.cards = info.cards;
 
     if (this.streaming_data) {
       const default_audio_track = this.streaming_data.adaptive_formats.find((format) => format.audio_track?.audio_is_default);
@@ -398,7 +352,7 @@ class VideoInfo extends MediaInfo {
    * @returns `VideoInfo` for the trailer, or `null` if none.
    */
   getTrailerInfo(): VideoInfo | null {
-    if (this.has_trailer) {
+    if (this.has_trailer && this.playability_status) {
       const player_response = this.playability_status.error_screen?.as(PlayerLegacyDesktopYpcTrailer).trailer?.player_response;
       if (player_response) {
         return new VideoInfo([ { data: player_response } as ApiResponse ], this.actions, this.cpn);
@@ -432,7 +386,7 @@ class VideoInfo extends MediaInfo {
    * Checks if trailer is available.
    */
   get has_trailer(): boolean {
-    return !!this.playability_status.error_screen?.is(PlayerLegacyDesktopYpcTrailer);
+    return !!this.playability_status?.error_screen?.is(PlayerLegacyDesktopYpcTrailer);
   }
 
   /**
@@ -488,5 +442,3 @@ class VideoInfo extends MediaInfo {
     return [];
   }
 }
-
-export default VideoInfo;

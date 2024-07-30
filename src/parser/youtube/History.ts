@@ -6,7 +6,7 @@ import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 
 // TODO: make feed actions usable
-class History extends Feed<IBrowseResponse> {
+export default class History extends Feed<IBrowseResponse> {
   sections: ItemSection[];
   feed_actions: BrowseFeedActions;
 
@@ -26,5 +26,3 @@ class History extends Feed<IBrowseResponse> {
     return new History(this.actions, response, true);
   }
 }
-
-export default History;

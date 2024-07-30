@@ -315,7 +315,7 @@ export class ChannelListContinuation extends Feed<IBrowseResponse> {
 
 export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
   applied_filter?: ChipCloudChip;
-  contents: ReloadContinuationItemsCommand | AppendContinuationItemsAction;
+  contents?: ReloadContinuationItemsCommand | AppendContinuationItemsAction;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -330,7 +330,7 @@ export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
       this.page.on_response_received_actions.shift();
     }
 
-    this.contents = this.page.on_response_received_actions.first();
+    this.contents = this.page.on_response_received_actions?.first();
   }
 
   /**

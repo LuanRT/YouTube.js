@@ -1,1 +1,1 @@
-export { default as VideoInfo } from './VideoInfo.js';
+export { default as ShortFormVideoInfo } from './ShortFormVideoInfo.js';

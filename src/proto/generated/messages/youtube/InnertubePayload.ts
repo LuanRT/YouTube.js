@@ -100,7 +100,6 @@ export declare namespace $.youtube {
     privacy?: Privacy;
     madeForKids?: MadeForKids;
     ageRestricted?: AgeRestricted;
-    field83?: number;
   }
 }
 
@@ -119,7 +118,6 @@ export function getDefaultValue(): $.youtube.InnertubePayload {
     privacy: undefined,
     madeForKids: undefined,
     ageRestricted: undefined,
-    field83: undefined,
   };
 }
 
@@ -143,7 +141,6 @@ export function encodeJson(value: $.youtube.InnertubePayload): unknown {
   if (value.privacy !== undefined) result.privacy = encodeJson_8(value.privacy);
   if (value.madeForKids !== undefined) result.madeForKids = encodeJson_9(value.madeForKids);
   if (value.ageRestricted !== undefined) result.ageRestricted = encodeJson_10(value.ageRestricted);
-  if (value.field83 !== undefined) result.field83 = tsValueToJsonValueFns.int32(value.field83);
   return result;
 }
 
@@ -160,7 +157,6 @@ export function decodeJson(value: any): $.youtube.InnertubePayload {
   if (value.privacy !== undefined) result.privacy = decodeJson_8(value.privacy);
   if (value.madeForKids !== undefined) result.madeForKids = decodeJson_9(value.madeForKids);
   if (value.ageRestricted !== undefined) result.ageRestricted = decodeJson_10(value.ageRestricted);
-  if (value.field83 !== undefined) result.field83 = jsonValueToTsValueFns.int32(value.field83);
   return result;
 }
 
@@ -230,12 +226,6 @@ export function encodeBinary(value: $.youtube.InnertubePayload): Uint8Array {
     const tsValue = value.ageRestricted;
     result.push(
       [69, { type: WireType.LengthDelimited as const, value: encodeBinary_10(tsValue) }],
-    );
-  }
-  if (value.field83 !== undefined) {
-    const tsValue = value.field83;
-    result.push(
-      [83, tsValueToWireValueFns.int32(tsValue)],
     );
   }
   return serialize(result);
@@ -321,13 +311,6 @@ export function decodeBinary(binary: Uint8Array): $.youtube.InnertubePayload {
     const value = wireValue.type === WireType.LengthDelimited ? decodeBinary_10(wireValue.value) : undefined;
     if (value === undefined) break field;
     result.ageRestricted = value;
-  }
-  field: {
-    const wireValue = wireFields.get(83);
-    if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int32(wireValue);
-    if (value === undefined) break field;
-    result.field83 = value;
   }
   return result;
 }

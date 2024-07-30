@@ -13,7 +13,7 @@ import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/ParsedResponse.js';
 import type { ObservedArray } from '../helpers.js';
 
-class Artist {
+export default class Artist {
   #page: IBrowseResponse;
   #actions: Actions;
 
@@ -56,5 +56,3 @@ class Artist {
     return this.#page;
   }
 }
-
-export default Artist;
