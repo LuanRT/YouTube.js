@@ -221,7 +221,7 @@ export default class Player {
   }
 
   static extractNSigSourceCode(data: string): string | undefined {
-    const match = data.match(/b=(?:a\.split\(|String\.prototype\.split\.call\(a,)""\).*?\}return (?:b\.join\(|Array\.prototype\.join\.call\(b,)""\)\}/s);
+    const match = data.match(/b=(?:a\.split\(|String\.prototype\.split\.call\(a,)\n?(?:""|\("",""\))\).*?\}return (?:b\.join\(|Array\.prototype\.join\.call\(b,)\n?(?:""|\("",""\))\)\}/s);
 
     // Don't throw an error here.
     if (!match) {
