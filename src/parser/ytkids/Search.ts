@@ -6,8 +6,8 @@ import type { ApiResponse, Actions } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { ISearchResponse } from '../types/index.js';
 
-class Search extends Feed<ISearchResponse> {
-  estimated_results: number;
+export default class Search extends Feed<ISearchResponse> {
+  estimated_results?: number;
   contents: ObservedArray<YTNode> | null;
 
   constructor(actions: Actions, data: ApiResponse | ISearchResponse) {
@@ -22,5 +22,3 @@ class Search extends Feed<ISearchResponse> {
     this.contents = item_section.contents;
   }
 }
-
-export default Search;

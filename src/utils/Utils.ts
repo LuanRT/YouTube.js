@@ -2,6 +2,7 @@ import { Memo } from '../parser/helpers.js';
 import { Text } from '../parser/misc.js';
 import Log from './Log.js';
 import userAgents from './user-agents.js';
+import { Jinter } from 'jintr';
 
 import type { EmojiRun, TextRun } from '../parser/misc.js';
 import type { FetchFunction } from '../types/PlatformShim.js';
@@ -247,4 +248,84 @@ export function getCookie(cookies: string, name: string, matchWholeName = false)
   const regex = matchWholeName ? `(^|\\s?)\\b${name}\\b=([^;]+)` : `(^|s?)${name}=([^;]+)`;
   const match = cookies.match(new RegExp(regex));
   return match ? match[2] : undefined;
+}
+
+export type FindFunctionArgs = {
+  /**
+   * The name of the function.
+   */
+  name?: string;
+
+  /**
+   * A string that must be included in the function's code for it to be considered.
+   */
+  includes?: string;
+
+  /**
+   * A regular expression that the function's code must match.
+   */
+  regexp?: RegExp;
+};
+
+export type FindFunctionResult = {
+  start: number;
+  end: number;
+  name: string;
+  node: Record<string, any>;
+  result: string;
+};
+
+/**
+ * Finds a function in a source string based on the provided search criteria.
+ *
+ * @example
+ * ```ts
+ * const source = '(function() {var foo, bar; foo = function() { console.log("foo"); }; bar = function() { console.log("bar"); }; })();';
+ * const result = findFunction(source, { name: 'bar' });
+ * console.log(result);
+ * // Output: { start: 69, end: 110, name: 'bar', node: { ... }, result: 'bar = function() { console.log("bar"); };' }
+ * ```
+ */
+export function findFunction(source: string, args: FindFunctionArgs): FindFunctionResult | undefined {
+  const { name, includes, regexp } = args;
+
+  const node = Jinter.parseScript(source);
+  const stack = [ node ];
+
+  for (let i = 0; i < stack.length; i++) {
+    const current = stack[i];
+
+    if (
+      current.type === 'ExpressionStatement' && (
+        current.expression.type === 'AssignmentExpression' &&
+        current.expression.left.type === 'Identifier' &&
+        current.expression.right.type === 'FunctionExpression'
+      )
+    ) {
+      const code = source.substring(current.start, current.end);
+
+      if (
+        (name && current.expression.left.name === name) ||
+        (includes && code.indexOf(includes) > -1) ||
+        (regexp && regexp.test(code))
+      ) {
+        return {
+          start: current.start,
+          end: current.end,
+          name: current.expression.left.name,
+          node: current,
+          result: code
+        };
+      }
+    }
+
+    for (const key in current) {
+      const child = current[key];
+      if (Array.isArray(child)) {
+        stack.push(...child);
+      } else if (typeof child === 'object' && child !== null) {
+        stack.push(child);
+      }
+    }
+  }
 }

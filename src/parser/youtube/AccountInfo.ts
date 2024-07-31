@@ -7,7 +7,7 @@ import type { IParsedResponse } from '../types/index.js';
 import type AccountItemSection from '../classes/AccountItemSection.js';
 import type AccountChannel from '../classes/AccountChannel.js';
 
-class AccountInfo {
+export default class AccountInfo {
   #page: IParsedResponse;
 
   contents: AccountItemSection | null;
@@ -32,5 +32,3 @@ class AccountInfo {
     return this.#page;
   }
 }
-
-export default AccountInfo;

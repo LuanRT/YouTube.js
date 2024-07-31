@@ -15,7 +15,7 @@ import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 import type MusicThumbnail from '../classes/MusicThumbnail.js';
 
-class Playlist {
+export default class Playlist {
   #page: IBrowseResponse;
   #actions: Actions;
   #continuation: string | null;
@@ -149,5 +149,3 @@ class Playlist {
     return !!this.#continuation;
   }
 }
-
-export default Playlist;

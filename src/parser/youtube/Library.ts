@@ -10,7 +10,7 @@ import PageHeader from '../classes/PageHeader.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 
-class Library extends Feed<IBrowseResponse> {
+export default class Library extends Feed<IBrowseResponse> {
   header: PageHeader | null;
   sections;
 
@@ -32,7 +32,7 @@ class Library extends Feed<IBrowseResponse> {
     }));
   }
 
-  async #getAll(shelf: Shelf): Promise<Playlist | History | Feed> {
+  async #getAll(shelf: Shelf): Promise<Playlist | History | Feed<IBrowseResponse>> {
     if (!shelf.menu?.as(Menu).hasKey('top_level_buttons'))
       throw new InnertubeError(`The ${shelf.title.text} shelf doesn't have more items`);
 
@@ -76,5 +76,3 @@ class Library extends Feed<IBrowseResponse> {
     return this.sections.find((section) => section.type === 'CONTENT_CUT');
   }
 }
-
-export default Library;

@@ -12,7 +12,7 @@ import { observe, type ObservedArray } from '../helpers.js';
 import type { IBrowseResponse } from '../types/index.js';
 import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
 
-class Album {
+export default class Album {
   #page: IBrowseResponse;
 
   header?: MusicDetailHeader | MusicResponsiveHeader;
@@ -38,5 +38,3 @@ class Album {
     return this.#page;
   }
 }
-
-export default Album;

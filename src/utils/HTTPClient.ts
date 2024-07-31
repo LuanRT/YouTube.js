@@ -181,10 +181,14 @@ export default class HTTPClient {
 
     switch (client) {
       case 'iOS':
+        ctx.client.deviceMake = 'Apple';
         ctx.client.deviceModel = Constants.CLIENTS.iOS.DEVICE_MODEL;
         ctx.client.clientVersion = Constants.CLIENTS.iOS.VERSION;
         ctx.client.clientName = Constants.CLIENTS.iOS.NAME;
         ctx.client.platform = 'MOBILE';
+        ctx.client.osName = 'iOS';
+        delete ctx.client.browserName;
+        delete ctx.client.browserVersion;
         break;
       case 'YTMUSIC':
         ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC.VERSION;

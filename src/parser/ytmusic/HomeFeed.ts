@@ -11,7 +11,7 @@ import type { ApiResponse, Actions } from '../../core/index.js';
 import type { ObservedArray } from '../helpers.js';
 import type { IBrowseResponse } from '../types/index.js';
 
-class HomeFeed {
+export default class HomeFeed {
   #page: IBrowseResponse;
   #actions: Actions;
   #continuation?: string;
@@ -93,5 +93,3 @@ class HomeFeed {
     return this.#page;
   }
 }
-
-export default HomeFeed;
