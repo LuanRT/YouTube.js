@@ -221,21 +221,10 @@ export default class Player {
   }
 
   static extractNSigSourceCode(data: string): string | undefined {
-    const match = data.match(/b=(?:a\.split\(|String\.prototype\.split\.call\(a,)\n?(?:""|\("",""\))\).*?\}return (?:b\.join\(|Array\.prototype\.join\.call\(b,)\n?(?:""|\("",""\))\)\}/s);
-
-    if (!match) {
-      Log.error(TAG, 'Failed to extract nsig decipher algorithm using regex. Trying another method..');
-
-      const nsig_function = findFunction(data, { includes: 'enhanced_except' });
-
-      if (nsig_function) {
-        return `${nsig_function.result} ${nsig_function.name}(nsig);`;
-      }
-
-      return;
+    const nsig_function = findFunction(data, { includes: 'enhanced_except' });
+    if (nsig_function) {
+      return `${nsig_function.result} ${nsig_function.name}(nsig);`;
     }
-
-    return `function descrambleNsig(a) { let ${match[0]} descrambleNsig(nsig)`;
   }
 
   get url(): string {
