@@ -1,5 +1,18 @@
 # Changelog
 
+## [10.3.0](https://github.com/LuanRT/YouTube.js/compare/v10.2.0...v10.3.0) (2024-08-01)
+
+
+### Features
+
+* **parser:** Add `EomSettingsDisclaimer` node ([#703](https://github.com/LuanRT/YouTube.js/issues/703)) ([a9bf225](https://github.com/LuanRT/YouTube.js/commit/a9bf225a62108e47a50316235a83a814c682d745))
+* **PlaylistManager:** Add ability to remove videos by set ID ([#715](https://github.com/LuanRT/YouTube.js/issues/715)) ([d85fbc5](https://github.com/LuanRT/YouTube.js/commit/d85fbc56cf0fd7367b182ae36e65c1701bc5e62d))
+
+
+### Bug Fixes
+
+* **HTTPClient:** Adjust more context fields for the iOS client ([#705](https://github.com/LuanRT/YouTube.js/issues/705)) ([3153375](https://github.com/LuanRT/YouTube.js/commit/3153375bcaa6c03afba9da8474e6a9d37471ed29))
+
 ## [10.2.0](https://github.com/LuanRT/YouTube.js/compare/v10.1.0...v10.2.0) (2024-07-25)
 
 
