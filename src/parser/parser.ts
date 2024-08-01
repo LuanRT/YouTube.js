@@ -77,7 +77,8 @@ const IGNORED_LIST = new Set([
   'BrandVideoSingleton',
   'StatementBanner',
   'GuideSigninPromo',
-  'AdsEngagementPanelContent'
+  'AdsEngagementPanelContent',
+  'MiniGameCardView'
 ]);
 
 const RUNTIME_NODES = new Map<string, YTNodeConstructor>(Object.entries(YTNodes));
@@ -94,7 +95,8 @@ let ERROR_HANDLER: ParserErrorHandler = ({ classname, ...context }: ParserError)
           new InnertubeError(
             `Something went wrong at ${classname}!\n` +
             `This is a bug, please report it at ${Platform.shim.info.bugs_url}`, {
-              stack: context.error.stack
+              stack: context.error.stack,
+              classdata: JSON.stringify(context.classdata, null, 2)
             }
           )
         );
@@ -309,14 +311,6 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   }
   _clearMemo();
 
-  _createMemo();
-  const entries = parse(data.entries);
-  if (entries) {
-    parsed_data.entries = entries;
-    parsed_data.entries_memo = _getMemo();
-  }
-  _clearMemo();
-
   applyMutations(contents_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
 
   if (on_response_received_endpoints_memo) {
@@ -477,6 +471,29 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   const engagement_panels = parseArray(data.engagementPanels, EngagementPanelSectionList);
   if (engagement_panels.length) {
     parsed_data.engagement_panels = engagement_panels;
+  }
+
+  if (data.playerResponse) {
+    const player_response = parseResponse(data.playerResponse);
+    parsed_data.player_response = player_response;
+  }
+
+  if (data.watchNextResponse) {
+    const watch_next_response = parseResponse(data.watchNextResponse);
+    parsed_data.watch_next_response = watch_next_response;
+  }
+
+  if (data.cpnInfo) {
+    const cpn_info = {
+      cpn: data.cpnInfo.cpn,
+      cpn_source: data.cpnInfo.cpnSource
+    };
+
+    parsed_data.cpn_info = cpn_info;
+  }
+
+  if (data.entries) {
+    parsed_data.entries = data.entries.map((entry) => new NavigationEndpoint(entry));
   }
 
   return parsed_data;

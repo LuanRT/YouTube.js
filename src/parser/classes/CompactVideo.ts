@@ -1,5 +1,5 @@
 import { timeToSeconds } from '../../utils/Utils.js';
-import { YTNode, type ObservedArray, type SuperParsedResult } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import Menu from './menus/Menu.js';
 import MetadataBadge from './MetadataBadge.js';
@@ -13,7 +13,7 @@ export default class CompactVideo extends YTNode {
 
   id: string;
   thumbnails: Thumbnail[];
-  rich_thumbnail?: SuperParsedResult<YTNode>;
+  rich_thumbnail?: YTNode;
   title: Text;
   author: Author;
   view_count: Text;
@@ -36,7 +36,7 @@ export default class CompactVideo extends YTNode {
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail) || null;
 
     if (Reflect.has(data, 'richThumbnail')) {
-      this.rich_thumbnail = Parser.parse(data.richThumbnail);
+      this.rich_thumbnail = Parser.parseItem(data.richThumbnail);
     }
 
     this.title = new Text(data.title);

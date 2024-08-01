@@ -7,13 +7,13 @@ import type { IGuideResponse } from '../types/index.js';
 import type { IRawResponse } from '../index.js';
 
 export default class Guide {
-
   #page: IGuideResponse;
-  contents: ObservedArray<GuideSection | GuideSubscriptionsSection>;
+  contents?: ObservedArray<GuideSection | GuideSubscriptionsSection>;
 
   constructor(data: IRawResponse) {
     this.#page = Parser.parseResponse<IGuideResponse>(data);
-    this.contents = this.#page.items.array().as(GuideSection, GuideSubscriptionsSection);
+    if (this.#page.items)
+      this.contents = this.#page.items.array().as(GuideSection, GuideSubscriptionsSection);
   }
 
   get page(): IGuideResponse {

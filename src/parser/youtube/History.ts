@@ -7,7 +7,7 @@ import type { IBrowseResponse } from '../types/index.js';
 import type Video from '../classes/Video.js';
 
 // TODO: make feed actions usable
-class History extends Feed<IBrowseResponse> {
+export default class History extends Feed<IBrowseResponse> {
   sections: ItemSection[];
   feed_actions: BrowseFeedActions;
 
@@ -59,5 +59,3 @@ class History extends Feed<IBrowseResponse> {
     return true;
   }
 }
-
-export default History;

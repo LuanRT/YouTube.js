@@ -27,19 +27,17 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#getShortsWatchItem', async () => {
-      const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
+      const info = await innertube.getShortsVideoInfo('jOydBrmmjfk');
       expect(info.watch_next_feed?.length).toBeGreaterThan(0);
     });
 
-    test('Innertube#getShortsWatchItem#Continue', async () => {
-      const info = await innertube.getShortsWatchItem('jOydBrmmjfk');
+    test('Innertube#getShortsWatchItem#getWatchNextContinuation', async () => {
+      const info = await innertube.getShortsVideoInfo('jOydBrmmjfk');
       expect(info.watch_next_feed?.length).toBeGreaterThan(0);
-      const previousData = info.watch_next_feed?.map(value => value.as(YTNodes.Command).endpoint)
+      const previous_data = info.watch_next_feed;
       const cont = await info.getWatchNextContinuation()
-
       expect(cont.watch_next_feed?.length).toBeGreaterThan(0);
-      const newData = cont.watch_next_feed?.map(value => value.as(YTNodes.Command).endpoint)
-      expect(previousData).not.toEqual(newData)
+      expect(previous_data).not.toEqual(cont.watch_next_feed)
     });
 
     describe('Innertube#getBasicInfo', () => {
@@ -135,7 +133,7 @@ describe('YouTube.js Tests', () => {
       const home_feed = await innertube.getHomeFeed();
       expect(home_feed).toBeDefined();
       expect(home_feed.contents).toBeDefined();
-      expect(home_feed.contents.contents?.length).toBeGreaterThan(0);
+      expect(home_feed.contents?.contents?.length).toBeGreaterThan(0);
 
       // YouTube tells anonymous users to sign in or search something first before showing them a valid home feed.
       // Otherwise, you get the following message:
@@ -156,7 +154,7 @@ describe('YouTube.js Tests', () => {
       const guide = await innertube.getGuide();
       expect(guide).toBeDefined();
       expect(guide.contents).toBeDefined();
-      expect(guide.contents.length).toBeGreaterThan(0);
+      expect(guide.contents?.length).toBeGreaterThan(0);
     });
 
     test('Innertube#getTrending', async () => {

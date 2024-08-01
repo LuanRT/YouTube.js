@@ -5,7 +5,6 @@ import { MediaInfo } from '../../core/mixins/index.js';
 import Tab from '../classes/Tab.js';
 import AutomixPreviewVideo from '../classes/AutomixPreviewVideo.js';
 import Message from '../classes/Message.js';
-import MicroformatData from '../classes/MicroformatData.js';
 import MusicDescriptionShelf from '../classes/MusicDescriptionShelf.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
 import PlaylistPanel from '../classes/PlaylistPanel.js';
@@ -14,19 +13,12 @@ import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.js';
 
 import type RichGrid from '../classes/RichGrid.js';
 import type MusicQueue from '../classes/MusicQueue.js';
-import type Endscreen from '../classes/Endscreen.js';
 import type MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
-import type PlayerLiveStoryboardSpec from '../classes/PlayerLiveStoryboardSpec.js';
-import type PlayerStoryboardSpec from '../classes/PlayerStoryboardSpec.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { ApiResponse, Actions } from '../../core/index.js';
 
 class TrackInfo extends MediaInfo {
-  basic_info;
-  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
-  endscreen?: Endscreen;
-
   tabs?: ObservedArray<Tab>;
   current_video_endpoint?: NavigationEndpoint;
   player_overlays?: PlayerOverlay;
@@ -34,24 +26,7 @@ class TrackInfo extends MediaInfo {
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     super(data, actions, cpn);
 
-    const [ info, next ] = this.page;
-
-    if (!info.microformat?.is(MicroformatData))
-      throw new InnertubeError('Invalid microformat', info.microformat);
-
-    this.basic_info = {
-      ...info.video_details,
-      ...{
-        description: info.microformat?.description,
-        is_unlisted: info.microformat?.is_unlisted,
-        is_family_safe: info.microformat?.is_family_safe,
-        url_canonical: info.microformat?.url_canonical,
-        tags: info.microformat?.tags
-      }
-    };
-
-    this.storyboards = info.storyboards;
-    this.endscreen = info.endscreen;
+    const next = this.page[1];
 
     if (next) {
       const tabbed_results = next.contents_memo?.getType(WatchNextTabbedResults)?.[0];

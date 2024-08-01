@@ -1,19 +1,19 @@
-import type { SuperParsedResult } from '../../helpers.js';
+import type { ObservedArray } from '../../helpers.js';
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 import { Parser } from '../../index.js';
+import Button from '../Button.js';
 import Text from '../misc/Text.js';
 
 export default class SimpleMenuHeader extends YTNode {
   static type = 'SimpleMenuHeader';
 
   title: Text;
-  buttons: SuperParsedResult<YTNode>;
+  buttons: ObservedArray<Button>;
 
   constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
-    // @TODO: Check if this is of type `Button`.
-    this.buttons = Parser.parse(data.buttons);
+    this.buttons = Parser.parseArray(data.buttons, Button);
   }
 }

@@ -1,5 +1,35 @@
 # Changelog
 
+## [10.3.0](https://github.com/LuanRT/YouTube.js/compare/v10.2.0...v10.3.0) (2024-08-01)
+
+
+### Features
+
+* **parser:** Add `EomSettingsDisclaimer` node ([#703](https://github.com/LuanRT/YouTube.js/issues/703)) ([a9bf225](https://github.com/LuanRT/YouTube.js/commit/a9bf225a62108e47a50316235a83a814c682d745))
+* **PlaylistManager:** Add ability to remove videos by set ID ([#715](https://github.com/LuanRT/YouTube.js/issues/715)) ([d85fbc5](https://github.com/LuanRT/YouTube.js/commit/d85fbc56cf0fd7367b182ae36e65c1701bc5e62d))
+
+
+### Bug Fixes
+
+* **HTTPClient:** Adjust more context fields for the iOS client ([#705](https://github.com/LuanRT/YouTube.js/issues/705)) ([3153375](https://github.com/LuanRT/YouTube.js/commit/3153375bcaa6c03afba9da8474e6a9d37471ed29))
+
+## [10.2.0](https://github.com/LuanRT/YouTube.js/compare/v10.1.0...v10.2.0) (2024-07-25)
+
+
+### Features
+
+* **Format:** Add `is_secondary` for detecting secondary audio tracks ([#697](https://github.com/LuanRT/YouTube.js/issues/697)) ([a352dde](https://github.com/LuanRT/YouTube.js/commit/a352ddeb9db001e99f49025048ad0942d84f1b3e))
+* **parser:** add classdata to unhandled parse errors ([#691](https://github.com/LuanRT/YouTube.js/issues/691)) ([090539b](https://github.com/LuanRT/YouTube.js/commit/090539b28f9bc3387d01e37325ba5741b33b1765))
+* **proto:** Add `comment_id` to commentSectionParams ([#693](https://github.com/LuanRT/YouTube.js/issues/693)) ([a5f6209](https://github.com/LuanRT/YouTube.js/commit/a5f62093a18705fc822abd86beaa81788b6535ce))
+
+
+### Bug Fixes
+
+* **parser:** ignore MiniGameCardView node ([#692](https://github.com/LuanRT/YouTube.js/issues/692)) ([6d0bc89](https://github.com/LuanRT/YouTube.js/commit/6d0bc89be18f27a8ce74517f5cab5020d6790328))
+* **parser:** ThumbnailView background color ([#686](https://github.com/LuanRT/YouTube.js/issues/686)) ([0f8f92a](https://github.com/LuanRT/YouTube.js/commit/0f8f92a28a5b6143e890626b22ce570730a0cf09))
+* **Player:** Bump cache version ([#702](https://github.com/LuanRT/YouTube.js/issues/702)) ([6765f4e](https://github.com/LuanRT/YouTube.js/commit/6765f4e0d791c657fc7411e9cdd2c0f9284e9982))
+* **Player:** Fix extracting the n-token decipher algorithm again ([#701](https://github.com/LuanRT/YouTube.js/issues/701)) ([3048f70](https://github.com/LuanRT/YouTube.js/commit/3048f70f60756884bd7b591d770f7b6343cfa259))
+
 ## [10.1.0](https://github.com/LuanRT/YouTube.js/compare/v10.0.0...v10.1.0) (2024-07-10)
 
 
