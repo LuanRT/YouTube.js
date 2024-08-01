@@ -43,7 +43,7 @@ class DelayQueue {
   }
 }
 
-class SmoothedQueue {
+export default class SmoothedQueue {
   #last_update_time: number | null;
   #estimated_update_interval: number | null;
   #callback: Function | null;
@@ -155,5 +155,3 @@ class SmoothedQueue {
     return this.#poll_response_delay_queue;
   }
 }
-
-export default SmoothedQueue;

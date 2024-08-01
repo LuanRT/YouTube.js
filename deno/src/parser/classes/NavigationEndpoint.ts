@@ -27,8 +27,8 @@ export default class NavigationEndpoint extends YTNode {
   constructor(data: RawNode) {
     super();
 
-    if (Reflect.has(data || {}, 'innertubeCommand'))
-      data = data.innertubeCommand;
+    if (data && (data.innertubeCommand || data.command))
+      data = data.innertubeCommand || data.command;
 
     if (Reflect.has(data || {}, 'openPopupAction'))
       this.open_popup = new OpenPopupAction(data.openPopupAction);
@@ -92,13 +92,14 @@ export default class NavigationEndpoint extends YTNode {
       case 'browseEndpoint':
         return '/browse';
       case 'watchEndpoint':
+      case 'reelWatchEndpoint':
         return '/player';
       case 'searchEndpoint':
         return '/search';
       case 'watchPlaylistEndpoint':
         return '/next';
       case 'liveChatItemContextMenuEndpoint':
-        return 'live_chat/get_item_context_menu';
+        return '/live_chat/get_item_context_menu';
     }
   }
 

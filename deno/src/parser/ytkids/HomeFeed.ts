@@ -8,7 +8,7 @@ import KidsHomeScreen from '../classes/ytkids/KidsHomeScreen.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/ParsedResponse.ts';
 
-class HomeFeed extends Feed<IBrowseResponse> {
+export default class HomeFeed extends Feed<IBrowseResponse> {
   header?: KidsCategoriesHeader;
   contents?: KidsHomeScreen;
 
@@ -47,5 +47,3 @@ class HomeFeed extends Feed<IBrowseResponse> {
     return this.header?.category_tabs.map((tab) => tab.title.toString()) || [];
   }
 }
-
-export default HomeFeed;

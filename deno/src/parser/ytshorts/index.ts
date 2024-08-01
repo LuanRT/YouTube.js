@@ -1,1 +1,1 @@
-export { default as VideoInfo } from './VideoInfo.ts';
+export { default as ShortFormVideoInfo } from './ShortFormVideoInfo.ts';

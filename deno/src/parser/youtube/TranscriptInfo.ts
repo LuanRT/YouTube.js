@@ -12,6 +12,10 @@ export default class TranscriptInfo {
   constructor(actions: Actions, response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);
     this.#actions = actions;
+
+    if (!this.#page.actions_memo)
+      throw new Error('Page actions not found');
+
     this.transcript = this.#page.actions_memo.getType(Transcript).first();
   }
 

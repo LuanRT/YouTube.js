@@ -1,7 +1,8 @@
 import Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
-class UpdateToggleButtonTextAction extends YTNode {
+
+export default class UpdateToggleButtonTextAction extends YTNode {
   static type = 'UpdateToggleButtonTextAction';
 
   default_text: string;
@@ -15,5 +16,3 @@ class UpdateToggleButtonTextAction extends YTNode {
     this.button_id = data.buttonId;
   }
 }
-
-export default UpdateToggleButtonTextAction;

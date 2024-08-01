@@ -6,7 +6,7 @@ import { ItemSectionContinuation } from '../index.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
 
-class Channel extends Feed<IBrowseResponse> {
+export default class Channel extends Feed<IBrowseResponse> {
   header?: C4TabbedHeader;
   contents?: ItemSection | ItemSectionContinuation;
 
@@ -32,5 +32,3 @@ class Channel extends Feed<IBrowseResponse> {
     return !!this.contents?.continuation;
   }
 }
-
-export default Channel;

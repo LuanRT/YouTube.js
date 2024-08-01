@@ -3,7 +3,7 @@ import Element from '../classes/Element.ts';
 import type { ApiResponse } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 
-class Analytics {
+export default class Analytics {
   #page: IBrowseResponse;
   sections;
 
@@ -16,5 +16,3 @@ class Analytics {
     return this.#page;
   }
 }
-
-export default Analytics;

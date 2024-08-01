@@ -17,7 +17,7 @@ import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 
-class Settings {
+export default class Settings {
   #page: IBrowseResponse;
   #actions: Actions;
 
@@ -133,5 +133,3 @@ class Settings {
     return this.#page;
   }
 }
-
-export default Settings;

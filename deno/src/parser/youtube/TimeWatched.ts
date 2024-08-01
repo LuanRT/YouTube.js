@@ -8,7 +8,7 @@ import type { ApiResponse } from '../../core/index.ts';
 import type { ObservedArray } from '../helpers.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 
-class TimeWatched {
+export default class TimeWatched {
   #page: IBrowseResponse;
   contents?: ObservedArray<ItemSection>;
 
@@ -30,5 +30,3 @@ class TimeWatched {
     return this.#page;
   }
 }
-
-export default TimeWatched;

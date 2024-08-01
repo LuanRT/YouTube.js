@@ -8,7 +8,7 @@ import Notification from '../classes/Notification.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { IGetNotificationsMenuResponse } from '../types/index.ts';
 
-class NotificationsMenu {
+export default class NotificationsMenu {
   #page: IGetNotificationsMenuResponse;
   #actions: Actions;
 
@@ -19,12 +19,15 @@ class NotificationsMenu {
     this.#actions = actions;
     this.#page = Parser.parseResponse<IGetNotificationsMenuResponse>(response.data);
 
+    if (!this.#page.actions_memo)
+      throw new InnertubeError('Page actions not found');
+
     this.header = this.#page.actions_memo.getType(SimpleMenuHeader).first();
     this.contents = this.#page.actions_memo.getType(Notification);
   }
 
   async getContinuation(): Promise<NotificationsMenu> {
-    const continuation = this.#page.actions_memo.getType(ContinuationItem).first();
+    const continuation = this.#page.actions_memo?.getType(ContinuationItem).first();
 
     if (!continuation)
       throw new InnertubeError('Continuation not found');
@@ -38,5 +41,3 @@ class NotificationsMenu {
     return this.#page;
   }
 }
-
-export default NotificationsMenu;

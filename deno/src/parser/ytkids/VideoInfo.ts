@@ -8,10 +8,7 @@ import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
-class VideoInfo extends MediaInfo {
-  basic_info;
-  captions;
-
+export default class VideoInfo extends MediaInfo {
   slim_video_metadata?: SlimVideoMetadata;
   watch_next_feed?: ObservedArray<YTNode>;
   current_video_endpoint?: NavigationEndpoint;
@@ -20,11 +17,7 @@ class VideoInfo extends MediaInfo {
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     super(data, actions, cpn);
 
-    const [ info, next ] = this.page;
-
-    this.basic_info = info.video_details;
-
-    this.captions = info.captions;
+    const next = this.page[1];
 
     const two_col = next?.contents?.item().as(TwoColumnWatchNextResults);
 
@@ -38,13 +31,4 @@ class VideoInfo extends MediaInfo {
       this.player_overlays = next?.player_overlays?.item().as(PlayerOverlay);
     }
   }
-
-  /**
- * Adds video to the watch history.
- */
-  async addToWatchHistory(): Promise<Response> {
-    return super.addToWatchHistory();
-  }
 }
-
-export default VideoInfo;

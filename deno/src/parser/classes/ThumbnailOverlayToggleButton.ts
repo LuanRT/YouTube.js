@@ -17,8 +17,8 @@ export default class ThumbnailOverlayToggleButton extends YTNode {
     untoggled: string;
   };
 
-  toggled_endpoint: NavigationEndpoint;
-  untoggled_endpoint: NavigationEndpoint;
+  toggled_endpoint?: NavigationEndpoint;
+  untoggled_endpoint?: NavigationEndpoint;
 
   constructor(data: RawNode) {
     super();
@@ -36,7 +36,10 @@ export default class ThumbnailOverlayToggleButton extends YTNode {
       untoggled: data.untoggledTooltip
     };
 
-    this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
-    this.untoggled_endpoint = new NavigationEndpoint(data.untoggledServiceEndpoint);
+    if (data.toggledServiceEndpoint)
+      this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
+
+    if (data.untoggledServiceEndpoint)
+      this.untoggled_endpoint = new NavigationEndpoint(data.untoggledServiceEndpoint);
   }
 }

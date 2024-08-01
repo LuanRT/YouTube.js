@@ -1,2 +1,2 @@
-export * as WatchEndpoint from './WatchEndpoint.ts';
-export * as WatchSequenceEndpoint from './WatchSequenceEndpoint.ts';
+export * as ReelItemWatchEndpoint from './ReelItemWatchEndpoint.ts';
+export * as ReelWatchSequenceEndpoint from './ReelWatchSequenceEndpoint.ts';

@@ -17,7 +17,7 @@ import type { IBrowseResponse } from '../types/index.ts';
 import type MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
 
-class Library {
+export default class Library {
   #page: IBrowseResponse;
   #actions: Actions;
   #continuation?: string | null;
@@ -147,7 +147,7 @@ class Library {
   }
 }
 
-class LibraryContinuation {
+export class LibraryContinuation {
   #page;
   #actions;
   #continuation;
@@ -186,6 +186,3 @@ class LibraryContinuation {
     return this.#page;
   }
 }
-
-export { LibraryContinuation };
-export default Library;

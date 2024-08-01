@@ -16,7 +16,7 @@ import type { ObservedArray } from '../helpers.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
 
-class Recap {
+export default class Recap {
   #page: IBrowseResponse;
   #actions: Actions;
 
@@ -61,5 +61,3 @@ class Recap {
     return this.#page;
   }
 }
-
-export default Recap;

@@ -11,7 +11,7 @@ import type { Actions, ApiResponse } from '../../core/index.ts';
 import type { ObservedArray } from '../helpers.ts';
 import type { INextResponse } from '../types/index.ts';
 
-class Comments {
+export default class Comments {
   #page: INextResponse;
   #actions: Actions;
   #continuation?: ContinuationItem;
@@ -122,5 +122,3 @@ class Comments {
     return this.#page;
   }
 }
-
-export default Comments;

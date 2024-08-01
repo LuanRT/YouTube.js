@@ -51,7 +51,7 @@ export interface LiveMetadata {
   date?: UpdateDateTextAction;
 }
 
-class LiveChat extends EventEmitter {
+export default class LiveChat extends EventEmitter {
   smoothed_queue: SmoothedQueue;
 
   #actions: Actions;
@@ -310,5 +310,3 @@ class LiveChat extends EventEmitter {
     return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
   }
 }
-
-export default LiveChat;

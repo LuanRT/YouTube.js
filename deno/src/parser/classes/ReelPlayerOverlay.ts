@@ -6,6 +6,7 @@ import InfoPanelContainer from './InfoPanelContainer.ts';
 import LikeButton from './LikeButton.ts';
 import ReelPlayerHeader from './ReelPlayerHeader.ts';
 import PivotButton from './PivotButton.ts';
+import SubscribeButton from './SubscribeButton.ts';
 
 export default class ReelPlayerOverlay extends YTNode {
   static type = 'ReelPlayerOverlay';
@@ -29,7 +30,7 @@ export default class ReelPlayerOverlay extends YTNode {
     this.menu = Parser.parseItem(data.menu, Menu);
     this.next_item_button = Parser.parseItem(data.nextItemButton, Button);
     this.prev_item_button = Parser.parseItem(data.prevItemButton, Button);
-    this.subscribe_button_renderer = Parser.parseItem(data.subscribeButtonRenderer, Button);
+    this.subscribe_button_renderer = Parser.parseItem(data.subscribeButtonRenderer, [ Button, SubscribeButton ]);
     this.style = data.style;
     this.view_comments_button = Parser.parseItem(data.viewCommentsButton, Button);
     this.share_button = Parser.parseItem(data.shareButton, Button);

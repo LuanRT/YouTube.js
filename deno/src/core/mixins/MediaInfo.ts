@@ -5,27 +5,43 @@ import { getStreamingInfo } from '../../utils/StreamingInfo.ts';
 import { Parser } from '../../parser/index.ts';
 import { TranscriptInfo } from '../../parser/youtube/index.ts';
 import ContinuationItem from '../../parser/classes/ContinuationItem.ts';
+import PlayerMicroformat from '../../parser/classes/PlayerMicroformat.ts';
+import MicroformatData from '../../parser/classes/MicroformatData.ts';
 
 import type { ApiResponse, Actions } from '../index.ts';
-import type { INextResponse, IPlayerConfig, IPlayerResponse } from '../../parser/index.ts';
+import type { INextResponse, IPlayabilityStatus, IPlaybackTracking, IPlayerConfig, IPlayerResponse, IStreamingData } from '../../parser/index.ts';
 import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../types/FormatUtils.ts';
 import type Format from '../../parser/classes/misc/Format.ts';
 import type { DashOptions } from '../../types/DashOptions.ts';
+import type { ObservedArray } from '../../parser/helpers.ts';
+
+import type CardCollection from '../../parser/classes/CardCollection.ts';
+import type Endscreen from '../../parser/classes/Endscreen.ts';
+import type PlayerAnnotationsExpanded from '../../parser/classes/PlayerAnnotationsExpanded.ts';
+import type PlayerCaptionsTracklist from '../../parser/classes/PlayerCaptionsTracklist.ts';
+import type PlayerLiveStoryboardSpec from '../../parser/classes/PlayerLiveStoryboardSpec.ts';
+import type PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
 
 export default class MediaInfo {
   #page: [IPlayerResponse, INextResponse?];
   #actions: Actions;
   #cpn: string;
-  #playback_tracking;
-  streaming_data;
-  playability_status;
-  player_config: IPlayerConfig;
+  #playback_tracking?: IPlaybackTracking;
+  basic_info;
+  annotations?: ObservedArray<PlayerAnnotationsExpanded>;
+  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
+  endscreen?: Endscreen;
+  captions?: PlayerCaptionsTracklist;
+  cards?: CardCollection;
+  streaming_data?: IStreamingData;
+  playability_status?: IPlayabilityStatus;
+  player_config?: IPlayerConfig;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;
 
-    const info = Parser.parseResponse<IPlayerResponse>(data[0].data);
-    const next = data?.[1]?.data ? Parser.parseResponse<INextResponse>(data[1].data) : undefined;
+    const info = Parser.parseResponse<IPlayerResponse>(data[0].data.playerResponse ? data[0].data.playerResponse : data[0].data);
+    const next = data[1]?.data ? Parser.parseResponse<INextResponse>(data[1].data) : undefined;
 
     this.#page = [ info, next ];
     this.#cpn = cpn;
@@ -33,6 +49,38 @@ export default class MediaInfo {
     if (info.playability_status?.status === 'ERROR')
       throw new InnertubeError('This video is unavailable', info.playability_status);
 
+    if (info.microformat && !info.microformat?.is(PlayerMicroformat, MicroformatData))
+      throw new InnertubeError('Unsupported microformat', info.microformat);
+
+    this.basic_info = { // This type is inferred so no need for an explicit type
+      ...info.video_details,
+      /**
+       * Microformat is a bit redundant, so only
+       * a few things there are interesting to us.
+       */
+      ...{
+        embed: info.microformat?.is(PlayerMicroformat) ? info.microformat?.embed : null,
+        channel: info.microformat?.is(PlayerMicroformat) ? info.microformat?.channel : null,
+        is_unlisted: info.microformat?.is_unlisted,
+        is_family_safe: info.microformat?.is_family_safe,
+        category: info.microformat?.is(PlayerMicroformat) ? info.microformat?.category : null,
+        has_ypc_metadata: info.microformat?.is(PlayerMicroformat) ? info.microformat?.has_ypc_metadata : null,
+        start_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.start_timestamp : null,
+        end_timestamp: info.microformat?.is(PlayerMicroformat) ? info.microformat.end_timestamp : null,
+        view_count: info.microformat?.is(PlayerMicroformat) && isNaN(info.video_details?.view_count as number) ? info.microformat.view_count : info.video_details?.view_count,
+        url_canonical: info.microformat?.is(MicroformatData) ? info.microformat?.url_canonical : null,
+        tags: info.microformat?.is(MicroformatData) ? info.microformat?.tags : null
+      },
+      like_count: undefined as number | undefined,
+      is_liked: undefined as boolean | undefined,
+      is_disliked: undefined as boolean | undefined
+    };
+
+    this.annotations = info.annotations;
+    this.storyboards = info.storyboards;
+    this.endscreen = info.endscreen;
+    this.captions = info.captions;
+    this.cards = info.cards;
     this.streaming_data = info.streaming_data;
     this.playability_status = info.playability_status;
     this.player_config = info.player_config;

@@ -11,7 +11,7 @@ import type { ApiResponse } from '../../core/index.ts';
 import type { ObservedArray } from '../helpers.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 
-class Explore {
+export default class Explore {
   #page: IBrowseResponse;
 
   top_buttons: MusicNavigationButton[];
@@ -38,5 +38,3 @@ class Explore {
     return this.#page;
   }
 }
-
-export default Explore;
