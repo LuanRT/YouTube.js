@@ -1,15 +1,14 @@
-import { Innertube, UniversalCache, YTNodes, LiveChatContinuation } from 'youtubei.js';
-import { ChatAction, LiveMetadata } from 'youtubei.js/dist/src/parser/youtube/LiveChat';
+import { Innertube, UniversalCache, YTNodes } from 'youtubei.js';
 
 (async () => {
-  const yt = await Innertube.create({ cache: new UniversalCache(false), generate_session_locally: true });
+  const yt = await Innertube.create({ cache: new UniversalCache(false) });
 
   const search = await yt.search('lofi hip hop radio - beats to relax/study to');
   const info = await yt.getInfo(search.videos[0].as(YTNodes.Video).id);
 
   const livechat = info.getLiveChat();
 
-  livechat.on('start', (initial_data: LiveChatContinuation) => {
+  livechat.on('start', (initial_data) => {
     /**
      * Initial info is what you see when you first open a a live chat — this is; initial actions (pinned messages, top donations..), account's info and so forth.
      */
@@ -32,7 +31,7 @@ import { ChatAction, LiveMetadata } from 'youtubei.js/dist/src/parser/youtube/Li
 
   livechat.on('end', () => console.info('This live stream has ended.'));
 
-  livechat.on('chat-update', (action: ChatAction) => {
+  livechat.on('chat-update', (action) => {
     /**
      * An action represents what is being added to
      * the live chat. All actions have a `type` property,
@@ -94,7 +93,7 @@ import { ChatAction, LiveMetadata } from 'youtubei.js/dist/src/parser/youtube/Li
     }
   });
 
-  livechat.on('metadata-update', (metadata: LiveMetadata) => {
+  livechat.on('metadata-update', (metadata) => {
     console.info(`
       VIEWS: ${metadata.views?.view_count.toString()}
       LIKES: ${metadata.likes?.default_text}
