@@ -28,6 +28,10 @@ import * as SabrError from './generated/messages/youtube/SabrError.js';
 import * as OnesieRequest from './generated/messages/youtube/OnesieRequest.js';
 import * as SabrRequest from './generated/messages/youtube/SabrRequest.js';
 
+export function decodeSabrRequest(data: Uint8Array): SabrRequest.Type {
+  return SabrRequest.decodeBinary(data);
+}
+
 export function encodeSabrRequest(data: SabrRequest.Type): Uint8Array {
   return SabrRequest.encodeBinary(data);
 }
