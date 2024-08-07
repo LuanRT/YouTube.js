@@ -1,5 +1,5 @@
 import { Log, LZW, Constants } from '../utils/index.js';
-import { Platform, getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils.js';
+import { Platform, getRandomUserAgent, getStringBetweenStrings, findFunction, PlayerError } from '../utils/Utils.js';
 import type { ICache, FetchFunction } from '../types/index.js';
 
 const TAG = 'Player';
@@ -8,16 +8,16 @@ const TAG = 'Player';
  * Represents YouTube's player script. This is required to decipher signatures.
  */
 export default class Player {
-  nsig_sc;
-  sig_sc;
-  sts;
-  player_id;
+  player_id: string;
+  sts: number;
+  nsig_sc?: string;
+  sig_sc?: string;
 
-  constructor(signature_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string) {
+  constructor(player_id: string, signature_timestamp: number, sig_sc?: string, nsig_sc?: string) {
+    this.player_id = player_id;
+    this.sts = signature_timestamp;
     this.nsig_sc = nsig_sc;
     this.sig_sc = sig_sc;
-    this.sts = signature_timestamp;
-    this.player_id = player_id;
   }
 
   static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch): Promise<Player> {
@@ -67,7 +67,7 @@ export default class Player {
 
     Log.info(TAG, `Got signature timestamp (${sig_timestamp}) and algorithms needed to decipher signatures.`);
 
-    return await Player.fromSource(cache, sig_timestamp, sig_sc, nsig_sc, player_id);
+    return await Player.fromSource(player_id, sig_timestamp, cache, sig_sc, nsig_sc);
   }
 
   decipher(url?: string, signature_cipher?: string, cipher?: string, this_response_nsig_cache?: Map<string, string>): string {
@@ -79,7 +79,7 @@ export default class Player {
     const args = new URLSearchParams(url);
     const url_components = new URL(args.get('url') || url);
 
-    if (signature_cipher || cipher) {
+    if (this.sig_sc && (signature_cipher || cipher)) {
       const signature = Platform.shim.eval(this.sig_sc, {
         sig: args.get('s')
       });
@@ -98,7 +98,7 @@ export default class Player {
 
     const n = url_components.searchParams.get('n');
 
-    if (n) {
+    if (this.nsig_sc && n) {
       let nsig;
 
       if (this_response_nsig_cache && this_response_nsig_cache.has(n)) {
@@ -174,17 +174,18 @@ export default class Player {
     const sig_sc = LZW.decompress(new TextDecoder().decode(sig_buf));
     const nsig_sc = LZW.decompress(new TextDecoder().decode(nsig_buf));
 
-    return new Player(sig_timestamp, sig_sc, nsig_sc, player_id);
+    return new Player(player_id, sig_timestamp, sig_sc, nsig_sc);
   }
 
-  static async fromSource(cache: ICache | undefined, sig_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string): Promise<Player> {
-    const player = new Player(sig_timestamp, sig_sc, nsig_sc, player_id);
+  static async fromSource(player_id: string, sig_timestamp: number, cache?: ICache, sig_sc?: string, nsig_sc?: string): Promise<Player> {
+    const player = new Player(player_id, sig_timestamp, sig_sc, nsig_sc);
     await player.cache(cache);
     return player;
   }
 
   async cache(cache?: ICache): Promise<void> {
-    if (!cache) return;
+    if (!cache || !this.sig_sc || !this.nsig_sc)
+      return;
 
     const encoder = new TextEncoder();
 
@@ -219,13 +220,11 @@ export default class Player {
     return `function descramble_sig(a) { a = a.split(""); let ${obj_name}={${functions}}${calls} return a.join("") } descramble_sig(sig);`;
   }
 
-  static extractNSigSourceCode(data: string): string {
-    const sc = `function descramble_nsig(a) { let b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join(""); } descramble_nsig(nsig)`;
-
-    if (!sc)
-      Log.warn(TAG, 'Failed to extract n-token decipher algorithm');
-
-    return sc;
+  static extractNSigSourceCode(data: string): string | undefined {
+    const nsig_function = findFunction(data, { includes: 'enhanced_except' });
+    if (nsig_function) {
+      return `${nsig_function.result} ${nsig_function.name}(nsig);`;
+    }
   }
 
   get url(): string {
@@ -233,6 +232,6 @@ export default class Player {
   }
 
   static get LIBRARY_VERSION(): number {
-    return 10;
+    return 11;
   }
 }

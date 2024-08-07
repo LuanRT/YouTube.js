@@ -1,2 +1,2 @@
-export * as WatchEndpoint from './WatchEndpoint.js';
-export * as WatchSequenceEndpoint from './WatchSequenceEndpoint.js';
+export * as ReelItemWatchEndpoint from './ReelItemWatchEndpoint.js';
+export * as ReelWatchSequenceEndpoint from './ReelWatchSequenceEndpoint.js';

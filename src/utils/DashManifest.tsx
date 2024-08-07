@@ -241,10 +241,14 @@ async function DashManifest({
             lang={set.language}
             contentType="text"
           >
-            <role
-              schemeIdUri="urn:mpeg:dash:role:2011"
-              value="caption"
-            />
+            {
+              set.track_roles.map((role) => (
+                <role
+                  schemeIdUri="urn:mpeg:dash:role:2011"
+                  value={role}
+                />
+              ))
+            }
             <label id={index + audio_sets.length}>
               {set.track_name}
             </label>

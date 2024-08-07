@@ -90,7 +90,7 @@ import {
 export declare namespace $.youtube {
   export type InnertubePayload = {
     context?: Context;
-    target?: string;
+    videoId?: string;
     title?: Title;
     description?: Description;
     tags?: Tags;
@@ -108,7 +108,7 @@ export type Type = $.youtube.InnertubePayload;
 export function getDefaultValue(): $.youtube.InnertubePayload {
   return {
     context: undefined,
-    target: undefined,
+    videoId: undefined,
     title: undefined,
     description: undefined,
     tags: undefined,
@@ -131,7 +131,7 @@ export function createValue(partialValue: Partial<$.youtube.InnertubePayload>): 
 export function encodeJson(value: $.youtube.InnertubePayload): unknown {
   const result: any = {};
   if (value.context !== undefined) result.context = encodeJson_1(value.context);
-  if (value.target !== undefined) result.target = tsValueToJsonValueFns.string(value.target);
+  if (value.videoId !== undefined) result.videoId = tsValueToJsonValueFns.string(value.videoId);
   if (value.title !== undefined) result.title = encodeJson_2(value.title);
   if (value.description !== undefined) result.description = encodeJson_3(value.description);
   if (value.tags !== undefined) result.tags = encodeJson_4(value.tags);
@@ -147,7 +147,7 @@ export function encodeJson(value: $.youtube.InnertubePayload): unknown {
 export function decodeJson(value: any): $.youtube.InnertubePayload {
   const result = getDefaultValue();
   if (value.context !== undefined) result.context = decodeJson_1(value.context);
-  if (value.target !== undefined) result.target = jsonValueToTsValueFns.string(value.target);
+  if (value.videoId !== undefined) result.videoId = jsonValueToTsValueFns.string(value.videoId);
   if (value.title !== undefined) result.title = decodeJson_2(value.title);
   if (value.description !== undefined) result.description = decodeJson_3(value.description);
   if (value.tags !== undefined) result.tags = decodeJson_4(value.tags);
@@ -168,8 +168,8 @@ export function encodeBinary(value: $.youtube.InnertubePayload): Uint8Array {
       [1, { type: WireType.LengthDelimited as const, value: encodeBinary_1(tsValue) }],
     );
   }
-  if (value.target !== undefined) {
-    const tsValue = value.target;
+  if (value.videoId !== undefined) {
+    const tsValue = value.videoId;
     result.push(
       [2, tsValueToWireValueFns.string(tsValue)],
     );
@@ -247,7 +247,7 @@ export function decodeBinary(binary: Uint8Array): $.youtube.InnertubePayload {
     if (wireValue === undefined) break field;
     const value = wireValueToTsValueFns.string(wireValue);
     if (value === undefined) break field;
-    result.target = value;
+    result.videoId = value;
   }
   field: {
     const wireValue = wireFields.get(3);

@@ -59,6 +59,9 @@ export type Context = {
       isWebNativeShareAvailable: boolean;
     };
     memoryTotalKbytes?: string;
+    configInfo?: {
+      appInstallData: string;
+    },
     kidsAppInfo?: {
       categorySettings: {
         enabledCategories: string[];
@@ -97,6 +100,7 @@ type ContextData = {
   enable_safety_mode: boolean;
   browser_name?: string;
   browser_version?: string;
+  app_install_data?: string;
   device_make: string;
   device_model: string;
   on_behalf_of_user?: string;
@@ -443,6 +447,9 @@ export default class Session extends EventEmitter {
 
     const [ [ device_info ], api_key ] = ytcfg;
 
+    const config_info = device_info[61];
+    const app_install_data = config_info[config_info.length - 1];
+
     const context_info = {
       hl: options.lang || device_info[0],
       gl: options.location || device_info[2],
@@ -458,6 +465,7 @@ export default class Session extends EventEmitter {
       browser_version: device_info[87],
       device_make: device_info[11],
       device_model: device_info[12],
+      app_install_data: app_install_data,
       enable_safety_mode: options.enable_safety_mode
     };
 
@@ -488,7 +496,7 @@ export default class Session extends EventEmitter {
         deviceModel: args.device_model,
         browserName: args.browser_name,
         browserVersion: args.browser_version,
-        utcOffsetMinutes: -new Date().getTimezoneOffset(),
+        utcOffsetMinutes: -Math.floor((new Date()).getTimezoneOffset()),
         memoryTotalKbytes: '8000000',
         mainAppWebInfo: {
           graftUrl: Constants.URLS.YT_BASE,
@@ -506,6 +514,9 @@ export default class Session extends EventEmitter {
         internalExperimentFlags: []
       }
     };
+
+    if (args.app_install_data)
+      context.client.configInfo = { appInstallData: args.app_install_data };
 
     if (args.on_behalf_of_user)
       context.user.onBehalfOfUser = args.on_behalf_of_user;

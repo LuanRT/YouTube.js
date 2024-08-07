@@ -96,8 +96,9 @@ export default class PlaylistManager {
    * Removes videos from a given playlist.
    * @param playlist_id - The playlist ID.
    * @param video_ids - An array of video IDs to remove from the playlist.
+   * @param use_set_video_ids - Option to remove videos using set video IDs.
    */
-  async removeVideos(playlist_id: string, video_ids: string[]): Promise<{ playlist_id: string; action_result: any }> {
+  async removeVideos(playlist_id: string, video_ids: string[], use_set_video_ids = false): Promise<{ playlist_id: string; action_result: any }> {
     throwIfMissing({ playlist_id, video_ids });
 
     if (!this.#actions.session.logged_in)
@@ -115,7 +116,8 @@ export default class PlaylistManager {
     const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
 
     const getSetVideoIds = async (pl: Feed): Promise<void> => {
-      const videos = pl.videos.filter((video) => video_ids.includes(video.key('id').string()));
+      const key_id = use_set_video_ids ? 'set_video_id' : 'id';
+      const videos = pl.videos.filter((video) => video_ids.includes(video.key(key_id).string()));
 
       videos.forEach((video) =>
         payload.actions.push({

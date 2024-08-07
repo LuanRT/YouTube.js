@@ -8,7 +8,7 @@ import type { ObservedArray, YTNode } from '../helpers.js';
 import type { IParsedResponse } from '../types/index.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
-class ItemMenu {
+export default class ItemMenu {
   #page: IParsedResponse;
   #actions: Actions;
   #items: ObservedArray<YTNode>;
@@ -66,5 +66,3 @@ class ItemMenu {
     return this.#page;
   }
 }
-
-export default ItemMenu;

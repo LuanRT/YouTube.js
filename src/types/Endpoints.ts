@@ -308,7 +308,7 @@ export type CreateVideoEndpointOptions = {
   client?: InnerTubeClient;
 }
 
-export type ICreateVideoRequest = ObjectSnakeToCamel<CreateVideoEndpointOptions>;
+export type ICreateVideoRequest = Omit<ObjectSnakeToCamel<CreateVideoEndpointOptions>, 'client'>;
 
 export type CreatePlaylistEndpointOptions = {
   /**
@@ -350,16 +350,7 @@ export type EditPlaylistEndpointOptions = {
   }[];
 }
 
-export interface IEditPlaylistRequest extends ObjectSnakeToCamel<EditPlaylistEndpointOptions> {
-  actions: {
-    action: 'ACTION_ADD_VIDEO' | 'ACTION_REMOVE_VIDEO' | 'ACTION_MOVE_VIDEO_AFTER' | 'ACTION_SET_PLAYLIST_DESCRIPTION' | 'ACTION_SET_PLAYLIST_NAME';
-    addedVideoId?: string;
-    setVideoId?: string;
-    movedSetVideoIdPredecessor?: string;
-    playlistDescription?: string;
-    playlistName?: string;
-  }[];
-}
+export type IEditPlaylistRequest = ObjectSnakeToCamel<EditPlaylistEndpointOptions>;
 
 export type BlocklistPickerRequestEndpointOptions = {
   channel_id: string;
@@ -371,19 +362,21 @@ export type IBlocklistPickerRequest = {
   }
 }
 
-export interface IReelWatchRequest {
+export interface IReelItemWatchRequest {
+  disablePlayerResponse: boolean;
   playerRequest: {
     videoId: string,
     params: string,
   },
   params?: string;
+  client?: InnerTubeClient;
 }
 
-export type ReelWatchEndpointOptions = {
+export type ReelItemWatchEndpointOptions = {
   /**
    * The shorts ID.
    */
-  short_id: string;
+  video_id: string;
   /**
    * The client to use.
    */
@@ -394,7 +387,7 @@ export type ReelWatchEndpointOptions = {
   params?: string;
 }
 
-export interface IReelSequenceRequest {
+export interface IReelWatchSequenceRequest {
   sequenceParams: string;
 }
 
@@ -402,7 +395,7 @@ export type ReelWatchSequenceEndpointOptions = {
   /**
    * The protobuf parameters.
    */
-  sequenceParams: string;
+  sequence_params: string;
   /**
    * The client to use.
    */

@@ -11,17 +11,24 @@ message VisitorData {
 message InnertubePayload {
   message Context {
     message Client {
-      required int32 unkparam = 16;
-      required string client_version = 17;
-      required string client_name = 18;
+      string deviceMake = 12;
+      string deviceModel = 13;
+      int32 nameId = 16;
+      string clientVersion = 17;
+      string osName = 18;
+      string osVersion = 19;
+      string acceptLanguage = 21;
+      string acceptRegion = 22;
+      int32 windowWidthPoints = 37;
+      int32 windowHeightPoints = 38;
+      int32 androidSdkVersion = 34;
     }
     required Client client = 1;
   }
   
   required Context context = 1;
   
-  // This can be either a target id or a video id.
-  optional string target = 2;
+  optional string videoId = 2;
   
   /**** YT Sudio stuff ****/ 
   
@@ -155,6 +162,7 @@ message GetCommentsSectionParams {
       required string video_id = 4;
       required int32 sort_by = 6;
       required int32 type = 15;
+      optional string comment_id = 16;
     }
     
     message RepliesOptions {

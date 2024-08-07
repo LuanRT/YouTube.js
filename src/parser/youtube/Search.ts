@@ -8,13 +8,15 @@ import SearchSubMenu from '../classes/SearchSubMenu.js';
 import SectionList from '../classes/SectionList.js';
 import UniversalWatchCard from '../classes/UniversalWatchCard.js';
 
+import { observe } from '../helpers.js';
+
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { ISearchResponse } from '../types/index.js';
 
-class Search extends Feed<ISearchResponse> {
+export default class Search extends Feed<ISearchResponse> {
   header?: SearchHeader;
-  results?: ObservedArray<YTNode> | null;
+  results: ObservedArray<YTNode>;
   refinements: string[];
   estimated_results: number;
   sub_menu?: SearchSubMenu;
@@ -34,13 +36,16 @@ class Search extends Feed<ISearchResponse> {
     if (this.page.header)
       this.header = this.page.header.item().as(SearchHeader);
 
-    this.results = contents.find((content) => content.is(ItemSection) && content.contents && content.contents.length > 0)?.as(ItemSection).contents;
+    this.results = observe(contents.filterType(ItemSection).flatMap((section) => section.contents));
 
     this.refinements = this.page.refinements || [];
-    this.estimated_results = this.page.estimated_results;
+    this.estimated_results = this.page.estimated_results || 0;
 
-    this.sub_menu = this.page.contents_memo?.getType(SearchSubMenu).first();
-    this.watch_card = this.page.contents_memo?.getType(UniversalWatchCard).first();
+    if (this.page.contents_memo) {
+      this.sub_menu = this.page.contents_memo.getType(SearchSubMenu).first();
+      this.watch_card = this.page.contents_memo.getType(UniversalWatchCard).first();
+    }
+
     this.refinement_cards = this.results?.firstOfType(HorizontalCardList);
   }
 
@@ -83,5 +88,3 @@ class Search extends Feed<ISearchResponse> {
     return new Search(this.actions, response, true);
   }
 }
-
-export default Search;

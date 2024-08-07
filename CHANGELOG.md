@@ -1,5 +1,55 @@
 # Changelog
 
+## [10.3.0](https://github.com/LuanRT/YouTube.js/compare/v10.2.0...v10.3.0) (2024-08-01)
+
+
+### Features
+
+* **parser:** Add `EomSettingsDisclaimer` node ([#703](https://github.com/LuanRT/YouTube.js/issues/703)) ([a9bf225](https://github.com/LuanRT/YouTube.js/commit/a9bf225a62108e47a50316235a83a814c682d745))
+* **PlaylistManager:** Add ability to remove videos by set ID ([#715](https://github.com/LuanRT/YouTube.js/issues/715)) ([d85fbc5](https://github.com/LuanRT/YouTube.js/commit/d85fbc56cf0fd7367b182ae36e65c1701bc5e62d))
+
+
+### Bug Fixes
+
+* **HTTPClient:** Adjust more context fields for the iOS client ([#705](https://github.com/LuanRT/YouTube.js/issues/705)) ([3153375](https://github.com/LuanRT/YouTube.js/commit/3153375bcaa6c03afba9da8474e6a9d37471ed29))
+
+## [10.2.0](https://github.com/LuanRT/YouTube.js/compare/v10.1.0...v10.2.0) (2024-07-25)
+
+
+### Features
+
+* **Format:** Add `is_secondary` for detecting secondary audio tracks ([#697](https://github.com/LuanRT/YouTube.js/issues/697)) ([a352dde](https://github.com/LuanRT/YouTube.js/commit/a352ddeb9db001e99f49025048ad0942d84f1b3e))
+* **parser:** add classdata to unhandled parse errors ([#691](https://github.com/LuanRT/YouTube.js/issues/691)) ([090539b](https://github.com/LuanRT/YouTube.js/commit/090539b28f9bc3387d01e37325ba5741b33b1765))
+* **proto:** Add `comment_id` to commentSectionParams ([#693](https://github.com/LuanRT/YouTube.js/issues/693)) ([a5f6209](https://github.com/LuanRT/YouTube.js/commit/a5f62093a18705fc822abd86beaa81788b6535ce))
+
+
+### Bug Fixes
+
+* **parser:** ignore MiniGameCardView node ([#692](https://github.com/LuanRT/YouTube.js/issues/692)) ([6d0bc89](https://github.com/LuanRT/YouTube.js/commit/6d0bc89be18f27a8ce74517f5cab5020d6790328))
+* **parser:** ThumbnailView background color ([#686](https://github.com/LuanRT/YouTube.js/issues/686)) ([0f8f92a](https://github.com/LuanRT/YouTube.js/commit/0f8f92a28a5b6143e890626b22ce570730a0cf09))
+* **Player:** Bump cache version ([#702](https://github.com/LuanRT/YouTube.js/issues/702)) ([6765f4e](https://github.com/LuanRT/YouTube.js/commit/6765f4e0d791c657fc7411e9cdd2c0f9284e9982))
+* **Player:** Fix extracting the n-token decipher algorithm again ([#701](https://github.com/LuanRT/YouTube.js/issues/701)) ([3048f70](https://github.com/LuanRT/YouTube.js/commit/3048f70f60756884bd7b591d770f7b6343cfa259))
+
+## [10.1.0](https://github.com/LuanRT/YouTube.js/compare/v10.0.0...v10.1.0) (2024-07-10)
+
+
+### Features
+
+* **Session:** Add `configInfo` to InnerTube context ([5a8fd3a](https://github.com/LuanRT/YouTube.js/commit/5a8fd3ad37bce1decad28ec3727453ddd430a561))
+* **toDash:** Add option to include WebVTT or TTML captions ([#673](https://github.com/LuanRT/YouTube.js/issues/673)) ([bd9f6ac](https://github.com/LuanRT/YouTube.js/commit/bd9f6ac64ca9ba96e856aabe5fcc175fd9c294dc))
+* **toDash:** Add the "dub" role to translated captions ([#677](https://github.com/LuanRT/YouTube.js/issues/677)) ([858cdd1](https://github.com/LuanRT/YouTube.js/commit/858cdd197cb2bb1e1d7a7285966cb56043ad8961))
+
+
+### Bug Fixes
+
+* **FormatUtils:** Throw an error if download requests fails ([a19511d](https://github.com/LuanRT/YouTube.js/commit/a19511de24bb82007aab072844efe64bbb8698da))
+* **InfoPanelContent:** Update InfoPanelContent node to also support `paragraphs` ([4cbaa79](https://github.com/LuanRT/YouTube.js/commit/4cbaa7983f35a82b9907197769672ac3b300bfbe))
+* **Player:** Fix extracting the n-token decipher algorithm ([#682](https://github.com/LuanRT/YouTube.js/issues/682)) ([142a7d0](https://github.com/LuanRT/YouTube.js/commit/142a7d042885188605bdc0655d3733502d1e20fa))
+* **proto:** Update `Context` message ([62ac2f6](https://github.com/LuanRT/YouTube.js/commit/62ac2f6f32d35fec3c31b5f5d556bd4569fa49f9)), closes [#681](https://github.com/LuanRT/YouTube.js/issues/681)
+* **Session:** Round UTC offset minutes ([84f90aa](https://github.com/LuanRT/YouTube.js/commit/84f90aaf2908ecacb9dfb6ce5497c4c4d14a72c3))
+* **toDash:** Fix image representations not being spec compliant ([#672](https://github.com/LuanRT/YouTube.js/issues/672)) ([e5aab9a](https://github.com/LuanRT/YouTube.js/commit/e5aab9a9b35f0752cd5ca50bfa25936dce4718c6))
+* **YTMusic:** Add support for new header layouts ([14c3a06](https://github.com/LuanRT/YouTube.js/commit/14c3a06d402989e98a9d32c79b2dc26f74fb0219))
+
 ## [10.0.0](https://github.com/LuanRT/YouTube.js/compare/v9.4.0...v10.0.0) (2024-06-09)
 
 

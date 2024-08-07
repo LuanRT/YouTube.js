@@ -11,7 +11,7 @@ import type { Actions, ApiResponse } from '../../core/index.js';
 import type { ObservedArray } from '../helpers.js';
 import type { INextResponse } from '../types/index.js';
 
-class Comments {
+export default class Comments {
   #page: INextResponse;
   #actions: Actions;
   #continuation?: ContinuationItem;
@@ -122,5 +122,3 @@ class Comments {
     return this.#page;
   }
 }
-
-export default Comments;
