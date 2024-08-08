@@ -22,7 +22,7 @@ export const OAUTH = Object.freeze({
   })
 });
 export const CLIENTS = Object.freeze({
-  iOS: {
+  IOS: {
     NAME_ID: '5',
     NAME: 'iOS',
     VERSION: '18.06.35',
@@ -81,3 +81,5 @@ export const INNERTUBE_HEADERS_BASE = Object.freeze({
   'accept-encoding': 'gzip, deflate',
   'content-type': 'application/json'
 });
+
+export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV_EMBEDDED' ];

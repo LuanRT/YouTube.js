@@ -46,7 +46,7 @@ import type Format from './parser/classes/misc/Format.js';
 
 export type InnertubeConfig = SessionOptions;
 
-export type InnerTubeClient = 'WEB' | 'iOS' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS';
+export type InnerTubeClient = 'IOS' | 'WEB' | 'ANDROID' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS';
 
 export type SearchFilters = Partial<{
   upload_date: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
