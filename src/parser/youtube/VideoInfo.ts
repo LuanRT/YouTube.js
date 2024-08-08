@@ -8,7 +8,6 @@ import ContinuationItem from '../classes/ContinuationItem.js';
 import ItemSection from '../classes/ItemSection.js';
 import LiveChat from '../classes/LiveChat.js';
 import MerchandiseShelf from '../classes/MerchandiseShelf.js';
-import MicroformatData from '../classes/MicroformatData.js';
 import PlayerMicroformat from '../classes/PlayerMicroformat.js';
 import PlayerOverlay from '../classes/PlayerOverlay.js';
 import RelatedChipCloud from '../classes/RelatedChipCloud.js';

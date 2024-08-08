@@ -4,7 +4,7 @@ export interface UMPPart {
   data: Uint8Array;
 }
 
-export default class UMPParser {
+export default class UMP {
   buffer: Uint8Array;
   offset: number;
 
