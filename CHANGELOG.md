@@ -1,5 +1,19 @@
 # Changelog
 
+## [10.4.0](https://github.com/LuanRT/YouTube.js/compare/v10.3.0...v10.4.0) (2024-08-08)
+
+
+### Features
+
+* **Player:** Add support for Proof of Identity tokens ([#708](https://github.com/LuanRT/YouTube.js/issues/708)) ([c9f0ddd](https://github.com/LuanRT/YouTube.js/commit/c9f0ddd573de297c0b384e422e6c1737454926e2))
+* **Utils:** Add `UMP` parser ([261f2ac](https://github.com/LuanRT/YouTube.js/commit/261f2ac12b6a9a5bd5f7a43557018de333f7bec3))
+
+
+### Bug Fixes
+
+* **PlayerEndpoint:** Don't set `undefined` fields ([0e91a08](https://github.com/LuanRT/YouTube.js/commit/0e91a08ae2194a07defc4b1e12ff3edbe13b72df))
+* **Search:** Fix it occasionally returning only a small number of results ([#720](https://github.com/LuanRT/YouTube.js/issues/720)) ([2c0bb23](https://github.com/LuanRT/YouTube.js/commit/2c0bb237e1d0eb160dc3f879f5cab2022d9b5b04))
+
 ## [10.3.0](https://github.com/LuanRT/YouTube.js/compare/v10.2.0...v10.3.0) (2024-08-01)
 
 
