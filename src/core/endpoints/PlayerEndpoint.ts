@@ -8,7 +8,7 @@ export const PATH = '/player';
  * @returns The payload.
  */
 export function build(opts: PlayerEndpointOptions): IPlayerRequest {
-  return {
+  const payload: IPlayerRequest = {
     playbackContext: {
       contentPlaybackContext: {
         vis: 0,
@@ -33,14 +33,22 @@ export function build(opts: PlayerEndpointOptions): IPlayerRequest {
     },
     racyCheckOk: true,
     contentCheckOk: true,
-    videoId: opts.video_id,
-    ...{
-      client: opts.client,
-      playlistId: opts.playlist_id,
-      params: opts.params,
-      serviceIntegrityDimensions: {
-        poToken: opts.po_token || ''
-      }
-    }
+    videoId: opts.video_id
   };
+
+  if (opts.client)
+    payload.client = opts.client;
+
+  if (opts.playlist_id)
+    payload.playlistId = opts.playlist_id;
+
+  if (opts.params)
+    payload.params = opts.params;
+
+  if (opts.po_token)
+    payload.serviceIntegrityDimensions = {
+      poToken: opts.po_token
+    };
+
+  return payload;
 }
