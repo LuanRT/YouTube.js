@@ -183,11 +183,6 @@ async function main() {
 
         let rn = 0;
 
-        function handleSps(sps: any) {
-          if (sps.status === 0) {
-          }
-        }
-
         player.getNetworkingEngine()?.registerRequestFilter((_type: any, request: any) => {
           const uri = request.uris[0];
           const url = new URL(uri);
@@ -270,7 +265,6 @@ async function main() {
                   return await handleRedirect(sabrRedirect);
                 case 58:
                   const streamProtectionStatus = Proto.decodeStreamProtectionStatus(part.data);
-                  handleSps(streamProtectionStatus);
                   console.info('[StreamProtectionStatus]:', streamProtectionStatus);
                   break;
                 default:
