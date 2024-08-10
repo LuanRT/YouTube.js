@@ -103,7 +103,7 @@ const youtube = await Innertube.create(/* options */);
 | `generate_session_locally` | `boolean` | Specifies whether to generate the session data locally or retrieve it from YouTube. This can be useful if you need more performance. **NOTE:** If you are using the cache option and a session has already been generated, this will be ignored. If you want to force a new session to be generated, you must clear the cache or disable session caching. | `false` |
 | `enable_session_cache` | `boolean` | Specifies whether to cache the session data. | `true` |
 | `device_category` | `DeviceCategory` | Platform to use for the session. | `DESKTOP` |
-| `client_type` | `ClientType` | InnerTube client type. | `WEB` |
+| `client_type` | `ClientType` | InnerTube client type. It is not recommended to change this unless you know what you are doing. | `WEB` |
 | `timezone` | `string` | The time zone. | `*` |
 | `cache` | `ICache` | Used to cache algorithms, session data, and OAuth2 tokens. | `undefined` |
 | `cookie` | `string` | YouTube cookies. | `undefined` |
@@ -271,7 +271,7 @@ Retrieves video info.
 | Param | Type | Description |
 | --- | --- | --- |
 | target | `string` \| `NavigationEndpoint` | If `string`, the id of the video. If `NavigationEndpoint`, the endpoint of watchable elements such as `Video`, `Mix` and `Playlist`. To clarify, valid endpoints have payloads containing at least `videoId` and optionally `playlistId`, `params` and `index`. |
-| client? | `InnerTubeClient` | `WEB`, `ANDROID`, `YTMUSIC`, `YTMUSIC_ANDROID` or `TV_EMBEDDED` |
+| client? | `InnerTubeClient` | InnerTube client to use. |
 
 <details>
 <summary>Methods & Getters</summary>
@@ -338,7 +338,7 @@ Suitable for cases where you only need basic video metadata. Also, it is faster 
 | Param | Type | Description |
 | --- | --- | --- |
 | video_id | `string` | The id of the video |
-| client? | `InnerTubeClient` | `WEB`, `ANDROID`, `YTMUSIC_ANDROID`, `YTMUSIC`, `TV_EMBEDDED` |
+| client? | `InnerTubeClient` | InnerTube client to use. |
 
 <a name="search"></a>
 ### `search(query, filters?)`
@@ -688,7 +688,7 @@ import { Innertube } from 'youtubei.js';
     const videoInfo = await yt.actions.execute('/player', {
       // You can add any additional payloads here, and they'll merge with the default payload sent to InnerTube.
       videoId,
-      client: 'YTMUSIC', // InnerTube client options: ANDROID, YTMUSIC, YTMUSIC_ANDROID, WEB, or TV_EMBEDDED.
+      client: 'YTMUSIC', // InnerTube client to use.
       parse: true // tells YouTube.js to parse the response (not sent to InnerTube).
     });
 
