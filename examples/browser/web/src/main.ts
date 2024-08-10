@@ -1,5 +1,4 @@
-import { Innertube, Proto, UniversalCache } from '../../../../bundle/browser';
-import UMPParser from './UMPParser';
+import { Innertube, Proto, UniversalCache, UMP } from '../../../../bundle/browser';
 
 // @ts-expect-error shaka-player does not have good types
 import shaka from 'shaka-player/dist/shaka-player.ui.js';
@@ -169,20 +168,25 @@ async function main() {
 
         player.configure({
           streaming: {
-            bufferingGoal: info.page[0].player_config.media_common_config.dynamic_readahead_config.max_read_ahead_media_time_ms / 1000,
-            rebufferingGoal: info.page[0].player_config.media_common_config.dynamic_readahead_config.read_ahead_growth_rate_ms / 1000,
+            bufferingGoal: (info.page[0].player_config?.media_common_config.dynamic_readahead_config.max_read_ahead_media_time_ms || 0) / 1000,
+            rebufferingGoal: (info.page[0].player_config?.media_common_config.dynamic_readahead_config.read_ahead_growth_rate_ms || 0) / 1000,
             bufferBehind: 300,
             autoLowLatencyMode: true,
           },
           abr: {
             enabled: true,
             restrictions: {
-              maxBandwidth: Number(info.page[0].player_config.stream_selection_config.max_bitrate),
+              maxBandwidth: Number(info.page[0].player_config?.stream_selection_config.max_bitrate),
             },
           },
         });
 
         let rn = 0;
+
+        function handleSps(sps: any) {
+          if (sps.status === 0) {
+          }
+        }
 
         player.getNetworkingEngine()?.registerRequestFilter((_type: any, request: any) => {
           const uri = request.uris[0];
@@ -220,8 +224,6 @@ async function main() {
           let mediaData = new Uint8Array(0);
 
           const handleRedirect = async (redirectData: any) => {
-            console.log('Handling redirect');
-
             const redirectRequest = shaka.net.NetworkingEngine.makeRequest([redirectData.url], player!.getConfiguration().streaming.retryParameters);
             const requestOperation = player!.getNetworkingEngine()!.request(type, redirectRequest);
             const redirectResponse = await requestOperation.promise;
@@ -247,8 +249,8 @@ async function main() {
           }
 
           if (type == RequestType.SEGMENT) {
-            const umpDecoder = new UMPParser(new Uint8Array(response.data));
-            const umpParts = umpDecoder.parse();
+            const ump = new UMP(new Uint8Array(response.data));
+            const umpParts = ump.parse();
 
             // Check if there are multiple media data parts. If so, we need to concatenate them.
             const multipleMD = umpParts.filter((part) => part.type === 21).length > 1;
@@ -257,13 +259,20 @@ async function main() {
               switch (part.type) {
                 case 20:
                   const mediaHeader = Proto.decodeMHeader(part.data);
-                  console.info('Media header', mediaHeader);
+                  console.info('[MediaHeader]:', mediaHeader);
                   break;
                 case 21:
                   handleMediaData(part.data, multipleMD);
                   break;
                 case 43:
-                  return await handleRedirect(Proto.decodeRedirect(part.data));
+                  const sabrRedirect = Proto.decodeSABRRedirect(part.data);
+                  console.info('[SABRRedirect]:', sabrRedirect);
+                  return await handleRedirect(sabrRedirect);
+                case 58:
+                  const streamProtectionStatus = Proto.decodeStreamProtectionStatus(part.data);
+                  handleSps(streamProtectionStatus);
+                  console.info('[StreamProtectionStatus]:', streamProtectionStatus);
+                  break;
                 default:
                   break;
               }

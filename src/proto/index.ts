@@ -28,6 +28,16 @@ import * as SabrError from './generated/messages/youtube/SabrError.js';
 import * as OnesieRequest from './generated/messages/youtube/OnesieRequest.js';
 import * as SabrRequest from './generated/messages/youtube/SabrRequest.js';
 
+export {
+  VisitorData, ChannelAnalytics, SearchFilter, MusicSearchFilter,
+  LiveMessageParams, GetCommentsSectionParams, CreateCommentParams,
+  PeformCommentActionParams, NotificationPreferences, InnertubePayload,
+  Hashtag, ReelSequence, ShortsParam, MediaHeader, Redirect,
+  FormatInitializationMetadata, StreamProtectionStatus, NextRequestPolicy,
+  RequestCancellationPolicy, PlaybackStartPolicy, PlaybackCookie,
+  SabrError, OnesieRequest, SabrRequest
+};
+
 export function decodeSabrRequest(data: Uint8Array): SabrRequest.Type {
   return SabrRequest.decodeBinary(data);
 }
