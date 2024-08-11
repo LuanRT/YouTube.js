@@ -276,7 +276,7 @@ export default class Session extends EventEmitter {
     return new Session(
       context, api_key, api_version, account_index,
       options.retrieve_player === false ? undefined : await Player.create(options.cache, options.fetch, options.po_token),
-      options.cookie, options.fetch, options.cache
+      options.cookie, options.fetch, options.cache, options.po_token
     );
   }
 
