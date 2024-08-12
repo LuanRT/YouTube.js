@@ -454,7 +454,7 @@ export default class Session extends EventEmitter {
       hl: options.lang || device_info[0],
       gl: options.location || device_info[2],
       remote_host: device_info[3],
-      visitor_data: options.visitor_data,
+      visitor_data: options.visitor_data || device_info[13],
       client_name: options.client_name,
       client_version: device_info[16],
       os_name: device_info[17],
