@@ -1,5 +1,13 @@
 import * as Constants from './Constants.js';
 
+declare global {
+  interface Window {
+    ytcfg: {
+      get(key: string): string;
+    };
+  }
+}
+
 import {
   Platform,
   generateSidAuth,
@@ -72,8 +80,10 @@ export default class HTTPClient {
       request_headers.set('Origin', request_url.origin);
     }
 
-    request_url.searchParams.set('prettyPrint', 'false');
-    request_url.searchParams.set('alt', 'json');
+    if (typeof window === 'undefined') {
+      request_url.searchParams.set('prettyPrint', 'false');
+      request_url.searchParams.set('alt', 'json');
+    }
 
     const content_type = request_headers.get('Content-Type');
 
@@ -142,7 +152,23 @@ export default class HTTPClient {
 
         if (sapisid) {
           request_headers.set('Authorization', await generateSidAuth(sapisid));
-          request_headers.set('X-Goog-Authuser', this.#session.account_index.toString());
+
+          if (typeof window !== 'undefined' && window.localStorage && this.#session.client_name === 'WEB') {
+            const dataSyncIds = [ window.ytcfg.get('DELEGATED_SESSION_ID') ];
+            const dataSyncIdsKeyExpression = /^(\d+)(?:\|\|(\d+))*(?:::yt-player::yt-player-lv)$/;
+            for (let i = 0; i < localStorage.length; i++) {
+              const key = localStorage.key(i);
+              const matches = key?.match(dataSyncIdsKeyExpression);
+              if (matches) {
+                dataSyncIds.push(...matches.slice(1).filter((id) => id !== dataSyncIds[0]));
+              }
+            }
+
+            request_headers.set('X-Goog-AuthUser', window.ytcfg.get('SESSION_INDEX'));
+            if (dataSyncIds[this.#session.account_index]) {
+              request_headers.set('X-Goog-PageId', dataSyncIds[this.#session.account_index]);
+            }
+          }
         }
 
         request_headers.set('Cookie', this.#cookie);
