@@ -28,7 +28,7 @@ import * as SabrError from './generated/messages/youtube/SabrError.js';
 import * as OnesieRequest from './generated/messages/youtube/OnesieRequest.js';
 import * as SabrRequest from './generated/messages/youtube/SabrRequest.js';
 
-export {
+export const ProtoClasses = {
   VisitorData, ChannelAnalytics, SearchFilter, MusicSearchFilter,
   LiveMessageParams, GetCommentsSectionParams, CreateCommentParams,
   PeformCommentActionParams, NotificationPreferences, InnertubePayload,

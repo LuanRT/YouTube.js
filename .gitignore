@@ -56,6 +56,7 @@ pnpm-lock.yaml
 
 # Downloaded assets
 *.mp4
+*.m4a
 *.webm
 *.mkv
 
@@ -75,3 +76,8 @@ deno/
 
 # MacOS
 .DS_Store
+
+*.js
+*.mjs
+*.bin
+!sabr.mjs

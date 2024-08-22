@@ -97,6 +97,7 @@ export declare namespace $.youtube {
     category?: Category;
     license?: License;
     videoThumbnail?: VideoThumbnail;
+    poToken?: Uint8Array;
     privacy?: Privacy;
     madeForKids?: MadeForKids;
     ageRestricted?: AgeRestricted;
@@ -115,6 +116,7 @@ export function getDefaultValue(): $.youtube.InnertubePayload {
     category: undefined,
     license: undefined,
     videoThumbnail: undefined,
+    poToken: undefined,
     privacy: undefined,
     madeForKids: undefined,
     ageRestricted: undefined,
@@ -138,6 +140,7 @@ export function encodeJson(value: $.youtube.InnertubePayload): unknown {
   if (value.category !== undefined) result.category = encodeJson_5(value.category);
   if (value.license !== undefined) result.license = encodeJson_6(value.license);
   if (value.videoThumbnail !== undefined) result.videoThumbnail = encodeJson_7(value.videoThumbnail);
+  if (value.poToken !== undefined) result.poToken = tsValueToJsonValueFns.bytes(value.poToken);
   if (value.privacy !== undefined) result.privacy = encodeJson_8(value.privacy);
   if (value.madeForKids !== undefined) result.madeForKids = encodeJson_9(value.madeForKids);
   if (value.ageRestricted !== undefined) result.ageRestricted = encodeJson_10(value.ageRestricted);
@@ -154,6 +157,7 @@ export function decodeJson(value: any): $.youtube.InnertubePayload {
   if (value.category !== undefined) result.category = decodeJson_5(value.category);
   if (value.license !== undefined) result.license = decodeJson_6(value.license);
   if (value.videoThumbnail !== undefined) result.videoThumbnail = decodeJson_7(value.videoThumbnail);
+  if (value.poToken !== undefined) result.poToken = jsonValueToTsValueFns.bytes(value.poToken);
   if (value.privacy !== undefined) result.privacy = decodeJson_8(value.privacy);
   if (value.madeForKids !== undefined) result.madeForKids = decodeJson_9(value.madeForKids);
   if (value.ageRestricted !== undefined) result.ageRestricted = decodeJson_10(value.ageRestricted);
@@ -208,6 +212,12 @@ export function encodeBinary(value: $.youtube.InnertubePayload): Uint8Array {
     const tsValue = value.videoThumbnail;
     result.push(
       [20, { type: WireType.LengthDelimited as const, value: encodeBinary_7(tsValue) }],
+    );
+  }
+  if (value.poToken !== undefined) {
+    const tsValue = value.poToken;
+    result.push(
+      [27, tsValueToWireValueFns.bytes(tsValue)],
     );
   }
   if (value.privacy !== undefined) {
@@ -290,6 +300,13 @@ export function decodeBinary(binary: Uint8Array): $.youtube.InnertubePayload {
     const value = wireValue.type === WireType.LengthDelimited ? decodeBinary_7(wireValue.value) : undefined;
     if (value === undefined) break field;
     result.videoThumbnail = value;
+  }
+  field: {
+    const wireValue = wireFields.get(27);
+    if (wireValue === undefined) break field;
+    const value = wireValueToTsValueFns.bytes(wireValue);
+    if (value === undefined) break field;
+    result.poToken = value;
   }
   field: {
     const wireValue = wireFields.get(38);

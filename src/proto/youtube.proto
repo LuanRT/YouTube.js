@@ -27,6 +27,8 @@ message InnertubePayload {
   }
   
   required Context context = 1;
+
+  optional bytes po_token = 27;
   
   optional string videoId = 2;
   
