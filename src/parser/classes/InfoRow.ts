@@ -8,7 +8,7 @@ export default class InfoRow extends YTNode {
   title: Text;
   default_metadata?: Text;
   expanded_metadata?: Text;
-  info_row_expand_status_key?: String;
+  info_row_expand_status_key?: string;
 
   constructor(data: RawNode) {
     super();

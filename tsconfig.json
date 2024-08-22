@@ -104,14 +104,6 @@
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.js",
-    "dev-scripts/**/*.mjs",
-    "jest.config.js",
+    "src/**/*"
   ],
-  "exclude": [
-    "node_modules",
-    "**/*.d.ts",
-  ]
 }

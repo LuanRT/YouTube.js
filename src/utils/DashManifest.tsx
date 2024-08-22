@@ -1,4 +1,3 @@
-/* eslint-disable tsdoc/syntax */
 /** @jsxFactory DashUtils.createElement */
 /** @jsxFragmentFactory DashUtils.Fragment */
 import * as DashUtils from './DashUtils.js';

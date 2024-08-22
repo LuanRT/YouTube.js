@@ -43,7 +43,7 @@
       "default": "./dist/src/platform/lib.js"
     },
     "./web": {
-      "types": "./dist/src/platform/lib.d.ts",
+      "types": "./dist/src/platform/li b.d.ts",
       "default": "./dist/src/platform/web.js"
     },
     "./react-native": {
@@ -74,11 +74,6 @@
     "akkadaska (https://github.com/akkadaska)",
     "Absidue (https://github.com/absidue)"
   ],
-  "directories": {
-    "test": "./test",
-    "examples": "./examples",
-    "dist": "./dist"
-  },
   "scripts": {
     "test": "npx jest --verbose",
     "lint": "npx eslint ./src",
@@ -111,23 +106,23 @@
     "typescript": "^5.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
     "@types/glob": "^8.1.0",
     "@types/jest": "^28.1.7",
     "@types/node": "^17.0.45",
-    "@typescript-eslint/eslint-plugin": "^5.30.6",
-    "@typescript-eslint/parser": "^5.30.6",
     "cpy-cli": "^4.2.0",
     "esbuild": "^0.14.49",
-    "eslint": "^8.19.0",
-    "eslint-plugin-tsdoc": "^0.2.16",
+    "eslint": "^9.9.0",
     "glob": "^8.0.3",
+    "globals": "^15.9.0",
     "jest": "^29.7.0",
     "pbkit": "^0.0.59",
     "replace": "^1.2.2",
     "ts-jest": "^29.1.4",
     "ts-patch": "^3.0.2",
     "ts-transformer-inline-file": "^0.2.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.2.0"
   },
   "bugs": {
     "url": "https://github.com/LuanRT/YouTube.js/issues"

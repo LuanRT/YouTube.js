@@ -7,7 +7,7 @@ export default class Factoid extends YTNode {
 
   label: Text;
   value: Text;
-  accessibility_text: String;
+  accessibility_text: string;
 
   constructor(data: RawNode) {
     super();

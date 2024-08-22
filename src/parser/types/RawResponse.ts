@@ -34,7 +34,6 @@ export interface IRawPlayerConfig {
   };
 }
 
-
 export interface IRawResponse {
   responseContext?: IResponseContext;
   background?: RawNode;

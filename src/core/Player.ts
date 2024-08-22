@@ -96,9 +96,11 @@ export default class Player {
 
       const sp = args.get('sp');
 
-      sp ?
-        url_components.searchParams.set(sp, signature) :
+      if (sp) {
+        url_components.searchParams.set(sp, signature);
+      } else {
         url_components.searchParams.set('signature', signature);
+      }
     }
 
     const n = url_components.searchParams.get('n');

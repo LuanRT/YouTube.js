@@ -1,6 +1,5 @@
 import type { IMusicGetSearchSuggestionsRequest, MusicGetSearchSuggestionsEndpointOptions } from '../../../types/index.js';
 
-
 export const PATH = '/music/get_search_suggestions';
 
 /**

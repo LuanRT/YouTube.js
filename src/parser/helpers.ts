@@ -154,7 +154,7 @@ export class Maybe {
     return this.#checkPrimative('object');
   }
 
-  /* eslint-ignore */
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   function(): Function {
     return this.#assertPrimative('function');
   }
@@ -352,7 +352,6 @@ export class SuperParsedResult<T extends YTNode = YTNode> {
   }
 }
 
-
 export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
     /**
      * Returns the first object to match the rule.
@@ -441,7 +440,6 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
           }));
         };
       }
-
 
       if (prop == 'firstOfType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
