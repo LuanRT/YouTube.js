@@ -43,7 +43,7 @@
       "default": "./dist/src/platform/lib.js"
     },
     "./web": {
-      "types": "./dist/src/platform/li b.d.ts",
+      "types": "./dist/src/platform/lib.d.ts",
       "default": "./dist/src/platform/web.js"
     },
     "./react-native": {

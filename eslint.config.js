@@ -15,7 +15,7 @@ export default [
       "**/src/proto/generated/",
       "**/*.{js,mjs,cjs}",
       "**/*.d.ts",
-      "./*.ts",
+      "*.ts",
     ],
   }, {
     languageOptions: {
