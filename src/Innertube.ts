@@ -90,7 +90,7 @@ export default class Innertube {
 
     const player_response = this.actions.execute(PlayerEndpoint.PATH, player_payload);
     const next_response = this.actions.execute(NextEndpoint.PATH, next_payload);
-    const response = await Promise.all([player_response, next_response]);
+    const response = await Promise.all([ player_response, next_response ]);
 
     const cpn = generateRandomString(16);
 
@@ -111,7 +111,7 @@ export default class Innertube {
 
     const cpn = generateRandomString(16);
 
-    return new VideoInfo([response], this.actions, cpn);
+    return new VideoInfo([ response ], this.actions, cpn);
   }
 
   async getShortsVideoInfo(video_id: string, client?: InnerTubeClient): Promise<ShortFormVideoInfo> {
@@ -127,11 +127,11 @@ export default class Innertube {
       })
     );
 
-    const response = await Promise.all([watch_response, sequence_response]);
+    const response = await Promise.all([ watch_response, sequence_response ]);
 
     const cpn = generateRandomString(16);
 
-    return new ShortFormVideoInfo([response[0]], this.actions, cpn, response[1]);
+    return new ShortFormVideoInfo([ response[0] ], this.actions, cpn, response[1]);
   }
 
   async search(query: string, filters: SearchFilters = {}): Promise<Search> {
