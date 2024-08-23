@@ -7,7 +7,6 @@ export default [
   ...tseslint.configs.recommended,
   {
     ignores: [
-      "deno.ts",
       "**/dist/",
       "**/test/",
       "**/cache/",
@@ -16,6 +15,7 @@ export default [
       "**/src/proto/generated/",
       "**/*.{js,mjs,cjs}",
       "**/*.d.ts",
+      "./*.ts",
     ],
   }, {
     languageOptions: {
