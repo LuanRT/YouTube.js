@@ -44,7 +44,7 @@ import type { DownloadOptions, FormatOptions } from './types/FormatUtils.js';
 import type { SessionOptions } from './core/Session.js';
 import type Format from './parser/classes/misc/Format.js';
 
-export type InnertubeConfig = SessionOptions;
+export type InnerTubeConfig = SessionOptions;
 
 export type InnerTubeClient = 'IOS' | 'WEB' | 'ANDROID' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS';
 
@@ -66,7 +66,7 @@ export default class Innertube {
     this.#session = session;
   }
 
-  static async create(config: InnertubeConfig = {}): Promise<Innertube> {
+  static async create(config: InnerTubeConfig = {}): Promise<Innertube> {
     return new Innertube(await Session.create(config));
   }
 

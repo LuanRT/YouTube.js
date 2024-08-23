@@ -1,4 +1,3 @@
-// Studio.ts
 export type UpdateVideoMetadataOptions = Partial<{
   title: string;
   description: string;
@@ -17,7 +16,6 @@ export type UploadedVideoMetadataOptions = Partial<{
   is_draft: boolean;
 }>;
 
-// Music.ts
 export type MusicSearchFilters = Partial<{
   type: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
 }>;
