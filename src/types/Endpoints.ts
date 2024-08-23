@@ -1,4 +1,4 @@
-import type { InnerTubeClient } from '../Innertube.js';
+import type { InnerTubeClient } from '../types/index.js';
 
 export type SnakeToCamel<S extends string> = S extends `${infer T}_${infer U}` ? `${Lowercase<T>}${Capitalize<SnakeToCamel<U>>}` : S;
 

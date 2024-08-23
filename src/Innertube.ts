@@ -38,23 +38,10 @@ import * as Constants from './utils/Constants.js';
 import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.js';
 
 import type { ApiResponse } from './core/Actions.js';
-import type { INextRequest } from './types/index.js';
+import type { InnerTubeConfig, InnerTubeClient, SearchFilters, INextRequest } from './types/index.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.js';
-import type { SessionOptions } from './core/Session.js';
 import type Format from './parser/classes/misc/Format.js';
-
-export type InnerTubeConfig = SessionOptions;
-
-export type InnerTubeClient = 'IOS' | 'WEB' | 'ANDROID' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS';
-
-export type SearchFilters = Partial<{
-  upload_date: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
-  type: 'all' | 'video' | 'channel' | 'playlist' | 'movie';
-  duration: 'all' | 'short' | 'medium' | 'long';
-  sort_by: 'relevance' | 'rating' | 'upload_date' | 'view_count';
-  features: ('hd' | 'subtitles' | 'creative_commons' | '3d' | 'live' | 'purchased' | '4k' | '360' | 'location' | 'hdr' | 'vr180')[];
-}>;
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -103,7 +90,7 @@ export default class Innertube {
 
     const player_response = this.actions.execute(PlayerEndpoint.PATH, player_payload);
     const next_response = this.actions.execute(NextEndpoint.PATH, next_payload);
-    const response = await Promise.all([ player_response, next_response ]);
+    const response = await Promise.all([player_response, next_response]);
 
     const cpn = generateRandomString(16);
 
@@ -124,7 +111,7 @@ export default class Innertube {
 
     const cpn = generateRandomString(16);
 
-    return new VideoInfo([ response ], this.actions, cpn);
+    return new VideoInfo([response], this.actions, cpn);
   }
 
   async getShortsVideoInfo(video_id: string, client?: InnerTubeClient): Promise<ShortFormVideoInfo> {
@@ -140,11 +127,11 @@ export default class Innertube {
       })
     );
 
-    const response = await Promise.all([ watch_response, sequence_response ]);
+    const response = await Promise.all([watch_response, sequence_response]);
 
     const cpn = generateRandomString(16);
 
-    return new ShortFormVideoInfo([ response[0] ], this.actions, cpn, response[1]);
+    return new ShortFormVideoInfo([response[0]], this.actions, cpn, response[1]);
   }
 
   async search(query: string, filters: SearchFilters = {}): Promise<Search> {

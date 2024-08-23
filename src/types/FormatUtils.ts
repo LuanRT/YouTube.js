@@ -1,4 +1,4 @@
-import type { InnerTubeClient } from '../Innertube.js';
+import type { InnerTubeClient } from '../types/index.js';
 import type { Format } from '../parser/misc.js';
 
 export type URLTransformer = (url: URL) => URL;
