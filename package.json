@@ -89,7 +89,7 @@
     "bundle:react-native": "npx esbuild ./dist/src/platform/react-native.js --bundle --target=es2020 --keep-names --format=esm --platform=neutral --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/react-native.js",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
     "bundle:cf-worker": "npx esbuild ./dist/src/platform/cf-worker.js --banner:js=\"/* eslint-disable */\" --bundle --target=es2020 --keep-names --format=esm --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/cf-worker.js --platform=node",
-    "prepare": "npm run build",
+    "prepack": "npm run build",
     "watch": "npx tsc --watch"
   },
   "repository": {
