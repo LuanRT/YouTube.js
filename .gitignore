@@ -77,7 +77,4 @@ deno/
 # MacOS
 .DS_Store
 
-*.js
-*.mjs
 *.bin
-!sabr.mjs
