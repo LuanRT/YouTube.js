@@ -1,8 +1,8 @@
-import { Innertube, UniversalCache } from '../../../../bundle/browser';
+import { Innertube, Proto, UniversalCache, Utils } from '../../../../bundle/browser';
+import BG from 'bgutils-js';
 
 // @ts-ignore - Shaka's TS support is not the best.
 import shaka from 'shaka-player/dist/shaka-player.ui.js';
-
 import "shaka-player/dist/controls.css";
 
 const title = document.getElementById('title') as HTMLHeadingElement;
@@ -11,51 +11,17 @@ const metadata = document.getElementById('metadata') as HTMLDivElement;
 const loader = document.getElementById('loader') as HTMLDivElement;
 const form = document.querySelector('form') as HTMLFormElement;
 
+
 async function main() {
+  const visitorData = Proto.encodeVisitorData(Utils.generateRandomString(11), Math.floor(Date.now() / 1000));
+  const poToken = await getPo(visitorData);
+
   const yt = await Innertube.create({
+    po_token: poToken,
+    visitor_data: visitorData,
     generate_session_locally: true,
-    fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
-      const url = typeof input === 'string'
-        ? new URL(input)
-        : input instanceof URL
-          ? input
-          : new URL(input.url);
-
-      // Transform the url for use with our proxy.
-      url.searchParams.set('__host', url.host);
-      url.host = 'localhost:8080';
-      url.protocol = 'http';
-
-      const headers = init?.headers
-        ? new Headers(init.headers)
-        : input instanceof Request
-          ? input.headers
-          : new Headers();
-
-      // Now serialize the headers.
-      url.searchParams.set('__headers', JSON.stringify([...headers]));
-
-      if (input instanceof Request) {
-        // @ts-ignore
-        input.duplex = 'half';
-      }
-
-      // Copy over the request.
-      const request = new Request(
-        url,
-        input instanceof Request ? input : undefined,
-      );
-
-      headers.delete('user-agent');
-
-      return fetch(request, init ? {
-        ...init,
-        headers
-      } : {
-        headers
-      });
-    },
-    cache: new UniversalCache(false),
+    fetch: fetchFn,
+    cache: new UniversalCache(true),
   });
 
   form.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
@@ -255,6 +221,80 @@ async function main() {
       showUI({ hidePlayer: true });
       console.error(error);
     }
+  });
+}
+
+async function getPo(identity: string): Promise<string | undefined> {
+  const requestKey = 'O43z0dpjhgX20SCx4KAo';
+
+  const bgConfig = {
+    fetch: fetchFn,
+    globalObj: window,
+    requestKey,
+    identity
+  };
+
+  const challenge = await BG.Challenge.create(bgConfig);
+
+  if (!challenge)
+    throw new Error('Could not get challenge');
+
+  if (challenge.script) {
+    const script = challenge.script.find((sc) => sc !== null);
+    if (script)
+      new Function(script)();
+  } else {
+    console.warn('Unable to load VM.');
+  }
+
+  const poToken = await BG.PoToken.generate({
+    program: challenge.challenge,
+    globalName: challenge.globalName,
+    bgConfig
+  });
+
+  return poToken;
+}
+
+function fetchFn(input: RequestInfo | URL, init?: RequestInit) {
+  const url = typeof input === 'string'
+    ? new URL(input)
+    : input instanceof URL
+      ? input
+      : new URL(input.url);
+
+  // Transform the url for use with our proxy.
+  url.searchParams.set('__host', url.host);
+  url.host = 'localhost:8080';
+  url.protocol = 'http';
+
+  const headers = init?.headers
+    ? new Headers(init.headers)
+    : input instanceof Request
+      ? input.headers
+      : new Headers();
+
+  // Now serialize the headers.
+  url.searchParams.set('__headers', JSON.stringify([...headers]));
+
+  if (input instanceof Request) {
+    // @ts-expect-error - x
+    input.duplex = 'half';
+  }
+
+  // Copy over the request.
+  const request = new Request(
+    url,
+    input instanceof Request ? input : undefined
+  );
+
+  headers.delete('user-agent');
+
+  return fetch(request, init ? {
+    ...init,
+    headers
+  } : {
+    headers
   });
 }
 

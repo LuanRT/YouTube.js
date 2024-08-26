@@ -13,6 +13,7 @@
     "vite": "^3.0.0"
   },
   "dependencies": {
+    "bgutils-js": "^1.1.0",
     "shaka-player": "^4.3.8"
   }
 }
