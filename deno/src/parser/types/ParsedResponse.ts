@@ -2,9 +2,10 @@ import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.
 import type {
   ReloadContinuationItemsCommand, Continuation, GridContinuation,
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand,
-  CpnSource
+  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand
 } from '../index.ts';
+
+import type { CpnSource } from './RawResponse.ts';
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.ts';
 import type CardCollection from '../classes/CardCollection.ts';
 import type Endscreen from '../classes/Endscreen.ts';

@@ -46,7 +46,7 @@ class DelayQueue {
 export default class SmoothedQueue {
   #last_update_time: number | null;
   #estimated_update_interval: number | null;
-  #callback: Function | null;
+  #callback: ((actions: YTNode[]) => void) | null;
   #action_queue: YTNode[][];
   #next_update_id: any;
   #poll_response_delay_queue: DelayQueue;
@@ -107,12 +107,14 @@ export default class SmoothedQueue {
       }
 
       if (this.#action_queue !== null) {
-        delay == 1 ? (
-          delay = this.#estimated_update_interval as number / this.#action_queue.length,
-          delay *= Math.random() + 0.5,
-          delay = Math.min(1E3, delay),
-          delay = Math.max(80, delay)
-        ) : delay = 80;
+        if (delay == 1) {
+          delay = this.#estimated_update_interval as number / this.#action_queue.length;
+          delay *= Math.random() + 0.5;
+          delay = Math.min(1E3, delay);
+          delay = Math.max(80, delay);
+        } else {
+          delay = 80;
+        }
 
         this.#next_update_id = setTimeout(this.emitSmoothedActions.bind(this), delay);
       }
@@ -127,11 +129,11 @@ export default class SmoothedQueue {
     this.#action_queue = [];
   }
 
-  set callback(cb: Function | null) {
+  set callback(cb: ((actions: YTNode[]) => void) | null) {
     this.#callback = cb;
   }
 
-  get callback(): Function | null {
+  get callback(): ((actions: YTNode[]) => void) | null {
     return this.#callback;
   }
 

@@ -20,9 +20,10 @@ export default class AuthorCommentBadge extends YTNode {
     this.tooltip = data.iconTooltip;
 
     // *** For consistency
-    this.tooltip === 'Verified' &&
-      (this.style = 'BADGE_STYLE_TYPE_VERIFIED') &&
-      (data.style = 'BADGE_STYLE_TYPE_VERIFIED');
+    if (this.tooltip === 'Verified') {
+      this.style = 'BADGE_STYLE_TYPE_VERIFIED';
+      data.style = 'BADGE_STYLE_TYPE_VERIFIED';
+    }
 
     this.#data = data;
   }

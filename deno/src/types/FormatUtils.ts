@@ -1,3 +1,4 @@
+import type { InnerTubeClient } from '../types/index.ts';
 import type { Format } from '../parser/misc.ts';
 
 export type URLTransformer = (url: URL) => URL;
@@ -21,9 +22,9 @@ export interface FormatOptions {
    */
   format?: string;
   /**
-   * InnerTube client, can be ANDROID, WEB, YTMUSIC, YTMUSIC_ANDROID, YTSTUDIO_ANDROID or TV_EMBEDDED
+   * InnerTube client.
    */
-  client?: 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED';
+  client?: InnerTubeClient;
 }
 
 export interface DownloadOptions extends FormatOptions {

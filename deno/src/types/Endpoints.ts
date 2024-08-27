@@ -1,4 +1,4 @@
-import type { InnerTubeClient } from '../Innertube.ts';
+import type { InnerTubeClient } from '../types/index.ts';
 
 export type SnakeToCamel<S extends string> = S extends `${infer T}_${infer U}` ? `${Lowercase<T>}${Capitalize<SnakeToCamel<U>>}` : S;
 
@@ -29,6 +29,9 @@ export interface IPlayerRequest {
   playlistId?: string;
   params?: string;
   client?: InnerTubeClient;
+  serviceIntegrityDimensions?: {
+    poToken: string
+  }
 }
 
 export type PlayerEndpointOptions = {
@@ -52,6 +55,10 @@ export type PlayerEndpointOptions = {
    * Additional protobuf parameters.
    */
   params?: string;
+  /**
+   * Token for serviceIntegrityDimensions
+   */
+  po_token?: string;
 }
 
 export type NextEndpointOptions = {

@@ -195,7 +195,6 @@ export const debugFetch: FetchFunction = (input, init) => {
       input instanceof URL ?
         input : new URL(input.url);
 
-
   const headers =
     init?.headers ?
       new Headers(init.headers) :

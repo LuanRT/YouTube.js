@@ -38,23 +38,10 @@ import * as Constants from './utils/Constants.ts';
 import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.ts';
 
 import type { ApiResponse } from './core/Actions.ts';
-import type { INextRequest } from './types/index.ts';
+import type { InnerTubeConfig, InnerTubeClient, SearchFilters, INextRequest } from './types/index.ts';
 import type { IBrowseResponse, IParsedResponse } from './parser/types/index.ts';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.ts';
-import type { SessionOptions } from './core/Session.ts';
 import type Format from './parser/classes/misc/Format.ts';
-
-export type InnertubeConfig = SessionOptions;
-
-export type InnerTubeClient = 'WEB' | 'iOS' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS';
-
-export type SearchFilters = Partial<{
-  upload_date: 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
-  type: 'all' | 'video' | 'channel' | 'playlist' | 'movie';
-  duration: 'all' | 'short' | 'medium' | 'long';
-  sort_by: 'relevance' | 'rating' | 'upload_date' | 'view_count';
-  features: ('hd' | 'subtitles' | 'creative_commons' | '3d' | 'live' | 'purchased' | '4k' | '360' | 'location' | 'hdr' | 'vr180')[];
-}>;
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -66,7 +53,7 @@ export default class Innertube {
     this.#session = session;
   }
 
-  static async create(config: InnertubeConfig = {}): Promise<Innertube> {
+  static async create(config: InnerTubeConfig = {}): Promise<Innertube> {
     return new Innertube(await Session.create(config));
   }
 
@@ -97,7 +84,8 @@ export default class Innertube {
       video_id: next_payload.videoId,
       playlist_id: next_payload?.playlistId,
       client: client,
-      sts: this.#session.player?.sts
+      sts: this.#session.player?.sts,
+      po_token: this.#session.po_token
     });
 
     const player_response = this.actions.execute(PlayerEndpoint.PATH, player_payload);
@@ -116,7 +104,8 @@ export default class Innertube {
       PlayerEndpoint.PATH, PlayerEndpoint.build({
         video_id: video_id,
         client: client,
-        sts: this.#session.player?.sts
+        sts: this.#session.player?.sts,
+        po_token: this.#session.po_token
       })
     );
 

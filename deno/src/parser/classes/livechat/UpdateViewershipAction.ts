@@ -7,7 +7,7 @@ export default class UpdateViewershipAction extends YTNode {
 
   view_count: Text;
   extra_short_view_count: Text;
-  original_view_count: Number;
+  original_view_count: number;
   unlabeled_view_count_value: Text;
   is_live: boolean;
 

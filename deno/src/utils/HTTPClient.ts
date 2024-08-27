@@ -91,7 +91,7 @@ export default class HTTPClient {
       const n_body = {
         ...json,
         // Deep copy since we're gonna be modifying it
-        context: JSON.parse(JSON.stringify(this.#session.context))
+        context: JSON.parse(JSON.stringify(this.#session.context)) as Context
       };
 
       this.#adjustContext(n_body.context, n_body.client);
@@ -111,7 +111,7 @@ export default class HTTPClient {
         request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
         request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
       } else if (n_body.context.client.clientName === 'iOS') {
-        request_headers.set('User-Agent', Constants.CLIENTS.iOS.USER_AGENT);
+        request_headers.set('User-Agent', Constants.CLIENTS.IOS.USER_AGENT);
       }
 
       is_web_kids = n_body.context.client.clientName === 'WEB_KIDS';
@@ -165,7 +165,15 @@ export default class HTTPClient {
     throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, await response.text());
   }
 
-  #adjustContext(ctx: Context, client: string): void {
+  #adjustContext(ctx: Context, client?: string): void {
+    if (!client)
+      return;
+
+    if (!Constants.SUPPORTED_CLIENTS.includes(client.toUpperCase()))
+      throw new InnertubeError(`Invalid client: ${client}`, {
+        available_innertube_clients: Constants.SUPPORTED_CLIENTS
+      });
+
     if (
       client === 'ANDROID' ||
       client === 'YTMUSIC_ANDROID' ||
@@ -179,12 +187,12 @@ export default class HTTPClient {
       ctx.client.platform = 'MOBILE';
     }
 
-    switch (client) {
-      case 'iOS':
+    switch (client.toUpperCase()) {
+      case 'IOS':
         ctx.client.deviceMake = 'Apple';
-        ctx.client.deviceModel = Constants.CLIENTS.iOS.DEVICE_MODEL;
-        ctx.client.clientVersion = Constants.CLIENTS.iOS.VERSION;
-        ctx.client.clientName = Constants.CLIENTS.iOS.NAME;
+        ctx.client.deviceModel = Constants.CLIENTS.IOS.DEVICE_MODEL;
+        ctx.client.clientVersion = Constants.CLIENTS.IOS.VERSION;
+        ctx.client.clientName = Constants.CLIENTS.IOS.NAME;
         ctx.client.platform = 'MOBILE';
         ctx.client.osName = 'iOS';
         delete ctx.client.browserName;

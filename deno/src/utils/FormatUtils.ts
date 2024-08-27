@@ -64,7 +64,6 @@ export async function download(
   let cancel: AbortController;
 
   const readable_stream = new Platform.shim.ReadableStream<Uint8Array>({
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     start() { },
     pull: async (controller) => {
       if (must_end) {

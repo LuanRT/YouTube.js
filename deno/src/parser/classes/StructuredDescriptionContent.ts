@@ -8,6 +8,7 @@ import VideoDescriptionMusicSection from './VideoDescriptionMusicSection.ts';
 import VideoDescriptionTranscriptSection from './VideoDescriptionTranscriptSection.ts';
 import VideoDescriptionCourseSection from './VideoDescriptionCourseSection.ts';
 import ReelShelf from './ReelShelf.ts';
+import VideoAttributesSectionView from './VideoAttributesSectionView.ts';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
@@ -15,7 +16,7 @@ export default class StructuredDescriptionContent extends YTNode {
   items: ObservedArray<
     VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
     VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | VideoDescriptionTranscriptSection |
-    VideoDescriptionCourseSection | HorizontalCardList | ReelShelf
+    VideoDescriptionCourseSection | HorizontalCardList | ReelShelf | VideoAttributesSectionView
   >;
 
   constructor(data: RawNode) {
@@ -23,7 +24,7 @@ export default class StructuredDescriptionContent extends YTNode {
     this.items = Parser.parseArray(data.items, [
       VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
       VideoDescriptionInfocardsSection, VideoDescriptionCourseSection, VideoDescriptionTranscriptSection,
-      VideoDescriptionTranscriptSection, HorizontalCardList, ReelShelf
+      VideoDescriptionTranscriptSection, HorizontalCardList, ReelShelf, VideoAttributesSectionView
     ]);
   }
 }

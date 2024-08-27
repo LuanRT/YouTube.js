@@ -14,3 +14,6 @@ export * as Utils from './Utils.ts';
 
 export { default as Log } from './Log.ts';
 export * as LZW from './LZW.ts';
+
+export { default as UMP } from './UMP.ts';
+export * from './UMP.ts';

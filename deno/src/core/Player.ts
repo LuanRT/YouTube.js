@@ -12,6 +12,7 @@ export default class Player {
   sts: number;
   nsig_sc?: string;
   sig_sc?: string;
+  po_token?: string;
 
   constructor(player_id: string, signature_timestamp: number, sig_sc?: string, nsig_sc?: string) {
     this.player_id = player_id;
@@ -20,7 +21,7 @@ export default class Player {
     this.sig_sc = sig_sc;
   }
 
-  static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch): Promise<Player> {
+  static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch, po_token?: string): Promise<Player> {
     const url = new URL('/iframe_api', Constants.URLS.YT_BASE);
     const res = await fetch(url);
 
@@ -41,6 +42,7 @@ export default class Player {
       const cached_player = await Player.fromCache(cache, player_id);
       if (cached_player) {
         Log.info(TAG, 'Found up-to-date player data in cache.');
+        cached_player.po_token = po_token;
         return cached_player;
       }
     }
@@ -67,7 +69,10 @@ export default class Player {
 
     Log.info(TAG, `Got signature timestamp (${sig_timestamp}) and algorithms needed to decipher signatures.`);
 
-    return await Player.fromSource(player_id, sig_timestamp, cache, sig_sc, nsig_sc);
+    const player = await Player.fromSource(player_id, sig_timestamp, cache, sig_sc, nsig_sc);
+    player.po_token = po_token;
+
+    return player;
   }
 
   decipher(url?: string, signature_cipher?: string, cipher?: string, this_response_nsig_cache?: Map<string, string>): string {
@@ -91,9 +96,11 @@ export default class Player {
 
       const sp = args.get('sp');
 
-      sp ?
-        url_components.searchParams.set(sp, signature) :
+      if (sp) {
+        url_components.searchParams.set(sp, signature);
+      } else {
         url_components.searchParams.set('signature', signature);
+      }
     }
 
     const n = url_components.searchParams.get('n');
@@ -122,6 +129,10 @@ export default class Player {
 
       url_components.searchParams.set('n', nsig);
     }
+
+    // @NOTE: SABR requests should include the PoToken (not base64d, but as bytes!) in the payload.
+    if (url_components.searchParams.get('sabr') !== '1' && this.po_token)
+      url_components.searchParams.set('pot', this.po_token);
 
     const client = url_components.searchParams.get('c');
 

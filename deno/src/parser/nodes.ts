@@ -415,6 +415,7 @@ export { default as UpsellDialog } from './classes/UpsellDialog.ts';
 export { default as VerticalList } from './classes/VerticalList.ts';
 export { default as VerticalWatchCardList } from './classes/VerticalWatchCardList.ts';
 export { default as Video } from './classes/Video.ts';
+export { default as VideoAttributesSectionView } from './classes/VideoAttributesSectionView.ts';
 export { default as VideoAttributeView } from './classes/VideoAttributeView.ts';
 export { default as VideoCard } from './classes/VideoCard.ts';
 export { default as VideoDescriptionCourseSection } from './classes/VideoDescriptionCourseSection.ts';

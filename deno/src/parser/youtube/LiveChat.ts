@@ -42,7 +42,7 @@ export type ChatAction =
   ReplaceChatItemAction | ReplayChatItemAction | ShowLiveChatActionPanelAction | ShowLiveChatTooltipCommand;
 
 export type ChatItemWithMenu = LiveChatAutoModMessage | LiveChatMembershipItem | LiveChatPaidMessage | LiveChatPaidSticker | LiveChatTextMessage | LiveChatViewerEngagementMessage;
-
+ 
 export interface LiveMetadata {
   title?: UpdateTitleAction;
   description?: UpdateDescriptionAction;
@@ -237,7 +237,7 @@ export default class LiveChat extends EventEmitter {
 
         if (this.running)
           this.#pollMetadata();
-      } catch (err) {
+      } catch {
         await this.#wait(2000);
         if (this.running)
           this.#pollMetadata();

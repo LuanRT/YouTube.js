@@ -210,7 +210,10 @@ export function encodeCommentActionParams(type: number, args: {
   if (args.hasOwnProperty('text')) {
     if (typeof args.target_language !== 'string')
       throw new Error('target_language must be a string');
-    args.comment_id && (delete data.unkNum);
+
+    if (args.comment_id)
+      delete data.unkNum;
+
     data.translateCommentParams = {
       params: {
         comment: {

@@ -3,7 +3,7 @@ import { Constants } from '../../utils/index.ts';
 import { InnertubeError, MissingParamError, Platform } from '../../utils/Utils.ts';
 import { CreateVideoEndpoint } from '../endpoints/upload/index.ts';
 
-import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Clients.ts';
+import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Misc.ts';
 import type { ApiResponse, Session } from '../index.ts';
 
 interface UploadResult {
