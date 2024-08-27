@@ -1,5 +1,26 @@
 # Changelog
 
+## [10.4.0](https://github.com/LuanRT/YouTube.js/compare/v10.3.0...v10.4.0) (2024-08-27)
+
+
+### Features
+
+* **parser:** Add `VideoAttributesSectionView` node ([#732](https://github.com/LuanRT/YouTube.js/issues/732)) ([4b60b97](https://github.com/LuanRT/YouTube.js/commit/4b60b97132b0ee42b41838f3336c582a7f7f7aec))
+* **Player:** Add support for Proof of Identity tokens ([#708](https://github.com/LuanRT/YouTube.js/issues/708)) ([c9f0ddd](https://github.com/LuanRT/YouTube.js/commit/c9f0ddd573de297c0b384e422e6c1737454926e2))
+* **Utils:** Add `UMP` parser ([261f2ac](https://github.com/LuanRT/YouTube.js/commit/261f2ac12b6a9a5bd5f7a43557018de333f7bec3))
+
+
+### Bug Fixes
+
+* **examples:** Use BgUtils to generate pot [skip ci] ([d89909a](https://github.com/LuanRT/YouTube.js/commit/d89909a19a1486bee7e3275014725b4e3dc2cbe2))
+* **FormatOptions:** `client` missing some values ([fcd00b0](https://github.com/LuanRT/YouTube.js/commit/fcd00b0fb0f88a16c27da1ed89e9a2c4887e5c52))
+* **PlayerEndpoint:** Don't set `undefined` fields ([0e91a08](https://github.com/LuanRT/YouTube.js/commit/0e91a08ae2194a07defc4b1e12ff3edbe13b72df))
+* **Search:** Fix it occasionally returning only a small number of results ([#720](https://github.com/LuanRT/YouTube.js/issues/720)) ([2c0bb23](https://github.com/LuanRT/YouTube.js/commit/2c0bb237e1d0eb160dc3f879f5cab2022d9b5b04))
+* **Session:** `PoToken` not being set correctly ([#729](https://github.com/LuanRT/YouTube.js/issues/729)) ([bb6e647](https://github.com/LuanRT/YouTube.js/commit/bb6e647b8c88753669acde43d0d648aaf11caba6))
+* **Session:** Fix remote visitor data not gettting used ([#731](https://github.com/LuanRT/YouTube.js/issues/731)) ([7afc3da](https://github.com/LuanRT/YouTube.js/commit/7afc3da80ee3b5aa6edd2a899be82c1a21e03556))
+* **Session:** Visitor data not being used properly ([f1973c1](https://github.com/LuanRT/YouTube.js/commit/f1973c11d9a492898b5e72b1f2b79291b674e229))
+* **ThumbnailOverlayResumePlayback:** Update `percent_duration_watched` type ([#737](https://github.com/LuanRT/YouTube.js/issues/737)) ([f9ccba4](https://github.com/LuanRT/YouTube.js/commit/f9ccba4af5268d67d8610a1a5d623964f56d170d))
+
 ## [10.3.0](https://github.com/LuanRT/YouTube.js/compare/v10.2.0...v10.3.0) (2024-08-01)
 
 
