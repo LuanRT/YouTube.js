@@ -30,15 +30,15 @@ export default class History extends Feed<IBrowseResponse> {
   /**
    * Removes a video from watch history.
    */
-  async removeVideo(video_id: string): Promise<Boolean> {
+  async removeVideo(video_id: string): Promise<boolean> {
     let feedbackToken;
 
     for (const section of this.sections) {
       for (const content of section.contents) {
         const video = content as Video;
         if (video.id === video_id && video.menu) {
-            feedbackToken = video.menu.top_level_buttons[0].endpoint.payload.feedbackToken;
-            break;
+          feedbackToken = video.menu.top_level_buttons[0].endpoint.payload.feedbackToken;
+          break;
         }
       }
     }
