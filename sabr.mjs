@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { Proto, Innertube, UniversalCache, Endpoints, Utils, UMPParser } from './dist/src/platform/node.js';
+import { Proto, Innertube, UniversalCache, Endpoints, Utils, UMP } from './dist/src/platform/node.js';
 
 // Here for testing purposes. Not needed at all.
 const pot = 'Ilhfl1-UOQYOERzwK8IR3xn_Ct8NwzrAatM-7jb9MOQIpx39Fv4c8BXQCv8W9Br_OMQZ_xLbGdUKwBngKM4YxTD1F9Vv8hfga8cW1R7FGv4a8BPGeqQbsmzT';
@@ -116,7 +116,7 @@ const response = await fetch(url, {
 });
 
 const data = await response.arrayBuffer();
-const ump = new UMPParser(new Uint8Array(data));
+const ump = new UMP(new Uint8Array(data));
 const parts = ump.parse();
 
 for (const part of parts) {
