@@ -18,8 +18,8 @@ import {
 
 export declare namespace $.youtube {
   export type SabrError = {
-    type: string;
-    code: number;
+    type?: string;
+    code?: number;
   }
 }
 
@@ -27,8 +27,8 @@ export type Type = $.youtube.SabrError;
 
 export function getDefaultValue(): $.youtube.SabrError {
   return {
-    type: "",
-    code: 0,
+    type: undefined,
+    code: undefined,
   };
 }
 

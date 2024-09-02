@@ -1,4 +1,9 @@
 import {
+  Type as Compression,
+  name2num,
+  num2name,
+} from "./(MediaHeader)/Compression.js";
+import {
   Type as FormatId,
   encodeJson as encodeJson_1,
   decodeJson as decodeJson_1,
@@ -28,23 +33,28 @@ import {
   wireValueToTsValueFns,
 } from "../../runtime/wire/scalar.js";
 import {
+  default as Long,
+} from "../../runtime/Long.js";
+import {
   default as deserialize,
 } from "../../runtime/wire/deserialize.js";
 
 export declare namespace $.youtube {
   export type MediaHeader = {
-    field1: number;
-    videoId: string;
-    itag: number;
-    lmt: string;
-    startDataRange: number;
-    field8: number;
-    field9: number;
-    field10?: number;
+    headerId?: number;
+    videoId?: string;
+    itag?: number;
+    lmt?: string;
+    xtags?: string;
+    startDataRange?: number;
+    compression?: Compression;
+    isInitSeg?: boolean;
+    sequenceNumber?: string;
+    field10?: string;
     startMs?: number;
     durationMs?: number;
     formatId?: FormatId;
-    contentLength: number;
+    contentLength?: string;
     timeRange?: TimeRange;
   }
 }
@@ -53,18 +63,20 @@ export type Type = $.youtube.MediaHeader;
 
 export function getDefaultValue(): $.youtube.MediaHeader {
   return {
-    field1: 0,
-    videoId: "",
-    itag: 0,
-    lmt: "0",
-    startDataRange: 0,
-    field8: 0,
-    field9: 0,
+    headerId: undefined,
+    videoId: undefined,
+    itag: undefined,
+    lmt: undefined,
+    xtags: undefined,
+    startDataRange: undefined,
+    compression: undefined,
+    isInitSeg: undefined,
+    sequenceNumber: undefined,
     field10: undefined,
     startMs: undefined,
     durationMs: undefined,
     formatId: undefined,
-    contentLength: 0,
+    contentLength: undefined,
     timeRange: undefined,
   };
 }
@@ -78,44 +90,48 @@ export function createValue(partialValue: Partial<$.youtube.MediaHeader>): $.you
 
 export function encodeJson(value: $.youtube.MediaHeader): unknown {
   const result: any = {};
-  if (value.field1 !== undefined) result.field1 = tsValueToJsonValueFns.int32(value.field1);
+  if (value.headerId !== undefined) result.headerId = tsValueToJsonValueFns.int32(value.headerId);
   if (value.videoId !== undefined) result.videoId = tsValueToJsonValueFns.string(value.videoId);
   if (value.itag !== undefined) result.itag = tsValueToJsonValueFns.int32(value.itag);
-  if (value.lmt !== undefined) result.lmt = tsValueToJsonValueFns.int64(value.lmt);
+  if (value.lmt !== undefined) result.lmt = tsValueToJsonValueFns.uint64(value.lmt);
+  if (value.xtags !== undefined) result.xtags = tsValueToJsonValueFns.string(value.xtags);
   if (value.startDataRange !== undefined) result.startDataRange = tsValueToJsonValueFns.int32(value.startDataRange);
-  if (value.field8 !== undefined) result.field8 = tsValueToJsonValueFns.int32(value.field8);
-  if (value.field9 !== undefined) result.field9 = tsValueToJsonValueFns.int32(value.field9);
-  if (value.field10 !== undefined) result.field10 = tsValueToJsonValueFns.int32(value.field10);
+  if (value.compression !== undefined) result.compression = tsValueToJsonValueFns.enum(value.compression);
+  if (value.isInitSeg !== undefined) result.isInitSeg = tsValueToJsonValueFns.bool(value.isInitSeg);
+  if (value.sequenceNumber !== undefined) result.sequenceNumber = tsValueToJsonValueFns.int64(value.sequenceNumber);
+  if (value.field10 !== undefined) result.field10 = tsValueToJsonValueFns.int64(value.field10);
   if (value.startMs !== undefined) result.startMs = tsValueToJsonValueFns.int32(value.startMs);
   if (value.durationMs !== undefined) result.durationMs = tsValueToJsonValueFns.int32(value.durationMs);
   if (value.formatId !== undefined) result.formatId = encodeJson_1(value.formatId);
-  if (value.contentLength !== undefined) result.contentLength = tsValueToJsonValueFns.int32(value.contentLength);
+  if (value.contentLength !== undefined) result.contentLength = tsValueToJsonValueFns.int64(value.contentLength);
   if (value.timeRange !== undefined) result.timeRange = encodeJson_2(value.timeRange);
   return result;
 }
 
 export function decodeJson(value: any): $.youtube.MediaHeader {
   const result = getDefaultValue();
-  if (value.field1 !== undefined) result.field1 = jsonValueToTsValueFns.int32(value.field1);
+  if (value.headerId !== undefined) result.headerId = jsonValueToTsValueFns.int32(value.headerId);
   if (value.videoId !== undefined) result.videoId = jsonValueToTsValueFns.string(value.videoId);
   if (value.itag !== undefined) result.itag = jsonValueToTsValueFns.int32(value.itag);
-  if (value.lmt !== undefined) result.lmt = jsonValueToTsValueFns.int64(value.lmt);
+  if (value.lmt !== undefined) result.lmt = jsonValueToTsValueFns.uint64(value.lmt);
+  if (value.xtags !== undefined) result.xtags = jsonValueToTsValueFns.string(value.xtags);
   if (value.startDataRange !== undefined) result.startDataRange = jsonValueToTsValueFns.int32(value.startDataRange);
-  if (value.field8 !== undefined) result.field8 = jsonValueToTsValueFns.int32(value.field8);
-  if (value.field9 !== undefined) result.field9 = jsonValueToTsValueFns.int32(value.field9);
-  if (value.field10 !== undefined) result.field10 = jsonValueToTsValueFns.int32(value.field10);
+  if (value.compression !== undefined) result.compression = jsonValueToTsValueFns.enum(value.compression) as Compression;
+  if (value.isInitSeg !== undefined) result.isInitSeg = jsonValueToTsValueFns.bool(value.isInitSeg);
+  if (value.sequenceNumber !== undefined) result.sequenceNumber = jsonValueToTsValueFns.int64(value.sequenceNumber);
+  if (value.field10 !== undefined) result.field10 = jsonValueToTsValueFns.int64(value.field10);
   if (value.startMs !== undefined) result.startMs = jsonValueToTsValueFns.int32(value.startMs);
   if (value.durationMs !== undefined) result.durationMs = jsonValueToTsValueFns.int32(value.durationMs);
   if (value.formatId !== undefined) result.formatId = decodeJson_1(value.formatId);
-  if (value.contentLength !== undefined) result.contentLength = jsonValueToTsValueFns.int32(value.contentLength);
+  if (value.contentLength !== undefined) result.contentLength = jsonValueToTsValueFns.int64(value.contentLength);
   if (value.timeRange !== undefined) result.timeRange = decodeJson_2(value.timeRange);
   return result;
 }
 
 export function encodeBinary(value: $.youtube.MediaHeader): Uint8Array {
   const result: WireMessage = [];
-  if (value.field1 !== undefined) {
-    const tsValue = value.field1;
+  if (value.headerId !== undefined) {
+    const tsValue = value.headerId;
     result.push(
       [1, tsValueToWireValueFns.int32(tsValue)],
     );
@@ -135,7 +151,13 @@ export function encodeBinary(value: $.youtube.MediaHeader): Uint8Array {
   if (value.lmt !== undefined) {
     const tsValue = value.lmt;
     result.push(
-      [4, tsValueToWireValueFns.int64(tsValue)],
+      [4, tsValueToWireValueFns.uint64(tsValue)],
+    );
+  }
+  if (value.xtags !== undefined) {
+    const tsValue = value.xtags;
+    result.push(
+      [5, tsValueToWireValueFns.string(tsValue)],
     );
   }
   if (value.startDataRange !== undefined) {
@@ -144,22 +166,28 @@ export function encodeBinary(value: $.youtube.MediaHeader): Uint8Array {
       [6, tsValueToWireValueFns.int32(tsValue)],
     );
   }
-  if (value.field8 !== undefined) {
-    const tsValue = value.field8;
+  if (value.compression !== undefined) {
+    const tsValue = value.compression;
     result.push(
-      [8, tsValueToWireValueFns.int32(tsValue)],
+      [7, { type: WireType.Varint as const, value: new Long(name2num[tsValue as keyof typeof name2num]) }],
     );
   }
-  if (value.field9 !== undefined) {
-    const tsValue = value.field9;
+  if (value.isInitSeg !== undefined) {
+    const tsValue = value.isInitSeg;
     result.push(
-      [9, tsValueToWireValueFns.int32(tsValue)],
+      [8, tsValueToWireValueFns.bool(tsValue)],
+    );
+  }
+  if (value.sequenceNumber !== undefined) {
+    const tsValue = value.sequenceNumber;
+    result.push(
+      [9, tsValueToWireValueFns.int64(tsValue)],
     );
   }
   if (value.field10 !== undefined) {
     const tsValue = value.field10;
     result.push(
-      [10, tsValueToWireValueFns.int32(tsValue)],
+      [10, tsValueToWireValueFns.int64(tsValue)],
     );
   }
   if (value.startMs !== undefined) {
@@ -183,7 +211,7 @@ export function encodeBinary(value: $.youtube.MediaHeader): Uint8Array {
   if (value.contentLength !== undefined) {
     const tsValue = value.contentLength;
     result.push(
-      [14, tsValueToWireValueFns.int32(tsValue)],
+      [14, tsValueToWireValueFns.int64(tsValue)],
     );
   }
   if (value.timeRange !== undefined) {
@@ -204,7 +232,7 @@ export function decodeBinary(binary: Uint8Array): $.youtube.MediaHeader {
     if (wireValue === undefined) break field;
     const value = wireValueToTsValueFns.int32(wireValue);
     if (value === undefined) break field;
-    result.field1 = value;
+    result.headerId = value;
   }
   field: {
     const wireValue = wireFields.get(2);
@@ -223,9 +251,16 @@ export function decodeBinary(binary: Uint8Array): $.youtube.MediaHeader {
   field: {
     const wireValue = wireFields.get(4);
     if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int64(wireValue);
+    const value = wireValueToTsValueFns.uint64(wireValue);
     if (value === undefined) break field;
     result.lmt = value;
+  }
+  field: {
+    const wireValue = wireFields.get(5);
+    if (wireValue === undefined) break field;
+    const value = wireValueToTsValueFns.string(wireValue);
+    if (value === undefined) break field;
+    result.xtags = value;
   }
   field: {
     const wireValue = wireFields.get(6);
@@ -235,23 +270,30 @@ export function decodeBinary(binary: Uint8Array): $.youtube.MediaHeader {
     result.startDataRange = value;
   }
   field: {
+    const wireValue = wireFields.get(7);
+    if (wireValue === undefined) break field;
+    const value = wireValue.type === WireType.Varint ? num2name[wireValue.value[0] as keyof typeof num2name] : undefined;
+    if (value === undefined) break field;
+    result.compression = value;
+  }
+  field: {
     const wireValue = wireFields.get(8);
     if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int32(wireValue);
+    const value = wireValueToTsValueFns.bool(wireValue);
     if (value === undefined) break field;
-    result.field8 = value;
+    result.isInitSeg = value;
   }
   field: {
     const wireValue = wireFields.get(9);
     if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int32(wireValue);
+    const value = wireValueToTsValueFns.int64(wireValue);
     if (value === undefined) break field;
-    result.field9 = value;
+    result.sequenceNumber = value;
   }
   field: {
     const wireValue = wireFields.get(10);
     if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int32(wireValue);
+    const value = wireValueToTsValueFns.int64(wireValue);
     if (value === undefined) break field;
     result.field10 = value;
   }
@@ -279,7 +321,7 @@ export function decodeBinary(binary: Uint8Array): $.youtube.MediaHeader {
   field: {
     const wireValue = wireFields.get(14);
     if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int32(wireValue);
+    const value = wireValueToTsValueFns.int64(wireValue);
     if (value === undefined) break field;
     result.contentLength = value;
   }

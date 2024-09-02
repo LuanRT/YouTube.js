@@ -18,7 +18,7 @@ import {
 
 export declare namespace $.youtube {
   export type StreamProtectionStatus = {
-    status: number;
+    status?: number;
     field2?: number;
   }
 }
@@ -27,7 +27,7 @@ export type Type = $.youtube.StreamProtectionStatus;
 
 export function getDefaultValue(): $.youtube.StreamProtectionStatus {
   return {
-    status: 0,
+    status: undefined,
     field2: undefined,
   };
 }

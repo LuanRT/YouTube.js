@@ -26,7 +26,7 @@ import {
 
 export declare namespace $.youtube.Upa {
   export type Gqa = {
-    field1: Uint8Array;
+    field1?: Uint8Array;
     field2?: Hqa;
   }
 }
@@ -35,7 +35,7 @@ export type Type = $.youtube.Upa.Gqa;
 
 export function getDefaultValue(): $.youtube.Upa.Gqa {
   return {
-    field1: new Uint8Array(),
+    field1: undefined,
     field2: undefined,
   };
 }

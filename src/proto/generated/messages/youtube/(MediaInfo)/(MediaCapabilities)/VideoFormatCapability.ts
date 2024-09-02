@@ -18,12 +18,12 @@ import {
 
 export declare namespace $.youtube.MediaInfo.MediaCapabilities {
   export type VideoFormatCapability = {
-    videoCodec: number;
-    maxHeight: number;
-    maxWidth: number;
-    maxFramerate: number;
-    maxBitrateBps: number;
-    is10BitSupported: boolean;
+    videoCodec?: number;
+    maxHeight?: number;
+    maxWidth?: number;
+    maxFramerate?: number;
+    maxBitrateBps?: number;
+    is10BitSupported?: boolean;
   }
 }
 
@@ -31,12 +31,12 @@ export type Type = $.youtube.MediaInfo.MediaCapabilities.VideoFormatCapability;
 
 export function getDefaultValue(): $.youtube.MediaInfo.MediaCapabilities.VideoFormatCapability {
   return {
-    videoCodec: 0,
-    maxHeight: 0,
-    maxWidth: 0,
-    maxFramerate: 0,
-    maxBitrateBps: 0,
-    is10BitSupported: false,
+    videoCodec: undefined,
+    maxHeight: undefined,
+    maxWidth: undefined,
+    maxFramerate: undefined,
+    maxBitrateBps: undefined,
+    is10BitSupported: undefined,
   };
 }
 

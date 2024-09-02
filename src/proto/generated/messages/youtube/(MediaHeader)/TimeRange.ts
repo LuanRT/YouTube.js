@@ -18,9 +18,9 @@ import {
 
 export declare namespace $.youtube.MediaHeader {
   export type TimeRange = {
-    field1: number;
-    field2: number;
-    field3: number;
+    field1?: number;
+    field2?: number;
+    field3?: number;
   }
 }
 
@@ -28,9 +28,9 @@ export type Type = $.youtube.MediaHeader.TimeRange;
 
 export function getDefaultValue(): $.youtube.MediaHeader.TimeRange {
   return {
-    field1: 0,
-    field2: 0,
-    field3: 0,
+    field1: undefined,
+    field2: undefined,
+    field3: undefined,
   };
 }
 

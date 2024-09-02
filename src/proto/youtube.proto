@@ -289,112 +289,120 @@ message ReelSequence {
 
 message ShortsParam {
   message Field1 {
-    int32 p1 = 1;
+    optional int32 p1 = 1;
   }
-  Field1 f1 = 1;
-  int32 p59 = 59;
+  optional Field1 f1 = 1;
+  optional int32 p59 = 59;
 }
 
 message FormatId {
-  required int32 itag = 1;
-  required int64 last_modified = 2;
+  optional int32 itag = 1;
+  optional uint64 last_modified = 2;
   optional string xtags = 3;
 }
 
 message InitRange {
-  required int32 start = 1;
-  required int32 end = 2;
+  optional int32 start = 1;
+  optional int32 end = 2;
 }
 
 message IndexRange {
-  required int32 start = 1;
-  required int32 end = 2;
+  optional int32 start = 1;
+  optional int32 end = 2;
 }
 
 message PlaybackCookie {
-  int32 field1 = 1; // Always 999999??
-  int32 field2 = 2;
-  FormatId video_fmt = 7;
-  FormatId audio_fmt = 8;
+  optional int32 field1 = 1; // Always 999999??
+  optional int32 field2 = 2;
+  optional FormatId video_fmt = 7;
+  optional FormatId audio_fmt = 8;
 }
 
 message Redirect {
-  required string url = 1;
+  optional string url = 1;
 }
 
 message PlaybackStartPolicy {
   message ReadaheadPolicy {
-    int32 min_readahead_ms = 2;
+    optional int32 min_readahead_ms = 2;
     optional int32 min_bandwidth_bytes_per_sec = 1;
   }
 
-  ReadaheadPolicy start_min_readahead_policy = 1;
-  ReadaheadPolicy resume_min_readahead_policy = 2;
+  optional ReadaheadPolicy start_min_readahead_policy = 1;
+  optional ReadaheadPolicy resume_min_readahead_policy = 2;
 }
 
 message RequestCancellationPolicy {
   message Item {
-    int32 fR = 1;
-    int32 NK = 2;
+    optional int32 fR = 1;
+    optional int32 NK = 2;
     optional int32 minReadaheadMs = 3;
   }
 
-  int32 N0 = 1;
+  optional int32 N0 = 1;
   repeated Item items = 2;
   optional int32 jq = 3;
 }
 
 message NextRequestPolicy {
-  int32 target_audio_readahead_ms = 1;
-  int32 target_video_readahead_ms = 2;
+  optional int32 target_audio_readahead_ms = 1;
+  optional int32 target_video_readahead_ms = 2;
   optional int32 backoff_time_ms = 4;
   optional PlaybackCookie playback_cookie = 7;
   optional string video_id = 8;
 }
 
 message StreamProtectionStatus {
-  int32 status = 1;
+  optional int32 status = 1;
   optional int32 field2 = 2;
 }
 
 message FormatInitializationMetadata {
-  string video_id = 1;
-  FormatId format_id = 2;
-  int32 end_time_ms = 3;
-  int32 field4 = 4;
-  string mime_type = 5;
-  InitRange init_range = 6;
-  IndexRange index_range = 7;
+  optional string video_id = 1;
+  optional FormatId format_id = 2;
+  optional int32 end_time_ms = 3;
+  optional int32 field4 = 4;
+  optional string mime_type = 5;
+  optional InitRange init_range = 6;
+  optional IndexRange index_range = 7;
   optional int32 field8 = 8;
   optional int32 duration_ms = 9;
   optional int32 field10 = 10; 
 }
 
 message MediaHeader {
-  int32 field1 = 1; 
-  string video_id = 2;
-  int32 itag = 3;
-  int64 lmt = 4;
-  int32 start_data_range = 6;
-  int32 field8 = 8;
-  int32 field9 = 9;
-  optional int32 field10 = 10;
+  message TimeRange {
+    optional int32 field1 = 1;
+    optional int32 field2 = 2;
+    optional int32 field3 = 3;
+  }
+
+  enum Compression {
+    VAL0 = 0;
+    VAL1 = 1;
+    GZIP = 2;
+  }
+
+  optional int32 header_id = 1; 
+  optional string video_id = 2;
+  optional int32 itag = 3;
+  optional uint64 lmt = 4;
+  optional string xtags = 5;
+  optional int32 start_data_range = 6;
+  optional Compression compression = 7;
+  optional bool is_init_seg = 8;
+  optional int64 sequence_number = 9;
+  optional int64 field10 = 10;
   optional int32 start_ms = 11;
   optional int32 duration_ms = 12;
-  FormatId format_id = 13;
-  int32 content_length = 14;
+  optional FormatId format_id = 13;
+  optional int64 content_length = 14;
   optional TimeRange time_range = 15;
-
-  message TimeRange {
-    required int32 field1 = 1;
-    required int32 field2 = 2;
-    required int32 field3 = 3;
-  }
 }
 
 message SabrError {
-  string type = 1;
-  int32 code = 2;
+  optional string type = 1;
+  optional int32 code = 2;
 }
 
 message HttpHeader {
@@ -413,18 +421,18 @@ message OnesieRequest {
 message MediaInfo {
   message MediaCapabilities {
     message VideoFormatCapability {
-      required int32 video_codec = 1;
-      required int32 max_height = 3;
-      required int32 max_width = 4;
-      required int32 max_framerate = 11;
-      required int32 max_bitrate_bps = 12;
-      required bool is_10_bit_supported = 15;
+      optional int32 video_codec = 1;
+      optional int32 max_height = 3;
+      optional int32 max_width = 4;
+      optional int32 max_framerate = 11;
+      optional int32 max_bitrate_bps = 12;
+      optional bool is_10_bit_supported = 15;
     }
     message AudioFormatCapability {
-      required int32 audio_codec = 1;
-      required int32 num_channels = 2;
-      required int32 max_bitrate_bps = 3;
-      required int32 spatial_capability_bitmask = 6;
+      optional int32 audio_codec = 1;
+      optional int32 num_channels = 2;
+      optional int32 max_bitrate_bps = 3;
+      optional int32 spatial_capability_bitmask = 6;
     }
      repeated VideoFormatCapability video_format_capabilities = 1;
      repeated AudioFormatCapability audio_format_capabilities = 2;
@@ -481,8 +489,8 @@ message Lo {
 
 message Kob {
   message Pa {
-    required string video_id = 1;
-    required int64 lmt = 2;
+    optional string video_id = 1;
+    optional uint64 lmt = 2;
   }
   repeated Pa EW = 1;
 }
@@ -506,27 +514,27 @@ message Zpa {
 
 message Upa {
   message ClientInfo {
-    required string device_make = 12;
-    required string device_model = 13;
-    required int32 client_name = 16;
-    required string client_version = 17;
-    required string os_name = 18;
-    required string os_version = 19;
+    optional string device_make = 12;
+    optional string device_model = 13;
+    optional int32 client_name = 16;
+    optional string client_version = 17;
+    optional string os_name = 18;
+    optional string os_version = 19;
   }
 
   message Fqa {
-    required int32 type = 1;
-    required bytes value = 2;
+    optional int32 type = 1;
+    optional bytes value = 2;
   }
 
   message Gqa {
     message Hqa {
-      required int32 code = 1;
-      required string message = 2;
+      optional int32 code = 1;
+      optional string message = 2;
     }
 
-    required bytes field1 = 1;
-    required Hqa field2 = 2;
+    optional bytes field1 = 1;
+    optional Hqa field2 = 2;
   }
 
   optional ClientInfo client_info = 1;

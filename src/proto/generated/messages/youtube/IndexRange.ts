@@ -18,8 +18,8 @@ import {
 
 export declare namespace $.youtube {
   export type IndexRange = {
-    start: number;
-    end: number;
+    start?: number;
+    end?: number;
   }
 }
 
@@ -27,8 +27,8 @@ export type Type = $.youtube.IndexRange;
 
 export function getDefaultValue(): $.youtube.IndexRange {
   return {
-    start: 0,
-    end: 0,
+    start: undefined,
+    end: undefined,
   };
 }
 

@@ -18,8 +18,8 @@ import {
 
 export declare namespace $.youtube.Upa.Gqa {
   export type Hqa = {
-    code: number;
-    message: string;
+    code?: number;
+    message?: string;
   }
 }
 
@@ -27,8 +27,8 @@ export type Type = $.youtube.Upa.Gqa.Hqa;
 
 export function getDefaultValue(): $.youtube.Upa.Gqa.Hqa {
   return {
-    code: 0,
-    message: "",
+    code: undefined,
+    message: undefined,
   };
 }
 

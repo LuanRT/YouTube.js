@@ -18,8 +18,8 @@ import {
 
 export declare namespace $.youtube.Kob {
   export type Pa = {
-    videoId: string;
-    lmt: string;
+    videoId?: string;
+    lmt?: string;
   }
 }
 
@@ -27,8 +27,8 @@ export type Type = $.youtube.Kob.Pa;
 
 export function getDefaultValue(): $.youtube.Kob.Pa {
   return {
-    videoId: "",
-    lmt: "0",
+    videoId: undefined,
+    lmt: undefined,
   };
 }
 
@@ -42,14 +42,14 @@ export function createValue(partialValue: Partial<$.youtube.Kob.Pa>): $.youtube.
 export function encodeJson(value: $.youtube.Kob.Pa): unknown {
   const result: any = {};
   if (value.videoId !== undefined) result.videoId = tsValueToJsonValueFns.string(value.videoId);
-  if (value.lmt !== undefined) result.lmt = tsValueToJsonValueFns.int64(value.lmt);
+  if (value.lmt !== undefined) result.lmt = tsValueToJsonValueFns.uint64(value.lmt);
   return result;
 }
 
 export function decodeJson(value: any): $.youtube.Kob.Pa {
   const result = getDefaultValue();
   if (value.videoId !== undefined) result.videoId = jsonValueToTsValueFns.string(value.videoId);
-  if (value.lmt !== undefined) result.lmt = jsonValueToTsValueFns.int64(value.lmt);
+  if (value.lmt !== undefined) result.lmt = jsonValueToTsValueFns.uint64(value.lmt);
   return result;
 }
 
@@ -64,7 +64,7 @@ export function encodeBinary(value: $.youtube.Kob.Pa): Uint8Array {
   if (value.lmt !== undefined) {
     const tsValue = value.lmt;
     result.push(
-      [2, tsValueToWireValueFns.int64(tsValue)],
+      [2, tsValueToWireValueFns.uint64(tsValue)],
     );
   }
   return serialize(result);
@@ -84,7 +84,7 @@ export function decodeBinary(binary: Uint8Array): $.youtube.Kob.Pa {
   field: {
     const wireValue = wireFields.get(2);
     if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int64(wireValue);
+    const value = wireValueToTsValueFns.uint64(wireValue);
     if (value === undefined) break field;
     result.lmt = value;
   }

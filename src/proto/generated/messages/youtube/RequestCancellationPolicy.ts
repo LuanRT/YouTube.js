@@ -26,7 +26,7 @@ import {
 
 export declare namespace $.youtube {
   export type RequestCancellationPolicy = {
-    N0: number;
+    N0?: number;
     items: Item[];
     jq?: number;
   }
@@ -36,7 +36,7 @@ export type Type = $.youtube.RequestCancellationPolicy;
 
 export function getDefaultValue(): $.youtube.RequestCancellationPolicy {
   return {
-    N0: 0,
+    N0: undefined,
     items: [],
     jq: undefined,
   };

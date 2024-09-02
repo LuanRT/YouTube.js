@@ -27,7 +27,7 @@ import {
 export declare namespace $.youtube {
   export type ShortsParam = {
     f1?: Field1;
-    p59: number;
+    p59?: number;
   }
 }
 
@@ -36,7 +36,7 @@ export type Type = $.youtube.ShortsParam;
 export function getDefaultValue(): $.youtube.ShortsParam {
   return {
     f1: undefined,
-    p59: 0,
+    p59: undefined,
   };
 }
 

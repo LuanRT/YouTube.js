@@ -19,7 +19,7 @@ import {
 export declare namespace $.youtube.PlaybackStartPolicy {
   export type ReadaheadPolicy = {
     minBandwidthBytesPerSec?: number;
-    minReadaheadMs: number;
+    minReadaheadMs?: number;
   }
 }
 
@@ -28,7 +28,7 @@ export type Type = $.youtube.PlaybackStartPolicy.ReadaheadPolicy;
 export function getDefaultValue(): $.youtube.PlaybackStartPolicy.ReadaheadPolicy {
   return {
     minBandwidthBytesPerSec: undefined,
-    minReadaheadMs: 0,
+    minReadaheadMs: undefined,
   };
 }
 

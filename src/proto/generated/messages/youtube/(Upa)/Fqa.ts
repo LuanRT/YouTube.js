@@ -18,8 +18,8 @@ import {
 
 export declare namespace $.youtube.Upa {
   export type Fqa = {
-    type: number;
-    value: Uint8Array;
+    type?: number;
+    value?: Uint8Array;
   }
 }
 
@@ -27,8 +27,8 @@ export type Type = $.youtube.Upa.Fqa;
 
 export function getDefaultValue(): $.youtube.Upa.Fqa {
   return {
-    type: 0,
-    value: new Uint8Array(),
+    type: undefined,
+    value: undefined,
   };
 }
 

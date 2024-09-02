@@ -18,12 +18,12 @@ import {
 
 export declare namespace $.youtube.Upa {
   export type ClientInfo = {
-    deviceMake: string;
-    deviceModel: string;
-    clientName: number;
-    clientVersion: string;
-    osName: string;
-    osVersion: string;
+    deviceMake?: string;
+    deviceModel?: string;
+    clientName?: number;
+    clientVersion?: string;
+    osName?: string;
+    osVersion?: string;
   }
 }
 
@@ -31,12 +31,12 @@ export type Type = $.youtube.Upa.ClientInfo;
 
 export function getDefaultValue(): $.youtube.Upa.ClientInfo {
   return {
-    deviceMake: "",
-    deviceModel: "",
-    clientName: 0,
-    clientVersion: "",
-    osName: "",
-    osVersion: "",
+    deviceMake: undefined,
+    deviceModel: undefined,
+    clientName: undefined,
+    clientVersion: undefined,
+    osName: undefined,
+    osVersion: undefined,
   };
 }
 

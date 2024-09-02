@@ -18,10 +18,10 @@ import {
 
 export declare namespace $.youtube.MediaInfo.MediaCapabilities {
   export type AudioFormatCapability = {
-    audioCodec: number;
-    numChannels: number;
-    maxBitrateBps: number;
-    spatialCapabilityBitmask: number;
+    audioCodec?: number;
+    numChannels?: number;
+    maxBitrateBps?: number;
+    spatialCapabilityBitmask?: number;
   }
 }
 
@@ -29,10 +29,10 @@ export type Type = $.youtube.MediaInfo.MediaCapabilities.AudioFormatCapability;
 
 export function getDefaultValue(): $.youtube.MediaInfo.MediaCapabilities.AudioFormatCapability {
   return {
-    audioCodec: 0,
-    numChannels: 0,
-    maxBitrateBps: 0,
-    spatialCapabilityBitmask: 0,
+    audioCodec: undefined,
+    numChannels: undefined,
+    maxBitrateBps: undefined,
+    spatialCapabilityBitmask: undefined,
   };
 }
 

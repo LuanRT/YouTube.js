@@ -40,11 +40,11 @@ import {
 
 export declare namespace $.youtube {
   export type FormatInitializationMetadata = {
-    videoId: string;
+    videoId?: string;
     formatId?: FormatId;
-    endTimeMs: number;
-    field4: number;
-    mimeType: string;
+    endTimeMs?: number;
+    field4?: number;
+    mimeType?: string;
     initRange?: InitRange;
     indexRange?: IndexRange;
     field8?: number;
@@ -57,11 +57,11 @@ export type Type = $.youtube.FormatInitializationMetadata;
 
 export function getDefaultValue(): $.youtube.FormatInitializationMetadata {
   return {
-    videoId: "",
+    videoId: undefined,
     formatId: undefined,
-    endTimeMs: 0,
-    field4: 0,
-    mimeType: "",
+    endTimeMs: undefined,
+    field4: undefined,
+    mimeType: undefined,
     initRange: undefined,
     indexRange: undefined,
     field8: undefined,

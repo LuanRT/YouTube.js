@@ -18,7 +18,7 @@ import {
 
 export declare namespace $.youtube {
   export type Redirect = {
-    url: string;
+    url?: string;
   }
 }
 
@@ -26,7 +26,7 @@ export type Type = $.youtube.Redirect;
 
 export function getDefaultValue(): $.youtube.Redirect {
   return {
-    url: "",
+    url: undefined,
   };
 }
 

@@ -26,8 +26,8 @@ import {
 
 export declare namespace $.youtube {
   export type NextRequestPolicy = {
-    targetAudioReadaheadMs: number;
-    targetVideoReadaheadMs: number;
+    targetAudioReadaheadMs?: number;
+    targetVideoReadaheadMs?: number;
     backoffTimeMs?: number;
     playbackCookie?: PlaybackCookie;
     videoId?: string;
@@ -38,8 +38,8 @@ export type Type = $.youtube.NextRequestPolicy;
 
 export function getDefaultValue(): $.youtube.NextRequestPolicy {
   return {
-    targetAudioReadaheadMs: 0,
-    targetVideoReadaheadMs: 0,
+    targetAudioReadaheadMs: undefined,
+    targetVideoReadaheadMs: undefined,
     backoffTimeMs: undefined,
     playbackCookie: undefined,
     videoId: undefined,

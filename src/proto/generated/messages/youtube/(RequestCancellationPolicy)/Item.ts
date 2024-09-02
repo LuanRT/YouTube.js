@@ -18,8 +18,8 @@ import {
 
 export declare namespace $.youtube.RequestCancellationPolicy {
   export type Item = {
-    fR: number;
-    NK: number;
+    fR?: number;
+    NK?: number;
     minReadaheadMs?: number;
   }
 }
@@ -28,8 +28,8 @@ export type Type = $.youtube.RequestCancellationPolicy.Item;
 
 export function getDefaultValue(): $.youtube.RequestCancellationPolicy.Item {
   return {
-    fR: 0,
-    NK: 0,
+    fR: undefined,
+    NK: undefined,
     minReadaheadMs: undefined,
   };
 }

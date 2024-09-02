@@ -18,8 +18,8 @@ import {
 
 export declare namespace $.youtube {
   export type FormatId = {
-    itag: number;
-    lastModified: string;
+    itag?: number;
+    lastModified?: string;
     xtags?: string;
   }
 }
@@ -28,8 +28,8 @@ export type Type = $.youtube.FormatId;
 
 export function getDefaultValue(): $.youtube.FormatId {
   return {
-    itag: 0,
-    lastModified: "0",
+    itag: undefined,
+    lastModified: undefined,
     xtags: undefined,
   };
 }
@@ -44,7 +44,7 @@ export function createValue(partialValue: Partial<$.youtube.FormatId>): $.youtub
 export function encodeJson(value: $.youtube.FormatId): unknown {
   const result: any = {};
   if (value.itag !== undefined) result.itag = tsValueToJsonValueFns.int32(value.itag);
-  if (value.lastModified !== undefined) result.lastModified = tsValueToJsonValueFns.int64(value.lastModified);
+  if (value.lastModified !== undefined) result.lastModified = tsValueToJsonValueFns.uint64(value.lastModified);
   if (value.xtags !== undefined) result.xtags = tsValueToJsonValueFns.string(value.xtags);
   return result;
 }
@@ -52,7 +52,7 @@ export function encodeJson(value: $.youtube.FormatId): unknown {
 export function decodeJson(value: any): $.youtube.FormatId {
   const result = getDefaultValue();
   if (value.itag !== undefined) result.itag = jsonValueToTsValueFns.int32(value.itag);
-  if (value.lastModified !== undefined) result.lastModified = jsonValueToTsValueFns.int64(value.lastModified);
+  if (value.lastModified !== undefined) result.lastModified = jsonValueToTsValueFns.uint64(value.lastModified);
   if (value.xtags !== undefined) result.xtags = jsonValueToTsValueFns.string(value.xtags);
   return result;
 }
@@ -68,7 +68,7 @@ export function encodeBinary(value: $.youtube.FormatId): Uint8Array {
   if (value.lastModified !== undefined) {
     const tsValue = value.lastModified;
     result.push(
-      [2, tsValueToWireValueFns.int64(tsValue)],
+      [2, tsValueToWireValueFns.uint64(tsValue)],
     );
   }
   if (value.xtags !== undefined) {
@@ -94,7 +94,7 @@ export function decodeBinary(binary: Uint8Array): $.youtube.FormatId {
   field: {
     const wireValue = wireFields.get(2);
     if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int64(wireValue);
+    const value = wireValueToTsValueFns.uint64(wireValue);
     if (value === undefined) break field;
     result.lastModified = value;
   }

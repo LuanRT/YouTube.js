@@ -26,8 +26,8 @@ import {
 
 export declare namespace $.youtube {
   export type PlaybackCookie = {
-    field1: number;
-    field2: number;
+    field1?: number;
+    field2?: number;
     videoFmt?: FormatId;
     audioFmt?: FormatId;
   }
@@ -37,8 +37,8 @@ export type Type = $.youtube.PlaybackCookie;
 
 export function getDefaultValue(): $.youtube.PlaybackCookie {
   return {
-    field1: 0,
-    field2: 0,
+    field1: undefined,
+    field2: undefined,
     videoFmt: undefined,
     audioFmt: undefined,
   };
