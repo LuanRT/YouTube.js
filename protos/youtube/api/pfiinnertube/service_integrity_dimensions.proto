@@ -1,0 +1,6 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+message ServiceIntegrityDimensions {
+  optional bytes po_token = 1;
+}

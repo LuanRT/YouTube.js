@@ -1,0 +1,60 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+message PlaybackContext {
+  optional ContentPlaybackContext content_playback_context = 1;
+
+  // @TODO: Dump these messages
+  // optional AdPlaybackContext ad_playback_context = 2;
+  // optional PrefetchPlaybackContext prefetch_playback_context = 3;
+  // optional ResumePlaybackContext resume_playback_context = 4;
+  // optional OfflinePlaybackContext offline_playback_context = 5;
+  // optional ReloadPlaybackContext reload_playback_context = 7;
+  // optional DevicePlaybackCapabilities device_playback_capabilities = 8;
+
+  message ContentPlaybackContext {
+    optional string device_signals = 1;
+    optional string rev_share_client_id = 3;
+    optional uint32 time_since_last_ad_seconds = 4;
+    optional int64 lact_milliseconds = 5;
+    optional uint32 autoplays_since_last_ad = 6;
+    optional uint32 vis = 8;
+    optional bool fling = 9;
+    optional bool splay = 10;
+    optional bool autoplay = 11;
+    optional uint64 time_of_last_instream_preroll_ad = 13;
+    optional string current_url = 15;
+    optional string referer = 16;
+    optional bool load_annotations_by_demand = 23;
+    optional bool auto_captions_default_on = 24;
+    // optional ForceAdParameters force_ad_parameters = 25;
+    optional bool sliced_bread = 27;
+    optional bool autonav = 29;
+    optional bool trailer = 30;
+    // optional MdxPlaybackContext mdx_context = 31;
+    // optional LivePlaybackContext live_context = 32;
+    optional int32 player_width_pixels = 34;
+    optional int32 player_height_pixels = 35;
+    // optional Html5Preference html5_preference = 36;
+    optional int32 snd = 37;
+    optional int32 vnd = 38;
+    // optional UnpluggedContentPlaybackContext unplugged_context = 40;
+    optional int32 uao = 41;
+    optional bool muted_autoplay = 44;
+    // optional AutonavSettingsState autonav_state = 45;
+    optional bool enable_privacy_filter = 46;
+    optional bool is_living_room_deeplink = 47;
+    optional uint32 signature_timestamp = 48;
+    // optional TrailerPlaybackContext trailer_context = 49;
+    optional bool is_inline_playback_no_ad = 50;
+    optional bool is_inline_unmuted_playback = 51;
+    // optional CustomTabContext custom_tab_context = 52;
+    // optional VideoPlaybackPosition player_playback_position = 54;
+    optional int64 play_package_version = 55;
+    // optional CoWatchPlaybackContext co_watch_context = 56;
+    // optional WatchAmbientModePlaybackContext watch_ambient_mode_context = 57;
+    // optional CompositeVideoPlaybackContext composite_video_context = 58;
+    optional bool is_sequence_entry = 60;
+  }
+}
+

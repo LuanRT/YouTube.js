@@ -1,0 +1,11 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+message PlayerAttestationRequestData {
+  optional IosguardChallengeRequestData iosguard_request = 1;
+  optional bool omit_botguard_data = 2;
+
+  message IosguardChallengeRequestData {
+    optional bytes challenge_request = 1;
+  }
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+import "common.proto";
+
+// @TODO: Add the rest of the request.
+message OnesieRequest {
+	optional string url = 1;
+	repeated HttpHeader headers = 2;
+	optional string body = 3;
+	optional bool field4 = 4;
+	optional bool field6 = 6;
+}

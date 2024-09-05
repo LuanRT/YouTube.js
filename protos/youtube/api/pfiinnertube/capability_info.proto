@@ -1,0 +1,15 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+message CapabilityInfo {
+  optional string profile = 1;
+  repeated InnerTubeCapability supported_capabilities = 2;
+  repeated InnerTubeCapability disabled_capabilities = 3;
+  optional string snapshot = 5;
+}
+
+message InnerTubeCapability {
+  optional uint32 capability = 1;
+  optional uint32 features = 2;
+  optional string experiment_flags = 6;
+}
