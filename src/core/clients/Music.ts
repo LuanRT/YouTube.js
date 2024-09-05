@@ -1,5 +1,4 @@
-import * as Proto from '../../proto/index.js';
-import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.js';
+import { InnertubeError, generateRandomString, throwIfMissing, u8ToBase64 } from '../../utils/Utils.js';
 
 import {
   Album, Artist, Explore,
@@ -25,6 +24,8 @@ import {
 } from '../endpoints/index.js';
 
 import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.js';
+
+import * as SearchFilter from '../../../protos/generated/messages/youtube/api/pfiinnertube/SearchFilter.js';
 
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { MusicSearchFilters } from '../../types/index.js';
@@ -112,10 +113,24 @@ export default class Music {
   async search(query: string, filters: MusicSearchFilters = {}): Promise<Search> {
     throwIfMissing({ query });
 
+    let params: string | undefined;
+
+    if (filters.type && filters.type !== 'all') {
+      params = encodeURIComponent(u8ToBase64(
+        SearchFilter.encodeBinary({
+          filters: {
+            musicSearchType: {
+              [filters.type]: true
+            }
+          }
+        })
+      ));
+    }
+
     const response = await this.#actions.execute(
       SearchEndpoint.PATH, SearchEndpoint.build({
         query, client: 'YTMUSIC',
-        params: filters.type && filters.type !== 'all' ? Proto.encodeMusicSearchFilters(filters) : undefined
+        params
       })
     );
 

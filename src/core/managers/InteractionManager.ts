@@ -1,10 +1,13 @@
 import * as Proto from '../../proto/index.js';
 
-import { throwIfMissing } from '../../utils/Utils.js';
+import { throwIfMissing, u8ToBase64 } from '../../utils/Utils.js';
 import { LikeEndpoint, DislikeEndpoint, RemoveLikeEndpoint } from '../endpoints/like/index.js';
 import { SubscribeEndpoint, UnsubscribeEndpoint } from '../endpoints/subscription/index.js';
 import { CreateCommentEndpoint, PerformCommentActionEndpoint } from '../endpoints/comment/index.js';
 import { ModifyChannelPreferenceEndpoint } from '../endpoints/notification/index.js';
+
+import * as CreateCommentParams from '../../../protos/generated/messages/youtube/api/pfiinnertube/CreateCommentParams.js';
+import * as NotificationPreferences from '../../../protos/generated/messages/youtube/api/pfiinnertube/NotificationPreferences.js';
 
 import type { Actions, ApiResponse } from '../index.js';
 
@@ -128,10 +131,20 @@ export default class InteractionManager {
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
+    const buf = CreateCommentParams.encodeBinary({
+      videoId: video_id,
+      params: {
+        index: 0
+      },
+      number: 7
+    });
+
+    const params = encodeURIComponent(u8ToBase64(buf));
+
     const action = await this.#actions.execute(
       CreateCommentEndpoint.PATH, CreateCommentEndpoint.build({
         comment_text: text,
-        create_comment_params: Proto.encodeCommentParams(video_id),
+        create_comment_params: params,
         client: 'ANDROID'
       })
     );
@@ -188,10 +201,20 @@ export default class InteractionManager {
     if (!Object.keys(pref_types).includes(type.toUpperCase()))
       throw new Error(`Invalid notification preference type: ${type}`);
 
+    const buf = NotificationPreferences.encodeBinary({
+      channelId: channel_id,
+      prefId: {
+        index: pref_types[type.toUpperCase() as keyof typeof pref_types]
+      },
+      number0: 0, number1: 4
+    });
+
+    const params = encodeURIComponent(u8ToBase64(buf));
+  
     const action = await this.#actions.execute(
       ModifyChannelPreferenceEndpoint.PATH, ModifyChannelPreferenceEndpoint.build({
         client: 'WEB',
-        params: Proto.encodeNotificationPref(channel_id, pref_types[type.toUpperCase() as keyof typeof pref_types])
+        params
       })
     );
 
