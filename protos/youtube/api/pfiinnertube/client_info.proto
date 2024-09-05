@@ -43,7 +43,7 @@ message ClientInfo {
   optional int32 window_height_points = 56;
   optional ConfigGroupsClientInfo config_info = 62;
   optional UnpluggedLocationInfo unplugged_location_info = 63;
-  optional int32 androidSdkVersion = 64;
+  optional int32 android_sdk_version = 64;
   optional float screen_density_float = 65;
   optional int32 first_time_sign_in_experiment_ids = 66;
   optional int32 utc_offset_minutes = 67;
