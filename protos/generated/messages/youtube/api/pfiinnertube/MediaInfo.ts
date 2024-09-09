@@ -6,6 +6,11 @@ import {
   decodeBinary as decodeBinary_1,
 } from "./(MediaInfo)/MediaCapabilities.js";
 import {
+  Type as MediaType,
+  name2num,
+  num2name,
+} from "./(MediaInfo)/MediaType.js";
+import {
   tsValueToJsonValueFns,
   jsonValueToTsValueFns,
 } from "../../../../runtime/json/scalar.js";
@@ -20,6 +25,9 @@ import {
   tsValueToWireValueFns,
   wireValueToTsValueFns,
 } from "../../../../runtime/wire/scalar.js";
+import {
+  default as Long,
+} from "../../../../runtime/Long.js";
 import {
   default as deserialize,
 } from "../../../../runtime/wire/deserialize.js";
@@ -40,7 +48,7 @@ export declare namespace $.youtube.api.pfiinnertube {
     d8?: number;
     mediaCapabilities?: MediaCapabilities;
     yea?: number;
-    Gw?: number;
+    mediaType?: MediaType;
     playerState?: number;
     a8?: boolean;
     Jda?: number;
@@ -80,7 +88,7 @@ export function getDefaultValue(): $.youtube.api.pfiinnertube.MediaInfo {
     d8: undefined,
     mediaCapabilities: undefined,
     yea: undefined,
-    Gw: undefined,
+    mediaType: undefined,
     playerState: undefined,
     a8: undefined,
     Jda: undefined,
@@ -125,7 +133,7 @@ export function encodeJson(value: $.youtube.api.pfiinnertube.MediaInfo): unknown
   if (value.d8 !== undefined) result.d8 = tsValueToJsonValueFns.int32(value.d8);
   if (value.mediaCapabilities !== undefined) result.mediaCapabilities = encodeJson_1(value.mediaCapabilities);
   if (value.yea !== undefined) result.yea = tsValueToJsonValueFns.int32(value.yea);
-  if (value.Gw !== undefined) result.Gw = tsValueToJsonValueFns.int32(value.Gw);
+  if (value.mediaType !== undefined) result.mediaType = tsValueToJsonValueFns.enum(value.mediaType);
   if (value.playerState !== undefined) result.playerState = tsValueToJsonValueFns.int32(value.playerState);
   if (value.a8 !== undefined) result.a8 = tsValueToJsonValueFns.bool(value.a8);
   if (value.Jda !== undefined) result.Jda = tsValueToJsonValueFns.int32(value.Jda);
@@ -163,7 +171,7 @@ export function decodeJson(value: any): $.youtube.api.pfiinnertube.MediaInfo {
   if (value.d8 !== undefined) result.d8 = jsonValueToTsValueFns.int32(value.d8);
   if (value.mediaCapabilities !== undefined) result.mediaCapabilities = decodeJson_1(value.mediaCapabilities);
   if (value.yea !== undefined) result.yea = jsonValueToTsValueFns.int32(value.yea);
-  if (value.Gw !== undefined) result.Gw = jsonValueToTsValueFns.int32(value.Gw);
+  if (value.mediaType !== undefined) result.mediaType = jsonValueToTsValueFns.enum(value.mediaType) as MediaType;
   if (value.playerState !== undefined) result.playerState = jsonValueToTsValueFns.int32(value.playerState);
   if (value.a8 !== undefined) result.a8 = jsonValueToTsValueFns.bool(value.a8);
   if (value.Jda !== undefined) result.Jda = jsonValueToTsValueFns.int32(value.Jda);
@@ -271,10 +279,10 @@ export function encodeBinary(value: $.youtube.api.pfiinnertube.MediaInfo): Uint8
       [39, tsValueToWireValueFns.int32(tsValue)],
     );
   }
-  if (value.Gw !== undefined) {
-    const tsValue = value.Gw;
+  if (value.mediaType !== undefined) {
+    const tsValue = value.mediaType;
     result.push(
-      [40, tsValueToWireValueFns.int32(tsValue)],
+      [41, { type: WireType.Varint as const, value: new Long(name2num[tsValue as keyof typeof name2num]) }],
     );
   }
   if (value.playerState !== undefined) {
@@ -491,11 +499,11 @@ export function decodeBinary(binary: Uint8Array): $.youtube.api.pfiinnertube.Med
     result.yea = value;
   }
   field: {
-    const wireValue = wireFields.get(40);
+    const wireValue = wireFields.get(41);
     if (wireValue === undefined) break field;
-    const value = wireValueToTsValueFns.int32(wireValue);
+    const value = wireValue.type === WireType.Varint ? num2name[wireValue.value[0] as keyof typeof num2name] : undefined;
     if (value === undefined) break field;
-    result.Gw = value;
+    result.mediaType = value;
   }
   field: {
     const wireValue = wireFields.get(44);
