@@ -56,7 +56,7 @@ message MediaInfo {
   optional MediaCapabilities media_capabilities = 38;
   optional int32 yea = 39;
   // optional int32 Gw = 40;
-  optional MediaType media_type = 41;
+  optional MediaType media_type = 40;
   optional int32 player_state = 44;
   optional bool a8 = 46;
   optional int32 Jda = 48;
