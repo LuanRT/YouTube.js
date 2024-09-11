@@ -282,7 +282,7 @@ export function encodeBinary(value: $.youtube.api.pfiinnertube.MediaInfo): Uint8
   if (value.mediaType !== undefined) {
     const tsValue = value.mediaType;
     result.push(
-      [41, { type: WireType.Varint as const, value: new Long(name2num[tsValue as keyof typeof name2num]) }],
+      [40, { type: WireType.Varint as const, value: new Long(name2num[tsValue as keyof typeof name2num]) }],
     );
   }
   if (value.playerState !== undefined) {
@@ -499,7 +499,7 @@ export function decodeBinary(binary: Uint8Array): $.youtube.api.pfiinnertube.Med
     result.yea = value;
   }
   field: {
-    const wireValue = wireFields.get(41);
+    const wireValue = wireFields.get(40);
     if (wireValue === undefined) break field;
     const value = wireValue.type === WireType.Varint ? num2name[wireValue.value[0] as keyof typeof num2name] : undefined;
     if (value === undefined) break field;

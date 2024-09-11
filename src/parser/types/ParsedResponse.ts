@@ -103,6 +103,9 @@ export interface IPlayerConfig {
       min_read_ahead_media_time_ms: number;
       read_ahead_growth_rate_ms: number;
     };
+    media_ustreamer_request_config?: {
+      video_playback_ustreamer_config?: string;
+    };
   };
 }
 
@@ -112,6 +115,7 @@ export interface IStreamingData {
   adaptive_formats: Format[];
   dash_manifest_url: string | null;
   hls_manifest_url: string | null;
+  server_abr_streaming_url: string | null;
 }
 
 export type IPlayerResponse = Pick<IParsedResponse, 'captions' | 'cards' | 'endscreen' | 'microformat' | 'annotations' | 'playability_status' | 'streaming_data' | 'player_config' | 'playback_tracking' | 'storyboards' | 'video_details'>;
