@@ -26,11 +26,14 @@ export interface IRawPlayerConfig {
     maxBitrate: string;
   };
   mediaCommonConfig: {
-    dynamicReadaheadConfig: {
+    dynamicReadaheadConfig?: {
       maxReadAheadMediaTimeMs: number;
       minReadAheadMediaTimeMs: number;
       readAheadGrowthRateMs: number;
     };
+    mediaUstreamerRequestConfig?: {
+      videoPlaybackUstreamerConfig: string;
+    }
   };
 }
 
@@ -75,6 +78,7 @@ export interface IRawResponse {
     adaptiveFormats: RawNode[];
     dashManifestUrl?: string;
     hlsManifestUrl?: string;
+    serverAbrStreamingUrl?: string;
   };
   playerConfig?: IRawPlayerConfig;
   playerResponse?: IRawResponse;

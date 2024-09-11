@@ -55,7 +55,8 @@ message MediaInfo {
   optional int32 d8 = 36;
   optional MediaCapabilities media_capabilities = 38;
   optional int32 yea = 39;
-  optional int32 Gw = 40;
+  // optional int32 Gw = 40;
+  optional MediaType media_type = 40;
   optional int32 player_state = 44;
   optional bool a8 = 46;
   optional int32 Jda = 48;
@@ -74,6 +75,12 @@ message MediaInfo {
   optional int32 k2 = 66;
   optional int32 Tqb = 67;
   optional int32 c = 68;
+
+  enum MediaType {
+    MEDIA_TYPE_DEFAULT = 0;
+    MEDIA_TYPE_AUDIO = 1;
+    MEDIA_TYPE_VIDEO = 2;
+  }
 }
 
 message Lo {

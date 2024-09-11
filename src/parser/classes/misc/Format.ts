@@ -10,6 +10,7 @@ export default class Format {
   width?: number;
   height?: number;
   last_modified: Date;
+  last_modified_ms: string;
   content_length?: number;
   quality?: string;
   xtags?: string;
@@ -107,6 +108,7 @@ export default class Format {
       };
 
     this.last_modified = new Date(Math.floor(parseInt(data.lastModified) / 1000));
+    this.last_modified_ms = data.lastModified;
 
     if (Reflect.has(data, 'contentLength'))
       this.content_length = parseInt(data.contentLength);

@@ -1,4 +1,4 @@
-import * as Proto from '../../proto/index.js';
+import * as ProtoUtils from '../../utils/ProtoUtils.js';
 
 import { throwIfMissing, u8ToBase64 } from '../../utils/Utils.js';
 import { LikeEndpoint, DislikeEndpoint, RemoveLikeEndpoint } from '../endpoints/like/index.js';
@@ -161,7 +161,7 @@ export default class InteractionManager {
   async translate(text: string, target_language: string, args: { video_id?: string; comment_id?: string; } = {}) {
     throwIfMissing({ text, target_language });
 
-    const target_action = Proto.encodeCommentActionParams(22, { text, target_language, ...args });
+    const target_action = ProtoUtils.encodeCommentActionParams(22, { text, target_language, ...args });
 
     const response = await this.#actions.execute(
       PerformCommentActionEndpoint.PATH, PerformCommentActionEndpoint.build({

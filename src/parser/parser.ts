@@ -400,7 +400,8 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
       formats: parseFormats(data.streamingData.formats, this_response_nsig_cache),
       adaptive_formats: parseFormats(data.streamingData.adaptiveFormats, this_response_nsig_cache),
       dash_manifest_url: data.streamingData.dashManifestUrl || null,
-      hls_manifest_url: data.streamingData.hlsManifestUrl || null
+      hls_manifest_url: data.streamingData.hlsManifestUrl || null,
+      server_abr_streaming_url: data.streamingData.serverAbrStreamingUrl || null
     };
 
     parsed_data.streaming_data = streaming_data;
@@ -421,6 +422,9 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
           max_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.maxReadAheadMediaTimeMs || 0,
           min_read_ahead_media_time_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.minReadAheadMediaTimeMs || 0,
           read_ahead_growth_rate_ms: data.playerConfig.mediaCommonConfig?.dynamicReadaheadConfig?.readAheadGrowthRateMs || 0
+        },
+        media_ustreamer_request_config: {
+          video_playback_ustreamer_config: data.playerConfig.mediaCommonConfig?.mediaUstreamerRequestConfig?.videoPlaybackUstreamerConfig
         }
       }
     };

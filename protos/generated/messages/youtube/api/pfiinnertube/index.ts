@@ -27,6 +27,7 @@ export type { Type as PlayerAttestationRequestData } from "./PlayerAttestationRe
 export type { Type as PlayerRequestCaptionParams } from "./PlayerRequestCaptionParams.js";
 export type { Type as OnesieRequest } from "./OnesieRequest.js";
 export type { Type as VisitorData } from "./VisitorData.js";
+export type { Type as SearchFilter } from "./SearchFilter.js";
 export type { Type as ChannelAnalytics } from "./ChannelAnalytics.js";
 export type { Type as SoundInfoParams } from "./SoundInfoParams.js";
 export type { Type as NotificationPreferences } from "./NotificationPreferences.js";
@@ -34,8 +35,6 @@ export type { Type as LiveMessageParams } from "./LiveMessageParams.js";
 export type { Type as GetCommentsSectionParams } from "./GetCommentsSectionParams.js";
 export type { Type as CreateCommentParams } from "./CreateCommentParams.js";
 export type { Type as PeformCommentActionParams } from "./PeformCommentActionParams.js";
-export type { Type as MusicSearchFilter } from "./MusicSearchFilter.js";
-export type { Type as SearchFilter } from "./SearchFilter.js";
 export type { Type as Hashtag } from "./Hashtag.js";
 export type { Type as ReelSequence } from "./ReelSequence.js";
 export type { Type as ShortsParam } from "./ShortsParam.js";
