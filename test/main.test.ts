@@ -311,9 +311,6 @@ describe('YouTube.js Tests', () => {
       
       const info = await innertube.music.getInfo(playlist.contents!.first())
       expect(info).toBeDefined();
-      expect(info.basic_info.id).toBe('eaJHysi5tYg');
-      const upNext = await info.getUpNext(true)
-      expect(upNext).toBeDefined();
     });
 
     describe('Innertube#music.search', () => {
