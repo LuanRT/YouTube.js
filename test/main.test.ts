@@ -309,13 +309,11 @@ describe('YouTube.js Tests', () => {
       expect(playlist.contents).toBeDefined();
       expect(playlist.contents?.length).toBeGreaterThan(0);
       
-      console.log(playlist.contents!.first().overlay?.content?.endpoint)
       const info = await innertube.music.getInfo(playlist.contents!.first())
       expect(info).toBeDefined();
-      console.log(info)
+      expect(info.basic_info.id).toBe('eaJHysi5tYg');
       const upNext = await info.getUpNext(true)
       expect(upNext).toBeDefined();
-      console.log(upNext)
     });
 
     describe('Innertube#music.search', () => {
