@@ -1,0 +1,17 @@
+syntax = "proto3";
+package video_streaming;
+
+import "misc/common.proto";
+
+message FormatInitializationMetadata {
+  optional string video_id = 1;
+  optional .misc.FormatId format_id = 2;
+  optional int32 end_time_ms = 3;
+  optional int32 field4 = 4;
+  optional string mime_type = 5;
+  optional .misc.InitRange init_range = 6;
+  optional .misc.IndexRange index_range = 7;
+  optional int32 field8 = 8;
+  optional int32 duration_ms = 9;
+  optional int32 field10 = 10; 
+}

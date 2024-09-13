@@ -8,7 +8,7 @@ import TimeWatched from '../../parser/youtube/TimeWatched.js';
 import { InnertubeError, u8ToBase64 } from '../../utils/Utils.js';
 import { Account, BrowseEndpoint, Channel } from '../endpoints/index.js';
 
-import * as ChannelAnalytics from '../../../protos/generated/messages/youtube/api/pfiinnertube/ChannelAnalytics.js';
+import { ChannelAnalytics } from '../../../protos/generated/misc/params.js';
 
 export default class AccountManager {
   #actions: Actions;
@@ -107,13 +107,13 @@ export default class AccountManager {
   async getAnalytics(): Promise<Analytics> {
     const info = await this.getInfo();
 
-    const buf = ChannelAnalytics.encodeBinary({
+    const writer = ChannelAnalytics.encode({
       params: {
         channelId: info.footers?.endpoint.payload.browseId
       }
     });
 
-    const params = encodeURIComponent(u8ToBase64(buf));
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
 
     const response = await this.#actions.execute(
       BrowseEndpoint.PATH, BrowseEndpoint.build({

@@ -25,7 +25,7 @@ import {
 
 import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.js';
 
-import * as SearchFilter from '../../../protos/generated/messages/youtube/api/pfiinnertube/SearchFilter.js';
+import { SearchFilter } from '../../../protos/generated/misc/params.js';
 
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { MusicSearchFilters } from '../../types/index.js';
@@ -116,15 +116,14 @@ export default class Music {
     let params: string | undefined;
 
     if (filters.type && filters.type !== 'all') {
-      params = encodeURIComponent(u8ToBase64(
-        SearchFilter.encodeBinary({
-          filters: {
-            musicSearchType: {
-              [filters.type]: true
-            }
+      const writer = SearchFilter.encode({
+        filters: {
+          musicSearchType: {
+            [filters.type]: true
           }
-        })
-      ));
+        }
+      });
+      params = encodeURIComponent(u8ToBase64(writer.finish()));
     }
 
     const response = await this.#actions.execute(

@@ -1,7 +1,7 @@
 syntax = "proto3";
 package youtube.api.pfiinnertube;
 
-import "innertube_context.proto";
+import "youtube/api/pfiinnertube/innertube_context.proto";
 
 message WatchNextRequest {
   optional InnerTubeContext context = 1;

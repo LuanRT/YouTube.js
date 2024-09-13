@@ -5,8 +5,7 @@ import { CreateVideoEndpoint } from '../endpoints/upload/index.js';
 import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Misc.js';
 import type { ApiResponse, Session } from '../index.js';
 
-import type { messages } from '../../../protos/generated/index.js';
-import * as MetadataUpdateRequest from '../../../protos/generated/messages/youtube/api/pfiinnertube/MetadataUpdateRequest.js';
+import { MetadataUpdateRequest } from '../../../protos/generated/youtube/api/pfiinnertube/metadata_update_request.js';
 
 interface UploadResult {
   status: string;
@@ -50,7 +49,7 @@ export default class Studio {
     if (!this.#session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const payload: messages.youtube.api.pfiinnertube.MetadataUpdateRequest = {
+    const payload: MetadataUpdateRequest = {
       context: {
         client: {
           osName: 'Android',
@@ -131,9 +130,11 @@ export default class Studio {
       };
     }
 
+    const writer = MetadataUpdateRequest.encode(payload);
+
     const response = await this.#session.actions.execute('/video_manager/metadata_update', {
       protobuf: true,
-      serialized_data: MetadataUpdateRequest.encodeBinary(payload)
+      serialized_data: writer.finish()
     });
 
     return response;

@@ -6,8 +6,7 @@ import { SubscribeEndpoint, UnsubscribeEndpoint } from '../endpoints/subscriptio
 import { CreateCommentEndpoint, PerformCommentActionEndpoint } from '../endpoints/comment/index.js';
 import { ModifyChannelPreferenceEndpoint } from '../endpoints/notification/index.js';
 
-import * as CreateCommentParams from '../../../protos/generated/messages/youtube/api/pfiinnertube/CreateCommentParams.js';
-import * as NotificationPreferences from '../../../protos/generated/messages/youtube/api/pfiinnertube/NotificationPreferences.js';
+import { CreateCommentParams, NotificationPreferences } from '../../../protos/generated/misc/params.js';
 
 import type { Actions, ApiResponse } from '../index.js';
 
@@ -131,7 +130,7 @@ export default class InteractionManager {
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const buf = CreateCommentParams.encodeBinary({
+    const writer = CreateCommentParams.encode({
       videoId: video_id,
       params: {
         index: 0
@@ -139,7 +138,7 @@ export default class InteractionManager {
       number: 7
     });
 
-    const params = encodeURIComponent(u8ToBase64(buf));
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
 
     const action = await this.#actions.execute(
       CreateCommentEndpoint.PATH, CreateCommentEndpoint.build({
@@ -201,7 +200,7 @@ export default class InteractionManager {
     if (!Object.keys(pref_types).includes(type.toUpperCase()))
       throw new Error(`Invalid notification preference type: ${type}`);
 
-    const buf = NotificationPreferences.encodeBinary({
+    const writer = NotificationPreferences.encode({
       channelId: channel_id,
       prefId: {
         index: pref_types[type.toUpperCase() as keyof typeof pref_types]
@@ -209,7 +208,7 @@ export default class InteractionManager {
       number0: 0, number1: 4
     });
 
-    const params = encodeURIComponent(u8ToBase64(buf));
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
   
     const action = await this.#actions.execute(
       ModifyChannelPreferenceEndpoint.PATH, ModifyChannelPreferenceEndpoint.build({

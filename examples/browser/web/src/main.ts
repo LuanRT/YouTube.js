@@ -1,4 +1,4 @@
-import { Innertube, Proto, UniversalCache, Utils } from '../../../../bundle/browser';
+import { Innertube, ProtoUtils, UniversalCache, Utils } from '../../../../bundle/browser';
 import BG from 'bgutils-js';
 
 // @ts-ignore - Shaka's TS support is not the best.
@@ -13,7 +13,7 @@ const form = document.querySelector('form') as HTMLFormElement;
 
 
 async function main() {
-  const visitorData = Proto.encodeVisitorData(Utils.generateRandomString(11), Math.floor(Date.now() / 1000));
+  const visitorData = ProtoUtils.encodeVisitorData(Utils.generateRandomString(11), Math.floor(Date.now() / 1000));
   const poToken = await getPo(visitorData);
 
   const yt = await Innertube.create({

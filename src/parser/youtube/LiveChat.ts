@@ -12,7 +12,7 @@ import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction.j
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import ItemMenu from './ItemMenu.js';
 
-import * as LiveMessageParams from '../../../protos/generated/messages/youtube/api/pfiinnertube/LiveMessageParams.js';
+import { LiveMessageParams } from '../../../protos/generated/misc/params.js';
 
 import type { ObservedArray, YTNode } from '../helpers.js';
 
@@ -251,7 +251,7 @@ export default class LiveChat extends EventEmitter {
    * @param text - Text to send.
    */
   async sendMessage(text: string): Promise<ObservedArray<AddChatItemAction>> {
-    const buf = LiveMessageParams.encodeBinary({
+    const writer = LiveMessageParams.encode({
       params: {
         ids: {
           videoId: this.#video_id,
@@ -262,7 +262,7 @@ export default class LiveChat extends EventEmitter {
       number1: 4
     });
 
-    const params = btoa(encodeURIComponent(u8ToBase64(buf)));
+    const params = btoa(encodeURIComponent(u8ToBase64(writer.finish())));
 
     const response = await this.#actions.execute('/live_chat/send_message', {
       richMessage: { textSegments: [ { text } ] },

@@ -42,16 +42,13 @@ import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.js';
 import type Format from './parser/classes/misc/Format.js';
 
-import * as Hashtag from '../protos/generated/messages/youtube/api/pfiinnertube/Hashtag.js';
-import * as SearchFilter from '../protos/generated/messages/youtube/api/pfiinnertube/SearchFilter.js';
-import * as ReelSequence from '../protos/generated/messages/youtube/api/pfiinnertube/ReelSequence.js';
-import * as GetCommentsSectionParams from '../protos/generated/messages/youtube/api/pfiinnertube/GetCommentsSectionParams.js';
-
-import type { messages } from '../protos/generated/index.js';
-import type { Type as UploadDate } from '../protos/generated/messages/youtube/api/pfiinnertube/(SearchFilter)/(Filters)/UploadDate.js';
-import type { Type as SearchType } from '../protos/generated/messages/youtube/api/pfiinnertube/(SearchFilter)/(Filters)/SearchType.js';
-import type { Type as Duration } from '../protos/generated/messages/youtube/api/pfiinnertube/(SearchFilter)/(Filters)/Duration.js'; 
-import type { Type as SortBy } from '../protos/generated/messages/youtube/api/pfiinnertube/(SearchFilter)/SortBy.js';
+import {
+  SearchFilter_SortBy,
+  SearchFilter_Filters_UploadDate,
+  SearchFilter_Filters_SearchType,
+  SearchFilter_Filters_Duration
+} from '../protos/generated/misc/params.js';
+import { Hashtag, SearchFilter, ReelSequence, GetCommentsSectionParams } from '../protos/generated/misc/params.js';
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -131,7 +128,7 @@ export default class Innertube {
       Reel.ReelItemWatchEndpoint.PATH, Reel.ReelItemWatchEndpoint.build({ video_id, client })
     );
 
-    const buf = ReelSequence.encodeBinary({
+    const writer = ReelSequence.encode({
       shortId: video_id,
       params: {
         number: 5
@@ -139,8 +136,8 @@ export default class Innertube {
       feature2: 25,
       feature3: 0
     });
-    
-    const params = encodeURIComponent(u8ToBase64(buf));
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
 
     const sequence_response = this.actions.execute(
       Reel.ReelWatchSequenceEndpoint.PATH, Reel.ReelWatchSequenceEndpoint.build({
@@ -158,24 +155,24 @@ export default class Innertube {
   async search(query: string, filters: SearchFilters = {}): Promise<Search> {
     throwIfMissing({ query });
 
-    const search_filter: messages.youtube.api.pfiinnertube.SearchFilter = {};
+    const search_filter: SearchFilter = {};
 
     search_filter.filters = {};
 
     if (filters.sort_by) {
-      search_filter.sortBy = filters.sort_by.toUpperCase() as SortBy;
+      search_filter.sortBy = SearchFilter_SortBy[filters.sort_by.toUpperCase() as keyof typeof SearchFilter_SortBy];
     }
 
     if (filters.upload_date) {
-      search_filter.filters.uploadDate = filters.upload_date.toUpperCase() as UploadDate;
+      search_filter.filters.uploadDate = SearchFilter_Filters_UploadDate[filters.upload_date.toUpperCase() as keyof typeof SearchFilter_Filters_UploadDate];
     }
 
     if (filters.type) {
-      search_filter.filters.type = filters.type.toUpperCase() as SearchType;
+      search_filter.filters.type = SearchFilter_Filters_SearchType[filters.type.toUpperCase() as keyof typeof SearchFilter_Filters_SearchType];
     }
 
     if (filters.duration) {
-      search_filter.filters.duration = filters.duration.toUpperCase() as Duration;
+      search_filter.filters.duration = SearchFilter_Filters_Duration[filters.duration.toUpperCase() as keyof typeof SearchFilter_Filters_Duration];
     }
 
     if (filters.features) {
@@ -222,7 +219,7 @@ export default class Innertube {
 
     const response = await this.actions.execute(
       SearchEndpoint.PATH, SearchEndpoint.build({
-        query, params: filters ? encodeURIComponent(u8ToBase64(SearchFilter.encodeBinary(search_filter))) : undefined
+        query, params: filters ? encodeURIComponent(u8ToBase64(SearchFilter.encode(search_filter).finish())) : undefined
       })
     );
 
@@ -258,7 +255,7 @@ export default class Innertube {
       NEWEST_FIRST: 1
     };
 
-    const buf = GetCommentsSectionParams.encodeBinary({
+    const writer = GetCommentsSectionParams.encode({
       ctx: {
         videoId: video_id
       },
@@ -274,7 +271,7 @@ export default class Innertube {
       }
     });
 
-    const continuation = encodeURIComponent(u8ToBase64(buf));
+    const continuation = encodeURIComponent(u8ToBase64(writer.finish()));
 
     const response = await this.actions.execute(NextEndpoint.PATH, NextEndpoint.build({ continuation }));
 
@@ -381,14 +378,14 @@ export default class Innertube {
   async getHashtag(hashtag: string): Promise<HashtagFeed> {
     throwIfMissing({ hashtag });
 
-    const buf = Hashtag.encodeBinary({
+    const writer = Hashtag.encode({
       params: {
         hashtag,
         type: 1
       }
     });
 
-    const params = encodeURIComponent(u8ToBase64(buf));
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
 
     const response = await this.actions.execute(
       BrowseEndpoint.PATH, BrowseEndpoint.build({

@@ -1,15 +1,13 @@
 import { base64ToU8, u8ToBase64 } from './Utils.js';
-
-import * as VisitorData from '../../protos/generated/messages/youtube/api/pfiinnertube/VisitorData.js';
-import * as PeformCommentActionParams from '../../protos/generated/messages/youtube/api/pfiinnertube/PeformCommentActionParams.js';
+import { VisitorData, PeformCommentActionParams } from '../../protos/generated/misc/params.js';
 
 export function encodeVisitorData(id: string, timestamp: number): string {
-  const buf = VisitorData.encodeBinary({ id, timestamp });
-  return encodeURIComponent(u8ToBase64(buf).replace(/\+/g, '-').replace(/\//g, '_'));
+  const writer = VisitorData.encode({ id, timestamp });
+  return encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
 }
 
-export function decodeVisitorData(visitor_data: string): VisitorData.Type {
-  const data = VisitorData.decodeBinary(base64ToU8(decodeURIComponent(visitor_data).replace(/-/g, '+').replace(/_/g, '/')));
+export function decodeVisitorData(visitor_data: string): VisitorData {
+  const data = VisitorData.decode(base64ToU8(decodeURIComponent(visitor_data).replace(/-/g, '+').replace(/_/g, '/')));
   return data;
 }
 
@@ -19,7 +17,7 @@ export function encodeCommentActionParams(type: number, args: {
   text?: string,
   target_language?: string
 } = {}): string {
-  const data: PeformCommentActionParams.Type = {
+  const data: PeformCommentActionParams = {
     type,
     commentId: args.comment_id || ' ',
     videoId: args.video_id || ' ',
@@ -45,6 +43,6 @@ export function encodeCommentActionParams(type: number, args: {
     };
   }
 
-  const buf = PeformCommentActionParams.encodeBinary(data);
-  return encodeURIComponent(u8ToBase64(buf));
+  const writer = PeformCommentActionParams.encode(data);
+  return encodeURIComponent(u8ToBase64(writer.finish()));
 }

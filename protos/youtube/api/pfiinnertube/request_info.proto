@@ -1,8 +1,8 @@
 syntax = "proto3";
 package youtube.api.pfiinnertube;
 
-import "common.proto";
-import "attestation_response_data.proto";
+import "misc/common.proto";
+import "youtube/api/pfiinnertube/attestation_response_data.proto";
 
 message RequestInfo {
   optional string third_party_digest = 6;
@@ -12,7 +12,7 @@ message RequestInfo {
   optional string if_none_match = 12;
   optional bool return_log_entry = 13;
   optional bool is_prefetch = 14;
-  repeated KeyValuePair internal_experiment_flags = 15;
+  repeated misc.KeyValuePair internal_experiment_flags = 15;
   optional bool return_debug_data = 16;
   optional string innertubez = 18;
   optional bool trace_proto = 23;

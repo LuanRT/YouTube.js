@@ -1,8 +1,8 @@
 syntax = "proto3";
 package youtube.api.pfiinnertube;
 
-import "innertube_context.proto";
-import "player_request.proto";
+import "youtube/api/pfiinnertube/innertube_context.proto";
+import "youtube/api/pfiinnertube/player_request.proto";
 
 message ReelItemWatchRequest {
   optional InnerTubeContext context = 1;

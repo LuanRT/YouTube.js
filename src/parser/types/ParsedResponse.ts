@@ -113,9 +113,9 @@ export interface IStreamingData {
   expires: Date;
   formats: Format[];
   adaptive_formats: Format[];
-  dash_manifest_url: string | null;
-  hls_manifest_url: string | null;
-  server_abr_streaming_url: string | null;
+  dash_manifest_url?: string;
+  hls_manifest_url?: string;
+  server_abr_streaming_url?: string;
 }
 
 export type IPlayerResponse = Pick<IParsedResponse, 'captions' | 'cards' | 'endscreen' | 'microformat' | 'annotations' | 'playability_status' | 'streaming_data' | 'player_config' | 'playback_tracking' | 'storyboards' | 'video_details'>;
