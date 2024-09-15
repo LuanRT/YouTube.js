@@ -12,6 +12,7 @@ import MusicDescriptionShelf from '../../parser/classes/MusicDescriptionShelf.js
 import MusicQueue from '../../parser/classes/MusicQueue.js';
 import MusicTwoRowItem from '../../parser/classes/MusicTwoRowItem.js';
 import MusicResponsiveListItem from '../../parser/classes/MusicResponsiveListItem.js';
+import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 import PlaylistPanel from '../../parser/classes/PlaylistPanel.js';
 import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.js';
 import SectionList from '../../parser/classes/SectionList.js';
@@ -31,7 +32,6 @@ import { SearchFilter } from '../../../protos/generated/misc/params.js';
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { MusicSearchFilters } from '../../types/index.js';
 import type { Actions, Session } from '../index.js';
-import type NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 
 export default class Music {
   #session: Session;
@@ -46,9 +46,13 @@ export default class Music {
    * Retrieves track info. Passing a list item of type MusicTwoRowItem automatically starts a radio.
    * @param target - Video id or a list item.
    */
-  getInfo(target: string | MusicTwoRowItem | MusicResponsiveListItem): Promise<TrackInfo> {
-    if (target instanceof MusicTwoRowItem || target instanceof MusicResponsiveListItem) {
-      return this.#fetchInfoFromListItem(target);
+  getInfo(target: string | MusicTwoRowItem | MusicResponsiveListItem | NavigationEndpoint): Promise<TrackInfo> {
+    if (target instanceof MusicTwoRowItem) {
+      return this.#fetchInfoFromEndpoint(target.endpoint);
+    } else if (target instanceof MusicResponsiveListItem) {
+      return this.#fetchInfoFromEndpoint(target.overlay?.content?.endpoint ?? target.endpoint);
+    } else if (target instanceof NavigationEndpoint) {
+      return this.#fetchInfoFromEndpoint(target);
     } else if (typeof target === 'string') {
       return this.#fetchInfoFromVideoId(target);
     }
@@ -77,17 +81,7 @@ export default class Music {
     return new TrackInfo(response, this.#actions, cpn);
   }
 
-  async #fetchInfoFromListItem(list_item: MusicTwoRowItem | MusicResponsiveListItem | undefined): Promise<TrackInfo> {
-    if (!list_item)
-      throw new InnertubeError('List item cannot be undefined');
-
-    let endpoint : NavigationEndpoint | undefined;
-    if (list_item instanceof MusicResponsiveListItem) {
-      endpoint = list_item.overlay?.content?.endpoint ?? list_item.endpoint;
-    } else {
-      endpoint = list_item.endpoint;
-    }
-
+  async #fetchInfoFromEndpoint(endpoint?: NavigationEndpoint): Promise<TrackInfo> {
     if (!endpoint)
       throw new Error('This item does not have an endpoint.');
 
