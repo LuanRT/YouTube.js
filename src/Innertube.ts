@@ -33,15 +33,22 @@ import { ShortFormVideoInfo } from './parser/ytshorts/index.js';
 
 import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
 
-import * as Proto from './proto/index.js';
 import * as Constants from './utils/Constants.js';
-import { InnertubeError, generateRandomString, throwIfMissing } from './utils/Utils.js';
+import { InnertubeError, generateRandomString, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
 
 import type { ApiResponse } from './core/Actions.js';
 import type { InnerTubeConfig, InnerTubeClient, SearchFilters, INextRequest } from './types/index.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/types/index.js';
 import type { DownloadOptions, FormatOptions } from './types/FormatUtils.js';
 import type Format from './parser/classes/misc/Format.js';
+
+import {
+  SearchFilter_SortBy,
+  SearchFilter_Filters_UploadDate,
+  SearchFilter_Filters_SearchType,
+  SearchFilter_Filters_Duration
+} from '../protos/generated/misc/params.js';
+import { Hashtag, SearchFilter, ReelSequence, GetCommentsSectionParams } from '../protos/generated/misc/params.js';
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -121,9 +128,20 @@ export default class Innertube {
       Reel.ReelItemWatchEndpoint.PATH, Reel.ReelItemWatchEndpoint.build({ video_id, client })
     );
 
+    const writer = ReelSequence.encode({
+      shortId: video_id,
+      params: {
+        number: 5
+      },
+      feature2: 25,
+      feature3: 0
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+
     const sequence_response = this.actions.execute(
       Reel.ReelWatchSequenceEndpoint.PATH, Reel.ReelWatchSequenceEndpoint.build({
-        sequence_params: Proto.encodeReelSequence(video_id)
+        sequence_params: params
       })
     );
 
@@ -137,9 +155,71 @@ export default class Innertube {
   async search(query: string, filters: SearchFilters = {}): Promise<Search> {
     throwIfMissing({ query });
 
+    const search_filter: SearchFilter = {};
+
+    search_filter.filters = {};
+
+    if (filters.sort_by) {
+      search_filter.sortBy = SearchFilter_SortBy[filters.sort_by.toUpperCase() as keyof typeof SearchFilter_SortBy];
+    }
+
+    if (filters.upload_date) {
+      search_filter.filters.uploadDate = SearchFilter_Filters_UploadDate[filters.upload_date.toUpperCase() as keyof typeof SearchFilter_Filters_UploadDate];
+    }
+
+    if (filters.type) {
+      search_filter.filters.type = SearchFilter_Filters_SearchType[filters.type.toUpperCase() as keyof typeof SearchFilter_Filters_SearchType];
+    }
+
+    if (filters.duration) {
+      search_filter.filters.duration = SearchFilter_Filters_Duration[filters.duration.toUpperCase() as keyof typeof SearchFilter_Filters_Duration];
+    }
+
+    if (filters.features) {
+      for (const feature of filters.features) {
+        switch (feature) {
+          case '360':
+            search_filter.filters.features360 = true;
+            break;
+          case '3d':
+            search_filter.filters.features3d = true;
+            break;
+          case '4k':
+            search_filter.filters.features4k = true;
+            break;
+          case 'creative_commons':
+            search_filter.filters.featuresCreativeCommons = true;
+            break;
+          case 'hd':
+            search_filter.filters.featuresHd = true;
+            break;
+          case 'hdr':
+            search_filter.filters.featuresHdr = true;
+            break;
+          case 'live':
+            search_filter.filters.featuresLive = true;
+            break;
+          case 'location':
+            search_filter.filters.featuresLocation = true;
+            break;
+          case 'purchased':
+            search_filter.filters.featuresPurchased = true;
+            break;
+          case 'subtitles':
+            search_filter.filters.featuresSubtitles = true;
+            break;
+          case 'vr180':
+            search_filter.filters.featuresVr180 = true;
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
     const response = await this.actions.execute(
       SearchEndpoint.PATH, SearchEndpoint.build({
-        query, params: filters ? Proto.encodeSearchFilters(filters) : undefined
+        query, params: filters ? encodeURIComponent(u8ToBase64(SearchFilter.encode(search_filter).finish())) : undefined
       })
     );
 
@@ -167,16 +247,33 @@ export default class Innertube {
     return suggestions;
   }
 
-  async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
+  async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST', comment_id?: string): Promise<Comments> {
     throwIfMissing({ video_id });
 
-    const response = await this.actions.execute(
-      NextEndpoint.PATH, NextEndpoint.build({
-        continuation: Proto.encodeCommentsSectionParams(video_id, {
-          sort_by: sort_by || 'TOP_COMMENTS'
-        })
-      })
-    );
+    const SORT_OPTIONS = {
+      TOP_COMMENTS: 0,
+      NEWEST_FIRST: 1
+    };
+
+    const writer = GetCommentsSectionParams.encode({
+      ctx: {
+        videoId: video_id
+      },
+      unkParam: 6,
+      params: {
+        opts: {
+          videoId: video_id,
+          sortBy: SORT_OPTIONS[sort_by || 'TOP_COMMENTS'],
+          type: 2,
+          commentId: comment_id || ''
+        },
+        target: 'comments-section'
+      }
+    });
+
+    const continuation = encodeURIComponent(u8ToBase64(writer.finish()));
+
+    const response = await this.actions.execute(NextEndpoint.PATH, NextEndpoint.build({ continuation }));
 
     return new Comments(this.actions, response.data);
   }
@@ -281,10 +378,19 @@ export default class Innertube {
   async getHashtag(hashtag: string): Promise<HashtagFeed> {
     throwIfMissing({ hashtag });
 
+    const writer = Hashtag.encode({
+      params: {
+        hashtag,
+        type: 1
+      }
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+
     const response = await this.actions.execute(
       BrowseEndpoint.PATH, BrowseEndpoint.build({
         browse_id: 'FEhashtag',
-        params: Proto.encodeHashtag(hashtag)
+        params
       })
     );
 

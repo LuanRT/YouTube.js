@@ -1,5 +1,4 @@
-import * as Proto from '../../proto/index.js';
-import { InnertubeError, generateRandomString, throwIfMissing } from '../../utils/Utils.js';
+import { InnertubeError, generateRandomString, throwIfMissing, u8ToBase64 } from '../../utils/Utils.js';
 
 import {
   Album, Artist, Explore,
@@ -26,6 +25,8 @@ import {
 } from '../endpoints/index.js';
 
 import { GetSearchSuggestionsEndpoint } from '../endpoints/music/index.js';
+
+import { SearchFilter } from '../../../protos/generated/misc/params.js';
 
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { MusicSearchFilters } from '../../types/index.js';
@@ -121,10 +122,23 @@ export default class Music {
   async search(query: string, filters: MusicSearchFilters = {}): Promise<Search> {
     throwIfMissing({ query });
 
+    let params: string | undefined;
+
+    if (filters.type && filters.type !== 'all') {
+      const writer = SearchFilter.encode({
+        filters: {
+          musicSearchType: {
+            [filters.type]: true
+          }
+        }
+      });
+      params = encodeURIComponent(u8ToBase64(writer.finish()));
+    }
+
     const response = await this.#actions.execute(
       SearchEndpoint.PATH, SearchEndpoint.build({
         query, client: 'YTMUSIC',
-        params: filters.type && filters.type !== 'all' ? Proto.encodeMusicSearchFilters(filters) : undefined
+        params
       })
     );
 

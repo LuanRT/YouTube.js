@@ -1,0 +1,36 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+import "youtube/api/pfiinnertube/innertube_context.proto";
+
+message WatchNextRequest {
+  optional InnerTubeContext context = 1;
+  optional string video_id = 2;
+  optional string playlist_id = 4;
+  optional string params = 6;
+  optional string continuation = 8;
+  optional bool is_ad_playback = 9;
+  optional bool mdx_use_dev_server = 10;
+  optional string referrer = 12;
+  optional string referring_app = 13;
+  optional string ad_params = 16;
+  optional bool request_music_sequence = 18;
+  optional bool enable_mdx_autoplay = 21;
+  optional bool is_mdx_playback = 22;
+  optional bool racy_check_ok = 24;
+  optional bool content_check_ok = 25;
+  optional bool is_audio_only = 26;
+  optional bool autonav_enabled = 27;
+  optional bool enable_persistent_playlist_panel = 30;
+  optional string playlist_set_video_id = 31;
+  optional bool show_ru_invalid_token_message = 35;
+  optional string serialized_third_party_embed_config = 37;
+  optional bool show_content_owner_only = 38;
+  optional bool is_embed_preview = 42;
+  optional string last_scrubbed_inline_playback_video_id = 43;
+  optional string last_audio_turned_on_inline_playback_video_id = 44;
+  optional string last_audio_turned_off_inline_playback_video_id = 45;
+  optional bool captions_requested = 47;
+  optional bytes queue_context_params = 50;
+  optional bool show_shorts_only = 55;
+}

@@ -1,7 +1,6 @@
 import OAuth2 from './OAuth2.js';
-import { Log, EventEmitter, HTTPClient, LZW } from '../utils/index.js';
+import { Log, EventEmitter, HTTPClient, LZW, ProtoUtils } from '../utils/index.js';
 import * as Constants from '../utils/Constants.js';
-import * as Proto from '../proto/index.js';
 import Actions from './Actions.js';
 import Player from './Player.js';
 
@@ -359,7 +358,7 @@ export default class Session extends EventEmitter {
         hl: lang || 'en',
         gl: location || 'US',
         remote_host: '',
-        visitor_data: visitor_data || Proto.encodeVisitorData(generateRandomString(11), Math.floor(Date.now() / 1000)),
+        visitor_data: visitor_data || ProtoUtils.encodeVisitorData(generateRandomString(11), Math.floor(Date.now() / 1000)),
         client_name: client_name,
         client_version: Constants.CLIENTS.WEB.VERSION,
         device_category: device_category.toUpperCase(),
@@ -525,7 +524,7 @@ export default class Session extends EventEmitter {
   }
 
   static #getVisitorID(visitor_data: string) {
-    const decoded_visitor_data = Proto.decodeVisitorData(visitor_data);
+    const decoded_visitor_data = ProtoUtils.decodeVisitorData(visitor_data);
     return decoded_visitor_data.id;
   }
 

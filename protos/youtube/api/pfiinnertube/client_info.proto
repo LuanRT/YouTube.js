@@ -1,0 +1,282 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+message ClientInfo {
+  optional string hl = 1;
+  optional string gl = 2;
+  optional string remote_host = 4;
+  optional string device_id = 6;
+  optional string debug_device_id_override = 8;
+  optional string carrier_geo = 10;
+  optional bool cracked_hl = 11;
+  optional string device_make = 12;
+  optional string device_model = 13;
+  optional string visitor_data = 14;
+  optional string user_agent = 15;
+  optional int32 client_name = 16;
+  optional string client_version = 17;
+  optional string os_name = 18;
+  optional string os_version = 19;
+  optional string project_id = 20;
+  optional string accept_language = 21;
+  optional string accept_region = 22;
+  optional string original_url = 23;
+  optional string raw_device_id = 25;
+  optional string config_data = 27;
+  optional string spacecast_token = 31;
+  optional string internal_geo = 34;
+  optional int32 screen_width_points = 37;
+  optional int32 screen_height_points = 38;
+  optional float screen_width_inches = 39;
+  optional float screen_height_inches = 40;
+  optional int32 screen_pixel_density = 41;
+  optional int32 platform = 42;
+  optional SpacecastClientInfo spacecast_client_info = 45;
+  optional ClientFormFactor client_form_factor = 46;
+  optional string forwarded_for = 48;
+  optional MobileDataPlanInfo mobile_data_plan_info = 49;
+  optional int32 gmscore_version_code = 50; // e.g. 241757026
+  optional bool webp_support = 51;
+  optional CameraType camera_type = 52;
+  optional string experiments_token = 54;
+  optional int32 window_width_points = 55;
+  optional int32 window_height_points = 56;
+  optional ConfigGroupsClientInfo config_info = 62;
+  optional UnpluggedLocationInfo unplugged_location_info = 63;
+  optional int32 android_sdk_version = 64;
+  optional float screen_density_float = 65;
+  optional int32 first_time_sign_in_experiment_ids = 66;
+  optional int32 utc_offset_minutes = 67;
+  optional bool animated_webp_support = 68;
+  optional KidsAppInfo kids_app_info = 69;
+  optional MusicAppInfo music_app_info = 70;
+  optional TvAppInfo tv_app_info = 71;
+  optional string internal_geo_ip = 72;
+  optional UnpluggedAppInfo unplugged_app_info = 73;
+  optional LocationInfo location_info = 74;
+  optional string content_size_category = 76;
+  optional float font_scale = 77;
+  optional UserInterfaceTheme user_interface_theme = 78;
+  optional string time_zone = 80;
+  optional HomeGroupInfo home_group_info = 81;
+  optional bytes eml_template_context = 84;
+  optional bytes cold_app_bundle_config_data = 85;
+  // repeated ExperimentsHeterodyne.ExperimentIds heterodyne_ids = 86;
+  optional string browser_name = 87;
+  optional string browser_version = 88;
+  optional string location_playability_token = 89;
+  optional string chipset = 92; // e.g. "qcom;taro" 
+  optional string firmware_version = 93;
+  optional int64 memory_total_kbytes = 95;
+  optional MainAppWebInfo main_app_web_info = 96;
+  optional NotificationPermissionInfo notification_permission_info = 97;
+  optional string device_brand = 98;
+  // optional ClientStoreInfo client_store_info = 99;
+  // optional SRSDataPushVersion srs_datapush_build_ids = 100;
+  // optional PlayerDataPushVersion player_datapush_build_ids = 101;
+  optional GLDeviceInfo gl_device_info = 102;
+
+  enum ClientFormFactor {
+    // @TODO: Check these.
+    UNKNOWN_FORM_FACTOR = 0;
+    FORM_FACTOR_VAL1 = 1;
+    FORM_FACTOR_VAL2 = 2;
+  }
+
+  enum CameraType {
+    UNKNOWN_CAMERA_TYPE = 0;
+  }
+
+  enum UserInterfaceTheme {
+    USER_INTERFACE_THEME_DARK = 0;
+    USER_INTERFACE_THEME_LIGHT = 1;
+  }
+
+  message MainAppWebInfo {
+    optional string graft_url = 1;
+    optional PwaInstallabilityStatus pwa_installability_status = 2;
+    optional WebDisplayMode web_display_mode = 3;
+    optional bool is_web_native_share_available = 4;
+    optional StoreDigitalGoodsApiSupportStatus store_digital_goods_api_support_status = 5;
+  
+    enum StoreDigitalGoodsApiSupportStatus {  STORE_DIGITAL_GOODS_API_SUPPORT_STATUS_VAL0 = 0; }
+    enum PwaInstallabilityStatus { PWA_INSTALLABILITY_STATUS_UNKNOWN = 0; }
+    enum WebDisplayMode { WEB_DISPLAY_MODE_UNKNOWN = 0; }
+  }
+
+  message NotificationPermissionInfo {
+    optional NotificationsSetting notifications_setting = 1;
+    optional int64 last_device_opt_in_change_time_ago_sec = 2;
+    enum NotificationsSetting { NOTIFICATIONS_SETTING_UNKNOWN = 0; }
+  }
+
+  message GLDeviceInfo {
+    optional string gl_renderer = 1;
+    optional int32 gl_es_version_major = 2;
+    optional int32 gl_es_version_minor = 3;
+  }
+
+  message SpacecastClientInfo {
+    optional SpacecastAppliance appliances = 1;
+    optional SpacecastInteractionLevel interaction_level = 2;
+ 
+    message SpacecastAppliance {
+      optional bytes content_profile_token = 1;
+      optional OperationalStatus status = 2;
+      optional string hostname = 3;
+      optional bool active = 4;
+      optional string device_id = 5;
+
+      enum OperationalStatus { UNKNOWN = 0; }
+    }
+
+    enum SpacecastInteractionLevel { UNKNOWN = 0; }
+  }
+
+  message MobileDataPlanInfo {
+    optional string cpid = 49;
+    optional string serialized_data_plan_status = 50;
+    optional bool data_saving_quality_picker_enabled = 52;
+    optional string mccmnc = 53;
+  }
+
+  message ConfigGroupsClientInfo {
+    optional string cold_config_data = 1;
+    optional string cold_hash_data = 3;
+    optional string hot_hash_data = 5;
+    optional string app_install_data = 6;
+  }
+
+  message UnpluggedLocationInfo {
+    optional int32 latitude_e7 = 1;
+    optional int32 longitude_e7 = 2;
+    optional int64 local_timestamp_ms = 3;
+    optional string ip_address = 4;
+    optional string timezone = 5;
+    optional bool prefer_24_hour_time = 6;
+    optional int32 location_radius_meters = 7;
+    optional bool is_initial_load = 8;
+    optional bool browser_permission_granted = 9;
+    optional int32 client_permission_state = 10;
+    optional string location_override_token = 11;
+  }
+
+  message KidsAppInfo {
+    optional KidsContentSettings content_settings = 1;
+    optional KidsParentCurationMode parent_curation_mode = 2;
+    optional KidsCategorySettings category_settings = 3;
+    optional KidsUserEducationSettings user_education_settings = 4;
+
+    message KidsContentSettings {
+      optional YTKidsNoSearchMode kids_no_search_mode = 1;
+      optional YTKidsAgeUpMode age_up_mode = 2;
+      optional KidsContentDensity content_density = 3;
+      
+      enum YTKidsNoSearchMode { 
+        YT_KIDS_NO_SEARCH_MODE_OFF = 0; 
+        YT_KIDS_NO_SEARCH_MODE_ON = 1;
+      }
+
+      enum YTKidsAgeUpMode { 
+        YT_KIDS_AGE_UP_MODE_OFF = 0; 
+        YT_KIDS_AGE_UP_MODE_ON = 1;
+      }
+
+      enum KidsContentDensity { 
+        // @TODO: Check these.
+        YT_KIDS_CONTENT_DENSITY_VAL1 = 0;
+        YT_KIDS_CONTENT_DENSITY_VAL2 = 1;
+        YT_KIDS_CONTENT_DENSITY_VAL3 = 2;
+      }
+    }
+
+    enum KidsParentCurationMode { KPCM_UNKNOWN = 0; }
+
+    message KidsCategorySettings {
+      optional string enabled_categories = 1;
+    }
+
+    message KidsUserEducationSettings {
+      optional bool has_seen_home_chip_bar_user_education = 1;
+      optional bool has_seen_home_pivot_bar_user_education = 2;
+      optional bool has_seen_parent_muir_user_education = 3;
+    }
+  }
+
+  message MusicAppInfo {
+    optional MusicPlayBackMode play_back_mode = 1;
+    optional MusicLocationMasterSwitch music_location_master_switch = 2;
+    optional MusicActivityMasterSwitch music_activity_master_switch = 3;
+    optional bool offline_mixtape_enabled = 4;
+    optional bool auto_offline_enabled = 5;
+    optional IosBackgroundRefreshStatus ios_background_refresh_status = 6;
+    optional int32 smart_downloads_song_limit = 7;
+    optional bool transitioned_from_mixtape_to_smart_downloads = 8;
+    optional PwaInstallabilityStatus pwa_installability_status = 9;
+    optional WebDisplayMode web_display_mode = 10;
+    optional MusicTier music_tier = 11;
+    optional StoreDigitalGoodsApiSupportStatus store_digital_goods_api_support_status = 12;
+    optional int64 smart_downloads_time_since_last_opt_out_sec = 13;
+
+    enum MusicPlayBackMode { MPBM_UNKNOWN = 0; }
+    enum MusicLocationMasterSwitch { MLMS_UNKNOWN = 0; }
+    enum MusicActivityMasterSwitch { MAMS_UNKNOWN = 0; }
+    enum IosBackgroundRefreshStatus { UNKNOWN_STATUS = 0; }
+    enum PwaInstallabilityStatus { PIS_UNKNOWN = 0; }
+    enum WebDisplayMode { WDM_UNKNOWN = 0; }
+    enum MusicTier { UNKNOWN_TIER = 0; }
+    enum StoreDigitalGoodsApiSupportStatus { SDGAS_UNKNOWN = 0; }
+  }
+
+  message TvAppInfo {
+    optional string mdx_impacted_sessions_server_events = 3;
+    optional bool enable_privacy_filter = 6;
+    optional bool zylon_left_nav = 7;
+    optional string certification_scope = 9;
+    optional string living_room_po_token_id = 10;
+    optional string js_engine_string = 12;
+    optional VoiceCapability voice_capability = 13;
+    optional string system_integrator = 14;
+    optional string android_build_fingerprint = 18;
+    optional string cobalt_app_version = 19;
+    optional string cobalt_starboard_version = 20;
+    optional bool use_start_playback_preview_command = 22;
+    optional bool should_show_persistent_signin_on_home = 23;
+    optional string android_play_services_version = 24;
+
+    message VoiceCapability {
+      optional bool has_soft_mic_support = 1;
+      optional bool has_hard_mic_support = 2;
+    }
+  }
+
+  message UnpluggedAppInfo {
+    optional bool enable_filter_mode = 2;
+    optional bool ios_notification_permission = 3;
+    optional bool force_enable_epg_3 = 7;
+  }
+
+  message LocationInfo {
+    optional int32 location_info_status = 1;
+    optional UrlStatus ulr_status = 2;
+    optional string latitude_e7 = 3;
+    optional string longitude_e7 = 4;
+    optional string horizontal_accuracy_meters = 5;
+    optional string location_freshness_ms = 6;
+    optional int32 location_permission_authorization_status = 7;
+    optional string location_override_token = 8;
+    optional bool force_location_playability_token_refresh = 9;
+
+    message UrlStatus {
+      optional int32 reporting_enabled_setting = 1;
+      optional int32 history_enabled_setting = 2;
+      optional bool is_allowed = 3;
+      optional bool is_active = 4;
+    }
+  }
+
+  message HomeGroupInfo {
+    optional bool is_part_of_group = 1;
+    optional bool is_group = 3;
+  }
+}

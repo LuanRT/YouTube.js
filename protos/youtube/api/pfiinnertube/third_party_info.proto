@@ -1,0 +1,17 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+message ThirdPartyInfo {
+  optional string developer_key = 1;
+  optional string app_name = 2;
+  optional string app_publisher = 3;
+  optional string embed_url = 4;
+  optional string app_version = 6;
+  optional ThirdPartyInfo.EmbeddedPlayerContext embedded_player_context = 7;
+
+  message EmbeddedPlayerContext { 
+    optional string ancestor_origins = 1;
+    optional string embedded_player_encrypted_context = 2;
+    optional bool ancestor_origins_supported = 3;
+  }
+}

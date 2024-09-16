@@ -1,0 +1,16 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+message AttestationResponseData {
+  optional string challenge = 1;
+  optional string web_response = 2;
+  optional string android_response = 3;
+  optional bytes ios_response = 4;
+  optional int32 error = 5;
+  optional AdblockReporting adblock_reporting = 6;
+
+  message AdblockReporting {
+    optional uint64 reporting_status = 1;
+    optional uint64 broad_spectrum_detection_result = 2;
+  }
+}

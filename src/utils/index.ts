@@ -15,5 +15,4 @@ export * as Utils from './Utils.js';
 export { default as Log } from './Log.js';
 export * as LZW from './LZW.js';
 
-export { default as UMP } from './UMP.js';
-export * from './UMP.js';
+export * as ProtoUtils from './ProtoUtils.js';

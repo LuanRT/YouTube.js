@@ -1,0 +1,77 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+import "youtube/api/pfiinnertube/innertube_context.proto";
+
+message MetadataUpdateRequest {
+  optional InnerTubeContext context = 1;
+  optional string encrypted_video_id = 2;
+  optional MdeTitleUpdateRequest title = 3;
+  optional MdeDescriptionUpdateRequest description = 4;
+  optional MdePrivacyUpdateRequest privacy = 5;
+  optional MdeTagsUpdateRequest tags = 6;
+  optional MdeCategoryUpdateRequest category = 7;
+  optional MdeLicenseUpdateRequest license = 8;
+  optional MdeAgeRestrictionUpdateRequest age_restriction = 11;
+  optional MdeVideoStillRequestParams video_still = 20;
+  optional MdeMadeForKidsUpdateRequestParams made_for_kids = 68;
+  optional MdeRacyRequestParams racy = 69;
+
+  message MdeTitleUpdateRequest {
+    optional string new_title = 1;
+  }
+
+  message MdeDescriptionUpdateRequest {
+    optional string new_description = 1;
+  }
+
+  message MdePrivacyUpdateRequest {
+    optional int32 new_privacy = 1;
+    optional bool clear_privacy_draft = 2;
+  }
+
+  message MdeTagsUpdateRequest {
+    repeated string new_tags = 1;
+  }
+
+  message MdeCategoryUpdateRequest {
+    optional int32 new_category_id = 1;
+  }
+
+  message MdeLicenseUpdateRequest {
+    optional string new_license_id = 1;
+  }
+
+  message MdeMadeForKidsUpdateRequestParams {
+    optional int32 operation = 1;
+    optional int32 new_mfk = 2;
+  }
+
+  message MdeRacyRequestParams {
+    optional int32 operation = 1;
+    optional int32 new_racy = 2;
+  }
+
+  message MdeAgeRestrictionUpdateRequest {
+    optional bool new_is_age_restricted = 1;
+  }
+
+  message MdeVideoStillRequestParams {
+    optional int32 operation = 1;
+    optional int32 new_still_id = 2;
+    optional CustomThumbnailImage image = 3;
+    optional CustomThumbnailImage test_image = 4;
+    repeated ThumbnailExperimentImageData experiment_image = 6;
+
+    message ThumbnailExperimentImageData {
+      optional CustomThumbnailImage image = 1;
+    }
+
+    message CustomThumbnailImage {
+      optional bytes raw_bytes = 1;
+      optional string data_uri = 2;
+      optional int64 frame_timestamp_us = 4;
+      optional bool is_vertical = 5;
+    }
+  }
+}
