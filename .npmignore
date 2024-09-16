@@ -3,4 +3,5 @@
 src/
 !dist/**
 !README.md
+!LICENSE
 !bundle/**
