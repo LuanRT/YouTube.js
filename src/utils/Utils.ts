@@ -234,7 +234,9 @@ export function u8ToBase64(u8: Uint8Array): string {
 }
 
 export function base64ToU8(base64: string): Uint8Array {
-  return new Uint8Array(atob(base64).split('').map((char) => char.charCodeAt(0)));
+  const standard_base64 = base64.replace(/-/g, '+').replace(/_/g, '/');
+  const padded_base64 = standard_base64.padEnd(standard_base64.length + (4 - standard_base64.length % 4) % 4, '=');
+  return new Uint8Array(atob(padded_base64).split('').map((char) => char.charCodeAt(0)));
 }
 
 export function isTextRun(run: TextRun | EmojiRun): run is TextRun {

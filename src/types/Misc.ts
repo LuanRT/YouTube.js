@@ -25,6 +25,7 @@ export type UpdateVideoMetadataOptions = Partial<{
   license: string;
   age_restricted: boolean;
   made_for_kids: boolean;
+  thumbnail: Uint8Array;
   privacy: 'PUBLIC' | 'PRIVATE' | 'UNLISTED';
 }>;
 

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+import "youtube/api/pfiinnertube/innertube_context.proto";
+import "youtube/api/pfiinnertube/player_request.proto";
+
+message ReelItemWatchRequest {
+  optional InnerTubeContext context = 1;
+  optional PlayerRequest player_request = 2;
+  optional string params = 3;
+  optional bool disable_player_response = 4;
+}

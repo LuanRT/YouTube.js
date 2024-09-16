@@ -1,6 +1,5 @@
-import * as Proto from '../../proto/index.js';
 import { EventEmitter } from '../../utils/index.js';
-import { InnertubeError, Platform } from '../../utils/Utils.js';
+import { InnertubeError, Platform, u8ToBase64 } from '../../utils/Utils.js';
 import { Parser, LiveChatContinuation } from '../index.js';
 import SmoothedQueue from './SmoothedQueue.js';
 
@@ -12,6 +11,8 @@ import UpdateToggleButtonTextAction from '../classes/livechat/UpdateToggleButton
 import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import ItemMenu from './ItemMenu.js';
+
+import { LiveMessageParams } from '../../../protos/generated/misc/params.js';
 
 import type { ObservedArray, YTNode } from '../helpers.js';
 
@@ -42,7 +43,7 @@ export type ChatAction =
   ReplaceChatItemAction | ReplayChatItemAction | ShowLiveChatActionPanelAction | ShowLiveChatTooltipCommand;
 
 export type ChatItemWithMenu = LiveChatAutoModMessage | LiveChatMembershipItem | LiveChatPaidMessage | LiveChatPaidSticker | LiveChatTextMessage | LiveChatViewerEngagementMessage;
- 
+
 export interface LiveMetadata {
   title?: UpdateTitleAction;
   description?: UpdateDescriptionAction;
@@ -250,12 +251,25 @@ export default class LiveChat extends EventEmitter {
    * @param text - Text to send.
    */
   async sendMessage(text: string): Promise<ObservedArray<AddChatItemAction>> {
+    const writer = LiveMessageParams.encode({
+      params: {
+        ids: {
+          videoId: this.#video_id,
+          channelId: this.#channel_id
+        }
+      },
+      number0: 1, 
+      number1: 4
+    });
+
+    const params = btoa(encodeURIComponent(u8ToBase64(writer.finish())));
+
     const response = await this.#actions.execute('/live_chat/send_message', {
-      params: Proto.encodeMessageParams(this.#channel_id, this.#video_id),
       richMessage: { textSegments: [ { text } ] },
       clientMessageId: Platform.shim.uuidv4(),
       client: 'ANDROID',
-      parse: true
+      parse: true,
+      params
     });
 
     if (!response.actions)

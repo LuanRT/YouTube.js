@@ -5,9 +5,10 @@ import Analytics from '../../parser/youtube/Analytics.js';
 import Settings from '../../parser/youtube/Settings.js';
 import TimeWatched from '../../parser/youtube/TimeWatched.js';
 
-import * as Proto from '../../proto/index.js';
-import { InnertubeError } from '../../utils/Utils.js';
+import { InnertubeError, u8ToBase64 } from '../../utils/Utils.js';
 import { Account, BrowseEndpoint, Channel } from '../endpoints/index.js';
+
+import { ChannelAnalytics } from '../../../protos/generated/misc/params.js';
 
 export default class AccountManager {
   #actions: Actions;
@@ -106,11 +107,19 @@ export default class AccountManager {
   async getAnalytics(): Promise<Analytics> {
     const info = await this.getInfo();
 
+    const writer = ChannelAnalytics.encode({
+      params: {
+        channelId: info.footers?.endpoint.payload.browseId
+      }
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+
     const response = await this.#actions.execute(
       BrowseEndpoint.PATH, BrowseEndpoint.build({
         browse_id: 'FEanalytics_screen',
-        params: Proto.encodeChannelAnalyticsParams(info.footers?.endpoint.payload.browseId),
-        client: 'ANDROID'
+        client: 'ANDROID',
+        params
       })
     );
 

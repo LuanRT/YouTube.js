@@ -1,0 +1,45 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+import "misc/common.proto";
+import "youtube/api/pfiinnertube/client_info.proto";
+import "youtube/api/pfiinnertube/user_info.proto";
+import "youtube/api/pfiinnertube/capability_info.proto";
+import "youtube/api/pfiinnertube/request_info.proto";
+import "youtube/api/pfiinnertube/third_party_info.proto";
+
+message InnerTubeContext {
+  optional ClientInfo client = 1;
+  optional UserInfo user = 3;
+  optional CapabilityInfo capabilities = 4;
+  optional RequestInfo request = 5;
+  optional InnerTubeContext.ClickTrackingInfo click_tracking = 6;
+  optional ThirdPartyInfo third_party = 7;
+  optional ClientInfo remote_client = 8;
+  optional InnerTubeContext.AdSignalsInfo ad_signals_info = 9;
+  optional InnerTubeContext.ExperimentalData experimental_data = 10;
+  optional string client_screen_nonce = 11;
+  repeated InnerTubeContext.ActivePlayerInfo active_players = 12;
+
+  message ExperimentalData {
+    repeated .misc.KeyValuePair params = 1;
+  }
+
+  message ActivePlayerInfo {
+    optional bytes player_context_params = 1;
+  }
+
+  message ClickTrackingInfo {
+    optional bytes click_tracking_params = 2;
+  }
+
+  message AdSignalsInfo { 
+    repeated .misc.KeyValuePair params = 1;
+    optional string bid = 2;
+    optional string mutsu_id = 3;
+    optional string consent_bump_state = 4;
+    optional string advertising_id = 7;
+    optional bool limit_ad_tracking = 9;
+    optional string attribution_os_supported_version = 10;
+  }
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+import "misc/common.proto";
+import "youtube/api/pfiinnertube/attestation_response_data.proto";
+
+message RequestInfo {
+  optional string third_party_digest = 6;
+  optional bool use_ssl = 7;
+  optional bool return_error_detail = 9;
+  // "If-None-Match" HTTP header?
+  optional string if_none_match = 12;
+  optional bool return_log_entry = 13;
+  optional bool is_prefetch = 14;
+  repeated misc.KeyValuePair internal_experiment_flags = 15;
+  optional bool return_debug_data = 16;
+  optional string innertubez = 18;
+  optional bool trace_proto = 23;
+  optional bool return_log_entry_json = 24;
+  optional string sherlog_username = 25;
+  // repeated ConsistencyTokenJar consistency_token_jars = 26;
+  optional ReauthRequestInfo reauth_request_info = 29;
+  optional SessionInfo session_info = 30;
+  optional bool return_log_entry_proto = 31;
+  // External pre-request context as a string
+  optional string external_prequest_context = 32;
+  // repeated InnerTubeTokenJar innertube_token_jar = 33;
+  // Would a botguard/droidguard response here allow playback?
+  optional AttestationResponseData attestation_response_data = 34;
+  optional bytes eats = 35;
+  optional RequestQoS request_qos = 36;
+  
+  // Quality of Service?
+  message RequestQoS { 
+    optional Criticality criticality = 1;
+  }
+
+  enum Criticality {
+    CRITICALITY_UNSPECIFIED = 0;
+    CRITICALITY_CRITICAL = 1;
+    CRITICALITY_NON_CRITICAL = 2;
+  }
+
+  message SessionInfo { 
+    optional string token = 1;
+  }
+
+  message ReauthRequestInfo {
+    optional string encoded_reauth_proof_token = 1;
+  }
+}

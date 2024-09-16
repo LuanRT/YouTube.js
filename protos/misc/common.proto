@@ -1,0 +1,28 @@
+syntax = "proto3";
+package misc;
+
+message HttpHeader {
+	optional string name = 1;
+	optional string value = 2;
+}
+
+message FormatId {
+  optional int32 itag = 1;
+  optional uint64 last_modified = 2;
+  optional string xtags = 3;
+}
+
+message InitRange {
+  optional int32 start = 1;
+  optional int32 end = 2;
+}
+
+message IndexRange {
+  optional int32 start = 1;
+  optional int32 end = 2;
+}
+
+message KeyValuePair {
+  optional string key = 1;
+  optional string value = 2;
+}
