@@ -474,8 +474,8 @@ export default class Session extends EventEmitter {
   static #buildContext(args: ContextData) {
     const context: Context = {
       client: {
-        hl: args.hl,
-        gl: args.gl,
+        hl: args.hl || 'en',
+        gl: args.gl || 'US',
         remoteHost: args.remote_host,
         screenDensityFloat: 1,
         screenHeightPoints: 1440,
