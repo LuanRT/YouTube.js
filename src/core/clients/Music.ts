@@ -29,6 +29,7 @@ import { SearchFilter } from '../../../protos/generated/misc/params.js';
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { MusicSearchFilters } from '../../types/index.js';
 import type { Actions, Session } from '../index.js';
+import { PlaylistPanelContinuation } from '../../parser/index.js';
 
 export default class Music {
   #session: Session;
@@ -217,6 +218,53 @@ export default class Music {
     return playlist_panel;
   }
 
+  /**
+   * Retrieves up next with continuation.
+   * @param navEndpoint
+   * @param continuation
+   */
+  async getUpNextContinuation(navEndpoint: NavigationEndpoint, continuation: string): Promise<PlaylistPanelContinuation | undefined> {
+    const response = await this.#actions.execute(
+      NextEndpoint.PATH, { ...NextEndpoint.build({ ...navEndpoint.payload, client: 'YTMUSIC', continuation }), parse: true }
+    );
+
+    const playlistCont = response.continuation_contents?.as(PlaylistPanelContinuation);
+
+    // If (!tab)
+    //   Throw new InnertubeError('Could not find target tab.');
+    //
+    // Const music_queue = tab.content?.as(MusicQueue);
+    //
+    // If (!music_queue || !music_queue.content)
+    //   Throw new InnertubeError('Music queue was empty, the given id is probably invalid.', music_queue);
+    //
+    // Const playlist_panel = music_queue.content.as(PlaylistPanel);
+
+    // If (!playlist_panel.playlist_id && automix) {
+    //   Const automix_preview_video = playlist_panel.contents.firstOfType(AutomixPreviewVideo);
+    //
+    //   If (!automix_preview_video)
+    //     Throw new InnertubeError('Automix item not found');
+    //
+    //   Const page = await automix_preview_video.playlist_video?.endpoint.call(this.#actions, {
+    //     ...navEndpoint.payload,
+    //     Client: 'YTMUSIC',
+    //     Parse: true
+    //   });
+    //
+    //   If (!page || !page.contents_memo)
+    //     Throw new InnertubeError('Could not fetch automix');
+    //
+    //   Return page.contents_memo.getType(PlaylistPanel).first();
+    // }
+
+    return playlistCont;
+  }
+
+  /**
+   * Retrieves related content.
+   * @param video_id - The video id.
+   */
   async getRelated(video_id: string): Promise<SectionList | Message> {
     throwIfMissing({ video_id });
 

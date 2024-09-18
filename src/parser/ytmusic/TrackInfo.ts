@@ -17,6 +17,8 @@ import type MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
+import { PlaylistPanelContinuation } from '../continuations.js';
+import { NextEndpoint } from '../../core/endpoints/index.js';
 
 class TrackInfo extends MediaInfo {
   public tabs?: ObservedArray<Tab>;
@@ -100,6 +102,25 @@ class TrackInfo extends MediaInfo {
     }
 
     return playlist_panel;
+  }
+
+  /**
+   * Retrieves up next continuation.
+   */
+  async getUpNextContinuation(playlistPanel: PlaylistPanel): Promise<PlaylistPanelContinuation> {
+    if (!this.current_video_endpoint)
+      throw new InnertubeError('Current Video Endpoint was not defined.', this.current_video_endpoint);
+    
+    const response = await this.actions.execute(
+      NextEndpoint.PATH, { ...NextEndpoint.build({ ...this.current_video_endpoint.payload, client: 'YTMUSIC', continuation: playlistPanel.continuation }), parse: true }
+    );
+
+    const playlistCont = response.continuation_contents?.as(PlaylistPanelContinuation);
+
+    if (!playlistCont)
+      throw new InnertubeError('No PlaylistPanel Continuation available.', response);
+    
+    return playlistCont;
   }
 
   /**

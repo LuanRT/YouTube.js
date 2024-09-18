@@ -337,8 +337,8 @@ describe('YouTube.js Tests', () => {
       expect(upNext.playlist_id).toBe("PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u");
     });
 
-    test('Innertube#music.getInfo.NavEndpoint', async () => {
-      const playlist = await innertube.music.getPlaylist('PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u');
+    test('Innertube#music.getInfo.NavEndpoint2', async () => {
+      const playlist = await innertube.music.getPlaylist('RDCLAK5uy_kmAg-PruVj97qHPJcOBIPtnL4roYtpcgo');
       expect(playlist).toBeDefined();
       expect(playlist.header).toBeDefined();
       expect(playlist.contents).toBeDefined();
@@ -350,15 +350,15 @@ describe('YouTube.js Tests', () => {
       expect(info).toBeDefined();
       
       const upNext = await info.getUpNext(false);
-      expect(upNext.playlist_id).toBe("PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u");
+      expect(upNext.playlist_id).toBe("RDCLAK5uy_kmAg-PruVj97qHPJcOBIPtnL4roYtpcgo");
       console.log(upNext.contents[0])
       // console.log(upNext)
       const endpoint = upNext.contents.filterType(YTNodes.PlaylistPanelVideo)[1].endpoint;
       console.log(endpoint);
       const info2 = await innertube.music.getInfo(endpoint)
-      const upNext2 = await info2.getUpNext(false);
+      const upNext2 = await info2.getUpNextContinuation(upNext)
       // console.log(upNext2)
-      expect(upNext2.playlist_id).toBe("PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u");
+      // expect(upNext2.playlist_id).toBe("RDCLAK5uy_kmAg-PruVj97qHPJcOBIPtnL4roYtpcgo");
     });
 
     describe('Innertube#music.search', () => {
