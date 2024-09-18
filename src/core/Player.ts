@@ -155,6 +155,9 @@ export default class Player {
       case 'TVHTML5_SIMPLY_EMBEDDED_PLAYER':
         url_components.searchParams.set('cver', Constants.CLIENTS.TV_EMBEDDED.VERSION);
         break;
+      case 'WEB_EMBEDDED_PLAYER':
+        url_components.searchParams.set('cver', Constants.CLIENTS.WEB_EMBEDDED.VERSION);
+        break;
     }
 
     const result = url_components.toString();
