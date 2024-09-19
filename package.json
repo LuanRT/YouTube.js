@@ -138,14 +138,14 @@
   },
   "homepage": "https://github.com/LuanRT/YouTube.js#readme",
   "keywords": [
+    "api",
     "youtube",
-    "youtube-music",
-    "youtube-studio",
     "innertube",
-    "downloader",
     "livechat",
-    "ytmusic",
+    "youtube-music",
     "ytdl",
-    "api"
+    "youtube-studio",
+    "downloader",
+    "ytmusic"
   ]
 }
