@@ -81,7 +81,7 @@ export const CLIENTS = Object.freeze({
   WEB_CREATOR: {
     NAME_ID: '62',
     NAME: 'WEB_CREATOR',
-    VERSION: '1.20220918',
+    VERSION: '1.20240918.03.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'
