@@ -11,6 +11,8 @@ import Message from '../../parser/classes/Message.js';
 import MusicDescriptionShelf from '../../parser/classes/MusicDescriptionShelf.js';
 import MusicQueue from '../../parser/classes/MusicQueue.js';
 import MusicTwoRowItem from '../../parser/classes/MusicTwoRowItem.js';
+import MusicResponsiveListItem from '../../parser/classes/MusicResponsiveListItem.js';
+import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 import PlaylistPanel from '../../parser/classes/PlaylistPanel.js';
 import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.js';
 import SectionList from '../../parser/classes/SectionList.js';
@@ -44,9 +46,13 @@ export default class Music {
    * Retrieves track info. Passing a list item of type MusicTwoRowItem automatically starts a radio.
    * @param target - Video id or a list item.
    */
-  getInfo(target: string | MusicTwoRowItem): Promise<TrackInfo> {
+  getInfo(target: string | MusicTwoRowItem | MusicResponsiveListItem | NavigationEndpoint): Promise<TrackInfo> {
     if (target instanceof MusicTwoRowItem) {
-      return this.#fetchInfoFromListItem(target);
+      return this.#fetchInfoFromEndpoint(target.endpoint);
+    } else if (target instanceof MusicResponsiveListItem) {
+      return this.#fetchInfoFromEndpoint(target.overlay?.content?.endpoint ?? target.endpoint);
+    } else if (target instanceof NavigationEndpoint) {
+      return this.#fetchInfoFromEndpoint(target);
     } else if (typeof target === 'string') {
       return this.#fetchInfoFromVideoId(target);
     }
@@ -75,14 +81,11 @@ export default class Music {
     return new TrackInfo(response, this.#actions, cpn);
   }
 
-  async #fetchInfoFromListItem(list_item: MusicTwoRowItem | undefined): Promise<TrackInfo> {
-    if (!list_item)
-      throw new InnertubeError('List item cannot be undefined');
-
-    if (!list_item.endpoint)
+  async #fetchInfoFromEndpoint(endpoint?: NavigationEndpoint): Promise<TrackInfo> {
+    if (!endpoint)
       throw new Error('This item does not have an endpoint.');
 
-    const player_response = list_item.endpoint.call(this.#actions, {
+    const player_response = endpoint.call(this.#actions, {
       client: 'YTMUSIC',
       playbackContext: {
         contentPlaybackContext: {
@@ -93,7 +96,7 @@ export default class Music {
       }
     });
 
-    const next_response = list_item.endpoint.call(this.#actions, {
+    const next_response = endpoint.call(this.#actions, {
       client: 'YTMUSIC',
       enablePersistentPlaylistPanel: true,
       override_endpoint: '/next'
