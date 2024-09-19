@@ -1,5 +1,21 @@
 # Changelog
 
+## [10.5.0](https://github.com/LuanRT/YouTube.js/compare/v10.4.0...v10.5.0) (2024-09-19)
+
+
+### Features
+
+* Add `WEB_EMBEDDED` client ([#756](https://github.com/LuanRT/YouTube.js/issues/756)) ([eaf218f](https://github.com/LuanRT/YouTube.js/commit/eaf218f5da758fc37d71f7d00ba9e42533194f8a))
+* extend music getInfo to allow MusicResponsiveListItem and Nav Endpoints ([#751](https://github.com/LuanRT/YouTube.js/issues/751)) ([5db449c](https://github.com/LuanRT/YouTube.js/commit/5db449cc6d86b2df1e92302ec5c74e6d44d822fb))
+* **parser:** Add `ShortsLockupView` and `BadgeView` nodes ([#746](https://github.com/LuanRT/YouTube.js/issues/746)) ([e1e76ee](https://github.com/LuanRT/YouTube.js/commit/e1e76ee61629f84f4b7de9579ae9f6d6bf97bab8))
+
+
+### Bug Fixes
+
+* **ItemSection:** FeedFilterChipBar parse error ([#741](https://github.com/LuanRT/YouTube.js/issues/741)) ([bf6cc00](https://github.com/LuanRT/YouTube.js/commit/bf6cc006997675010db61fcd776244b234be5611))
+* **parser:** The icon_name property does not always exist in ThumbnailBadgeView ([#745](https://github.com/LuanRT/YouTube.js/issues/745)) ([094a96f](https://github.com/LuanRT/YouTube.js/commit/094a96fb5d8170d1f727ef6da84b258596b1a09a))
+* **Session:** Set default values for `hl` and `gl` in context builder ([7a39326](https://github.com/LuanRT/YouTube.js/commit/7a3932682112a0d76c04f65ae35445fc35403a00))
+
 ## [10.4.0](https://github.com/LuanRT/YouTube.js/compare/v10.3.0...v10.4.0) (2024-08-27)
 
 
