@@ -15,7 +15,7 @@
   <p>
     <a href="https://github.com/LuanRT/YouTube.js"><img src="https://luanrt.github.io/assets/img/ytjs.svg" title="youtube.js" alt="YouTube.js' Github Page" width="200" /></a>
   </p>
-  <p align="center">A full-featured wrapper around the InnerTube API</p>
+  <p align="center">A JavaScript client for YouTube's private API, known as InnerTube.</p>
 
   [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
   [![CI](https://github.com/LuanRT/YouTube.js/actions/workflows/test.yml/badge.svg)][actions]
