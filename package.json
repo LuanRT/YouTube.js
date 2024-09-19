@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "10.4.0",
+  "version": "10.5.0",
   "description": "A JavaScript client for YouTube's private API, known as InnerTube.",
   "type": "module",
   "types": "./dist/src/platform/lib.d.ts",
