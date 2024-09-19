@@ -13,7 +13,8 @@ export const URLS = Object.freeze({
     TEST: 'https://test-youtubei.sandbox.googleapis.com/youtubei/',
     CAMI: 'http://cami-youtubei.sandbox.googleapis.com/youtubei/',
     UYTFE: 'https://uytfe.sandbox.google.com/youtubei/'
-  })
+  }),
+  GOOGLE_SEARCH_BASE: 'https://www.google.com/'
 });
 export const OAUTH = Object.freeze({
   REGEX: Object.freeze({
@@ -68,6 +69,14 @@ export const CLIENTS = Object.freeze({
     NAME_ID: '85',
     NAME: 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
     VERSION: '2.0'
+  },
+  WEB_EMBEDDED: {
+    NAME_ID: '56',
+    NAME: 'WEB_EMBEDDED_PLAYER',
+    VERSION: '2.20240111.09.00',
+    API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
+    API_VERSION: 'v1',
+    STATIC_VISITOR_ID: '6zpwvWUNAco'
   }
 });
 export const STREAM_HEADERS = Object.freeze({
@@ -82,4 +91,4 @@ export const INNERTUBE_HEADERS_BASE = Object.freeze({
   'content-type': 'application/json'
 });
 
-export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV_EMBEDDED' ];
+export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV_EMBEDDED', 'WEB_EMBEDDED' ];
