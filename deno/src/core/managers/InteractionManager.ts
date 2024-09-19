@@ -1,10 +1,12 @@
-import * as Proto from '../../proto/index.ts';
+import * as ProtoUtils from '../../utils/ProtoUtils.ts';
 
-import { throwIfMissing } from '../../utils/Utils.ts';
+import { throwIfMissing, u8ToBase64 } from '../../utils/Utils.ts';
 import { LikeEndpoint, DislikeEndpoint, RemoveLikeEndpoint } from '../endpoints/like/index.ts';
 import { SubscribeEndpoint, UnsubscribeEndpoint } from '../endpoints/subscription/index.ts';
 import { CreateCommentEndpoint, PerformCommentActionEndpoint } from '../endpoints/comment/index.ts';
 import { ModifyChannelPreferenceEndpoint } from '../endpoints/notification/index.ts';
+
+import { CreateCommentParams, NotificationPreferences } from '../../../protos/generated/misc/params.ts';
 
 import type { Actions, ApiResponse } from '../index.ts';
 
@@ -128,10 +130,20 @@ export default class InteractionManager {
     if (!this.#actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
+    const writer = CreateCommentParams.encode({
+      videoId: video_id,
+      params: {
+        index: 0
+      },
+      number: 7
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+
     const action = await this.#actions.execute(
       CreateCommentEndpoint.PATH, CreateCommentEndpoint.build({
         comment_text: text,
-        create_comment_params: Proto.encodeCommentParams(video_id),
+        create_comment_params: params,
         client: 'ANDROID'
       })
     );
@@ -148,7 +160,7 @@ export default class InteractionManager {
   async translate(text: string, target_language: string, args: { video_id?: string; comment_id?: string; } = {}) {
     throwIfMissing({ text, target_language });
 
-    const target_action = Proto.encodeCommentActionParams(22, { text, target_language, ...args });
+    const target_action = ProtoUtils.encodeCommentActionParams(22, { text, target_language, ...args });
 
     const response = await this.#actions.execute(
       PerformCommentActionEndpoint.PATH, PerformCommentActionEndpoint.build({
@@ -188,10 +200,20 @@ export default class InteractionManager {
     if (!Object.keys(pref_types).includes(type.toUpperCase()))
       throw new Error(`Invalid notification preference type: ${type}`);
 
+    const writer = NotificationPreferences.encode({
+      channelId: channel_id,
+      prefId: {
+        index: pref_types[type.toUpperCase() as keyof typeof pref_types]
+      },
+      number0: 0, number1: 4
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+  
     const action = await this.#actions.execute(
       ModifyChannelPreferenceEndpoint.PATH, ModifyChannelPreferenceEndpoint.build({
         client: 'WEB',
-        params: Proto.encodeNotificationPref(channel_id, pref_types[type.toUpperCase() as keyof typeof pref_types])
+        params
       })
     );
 

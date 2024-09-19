@@ -1,0 +1,227 @@
+syntax = "proto3";
+package misc;
+
+message VisitorData {
+  string id = 1;
+  int32 timestamp = 5;
+}
+
+message SearchFilter {
+  optional SortBy sort_by = 1;
+  
+   enum SortBy {
+    RELEVANCE = 0;
+    RATING = 1;
+    UPLOAD_DATE = 2;
+    VIEW_COUNT = 3;
+  }
+
+  message Filters {
+    optional UploadDate upload_date = 1;
+    optional SearchType type = 2;
+    optional Duration duration = 3;
+    optional MusicSearchType music_search_type = 17;
+
+    optional bool features_hd = 4;
+    optional bool features_subtitles = 5;
+    optional bool features_creative_commons = 6;
+    optional bool features_3d = 7;
+    optional bool features_live = 8;
+    optional bool features_purchased = 9;
+    optional bool features_4k = 14;
+    optional bool features_360 = 15;
+    optional bool features_location = 23;
+    optional bool features_hdr = 25;
+    optional bool features_vr180 = 26; 
+
+    enum UploadDate {
+      ANY_DATE = 0;
+      HOUR = 1;
+      TODAY = 2;
+      WEEK = 3;
+      MONTH = 4;
+      YEAR = 5;
+    }
+
+    enum SearchType {
+      ANY_TYPE = 0;
+      VIDEO = 1;
+      CHANNEL = 2;
+      PLAYLIST = 3;
+      MOVIE = 4;
+    }
+
+    enum Duration {
+      ANY_DURATION = 0;
+      SHORT = 1;
+      LONG = 2;
+      MEDIUM = 3;
+    }
+
+    message MusicSearchType {
+      optional bool song = 1;
+      optional bool video = 2;
+      optional bool album = 3;
+      optional bool artist = 4;
+      optional bool playlist = 5;
+    }
+  }
+  
+  optional Filters filters = 2;
+}
+
+message ChannelAnalytics {
+  message Params {
+    string channel_id = 1001;
+  }
+
+  Params params = 32;
+}
+
+message SoundInfoParams {
+  message Sound {
+    message Params {
+      message Ids {
+        string id_1 = 1;
+        string id_2 = 2;
+        string id_3 = 3;
+      }
+      Ids ids = 2;
+    }
+    Params params = 1;
+  }
+  
+  Sound sound = 94;
+}
+
+message NotificationPreferences {
+  string channel_id = 1;
+ 
+  message Preference {
+    int32 index = 1;
+  }
+  
+  Preference pref_id = 2;
+  
+  optional int32 number_0 = 3;
+  optional int32 number_1 = 4;
+}
+
+message LiveMessageParams {
+  message Params {
+    message Ids {
+      string channel_id = 1;
+      string video_id = 2;
+    }
+    Ids ids = 5;
+  }
+  
+  Params params = 1;
+  
+  optional int32 number_0 = 2;
+  optional int32 number_1 = 3;
+}
+
+message GetCommentsSectionParams {
+  message Context {
+    string video_id = 2;
+  }
+  Context ctx = 2;
+  
+  int32 unk_param = 3;
+  
+  message Params {
+    optional string unk_token = 1;
+    
+    message Options {
+      string video_id = 4;
+      int32 sort_by = 6;
+      int32 type = 15;
+      optional string comment_id = 16;
+    }
+    
+    message RepliesOptions {
+      string comment_id = 2;
+    
+      message UnkOpts {
+        int32 unk_param = 1;
+      }
+      UnkOpts unkopts = 4;
+      
+      optional string channel_id = 5;
+      string video_id = 6;
+      
+      int32 unk_param_1 = 8;
+      int32 unk_param_2 = 9;
+    }
+    
+    optional Options opts = 4;
+    optional RepliesOptions replies_opts = 3;
+    
+    optional int32 page = 5;
+    string target = 8;
+  }
+  
+  Params params = 6;
+}
+
+message CreateCommentParams {
+  string video_id = 2;
+  message Params {
+    int32 index = 1;
+  }
+  Params params = 5;
+  int32 number = 10;
+}
+
+message PeformCommentActionParams {
+  int32 type = 1;
+  string comment_id = 3;
+  string video_id = 5;
+  
+  optional int32 unk_num = 2;
+  optional string channel_id = 23;
+  
+  message TranslateCommentParams {
+    message Params {
+      message Comment {
+        string text = 1;
+      }
+      Comment comment = 1;
+    }
+    Params params = 3;
+    
+    string comment_id = 2;
+    string target_language = 4;
+  }
+  
+  optional TranslateCommentParams translate_comment_params = 31;
+}
+
+message Hashtag {
+  message Params {
+    string hashtag = 1;
+    int32 type = 3;
+  }
+  
+  Params params = 93;
+}
+
+message ReelSequence {
+  string short_id = 1;
+  message Params {
+    int32 number = 3;
+  }
+
+  Params params = 5;
+  int32 feature_2 = 10;
+  int32 feature_3 = 13;
+}
+
+message ShortsParam {
+  message Field1 {
+    optional int32 p1 = 1;
+  }
+  optional Field1 f1 = 1;
+  optional int32 p59 = 59;
+}

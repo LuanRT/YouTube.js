@@ -1,0 +1,36 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+import "youtube/api/pfiinnertube/innertube_context.proto";
+import "youtube/api/pfiinnertube/service_integrity_dimensions.proto";
+import "youtube/api/pfiinnertube/player_request_caption_params.proto";
+import "youtube/api/pfiinnertube/player_attestation_request_data.proto";
+import "youtube/api/pfiinnertube/playback_context.proto";
+
+message PlayerRequest {
+  optional InnerTubeContext context = 1;
+  optional string video_id = 2;
+  optional bool content_check_ok = 3;
+  optional PlaybackContext playback_context = 4;
+  optional bool racy_check_ok = 5;
+  optional string id = 6;
+  optional string t = 7;
+  optional bool for_offline = 8;
+  optional string playlist_id = 9;
+  optional int32 playlist_index = 10;
+  optional uint32 start_time_secs = 11;
+  optional string params = 12;
+  optional bytes offline_sharing_wrapped_key = 14;
+  optional PlayerAttestationRequestData attestation_request = 16;
+  optional string referring_app = 17;
+  optional string referrer = 18;
+  optional string serialized_third_party_embed_config = 19;
+  optional bool proxied_by_onesie = 20;
+  optional string host_app_token = 22;
+  optional string cpn = 23;
+  optional bool override_muted_at_start = 25;
+  optional PlayerRequestCaptionParams caption_params = 26;
+  optional ServiceIntegrityDimensions service_integrity_dimensions = 27;
+  // optional VideoQualitySetting video_quality_setting_params = 28;
+  optional bytes deferred_player_token = 29;
+}

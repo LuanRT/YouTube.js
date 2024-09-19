@@ -9,6 +9,7 @@ import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.ts
 import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.ts';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.ts';
 import ReelItem from '../classes/ReelItem.ts';
+import ShortsLockupView from '../classes/ShortsLockupView.ts';
 import VideoOwner from '../classes/VideoOwner.ts';
 import Alert from '../classes/Alert.ts';
 import ContinuationItem from '../classes/ContinuationItem.ts';
@@ -67,8 +68,8 @@ export default class Playlist extends Feed<IBrowseResponse> {
     return primary_info.stats[index]?.toString() || 'N/A';
   }
 
-  get items(): ObservedArray<PlaylistVideo | ReelItem> {
-    return observe(this.videos.as(PlaylistVideo, ReelItem).filter((video) => (video as PlaylistVideo).style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
+  get items(): ObservedArray<PlaylistVideo | ReelItem | ShortsLockupView> {
+    return observe(this.videos.as(PlaylistVideo, ReelItem, ShortsLockupView).filter((video) => (video as PlaylistVideo).style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
   }
 
   get has_continuation() {

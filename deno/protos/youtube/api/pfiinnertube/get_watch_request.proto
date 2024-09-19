@@ -1,0 +1,14 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+import "youtube/api/pfiinnertube/innertube_context.proto";
+import "youtube/api/pfiinnertube/player_request.proto";
+import "youtube/api/pfiinnertube/watch_next_request.proto";
+import "youtube/api/pfiinnertube/reel_item_watch_request.proto";
+
+message GetWatchRequest {
+  optional InnerTubeContext context = 1;
+  optional PlayerRequest player_request = 2;
+  optional WatchNextRequest watch_next_request = 3;
+  optional ReelItemWatchRequest reel_item_watch_request = 4;
+}

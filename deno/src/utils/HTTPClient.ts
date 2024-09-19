@@ -257,6 +257,12 @@ export default class HTTPClient {
           }
         };
         break;
+      case 'WEB_EMBEDDED':
+        ctx.client.clientName = Constants.CLIENTS.WEB_EMBEDDED.NAME;
+        ctx.client.clientVersion = Constants.CLIENTS.WEB_EMBEDDED.VERSION;
+        ctx.client.clientScreen = 'EMBED';
+        ctx.thirdParty = { embedUrl: Constants.URLS.GOOGLE_SEARCH_BASE };
+        break;
       default:
         break;
     }

@@ -1,0 +1,10 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+  
+message PlayerRequestCaptionParams {
+  optional bool device_captions_on = 1;
+  optional string device_captions_lang_pref = 2;
+  optional string viewer_selected_caption_langs = 3;
+  optional string cc_lang_pref = 4;
+  optional bool cc_load_policy_on = 5;
+}

@@ -14,6 +14,7 @@ import PlaylistPanelVideo from '../../parser/classes/PlaylistPanelVideo.ts';
 import PlaylistVideo from '../../parser/classes/PlaylistVideo.ts';
 import Post from '../../parser/classes/Post.ts';
 import ReelItem from '../../parser/classes/ReelItem.ts';
+import ShortsLockupView from '../../parser/classes/ShortsLockupView.ts';
 import ReelShelf from '../../parser/classes/ReelShelf.ts';
 import RichShelf from '../../parser/classes/RichShelf.ts';
 import Shelf from '../../parser/classes/Shelf.ts';
@@ -78,6 +79,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
       Video,
       GridVideo,
       ReelItem,
+      ShortsLockupView,
       CompactVideo,
       PlaylistVideo,
       PlaylistPanelVideo,

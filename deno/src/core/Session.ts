@@ -1,7 +1,6 @@
 import OAuth2 from './OAuth2.ts';
-import { Log, EventEmitter, HTTPClient, LZW } from '../utils/index.ts';
+import { Log, EventEmitter, HTTPClient, LZW, ProtoUtils } from '../utils/index.ts';
 import * as Constants from '../utils/Constants.ts';
-import * as Proto from '../proto/index.ts';
 import Actions from './Actions.ts';
 import Player from './Player.ts';
 
@@ -22,7 +21,8 @@ export enum ClientType {
   ANDROID = 'ANDROID',
   ANDROID_MUSIC = 'ANDROID_MUSIC',
   ANDROID_CREATOR = 'ANDROID_CREATOR',
-  TV_EMBEDDED = 'TVHTML5_SIMPLY_EMBEDDED_PLAYER'
+  TV_EMBEDDED = 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
+  WEB_EMBEDDED = 'WEB_EMBEDDED_PLAYER'
 }
 
 export type Context = {
@@ -359,7 +359,7 @@ export default class Session extends EventEmitter {
         hl: lang || 'en',
         gl: location || 'US',
         remote_host: '',
-        visitor_data: visitor_data || Proto.encodeVisitorData(generateRandomString(11), Math.floor(Date.now() / 1000)),
+        visitor_data: visitor_data || ProtoUtils.encodeVisitorData(generateRandomString(11), Math.floor(Date.now() / 1000)),
         client_name: client_name,
         client_version: Constants.CLIENTS.WEB.VERSION,
         device_category: device_category.toUpperCase(),
@@ -475,8 +475,8 @@ export default class Session extends EventEmitter {
   static #buildContext(args: ContextData) {
     const context: Context = {
       client: {
-        hl: args.hl,
-        gl: args.gl,
+        hl: args.hl || 'en',
+        gl: args.gl || 'US',
         remoteHost: args.remote_host,
         screenDensityFloat: 1,
         screenHeightPoints: 1440,
@@ -525,7 +525,7 @@ export default class Session extends EventEmitter {
   }
 
   static #getVisitorID(visitor_data: string) {
-    const decoded_visitor_data = Proto.decodeVisitorData(visitor_data);
+    const decoded_visitor_data = ProtoUtils.decodeVisitorData(visitor_data);
     return decoded_visitor_data.id;
   }
 

@@ -4,7 +4,7 @@ import Author from '../misc/Author.ts';
 import Text from '../misc/Text.ts';
 import CommentReplyDialog from './CommentReplyDialog.ts';
 import { InnertubeError } from '../../../utils/Utils.ts';
-import * as Proto from '../../../proto/index.ts';
+import * as ProtoUtils from '../../../utils/ProtoUtils.ts';
 
 import type Actions from '../../../core/Actions.ts';
 import type { ApiResponse } from '../../../core/Actions.ts';
@@ -223,7 +223,7 @@ export default class CommentView extends YTNode {
       target_language
     };
 
-    const action = Proto.encodeCommentActionParams(22, payload);
+    const action = ProtoUtils.encodeCommentActionParams(22, payload);
     const response = await this.#actions.execute('comment/perform_comment_action', { action, client: 'ANDROID' });
 
     // XXX: Should move this to Parser#parseResponse

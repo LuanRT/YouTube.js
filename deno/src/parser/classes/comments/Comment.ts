@@ -11,7 +11,7 @@ import CommentReplyDialog from './CommentReplyDialog.ts';
 import PdgCommentChip from './PdgCommentChip.ts';
 import SponsorCommentBadge from './SponsorCommentBadge.ts';
 
-import * as Proto from '../../../proto/index.ts';
+import * as ProtoUtils from '../../../utils/ProtoUtils.ts';
 import { InnertubeError } from '../../../utils/Utils.ts';
 import { YTNode } from '../../helpers.ts';
 
@@ -166,7 +166,7 @@ export default class Comment extends YTNode {
       comment_id: this.comment_id
     };
 
-    const action = Proto.encodeCommentActionParams(22, payload);
+    const action = ProtoUtils.encodeCommentActionParams(22, payload);
     const response = await this.#actions.execute('comment/perform_comment_action', { action, client: 'ANDROID' });
 
     // XXX: Should move this to Parser#parseResponse

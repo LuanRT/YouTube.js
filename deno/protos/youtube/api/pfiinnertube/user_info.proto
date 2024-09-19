@@ -1,0 +1,19 @@
+syntax = "proto3";
+package youtube.api.pfiinnertube;
+
+message UserInfo {
+  optional string on_behalf_of_user = 3;
+  optional bool enable_safety_mode = 7;
+  repeated UserInfo.CredentialTransferToken credential_transfer_tokens = 12;
+  optional UserInfo.DelegatePurchases delegate_purchases = 13;
+  optional UserInfo.KidsParent kids_parent = 14;
+  optional bool is_incognito = 15;
+  optional bool locked_safety_mode = 16;
+  optional UserInfo.DelegationContext delegation_context = 17;
+  optional string serialized_delegation_context = 18;
+
+  message KidsParent { }
+  message DelegatePurchases { }
+  message DelegationContext { }
+  message CredentialTransferToken { }
+}

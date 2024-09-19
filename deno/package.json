@@ -1,7 +1,7 @@
 {
   "name": "youtubei.js",
-  "version": "10.4.0",
-  "description": "A wrapper around YouTube's private API. Supports YouTube, YouTube Music, YouTube Kids and YouTube Studio (WIP).",
+  "version": "10.5.0",
+  "description": "A JavaScript client for YouTube's private API, known as InnerTube.",
   "type": "module",
   "types": "./dist/src/platform/lib.d.ts",
   "typesVersions": {
@@ -75,29 +75,37 @@
     "Absidue (https://github.com/absidue)"
   ],
   "scripts": {
-    "test": "npx jest --verbose",
-    "lint": "npx eslint ./src",
-    "lint:fix": "npx eslint --fix ./src",
-    "clean": "npx rimraf ./dist/src ./dist/package.json ./bundle/browser.js ./bundle/browser.js.map ./bundle/browser.min.js ./bundle/browser.min.js.map ./bundle/node.cjs ./bundle/node.cjs.map ./bundle/cf-worker.js ./bundle/cf-worker.js.map ./bundle/react-native.js ./bundle/react-native.js.map ./deno",
-    "build": "npm run clean && npm run build:parser-map && npm run build:proto && npm run build:esm && npm run bundle:node && npm run bundle:browser && npm run bundle:browser:prod && npm run bundle:cf-worker && npm run bundle:react-native",
+    "test": "jest --verbose",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "clean": "rimraf ./dist ./bundle/browser.js ./bundle/browser.min.js ./bundle/node.cjs ./bundle/cf-worker.js ./bundle/react-native.js ./deno",
+    "build": "npm run clean && npm run build:parser-map && npm run build:esm && npm run bundle:node && npm run bundle:browser && npm run bundle:browser:prod && npm run bundle:cf-worker && npm run bundle:react-native",
+    "build:esm": "tspc",
+    "build:deno": "cpy ./src ./deno && cpy ./protos ./deno && esbuild ./src/utils/DashManifest.tsx --keep-names --format=esm --platform=neutral --target=es2020 --outfile=./deno/src/utils/DashManifest.js && cpy ./package.json ./deno && replace \".ts';\" \".ts';\" ./deno -r && replace '.js\";' '.ts\";' ./deno -r && replace \"'./DashManifest.js';\" \"'./DashManifest.js';\" ./deno -r && replace \"'https://esm.sh/jintr';\" \"'https://esm.sh/jintr';\" ./deno -r",
+    "build:proto": "rimraf ./protos/generated && node ./dev-scripts/generate-proto.mjs",
     "build:parser-map": "node ./dev-scripts/gen-parser-map.mjs",
-    "build:proto": "npx pb-gen-ts --entry-path=\"src/proto\" --out-dir=\"src/proto/generated\" --ext-in-import=\".js\"",
-    "build:esm": "npx tspc",
-    "build:deno": "npx cpy ./src ./deno && npx esbuild ./src/utils/DashManifest.tsx --keep-names --format=esm --platform=neutral --target=es2020 --outfile=./deno/src/utils/DashManifest.js && npx cpy ./package.json ./deno && npx replace \".ts';\" \".ts';\" ./deno -r && npx replace '.js\";' '.ts\";' ./deno -r && npx replace \"'./DashManifest.js';\" \"'./DashManifest.js';\" ./deno -r && npx replace \"'https://esm.sh/jintr';\" \"'https://esm.sh/jintr';\" ./deno -r",
-    "bundle:node": "npx esbuild ./dist/src/platform/node.js --bundle --target=node10 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:jintr --external:undici --external:linkedom --external:tslib --sourcemap --banner:js=\"/* eslint-disable */\"",
-    "bundle:browser": "npx esbuild ./dist/src/platform/web.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome58 --keep-names --format=esm --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/browser.js --platform=browser",
-    "bundle:react-native": "npx esbuild ./dist/src/platform/react-native.js --bundle --target=es2020 --keep-names --format=esm --platform=neutral --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/react-native.js",
+    "bundle:node": "esbuild ./dist/src/platform/node.js --bundle --target=node16 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:jintr --external:undici --external:linkedom --external:tslib --banner:js=\"/* eslint-disable */\"",
+    "bundle:browser": "esbuild ./dist/src/platform/web.js --banner:js=\"/* eslint-disable */\" --bundle --target=chrome70 --keep-names --format=esm --define:global=globalThis --conditions=module --outfile=./bundle/browser.js --platform=browser",
+    "bundle:react-native": "esbuild ./dist/src/platform/react-native.js --bundle --target=es2020 --keep-names --format=esm --platform=neutral --define:global=globalThis --conditions=module --outfile=./bundle/react-native.js",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
-    "bundle:cf-worker": "npx esbuild ./dist/src/platform/cf-worker.js --banner:js=\"/* eslint-disable */\" --bundle --target=es2020 --keep-names --format=esm --sourcemap --define:global=globalThis --conditions=module --outfile=./bundle/cf-worker.js --platform=node",
+    "bundle:cf-worker": "esbuild ./dist/src/platform/cf-worker.js --banner:js=\"/* eslint-disable */\" --bundle --target=es2020 --keep-names --format=esm --define:global=globalThis --conditions=module --outfile=./bundle/cf-worker.js --platform=node",
     "prepare": "npm run build",
-    "watch": "npx tsc --watch"
+    "watch": "tspc --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LuanRT/YouTube.js.git"
   },
+  "files": [
+    "dist/",
+    "bundle/",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "license": "MIT",
   "dependencies": {
+    "@bufbuild/protobuf": "^2.0.0",
     "jintr": "^2.1.1",
     "tslib": "^2.5.0",
     "undici": "^5.19.1"
@@ -116,10 +124,11 @@
     "glob": "^8.0.3",
     "globals": "^15.9.0",
     "jest": "^29.7.0",
-    "pbkit": "^0.0.59",
     "replace": "^1.2.2",
+    "rimraf": "^6.0.1",
     "ts-jest": "^29.1.4",
     "ts-patch": "^3.0.2",
+    "ts-proto": "^2.2.0",
     "ts-transformer-inline-file": "^0.2.0",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.2.0"
@@ -129,24 +138,14 @@
   },
   "homepage": "https://github.com/LuanRT/YouTube.js#readme",
   "keywords": [
-    "yt",
-    "dl",
-    "ytdl",
+    "api",
     "youtube",
-    "youtubedl",
-    "youtube-dl",
-    "youtube-downloader",
-    "youtube-music",
-    "youtube-studio",
     "innertube",
-    "unofficial",
-    "downloader",
     "livechat",
-    "studio",
-    "upload",
-    "ytmusic",
-    "search",
-    "music",
-    "api"
+    "youtube-music",
+    "ytdl",
+    "youtube-studio",
+    "downloader",
+    "ytmusic"
   ]
 }
