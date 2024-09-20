@@ -77,6 +77,14 @@ export const CLIENTS = Object.freeze({
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'
+  },
+  WEB_CREATOR: {
+    NAME_ID: '62',
+    NAME: 'WEB_CREATOR',
+    VERSION: '1.20240918.03.00',
+    API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
+    API_VERSION: 'v1',
+    STATIC_VISITOR_ID: '6zpwvWUNAco'
   }
 });
 export const STREAM_HEADERS = Object.freeze({
@@ -91,4 +99,4 @@ export const INNERTUBE_HEADERS_BASE = Object.freeze({
   'content-type': 'application/json'
 });
 
-export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV_EMBEDDED', 'WEB_EMBEDDED' ];
+export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV_EMBEDDED', 'WEB_EMBEDDED', 'WEB_CREATOR' ];
