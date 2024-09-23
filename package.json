@@ -89,6 +89,7 @@
     "bundle:react-native": "esbuild ./dist/src/platform/react-native.js --bundle --target=es2020 --keep-names --format=esm --platform=neutral --define:global=globalThis --conditions=module --outfile=./bundle/react-native.js",
     "bundle:browser:prod": "npm run bundle:browser -- --outfile=./bundle/browser.min.js --minify",
     "bundle:cf-worker": "esbuild ./dist/src/platform/cf-worker.js --banner:js=\"/* eslint-disable */\" --bundle --target=es2020 --keep-names --format=esm --define:global=globalThis --conditions=module --outfile=./bundle/cf-worker.js --platform=node",
+    "build:docs": "typedoc",
     "prepare": "npm run build",
     "watch": "tspc --watch"
   },
@@ -130,6 +131,8 @@
     "ts-patch": "^3.0.2",
     "ts-proto": "^2.2.0",
     "ts-transformer-inline-file": "^0.2.0",
+    "typedoc": "^0.26.7",
+    "typedoc-plugin-markdown": "^4.2.7",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.2.0"
   },

@@ -166,7 +166,6 @@ export default class MediaInfo {
 
   /**
    * Retrieves the video's transcript.
-   * @param video_id - The video id.
    */
   async getTranscript(): Promise<TranscriptInfo> {
     const next_response = this.page[1];
