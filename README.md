@@ -13,7 +13,6 @@
     </a>
   </p>
   <p>A JavaScript client for YouTube's private API, known as InnerTube.</p>
-</div>
 
 [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
 [![CI](https://github.com/LuanRT/YouTube.js/actions/workflows/test.yml/badge.svg)][actions]
@@ -21,7 +20,11 @@
 [![Downloads](https://img.shields.io/npm/dt/youtubei.js)][npm]
 [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
 
-### Installation
+</div>
+
+YouTube.js is a JavaScript client for YouTube's internal API, known as "InnerTube". It allows you to interact with YouTube programmatically, providing access to videos, comments, live chats, streaming data and more. It works seamlessly across Node.js, Deno, and modern browsers.
+
+## Installation
 
 Before installing, make sure your environment meets the [prerequisites](https://ytjs.dev/guide/getting-started.html#prerequisites).
 
@@ -49,7 +52,7 @@ import { Innertube } from 'youtubei.js';
 const innertube = await Innertube.create(/* options */);
 ```
 
-For detailed usage, check out the [documentation](https://ytjs.dev).
+For detailed usage, check out the [YouTube.js Guide and API Documentation](https://ytjs.dev).
 
 ## Contributing
 We welcome all contributions, issues and feature requests, whether small or large. If you want to contribute, feel free to check out our [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
@@ -58,10 +61,6 @@ We welcome all contributions, issues and feature requests, whether small or larg
 <a href="https://github.com/LuanRT/YouTube.js/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=LuanRT/YouTube.js" />
 </a>
-
-## Contact
-
-For help, reach out on [Discord][discord] or check out the [GitHub issues page](https://github.com/LuanRT/YouTube.js/issues).
 
 ## Disclaimer
 This project is not affiliated with, endorsed, or sponsored by YouTube or any of its affiliates or subsidiaries. All trademarks, logos, and brand names used in this project are the property of their respective owners and are used solely to describe the services provided.
