@@ -12,7 +12,7 @@
       <img src="https://luanrt.github.io/assets/img/ytjs.svg" alt="YouTube.js Logo" width="200" />
     </a>
   </p>
-  <p>A JavaScript client for YouTube's private API, known as InnerTube.</p>
+  <p>A JavaScript client for YouTube's private API</p>
 
 [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
 [![CI](https://github.com/LuanRT/YouTube.js/actions/workflows/test.yml/badge.svg)][actions]
