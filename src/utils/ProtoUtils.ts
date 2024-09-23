@@ -1,5 +1,5 @@
 import { base64ToU8, u8ToBase64 } from './Utils.js';
-import { VisitorData, PeformCommentActionParams } from '../../protos/generated/misc/params.js';
+import { VisitorData, PeformCommentActionParams, NextParams } from '../../protos/generated/misc/params.js';
 
 export function encodeVisitorData(id: string, timestamp: number): string {
   const writer = VisitorData.encode({ id, timestamp });
@@ -45,4 +45,9 @@ export function encodeCommentActionParams(type: number, args: {
 
   const writer = PeformCommentActionParams.encode(data);
   return encodeURIComponent(u8ToBase64(writer.finish()));
+}
+
+export function encodeNextParams(video_ids: string[]): string {
+  const writer = NextParams.encode({ videoId: video_ids });
+  return encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
 }

@@ -395,6 +395,10 @@ export interface ShortsParam_Field1 {
   p1?: number | undefined;
 }
 
+export interface NextParams {
+  videoId: string[];
+}
+
 function createBaseVisitorData(): VisitorData {
   return { id: "", timestamp: 0 };
 }
@@ -3310,6 +3314,65 @@ export const ShortsParam_Field1: MessageFns<ShortsParam_Field1> = {
   fromPartial<I extends Exact<DeepPartial<ShortsParam_Field1>, I>>(object: I): ShortsParam_Field1 {
     const message = createBaseShortsParam_Field1();
     message.p1 = object.p1 ?? undefined;
+    return message;
+  },
+};
+
+function createBaseNextParams(): NextParams {
+  return { videoId: [] };
+}
+
+export const NextParams: MessageFns<NextParams> = {
+  encode(message: NextParams, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.videoId) {
+      writer.uint32(42).string(v!);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): NextParams {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseNextParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 5:
+          if (tag !== 42) {
+            break;
+          }
+
+          message.videoId.push(reader.string());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): NextParams {
+    return {
+      videoId: globalThis.Array.isArray(object?.videoId) ? object.videoId.map((e: any) => globalThis.String(e)) : [],
+    };
+  },
+
+  toJSON(message: NextParams): unknown {
+    const obj: any = {};
+    if (message.videoId?.length) {
+      obj.videoId = message.videoId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<NextParams>, I>>(base?: I): NextParams {
+    return NextParams.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<NextParams>, I>>(object: I): NextParams {
+    const message = createBaseNextParams();
+    message.videoId = object.videoId?.map((e) => e) || [];
     return message;
   },
 };

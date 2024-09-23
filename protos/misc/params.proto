@@ -225,3 +225,7 @@ message ShortsParam {
   optional Field1 f1 = 1;
   optional int32 p59 = 59;
 }
+
+message NextParams {
+  repeated string video_id = 5;
+}
