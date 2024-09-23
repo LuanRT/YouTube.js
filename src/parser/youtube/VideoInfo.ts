@@ -46,7 +46,6 @@ export default class VideoInfo extends MediaInfo {
   /**
    * @param data - API response.
    * @param actions - Actions instance.
-   * @param player - Player instance.
    * @param cpn - Client Playback Nonce.
    */
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
