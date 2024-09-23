@@ -4,6 +4,7 @@
 export { default as AboutChannel } from './classes/AboutChannel.js';
 export { default as AboutChannelView } from './classes/AboutChannelView.js';
 export { default as AccountChannel } from './classes/AccountChannel.js';
+export { default as AccountItem } from './classes/AccountItem.js';
 export { default as AccountItemSection } from './classes/AccountItemSection.js';
 export { default as AccountItemSectionHeader } from './classes/AccountItemSectionHeader.js';
 export { default as AccountSectionList } from './classes/AccountSectionList.js';

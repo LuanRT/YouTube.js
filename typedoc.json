@@ -1,0 +1,12 @@
+{
+  "readme": "none",
+  "entryPoints": [
+    "src/platform/lib.ts"
+  ],
+  "out": "docs/api",
+  "plugin": [
+    "typedoc-plugin-markdown"
+  ],
+  "hidePageHeader": true,
+  "tsconfig": "tsconfig.json"
+}
