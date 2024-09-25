@@ -166,21 +166,21 @@ async function DashManifest({
           >
             {
               set.color_info.primaries &&
-              <essential-property
+              <supplemental-property
                 schemeIdUri="urn:mpeg:mpegB:cicp:ColourPrimaries"
                 value={set.color_info.primaries}
               />
             }
             {
               set.color_info.transfer_characteristics &&
-              <essential-property
+              <supplemental-property
                 schemeIdUri="urn:mpeg:mpegB:cicp:TransferCharacteristics"
                 value={set.color_info.transfer_characteristics}
               />
             }
             {
               set.color_info.matrix_coefficients &&
-              <essential-property
+              <supplemental-property
                 schemeIdUri="urn:mpeg:mpegB:cicp:MatrixCoefficients"
                 value={set.color_info.matrix_coefficients}
               />
