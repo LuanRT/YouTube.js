@@ -351,14 +351,16 @@ describe('YouTube.js Tests', () => {
       
       const upNext = await info.getUpNext(false);
       expect(upNext.playlist_id).toBe("RDCLAK5uy_kmAg-PruVj97qHPJcOBIPtnL4roYtpcgo");
-      console.log(upNext.contents[0])
-      // console.log(upNext)
+      
       const endpoint = upNext.contents.filterType(YTNodes.PlaylistPanelVideo)[1].endpoint;
-      console.log(endpoint);
+      
       const info2 = await innertube.music.getInfo(endpoint)
       const upNext2 = await info2.getUpNextContinuation(upNext)
-      // console.log(upNext2)
-      // expect(upNext2.playlist_id).toBe("RDCLAK5uy_kmAg-PruVj97qHPJcOBIPtnL4roYtpcgo");
+      expect(upNext2.contents?.length).toBeGreaterThan(0);
+      
+      const upNext3 = await info2.getUpNextContinuation(upNext2)
+      expect(upNext3.contents?.length).toBeGreaterThan(0);
+      
     });
 
     describe('Innertube#music.search', () => {
