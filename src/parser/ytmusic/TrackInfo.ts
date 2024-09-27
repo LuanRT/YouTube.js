@@ -105,9 +105,9 @@ class TrackInfo extends MediaInfo {
   }
 
   /**
-   * Retrieves up next continuation.
+   * Retrieves up next continuation relative to current TrackInfo.
    */
-  async getUpNextContinuation(playlistPanel: PlaylistPanel): Promise<PlaylistPanelContinuation> {
+  async getUpNextContinuation(playlistPanel: PlaylistPanel | PlaylistPanelContinuation): Promise<PlaylistPanelContinuation> {
     if (!this.current_video_endpoint)
       throw new InnertubeError('Current Video Endpoint was not defined.', this.current_video_endpoint);
     
