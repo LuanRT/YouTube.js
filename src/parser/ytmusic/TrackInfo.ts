@@ -92,8 +92,6 @@ class TrackInfo extends MediaInfo {
         client: 'YTMUSIC',
         parse: true
       });
-      
-      // TODO: Use continuation to extend playlist list
 
       if (!page || !page.contents_memo)
         throw new InnertubeError('Could not fetch automix');
@@ -110,6 +108,10 @@ class TrackInfo extends MediaInfo {
   async getUpNextContinuation(playlistPanel: PlaylistPanel | PlaylistPanelContinuation): Promise<PlaylistPanelContinuation> {
     if (!this.current_video_endpoint)
       throw new InnertubeError('Current Video Endpoint was not defined.', this.current_video_endpoint);
+    
+    if (playlistPanel instanceof PlaylistPanel && playlistPanel.playlist_id !== this.current_video_endpoint.payload.playlistId) {
+      throw new InnertubeError('PlaylistId from TrackInfo does not match with PlaylistPanel');
+    }
     
     const response = await this.actions.execute(
       NextEndpoint.PATH, { ...NextEndpoint.build({ ...this.current_video_endpoint.payload, client: 'YTMUSIC', continuation: playlistPanel.continuation }), parse: true }
