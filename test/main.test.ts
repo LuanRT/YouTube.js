@@ -337,7 +337,7 @@ describe('YouTube.js Tests', () => {
       expect(upNext.playlist_id).toBe("PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u");
     });
 
-    test('Innertube#music.getInfo.NavEndpoint2', async () => {
+    test('Innertube#music.getInfo.NavEndpoint.getUpNextContinuation', async () => {
       const playlist = await innertube.music.getPlaylist('RDCLAK5uy_kmAg-PruVj97qHPJcOBIPtnL4roYtpcgo');
       expect(playlist).toBeDefined();
       expect(playlist.header).toBeDefined();
