@@ -65,6 +65,44 @@ export default class PlaylistManager {
       data: response.data
     };
   }
+  
+  /**
+   * Adds a given playlist to the library of a user.
+   * @param playlist_id - The playlist ID.
+   */
+  async likePlaylist(playlist_id: string){
+    throwIfMissing({ playlist_id });
+
+    if (!this.#actions.session.logged_in)
+      throw new InnertubeError('You must be signed in to perform this operation.');
+
+    const response = await this.#actions.execute(
+      LikeEndpoint.PATH, LikeEndpoint.build({
+        target: { playlist_id }
+      })
+    );
+    
+    return response;
+  }
+
+  /**
+   * Remove a given playlist to the library of a user.
+   * @param playlist_id - The playlist ID.
+   */
+  async removeLikePlaylist(playlist_id: string){
+    throwIfMissing({ playlist_id });
+
+    if (!this.#actions.session.logged_in)
+      throw new InnertubeError('You must be signed in to perform this operation.');
+
+    const response = await this.#actions.execute(
+      LikeEndpoint.PATH, LikeEndpoint.build({
+        target: { playlist_id }
+      })
+    );
+
+    return response;
+  }
 
   /**
    * Adds videos to a given playlist.
