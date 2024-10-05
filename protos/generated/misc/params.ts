@@ -27,43 +27,6 @@ export enum SearchFilter_SortBy {
   UNRECOGNIZED = -1,
 }
 
-export function searchFilter_SortByFromJSON(object: any): SearchFilter_SortBy {
-  switch (object) {
-    case 0:
-    case "RELEVANCE":
-      return SearchFilter_SortBy.RELEVANCE;
-    case 1:
-    case "RATING":
-      return SearchFilter_SortBy.RATING;
-    case 2:
-    case "UPLOAD_DATE":
-      return SearchFilter_SortBy.UPLOAD_DATE;
-    case 3:
-    case "VIEW_COUNT":
-      return SearchFilter_SortBy.VIEW_COUNT;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return SearchFilter_SortBy.UNRECOGNIZED;
-  }
-}
-
-export function searchFilter_SortByToJSON(object: SearchFilter_SortBy): string {
-  switch (object) {
-    case SearchFilter_SortBy.RELEVANCE:
-      return "RELEVANCE";
-    case SearchFilter_SortBy.RATING:
-      return "RATING";
-    case SearchFilter_SortBy.UPLOAD_DATE:
-      return "UPLOAD_DATE";
-    case SearchFilter_SortBy.VIEW_COUNT:
-      return "VIEW_COUNT";
-    case SearchFilter_SortBy.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export interface SearchFilter_Filters {
   uploadDate?: SearchFilter_Filters_UploadDate | undefined;
   type?: SearchFilter_Filters_SearchType | undefined;
@@ -92,53 +55,6 @@ export enum SearchFilter_Filters_UploadDate {
   UNRECOGNIZED = -1,
 }
 
-export function searchFilter_Filters_UploadDateFromJSON(object: any): SearchFilter_Filters_UploadDate {
-  switch (object) {
-    case 0:
-    case "ANY_DATE":
-      return SearchFilter_Filters_UploadDate.ANY_DATE;
-    case 1:
-    case "HOUR":
-      return SearchFilter_Filters_UploadDate.HOUR;
-    case 2:
-    case "TODAY":
-      return SearchFilter_Filters_UploadDate.TODAY;
-    case 3:
-    case "WEEK":
-      return SearchFilter_Filters_UploadDate.WEEK;
-    case 4:
-    case "MONTH":
-      return SearchFilter_Filters_UploadDate.MONTH;
-    case 5:
-    case "YEAR":
-      return SearchFilter_Filters_UploadDate.YEAR;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return SearchFilter_Filters_UploadDate.UNRECOGNIZED;
-  }
-}
-
-export function searchFilter_Filters_UploadDateToJSON(object: SearchFilter_Filters_UploadDate): string {
-  switch (object) {
-    case SearchFilter_Filters_UploadDate.ANY_DATE:
-      return "ANY_DATE";
-    case SearchFilter_Filters_UploadDate.HOUR:
-      return "HOUR";
-    case SearchFilter_Filters_UploadDate.TODAY:
-      return "TODAY";
-    case SearchFilter_Filters_UploadDate.WEEK:
-      return "WEEK";
-    case SearchFilter_Filters_UploadDate.MONTH:
-      return "MONTH";
-    case SearchFilter_Filters_UploadDate.YEAR:
-      return "YEAR";
-    case SearchFilter_Filters_UploadDate.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum SearchFilter_Filters_SearchType {
   ANY_TYPE = 0,
   VIDEO = 1,
@@ -148,91 +64,12 @@ export enum SearchFilter_Filters_SearchType {
   UNRECOGNIZED = -1,
 }
 
-export function searchFilter_Filters_SearchTypeFromJSON(object: any): SearchFilter_Filters_SearchType {
-  switch (object) {
-    case 0:
-    case "ANY_TYPE":
-      return SearchFilter_Filters_SearchType.ANY_TYPE;
-    case 1:
-    case "VIDEO":
-      return SearchFilter_Filters_SearchType.VIDEO;
-    case 2:
-    case "CHANNEL":
-      return SearchFilter_Filters_SearchType.CHANNEL;
-    case 3:
-    case "PLAYLIST":
-      return SearchFilter_Filters_SearchType.PLAYLIST;
-    case 4:
-    case "MOVIE":
-      return SearchFilter_Filters_SearchType.MOVIE;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return SearchFilter_Filters_SearchType.UNRECOGNIZED;
-  }
-}
-
-export function searchFilter_Filters_SearchTypeToJSON(object: SearchFilter_Filters_SearchType): string {
-  switch (object) {
-    case SearchFilter_Filters_SearchType.ANY_TYPE:
-      return "ANY_TYPE";
-    case SearchFilter_Filters_SearchType.VIDEO:
-      return "VIDEO";
-    case SearchFilter_Filters_SearchType.CHANNEL:
-      return "CHANNEL";
-    case SearchFilter_Filters_SearchType.PLAYLIST:
-      return "PLAYLIST";
-    case SearchFilter_Filters_SearchType.MOVIE:
-      return "MOVIE";
-    case SearchFilter_Filters_SearchType.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum SearchFilter_Filters_Duration {
   ANY_DURATION = 0,
   SHORT = 1,
   LONG = 2,
   MEDIUM = 3,
   UNRECOGNIZED = -1,
-}
-
-export function searchFilter_Filters_DurationFromJSON(object: any): SearchFilter_Filters_Duration {
-  switch (object) {
-    case 0:
-    case "ANY_DURATION":
-      return SearchFilter_Filters_Duration.ANY_DURATION;
-    case 1:
-    case "SHORT":
-      return SearchFilter_Filters_Duration.SHORT;
-    case 2:
-    case "LONG":
-      return SearchFilter_Filters_Duration.LONG;
-    case 3:
-    case "MEDIUM":
-      return SearchFilter_Filters_Duration.MEDIUM;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return SearchFilter_Filters_Duration.UNRECOGNIZED;
-  }
-}
-
-export function searchFilter_Filters_DurationToJSON(object: SearchFilter_Filters_Duration): string {
-  switch (object) {
-    case SearchFilter_Filters_Duration.ANY_DURATION:
-      return "ANY_DURATION";
-    case SearchFilter_Filters_Duration.SHORT:
-      return "SHORT";
-    case SearchFilter_Filters_Duration.LONG:
-      return "LONG";
-    case SearchFilter_Filters_Duration.MEDIUM:
-      return "MEDIUM";
-    case SearchFilter_Filters_Duration.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export interface SearchFilter_Filters_MusicSearchType {
@@ -443,34 +280,6 @@ export const VisitorData: MessageFns<VisitorData> = {
     }
     return message;
   },
-
-  fromJSON(object: any): VisitorData {
-    return {
-      id: isSet(object.id) ? globalThis.String(object.id) : "",
-      timestamp: isSet(object.timestamp) ? globalThis.Number(object.timestamp) : 0,
-    };
-  },
-
-  toJSON(message: VisitorData): unknown {
-    const obj: any = {};
-    if (message.id !== "") {
-      obj.id = message.id;
-    }
-    if (message.timestamp !== 0) {
-      obj.timestamp = Math.round(message.timestamp);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<VisitorData>, I>>(base?: I): VisitorData {
-    return VisitorData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<VisitorData>, I>>(object: I): VisitorData {
-    const message = createBaseVisitorData();
-    message.id = object.id ?? "";
-    message.timestamp = object.timestamp ?? 0;
-    return message;
-  },
 };
 
 function createBaseSearchFilter(): SearchFilter {
@@ -515,36 +324,6 @@ export const SearchFilter: MessageFns<SearchFilter> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): SearchFilter {
-    return {
-      sortBy: isSet(object.sortBy) ? searchFilter_SortByFromJSON(object.sortBy) : undefined,
-      filters: isSet(object.filters) ? SearchFilter_Filters.fromJSON(object.filters) : undefined,
-    };
-  },
-
-  toJSON(message: SearchFilter): unknown {
-    const obj: any = {};
-    if (message.sortBy !== undefined) {
-      obj.sortBy = searchFilter_SortByToJSON(message.sortBy);
-    }
-    if (message.filters !== undefined) {
-      obj.filters = SearchFilter_Filters.toJSON(message.filters);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SearchFilter>, I>>(base?: I): SearchFilter {
-    return SearchFilter.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SearchFilter>, I>>(object: I): SearchFilter {
-    const message = createBaseSearchFilter();
-    message.sortBy = object.sortBy ?? undefined;
-    message.filters = (object.filters !== undefined && object.filters !== null)
-      ? SearchFilter_Filters.fromPartial(object.filters)
-      : undefined;
     return message;
   },
 };
@@ -739,105 +518,6 @@ export const SearchFilter_Filters: MessageFns<SearchFilter_Filters> = {
     }
     return message;
   },
-
-  fromJSON(object: any): SearchFilter_Filters {
-    return {
-      uploadDate: isSet(object.uploadDate) ? searchFilter_Filters_UploadDateFromJSON(object.uploadDate) : undefined,
-      type: isSet(object.type) ? searchFilter_Filters_SearchTypeFromJSON(object.type) : undefined,
-      duration: isSet(object.duration) ? searchFilter_Filters_DurationFromJSON(object.duration) : undefined,
-      musicSearchType: isSet(object.musicSearchType)
-        ? SearchFilter_Filters_MusicSearchType.fromJSON(object.musicSearchType)
-        : undefined,
-      featuresHd: isSet(object.featuresHd) ? globalThis.Boolean(object.featuresHd) : undefined,
-      featuresSubtitles: isSet(object.featuresSubtitles) ? globalThis.Boolean(object.featuresSubtitles) : undefined,
-      featuresCreativeCommons: isSet(object.featuresCreativeCommons)
-        ? globalThis.Boolean(object.featuresCreativeCommons)
-        : undefined,
-      features3d: isSet(object.features3d) ? globalThis.Boolean(object.features3d) : undefined,
-      featuresLive: isSet(object.featuresLive) ? globalThis.Boolean(object.featuresLive) : undefined,
-      featuresPurchased: isSet(object.featuresPurchased) ? globalThis.Boolean(object.featuresPurchased) : undefined,
-      features4k: isSet(object.features4k) ? globalThis.Boolean(object.features4k) : undefined,
-      features360: isSet(object.features360) ? globalThis.Boolean(object.features360) : undefined,
-      featuresLocation: isSet(object.featuresLocation) ? globalThis.Boolean(object.featuresLocation) : undefined,
-      featuresHdr: isSet(object.featuresHdr) ? globalThis.Boolean(object.featuresHdr) : undefined,
-      featuresVr180: isSet(object.featuresVr180) ? globalThis.Boolean(object.featuresVr180) : undefined,
-    };
-  },
-
-  toJSON(message: SearchFilter_Filters): unknown {
-    const obj: any = {};
-    if (message.uploadDate !== undefined) {
-      obj.uploadDate = searchFilter_Filters_UploadDateToJSON(message.uploadDate);
-    }
-    if (message.type !== undefined) {
-      obj.type = searchFilter_Filters_SearchTypeToJSON(message.type);
-    }
-    if (message.duration !== undefined) {
-      obj.duration = searchFilter_Filters_DurationToJSON(message.duration);
-    }
-    if (message.musicSearchType !== undefined) {
-      obj.musicSearchType = SearchFilter_Filters_MusicSearchType.toJSON(message.musicSearchType);
-    }
-    if (message.featuresHd !== undefined) {
-      obj.featuresHd = message.featuresHd;
-    }
-    if (message.featuresSubtitles !== undefined) {
-      obj.featuresSubtitles = message.featuresSubtitles;
-    }
-    if (message.featuresCreativeCommons !== undefined) {
-      obj.featuresCreativeCommons = message.featuresCreativeCommons;
-    }
-    if (message.features3d !== undefined) {
-      obj.features3d = message.features3d;
-    }
-    if (message.featuresLive !== undefined) {
-      obj.featuresLive = message.featuresLive;
-    }
-    if (message.featuresPurchased !== undefined) {
-      obj.featuresPurchased = message.featuresPurchased;
-    }
-    if (message.features4k !== undefined) {
-      obj.features4k = message.features4k;
-    }
-    if (message.features360 !== undefined) {
-      obj.features360 = message.features360;
-    }
-    if (message.featuresLocation !== undefined) {
-      obj.featuresLocation = message.featuresLocation;
-    }
-    if (message.featuresHdr !== undefined) {
-      obj.featuresHdr = message.featuresHdr;
-    }
-    if (message.featuresVr180 !== undefined) {
-      obj.featuresVr180 = message.featuresVr180;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SearchFilter_Filters>, I>>(base?: I): SearchFilter_Filters {
-    return SearchFilter_Filters.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SearchFilter_Filters>, I>>(object: I): SearchFilter_Filters {
-    const message = createBaseSearchFilter_Filters();
-    message.uploadDate = object.uploadDate ?? undefined;
-    message.type = object.type ?? undefined;
-    message.duration = object.duration ?? undefined;
-    message.musicSearchType = (object.musicSearchType !== undefined && object.musicSearchType !== null)
-      ? SearchFilter_Filters_MusicSearchType.fromPartial(object.musicSearchType)
-      : undefined;
-    message.featuresHd = object.featuresHd ?? undefined;
-    message.featuresSubtitles = object.featuresSubtitles ?? undefined;
-    message.featuresCreativeCommons = object.featuresCreativeCommons ?? undefined;
-    message.features3d = object.features3d ?? undefined;
-    message.featuresLive = object.featuresLive ?? undefined;
-    message.featuresPurchased = object.featuresPurchased ?? undefined;
-    message.features4k = object.features4k ?? undefined;
-    message.features360 = object.features360 ?? undefined;
-    message.featuresLocation = object.featuresLocation ?? undefined;
-    message.featuresHdr = object.featuresHdr ?? undefined;
-    message.featuresVr180 = object.featuresVr180 ?? undefined;
-    return message;
-  },
 };
 
 function createBaseSearchFilter_Filters_MusicSearchType(): SearchFilter_Filters_MusicSearchType {
@@ -914,53 +594,6 @@ export const SearchFilter_Filters_MusicSearchType: MessageFns<SearchFilter_Filte
     }
     return message;
   },
-
-  fromJSON(object: any): SearchFilter_Filters_MusicSearchType {
-    return {
-      song: isSet(object.song) ? globalThis.Boolean(object.song) : undefined,
-      video: isSet(object.video) ? globalThis.Boolean(object.video) : undefined,
-      album: isSet(object.album) ? globalThis.Boolean(object.album) : undefined,
-      artist: isSet(object.artist) ? globalThis.Boolean(object.artist) : undefined,
-      playlist: isSet(object.playlist) ? globalThis.Boolean(object.playlist) : undefined,
-    };
-  },
-
-  toJSON(message: SearchFilter_Filters_MusicSearchType): unknown {
-    const obj: any = {};
-    if (message.song !== undefined) {
-      obj.song = message.song;
-    }
-    if (message.video !== undefined) {
-      obj.video = message.video;
-    }
-    if (message.album !== undefined) {
-      obj.album = message.album;
-    }
-    if (message.artist !== undefined) {
-      obj.artist = message.artist;
-    }
-    if (message.playlist !== undefined) {
-      obj.playlist = message.playlist;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SearchFilter_Filters_MusicSearchType>, I>>(
-    base?: I,
-  ): SearchFilter_Filters_MusicSearchType {
-    return SearchFilter_Filters_MusicSearchType.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SearchFilter_Filters_MusicSearchType>, I>>(
-    object: I,
-  ): SearchFilter_Filters_MusicSearchType {
-    const message = createBaseSearchFilter_Filters_MusicSearchType();
-    message.song = object.song ?? undefined;
-    message.video = object.video ?? undefined;
-    message.album = object.album ?? undefined;
-    message.artist = object.artist ?? undefined;
-    message.playlist = object.playlist ?? undefined;
-    return message;
-  },
 };
 
 function createBaseChannelAnalytics(): ChannelAnalytics {
@@ -995,29 +628,6 @@ export const ChannelAnalytics: MessageFns<ChannelAnalytics> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ChannelAnalytics {
-    return { params: isSet(object.params) ? ChannelAnalytics_Params.fromJSON(object.params) : undefined };
-  },
-
-  toJSON(message: ChannelAnalytics): unknown {
-    const obj: any = {};
-    if (message.params !== undefined) {
-      obj.params = ChannelAnalytics_Params.toJSON(message.params);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ChannelAnalytics>, I>>(base?: I): ChannelAnalytics {
-    return ChannelAnalytics.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ChannelAnalytics>, I>>(object: I): ChannelAnalytics {
-    const message = createBaseChannelAnalytics();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? ChannelAnalytics_Params.fromPartial(object.params)
-      : undefined;
     return message;
   },
 };
@@ -1056,27 +666,6 @@ export const ChannelAnalytics_Params: MessageFns<ChannelAnalytics_Params> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ChannelAnalytics_Params {
-    return { channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : "" };
-  },
-
-  toJSON(message: ChannelAnalytics_Params): unknown {
-    const obj: any = {};
-    if (message.channelId !== "") {
-      obj.channelId = message.channelId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ChannelAnalytics_Params>, I>>(base?: I): ChannelAnalytics_Params {
-    return ChannelAnalytics_Params.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ChannelAnalytics_Params>, I>>(object: I): ChannelAnalytics_Params {
-    const message = createBaseChannelAnalytics_Params();
-    message.channelId = object.channelId ?? "";
-    return message;
-  },
 };
 
 function createBaseSoundInfoParams(): SoundInfoParams {
@@ -1111,29 +700,6 @@ export const SoundInfoParams: MessageFns<SoundInfoParams> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): SoundInfoParams {
-    return { sound: isSet(object.sound) ? SoundInfoParams_Sound.fromJSON(object.sound) : undefined };
-  },
-
-  toJSON(message: SoundInfoParams): unknown {
-    const obj: any = {};
-    if (message.sound !== undefined) {
-      obj.sound = SoundInfoParams_Sound.toJSON(message.sound);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SoundInfoParams>, I>>(base?: I): SoundInfoParams {
-    return SoundInfoParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SoundInfoParams>, I>>(object: I): SoundInfoParams {
-    const message = createBaseSoundInfoParams();
-    message.sound = (object.sound !== undefined && object.sound !== null)
-      ? SoundInfoParams_Sound.fromPartial(object.sound)
-      : undefined;
     return message;
   },
 };
@@ -1172,29 +738,6 @@ export const SoundInfoParams_Sound: MessageFns<SoundInfoParams_Sound> = {
     }
     return message;
   },
-
-  fromJSON(object: any): SoundInfoParams_Sound {
-    return { params: isSet(object.params) ? SoundInfoParams_Sound_Params.fromJSON(object.params) : undefined };
-  },
-
-  toJSON(message: SoundInfoParams_Sound): unknown {
-    const obj: any = {};
-    if (message.params !== undefined) {
-      obj.params = SoundInfoParams_Sound_Params.toJSON(message.params);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SoundInfoParams_Sound>, I>>(base?: I): SoundInfoParams_Sound {
-    return SoundInfoParams_Sound.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SoundInfoParams_Sound>, I>>(object: I): SoundInfoParams_Sound {
-    const message = createBaseSoundInfoParams_Sound();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? SoundInfoParams_Sound_Params.fromPartial(object.params)
-      : undefined;
-    return message;
-  },
 };
 
 function createBaseSoundInfoParams_Sound_Params(): SoundInfoParams_Sound_Params {
@@ -1229,29 +772,6 @@ export const SoundInfoParams_Sound_Params: MessageFns<SoundInfoParams_Sound_Para
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): SoundInfoParams_Sound_Params {
-    return { ids: isSet(object.ids) ? SoundInfoParams_Sound_Params_Ids.fromJSON(object.ids) : undefined };
-  },
-
-  toJSON(message: SoundInfoParams_Sound_Params): unknown {
-    const obj: any = {};
-    if (message.ids !== undefined) {
-      obj.ids = SoundInfoParams_Sound_Params_Ids.toJSON(message.ids);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SoundInfoParams_Sound_Params>, I>>(base?: I): SoundInfoParams_Sound_Params {
-    return SoundInfoParams_Sound_Params.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SoundInfoParams_Sound_Params>, I>>(object: I): SoundInfoParams_Sound_Params {
-    const message = createBaseSoundInfoParams_Sound_Params();
-    message.ids = (object.ids !== undefined && object.ids !== null)
-      ? SoundInfoParams_Sound_Params_Ids.fromPartial(object.ids)
-      : undefined;
     return message;
   },
 };
@@ -1308,43 +828,6 @@ export const SoundInfoParams_Sound_Params_Ids: MessageFns<SoundInfoParams_Sound_
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): SoundInfoParams_Sound_Params_Ids {
-    return {
-      id1: isSet(object.id1) ? globalThis.String(object.id1) : "",
-      id2: isSet(object.id2) ? globalThis.String(object.id2) : "",
-      id3: isSet(object.id3) ? globalThis.String(object.id3) : "",
-    };
-  },
-
-  toJSON(message: SoundInfoParams_Sound_Params_Ids): unknown {
-    const obj: any = {};
-    if (message.id1 !== "") {
-      obj.id1 = message.id1;
-    }
-    if (message.id2 !== "") {
-      obj.id2 = message.id2;
-    }
-    if (message.id3 !== "") {
-      obj.id3 = message.id3;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SoundInfoParams_Sound_Params_Ids>, I>>(
-    base?: I,
-  ): SoundInfoParams_Sound_Params_Ids {
-    return SoundInfoParams_Sound_Params_Ids.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SoundInfoParams_Sound_Params_Ids>, I>>(
-    object: I,
-  ): SoundInfoParams_Sound_Params_Ids {
-    const message = createBaseSoundInfoParams_Sound_Params_Ids();
-    message.id1 = object.id1 ?? "";
-    message.id2 = object.id2 ?? "";
-    message.id3 = object.id3 ?? "";
     return message;
   },
 };
@@ -1413,46 +896,6 @@ export const NotificationPreferences: MessageFns<NotificationPreferences> = {
     }
     return message;
   },
-
-  fromJSON(object: any): NotificationPreferences {
-    return {
-      channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : "",
-      prefId: isSet(object.prefId) ? NotificationPreferences_Preference.fromJSON(object.prefId) : undefined,
-      number0: isSet(object.number0) ? globalThis.Number(object.number0) : undefined,
-      number1: isSet(object.number1) ? globalThis.Number(object.number1) : undefined,
-    };
-  },
-
-  toJSON(message: NotificationPreferences): unknown {
-    const obj: any = {};
-    if (message.channelId !== "") {
-      obj.channelId = message.channelId;
-    }
-    if (message.prefId !== undefined) {
-      obj.prefId = NotificationPreferences_Preference.toJSON(message.prefId);
-    }
-    if (message.number0 !== undefined) {
-      obj.number0 = Math.round(message.number0);
-    }
-    if (message.number1 !== undefined) {
-      obj.number1 = Math.round(message.number1);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<NotificationPreferences>, I>>(base?: I): NotificationPreferences {
-    return NotificationPreferences.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<NotificationPreferences>, I>>(object: I): NotificationPreferences {
-    const message = createBaseNotificationPreferences();
-    message.channelId = object.channelId ?? "";
-    message.prefId = (object.prefId !== undefined && object.prefId !== null)
-      ? NotificationPreferences_Preference.fromPartial(object.prefId)
-      : undefined;
-    message.number0 = object.number0 ?? undefined;
-    message.number1 = object.number1 ?? undefined;
-    return message;
-  },
 };
 
 function createBaseNotificationPreferences_Preference(): NotificationPreferences_Preference {
@@ -1487,31 +930,6 @@ export const NotificationPreferences_Preference: MessageFns<NotificationPreferen
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): NotificationPreferences_Preference {
-    return { index: isSet(object.index) ? globalThis.Number(object.index) : 0 };
-  },
-
-  toJSON(message: NotificationPreferences_Preference): unknown {
-    const obj: any = {};
-    if (message.index !== 0) {
-      obj.index = Math.round(message.index);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<NotificationPreferences_Preference>, I>>(
-    base?: I,
-  ): NotificationPreferences_Preference {
-    return NotificationPreferences_Preference.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<NotificationPreferences_Preference>, I>>(
-    object: I,
-  ): NotificationPreferences_Preference {
-    const message = createBaseNotificationPreferences_Preference();
-    message.index = object.index ?? 0;
     return message;
   },
 };
@@ -1570,41 +988,6 @@ export const LiveMessageParams: MessageFns<LiveMessageParams> = {
     }
     return message;
   },
-
-  fromJSON(object: any): LiveMessageParams {
-    return {
-      params: isSet(object.params) ? LiveMessageParams_Params.fromJSON(object.params) : undefined,
-      number0: isSet(object.number0) ? globalThis.Number(object.number0) : undefined,
-      number1: isSet(object.number1) ? globalThis.Number(object.number1) : undefined,
-    };
-  },
-
-  toJSON(message: LiveMessageParams): unknown {
-    const obj: any = {};
-    if (message.params !== undefined) {
-      obj.params = LiveMessageParams_Params.toJSON(message.params);
-    }
-    if (message.number0 !== undefined) {
-      obj.number0 = Math.round(message.number0);
-    }
-    if (message.number1 !== undefined) {
-      obj.number1 = Math.round(message.number1);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<LiveMessageParams>, I>>(base?: I): LiveMessageParams {
-    return LiveMessageParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<LiveMessageParams>, I>>(object: I): LiveMessageParams {
-    const message = createBaseLiveMessageParams();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? LiveMessageParams_Params.fromPartial(object.params)
-      : undefined;
-    message.number0 = object.number0 ?? undefined;
-    message.number1 = object.number1 ?? undefined;
-    return message;
-  },
 };
 
 function createBaseLiveMessageParams_Params(): LiveMessageParams_Params {
@@ -1639,29 +1022,6 @@ export const LiveMessageParams_Params: MessageFns<LiveMessageParams_Params> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): LiveMessageParams_Params {
-    return { ids: isSet(object.ids) ? LiveMessageParams_Params_Ids.fromJSON(object.ids) : undefined };
-  },
-
-  toJSON(message: LiveMessageParams_Params): unknown {
-    const obj: any = {};
-    if (message.ids !== undefined) {
-      obj.ids = LiveMessageParams_Params_Ids.toJSON(message.ids);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<LiveMessageParams_Params>, I>>(base?: I): LiveMessageParams_Params {
-    return LiveMessageParams_Params.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<LiveMessageParams_Params>, I>>(object: I): LiveMessageParams_Params {
-    const message = createBaseLiveMessageParams_Params();
-    message.ids = (object.ids !== undefined && object.ids !== null)
-      ? LiveMessageParams_Params_Ids.fromPartial(object.ids)
-      : undefined;
     return message;
   },
 };
@@ -1708,34 +1068,6 @@ export const LiveMessageParams_Params_Ids: MessageFns<LiveMessageParams_Params_I
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): LiveMessageParams_Params_Ids {
-    return {
-      channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : "",
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-    };
-  },
-
-  toJSON(message: LiveMessageParams_Params_Ids): unknown {
-    const obj: any = {};
-    if (message.channelId !== "") {
-      obj.channelId = message.channelId;
-    }
-    if (message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<LiveMessageParams_Params_Ids>, I>>(base?: I): LiveMessageParams_Params_Ids {
-    return LiveMessageParams_Params_Ids.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<LiveMessageParams_Params_Ids>, I>>(object: I): LiveMessageParams_Params_Ids {
-    const message = createBaseLiveMessageParams_Params_Ids();
-    message.channelId = object.channelId ?? "";
-    message.videoId = object.videoId ?? "";
     return message;
   },
 };
@@ -1794,43 +1126,6 @@ export const GetCommentsSectionParams: MessageFns<GetCommentsSectionParams> = {
     }
     return message;
   },
-
-  fromJSON(object: any): GetCommentsSectionParams {
-    return {
-      ctx: isSet(object.ctx) ? GetCommentsSectionParams_Context.fromJSON(object.ctx) : undefined,
-      unkParam: isSet(object.unkParam) ? globalThis.Number(object.unkParam) : 0,
-      params: isSet(object.params) ? GetCommentsSectionParams_Params.fromJSON(object.params) : undefined,
-    };
-  },
-
-  toJSON(message: GetCommentsSectionParams): unknown {
-    const obj: any = {};
-    if (message.ctx !== undefined) {
-      obj.ctx = GetCommentsSectionParams_Context.toJSON(message.ctx);
-    }
-    if (message.unkParam !== 0) {
-      obj.unkParam = Math.round(message.unkParam);
-    }
-    if (message.params !== undefined) {
-      obj.params = GetCommentsSectionParams_Params.toJSON(message.params);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetCommentsSectionParams>, I>>(base?: I): GetCommentsSectionParams {
-    return GetCommentsSectionParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetCommentsSectionParams>, I>>(object: I): GetCommentsSectionParams {
-    const message = createBaseGetCommentsSectionParams();
-    message.ctx = (object.ctx !== undefined && object.ctx !== null)
-      ? GetCommentsSectionParams_Context.fromPartial(object.ctx)
-      : undefined;
-    message.unkParam = object.unkParam ?? 0;
-    message.params = (object.params !== undefined && object.params !== null)
-      ? GetCommentsSectionParams_Params.fromPartial(object.params)
-      : undefined;
-    return message;
-  },
 };
 
 function createBaseGetCommentsSectionParams_Context(): GetCommentsSectionParams_Context {
@@ -1865,31 +1160,6 @@ export const GetCommentsSectionParams_Context: MessageFns<GetCommentsSectionPara
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): GetCommentsSectionParams_Context {
-    return { videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "" };
-  },
-
-  toJSON(message: GetCommentsSectionParams_Context): unknown {
-    const obj: any = {};
-    if (message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetCommentsSectionParams_Context>, I>>(
-    base?: I,
-  ): GetCommentsSectionParams_Context {
-    return GetCommentsSectionParams_Context.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetCommentsSectionParams_Context>, I>>(
-    object: I,
-  ): GetCommentsSectionParams_Context {
-    const message = createBaseGetCommentsSectionParams_Context();
-    message.videoId = object.videoId ?? "";
     return message;
   },
 };
@@ -1968,57 +1238,6 @@ export const GetCommentsSectionParams_Params: MessageFns<GetCommentsSectionParam
     }
     return message;
   },
-
-  fromJSON(object: any): GetCommentsSectionParams_Params {
-    return {
-      unkToken: isSet(object.unkToken) ? globalThis.String(object.unkToken) : undefined,
-      opts: isSet(object.opts) ? GetCommentsSectionParams_Params_Options.fromJSON(object.opts) : undefined,
-      repliesOpts: isSet(object.repliesOpts)
-        ? GetCommentsSectionParams_Params_RepliesOptions.fromJSON(object.repliesOpts)
-        : undefined,
-      page: isSet(object.page) ? globalThis.Number(object.page) : undefined,
-      target: isSet(object.target) ? globalThis.String(object.target) : "",
-    };
-  },
-
-  toJSON(message: GetCommentsSectionParams_Params): unknown {
-    const obj: any = {};
-    if (message.unkToken !== undefined) {
-      obj.unkToken = message.unkToken;
-    }
-    if (message.opts !== undefined) {
-      obj.opts = GetCommentsSectionParams_Params_Options.toJSON(message.opts);
-    }
-    if (message.repliesOpts !== undefined) {
-      obj.repliesOpts = GetCommentsSectionParams_Params_RepliesOptions.toJSON(message.repliesOpts);
-    }
-    if (message.page !== undefined) {
-      obj.page = Math.round(message.page);
-    }
-    if (message.target !== "") {
-      obj.target = message.target;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetCommentsSectionParams_Params>, I>>(base?: I): GetCommentsSectionParams_Params {
-    return GetCommentsSectionParams_Params.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetCommentsSectionParams_Params>, I>>(
-    object: I,
-  ): GetCommentsSectionParams_Params {
-    const message = createBaseGetCommentsSectionParams_Params();
-    message.unkToken = object.unkToken ?? undefined;
-    message.opts = (object.opts !== undefined && object.opts !== null)
-      ? GetCommentsSectionParams_Params_Options.fromPartial(object.opts)
-      : undefined;
-    message.repliesOpts = (object.repliesOpts !== undefined && object.repliesOpts !== null)
-      ? GetCommentsSectionParams_Params_RepliesOptions.fromPartial(object.repliesOpts)
-      : undefined;
-    message.page = object.page ?? undefined;
-    message.target = object.target ?? "";
-    return message;
-  },
 };
 
 function createBaseGetCommentsSectionParams_Params_Options(): GetCommentsSectionParams_Params_Options {
@@ -2083,48 +1302,6 @@ export const GetCommentsSectionParams_Params_Options: MessageFns<GetCommentsSect
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): GetCommentsSectionParams_Params_Options {
-    return {
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      sortBy: isSet(object.sortBy) ? globalThis.Number(object.sortBy) : 0,
-      type: isSet(object.type) ? globalThis.Number(object.type) : 0,
-      commentId: isSet(object.commentId) ? globalThis.String(object.commentId) : undefined,
-    };
-  },
-
-  toJSON(message: GetCommentsSectionParams_Params_Options): unknown {
-    const obj: any = {};
-    if (message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.sortBy !== 0) {
-      obj.sortBy = Math.round(message.sortBy);
-    }
-    if (message.type !== 0) {
-      obj.type = Math.round(message.type);
-    }
-    if (message.commentId !== undefined) {
-      obj.commentId = message.commentId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetCommentsSectionParams_Params_Options>, I>>(
-    base?: I,
-  ): GetCommentsSectionParams_Params_Options {
-    return GetCommentsSectionParams_Params_Options.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetCommentsSectionParams_Params_Options>, I>>(
-    object: I,
-  ): GetCommentsSectionParams_Params_Options {
-    const message = createBaseGetCommentsSectionParams_Params_Options();
-    message.videoId = object.videoId ?? "";
-    message.sortBy = object.sortBy ?? 0;
-    message.type = object.type ?? 0;
-    message.commentId = object.commentId ?? undefined;
     return message;
   },
 };
@@ -2218,62 +1395,6 @@ export const GetCommentsSectionParams_Params_RepliesOptions: MessageFns<
     }
     return message;
   },
-
-  fromJSON(object: any): GetCommentsSectionParams_Params_RepliesOptions {
-    return {
-      commentId: isSet(object.commentId) ? globalThis.String(object.commentId) : "",
-      unkopts: isSet(object.unkopts)
-        ? GetCommentsSectionParams_Params_RepliesOptions_UnkOpts.fromJSON(object.unkopts)
-        : undefined,
-      channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : undefined,
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      unkParam1: isSet(object.unkParam1) ? globalThis.Number(object.unkParam1) : 0,
-      unkParam2: isSet(object.unkParam2) ? globalThis.Number(object.unkParam2) : 0,
-    };
-  },
-
-  toJSON(message: GetCommentsSectionParams_Params_RepliesOptions): unknown {
-    const obj: any = {};
-    if (message.commentId !== "") {
-      obj.commentId = message.commentId;
-    }
-    if (message.unkopts !== undefined) {
-      obj.unkopts = GetCommentsSectionParams_Params_RepliesOptions_UnkOpts.toJSON(message.unkopts);
-    }
-    if (message.channelId !== undefined) {
-      obj.channelId = message.channelId;
-    }
-    if (message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.unkParam1 !== 0) {
-      obj.unkParam1 = Math.round(message.unkParam1);
-    }
-    if (message.unkParam2 !== 0) {
-      obj.unkParam2 = Math.round(message.unkParam2);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetCommentsSectionParams_Params_RepliesOptions>, I>>(
-    base?: I,
-  ): GetCommentsSectionParams_Params_RepliesOptions {
-    return GetCommentsSectionParams_Params_RepliesOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetCommentsSectionParams_Params_RepliesOptions>, I>>(
-    object: I,
-  ): GetCommentsSectionParams_Params_RepliesOptions {
-    const message = createBaseGetCommentsSectionParams_Params_RepliesOptions();
-    message.commentId = object.commentId ?? "";
-    message.unkopts = (object.unkopts !== undefined && object.unkopts !== null)
-      ? GetCommentsSectionParams_Params_RepliesOptions_UnkOpts.fromPartial(object.unkopts)
-      : undefined;
-    message.channelId = object.channelId ?? undefined;
-    message.videoId = object.videoId ?? "";
-    message.unkParam1 = object.unkParam1 ?? 0;
-    message.unkParam2 = object.unkParam2 ?? 0;
-    return message;
-  },
 };
 
 function createBaseGetCommentsSectionParams_Params_RepliesOptions_UnkOpts(): GetCommentsSectionParams_Params_RepliesOptions_UnkOpts {
@@ -2313,31 +1434,6 @@ export const GetCommentsSectionParams_Params_RepliesOptions_UnkOpts: MessageFns<
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): GetCommentsSectionParams_Params_RepliesOptions_UnkOpts {
-    return { unkParam: isSet(object.unkParam) ? globalThis.Number(object.unkParam) : 0 };
-  },
-
-  toJSON(message: GetCommentsSectionParams_Params_RepliesOptions_UnkOpts): unknown {
-    const obj: any = {};
-    if (message.unkParam !== 0) {
-      obj.unkParam = Math.round(message.unkParam);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetCommentsSectionParams_Params_RepliesOptions_UnkOpts>, I>>(
-    base?: I,
-  ): GetCommentsSectionParams_Params_RepliesOptions_UnkOpts {
-    return GetCommentsSectionParams_Params_RepliesOptions_UnkOpts.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetCommentsSectionParams_Params_RepliesOptions_UnkOpts>, I>>(
-    object: I,
-  ): GetCommentsSectionParams_Params_RepliesOptions_UnkOpts {
-    const message = createBaseGetCommentsSectionParams_Params_RepliesOptions_UnkOpts();
-    message.unkParam = object.unkParam ?? 0;
     return message;
   },
 };
@@ -2396,41 +1492,6 @@ export const CreateCommentParams: MessageFns<CreateCommentParams> = {
     }
     return message;
   },
-
-  fromJSON(object: any): CreateCommentParams {
-    return {
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      params: isSet(object.params) ? CreateCommentParams_Params.fromJSON(object.params) : undefined,
-      number: isSet(object.number) ? globalThis.Number(object.number) : 0,
-    };
-  },
-
-  toJSON(message: CreateCommentParams): unknown {
-    const obj: any = {};
-    if (message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.params !== undefined) {
-      obj.params = CreateCommentParams_Params.toJSON(message.params);
-    }
-    if (message.number !== 0) {
-      obj.number = Math.round(message.number);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<CreateCommentParams>, I>>(base?: I): CreateCommentParams {
-    return CreateCommentParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<CreateCommentParams>, I>>(object: I): CreateCommentParams {
-    const message = createBaseCreateCommentParams();
-    message.videoId = object.videoId ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? CreateCommentParams_Params.fromPartial(object.params)
-      : undefined;
-    message.number = object.number ?? 0;
-    return message;
-  },
 };
 
 function createBaseCreateCommentParams_Params(): CreateCommentParams_Params {
@@ -2465,27 +1526,6 @@ export const CreateCommentParams_Params: MessageFns<CreateCommentParams_Params> 
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): CreateCommentParams_Params {
-    return { index: isSet(object.index) ? globalThis.Number(object.index) : 0 };
-  },
-
-  toJSON(message: CreateCommentParams_Params): unknown {
-    const obj: any = {};
-    if (message.index !== 0) {
-      obj.index = Math.round(message.index);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<CreateCommentParams_Params>, I>>(base?: I): CreateCommentParams_Params {
-    return CreateCommentParams_Params.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<CreateCommentParams_Params>, I>>(object: I): CreateCommentParams_Params {
-    const message = createBaseCreateCommentParams_Params();
-    message.index = object.index ?? 0;
     return message;
   },
 };
@@ -2585,61 +1625,6 @@ export const PeformCommentActionParams: MessageFns<PeformCommentActionParams> = 
     }
     return message;
   },
-
-  fromJSON(object: any): PeformCommentActionParams {
-    return {
-      type: isSet(object.type) ? globalThis.Number(object.type) : 0,
-      commentId: isSet(object.commentId) ? globalThis.String(object.commentId) : "",
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      unkNum: isSet(object.unkNum) ? globalThis.Number(object.unkNum) : undefined,
-      channelId: isSet(object.channelId) ? globalThis.String(object.channelId) : undefined,
-      translateCommentParams: isSet(object.translateCommentParams)
-        ? PeformCommentActionParams_TranslateCommentParams.fromJSON(object.translateCommentParams)
-        : undefined,
-    };
-  },
-
-  toJSON(message: PeformCommentActionParams): unknown {
-    const obj: any = {};
-    if (message.type !== 0) {
-      obj.type = Math.round(message.type);
-    }
-    if (message.commentId !== "") {
-      obj.commentId = message.commentId;
-    }
-    if (message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.unkNum !== undefined) {
-      obj.unkNum = Math.round(message.unkNum);
-    }
-    if (message.channelId !== undefined) {
-      obj.channelId = message.channelId;
-    }
-    if (message.translateCommentParams !== undefined) {
-      obj.translateCommentParams = PeformCommentActionParams_TranslateCommentParams.toJSON(
-        message.translateCommentParams,
-      );
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PeformCommentActionParams>, I>>(base?: I): PeformCommentActionParams {
-    return PeformCommentActionParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PeformCommentActionParams>, I>>(object: I): PeformCommentActionParams {
-    const message = createBasePeformCommentActionParams();
-    message.type = object.type ?? 0;
-    message.commentId = object.commentId ?? "";
-    message.videoId = object.videoId ?? "";
-    message.unkNum = object.unkNum ?? undefined;
-    message.channelId = object.channelId ?? undefined;
-    message.translateCommentParams =
-      (object.translateCommentParams !== undefined && object.translateCommentParams !== null)
-        ? PeformCommentActionParams_TranslateCommentParams.fromPartial(object.translateCommentParams)
-        : undefined;
-    return message;
-  },
 };
 
 function createBasePeformCommentActionParams_TranslateCommentParams(): PeformCommentActionParams_TranslateCommentParams {
@@ -2701,47 +1686,6 @@ export const PeformCommentActionParams_TranslateCommentParams: MessageFns<
     }
     return message;
   },
-
-  fromJSON(object: any): PeformCommentActionParams_TranslateCommentParams {
-    return {
-      params: isSet(object.params)
-        ? PeformCommentActionParams_TranslateCommentParams_Params.fromJSON(object.params)
-        : undefined,
-      commentId: isSet(object.commentId) ? globalThis.String(object.commentId) : "",
-      targetLanguage: isSet(object.targetLanguage) ? globalThis.String(object.targetLanguage) : "",
-    };
-  },
-
-  toJSON(message: PeformCommentActionParams_TranslateCommentParams): unknown {
-    const obj: any = {};
-    if (message.params !== undefined) {
-      obj.params = PeformCommentActionParams_TranslateCommentParams_Params.toJSON(message.params);
-    }
-    if (message.commentId !== "") {
-      obj.commentId = message.commentId;
-    }
-    if (message.targetLanguage !== "") {
-      obj.targetLanguage = message.targetLanguage;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PeformCommentActionParams_TranslateCommentParams>, I>>(
-    base?: I,
-  ): PeformCommentActionParams_TranslateCommentParams {
-    return PeformCommentActionParams_TranslateCommentParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PeformCommentActionParams_TranslateCommentParams>, I>>(
-    object: I,
-  ): PeformCommentActionParams_TranslateCommentParams {
-    const message = createBasePeformCommentActionParams_TranslateCommentParams();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? PeformCommentActionParams_TranslateCommentParams_Params.fromPartial(object.params)
-      : undefined;
-    message.commentId = object.commentId ?? "";
-    message.targetLanguage = object.targetLanguage ?? "";
-    return message;
-  },
 };
 
 function createBasePeformCommentActionParams_TranslateCommentParams_Params(): PeformCommentActionParams_TranslateCommentParams_Params {
@@ -2785,37 +1729,6 @@ export const PeformCommentActionParams_TranslateCommentParams_Params: MessageFns
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): PeformCommentActionParams_TranslateCommentParams_Params {
-    return {
-      comment: isSet(object.comment)
-        ? PeformCommentActionParams_TranslateCommentParams_Params_Comment.fromJSON(object.comment)
-        : undefined,
-    };
-  },
-
-  toJSON(message: PeformCommentActionParams_TranslateCommentParams_Params): unknown {
-    const obj: any = {};
-    if (message.comment !== undefined) {
-      obj.comment = PeformCommentActionParams_TranslateCommentParams_Params_Comment.toJSON(message.comment);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PeformCommentActionParams_TranslateCommentParams_Params>, I>>(
-    base?: I,
-  ): PeformCommentActionParams_TranslateCommentParams_Params {
-    return PeformCommentActionParams_TranslateCommentParams_Params.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PeformCommentActionParams_TranslateCommentParams_Params>, I>>(
-    object: I,
-  ): PeformCommentActionParams_TranslateCommentParams_Params {
-    const message = createBasePeformCommentActionParams_TranslateCommentParams_Params();
-    message.comment = (object.comment !== undefined && object.comment !== null)
-      ? PeformCommentActionParams_TranslateCommentParams_Params_Comment.fromPartial(object.comment)
-      : undefined;
     return message;
   },
 };
@@ -2862,31 +1775,6 @@ export const PeformCommentActionParams_TranslateCommentParams_Params_Comment: Me
     }
     return message;
   },
-
-  fromJSON(object: any): PeformCommentActionParams_TranslateCommentParams_Params_Comment {
-    return { text: isSet(object.text) ? globalThis.String(object.text) : "" };
-  },
-
-  toJSON(message: PeformCommentActionParams_TranslateCommentParams_Params_Comment): unknown {
-    const obj: any = {};
-    if (message.text !== "") {
-      obj.text = message.text;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PeformCommentActionParams_TranslateCommentParams_Params_Comment>, I>>(
-    base?: I,
-  ): PeformCommentActionParams_TranslateCommentParams_Params_Comment {
-    return PeformCommentActionParams_TranslateCommentParams_Params_Comment.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PeformCommentActionParams_TranslateCommentParams_Params_Comment>, I>>(
-    object: I,
-  ): PeformCommentActionParams_TranslateCommentParams_Params_Comment {
-    const message = createBasePeformCommentActionParams_TranslateCommentParams_Params_Comment();
-    message.text = object.text ?? "";
-    return message;
-  },
 };
 
 function createBaseHashtag(): Hashtag {
@@ -2921,29 +1809,6 @@ export const Hashtag: MessageFns<Hashtag> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): Hashtag {
-    return { params: isSet(object.params) ? Hashtag_Params.fromJSON(object.params) : undefined };
-  },
-
-  toJSON(message: Hashtag): unknown {
-    const obj: any = {};
-    if (message.params !== undefined) {
-      obj.params = Hashtag_Params.toJSON(message.params);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Hashtag>, I>>(base?: I): Hashtag {
-    return Hashtag.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Hashtag>, I>>(object: I): Hashtag {
-    const message = createBaseHashtag();
-    message.params = (object.params !== undefined && object.params !== null)
-      ? Hashtag_Params.fromPartial(object.params)
-      : undefined;
     return message;
   },
 };
@@ -2990,34 +1855,6 @@ export const Hashtag_Params: MessageFns<Hashtag_Params> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): Hashtag_Params {
-    return {
-      hashtag: isSet(object.hashtag) ? globalThis.String(object.hashtag) : "",
-      type: isSet(object.type) ? globalThis.Number(object.type) : 0,
-    };
-  },
-
-  toJSON(message: Hashtag_Params): unknown {
-    const obj: any = {};
-    if (message.hashtag !== "") {
-      obj.hashtag = message.hashtag;
-    }
-    if (message.type !== 0) {
-      obj.type = Math.round(message.type);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Hashtag_Params>, I>>(base?: I): Hashtag_Params {
-    return Hashtag_Params.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Hashtag_Params>, I>>(object: I): Hashtag_Params {
-    const message = createBaseHashtag_Params();
-    message.hashtag = object.hashtag ?? "";
-    message.type = object.type ?? 0;
     return message;
   },
 };
@@ -3086,46 +1923,6 @@ export const ReelSequence: MessageFns<ReelSequence> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ReelSequence {
-    return {
-      shortId: isSet(object.shortId) ? globalThis.String(object.shortId) : "",
-      params: isSet(object.params) ? ReelSequence_Params.fromJSON(object.params) : undefined,
-      feature2: isSet(object.feature2) ? globalThis.Number(object.feature2) : 0,
-      feature3: isSet(object.feature3) ? globalThis.Number(object.feature3) : 0,
-    };
-  },
-
-  toJSON(message: ReelSequence): unknown {
-    const obj: any = {};
-    if (message.shortId !== "") {
-      obj.shortId = message.shortId;
-    }
-    if (message.params !== undefined) {
-      obj.params = ReelSequence_Params.toJSON(message.params);
-    }
-    if (message.feature2 !== 0) {
-      obj.feature2 = Math.round(message.feature2);
-    }
-    if (message.feature3 !== 0) {
-      obj.feature3 = Math.round(message.feature3);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ReelSequence>, I>>(base?: I): ReelSequence {
-    return ReelSequence.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ReelSequence>, I>>(object: I): ReelSequence {
-    const message = createBaseReelSequence();
-    message.shortId = object.shortId ?? "";
-    message.params = (object.params !== undefined && object.params !== null)
-      ? ReelSequence_Params.fromPartial(object.params)
-      : undefined;
-    message.feature2 = object.feature2 ?? 0;
-    message.feature3 = object.feature3 ?? 0;
-    return message;
-  },
 };
 
 function createBaseReelSequence_Params(): ReelSequence_Params {
@@ -3160,27 +1957,6 @@ export const ReelSequence_Params: MessageFns<ReelSequence_Params> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ReelSequence_Params {
-    return { number: isSet(object.number) ? globalThis.Number(object.number) : 0 };
-  },
-
-  toJSON(message: ReelSequence_Params): unknown {
-    const obj: any = {};
-    if (message.number !== 0) {
-      obj.number = Math.round(message.number);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ReelSequence_Params>, I>>(base?: I): ReelSequence_Params {
-    return ReelSequence_Params.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ReelSequence_Params>, I>>(object: I): ReelSequence_Params {
-    const message = createBaseReelSequence_Params();
-    message.number = object.number ?? 0;
     return message;
   },
 };
@@ -3229,36 +2005,6 @@ export const ShortsParam: MessageFns<ShortsParam> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ShortsParam {
-    return {
-      f1: isSet(object.f1) ? ShortsParam_Field1.fromJSON(object.f1) : undefined,
-      p59: isSet(object.p59) ? globalThis.Number(object.p59) : undefined,
-    };
-  },
-
-  toJSON(message: ShortsParam): unknown {
-    const obj: any = {};
-    if (message.f1 !== undefined) {
-      obj.f1 = ShortsParam_Field1.toJSON(message.f1);
-    }
-    if (message.p59 !== undefined) {
-      obj.p59 = Math.round(message.p59);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ShortsParam>, I>>(base?: I): ShortsParam {
-    return ShortsParam.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ShortsParam>, I>>(object: I): ShortsParam {
-    const message = createBaseShortsParam();
-    message.f1 = (object.f1 !== undefined && object.f1 !== null)
-      ? ShortsParam_Field1.fromPartial(object.f1)
-      : undefined;
-    message.p59 = object.p59 ?? undefined;
-    return message;
-  },
 };
 
 function createBaseShortsParam_Field1(): ShortsParam_Field1 {
@@ -3293,27 +2039,6 @@ export const ShortsParam_Field1: MessageFns<ShortsParam_Field1> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ShortsParam_Field1 {
-    return { p1: isSet(object.p1) ? globalThis.Number(object.p1) : undefined };
-  },
-
-  toJSON(message: ShortsParam_Field1): unknown {
-    const obj: any = {};
-    if (message.p1 !== undefined) {
-      obj.p1 = Math.round(message.p1);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ShortsParam_Field1>, I>>(base?: I): ShortsParam_Field1 {
-    return ShortsParam_Field1.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ShortsParam_Field1>, I>>(object: I): ShortsParam_Field1 {
-    const message = createBaseShortsParam_Field1();
-    message.p1 = object.p1 ?? undefined;
     return message;
   },
 };
@@ -3352,52 +2077,9 @@ export const NextParams: MessageFns<NextParams> = {
     }
     return message;
   },
-
-  fromJSON(object: any): NextParams {
-    return {
-      videoId: globalThis.Array.isArray(object?.videoId) ? object.videoId.map((e: any) => globalThis.String(e)) : [],
-    };
-  },
-
-  toJSON(message: NextParams): unknown {
-    const obj: any = {};
-    if (message.videoId?.length) {
-      obj.videoId = message.videoId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<NextParams>, I>>(base?: I): NextParams {
-    return NextParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<NextParams>, I>>(object: I): NextParams {
-    const message = createBaseNextParams();
-    message.videoId = object.videoId?.map((e) => e) || [];
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

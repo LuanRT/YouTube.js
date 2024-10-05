@@ -47,67 +47,9 @@ export const ServiceIntegrityDimensions: MessageFns<ServiceIntegrityDimensions> 
     }
     return message;
   },
-
-  fromJSON(object: any): ServiceIntegrityDimensions {
-    return { poToken: isSet(object.poToken) ? bytesFromBase64(object.poToken) : undefined };
-  },
-
-  toJSON(message: ServiceIntegrityDimensions): unknown {
-    const obj: any = {};
-    if (message.poToken !== undefined) {
-      obj.poToken = base64FromBytes(message.poToken);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ServiceIntegrityDimensions>, I>>(base?: I): ServiceIntegrityDimensions {
-    return ServiceIntegrityDimensions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ServiceIntegrityDimensions>, I>>(object: I): ServiceIntegrityDimensions {
-    const message = createBaseServiceIntegrityDimensions();
-    message.poToken = object.poToken ?? undefined;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }
