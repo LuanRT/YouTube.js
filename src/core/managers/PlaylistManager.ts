@@ -96,7 +96,7 @@ export default class PlaylistManager {
       throw new InnertubeError('You must be signed in to perform this operation.');
 
     const response = await this.#actions.execute(
-      LikeEndpoint.PATH, LikeEndpoint.build({
+      RemoveLikeEndpoint.PATH, RemoveLikeEndpoint.build({
         target: { playlist_id }
       })
     );
