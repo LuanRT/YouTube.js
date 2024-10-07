@@ -1,5 +1,20 @@
 # Changelog
 
+## [10.6.0](https://github.com/LuanRT/YouTube.js/compare/v10.5.0...v10.6.0) (2024-10-07)
+
+
+### Features
+
+* Add `WEB_CREATOR` client ([#757](https://github.com/LuanRT/YouTube.js/issues/757)) ([dd7f5cf](https://github.com/LuanRT/YouTube.js/commit/dd7f5cf778b8acca95cc6d9c6e379e3e87e0ee8a))
+* **ProtoUtils:** Add support for creating NextParams ([#762](https://github.com/LuanRT/YouTube.js/issues/762)) ([910c979](https://github.com/LuanRT/YouTube.js/commit/910c9791e7aed9e28cd42f3bcf28b8b8d89edb21))
+
+
+### Bug Fixes
+
+* fix deno usage of protobuf and jintr ([#776](https://github.com/LuanRT/YouTube.js/issues/776)) ([02513b7](https://github.com/LuanRT/YouTube.js/commit/02513b76ed66041044e80f8749df7f29379c424e))
+* **parser:** Fix ShortsLockupView assuming that the primary text always exists ([#775](https://github.com/LuanRT/YouTube.js/issues/775)) ([43cef9e](https://github.com/LuanRT/YouTube.js/commit/43cef9e67e9defbfc498b6381ae93f967622f83b))
+* **toDash:** Fix dash.js 4.x compatibility ([#765](https://github.com/LuanRT/YouTube.js/issues/765)) ([5ff30e1](https://github.com/LuanRT/YouTube.js/commit/5ff30e12ded29afff5a758cbe96ac3418e6d20aa))
+
 ## [10.5.0](https://github.com/LuanRT/YouTube.js/compare/v10.4.0...v10.5.0) (2024-09-19)
 
 
