@@ -45,7 +45,7 @@ if (!protoFiles.length) {
 }
 
 protoFiles.forEach((file) => {
-  const command = `protoc --proto_path=${protoDir} --plugin=protoc-gen-ts=${protocGenTs} --ts_opt=env=browser --ts_opt=importSuffix=.js --ts_out=${outDir} ${file}`;
+  const command = `protoc --proto_path=${protoDir} --plugin=protoc-gen-ts=${protocGenTs} --ts_opt=env=browser --ts_opt=importSuffix=.js --ts_out=${outDir} --ts_opt=outputJsonMethods=false --ts_opt=outputPartialMethods=false ${file}`;
   exec(command, (error, _stdout, stderr) => {
     if (error) {
       console.error(`Error compiling ${file}:`, stderr);

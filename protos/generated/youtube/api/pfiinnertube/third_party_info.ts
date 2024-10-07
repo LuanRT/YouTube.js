@@ -115,59 +115,6 @@ export const ThirdPartyInfo: MessageFns<ThirdPartyInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ThirdPartyInfo {
-    return {
-      developerKey: isSet(object.developerKey) ? globalThis.String(object.developerKey) : undefined,
-      appName: isSet(object.appName) ? globalThis.String(object.appName) : undefined,
-      appPublisher: isSet(object.appPublisher) ? globalThis.String(object.appPublisher) : undefined,
-      embedUrl: isSet(object.embedUrl) ? globalThis.String(object.embedUrl) : undefined,
-      appVersion: isSet(object.appVersion) ? globalThis.String(object.appVersion) : undefined,
-      embeddedPlayerContext: isSet(object.embeddedPlayerContext)
-        ? ThirdPartyInfo_EmbeddedPlayerContext.fromJSON(object.embeddedPlayerContext)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ThirdPartyInfo): unknown {
-    const obj: any = {};
-    if (message.developerKey !== undefined) {
-      obj.developerKey = message.developerKey;
-    }
-    if (message.appName !== undefined) {
-      obj.appName = message.appName;
-    }
-    if (message.appPublisher !== undefined) {
-      obj.appPublisher = message.appPublisher;
-    }
-    if (message.embedUrl !== undefined) {
-      obj.embedUrl = message.embedUrl;
-    }
-    if (message.appVersion !== undefined) {
-      obj.appVersion = message.appVersion;
-    }
-    if (message.embeddedPlayerContext !== undefined) {
-      obj.embeddedPlayerContext = ThirdPartyInfo_EmbeddedPlayerContext.toJSON(message.embeddedPlayerContext);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ThirdPartyInfo>, I>>(base?: I): ThirdPartyInfo {
-    return ThirdPartyInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ThirdPartyInfo>, I>>(object: I): ThirdPartyInfo {
-    const message = createBaseThirdPartyInfo();
-    message.developerKey = object.developerKey ?? undefined;
-    message.appName = object.appName ?? undefined;
-    message.appPublisher = object.appPublisher ?? undefined;
-    message.embedUrl = object.embedUrl ?? undefined;
-    message.appVersion = object.appVersion ?? undefined;
-    message.embeddedPlayerContext =
-      (object.embeddedPlayerContext !== undefined && object.embeddedPlayerContext !== null)
-        ? ThirdPartyInfo_EmbeddedPlayerContext.fromPartial(object.embeddedPlayerContext)
-        : undefined;
-    return message;
-  },
 };
 
 function createBaseThirdPartyInfo_EmbeddedPlayerContext(): ThirdPartyInfo_EmbeddedPlayerContext {
@@ -224,70 +171,9 @@ export const ThirdPartyInfo_EmbeddedPlayerContext: MessageFns<ThirdPartyInfo_Emb
     }
     return message;
   },
-
-  fromJSON(object: any): ThirdPartyInfo_EmbeddedPlayerContext {
-    return {
-      ancestorOrigins: isSet(object.ancestorOrigins) ? globalThis.String(object.ancestorOrigins) : undefined,
-      embeddedPlayerEncryptedContext: isSet(object.embeddedPlayerEncryptedContext)
-        ? globalThis.String(object.embeddedPlayerEncryptedContext)
-        : undefined,
-      ancestorOriginsSupported: isSet(object.ancestorOriginsSupported)
-        ? globalThis.Boolean(object.ancestorOriginsSupported)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ThirdPartyInfo_EmbeddedPlayerContext): unknown {
-    const obj: any = {};
-    if (message.ancestorOrigins !== undefined) {
-      obj.ancestorOrigins = message.ancestorOrigins;
-    }
-    if (message.embeddedPlayerEncryptedContext !== undefined) {
-      obj.embeddedPlayerEncryptedContext = message.embeddedPlayerEncryptedContext;
-    }
-    if (message.ancestorOriginsSupported !== undefined) {
-      obj.ancestorOriginsSupported = message.ancestorOriginsSupported;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ThirdPartyInfo_EmbeddedPlayerContext>, I>>(
-    base?: I,
-  ): ThirdPartyInfo_EmbeddedPlayerContext {
-    return ThirdPartyInfo_EmbeddedPlayerContext.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ThirdPartyInfo_EmbeddedPlayerContext>, I>>(
-    object: I,
-  ): ThirdPartyInfo_EmbeddedPlayerContext {
-    const message = createBaseThirdPartyInfo_EmbeddedPlayerContext();
-    message.ancestorOrigins = object.ancestorOrigins ?? undefined;
-    message.embeddedPlayerEncryptedContext = object.embeddedPlayerEncryptedContext ?? undefined;
-    message.ancestorOriginsSupported = object.ancestorOriginsSupported ?? undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

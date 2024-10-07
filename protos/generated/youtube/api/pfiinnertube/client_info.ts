@@ -105,96 +105,15 @@ export enum ClientInfo_ClientFormFactor {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_ClientFormFactorFromJSON(object: any): ClientInfo_ClientFormFactor {
-  switch (object) {
-    case 0:
-    case "UNKNOWN_FORM_FACTOR":
-      return ClientInfo_ClientFormFactor.UNKNOWN_FORM_FACTOR;
-    case 1:
-    case "FORM_FACTOR_VAL1":
-      return ClientInfo_ClientFormFactor.FORM_FACTOR_VAL1;
-    case 2:
-    case "FORM_FACTOR_VAL2":
-      return ClientInfo_ClientFormFactor.FORM_FACTOR_VAL2;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_ClientFormFactor.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_ClientFormFactorToJSON(object: ClientInfo_ClientFormFactor): string {
-  switch (object) {
-    case ClientInfo_ClientFormFactor.UNKNOWN_FORM_FACTOR:
-      return "UNKNOWN_FORM_FACTOR";
-    case ClientInfo_ClientFormFactor.FORM_FACTOR_VAL1:
-      return "FORM_FACTOR_VAL1";
-    case ClientInfo_ClientFormFactor.FORM_FACTOR_VAL2:
-      return "FORM_FACTOR_VAL2";
-    case ClientInfo_ClientFormFactor.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum ClientInfo_CameraType {
   UNKNOWN_CAMERA_TYPE = 0,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_CameraTypeFromJSON(object: any): ClientInfo_CameraType {
-  switch (object) {
-    case 0:
-    case "UNKNOWN_CAMERA_TYPE":
-      return ClientInfo_CameraType.UNKNOWN_CAMERA_TYPE;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_CameraType.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_CameraTypeToJSON(object: ClientInfo_CameraType): string {
-  switch (object) {
-    case ClientInfo_CameraType.UNKNOWN_CAMERA_TYPE:
-      return "UNKNOWN_CAMERA_TYPE";
-    case ClientInfo_CameraType.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export enum ClientInfo_UserInterfaceTheme {
   USER_INTERFACE_THEME_DARK = 0,
   USER_INTERFACE_THEME_LIGHT = 1,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_UserInterfaceThemeFromJSON(object: any): ClientInfo_UserInterfaceTheme {
-  switch (object) {
-    case 0:
-    case "USER_INTERFACE_THEME_DARK":
-      return ClientInfo_UserInterfaceTheme.USER_INTERFACE_THEME_DARK;
-    case 1:
-    case "USER_INTERFACE_THEME_LIGHT":
-      return ClientInfo_UserInterfaceTheme.USER_INTERFACE_THEME_LIGHT;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_UserInterfaceTheme.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_UserInterfaceThemeToJSON(object: ClientInfo_UserInterfaceTheme): string {
-  switch (object) {
-    case ClientInfo_UserInterfaceTheme.USER_INTERFACE_THEME_DARK:
-      return "USER_INTERFACE_THEME_DARK";
-    case ClientInfo_UserInterfaceTheme.USER_INTERFACE_THEME_LIGHT:
-      return "USER_INTERFACE_THEME_LIGHT";
-    case ClientInfo_UserInterfaceTheme.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export interface ClientInfo_MainAppWebInfo {
@@ -210,92 +129,14 @@ export enum ClientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatus {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatusFromJSON(
-  object: any,
-): ClientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatus {
-  switch (object) {
-    case 0:
-    case "STORE_DIGITAL_GOODS_API_SUPPORT_STATUS_VAL0":
-      return ClientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatus.STORE_DIGITAL_GOODS_API_SUPPORT_STATUS_VAL0;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatus.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatusToJSON(
-  object: ClientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatus,
-): string {
-  switch (object) {
-    case ClientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatus.STORE_DIGITAL_GOODS_API_SUPPORT_STATUS_VAL0:
-      return "STORE_DIGITAL_GOODS_API_SUPPORT_STATUS_VAL0";
-    case ClientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatus.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum ClientInfo_MainAppWebInfo_PwaInstallabilityStatus {
   PWA_INSTALLABILITY_STATUS_UNKNOWN = 0,
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_MainAppWebInfo_PwaInstallabilityStatusFromJSON(
-  object: any,
-): ClientInfo_MainAppWebInfo_PwaInstallabilityStatus {
-  switch (object) {
-    case 0:
-    case "PWA_INSTALLABILITY_STATUS_UNKNOWN":
-      return ClientInfo_MainAppWebInfo_PwaInstallabilityStatus.PWA_INSTALLABILITY_STATUS_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MainAppWebInfo_PwaInstallabilityStatus.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MainAppWebInfo_PwaInstallabilityStatusToJSON(
-  object: ClientInfo_MainAppWebInfo_PwaInstallabilityStatus,
-): string {
-  switch (object) {
-    case ClientInfo_MainAppWebInfo_PwaInstallabilityStatus.PWA_INSTALLABILITY_STATUS_UNKNOWN:
-      return "PWA_INSTALLABILITY_STATUS_UNKNOWN";
-    case ClientInfo_MainAppWebInfo_PwaInstallabilityStatus.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum ClientInfo_MainAppWebInfo_WebDisplayMode {
   WEB_DISPLAY_MODE_UNKNOWN = 0,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_MainAppWebInfo_WebDisplayModeFromJSON(
-  object: any,
-): ClientInfo_MainAppWebInfo_WebDisplayMode {
-  switch (object) {
-    case 0:
-    case "WEB_DISPLAY_MODE_UNKNOWN":
-      return ClientInfo_MainAppWebInfo_WebDisplayMode.WEB_DISPLAY_MODE_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MainAppWebInfo_WebDisplayMode.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MainAppWebInfo_WebDisplayModeToJSON(
-  object: ClientInfo_MainAppWebInfo_WebDisplayMode,
-): string {
-  switch (object) {
-    case ClientInfo_MainAppWebInfo_WebDisplayMode.WEB_DISPLAY_MODE_UNKNOWN:
-      return "WEB_DISPLAY_MODE_UNKNOWN";
-    case ClientInfo_MainAppWebInfo_WebDisplayMode.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export interface ClientInfo_NotificationPermissionInfo {
@@ -306,32 +147,6 @@ export interface ClientInfo_NotificationPermissionInfo {
 export enum ClientInfo_NotificationPermissionInfo_NotificationsSetting {
   NOTIFICATIONS_SETTING_UNKNOWN = 0,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_NotificationPermissionInfo_NotificationsSettingFromJSON(
-  object: any,
-): ClientInfo_NotificationPermissionInfo_NotificationsSetting {
-  switch (object) {
-    case 0:
-    case "NOTIFICATIONS_SETTING_UNKNOWN":
-      return ClientInfo_NotificationPermissionInfo_NotificationsSetting.NOTIFICATIONS_SETTING_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_NotificationPermissionInfo_NotificationsSetting.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_NotificationPermissionInfo_NotificationsSettingToJSON(
-  object: ClientInfo_NotificationPermissionInfo_NotificationsSetting,
-): string {
-  switch (object) {
-    case ClientInfo_NotificationPermissionInfo_NotificationsSetting.NOTIFICATIONS_SETTING_UNKNOWN:
-      return "NOTIFICATIONS_SETTING_UNKNOWN";
-    case ClientInfo_NotificationPermissionInfo_NotificationsSetting.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export interface ClientInfo_GLDeviceInfo {
@@ -350,32 +165,6 @@ export enum ClientInfo_SpacecastClientInfo_SpacecastInteractionLevel {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_SpacecastClientInfo_SpacecastInteractionLevelFromJSON(
-  object: any,
-): ClientInfo_SpacecastClientInfo_SpacecastInteractionLevel {
-  switch (object) {
-    case 0:
-    case "UNKNOWN":
-      return ClientInfo_SpacecastClientInfo_SpacecastInteractionLevel.UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_SpacecastClientInfo_SpacecastInteractionLevel.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_SpacecastClientInfo_SpacecastInteractionLevelToJSON(
-  object: ClientInfo_SpacecastClientInfo_SpacecastInteractionLevel,
-): string {
-  switch (object) {
-    case ClientInfo_SpacecastClientInfo_SpacecastInteractionLevel.UNKNOWN:
-      return "UNKNOWN";
-    case ClientInfo_SpacecastClientInfo_SpacecastInteractionLevel.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export interface ClientInfo_SpacecastClientInfo_SpacecastAppliance {
   contentProfileToken?: Uint8Array | undefined;
   status?: ClientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatus | undefined;
@@ -387,32 +176,6 @@ export interface ClientInfo_SpacecastClientInfo_SpacecastAppliance {
 export enum ClientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatus {
   UNKNOWN = 0,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatusFromJSON(
-  object: any,
-): ClientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatus {
-  switch (object) {
-    case 0:
-    case "UNKNOWN":
-      return ClientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatus.UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatus.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatusToJSON(
-  object: ClientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatus,
-): string {
-  switch (object) {
-    case ClientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatus.UNKNOWN:
-      return "UNKNOWN";
-    case ClientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatus.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export interface ClientInfo_MobileDataPlanInfo {
@@ -455,32 +218,6 @@ export enum ClientInfo_KidsAppInfo_KidsParentCurationMode {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_KidsAppInfo_KidsParentCurationModeFromJSON(
-  object: any,
-): ClientInfo_KidsAppInfo_KidsParentCurationMode {
-  switch (object) {
-    case 0:
-    case "KPCM_UNKNOWN":
-      return ClientInfo_KidsAppInfo_KidsParentCurationMode.KPCM_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_KidsAppInfo_KidsParentCurationMode.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_KidsAppInfo_KidsParentCurationModeToJSON(
-  object: ClientInfo_KidsAppInfo_KidsParentCurationMode,
-): string {
-  switch (object) {
-    case ClientInfo_KidsAppInfo_KidsParentCurationMode.KPCM_UNKNOWN:
-      return "KPCM_UNKNOWN";
-    case ClientInfo_KidsAppInfo_KidsParentCurationMode.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export interface ClientInfo_KidsAppInfo_KidsContentSettings {
   kidsNoSearchMode?: ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode | undefined;
   ageUpMode?: ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode | undefined;
@@ -493,72 +230,10 @@ export enum ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchModeFromJSON(
-  object: any,
-): ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode {
-  switch (object) {
-    case 0:
-    case "YT_KIDS_NO_SEARCH_MODE_OFF":
-      return ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode.YT_KIDS_NO_SEARCH_MODE_OFF;
-    case 1:
-    case "YT_KIDS_NO_SEARCH_MODE_ON":
-      return ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode.YT_KIDS_NO_SEARCH_MODE_ON;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchModeToJSON(
-  object: ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode,
-): string {
-  switch (object) {
-    case ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode.YT_KIDS_NO_SEARCH_MODE_OFF:
-      return "YT_KIDS_NO_SEARCH_MODE_OFF";
-    case ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode.YT_KIDS_NO_SEARCH_MODE_ON:
-      return "YT_KIDS_NO_SEARCH_MODE_ON";
-    case ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchMode.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode {
   YT_KIDS_AGE_UP_MODE_OFF = 0,
   YT_KIDS_AGE_UP_MODE_ON = 1,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpModeFromJSON(
-  object: any,
-): ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode {
-  switch (object) {
-    case 0:
-    case "YT_KIDS_AGE_UP_MODE_OFF":
-      return ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode.YT_KIDS_AGE_UP_MODE_OFF;
-    case 1:
-    case "YT_KIDS_AGE_UP_MODE_ON":
-      return ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode.YT_KIDS_AGE_UP_MODE_ON;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpModeToJSON(
-  object: ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode,
-): string {
-  switch (object) {
-    case ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode.YT_KIDS_AGE_UP_MODE_OFF:
-      return "YT_KIDS_AGE_UP_MODE_OFF";
-    case ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode.YT_KIDS_AGE_UP_MODE_ON:
-      return "YT_KIDS_AGE_UP_MODE_ON";
-    case ClientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpMode.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export enum ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity {
@@ -567,42 +242,6 @@ export enum ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity {
   YT_KIDS_CONTENT_DENSITY_VAL2 = 1,
   YT_KIDS_CONTENT_DENSITY_VAL3 = 2,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensityFromJSON(
-  object: any,
-): ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity {
-  switch (object) {
-    case 0:
-    case "YT_KIDS_CONTENT_DENSITY_VAL1":
-      return ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity.YT_KIDS_CONTENT_DENSITY_VAL1;
-    case 1:
-    case "YT_KIDS_CONTENT_DENSITY_VAL2":
-      return ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity.YT_KIDS_CONTENT_DENSITY_VAL2;
-    case 2:
-    case "YT_KIDS_CONTENT_DENSITY_VAL3":
-      return ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity.YT_KIDS_CONTENT_DENSITY_VAL3;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensityToJSON(
-  object: ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity,
-): string {
-  switch (object) {
-    case ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity.YT_KIDS_CONTENT_DENSITY_VAL1:
-      return "YT_KIDS_CONTENT_DENSITY_VAL1";
-    case ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity.YT_KIDS_CONTENT_DENSITY_VAL2:
-      return "YT_KIDS_CONTENT_DENSITY_VAL2";
-    case ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity.YT_KIDS_CONTENT_DENSITY_VAL3:
-      return "YT_KIDS_CONTENT_DENSITY_VAL3";
-    case ClientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensity.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export interface ClientInfo_KidsAppInfo_KidsCategorySettings {
@@ -636,61 +275,9 @@ export enum ClientInfo_MusicAppInfo_MusicPlayBackMode {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_MusicAppInfo_MusicPlayBackModeFromJSON(
-  object: any,
-): ClientInfo_MusicAppInfo_MusicPlayBackMode {
-  switch (object) {
-    case 0:
-    case "MPBM_UNKNOWN":
-      return ClientInfo_MusicAppInfo_MusicPlayBackMode.MPBM_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MusicAppInfo_MusicPlayBackMode.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MusicAppInfo_MusicPlayBackModeToJSON(
-  object: ClientInfo_MusicAppInfo_MusicPlayBackMode,
-): string {
-  switch (object) {
-    case ClientInfo_MusicAppInfo_MusicPlayBackMode.MPBM_UNKNOWN:
-      return "MPBM_UNKNOWN";
-    case ClientInfo_MusicAppInfo_MusicPlayBackMode.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum ClientInfo_MusicAppInfo_MusicLocationMasterSwitch {
   MLMS_UNKNOWN = 0,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_MusicAppInfo_MusicLocationMasterSwitchFromJSON(
-  object: any,
-): ClientInfo_MusicAppInfo_MusicLocationMasterSwitch {
-  switch (object) {
-    case 0:
-    case "MLMS_UNKNOWN":
-      return ClientInfo_MusicAppInfo_MusicLocationMasterSwitch.MLMS_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MusicAppInfo_MusicLocationMasterSwitch.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MusicAppInfo_MusicLocationMasterSwitchToJSON(
-  object: ClientInfo_MusicAppInfo_MusicLocationMasterSwitch,
-): string {
-  switch (object) {
-    case ClientInfo_MusicAppInfo_MusicLocationMasterSwitch.MLMS_UNKNOWN:
-      return "MLMS_UNKNOWN";
-    case ClientInfo_MusicAppInfo_MusicLocationMasterSwitch.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export enum ClientInfo_MusicAppInfo_MusicActivityMasterSwitch {
@@ -698,61 +285,9 @@ export enum ClientInfo_MusicAppInfo_MusicActivityMasterSwitch {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_MusicAppInfo_MusicActivityMasterSwitchFromJSON(
-  object: any,
-): ClientInfo_MusicAppInfo_MusicActivityMasterSwitch {
-  switch (object) {
-    case 0:
-    case "MAMS_UNKNOWN":
-      return ClientInfo_MusicAppInfo_MusicActivityMasterSwitch.MAMS_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MusicAppInfo_MusicActivityMasterSwitch.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MusicAppInfo_MusicActivityMasterSwitchToJSON(
-  object: ClientInfo_MusicAppInfo_MusicActivityMasterSwitch,
-): string {
-  switch (object) {
-    case ClientInfo_MusicAppInfo_MusicActivityMasterSwitch.MAMS_UNKNOWN:
-      return "MAMS_UNKNOWN";
-    case ClientInfo_MusicAppInfo_MusicActivityMasterSwitch.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum ClientInfo_MusicAppInfo_IosBackgroundRefreshStatus {
   UNKNOWN_STATUS = 0,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_MusicAppInfo_IosBackgroundRefreshStatusFromJSON(
-  object: any,
-): ClientInfo_MusicAppInfo_IosBackgroundRefreshStatus {
-  switch (object) {
-    case 0:
-    case "UNKNOWN_STATUS":
-      return ClientInfo_MusicAppInfo_IosBackgroundRefreshStatus.UNKNOWN_STATUS;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MusicAppInfo_IosBackgroundRefreshStatus.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MusicAppInfo_IosBackgroundRefreshStatusToJSON(
-  object: ClientInfo_MusicAppInfo_IosBackgroundRefreshStatus,
-): string {
-  switch (object) {
-    case ClientInfo_MusicAppInfo_IosBackgroundRefreshStatus.UNKNOWN_STATUS:
-      return "UNKNOWN_STATUS";
-    case ClientInfo_MusicAppInfo_IosBackgroundRefreshStatus.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export enum ClientInfo_MusicAppInfo_PwaInstallabilityStatus {
@@ -760,57 +295,9 @@ export enum ClientInfo_MusicAppInfo_PwaInstallabilityStatus {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_MusicAppInfo_PwaInstallabilityStatusFromJSON(
-  object: any,
-): ClientInfo_MusicAppInfo_PwaInstallabilityStatus {
-  switch (object) {
-    case 0:
-    case "PIS_UNKNOWN":
-      return ClientInfo_MusicAppInfo_PwaInstallabilityStatus.PIS_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MusicAppInfo_PwaInstallabilityStatus.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MusicAppInfo_PwaInstallabilityStatusToJSON(
-  object: ClientInfo_MusicAppInfo_PwaInstallabilityStatus,
-): string {
-  switch (object) {
-    case ClientInfo_MusicAppInfo_PwaInstallabilityStatus.PIS_UNKNOWN:
-      return "PIS_UNKNOWN";
-    case ClientInfo_MusicAppInfo_PwaInstallabilityStatus.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum ClientInfo_MusicAppInfo_WebDisplayMode {
   WDM_UNKNOWN = 0,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_MusicAppInfo_WebDisplayModeFromJSON(object: any): ClientInfo_MusicAppInfo_WebDisplayMode {
-  switch (object) {
-    case 0:
-    case "WDM_UNKNOWN":
-      return ClientInfo_MusicAppInfo_WebDisplayMode.WDM_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MusicAppInfo_WebDisplayMode.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MusicAppInfo_WebDisplayModeToJSON(object: ClientInfo_MusicAppInfo_WebDisplayMode): string {
-  switch (object) {
-    case ClientInfo_MusicAppInfo_WebDisplayMode.WDM_UNKNOWN:
-      return "WDM_UNKNOWN";
-    case ClientInfo_MusicAppInfo_WebDisplayMode.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export enum ClientInfo_MusicAppInfo_MusicTier {
@@ -818,57 +305,9 @@ export enum ClientInfo_MusicAppInfo_MusicTier {
   UNRECOGNIZED = -1,
 }
 
-export function clientInfo_MusicAppInfo_MusicTierFromJSON(object: any): ClientInfo_MusicAppInfo_MusicTier {
-  switch (object) {
-    case 0:
-    case "UNKNOWN_TIER":
-      return ClientInfo_MusicAppInfo_MusicTier.UNKNOWN_TIER;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MusicAppInfo_MusicTier.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MusicAppInfo_MusicTierToJSON(object: ClientInfo_MusicAppInfo_MusicTier): string {
-  switch (object) {
-    case ClientInfo_MusicAppInfo_MusicTier.UNKNOWN_TIER:
-      return "UNKNOWN_TIER";
-    case ClientInfo_MusicAppInfo_MusicTier.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 export enum ClientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatus {
   SDGAS_UNKNOWN = 0,
   UNRECOGNIZED = -1,
-}
-
-export function clientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatusFromJSON(
-  object: any,
-): ClientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatus {
-  switch (object) {
-    case 0:
-    case "SDGAS_UNKNOWN":
-      return ClientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatus.SDGAS_UNKNOWN;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return ClientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatus.UNRECOGNIZED;
-  }
-}
-
-export function clientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatusToJSON(
-  object: ClientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatus,
-): string {
-  switch (object) {
-    case ClientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatus.SDGAS_UNKNOWN:
-      return "SDGAS_UNKNOWN";
-    case ClientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatus.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 export interface ClientInfo_TvAppInfo {
@@ -1708,425 +1147,6 @@ export const ClientInfo: MessageFns<ClientInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo {
-    return {
-      hl: isSet(object.hl) ? globalThis.String(object.hl) : undefined,
-      gl: isSet(object.gl) ? globalThis.String(object.gl) : undefined,
-      remoteHost: isSet(object.remoteHost) ? globalThis.String(object.remoteHost) : undefined,
-      deviceId: isSet(object.deviceId) ? globalThis.String(object.deviceId) : undefined,
-      debugDeviceIdOverride: isSet(object.debugDeviceIdOverride)
-        ? globalThis.String(object.debugDeviceIdOverride)
-        : undefined,
-      carrierGeo: isSet(object.carrierGeo) ? globalThis.String(object.carrierGeo) : undefined,
-      crackedHl: isSet(object.crackedHl) ? globalThis.Boolean(object.crackedHl) : undefined,
-      deviceMake: isSet(object.deviceMake) ? globalThis.String(object.deviceMake) : undefined,
-      deviceModel: isSet(object.deviceModel) ? globalThis.String(object.deviceModel) : undefined,
-      visitorData: isSet(object.visitorData) ? globalThis.String(object.visitorData) : undefined,
-      userAgent: isSet(object.userAgent) ? globalThis.String(object.userAgent) : undefined,
-      clientName: isSet(object.clientName) ? globalThis.Number(object.clientName) : undefined,
-      clientVersion: isSet(object.clientVersion) ? globalThis.String(object.clientVersion) : undefined,
-      osName: isSet(object.osName) ? globalThis.String(object.osName) : undefined,
-      osVersion: isSet(object.osVersion) ? globalThis.String(object.osVersion) : undefined,
-      projectId: isSet(object.projectId) ? globalThis.String(object.projectId) : undefined,
-      acceptLanguage: isSet(object.acceptLanguage) ? globalThis.String(object.acceptLanguage) : undefined,
-      acceptRegion: isSet(object.acceptRegion) ? globalThis.String(object.acceptRegion) : undefined,
-      originalUrl: isSet(object.originalUrl) ? globalThis.String(object.originalUrl) : undefined,
-      rawDeviceId: isSet(object.rawDeviceId) ? globalThis.String(object.rawDeviceId) : undefined,
-      configData: isSet(object.configData) ? globalThis.String(object.configData) : undefined,
-      spacecastToken: isSet(object.spacecastToken) ? globalThis.String(object.spacecastToken) : undefined,
-      internalGeo: isSet(object.internalGeo) ? globalThis.String(object.internalGeo) : undefined,
-      screenWidthPoints: isSet(object.screenWidthPoints) ? globalThis.Number(object.screenWidthPoints) : undefined,
-      screenHeightPoints: isSet(object.screenHeightPoints) ? globalThis.Number(object.screenHeightPoints) : undefined,
-      screenWidthInches: isSet(object.screenWidthInches) ? globalThis.Number(object.screenWidthInches) : undefined,
-      screenHeightInches: isSet(object.screenHeightInches) ? globalThis.Number(object.screenHeightInches) : undefined,
-      screenPixelDensity: isSet(object.screenPixelDensity) ? globalThis.Number(object.screenPixelDensity) : undefined,
-      platform: isSet(object.platform) ? globalThis.Number(object.platform) : undefined,
-      spacecastClientInfo: isSet(object.spacecastClientInfo)
-        ? ClientInfo_SpacecastClientInfo.fromJSON(object.spacecastClientInfo)
-        : undefined,
-      clientFormFactor: isSet(object.clientFormFactor)
-        ? clientInfo_ClientFormFactorFromJSON(object.clientFormFactor)
-        : undefined,
-      forwardedFor: isSet(object.forwardedFor) ? globalThis.String(object.forwardedFor) : undefined,
-      mobileDataPlanInfo: isSet(object.mobileDataPlanInfo)
-        ? ClientInfo_MobileDataPlanInfo.fromJSON(object.mobileDataPlanInfo)
-        : undefined,
-      gmscoreVersionCode: isSet(object.gmscoreVersionCode) ? globalThis.Number(object.gmscoreVersionCode) : undefined,
-      webpSupport: isSet(object.webpSupport) ? globalThis.Boolean(object.webpSupport) : undefined,
-      cameraType: isSet(object.cameraType) ? clientInfo_CameraTypeFromJSON(object.cameraType) : undefined,
-      experimentsToken: isSet(object.experimentsToken) ? globalThis.String(object.experimentsToken) : undefined,
-      windowWidthPoints: isSet(object.windowWidthPoints) ? globalThis.Number(object.windowWidthPoints) : undefined,
-      windowHeightPoints: isSet(object.windowHeightPoints) ? globalThis.Number(object.windowHeightPoints) : undefined,
-      configInfo: isSet(object.configInfo) ? ClientInfo_ConfigGroupsClientInfo.fromJSON(object.configInfo) : undefined,
-      unpluggedLocationInfo: isSet(object.unpluggedLocationInfo)
-        ? ClientInfo_UnpluggedLocationInfo.fromJSON(object.unpluggedLocationInfo)
-        : undefined,
-      androidSdkVersion: isSet(object.androidSdkVersion) ? globalThis.Number(object.androidSdkVersion) : undefined,
-      screenDensityFloat: isSet(object.screenDensityFloat) ? globalThis.Number(object.screenDensityFloat) : undefined,
-      firstTimeSignInExperimentIds: isSet(object.firstTimeSignInExperimentIds)
-        ? globalThis.Number(object.firstTimeSignInExperimentIds)
-        : undefined,
-      utcOffsetMinutes: isSet(object.utcOffsetMinutes) ? globalThis.Number(object.utcOffsetMinutes) : undefined,
-      animatedWebpSupport: isSet(object.animatedWebpSupport)
-        ? globalThis.Boolean(object.animatedWebpSupport)
-        : undefined,
-      kidsAppInfo: isSet(object.kidsAppInfo) ? ClientInfo_KidsAppInfo.fromJSON(object.kidsAppInfo) : undefined,
-      musicAppInfo: isSet(object.musicAppInfo) ? ClientInfo_MusicAppInfo.fromJSON(object.musicAppInfo) : undefined,
-      tvAppInfo: isSet(object.tvAppInfo) ? ClientInfo_TvAppInfo.fromJSON(object.tvAppInfo) : undefined,
-      internalGeoIp: isSet(object.internalGeoIp) ? globalThis.String(object.internalGeoIp) : undefined,
-      unpluggedAppInfo: isSet(object.unpluggedAppInfo)
-        ? ClientInfo_UnpluggedAppInfo.fromJSON(object.unpluggedAppInfo)
-        : undefined,
-      locationInfo: isSet(object.locationInfo) ? ClientInfo_LocationInfo.fromJSON(object.locationInfo) : undefined,
-      contentSizeCategory: isSet(object.contentSizeCategory)
-        ? globalThis.String(object.contentSizeCategory)
-        : undefined,
-      fontScale: isSet(object.fontScale) ? globalThis.Number(object.fontScale) : undefined,
-      userInterfaceTheme: isSet(object.userInterfaceTheme)
-        ? clientInfo_UserInterfaceThemeFromJSON(object.userInterfaceTheme)
-        : undefined,
-      timeZone: isSet(object.timeZone) ? globalThis.String(object.timeZone) : undefined,
-      homeGroupInfo: isSet(object.homeGroupInfo) ? ClientInfo_HomeGroupInfo.fromJSON(object.homeGroupInfo) : undefined,
-      emlTemplateContext: isSet(object.emlTemplateContext) ? bytesFromBase64(object.emlTemplateContext) : undefined,
-      coldAppBundleConfigData: isSet(object.coldAppBundleConfigData)
-        ? bytesFromBase64(object.coldAppBundleConfigData)
-        : undefined,
-      browserName: isSet(object.browserName) ? globalThis.String(object.browserName) : undefined,
-      browserVersion: isSet(object.browserVersion) ? globalThis.String(object.browserVersion) : undefined,
-      locationPlayabilityToken: isSet(object.locationPlayabilityToken)
-        ? globalThis.String(object.locationPlayabilityToken)
-        : undefined,
-      chipset: isSet(object.chipset) ? globalThis.String(object.chipset) : undefined,
-      firmwareVersion: isSet(object.firmwareVersion) ? globalThis.String(object.firmwareVersion) : undefined,
-      memoryTotalKbytes: isSet(object.memoryTotalKbytes) ? globalThis.Number(object.memoryTotalKbytes) : undefined,
-      mainAppWebInfo: isSet(object.mainAppWebInfo)
-        ? ClientInfo_MainAppWebInfo.fromJSON(object.mainAppWebInfo)
-        : undefined,
-      notificationPermissionInfo: isSet(object.notificationPermissionInfo)
-        ? ClientInfo_NotificationPermissionInfo.fromJSON(object.notificationPermissionInfo)
-        : undefined,
-      deviceBrand: isSet(object.deviceBrand) ? globalThis.String(object.deviceBrand) : undefined,
-      glDeviceInfo: isSet(object.glDeviceInfo) ? ClientInfo_GLDeviceInfo.fromJSON(object.glDeviceInfo) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo): unknown {
-    const obj: any = {};
-    if (message.hl !== undefined) {
-      obj.hl = message.hl;
-    }
-    if (message.gl !== undefined) {
-      obj.gl = message.gl;
-    }
-    if (message.remoteHost !== undefined) {
-      obj.remoteHost = message.remoteHost;
-    }
-    if (message.deviceId !== undefined) {
-      obj.deviceId = message.deviceId;
-    }
-    if (message.debugDeviceIdOverride !== undefined) {
-      obj.debugDeviceIdOverride = message.debugDeviceIdOverride;
-    }
-    if (message.carrierGeo !== undefined) {
-      obj.carrierGeo = message.carrierGeo;
-    }
-    if (message.crackedHl !== undefined) {
-      obj.crackedHl = message.crackedHl;
-    }
-    if (message.deviceMake !== undefined) {
-      obj.deviceMake = message.deviceMake;
-    }
-    if (message.deviceModel !== undefined) {
-      obj.deviceModel = message.deviceModel;
-    }
-    if (message.visitorData !== undefined) {
-      obj.visitorData = message.visitorData;
-    }
-    if (message.userAgent !== undefined) {
-      obj.userAgent = message.userAgent;
-    }
-    if (message.clientName !== undefined) {
-      obj.clientName = Math.round(message.clientName);
-    }
-    if (message.clientVersion !== undefined) {
-      obj.clientVersion = message.clientVersion;
-    }
-    if (message.osName !== undefined) {
-      obj.osName = message.osName;
-    }
-    if (message.osVersion !== undefined) {
-      obj.osVersion = message.osVersion;
-    }
-    if (message.projectId !== undefined) {
-      obj.projectId = message.projectId;
-    }
-    if (message.acceptLanguage !== undefined) {
-      obj.acceptLanguage = message.acceptLanguage;
-    }
-    if (message.acceptRegion !== undefined) {
-      obj.acceptRegion = message.acceptRegion;
-    }
-    if (message.originalUrl !== undefined) {
-      obj.originalUrl = message.originalUrl;
-    }
-    if (message.rawDeviceId !== undefined) {
-      obj.rawDeviceId = message.rawDeviceId;
-    }
-    if (message.configData !== undefined) {
-      obj.configData = message.configData;
-    }
-    if (message.spacecastToken !== undefined) {
-      obj.spacecastToken = message.spacecastToken;
-    }
-    if (message.internalGeo !== undefined) {
-      obj.internalGeo = message.internalGeo;
-    }
-    if (message.screenWidthPoints !== undefined) {
-      obj.screenWidthPoints = Math.round(message.screenWidthPoints);
-    }
-    if (message.screenHeightPoints !== undefined) {
-      obj.screenHeightPoints = Math.round(message.screenHeightPoints);
-    }
-    if (message.screenWidthInches !== undefined) {
-      obj.screenWidthInches = message.screenWidthInches;
-    }
-    if (message.screenHeightInches !== undefined) {
-      obj.screenHeightInches = message.screenHeightInches;
-    }
-    if (message.screenPixelDensity !== undefined) {
-      obj.screenPixelDensity = Math.round(message.screenPixelDensity);
-    }
-    if (message.platform !== undefined) {
-      obj.platform = Math.round(message.platform);
-    }
-    if (message.spacecastClientInfo !== undefined) {
-      obj.spacecastClientInfo = ClientInfo_SpacecastClientInfo.toJSON(message.spacecastClientInfo);
-    }
-    if (message.clientFormFactor !== undefined) {
-      obj.clientFormFactor = clientInfo_ClientFormFactorToJSON(message.clientFormFactor);
-    }
-    if (message.forwardedFor !== undefined) {
-      obj.forwardedFor = message.forwardedFor;
-    }
-    if (message.mobileDataPlanInfo !== undefined) {
-      obj.mobileDataPlanInfo = ClientInfo_MobileDataPlanInfo.toJSON(message.mobileDataPlanInfo);
-    }
-    if (message.gmscoreVersionCode !== undefined) {
-      obj.gmscoreVersionCode = Math.round(message.gmscoreVersionCode);
-    }
-    if (message.webpSupport !== undefined) {
-      obj.webpSupport = message.webpSupport;
-    }
-    if (message.cameraType !== undefined) {
-      obj.cameraType = clientInfo_CameraTypeToJSON(message.cameraType);
-    }
-    if (message.experimentsToken !== undefined) {
-      obj.experimentsToken = message.experimentsToken;
-    }
-    if (message.windowWidthPoints !== undefined) {
-      obj.windowWidthPoints = Math.round(message.windowWidthPoints);
-    }
-    if (message.windowHeightPoints !== undefined) {
-      obj.windowHeightPoints = Math.round(message.windowHeightPoints);
-    }
-    if (message.configInfo !== undefined) {
-      obj.configInfo = ClientInfo_ConfigGroupsClientInfo.toJSON(message.configInfo);
-    }
-    if (message.unpluggedLocationInfo !== undefined) {
-      obj.unpluggedLocationInfo = ClientInfo_UnpluggedLocationInfo.toJSON(message.unpluggedLocationInfo);
-    }
-    if (message.androidSdkVersion !== undefined) {
-      obj.androidSdkVersion = Math.round(message.androidSdkVersion);
-    }
-    if (message.screenDensityFloat !== undefined) {
-      obj.screenDensityFloat = message.screenDensityFloat;
-    }
-    if (message.firstTimeSignInExperimentIds !== undefined) {
-      obj.firstTimeSignInExperimentIds = Math.round(message.firstTimeSignInExperimentIds);
-    }
-    if (message.utcOffsetMinutes !== undefined) {
-      obj.utcOffsetMinutes = Math.round(message.utcOffsetMinutes);
-    }
-    if (message.animatedWebpSupport !== undefined) {
-      obj.animatedWebpSupport = message.animatedWebpSupport;
-    }
-    if (message.kidsAppInfo !== undefined) {
-      obj.kidsAppInfo = ClientInfo_KidsAppInfo.toJSON(message.kidsAppInfo);
-    }
-    if (message.musicAppInfo !== undefined) {
-      obj.musicAppInfo = ClientInfo_MusicAppInfo.toJSON(message.musicAppInfo);
-    }
-    if (message.tvAppInfo !== undefined) {
-      obj.tvAppInfo = ClientInfo_TvAppInfo.toJSON(message.tvAppInfo);
-    }
-    if (message.internalGeoIp !== undefined) {
-      obj.internalGeoIp = message.internalGeoIp;
-    }
-    if (message.unpluggedAppInfo !== undefined) {
-      obj.unpluggedAppInfo = ClientInfo_UnpluggedAppInfo.toJSON(message.unpluggedAppInfo);
-    }
-    if (message.locationInfo !== undefined) {
-      obj.locationInfo = ClientInfo_LocationInfo.toJSON(message.locationInfo);
-    }
-    if (message.contentSizeCategory !== undefined) {
-      obj.contentSizeCategory = message.contentSizeCategory;
-    }
-    if (message.fontScale !== undefined) {
-      obj.fontScale = message.fontScale;
-    }
-    if (message.userInterfaceTheme !== undefined) {
-      obj.userInterfaceTheme = clientInfo_UserInterfaceThemeToJSON(message.userInterfaceTheme);
-    }
-    if (message.timeZone !== undefined) {
-      obj.timeZone = message.timeZone;
-    }
-    if (message.homeGroupInfo !== undefined) {
-      obj.homeGroupInfo = ClientInfo_HomeGroupInfo.toJSON(message.homeGroupInfo);
-    }
-    if (message.emlTemplateContext !== undefined) {
-      obj.emlTemplateContext = base64FromBytes(message.emlTemplateContext);
-    }
-    if (message.coldAppBundleConfigData !== undefined) {
-      obj.coldAppBundleConfigData = base64FromBytes(message.coldAppBundleConfigData);
-    }
-    if (message.browserName !== undefined) {
-      obj.browserName = message.browserName;
-    }
-    if (message.browserVersion !== undefined) {
-      obj.browserVersion = message.browserVersion;
-    }
-    if (message.locationPlayabilityToken !== undefined) {
-      obj.locationPlayabilityToken = message.locationPlayabilityToken;
-    }
-    if (message.chipset !== undefined) {
-      obj.chipset = message.chipset;
-    }
-    if (message.firmwareVersion !== undefined) {
-      obj.firmwareVersion = message.firmwareVersion;
-    }
-    if (message.memoryTotalKbytes !== undefined) {
-      obj.memoryTotalKbytes = Math.round(message.memoryTotalKbytes);
-    }
-    if (message.mainAppWebInfo !== undefined) {
-      obj.mainAppWebInfo = ClientInfo_MainAppWebInfo.toJSON(message.mainAppWebInfo);
-    }
-    if (message.notificationPermissionInfo !== undefined) {
-      obj.notificationPermissionInfo = ClientInfo_NotificationPermissionInfo.toJSON(message.notificationPermissionInfo);
-    }
-    if (message.deviceBrand !== undefined) {
-      obj.deviceBrand = message.deviceBrand;
-    }
-    if (message.glDeviceInfo !== undefined) {
-      obj.glDeviceInfo = ClientInfo_GLDeviceInfo.toJSON(message.glDeviceInfo);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo>, I>>(base?: I): ClientInfo {
-    return ClientInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo>, I>>(object: I): ClientInfo {
-    const message = createBaseClientInfo();
-    message.hl = object.hl ?? undefined;
-    message.gl = object.gl ?? undefined;
-    message.remoteHost = object.remoteHost ?? undefined;
-    message.deviceId = object.deviceId ?? undefined;
-    message.debugDeviceIdOverride = object.debugDeviceIdOverride ?? undefined;
-    message.carrierGeo = object.carrierGeo ?? undefined;
-    message.crackedHl = object.crackedHl ?? undefined;
-    message.deviceMake = object.deviceMake ?? undefined;
-    message.deviceModel = object.deviceModel ?? undefined;
-    message.visitorData = object.visitorData ?? undefined;
-    message.userAgent = object.userAgent ?? undefined;
-    message.clientName = object.clientName ?? undefined;
-    message.clientVersion = object.clientVersion ?? undefined;
-    message.osName = object.osName ?? undefined;
-    message.osVersion = object.osVersion ?? undefined;
-    message.projectId = object.projectId ?? undefined;
-    message.acceptLanguage = object.acceptLanguage ?? undefined;
-    message.acceptRegion = object.acceptRegion ?? undefined;
-    message.originalUrl = object.originalUrl ?? undefined;
-    message.rawDeviceId = object.rawDeviceId ?? undefined;
-    message.configData = object.configData ?? undefined;
-    message.spacecastToken = object.spacecastToken ?? undefined;
-    message.internalGeo = object.internalGeo ?? undefined;
-    message.screenWidthPoints = object.screenWidthPoints ?? undefined;
-    message.screenHeightPoints = object.screenHeightPoints ?? undefined;
-    message.screenWidthInches = object.screenWidthInches ?? undefined;
-    message.screenHeightInches = object.screenHeightInches ?? undefined;
-    message.screenPixelDensity = object.screenPixelDensity ?? undefined;
-    message.platform = object.platform ?? undefined;
-    message.spacecastClientInfo = (object.spacecastClientInfo !== undefined && object.spacecastClientInfo !== null)
-      ? ClientInfo_SpacecastClientInfo.fromPartial(object.spacecastClientInfo)
-      : undefined;
-    message.clientFormFactor = object.clientFormFactor ?? undefined;
-    message.forwardedFor = object.forwardedFor ?? undefined;
-    message.mobileDataPlanInfo = (object.mobileDataPlanInfo !== undefined && object.mobileDataPlanInfo !== null)
-      ? ClientInfo_MobileDataPlanInfo.fromPartial(object.mobileDataPlanInfo)
-      : undefined;
-    message.gmscoreVersionCode = object.gmscoreVersionCode ?? undefined;
-    message.webpSupport = object.webpSupport ?? undefined;
-    message.cameraType = object.cameraType ?? undefined;
-    message.experimentsToken = object.experimentsToken ?? undefined;
-    message.windowWidthPoints = object.windowWidthPoints ?? undefined;
-    message.windowHeightPoints = object.windowHeightPoints ?? undefined;
-    message.configInfo = (object.configInfo !== undefined && object.configInfo !== null)
-      ? ClientInfo_ConfigGroupsClientInfo.fromPartial(object.configInfo)
-      : undefined;
-    message.unpluggedLocationInfo =
-      (object.unpluggedLocationInfo !== undefined && object.unpluggedLocationInfo !== null)
-        ? ClientInfo_UnpluggedLocationInfo.fromPartial(object.unpluggedLocationInfo)
-        : undefined;
-    message.androidSdkVersion = object.androidSdkVersion ?? undefined;
-    message.screenDensityFloat = object.screenDensityFloat ?? undefined;
-    message.firstTimeSignInExperimentIds = object.firstTimeSignInExperimentIds ?? undefined;
-    message.utcOffsetMinutes = object.utcOffsetMinutes ?? undefined;
-    message.animatedWebpSupport = object.animatedWebpSupport ?? undefined;
-    message.kidsAppInfo = (object.kidsAppInfo !== undefined && object.kidsAppInfo !== null)
-      ? ClientInfo_KidsAppInfo.fromPartial(object.kidsAppInfo)
-      : undefined;
-    message.musicAppInfo = (object.musicAppInfo !== undefined && object.musicAppInfo !== null)
-      ? ClientInfo_MusicAppInfo.fromPartial(object.musicAppInfo)
-      : undefined;
-    message.tvAppInfo = (object.tvAppInfo !== undefined && object.tvAppInfo !== null)
-      ? ClientInfo_TvAppInfo.fromPartial(object.tvAppInfo)
-      : undefined;
-    message.internalGeoIp = object.internalGeoIp ?? undefined;
-    message.unpluggedAppInfo = (object.unpluggedAppInfo !== undefined && object.unpluggedAppInfo !== null)
-      ? ClientInfo_UnpluggedAppInfo.fromPartial(object.unpluggedAppInfo)
-      : undefined;
-    message.locationInfo = (object.locationInfo !== undefined && object.locationInfo !== null)
-      ? ClientInfo_LocationInfo.fromPartial(object.locationInfo)
-      : undefined;
-    message.contentSizeCategory = object.contentSizeCategory ?? undefined;
-    message.fontScale = object.fontScale ?? undefined;
-    message.userInterfaceTheme = object.userInterfaceTheme ?? undefined;
-    message.timeZone = object.timeZone ?? undefined;
-    message.homeGroupInfo = (object.homeGroupInfo !== undefined && object.homeGroupInfo !== null)
-      ? ClientInfo_HomeGroupInfo.fromPartial(object.homeGroupInfo)
-      : undefined;
-    message.emlTemplateContext = object.emlTemplateContext ?? undefined;
-    message.coldAppBundleConfigData = object.coldAppBundleConfigData ?? undefined;
-    message.browserName = object.browserName ?? undefined;
-    message.browserVersion = object.browserVersion ?? undefined;
-    message.locationPlayabilityToken = object.locationPlayabilityToken ?? undefined;
-    message.chipset = object.chipset ?? undefined;
-    message.firmwareVersion = object.firmwareVersion ?? undefined;
-    message.memoryTotalKbytes = object.memoryTotalKbytes ?? undefined;
-    message.mainAppWebInfo = (object.mainAppWebInfo !== undefined && object.mainAppWebInfo !== null)
-      ? ClientInfo_MainAppWebInfo.fromPartial(object.mainAppWebInfo)
-      : undefined;
-    message.notificationPermissionInfo =
-      (object.notificationPermissionInfo !== undefined && object.notificationPermissionInfo !== null)
-        ? ClientInfo_NotificationPermissionInfo.fromPartial(object.notificationPermissionInfo)
-        : undefined;
-    message.deviceBrand = object.deviceBrand ?? undefined;
-    message.glDeviceInfo = (object.glDeviceInfo !== undefined && object.glDeviceInfo !== null)
-      ? ClientInfo_GLDeviceInfo.fromPartial(object.glDeviceInfo)
-      : undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_MainAppWebInfo(): ClientInfo_MainAppWebInfo {
@@ -2209,61 +1229,6 @@ export const ClientInfo_MainAppWebInfo: MessageFns<ClientInfo_MainAppWebInfo> = 
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_MainAppWebInfo {
-    return {
-      graftUrl: isSet(object.graftUrl) ? globalThis.String(object.graftUrl) : undefined,
-      pwaInstallabilityStatus: isSet(object.pwaInstallabilityStatus)
-        ? clientInfo_MainAppWebInfo_PwaInstallabilityStatusFromJSON(object.pwaInstallabilityStatus)
-        : undefined,
-      webDisplayMode: isSet(object.webDisplayMode)
-        ? clientInfo_MainAppWebInfo_WebDisplayModeFromJSON(object.webDisplayMode)
-        : undefined,
-      isWebNativeShareAvailable: isSet(object.isWebNativeShareAvailable)
-        ? globalThis.Boolean(object.isWebNativeShareAvailable)
-        : undefined,
-      storeDigitalGoodsApiSupportStatus: isSet(object.storeDigitalGoodsApiSupportStatus)
-        ? clientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatusFromJSON(object.storeDigitalGoodsApiSupportStatus)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_MainAppWebInfo): unknown {
-    const obj: any = {};
-    if (message.graftUrl !== undefined) {
-      obj.graftUrl = message.graftUrl;
-    }
-    if (message.pwaInstallabilityStatus !== undefined) {
-      obj.pwaInstallabilityStatus = clientInfo_MainAppWebInfo_PwaInstallabilityStatusToJSON(
-        message.pwaInstallabilityStatus,
-      );
-    }
-    if (message.webDisplayMode !== undefined) {
-      obj.webDisplayMode = clientInfo_MainAppWebInfo_WebDisplayModeToJSON(message.webDisplayMode);
-    }
-    if (message.isWebNativeShareAvailable !== undefined) {
-      obj.isWebNativeShareAvailable = message.isWebNativeShareAvailable;
-    }
-    if (message.storeDigitalGoodsApiSupportStatus !== undefined) {
-      obj.storeDigitalGoodsApiSupportStatus = clientInfo_MainAppWebInfo_StoreDigitalGoodsApiSupportStatusToJSON(
-        message.storeDigitalGoodsApiSupportStatus,
-      );
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_MainAppWebInfo>, I>>(base?: I): ClientInfo_MainAppWebInfo {
-    return ClientInfo_MainAppWebInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_MainAppWebInfo>, I>>(object: I): ClientInfo_MainAppWebInfo {
-    const message = createBaseClientInfo_MainAppWebInfo();
-    message.graftUrl = object.graftUrl ?? undefined;
-    message.pwaInstallabilityStatus = object.pwaInstallabilityStatus ?? undefined;
-    message.webDisplayMode = object.webDisplayMode ?? undefined;
-    message.isWebNativeShareAvailable = object.isWebNativeShareAvailable ?? undefined;
-    message.storeDigitalGoodsApiSupportStatus = object.storeDigitalGoodsApiSupportStatus ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_NotificationPermissionInfo(): ClientInfo_NotificationPermissionInfo {
@@ -2308,44 +1273,6 @@ export const ClientInfo_NotificationPermissionInfo: MessageFns<ClientInfo_Notifi
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ClientInfo_NotificationPermissionInfo {
-    return {
-      notificationsSetting: isSet(object.notificationsSetting)
-        ? clientInfo_NotificationPermissionInfo_NotificationsSettingFromJSON(object.notificationsSetting)
-        : undefined,
-      lastDeviceOptInChangeTimeAgoSec: isSet(object.lastDeviceOptInChangeTimeAgoSec)
-        ? globalThis.Number(object.lastDeviceOptInChangeTimeAgoSec)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_NotificationPermissionInfo): unknown {
-    const obj: any = {};
-    if (message.notificationsSetting !== undefined) {
-      obj.notificationsSetting = clientInfo_NotificationPermissionInfo_NotificationsSettingToJSON(
-        message.notificationsSetting,
-      );
-    }
-    if (message.lastDeviceOptInChangeTimeAgoSec !== undefined) {
-      obj.lastDeviceOptInChangeTimeAgoSec = Math.round(message.lastDeviceOptInChangeTimeAgoSec);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_NotificationPermissionInfo>, I>>(
-    base?: I,
-  ): ClientInfo_NotificationPermissionInfo {
-    return ClientInfo_NotificationPermissionInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_NotificationPermissionInfo>, I>>(
-    object: I,
-  ): ClientInfo_NotificationPermissionInfo {
-    const message = createBaseClientInfo_NotificationPermissionInfo();
-    message.notificationsSetting = object.notificationsSetting ?? undefined;
-    message.lastDeviceOptInChangeTimeAgoSec = object.lastDeviceOptInChangeTimeAgoSec ?? undefined;
     return message;
   },
 };
@@ -2404,39 +1331,6 @@ export const ClientInfo_GLDeviceInfo: MessageFns<ClientInfo_GLDeviceInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_GLDeviceInfo {
-    return {
-      glRenderer: isSet(object.glRenderer) ? globalThis.String(object.glRenderer) : undefined,
-      glEsVersionMajor: isSet(object.glEsVersionMajor) ? globalThis.Number(object.glEsVersionMajor) : undefined,
-      glEsVersionMinor: isSet(object.glEsVersionMinor) ? globalThis.Number(object.glEsVersionMinor) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_GLDeviceInfo): unknown {
-    const obj: any = {};
-    if (message.glRenderer !== undefined) {
-      obj.glRenderer = message.glRenderer;
-    }
-    if (message.glEsVersionMajor !== undefined) {
-      obj.glEsVersionMajor = Math.round(message.glEsVersionMajor);
-    }
-    if (message.glEsVersionMinor !== undefined) {
-      obj.glEsVersionMinor = Math.round(message.glEsVersionMinor);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_GLDeviceInfo>, I>>(base?: I): ClientInfo_GLDeviceInfo {
-    return ClientInfo_GLDeviceInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_GLDeviceInfo>, I>>(object: I): ClientInfo_GLDeviceInfo {
-    const message = createBaseClientInfo_GLDeviceInfo();
-    message.glRenderer = object.glRenderer ?? undefined;
-    message.glEsVersionMajor = object.glEsVersionMajor ?? undefined;
-    message.glEsVersionMinor = object.glEsVersionMinor ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_SpacecastClientInfo(): ClientInfo_SpacecastClientInfo {
@@ -2481,42 +1375,6 @@ export const ClientInfo_SpacecastClientInfo: MessageFns<ClientInfo_SpacecastClie
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ClientInfo_SpacecastClientInfo {
-    return {
-      appliances: isSet(object.appliances)
-        ? ClientInfo_SpacecastClientInfo_SpacecastAppliance.fromJSON(object.appliances)
-        : undefined,
-      interactionLevel: isSet(object.interactionLevel)
-        ? clientInfo_SpacecastClientInfo_SpacecastInteractionLevelFromJSON(object.interactionLevel)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_SpacecastClientInfo): unknown {
-    const obj: any = {};
-    if (message.appliances !== undefined) {
-      obj.appliances = ClientInfo_SpacecastClientInfo_SpacecastAppliance.toJSON(message.appliances);
-    }
-    if (message.interactionLevel !== undefined) {
-      obj.interactionLevel = clientInfo_SpacecastClientInfo_SpacecastInteractionLevelToJSON(message.interactionLevel);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_SpacecastClientInfo>, I>>(base?: I): ClientInfo_SpacecastClientInfo {
-    return ClientInfo_SpacecastClientInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_SpacecastClientInfo>, I>>(
-    object: I,
-  ): ClientInfo_SpacecastClientInfo {
-    const message = createBaseClientInfo_SpacecastClientInfo();
-    message.appliances = (object.appliances !== undefined && object.appliances !== null)
-      ? ClientInfo_SpacecastClientInfo_SpacecastAppliance.fromPartial(object.appliances)
-      : undefined;
-    message.interactionLevel = object.interactionLevel ?? undefined;
     return message;
   },
 };
@@ -2606,55 +1464,6 @@ export const ClientInfo_SpacecastClientInfo_SpacecastAppliance: MessageFns<
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_SpacecastClientInfo_SpacecastAppliance {
-    return {
-      contentProfileToken: isSet(object.contentProfileToken) ? bytesFromBase64(object.contentProfileToken) : undefined,
-      status: isSet(object.status)
-        ? clientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatusFromJSON(object.status)
-        : undefined,
-      hostname: isSet(object.hostname) ? globalThis.String(object.hostname) : undefined,
-      active: isSet(object.active) ? globalThis.Boolean(object.active) : undefined,
-      deviceId: isSet(object.deviceId) ? globalThis.String(object.deviceId) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_SpacecastClientInfo_SpacecastAppliance): unknown {
-    const obj: any = {};
-    if (message.contentProfileToken !== undefined) {
-      obj.contentProfileToken = base64FromBytes(message.contentProfileToken);
-    }
-    if (message.status !== undefined) {
-      obj.status = clientInfo_SpacecastClientInfo_SpacecastAppliance_OperationalStatusToJSON(message.status);
-    }
-    if (message.hostname !== undefined) {
-      obj.hostname = message.hostname;
-    }
-    if (message.active !== undefined) {
-      obj.active = message.active;
-    }
-    if (message.deviceId !== undefined) {
-      obj.deviceId = message.deviceId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_SpacecastClientInfo_SpacecastAppliance>, I>>(
-    base?: I,
-  ): ClientInfo_SpacecastClientInfo_SpacecastAppliance {
-    return ClientInfo_SpacecastClientInfo_SpacecastAppliance.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_SpacecastClientInfo_SpacecastAppliance>, I>>(
-    object: I,
-  ): ClientInfo_SpacecastClientInfo_SpacecastAppliance {
-    const message = createBaseClientInfo_SpacecastClientInfo_SpacecastAppliance();
-    message.contentProfileToken = object.contentProfileToken ?? undefined;
-    message.status = object.status ?? undefined;
-    message.hostname = object.hostname ?? undefined;
-    message.active = object.active ?? undefined;
-    message.deviceId = object.deviceId ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_MobileDataPlanInfo(): ClientInfo_MobileDataPlanInfo {
@@ -2726,50 +1535,6 @@ export const ClientInfo_MobileDataPlanInfo: MessageFns<ClientInfo_MobileDataPlan
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_MobileDataPlanInfo {
-    return {
-      cpid: isSet(object.cpid) ? globalThis.String(object.cpid) : undefined,
-      serializedDataPlanStatus: isSet(object.serializedDataPlanStatus)
-        ? globalThis.String(object.serializedDataPlanStatus)
-        : undefined,
-      dataSavingQualityPickerEnabled: isSet(object.dataSavingQualityPickerEnabled)
-        ? globalThis.Boolean(object.dataSavingQualityPickerEnabled)
-        : undefined,
-      mccmnc: isSet(object.mccmnc) ? globalThis.String(object.mccmnc) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_MobileDataPlanInfo): unknown {
-    const obj: any = {};
-    if (message.cpid !== undefined) {
-      obj.cpid = message.cpid;
-    }
-    if (message.serializedDataPlanStatus !== undefined) {
-      obj.serializedDataPlanStatus = message.serializedDataPlanStatus;
-    }
-    if (message.dataSavingQualityPickerEnabled !== undefined) {
-      obj.dataSavingQualityPickerEnabled = message.dataSavingQualityPickerEnabled;
-    }
-    if (message.mccmnc !== undefined) {
-      obj.mccmnc = message.mccmnc;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_MobileDataPlanInfo>, I>>(base?: I): ClientInfo_MobileDataPlanInfo {
-    return ClientInfo_MobileDataPlanInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_MobileDataPlanInfo>, I>>(
-    object: I,
-  ): ClientInfo_MobileDataPlanInfo {
-    const message = createBaseClientInfo_MobileDataPlanInfo();
-    message.cpid = object.cpid ?? undefined;
-    message.serializedDataPlanStatus = object.serializedDataPlanStatus ?? undefined;
-    message.dataSavingQualityPickerEnabled = object.dataSavingQualityPickerEnabled ?? undefined;
-    message.mccmnc = object.mccmnc ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_ConfigGroupsClientInfo(): ClientInfo_ConfigGroupsClientInfo {
@@ -2834,48 +1599,6 @@ export const ClientInfo_ConfigGroupsClientInfo: MessageFns<ClientInfo_ConfigGrou
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ClientInfo_ConfigGroupsClientInfo {
-    return {
-      coldConfigData: isSet(object.coldConfigData) ? globalThis.String(object.coldConfigData) : undefined,
-      coldHashData: isSet(object.coldHashData) ? globalThis.String(object.coldHashData) : undefined,
-      hotHashData: isSet(object.hotHashData) ? globalThis.String(object.hotHashData) : undefined,
-      appInstallData: isSet(object.appInstallData) ? globalThis.String(object.appInstallData) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_ConfigGroupsClientInfo): unknown {
-    const obj: any = {};
-    if (message.coldConfigData !== undefined) {
-      obj.coldConfigData = message.coldConfigData;
-    }
-    if (message.coldHashData !== undefined) {
-      obj.coldHashData = message.coldHashData;
-    }
-    if (message.hotHashData !== undefined) {
-      obj.hotHashData = message.hotHashData;
-    }
-    if (message.appInstallData !== undefined) {
-      obj.appInstallData = message.appInstallData;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_ConfigGroupsClientInfo>, I>>(
-    base?: I,
-  ): ClientInfo_ConfigGroupsClientInfo {
-    return ClientInfo_ConfigGroupsClientInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_ConfigGroupsClientInfo>, I>>(
-    object: I,
-  ): ClientInfo_ConfigGroupsClientInfo {
-    const message = createBaseClientInfo_ConfigGroupsClientInfo();
-    message.coldConfigData = object.coldConfigData ?? undefined;
-    message.coldHashData = object.coldHashData ?? undefined;
-    message.hotHashData = object.hotHashData ?? undefined;
-    message.appInstallData = object.appInstallData ?? undefined;
     return message;
   },
 };
@@ -3026,91 +1749,6 @@ export const ClientInfo_UnpluggedLocationInfo: MessageFns<ClientInfo_UnpluggedLo
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_UnpluggedLocationInfo {
-    return {
-      latitudeE7: isSet(object.latitudeE7) ? globalThis.Number(object.latitudeE7) : undefined,
-      longitudeE7: isSet(object.longitudeE7) ? globalThis.Number(object.longitudeE7) : undefined,
-      localTimestampMs: isSet(object.localTimestampMs) ? globalThis.Number(object.localTimestampMs) : undefined,
-      ipAddress: isSet(object.ipAddress) ? globalThis.String(object.ipAddress) : undefined,
-      timezone: isSet(object.timezone) ? globalThis.String(object.timezone) : undefined,
-      prefer24HourTime: isSet(object.prefer24HourTime) ? globalThis.Boolean(object.prefer24HourTime) : undefined,
-      locationRadiusMeters: isSet(object.locationRadiusMeters)
-        ? globalThis.Number(object.locationRadiusMeters)
-        : undefined,
-      isInitialLoad: isSet(object.isInitialLoad) ? globalThis.Boolean(object.isInitialLoad) : undefined,
-      browserPermissionGranted: isSet(object.browserPermissionGranted)
-        ? globalThis.Boolean(object.browserPermissionGranted)
-        : undefined,
-      clientPermissionState: isSet(object.clientPermissionState)
-        ? globalThis.Number(object.clientPermissionState)
-        : undefined,
-      locationOverrideToken: isSet(object.locationOverrideToken)
-        ? globalThis.String(object.locationOverrideToken)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_UnpluggedLocationInfo): unknown {
-    const obj: any = {};
-    if (message.latitudeE7 !== undefined) {
-      obj.latitudeE7 = Math.round(message.latitudeE7);
-    }
-    if (message.longitudeE7 !== undefined) {
-      obj.longitudeE7 = Math.round(message.longitudeE7);
-    }
-    if (message.localTimestampMs !== undefined) {
-      obj.localTimestampMs = Math.round(message.localTimestampMs);
-    }
-    if (message.ipAddress !== undefined) {
-      obj.ipAddress = message.ipAddress;
-    }
-    if (message.timezone !== undefined) {
-      obj.timezone = message.timezone;
-    }
-    if (message.prefer24HourTime !== undefined) {
-      obj.prefer24HourTime = message.prefer24HourTime;
-    }
-    if (message.locationRadiusMeters !== undefined) {
-      obj.locationRadiusMeters = Math.round(message.locationRadiusMeters);
-    }
-    if (message.isInitialLoad !== undefined) {
-      obj.isInitialLoad = message.isInitialLoad;
-    }
-    if (message.browserPermissionGranted !== undefined) {
-      obj.browserPermissionGranted = message.browserPermissionGranted;
-    }
-    if (message.clientPermissionState !== undefined) {
-      obj.clientPermissionState = Math.round(message.clientPermissionState);
-    }
-    if (message.locationOverrideToken !== undefined) {
-      obj.locationOverrideToken = message.locationOverrideToken;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_UnpluggedLocationInfo>, I>>(
-    base?: I,
-  ): ClientInfo_UnpluggedLocationInfo {
-    return ClientInfo_UnpluggedLocationInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_UnpluggedLocationInfo>, I>>(
-    object: I,
-  ): ClientInfo_UnpluggedLocationInfo {
-    const message = createBaseClientInfo_UnpluggedLocationInfo();
-    message.latitudeE7 = object.latitudeE7 ?? undefined;
-    message.longitudeE7 = object.longitudeE7 ?? undefined;
-    message.localTimestampMs = object.localTimestampMs ?? undefined;
-    message.ipAddress = object.ipAddress ?? undefined;
-    message.timezone = object.timezone ?? undefined;
-    message.prefer24HourTime = object.prefer24HourTime ?? undefined;
-    message.locationRadiusMeters = object.locationRadiusMeters ?? undefined;
-    message.isInitialLoad = object.isInitialLoad ?? undefined;
-    message.browserPermissionGranted = object.browserPermissionGranted ?? undefined;
-    message.clientPermissionState = object.clientPermissionState ?? undefined;
-    message.locationOverrideToken = object.locationOverrideToken ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_KidsAppInfo(): ClientInfo_KidsAppInfo {
@@ -3186,61 +1824,6 @@ export const ClientInfo_KidsAppInfo: MessageFns<ClientInfo_KidsAppInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_KidsAppInfo {
-    return {
-      contentSettings: isSet(object.contentSettings)
-        ? ClientInfo_KidsAppInfo_KidsContentSettings.fromJSON(object.contentSettings)
-        : undefined,
-      parentCurationMode: isSet(object.parentCurationMode)
-        ? clientInfo_KidsAppInfo_KidsParentCurationModeFromJSON(object.parentCurationMode)
-        : undefined,
-      categorySettings: isSet(object.categorySettings)
-        ? ClientInfo_KidsAppInfo_KidsCategorySettings.fromJSON(object.categorySettings)
-        : undefined,
-      userEducationSettings: isSet(object.userEducationSettings)
-        ? ClientInfo_KidsAppInfo_KidsUserEducationSettings.fromJSON(object.userEducationSettings)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_KidsAppInfo): unknown {
-    const obj: any = {};
-    if (message.contentSettings !== undefined) {
-      obj.contentSettings = ClientInfo_KidsAppInfo_KidsContentSettings.toJSON(message.contentSettings);
-    }
-    if (message.parentCurationMode !== undefined) {
-      obj.parentCurationMode = clientInfo_KidsAppInfo_KidsParentCurationModeToJSON(message.parentCurationMode);
-    }
-    if (message.categorySettings !== undefined) {
-      obj.categorySettings = ClientInfo_KidsAppInfo_KidsCategorySettings.toJSON(message.categorySettings);
-    }
-    if (message.userEducationSettings !== undefined) {
-      obj.userEducationSettings = ClientInfo_KidsAppInfo_KidsUserEducationSettings.toJSON(
-        message.userEducationSettings,
-      );
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_KidsAppInfo>, I>>(base?: I): ClientInfo_KidsAppInfo {
-    return ClientInfo_KidsAppInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_KidsAppInfo>, I>>(object: I): ClientInfo_KidsAppInfo {
-    const message = createBaseClientInfo_KidsAppInfo();
-    message.contentSettings = (object.contentSettings !== undefined && object.contentSettings !== null)
-      ? ClientInfo_KidsAppInfo_KidsContentSettings.fromPartial(object.contentSettings)
-      : undefined;
-    message.parentCurationMode = object.parentCurationMode ?? undefined;
-    message.categorySettings = (object.categorySettings !== undefined && object.categorySettings !== null)
-      ? ClientInfo_KidsAppInfo_KidsCategorySettings.fromPartial(object.categorySettings)
-      : undefined;
-    message.userEducationSettings =
-      (object.userEducationSettings !== undefined && object.userEducationSettings !== null)
-        ? ClientInfo_KidsAppInfo_KidsUserEducationSettings.fromPartial(object.userEducationSettings)
-        : undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_KidsAppInfo_KidsContentSettings(): ClientInfo_KidsAppInfo_KidsContentSettings {
@@ -3297,51 +1880,6 @@ export const ClientInfo_KidsAppInfo_KidsContentSettings: MessageFns<ClientInfo_K
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_KidsAppInfo_KidsContentSettings {
-    return {
-      kidsNoSearchMode: isSet(object.kidsNoSearchMode)
-        ? clientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchModeFromJSON(object.kidsNoSearchMode)
-        : undefined,
-      ageUpMode: isSet(object.ageUpMode)
-        ? clientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpModeFromJSON(object.ageUpMode)
-        : undefined,
-      contentDensity: isSet(object.contentDensity)
-        ? clientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensityFromJSON(object.contentDensity)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_KidsAppInfo_KidsContentSettings): unknown {
-    const obj: any = {};
-    if (message.kidsNoSearchMode !== undefined) {
-      obj.kidsNoSearchMode = clientInfo_KidsAppInfo_KidsContentSettings_YTKidsNoSearchModeToJSON(
-        message.kidsNoSearchMode,
-      );
-    }
-    if (message.ageUpMode !== undefined) {
-      obj.ageUpMode = clientInfo_KidsAppInfo_KidsContentSettings_YTKidsAgeUpModeToJSON(message.ageUpMode);
-    }
-    if (message.contentDensity !== undefined) {
-      obj.contentDensity = clientInfo_KidsAppInfo_KidsContentSettings_KidsContentDensityToJSON(message.contentDensity);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_KidsAppInfo_KidsContentSettings>, I>>(
-    base?: I,
-  ): ClientInfo_KidsAppInfo_KidsContentSettings {
-    return ClientInfo_KidsAppInfo_KidsContentSettings.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_KidsAppInfo_KidsContentSettings>, I>>(
-    object: I,
-  ): ClientInfo_KidsAppInfo_KidsContentSettings {
-    const message = createBaseClientInfo_KidsAppInfo_KidsContentSettings();
-    message.kidsNoSearchMode = object.kidsNoSearchMode ?? undefined;
-    message.ageUpMode = object.ageUpMode ?? undefined;
-    message.contentDensity = object.contentDensity ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_KidsAppInfo_KidsCategorySettings(): ClientInfo_KidsAppInfo_KidsCategorySettings {
@@ -3379,33 +1917,6 @@ export const ClientInfo_KidsAppInfo_KidsCategorySettings: MessageFns<ClientInfo_
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ClientInfo_KidsAppInfo_KidsCategorySettings {
-    return {
-      enabledCategories: isSet(object.enabledCategories) ? globalThis.String(object.enabledCategories) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_KidsAppInfo_KidsCategorySettings): unknown {
-    const obj: any = {};
-    if (message.enabledCategories !== undefined) {
-      obj.enabledCategories = message.enabledCategories;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_KidsAppInfo_KidsCategorySettings>, I>>(
-    base?: I,
-  ): ClientInfo_KidsAppInfo_KidsCategorySettings {
-    return ClientInfo_KidsAppInfo_KidsCategorySettings.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_KidsAppInfo_KidsCategorySettings>, I>>(
-    object: I,
-  ): ClientInfo_KidsAppInfo_KidsCategorySettings {
-    const message = createBaseClientInfo_KidsAppInfo_KidsCategorySettings();
-    message.enabledCategories = object.enabledCategories ?? undefined;
     return message;
   },
 };
@@ -3471,49 +1982,6 @@ export const ClientInfo_KidsAppInfo_KidsUserEducationSettings: MessageFns<
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ClientInfo_KidsAppInfo_KidsUserEducationSettings {
-    return {
-      hasSeenHomeChipBarUserEducation: isSet(object.hasSeenHomeChipBarUserEducation)
-        ? globalThis.Boolean(object.hasSeenHomeChipBarUserEducation)
-        : undefined,
-      hasSeenHomePivotBarUserEducation: isSet(object.hasSeenHomePivotBarUserEducation)
-        ? globalThis.Boolean(object.hasSeenHomePivotBarUserEducation)
-        : undefined,
-      hasSeenParentMuirUserEducation: isSet(object.hasSeenParentMuirUserEducation)
-        ? globalThis.Boolean(object.hasSeenParentMuirUserEducation)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_KidsAppInfo_KidsUserEducationSettings): unknown {
-    const obj: any = {};
-    if (message.hasSeenHomeChipBarUserEducation !== undefined) {
-      obj.hasSeenHomeChipBarUserEducation = message.hasSeenHomeChipBarUserEducation;
-    }
-    if (message.hasSeenHomePivotBarUserEducation !== undefined) {
-      obj.hasSeenHomePivotBarUserEducation = message.hasSeenHomePivotBarUserEducation;
-    }
-    if (message.hasSeenParentMuirUserEducation !== undefined) {
-      obj.hasSeenParentMuirUserEducation = message.hasSeenParentMuirUserEducation;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_KidsAppInfo_KidsUserEducationSettings>, I>>(
-    base?: I,
-  ): ClientInfo_KidsAppInfo_KidsUserEducationSettings {
-    return ClientInfo_KidsAppInfo_KidsUserEducationSettings.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_KidsAppInfo_KidsUserEducationSettings>, I>>(
-    object: I,
-  ): ClientInfo_KidsAppInfo_KidsUserEducationSettings {
-    const message = createBaseClientInfo_KidsAppInfo_KidsUserEducationSettings();
-    message.hasSeenHomeChipBarUserEducation = object.hasSeenHomeChipBarUserEducation ?? undefined;
-    message.hasSeenHomePivotBarUserEducation = object.hasSeenHomePivotBarUserEducation ?? undefined;
-    message.hasSeenParentMuirUserEducation = object.hasSeenParentMuirUserEducation ?? undefined;
     return message;
   },
 };
@@ -3684,121 +2152,6 @@ export const ClientInfo_MusicAppInfo: MessageFns<ClientInfo_MusicAppInfo> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ClientInfo_MusicAppInfo {
-    return {
-      playBackMode: isSet(object.playBackMode)
-        ? clientInfo_MusicAppInfo_MusicPlayBackModeFromJSON(object.playBackMode)
-        : undefined,
-      musicLocationMasterSwitch: isSet(object.musicLocationMasterSwitch)
-        ? clientInfo_MusicAppInfo_MusicLocationMasterSwitchFromJSON(object.musicLocationMasterSwitch)
-        : undefined,
-      musicActivityMasterSwitch: isSet(object.musicActivityMasterSwitch)
-        ? clientInfo_MusicAppInfo_MusicActivityMasterSwitchFromJSON(object.musicActivityMasterSwitch)
-        : undefined,
-      offlineMixtapeEnabled: isSet(object.offlineMixtapeEnabled)
-        ? globalThis.Boolean(object.offlineMixtapeEnabled)
-        : undefined,
-      autoOfflineEnabled: isSet(object.autoOfflineEnabled) ? globalThis.Boolean(object.autoOfflineEnabled) : undefined,
-      iosBackgroundRefreshStatus: isSet(object.iosBackgroundRefreshStatus)
-        ? clientInfo_MusicAppInfo_IosBackgroundRefreshStatusFromJSON(object.iosBackgroundRefreshStatus)
-        : undefined,
-      smartDownloadsSongLimit: isSet(object.smartDownloadsSongLimit)
-        ? globalThis.Number(object.smartDownloadsSongLimit)
-        : undefined,
-      transitionedFromMixtapeToSmartDownloads: isSet(object.transitionedFromMixtapeToSmartDownloads)
-        ? globalThis.Boolean(object.transitionedFromMixtapeToSmartDownloads)
-        : undefined,
-      pwaInstallabilityStatus: isSet(object.pwaInstallabilityStatus)
-        ? clientInfo_MusicAppInfo_PwaInstallabilityStatusFromJSON(object.pwaInstallabilityStatus)
-        : undefined,
-      webDisplayMode: isSet(object.webDisplayMode)
-        ? clientInfo_MusicAppInfo_WebDisplayModeFromJSON(object.webDisplayMode)
-        : undefined,
-      musicTier: isSet(object.musicTier) ? clientInfo_MusicAppInfo_MusicTierFromJSON(object.musicTier) : undefined,
-      storeDigitalGoodsApiSupportStatus: isSet(object.storeDigitalGoodsApiSupportStatus)
-        ? clientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatusFromJSON(object.storeDigitalGoodsApiSupportStatus)
-        : undefined,
-      smartDownloadsTimeSinceLastOptOutSec: isSet(object.smartDownloadsTimeSinceLastOptOutSec)
-        ? globalThis.Number(object.smartDownloadsTimeSinceLastOptOutSec)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_MusicAppInfo): unknown {
-    const obj: any = {};
-    if (message.playBackMode !== undefined) {
-      obj.playBackMode = clientInfo_MusicAppInfo_MusicPlayBackModeToJSON(message.playBackMode);
-    }
-    if (message.musicLocationMasterSwitch !== undefined) {
-      obj.musicLocationMasterSwitch = clientInfo_MusicAppInfo_MusicLocationMasterSwitchToJSON(
-        message.musicLocationMasterSwitch,
-      );
-    }
-    if (message.musicActivityMasterSwitch !== undefined) {
-      obj.musicActivityMasterSwitch = clientInfo_MusicAppInfo_MusicActivityMasterSwitchToJSON(
-        message.musicActivityMasterSwitch,
-      );
-    }
-    if (message.offlineMixtapeEnabled !== undefined) {
-      obj.offlineMixtapeEnabled = message.offlineMixtapeEnabled;
-    }
-    if (message.autoOfflineEnabled !== undefined) {
-      obj.autoOfflineEnabled = message.autoOfflineEnabled;
-    }
-    if (message.iosBackgroundRefreshStatus !== undefined) {
-      obj.iosBackgroundRefreshStatus = clientInfo_MusicAppInfo_IosBackgroundRefreshStatusToJSON(
-        message.iosBackgroundRefreshStatus,
-      );
-    }
-    if (message.smartDownloadsSongLimit !== undefined) {
-      obj.smartDownloadsSongLimit = Math.round(message.smartDownloadsSongLimit);
-    }
-    if (message.transitionedFromMixtapeToSmartDownloads !== undefined) {
-      obj.transitionedFromMixtapeToSmartDownloads = message.transitionedFromMixtapeToSmartDownloads;
-    }
-    if (message.pwaInstallabilityStatus !== undefined) {
-      obj.pwaInstallabilityStatus = clientInfo_MusicAppInfo_PwaInstallabilityStatusToJSON(
-        message.pwaInstallabilityStatus,
-      );
-    }
-    if (message.webDisplayMode !== undefined) {
-      obj.webDisplayMode = clientInfo_MusicAppInfo_WebDisplayModeToJSON(message.webDisplayMode);
-    }
-    if (message.musicTier !== undefined) {
-      obj.musicTier = clientInfo_MusicAppInfo_MusicTierToJSON(message.musicTier);
-    }
-    if (message.storeDigitalGoodsApiSupportStatus !== undefined) {
-      obj.storeDigitalGoodsApiSupportStatus = clientInfo_MusicAppInfo_StoreDigitalGoodsApiSupportStatusToJSON(
-        message.storeDigitalGoodsApiSupportStatus,
-      );
-    }
-    if (message.smartDownloadsTimeSinceLastOptOutSec !== undefined) {
-      obj.smartDownloadsTimeSinceLastOptOutSec = Math.round(message.smartDownloadsTimeSinceLastOptOutSec);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_MusicAppInfo>, I>>(base?: I): ClientInfo_MusicAppInfo {
-    return ClientInfo_MusicAppInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_MusicAppInfo>, I>>(object: I): ClientInfo_MusicAppInfo {
-    const message = createBaseClientInfo_MusicAppInfo();
-    message.playBackMode = object.playBackMode ?? undefined;
-    message.musicLocationMasterSwitch = object.musicLocationMasterSwitch ?? undefined;
-    message.musicActivityMasterSwitch = object.musicActivityMasterSwitch ?? undefined;
-    message.offlineMixtapeEnabled = object.offlineMixtapeEnabled ?? undefined;
-    message.autoOfflineEnabled = object.autoOfflineEnabled ?? undefined;
-    message.iosBackgroundRefreshStatus = object.iosBackgroundRefreshStatus ?? undefined;
-    message.smartDownloadsSongLimit = object.smartDownloadsSongLimit ?? undefined;
-    message.transitionedFromMixtapeToSmartDownloads = object.transitionedFromMixtapeToSmartDownloads ?? undefined;
-    message.pwaInstallabilityStatus = object.pwaInstallabilityStatus ?? undefined;
-    message.webDisplayMode = object.webDisplayMode ?? undefined;
-    message.musicTier = object.musicTier ?? undefined;
-    message.storeDigitalGoodsApiSupportStatus = object.storeDigitalGoodsApiSupportStatus ?? undefined;
-    message.smartDownloadsTimeSinceLastOptOutSec = object.smartDownloadsTimeSinceLastOptOutSec ?? undefined;
     return message;
   },
 };
@@ -3982,114 +2335,6 @@ export const ClientInfo_TvAppInfo: MessageFns<ClientInfo_TvAppInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_TvAppInfo {
-    return {
-      mdxImpactedSessionsServerEvents: isSet(object.mdxImpactedSessionsServerEvents)
-        ? globalThis.String(object.mdxImpactedSessionsServerEvents)
-        : undefined,
-      enablePrivacyFilter: isSet(object.enablePrivacyFilter)
-        ? globalThis.Boolean(object.enablePrivacyFilter)
-        : undefined,
-      zylonLeftNav: isSet(object.zylonLeftNav) ? globalThis.Boolean(object.zylonLeftNav) : undefined,
-      certificationScope: isSet(object.certificationScope) ? globalThis.String(object.certificationScope) : undefined,
-      livingRoomPoTokenId: isSet(object.livingRoomPoTokenId)
-        ? globalThis.String(object.livingRoomPoTokenId)
-        : undefined,
-      jsEngineString: isSet(object.jsEngineString) ? globalThis.String(object.jsEngineString) : undefined,
-      voiceCapability: isSet(object.voiceCapability)
-        ? ClientInfo_TvAppInfo_VoiceCapability.fromJSON(object.voiceCapability)
-        : undefined,
-      systemIntegrator: isSet(object.systemIntegrator) ? globalThis.String(object.systemIntegrator) : undefined,
-      androidBuildFingerprint: isSet(object.androidBuildFingerprint)
-        ? globalThis.String(object.androidBuildFingerprint)
-        : undefined,
-      cobaltAppVersion: isSet(object.cobaltAppVersion) ? globalThis.String(object.cobaltAppVersion) : undefined,
-      cobaltStarboardVersion: isSet(object.cobaltStarboardVersion)
-        ? globalThis.String(object.cobaltStarboardVersion)
-        : undefined,
-      useStartPlaybackPreviewCommand: isSet(object.useStartPlaybackPreviewCommand)
-        ? globalThis.Boolean(object.useStartPlaybackPreviewCommand)
-        : undefined,
-      shouldShowPersistentSigninOnHome: isSet(object.shouldShowPersistentSigninOnHome)
-        ? globalThis.Boolean(object.shouldShowPersistentSigninOnHome)
-        : undefined,
-      androidPlayServicesVersion: isSet(object.androidPlayServicesVersion)
-        ? globalThis.String(object.androidPlayServicesVersion)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_TvAppInfo): unknown {
-    const obj: any = {};
-    if (message.mdxImpactedSessionsServerEvents !== undefined) {
-      obj.mdxImpactedSessionsServerEvents = message.mdxImpactedSessionsServerEvents;
-    }
-    if (message.enablePrivacyFilter !== undefined) {
-      obj.enablePrivacyFilter = message.enablePrivacyFilter;
-    }
-    if (message.zylonLeftNav !== undefined) {
-      obj.zylonLeftNav = message.zylonLeftNav;
-    }
-    if (message.certificationScope !== undefined) {
-      obj.certificationScope = message.certificationScope;
-    }
-    if (message.livingRoomPoTokenId !== undefined) {
-      obj.livingRoomPoTokenId = message.livingRoomPoTokenId;
-    }
-    if (message.jsEngineString !== undefined) {
-      obj.jsEngineString = message.jsEngineString;
-    }
-    if (message.voiceCapability !== undefined) {
-      obj.voiceCapability = ClientInfo_TvAppInfo_VoiceCapability.toJSON(message.voiceCapability);
-    }
-    if (message.systemIntegrator !== undefined) {
-      obj.systemIntegrator = message.systemIntegrator;
-    }
-    if (message.androidBuildFingerprint !== undefined) {
-      obj.androidBuildFingerprint = message.androidBuildFingerprint;
-    }
-    if (message.cobaltAppVersion !== undefined) {
-      obj.cobaltAppVersion = message.cobaltAppVersion;
-    }
-    if (message.cobaltStarboardVersion !== undefined) {
-      obj.cobaltStarboardVersion = message.cobaltStarboardVersion;
-    }
-    if (message.useStartPlaybackPreviewCommand !== undefined) {
-      obj.useStartPlaybackPreviewCommand = message.useStartPlaybackPreviewCommand;
-    }
-    if (message.shouldShowPersistentSigninOnHome !== undefined) {
-      obj.shouldShowPersistentSigninOnHome = message.shouldShowPersistentSigninOnHome;
-    }
-    if (message.androidPlayServicesVersion !== undefined) {
-      obj.androidPlayServicesVersion = message.androidPlayServicesVersion;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_TvAppInfo>, I>>(base?: I): ClientInfo_TvAppInfo {
-    return ClientInfo_TvAppInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_TvAppInfo>, I>>(object: I): ClientInfo_TvAppInfo {
-    const message = createBaseClientInfo_TvAppInfo();
-    message.mdxImpactedSessionsServerEvents = object.mdxImpactedSessionsServerEvents ?? undefined;
-    message.enablePrivacyFilter = object.enablePrivacyFilter ?? undefined;
-    message.zylonLeftNav = object.zylonLeftNav ?? undefined;
-    message.certificationScope = object.certificationScope ?? undefined;
-    message.livingRoomPoTokenId = object.livingRoomPoTokenId ?? undefined;
-    message.jsEngineString = object.jsEngineString ?? undefined;
-    message.voiceCapability = (object.voiceCapability !== undefined && object.voiceCapability !== null)
-      ? ClientInfo_TvAppInfo_VoiceCapability.fromPartial(object.voiceCapability)
-      : undefined;
-    message.systemIntegrator = object.systemIntegrator ?? undefined;
-    message.androidBuildFingerprint = object.androidBuildFingerprint ?? undefined;
-    message.cobaltAppVersion = object.cobaltAppVersion ?? undefined;
-    message.cobaltStarboardVersion = object.cobaltStarboardVersion ?? undefined;
-    message.useStartPlaybackPreviewCommand = object.useStartPlaybackPreviewCommand ?? undefined;
-    message.shouldShowPersistentSigninOnHome = object.shouldShowPersistentSigninOnHome ?? undefined;
-    message.androidPlayServicesVersion = object.androidPlayServicesVersion ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_TvAppInfo_VoiceCapability(): ClientInfo_TvAppInfo_VoiceCapability {
@@ -4134,38 +2379,6 @@ export const ClientInfo_TvAppInfo_VoiceCapability: MessageFns<ClientInfo_TvAppIn
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ClientInfo_TvAppInfo_VoiceCapability {
-    return {
-      hasSoftMicSupport: isSet(object.hasSoftMicSupport) ? globalThis.Boolean(object.hasSoftMicSupport) : undefined,
-      hasHardMicSupport: isSet(object.hasHardMicSupport) ? globalThis.Boolean(object.hasHardMicSupport) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_TvAppInfo_VoiceCapability): unknown {
-    const obj: any = {};
-    if (message.hasSoftMicSupport !== undefined) {
-      obj.hasSoftMicSupport = message.hasSoftMicSupport;
-    }
-    if (message.hasHardMicSupport !== undefined) {
-      obj.hasHardMicSupport = message.hasHardMicSupport;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_TvAppInfo_VoiceCapability>, I>>(
-    base?: I,
-  ): ClientInfo_TvAppInfo_VoiceCapability {
-    return ClientInfo_TvAppInfo_VoiceCapability.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_TvAppInfo_VoiceCapability>, I>>(
-    object: I,
-  ): ClientInfo_TvAppInfo_VoiceCapability {
-    const message = createBaseClientInfo_TvAppInfo_VoiceCapability();
-    message.hasSoftMicSupport = object.hasSoftMicSupport ?? undefined;
-    message.hasHardMicSupport = object.hasHardMicSupport ?? undefined;
     return message;
   },
 };
@@ -4222,41 +2435,6 @@ export const ClientInfo_UnpluggedAppInfo: MessageFns<ClientInfo_UnpluggedAppInfo
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): ClientInfo_UnpluggedAppInfo {
-    return {
-      enableFilterMode: isSet(object.enableFilterMode) ? globalThis.Boolean(object.enableFilterMode) : undefined,
-      iosNotificationPermission: isSet(object.iosNotificationPermission)
-        ? globalThis.Boolean(object.iosNotificationPermission)
-        : undefined,
-      forceEnableEpg3: isSet(object.forceEnableEpg3) ? globalThis.Boolean(object.forceEnableEpg3) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_UnpluggedAppInfo): unknown {
-    const obj: any = {};
-    if (message.enableFilterMode !== undefined) {
-      obj.enableFilterMode = message.enableFilterMode;
-    }
-    if (message.iosNotificationPermission !== undefined) {
-      obj.iosNotificationPermission = message.iosNotificationPermission;
-    }
-    if (message.forceEnableEpg3 !== undefined) {
-      obj.forceEnableEpg3 = message.forceEnableEpg3;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_UnpluggedAppInfo>, I>>(base?: I): ClientInfo_UnpluggedAppInfo {
-    return ClientInfo_UnpluggedAppInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_UnpluggedAppInfo>, I>>(object: I): ClientInfo_UnpluggedAppInfo {
-    const message = createBaseClientInfo_UnpluggedAppInfo();
-    message.enableFilterMode = object.enableFilterMode ?? undefined;
-    message.iosNotificationPermission = object.iosNotificationPermission ?? undefined;
-    message.forceEnableEpg3 = object.forceEnableEpg3 ?? undefined;
     return message;
   },
 };
@@ -4385,81 +2563,6 @@ export const ClientInfo_LocationInfo: MessageFns<ClientInfo_LocationInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_LocationInfo {
-    return {
-      locationInfoStatus: isSet(object.locationInfoStatus) ? globalThis.Number(object.locationInfoStatus) : undefined,
-      ulrStatus: isSet(object.ulrStatus) ? ClientInfo_LocationInfo_UrlStatus.fromJSON(object.ulrStatus) : undefined,
-      latitudeE7: isSet(object.latitudeE7) ? globalThis.String(object.latitudeE7) : undefined,
-      longitudeE7: isSet(object.longitudeE7) ? globalThis.String(object.longitudeE7) : undefined,
-      horizontalAccuracyMeters: isSet(object.horizontalAccuracyMeters)
-        ? globalThis.String(object.horizontalAccuracyMeters)
-        : undefined,
-      locationFreshnessMs: isSet(object.locationFreshnessMs)
-        ? globalThis.String(object.locationFreshnessMs)
-        : undefined,
-      locationPermissionAuthorizationStatus: isSet(object.locationPermissionAuthorizationStatus)
-        ? globalThis.Number(object.locationPermissionAuthorizationStatus)
-        : undefined,
-      locationOverrideToken: isSet(object.locationOverrideToken)
-        ? globalThis.String(object.locationOverrideToken)
-        : undefined,
-      forceLocationPlayabilityTokenRefresh: isSet(object.forceLocationPlayabilityTokenRefresh)
-        ? globalThis.Boolean(object.forceLocationPlayabilityTokenRefresh)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_LocationInfo): unknown {
-    const obj: any = {};
-    if (message.locationInfoStatus !== undefined) {
-      obj.locationInfoStatus = Math.round(message.locationInfoStatus);
-    }
-    if (message.ulrStatus !== undefined) {
-      obj.ulrStatus = ClientInfo_LocationInfo_UrlStatus.toJSON(message.ulrStatus);
-    }
-    if (message.latitudeE7 !== undefined) {
-      obj.latitudeE7 = message.latitudeE7;
-    }
-    if (message.longitudeE7 !== undefined) {
-      obj.longitudeE7 = message.longitudeE7;
-    }
-    if (message.horizontalAccuracyMeters !== undefined) {
-      obj.horizontalAccuracyMeters = message.horizontalAccuracyMeters;
-    }
-    if (message.locationFreshnessMs !== undefined) {
-      obj.locationFreshnessMs = message.locationFreshnessMs;
-    }
-    if (message.locationPermissionAuthorizationStatus !== undefined) {
-      obj.locationPermissionAuthorizationStatus = Math.round(message.locationPermissionAuthorizationStatus);
-    }
-    if (message.locationOverrideToken !== undefined) {
-      obj.locationOverrideToken = message.locationOverrideToken;
-    }
-    if (message.forceLocationPlayabilityTokenRefresh !== undefined) {
-      obj.forceLocationPlayabilityTokenRefresh = message.forceLocationPlayabilityTokenRefresh;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_LocationInfo>, I>>(base?: I): ClientInfo_LocationInfo {
-    return ClientInfo_LocationInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_LocationInfo>, I>>(object: I): ClientInfo_LocationInfo {
-    const message = createBaseClientInfo_LocationInfo();
-    message.locationInfoStatus = object.locationInfoStatus ?? undefined;
-    message.ulrStatus = (object.ulrStatus !== undefined && object.ulrStatus !== null)
-      ? ClientInfo_LocationInfo_UrlStatus.fromPartial(object.ulrStatus)
-      : undefined;
-    message.latitudeE7 = object.latitudeE7 ?? undefined;
-    message.longitudeE7 = object.longitudeE7 ?? undefined;
-    message.horizontalAccuracyMeters = object.horizontalAccuracyMeters ?? undefined;
-    message.locationFreshnessMs = object.locationFreshnessMs ?? undefined;
-    message.locationPermissionAuthorizationStatus = object.locationPermissionAuthorizationStatus ?? undefined;
-    message.locationOverrideToken = object.locationOverrideToken ?? undefined;
-    message.forceLocationPlayabilityTokenRefresh = object.forceLocationPlayabilityTokenRefresh ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_LocationInfo_UrlStatus(): ClientInfo_LocationInfo_UrlStatus {
@@ -4531,52 +2634,6 @@ export const ClientInfo_LocationInfo_UrlStatus: MessageFns<ClientInfo_LocationIn
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_LocationInfo_UrlStatus {
-    return {
-      reportingEnabledSetting: isSet(object.reportingEnabledSetting)
-        ? globalThis.Number(object.reportingEnabledSetting)
-        : undefined,
-      historyEnabledSetting: isSet(object.historyEnabledSetting)
-        ? globalThis.Number(object.historyEnabledSetting)
-        : undefined,
-      isAllowed: isSet(object.isAllowed) ? globalThis.Boolean(object.isAllowed) : undefined,
-      isActive: isSet(object.isActive) ? globalThis.Boolean(object.isActive) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_LocationInfo_UrlStatus): unknown {
-    const obj: any = {};
-    if (message.reportingEnabledSetting !== undefined) {
-      obj.reportingEnabledSetting = Math.round(message.reportingEnabledSetting);
-    }
-    if (message.historyEnabledSetting !== undefined) {
-      obj.historyEnabledSetting = Math.round(message.historyEnabledSetting);
-    }
-    if (message.isAllowed !== undefined) {
-      obj.isAllowed = message.isAllowed;
-    }
-    if (message.isActive !== undefined) {
-      obj.isActive = message.isActive;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_LocationInfo_UrlStatus>, I>>(
-    base?: I,
-  ): ClientInfo_LocationInfo_UrlStatus {
-    return ClientInfo_LocationInfo_UrlStatus.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_LocationInfo_UrlStatus>, I>>(
-    object: I,
-  ): ClientInfo_LocationInfo_UrlStatus {
-    const message = createBaseClientInfo_LocationInfo_UrlStatus();
-    message.reportingEnabledSetting = object.reportingEnabledSetting ?? undefined;
-    message.historyEnabledSetting = object.historyEnabledSetting ?? undefined;
-    message.isAllowed = object.isAllowed ?? undefined;
-    message.isActive = object.isActive ?? undefined;
-    return message;
-  },
 };
 
 function createBaseClientInfo_HomeGroupInfo(): ClientInfo_HomeGroupInfo {
@@ -4623,64 +2680,7 @@ export const ClientInfo_HomeGroupInfo: MessageFns<ClientInfo_HomeGroupInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ClientInfo_HomeGroupInfo {
-    return {
-      isPartOfGroup: isSet(object.isPartOfGroup) ? globalThis.Boolean(object.isPartOfGroup) : undefined,
-      isGroup: isSet(object.isGroup) ? globalThis.Boolean(object.isGroup) : undefined,
-    };
-  },
-
-  toJSON(message: ClientInfo_HomeGroupInfo): unknown {
-    const obj: any = {};
-    if (message.isPartOfGroup !== undefined) {
-      obj.isPartOfGroup = message.isPartOfGroup;
-    }
-    if (message.isGroup !== undefined) {
-      obj.isGroup = message.isGroup;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientInfo_HomeGroupInfo>, I>>(base?: I): ClientInfo_HomeGroupInfo {
-    return ClientInfo_HomeGroupInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientInfo_HomeGroupInfo>, I>>(object: I): ClientInfo_HomeGroupInfo {
-    const message = createBaseClientInfo_HomeGroupInfo();
-    message.isPartOfGroup = object.isPartOfGroup ?? undefined;
-    message.isGroup = object.isGroup ?? undefined;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -4693,15 +2693,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

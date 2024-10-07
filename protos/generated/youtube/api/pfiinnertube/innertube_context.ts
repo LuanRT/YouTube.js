@@ -197,103 +197,6 @@ export const InnerTubeContext: MessageFns<InnerTubeContext> = {
     }
     return message;
   },
-
-  fromJSON(object: any): InnerTubeContext {
-    return {
-      client: isSet(object.client) ? ClientInfo.fromJSON(object.client) : undefined,
-      user: isSet(object.user) ? UserInfo.fromJSON(object.user) : undefined,
-      capabilities: isSet(object.capabilities) ? CapabilityInfo.fromJSON(object.capabilities) : undefined,
-      request: isSet(object.request) ? RequestInfo.fromJSON(object.request) : undefined,
-      clickTracking: isSet(object.clickTracking)
-        ? InnerTubeContext_ClickTrackingInfo.fromJSON(object.clickTracking)
-        : undefined,
-      thirdParty: isSet(object.thirdParty) ? ThirdPartyInfo.fromJSON(object.thirdParty) : undefined,
-      remoteClient: isSet(object.remoteClient) ? ClientInfo.fromJSON(object.remoteClient) : undefined,
-      adSignalsInfo: isSet(object.adSignalsInfo)
-        ? InnerTubeContext_AdSignalsInfo.fromJSON(object.adSignalsInfo)
-        : undefined,
-      experimentalData: isSet(object.experimentalData)
-        ? InnerTubeContext_ExperimentalData.fromJSON(object.experimentalData)
-        : undefined,
-      clientScreenNonce: isSet(object.clientScreenNonce) ? globalThis.String(object.clientScreenNonce) : undefined,
-      activePlayers: globalThis.Array.isArray(object?.activePlayers)
-        ? object.activePlayers.map((e: any) => InnerTubeContext_ActivePlayerInfo.fromJSON(e))
-        : [],
-    };
-  },
-
-  toJSON(message: InnerTubeContext): unknown {
-    const obj: any = {};
-    if (message.client !== undefined) {
-      obj.client = ClientInfo.toJSON(message.client);
-    }
-    if (message.user !== undefined) {
-      obj.user = UserInfo.toJSON(message.user);
-    }
-    if (message.capabilities !== undefined) {
-      obj.capabilities = CapabilityInfo.toJSON(message.capabilities);
-    }
-    if (message.request !== undefined) {
-      obj.request = RequestInfo.toJSON(message.request);
-    }
-    if (message.clickTracking !== undefined) {
-      obj.clickTracking = InnerTubeContext_ClickTrackingInfo.toJSON(message.clickTracking);
-    }
-    if (message.thirdParty !== undefined) {
-      obj.thirdParty = ThirdPartyInfo.toJSON(message.thirdParty);
-    }
-    if (message.remoteClient !== undefined) {
-      obj.remoteClient = ClientInfo.toJSON(message.remoteClient);
-    }
-    if (message.adSignalsInfo !== undefined) {
-      obj.adSignalsInfo = InnerTubeContext_AdSignalsInfo.toJSON(message.adSignalsInfo);
-    }
-    if (message.experimentalData !== undefined) {
-      obj.experimentalData = InnerTubeContext_ExperimentalData.toJSON(message.experimentalData);
-    }
-    if (message.clientScreenNonce !== undefined) {
-      obj.clientScreenNonce = message.clientScreenNonce;
-    }
-    if (message.activePlayers?.length) {
-      obj.activePlayers = message.activePlayers.map((e) => InnerTubeContext_ActivePlayerInfo.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<InnerTubeContext>, I>>(base?: I): InnerTubeContext {
-    return InnerTubeContext.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<InnerTubeContext>, I>>(object: I): InnerTubeContext {
-    const message = createBaseInnerTubeContext();
-    message.client = (object.client !== undefined && object.client !== null)
-      ? ClientInfo.fromPartial(object.client)
-      : undefined;
-    message.user = (object.user !== undefined && object.user !== null) ? UserInfo.fromPartial(object.user) : undefined;
-    message.capabilities = (object.capabilities !== undefined && object.capabilities !== null)
-      ? CapabilityInfo.fromPartial(object.capabilities)
-      : undefined;
-    message.request = (object.request !== undefined && object.request !== null)
-      ? RequestInfo.fromPartial(object.request)
-      : undefined;
-    message.clickTracking = (object.clickTracking !== undefined && object.clickTracking !== null)
-      ? InnerTubeContext_ClickTrackingInfo.fromPartial(object.clickTracking)
-      : undefined;
-    message.thirdParty = (object.thirdParty !== undefined && object.thirdParty !== null)
-      ? ThirdPartyInfo.fromPartial(object.thirdParty)
-      : undefined;
-    message.remoteClient = (object.remoteClient !== undefined && object.remoteClient !== null)
-      ? ClientInfo.fromPartial(object.remoteClient)
-      : undefined;
-    message.adSignalsInfo = (object.adSignalsInfo !== undefined && object.adSignalsInfo !== null)
-      ? InnerTubeContext_AdSignalsInfo.fromPartial(object.adSignalsInfo)
-      : undefined;
-    message.experimentalData = (object.experimentalData !== undefined && object.experimentalData !== null)
-      ? InnerTubeContext_ExperimentalData.fromPartial(object.experimentalData)
-      : undefined;
-    message.clientScreenNonce = object.clientScreenNonce ?? undefined;
-    message.activePlayers = object.activePlayers?.map((e) => InnerTubeContext_ActivePlayerInfo.fromPartial(e)) || [];
-    return message;
-  },
 };
 
 function createBaseInnerTubeContext_ExperimentalData(): InnerTubeContext_ExperimentalData {
@@ -328,33 +231,6 @@ export const InnerTubeContext_ExperimentalData: MessageFns<InnerTubeContext_Expe
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): InnerTubeContext_ExperimentalData {
-    return {
-      params: globalThis.Array.isArray(object?.params) ? object.params.map((e: any) => KeyValuePair.fromJSON(e)) : [],
-    };
-  },
-
-  toJSON(message: InnerTubeContext_ExperimentalData): unknown {
-    const obj: any = {};
-    if (message.params?.length) {
-      obj.params = message.params.map((e) => KeyValuePair.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<InnerTubeContext_ExperimentalData>, I>>(
-    base?: I,
-  ): InnerTubeContext_ExperimentalData {
-    return InnerTubeContext_ExperimentalData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<InnerTubeContext_ExperimentalData>, I>>(
-    object: I,
-  ): InnerTubeContext_ExperimentalData {
-    const message = createBaseInnerTubeContext_ExperimentalData();
-    message.params = object.params?.map((e) => KeyValuePair.fromPartial(e)) || [];
     return message;
   },
 };
@@ -393,33 +269,6 @@ export const InnerTubeContext_ActivePlayerInfo: MessageFns<InnerTubeContext_Acti
     }
     return message;
   },
-
-  fromJSON(object: any): InnerTubeContext_ActivePlayerInfo {
-    return {
-      playerContextParams: isSet(object.playerContextParams) ? bytesFromBase64(object.playerContextParams) : undefined,
-    };
-  },
-
-  toJSON(message: InnerTubeContext_ActivePlayerInfo): unknown {
-    const obj: any = {};
-    if (message.playerContextParams !== undefined) {
-      obj.playerContextParams = base64FromBytes(message.playerContextParams);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<InnerTubeContext_ActivePlayerInfo>, I>>(
-    base?: I,
-  ): InnerTubeContext_ActivePlayerInfo {
-    return InnerTubeContext_ActivePlayerInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<InnerTubeContext_ActivePlayerInfo>, I>>(
-    object: I,
-  ): InnerTubeContext_ActivePlayerInfo {
-    const message = createBaseInnerTubeContext_ActivePlayerInfo();
-    message.playerContextParams = object.playerContextParams ?? undefined;
-    return message;
-  },
 };
 
 function createBaseInnerTubeContext_ClickTrackingInfo(): InnerTubeContext_ClickTrackingInfo {
@@ -454,33 +303,6 @@ export const InnerTubeContext_ClickTrackingInfo: MessageFns<InnerTubeContext_Cli
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): InnerTubeContext_ClickTrackingInfo {
-    return {
-      clickTrackingParams: isSet(object.clickTrackingParams) ? bytesFromBase64(object.clickTrackingParams) : undefined,
-    };
-  },
-
-  toJSON(message: InnerTubeContext_ClickTrackingInfo): unknown {
-    const obj: any = {};
-    if (message.clickTrackingParams !== undefined) {
-      obj.clickTrackingParams = base64FromBytes(message.clickTrackingParams);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<InnerTubeContext_ClickTrackingInfo>, I>>(
-    base?: I,
-  ): InnerTubeContext_ClickTrackingInfo {
-    return InnerTubeContext_ClickTrackingInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<InnerTubeContext_ClickTrackingInfo>, I>>(
-    object: I,
-  ): InnerTubeContext_ClickTrackingInfo {
-    const message = createBaseInnerTubeContext_ClickTrackingInfo();
-    message.clickTrackingParams = object.clickTrackingParams ?? undefined;
     return message;
   },
 };
@@ -587,103 +409,9 @@ export const InnerTubeContext_AdSignalsInfo: MessageFns<InnerTubeContext_AdSigna
     }
     return message;
   },
-
-  fromJSON(object: any): InnerTubeContext_AdSignalsInfo {
-    return {
-      params: globalThis.Array.isArray(object?.params) ? object.params.map((e: any) => KeyValuePair.fromJSON(e)) : [],
-      bid: isSet(object.bid) ? globalThis.String(object.bid) : undefined,
-      mutsuId: isSet(object.mutsuId) ? globalThis.String(object.mutsuId) : undefined,
-      consentBumpState: isSet(object.consentBumpState) ? globalThis.String(object.consentBumpState) : undefined,
-      advertisingId: isSet(object.advertisingId) ? globalThis.String(object.advertisingId) : undefined,
-      limitAdTracking: isSet(object.limitAdTracking) ? globalThis.Boolean(object.limitAdTracking) : undefined,
-      attributionOsSupportedVersion: isSet(object.attributionOsSupportedVersion)
-        ? globalThis.String(object.attributionOsSupportedVersion)
-        : undefined,
-    };
-  },
-
-  toJSON(message: InnerTubeContext_AdSignalsInfo): unknown {
-    const obj: any = {};
-    if (message.params?.length) {
-      obj.params = message.params.map((e) => KeyValuePair.toJSON(e));
-    }
-    if (message.bid !== undefined) {
-      obj.bid = message.bid;
-    }
-    if (message.mutsuId !== undefined) {
-      obj.mutsuId = message.mutsuId;
-    }
-    if (message.consentBumpState !== undefined) {
-      obj.consentBumpState = message.consentBumpState;
-    }
-    if (message.advertisingId !== undefined) {
-      obj.advertisingId = message.advertisingId;
-    }
-    if (message.limitAdTracking !== undefined) {
-      obj.limitAdTracking = message.limitAdTracking;
-    }
-    if (message.attributionOsSupportedVersion !== undefined) {
-      obj.attributionOsSupportedVersion = message.attributionOsSupportedVersion;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<InnerTubeContext_AdSignalsInfo>, I>>(base?: I): InnerTubeContext_AdSignalsInfo {
-    return InnerTubeContext_AdSignalsInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<InnerTubeContext_AdSignalsInfo>, I>>(
-    object: I,
-  ): InnerTubeContext_AdSignalsInfo {
-    const message = createBaseInnerTubeContext_AdSignalsInfo();
-    message.params = object.params?.map((e) => KeyValuePair.fromPartial(e)) || [];
-    message.bid = object.bid ?? undefined;
-    message.mutsuId = object.mutsuId ?? undefined;
-    message.consentBumpState = object.consentBumpState ?? undefined;
-    message.advertisingId = object.advertisingId ?? undefined;
-    message.limitAdTracking = object.limitAdTracking ?? undefined;
-    message.attributionOsSupportedVersion = object.attributionOsSupportedVersion ?? undefined;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

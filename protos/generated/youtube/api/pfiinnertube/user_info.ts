@@ -157,86 +157,6 @@ export const UserInfo: MessageFns<UserInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): UserInfo {
-    return {
-      onBehalfOfUser: isSet(object.onBehalfOfUser) ? globalThis.String(object.onBehalfOfUser) : undefined,
-      enableSafetyMode: isSet(object.enableSafetyMode) ? globalThis.Boolean(object.enableSafetyMode) : undefined,
-      credentialTransferTokens: globalThis.Array.isArray(object?.credentialTransferTokens)
-        ? object.credentialTransferTokens.map((e: any) => UserInfo_CredentialTransferToken.fromJSON(e))
-        : [],
-      delegatePurchases: isSet(object.delegatePurchases)
-        ? UserInfo_DelegatePurchases.fromJSON(object.delegatePurchases)
-        : undefined,
-      kidsParent: isSet(object.kidsParent) ? UserInfo_KidsParent.fromJSON(object.kidsParent) : undefined,
-      isIncognito: isSet(object.isIncognito) ? globalThis.Boolean(object.isIncognito) : undefined,
-      lockedSafetyMode: isSet(object.lockedSafetyMode) ? globalThis.Boolean(object.lockedSafetyMode) : undefined,
-      delegationContext: isSet(object.delegationContext)
-        ? UserInfo_DelegationContext.fromJSON(object.delegationContext)
-        : undefined,
-      serializedDelegationContext: isSet(object.serializedDelegationContext)
-        ? globalThis.String(object.serializedDelegationContext)
-        : undefined,
-    };
-  },
-
-  toJSON(message: UserInfo): unknown {
-    const obj: any = {};
-    if (message.onBehalfOfUser !== undefined) {
-      obj.onBehalfOfUser = message.onBehalfOfUser;
-    }
-    if (message.enableSafetyMode !== undefined) {
-      obj.enableSafetyMode = message.enableSafetyMode;
-    }
-    if (message.credentialTransferTokens?.length) {
-      obj.credentialTransferTokens = message.credentialTransferTokens.map((e) =>
-        UserInfo_CredentialTransferToken.toJSON(e)
-      );
-    }
-    if (message.delegatePurchases !== undefined) {
-      obj.delegatePurchases = UserInfo_DelegatePurchases.toJSON(message.delegatePurchases);
-    }
-    if (message.kidsParent !== undefined) {
-      obj.kidsParent = UserInfo_KidsParent.toJSON(message.kidsParent);
-    }
-    if (message.isIncognito !== undefined) {
-      obj.isIncognito = message.isIncognito;
-    }
-    if (message.lockedSafetyMode !== undefined) {
-      obj.lockedSafetyMode = message.lockedSafetyMode;
-    }
-    if (message.delegationContext !== undefined) {
-      obj.delegationContext = UserInfo_DelegationContext.toJSON(message.delegationContext);
-    }
-    if (message.serializedDelegationContext !== undefined) {
-      obj.serializedDelegationContext = message.serializedDelegationContext;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserInfo>, I>>(base?: I): UserInfo {
-    return UserInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserInfo>, I>>(object: I): UserInfo {
-    const message = createBaseUserInfo();
-    message.onBehalfOfUser = object.onBehalfOfUser ?? undefined;
-    message.enableSafetyMode = object.enableSafetyMode ?? undefined;
-    message.credentialTransferTokens =
-      object.credentialTransferTokens?.map((e) => UserInfo_CredentialTransferToken.fromPartial(e)) || [];
-    message.delegatePurchases = (object.delegatePurchases !== undefined && object.delegatePurchases !== null)
-      ? UserInfo_DelegatePurchases.fromPartial(object.delegatePurchases)
-      : undefined;
-    message.kidsParent = (object.kidsParent !== undefined && object.kidsParent !== null)
-      ? UserInfo_KidsParent.fromPartial(object.kidsParent)
-      : undefined;
-    message.isIncognito = object.isIncognito ?? undefined;
-    message.lockedSafetyMode = object.lockedSafetyMode ?? undefined;
-    message.delegationContext = (object.delegationContext !== undefined && object.delegationContext !== null)
-      ? UserInfo_DelegationContext.fromPartial(object.delegationContext)
-      : undefined;
-    message.serializedDelegationContext = object.serializedDelegationContext ?? undefined;
-    return message;
-  },
 };
 
 function createBaseUserInfo_KidsParent(): UserInfo_KidsParent {
@@ -261,23 +181,6 @@ export const UserInfo_KidsParent: MessageFns<UserInfo_KidsParent> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(_: any): UserInfo_KidsParent {
-    return {};
-  },
-
-  toJSON(_: UserInfo_KidsParent): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserInfo_KidsParent>, I>>(base?: I): UserInfo_KidsParent {
-    return UserInfo_KidsParent.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserInfo_KidsParent>, I>>(_: I): UserInfo_KidsParent {
-    const message = createBaseUserInfo_KidsParent();
     return message;
   },
 };
@@ -306,23 +209,6 @@ export const UserInfo_DelegatePurchases: MessageFns<UserInfo_DelegatePurchases> 
     }
     return message;
   },
-
-  fromJSON(_: any): UserInfo_DelegatePurchases {
-    return {};
-  },
-
-  toJSON(_: UserInfo_DelegatePurchases): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserInfo_DelegatePurchases>, I>>(base?: I): UserInfo_DelegatePurchases {
-    return UserInfo_DelegatePurchases.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserInfo_DelegatePurchases>, I>>(_: I): UserInfo_DelegatePurchases {
-    const message = createBaseUserInfo_DelegatePurchases();
-    return message;
-  },
 };
 
 function createBaseUserInfo_DelegationContext(): UserInfo_DelegationContext {
@@ -347,23 +233,6 @@ export const UserInfo_DelegationContext: MessageFns<UserInfo_DelegationContext> 
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(_: any): UserInfo_DelegationContext {
-    return {};
-  },
-
-  toJSON(_: UserInfo_DelegationContext): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserInfo_DelegationContext>, I>>(base?: I): UserInfo_DelegationContext {
-    return UserInfo_DelegationContext.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserInfo_DelegationContext>, I>>(_: I): UserInfo_DelegationContext {
-    const message = createBaseUserInfo_DelegationContext();
     return message;
   },
 };
@@ -392,50 +261,9 @@ export const UserInfo_CredentialTransferToken: MessageFns<UserInfo_CredentialTra
     }
     return message;
   },
-
-  fromJSON(_: any): UserInfo_CredentialTransferToken {
-    return {};
-  },
-
-  toJSON(_: UserInfo_CredentialTransferToken): unknown {
-    const obj: any = {};
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<UserInfo_CredentialTransferToken>, I>>(
-    base?: I,
-  ): UserInfo_CredentialTransferToken {
-    return UserInfo_CredentialTransferToken.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UserInfo_CredentialTransferToken>, I>>(
-    _: I,
-  ): UserInfo_CredentialTransferToken {
-    const message = createBaseUserInfo_CredentialTransferToken();
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }
