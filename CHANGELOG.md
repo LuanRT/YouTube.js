@@ -1,5 +1,33 @@
 # Changelog
 
+## [11.0.0](https://github.com/LuanRT/YouTube.js/compare/v10.5.0...v11.0.0) (2024-10-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Deprecate `account#getAnalytics`, `account#getTimeWatched` and `account#getAnalytics`
+
+### Features
+
+* Add `TVHTML5` InnerTube client ([b45609a](https://github.com/LuanRT/YouTube.js/commit/b45609aa0fcd801c379ffdafd04c6c3c2ed3deba))
+* Add `WEB_CREATOR` client ([#757](https://github.com/LuanRT/YouTube.js/issues/757)) ([dd7f5cf](https://github.com/LuanRT/YouTube.js/commit/dd7f5cf778b8acca95cc6d9c6e379e3e87e0ee8a))
+* **ProtoUtils:** Add support for creating NextParams ([#762](https://github.com/LuanRT/YouTube.js/issues/762)) ([910c979](https://github.com/LuanRT/YouTube.js/commit/910c9791e7aed9e28cd42f3bcf28b8b8d89edb21))
+* Support auto-dubbed audio tracks ([#786](https://github.com/LuanRT/YouTube.js/issues/786)) ([a4ef224](https://github.com/LuanRT/YouTube.js/commit/a4ef2249ffbe14f5d5fa702b269dd0f61e14ada8))
+
+
+### Bug Fixes
+
+* fix deno usage of protobuf and jintr ([#776](https://github.com/LuanRT/YouTube.js/issues/776)) ([02513b7](https://github.com/LuanRT/YouTube.js/commit/02513b76ed66041044e80f8749df7f29379c424e))
+* **InteractionManager:** Use `WEB` for all actions ([d9ac99d](https://github.com/LuanRT/YouTube.js/commit/d9ac99d3324c2987aebb6b8e40317780478b7c19))
+* **LiveChat#sendMessage:** Switch to `WEB` client ([bb3f114](https://github.com/LuanRT/YouTube.js/commit/bb3f114aa34dd50602da794dcb3aa3f28a5a2ed9))
+* **parser:** Fix ShortsLockupView assuming that the primary text always exists ([#775](https://github.com/LuanRT/YouTube.js/issues/775)) ([43cef9e](https://github.com/LuanRT/YouTube.js/commit/43cef9e67e9defbfc498b6381ae93f967622f83b))
+* **toDash:** Fix dash.js 4.x compatibility ([#765](https://github.com/LuanRT/YouTube.js/issues/765)) ([5ff30e1](https://github.com/LuanRT/YouTube.js/commit/5ff30e12ded29afff5a758cbe96ac3418e6d20aa))
+
+
+### Code Refactoring
+
+* Deprecate `account#getAnalytics`, `account#getTimeWatched` and `account#getAnalytics` ([0081e11](https://github.com/LuanRT/YouTube.js/commit/0081e11ebcff8c719902d93edf8760d3e8702e00))
+
 ## [10.5.0](https://github.com/LuanRT/YouTube.js/compare/v10.4.0...v10.5.0) (2024-09-19)
 
 
