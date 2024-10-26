@@ -148,11 +148,8 @@ export default class Comment extends YTNode {
    * Translates the comment to a given language.
    * @param target_language - Ex; en, ja
    */
-  async translate(target_language: string): Promise<{
+  async translate(target_language: string): Promise<ApiResponse & {
     content: any;
-    success: boolean;
-    status_code: number;
-    data: any;
   }> {
     if (!this.#actions)
       throw new InnertubeError('An active caller must be provide to perform this operation.');
@@ -167,7 +164,7 @@ export default class Comment extends YTNode {
     };
 
     const action = ProtoUtils.encodeCommentActionParams(22, payload);
-    const response = await this.#actions.execute('comment/perform_comment_action', { action, client: 'ANDROID' });
+    const response = await this.#actions.execute('comment/perform_comment_action', { action });
 
     // XXX: Should move this to Parser#parseResponse
     const mutations = response.data.frameworkUpdates?.entityBatchUpdate?.mutations;

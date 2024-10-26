@@ -184,7 +184,8 @@ export interface IChannelEditDescriptionRequest extends ObjectSnakeToCamel<Chann
 }
 
 export interface IAccountListRequest {
-  client: 'ANDROID';
+  client: 'TV';
+  callCircumstance: number;
 }
 
 export type LikeEndpointOptions = {

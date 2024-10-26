@@ -8,6 +8,7 @@ export const PATH = '/account/accounts_list';
  */
 export function build(): IAccountListRequest {
   return {
-    client: 'ANDROID'
+    client: 'TV',
+    callCircumstance: 2
   };
 }
