@@ -146,12 +146,6 @@ export default class Player {
       case 'WEB_KIDS':
         url_components.searchParams.set('cver', Constants.CLIENTS.WEB_KIDS.VERSION);
         break;
-      case 'ANDROID':
-        url_components.searchParams.set('cver', Constants.CLIENTS.ANDROID.VERSION);
-        break;
-      case 'ANDROID_MUSIC':
-        url_components.searchParams.set('cver', Constants.CLIENTS.YTMUSIC_ANDROID.VERSION);
-        break;
       case 'TVHTML5_SIMPLY_EMBEDDED_PLAYER':
         url_components.searchParams.set('cver', Constants.CLIENTS.TV_EMBEDDED.VERSION);
         break;

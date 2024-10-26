@@ -217,6 +217,12 @@ export default class HTTPClient {
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.YTSTUDIO_ANDROID.NAME;
         break;
+      case 'TV': {
+        ctx.client.clientVersion = Constants.CLIENTS.TV.VERSION;
+        ctx.client.clientName = Constants.CLIENTS.TV.NAME;
+        ctx.client.userAgent = Constants.CLIENTS.TV.USER_AGENT;
+        break;
+      }
       case 'TV_EMBEDDED':
         ctx.client.clientName = Constants.CLIENTS.TV_EMBEDDED.NAME;
         ctx.client.clientVersion = Constants.CLIENTS.TV_EMBEDDED.VERSION;
