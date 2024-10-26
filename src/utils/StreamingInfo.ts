@@ -428,7 +428,7 @@ function getTrackRoles(format: Format, has_drc_streams: boolean) {
     format.is_original ? 'main' : 'alternate'
   ];
 
-  if (format.is_dubbed)
+  if (format.is_dubbed || format.is_auto_dubbed)
     roles.push('dub');
 
   if (format.is_descriptive)
