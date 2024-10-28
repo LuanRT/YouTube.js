@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:47](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L47)
+[src/parser/classes/comments/Comment.ts:47](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L47)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:36](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L36)
+[src/parser/classes/comments/Comment.ts:36](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L36)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:35](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L35)
+[src/parser/classes/comments/Comment.ts:35](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L35)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:34](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L34)
+[src/parser/classes/comments/Comment.ts:34](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L34)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:33](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L33)
+[src/parser/classes/comments/Comment.ts:33](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L33)
 
 ***
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:29](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L29)
+[src/parser/classes/comments/Comment.ts:29](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L29)
 
 ***
 
@@ -86,7 +86,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:37](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L37)
+[src/parser/classes/comments/Comment.ts:37](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L37)
 
 ***
 
@@ -96,7 +96,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:27](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L27)
+[src/parser/classes/comments/Comment.ts:27](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L27)
 
 ***
 
@@ -106,7 +106,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:30](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L30)
+[src/parser/classes/comments/Comment.ts:30](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L30)
 
 ***
 
@@ -116,7 +116,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:42](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L42)
+[src/parser/classes/comments/Comment.ts:42](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L42)
 
 ***
 
@@ -126,7 +126,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:43](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L43)
+[src/parser/classes/comments/Comment.ts:43](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L43)
 
 ***
 
@@ -136,7 +136,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:41](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L41)
+[src/parser/classes/comments/Comment.ts:41](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L41)
 
 ***
 
@@ -146,7 +146,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:45](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L45)
+[src/parser/classes/comments/Comment.ts:45](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L45)
 
 ***
 
@@ -156,7 +156,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:44](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L44)
+[src/parser/classes/comments/Comment.ts:44](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L44)
 
 ***
 
@@ -166,7 +166,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:32](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L32)
+[src/parser/classes/comments/Comment.ts:32](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L32)
 
 ***
 
@@ -176,7 +176,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:28](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L28)
+[src/parser/classes/comments/Comment.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L28)
 
 ***
 
@@ -186,7 +186,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:40](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L40)
+[src/parser/classes/comments/Comment.ts:40](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L40)
 
 ***
 
@@ -196,7 +196,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:31](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L31)
+[src/parser/classes/comments/Comment.ts:31](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L31)
 
 ***
 
@@ -210,7 +210,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L8)
 
 ***
 
@@ -220,7 +220,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:39](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L39)
+[src/parser/classes/comments/Comment.ts:39](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L39)
 
 ***
 
@@ -230,7 +230,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:38](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L38)
+[src/parser/classes/comments/Comment.ts:38](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L38)
 
 ***
 
@@ -244,7 +244,7 @@
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:23](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L23)
+[src/parser/classes/comments/Comment.ts:23](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L23)
 
 ## Methods
 
@@ -274,7 +274,7 @@ Cast to one of the given types.
 
 #### Defined in
 
-[src/parser/helpers.ts:35](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L35)
+[src/parser/helpers.ts:35](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L35)
 
 ***
 
@@ -290,7 +290,7 @@ Dislikes the comment.
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:101](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L101)
+[src/parser/classes/comments/Comment.ts:101](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L101)
 
 ***
 
@@ -324,7 +324,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:47](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L47)
+[src/parser/helpers.ts:47](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L47)
 
 ***
 
@@ -358,7 +358,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L28)
 
 ***
 
@@ -396,7 +396,7 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:57](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L57)
+[src/parser/helpers.ts:57](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L57)
 
 ***
 
@@ -412,7 +412,7 @@ Likes the comment.
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:82](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L82)
+[src/parser/classes/comments/Comment.ts:82](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L82)
 
 ***
 
@@ -432,7 +432,7 @@ Creates a reply to the comment.
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:121](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L121)
+[src/parser/classes/comments/Comment.ts:121](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L121)
 
 ***
 
@@ -450,13 +450,13 @@ Creates a reply to the comment.
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:179](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L179)
+[src/parser/classes/comments/Comment.ts:176](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L176)
 
 ***
 
 ### translate()
 
-> **translate**(`target_language`): `Promise`\<`object`\>
+> **translate**(`target_language`): `Promise`\<[`ApiResponse`](../../../interfaces/ApiResponse.md) & `object`\>
 
 Translates the comment to a given language.
 
@@ -468,24 +468,8 @@ Ex; en, ja
 
 #### Returns
 
-`Promise`\<`object`\>
-
-##### content
-
-> **content**: `any`
-
-##### data
-
-> **data**: `any`
-
-##### status\_code
-
-> **status\_code**: `number`
-
-##### success
-
-> **success**: `boolean`
+`Promise`\<[`ApiResponse`](../../../interfaces/ApiResponse.md) & `object`\>
 
 #### Defined in
 
-[src/parser/classes/comments/Comment.ts:151](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/comments/Comment.ts#L151)
+[src/parser/classes/comments/Comment.ts:151](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/comments/Comment.ts#L151)

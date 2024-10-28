@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/utils/Log.ts:4](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Log.ts#L4)
+[src/utils/Log.ts:4](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Log.ts#L4)
 
 ## Methods
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[src/utils/Log.ts:32](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Log.ts#L32)
+[src/utils/Log.ts:32](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Log.ts#L32)
 
 ***
 
@@ -80,7 +80,7 @@
 
 #### Defined in
 
-[src/utils/Log.ts:30](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Log.ts#L30)
+[src/utils/Log.ts:30](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Log.ts#L30)
 
 ***
 
@@ -100,7 +100,7 @@
 
 #### Defined in
 
-[src/utils/Log.ts:31](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Log.ts#L31)
+[src/utils/Log.ts:31](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Log.ts#L31)
 
 ***
 
@@ -118,7 +118,7 @@
 
 #### Defined in
 
-[src/utils/Log.ts:46](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Log.ts#L46)
+[src/utils/Log.ts:46](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Log.ts#L46)
 
 ***
 
@@ -138,7 +138,7 @@
 
 #### Defined in
 
-[src/utils/Log.ts:29](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Log.ts#L29)
+[src/utils/Log.ts:29](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Log.ts#L29)
 
 ***
 
@@ -158,4 +158,4 @@
 
 #### Defined in
 
-[src/utils/Log.ts:22](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Log.ts#L22)
+[src/utils/Log.ts:22](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Log.ts#L22)

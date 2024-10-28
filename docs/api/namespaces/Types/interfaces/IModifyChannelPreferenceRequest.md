@@ -12,7 +12,7 @@ The client to use.
 
 #### Defined in
 
-[src/types/Endpoints.ts:269](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L269)
+[src/types/Endpoints.ts:270](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L270)
 
 ***
 
@@ -24,4 +24,4 @@ Protobuf-encoded parameters.
 
 #### Defined in
 
-[src/types/Endpoints.ts:265](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L265)
+[src/types/Endpoints.ts:266](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L266)

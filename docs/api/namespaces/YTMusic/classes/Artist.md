@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Artist.ts:23](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Artist.ts#L23)
+[src/parser/ytmusic/Artist.ts:23](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Artist.ts#L23)
 
 ## Properties
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Artist.ts:20](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Artist.ts#L20)
+[src/parser/ytmusic/Artist.ts:20](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Artist.ts#L20)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Artist.ts:21](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Artist.ts#L21)
+[src/parser/ytmusic/Artist.ts:21](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Artist.ts#L21)
 
 ## Accessors
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Artist.ts:55](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Artist.ts#L55)
+[src/parser/ytmusic/Artist.ts:55](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Artist.ts#L55)
 
 ## Methods
 
@@ -68,4 +68,4 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Artist.ts:35](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Artist.ts#L35)
+[src/parser/ytmusic/Artist.ts:35](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Artist.ts#L35)

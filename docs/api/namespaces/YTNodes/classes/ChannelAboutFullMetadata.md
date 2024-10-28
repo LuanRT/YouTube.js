@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:31](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L31)
+[src/parser/classes/ChannelAboutFullMetadata.ts:31](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L31)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:14](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L14)
+[src/parser/classes/ChannelAboutFullMetadata.ts:14](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L14)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:29](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L29)
+[src/parser/classes/ChannelAboutFullMetadata.ts:29](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L29)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:27](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L27)
+[src/parser/classes/ChannelAboutFullMetadata.ts:27](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L27)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:15](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L15)
+[src/parser/classes/ChannelAboutFullMetadata.ts:15](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L15)
 
 ***
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:28](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L28)
+[src/parser/classes/ChannelAboutFullMetadata.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L28)
 
 ***
 
@@ -86,7 +86,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:25](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L25)
+[src/parser/classes/ChannelAboutFullMetadata.ts:25](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L25)
 
 ***
 
@@ -96,7 +96,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:26](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L26)
+[src/parser/classes/ChannelAboutFullMetadata.ts:26](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L26)
 
 ***
 
@@ -106,7 +106,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:12](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L12)
+[src/parser/classes/ChannelAboutFullMetadata.ts:12](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L12)
 
 ***
 
@@ -116,7 +116,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:24](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L24)
+[src/parser/classes/ChannelAboutFullMetadata.ts:24](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L24)
 
 ***
 
@@ -126,7 +126,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:13](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L13)
+[src/parser/classes/ChannelAboutFullMetadata.ts:13](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L13)
 
 ***
 
@@ -136,7 +136,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:17](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L17)
+[src/parser/classes/ChannelAboutFullMetadata.ts:17](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L17)
 
 ***
 
@@ -150,7 +150,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L8)
 
 ***
 
@@ -160,7 +160,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:23](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L23)
+[src/parser/classes/ChannelAboutFullMetadata.ts:23](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L23)
 
 ***
 
@@ -174,7 +174,7 @@
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:10](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L10)
+[src/parser/classes/ChannelAboutFullMetadata.ts:10](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L10)
 
 ## Accessors
 
@@ -193,7 +193,7 @@ Please use [ChannelAboutFullMetadata.joined_date](ChannelAboutFullMetadata.md#jo
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:68](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L68)
+[src/parser/classes/ChannelAboutFullMetadata.ts:68](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L68)
 
 ***
 
@@ -212,7 +212,7 @@ Please use [ChannelAboutFullMetadata.view_count](ChannelAboutFullMetadata.md#vie
 
 #### Defined in
 
-[src/parser/classes/ChannelAboutFullMetadata.ts:58](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/ChannelAboutFullMetadata.ts#L58)
+[src/parser/classes/ChannelAboutFullMetadata.ts:58](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/ChannelAboutFullMetadata.ts#L58)
 
 ## Methods
 
@@ -242,7 +242,7 @@ Cast to one of the given types.
 
 #### Defined in
 
-[src/parser/helpers.ts:35](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L35)
+[src/parser/helpers.ts:35](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L35)
 
 ***
 
@@ -276,7 +276,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:47](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L47)
+[src/parser/helpers.ts:47](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L47)
 
 ***
 
@@ -310,7 +310,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L28)
 
 ***
 
@@ -348,4 +348,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:57](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L57)
+[src/parser/helpers.ts:57](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L57)

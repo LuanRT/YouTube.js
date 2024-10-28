@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:20](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L20)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:20](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L20)
 
 ## Properties
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L13)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L13)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L12)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L12)
 
 ***
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:14](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L14)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:14](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L14)
 
 ***
 
@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L15)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L15)
 
 ***
 
@@ -80,7 +80,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:18](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L18)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:18](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L18)
 
 ***
 
@@ -90,7 +90,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L16)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L16)
 
 ***
 
@@ -100,7 +100,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:17](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L17)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:17](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L17)
 
 ***
 
@@ -114,7 +114,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L8)
 
 ***
 
@@ -128,7 +128,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:10](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L10)
+[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:10](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L10)
 
 ## Methods
 
@@ -158,7 +158,7 @@ Cast to one of the given types.
 
 #### Defined in
 
-[src/parser/helpers.ts:35](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L35)
+[src/parser/helpers.ts:35](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L35)
 
 ***
 
@@ -192,7 +192,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:47](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L47)
+[src/parser/helpers.ts:47](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L47)
 
 ***
 
@@ -226,7 +226,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L28)
 
 ***
 
@@ -264,4 +264,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:57](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/helpers.ts#L57)
+[src/parser/helpers.ts:57](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L57)

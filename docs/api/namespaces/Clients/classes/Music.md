@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:40](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L40)
+[src/core/clients/Music.ts:40](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L40)
 
 ## Methods
 
@@ -40,7 +40,7 @@ The album id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:209](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L209)
+[src/core/clients/Music.ts:209](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L209)
 
 ***
 
@@ -62,7 +62,7 @@ The artist id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:189](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L189)
+[src/core/clients/Music.ts:189](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L189)
 
 ***
 
@@ -78,7 +78,7 @@ Retrieves the Explore feed.
 
 #### Defined in
 
-[src/core/clients/Music.ts:159](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L159)
+[src/core/clients/Music.ts:159](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L159)
 
 ***
 
@@ -94,7 +94,7 @@ Retrieves the home feed.
 
 #### Defined in
 
-[src/core/clients/Music.ts:145](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L145)
+[src/core/clients/Music.ts:145](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L145)
 
 ***
 
@@ -116,7 +116,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:49](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L49)
+[src/core/clients/Music.ts:49](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L49)
 
 ***
 
@@ -132,7 +132,7 @@ Retrieves the library.
 
 #### Defined in
 
-[src/core/clients/Music.ts:174](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L174)
+[src/core/clients/Music.ts:174](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L174)
 
 ***
 
@@ -154,7 +154,7 @@ The video id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:325](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L325)
+[src/core/clients/Music.ts:325](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L325)
 
 ***
 
@@ -176,7 +176,7 @@ The playlist id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:229](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L229)
+[src/core/clients/Music.ts:229](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L229)
 
 ***
 
@@ -192,7 +192,7 @@ Retrieves recap.
 
 #### Defined in
 
-[src/core/clients/Music.ts:355](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L355)
+[src/core/clients/Music.ts:355](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L355)
 
 ***
 
@@ -214,7 +214,7 @@ The video id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:297](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L297)
+[src/core/clients/Music.ts:297](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L297)
 
 ***
 
@@ -236,7 +236,7 @@ The query.
 
 #### Defined in
 
-[src/core/clients/Music.ts:370](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L370)
+[src/core/clients/Music.ts:370](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L370)
 
 ***
 
@@ -262,7 +262,7 @@ Whether to enable automix.
 
 #### Defined in
 
-[src/core/clients/Music.ts:251](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L251)
+[src/core/clients/Music.ts:251](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L251)
 
 ***
 
@@ -288,4 +288,4 @@ Search filters.
 
 #### Defined in
 
-[src/core/clients/Music.ts:116](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Music.ts#L116)
+[src/core/clients/Music.ts:116](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L116)

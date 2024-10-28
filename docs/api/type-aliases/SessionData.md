@@ -20,4 +20,4 @@
 
 ## Defined in
 
-[src/core/Session.ts:185](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Session.ts#L185)
+[src/core/Session.ts:187](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Session.ts#L187)

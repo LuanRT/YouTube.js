@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[src/types/Endpoints.ts:372](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L372)
+[src/types/Endpoints.ts:373](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L373)
 
 ***
 
@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/types/Endpoints.ts:366](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L366)
+[src/types/Endpoints.ts:367](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L367)
 
 ***
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/types/Endpoints.ts:371](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L371)
+[src/types/Endpoints.ts:372](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L372)
 
 ***
 
@@ -48,4 +48,4 @@
 
 #### Defined in
 
-[src/types/Endpoints.ts:367](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L367)
+[src/types/Endpoints.ts:368](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L368)

@@ -26,7 +26,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:17](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L17)
+[src/core/Player.ts:17](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L17)
 
 ## Properties
 
@@ -36,7 +36,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:13](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L13)
+[src/core/Player.ts:13](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L13)
 
 ***
 
@@ -46,7 +46,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:11](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L11)
+[src/core/Player.ts:11](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L11)
 
 ***
 
@@ -56,7 +56,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:15](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L15)
+[src/core/Player.ts:15](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L15)
 
 ***
 
@@ -66,7 +66,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:14](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L14)
+[src/core/Player.ts:14](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L14)
 
 ***
 
@@ -76,7 +76,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:12](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L12)
+[src/core/Player.ts:12](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L12)
 
 ## Accessors
 
@@ -90,7 +90,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:244](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L244)
+[src/core/Player.ts:241](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L241)
 
 ***
 
@@ -104,7 +104,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:248](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L248)
+[src/core/Player.ts:245](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L245)
 
 ## Methods
 
@@ -122,7 +122,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:200](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L200)
+[src/core/Player.ts:197](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L197)
 
 ***
 
@@ -146,7 +146,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:78](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L78)
+[src/core/Player.ts:78](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L78)
 
 ***
 
@@ -168,7 +168,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:24](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L24)
+[src/core/Player.ts:24](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L24)
 
 ***
 
@@ -186,7 +186,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:237](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L237)
+[src/core/Player.ts:234](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L234)
 
 ***
 
@@ -204,7 +204,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:226](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L226)
+[src/core/Player.ts:223](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L223)
 
 ***
 
@@ -222,7 +222,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:222](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L222)
+[src/core/Player.ts:219](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L219)
 
 ***
 
@@ -242,7 +242,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:170](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L170)
+[src/core/Player.ts:167](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L167)
 
 ***
 
@@ -268,4 +268,4 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 #### Defined in
 
-[src/core/Player.ts:194](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/Player.ts#L194)
+[src/core/Player.ts:191](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/Player.ts#L191)

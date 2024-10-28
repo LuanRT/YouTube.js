@@ -12,7 +12,7 @@ The client to use.
 
 #### Defined in
 
-[src/types/Endpoints.ts:130](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L130)
+[src/types/Endpoints.ts:130](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L130)
 
 ***
 
@@ -24,7 +24,7 @@ The continuation token. Mostly sed for pagination.
 
 #### Defined in
 
-[src/types/Endpoints.ts:126](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L126)
+[src/types/Endpoints.ts:126](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L126)
 
 ***
 
@@ -36,7 +36,7 @@ Additional protobuf parameters.
 
 #### Defined in
 
-[src/types/Endpoints.ts:122](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L122)
+[src/types/Endpoints.ts:122](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L122)
 
 ***
 
@@ -48,4 +48,4 @@ The query to search for.
 
 #### Defined in
 
-[src/types/Endpoints.ts:118](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L118)
+[src/types/Endpoints.ts:118](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L118)

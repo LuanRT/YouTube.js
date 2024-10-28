@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:31](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/misc/Text.ts#L31)
+[src/parser/classes/misc/Text.ts:31](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Text.ts#L31)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:29](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/misc/Text.ts#L29)
+[src/parser/classes/misc/Text.ts:29](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Text.ts#L29)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:28](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/misc/Text.ts#L28)
+[src/parser/classes/misc/Text.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Text.ts#L28)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:27](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/misc/Text.ts#L27)
+[src/parser/classes/misc/Text.ts:27](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Text.ts#L27)
 
 ## Methods
 
@@ -66,7 +66,7 @@ Whether the text is empty.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:197](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/misc/Text.ts#L197)
+[src/parser/classes/misc/Text.ts:197](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Text.ts#L197)
 
 ***
 
@@ -84,7 +84,7 @@ The HTML.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:189](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/misc/Text.ts#L189)
+[src/parser/classes/misc/Text.ts:189](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Text.ts#L189)
 
 ***
 
@@ -102,7 +102,7 @@ The text.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:205](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/misc/Text.ts#L205)
+[src/parser/classes/misc/Text.ts:205](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Text.ts#L205)
 
 ***
 
@@ -120,4 +120,4 @@ The text.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:54](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/classes/misc/Text.ts#L54)
+[src/parser/classes/misc/Text.ts:54](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Text.ts#L54)

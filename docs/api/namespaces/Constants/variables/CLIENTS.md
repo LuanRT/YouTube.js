@@ -24,11 +24,11 @@
 
 ### ANDROID.USER\_AGENT
 
-> **USER\_AGENT**: `string` = `'com.google.android.youtube/18.48.37(Linux; U; Android 13; en_US; sdk_gphone64_x86_64 Build/UPB4.230623.005) gzip'`
+> **USER\_AGENT**: `string` = `'com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip'`
 
 ### ANDROID.VERSION
 
-> **VERSION**: `string` = `'18.48.37'`
+> **VERSION**: `string` = `'19.35.36'`
 
 ### IOS
 
@@ -53,6 +53,26 @@
 ### IOS.VERSION
 
 > **VERSION**: `string` = `'18.06.35'`
+
+### TV
+
+> **TV**: `object`
+
+### TV.NAME
+
+> **NAME**: `string` = `'TVHTML5'`
+
+### TV.NAME\_ID
+
+> **NAME\_ID**: `string` = `'7'`
+
+### TV.USER\_AGENT
+
+> **USER\_AGENT**: `string` = `'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'`
+
+### TV.VERSION
+
+> **VERSION**: `string` = `'7.20241016.15.00'`
 
 ### TV\_EMBEDDED
 
@@ -97,6 +117,34 @@
 ### WEB.VERSION
 
 > **VERSION**: `string` = `'2.20240111.09.00'`
+
+### WEB\_CREATOR
+
+> **WEB\_CREATOR**: `object`
+
+### WEB\_CREATOR.API\_KEY
+
+> **API\_KEY**: `string` = `'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'`
+
+### WEB\_CREATOR.API\_VERSION
+
+> **API\_VERSION**: `string` = `'v1'`
+
+### WEB\_CREATOR.NAME
+
+> **NAME**: `string` = `'WEB_CREATOR'`
+
+### WEB\_CREATOR.NAME\_ID
+
+> **NAME\_ID**: `string` = `'62'`
+
+### WEB\_CREATOR.STATIC\_VISITOR\_ID
+
+> **STATIC\_VISITOR\_ID**: `string` = `'6zpwvWUNAco'`
+
+### WEB\_CREATOR.VERSION
+
+> **VERSION**: `string` = `'1.20240918.03.00'`
 
 ### WEB\_EMBEDDED
 
@@ -192,4 +240,4 @@
 
 ## Defined in
 
-[src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Constants.ts#L25)
+[src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Constants.ts#L25)

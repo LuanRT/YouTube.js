@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/clients/Kids.ts:18](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Kids.ts#L18)
+[src/core/clients/Kids.ts:18](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Kids.ts#L18)
 
 ## Methods
 
@@ -43,7 +43,7 @@ A list of API responses.
 
 #### Defined in
 
-[src/core/clients/Kids.ts:91](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Kids.ts#L91)
+[src/core/clients/Kids.ts:91](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Kids.ts#L91)
 
 ***
 
@@ -65,7 +65,7 @@ The channel id.
 
 #### Defined in
 
-[src/core/clients/Kids.ts:62](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Kids.ts#L62)
+[src/core/clients/Kids.ts:62](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Kids.ts#L62)
 
 ***
 
@@ -81,7 +81,7 @@ Retrieves the home feed.
 
 #### Defined in
 
-[src/core/clients/Kids.ts:75](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Kids.ts#L75)
+[src/core/clients/Kids.ts:75](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Kids.ts#L75)
 
 ***
 
@@ -103,7 +103,7 @@ The video id.
 
 #### Defined in
 
-[src/core/clients/Kids.ts:37](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Kids.ts#L37)
+[src/core/clients/Kids.ts:37](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Kids.ts#L37)
 
 ***
 
@@ -125,4 +125,4 @@ The query.
 
 #### Defined in
 
-[src/core/clients/Kids.ts:26](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/clients/Kids.ts#L26)
+[src/core/clients/Kids.ts:26](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Kids.ts#L26)

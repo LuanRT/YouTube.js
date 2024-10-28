@@ -24,4 +24,4 @@
 
 ## Defined in
 
-[src/types/Misc.ts:32](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Misc.ts#L32)
+[src/types/Misc.ts:32](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Misc.ts#L32)

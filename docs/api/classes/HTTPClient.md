@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[src/utils/HTTPClient.ts:23](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/HTTPClient.ts#L23)
+[src/utils/HTTPClient.ts:23](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/HTTPClient.ts#L23)
 
 ## Accessors
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/utils/HTTPClient.ts:29](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/HTTPClient.ts#L29)
+[src/utils/HTTPClient.ts:29](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/HTTPClient.ts#L29)
 
 ## Methods
 
@@ -68,4 +68,4 @@
 
 #### Defined in
 
-[src/utils/HTTPClient.ts:33](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/HTTPClient.ts#L33)
+[src/utils/HTTPClient.ts:33](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/HTTPClient.ts#L33)

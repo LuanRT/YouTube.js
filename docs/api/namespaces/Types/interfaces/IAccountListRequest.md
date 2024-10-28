@@ -4,10 +4,20 @@
 
 ## Properties
 
-### client
+### callCircumstance
 
-> **client**: `"ANDROID"`
+> **callCircumstance**: `number`
 
 #### Defined in
 
-[src/types/Endpoints.ts:187](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L187)
+[src/types/Endpoints.ts:188](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L188)
+
+***
+
+### client
+
+> **client**: `"TV"`
+
+#### Defined in
+
+[src/types/Endpoints.ts:187](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L187)

@@ -16,4 +16,4 @@
 
 ## Defined in
 
-[src/types/Endpoints.ts:359](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L359)
+[src/types/Endpoints.ts:360](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L360)

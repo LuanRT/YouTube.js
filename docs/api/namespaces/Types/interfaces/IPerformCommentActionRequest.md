@@ -12,7 +12,7 @@ An array of protobuf-encoded actions.
 
 #### Defined in
 
-[src/types/Endpoints.ts:235](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L235)
+[src/types/Endpoints.ts:236](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L236)
 
 ***
 
@@ -24,4 +24,4 @@ The client to use.
 
 #### Defined in
 
-[src/types/Endpoints.ts:239](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/Endpoints.ts#L239)
+[src/types/Endpoints.ts:240](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/Endpoints.ts#L240)

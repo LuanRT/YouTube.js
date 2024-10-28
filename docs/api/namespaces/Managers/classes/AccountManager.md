@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:22](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/managers/AccountManager.ts#L22)
+[src/core/managers/AccountManager.ts:23](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/managers/AccountManager.ts#L23)
 
 ## Properties
 
@@ -60,11 +60,11 @@
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:16](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/managers/AccountManager.ts#L16)
+[src/core/managers/AccountManager.ts:17](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/managers/AccountManager.ts#L17)
 
 ## Methods
 
-### getAnalytics()
+### ~~getAnalytics()~~
 
 > **getAnalytics**(): `Promise`\<[`Analytics`](../../YT/classes/Analytics.md)\>
 
@@ -74,9 +74,13 @@ Retrieves basic channel analytics.
 
 `Promise`\<[`Analytics`](../../YT/classes/Analytics.md)\>
 
+#### Deprecated
+
+This method is deprecated and will be removed in a future release.
+
 #### Defined in
 
-[src/core/managers/AccountManager.ts:107](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/managers/AccountManager.ts#L107)
+[src/core/managers/AccountManager.ts:113](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/managers/AccountManager.ts#L113)
 
 ***
 
@@ -92,7 +96,7 @@ Retrieves channel info.
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:66](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/managers/AccountManager.ts#L66)
+[src/core/managers/AccountManager.ts:70](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/managers/AccountManager.ts#L70)
 
 ***
 
@@ -108,11 +112,11 @@ Opens YouTube settings.
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:95](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/managers/AccountManager.ts#L95)
+[src/core/managers/AccountManager.ts:100](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/managers/AccountManager.ts#L100)
 
 ***
 
-### getTimeWatched()
+### ~~getTimeWatched()~~
 
 > **getTimeWatched**(): `Promise`\<[`TimeWatched`](../../YT/classes/TimeWatched.md)\>
 
@@ -122,6 +126,10 @@ Retrieves time watched statistics.
 
 `Promise`\<[`TimeWatched`](../../YT/classes/TimeWatched.md)\>
 
+#### Deprecated
+
+This method is deprecated and will be removed in a future release.
+
 #### Defined in
 
-[src/core/managers/AccountManager.ts:81](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/managers/AccountManager.ts#L81)
+[src/core/managers/AccountManager.ts:86](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/managers/AccountManager.ts#L86)

@@ -6,4 +6,4 @@
 
 ## Defined in
 
-[src/utils/Constants.ts:94](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Constants.ts#L94)
+[src/utils/Constants.ts:108](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Constants.ts#L108)

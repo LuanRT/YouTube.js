@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:28](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L28)
+[src/parser/ytmusic/Library.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L28)
 
 ## Properties
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:26](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L26)
+[src/parser/ytmusic/Library.ts:26](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L26)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:25](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L25)
+[src/parser/ytmusic/Library.ts:25](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L25)
 
 ## Accessors
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:141](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L141)
+[src/parser/ytmusic/Library.ts:141](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L141)
 
 ***
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:131](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L131)
+[src/parser/ytmusic/Library.ts:131](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L131)
 
 ***
 
@@ -82,7 +82,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:145](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L145)
+[src/parser/ytmusic/Library.ts:145](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L145)
 
 ***
 
@@ -96,7 +96,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:135](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L135)
+[src/parser/ytmusic/Library.ts:135](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L135)
 
 ## Methods
 
@@ -116,7 +116,7 @@ Applies given filter to the library.
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:93](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L93)
+[src/parser/ytmusic/Library.ts:93](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L93)
 
 ***
 
@@ -136,7 +136,7 @@ Applies given sort option to the library items.
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:43](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L43)
+[src/parser/ytmusic/Library.ts:43](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L43)
 
 ***
 
@@ -152,4 +152,4 @@ Retrieves continuation of the library items.
 
 #### Defined in
 
-[src/parser/ytmusic/Library.ts:119](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytmusic/Library.ts#L119)
+[src/parser/ytmusic/Library.ts:119](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Library.ts#L119)

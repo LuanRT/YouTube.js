@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/youtube/HashtagFeed.ts:16](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/youtube/HashtagFeed.ts#L16)
+[src/parser/youtube/HashtagFeed.ts:16](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/youtube/HashtagFeed.ts#L16)
 
 ## Properties
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/parser/youtube/HashtagFeed.ts:14](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/youtube/HashtagFeed.ts#L14)
+[src/parser/youtube/HashtagFeed.ts:14](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/youtube/HashtagFeed.ts#L14)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/parser/youtube/HashtagFeed.ts:13](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/youtube/HashtagFeed.ts#L13)
+[src/parser/youtube/HashtagFeed.ts:13](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/youtube/HashtagFeed.ts#L13)
 
 ## Accessors
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:180](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L180)
+[src/core/mixins/Feed.ts:180](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L180)
 
 ***
 
@@ -86,7 +86,7 @@ Get all the channels in the feed
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:125](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L125)
+[src/core/mixins/Feed.ts:125](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L125)
 
 ***
 
@@ -106,7 +106,7 @@ Returns the filter chips.
 
 #### Defined in
 
-[src/core/mixins/FilterableFeed.ts:20](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/FilterableFeed.ts#L20)
+[src/core/mixins/FilterableFeed.ts:20](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/FilterableFeed.ts#L20)
 
 ***
 
@@ -126,7 +126,7 @@ Returns available filters.
 
 #### Defined in
 
-[src/core/mixins/FilterableFeed.ts:38](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/FilterableFeed.ts#L38)
+[src/core/mixins/FilterableFeed.ts:38](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/FilterableFeed.ts#L38)
 
 ***
 
@@ -146,7 +146,7 @@ Checks if the feed has continuation.
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:194](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L194)
+[src/core/mixins/Feed.ts:194](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L194)
 
 ***
 
@@ -164,7 +164,7 @@ Checks if the feed has continuation.
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:136](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L136)
+[src/core/mixins/Feed.ts:136](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L136)
 
 ***
 
@@ -184,7 +184,7 @@ Get the original page data
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:187](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L187)
+[src/core/mixins/Feed.ts:187](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L187)
 
 ***
 
@@ -204,7 +204,7 @@ Returns contents from the page.
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:143](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L143)
+[src/core/mixins/Feed.ts:143](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L143)
 
 ***
 
@@ -224,7 +224,7 @@ Get all playlists in the feed
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:132](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L132)
+[src/core/mixins/Feed.ts:132](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L132)
 
 ***
 
@@ -244,7 +244,7 @@ Get all the community posts in the feed
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:118](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L118)
+[src/core/mixins/Feed.ts:118](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L118)
 
 ***
 
@@ -264,7 +264,7 @@ Returns secondary contents from the page.
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:168](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L168)
+[src/core/mixins/Feed.ts:168](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L168)
 
 ***
 
@@ -284,7 +284,7 @@ Returns all segments/sections from the page.
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:154](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L154)
+[src/core/mixins/Feed.ts:154](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L154)
 
 ***
 
@@ -304,7 +304,7 @@ Get all the videos in the feed
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:111](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L111)
+[src/core/mixins/Feed.ts:111](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L111)
 
 ## Methods
 
@@ -326,7 +326,7 @@ Filter to apply.
 
 #### Defined in
 
-[src/parser/youtube/HashtagFeed.ts:38](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/youtube/HashtagFeed.ts#L38)
+[src/parser/youtube/HashtagFeed.ts:38](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/youtube/HashtagFeed.ts#L38)
 
 ***
 
@@ -346,7 +346,7 @@ Retrieves next batch of contents and returns a new [Feed](../../Mixins/classes/F
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:220](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L220)
+[src/core/mixins/Feed.ts:220](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L220)
 
 ***
 
@@ -366,7 +366,7 @@ Retrieves continuation data as it is.
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:201](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L201)
+[src/core/mixins/Feed.ts:201](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L201)
 
 ***
 
@@ -390,7 +390,7 @@ Applies given filter and returns a new [Feed](../../Mixins/classes/Feed.md) obje
 
 #### Defined in
 
-[src/core/mixins/FilterableFeed.ts:45](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/FilterableFeed.ts#L45)
+[src/core/mixins/FilterableFeed.ts:45](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/FilterableFeed.ts#L45)
 
 ***
 
@@ -414,7 +414,7 @@ Finds shelf by title.
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:161](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L161)
+[src/core/mixins/Feed.ts:161](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L161)
 
 ***
 
@@ -438,7 +438,7 @@ Get all playlists on a given page via memo
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:93](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L93)
+[src/core/mixins/Feed.ts:93](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L93)
 
 ***
 
@@ -462,4 +462,4 @@ Get all videos on a given page via memo
 
 #### Defined in
 
-[src/core/mixins/Feed.ts:77](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/Feed.ts#L77)
+[src/core/mixins/Feed.ts:77](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/Feed.ts#L77)

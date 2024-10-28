@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/youtube/TimeWatched.ts:15](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/youtube/TimeWatched.ts#L15)
+[src/parser/youtube/TimeWatched.ts:15](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/youtube/TimeWatched.ts#L15)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/youtube/TimeWatched.ts:13](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/youtube/TimeWatched.ts#L13)
+[src/parser/youtube/TimeWatched.ts:13](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/youtube/TimeWatched.ts#L13)
 
 ## Accessors
 
@@ -42,4 +42,4 @@
 
 #### Defined in
 
-[src/parser/youtube/TimeWatched.ts:29](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/youtube/TimeWatched.ts#L29)
+[src/parser/youtube/TimeWatched.ts:29](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/youtube/TimeWatched.ts#L29)

@@ -20,7 +20,7 @@ InnerTube client.
 
 #### Defined in
 
-[src/types/FormatUtils.ts:27](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/FormatUtils.ts#L27)
+[src/types/FormatUtils.ts:27](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/FormatUtils.ts#L27)
 
 ***
 
@@ -36,7 +36,7 @@ File format, use 'any' to download any format
 
 #### Defined in
 
-[src/types/FormatUtils.ts:23](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/FormatUtils.ts#L23)
+[src/types/FormatUtils.ts:23](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/FormatUtils.ts#L23)
 
 ***
 
@@ -52,7 +52,7 @@ Language code, defaults to 'original'.
 
 #### Defined in
 
-[src/types/FormatUtils.ts:19](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/FormatUtils.ts#L19)
+[src/types/FormatUtils.ts:19](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/FormatUtils.ts#L19)
 
 ***
 
@@ -68,7 +68,7 @@ Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency
 
 #### Defined in
 
-[src/types/FormatUtils.ts:11](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/FormatUtils.ts#L11)
+[src/types/FormatUtils.ts:11](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/FormatUtils.ts#L11)
 
 ***
 
@@ -88,7 +88,7 @@ Download range, indicates which bytes should be downloaded.
 
 #### Defined in
 
-[src/types/FormatUtils.ts:34](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/FormatUtils.ts#L34)
+[src/types/FormatUtils.ts:34](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/FormatUtils.ts#L34)
 
 ***
 
@@ -104,4 +104,4 @@ Download type, can be: video, audio or video+audio
 
 #### Defined in
 
-[src/types/FormatUtils.ts:15](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/types/FormatUtils.ts#L15)
+[src/types/FormatUtils.ts:15](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/types/FormatUtils.ts#L15)

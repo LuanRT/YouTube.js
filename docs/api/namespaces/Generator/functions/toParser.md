@@ -32,4 +32,4 @@ Statement to parse the given key
 
 ## Defined in
 
-[src/parser/generator.ts:575](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/generator.ts#L575)
+[src/parser/generator.ts:575](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/generator.ts#L575)

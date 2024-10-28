@@ -26,4 +26,4 @@ A regular expression that the function's code must match.
 
 ## Defined in
 
-[src/utils/Utils.ts:252](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Utils.ts#L252)
+[src/utils/Utils.ts:253](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Utils.ts#L253)

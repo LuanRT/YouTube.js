@@ -27,4 +27,4 @@ console.log(result);
 
 ## Defined in
 
-[src/utils/Utils.ts:288](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/utils/Utils.ts#L288)
+[src/utils/Utils.ts:289](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Utils.ts#L289)

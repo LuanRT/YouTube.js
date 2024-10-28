@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/ytkids/VideoInfo.ts:17](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytkids/VideoInfo.ts#L17)
+[src/parser/ytkids/VideoInfo.ts:17](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytkids/VideoInfo.ts#L17)
 
 ## Properties
 
@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:31](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L31)
+[src/core/mixins/MediaInfo.ts:31](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L31)
 
 ***
 
@@ -190,7 +190,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:30](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L30)
+[src/core/mixins/MediaInfo.ts:30](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L30)
 
 ***
 
@@ -204,7 +204,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:34](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L34)
+[src/core/mixins/MediaInfo.ts:34](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L34)
 
 ***
 
@@ -218,7 +218,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:35](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L35)
+[src/core/mixins/MediaInfo.ts:35](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L35)
 
 ***
 
@@ -228,7 +228,7 @@
 
 #### Defined in
 
-[src/parser/ytkids/VideoInfo.ts:14](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytkids/VideoInfo.ts#L14)
+[src/parser/ytkids/VideoInfo.ts:14](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytkids/VideoInfo.ts#L14)
 
 ***
 
@@ -242,7 +242,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:33](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L33)
+[src/core/mixins/MediaInfo.ts:33](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L33)
 
 ***
 
@@ -256,7 +256,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:37](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L37)
+[src/core/mixins/MediaInfo.ts:37](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L37)
 
 ***
 
@@ -270,7 +270,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:38](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L38)
+[src/core/mixins/MediaInfo.ts:38](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L38)
 
 ***
 
@@ -280,7 +280,7 @@
 
 #### Defined in
 
-[src/parser/ytkids/VideoInfo.ts:15](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytkids/VideoInfo.ts#L15)
+[src/parser/ytkids/VideoInfo.ts:15](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytkids/VideoInfo.ts#L15)
 
 ***
 
@@ -290,7 +290,7 @@
 
 #### Defined in
 
-[src/parser/ytkids/VideoInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytkids/VideoInfo.ts#L12)
+[src/parser/ytkids/VideoInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytkids/VideoInfo.ts#L12)
 
 ***
 
@@ -304,7 +304,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:32](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L32)
+[src/core/mixins/MediaInfo.ts:32](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L32)
 
 ***
 
@@ -318,7 +318,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:36](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L36)
+[src/core/mixins/MediaInfo.ts:36](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L36)
 
 ***
 
@@ -328,7 +328,7 @@
 
 #### Defined in
 
-[src/parser/ytkids/VideoInfo.ts:13](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/parser/ytkids/VideoInfo.ts#L13)
+[src/parser/ytkids/VideoInfo.ts:13](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytkids/VideoInfo.ts#L13)
 
 ## Accessors
 
@@ -348,7 +348,7 @@ Actions instance.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:223](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L223)
+[src/core/mixins/MediaInfo.ts:223](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L223)
 
 ***
 
@@ -368,7 +368,7 @@ Content Playback Nonce.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:230](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L230)
+[src/core/mixins/MediaInfo.ts:230](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L230)
 
 ***
 
@@ -388,7 +388,7 @@ Original parsed InnerTube response.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:237](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L237)
+[src/core/mixins/MediaInfo.ts:237](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L237)
 
 ## Methods
 
@@ -416,7 +416,7 @@ Adds video to the watch history.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:199](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L199)
+[src/core/mixins/MediaInfo.ts:199](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L199)
 
 ***
 
@@ -442,7 +442,7 @@ Options
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:149](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L149)
+[src/core/mixins/MediaInfo.ts:149](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L149)
 
 ***
 
@@ -468,7 +468,7 @@ Download options.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:157](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L157)
+[src/core/mixins/MediaInfo.ts:157](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L157)
 
 ***
 
@@ -494,7 +494,7 @@ Get a cleaned up representation of the adaptive_formats
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:132](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L132)
+[src/core/mixins/MediaInfo.ts:132](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L132)
 
 ***
 
@@ -514,7 +514,7 @@ Retrieves the video's transcript.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:170](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L170)
+[src/core/mixins/MediaInfo.ts:170](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L170)
 
 ***
 
@@ -550,4 +550,4 @@ DASH manifest
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:97](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/mixins/MediaInfo.ts#L97)
+[src/core/mixins/MediaInfo.ts:97](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L97)

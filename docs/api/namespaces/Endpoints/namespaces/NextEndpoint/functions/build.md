@@ -20,4 +20,4 @@ The payload.
 
 ## Defined in
 
-[src/core/endpoints/NextEndpoint.ts:10](https://github.com/LuanRT/YouTube.js/blob/eb21af33db708f0355f4fb15881f5d4fabc7b06c/src/core/endpoints/NextEndpoint.ts#L10)
+[src/core/endpoints/NextEndpoint.ts:10](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/endpoints/NextEndpoint.ts#L10)
