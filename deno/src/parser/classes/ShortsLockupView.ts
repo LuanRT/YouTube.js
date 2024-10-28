@@ -17,7 +17,7 @@ export default class ShortsLockupView extends YTNode {
   index_in_collection: number;
   menu_on_tap_a11y_label: string;
   overlay_metadata: {
-    primary_text: Text;
+    primary_text?: Text;
     secondary_text?: Text;
   };
   inline_player_data?: NavigationEndpoint;
@@ -35,7 +35,7 @@ export default class ShortsLockupView extends YTNode {
     this.menu_on_tap_a11y_label = data.menuOnTapA11yLabel;
 
     this.overlay_metadata = {
-      primary_text: Text.fromAttributed(data.overlayMetadata.primaryText),
+      primary_text: data.overlayMetadata.primaryText ? Text.fromAttributed(data.overlayMetadata.primaryText) : undefined,
       secondary_text: data.overlayMetadata.secondaryText ? Text.fromAttributed(data.overlayMetadata.secondaryText) : undefined
     };
 

@@ -4,10 +4,12 @@
 export { default as AboutChannel } from './classes/AboutChannel.ts';
 export { default as AboutChannelView } from './classes/AboutChannelView.ts';
 export { default as AccountChannel } from './classes/AccountChannel.ts';
+export { default as AccountItem } from './classes/AccountItem.ts';
 export { default as AccountItemSection } from './classes/AccountItemSection.ts';
 export { default as AccountItemSectionHeader } from './classes/AccountItemSectionHeader.ts';
 export { default as AccountSectionList } from './classes/AccountSectionList.ts';
 export { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction.ts';
+export { default as GetMultiPageMenuAction } from './classes/actions/GetMultiPageMenuAction.ts';
 export { default as OpenPopupAction } from './classes/actions/OpenPopupAction.ts';
 export { default as UpdateEngagementPanelAction } from './classes/actions/UpdateEngagementPanelAction.ts';
 export { default as Alert } from './classes/Alert.ts';

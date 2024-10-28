@@ -267,7 +267,7 @@ export default class LiveChat extends EventEmitter {
     const response = await this.#actions.execute('/live_chat/send_message', {
       richMessage: { textSegments: [ { text } ] },
       clientMessageId: Platform.shim.uuidv4(),
-      client: 'ANDROID',
+      client: 'WEB',
       parse: true,
       params
     });

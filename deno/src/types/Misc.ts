@@ -1,7 +1,7 @@
 import type { SessionOptions } from '../core/index.ts';
 
 export type InnerTubeConfig = SessionOptions;
-export type InnerTubeClient = 'IOS' | 'WEB' | 'ANDROID' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'YTSTUDIO_ANDROID' | 'TV_EMBEDDED' | 'YTKIDS' | 'WEB_EMBEDDED';
+export type InnerTubeClient = 'IOS' | 'WEB' | 'ANDROID' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'YTSTUDIO_ANDROID' | 'TV' | 'TV_EMBEDDED' | 'YTKIDS' | 'WEB_EMBEDDED' | 'WEB_CREATOR';
 
 export type UploadDate = 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
 export type SearchType = 'all' | 'video' | 'channel' | 'playlist' | 'movie';

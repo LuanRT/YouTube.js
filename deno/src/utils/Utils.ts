@@ -2,11 +2,12 @@ import { Memo } from '../parser/helpers.ts';
 import { Text } from '../parser/misc.ts';
 import Log from './Log.ts';
 import userAgents from './user-agents.ts';
-import { Jinter } from 'https://esm.sh/jintr';
+import { Jinter } from 'jsr:@luanrt/jintr';
 
 import type { EmojiRun, TextRun } from '../parser/misc.ts';
 import type { FetchFunction } from '../types/PlatformShim.ts';
 import type PlatformShim from '../types/PlatformShim.ts';
+import type { Node } from 'estree';
 
 const TAG_ = 'Utils';
 
@@ -289,7 +290,7 @@ export function findFunction(source: string, args: FindFunctionArgs): FindFuncti
   const { name, includes, regexp } = args;
 
   const node = Jinter.parseScript(source);
-  const stack = [ node ];
+  const stack = [ node ] as (Node & { start: number; end: number})[];
 
   for (let i = 0; i < stack.length; i++) {
     const current = stack[i];
@@ -319,7 +320,7 @@ export function findFunction(source: string, args: FindFunctionArgs): FindFuncti
     }
 
     for (const key in current) {
-      const child = current[key];
+      const child = (current as Record<string, any>)[key];
       if (Array.isArray(child)) {
         stack.push(...child);
       } else if (typeof child === 'object' && child !== null) {

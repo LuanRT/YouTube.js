@@ -2,18 +2,19 @@ import { Parser } from '../index.ts';
 import AccountChannel from './AccountChannel.ts';
 import AccountItemSection from './AccountItemSection.ts';
 
-import { YTNode } from '../helpers.ts';
 import type { RawNode } from '../index.ts';
+import type { ObservedArray } from '../helpers.ts';
+import { YTNode } from '../helpers.ts';
 
 export default class AccountSectionList extends YTNode {
   static type = 'AccountSectionList';
 
-  contents;
-  footers;
+  public contents: ObservedArray<AccountItemSection>;
+  public footers: ObservedArray<AccountChannel>;
 
   constructor(data: RawNode) {
     super();
-    this.contents = Parser.parseItem(data.contents[0], AccountItemSection);
-    this.footers = Parser.parseItem(data.footers[0], AccountChannel);
+    this.contents = Parser.parseArray(data.contents, AccountItemSection);
+    this.footers = Parser.parseArray(data.footers, AccountChannel);
   }
 }

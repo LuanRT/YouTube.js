@@ -51,9 +51,9 @@ export const CLIENTS = Object.freeze({
   ANDROID: {
     NAME_ID: '3',
     NAME: 'ANDROID',
-    VERSION: '18.48.37',
+    VERSION: '19.35.36',
     SDK_VERSION: 33,
-    USER_AGENT: 'com.google.android.youtube/18.48.37(Linux; U; Android 13; en_US; sdk_gphone64_x86_64 Build/UPB4.230623.005) gzip'
+    USER_AGENT: 'com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip'
   },
   YTSTUDIO_ANDROID: {
     NAME_ID: '14',
@@ -65,6 +65,12 @@ export const CLIENTS = Object.freeze({
     NAME: 'ANDROID_MUSIC',
     VERSION: '5.34.51'
   },
+  TV: {
+    NAME_ID: '7',
+    NAME: 'TVHTML5',
+    VERSION: '7.20241016.15.00',
+    USER_AGENT: 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'
+  },
   TV_EMBEDDED: {
     NAME_ID: '85',
     NAME: 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
@@ -74,6 +80,14 @@ export const CLIENTS = Object.freeze({
     NAME_ID: '56',
     NAME: 'WEB_EMBEDDED_PLAYER',
     VERSION: '2.20240111.09.00',
+    API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
+    API_VERSION: 'v1',
+    STATIC_VISITOR_ID: '6zpwvWUNAco'
+  },
+  WEB_CREATOR: {
+    NAME_ID: '62',
+    NAME: 'WEB_CREATOR',
+    VERSION: '1.20240918.03.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'
@@ -91,4 +105,4 @@ export const INNERTUBE_HEADERS_BASE = Object.freeze({
   'content-type': 'application/json'
 });
 
-export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV_EMBEDDED', 'WEB_EMBEDDED' ];
+export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV', 'TV_EMBEDDED', 'WEB_EMBEDDED', 'WEB_CREATOR' ];

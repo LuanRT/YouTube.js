@@ -5,7 +5,7 @@
 // source: misc/common.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 
 export const protobufPackage = "misc";
 
@@ -79,34 +79,6 @@ export const HttpHeader: MessageFns<HttpHeader> = {
     }
     return message;
   },
-
-  fromJSON(object: any): HttpHeader {
-    return {
-      name: isSet(object.name) ? globalThis.String(object.name) : undefined,
-      value: isSet(object.value) ? globalThis.String(object.value) : undefined,
-    };
-  },
-
-  toJSON(message: HttpHeader): unknown {
-    const obj: any = {};
-    if (message.name !== undefined) {
-      obj.name = message.name;
-    }
-    if (message.value !== undefined) {
-      obj.value = message.value;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<HttpHeader>, I>>(base?: I): HttpHeader {
-    return HttpHeader.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<HttpHeader>, I>>(object: I): HttpHeader {
-    const message = createBaseHttpHeader();
-    message.name = object.name ?? undefined;
-    message.value = object.value ?? undefined;
-    return message;
-  },
 };
 
 function createBaseFormatId(): FormatId {
@@ -163,39 +135,6 @@ export const FormatId: MessageFns<FormatId> = {
     }
     return message;
   },
-
-  fromJSON(object: any): FormatId {
-    return {
-      itag: isSet(object.itag) ? globalThis.Number(object.itag) : undefined,
-      lastModified: isSet(object.lastModified) ? globalThis.Number(object.lastModified) : undefined,
-      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : undefined,
-    };
-  },
-
-  toJSON(message: FormatId): unknown {
-    const obj: any = {};
-    if (message.itag !== undefined) {
-      obj.itag = Math.round(message.itag);
-    }
-    if (message.lastModified !== undefined) {
-      obj.lastModified = Math.round(message.lastModified);
-    }
-    if (message.xtags !== undefined) {
-      obj.xtags = message.xtags;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<FormatId>, I>>(base?: I): FormatId {
-    return FormatId.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<FormatId>, I>>(object: I): FormatId {
-    const message = createBaseFormatId();
-    message.itag = object.itag ?? undefined;
-    message.lastModified = object.lastModified ?? undefined;
-    message.xtags = object.xtags ?? undefined;
-    return message;
-  },
 };
 
 function createBaseInitRange(): InitRange {
@@ -240,34 +179,6 @@ export const InitRange: MessageFns<InitRange> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): InitRange {
-    return {
-      start: isSet(object.start) ? globalThis.Number(object.start) : undefined,
-      end: isSet(object.end) ? globalThis.Number(object.end) : undefined,
-    };
-  },
-
-  toJSON(message: InitRange): unknown {
-    const obj: any = {};
-    if (message.start !== undefined) {
-      obj.start = Math.round(message.start);
-    }
-    if (message.end !== undefined) {
-      obj.end = Math.round(message.end);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<InitRange>, I>>(base?: I): InitRange {
-    return InitRange.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<InitRange>, I>>(object: I): InitRange {
-    const message = createBaseInitRange();
-    message.start = object.start ?? undefined;
-    message.end = object.end ?? undefined;
     return message;
   },
 };
@@ -316,34 +227,6 @@ export const IndexRange: MessageFns<IndexRange> = {
     }
     return message;
   },
-
-  fromJSON(object: any): IndexRange {
-    return {
-      start: isSet(object.start) ? globalThis.Number(object.start) : undefined,
-      end: isSet(object.end) ? globalThis.Number(object.end) : undefined,
-    };
-  },
-
-  toJSON(message: IndexRange): unknown {
-    const obj: any = {};
-    if (message.start !== undefined) {
-      obj.start = Math.round(message.start);
-    }
-    if (message.end !== undefined) {
-      obj.end = Math.round(message.end);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<IndexRange>, I>>(base?: I): IndexRange {
-    return IndexRange.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<IndexRange>, I>>(object: I): IndexRange {
-    const message = createBaseIndexRange();
-    message.start = object.start ?? undefined;
-    message.end = object.end ?? undefined;
-    return message;
-  },
 };
 
 function createBaseKeyValuePair(): KeyValuePair {
@@ -390,47 +273,7 @@ export const KeyValuePair: MessageFns<KeyValuePair> = {
     }
     return message;
   },
-
-  fromJSON(object: any): KeyValuePair {
-    return {
-      key: isSet(object.key) ? globalThis.String(object.key) : undefined,
-      value: isSet(object.value) ? globalThis.String(object.value) : undefined,
-    };
-  },
-
-  toJSON(message: KeyValuePair): unknown {
-    const obj: any = {};
-    if (message.key !== undefined) {
-      obj.key = message.key;
-    }
-    if (message.value !== undefined) {
-      obj.value = message.value;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<KeyValuePair>, I>>(base?: I): KeyValuePair {
-    return KeyValuePair.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<KeyValuePair>, I>>(object: I): KeyValuePair {
-    const message = createBaseKeyValuePair();
-    message.key = object.key ?? undefined;
-    message.value = object.value ?? undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -443,15 +286,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

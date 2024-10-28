@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/playback_context.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 
 export const protobufPackage = "youtube.api.pfiinnertube";
 
@@ -112,34 +112,6 @@ export const PlaybackContext: MessageFns<PlaybackContext> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): PlaybackContext {
-    return {
-      contentPlaybackContext: isSet(object.contentPlaybackContext)
-        ? PlaybackContext_ContentPlaybackContext.fromJSON(object.contentPlaybackContext)
-        : undefined,
-    };
-  },
-
-  toJSON(message: PlaybackContext): unknown {
-    const obj: any = {};
-    if (message.contentPlaybackContext !== undefined) {
-      obj.contentPlaybackContext = PlaybackContext_ContentPlaybackContext.toJSON(message.contentPlaybackContext);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PlaybackContext>, I>>(base?: I): PlaybackContext {
-    return PlaybackContext.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PlaybackContext>, I>>(object: I): PlaybackContext {
-    const message = createBasePlaybackContext();
-    message.contentPlaybackContext =
-      (object.contentPlaybackContext !== undefined && object.contentPlaybackContext !== null)
-        ? PlaybackContext_ContentPlaybackContext.fromPartial(object.contentPlaybackContext)
-        : undefined;
     return message;
   },
 };
@@ -499,209 +471,7 @@ export const PlaybackContext_ContentPlaybackContext: MessageFns<PlaybackContext_
     }
     return message;
   },
-
-  fromJSON(object: any): PlaybackContext_ContentPlaybackContext {
-    return {
-      deviceSignals: isSet(object.deviceSignals) ? globalThis.String(object.deviceSignals) : undefined,
-      revShareClientId: isSet(object.revShareClientId) ? globalThis.String(object.revShareClientId) : undefined,
-      timeSinceLastAdSeconds: isSet(object.timeSinceLastAdSeconds)
-        ? globalThis.Number(object.timeSinceLastAdSeconds)
-        : undefined,
-      lactMilliseconds: isSet(object.lactMilliseconds) ? globalThis.Number(object.lactMilliseconds) : undefined,
-      autoplaysSinceLastAd: isSet(object.autoplaysSinceLastAd)
-        ? globalThis.Number(object.autoplaysSinceLastAd)
-        : undefined,
-      vis: isSet(object.vis) ? globalThis.Number(object.vis) : undefined,
-      fling: isSet(object.fling) ? globalThis.Boolean(object.fling) : undefined,
-      splay: isSet(object.splay) ? globalThis.Boolean(object.splay) : undefined,
-      autoplay: isSet(object.autoplay) ? globalThis.Boolean(object.autoplay) : undefined,
-      timeOfLastInstreamPrerollAd: isSet(object.timeOfLastInstreamPrerollAd)
-        ? globalThis.Number(object.timeOfLastInstreamPrerollAd)
-        : undefined,
-      currentUrl: isSet(object.currentUrl) ? globalThis.String(object.currentUrl) : undefined,
-      referer: isSet(object.referer) ? globalThis.String(object.referer) : undefined,
-      loadAnnotationsByDemand: isSet(object.loadAnnotationsByDemand)
-        ? globalThis.Boolean(object.loadAnnotationsByDemand)
-        : undefined,
-      autoCaptionsDefaultOn: isSet(object.autoCaptionsDefaultOn)
-        ? globalThis.Boolean(object.autoCaptionsDefaultOn)
-        : undefined,
-      slicedBread: isSet(object.slicedBread) ? globalThis.Boolean(object.slicedBread) : undefined,
-      autonav: isSet(object.autonav) ? globalThis.Boolean(object.autonav) : undefined,
-      trailer: isSet(object.trailer) ? globalThis.Boolean(object.trailer) : undefined,
-      playerWidthPixels: isSet(object.playerWidthPixels) ? globalThis.Number(object.playerWidthPixels) : undefined,
-      playerHeightPixels: isSet(object.playerHeightPixels) ? globalThis.Number(object.playerHeightPixels) : undefined,
-      snd: isSet(object.snd) ? globalThis.Number(object.snd) : undefined,
-      vnd: isSet(object.vnd) ? globalThis.Number(object.vnd) : undefined,
-      uao: isSet(object.uao) ? globalThis.Number(object.uao) : undefined,
-      mutedAutoplay: isSet(object.mutedAutoplay) ? globalThis.Boolean(object.mutedAutoplay) : undefined,
-      enablePrivacyFilter: isSet(object.enablePrivacyFilter)
-        ? globalThis.Boolean(object.enablePrivacyFilter)
-        : undefined,
-      isLivingRoomDeeplink: isSet(object.isLivingRoomDeeplink)
-        ? globalThis.Boolean(object.isLivingRoomDeeplink)
-        : undefined,
-      signatureTimestamp: isSet(object.signatureTimestamp) ? globalThis.Number(object.signatureTimestamp) : undefined,
-      isInlinePlaybackNoAd: isSet(object.isInlinePlaybackNoAd)
-        ? globalThis.Boolean(object.isInlinePlaybackNoAd)
-        : undefined,
-      isInlineUnmutedPlayback: isSet(object.isInlineUnmutedPlayback)
-        ? globalThis.Boolean(object.isInlineUnmutedPlayback)
-        : undefined,
-      playPackageVersion: isSet(object.playPackageVersion) ? globalThis.Number(object.playPackageVersion) : undefined,
-      isSequenceEntry: isSet(object.isSequenceEntry) ? globalThis.Boolean(object.isSequenceEntry) : undefined,
-    };
-  },
-
-  toJSON(message: PlaybackContext_ContentPlaybackContext): unknown {
-    const obj: any = {};
-    if (message.deviceSignals !== undefined) {
-      obj.deviceSignals = message.deviceSignals;
-    }
-    if (message.revShareClientId !== undefined) {
-      obj.revShareClientId = message.revShareClientId;
-    }
-    if (message.timeSinceLastAdSeconds !== undefined) {
-      obj.timeSinceLastAdSeconds = Math.round(message.timeSinceLastAdSeconds);
-    }
-    if (message.lactMilliseconds !== undefined) {
-      obj.lactMilliseconds = Math.round(message.lactMilliseconds);
-    }
-    if (message.autoplaysSinceLastAd !== undefined) {
-      obj.autoplaysSinceLastAd = Math.round(message.autoplaysSinceLastAd);
-    }
-    if (message.vis !== undefined) {
-      obj.vis = Math.round(message.vis);
-    }
-    if (message.fling !== undefined) {
-      obj.fling = message.fling;
-    }
-    if (message.splay !== undefined) {
-      obj.splay = message.splay;
-    }
-    if (message.autoplay !== undefined) {
-      obj.autoplay = message.autoplay;
-    }
-    if (message.timeOfLastInstreamPrerollAd !== undefined) {
-      obj.timeOfLastInstreamPrerollAd = Math.round(message.timeOfLastInstreamPrerollAd);
-    }
-    if (message.currentUrl !== undefined) {
-      obj.currentUrl = message.currentUrl;
-    }
-    if (message.referer !== undefined) {
-      obj.referer = message.referer;
-    }
-    if (message.loadAnnotationsByDemand !== undefined) {
-      obj.loadAnnotationsByDemand = message.loadAnnotationsByDemand;
-    }
-    if (message.autoCaptionsDefaultOn !== undefined) {
-      obj.autoCaptionsDefaultOn = message.autoCaptionsDefaultOn;
-    }
-    if (message.slicedBread !== undefined) {
-      obj.slicedBread = message.slicedBread;
-    }
-    if (message.autonav !== undefined) {
-      obj.autonav = message.autonav;
-    }
-    if (message.trailer !== undefined) {
-      obj.trailer = message.trailer;
-    }
-    if (message.playerWidthPixels !== undefined) {
-      obj.playerWidthPixels = Math.round(message.playerWidthPixels);
-    }
-    if (message.playerHeightPixels !== undefined) {
-      obj.playerHeightPixels = Math.round(message.playerHeightPixels);
-    }
-    if (message.snd !== undefined) {
-      obj.snd = Math.round(message.snd);
-    }
-    if (message.vnd !== undefined) {
-      obj.vnd = Math.round(message.vnd);
-    }
-    if (message.uao !== undefined) {
-      obj.uao = Math.round(message.uao);
-    }
-    if (message.mutedAutoplay !== undefined) {
-      obj.mutedAutoplay = message.mutedAutoplay;
-    }
-    if (message.enablePrivacyFilter !== undefined) {
-      obj.enablePrivacyFilter = message.enablePrivacyFilter;
-    }
-    if (message.isLivingRoomDeeplink !== undefined) {
-      obj.isLivingRoomDeeplink = message.isLivingRoomDeeplink;
-    }
-    if (message.signatureTimestamp !== undefined) {
-      obj.signatureTimestamp = Math.round(message.signatureTimestamp);
-    }
-    if (message.isInlinePlaybackNoAd !== undefined) {
-      obj.isInlinePlaybackNoAd = message.isInlinePlaybackNoAd;
-    }
-    if (message.isInlineUnmutedPlayback !== undefined) {
-      obj.isInlineUnmutedPlayback = message.isInlineUnmutedPlayback;
-    }
-    if (message.playPackageVersion !== undefined) {
-      obj.playPackageVersion = Math.round(message.playPackageVersion);
-    }
-    if (message.isSequenceEntry !== undefined) {
-      obj.isSequenceEntry = message.isSequenceEntry;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PlaybackContext_ContentPlaybackContext>, I>>(
-    base?: I,
-  ): PlaybackContext_ContentPlaybackContext {
-    return PlaybackContext_ContentPlaybackContext.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PlaybackContext_ContentPlaybackContext>, I>>(
-    object: I,
-  ): PlaybackContext_ContentPlaybackContext {
-    const message = createBasePlaybackContext_ContentPlaybackContext();
-    message.deviceSignals = object.deviceSignals ?? undefined;
-    message.revShareClientId = object.revShareClientId ?? undefined;
-    message.timeSinceLastAdSeconds = object.timeSinceLastAdSeconds ?? undefined;
-    message.lactMilliseconds = object.lactMilliseconds ?? undefined;
-    message.autoplaysSinceLastAd = object.autoplaysSinceLastAd ?? undefined;
-    message.vis = object.vis ?? undefined;
-    message.fling = object.fling ?? undefined;
-    message.splay = object.splay ?? undefined;
-    message.autoplay = object.autoplay ?? undefined;
-    message.timeOfLastInstreamPrerollAd = object.timeOfLastInstreamPrerollAd ?? undefined;
-    message.currentUrl = object.currentUrl ?? undefined;
-    message.referer = object.referer ?? undefined;
-    message.loadAnnotationsByDemand = object.loadAnnotationsByDemand ?? undefined;
-    message.autoCaptionsDefaultOn = object.autoCaptionsDefaultOn ?? undefined;
-    message.slicedBread = object.slicedBread ?? undefined;
-    message.autonav = object.autonav ?? undefined;
-    message.trailer = object.trailer ?? undefined;
-    message.playerWidthPixels = object.playerWidthPixels ?? undefined;
-    message.playerHeightPixels = object.playerHeightPixels ?? undefined;
-    message.snd = object.snd ?? undefined;
-    message.vnd = object.vnd ?? undefined;
-    message.uao = object.uao ?? undefined;
-    message.mutedAutoplay = object.mutedAutoplay ?? undefined;
-    message.enablePrivacyFilter = object.enablePrivacyFilter ?? undefined;
-    message.isLivingRoomDeeplink = object.isLivingRoomDeeplink ?? undefined;
-    message.signatureTimestamp = object.signatureTimestamp ?? undefined;
-    message.isInlinePlaybackNoAd = object.isInlinePlaybackNoAd ?? undefined;
-    message.isInlineUnmutedPlayback = object.isInlineUnmutedPlayback ?? undefined;
-    message.playPackageVersion = object.playPackageVersion ?? undefined;
-    message.isSequenceEntry = object.isSequenceEntry ?? undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -714,15 +484,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

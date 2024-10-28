@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/player_request_caption_params.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 
 export const protobufPackage = "youtube.api.pfiinnertube";
 
@@ -97,76 +97,9 @@ export const PlayerRequestCaptionParams: MessageFns<PlayerRequestCaptionParams> 
     }
     return message;
   },
-
-  fromJSON(object: any): PlayerRequestCaptionParams {
-    return {
-      deviceCaptionsOn: isSet(object.deviceCaptionsOn) ? globalThis.Boolean(object.deviceCaptionsOn) : undefined,
-      deviceCaptionsLangPref: isSet(object.deviceCaptionsLangPref)
-        ? globalThis.String(object.deviceCaptionsLangPref)
-        : undefined,
-      viewerSelectedCaptionLangs: isSet(object.viewerSelectedCaptionLangs)
-        ? globalThis.String(object.viewerSelectedCaptionLangs)
-        : undefined,
-      ccLangPref: isSet(object.ccLangPref) ? globalThis.String(object.ccLangPref) : undefined,
-      ccLoadPolicyOn: isSet(object.ccLoadPolicyOn) ? globalThis.Boolean(object.ccLoadPolicyOn) : undefined,
-    };
-  },
-
-  toJSON(message: PlayerRequestCaptionParams): unknown {
-    const obj: any = {};
-    if (message.deviceCaptionsOn !== undefined) {
-      obj.deviceCaptionsOn = message.deviceCaptionsOn;
-    }
-    if (message.deviceCaptionsLangPref !== undefined) {
-      obj.deviceCaptionsLangPref = message.deviceCaptionsLangPref;
-    }
-    if (message.viewerSelectedCaptionLangs !== undefined) {
-      obj.viewerSelectedCaptionLangs = message.viewerSelectedCaptionLangs;
-    }
-    if (message.ccLangPref !== undefined) {
-      obj.ccLangPref = message.ccLangPref;
-    }
-    if (message.ccLoadPolicyOn !== undefined) {
-      obj.ccLoadPolicyOn = message.ccLoadPolicyOn;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PlayerRequestCaptionParams>, I>>(base?: I): PlayerRequestCaptionParams {
-    return PlayerRequestCaptionParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PlayerRequestCaptionParams>, I>>(object: I): PlayerRequestCaptionParams {
-    const message = createBasePlayerRequestCaptionParams();
-    message.deviceCaptionsOn = object.deviceCaptionsOn ?? undefined;
-    message.deviceCaptionsLangPref = object.deviceCaptionsLangPref ?? undefined;
-    message.viewerSelectedCaptionLangs = object.viewerSelectedCaptionLangs ?? undefined;
-    message.ccLangPref = object.ccLangPref ?? undefined;
-    message.ccLoadPolicyOn = object.ccLoadPolicyOn ?? undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

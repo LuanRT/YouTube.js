@@ -25,8 +25,8 @@ export default class Player {
     const url = new URL('/iframe_api', Constants.URLS.YT_BASE);
     const res = await fetch(url);
 
-    if (res.status !== 200)
-      throw new PlayerError('Failed to request player id');
+    if (!res.ok)
+      throw new PlayerError(`Failed to get player id: ${res.status} (${res.statusText})`);
 
     const js = await res.text();
 
@@ -121,7 +121,7 @@ export default class Player {
           throw new PlayerError('Failed to decipher nsig');
 
         if (nsig.startsWith('enhanced_except_')) {
-          Log.warn(TAG, 'Could not transform nsig, download may be throttled.');
+          Log.warn(TAG, 'Something went wrong while deciphering nsig.');
         } else if (this_response_nsig_cache) {
           this_response_nsig_cache.set(n, nsig);
         }
@@ -146,11 +146,8 @@ export default class Player {
       case 'WEB_KIDS':
         url_components.searchParams.set('cver', Constants.CLIENTS.WEB_KIDS.VERSION);
         break;
-      case 'ANDROID':
-        url_components.searchParams.set('cver', Constants.CLIENTS.ANDROID.VERSION);
-        break;
-      case 'ANDROID_MUSIC':
-        url_components.searchParams.set('cver', Constants.CLIENTS.YTMUSIC_ANDROID.VERSION);
+      case 'TVHTML5':
+        url_components.searchParams.set('cver', Constants.CLIENTS.TV.VERSION);
         break;
       case 'TVHTML5_SIMPLY_EMBEDDED_PLAYER':
         url_components.searchParams.set('cver', Constants.CLIENTS.TV_EMBEDDED.VERSION);

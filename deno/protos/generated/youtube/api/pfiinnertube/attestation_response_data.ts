@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/attestation_response_data.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 
 export const protobufPackage = "youtube.api.pfiinnertube";
 
@@ -114,58 +114,6 @@ export const AttestationResponseData: MessageFns<AttestationResponseData> = {
     }
     return message;
   },
-
-  fromJSON(object: any): AttestationResponseData {
-    return {
-      challenge: isSet(object.challenge) ? globalThis.String(object.challenge) : undefined,
-      webResponse: isSet(object.webResponse) ? globalThis.String(object.webResponse) : undefined,
-      androidResponse: isSet(object.androidResponse) ? globalThis.String(object.androidResponse) : undefined,
-      iosResponse: isSet(object.iosResponse) ? bytesFromBase64(object.iosResponse) : undefined,
-      error: isSet(object.error) ? globalThis.Number(object.error) : undefined,
-      adblockReporting: isSet(object.adblockReporting)
-        ? AttestationResponseData_AdblockReporting.fromJSON(object.adblockReporting)
-        : undefined,
-    };
-  },
-
-  toJSON(message: AttestationResponseData): unknown {
-    const obj: any = {};
-    if (message.challenge !== undefined) {
-      obj.challenge = message.challenge;
-    }
-    if (message.webResponse !== undefined) {
-      obj.webResponse = message.webResponse;
-    }
-    if (message.androidResponse !== undefined) {
-      obj.androidResponse = message.androidResponse;
-    }
-    if (message.iosResponse !== undefined) {
-      obj.iosResponse = base64FromBytes(message.iosResponse);
-    }
-    if (message.error !== undefined) {
-      obj.error = Math.round(message.error);
-    }
-    if (message.adblockReporting !== undefined) {
-      obj.adblockReporting = AttestationResponseData_AdblockReporting.toJSON(message.adblockReporting);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<AttestationResponseData>, I>>(base?: I): AttestationResponseData {
-    return AttestationResponseData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<AttestationResponseData>, I>>(object: I): AttestationResponseData {
-    const message = createBaseAttestationResponseData();
-    message.challenge = object.challenge ?? undefined;
-    message.webResponse = object.webResponse ?? undefined;
-    message.androidResponse = object.androidResponse ?? undefined;
-    message.iosResponse = object.iosResponse ?? undefined;
-    message.error = object.error ?? undefined;
-    message.adblockReporting = (object.adblockReporting !== undefined && object.adblockReporting !== null)
-      ? AttestationResponseData_AdblockReporting.fromPartial(object.adblockReporting)
-      : undefined;
-    return message;
-  },
 };
 
 function createBaseAttestationResponseData_AdblockReporting(): AttestationResponseData_AdblockReporting {
@@ -212,70 +160,7 @@ export const AttestationResponseData_AdblockReporting: MessageFns<AttestationRes
     }
     return message;
   },
-
-  fromJSON(object: any): AttestationResponseData_AdblockReporting {
-    return {
-      reportingStatus: isSet(object.reportingStatus) ? globalThis.Number(object.reportingStatus) : undefined,
-      broadSpectrumDetectionResult: isSet(object.broadSpectrumDetectionResult)
-        ? globalThis.Number(object.broadSpectrumDetectionResult)
-        : undefined,
-    };
-  },
-
-  toJSON(message: AttestationResponseData_AdblockReporting): unknown {
-    const obj: any = {};
-    if (message.reportingStatus !== undefined) {
-      obj.reportingStatus = Math.round(message.reportingStatus);
-    }
-    if (message.broadSpectrumDetectionResult !== undefined) {
-      obj.broadSpectrumDetectionResult = Math.round(message.broadSpectrumDetectionResult);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<AttestationResponseData_AdblockReporting>, I>>(
-    base?: I,
-  ): AttestationResponseData_AdblockReporting {
-    return AttestationResponseData_AdblockReporting.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<AttestationResponseData_AdblockReporting>, I>>(
-    object: I,
-  ): AttestationResponseData_AdblockReporting {
-    const message = createBaseAttestationResponseData_AdblockReporting();
-    message.reportingStatus = object.reportingStatus ?? undefined;
-    message.broadSpectrumDetectionResult = object.broadSpectrumDetectionResult ?? undefined;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -288,15 +173,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

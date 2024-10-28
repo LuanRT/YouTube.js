@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/player_attestation_request_data.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 
 export const protobufPackage = "youtube.api.pfiinnertube";
 
@@ -68,38 +68,6 @@ export const PlayerAttestationRequestData: MessageFns<PlayerAttestationRequestDa
     }
     return message;
   },
-
-  fromJSON(object: any): PlayerAttestationRequestData {
-    return {
-      iosguardRequest: isSet(object.iosguardRequest)
-        ? PlayerAttestationRequestData_IosguardChallengeRequestData.fromJSON(object.iosguardRequest)
-        : undefined,
-      omitBotguardData: isSet(object.omitBotguardData) ? globalThis.Boolean(object.omitBotguardData) : undefined,
-    };
-  },
-
-  toJSON(message: PlayerAttestationRequestData): unknown {
-    const obj: any = {};
-    if (message.iosguardRequest !== undefined) {
-      obj.iosguardRequest = PlayerAttestationRequestData_IosguardChallengeRequestData.toJSON(message.iosguardRequest);
-    }
-    if (message.omitBotguardData !== undefined) {
-      obj.omitBotguardData = message.omitBotguardData;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PlayerAttestationRequestData>, I>>(base?: I): PlayerAttestationRequestData {
-    return PlayerAttestationRequestData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PlayerAttestationRequestData>, I>>(object: I): PlayerAttestationRequestData {
-    const message = createBasePlayerAttestationRequestData();
-    message.iosguardRequest = (object.iosguardRequest !== undefined && object.iosguardRequest !== null)
-      ? PlayerAttestationRequestData_IosguardChallengeRequestData.fromPartial(object.iosguardRequest)
-      : undefined;
-    message.omitBotguardData = object.omitBotguardData ?? undefined;
-    return message;
-  },
 };
 
 function createBasePlayerAttestationRequestData_IosguardChallengeRequestData(): PlayerAttestationRequestData_IosguardChallengeRequestData {
@@ -141,71 +109,9 @@ export const PlayerAttestationRequestData_IosguardChallengeRequestData: MessageF
     }
     return message;
   },
-
-  fromJSON(object: any): PlayerAttestationRequestData_IosguardChallengeRequestData {
-    return { challengeRequest: isSet(object.challengeRequest) ? bytesFromBase64(object.challengeRequest) : undefined };
-  },
-
-  toJSON(message: PlayerAttestationRequestData_IosguardChallengeRequestData): unknown {
-    const obj: any = {};
-    if (message.challengeRequest !== undefined) {
-      obj.challengeRequest = base64FromBytes(message.challengeRequest);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PlayerAttestationRequestData_IosguardChallengeRequestData>, I>>(
-    base?: I,
-  ): PlayerAttestationRequestData_IosguardChallengeRequestData {
-    return PlayerAttestationRequestData_IosguardChallengeRequestData.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PlayerAttestationRequestData_IosguardChallengeRequestData>, I>>(
-    object: I,
-  ): PlayerAttestationRequestData_IosguardChallengeRequestData {
-    const message = createBasePlayerAttestationRequestData_IosguardChallengeRequestData();
-    message.challengeRequest = object.challengeRequest ?? undefined;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

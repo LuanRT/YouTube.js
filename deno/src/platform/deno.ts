@@ -3,7 +3,7 @@ import type { ICache } from '../types/Cache.ts';
 import { Platform } from '../utils/Utils.ts';
 import evaluate from './jsruntime/jinter.ts';
 import sha1Hash from './polyfills/web-crypto.ts';
-import package_json from '../../package.json' assert { type: 'json' };
+import package_json from '../../package.json' with { type: 'json' };
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

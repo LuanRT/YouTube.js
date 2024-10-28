@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/capability_info.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 
 export const protobufPackage = "youtube.api.pfiinnertube";
 
@@ -86,48 +86,6 @@ export const CapabilityInfo: MessageFns<CapabilityInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): CapabilityInfo {
-    return {
-      profile: isSet(object.profile) ? globalThis.String(object.profile) : undefined,
-      supportedCapabilities: globalThis.Array.isArray(object?.supportedCapabilities)
-        ? object.supportedCapabilities.map((e: any) => InnerTubeCapability.fromJSON(e))
-        : [],
-      disabledCapabilities: globalThis.Array.isArray(object?.disabledCapabilities)
-        ? object.disabledCapabilities.map((e: any) => InnerTubeCapability.fromJSON(e))
-        : [],
-      snapshot: isSet(object.snapshot) ? globalThis.String(object.snapshot) : undefined,
-    };
-  },
-
-  toJSON(message: CapabilityInfo): unknown {
-    const obj: any = {};
-    if (message.profile !== undefined) {
-      obj.profile = message.profile;
-    }
-    if (message.supportedCapabilities?.length) {
-      obj.supportedCapabilities = message.supportedCapabilities.map((e) => InnerTubeCapability.toJSON(e));
-    }
-    if (message.disabledCapabilities?.length) {
-      obj.disabledCapabilities = message.disabledCapabilities.map((e) => InnerTubeCapability.toJSON(e));
-    }
-    if (message.snapshot !== undefined) {
-      obj.snapshot = message.snapshot;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<CapabilityInfo>, I>>(base?: I): CapabilityInfo {
-    return CapabilityInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<CapabilityInfo>, I>>(object: I): CapabilityInfo {
-    const message = createBaseCapabilityInfo();
-    message.profile = object.profile ?? undefined;
-    message.supportedCapabilities = object.supportedCapabilities?.map((e) => InnerTubeCapability.fromPartial(e)) || [];
-    message.disabledCapabilities = object.disabledCapabilities?.map((e) => InnerTubeCapability.fromPartial(e)) || [];
-    message.snapshot = object.snapshot ?? undefined;
-    return message;
-  },
 };
 
 function createBaseInnerTubeCapability(): InnerTubeCapability {
@@ -184,62 +142,9 @@ export const InnerTubeCapability: MessageFns<InnerTubeCapability> = {
     }
     return message;
   },
-
-  fromJSON(object: any): InnerTubeCapability {
-    return {
-      capability: isSet(object.capability) ? globalThis.Number(object.capability) : undefined,
-      features: isSet(object.features) ? globalThis.Number(object.features) : undefined,
-      experimentFlags: isSet(object.experimentFlags) ? globalThis.String(object.experimentFlags) : undefined,
-    };
-  },
-
-  toJSON(message: InnerTubeCapability): unknown {
-    const obj: any = {};
-    if (message.capability !== undefined) {
-      obj.capability = Math.round(message.capability);
-    }
-    if (message.features !== undefined) {
-      obj.features = Math.round(message.features);
-    }
-    if (message.experimentFlags !== undefined) {
-      obj.experimentFlags = message.experimentFlags;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<InnerTubeCapability>, I>>(base?: I): InnerTubeCapability {
-    return InnerTubeCapability.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<InnerTubeCapability>, I>>(object: I): InnerTubeCapability {
-    const message = createBaseInnerTubeCapability();
-    message.capability = object.capability ?? undefined;
-    message.features = object.features ?? undefined;
-    message.experimentFlags = object.experimentFlags ?? undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

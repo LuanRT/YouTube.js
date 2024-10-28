@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/request_info.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 import { KeyValuePair } from "../../../misc/common.ts";
 import { AttestationResponseData } from "./attestation_response_data.ts";
 
@@ -53,38 +53,6 @@ export enum RequestInfo_Criticality {
   CRITICALITY_CRITICAL = 1,
   CRITICALITY_NON_CRITICAL = 2,
   UNRECOGNIZED = -1,
-}
-
-export function requestInfo_CriticalityFromJSON(object: any): RequestInfo_Criticality {
-  switch (object) {
-    case 0:
-    case "CRITICALITY_UNSPECIFIED":
-      return RequestInfo_Criticality.CRITICALITY_UNSPECIFIED;
-    case 1:
-    case "CRITICALITY_CRITICAL":
-      return RequestInfo_Criticality.CRITICALITY_CRITICAL;
-    case 2:
-    case "CRITICALITY_NON_CRITICAL":
-      return RequestInfo_Criticality.CRITICALITY_NON_CRITICAL;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return RequestInfo_Criticality.UNRECOGNIZED;
-  }
-}
-
-export function requestInfo_CriticalityToJSON(object: RequestInfo_Criticality): string {
-  switch (object) {
-    case RequestInfo_Criticality.CRITICALITY_UNSPECIFIED:
-      return "CRITICALITY_UNSPECIFIED";
-    case RequestInfo_Criticality.CRITICALITY_CRITICAL:
-      return "CRITICALITY_CRITICAL";
-    case RequestInfo_Criticality.CRITICALITY_NON_CRITICAL:
-      return "CRITICALITY_NON_CRITICAL";
-    case RequestInfo_Criticality.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
 }
 
 /** Quality of Service? */
@@ -334,138 +302,6 @@ export const RequestInfo: MessageFns<RequestInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): RequestInfo {
-    return {
-      thirdPartyDigest: isSet(object.thirdPartyDigest) ? globalThis.String(object.thirdPartyDigest) : undefined,
-      useSsl: isSet(object.useSsl) ? globalThis.Boolean(object.useSsl) : undefined,
-      returnErrorDetail: isSet(object.returnErrorDetail) ? globalThis.Boolean(object.returnErrorDetail) : undefined,
-      ifNoneMatch: isSet(object.ifNoneMatch) ? globalThis.String(object.ifNoneMatch) : undefined,
-      returnLogEntry: isSet(object.returnLogEntry) ? globalThis.Boolean(object.returnLogEntry) : undefined,
-      isPrefetch: isSet(object.isPrefetch) ? globalThis.Boolean(object.isPrefetch) : undefined,
-      internalExperimentFlags: globalThis.Array.isArray(object?.internalExperimentFlags)
-        ? object.internalExperimentFlags.map((e: any) => KeyValuePair.fromJSON(e))
-        : [],
-      returnDebugData: isSet(object.returnDebugData) ? globalThis.Boolean(object.returnDebugData) : undefined,
-      innertubez: isSet(object.innertubez) ? globalThis.String(object.innertubez) : undefined,
-      traceProto: isSet(object.traceProto) ? globalThis.Boolean(object.traceProto) : undefined,
-      returnLogEntryJson: isSet(object.returnLogEntryJson) ? globalThis.Boolean(object.returnLogEntryJson) : undefined,
-      sherlogUsername: isSet(object.sherlogUsername) ? globalThis.String(object.sherlogUsername) : undefined,
-      reauthRequestInfo: isSet(object.reauthRequestInfo)
-        ? RequestInfo_ReauthRequestInfo.fromJSON(object.reauthRequestInfo)
-        : undefined,
-      sessionInfo: isSet(object.sessionInfo) ? RequestInfo_SessionInfo.fromJSON(object.sessionInfo) : undefined,
-      returnLogEntryProto: isSet(object.returnLogEntryProto)
-        ? globalThis.Boolean(object.returnLogEntryProto)
-        : undefined,
-      externalPrequestContext: isSet(object.externalPrequestContext)
-        ? globalThis.String(object.externalPrequestContext)
-        : undefined,
-      attestationResponseData: isSet(object.attestationResponseData)
-        ? AttestationResponseData.fromJSON(object.attestationResponseData)
-        : undefined,
-      eats: isSet(object.eats) ? bytesFromBase64(object.eats) : undefined,
-      requestQos: isSet(object.requestQos) ? RequestInfo_RequestQoS.fromJSON(object.requestQos) : undefined,
-    };
-  },
-
-  toJSON(message: RequestInfo): unknown {
-    const obj: any = {};
-    if (message.thirdPartyDigest !== undefined) {
-      obj.thirdPartyDigest = message.thirdPartyDigest;
-    }
-    if (message.useSsl !== undefined) {
-      obj.useSsl = message.useSsl;
-    }
-    if (message.returnErrorDetail !== undefined) {
-      obj.returnErrorDetail = message.returnErrorDetail;
-    }
-    if (message.ifNoneMatch !== undefined) {
-      obj.ifNoneMatch = message.ifNoneMatch;
-    }
-    if (message.returnLogEntry !== undefined) {
-      obj.returnLogEntry = message.returnLogEntry;
-    }
-    if (message.isPrefetch !== undefined) {
-      obj.isPrefetch = message.isPrefetch;
-    }
-    if (message.internalExperimentFlags?.length) {
-      obj.internalExperimentFlags = message.internalExperimentFlags.map((e) => KeyValuePair.toJSON(e));
-    }
-    if (message.returnDebugData !== undefined) {
-      obj.returnDebugData = message.returnDebugData;
-    }
-    if (message.innertubez !== undefined) {
-      obj.innertubez = message.innertubez;
-    }
-    if (message.traceProto !== undefined) {
-      obj.traceProto = message.traceProto;
-    }
-    if (message.returnLogEntryJson !== undefined) {
-      obj.returnLogEntryJson = message.returnLogEntryJson;
-    }
-    if (message.sherlogUsername !== undefined) {
-      obj.sherlogUsername = message.sherlogUsername;
-    }
-    if (message.reauthRequestInfo !== undefined) {
-      obj.reauthRequestInfo = RequestInfo_ReauthRequestInfo.toJSON(message.reauthRequestInfo);
-    }
-    if (message.sessionInfo !== undefined) {
-      obj.sessionInfo = RequestInfo_SessionInfo.toJSON(message.sessionInfo);
-    }
-    if (message.returnLogEntryProto !== undefined) {
-      obj.returnLogEntryProto = message.returnLogEntryProto;
-    }
-    if (message.externalPrequestContext !== undefined) {
-      obj.externalPrequestContext = message.externalPrequestContext;
-    }
-    if (message.attestationResponseData !== undefined) {
-      obj.attestationResponseData = AttestationResponseData.toJSON(message.attestationResponseData);
-    }
-    if (message.eats !== undefined) {
-      obj.eats = base64FromBytes(message.eats);
-    }
-    if (message.requestQos !== undefined) {
-      obj.requestQos = RequestInfo_RequestQoS.toJSON(message.requestQos);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<RequestInfo>, I>>(base?: I): RequestInfo {
-    return RequestInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<RequestInfo>, I>>(object: I): RequestInfo {
-    const message = createBaseRequestInfo();
-    message.thirdPartyDigest = object.thirdPartyDigest ?? undefined;
-    message.useSsl = object.useSsl ?? undefined;
-    message.returnErrorDetail = object.returnErrorDetail ?? undefined;
-    message.ifNoneMatch = object.ifNoneMatch ?? undefined;
-    message.returnLogEntry = object.returnLogEntry ?? undefined;
-    message.isPrefetch = object.isPrefetch ?? undefined;
-    message.internalExperimentFlags = object.internalExperimentFlags?.map((e) => KeyValuePair.fromPartial(e)) || [];
-    message.returnDebugData = object.returnDebugData ?? undefined;
-    message.innertubez = object.innertubez ?? undefined;
-    message.traceProto = object.traceProto ?? undefined;
-    message.returnLogEntryJson = object.returnLogEntryJson ?? undefined;
-    message.sherlogUsername = object.sherlogUsername ?? undefined;
-    message.reauthRequestInfo = (object.reauthRequestInfo !== undefined && object.reauthRequestInfo !== null)
-      ? RequestInfo_ReauthRequestInfo.fromPartial(object.reauthRequestInfo)
-      : undefined;
-    message.sessionInfo = (object.sessionInfo !== undefined && object.sessionInfo !== null)
-      ? RequestInfo_SessionInfo.fromPartial(object.sessionInfo)
-      : undefined;
-    message.returnLogEntryProto = object.returnLogEntryProto ?? undefined;
-    message.externalPrequestContext = object.externalPrequestContext ?? undefined;
-    message.attestationResponseData =
-      (object.attestationResponseData !== undefined && object.attestationResponseData !== null)
-        ? AttestationResponseData.fromPartial(object.attestationResponseData)
-        : undefined;
-    message.eats = object.eats ?? undefined;
-    message.requestQos = (object.requestQos !== undefined && object.requestQos !== null)
-      ? RequestInfo_RequestQoS.fromPartial(object.requestQos)
-      : undefined;
-    return message;
-  },
 };
 
 function createBaseRequestInfo_RequestQoS(): RequestInfo_RequestQoS {
@@ -500,27 +336,6 @@ export const RequestInfo_RequestQoS: MessageFns<RequestInfo_RequestQoS> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): RequestInfo_RequestQoS {
-    return { criticality: isSet(object.criticality) ? requestInfo_CriticalityFromJSON(object.criticality) : undefined };
-  },
-
-  toJSON(message: RequestInfo_RequestQoS): unknown {
-    const obj: any = {};
-    if (message.criticality !== undefined) {
-      obj.criticality = requestInfo_CriticalityToJSON(message.criticality);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<RequestInfo_RequestQoS>, I>>(base?: I): RequestInfo_RequestQoS {
-    return RequestInfo_RequestQoS.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<RequestInfo_RequestQoS>, I>>(object: I): RequestInfo_RequestQoS {
-    const message = createBaseRequestInfo_RequestQoS();
-    message.criticality = object.criticality ?? undefined;
     return message;
   },
 };
@@ -559,27 +374,6 @@ export const RequestInfo_SessionInfo: MessageFns<RequestInfo_SessionInfo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): RequestInfo_SessionInfo {
-    return { token: isSet(object.token) ? globalThis.String(object.token) : undefined };
-  },
-
-  toJSON(message: RequestInfo_SessionInfo): unknown {
-    const obj: any = {};
-    if (message.token !== undefined) {
-      obj.token = message.token;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<RequestInfo_SessionInfo>, I>>(base?: I): RequestInfo_SessionInfo {
-    return RequestInfo_SessionInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<RequestInfo_SessionInfo>, I>>(object: I): RequestInfo_SessionInfo {
-    const message = createBaseRequestInfo_SessionInfo();
-    message.token = object.token ?? undefined;
-    return message;
-  },
 };
 
 function createBaseRequestInfo_ReauthRequestInfo(): RequestInfo_ReauthRequestInfo {
@@ -616,73 +410,9 @@ export const RequestInfo_ReauthRequestInfo: MessageFns<RequestInfo_ReauthRequest
     }
     return message;
   },
-
-  fromJSON(object: any): RequestInfo_ReauthRequestInfo {
-    return {
-      encodedReauthProofToken: isSet(object.encodedReauthProofToken)
-        ? globalThis.String(object.encodedReauthProofToken)
-        : undefined,
-    };
-  },
-
-  toJSON(message: RequestInfo_ReauthRequestInfo): unknown {
-    const obj: any = {};
-    if (message.encodedReauthProofToken !== undefined) {
-      obj.encodedReauthProofToken = message.encodedReauthProofToken;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<RequestInfo_ReauthRequestInfo>, I>>(base?: I): RequestInfo_ReauthRequestInfo {
-    return RequestInfo_ReauthRequestInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<RequestInfo_ReauthRequestInfo>, I>>(
-    object: I,
-  ): RequestInfo_ReauthRequestInfo {
-    const message = createBaseRequestInfo_ReauthRequestInfo();
-    message.encodedReauthProofToken = object.encodedReauthProofToken ?? undefined;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

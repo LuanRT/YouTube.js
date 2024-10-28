@@ -94,13 +94,13 @@ async function DashManifest({
     maxPlayoutRate: "1",
     frameRate: set.fps,
     contentType: "video"
-  }, set.color_info.primaries && /* @__PURE__ */ DashUtils.createElement("essential-property", {
+  }, set.color_info.primaries && /* @__PURE__ */ DashUtils.createElement("supplemental-property", {
     schemeIdUri: "urn:mpeg:mpegB:cicp:ColourPrimaries",
     value: set.color_info.primaries
-  }), set.color_info.transfer_characteristics && /* @__PURE__ */ DashUtils.createElement("essential-property", {
+  }), set.color_info.transfer_characteristics && /* @__PURE__ */ DashUtils.createElement("supplemental-property", {
     schemeIdUri: "urn:mpeg:mpegB:cicp:TransferCharacteristics",
     value: set.color_info.transfer_characteristics
-  }), set.color_info.matrix_coefficients && /* @__PURE__ */ DashUtils.createElement("essential-property", {
+  }), set.color_info.matrix_coefficients && /* @__PURE__ */ DashUtils.createElement("supplemental-property", {
     schemeIdUri: "urn:mpeg:mpegB:cicp:MatrixCoefficients",
     value: set.color_info.matrix_coefficients
   }), set.representations.map((rep) => /* @__PURE__ */ DashUtils.createElement("representation", {

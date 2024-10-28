@@ -53,7 +53,7 @@ export default class ChannelAboutFullMetadata extends YTNode {
   /**
    * @deprecated
    * This will be removed in a future release.
-   * Please use {@link Channel.view_count} instead.
+   * Please use {@link ChannelAboutFullMetadata.view_count} instead.
    */
   get views() {
     Log.warnOnce(ChannelAboutFullMetadata.type, 'ChannelAboutFullMetadata#views is deprecated. Please use ChannelAboutFullMetadata#view_count instead.');
@@ -63,7 +63,7 @@ export default class ChannelAboutFullMetadata extends YTNode {
   /**
    * @deprecated
    * This will be removed in a future release.
-   * Please use {@link Channel.joined_date} instead.
+   * Please use {@link ChannelAboutFullMetadata.joined_date} instead.
    */
   get joined(): Text {
     Log.warnOnce(ChannelAboutFullMetadata.type, 'ChannelAboutFullMetadata#joined is deprecated. Please use ChannelAboutFullMetadata#joined_date instead.');

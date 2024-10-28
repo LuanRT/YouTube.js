@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/get_watch_request.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 import { InnerTubeContext } from "./innertube_context.ts";
 import { PlayerRequest } from "./player_request.ts";
 import { ReelItemWatchRequest } from "./reel_item_watch_request.ts";
@@ -84,77 +84,9 @@ export const GetWatchRequest: MessageFns<GetWatchRequest> = {
     }
     return message;
   },
-
-  fromJSON(object: any): GetWatchRequest {
-    return {
-      context: isSet(object.context) ? InnerTubeContext.fromJSON(object.context) : undefined,
-      playerRequest: isSet(object.playerRequest) ? PlayerRequest.fromJSON(object.playerRequest) : undefined,
-      watchNextRequest: isSet(object.watchNextRequest) ? WatchNextRequest.fromJSON(object.watchNextRequest) : undefined,
-      reelItemWatchRequest: isSet(object.reelItemWatchRequest)
-        ? ReelItemWatchRequest.fromJSON(object.reelItemWatchRequest)
-        : undefined,
-    };
-  },
-
-  toJSON(message: GetWatchRequest): unknown {
-    const obj: any = {};
-    if (message.context !== undefined) {
-      obj.context = InnerTubeContext.toJSON(message.context);
-    }
-    if (message.playerRequest !== undefined) {
-      obj.playerRequest = PlayerRequest.toJSON(message.playerRequest);
-    }
-    if (message.watchNextRequest !== undefined) {
-      obj.watchNextRequest = WatchNextRequest.toJSON(message.watchNextRequest);
-    }
-    if (message.reelItemWatchRequest !== undefined) {
-      obj.reelItemWatchRequest = ReelItemWatchRequest.toJSON(message.reelItemWatchRequest);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetWatchRequest>, I>>(base?: I): GetWatchRequest {
-    return GetWatchRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetWatchRequest>, I>>(object: I): GetWatchRequest {
-    const message = createBaseGetWatchRequest();
-    message.context = (object.context !== undefined && object.context !== null)
-      ? InnerTubeContext.fromPartial(object.context)
-      : undefined;
-    message.playerRequest = (object.playerRequest !== undefined && object.playerRequest !== null)
-      ? PlayerRequest.fromPartial(object.playerRequest)
-      : undefined;
-    message.watchNextRequest = (object.watchNextRequest !== undefined && object.watchNextRequest !== null)
-      ? WatchNextRequest.fromPartial(object.watchNextRequest)
-      : undefined;
-    message.reelItemWatchRequest = (object.reelItemWatchRequest !== undefined && object.reelItemWatchRequest !== null)
-      ? ReelItemWatchRequest.fromPartial(object.reelItemWatchRequest)
-      : undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

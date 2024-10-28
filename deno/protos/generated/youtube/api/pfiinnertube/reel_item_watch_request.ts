@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/reel_item_watch_request.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 import { InnerTubeContext } from "./innertube_context.ts";
 import { PlayerRequest } from "./player_request.ts";
 
@@ -82,73 +82,9 @@ export const ReelItemWatchRequest: MessageFns<ReelItemWatchRequest> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ReelItemWatchRequest {
-    return {
-      context: isSet(object.context) ? InnerTubeContext.fromJSON(object.context) : undefined,
-      playerRequest: isSet(object.playerRequest) ? PlayerRequest.fromJSON(object.playerRequest) : undefined,
-      params: isSet(object.params) ? globalThis.String(object.params) : undefined,
-      disablePlayerResponse: isSet(object.disablePlayerResponse)
-        ? globalThis.Boolean(object.disablePlayerResponse)
-        : undefined,
-    };
-  },
-
-  toJSON(message: ReelItemWatchRequest): unknown {
-    const obj: any = {};
-    if (message.context !== undefined) {
-      obj.context = InnerTubeContext.toJSON(message.context);
-    }
-    if (message.playerRequest !== undefined) {
-      obj.playerRequest = PlayerRequest.toJSON(message.playerRequest);
-    }
-    if (message.params !== undefined) {
-      obj.params = message.params;
-    }
-    if (message.disablePlayerResponse !== undefined) {
-      obj.disablePlayerResponse = message.disablePlayerResponse;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ReelItemWatchRequest>, I>>(base?: I): ReelItemWatchRequest {
-    return ReelItemWatchRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ReelItemWatchRequest>, I>>(object: I): ReelItemWatchRequest {
-    const message = createBaseReelItemWatchRequest();
-    message.context = (object.context !== undefined && object.context !== null)
-      ? InnerTubeContext.fromPartial(object.context)
-      : undefined;
-    message.playerRequest = (object.playerRequest !== undefined && object.playerRequest !== null)
-      ? PlayerRequest.fromPartial(object.playerRequest)
-      : undefined;
-    message.params = object.params ?? undefined;
-    message.disablePlayerResponse = object.disablePlayerResponse ?? undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

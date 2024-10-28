@@ -5,7 +5,7 @@
 // source: youtube/api/pfiinnertube/metadata_update_request.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from "https://esm.sh/@bufbuild/protobuf@2.0.0/wire";
 import { InnerTubeContext } from "./innertube_context.ts";
 
 export const protobufPackage = "youtube.api.pfiinnertube";
@@ -242,120 +242,6 @@ export const MetadataUpdateRequest: MessageFns<MetadataUpdateRequest> = {
     }
     return message;
   },
-
-  fromJSON(object: any): MetadataUpdateRequest {
-    return {
-      context: isSet(object.context) ? InnerTubeContext.fromJSON(object.context) : undefined,
-      encryptedVideoId: isSet(object.encryptedVideoId) ? globalThis.String(object.encryptedVideoId) : undefined,
-      title: isSet(object.title) ? MetadataUpdateRequest_MdeTitleUpdateRequest.fromJSON(object.title) : undefined,
-      description: isSet(object.description)
-        ? MetadataUpdateRequest_MdeDescriptionUpdateRequest.fromJSON(object.description)
-        : undefined,
-      privacy: isSet(object.privacy)
-        ? MetadataUpdateRequest_MdePrivacyUpdateRequest.fromJSON(object.privacy)
-        : undefined,
-      tags: isSet(object.tags) ? MetadataUpdateRequest_MdeTagsUpdateRequest.fromJSON(object.tags) : undefined,
-      category: isSet(object.category)
-        ? MetadataUpdateRequest_MdeCategoryUpdateRequest.fromJSON(object.category)
-        : undefined,
-      license: isSet(object.license)
-        ? MetadataUpdateRequest_MdeLicenseUpdateRequest.fromJSON(object.license)
-        : undefined,
-      ageRestriction: isSet(object.ageRestriction)
-        ? MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest.fromJSON(object.ageRestriction)
-        : undefined,
-      videoStill: isSet(object.videoStill)
-        ? MetadataUpdateRequest_MdeVideoStillRequestParams.fromJSON(object.videoStill)
-        : undefined,
-      madeForKids: isSet(object.madeForKids)
-        ? MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams.fromJSON(object.madeForKids)
-        : undefined,
-      racy: isSet(object.racy) ? MetadataUpdateRequest_MdeRacyRequestParams.fromJSON(object.racy) : undefined,
-    };
-  },
-
-  toJSON(message: MetadataUpdateRequest): unknown {
-    const obj: any = {};
-    if (message.context !== undefined) {
-      obj.context = InnerTubeContext.toJSON(message.context);
-    }
-    if (message.encryptedVideoId !== undefined) {
-      obj.encryptedVideoId = message.encryptedVideoId;
-    }
-    if (message.title !== undefined) {
-      obj.title = MetadataUpdateRequest_MdeTitleUpdateRequest.toJSON(message.title);
-    }
-    if (message.description !== undefined) {
-      obj.description = MetadataUpdateRequest_MdeDescriptionUpdateRequest.toJSON(message.description);
-    }
-    if (message.privacy !== undefined) {
-      obj.privacy = MetadataUpdateRequest_MdePrivacyUpdateRequest.toJSON(message.privacy);
-    }
-    if (message.tags !== undefined) {
-      obj.tags = MetadataUpdateRequest_MdeTagsUpdateRequest.toJSON(message.tags);
-    }
-    if (message.category !== undefined) {
-      obj.category = MetadataUpdateRequest_MdeCategoryUpdateRequest.toJSON(message.category);
-    }
-    if (message.license !== undefined) {
-      obj.license = MetadataUpdateRequest_MdeLicenseUpdateRequest.toJSON(message.license);
-    }
-    if (message.ageRestriction !== undefined) {
-      obj.ageRestriction = MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest.toJSON(message.ageRestriction);
-    }
-    if (message.videoStill !== undefined) {
-      obj.videoStill = MetadataUpdateRequest_MdeVideoStillRequestParams.toJSON(message.videoStill);
-    }
-    if (message.madeForKids !== undefined) {
-      obj.madeForKids = MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams.toJSON(message.madeForKids);
-    }
-    if (message.racy !== undefined) {
-      obj.racy = MetadataUpdateRequest_MdeRacyRequestParams.toJSON(message.racy);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest>, I>>(base?: I): MetadataUpdateRequest {
-    return MetadataUpdateRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest>, I>>(object: I): MetadataUpdateRequest {
-    const message = createBaseMetadataUpdateRequest();
-    message.context = (object.context !== undefined && object.context !== null)
-      ? InnerTubeContext.fromPartial(object.context)
-      : undefined;
-    message.encryptedVideoId = object.encryptedVideoId ?? undefined;
-    message.title = (object.title !== undefined && object.title !== null)
-      ? MetadataUpdateRequest_MdeTitleUpdateRequest.fromPartial(object.title)
-      : undefined;
-    message.description = (object.description !== undefined && object.description !== null)
-      ? MetadataUpdateRequest_MdeDescriptionUpdateRequest.fromPartial(object.description)
-      : undefined;
-    message.privacy = (object.privacy !== undefined && object.privacy !== null)
-      ? MetadataUpdateRequest_MdePrivacyUpdateRequest.fromPartial(object.privacy)
-      : undefined;
-    message.tags = (object.tags !== undefined && object.tags !== null)
-      ? MetadataUpdateRequest_MdeTagsUpdateRequest.fromPartial(object.tags)
-      : undefined;
-    message.category = (object.category !== undefined && object.category !== null)
-      ? MetadataUpdateRequest_MdeCategoryUpdateRequest.fromPartial(object.category)
-      : undefined;
-    message.license = (object.license !== undefined && object.license !== null)
-      ? MetadataUpdateRequest_MdeLicenseUpdateRequest.fromPartial(object.license)
-      : undefined;
-    message.ageRestriction = (object.ageRestriction !== undefined && object.ageRestriction !== null)
-      ? MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest.fromPartial(object.ageRestriction)
-      : undefined;
-    message.videoStill = (object.videoStill !== undefined && object.videoStill !== null)
-      ? MetadataUpdateRequest_MdeVideoStillRequestParams.fromPartial(object.videoStill)
-      : undefined;
-    message.madeForKids = (object.madeForKids !== undefined && object.madeForKids !== null)
-      ? MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams.fromPartial(object.madeForKids)
-      : undefined;
-    message.racy = (object.racy !== undefined && object.racy !== null)
-      ? MetadataUpdateRequest_MdeRacyRequestParams.fromPartial(object.racy)
-      : undefined;
-    return message;
-  },
 };
 
 function createBaseMetadataUpdateRequest_MdeTitleUpdateRequest(): MetadataUpdateRequest_MdeTitleUpdateRequest {
@@ -393,31 +279,6 @@ export const MetadataUpdateRequest_MdeTitleUpdateRequest: MessageFns<MetadataUpd
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeTitleUpdateRequest {
-    return { newTitle: isSet(object.newTitle) ? globalThis.String(object.newTitle) : undefined };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeTitleUpdateRequest): unknown {
-    const obj: any = {};
-    if (message.newTitle !== undefined) {
-      obj.newTitle = message.newTitle;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeTitleUpdateRequest>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeTitleUpdateRequest {
-    return MetadataUpdateRequest_MdeTitleUpdateRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeTitleUpdateRequest>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeTitleUpdateRequest {
-    const message = createBaseMetadataUpdateRequest_MdeTitleUpdateRequest();
-    message.newTitle = object.newTitle ?? undefined;
     return message;
   },
 };
@@ -459,31 +320,6 @@ export const MetadataUpdateRequest_MdeDescriptionUpdateRequest: MessageFns<
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeDescriptionUpdateRequest {
-    return { newDescription: isSet(object.newDescription) ? globalThis.String(object.newDescription) : undefined };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeDescriptionUpdateRequest): unknown {
-    const obj: any = {};
-    if (message.newDescription !== undefined) {
-      obj.newDescription = message.newDescription;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeDescriptionUpdateRequest>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeDescriptionUpdateRequest {
-    return MetadataUpdateRequest_MdeDescriptionUpdateRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeDescriptionUpdateRequest>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeDescriptionUpdateRequest {
-    const message = createBaseMetadataUpdateRequest_MdeDescriptionUpdateRequest();
-    message.newDescription = object.newDescription ?? undefined;
     return message;
   },
 };
@@ -536,38 +372,6 @@ export const MetadataUpdateRequest_MdePrivacyUpdateRequest: MessageFns<MetadataU
       }
       return message;
     },
-
-    fromJSON(object: any): MetadataUpdateRequest_MdePrivacyUpdateRequest {
-      return {
-        newPrivacy: isSet(object.newPrivacy) ? globalThis.Number(object.newPrivacy) : undefined,
-        clearPrivacyDraft: isSet(object.clearPrivacyDraft) ? globalThis.Boolean(object.clearPrivacyDraft) : undefined,
-      };
-    },
-
-    toJSON(message: MetadataUpdateRequest_MdePrivacyUpdateRequest): unknown {
-      const obj: any = {};
-      if (message.newPrivacy !== undefined) {
-        obj.newPrivacy = Math.round(message.newPrivacy);
-      }
-      if (message.clearPrivacyDraft !== undefined) {
-        obj.clearPrivacyDraft = message.clearPrivacyDraft;
-      }
-      return obj;
-    },
-
-    create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdePrivacyUpdateRequest>, I>>(
-      base?: I,
-    ): MetadataUpdateRequest_MdePrivacyUpdateRequest {
-      return MetadataUpdateRequest_MdePrivacyUpdateRequest.fromPartial(base ?? ({} as any));
-    },
-    fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdePrivacyUpdateRequest>, I>>(
-      object: I,
-    ): MetadataUpdateRequest_MdePrivacyUpdateRequest {
-      const message = createBaseMetadataUpdateRequest_MdePrivacyUpdateRequest();
-      message.newPrivacy = object.newPrivacy ?? undefined;
-      message.clearPrivacyDraft = object.clearPrivacyDraft ?? undefined;
-      return message;
-    },
   };
 
 function createBaseMetadataUpdateRequest_MdeTagsUpdateRequest(): MetadataUpdateRequest_MdeTagsUpdateRequest {
@@ -602,33 +406,6 @@ export const MetadataUpdateRequest_MdeTagsUpdateRequest: MessageFns<MetadataUpda
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeTagsUpdateRequest {
-    return {
-      newTags: globalThis.Array.isArray(object?.newTags) ? object.newTags.map((e: any) => globalThis.String(e)) : [],
-    };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeTagsUpdateRequest): unknown {
-    const obj: any = {};
-    if (message.newTags?.length) {
-      obj.newTags = message.newTags;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeTagsUpdateRequest>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeTagsUpdateRequest {
-    return MetadataUpdateRequest_MdeTagsUpdateRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeTagsUpdateRequest>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeTagsUpdateRequest {
-    const message = createBaseMetadataUpdateRequest_MdeTagsUpdateRequest();
-    message.newTags = object.newTags?.map((e) => e) || [];
     return message;
   },
 };
@@ -672,31 +449,6 @@ export const MetadataUpdateRequest_MdeCategoryUpdateRequest: MessageFns<
     }
     return message;
   },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeCategoryUpdateRequest {
-    return { newCategoryId: isSet(object.newCategoryId) ? globalThis.Number(object.newCategoryId) : undefined };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeCategoryUpdateRequest): unknown {
-    const obj: any = {};
-    if (message.newCategoryId !== undefined) {
-      obj.newCategoryId = Math.round(message.newCategoryId);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeCategoryUpdateRequest>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeCategoryUpdateRequest {
-    return MetadataUpdateRequest_MdeCategoryUpdateRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeCategoryUpdateRequest>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeCategoryUpdateRequest {
-    const message = createBaseMetadataUpdateRequest_MdeCategoryUpdateRequest();
-    message.newCategoryId = object.newCategoryId ?? undefined;
-    return message;
-  },
 };
 
 function createBaseMetadataUpdateRequest_MdeLicenseUpdateRequest(): MetadataUpdateRequest_MdeLicenseUpdateRequest {
@@ -735,31 +487,6 @@ export const MetadataUpdateRequest_MdeLicenseUpdateRequest: MessageFns<MetadataU
         }
         reader.skip(tag & 7);
       }
-      return message;
-    },
-
-    fromJSON(object: any): MetadataUpdateRequest_MdeLicenseUpdateRequest {
-      return { newLicenseId: isSet(object.newLicenseId) ? globalThis.String(object.newLicenseId) : undefined };
-    },
-
-    toJSON(message: MetadataUpdateRequest_MdeLicenseUpdateRequest): unknown {
-      const obj: any = {};
-      if (message.newLicenseId !== undefined) {
-        obj.newLicenseId = message.newLicenseId;
-      }
-      return obj;
-    },
-
-    create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeLicenseUpdateRequest>, I>>(
-      base?: I,
-    ): MetadataUpdateRequest_MdeLicenseUpdateRequest {
-      return MetadataUpdateRequest_MdeLicenseUpdateRequest.fromPartial(base ?? ({} as any));
-    },
-    fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeLicenseUpdateRequest>, I>>(
-      object: I,
-    ): MetadataUpdateRequest_MdeLicenseUpdateRequest {
-      const message = createBaseMetadataUpdateRequest_MdeLicenseUpdateRequest();
-      message.newLicenseId = object.newLicenseId ?? undefined;
       return message;
     },
   };
@@ -813,38 +540,6 @@ export const MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams: MessageFns
     }
     return message;
   },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams {
-    return {
-      operation: isSet(object.operation) ? globalThis.Number(object.operation) : undefined,
-      newMfk: isSet(object.newMfk) ? globalThis.Number(object.newMfk) : undefined,
-    };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams): unknown {
-    const obj: any = {};
-    if (message.operation !== undefined) {
-      obj.operation = Math.round(message.operation);
-    }
-    if (message.newMfk !== undefined) {
-      obj.newMfk = Math.round(message.newMfk);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams {
-    return MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams {
-    const message = createBaseMetadataUpdateRequest_MdeMadeForKidsUpdateRequestParams();
-    message.operation = object.operation ?? undefined;
-    message.newMfk = object.newMfk ?? undefined;
-    return message;
-  },
 };
 
 function createBaseMetadataUpdateRequest_MdeRacyRequestParams(): MetadataUpdateRequest_MdeRacyRequestParams {
@@ -891,38 +586,6 @@ export const MetadataUpdateRequest_MdeRacyRequestParams: MessageFns<MetadataUpda
     }
     return message;
   },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeRacyRequestParams {
-    return {
-      operation: isSet(object.operation) ? globalThis.Number(object.operation) : undefined,
-      newRacy: isSet(object.newRacy) ? globalThis.Number(object.newRacy) : undefined,
-    };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeRacyRequestParams): unknown {
-    const obj: any = {};
-    if (message.operation !== undefined) {
-      obj.operation = Math.round(message.operation);
-    }
-    if (message.newRacy !== undefined) {
-      obj.newRacy = Math.round(message.newRacy);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeRacyRequestParams>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeRacyRequestParams {
-    return MetadataUpdateRequest_MdeRacyRequestParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeRacyRequestParams>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeRacyRequestParams {
-    const message = createBaseMetadataUpdateRequest_MdeRacyRequestParams();
-    message.operation = object.operation ?? undefined;
-    message.newRacy = object.newRacy ?? undefined;
-    return message;
-  },
 };
 
 function createBaseMetadataUpdateRequest_MdeAgeRestrictionUpdateRequest(): MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest {
@@ -962,33 +625,6 @@ export const MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest: MessageFns<
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest {
-    return {
-      newIsAgeRestricted: isSet(object.newIsAgeRestricted) ? globalThis.Boolean(object.newIsAgeRestricted) : undefined,
-    };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest): unknown {
-    const obj: any = {};
-    if (message.newIsAgeRestricted !== undefined) {
-      obj.newIsAgeRestricted = message.newIsAgeRestricted;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest {
-    return MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeAgeRestrictionUpdateRequest {
-    const message = createBaseMetadataUpdateRequest_MdeAgeRestrictionUpdateRequest();
-    message.newIsAgeRestricted = object.newIsAgeRestricted ?? undefined;
     return message;
   },
 };
@@ -1090,70 +726,6 @@ export const MetadataUpdateRequest_MdeVideoStillRequestParams: MessageFns<
     }
     return message;
   },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeVideoStillRequestParams {
-    return {
-      operation: isSet(object.operation) ? globalThis.Number(object.operation) : undefined,
-      newStillId: isSet(object.newStillId) ? globalThis.Number(object.newStillId) : undefined,
-      image: isSet(object.image)
-        ? MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.fromJSON(object.image)
-        : undefined,
-      testImage: isSet(object.testImage)
-        ? MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.fromJSON(object.testImage)
-        : undefined,
-      experimentImage: globalThis.Array.isArray(object?.experimentImage)
-        ? object.experimentImage.map((e: any) =>
-          MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData.fromJSON(e)
-        )
-        : [],
-    };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeVideoStillRequestParams): unknown {
-    const obj: any = {};
-    if (message.operation !== undefined) {
-      obj.operation = Math.round(message.operation);
-    }
-    if (message.newStillId !== undefined) {
-      obj.newStillId = Math.round(message.newStillId);
-    }
-    if (message.image !== undefined) {
-      obj.image = MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.toJSON(message.image);
-    }
-    if (message.testImage !== undefined) {
-      obj.testImage = MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.toJSON(message.testImage);
-    }
-    if (message.experimentImage?.length) {
-      obj.experimentImage = message.experimentImage.map((e) =>
-        MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData.toJSON(e)
-      );
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeVideoStillRequestParams>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeVideoStillRequestParams {
-    return MetadataUpdateRequest_MdeVideoStillRequestParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeVideoStillRequestParams>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeVideoStillRequestParams {
-    const message = createBaseMetadataUpdateRequest_MdeVideoStillRequestParams();
-    message.operation = object.operation ?? undefined;
-    message.newStillId = object.newStillId ?? undefined;
-    message.image = (object.image !== undefined && object.image !== null)
-      ? MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.fromPartial(object.image)
-      : undefined;
-    message.testImage = (object.testImage !== undefined && object.testImage !== null)
-      ? MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.fromPartial(object.testImage)
-      : undefined;
-    message.experimentImage =
-      object.experimentImage?.map((e) =>
-        MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData.fromPartial(e)
-      ) || [];
-    return message;
-  },
 };
 
 function createBaseMetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData(): MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData {
@@ -1202,39 +774,6 @@ export const MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimen
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData {
-    return {
-      image: isSet(object.image)
-        ? MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.fromJSON(object.image)
-        : undefined,
-    };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData): unknown {
-    const obj: any = {};
-    if (message.image !== undefined) {
-      obj.image = MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.toJSON(message.image);
-    }
-    return obj;
-  },
-
-  create<
-    I extends Exact<DeepPartial<MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData>, I>,
-  >(base?: I): MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData {
-    return MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData.fromPartial(
-      base ?? ({} as any),
-    );
-  },
-  fromPartial<
-    I extends Exact<DeepPartial<MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData>, I>,
-  >(object: I): MetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData {
-    const message = createBaseMetadataUpdateRequest_MdeVideoStillRequestParams_ThumbnailExperimentImageData();
-    message.image = (object.image !== undefined && object.image !== null)
-      ? MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.fromPartial(object.image)
-      : undefined;
     return message;
   },
 };
@@ -1311,78 +850,7 @@ export const MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailIma
     }
     return message;
   },
-
-  fromJSON(object: any): MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage {
-    return {
-      rawBytes: isSet(object.rawBytes) ? bytesFromBase64(object.rawBytes) : undefined,
-      dataUri: isSet(object.dataUri) ? globalThis.String(object.dataUri) : undefined,
-      frameTimestampUs: isSet(object.frameTimestampUs) ? globalThis.Number(object.frameTimestampUs) : undefined,
-      isVertical: isSet(object.isVertical) ? globalThis.Boolean(object.isVertical) : undefined,
-    };
-  },
-
-  toJSON(message: MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage): unknown {
-    const obj: any = {};
-    if (message.rawBytes !== undefined) {
-      obj.rawBytes = base64FromBytes(message.rawBytes);
-    }
-    if (message.dataUri !== undefined) {
-      obj.dataUri = message.dataUri;
-    }
-    if (message.frameTimestampUs !== undefined) {
-      obj.frameTimestampUs = Math.round(message.frameTimestampUs);
-    }
-    if (message.isVertical !== undefined) {
-      obj.isVertical = message.isVertical;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage>, I>>(
-    base?: I,
-  ): MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage {
-    return MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage>, I>>(
-    object: I,
-  ): MetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage {
-    const message = createBaseMetadataUpdateRequest_MdeVideoStillRequestParams_CustomThumbnailImage();
-    message.rawBytes = object.rawBytes ?? undefined;
-    message.dataUri = object.dataUri ?? undefined;
-    message.frameTimestampUs = object.frameTimestampUs ?? undefined;
-    message.isVertical = object.isVertical ?? undefined;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -1395,15 +863,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

@@ -217,6 +217,12 @@ export default class HTTPClient {
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.YTSTUDIO_ANDROID.NAME;
         break;
+      case 'TV': {
+        ctx.client.clientVersion = Constants.CLIENTS.TV.VERSION;
+        ctx.client.clientName = Constants.CLIENTS.TV.NAME;
+        ctx.client.userAgent = Constants.CLIENTS.TV.USER_AGENT;
+        break;
+      }
       case 'TV_EMBEDDED':
         ctx.client.clientName = Constants.CLIENTS.TV_EMBEDDED.NAME;
         ctx.client.clientVersion = Constants.CLIENTS.TV_EMBEDDED.VERSION;
@@ -262,6 +268,10 @@ export default class HTTPClient {
         ctx.client.clientVersion = Constants.CLIENTS.WEB_EMBEDDED.VERSION;
         ctx.client.clientScreen = 'EMBED';
         ctx.thirdParty = { embedUrl: Constants.URLS.GOOGLE_SEARCH_BASE };
+        break;
+      case 'WEB_CREATOR':
+        ctx.client.clientName = Constants.CLIENTS.WEB_CREATOR.NAME;
+        ctx.client.clientVersion = Constants.CLIENTS.WEB_CREATOR.VERSION;
         break;
       default:
         break;

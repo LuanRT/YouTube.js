@@ -4,6 +4,7 @@ import BrowseFeedActions from '../classes/BrowseFeedActions.ts';
 
 import type { Actions, ApiResponse } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/index.ts';
+import type Video from '../classes/Video.ts';
 
 // TODO: make feed actions usable
 export default class History extends Feed<IBrowseResponse> {
@@ -24,5 +25,36 @@ export default class History extends Feed<IBrowseResponse> {
     if (!response)
       throw new Error('No continuation data found');
     return new History(this.actions, response, true);
+  }
+
+  /**
+   * Removes a video from watch history.
+   */
+  async removeVideo(video_id: string): Promise<boolean> {
+    let feedbackToken;
+
+    for (const section of this.sections) {
+      for (const content of section.contents) {
+        const video = content as Video;
+        if (video.id === video_id && video.menu) {
+          feedbackToken = video.menu.top_level_buttons[0].endpoint.payload.feedbackToken;
+          break;
+        }
+      }
+    }
+
+    if (!feedbackToken) {
+      throw new Error('Failed to get feedback token');
+    }
+
+    const body = { feedbackTokens: [ feedbackToken ] };
+    const response = await this.actions.execute('/feedback', body);
+    const data = response.data;
+
+    if (!data.feedbackResponses[0].isProcessed) {
+      throw new Error('Failed to remove video from watch history');
+    }
+
+    return true;
   }
 }

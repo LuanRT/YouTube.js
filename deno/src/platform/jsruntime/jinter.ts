@@ -1,4 +1,4 @@
-import { Jinter } from 'https://esm.sh/jintr';
+import { Jinter } from 'jsr:@luanrt/jintr';
 import type { VMPrimative } from '../../types/PlatformShim.ts';
 import { Log } from '../lib.ts';
 
