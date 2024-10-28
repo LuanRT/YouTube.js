@@ -81,7 +81,7 @@
     "clean": "rimraf ./dist ./bundle/browser.js ./bundle/browser.min.js ./bundle/node.cjs ./bundle/cf-worker.js ./bundle/react-native.js ./deno",
     "build": "npm run clean && npm run build:parser-map && npm run build:esm && npm run bundle:node && npm run bundle:browser && npm run bundle:browser:prod && npm run bundle:cf-worker && npm run bundle:react-native",
     "build:esm": "tspc",
-    "build:deno": "cpy ./src ./deno && cpy ./protos ./deno && esbuild ./src/utils/DashManifest.tsx --keep-names --format=esm --platform=neutral --target=es2020 --outfile=./deno/src/utils/DashManifest.js && cpy ./package.json ./deno && replace \".js';\" \".ts';\" ./deno -r && replace '.js\";' '.ts\";' ./deno -r && replace \"'./DashManifest.ts';\" \"'./DashManifest.js';\" ./deno -r && replace \"'jintr';\" \"'https://esm.sh/jintr@2.1.1';\" ./deno -r && replace \"@bufbuild/protobuf/wire\" \"https://esm.sh/@bufbuild/protobuf@2.0.0/wire\" ./deno -r",
+    "build:deno": "cpy ./src ./deno && cpy ./protos ./deno && esbuild ./src/utils/DashManifest.tsx --keep-names --format=esm --platform=neutral --target=es2020 --outfile=./deno/src/utils/DashManifest.js && cpy ./package.json ./deno && replace \".js';\" \".ts';\" ./deno -r && replace '.js\";' '.ts\";' ./deno -r && replace \"'./DashManifest.ts';\" \"'./DashManifest.js';\" ./deno -r && replace \"'jintr';\" \"'jsr:@luanrt/jintr';\" ./deno -r && replace \"@bufbuild/protobuf/wire\" \"https://esm.sh/@bufbuild/protobuf@2.0.0/wire\" ./deno -r",
     "build:proto": "rimraf ./protos/generated && node ./dev-scripts/generate-proto.mjs",
     "build:parser-map": "node ./dev-scripts/gen-parser-map.mjs",
     "bundle:node": "esbuild ./dist/src/platform/node.js --bundle --target=node16 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:jintr --external:undici --external:linkedom --external:tslib --banner:js=\"/* eslint-disable */\"",
@@ -107,7 +107,7 @@
   "license": "MIT",
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0",
-    "jintr": "^2.1.1",
+    "jintr": "^3.0.2",
     "tslib": "^2.5.0",
     "undici": "^5.19.1"
   },
@@ -116,6 +116,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/estree": "^1.0.6",
     "@types/glob": "^8.1.0",
     "@types/jest": "^28.1.7",
     "@types/node": "^17.0.45",
