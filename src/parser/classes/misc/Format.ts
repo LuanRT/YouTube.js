@@ -75,6 +75,7 @@ export default class Format {
   has_text: boolean;
   language?: string | null;
   is_dubbed?: boolean;
+  is_auto_dubbed?: boolean;
   is_descriptive?: boolean;
   is_secondary?: boolean;
   is_original?: boolean;
@@ -224,7 +225,8 @@ export default class Format {
         this.is_dubbed = audio_content === 'dubbed';
         this.is_descriptive = audio_content === 'descriptive';
         this.is_secondary = audio_content === 'secondary';
-        this.is_original = audio_content === 'original' || (!this.is_dubbed && !this.is_descriptive && !this.is_secondary && !this.is_drc);
+        this.is_auto_dubbed = audio_content === 'dubbed-auto';
+        this.is_original = audio_content === 'original' || (!this.is_dubbed && !this.is_descriptive && !this.is_secondary && !this.is_auto_dubbed && !this.is_drc);
       }
 
       // Some text tracks don't have xtags while others do
