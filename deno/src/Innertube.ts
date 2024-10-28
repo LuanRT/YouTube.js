@@ -57,6 +57,7 @@ import { Hashtag, SearchFilter, ReelSequence, GetCommentsSectionParams } from '.
  * ```ts
  * import { Innertube, UniversalCache } from 'youtubei.ts';
  * const innertube = await Innertube.create({ cache: new UniversalCache(true)});
+ * ```
  */
 export default class Innertube {
   #session: Session;
