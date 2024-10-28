@@ -7,6 +7,7 @@ import { Jinter } from 'jintr';
 import type { EmojiRun, TextRun } from '../parser/misc.js';
 import type { FetchFunction } from '../types/PlatformShim.js';
 import type PlatformShim from '../types/PlatformShim.js';
+import type { Node } from 'estree';
 
 const TAG_ = 'Utils';
 
@@ -289,7 +290,7 @@ export function findFunction(source: string, args: FindFunctionArgs): FindFuncti
   const { name, includes, regexp } = args;
 
   const node = Jinter.parseScript(source);
-  const stack = [ node ];
+  const stack = [ node ] as (Node & { start: number; end: number})[];
 
   for (let i = 0; i < stack.length; i++) {
     const current = stack[i];
@@ -319,7 +320,7 @@ export function findFunction(source: string, args: FindFunctionArgs): FindFuncti
     }
 
     for (const key in current) {
-      const child = current[key];
+      const child = (current as Record<string, any>)[key];
       if (Array.isArray(child)) {
         stack.push(...child);
       } else if (typeof child === 'object' && child !== null) {

@@ -52,6 +52,11 @@ import { Hashtag, SearchFilter, ReelSequence, GetCommentsSectionParams } from '.
 
 /**
  * Provides access to various services and modules in the YouTube API.
+ * 
+ * @example
+ * ```ts
+ * import { Innertube, UniversalCache } from 'youtubei.js';
+ * const innertube = await Innertube.create({ cache: new UniversalCache(true)});
  */
 export default class Innertube {
   #session: Session;
@@ -427,7 +432,6 @@ export default class Innertube {
 
   /**
    * Resolves the given URL.
-   * @param url - The URL.
    */
   async resolveURL(url: string): Promise<NavigationEndpoint> {
     const response = await this.actions.execute(
@@ -442,8 +446,6 @@ export default class Innertube {
 
   /**
    * Utility method to call an endpoint without having to use {@link Actions}.
-   * @param endpoint -The endpoint to call.
-   * @param args - Call arguments.
    */
   call<T extends IParsedResponse>(endpoint: NavigationEndpoint, args: { [key: string]: any; parse: true }): Promise<T>;
   call(endpoint: NavigationEndpoint, args?: { [key: string]: any; parse?: false }): Promise<ApiResponse>;
