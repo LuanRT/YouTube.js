@@ -241,8 +241,7 @@ export default class Studio {
           draft_state: {
             is_draft: metadata.is_draft
           }
-        },
-        client: 'ANDROID'
+        }
       })
     );
 
