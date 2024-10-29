@@ -1,6 +1,7 @@
 import Feed from '../../core/mixins/Feed.js';
 import ItemSection from '../classes/ItemSection.js';
 import BrowseFeedActions from '../classes/BrowseFeedActions.js';
+import Button from '../classes/Button.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
@@ -37,7 +38,7 @@ export default class History extends Feed<IBrowseResponse> {
       for (const content of section.contents) {
         const video = content as Video;
         if (video.id === video_id && video.menu) {
-          feedbackToken = video.menu.top_level_buttons[0].endpoint.payload.feedbackToken;
+          feedbackToken = video.menu.top_level_buttons[0].as(Button).endpoint.payload.feedbackToken;
           break;
         }
       }

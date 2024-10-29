@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/LuanRT/YouTube.js/compare/v11.0.0...v11.0.1) (2024-10-28)
+
+
+### Bug Fixes
+
+* **VideoInfo:** Fix like count being undefined ([#787](https://github.com/LuanRT/YouTube.js/issues/787)) ([182bf42](https://github.com/LuanRT/YouTube.js/commit/182bf42d3cdf5148c667e958cd4d4eaa091a6d68))
+
 ## [11.0.0](https://github.com/LuanRT/YouTube.js/compare/v10.5.0...v11.0.0) (2024-10-28)
 
 
