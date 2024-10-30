@@ -13,6 +13,7 @@ export default class Shelf extends YTNode {
   icon_type?: string;
   menu?: YTNode | null;
   play_all_button?: Button | null;
+  subtitle?: Text;
 
   constructor(data: RawNode) {
     super();
@@ -34,6 +35,10 @@ export default class Shelf extends YTNode {
 
     if (Reflect.has(data, 'playAllButton')) {
       this.play_all_button = Parser.parseItem(data.playAllButton, Button);
+    }
+
+    if (Reflect.has(data, 'subtitle')) {
+      this.subtitle = new Text(data.subtitle);
     }
   }
 }
