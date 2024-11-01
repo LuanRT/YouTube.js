@@ -22,7 +22,7 @@ export default class LiveChatSponsorshipsHeader extends YTNode {
     super();
     this.author_name = new Text(data.authorName);
     this.author_photo = Thumbnail.fromResponse(data.authorPhoto);
-    this.author_badges = Parser.parse(data.authorBadges, true, LiveChatAuthorBadge);
+    this.author_badges = Parser.parseArray(data.authorBadges, LiveChatAuthorBadge);
     this.primary_text = new Text(data.primaryText);
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
     this.context_menu_accessibility_label = data.contextMenuAccessibility.accessibilityData.label;
