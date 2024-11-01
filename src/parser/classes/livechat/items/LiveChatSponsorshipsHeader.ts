@@ -15,11 +15,7 @@ export default class LiveChatSponsorshipsHeader extends YTNode {
   primary_text: Text;
   author_badges: ObservedArray<LiveChatAuthorBadge> | null;
   menu_endpoint: NavigationEndpoint;
-  context_menu_accessibility: {
-    accessibility_data: {
-      label: string
-    }
-  };
+  context_menu_accessibility_label: string;
   image: Thumbnail[];
 
   constructor(data: RawNode) {
@@ -29,11 +25,7 @@ export default class LiveChatSponsorshipsHeader extends YTNode {
     this.primary_text = new Text(data.primaryText);
     this.author_badges = Parser.parse(data.authorBadges, true, LiveChatAuthorBadge);
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
-    this.context_menu_accessibility = {
-      accessibility_data: {
-        label: data.contextMenuAccessibility.accessibilityData.label
-      }
-    };
+    this.context_menu_accessibility_label = data.contextMenuAccessibility.accessibilityData.label;
     this.image = Thumbnail.fromResponse(data.image);
   }
 }
