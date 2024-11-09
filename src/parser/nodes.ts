@@ -12,6 +12,7 @@ export { default as AppendContinuationItemsAction } from './classes/actions/Appe
 export { default as GetMultiPageMenuAction } from './classes/actions/GetMultiPageMenuAction.js';
 export { default as OpenPopupAction } from './classes/actions/OpenPopupAction.js';
 export { default as UpdateEngagementPanelAction } from './classes/actions/UpdateEngagementPanelAction.js';
+export { default as UpdateSubscribeButtonAction } from './classes/actions/UpdateSubscribeButtonAction.js';
 export { default as Alert } from './classes/Alert.js';
 export { default as AlertWithButton } from './classes/AlertWithButton.js';
 export { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics.js';
