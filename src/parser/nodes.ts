@@ -188,6 +188,7 @@ export { default as LiveChatPlaceholderItem } from './classes/livechat/items/Liv
 export { default as LiveChatProductItem } from './classes/livechat/items/LiveChatProductItem.js';
 export { default as LiveChatRestrictedParticipation } from './classes/livechat/items/LiveChatRestrictedParticipation.js';
 export { default as LiveChatSponsorshipsGiftPurchaseAnnouncement } from './classes/livechat/items/LiveChatSponsorshipsGiftPurchaseAnnouncement.js';
+export { default as LiveChatSponsorshipsGiftRedemptionAnnouncement } from './classes/livechat/items/LiveChatSponsorshipsGiftRedemptionAnnouncement.js';
 export { default as LiveChatSponsorshipsHeader } from './classes/livechat/items/LiveChatSponsorshipsHeader.js';
 export { default as LiveChatTextMessage } from './classes/livechat/items/LiveChatTextMessage.js';
 export { default as LiveChatTickerPaidMessageItem } from './classes/livechat/items/LiveChatTickerPaidMessageItem.js';
