@@ -422,7 +422,7 @@ export { default as TranscriptSegmentList } from './classes/TranscriptSegmentLis
 export { default as TwoColumnBrowseResults } from './classes/TwoColumnBrowseResults.js';
 export { default as TwoColumnSearchResults } from './classes/TwoColumnSearchResults.js';
 export { default as TwoColumnWatchNextResults } from './classes/TwoColumnWatchNextResults.js';
-export { default as UnifiedSharePanel } from './classes/UnifiedSharePanel .js';
+export { default as UnifiedSharePanel } from './classes/UnifiedSharePanel.js';
 export { default as UniversalWatchCard } from './classes/UniversalWatchCard.js';
 export { default as UploadTimeFactoid } from './classes/UploadTimeFactoid.js';
 export { default as UpsellDialog } from './classes/UpsellDialog.js';
