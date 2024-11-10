@@ -23,7 +23,7 @@ export default class UnifiedSharePanel extends YTNode {
     super();
     const contents = data.contents.find((content: RawNode) => content.thirdPartyNetworkSection);
 
-    if (!contents) {
+    if (contents) {
       this.third_party_network_section = {
         share_target_container: Parser.parseItem(contents.thirdPartyNetworkSection.shareTargetContainer, ThirdPartyShareTargetSection),
         copy_link_container: Parser.parseItem(contents.thirdPartyNetworkSection.copyLinkContainer, CopyLink),
