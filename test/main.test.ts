@@ -1,6 +1,7 @@
 import { createWriteStream, existsSync } from 'node:fs';
-import { Innertube, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
+import { Innertube, Log, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
+Log.setLevel(Log.Level.NONE)
 jest.useRealTimers();
 
 describe('YouTube.js Tests', () => {
@@ -163,6 +164,14 @@ describe('YouTube.js Tests', () => {
       expect(trending.page.contents).toBeDefined();
       expect(trending.page.contents_memo).toBeDefined();
       expect(trending.videos.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#getCourses', async () => {
+      const courses = await innertube.getCourses();
+      expect(courses).toBeDefined();
+      expect(courses.page.contents).toBeDefined();
+      expect(courses.page.contents_memo).toBeDefined();
+      expect(courses.shelves.length).toBeGreaterThan(0);
     });
 
     describe('Innertube#getChannel', () => {
