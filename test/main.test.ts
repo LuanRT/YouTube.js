@@ -1,7 +1,6 @@
 import { createWriteStream, existsSync } from 'node:fs';
-import { Innertube, Log, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
+import { Innertube, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
-Log.setLevel(Log.Level.NONE)
 jest.useRealTimers();
 
 describe('YouTube.js Tests', () => {
