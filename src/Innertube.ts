@@ -320,11 +320,11 @@ export default class Innertube {
     return new TabbedFeed(this.actions, response);
   }
 
-  async getCourses(): Promise<TabbedFeed<IBrowseResponse>> {
+  async getCourses(): Promise<Feed<IBrowseResponse>> {
     const response = await this.actions.execute(
       BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: 'FEcourses_destination' }), parse: true }
     );
-    return new TabbedFeed(this.actions, response);
+    return new Feed(this.actions, response);
   }
 
   async getSubscriptionsFeed(): Promise<Feed<IBrowseResponse>> {
