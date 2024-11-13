@@ -183,6 +183,7 @@ export { default as LiveChatAutoModMessage } from './classes/livechat/items/Live
 export { default as LiveChatBanner } from './classes/livechat/items/LiveChatBanner.js';
 export { default as LiveChatBannerHeader } from './classes/livechat/items/LiveChatBannerHeader.js';
 export { default as LiveChatBannerPoll } from './classes/livechat/items/LiveChatBannerPoll.js';
+export { default as LiveChatBannerRedirect } from './classes/livechat/items/LiveChatBannerRedirect.js';
 export { default as LiveChatMembershipItem } from './classes/livechat/items/LiveChatMembershipItem.js';
 export { default as LiveChatPaidMessage } from './classes/livechat/items/LiveChatPaidMessage.js';
 export { default as LiveChatPaidSticker } from './classes/livechat/items/LiveChatPaidSticker.js';
