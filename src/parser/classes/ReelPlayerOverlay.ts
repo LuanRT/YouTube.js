@@ -16,7 +16,7 @@ export default class ReelPlayerOverlay extends YTNode {
   menu: Menu | null;
   next_item_button: Button | null;
   prev_item_button: Button | null;
-  subscribe_button_renderer: Button | null;
+  subscribe_button_renderer: Button | SubscribeButton | null;
   style: string;
   view_comments_button: Button | null;
   share_button: Button | null;
