@@ -37,13 +37,13 @@ export default class SubscribeButton extends YTNode {
     this.notification_preference_button = Parser.parseItem(data.notificationPreferenceButton, SubscriptionNotificationToggleButton);
 
     if (Reflect.has(data, 'serviceEndpoints'))
-      this.service_endpoints = data.serviceEndpoints.map((endpoint: RawNode) => Parser.parseItem(endpoint, NavigationEndpoint));
+      this.service_endpoints = data.serviceEndpoints.map((endpoint: RawNode) => new NavigationEndpoint(endpoint));
 
     if (Reflect.has(data, 'onSubscribeEndpoints'))
-      this.on_subscribe_endpoints = data.onSubscribeEndpoints.map((endpoint: RawNode) => Parser.parseItem(endpoint, NavigationEndpoint));
+      this.on_subscribe_endpoints = data.onSubscribeEndpoints.map((endpoint: RawNode) => new NavigationEndpoint(endpoint));
 
     if (Reflect.has(data, 'onUnsubscribeEndpoints'))
-      this.on_unsubscribe_endpoints = data.onUnsubscribeEndpoints.map((endpoint: RawNode) => Parser.parseItem(endpoint, NavigationEndpoint));
+      this.on_unsubscribe_endpoints = data.onUnsubscribeEndpoints.map((endpoint: RawNode) => new NavigationEndpoint(endpoint));
 
     if (Reflect.has(data, 'subscribedEntityKey'))
       this.subscribed_entity_key = data.subscribedEntityKey;
