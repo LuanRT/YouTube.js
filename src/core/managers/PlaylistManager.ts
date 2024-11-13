@@ -110,7 +110,7 @@ export default class PlaylistManager {
 
     const playlist = new Playlist(this.#actions, info, true);
 
-    if (!playlist.info.is_editable)
+    if (playlist.info.is_editable === false)
       throw new InnertubeError('This playlist cannot be edited.', playlist_id);
 
     const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
