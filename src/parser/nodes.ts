@@ -303,6 +303,7 @@ export { default as PlayerMicroformat } from './classes/PlayerMicroformat.js';
 export { default as PlayerOverflow } from './classes/PlayerOverflow.js';
 export { default as PlayerOverlay } from './classes/PlayerOverlay.js';
 export { default as PlayerOverlayAutoplay } from './classes/PlayerOverlayAutoplay.js';
+export { default as PlayerOverlayVideoDetails } from './classes/PlayerOverlayVideoDetails.js';
 export { default as PlayerStoryboardSpec } from './classes/PlayerStoryboardSpec.js';
 export { default as Playlist } from './classes/Playlist.js';
 export { default as PlaylistCustomThumbnail } from './classes/PlaylistCustomThumbnail.js';
