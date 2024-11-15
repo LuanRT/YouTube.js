@@ -9,13 +9,15 @@ import SegmentedLikeDislikeButtonView from '../SegmentedLikeDislikeButtonView.js
 export default class Menu extends YTNode {
   static type = 'Menu';
 
-  items: ObservedArray<YTNode>;
-  top_level_buttons: ObservedArray<Button | ButtonView | SegmentedLikeDislikeButtonView>;
-  label?: string;
+  public items: ObservedArray<YTNode>;
+  public flexible_items: ObservedArray<YTNode>;
+  public top_level_buttons: ObservedArray<Button | ButtonView | SegmentedLikeDislikeButtonView>;
+  public label?: string;
 
   constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
+    this.flexible_items = Parser.parseArray(data.flexibleItems);
     this.top_level_buttons = Parser.parseArray(data.topLevelButtons, [ Button, ButtonView, SegmentedLikeDislikeButtonView ]);
 
     if (Reflect.has(data, 'accessibility') && Reflect.has(data.accessibility, 'accessibilityData')) {

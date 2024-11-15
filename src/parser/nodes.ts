@@ -228,6 +228,7 @@ export { default as MacroMarkersInfoItem } from './classes/MacroMarkersInfoItem.
 export { default as MacroMarkersList } from './classes/MacroMarkersList.js';
 export { default as MacroMarkersListItem } from './classes/MacroMarkersListItem.js';
 export { default as Menu } from './classes/menus/Menu.js';
+export { default as MenuFlexibleItem } from './classes/menus/MenuFlexibleItem.js';
 export { default as MenuNavigationItem } from './classes/menus/MenuNavigationItem.js';
 export { default as MenuPopup } from './classes/menus/MenuPopup.js';
 export { default as MenuServiceItem } from './classes/menus/MenuServiceItem.js';
