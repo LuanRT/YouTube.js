@@ -444,6 +444,7 @@ export { default as VideoInfoCardContent } from './classes/VideoInfoCardContent.
 export { default as VideoOwner } from './classes/VideoOwner.js';
 export { default as VideoPrimaryInfo } from './classes/VideoPrimaryInfo.js';
 export { default as VideoSecondaryInfo } from './classes/VideoSecondaryInfo.js';
+export { default as VideoViewCount } from './classes/VideoViewCount.js';
 export { default as ViewCountFactoid } from './classes/ViewCountFactoid.js';
 export { default as WatchCardCompactVideo } from './classes/WatchCardCompactVideo.js';
 export { default as WatchCardHeroVideo } from './classes/WatchCardHeroVideo.js';
