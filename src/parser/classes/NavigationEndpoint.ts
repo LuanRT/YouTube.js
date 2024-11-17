@@ -7,22 +7,23 @@ import CreatePlaylistDialog from './CreatePlaylistDialog.js';
 import type ModalWithTitleAndButton from './ModalWithTitleAndButton.js';
 import OpenPopupAction from './actions/OpenPopupAction.js';
 
+export type Metadata = {
+  url?: string;
+  api_url?: string;
+  page_type?: string;
+  send_post?: boolean;
+};
+
 export default class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';
 
-  payload;
-  dialog?: CreatePlaylistDialog | YTNode | null;
-  modal?: ModalWithTitleAndButton | YTNode | null;
-  open_popup?: OpenPopupAction | null;
-
-  next_endpoint?: NavigationEndpoint;
-
-  metadata: {
-    url?: string;
-    api_url?: string;
-    page_type?: string;
-    send_post?: boolean;
-  };
+  public name?: string;
+  public payload: any;
+  public dialog?: CreatePlaylistDialog | YTNode | null;
+  public modal?: ModalWithTitleAndButton | YTNode | null;
+  public open_popup?: OpenPopupAction | null;
+  public next_endpoint?: NavigationEndpoint;
+  public metadata: Metadata;
 
   constructor(data: RawNode) {
     super();
@@ -33,13 +34,13 @@ export default class NavigationEndpoint extends YTNode {
     if (Reflect.has(data || {}, 'openPopupAction'))
       this.open_popup = new OpenPopupAction(data.openPopupAction);
 
-    const name = Object.keys(data || {})
+    this.name = Object.keys(data || {})
       .find((item) =>
         item.endsWith('Endpoint') ||
         item.endsWith('Command')
       );
 
-    this.payload = name ? Reflect.get(data, name) : {};
+    this.payload = this.name ? Reflect.get(data, this.name) : {};
 
     if (Reflect.has(this.payload, 'dialog') || Reflect.has(this.payload, 'content')) {
       this.dialog = Parser.parseItem(this.payload.dialog || this.payload.content);
@@ -69,8 +70,8 @@ export default class NavigationEndpoint extends YTNode {
 
     if (data?.commandMetadata?.webCommandMetadata?.apiUrl) {
       this.metadata.api_url = data.commandMetadata.webCommandMetadata.apiUrl.replace('/youtubei/v1/', '');
-    } else if (name) {
-      this.metadata.api_url = this.getEndpoint(name);
+    } else if (this.name) {
+      this.metadata.api_url = this.getPath(this.name);
     }
 
     if (data?.commandMetadata?.webCommandMetadata?.sendPost) {
@@ -87,7 +88,7 @@ export default class NavigationEndpoint extends YTNode {
   /**
    * Sometimes InnerTube does not return an API url, in that case the library should set it based on the name of the payload object.
    */
-  getEndpoint(name: string) {
+  getPath(name: string) {
     switch (name) {
       case 'browseEndpoint':
         return '/browse';
