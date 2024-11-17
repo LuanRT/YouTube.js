@@ -14,6 +14,7 @@ export { default as OpenPopupAction } from './classes/actions/OpenPopupAction.js
 export { default as SignalAction } from './classes/actions/SignalAction.js';
 export { default as UpdateEngagementPanelAction } from './classes/actions/UpdateEngagementPanelAction.js';
 export { default as UpdateSubscribeButtonAction } from './classes/actions/UpdateSubscribeButtonAction.js';
+export { default as AddToPlaylist } from './classes/AddToPlaylist.js';
 export { default as Alert } from './classes/Alert.js';
 export { default as AlertWithButton } from './classes/AlertWithButton.js';
 export { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics.js';
@@ -240,6 +241,7 @@ export { default as MusicMenuItemDivider } from './classes/menus/MusicMenuItemDi
 export { default as MusicMultiSelectMenu } from './classes/menus/MusicMultiSelectMenu.js';
 export { default as MusicMultiSelectMenuItem } from './classes/menus/MusicMultiSelectMenuItem.js';
 export { default as SimpleMenuHeader } from './classes/menus/SimpleMenuHeader.js';
+export { default as MenuTitle } from './classes/MenuTitle.js';
 export { default as MerchandiseItem } from './classes/MerchandiseItem.js';
 export { default as MerchandiseShelf } from './classes/MerchandiseShelf.js';
 export { default as Message } from './classes/Message.js';
@@ -307,6 +309,7 @@ export { default as PlayerOverlayAutoplay } from './classes/PlayerOverlayAutopla
 export { default as PlayerOverlayVideoDetails } from './classes/PlayerOverlayVideoDetails.js';
 export { default as PlayerStoryboardSpec } from './classes/PlayerStoryboardSpec.js';
 export { default as Playlist } from './classes/Playlist.js';
+export { default as PlaylistAddToOption } from './classes/PlaylistAddToOption.js';
 export { default as PlaylistCustomThumbnail } from './classes/PlaylistCustomThumbnail.js';
 export { default as PlaylistHeader } from './classes/PlaylistHeader.js';
 export { default as PlaylistInfoCardContent } from './classes/PlaylistInfoCardContent.js';
