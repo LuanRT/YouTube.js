@@ -11,7 +11,7 @@ export default class PlaylistAddToOption extends YTNode {
   static type = 'PlaylistAddToOption';
 
   public add_to_playlist_service_endpoint: NavigationEndpoint;
-  public contains_selected_videos: boolean;
+  public contains_selected_videos: 'ALL' | 'NONE';
   public playlist_id: string;
   public privacy: string;
   public privacy_icon: PrivacyIcon;
