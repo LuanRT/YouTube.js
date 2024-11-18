@@ -27,6 +27,7 @@ import VideoDetails from './classes/misc/VideoDetails.js';
 import NavigationEndpoint from './classes/NavigationEndpoint.js';
 import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
+import BrowseEndpoint from './classes/endpoints/BrowseEndpoint.js';
 
 import type { KeyInfo } from './generator.js';
 import type { ObservedArray, YTNodeConstructor, YTNode } from './helpers.js';
@@ -625,6 +626,11 @@ export function parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: 
   }
 
   return new SuperParsedResult(parseItem(data, validTypes as YTNodeConstructor<T>));
+}
+
+export function parseCommand(data: RawNode): YTNode | undefined {
+  if (data.browseEndpoint)
+    return new BrowseEndpoint(data);
 }
 
 export function parseC(data: RawNode) {

@@ -119,6 +119,7 @@ export { default as EmergencyOnebox } from './classes/EmergencyOnebox.js';
 export { default as EmojiPickerCategory } from './classes/EmojiPickerCategory.js';
 export { default as EmojiPickerCategoryButton } from './classes/EmojiPickerCategoryButton.js';
 export { default as EmojiPickerUpsellCategory } from './classes/EmojiPickerUpsellCategory.js';
+export { default as BrowseEndpoint } from './classes/endpoints/BrowseEndpoint.js';
 export { default as Endscreen } from './classes/Endscreen.js';
 export { default as EndscreenElement } from './classes/EndscreenElement.js';
 export { default as EndScreenPlaylist } from './classes/EndScreenPlaylist.js';
