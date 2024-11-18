@@ -24,13 +24,15 @@ export default class NavigationEndpoint extends YTNode {
   public open_popup?: OpenPopupAction | null;
   public next_endpoint?: NavigationEndpoint;
   public metadata: Metadata;
+  public command?: YTNode;
 
   constructor(data: RawNode) {
     super();
-
     if (data && (data.innertubeCommand || data.command))
       data = data.innertubeCommand || data.command;
 
+    this.command = Parser.parseCommand(data);
+  
     if (Reflect.has(data || {}, 'openPopupAction'))
       this.open_popup = new OpenPopupAction(data.openPopupAction);
 

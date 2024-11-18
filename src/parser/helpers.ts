@@ -474,6 +474,37 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
   }) as ObservedArray<T>;
 }
 
+export const WEB_PATHS = {
+  WEB_UNPLUGGED: '^unplugged/',
+  WEB_UNPLUGGED_ONBOARDING: '^unplugged/',
+  WEB_UNPLUGGED_OPS: '^unplugged/',
+  WEB_UNPLUGGED_PUBLIC: '^unplugged/',
+  WEB_CREATOR: '^creator/',
+  WEB_KIDS: '^kids/',
+  WEB_EXPERIMENTS: '^experiments/',
+  WEB_MUSIC: '^music/',
+  WEB_REMIX: '^music/',
+  WEB_MUSIC_EMBEDDED_PLAYER: '^main_app/|^sfv/'
+};
+
+export function getApiPath(paths: string[], interface_name?: string): string {
+  const target_interface_name = interface_name || 'UNKNOWN_INTERFACE';
+
+  if (paths.length === 1)
+    return paths[0];
+
+  const target_interface_reg = WEB_PATHS[target_interface_name as keyof typeof WEB_PATHS];
+  if (target_interface_reg) {
+    for (const path of paths) {
+      if (new RegExp(target_interface_reg).test(path)) {
+        return path;
+      }
+    }
+  }
+
+  return paths[0];
+}
+
 export class Memo extends Map<string, YTNode[]> {
   getType<T extends YTNode, K extends YTNodeConstructor<T>[]>(types: K): ObservedArray<InstanceType<K[number]>>;
   getType<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): ObservedArray<InstanceType<K[number]>>
