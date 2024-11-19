@@ -25,14 +25,23 @@ export default class NavigationEndpoint extends YTNode {
   public next_endpoint?: NavigationEndpoint;
   public metadata: Metadata;
   public command?: YTNode;
+  public commands?: NavigationEndpoint[];
 
   constructor(data: RawNode) {
     super();
-    if (data && (data.innertubeCommand || data.command))
-      data = data.innertubeCommand || data.command;
+    if (data) {
+      if (data.serialCommand || data.parallelCommand) {
+        const raw_command = data.serialCommand || data.parallelCommand;
+        this.commands = raw_command.commands.map((command: RawNode) => new NavigationEndpoint(command));
+      }
+
+      if (data.innertubeCommand || data.command || data.performOnceCommand) {
+        data = data.innertubeCommand || data.command || data.performOnceCommand;
+      }
+    }
 
     this.command = Parser.parseCommand(data);
-  
+
     if (Reflect.has(data || {}, 'openPopupAction'))
       this.open_popup = new OpenPopupAction(data.openPopupAction);
 
