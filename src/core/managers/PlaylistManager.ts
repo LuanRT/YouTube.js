@@ -110,29 +110,32 @@ export default class PlaylistManager {
 
     const playlist = new Playlist(this.#actions, info, true);
 
-    if (!playlist.info.is_editable)
+    if (playlist.info.is_editable === false)
       throw new InnertubeError('This playlist cannot be edited.', playlist_id);
 
     const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
 
-    const getSetVideoIds = async (pl: Feed): Promise<void> => {
-      const key_id = use_set_video_ids ? 'set_video_id' : 'id';
-      const videos = pl.videos.filter((video) => video_ids.includes(video.key(key_id).string()));
-
+    const getSetVideoIds = async (pl: Feed, set_video_ids: string[] = []): Promise<string[]> => {
+      const videos = pl.videos.filter((video) => video_ids.includes(video.key('id').string()));
       videos.forEach((video) =>
-        payload.actions.push({
-          action: 'ACTION_REMOVE_VIDEO',
-          set_video_id: video.key('set_video_id').string()
-        })
+        set_video_ids.push(video.key('set_video_id').string())
       );
 
       if (payload.actions.length < video_ids.length) {
         const next = await pl.getContinuation();
-        return getSetVideoIds(next);
+        return getSetVideoIds(next, set_video_ids);
       }
+
+      return set_video_ids;
     };
 
-    await getSetVideoIds(playlist);
+    const set_video_ids = use_set_video_ids ? video_ids : await getSetVideoIds(playlist);
+    set_video_ids.forEach((set_video_id: string) =>
+      payload.actions.push({
+        action: 'ACTION_REMOVE_VIDEO',
+        set_video_id
+      })
+    );
 
     if (!payload.actions.length)
       throw new InnertubeError('Given video ids were not found in this playlist.', video_ids);
