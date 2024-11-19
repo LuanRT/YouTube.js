@@ -21,6 +21,6 @@ export default class LiveChatModeChangeMessage extends YTNode {
     this.subtext = new Text(data.subtext);
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);
     this.timestamp_usec = data.timestampUsec;
-    this.timestamp_text = new Text(data.timestampText).toString();
+    this.timestamp_text = new Text(data.timestampText);
   }
 }
