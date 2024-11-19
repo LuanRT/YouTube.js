@@ -27,7 +27,6 @@ import VideoDetails from './classes/misc/VideoDetails.js';
 import NavigationEndpoint from './classes/NavigationEndpoint.js';
 import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
-import BrowseEndpoint from './classes/endpoints/BrowseEndpoint.js';
 
 import type { KeyInfo } from './generator.js';
 import type { ObservedArray, YTNodeConstructor, YTNode } from './helpers.js';
@@ -628,9 +627,65 @@ export function parse<T extends YTNode = YTNode>(data?: RawData, requireArray?: 
   return new SuperParsedResult(parseItem(data, validTypes as YTNodeConstructor<T>));
 }
 
+const command_regexp = /Command$/;
+const endpoint_regexp = /Endpoint$/;
+const action_regexp = /Action$/;
+
+/**
+ * Parses an InnerTube command and returns a YTNode instance if applicable.
+ * @param data - The raw node data to parse
+ * @returns A YTNode instance if parsing is successful, undefined otherwise
+ */
 export function parseCommand(data: RawNode): YTNode | undefined {
-  if (data.browseEndpoint)
-    return new BrowseEndpoint(data);
+  let keys: string[] = [];
+
+  try {
+    keys = Object.keys(data);
+  } catch { /** NO-OP */ }
+
+  for (const key of keys) {
+    const value = data[key];
+    if (command_regexp.test(key) || endpoint_regexp.test(key) || action_regexp.test(key)) {
+      const classname = sanitizeClassName(key);
+
+      if (shouldIgnore(classname))
+        return undefined;
+
+      try {
+        const has_target_class = hasParser(classname);
+        if (has_target_class)
+          return new (getParserByName(classname))(value);
+      } catch (error) {
+        ERROR_HANDLER({
+          error,
+          classname,
+          classdata: value,
+          error_type: 'parse'
+        });
+      }
+    }
+  }
+}
+
+/**
+ * Parses an array of InnerTube command nodes.
+ * @param commands - Array of raw command nodes to parse
+ * @returns An observed array of parsed YTNodes
+ */
+export function parseCommands(commands?: RawNode[]): ObservedArray<YTNode> {
+  if (Array.isArray(commands)) {
+    const results: YTNode[] = [];
+
+    for (const item of commands) {
+      const result = parseCommand(item);
+      if (result) {
+        results.push(result);
+      }
+    }
+
+    return observe(results);
+  } else if (!commands) return observe([]);
+  throw new ParsingError('Expected array but got a single item');
 }
 
 export function parseC(data: RawNode) {

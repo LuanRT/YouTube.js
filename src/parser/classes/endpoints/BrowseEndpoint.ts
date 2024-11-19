@@ -1,11 +1,10 @@
 import { YTNode } from '../../helpers.js';
-import type { BrowseRequest, RawNode } from '../../index.js';
+import type { BrowseRequest, IEndpoint, RawNode } from '../../index.js';
 
-export default class BrowseEndpoint extends YTNode {
+export default class BrowseEndpoint extends YTNode implements IEndpoint<BrowseRequest> {
   static type = 'BrowseEndpoint';
 
-  #EXTENSION_NAME: string = 'browseEndpoint';
-  #API_PATHS: string[] = [ 'browse', 'music/browse', 'unplugged/browse' ];
+  #API_PATH = 'browse';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,33 +12,28 @@ export default class BrowseEndpoint extends YTNode {
     this.#data = data;
   }
 
-  public getApiPaths() {
-    return this.#API_PATHS;
+  public getApiPath(): string {
+    return this.#API_PATH;
   }
 
-  public getExtension() {
-    return this.#data[this.#EXTENSION_NAME];
-  }
-
-  public buildRequest() {
+  public buildRequest(): BrowseRequest {
     const request: BrowseRequest = {};
-    const extension = this.getExtension();
 
-    if (extension.browseId)
-      request.browseId = extension.browseId;
+    if (this.#data.browseId)
+      request.browseId = this.#data.browseId;
 
-    if (extension.params)
-      request.params = extension.params;
+    if (this.#data.params)
+      request.params = this.#data.params;
 
-    if (extension.query)
-      request.query = extension.query;
+    if (this.#data.query)
+      request.query = this.#data.query;
 
-    if (extension.browseId === 'FEsubscriptions') {
-      request.subscriptionSettingsState = extension.subscriptionSettingsState || 'MY_SUBS_SETTINGS_STATE_LAYOUT_FORMAT_LIST';
+    if (this.#data.browseId === 'FEsubscriptions') {
+      request.subscriptionSettingsState = this.#data.subscriptionSettingsState || 'MY_SUBS_SETTINGS_STATE_LAYOUT_FORMAT_LIST';
     }
 
-    if (extension.browseId === 'SPaccount_playback') {
-      request.formData = extension.formData || {
+    if (this.#data.browseId === 'SPaccount_playback') {
+      request.formData = this.#data.formData || {
         accountSettingsFormData: {
           flagCaptionsDefaultOff: false,
           flagAutoCaptionsDefaultOn: false,
@@ -49,11 +43,11 @@ export default class BrowseEndpoint extends YTNode {
       };
     }
 
-    if (extension.browseId === 'FEwhat_to_watch') {
-      if (extension.browseRequestSupportedMetadata)
-        request.browseRequestSupportedMetadata = extension.browseRequestSupportedMetadata;
-      if (extension.inlineSettingStatus)
-        request.inlineSettingStatus = extension.inlineSettingStatus;
+    if (this.#data.browseId === 'FEwhat_to_watch') {
+      if (this.#data.browseRequestSupportedMetadata)
+        request.browseRequestSupportedMetadata = this.#data.browseRequestSupportedMetadata;
+      if (this.#data.inlineSettingStatus)
+        request.inlineSettingStatus = this.#data.inlineSettingStatus;
     }
 
     return request;
