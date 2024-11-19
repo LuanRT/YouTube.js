@@ -165,6 +165,14 @@ describe('YouTube.js Tests', () => {
       expect(trending.videos.length).toBeGreaterThan(0);
     });
 
+    test('Innertube#getCourses', async () => {
+      const courses = await innertube.getCourses();
+      expect(courses).toBeDefined();
+      expect(courses.page.contents).toBeDefined();
+      expect(courses.page.contents_memo).toBeDefined();
+      expect(courses.shelves.length).toBeGreaterThan(0);
+    });
+
     describe('Innertube#getChannel', () => {
       let channel: YT.Channel;
 
