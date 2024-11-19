@@ -11,7 +11,7 @@ export default class LiveChatModeChangeMessage extends YTNode {
   subtext: Text;
   timestamp: number;
   timestamp_usec: string;
-  timestamp_text: string;
+  timestamp_text: Text;
 
   constructor(data: RawNode) {
     super();
