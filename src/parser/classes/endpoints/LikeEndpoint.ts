@@ -26,12 +26,14 @@ export default class LikeEndpoint extends YTNode implements IEndpoint<LikeReques
     if (this.#data.target)
       request.target = this.#data.target;
 
-    request.params = this.getParams();
+    const params = this.getParams();
+    if (params)
+      request.params = params;
 
     return request;
   }
 
-  public getParams(): string {
+  public getParams(): string | undefined {
     switch (this.#data.status) {
       case 'LIKE':
         return this.#data.likeParams;
@@ -40,7 +42,7 @@ export default class LikeEndpoint extends YTNode implements IEndpoint<LikeReques
       case 'INDIFFERENT':
         return this.#data.removeLikeParams;
       default:
-        return '';
+        return undefined;
     }
   }
 }

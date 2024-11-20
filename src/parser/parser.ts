@@ -1,14 +1,24 @@
 import * as YTNodes from './nodes.js';
 import { InnertubeError, ParsingError, Platform } from '../utils/Utils.js';
+import type { ObservedArray, YTNode, YTNodeConstructor } from './helpers.js';
 import { Memo, observe, SuperParsedResult } from './helpers.js';
+import type { KeyInfo } from './generator.js';
 import { camelToSnake, generateRuntimeClass, generateTypescriptClass } from './generator.js';
 import { Log } from '../utils/index.js';
 
 import {
-  Continuation, ItemSectionContinuation, SectionListContinuation,
-  LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  GridContinuation, PlaylistPanelContinuation, NavigateAction, ShowMiniplayerCommand,
-  ReloadContinuationItemsCommand, ContinuationCommand
+  Continuation,
+  ContinuationCommand,
+  GridContinuation,
+  ItemSectionContinuation,
+  LiveChatContinuation,
+  MusicPlaylistShelfContinuation,
+  MusicShelfContinuation,
+  NavigateAction,
+  PlaylistPanelContinuation,
+  ReloadContinuationItemsCommand,
+  SectionListContinuation,
+  ShowMiniplayerCommand
 } from './continuations.js';
 
 import AudioOnlyPlayability from './classes/AudioOnlyPlayability.js';
@@ -27,9 +37,6 @@ import VideoDetails from './classes/misc/VideoDetails.js';
 import NavigationEndpoint from './classes/NavigationEndpoint.js';
 import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
-
-import type { KeyInfo } from './generator.js';
-import type { ObservedArray, YTNodeConstructor, YTNode } from './helpers.js';
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
 const TAG = 'Parser';
@@ -392,10 +399,10 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     // Currently each response with streaming data only has two n param values
     // One for the adaptive formats and another for the combined formats
     // As they are the same for a response, we only need to decipher them once
-    // For all futher deciphering calls on formats from that response, we can use the cached output, given the same input n param
+    // For all further deciphering calls on formats from that response, we can use the cached output, given the same input n param
     const this_response_nsig_cache = new Map<string, string>();
 
-    const streaming_data = {
+    parsed_data.streaming_data = {
       expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
       formats: parseFormats(data.streamingData.formats, this_response_nsig_cache),
       adaptive_formats: parseFormats(data.streamingData.adaptiveFormats, this_response_nsig_cache),
@@ -403,12 +410,10 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
       hls_manifest_url: data.streamingData.hlsManifestUrl,
       server_abr_streaming_url: data.streamingData.serverAbrStreamingUrl
     };
-
-    parsed_data.streaming_data = streaming_data;
   }
 
   if (data.playerConfig) {
-    const player_config = {
+    parsed_data.player_config = {
       audio_config: {
         loudness_db: data.playerConfig.audioConfig?.loudnessDb,
         perceptual_loudness_db: data.playerConfig.audioConfig?.perceptualLoudnessDb,
@@ -428,8 +433,6 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
         }
       }
     };
-
-    parsed_data.player_config = player_config;
   }
 
   const current_video_endpoint = data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null;
@@ -478,22 +481,18 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   }
 
   if (data.playerResponse) {
-    const player_response = parseResponse(data.playerResponse);
-    parsed_data.player_response = player_response;
+    parsed_data.player_response = parseResponse(data.playerResponse);
   }
 
   if (data.watchNextResponse) {
-    const watch_next_response = parseResponse(data.watchNextResponse);
-    parsed_data.watch_next_response = watch_next_response;
+    parsed_data.watch_next_response = parseResponse(data.watchNextResponse);
   }
 
   if (data.cpnInfo) {
-    const cpn_info = {
+    parsed_data.cpn_info = {
       cpn: data.cpnInfo.cpn,
       cpn_source: data.cpnInfo.cpnSource
     };
-
-    parsed_data.cpn_info = cpn_info;
   }
 
   if (data.entries) {

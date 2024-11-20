@@ -1,10 +1,10 @@
 import { YTNode } from '../../helpers.js';
-import type { IEndpoint, RawNode, WatchRequest } from '../../index.js';
+import type { IEndpoint, RawNode, WatchNextRequest } from '../../index.js';
 
-export default class WatchEndpoint extends YTNode implements IEndpoint<WatchRequest> {
-  static type = 'WatchEndpoint';
+export default class WatchNextEndpoint extends YTNode implements IEndpoint<WatchNextRequest> {
+  static type = 'WatchNextEndpoint';
 
-  #API_PATH = 'player';
+  #API_PATH = 'next';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -16,8 +16,8 @@ export default class WatchEndpoint extends YTNode implements IEndpoint<WatchRequ
     return this.#API_PATH;
   }
 
-  public buildRequest(): WatchRequest {
-    const request: WatchRequest = {};
+  public buildRequest(): WatchNextRequest {
+    const request: WatchNextRequest = {};
 
     if (this.#data.videoId)
       request.videoId = this.#data.videoId;
@@ -30,12 +30,6 @@ export default class WatchEndpoint extends YTNode implements IEndpoint<WatchRequ
 
     if (this.#data.playerParams || this.#data.params)
       request.params = this.#data.playerParams || this.#data.params;
-
-    if (this.#data.startTimeSeconds)
-      request.startTimeSecs = this.#data.startTimeSeconds;
-
-    if (this.#data.overrideMutedAtStart)
-      request.overrideMutedAtStart = this.#data.overrideMutedAtStart;
 
     request.racyCheckOk = !!this.#data.racyCheckOk;
     request.contentCheckOk = !!this.#data.contentCheckOk;

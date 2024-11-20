@@ -68,6 +68,29 @@ export type WatchRequest = {
   overrideMutedAtStart?: boolean;
   racyCheckOk?: boolean;
   contentCheckOk?: boolean;
+  disablePlayerResponse?: boolean;
+  playerRequest?: Record<string, any>;
+}
+
+export type WatchNextRequest = {
+  videoId?: string;
+  playlistId?: string;
+  playlistIndex?: number;
+  params?: string;
+  racyCheckOk?: boolean;
+  contentCheckOk?: boolean;
+}
+
+export type ReelWatchRequest = {
+  inputType?: string;
+  params?: string;
+  disablePlayerResponse?: boolean;
+  playerRequest?: {
+    videoId: string;
+    params?: string;
+    racyCheckOk?: boolean;
+    contentCheckOk?: boolean;
+  }
 }
 
 export type PlaylistEditRequest = {
@@ -124,4 +147,51 @@ export type ContinuationRequest = {
   fetchCommentsParams?: {
     continuation: string;
   }
+}
+
+export type LiveChatItemContextMenuRequest = {
+  params?: string;
+}
+
+export type NextNavendpoint = {
+  urlEndpoint: {
+    url: string;
+  }
+}
+
+export type GetAccountsListInnertubeRequest = {
+  requestType?: string;
+  nextNavendpoint?: NextNavendpoint;
+  channelSwitcherQuery?: string;
+  triggerChannelCreation?: boolean;
+  contentOwnerConfig?: Record<string, any>;
+  callCircumstance?: 'SUPPLEMENTAL_USER' | 'SWITCHING_USERS_FULL';
+  obfuscatedSelectedGaiaId?: string;
+  selectedSerializedDelegationContext?: string;
+}
+
+export type GetKidsBlocklistPickerRequest = {
+  blockedForKidsContent?: {
+    external_channel_id: string;
+  };
+}
+
+export type CreateCommentRequest = {
+  createCommentParams?: string;
+  commentText?: string;
+  videoAttachment?: { videoId: string };
+  pollAttachment?: { choices: string[] };
+  imageAttachment?: { encryptedBlobId: string };
+  sharedPostAttachment?: { postId: string };
+  accessRestrictions?: { restriction: 'RESTRICTION_TYPE_EVERYONE' | 'RESTRICTION_TYPE_SPONSORS_ONLY' };
+  botguardResponse?: string;
+}
+
+export type PerformCommentActionRequest = {
+  actions?: Record<string, any>[];
+}
+
+export type ModifyChannelNotificationPreferenceRequest = {
+  params?: string;
+  secondaryParams?: string;
 }

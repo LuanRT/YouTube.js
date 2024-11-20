@@ -83,7 +83,6 @@ export default [
       "space-infix-ops": "error",
       "template-curly-spacing": "error",
       "wrap-regex": "error",
-      "capitalized-comments": "error",
       "prefer-template": "error",
       "keyword-spacing": ["error", {
         before: true,
