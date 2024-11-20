@@ -5,7 +5,7 @@ import type { Actions, ApiResponse } from '../index.js';
 import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 
 export default class InteractionManager {
-  #actions: Actions;
+  readonly #actions: Actions;
 
   constructor(actions: Actions) {
     this.#actions = actions;

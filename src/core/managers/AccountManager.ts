@@ -7,7 +7,7 @@ import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
 export default class AccountManager {
-  #actions: Actions;
+  readonly #actions: Actions;
 
   constructor(actions: Actions) {
     this.#actions = actions;

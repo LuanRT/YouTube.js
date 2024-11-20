@@ -6,7 +6,7 @@ import type { Feed } from '../mixins/index.js';
 import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 
 export default class PlaylistManager {
-  #actions: Actions;
+  readonly #actions: Actions;
 
   constructor(actions: Actions) {
     this.#actions = actions;
