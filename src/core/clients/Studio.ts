@@ -1,10 +1,10 @@
-import {Constants} from '../../utils/index.js';
-import {InnertubeError, Platform} from '../../utils/Utils.js';
+import { Constants } from '../../utils/index.js';
+import { InnertubeError, Platform } from '../../utils/Utils.js';
 
-import type {UpdateVideoMetadataOptions, UploadedVideoMetadataOptions} from '../../types/Misc.js';
-import type {ApiResponse, Session} from '../index.js';
+import type { UpdateVideoMetadataOptions, UploadedVideoMetadataOptions } from '../../types/Misc.js';
+import type { ApiResponse, Session } from '../index.js';
 
-import {MetadataUpdateRequest} from '../../../protos/generated/youtube/api/pfiinnertube/metadata_update_request.js';
+import { MetadataUpdateRequest } from '../../../protos/generated/youtube/api/pfiinnertube/metadata_update_request.js';
 
 interface UploadResult {
   status: string;

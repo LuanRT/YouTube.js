@@ -1,4 +1,4 @@
-import {generateRandomString, InnertubeError, throwIfMissing, u8ToBase64} from '../../utils/Utils.js';
+import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from '../../utils/Utils.js';
 
 import {
   Album,
@@ -24,11 +24,11 @@ import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSect
 import SectionList from '../../parser/classes/SectionList.js';
 import Tab from '../../parser/classes/Tab.js';
 
-import {SearchFilter} from '../../../protos/generated/misc/params.js';
+import { SearchFilter } from '../../../protos/generated/misc/params.js';
 
-import type {ObservedArray} from '../../parser/helpers.js';
-import type {MusicSearchFilters} from '../../types/index.js';
-import type {Actions, Session} from '../index.js';
+import type { ObservedArray } from '../../parser/helpers.js';
+import type { MusicSearchFilters } from '../../types/index.js';
+import type { Actions, Session } from '../index.js';
 
 export default class Music {
   #session: Session;
