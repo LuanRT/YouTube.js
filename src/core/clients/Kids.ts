@@ -1,16 +1,10 @@
 import { Parser } from '../../parser/index.js';
 import { Channel, HomeFeed, Search, VideoInfo } from '../../parser/ytkids/index.js';
 import { InnertubeError, generateRandomString } from '../../utils/Utils.js';
-import KidsBlocklistPickerItem from '../../parser/classes/ytkids/KidsBlocklistPickerItem.js';
-
-import {
-  BrowseEndpoint, NextEndpoint,
-  PlayerEndpoint, SearchEndpoint
-} from '../endpoints/index.js';
-
-import { BlocklistPickerEndpoint } from '../endpoints/kids/index.js';
-
 import type { Session, ApiResponse } from '../index.js';
+
+import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
+import KidsBlocklistPickerItem from '../../parser/classes/ytkids/KidsBlocklistPickerItem.js';
 
 export default class Kids {
   #session: Session;
@@ -19,66 +13,46 @@ export default class Kids {
     this.#session = session;
   }
 
-  /**
-   * Searches the given query.
-   * @param query - The query.
-   */
   async search(query: string): Promise<Search> {
-    const response = await this.#session.actions.execute(
-      SearchEndpoint.PATH, SearchEndpoint.build({ client: 'YTKIDS', query })
-    );
+    const search_endpoint = new NavigationEndpoint({ searchEndpoint: { query } });
+    const response = await search_endpoint.call(this.#session.actions, { client: 'YTKIDS' });
     return new Search(this.#session.actions, response);
   }
 
-  /**
-   * Retrieves video info.
-   * @param video_id - The video id.
-   */
   async getInfo(video_id: string): Promise<VideoInfo> {
-    const player_payload = PlayerEndpoint.build({
-      sts: this.#session.player?.sts,
-      client: 'YTKIDS',
-      video_id
-    });
+    const payload = { videoId: video_id };
+    const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
+    const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
 
-    const next_payload = NextEndpoint.build({
-      video_id,
+    const watch_response = watch_endpoint.call(this.#session.actions, {
+      playbackContext: {
+        contentPlaybackContext: {
+          vis: 0,
+          splay: false,
+          lactMilliseconds: '-1',
+          signatureTimestamp: this.#session.player?.sts
+        }
+      },
       client: 'YTKIDS'
     });
 
-    const player_response = this.#session.actions.execute(PlayerEndpoint.PATH, player_payload);
-    const next_response = this.#session.actions.execute(NextEndpoint.PATH, next_payload);
-    const response = await Promise.all([ player_response, next_response ]);
+    const watch_next_response = watch_next_endpoint.call(this.#session.actions, { client: 'YTKIDS' });
 
+    const response = await Promise.all([ watch_response, watch_next_response ]);
     const cpn = generateRandomString(16);
 
     return new VideoInfo(response, this.#session.actions, cpn);
   }
 
-  /**
-   * Retrieves the contents of the given channel.
-  * @param channel_id - The channel id.
-   */
   async getChannel(channel_id: string): Promise<Channel> {
-    const response = await this.#session.actions.execute(
-      BrowseEndpoint.PATH, BrowseEndpoint.build({
-        browse_id: channel_id,
-        client: 'YTKIDS'
-      })
-    );
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channel_id } });
+    const response = await browse_endpoint.call(this.#session.actions, { client: 'YTKIDS' });
     return new Channel(this.#session.actions, response);
   }
 
-  /**
-   * Retrieves the home feed.
-   */
   async getHomeFeed(): Promise<HomeFeed> {
-    const response = await this.#session.actions.execute(
-      BrowseEndpoint.PATH, BrowseEndpoint.build({
-        browse_id: 'FEkids_home',
-        client: 'YTKIDS'
-      })
-    );
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEkids_home' } });
+    const response = await browse_endpoint.call(this.#session.actions, { client: 'YTKIDS' });
     return new HomeFeed(this.#session.actions, response);
   }
 
@@ -92,8 +66,15 @@ export default class Kids {
     if (!this.#session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const blocklist_payload = BlocklistPickerEndpoint.build({ channel_id: channel_id });
-    const response = await this.#session.actions.execute(BlocklistPickerEndpoint.PATH, blocklist_payload );
+    const kids_blocklist_picker_command = new NavigationEndpoint({
+      getKidsBlocklistPickerCommand: {
+        blockedForKidsContent: {
+          external_channel_id: channel_id
+        }
+      }
+    });
+
+    const response = await kids_blocklist_picker_command.call(this.#session.actions, { client: 'YTKIDS' });
     const popup = response.data.command.confirmDialogEndpoint;
     const popup_fragment = { contents: popup.content, engagementPanels: [] };
     const kid_picker = Parser.parseResponse(popup_fragment);

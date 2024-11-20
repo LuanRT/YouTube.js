@@ -11,6 +11,5 @@ export { default as OAuth2 } from './OAuth2.js';
 export * from './OAuth2.js';
 
 export * as Clients from './clients/index.js';
-export * as Endpoints from './endpoints/index.js';
 export * as Managers from './managers/index.js';
 export * as Mixins from './mixins/index.js';

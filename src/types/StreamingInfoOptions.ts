@@ -26,5 +26,5 @@ export interface StreamingInfoOptions {
    *
    * Defaults to `(audio_track_display_name) => audio_track_display_name + " (Stable Volume)"`
    */
-  label_drc_mutiple?: (audio_track_display_name: string) => string;
+  label_drc_multiple?: (audio_track_display_name: string) => string;
 }
