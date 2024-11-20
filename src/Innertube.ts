@@ -315,9 +315,8 @@ export default class Innertube {
   }
 
   async getCourses(): Promise<Feed<IBrowseResponse>> {
-    const response = await this.actions.execute(
-      BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: 'FEcourses_destination' }), parse: true }
-    );
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEcourses_destination' } });
+    const response = await browse_endpoint.call(this.#session.actions, { parse: true });
     return new Feed(this.actions, response);
   }
 
