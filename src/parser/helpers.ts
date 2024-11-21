@@ -1,4 +1,4 @@
-import Log from '../utils/Log.js';
+import * as Log from '../utils/Log.js';
 import { deepCompare, ParsingError } from '../utils/Utils.js';
 
 const isObserved = Symbol('ObservedArray.isObserved');
@@ -62,8 +62,9 @@ export class YTNode {
   }
 }
 
+const MAYBE_TAG = 'Maybe';
+
 export class Maybe {
-  #TAG = 'Maybe';
   readonly #value;
 
   constructor (value: any) {
@@ -278,7 +279,7 @@ export class Maybe {
    * This call is not meant to be used outside of debugging. Please use the specific type getter instead.
    */
   any(): any {
-    Log.warn(this.#TAG, 'This call is not meant to be used outside of debugging. Please use the specific type getter instead.');
+    Log.warn(MAYBE_TAG, 'This call is not meant to be used outside of debugging. Please use the specific type getter instead.');
     return this.#value;
   }
 

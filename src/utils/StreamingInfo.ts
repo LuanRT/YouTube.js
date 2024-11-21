@@ -2,7 +2,7 @@ import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.js';
 import PlayerStoryboardSpec from '../parser/classes/PlayerStoryboardSpec.js';
 import { getStringBetweenStrings, InnertubeError, Platform } from './Utils.js';
 import * as Constants from './Constants.js';
-import Log from './Log.js';
+import * as Log from './Log.js';
 
 import type Actions from '../core/Actions.js';
 import type Player from '../core/Player.js';

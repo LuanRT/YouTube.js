@@ -1,6 +1,6 @@
 import { Memo } from '../parser/helpers.js';
 import { Text } from '../parser/misc.js';
-import Log from './Log.js';
+import * as Log from './Log.js';
 import userAgents from './user-agents.js';
 import { Jinter } from 'jintr';
 
