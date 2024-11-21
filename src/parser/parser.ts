@@ -223,7 +223,7 @@ export function getDynamicParsers() {
 }
 
 /**
- * Parses given InnerTube response.
+ * Parses a given InnerTube response.
  * @param data - Raw data.
  */
 export function parseResponse<T extends IParsedResponse = IParsedResponse>(data: IRawResponse): T {
@@ -503,7 +503,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
 }
 
 /**
- * Parses a single item.
+ * Parses an item.
  * @param data - The data to parse.
  * @param validTypes - YTNode types that are allowed to be parsed.
  */
