@@ -64,21 +64,18 @@ export class YTNode {
 
 export class Maybe {
   #TAG = 'Maybe';
-  #value;
+  readonly #value;
 
   constructor (value: any) {
     this.#value = value;
   }
 
-  #checkPrimative(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
-    if (typeof this.#value !== type) {
-      return false;
-    }
-    return true;
+  #checkPrimitive(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
+    return typeof this.#value === type;
   }
 
-  #assertPrimative(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
-    if (!this.#checkPrimative(type)) {
+  #assertPrimitive(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
+    if (!this.#checkPrimitive(type)) {
       throw new TypeError(`Expected ${type}, got ${this.typeof}`);
     }
     return this.#value;
@@ -89,51 +86,51 @@ export class Maybe {
   }
 
   string(): string {
-    return this.#assertPrimative('string');
+    return this.#assertPrimitive('string');
   }
 
   isString() {
-    return this.#checkPrimative('string');
+    return this.#checkPrimitive('string');
   }
 
   number(): number {
-    return this.#assertPrimative('number');
+    return this.#assertPrimitive('number');
   }
 
   isNumber() {
-    return this.#checkPrimative('number');
+    return this.#checkPrimitive('number');
   }
 
   bigint(): bigint {
-    return this.#assertPrimative('bigint');
+    return this.#assertPrimitive('bigint');
   }
 
   isBigint() {
-    return this.#checkPrimative('bigint');
+    return this.#checkPrimitive('bigint');
   }
 
   boolean(): boolean {
-    return this.#assertPrimative('boolean');
+    return this.#assertPrimitive('boolean');
   }
 
   isBoolean() {
-    return this.#checkPrimative('boolean');
+    return this.#checkPrimitive('boolean');
   }
 
   symbol(): symbol {
-    return this.#assertPrimative('symbol');
+    return this.#assertPrimitive('symbol');
   }
 
   isSymbol() {
-    return this.#checkPrimative('symbol');
+    return this.#checkPrimitive('symbol');
   }
 
   undefined(): undefined {
-    return this.#assertPrimative('undefined');
+    return this.#assertPrimitive('undefined');
   }
 
   isUndefined() {
-    return this.#checkPrimative('undefined');
+    return this.#checkPrimitive('undefined');
   }
 
   null(): null {
@@ -147,20 +144,20 @@ export class Maybe {
   }
 
   object(): object {
-    return this.#assertPrimative('object');
+    return this.#assertPrimitive('object');
   }
 
   isObject() {
-    return this.#checkPrimative('object');
+    return this.#checkPrimitive('object');
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   function(): Function {
-    return this.#assertPrimative('function');
+    return this.#assertPrimitive('function');
   }
 
   isFunction() {
-    return this.#checkPrimative('function');
+    return this.#checkPrimitive('function');
   }
 
   /**
@@ -223,7 +220,7 @@ export class Maybe {
   /**
    * Get the value as a YTNode of the given type.
    * @param types - The type(s) to cast to.
-   * @returns The node casted to the given type.
+   * @returns The node cast to the given type.
    * @throws If the node is not of the given type.
    */
   nodeOfType<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K) {
@@ -321,7 +318,7 @@ export interface YTNodeConstructor<T extends YTNode = YTNode> {
  * Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] or null.
  */
 export class SuperParsedResult<T extends YTNode = YTNode> {
-  #result;
+  readonly #result;
 
   constructor(result: T | ObservedArray<T> | null) {
     this.#result = result;
@@ -433,10 +430,7 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
       if (prop == 'filterType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return observe(target.filter((node: YTNode) => {
-            if (node.is(...types))
-              return true;
-            return false;
-
+            return !!node.is(...types);
           }));
         };
       }
@@ -444,9 +438,7 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
       if (prop == 'firstOfType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return target.find((node: YTNode) => {
-            if (node.is(...types))
-              return true;
-            return false;
+            return !!node.is(...types);
           });
         };
       }
@@ -472,6 +464,37 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
       return Reflect.get(target, prop);
     }
   }) as ObservedArray<T>;
+}
+
+export const WEB_PATHS = {
+  WEB_UNPLUGGED: '^unplugged/',
+  WEB_UNPLUGGED_ONBOARDING: '^unplugged/',
+  WEB_UNPLUGGED_OPS: '^unplugged/',
+  WEB_UNPLUGGED_PUBLIC: '^unplugged/',
+  WEB_CREATOR: '^creator/',
+  WEB_KIDS: '^kids/',
+  WEB_EXPERIMENTS: '^experiments/',
+  WEB_MUSIC: '^music/',
+  WEB_REMIX: '^music/',
+  WEB_MUSIC_EMBEDDED_PLAYER: '^main_app/|^sfv/'
+};
+
+export function getApiPath(paths: string[], interface_name?: string): string {
+  const target_interface_name = interface_name || 'UNKNOWN_INTERFACE';
+
+  if (paths.length === 1)
+    return paths[0];
+
+  const target_interface_reg = WEB_PATHS[target_interface_name as keyof typeof WEB_PATHS];
+  if (target_interface_reg) {
+    for (const path of paths) {
+      if (new RegExp(target_interface_reg).test(path)) {
+        return path;
+      }
+    }
+  }
+
+  return paths[0];
 }
 
 export class Memo extends Map<string, YTNode[]> {

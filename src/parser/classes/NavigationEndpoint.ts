@@ -1,11 +1,12 @@
-import type Actions from '../../core/Actions.js';
-import type { ApiResponse } from '../../core/Actions.js';
 import { YTNode } from '../helpers.js';
-import { Parser, type RawNode } from '../index.js';
-import type { IParsedResponse } from '../types/ParsedResponse.js';
-import CreatePlaylistDialog from './CreatePlaylistDialog.js';
-import type ModalWithTitleAndButton from './ModalWithTitleAndButton.js';
+import { Parser, type IEndpoint, type RawNode } from '../index.js';
 import OpenPopupAction from './actions/OpenPopupAction.js';
+import CreatePlaylistDialog from './CreatePlaylistDialog.js';
+
+import type Actions from '../../core/Actions.js';
+import type ModalWithTitleAndButton from './ModalWithTitleAndButton.js';
+import type { ApiResponse } from '../../core/Actions.js';
+import type { IParsedResponse } from '../types/index.js';
 
 export type Metadata = {
   url?: string;
@@ -24,12 +25,23 @@ export default class NavigationEndpoint extends YTNode {
   public open_popup?: OpenPopupAction | null;
   public next_endpoint?: NavigationEndpoint;
   public metadata: Metadata;
+  public command?: YTNode | YTNode & IEndpoint;
+  public commands?: NavigationEndpoint[];
 
   constructor(data: RawNode) {
     super();
+    if (data) {
+      if (data.serialCommand || data.parallelCommand) {
+        const raw_command = data.serialCommand || data.parallelCommand;
+        this.commands = raw_command.commands.map((command: RawNode) => new NavigationEndpoint(command));
+      }
 
-    if (data && (data.innertubeCommand || data.command))
-      data = data.innertubeCommand || data.command;
+      if (data.innertubeCommand || data.command || data.performOnceCommand) {
+        data = data.innertubeCommand || data.command || data.performOnceCommand;
+      }
+    }
+
+    this.command = Parser.parseCommand(data);
 
     if (Reflect.has(data || {}, 'openPopupAction'))
       this.open_popup = new OpenPopupAction(data.openPopupAction);
@@ -87,6 +99,7 @@ export default class NavigationEndpoint extends YTNode {
 
   /**
    * Sometimes InnerTube does not return an API url, in that case the library should set it based on the name of the payload object.
+   * @deprecated This should be removed in the future.
    */
   getPath(name: string) {
     switch (name) {
@@ -108,9 +121,16 @@ export default class NavigationEndpoint extends YTNode {
   call(actions: Actions, args?: { [key: string]: any; parse?: false }): Promise<ApiResponse>;
   call(actions: Actions, args?: { [key: string]: any; parse?: boolean }): Promise<IParsedResponse | ApiResponse> {
     if (!actions)
-      throw new Error('An active caller must be provided');
+      throw new Error('An API caller must be provided');
+
+    if (this.command) {
+      const command = this.command as (YTNode & IEndpoint);
+      return actions.execute(command.getApiPath(), { ...command.buildRequest(), ...args });
+    }
+
     if (!this.metadata.api_url)
-      throw new Error('Expected an api_url, but none was found, this is a bug.');
+      throw new Error('Expected an api_url, but none was found.');
+
     return actions.execute(this.metadata.api_url, { ...this.payload, ...args });
   }
 
