@@ -32,7 +32,7 @@ import type { Actions, Session } from '../index.js';
 
 export default class Music {
   #session: Session;
-  #actions: Actions;
+  readonly #actions: Actions;
 
   constructor(session: Session) {
     this.#session = session;
