@@ -16,7 +16,6 @@ import TabbedSearchResults from '../classes/TabbedSearchResults.js';
 import type { ObservedArray } from '../helpers.js';
 import type { ISearchResponse } from '../types/ParsedResponse.js';
 import type { ApiResponse, Actions } from '../../core/index.js';
-import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
 
 export default class Search {
   #page: ISearchResponse;
@@ -145,20 +144,6 @@ export default class Search {
 
   get playlists(): MusicShelf | undefined {
     return this.contents?.filterType(MusicShelf).find((section) => section.title.toString() === 'Community playlists');
-  }
-
-  /**
-   * @deprecated Use {@link Search.contents} instead.
-   */
-  get results(): ObservedArray<MusicResponsiveListItem> | undefined {
-    return this.contents?.firstOfType(MusicShelf)?.contents;
-  }
-
-  /**
-   * @deprecated Use {@link Search.contents} instead.
-   */
-  get sections(): ObservedArray<MusicShelf> | undefined {
-    return this.contents?.filterType(MusicShelf);
   }
 
   get page(): ISearchResponse {

@@ -1,7 +1,6 @@
 import Text from './misc/Text.js';
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
-import { Log } from '../../utils/index.js';
 
 export default class ChannelVideoPlayer extends YTNode {
   static type = 'ChannelVideoPlayer';
@@ -19,25 +18,5 @@ export default class ChannelVideoPlayer extends YTNode {
     this.description = new Text(data.description);
     this.view_count = new Text(data.viewCountText);
     this.published_time = new Text(data.publishedTimeText);
-  }
-
-  /**
-   * @deprecated
-   * This will be removed in a future release.
-   * Please use {@link ChannelVideoPlayer.view_count} instead.
-   */
-  get views(): Text {
-    Log.warnOnce(ChannelVideoPlayer.type, 'ChannelVideoPlayer#views is deprecated. Please use ChannelVideoPlayer#view_count instead.');
-    return this.view_count;
-  }
-
-  /**
-   * @deprecated
-   * This will be removed in a future release.
-   * Please use {@link ChannelVideoPlayer.published_time} instead.
-   */
-  get published(): Text {
-    Log.warnOnce(ChannelVideoPlayer.type, 'ChannelVideoPlayer#published is deprecated. Please use ChannelVideoPlayer#published_time instead.');
-    return this.published_time;
   }
 }
