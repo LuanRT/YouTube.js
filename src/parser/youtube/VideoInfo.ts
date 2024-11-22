@@ -26,28 +26,24 @@ import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSectio
 import LiveChatWrap from './LiveChat.js';
 
 import type { RawNode } from '../index.js';
-import type { ApiResponse, Actions } from '../../core/index.js';
+import type { Actions, ApiResponse } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 
 export default class VideoInfo extends MediaInfo {
-  #watch_next_continuation?: ContinuationItem;
-  primary_info?: VideoPrimaryInfo | null;
-  secondary_info?: VideoSecondaryInfo | null;
-  playlist?;
-  game_info?;
-  merchandise?: MerchandiseShelf | null;
-  related_chip_cloud?: ChipCloud | null;
-  watch_next_feed?: ObservedArray<YTNode> | null;
-  player_overlays?: PlayerOverlay | null;
-  comments_entry_point_header?: CommentsEntryPointHeader | null;
-  livechat?: LiveChat | null;
-  autoplay?;
+  public primary_info?: VideoPrimaryInfo | null;
+  public secondary_info?: VideoSecondaryInfo | null;
+  public playlist?: TwoColumnWatchNextResults['playlist'];
+  public game_info?;
+  public merchandise?: MerchandiseShelf | null;
+  public related_chip_cloud?: ChipCloud | null;
+  public watch_next_feed?: ObservedArray<YTNode> | null;
+  public player_overlays?: PlayerOverlay | null;
+  public comments_entry_point_header?: CommentsEntryPointHeader | null;
+  public livechat?: LiveChat | null;
+  public autoplay?: TwoColumnWatchNextResults['autoplay'];
 
-  /**
-   * @param data - API response.
-   * @param actions - Actions instance.
-   * @param cpn - Client Playback Nonce.
-   */
+  #watch_next_continuation?: ContinuationItem;
+  
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     super(data, actions, cpn);
 
@@ -217,9 +213,7 @@ export default class VideoInfo extends MediaInfo {
 
       const endpoint = new NavigationEndpoint(button.default_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
 
-      const response = await endpoint.call(this.actions);
-
-      return response;
+      return await endpoint.call(this.actions);
     }
 
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
@@ -234,9 +228,7 @@ export default class VideoInfo extends MediaInfo {
     if (button.is_toggled)
       throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
 
-    const response = await button.endpoint.call(this.actions);
-
-    return response;
+    return await button.endpoint.call(this.actions);
   }
 
   /**
@@ -258,9 +250,7 @@ export default class VideoInfo extends MediaInfo {
 
       const endpoint = new NavigationEndpoint(button.default_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
 
-      const response = await endpoint.call(this.actions);
-
-      return response;
+      return await endpoint.call(this.actions);
     }
 
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
@@ -275,9 +265,7 @@ export default class VideoInfo extends MediaInfo {
     if (button.is_toggled)
       throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
 
-    const response = await button.endpoint.call(this.actions);
-
-    return response;
+    return await button.endpoint.call(this.actions);
   }
 
   /**
@@ -309,9 +297,7 @@ export default class VideoInfo extends MediaInfo {
 
       const endpoint = new NavigationEndpoint(button.toggled_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
 
-      const response = await endpoint.call(this.actions);
-
-      return response;
+      return await endpoint.call(this.actions);
     }
 
     const segmented_like_dislike_button = this.primary_info?.menu?.top_level_buttons.firstOfType(SegmentedLikeDislikeButton);
@@ -331,9 +317,7 @@ export default class VideoInfo extends MediaInfo {
     if (!button)
       throw new InnertubeError('This video is not liked/disliked', { video_id: this.basic_info.id });
 
-    const response = await button.toggled_endpoint.call(this.actions);
-
-    return response;
+    return await button.toggled_endpoint.call(this.actions);
   }
 
   /**

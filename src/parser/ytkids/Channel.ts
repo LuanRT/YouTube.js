@@ -8,8 +8,8 @@ import type { IBrowseResponse } from '../types/index.js';
 import type { ApiResponse, Actions } from '../../core/index.js';
 
 export default class Channel extends Feed<IBrowseResponse> {
-  header?: C4TabbedHeader;
-  contents?: ItemSection | ItemSectionContinuation;
+  public header?: C4TabbedHeader;
+  public contents?: ItemSection | ItemSectionContinuation;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);

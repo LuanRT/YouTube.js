@@ -1,5 +1,6 @@
 import { Parser } from '../index.js';
 import { InnertubeError } from '../../utils/Utils.js';
+import type { ObservedArray } from '../helpers.js';
 import { observe } from '../helpers.js';
 
 import CommentsHeader from '../classes/comments/CommentsHeader.js';
@@ -8,16 +9,15 @@ import CommentThread from '../classes/comments/CommentThread.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
-import type { ObservedArray } from '../helpers.js';
 import type { INextResponse } from '../types/index.js';
 
 export default class Comments {
-  #page: INextResponse;
-  #actions: Actions;
-  #continuation?: ContinuationItem;
+  readonly #page: INextResponse;
+  readonly #actions: Actions;
+  readonly #continuation?: ContinuationItem;
 
-  header?: CommentsHeader;
-  contents: ObservedArray<CommentThread>;
+  public header?: CommentsHeader;
+  public contents: ObservedArray<CommentThread>;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
     this.#page = already_parsed ? data : Parser.parseResponse<INextResponse>(data);
@@ -36,7 +36,8 @@ export default class Comments {
     const threads = body_node?.contents?.filterType(CommentThread) || [];
 
     this.contents = observe(threads.map((thread) => {
-      thread.comment?.setActions(this.#actions);
+      if (thread.comment)
+        thread.comment.setActions(this.#actions);
       thread.setActions(this.#actions);
       return thread;
     }));
@@ -87,9 +88,7 @@ export default class Comments {
     if (!button.endpoint)
       throw new InnertubeError('Button does not have an endpoint.');
 
-    const response = await button.endpoint.call(this.#actions, { commentText: text });
-
-    return response;
+    return await button.endpoint.call(this.#actions, { commentText: text });
   }
 
   /**

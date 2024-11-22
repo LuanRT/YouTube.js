@@ -7,8 +7,8 @@ import type { IGuideResponse } from '../types/index.js';
 import type { IRawResponse } from '../index.js';
 
 export default class Guide {
-  #page: IGuideResponse;
-  contents?: ObservedArray<GuideSection | GuideSubscriptionsSection>;
+  readonly #page: IGuideResponse;
+  public contents?: ObservedArray<GuideSection | GuideSubscriptionsSection>;
 
   constructor(data: IRawResponse) {
     this.#page = Parser.parseResponse<IGuideResponse>(data);

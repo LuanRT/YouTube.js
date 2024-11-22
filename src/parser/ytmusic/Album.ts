@@ -13,13 +13,13 @@ import type { IBrowseResponse } from '../types/index.js';
 import type MusicResponsiveListItem from '../classes/MusicResponsiveListItem.js';
 
 export default class Album {
-  #page: IBrowseResponse;
+  readonly #page: IBrowseResponse;
 
-  header?: MusicDetailHeader | MusicResponsiveHeader;
-  contents: ObservedArray<MusicResponsiveListItem>;
-  sections: ObservedArray<MusicCarouselShelf>;
-  background?: MusicThumbnail;
-  url?: string;
+  public header?: MusicDetailHeader | MusicResponsiveHeader;
+  public contents: ObservedArray<MusicResponsiveListItem>;
+  public sections: ObservedArray<MusicCarouselShelf>;
+  public background?: MusicThumbnail;
+  public url?: string;
 
   constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);

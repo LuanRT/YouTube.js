@@ -10,6 +10,7 @@ import type {
   IPlayerResponse,
   IStreamingData
 } from '../../parser/index.js';
+
 import { Parser } from '../../parser/index.js';
 import { TranscriptInfo } from '../../parser/youtube/index.js';
 import ContinuationItem from '../../parser/classes/ContinuationItem.js';
@@ -34,16 +35,16 @@ export default class MediaInfo {
   readonly #actions: Actions;
   readonly #cpn: string;
   readonly #playback_tracking?: IPlaybackTracking;
-  
-  basic_info;
-  annotations?: ObservedArray<PlayerAnnotationsExpanded>;
-  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
-  endscreen?: Endscreen;
-  captions?: PlayerCaptionsTracklist;
-  cards?: CardCollection;
-  streaming_data?: IStreamingData;
-  playability_status?: IPlayabilityStatus;
-  player_config?: IPlayerConfig;
+
+  public basic_info;
+  public annotations?: ObservedArray<PlayerAnnotationsExpanded>;
+  public storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
+  public endscreen?: Endscreen;
+  public captions?: PlayerCaptionsTracklist;
+  public cards?: CardCollection;
+  public streaming_data?: IStreamingData;
+  public playability_status?: IPlayabilityStatus;
+  public player_config?: IPlayerConfig;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;

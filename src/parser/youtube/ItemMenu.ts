@@ -9,9 +9,9 @@ import type { IParsedResponse } from '../types/index.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
 export default class ItemMenu {
-  #page: IParsedResponse;
-  #actions: Actions;
-  #items: ObservedArray<YTNode>;
+  readonly #page: IParsedResponse;
+  readonly #actions: Actions;
+  readonly #items: ObservedArray<YTNode>;
 
   constructor(data: IParsedResponse, actions: Actions) {
     this.#page = data;
@@ -53,9 +53,7 @@ export default class ItemMenu {
     if (!endpoint)
       throw new InnertubeError('Target button does not have an endpoint.');
 
-    const response = await endpoint.call(this.#actions, { parse: true });
-
-    return response;
+    return await endpoint.call(this.#actions, { parse: true });
   }
 
   items(): ObservedArray<YTNode> {

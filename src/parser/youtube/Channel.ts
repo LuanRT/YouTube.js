@@ -28,10 +28,10 @@ import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
-  header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader | PageHeader;
-  metadata;
-  subscribe_button?: SubscribeButton;
-  current_tab?: Tab | ExpandableTab;
+  public header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader | PageHeader;
+  public metadata;
+  public subscribe_button?: SubscribeButton;
+  public current_tab?: Tab | ExpandableTab;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -55,7 +55,8 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 
     this.subscribe_button = this.page.header_memo?.getType(SubscribeButton).first();
 
-    this.current_tab = this.page.contents?.item().as(TwoColumnBrowseResults).tabs.array().filterType(Tab, ExpandableTab).get({ selected: true });
+    if (this.page.contents)
+      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.array().filterType(Tab, ExpandableTab).get({ selected: true });
   }
 
   /**
@@ -71,14 +72,14 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
       target_filter = filter_chipbar?.contents.get({ text: filter });
       if (!target_filter)
         throw new InnertubeError(`Filter ${filter} not found`, { available_filters: this.filters });
-    } else if (filter instanceof ChipCloudChip) {
+    } else {
       target_filter = filter;
     }
 
-    if (!target_filter)
+    if (!target_filter.endpoint)
       throw new InnertubeError('Invalid filter', filter);
 
-    const page = await target_filter.endpoint?.call<IBrowseResponse>(this.actions, { parse: true });
+    const page = await target_filter.endpoint.call<IBrowseResponse>(this.actions, { parse: true });
 
     if (!page)
       throw new InnertubeError('No page returned', { filter: target_filter });
@@ -93,10 +94,10 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
   async applySort(sort: string): Promise<Channel> {
     const sort_filter_sub_menu = this.memo.getType(SortFilterSubMenu).first();
 
-    if (!sort_filter_sub_menu)
+    if (!sort_filter_sub_menu || !sort_filter_sub_menu.sub_menu_items)
       throw new InnertubeError('No sort filter sub menu found');
 
-    const target_sort = sort_filter_sub_menu?.sub_menu_items?.find((item) => item.title === sort);
+    const target_sort = sort_filter_sub_menu.sub_menu_items.find((item) => item.title === sort);
 
     if (!target_sort)
       throw new InnertubeError(`Sort filter ${sort} not found`, { available_sort_filters: this.sort_filters });
@@ -104,7 +105,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     if (target_sort.selected)
       return this;
 
-    const page = await target_sort.endpoint?.call<IBrowseResponse>(this.actions, { parse: true });
+    const page = await target_sort.endpoint.call<IBrowseResponse>(this.actions, { parse: true });
 
     return new Channel(this.actions, page, true);
   }
@@ -127,7 +128,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     if (item.selected)
       return this;
 
-    const page = await item.endpoint?.call<IBrowseResponse>(this.actions, { parse: true });
+    const page = await item.endpoint.call<IBrowseResponse>(this.actions, { parse: true });
 
     return new Channel(this.actions, page, true);
   }
@@ -233,7 +234,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     if (!tab)
       throw new InnertubeError('Search tab not found', this);
 
-    const page = await tab.endpoint?.call<IBrowseResponse>(this.actions, { query, parse: true });
+    const page = await tab.endpoint.call<IBrowseResponse>(this.actions, { query, parse: true });
 
     return new Channel(this.actions, page, true);
   }
@@ -281,9 +282,6 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     return this.memo.getType(ExpandableTab)?.length > 0;
   }
 
-  /**
-   * Retrives list continuation.
-   */
   async getContinuation(): Promise<ChannelListContinuation> {
     const page = await super.getContinuationData();
     if (!page)
@@ -302,9 +300,6 @@ export class ChannelListContinuation extends Feed<IBrowseResponse> {
       this.page.on_response_received_endpoints?.first();
   }
 
-  /**
-   * Retrieves list continuation.
-   */
   async getContinuation(): Promise<ChannelListContinuation> {
     const page = await super.getContinuationData();
     if (!page)
@@ -342,9 +337,6 @@ export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
     return new FilteredChannelList(this.actions, feed.page, true);
   }
 
-  /**
-   * Retrieves list continuation.
-   */
   async getContinuation(): Promise<FilteredChannelList> {
     const page = await super.getContinuationData();
 

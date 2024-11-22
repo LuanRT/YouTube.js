@@ -16,12 +16,12 @@ import type MusicQueue from '../classes/MusicQueue.js';
 import type MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
-import type { ApiResponse, Actions } from '../../core/index.js';
+import type { Actions, ApiResponse } from '../../core/index.js';
 
 class TrackInfo extends MediaInfo {
-  tabs?: ObservedArray<Tab>;
-  current_video_endpoint?: NavigationEndpoint;
-  player_overlays?: PlayerOverlay;
+  public tabs?: ObservedArray<Tab>;
+  public current_video_endpoint?: NavigationEndpoint;
+  public player_overlays?: PlayerOverlay;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     super(data, actions, cpn);
@@ -104,8 +104,7 @@ class TrackInfo extends MediaInfo {
    * Retrieves related content.
    */
   async getRelated(): Promise<ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>> {
-    const tab = await this.getTab('MUSIC_PAGE_TYPE_TRACK_RELATED') as ObservedArray<MusicDescriptionShelf | MusicDescriptionShelf>;
-    return tab;
+    return await this.getTab('MUSIC_PAGE_TYPE_TRACK_RELATED') as ObservedArray<MusicDescriptionShelf>;
   }
 
   /**

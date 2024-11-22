@@ -28,14 +28,14 @@ export type ParsedResponse<T> =
   IParsedResponse;
 
 export default class Actions {
-  session: Session;
+  public session: Session;
 
   constructor(session: Session) {
     this.session = session;
   }
 
   /**
-   * Mimmics the Axios API using Fetch's Response object.
+   * Mimics the Axios API using Fetch's Response object.
    * @param response - The response object.
    */
   async #wrap(response: Response): Promise<ApiResponse> {

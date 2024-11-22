@@ -5,9 +5,9 @@ import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IGetTranscriptResponse } from '../index.js';
 
 export default class TranscriptInfo {
-  #page: IGetTranscriptResponse;
-  #actions: Actions;
-  transcript: Transcript;
+  readonly #page: IGetTranscriptResponse;
+  readonly #actions: Actions;
+  public transcript: Transcript;
 
   constructor(actions: Actions, response: ApiResponse) {
     this.#page = Parser.parseResponse(response.data);

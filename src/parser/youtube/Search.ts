@@ -15,13 +15,13 @@ import type { ObservedArray, YTNode } from '../helpers.js';
 import type { ISearchResponse } from '../types/index.js';
 
 export default class Search extends Feed<ISearchResponse> {
-  header?: SearchHeader;
-  results: ObservedArray<YTNode>;
-  refinements: string[];
-  estimated_results: number;
-  sub_menu?: SearchSubMenu;
-  watch_card?: UniversalWatchCard;
-  refinement_cards?: HorizontalCardList | null;
+  public header?: SearchHeader;
+  public results: ObservedArray<YTNode>;
+  public refinements: string[];
+  public estimated_results: number;
+  public sub_menu?: SearchSubMenu;
+  public watch_card?: UniversalWatchCard;
+  public refinement_cards?: HorizontalCardList | null;
 
   constructor(actions: Actions, data: ApiResponse | ISearchResponse, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -79,7 +79,7 @@ export default class Search extends Feed<ISearchResponse> {
   }
 
   /**
-   * Retrieves next batch of results.
+   * Retrieves next batch of search results.
    */
   async getContinuation(): Promise<Search> {
     const response = await this.getContinuationData();

@@ -8,11 +8,11 @@ const TAG = 'Player';
  * Represents YouTube's player script. This is required to decipher signatures.
  */
 export default class Player {
-  player_id: string;
-  sts: number;
-  nsig_sc?: string;
-  sig_sc?: string;
-  po_token?: string;
+  public player_id: string;
+  public sts: number;
+  public nsig_sc?: string;
+  public sig_sc?: string;
+  public po_token?: string;
 
   constructor(player_id: string, signature_timestamp: number, sig_sc?: string, nsig_sc?: string) {
     this.player_id = player_id;

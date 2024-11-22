@@ -1,4 +1,5 @@
 import { Parser } from '../index.js';
+import type { ObservedArray } from '../helpers.js';
 import { observe } from '../helpers.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
@@ -9,16 +10,15 @@ import MusicImmersiveHeader from '../classes/MusicImmersiveHeader.js';
 import MusicVisualHeader from '../classes/MusicVisualHeader.js';
 import MusicHeader from '../classes/MusicHeader.js';
 
-import type { ApiResponse, Actions } from '../../core/index.js';
-import type { IBrowseResponse } from '../types/ParsedResponse.js';
-import type { ObservedArray } from '../helpers.js';
+import type { Actions, ApiResponse } from '../../core/index.js';
+import type { IBrowseResponse } from '../types/index.js';
 
 export default class Artist {
-  #page: IBrowseResponse;
-  #actions: Actions;
+  readonly #page: IBrowseResponse;
+  readonly #actions: Actions;
 
-  header?: MusicImmersiveHeader | MusicVisualHeader | MusicHeader;
-  sections: ObservedArray<MusicCarouselShelf | MusicShelf>;
+  public header?: MusicImmersiveHeader | MusicVisualHeader | MusicHeader;
+  public sections: ObservedArray<MusicCarouselShelf | MusicShelf>;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
@@ -47,9 +47,7 @@ export default class Artist {
       throw new InnertubeError('Target shelf (Songs) did not have an endpoint.');
 
     const page = await shelf.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
-    const contents = page.contents_memo?.getType(MusicPlaylistShelf)?.first();
-
-    return contents;
+    return page.contents_memo?.getType(MusicPlaylistShelf)?.first();
   }
 
   get page(): IBrowseResponse {

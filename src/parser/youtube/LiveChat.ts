@@ -1,6 +1,8 @@
+// noinspection ES6MissingAwait
+
 import { EventEmitter } from '../../utils/index.js';
 import { InnertubeError, Platform, u8ToBase64 } from '../../utils/Utils.js';
-import { Parser, LiveChatContinuation } from '../index.js';
+import { LiveChatContinuation, Parser } from '../index.js';
 import SmoothedQueue from './SmoothedQueue.js';
 
 import AddChatItemAction from '../classes/livechat/AddChatItemAction.js';
@@ -44,7 +46,7 @@ export type ChatAction =
 
 export type ChatItemWithMenu = LiveChatAutoModMessage | LiveChatMembershipItem | LiveChatPaidMessage | LiveChatPaidSticker | LiveChatTextMessage | LiveChatViewerEngagementMessage;
 
-export interface LiveMetadata {
+export type LiveMetadata = {
   title?: UpdateTitleAction;
   description?: UpdateDescriptionAction;
   views?: UpdateViewershipAction;
@@ -53,20 +55,19 @@ export interface LiveMetadata {
 }
 
 export default class LiveChat extends EventEmitter {
-  smoothed_queue: SmoothedQueue;
-
-  #actions: Actions;
-  #video_id: string;
-  #channel_id: string;
+  readonly #actions: Actions;
+  readonly #video_id: string;
+  readonly #channel_id: string;
+  
   #continuation?: string;
   #mcontinuation?: string;
   #retry_count = 0;
-
-  initial_info?: LiveChatContinuation;
-  metadata?: LiveMetadata;
-
-  running = false;
-  is_replay = false;
+  
+  public smoothed_queue: SmoothedQueue;
+  public initial_info?: LiveChatContinuation;
+  public metadata?: LiveMetadata;
+  public running = false;
+  public is_replay = false;
 
   constructor(video_info: VideoInfo) {
     super();
@@ -93,7 +94,7 @@ export default class LiveChat extends EventEmitter {
         this.#emitSmoothedActions(actions);
         await this.#wait(2000);
       } else {
-        // There are more than 10 actions, emit them asynchonously so we can request the next incremental continuation.
+        // There are more than 10 actions, emit them asynchronously so we can request the next incremental continuation.
         this.#emitSmoothedActions(actions);
       }
 
@@ -316,8 +317,7 @@ export default class LiveChat extends EventEmitter {
    * Equivalent to "clicking" a button.
    */
   async selectButton(button: Button): Promise<IParsedResponse> {
-    const response = await button.endpoint.call(this.#actions, { parse: true });
-    return response;
+    return await button.endpoint.call(this.#actions, { parse: true });
   }
 
   async #wait(ms: number) {
