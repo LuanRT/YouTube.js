@@ -16,7 +16,7 @@ InnerTube client.
 
 #### Defined in
 
-[src/types/FormatUtils.ts:27](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/types/FormatUtils.ts#L27)
+[src/types/FormatUtils.ts:27](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/types/FormatUtils.ts#L27)
 
 ***
 
@@ -28,7 +28,7 @@ File format, use 'any' to download any format
 
 #### Defined in
 
-[src/types/FormatUtils.ts:23](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/types/FormatUtils.ts#L23)
+[src/types/FormatUtils.ts:23](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/types/FormatUtils.ts#L23)
 
 ***
 
@@ -40,7 +40,7 @@ Language code, defaults to 'original'.
 
 #### Defined in
 
-[src/types/FormatUtils.ts:19](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/types/FormatUtils.ts#L19)
+[src/types/FormatUtils.ts:19](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/types/FormatUtils.ts#L19)
 
 ***
 
@@ -52,7 +52,7 @@ Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency
 
 #### Defined in
 
-[src/types/FormatUtils.ts:11](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/types/FormatUtils.ts#L11)
+[src/types/FormatUtils.ts:11](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/types/FormatUtils.ts#L11)
 
 ***
 
@@ -64,4 +64,4 @@ Download type, can be: video, audio or video+audio
 
 #### Defined in
 
-[src/types/FormatUtils.ts:15](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/types/FormatUtils.ts#L15)
+[src/types/FormatUtils.ts:15](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/types/FormatUtils.ts#L15)

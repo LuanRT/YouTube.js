@@ -20,4 +20,4 @@ A YTNode instance if parsing is successful, undefined otherwise
 
 ## Defined in
 
-[src/parser/parser.ts:638](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/parser.ts#L638)
+[src/parser/parser.ts:638](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/parser.ts#L638)

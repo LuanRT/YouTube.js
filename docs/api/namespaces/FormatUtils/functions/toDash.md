@@ -32,4 +32,4 @@
 
 ## Defined in
 
-[src/utils/DashManifest.tsx:269](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/DashManifest.tsx#L269)
+[src/utils/DashManifest.tsx:269](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/utils/DashManifest.tsx#L269)
