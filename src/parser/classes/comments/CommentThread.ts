@@ -1,27 +1,27 @@
+
 import { Parser } from '../../index.js';
 import Button from '../Button.js';
 import ContinuationItem from '../ContinuationItem.js';
 import CommentView from './CommentView.js';
 import CommentReplies from './CommentReplies.js';
-
 import { InnertubeError } from '../../../utils/Utils.js';
 import { observe, YTNode } from '../../helpers.js';
 
-import type Actions from '../../../core/Actions.js';
-import type { ObservedArray, Memo } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
+import type Actions from '../../../core/Actions.js';
+import type { Memo, ObservedArray } from '../../helpers.js';
 
 export default class CommentThread extends YTNode {
   static type = 'CommentThread';
-
-  #actions?: Actions;
-  #continuation?: ContinuationItem;
-
+  
   public comment: CommentView | null;
   public replies?: ObservedArray<CommentView>;
   public comment_replies_data: CommentReplies | null;
   public is_moderated_elq_comment: boolean;
   public has_replies: boolean;
+  
+  #actions?: Actions;
+  #continuation?: ContinuationItem;
 
   constructor(data: RawNode) {
     super();
@@ -29,6 +29,12 @@ export default class CommentThread extends YTNode {
     this.comment_replies_data = Parser.parseItem(data.replies, CommentReplies);
     this.is_moderated_elq_comment = data.isModeratedElqComment;
     this.has_replies = !!this.comment_replies_data;
+  }
+
+  get has_continuation(): boolean {
+    if (!this.replies)
+      throw new InnertubeError('Cannot determine if there is a continuation because this thread\'s replies have not been loaded.');
+    return !!this.#continuation;
   }
 
   /**
@@ -85,21 +91,15 @@ export default class CommentThread extends YTNode {
 
     return this;
   }
-  
+
+  setActions(actions: Actions) {
+    this.#actions = actions;
+  }
+
   #getPatchedReplies(data: Memo): ObservedArray<CommentView> {
     return observe(data.getType(CommentView).map((comment) => {
       comment.setActions(this.#actions);
       return comment;
     }));
-  }
-  
-  get has_continuation(): boolean {
-    if (!this.replies)
-      throw new InnertubeError('Cannot determine if there is a continuation because this thread\'s replies have not been loaded.');
-    return !!this.#continuation;
-  }
-
-  setActions(actions: Actions) {
-    this.#actions = actions;
   }
 }
