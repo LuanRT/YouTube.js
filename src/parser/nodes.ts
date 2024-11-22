@@ -80,7 +80,6 @@ export { default as ContinuationCommand } from './classes/commands/ContinuationC
 export { default as GetKidsBlocklistPickerCommand } from './classes/commands/GetKidsBlocklistPickerCommand.js';
 export { default as ShowDialogCommand } from './classes/commands/ShowDialogCommand.js';
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.js';
-export { default as Comment } from './classes/comments/Comment.js';
 export { default as CommentActionButtons } from './classes/comments/CommentActionButtons.js';
 export { default as CommentDialog } from './classes/comments/CommentDialog.js';
 export { default as CommentReplies } from './classes/comments/CommentReplies.js';
