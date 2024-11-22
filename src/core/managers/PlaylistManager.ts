@@ -107,10 +107,7 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: `VL${playlist_id}` } });
-    const browse_response = await browse_endpoint.call(this.#actions, { parse: true });
-
-    const playlist = new Playlist(this.#actions, browse_response, true);
+    const playlist = await this.#getPlaylist(playlist_id);
 
     if (!playlist.info.is_editable)
       throw new InnertubeError('This playlist cannot be edited.', playlist_id);
@@ -160,10 +157,7 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: `VL${playlist_id}` } });
-    const browse_response = await browse_endpoint.call(this.#actions, { parse: true });
-
-    const playlist = new Playlist(this.#actions, browse_response, true);
+    const playlist = await this.#getPlaylist(playlist_id);
 
     if (!playlist.info.is_editable)
       throw new InnertubeError('This playlist cannot be edited.', playlist_id);
@@ -201,9 +195,21 @@ export default class PlaylistManager {
       action_result: response.data.actions // TODO: implement actions in the parser
     };
   }
+  
+  async #getPlaylist(playlist_id: string): Promise<Playlist> {
+    let id = playlist_id;
+    
+    if (!id.startsWith('VL'))
+      id = `VL${id}`;
+    
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: `VL${id}` } });
+    const browse_response = await browse_endpoint.call(this.#actions, { parse: true });
+    
+    return new Playlist(this.#actions, browse_response, true);
+  }
 
   /**
-   * Sets the name (title) for the given playlist.
+   * Sets the name for the given playlist.
    * @param playlist_id - The playlist ID.
    * @param name - The name / title to use for the playlist.
    */

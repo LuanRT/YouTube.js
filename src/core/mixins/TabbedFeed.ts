@@ -4,11 +4,11 @@ import Tab from '../../parser/classes/Tab.js';
 
 import type { Actions, ApiResponse } from '../index.js';
 import type { ObservedArray } from '../../parser/helpers.js';
-import type { IParsedResponse } from '../../parser/types/ParsedResponse.js';
+import type { IParsedResponse } from '../../parser/index.js';
 
 export default class TabbedFeed<T extends IParsedResponse> extends Feed<T> {
+  readonly #actions: Actions;
   #tabs?: ObservedArray<Tab>;
-  #actions: Actions;
 
   constructor(actions: Actions, data: ApiResponse | IParsedResponse, already_parsed = false) {
     super(actions, data, already_parsed);

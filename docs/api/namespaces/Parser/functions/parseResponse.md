@@ -4,7 +4,7 @@
 
 > **parseResponse**\<`T`\>(`data`): `T`
 
-Parses given InnerTube response.
+Parses a given InnerTube response.
 
 ## Type Parameters
 
@@ -22,4 +22,4 @@ Raw data.
 
 ## Defined in
 
-[src/parser/parser.ts:222](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/parser.ts#L222)
+[src/parser/parser.ts:229](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/parser.ts#L229)

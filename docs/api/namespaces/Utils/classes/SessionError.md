@@ -26,7 +26,7 @@
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1082
+node\_modules/typescript/lib/lib.es5.d.ts:1082
 
 ### new SessionError()
 
@@ -48,7 +48,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1082
+node\_modules/typescript/lib/lib.es5.d.ts:1082
 
 ## Properties
 
@@ -62,7 +62,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2022.error.d.ts:24
+node\_modules/typescript/lib/lib.es2022.error.d.ts:24
 
 ***
 
@@ -76,7 +76,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2022.err
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1077
+node\_modules/typescript/lib/lib.es5.d.ts:1077
 
 ***
 
@@ -90,7 +90,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1076
+node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 ***
 
@@ -104,7 +104,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1078
+node\_modules/typescript/lib/lib.es5.d.ts:1078
 
 ***
 
@@ -134,7 +134,7 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 #### Defined in
 
-node\_modules/.deno/@types+node@17.0.45/node\_modules/@types/node/globals.d.ts:11
+node\_modules/@types/node/globals.d.ts:11
 
 ***
 
@@ -148,7 +148,7 @@ node\_modules/.deno/@types+node@17.0.45/node\_modules/@types/node/globals.d.ts:1
 
 #### Defined in
 
-node\_modules/.deno/@types+node@17.0.45/node\_modules/@types/node/globals.d.ts:13
+node\_modules/@types/node/globals.d.ts:13
 
 ## Methods
 
@@ -174,4 +174,4 @@ Create .stack property on a target object
 
 #### Defined in
 
-node\_modules/.deno/@types+node@17.0.45/node\_modules/@types/node/globals.d.ts:4
+node\_modules/@types/node/globals.d.ts:4

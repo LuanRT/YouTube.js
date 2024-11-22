@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/continuations.ts:114](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/continuations.ts#L114)
+[src/parser/continuations.ts:114](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/continuations.ts#L114)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/continuations.ts:111](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/continuations.ts#L111)
+[src/parser/continuations.ts:111](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/continuations.ts#L111)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/continuations.ts:112](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/continuations.ts#L112)
+[src/parser/continuations.ts:112](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/continuations.ts#L112)
 
 ***
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/helpers.ts#L8)
 
 ***
 
@@ -74,7 +74,7 @@
 
 #### Defined in
 
-[src/parser/continuations.ts:109](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/continuations.ts#L109)
+[src/parser/continuations.ts:109](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/continuations.ts#L109)
 
 ## Accessors
 
@@ -88,7 +88,7 @@
 
 #### Defined in
 
-[src/parser/continuations.ts:120](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/continuations.ts#L120)
+[src/parser/continuations.ts:120](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/continuations.ts#L120)
 
 ## Methods
 
@@ -108,9 +108,17 @@ Cast to one of the given types.
 
 • ...**types**: `K`
 
+The types to cast to
+
 #### Returns
 
 `InstanceType`\<`K`\[`number`\]\>
+
+The node cast to one of the given types
+
+#### Throws
+
+If the node is not of the given type
 
 #### Inherited from
 
@@ -118,7 +126,7 @@ Cast to one of the given types.
 
 #### Defined in
 
-[src/parser/helpers.ts:35](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L35)
+[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/helpers.ts#L38)
 
 ***
 
@@ -152,7 +160,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:47](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L47)
+[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/helpers.ts#L50)
 
 ***
 
@@ -186,7 +194,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/helpers.ts#L28)
 
 ***
 
@@ -224,4 +232,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:57](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L57)
+[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/helpers.ts#L60)

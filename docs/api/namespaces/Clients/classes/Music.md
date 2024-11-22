@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:40](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L40)
+[src/core/clients/Music.ts:37](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L37)
 
 ## Methods
 
@@ -26,13 +26,9 @@
 
 > **getAlbum**(`album_id`): `Promise`\<[`Album`](../../YTMusic/classes/Album.md)\>
 
-Retrieves album.
-
 #### Parameters
 
 • **album\_id**: `string`
-
-The album id.
 
 #### Returns
 
@@ -40,7 +36,7 @@ The album id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:209](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L209)
+[src/core/clients/Music.ts:160](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L160)
 
 ***
 
@@ -48,13 +44,9 @@ The album id.
 
 > **getArtist**(`artist_id`): `Promise`\<[`Artist`](../../YTMusic/classes/Artist.md)\>
 
-Retrieves artist's info & content.
-
 #### Parameters
 
 • **artist\_id**: `string`
-
-The artist id.
 
 #### Returns
 
@@ -62,7 +54,7 @@ The artist id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:189](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L189)
+[src/core/clients/Music.ts:150](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L150)
 
 ***
 
@@ -70,15 +62,13 @@ The artist id.
 
 > **getExplore**(): `Promise`\<[`Explore`](../../YTMusic/classes/Explore.md)\>
 
-Retrieves the Explore feed.
-
 #### Returns
 
 `Promise`\<[`Explore`](../../YTMusic/classes/Explore.md)\>
 
 #### Defined in
 
-[src/core/clients/Music.ts:159](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L159)
+[src/core/clients/Music.ts:137](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L137)
 
 ***
 
@@ -86,15 +76,13 @@ Retrieves the Explore feed.
 
 > **getHomeFeed**(): `Promise`\<[`HomeFeed`](../../YTMusic/classes/HomeFeed.md)\>
 
-Retrieves the home feed.
-
 #### Returns
 
 `Promise`\<[`HomeFeed`](../../YTMusic/classes/HomeFeed.md)\>
 
 #### Defined in
 
-[src/core/clients/Music.ts:145](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L145)
+[src/core/clients/Music.ts:131](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L131)
 
 ***
 
@@ -116,7 +104,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:49](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L49)
+[src/core/clients/Music.ts:46](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L46)
 
 ***
 
@@ -124,15 +112,13 @@ Video id or a list item.
 
 > **getLibrary**(): `Promise`\<[`Library`](../../YTMusic/classes/Library.md)\>
 
-Retrieves the library.
-
 #### Returns
 
 `Promise`\<[`Library`](../../YTMusic/classes/Library.md)\>
 
 #### Defined in
 
-[src/core/clients/Music.ts:174](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L174)
+[src/core/clients/Music.ts:144](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L144)
 
 ***
 
@@ -140,13 +126,9 @@ Retrieves the library.
 
 > **getLyrics**(`video_id`): `Promise`\<`undefined` \| [`MusicDescriptionShelf`](../../YTNodes/classes/MusicDescriptionShelf.md)\>
 
-Retrieves song lyrics.
-
 #### Parameters
 
 • **video\_id**: `string`
-
-The video id.
 
 #### Returns
 
@@ -154,7 +136,7 @@ The video id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:325](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L325)
+[src/core/clients/Music.ts:241](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L241)
 
 ***
 
@@ -162,13 +144,9 @@ The video id.
 
 > **getPlaylist**(`playlist_id`): `Promise`\<[`Playlist`](../../YTMusic/classes/Playlist.md)\>
 
-Retrieves playlist.
-
 #### Parameters
 
 • **playlist\_id**: `string`
-
-The playlist id.
 
 #### Returns
 
@@ -176,7 +154,7 @@ The playlist id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:229](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L229)
+[src/core/clients/Music.ts:170](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L170)
 
 ***
 
@@ -184,15 +162,13 @@ The playlist id.
 
 > **getRecap**(): `Promise`\<[`Recap`](../../YTMusic/classes/Recap.md)\>
 
-Retrieves recap.
-
 #### Returns
 
 `Promise`\<[`Recap`](../../YTMusic/classes/Recap.md)\>
 
 #### Defined in
 
-[src/core/clients/Music.ts:355](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L355)
+[src/core/clients/Music.ts:267](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L267)
 
 ***
 
@@ -200,13 +176,9 @@ Retrieves recap.
 
 > **getRelated**(`video_id`): `Promise`\<[`SectionList`](../../YTNodes/classes/SectionList.md) \| [`Message`](../../YTNodes/classes/Message.md)\>
 
-Retrieves related content.
-
 #### Parameters
 
 • **video\_id**: `string`
-
-The video id.
 
 #### Returns
 
@@ -214,21 +186,17 @@ The video id.
 
 #### Defined in
 
-[src/core/clients/Music.ts:297](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L297)
+[src/core/clients/Music.ts:220](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L220)
 
 ***
 
 ### getSearchSuggestions()
 
-> **getSearchSuggestions**(`query`): `Promise`\<[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`SearchSuggestionsSection`](../../YTNodes/classes/SearchSuggestionsSection.md)\>\>
-
-Retrieves search suggestions for the given query.
+> **getSearchSuggestions**(`input`): `Promise`\<[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`SearchSuggestionsSection`](../../YTNodes/classes/SearchSuggestionsSection.md)\>\>
 
 #### Parameters
 
-• **query**: `string`
-
-The query.
+• **input**: `string`
 
 #### Returns
 
@@ -236,7 +204,7 @@ The query.
 
 #### Defined in
 
-[src/core/clients/Music.ts:370](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L370)
+[src/core/clients/Music.ts:273](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L273)
 
 ***
 
@@ -244,17 +212,11 @@ The query.
 
 > **getUpNext**(`video_id`, `automix`): `Promise`\<[`PlaylistPanel`](../../YTNodes/classes/PlaylistPanel.md)\>
 
-Retrieves up next.
-
 #### Parameters
 
 • **video\_id**: `string`
 
-The video id.
-
 • **automix**: `boolean` = `true`
-
-Whether to enable automix.
 
 #### Returns
 
@@ -262,7 +224,7 @@ Whether to enable automix.
 
 #### Defined in
 
-[src/core/clients/Music.ts:251](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L251)
+[src/core/clients/Music.ts:180](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L180)
 
 ***
 
@@ -270,17 +232,11 @@ Whether to enable automix.
 
 > **search**(`query`, `filters`): `Promise`\<[`Search`](../../YTMusic/classes/Search.md)\>
 
-Searches on YouTube Music.
-
 #### Parameters
 
 • **query**: `string`
 
-Search query.
-
 • **filters**: [`MusicSearchFilters`](../../Types/type-aliases/MusicSearchFilters.md) = `{}`
-
-Search filters.
 
 #### Returns
 
@@ -288,4 +244,4 @@ Search filters.
 
 #### Defined in
 
-[src/core/clients/Music.ts:116](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/clients/Music.ts#L116)
+[src/core/clients/Music.ts:109](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/clients/Music.ts#L109)

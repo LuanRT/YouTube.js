@@ -26,7 +26,7 @@
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:50
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:50
 
 ### new Memo()
 
@@ -34,7 +34,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.col
 
 #### Parameters
 
-• **iterable?**: `null` \| `Iterable`\<readonly [`string`, [`YTNode`](YTNode.md)[]], `any`, `any`\>
+• **iterable?**: `null` \| `Iterable`\<readonly [`string`, [`YTNode`](YTNode.md)[]]\>
 
 #### Returns
 
@@ -46,7 +46,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.col
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:49
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:49
 
 ## Properties
 
@@ -60,7 +60,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.col
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:137
+node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:137
 
 ***
 
@@ -68,17 +68,13 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.sym
 
 > `readonly` **size**: `number`
 
-#### Returns
-
-the number of elements in the Map.
-
 #### Inherited from
 
 `Map.size`
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:45
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:45
 
 ***
 
@@ -92,19 +88,19 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.col
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:319
+node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:319
 
 ## Methods
 
 ### \[iterator\]()
 
-> **\[iterator\]**(): `MapIterator`\<[`string`, [`YTNode`](YTNode.md)[]]\>
+> **\[iterator\]**(): `IterableIterator`\<[`string`, [`YTNode`](YTNode.md)[]]\>
 
 Returns an iterable of entries in the map.
 
 #### Returns
 
-`MapIterator`\<[`string`, [`YTNode`](YTNode.md)[]]\>
+`IterableIterator`\<[`string`, [`YTNode`](YTNode.md)[]]\>
 
 #### Inherited from
 
@@ -112,7 +108,7 @@ Returns an iterable of entries in the map.
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.iterable.d.ts:143
+node\_modules/typescript/lib/lib.es2015.iterable.d.ts:119
 
 ***
 
@@ -130,7 +126,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.ite
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:20
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:20
 
 ***
 
@@ -154,19 +150,19 @@ true if an element in the Map existed and has been removed, or false if the elem
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:24
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:24
 
 ***
 
 ### entries()
 
-> **entries**(): `MapIterator`\<[`string`, [`YTNode`](YTNode.md)[]]\>
+> **entries**(): `IterableIterator`\<[`string`, [`YTNode`](YTNode.md)[]]\>
 
 Returns an iterable of key, value pairs for every entry in the map.
 
 #### Returns
 
-`MapIterator`\<[`string`, [`YTNode`](YTNode.md)[]]\>
+`IterableIterator`\<[`string`, [`YTNode`](YTNode.md)[]]\>
 
 #### Inherited from
 
@@ -174,7 +170,7 @@ Returns an iterable of key, value pairs for every entry in the map.
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.iterable.d.ts:148
+node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
 
 ***
 
@@ -200,7 +196,7 @@ Executes a provided function once per each key/value pair in the Map, in inserti
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:28
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:28
 
 ***
 
@@ -226,7 +222,7 @@ Returns the element associated with the specified key. If no element is associat
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:33
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:33
 
 ***
 
@@ -252,7 +248,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.col
 
 ##### Defined in
 
-[src/parser/helpers.ts:478](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L478)
+[src/parser/helpers.ts:512](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/helpers.ts#L512)
 
 #### getType(types)
 
@@ -274,7 +270,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.col
 
 ##### Defined in
 
-[src/parser/helpers.ts:479](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L479)
+[src/parser/helpers.ts:513](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/helpers.ts#L513)
 
 ***
 
@@ -298,19 +294,19 @@ boolean indicating whether an element with the specified key exists or not.
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:37
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:37
 
 ***
 
 ### keys()
 
-> **keys**(): `MapIterator`\<`string`\>
+> **keys**(): `IterableIterator`\<`string`\>
 
 Returns an iterable of keys in the map
 
 #### Returns
 
-`MapIterator`\<`string`\>
+`IterableIterator`\<`string`\>
 
 #### Inherited from
 
@@ -318,7 +314,7 @@ Returns an iterable of keys in the map
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.iterable.d.ts:153
+node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
 
 ***
 
@@ -344,19 +340,19 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.collection.d.ts:41
+node\_modules/typescript/lib/lib.es2015.collection.d.ts:41
 
 ***
 
 ### values()
 
-> **values**(): `MapIterator`\<[`YTNode`](YTNode.md)[]\>
+> **values**(): `IterableIterator`\<[`YTNode`](YTNode.md)[]\>
 
 Returns an iterable of values in the map
 
 #### Returns
 
-`MapIterator`\<[`YTNode`](YTNode.md)[]\>
+`IterableIterator`\<[`YTNode`](YTNode.md)[]\>
 
 #### Inherited from
 
@@ -364,7 +360,7 @@ Returns an iterable of values in the map
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.iterable.d.ts:158
+node\_modules/typescript/lib/lib.es2015.iterable.d.ts:134
 
 ***
 
@@ -382,7 +378,7 @@ Groups members of an iterable according to the return value of the passed callba
 
 #### Parameters
 
-• **items**: `Iterable`\<`T`, `any`, `any`\>
+• **items**: `Iterable`\<`T`\>
 
 An iterable.
 
@@ -400,4 +396,4 @@ A callback which will be invoked for each item in items.
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.esnext.collection.d.ts:25
+node\_modules/typescript/lib/lib.esnext.collection.d.ts:25

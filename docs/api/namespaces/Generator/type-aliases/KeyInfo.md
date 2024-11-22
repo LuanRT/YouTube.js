@@ -6,4 +6,4 @@
 
 ## Defined in
 
-[src/parser/generator.ts:72](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/generator.ts#L72)
+[src/parser/generator.ts:74](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/generator.ts#L74)

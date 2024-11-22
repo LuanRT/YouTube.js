@@ -28,4 +28,4 @@ The key info and any unimplemented dependencies
 
 ## Defined in
 
-[src/parser/generator.ts:374](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/generator.ts#L374)
+[src/parser/generator.ts:376](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/generator.ts#L376)

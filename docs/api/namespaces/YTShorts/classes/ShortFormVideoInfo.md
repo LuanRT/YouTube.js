@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[src/parser/ytshorts/ShortFormVideoInfo.ts:16](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytshorts/ShortFormVideoInfo.ts#L16)
+[src/parser/ytshorts/ShortFormVideoInfo.ts:15](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytshorts/ShortFormVideoInfo.ts#L15)
 
 ## Properties
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:31](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L31)
+[src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L39)
 
 ***
 
@@ -192,7 +192,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:30](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L30)
+[src/core/mixins/MediaInfo.ts:38](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L38)
 
 ***
 
@@ -206,7 +206,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:34](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L34)
+[src/core/mixins/MediaInfo.ts:42](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L42)
 
 ***
 
@@ -220,7 +220,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:35](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L35)
+[src/core/mixins/MediaInfo.ts:43](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L43)
 
 ***
 
@@ -230,7 +230,7 @@
 
 #### Defined in
 
-[src/parser/ytshorts/ShortFormVideoInfo.ts:13](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytshorts/ShortFormVideoInfo.ts#L13)
+[src/parser/ytshorts/ShortFormVideoInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytshorts/ShortFormVideoInfo.ts#L12)
 
 ***
 
@@ -244,7 +244,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:33](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L33)
+[src/core/mixins/MediaInfo.ts:41](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L41)
 
 ***
 
@@ -258,7 +258,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:37](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L37)
+[src/core/mixins/MediaInfo.ts:45](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L45)
 
 ***
 
@@ -272,7 +272,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:38](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L38)
+[src/core/mixins/MediaInfo.ts:46](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L46)
 
 ***
 
@@ -282,13 +282,13 @@
 
 #### Defined in
 
-[src/parser/ytshorts/ShortFormVideoInfo.ts:14](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytshorts/ShortFormVideoInfo.ts#L14)
+[src/parser/ytshorts/ShortFormVideoInfo.ts:13](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytshorts/ShortFormVideoInfo.ts#L13)
 
 ***
 
 ### storyboards?
 
-> `optional` **storyboards**: [`PlayerLiveStoryboardSpec`](../../YTNodes/classes/PlayerLiveStoryboardSpec.md) \| [`PlayerStoryboardSpec`](../../YTNodes/classes/PlayerStoryboardSpec.md)
+> `optional` **storyboards**: [`PlayerStoryboardSpec`](../../YTNodes/classes/PlayerStoryboardSpec.md) \| [`PlayerLiveStoryboardSpec`](../../YTNodes/classes/PlayerLiveStoryboardSpec.md)
 
 #### Inherited from
 
@@ -296,7 +296,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:32](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L32)
+[src/core/mixins/MediaInfo.ts:40](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L40)
 
 ***
 
@@ -310,7 +310,7 @@
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:36](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L36)
+[src/core/mixins/MediaInfo.ts:44](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L44)
 
 ***
 
@@ -320,15 +320,13 @@
 
 #### Defined in
 
-[src/parser/ytshorts/ShortFormVideoInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytshorts/ShortFormVideoInfo.ts#L12)
+[src/parser/ytshorts/ShortFormVideoInfo.ts:11](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytshorts/ShortFormVideoInfo.ts#L11)
 
 ## Accessors
 
 ### actions
 
 > `get` **actions**(): [`Actions`](../../../classes/Actions.md)
-
-Actions instance.
 
 #### Returns
 
@@ -340,7 +338,7 @@ Actions instance.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:223](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L223)
+[src/core/mixins/MediaInfo.ts:226](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L226)
 
 ***
 
@@ -360,7 +358,7 @@ Content Playback Nonce.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:230](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L230)
+[src/core/mixins/MediaInfo.ts:233](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L233)
 
 ***
 
@@ -368,7 +366,7 @@ Content Playback Nonce.
 
 > `get` **page**(): [[`IPlayerResponse`](../../APIResponseTypes/type-aliases/IPlayerResponse.md), `INextResponse?`]
 
-Original parsed InnerTube response.
+Parsed InnerTube response.
 
 #### Returns
 
@@ -380,7 +378,7 @@ Original parsed InnerTube response.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:237](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L237)
+[src/core/mixins/MediaInfo.ts:240](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L240)
 
 ***
 
@@ -396,7 +394,7 @@ Checks if continuation is available for the watch next feed.
 
 #### Defined in
 
-[src/parser/ytshorts/ShortFormVideoInfo.ts:52](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytshorts/ShortFormVideoInfo.ts#L52)
+[src/parser/ytshorts/ShortFormVideoInfo.ts:47](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytshorts/ShortFormVideoInfo.ts#L47)
 
 ## Methods
 
@@ -424,7 +422,7 @@ Adds video to the watch history.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:199](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L199)
+[src/core/mixins/MediaInfo.ts:207](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L207)
 
 ***
 
@@ -450,7 +448,7 @@ Options
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:149](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L149)
+[src/core/mixins/MediaInfo.ts:157](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L157)
 
 ***
 
@@ -476,7 +474,7 @@ Download options.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:157](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L157)
+[src/core/mixins/MediaInfo.ts:165](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L165)
 
 ***
 
@@ -502,7 +500,7 @@ Get a cleaned up representation of the adaptive_formats
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:132](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L132)
+[src/core/mixins/MediaInfo.ts:140](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L140)
 
 ***
 
@@ -522,7 +520,7 @@ Retrieves the video's transcript.
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:170](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L170)
+[src/core/mixins/MediaInfo.ts:178](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L178)
 
 ***
 
@@ -536,7 +534,7 @@ Retrieves the video's transcript.
 
 #### Defined in
 
-[src/parser/ytshorts/ShortFormVideoInfo.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytshorts/ShortFormVideoInfo.ts#L28)
+[src/parser/ytshorts/ShortFormVideoInfo.ts:27](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytshorts/ShortFormVideoInfo.ts#L27)
 
 ***
 
@@ -572,4 +570,4 @@ DASH manifest
 
 #### Defined in
 
-[src/core/mixins/MediaInfo.ts:97](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/core/mixins/MediaInfo.ts#L97)
+[src/core/mixins/MediaInfo.ts:105](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/core/mixins/MediaInfo.ts#L105)

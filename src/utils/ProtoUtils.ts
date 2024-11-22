@@ -1,6 +1,13 @@
 import { base64ToU8, u8ToBase64 } from './Utils.js';
 import { NextParams, PeformCommentActionParams, VisitorData } from '../../protos/generated/misc/params.js';
 
+export type CommentActionParamsArgs = {
+  comment_id?: string,
+  video_id?: string,
+  text?: string,
+  target_language?: string
+}
+
 export function encodeVisitorData(id: string, timestamp: number): string {
   const writer = VisitorData.encode({ id, timestamp });
   return encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
@@ -10,12 +17,7 @@ export function decodeVisitorData(visitor_data: string): VisitorData {
   return VisitorData.decode(base64ToU8(decodeURIComponent(visitor_data).replace(/-/g, '+').replace(/_/g, '/')));
 }
 
-export function encodeCommentActionParams(type: number, args: {
-  comment_id?: string,
-  video_id?: string,
-  text?: string,
-  target_language?: string
-} = {}): string {
+export function encodeCommentActionParams(type: number, args: CommentActionParamsArgs = {}): string {
   const data: PeformCommentActionParams = {
     type,
     commentId: args.comment_id || ' ',

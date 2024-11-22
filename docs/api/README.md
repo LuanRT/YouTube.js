@@ -2,9 +2,33 @@
 
 ## References
 
+### AddToPlaylistServiceRequest
+
+Re-exports [AddToPlaylistServiceRequest](namespaces/APIResponseTypes/type-aliases/AddToPlaylistServiceRequest.md)
+
+***
+
 ### AppendContinuationItemsAction
 
 Re-exports [AppendContinuationItemsAction](namespaces/YTNodes/classes/AppendContinuationItemsAction.md)
+
+***
+
+### BrowseRequest
+
+Re-exports [BrowseRequest](namespaces/APIResponseTypes/type-aliases/BrowseRequest.md)
+
+***
+
+### BrowseRequestSupportedMetadata
+
+Re-exports [BrowseRequestSupportedMetadata](namespaces/APIResponseTypes/type-aliases/BrowseRequestSupportedMetadata.md)
+
+***
+
+### ContinuationRequest
+
+Re-exports [ContinuationRequest](namespaces/APIResponseTypes/type-aliases/ContinuationRequest.md)
 
 ***
 
@@ -14,15 +38,69 @@ Re-exports [CpnSource](namespaces/APIResponseTypes/type-aliases/CpnSource.md)
 
 ***
 
+### CreateCommentRequest
+
+Re-exports [CreateCommentRequest](namespaces/APIResponseTypes/type-aliases/CreateCommentRequest.md)
+
+***
+
+### CreatePlaylistServiceRequest
+
+Re-exports [CreatePlaylistServiceRequest](namespaces/APIResponseTypes/type-aliases/CreatePlaylistServiceRequest.md)
+
+***
+
 ### default
 
 Renames and re-exports [Innertube](classes/Innertube.md)
 
 ***
 
+### DeletePlaylistServiceRequest
+
+Re-exports [DeletePlaylistServiceRequest](namespaces/APIResponseTypes/type-aliases/DeletePlaylistServiceRequest.md)
+
+***
+
+### FeedbackContext
+
+Re-exports [FeedbackContext](namespaces/APIResponseTypes/type-aliases/FeedbackContext.md)
+
+***
+
+### FeedbackRequest
+
+Re-exports [FeedbackRequest](namespaces/APIResponseTypes/type-aliases/FeedbackRequest.md)
+
+***
+
+### FormData
+
+Re-exports [FormData](namespaces/APIResponseTypes/type-aliases/FormData.md)
+
+***
+
+### GetAccountsListInnertubeRequest
+
+Re-exports [GetAccountsListInnertubeRequest](namespaces/APIResponseTypes/type-aliases/GetAccountsListInnertubeRequest.md)
+
+***
+
+### GetKidsBlocklistPickerRequest
+
+Re-exports [GetKidsBlocklistPickerRequest](namespaces/APIResponseTypes/type-aliases/GetKidsBlocklistPickerRequest.md)
+
+***
+
 ### IBrowseResponse
 
 Re-exports [IBrowseResponse](namespaces/APIResponseTypes/type-aliases/IBrowseResponse.md)
+
+***
+
+### IEndpoint
+
+Re-exports [IEndpoint](namespaces/APIResponseTypes/interfaces/IEndpoint.md)
 
 ***
 
@@ -47,6 +125,12 @@ Re-exports [IGuideResponse](namespaces/APIResponseTypes/type-aliases/IGuideRespo
 ### INextResponse
 
 Re-exports [INextResponse](namespaces/APIResponseTypes/type-aliases/INextResponse.md)
+
+***
+
+### InlineSettingStatus
+
+Re-exports [InlineSettingStatus](namespaces/APIResponseTypes/type-aliases/InlineSettingStatus.md)
 
 ***
 
@@ -128,6 +212,54 @@ Re-exports [IUpdatedMetadataResponse](namespaces/APIResponseTypes/type-aliases/I
 
 ***
 
+### LikeRequest
+
+Re-exports [LikeRequest](namespaces/APIResponseTypes/type-aliases/LikeRequest.md)
+
+***
+
+### LikeTarget
+
+Re-exports [LikeTarget](namespaces/APIResponseTypes/type-aliases/LikeTarget.md)
+
+***
+
+### LiveChatItemContextMenuRequest
+
+Re-exports [LiveChatItemContextMenuRequest](namespaces/APIResponseTypes/type-aliases/LiveChatItemContextMenuRequest.md)
+
+***
+
+### ModifyChannelNotificationPreferenceRequest
+
+Re-exports [ModifyChannelNotificationPreferenceRequest](namespaces/APIResponseTypes/type-aliases/ModifyChannelNotificationPreferenceRequest.md)
+
+***
+
+### NextNavendpoint
+
+Re-exports [NextNavendpoint](namespaces/APIResponseTypes/type-aliases/NextNavendpoint.md)
+
+***
+
+### PerformCommentActionRequest
+
+Re-exports [PerformCommentActionRequest](namespaces/APIResponseTypes/type-aliases/PerformCommentActionRequest.md)
+
+***
+
+### PlaylistEditRequest
+
+Re-exports [PlaylistEditRequest](namespaces/APIResponseTypes/type-aliases/PlaylistEditRequest.md)
+
+***
+
+### PlaylistPrivacyStatus
+
+Re-exports [PlaylistPrivacyStatus](namespaces/APIResponseTypes/type-aliases/PlaylistPrivacyStatus.md)
+
+***
+
 ### RawData
 
 Re-exports [RawData](namespaces/APIResponseTypes/type-aliases/RawData.md)
@@ -138,15 +270,57 @@ Re-exports [RawData](namespaces/APIResponseTypes/type-aliases/RawData.md)
 
 Re-exports [RawNode](namespaces/APIResponseTypes/type-aliases/RawNode.md)
 
+***
+
+### ReelWatchRequest
+
+Re-exports [ReelWatchRequest](namespaces/APIResponseTypes/type-aliases/ReelWatchRequest.md)
+
+***
+
+### SearchRequest
+
+Re-exports [SearchRequest](namespaces/APIResponseTypes/type-aliases/SearchRequest.md)
+
+***
+
+### ShareEntityServiceRequest
+
+Re-exports [ShareEntityServiceRequest](namespaces/APIResponseTypes/type-aliases/ShareEntityServiceRequest.md)
+
+***
+
+### SubscribeRequest
+
+Re-exports [SubscribeRequest](namespaces/APIResponseTypes/type-aliases/SubscribeRequest.md)
+
+***
+
+### UnsubscribeRequest
+
+Re-exports [UnsubscribeRequest](namespaces/APIResponseTypes/type-aliases/UnsubscribeRequest.md)
+
+***
+
+### WatchNextRequest
+
+Re-exports [WatchNextRequest](namespaces/APIResponseTypes/type-aliases/WatchNextRequest.md)
+
+***
+
+### WatchRequest
+
+Re-exports [WatchRequest](namespaces/APIResponseTypes/type-aliases/WatchRequest.md)
+
 ## Namespaces
 
 - [APIResponseTypes](namespaces/APIResponseTypes/README.md)
 - [Clients](namespaces/Clients/README.md)
 - [Constants](namespaces/Constants/README.md)
-- [Endpoints](namespaces/Endpoints/README.md)
 - [FormatUtils](namespaces/FormatUtils/README.md)
 - [Generator](namespaces/Generator/README.md)
 - [Helpers](namespaces/Helpers/README.md)
+- [Log](namespaces/Log/README.md)
 - [LZW](namespaces/LZW/README.md)
 - [Managers](namespaces/Managers/README.md)
 - [Misc](namespaces/Misc/README.md)
@@ -176,7 +350,6 @@ Re-exports [RawNode](namespaces/APIResponseTypes/type-aliases/RawNode.md)
 - [Innertube](classes/Innertube.md)
 - [ItemSectionContinuation](classes/ItemSectionContinuation.md)
 - [LiveChatContinuation](classes/LiveChatContinuation.md)
-- [Log](classes/Log.md)
 - [MusicPlaylistShelfContinuation](classes/MusicPlaylistShelfContinuation.md)
 - [MusicShelfContinuation](classes/MusicShelfContinuation.md)
 - [NavigateAction](classes/NavigateAction.md)

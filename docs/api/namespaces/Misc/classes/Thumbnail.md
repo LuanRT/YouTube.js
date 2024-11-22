@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Thumbnail.ts:8](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Thumbnail.ts#L8)
+[src/parser/classes/misc/Thumbnail.ts:8](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/classes/misc/Thumbnail.ts#L8)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Thumbnail.ts:6](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Thumbnail.ts#L6)
+[src/parser/classes/misc/Thumbnail.ts:6](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/classes/misc/Thumbnail.ts#L6)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Thumbnail.ts:4](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Thumbnail.ts#L4)
+[src/parser/classes/misc/Thumbnail.ts:4](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/classes/misc/Thumbnail.ts#L4)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Thumbnail.ts:5](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Thumbnail.ts#L5)
+[src/parser/classes/misc/Thumbnail.ts:5](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/classes/misc/Thumbnail.ts#L5)
 
 ## Methods
 
@@ -68,4 +68,4 @@ Get thumbnails from response object.
 
 #### Defined in
 
-[src/parser/classes/misc/Thumbnail.ts:17](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/classes/misc/Thumbnail.ts#L17)
+[src/parser/classes/misc/Thumbnail.ts:17](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/classes/misc/Thumbnail.ts#L17)

@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:29](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L29)
+[src/parser/ytmusic/Playlist.ts:29](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L29)
 
 ## Properties
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:27](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L27)
+[src/parser/ytmusic/Playlist.ts:27](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L27)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:26](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L26)
+[src/parser/ytmusic/Playlist.ts:26](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L26)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:25](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L25)
+[src/parser/ytmusic/Playlist.ts:25](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L25)
 
 ## Accessors
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:148](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L148)
+[src/parser/ytmusic/Playlist.ts:148](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L148)
 
 ***
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:144](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L144)
+[src/parser/ytmusic/Playlist.ts:144](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L144)
 
 ***
 
@@ -92,7 +92,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:140](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L140)
+[src/parser/ytmusic/Playlist.ts:140](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L140)
 
 ## Methods
 
@@ -108,7 +108,7 @@ Retrieves playlist items continuation.
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:55](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L55)
+[src/parser/ytmusic/Playlist.ts:55](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L55)
 
 ***
 
@@ -124,7 +124,7 @@ Retrieves related playlists
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:70](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L70)
+[src/parser/ytmusic/Playlist.ts:70](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L70)
 
 ***
 
@@ -142,4 +142,4 @@ Retrieves related playlists
 
 #### Defined in
 
-[src/parser/ytmusic/Playlist.ts:99](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/ytmusic/Playlist.ts#L99)
+[src/parser/ytmusic/Playlist.ts:99](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/ytmusic/Playlist.ts#L99)

@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/EventEmitterLike.ts#L6)
+[src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/EventEmitterLike.ts#L6)
 
 ## Methods
 
@@ -69,7 +69,7 @@ The event listener is appended to target's event listener list and is not append
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.dom.d.ts:8303
+node\_modules/typescript/lib/lib.dom.d.ts:8256
 
 ***
 
@@ -95,7 +95,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.dom.d.ts:8309
+node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 ***
 
@@ -115,7 +115,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.dom.d.ts:8
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/EventEmitterLike.ts#L10)
+[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/EventEmitterLike.ts#L10)
 
 ***
 
@@ -135,7 +135,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.dom.d.ts:8
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/EventEmitterLike.ts#L40)
+[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/EventEmitterLike.ts#L40)
 
 ***
 
@@ -155,7 +155,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.dom.d.ts:8
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/EventEmitterLike.ts#L15)
+[src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/EventEmitterLike.ts#L15)
 
 ***
 
@@ -175,7 +175,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.dom.d.ts:8
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/EventEmitterLike.ts#L27)
+[src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/EventEmitterLike.ts#L27)
 
 ***
 
@@ -205,4 +205,4 @@ Removes the event listener in target's event listener list with the same type, c
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.dom.d.ts:8315
+node\_modules/typescript/lib/lib.dom.d.ts:8268

@@ -4,7 +4,7 @@ import FeedFilterChipBar from '../../parser/classes/FeedFilterChipBar.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
 import type { ObservedArray } from '../../parser/helpers.js';
-import type { IParsedResponse } from '../../parser/types/index.js';
+import type { IParsedResponse } from '../../parser/index.js';
 import type { ApiResponse, Actions } from '../index.js';
 
 export default class FilterableFeed<T extends IParsedResponse> extends Feed<T> {

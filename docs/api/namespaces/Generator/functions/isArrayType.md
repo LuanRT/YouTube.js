@@ -20,4 +20,4 @@ If it is an array, return the InferenceType. Otherwise, return false.
 
 ## Defined in
 
-[src/parser/generator.ts:220](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/generator.ts#L220)
+[src/parser/generator.ts:222](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/generator.ts#L222)

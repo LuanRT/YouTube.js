@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:115](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/types/ParsedResponse.ts#L115)
+[src/parser/types/ParsedResponse.ts:115](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/types/ParsedResponse.ts#L115)
 
 ***
 
@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:116](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/types/ParsedResponse.ts#L116)
+[src/parser/types/ParsedResponse.ts:116](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/types/ParsedResponse.ts#L116)
 
 ***
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:113](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/types/ParsedResponse.ts#L113)
+[src/parser/types/ParsedResponse.ts:113](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/types/ParsedResponse.ts#L113)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:114](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/types/ParsedResponse.ts#L114)
+[src/parser/types/ParsedResponse.ts:114](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/types/ParsedResponse.ts#L114)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:117](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/types/ParsedResponse.ts#L117)
+[src/parser/types/ParsedResponse.ts:117](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/types/ParsedResponse.ts#L117)
 
 ***
 
@@ -60,4 +60,4 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:118](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/types/ParsedResponse.ts#L118)
+[src/parser/types/ParsedResponse.ts:118](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/types/ParsedResponse.ts#L118)

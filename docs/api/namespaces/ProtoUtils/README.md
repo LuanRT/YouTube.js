@@ -4,6 +4,10 @@
 
 ## Index
 
+### Type Aliases
+
+- [CommentActionParamsArgs](type-aliases/CommentActionParamsArgs.md)
+
 ### Functions
 
 - [decodeVisitorData](functions/decodeVisitorData.md)

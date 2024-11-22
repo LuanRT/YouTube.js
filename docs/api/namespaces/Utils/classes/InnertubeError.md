@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Utils.ts#L31)
+[src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/Utils.ts#L31)
 
 ## Properties
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2022.error.d.ts:24
+node\_modules/typescript/lib/lib.es2022.error.d.ts:24
 
 ***
 
@@ -58,7 +58,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2022.err
 
 #### Defined in
 
-[src/utils/Utils.ts:27](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Utils.ts#L27)
+[src/utils/Utils.ts:27](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/Utils.ts#L27)
 
 ***
 
@@ -68,7 +68,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2022.err
 
 #### Defined in
 
-[src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Utils.ts#L29)
+[src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/Utils.ts#L29)
 
 ***
 
@@ -82,7 +82,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es2022.err
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1077
+node\_modules/typescript/lib/lib.es5.d.ts:1077
 
 ***
 
@@ -96,7 +96,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1076
+node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 ***
 
@@ -110,7 +110,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1078
+node\_modules/typescript/lib/lib.es5.d.ts:1078
 
 ***
 
@@ -120,7 +120,7 @@ node\_modules/.deno/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-[src/utils/Utils.ts:28](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/utils/Utils.ts#L28)
+[src/utils/Utils.ts:28](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/utils/Utils.ts#L28)
 
 ***
 
@@ -150,7 +150,7 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 #### Defined in
 
-node\_modules/.deno/@types+node@17.0.45/node\_modules/@types/node/globals.d.ts:11
+node\_modules/@types/node/globals.d.ts:11
 
 ***
 
@@ -164,7 +164,7 @@ node\_modules/.deno/@types+node@17.0.45/node\_modules/@types/node/globals.d.ts:1
 
 #### Defined in
 
-node\_modules/.deno/@types+node@17.0.45/node\_modules/@types/node/globals.d.ts:13
+node\_modules/@types/node/globals.d.ts:13
 
 ## Methods
 
@@ -190,4 +190,4 @@ Create .stack property on a target object
 
 #### Defined in
 
-node\_modules/.deno/@types+node@17.0.45/node\_modules/@types/node/globals.d.ts:4
+node\_modules/@types/node/globals.d.ts:4

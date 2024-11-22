@@ -2,8 +2,8 @@
 
 # Type Alias: InferenceType
 
-> **InferenceType**: [`RendererInferenceType`](../interfaces/RendererInferenceType.md) \| [`MiscInferenceType`](MiscInferenceType.md) \| [`ObjectInferenceType`](../interfaces/ObjectInferenceType.md) \| [`PrimativeInferenceType`](../interfaces/PrimativeInferenceType.md) \| [`ArrayInferenceType`](ArrayInferenceType.md)
+> **InferenceType**: [`RendererInferenceType`](../interfaces/RendererInferenceType.md) \| [`MiscInferenceType`](MiscInferenceType.md) \| [`ObjectInferenceType`](../interfaces/ObjectInferenceType.md) \| [`PrimitiveInferenceType`](../interfaces/PrimitiveInferenceType.md) \| [`ArrayInferenceType`](ArrayInferenceType.md)
 
 ## Defined in
 
-[src/parser/generator.ts:70](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/generator.ts#L70)
+[src/parser/generator.ts:72](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/generator.ts#L72)

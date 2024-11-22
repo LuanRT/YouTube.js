@@ -31,6 +31,9 @@ export class YTNode {
 
   /**
    * Cast to one of the given types.
+   * @param types - The types to cast to
+   * @returns The node cast to one of the given types
+   * @throws {ParsingError} If the node is not of the given type
    */
   as<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): InstanceType<K[number]> {
     if (!this.is(...types)) {
@@ -52,7 +55,7 @@ export class YTNode {
    * Assert that the node has the given key and return it.
    * @param key - The key to check
    * @returns The value of the key wrapped in a Maybe
-   * @throws If the node does not have the key
+   * @throws {ParsingError} If the node does not have the key
    */
   key<T extends string, R = any>(key: T) {
     if (!this.hasKey<T, R>(key)) {
@@ -64,6 +67,9 @@ export class YTNode {
 
 const MAYBE_TAG = 'Maybe';
 
+/**
+ * A wrapper class that provides type-safe access to a value.
+ */
 export class Maybe {
   readonly #value;
 
@@ -176,7 +182,7 @@ export class Maybe {
   /**
    * More typesafe variant of {@link Maybe#array}.
    * @returns a proxied array which returns all the values as {@link Maybe}.
-   * @throws If the value is not an array
+   * @throws {TypeError} If the value is not an array
    */
   arrayOfMaybe(): Maybe[] {
     const arrayProps: any[] = [];
@@ -350,44 +356,79 @@ export class SuperParsedResult<T extends YTNode = YTNode> {
   }
 }
 
+/**
+ * An extended array type that includes additional utility methods for filtering and manipulating YTNode objects.
+ */
 export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
-    /**
-     * Returns the first object to match the rule.
-     */
-    get: (rule: object, del_item?: boolean) => T | undefined;
-    /**
-     * Returns all objects that match the rule.
-     */
-    getAll: (rule: object, del_items?: boolean) => T[];
-    /**
-     * Returns the first object to match the condition.
-     */
-    matchCondition: (condition: (node: T) => boolean) => T | undefined;
-    /**
-     * Removes the item at the given index.
-     */
-    remove: (index: number) => T[];
-    /**
-     * Get all items of a specific type.
-     */
-    filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
-    /**
-     * Get the first of a specific type.
-     */
-    firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
-    /**
-     * Get the first item.
-     */
-    first: () => T;
-    /**
-     * This is similar to filter but throws if there's a type mismatch.
-     */
-    as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
+  /**
+   * Returns the first object that matches the specified rule object.
+   * @param rule - An object containing properties to match against
+   * @param del_item - Optional flag to remove the matched item from the array
+   * @returns The first matching object or undefined if no match is found
+   */
+  get: (rule: object, del_item?: boolean) => T | undefined;
+
+  /**
+   * Returns all objects that match the specified rule object.
+   * @param rule - An object containing properties to match against
+   * @param del_items - Optional flag to remove all matched items from the array
+   * @returns An array of all matching objects
+   */
+  getAll: (rule: object, del_items?: boolean) => T[];
+
+  /**
+   * Returns the first object that satisfies the provided condition function.
+   * @param condition - A predicate function that tests each element
+   * @returns The first element that satisfies the condition or undefined if none found
+   */
+  matchCondition: (condition: (node: T) => boolean) => T | undefined;
+
+  /**
+   * Removes the item at the specified index.
+   * @param index - The index of the item to remove
+   * @returns The modified array after removal
+   */
+  remove: (index: number) => T[];
+
+  /**
+   * Filters the array to only include items of the specified YTNode types.
+   * @template R - Type extending YTNode
+   * @template K - Array of types (YTNodes)
+   * @param types - Rest parameter of YTNode constructor types to filter by
+   * @returns A new ObservedArray containing only items of the specified types
+   */
+  filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
+
+  /**
+   * Returns the first item in the array that matches any of the specified YTNode types.
+   * @template R - Type extending YTNode
+   * @template K - Array of types (YTNodes)
+   * @param types - Rest parameter of YTNode constructor types to match against
+   * @returns The first matching item or undefined if none found
+   */
+  firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
+
+  /**
+   * Returns the first item in the array.
+   * @returns The first item in the array
+   */
+  first: () => T;
+
+  /**
+   * Similar to `filter` but with strict type checking. Filters the array to include only items of the specified types.
+   * @template R - Type extending YTNode
+   * @template K - Array of types (YTNodes)
+   * @param types - Rest parameter of YTNode constructor types to filter by
+   * @returns A new ObservedArray containing only items of the specified types
+   * @throws {ParsingError} If an item is not of the specified type
+   */
+  as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
 };
 
 /**
- * Creates a trap to intercept property access
- * and add utilities to an object.
+ * Creates an observed array that provides additional utility methods for array manipulation and filtering.
+ * @template T - Type extending YTNode
+ * @param obj - Array to be observed
  */
 export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
   return new Proxy(obj, {
@@ -465,37 +506,6 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
       return Reflect.get(target, prop);
     }
   }) as ObservedArray<T>;
-}
-
-export const WEB_PATHS = {
-  WEB_UNPLUGGED: '^unplugged/',
-  WEB_UNPLUGGED_ONBOARDING: '^unplugged/',
-  WEB_UNPLUGGED_OPS: '^unplugged/',
-  WEB_UNPLUGGED_PUBLIC: '^unplugged/',
-  WEB_CREATOR: '^creator/',
-  WEB_KIDS: '^kids/',
-  WEB_EXPERIMENTS: '^experiments/',
-  WEB_MUSIC: '^music/',
-  WEB_REMIX: '^music/',
-  WEB_MUSIC_EMBEDDED_PLAYER: '^main_app/|^sfv/'
-};
-
-export function getApiPath(paths: string[], interface_name?: string): string {
-  const target_interface_name = interface_name || 'UNKNOWN_INTERFACE';
-
-  if (paths.length === 1)
-    return paths[0];
-
-  const target_interface_reg = WEB_PATHS[target_interface_name as keyof typeof WEB_PATHS];
-  if (target_interface_reg) {
-    for (const path of paths) {
-      if (new RegExp(target_interface_reg).test(path)) {
-        return path;
-      }
-    }
-  }
-
-  return paths[0];
 }
 
 export class Memo extends Map<string, YTNode[]> {

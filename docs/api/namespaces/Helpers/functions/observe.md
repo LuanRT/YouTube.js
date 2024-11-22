@@ -4,16 +4,19 @@
 
 > **observe**\<`T`\>(`obj`): [`ObservedArray`](../type-aliases/ObservedArray.md)\<`T`\>
 
-Creates a trap to intercept property access
-and add utilities to an object.
+Creates an observed array that provides additional utility methods for array manipulation and filtering.
 
 ## Type Parameters
 
 • **T** *extends* [`YTNode`](../classes/YTNode.md)
 
+Type extending YTNode
+
 ## Parameters
 
 • **obj**: `T`[]
+
+Array to be observed
 
 ## Returns
 
@@ -21,4 +24,4 @@ and add utilities to an object.
 
 ## Defined in
 
-[src/parser/helpers.ts:394](https://github.com/LuanRT/YouTube.js/blob/305a398158a6cac82e6ef288fed4bf1661c89d52/src/parser/helpers.ts#L394)
+[src/parser/helpers.ts:433](https://github.com/LuanRT/YouTube.js/blob/fc5571629eca037af7de03f4b903da6add1f300b/src/parser/helpers.ts#L433)

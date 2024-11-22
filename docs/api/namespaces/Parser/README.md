@@ -21,6 +21,8 @@
 - [parseActions](functions/parseActions.md)
 - [parseArray](functions/parseArray.md)
 - [parseC](functions/parseC.md)
+- [parseCommand](functions/parseCommand.md)
+- [parseCommands](functions/parseCommands.md)
 - [parseFormats](functions/parseFormats.md)
 - [parseItem](functions/parseItem.md)
 - [parseLC](functions/parseLC.md)
