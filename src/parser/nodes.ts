@@ -18,14 +18,6 @@ export { default as UpdateSubscribeButtonAction } from './classes/actions/Update
 export { default as AddToPlaylist } from './classes/AddToPlaylist.js';
 export { default as Alert } from './classes/Alert.js';
 export { default as AlertWithButton } from './classes/AlertWithButton.js';
-export { default as AnalyticsMainAppKeyMetrics } from './classes/analytics/AnalyticsMainAppKeyMetrics.js';
-export { default as AnalyticsRoot } from './classes/analytics/AnalyticsRoot.js';
-export { default as AnalyticsShortsCarouselCard } from './classes/analytics/AnalyticsShortsCarouselCard.js';
-export { default as AnalyticsVideo } from './classes/analytics/AnalyticsVideo.js';
-export { default as AnalyticsVodCarouselCard } from './classes/analytics/AnalyticsVodCarouselCard.js';
-export { default as CtaGoToCreatorStudio } from './classes/analytics/CtaGoToCreatorStudio.js';
-export { default as DataModelSection } from './classes/analytics/DataModelSection.js';
-export { default as StatRow } from './classes/analytics/StatRow.js';
 export { default as AttributionView } from './classes/AttributionView.js';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.js';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.js';
