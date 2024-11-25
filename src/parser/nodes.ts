@@ -9,6 +9,7 @@ export { default as AccountItemSection } from './classes/AccountItemSection.js';
 export { default as AccountItemSectionHeader } from './classes/AccountItemSectionHeader.js';
 export { default as AccountSectionList } from './classes/AccountSectionList.js';
 export { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction.js';
+export { default as ChangeEngagementPanelVisibilityAction } from './classes/actions/ChangeEngagementPanelVisibilityAction.js';
 export { default as GetMultiPageMenuAction } from './classes/actions/GetMultiPageMenuAction.js';
 export { default as OpenPopupAction } from './classes/actions/OpenPopupAction.js';
 export { default as SendFeedbackAction } from './classes/actions/SendFeedbackAction.js';
