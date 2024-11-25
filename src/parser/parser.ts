@@ -78,7 +78,6 @@ const IGNORED_LIST = new Set([
   'PrimetimePromo',
   'BackgroundPromo',
   'PromotedSparklesWeb',
-  'RunAttestationCommand',
   'CompactPromotedVideo',
   'BrandVideoShelf',
   'BrandVideoSingleton',

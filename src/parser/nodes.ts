@@ -70,6 +70,7 @@ export { default as AddToPlaylistCommand } from './classes/commands/AddToPlaylis
 export { default as CommandExecutorCommand } from './classes/commands/CommandExecutorCommand.js';
 export { default as ContinuationCommand } from './classes/commands/ContinuationCommand.js';
 export { default as GetKidsBlocklistPickerCommand } from './classes/commands/GetKidsBlocklistPickerCommand.js';
+export { default as RunAttestationCommand } from './classes/commands/RunAttestationCommand.js';
 export { default as ShowDialogCommand } from './classes/commands/ShowDialogCommand.js';
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.js';
 export { default as CommentActionButtons } from './classes/comments/CommentActionButtons.js';
