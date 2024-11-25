@@ -363,6 +363,7 @@
 - [RichMetadataRow](classes/RichMetadataRow.md)
 - [RichSection](classes/RichSection.md)
 - [RichShelf](classes/RichShelf.md)
+- [RunAttestationCommand](classes/RunAttestationCommand.md)
 - [SearchBox](classes/SearchBox.md)
 - [SearchEndpoint](classes/SearchEndpoint.md)
 - [SearchFilter](classes/SearchFilter.md)

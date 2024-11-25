@@ -10,4 +10,4 @@
 
 ## Defined in
 
-[src/core/Actions.ts:20](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/core/Actions.ts#L20)
+[src/core/Actions.ts:20](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Actions.ts#L20)

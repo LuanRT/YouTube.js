@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:12](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/core/managers/AccountManager.ts#L12)
+[src/core/managers/AccountManager.ts:12](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/AccountManager.ts#L12)
 
 ## Methods
 
@@ -34,7 +34,7 @@ Retrieves channel info.
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:19](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/core/managers/AccountManager.ts#L19)
+[src/core/managers/AccountManager.ts:19](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/AccountManager.ts#L19)
 
 ***
 
@@ -50,4 +50,4 @@ Gets YouTube settings.
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:30](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/core/managers/AccountManager.ts#L30)
+[src/core/managers/AccountManager.ts:30](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/AccountManager.ts#L30)

@@ -113,4 +113,4 @@ A good way to get a valid one is by either grabbing it from a browser or calling
 
 ## Defined in
 
-[src/core/Session.ts:111](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/core/Session.ts#L111)
+[src/core/Session.ts:111](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Session.ts#L111)

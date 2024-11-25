@@ -1,6 +1,6 @@
-[youtubei.js](../../../README.md) / [YTNodes](../README.md) / ShowLiveChatDialogAction
+[youtubei.js](../../../README.md) / [YTNodes](../README.md) / RunAttestationCommand
 
-# Class: ShowLiveChatDialogAction
+# Class: RunAttestationCommand
 
 ## Extends
 
@@ -8,9 +8,9 @@
 
 ## Constructors
 
-### new ShowLiveChatDialogAction()
+### new RunAttestationCommand()
 
-> **new ShowLiveChatDialogAction**(`data`): [`ShowLiveChatDialogAction`](ShowLiveChatDialogAction.md)
+> **new RunAttestationCommand**(`data`): [`RunAttestationCommand`](RunAttestationCommand.md)
 
 #### Parameters
 
@@ -18,7 +18,7 @@
 
 #### Returns
 
-[`ShowLiveChatDialogAction`](ShowLiveChatDialogAction.md)
+[`RunAttestationCommand`](RunAttestationCommand.md)
 
 #### Overrides
 
@@ -26,17 +26,27 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/ShowLiveChatDialogAction.ts:10](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/ShowLiveChatDialogAction.ts#L10)
+[src/parser/classes/commands/RunAttestationCommand.ts:21](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/commands/RunAttestationCommand.ts#L21)
 
 ## Properties
 
-### dialog
+### engagement\_type
 
-> **dialog**: [`YTNode`](../../Helpers/classes/YTNode.md)
+> **engagement\_type**: `string`
 
 #### Defined in
 
-[src/parser/classes/livechat/ShowLiveChatDialogAction.ts:8](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/ShowLiveChatDialogAction.ts#L8)
+[src/parser/classes/commands/RunAttestationCommand.ts:18](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/commands/RunAttestationCommand.ts#L18)
+
+***
+
+### ids?
+
+> `optional` **ids**: `AttIds`[]
+
+#### Defined in
+
+[src/parser/classes/commands/RunAttestationCommand.ts:19](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/commands/RunAttestationCommand.ts#L19)
 
 ***
 
@@ -56,7 +66,7 @@
 
 ### type
 
-> `static` **type**: `string` = `'ShowLiveChatDialogAction'`
+> `static` **type**: `string` = `'RunAttestationCommand'`
 
 #### Overrides
 
@@ -64,7 +74,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/ShowLiveChatDialogAction.ts:6](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/ShowLiveChatDialogAction.ts#L6)
+[src/parser/classes/commands/RunAttestationCommand.ts:16](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/commands/RunAttestationCommand.ts#L16)
 
 ## Methods
 
@@ -108,7 +118,7 @@ If the node is not of the given type
 
 ### hasKey()
 
-> **hasKey**\<`T`, `R`\>(`key`): `this is ShowLiveChatDialogAction & { [k in string]: R }`
+> **hasKey**\<`T`, `R`\>(`key`): `this is RunAttestationCommand & { [k in string]: R }`
 
 Check for a key without asserting the type.
 
@@ -126,7 +136,7 @@ The key to check
 
 #### Returns
 
-`this is ShowLiveChatDialogAction & { [k in string]: R }`
+`this is RunAttestationCommand & { [k in string]: R }`
 
 Whether the node has the key
 

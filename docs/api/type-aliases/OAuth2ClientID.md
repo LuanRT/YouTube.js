@@ -16,4 +16,4 @@
 
 ## Defined in
 
-[src/core/OAuth2.ts:7](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/core/OAuth2.ts#L7)
+[src/core/OAuth2.ts:7](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/OAuth2.ts#L7)

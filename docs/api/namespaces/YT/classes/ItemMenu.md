@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/youtube/ItemMenu.ts:16](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/ItemMenu.ts#L16)
+[src/parser/youtube/ItemMenu.ts:16](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/ItemMenu.ts#L16)
 
 ## Methods
 
@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[src/parser/youtube/ItemMenu.ts:59](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/ItemMenu.ts#L59)
+[src/parser/youtube/ItemMenu.ts:59](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/ItemMenu.ts#L59)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/parser/youtube/ItemMenu.ts:63](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/ItemMenu.ts#L63)
+[src/parser/youtube/ItemMenu.ts:63](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/ItemMenu.ts#L63)
 
 ***
 
@@ -68,7 +68,7 @@
 
 ##### Defined in
 
-[src/parser/youtube/ItemMenu.ts:28](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/ItemMenu.ts#L28)
+[src/parser/youtube/ItemMenu.ts:28](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/ItemMenu.ts#L28)
 
 #### selectItem(button)
 
@@ -84,4 +84,4 @@
 
 ##### Defined in
 
-[src/parser/youtube/ItemMenu.ts:29](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/ItemMenu.ts#L29)
+[src/parser/youtube/ItemMenu.ts:29](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/ItemMenu.ts#L29)

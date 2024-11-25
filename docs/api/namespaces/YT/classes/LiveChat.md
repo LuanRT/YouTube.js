@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:72](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L72)
+[src/parser/youtube/LiveChat.ts:72](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L72)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:67](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L67)
+[src/parser/youtube/LiveChat.ts:67](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L67)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:70](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L70)
+[src/parser/youtube/LiveChat.ts:70](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L70)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:68](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L68)
+[src/parser/youtube/LiveChat.ts:68](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L68)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:69](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L69)
+[src/parser/youtube/LiveChat.ts:69](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L69)
 
 ***
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:66](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L66)
+[src/parser/youtube/LiveChat.ts:66](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L66)
 
 ## Methods
 
@@ -140,7 +140,7 @@ Filter to apply.
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:286](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L286)
+[src/parser/youtube/LiveChat.ts:286](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L286)
 
 ***
 
@@ -190,7 +190,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/utils/EventEmitterLike.ts#L10)
+[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/EventEmitterLike.ts#L10)
 
 ***
 
@@ -210,7 +210,7 @@ Retrieves given chat item's menu.
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:304](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L304)
+[src/parser/youtube/LiveChat.ts:304](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L304)
 
 ***
 
@@ -234,7 +234,7 @@ Retrieves given chat item's menu.
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/utils/EventEmitterLike.ts#L40)
+[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/EventEmitterLike.ts#L40)
 
 ***
 
@@ -260,7 +260,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:107](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L107)
+[src/parser/youtube/LiveChat.ts:107](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L107)
 
 #### on(type, listener)
 
@@ -282,7 +282,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:108](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L108)
+[src/parser/youtube/LiveChat.ts:108](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L108)
 
 #### on(type, listener)
 
@@ -304,7 +304,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:109](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L109)
+[src/parser/youtube/LiveChat.ts:109](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L109)
 
 #### on(type, listener)
 
@@ -326,7 +326,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:110](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L110)
+[src/parser/youtube/LiveChat.ts:110](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L110)
 
 #### on(type, listener)
 
@@ -348,7 +348,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:111](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L111)
+[src/parser/youtube/LiveChat.ts:111](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L111)
 
 ***
 
@@ -374,7 +374,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:116](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L116)
+[src/parser/youtube/LiveChat.ts:116](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L116)
 
 #### once(type, listener)
 
@@ -396,7 +396,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:117](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L117)
+[src/parser/youtube/LiveChat.ts:117](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L117)
 
 #### once(type, listener)
 
@@ -418,7 +418,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:118](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L118)
+[src/parser/youtube/LiveChat.ts:118](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L118)
 
 #### once(type, listener)
 
@@ -440,7 +440,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:119](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L119)
+[src/parser/youtube/LiveChat.ts:119](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L119)
 
 #### once(type, listener)
 
@@ -462,7 +462,7 @@ Retrieves given chat item's menu.
 
 ##### Defined in
 
-[src/parser/youtube/LiveChat.ts:120](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L120)
+[src/parser/youtube/LiveChat.ts:120](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L120)
 
 ***
 
@@ -512,7 +512,7 @@ Equivalent to "clicking" a button.
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:319](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L319)
+[src/parser/youtube/LiveChat.ts:319](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L319)
 
 ***
 
@@ -534,7 +534,7 @@ Text to send.
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:254](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L254)
+[src/parser/youtube/LiveChat.ts:254](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L254)
 
 ***
 
@@ -548,7 +548,7 @@ Text to send.
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:125](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L125)
+[src/parser/youtube/LiveChat.ts:125](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L125)
 
 ***
 
@@ -562,4 +562,4 @@ Text to send.
 
 #### Defined in
 
-[src/parser/youtube/LiveChat.ts:133](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/LiveChat.ts#L133)
+[src/parser/youtube/LiveChat.ts:133](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/LiveChat.ts#L133)

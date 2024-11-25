@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:28](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L28)
+[src/parser/youtube/Settings.ts:28](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L28)
 
 ## Properties
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:25](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L25)
+[src/parser/youtube/Settings.ts:25](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L25)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:26](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L26)
+[src/parser/youtube/Settings.ts:26](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L26)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:24](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L24)
+[src/parser/youtube/Settings.ts:24](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L24)
 
 ## Accessors
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:132](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L132)
+[src/parser/youtube/Settings.ts:132](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L132)
 
 ***
 
@@ -80,7 +80,7 @@ Returns settings available in the page.
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:105](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L105)
+[src/parser/youtube/Settings.ts:105](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L105)
 
 ***
 
@@ -96,7 +96,7 @@ Returns options available in the sidebar.
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:125](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L125)
+[src/parser/youtube/Settings.ts:125](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L125)
 
 ## Methods
 
@@ -116,7 +116,7 @@ Finds a setting by name and returns it. Use [setting_options](Settings.md#settin
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:79](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L79)
+[src/parser/youtube/Settings.ts:79](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L79)
 
 ***
 
@@ -136,4 +136,4 @@ Selects an item from the sidebar menu. Use [sidebar_items](Settings.md#sidebar_i
 
 #### Defined in
 
-[src/parser/youtube/Settings.ts:55](https://github.com/LuanRT/YouTube.js/blob/cf09f7bab14fcca99e1f3ae428c7337fea58cfa5/src/parser/youtube/Settings.ts#L55)
+[src/parser/youtube/Settings.ts:55](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Settings.ts#L55)
