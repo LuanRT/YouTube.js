@@ -1,8 +1,8 @@
 import { YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
-export default class ChangeEngagementPanelVisibilityEndpoint extends YTNode {
-  static type = 'ChangeEngagementPanelVisibilityEndpoint';
+export default class HideEngagementPanelEndpoint extends YTNode {
+  static type = 'HideEngagementPanelEndpoint';
 
   public panel_identifier: string;
 
