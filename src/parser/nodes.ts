@@ -130,6 +130,7 @@ export { default as CreatePlaylistServiceEndpoint } from './classes/endpoints/Cr
 export { default as DeletePlaylistEndpoint } from './classes/endpoints/DeletePlaylistEndpoint.js';
 export { default as FeedbackEndpoint } from './classes/endpoints/FeedbackEndpoint.js';
 export { default as GetAccountsListInnertubeEndpoint } from './classes/endpoints/GetAccountsListInnertubeEndpoint.js';
+export { default as HideEngagementPanelEndpoint } from './classes/endpoints/HideEngagementPanelEndpoint.js';
 export { default as LikeEndpoint } from './classes/endpoints/LikeEndpoint.js';
 export { default as LiveChatItemContextMenuEndpoint } from './classes/endpoints/LiveChatItemContextMenuEndpoint.js';
 export { default as ModifyChannelNotificationPreferenceEndpoint } from './classes/endpoints/ModifyChannelNotificationPreferenceEndpoint.js';
