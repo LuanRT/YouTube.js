@@ -386,6 +386,10 @@ export default class Session extends EventEmitter {
         }
       }
 
+      if (on_behalf_of_user) {
+        context_data.on_behalf_of_user = on_behalf_of_user;
+      }
+
       session_data = {
         api_key,
         api_version,
