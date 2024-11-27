@@ -14,6 +14,7 @@ export { default as GetMultiPageMenuAction } from './classes/actions/GetMultiPag
 export { default as OpenPopupAction } from './classes/actions/OpenPopupAction.js';
 export { default as SendFeedbackAction } from './classes/actions/SendFeedbackAction.js';
 export { default as SignalAction } from './classes/actions/SignalAction.js';
+export { default as UpdateChannelSwitcherPageAction } from './classes/actions/UpdateChannelSwitcherPageAction.js';
 export { default as UpdateEngagementPanelAction } from './classes/actions/UpdateEngagementPanelAction.js';
 export { default as UpdateSubscribeButtonAction } from './classes/actions/UpdateSubscribeButtonAction.js';
 export { default as AddToPlaylist } from './classes/AddToPlaylist.js';
@@ -50,6 +51,8 @@ export { default as ChannelMobileHeader } from './classes/ChannelMobileHeader.js
 export { default as ChannelOptions } from './classes/ChannelOptions.js';
 export { default as ChannelOwnerEmptyState } from './classes/ChannelOwnerEmptyState.js';
 export { default as ChannelSubMenu } from './classes/ChannelSubMenu.js';
+export { default as ChannelSwitcherHeader } from './classes/ChannelSwitcherHeader.js';
+export { default as ChannelSwitcherPage } from './classes/ChannelSwitcherPage.js';
 export { default as ChannelTagline } from './classes/ChannelTagline.js';
 export { default as ChannelThumbnailWithLink } from './classes/ChannelThumbnailWithLink.js';
 export { default as ChannelVideoPlayer } from './classes/ChannelVideoPlayer.js';
