@@ -143,6 +143,8 @@ export default class HTTPClient {
         if (sapisid) {
           request_headers.set('Authorization', await generateSidAuth(sapisid));
           request_headers.set('X-Goog-Authuser', this.#session.account_index.toString());
+          if (this.#session.context.user.onBehalfOfUser)
+            request_headers.set('X-Goog-PageId', this.#session.context.user.onBehalfOfUser);
         }
 
         request_headers.set('Cookie', this.#cookie);
