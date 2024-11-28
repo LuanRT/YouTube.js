@@ -145,6 +145,7 @@ export { default as SearchEndpoint } from './classes/endpoints/SearchEndpoint.js
 export { default as ShareEndpoint } from './classes/endpoints/ShareEndpoint.js';
 export { default as ShareEntityEndpoint } from './classes/endpoints/ShareEntityEndpoint.js';
 export { default as ShareEntityServiceEndpoint } from './classes/endpoints/ShareEntityServiceEndpoint.js';
+export { default as ShowEngagementPanelEndpoint } from './classes/endpoints/ShowEngagementPanelEndpoint.js';
 export { default as SignalServiceEndpoint } from './classes/endpoints/SignalServiceEndpoint.js';
 export { default as SubscribeEndpoint } from './classes/endpoints/SubscribeEndpoint.js';
 export { default as UnsubscribeEndpoint } from './classes/endpoints/UnsubscribeEndpoint.js';
