@@ -1,5 +1,5 @@
 import express from 'express';
-import { Innertube, UniversalCache, YTNodes } from 'youtubei.js';
+import { Innertube, UniversalCache } from 'youtubei.js';
 import { OAuth2Client } from 'google-auth-library';
 
 const app = express();
@@ -65,8 +65,7 @@ app.get('/', async (_req, res) => {
         "http://gdata.youtube.com",
         "https://www.googleapis.com/auth/youtube",
         "https://www.googleapis.com/auth/youtube.force-ssl",
-        "https://www.googleapis.com/auth/youtube-paid-content",
-        "https://www.googleapis.com/auth/accounts.reauth",
+        "https://www.googleapis.com/auth/youtube-paid-content"
       ],
       include_granted_scopes: true,
       prompt: 'consent',
