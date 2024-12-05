@@ -232,10 +232,19 @@ export default class Player {
   }
 
   static extractNSigSourceCode(data: string): string | undefined {
-    const nsig_function = findFunction(data, { includes: 'enhanced_except' });
-    if (nsig_function) {
+    // This used to be the prefix of the error tag (leaving it here for reference).
+    let nsig_function = findFunction(data, { includes: 'enhanced_except' });
+   
+    // This is the suffix of the error tag.
+    if (!nsig_function)
+      nsig_function = findFunction(data, { includes: '-_w8_' });
+    
+    // Usually, only this function uses these dates in the entire script.
+    if (!nsig_function)
+      nsig_function = findFunction(data, { includes: '1969' });
+    
+    if (nsig_function)
       return `${nsig_function.result} ${nsig_function.name}(nsig);`;
-    }
   }
 
   get url(): string {
