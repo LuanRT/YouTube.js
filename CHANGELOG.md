@@ -1,5 +1,73 @@
 # Changelog
 
+## [12.0.0](https://github.com/LuanRT/YouTube.js/compare/v11.0.1...v12.0.0) (2024-12-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **parser:** Remove old comment node
+* **Log:** Convert Log class to module ([#814](https://github.com/LuanRT/YouTube.js/issues/814))
+* **parser:** Remove getters that have been deprecated for a long time ([#815](https://github.com/LuanRT/YouTube.js/issues/815))
+* **parser:** Implement endpoint/command parsers ([#812](https://github.com/LuanRT/YouTube.js/issues/812))
+
+### Features
+
+* **account:** Add missing property `channel_handle` ([#789](https://github.com/LuanRT/YouTube.js/issues/789)) ([677e1f0](https://github.com/LuanRT/YouTube.js/commit/677e1f08075a4a59274f89f3eb65967d7d0ab01b))
+* Add `getCourses` ([#798](https://github.com/LuanRT/YouTube.js/issues/798)) ([cfb48fa](https://github.com/LuanRT/YouTube.js/commit/cfb48fab89792d87a7377eaf15a56d289d26769b))
+* **EngagementPanelTitleHeader:** Add `contextual_info` and `menu` ([af3a916](https://github.com/LuanRT/YouTube.js/commit/af3a91645d84798e744519ec8f24e565cc1ecdb1))
+* **Log:** Convert Log class to module ([#814](https://github.com/LuanRT/YouTube.js/issues/814)) ([fc55716](https://github.com/LuanRT/YouTube.js/commit/fc5571629eca037af7de03f4b903da6add1f300b))
+* **NavigationEndpoint:** Add name property ([bdebb9f](https://github.com/LuanRT/YouTube.js/commit/bdebb9f741291d2f0640274454c90b5ccda8ea5d))
+* **parser:** Add `AddToPlaylist` node ([2940f7b](https://github.com/LuanRT/YouTube.js/commit/2940f7b908ee720492994a41efdabb9fae08708c))
+* **parser:** Add `animated_image` to `PageHeaderView` ([#819](https://github.com/LuanRT/YouTube.js/issues/819)) ([8e50ebd](https://github.com/LuanRT/YouTube.js/commit/8e50ebd92583ae76b080fed4c7599684370dc09d))
+* **parser:** Add `ChangeEngagementPanelVisibilityAction` ([c2b2d7a](https://github.com/LuanRT/YouTube.js/commit/c2b2d7ad52d2cdd1d721ae4569fb6f8cb0540476))
+* **parser:** Add `ChangeEngagementPanelVisibilityEndpoint` ([2824900](https://github.com/LuanRT/YouTube.js/commit/28249008521b4cb600756f8ff83e10ec3037ba69))
+* **parser:** Add `LiveChatBannerChatSummary` node, update `TextRun` node ([#809](https://github.com/LuanRT/YouTube.js/issues/809)) ([7fb00fa](https://github.com/LuanRT/YouTube.js/commit/7fb00fa378574d1567d436f8a824fbb618db2373))
+* **parser:** Add `LiveChatBannerRedirect` node ([#799](https://github.com/LuanRT/YouTube.js/issues/799)) ([ad302b8](https://github.com/LuanRT/YouTube.js/commit/ad302b8b17c0bfc1d81728130d4ba25a88ed241f))
+* **parser:** add `LiveChatModeChangeMessage` node ([#811](https://github.com/LuanRT/YouTube.js/issues/811)) ([7156a58](https://github.com/LuanRT/YouTube.js/commit/7156a585c036a5000d0a50f3f4860a462762fdfe))
+* **parser:** Add `LiveChatSponsorshipsGiftPurchaseAnnouncement` and `LiveChatSponsorshipsHeader` nodes ([#793](https://github.com/LuanRT/YouTube.js/issues/793)) ([4e9c2a5](https://github.com/LuanRT/YouTube.js/commit/4e9c2a585bf84751dd4e3964f70fba284c8b8e38))
+* **parser:** Add `LiveChatSponsorshipsGiftRedemptionAnnouncement` node ([#795](https://github.com/LuanRT/YouTube.js/issues/795)) ([20f7971](https://github.com/LuanRT/YouTube.js/commit/20f797129973c6b91fa228e50d375b0c9d0226d2))
+* **parser:** Add `MenuFlexibleItem` ([bc9a0ed](https://github.com/LuanRT/YouTube.js/commit/bc9a0ed6c1dd7aac280e0461823827d71ce0991f))
+* **parser:** Add `NotificationAction` node ([d36ddb8](https://github.com/LuanRT/YouTube.js/commit/d36ddb804a03b7d22cd20c2b846f86dd49689c0c))
+* **parser:** Add `PlayerOverlayVideoDetails` node ([dc2ed04](https://github.com/LuanRT/YouTube.js/commit/dc2ed046b8424134c675f30e7452fbd6bda0d228))
+* **parser:** Add `RunAttestationCommand` ([4729016](https://github.com/LuanRT/YouTube.js/commit/4729016fb98e7045ee4043857be7eef780c01e35))
+* **parser:** Add `ShowEngagementPanelEndpoint` ([ec85b0f](https://github.com/LuanRT/YouTube.js/commit/ec85b0f9421156c674c5c4d4a3a2e39eca7dbfbf))
+* **parser:** Add `SignalAction` node ([feeb21b](https://github.com/LuanRT/YouTube.js/commit/feeb21b3ebb83772fcceb1f6b0a90c17db613451))
+* **parser:** Add `UnifiedSharePanel` ([4a1397f](https://github.com/LuanRT/YouTube.js/commit/4a1397f1bcc2ad9964626b11c90831b90989b6af))
+* **parser:** Add `UpdateSubscribeButtonAction` ([fdb7540](https://github.com/LuanRT/YouTube.js/commit/fdb754043b809223ae8938fbbdd5780f585b697e))
+* **parser:** Add `VideoViewCount` node ([ad448f8](https://github.com/LuanRT/YouTube.js/commit/ad448f8106116e44e65eb5f5351c38fc4a31d809))
+* **parser:** Add optional image property to LockupMetadataView ([#806](https://github.com/LuanRT/YouTube.js/issues/806)) ([0914299](https://github.com/LuanRT/YouTube.js/commit/091429921530d65daf8f5b281c7c54117ee9a474))
+* **Parser:** add support for parsing subtitle for `RichShelf` ([#805](https://github.com/LuanRT/YouTube.js/issues/805)) ([038efff](https://github.com/LuanRT/YouTube.js/commit/038efff17f3b12d80619c8990ca880e919d2bfe5))
+* **Parser:** Add support for parsing subtitle for `Shelf` ([#792](https://github.com/LuanRT/YouTube.js/issues/792)) ([34ae38c](https://github.com/LuanRT/YouTube.js/commit/34ae38cbf4aa0a42a6024fa99eb0fe553639c8ce))
+* **SubscribeButton:** Parse more endpoints ([8bf9eb7](https://github.com/LuanRT/YouTube.js/commit/8bf9eb7044ad9a5de0892207690195f5646df288))
+* **VideoViewCount:** Add `extra_short_view_count` field ([d10fe68](https://github.com/LuanRT/YouTube.js/commit/d10fe6834a0d063d94b65289d54a52ed3398eff4))
+
+
+### Bug Fixes
+
+* **ExpandableVideoDescriptionBody:** Parse attributed description ([360580e](https://github.com/LuanRT/YouTube.js/commit/360580ea6ea6fbdd7fbc0aa038d96b17de17e4f4))
+* **parser:** The AvatarView.image_processor property is optional ([#807](https://github.com/LuanRT/YouTube.js/issues/807)) ([4b178e4](https://github.com/LuanRT/YouTube.js/commit/4b178e4bfbc4cb003ed098afcd0370f98dbf834b))
+* **parser:** Update list of possible content_type in LockupView ([#808](https://github.com/LuanRT/YouTube.js/issues/808)) ([680da9f](https://github.com/LuanRT/YouTube.js/commit/680da9f501db02a9bed2fa8357df021e63024e5f))
+* **Player:** Add more ways to find the nsig algo ([acfb0c5](https://github.com/LuanRT/YouTube.js/commit/acfb0c58bec25782aa92963cd590a56967229d62))
+* **PlaylistAddToOption:** Use correct type for `contains_selected_videos` ([53d1c75](https://github.com/LuanRT/YouTube.js/commit/53d1c759b65ce9b6cb9f236c02828077d4f506cc))
+* **ReelPlayerOverlay:** Update `subscribe_button_renderer` type to include SubscribeButton ([daa5a29](https://github.com/LuanRT/YouTube.js/commit/daa5a2982b24f107681050f2b534986b4d374c5d))
+* **SignalAction:** Rename `action` to `signal` ([8ab760e](https://github.com/LuanRT/YouTube.js/commit/8ab760ea2e268a4f108b2b4a8d46193f5450bf4c))
+* **SubscribeButton:** Parse endpoints using `NavigationEndpoint` ([126a66f](https://github.com/LuanRT/YouTube.js/commit/126a66f317da0c6b486202ad04483b9799bfaf4c))
+* **UnifiedSharePanel:** Check if `thirdPartyNetworkSection` exists ([d3f6af0](https://github.com/LuanRT/YouTube.js/commit/d3f6af07754f75c578dc11e8ea4815ad91f0cac4))
+* **VideoAttributeView:** Parse `secondarySubtitle` only if exists ([0a99342](https://github.com/LuanRT/YouTube.js/commit/0a99342ccbd6f8b1c611ef6b157a599ff5ae2247))
+* **VideoCard:** fix parsing author, view count and published date ([#791](https://github.com/LuanRT/YouTube.js/issues/791)) ([a4394db](https://github.com/LuanRT/YouTube.js/commit/a4394dbb82203eeabcb8684ca9105f83e3b0fb1b))
+* **VideoSecondaryInfo:** Parse `show_more_text` and `show_less_text` correctly ([790f817](https://github.com/LuanRT/YouTube.js/commit/790f8172fc2bbdbf17f16b04a2676fd9088d8878))
+
+
+### Miscellaneous Chores
+
+* **parser:** Remove getters that have been deprecated for a long time ([#815](https://github.com/LuanRT/YouTube.js/issues/815)) ([9cf0d3f](https://github.com/LuanRT/YouTube.js/commit/9cf0d3f3b3099af3dd59bc4ca99fefe217a91020))
+
+
+### Code Refactoring
+
+* **parser:** Implement endpoint/command parsers ([#812](https://github.com/LuanRT/YouTube.js/issues/812)) ([7397aa3](https://github.com/LuanRT/YouTube.js/commit/7397aa3f6425cb2f3dcc625502fd1ce5a5db6db3))
+* **parser:** Remove old comment node ([2f087d4](https://github.com/LuanRT/YouTube.js/commit/2f087d47a0199870b313717f3d01598f8168be4b))
+
 ## [11.0.1](https://github.com/LuanRT/YouTube.js/compare/v11.0.0...v11.0.1) (2024-10-28)
 
 
