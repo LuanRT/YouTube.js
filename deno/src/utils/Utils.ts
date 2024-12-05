@@ -1,11 +1,11 @@
 import { Memo } from '../parser/helpers.ts';
 import { Text } from '../parser/misc.ts';
-import Log from './Log.ts';
+import * as Log from './Log.ts';
 import userAgents from './user-agents.ts';
 import { Jinter } from 'jsr:@luanrt/jintr';
 
 import type { EmojiRun, TextRun } from '../parser/misc.ts';
-import type { FetchFunction } from '../types/PlatformShim.ts';
+import type { FetchFunction } from '../types/index.ts';
 import type PlatformShim from '../types/PlatformShim.ts';
 import type { Node } from 'estree';
 

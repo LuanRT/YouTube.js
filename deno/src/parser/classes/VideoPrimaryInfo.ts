@@ -1,33 +1,30 @@
-import type { ObservedArray } from '../helpers.ts';
-import { YTNode } from '../helpers.ts';
-import type { RawNode } from '../index.ts';
-import { Parser } from '../index.ts';
-import MetadataBadge from './MetadataBadge.ts';
-import Menu from './menus/Menu.ts';
+import { Parser, type RawNode } from '../index.ts';
+import { YTNode, type ObservedArray } from '../helpers.ts';
+
 import Text from './misc/Text.ts';
+import Menu from './menus/Menu.ts';
+import MetadataBadge from './MetadataBadge.ts';
+import VideoViewCount from './VideoViewCount.ts';
 
 export default class VideoPrimaryInfo extends YTNode {
   static type = 'VideoPrimaryInfo';
 
-  title: Text;
-  super_title_link?: Text;
-  view_count: Text;
-  short_view_count: Text;
-  badges: ObservedArray<MetadataBadge>;
-  published: Text;
-  relative_date: Text;
-  menu: Menu | null;
+  public title: Text;
+  public super_title_link?: Text;
+  public view_count: VideoViewCount | null;
+  public badges: ObservedArray<MetadataBadge>;
+  public published: Text;
+  public relative_date: Text;
+  public menu: Menu | null;
 
   constructor(data: RawNode) {
     super();
     this.title = new Text(data.title);
 
-    if (Reflect.has(data, 'superTitleLink')) {
+    if (Reflect.has(data, 'superTitleLink'))
       this.super_title_link = new Text(data.superTitleLink);
-    }
 
-    this.view_count = new Text(data.viewCount?.videoViewCountRenderer?.viewCount);
-    this.short_view_count = new Text(data.viewCount?.videoViewCountRenderer?.shortViewCount);
+    this.view_count = Parser.parseItem(data.viewCount, VideoViewCount);
     this.badges = Parser.parseArray(data.badges, MetadataBadge);
     this.published = new Text(data.dateText);
     this.relative_date = new Text(data.relativeDateText);

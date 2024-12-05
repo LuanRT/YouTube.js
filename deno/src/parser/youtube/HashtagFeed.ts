@@ -10,8 +10,8 @@ import type { IBrowseResponse } from '../index.ts';
 import type ChipCloudChip from '../classes/ChipCloudChip.ts';
 
 export default class HashtagFeed extends FilterableFeed<IBrowseResponse> {
-  header?: HashtagHeader | PageHeader;
-  contents: RichGrid;
+  public header?: HashtagHeader | PageHeader;
+  public contents: RichGrid;
 
   constructor(actions: Actions, response: IBrowseResponse | ApiResponse) {
     super(actions, response);

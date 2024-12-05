@@ -17,8 +17,8 @@ export interface HTTPClientInit {
 
 export default class HTTPClient {
   #session: Session;
-  #cookie?: string;
-  #fetch: FetchFunction;
+  readonly #cookie?: string;
+  readonly #fetch: FetchFunction;
 
   constructor(session: Session, cookie?: string, fetch?: FetchFunction) {
     this.#session = session;
@@ -90,7 +90,7 @@ export default class HTTPClient {
 
       const n_body = {
         ...json,
-        // Deep copy since we're gonna be modifying it
+        // Deep copy since we're going to be modifying it
         context: JSON.parse(JSON.stringify(this.#session.context)) as Context
       };
 
@@ -143,6 +143,8 @@ export default class HTTPClient {
         if (sapisid) {
           request_headers.set('Authorization', await generateSidAuth(sapisid));
           request_headers.set('X-Goog-Authuser', this.#session.account_index.toString());
+          if (this.#session.context.user.onBehalfOfUser)
+            request_headers.set('X-Goog-PageId', this.#session.context.user.onBehalfOfUser);
         }
 
         request_headers.set('Cookie', this.#cookie);

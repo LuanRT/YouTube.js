@@ -8,8 +8,8 @@ import type { ApiResponse, Actions } from '../../core/index.ts';
 import type ChipCloudChip from '../classes/ChipCloudChip.ts';
 
 export default class HomeFeed extends FilterableFeed<IBrowseResponse> {
-  contents?: RichGrid | AppendContinuationItemsAction | ReloadContinuationItemsCommand;
-  header?: FeedTabbedHeader;
+  public contents?: RichGrid | AppendContinuationItemsAction | ReloadContinuationItemsCommand;
+  public header?: FeedTabbedHeader;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);

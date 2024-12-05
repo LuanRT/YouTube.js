@@ -4,11 +4,11 @@ import Tab from '../../parser/classes/Tab.ts';
 
 import type { Actions, ApiResponse } from '../index.ts';
 import type { ObservedArray } from '../../parser/helpers.ts';
-import type { IParsedResponse } from '../../parser/types/ParsedResponse.ts';
+import type { IParsedResponse } from '../../parser/index.ts';
 
 export default class TabbedFeed<T extends IParsedResponse> extends Feed<T> {
+  readonly #actions: Actions;
   #tabs?: ObservedArray<Tab>;
-  #actions: Actions;
 
   constructor(actions: Actions, data: ApiResponse | IParsedResponse, already_parsed = false) {
     super(actions, data, already_parsed);

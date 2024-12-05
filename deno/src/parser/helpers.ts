@@ -1,4 +1,4 @@
-import Log from '../utils/Log.ts';
+import * as Log from '../utils/Log.ts';
 import { deepCompare, ParsingError } from '../utils/Utils.ts';
 
 const isObserved = Symbol('ObservedArray.isObserved');
@@ -31,6 +31,9 @@ export class YTNode {
 
   /**
    * Cast to one of the given types.
+   * @param types - The types to cast to
+   * @returns The node cast to one of the given types
+   * @throws {ParsingError} If the node is not of the given type
    */
   as<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): InstanceType<K[number]> {
     if (!this.is(...types)) {
@@ -52,7 +55,7 @@ export class YTNode {
    * Assert that the node has the given key and return it.
    * @param key - The key to check
    * @returns The value of the key wrapped in a Maybe
-   * @throws If the node does not have the key
+   * @throws {ParsingError} If the node does not have the key
    */
   key<T extends string, R = any>(key: T) {
     if (!this.hasKey<T, R>(key)) {
@@ -62,23 +65,24 @@ export class YTNode {
   }
 }
 
+const MAYBE_TAG = 'Maybe';
+
+/**
+ * A wrapper class that provides type-safe access to a value.
+ */
 export class Maybe {
-  #TAG = 'Maybe';
-  #value;
+  readonly #value;
 
   constructor (value: any) {
     this.#value = value;
   }
 
-  #checkPrimative(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
-    if (typeof this.#value !== type) {
-      return false;
-    }
-    return true;
+  #checkPrimitive(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
+    return typeof this.#value === type;
   }
 
-  #assertPrimative(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
-    if (!this.#checkPrimative(type)) {
+  #assertPrimitive(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
+    if (!this.#checkPrimitive(type)) {
       throw new TypeError(`Expected ${type}, got ${this.typeof}`);
     }
     return this.#value;
@@ -89,51 +93,51 @@ export class Maybe {
   }
 
   string(): string {
-    return this.#assertPrimative('string');
+    return this.#assertPrimitive('string');
   }
 
   isString() {
-    return this.#checkPrimative('string');
+    return this.#checkPrimitive('string');
   }
 
   number(): number {
-    return this.#assertPrimative('number');
+    return this.#assertPrimitive('number');
   }
 
   isNumber() {
-    return this.#checkPrimative('number');
+    return this.#checkPrimitive('number');
   }
 
   bigint(): bigint {
-    return this.#assertPrimative('bigint');
+    return this.#assertPrimitive('bigint');
   }
 
   isBigint() {
-    return this.#checkPrimative('bigint');
+    return this.#checkPrimitive('bigint');
   }
 
   boolean(): boolean {
-    return this.#assertPrimative('boolean');
+    return this.#assertPrimitive('boolean');
   }
 
   isBoolean() {
-    return this.#checkPrimative('boolean');
+    return this.#checkPrimitive('boolean');
   }
 
   symbol(): symbol {
-    return this.#assertPrimative('symbol');
+    return this.#assertPrimitive('symbol');
   }
 
   isSymbol() {
-    return this.#checkPrimative('symbol');
+    return this.#checkPrimitive('symbol');
   }
 
   undefined(): undefined {
-    return this.#assertPrimative('undefined');
+    return this.#assertPrimitive('undefined');
   }
 
   isUndefined() {
-    return this.#checkPrimative('undefined');
+    return this.#checkPrimitive('undefined');
   }
 
   null(): null {
@@ -147,20 +151,20 @@ export class Maybe {
   }
 
   object(): object {
-    return this.#assertPrimative('object');
+    return this.#assertPrimitive('object');
   }
 
   isObject() {
-    return this.#checkPrimative('object');
+    return this.#checkPrimitive('object');
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   function(): Function {
-    return this.#assertPrimative('function');
+    return this.#assertPrimitive('function');
   }
 
   isFunction() {
-    return this.#checkPrimative('function');
+    return this.#checkPrimitive('function');
   }
 
   /**
@@ -178,7 +182,7 @@ export class Maybe {
   /**
    * More typesafe variant of {@link Maybe#array}.
    * @returns a proxied array which returns all the values as {@link Maybe}.
-   * @throws If the value is not an array
+   * @throws {TypeError} If the value is not an array
    */
   arrayOfMaybe(): Maybe[] {
     const arrayProps: any[] = [];
@@ -223,7 +227,7 @@ export class Maybe {
   /**
    * Get the value as a YTNode of the given type.
    * @param types - The type(s) to cast to.
-   * @returns The node casted to the given type.
+   * @returns The node cast to the given type.
    * @throws If the node is not of the given type.
    */
   nodeOfType<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K) {
@@ -281,7 +285,7 @@ export class Maybe {
    * This call is not meant to be used outside of debugging. Please use the specific type getter instead.
    */
   any(): any {
-    Log.warn(this.#TAG, 'This call is not meant to be used outside of debugging. Please use the specific type getter instead.');
+    Log.warn(MAYBE_TAG, 'This call is not meant to be used outside of debugging. Please use the specific type getter instead.');
     return this.#value;
   }
 
@@ -321,7 +325,7 @@ export interface YTNodeConstructor<T extends YTNode = YTNode> {
  * Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] or null.
  */
 export class SuperParsedResult<T extends YTNode = YTNode> {
-  #result;
+  readonly #result;
 
   constructor(result: T | ObservedArray<T> | null) {
     this.#result = result;
@@ -352,44 +356,79 @@ export class SuperParsedResult<T extends YTNode = YTNode> {
   }
 }
 
+/**
+ * An extended array type that includes additional utility methods for filtering and manipulating YTNode objects.
+ */
 export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
-    /**
-     * Returns the first object to match the rule.
-     */
-    get: (rule: object, del_item?: boolean) => T | undefined;
-    /**
-     * Returns all objects that match the rule.
-     */
-    getAll: (rule: object, del_items?: boolean) => T[];
-    /**
-     * Returns the first object to match the condition.
-     */
-    matchCondition: (condition: (node: T) => boolean) => T | undefined;
-    /**
-     * Removes the item at the given index.
-     */
-    remove: (index: number) => T[];
-    /**
-     * Get all items of a specific type.
-     */
-    filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
-    /**
-     * Get the first of a specific type.
-     */
-    firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
-    /**
-     * Get the first item.
-     */
-    first: () => T;
-    /**
-     * This is similar to filter but throws if there's a type mismatch.
-     */
-    as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
+  /**
+   * Returns the first object that matches the specified rule object.
+   * @param rule - An object containing properties to match against
+   * @param del_item - Optional flag to remove the matched item from the array
+   * @returns The first matching object or undefined if no match is found
+   */
+  get: (rule: object, del_item?: boolean) => T | undefined;
+
+  /**
+   * Returns all objects that match the specified rule object.
+   * @param rule - An object containing properties to match against
+   * @param del_items - Optional flag to remove all matched items from the array
+   * @returns An array of all matching objects
+   */
+  getAll: (rule: object, del_items?: boolean) => T[];
+
+  /**
+   * Returns the first object that satisfies the provided condition function.
+   * @param condition - A predicate function that tests each element
+   * @returns The first element that satisfies the condition or undefined if none found
+   */
+  matchCondition: (condition: (node: T) => boolean) => T | undefined;
+
+  /**
+   * Removes the item at the specified index.
+   * @param index - The index of the item to remove
+   * @returns The modified array after removal
+   */
+  remove: (index: number) => T[];
+
+  /**
+   * Filters the array to only include items of the specified YTNode types.
+   * @template R - Type extending YTNode
+   * @template K - Array of types (YTNodes)
+   * @param types - Rest parameter of YTNode constructor types to filter by
+   * @returns A new ObservedArray containing only items of the specified types
+   */
+  filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
+
+  /**
+   * Returns the first item in the array that matches any of the specified YTNode types.
+   * @template R - Type extending YTNode
+   * @template K - Array of types (YTNodes)
+   * @param types - Rest parameter of YTNode constructor types to match against
+   * @returns The first matching item or undefined if none found
+   */
+  firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
+
+  /**
+   * Returns the first item in the array.
+   * @returns The first item in the array
+   */
+  first: () => T;
+
+  /**
+   * Similar to `filter` but with strict type checking. Filters the array to include only items of the specified types.
+   * @template R - Type extending YTNode
+   * @template K - Array of types (YTNodes)
+   * @param types - Rest parameter of YTNode constructor types to filter by
+   * @returns A new ObservedArray containing only items of the specified types
+   * @throws {ParsingError} If an item is not of the specified type
+   */
+  as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
 };
 
 /**
- * Creates a trap to intercept property access
- * and add utilities to an object.
+ * Creates an observed array that provides additional utility methods for array manipulation and filtering.
+ * @template T - Type extending YTNode
+ * @param obj - Array to be observed
  */
 export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
   return new Proxy(obj, {
@@ -433,10 +472,7 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
       if (prop == 'filterType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return observe(target.filter((node: YTNode) => {
-            if (node.is(...types))
-              return true;
-            return false;
-
+            return !!node.is(...types);
           }));
         };
       }
@@ -444,9 +480,7 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
       if (prop == 'firstOfType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return target.find((node: YTNode) => {
-            if (node.is(...types))
-              return true;
-            return false;
+            return !!node.is(...types);
           });
         };
       }

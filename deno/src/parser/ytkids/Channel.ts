@@ -2,13 +2,14 @@ import Feed from '../../core/mixins/Feed.ts';
 import C4TabbedHeader from '../classes/C4TabbedHeader.ts';
 import ItemSection from '../classes/ItemSection.ts';
 import { ItemSectionContinuation } from '../index.ts';
+import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
 import type { IBrowseResponse } from '../types/index.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
 
 export default class Channel extends Feed<IBrowseResponse> {
-  header?: C4TabbedHeader;
-  contents?: ItemSection | ItemSectionContinuation;
+  public header?: C4TabbedHeader;
+  public contents?: ItemSection | ItemSectionContinuation;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -17,15 +18,22 @@ export default class Channel extends Feed<IBrowseResponse> {
   }
 
   /**
-   * Retrieves next batch of videos.
+   * Retrieves next batch of content.
    */
   async getContinuation(): Promise<Channel> {
-    const response = await this.actions.execute('/browse', {
-      continuation: this.contents?.continuation,
-      client: 'YTKIDS'
+    if (!this.contents)
+      throw new Error('No continuation available.');
+    
+    const continuation_request = new NavigationEndpoint({
+      continuationCommand: {
+        token: this.contents.continuation,
+        request: 'CONTINUATION_REQUEST_TYPE_BROWSE'
+      }
     });
+    
+    const continuation_response = await continuation_request.call(this.actions, { client: 'YTKIDS' });
 
-    return new Channel(this.actions, response);
+    return new Channel(this.actions, continuation_response);
   }
 
   get has_continuation(): boolean {

@@ -1,16 +1,16 @@
+import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.ts';
 import PlayerStoryboardSpec from '../parser/classes/PlayerStoryboardSpec.ts';
-import { InnertubeError, Platform, getStringBetweenStrings } from './Utils.ts';
+import { getStringBetweenStrings, InnertubeError, Platform } from './Utils.ts';
 import * as Constants from './Constants.ts';
-import Log from './Log.ts';
+import * as Log from './Log.ts';
 
 import type Actions from '../core/Actions.ts';
 import type Player from '../core/Player.ts';
 import type { LiveStoryboardData } from '../parser/classes/PlayerLiveStoryboardSpec.ts';
-import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.ts';
 import type { IStreamingData } from '../parser/index.ts';
 import type { Format } from '../parser/misc.ts';
 import type { PlayerLiveStoryboardSpec } from '../parser/nodes.ts';
-import type { FormatFilter, URLTransformer } from '../types/FormatUtils.ts';
+import type { FormatFilter, URLTransformer } from '../types/index.ts';
 import type { StreamingInfoOptions } from '../types/StreamingInfoOptions.ts';
 import type { CaptionTrackData } from '../parser/classes/PlayerCaptionsTracklist.ts';
 
@@ -103,7 +103,7 @@ export interface ColorInfo {
 export interface ImageSet {
   probable_mime_type: string;
   /**
-   * Sometimes youtube returns webp instead of jpg despite the file extension being jpg
+   * Sometimes YouTube returns webp instead of jpg despite the file extension being jpg
    * So we need to update the mime type to reflect the actual mime type of the response
    */
   getMimeType(): Promise<string>;
@@ -149,7 +149,7 @@ interface SharedPostLiveDvrInfo {
 interface DrcLabels {
   label_original: string;
   label_drc: string;
-  label_drc_mutiple: (audio_track_display_name: string) => string;
+  label_drc_multiple: (audio_track_display_name: string) => string;
 }
 
 function getFormatGroupings(formats: Format[], is_post_live_dvr: boolean) {
@@ -459,7 +459,7 @@ function getAudioSet(
 
   if (audio_track) {
     if (has_drc_streams && first_format.is_drc) {
-      track_name = drc_labels.label_drc_mutiple(audio_track.display_name);
+      track_name = drc_labels.label_drc_multiple(audio_track.display_name);
     } else {
       track_name = audio_track.display_name;
     }
@@ -530,7 +530,7 @@ function getColorInfo(format: Format) {
         anonymisedFormat.signature_cipher = 'REDACTED';
         anonymisedFormat.cipher = 'REDACTED';
 
-        Log.warn(TAG_, `Unknown matrix coefficients "${color_info.matrix_coefficients}", the DASH manifest is still usuable without this.\n`
+        Log.warn(TAG_, `Unknown matrix coefficients "${color_info.matrix_coefficients}". The DASH manifest is still usable without this.\n`
           + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
           + `InnerTube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
       }
@@ -684,9 +684,7 @@ async function getStoryboardBitrate(
 
   // This is a rough estimate, so it probably won't reflect that actual peak bitrate
   // Hopefully it's close enough, because figuring out the actual peak bitrate would require downloading and analysing all storyboard tiles
-  const bandwidth = Math.ceil((Math.max(...content_lengths) / (board.rows * board.columns)) * 8);
-
-  return bandwidth;
+  return Math.ceil((Math.max(...content_lengths) / (board.rows * board.columns)) * 8);
 }
 
 function getImageRepresentation(
@@ -706,7 +704,7 @@ function getImageRepresentation(
     template_duration = duration / board.storyboard_count;
   } else {
     // Here duration is the duration of one of the video/audio segments,
-    // As there is one tile per segment, we need to multiple it by the number of tiles
+    // As there is one tile per segment, we need to multiply it by the number of tiles
     template_duration = duration * board.columns * board.rows;
   }
 
@@ -858,7 +856,7 @@ export function getStreamingInfo(
     drc_labels = {
       label_original: options?.label_original || 'Original',
       label_drc: options?.label_drc || 'Stable Volume',
-      label_drc_mutiple: options?.label_drc_mutiple || ((display_name) => `${display_name} (Stable Volume)`)
+      label_drc_multiple: options?.label_drc_multiple || ((display_name) => `${display_name} (Stable Volume)`)
     };
   }
 
@@ -876,9 +874,8 @@ export function getStreamingInfo(
       duration = formats[0].approx_duration_ms / 1000;
     } else {
       const target_duration_dec = formats[0].target_duration_dec;
-      if (typeof target_duration_dec !== 'number') {
+      if (target_duration_dec === undefined)
         throw new InnertubeError('Format is missing target_duration_dec', { format: formats[0] });
-      }
       duration = target_duration_dec;
     }
 

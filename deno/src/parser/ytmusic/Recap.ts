@@ -17,11 +17,11 @@ import type { IBrowseResponse } from '../types/index.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
 
 export default class Recap {
-  #page: IBrowseResponse;
-  #actions: Actions;
+  readonly #page: IBrowseResponse;
+  readonly #actions: Actions;
 
-  header?: HighlightsCarousel | MusicHeader;
-  sections?: ObservedArray<ItemSection | MusicCarouselShelf | Message>;
+  public header?: HighlightsCarousel | MusicHeader;
+  public sections?: ObservedArray<ItemSection | MusicCarouselShelf | Message>;
 
   constructor(response: ApiResponse, actions: Actions) {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);

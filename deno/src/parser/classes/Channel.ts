@@ -1,4 +1,3 @@
-import { Log } from '../../utils/index.ts';
 import { YTNode } from '../helpers.ts';
 import { Parser, type RawNode } from '../index.ts';
 import Button from './Button.ts';
@@ -37,25 +36,5 @@ export default class Channel extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     this.description_snippet = new Text(data.descriptionSnippet);
-  }
-
-  /**
-   * @deprecated
-   * This will be removed in a future release.
-   * Please use {@link Channel.subscriber_count} instead.
-   */
-  get subscribers(): Text {
-    Log.warnOnce(Channel.type, 'Channel#subscribers is deprecated. Please use Channel#subscriber_count instead.');
-    return this.subscriber_count;
-  }
-
-  /**
-   * @deprecated
-   * This will be removed in a future release.
-   * Please use {@link Channel.video_count} instead.
-   */
-  get videos(): Text {
-    Log.warnOnce(Channel.type, 'Channel#videos is deprecated. Please use Channel#video_count instead.');
-    return this.video_count;
   }
 }

@@ -1,15 +1,12 @@
 import { InnertubeError, throwIfMissing } from '../../utils/Utils.ts';
-import { EditPlaylistEndpoint } from '../endpoints/browse/index.ts';
-import { BrowseEndpoint } from '../endpoints/index.ts';
-import { CreateEndpoint, DeleteEndpoint } from '../endpoints/playlist/index.ts';
 import Playlist from '../../parser/youtube/Playlist.ts';
 
 import type { Actions } from '../index.ts';
 import type { Feed } from '../mixins/index.ts';
-import type { EditPlaylistEndpointOptions } from '../../types/index.ts';
+import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.ts';
 
 export default class PlaylistManager {
-  #actions: Actions;
+  readonly #actions: Actions;
 
   constructor(actions: Actions) {
     this.#actions = actions;
@@ -26,12 +23,14 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const response = await this.#actions.execute(
-      CreateEndpoint.PATH, CreateEndpoint.build({
-        ids: video_ids,
-        title
-      })
-    );
+    const create_playlist_endpoint = new NavigationEndpoint({
+      createPlaylistServiceEndpoint: {
+        title,
+        videoIds: video_ids
+      }
+    });
+
+    const response = await create_playlist_endpoint.call(this.#actions);
 
     return {
       success: response.success,
@@ -51,11 +50,13 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const response = await this.#actions.execute(
-      DeleteEndpoint.PATH, DeleteEndpoint.build({
-        playlist_id
-      })
-    );
+    const delete_playlist_endpoint = new NavigationEndpoint({
+      deletePlaylistServiceEndpoint: {
+        sourcePlaylistId: playlist_id
+      }
+    });
+
+    const response = await delete_playlist_endpoint.call(this.#actions);
 
     return {
       playlist_id,
@@ -76,15 +77,17 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const response = await this.#actions.execute(
-      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build({
+    const playlist_edit_endpoint = new NavigationEndpoint({
+      playlistEditEndpoint: {
+        playlistId: playlist_id,
         actions: video_ids.map((id) => ({
           action: 'ACTION_ADD_VIDEO',
-          added_video_id: id
-        })),
-        playlist_id
-      })
-    );
+          addedVideoId: id
+        }))
+      }
+    });
+
+    const response = await playlist_edit_endpoint.call(this.#actions);
 
     return {
       playlist_id,
@@ -104,16 +107,12 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const info = await this.#actions.execute(
-      BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: `VL${playlist_id}` }), parse: true }
-    );
-
-    const playlist = new Playlist(this.#actions, info, true);
+    const playlist = await this.#getPlaylist(playlist_id);
 
     if (!playlist.info.is_editable)
       throw new InnertubeError('This playlist cannot be edited.', playlist_id);
 
-    const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
+    const payload = { playlistId: playlist_id, actions: [] as Record<string, any>[] };
 
     const getSetVideoIds = async (pl: Feed): Promise<void> => {
       const key_id = use_set_video_ids ? 'set_video_id' : 'id';
@@ -122,7 +121,7 @@ export default class PlaylistManager {
       videos.forEach((video) =>
         payload.actions.push({
           action: 'ACTION_REMOVE_VIDEO',
-          set_video_id: video.key('set_video_id').string()
+          setVideoId: video.key('set_video_id').string()
         })
       );
 
@@ -137,9 +136,8 @@ export default class PlaylistManager {
     if (!payload.actions.length)
       throw new InnertubeError('Given video ids were not found in this playlist.', video_ids);
 
-    const response = await this.#actions.execute(
-      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build(payload)
-    );
+    const playlist_edit_endpoint = new NavigationEndpoint({ playlistEditEndpoint: payload });
+    const response = await playlist_edit_endpoint.call(this.#actions);
 
     return {
       playlist_id,
@@ -159,16 +157,12 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const info = await this.#actions.execute(
-      BrowseEndpoint.PATH, { ...BrowseEndpoint.build({ browse_id: `VL${playlist_id}` }), parse: true }
-    );
-
-    const playlist = new Playlist(this.#actions, info, true);
+    const playlist = await this.#getPlaylist(playlist_id);
 
     if (!playlist.info.is_editable)
       throw new InnertubeError('This playlist cannot be edited.', playlist_id);
 
-    const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
+    const payload = { playlistId: playlist_id, actions: [] as Record<string, any>[] };
 
     let set_video_id_0: string | undefined, set_video_id_1: string | undefined;
 
@@ -189,22 +183,33 @@ export default class PlaylistManager {
 
     payload.actions.push({
       action: 'ACTION_MOVE_VIDEO_AFTER',
-      set_video_id: set_video_id_0,
-      moved_set_video_id_predecessor: set_video_id_1
+      setVideoId: set_video_id_0,
+      movedSetVideoIdPredecessor: set_video_id_1
     });
 
-    const response = await this.#actions.execute(
-      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build(payload)
-    );
+    const playlist_edit_endpoint = new NavigationEndpoint({ playlistEditEndpoint: payload });
+    const response = await playlist_edit_endpoint.call(this.#actions);
 
     return {
       playlist_id,
       action_result: response.data.actions // TODO: implement actions in the parser
     };
   }
+  
+  async #getPlaylist(playlist_id: string): Promise<Playlist> {
+    let id = playlist_id;
+    
+    if (!id.startsWith('VL'))
+      id = `VL${id}`;
+    
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: `VL${id}` } });
+    const browse_response = await browse_endpoint.call(this.#actions, { parse: true });
+    
+    return new Playlist(this.#actions, browse_response, true);
+  }
 
   /**
-   * Sets the name (title) for the given playlist.
+   * Sets the name for the given playlist.
    * @param playlist_id - The playlist ID.
    * @param name - The name / title to use for the playlist.
    */
@@ -214,16 +219,15 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
+    const payload = { playlist_id, actions: [] as Record<string, any>[] };
 
     payload.actions.push({
       action: 'ACTION_SET_PLAYLIST_NAME',
-      playlist_name: name
+      playlistName: name
     });
 
-    const response = await this.#actions.execute(
-      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build(payload)
-    );
+    const playlist_edit_endpoint = new NavigationEndpoint({ playlistEditEndpoint: payload });
+    const response = await playlist_edit_endpoint.call(this.#actions);
 
     return {
       playlist_id,
@@ -242,16 +246,15 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const payload: EditPlaylistEndpointOptions = { playlist_id, actions: [] };
+    const payload = { playlistId: playlist_id, actions: [] as Record<string, any>[] };
 
     payload.actions.push({
       action: 'ACTION_SET_PLAYLIST_DESCRIPTION',
-      playlist_description: description
+      playlistDescription: description
     });
 
-    const response = await this.#actions.execute(
-      EditPlaylistEndpoint.PATH, EditPlaylistEndpoint.build(payload)
-    );
+    const playlist_edit_endpoint = new NavigationEndpoint({ playlistEditEndpoint: payload });
+    const response = await playlist_edit_endpoint.call(this.#actions);
 
     return {
       playlist_id,

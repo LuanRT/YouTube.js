@@ -1,3 +1,4 @@
+import type { IParsedResponse } from '../../parser/index.ts';
 import { Parser, ReloadContinuationItemsCommand } from '../../parser/index.ts';
 import { concatMemos, InnertubeError } from '../../utils/Utils.ts';
 
@@ -27,22 +28,19 @@ import TwoColumnBrowseResults from '../../parser/classes/TwoColumnBrowseResults.
 import TwoColumnSearchResults from '../../parser/classes/TwoColumnSearchResults.ts';
 import WatchCardCompactVideo from '../../parser/classes/WatchCardCompactVideo.ts';
 
-import type { ApiResponse, Actions } from '../index.ts';
-import type {
-  Memo, ObservedArray,
-  SuperParsedResult, YTNode
-} from '../../parser/helpers.ts';
+import type { Actions, ApiResponse } from '../index.ts';
+import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../../parser/helpers.ts';
 import type MusicQueue from '../../parser/classes/MusicQueue.ts';
 import type RichGrid from '../../parser/classes/RichGrid.ts';
 import type SectionList from '../../parser/classes/SectionList.ts';
-import type { IParsedResponse } from '../../parser/types/index.ts';
 
 export default class Feed<T extends IParsedResponse = IParsedResponse> {
-  #page: T;
-  #continuation?: ObservedArray<ContinuationItem>;
-  #actions: Actions;
-  #memo: Memo;
+  readonly #page: T;
+  readonly #actions: Actions;
+  readonly #memo: Memo;
 
+  #continuation?: ObservedArray<ContinuationItem>;
+  
   constructor(actions: Actions, response: ApiResponse | IParsedResponse, already_parsed = false) {
     if (this.#isParsed(response) || already_parsed) {
       this.#page = response as T;
@@ -203,9 +201,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
       if (this.#continuation.length === 0)
         throw new InnertubeError('There are no continuations.');
 
-      const response = await this.#continuation[0].endpoint.call<T>(this.#actions, { parse: true });
-
-      return response;
+      return await this.#continuation[0].endpoint.call<T>(this.#actions, { parse: true });
     }
 
     this.#continuation = this.#getBodyContinuations();

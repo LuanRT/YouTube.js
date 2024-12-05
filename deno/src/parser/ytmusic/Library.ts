@@ -7,20 +7,21 @@ import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 import SectionList from '../classes/SectionList.ts';
 
 import ChipCloud from '../classes/ChipCloud.ts';
-import ChipCloudChip from '../classes/ChipCloudChip.ts';
 import MusicMultiSelectMenuItem from '../classes/menus/MusicMultiSelectMenuItem.ts';
 import MusicSortFilterButton from '../classes/MusicSortFilterButton.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
+
 import type { ObservedArray } from '../helpers.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 import type MusicMenuItemDivider from '../classes/menus/MusicMenuItemDivider.ts';
 import type { ApiResponse, Actions } from '../../core/index.ts';
+import type ChipCloudChip from '../classes/ChipCloudChip.ts';
 
 export default class Library {
-  #page: IBrowseResponse;
-  #actions: Actions;
-  #continuation?: string | null;
+  readonly #page: IBrowseResponse;
+  readonly #actions: Actions;
+  readonly #continuation?: string | null;
 
   header?: MusicSideAlignedItem;
   contents?: ObservedArray<Grid | MusicShelf>;
@@ -55,17 +56,17 @@ export default class Library {
 
       if (!target_item)
         throw new InnertubeError(`Sort option "${sort_by}" not found`, { available_filters: options.map((item) => item.title) });
-    } else if (sort_by instanceof MusicMultiSelectMenuItem) {
+    } else {
       target_item = sort_by;
     }
 
-    if (!target_item)
+    if (!target_item.endpoint)
       throw new InnertubeError('Invalid sort option');
 
     if (target_item.selected)
       return this;
 
-    const cmd = target_item.endpoint?.payload?.commands?.find((cmd: any) => cmd.browseSectionListReloadEndpoint)?.browseSectionListReloadEndpoint;
+    const cmd = target_item.endpoint.payload?.commands?.find((cmd: any) => cmd.browseSectionListReloadEndpoint)?.browseSectionListReloadEndpoint;
 
     if (!cmd)
       throw new InnertubeError('Failed to find sort option command');
@@ -100,14 +101,14 @@ export default class Library {
 
       if (!target_chip)
         throw new InnertubeError(`Filter "${filter}" not found`, { available_filters: this.filters });
-    } else if (filter instanceof ChipCloudChip) {
+    } else {
       target_chip = filter;
     }
 
-    if (!target_chip)
+    if (!target_chip.endpoint)
       throw new InnertubeError('Invalid filter', filter);
 
-    const target_cmd = new NavigationEndpoint(target_chip.endpoint?.payload?.commands?.[0]);
+    const target_cmd = new NavigationEndpoint(target_chip.endpoint.payload?.commands?.[0]);
     const response = await target_cmd.call(this.#actions, { client: 'YTMUSIC' });
 
     return new Library(response, this.#actions);

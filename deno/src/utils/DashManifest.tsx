@@ -9,7 +9,7 @@ import type Player from '../core/Player.ts';
 import type { IStreamingData } from '../parser/index.ts';
 import type { PlayerStoryboardSpec } from '../parser/nodes.ts';
 import type { SegmentInfo as FSegmentInfo } from './StreamingInfo.ts';
-import type { FormatFilter, URLTransformer } from '../types/FormatUtils.ts';
+import type { FormatFilter, URLTransformer } from '../types/index.ts';
 import type PlayerLiveStoryboardSpec from '../parser/classes/PlayerLiveStoryboardSpec.ts';
 import type { StreamingInfoOptions } from '../types/StreamingInfoOptions.ts';
 import type { CaptionTrackData } from '../parser/classes/PlayerCaptionsTracklist.ts';

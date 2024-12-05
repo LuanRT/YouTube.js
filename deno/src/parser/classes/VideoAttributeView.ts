@@ -14,7 +14,7 @@ export default class VideoAttributeView extends YTNode {
   image_style: string;
   title: string;
   subtitle: string;
-  secondary_subtitle: {
+  secondary_subtitle?: {
     content: string
   };
   orientation: string;
@@ -34,9 +34,13 @@ export default class VideoAttributeView extends YTNode {
     this.image_style = data.imageStyle;
     this.title = data.title;
     this.subtitle = data.subtitle;
-    this.secondary_subtitle = {
-      content: data.secondarySubtitle.content
-    };
+
+    if (Reflect.has(data, 'secondarySubtitle')) {
+      this.secondary_subtitle = {
+        content: data.secondarySubtitle.content
+      };
+    }
+
     this.orientation = data.orientation;
     this.sizing_rule = data.sizingRule;
     this.overflow_menu_on_tap = new NavigationEndpoint(data.overflowMenuOnTap);

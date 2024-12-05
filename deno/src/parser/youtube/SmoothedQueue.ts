@@ -49,7 +49,8 @@ export default class SmoothedQueue {
   #callback: ((actions: YTNode[]) => void) | null;
   #action_queue: YTNode[][];
   #next_update_id: any;
-  #poll_response_delay_queue: DelayQueue;
+  
+  readonly #poll_response_delay_queue: DelayQueue;
 
   constructor() {
     this.#last_update_time = null;

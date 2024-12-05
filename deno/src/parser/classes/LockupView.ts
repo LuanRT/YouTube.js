@@ -10,7 +10,7 @@ export default class LockupView extends YTNode {
   content_image: CollectionThumbnailView | null;
   metadata: LockupMetadataView | null;
   content_id: string;
-  content_type: 'SOURCE' | 'PLAYLIST' | 'ALBUM' | 'PODCAST' | 'SHOPPING_COLLECTION' | 'SHORT' | 'GAME' | 'PRODUCT';
+  content_type: 'VIDEO' | 'MOVIE' | 'CHANNEL' | 'CLIP' | 'SOURCE' | 'PLAYLIST' | 'ALBUM' | 'PODCAST' | 'SHOPPING_COLLECTION' | 'SHORT' | 'GAME' | 'PRODUCT';
   on_tap_endpoint: NavigationEndpoint;
 
   constructor(data: RawNode) {

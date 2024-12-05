@@ -1,6 +1,5 @@
 import { Parser, ContinuationCommand } from '../index.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
-import { Reel } from '../../core/endpoints/index.ts';
 import MediaInfo from '../../core/mixins/MediaInfo.ts';
 
 import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
@@ -29,14 +28,10 @@ export default class ShortFormVideoInfo extends MediaInfo {
     if (!this.#watch_next_continuation)
       throw new InnertubeError('Continuation not found');
 
-    const response = await this.actions.execute(
-      Reel.ReelWatchSequenceEndpoint.PATH, {
-        ...Reel.ReelWatchSequenceEndpoint.build({
-          sequence_params: this.#watch_next_continuation.token
-        }),
-        parse: true
-      }
-    );
+    const response = await this.actions.execute('/reel/reel_watch_sequence', {
+      sequenceParams: this.#watch_next_continuation.token,
+      parse: true
+    });
 
     if (response.entries)
       this.watch_next_feed = response.entries;

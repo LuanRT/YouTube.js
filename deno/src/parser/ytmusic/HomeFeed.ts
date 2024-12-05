@@ -12,9 +12,9 @@ import type { ObservedArray } from '../helpers.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 
 export default class HomeFeed {
-  #page: IBrowseResponse;
-  #actions: Actions;
-  #continuation?: string;
+  readonly #page: IBrowseResponse;
+  readonly #actions: Actions;
+  readonly #continuation?: string;
 
   sections?: ObservedArray<MusicCarouselShelf | MusicTastebuilderShelf>;
   header?: ChipCloud;

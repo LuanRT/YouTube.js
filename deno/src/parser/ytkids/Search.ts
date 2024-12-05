@@ -7,8 +7,8 @@ import type { ObservedArray, YTNode } from '../helpers.ts';
 import type { ISearchResponse } from '../types/index.ts';
 
 export default class Search extends Feed<ISearchResponse> {
-  estimated_results?: number;
-  contents: ObservedArray<YTNode> | null;
+  public estimated_results?: number;
+  public contents: ObservedArray<YTNode> | null;
 
   constructor(actions: Actions, data: ApiResponse | ISearchResponse) {
     super(actions, data);

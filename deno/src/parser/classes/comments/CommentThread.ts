@@ -1,40 +1,40 @@
+
 import { Parser } from '../../index.ts';
 import Button from '../Button.ts';
 import ContinuationItem from '../ContinuationItem.ts';
-import Comment from './Comment.ts';
 import CommentView from './CommentView.ts';
 import CommentReplies from './CommentReplies.ts';
-
 import { InnertubeError } from '../../../utils/Utils.ts';
 import { observe, YTNode } from '../../helpers.ts';
 
-import type Actions from '../../../core/Actions.ts';
-import type { ObservedArray } from '../../helpers.ts';
 import type { RawNode } from '../../index.ts';
+import type Actions from '../../../core/Actions.ts';
+import type { Memo, ObservedArray } from '../../helpers.ts';
 
 export default class CommentThread extends YTNode {
   static type = 'CommentThread';
-
+  
+  public comment: CommentView | null;
+  public replies?: ObservedArray<CommentView>;
+  public comment_replies_data: CommentReplies | null;
+  public is_moderated_elq_comment: boolean;
+  public has_replies: boolean;
+  
   #actions?: Actions;
   #continuation?: ContinuationItem;
 
-  comment: Comment | CommentView | null;
-  replies?: ObservedArray<Comment | CommentView>;
-  comment_replies_data: CommentReplies | null;
-  is_moderated_elq_comment: boolean;
-  has_replies: boolean;
-
   constructor(data: RawNode) {
     super();
-
-    if (Reflect.has(data, 'commentViewModel')) {
-      this.comment = Parser.parseItem(data.commentViewModel, CommentView);
-    } else {
-      this.comment = Parser.parseItem(data.comment, Comment);
-    }
+    this.comment = Parser.parseItem(data.commentViewModel, CommentView);
     this.comment_replies_data = Parser.parseItem(data.replies, CommentReplies);
     this.is_moderated_elq_comment = data.isModeratedElqComment;
     this.has_replies = !!this.comment_replies_data;
+  }
+
+  get has_continuation(): boolean {
+    if (!this.replies)
+      throw new InnertubeError('Cannot determine if there is a continuation because this thread\'s replies have not been loaded.');
+    return !!this.#continuation;
   }
 
   /**
@@ -57,12 +57,8 @@ export default class CommentThread extends YTNode {
     if (!response.on_response_received_endpoints_memo)
       throw new InnertubeError('Unexpected response.', response);
 
-    this.replies = observe(response.on_response_received_endpoints_memo.getType(Comment, CommentView).map((comment) => {
-      comment.setActions(this.#actions);
-      return comment;
-    }));
-
-    this.#continuation = response?.on_response_received_endpoints_memo.getType(ContinuationItem).first();
+    this.replies = this.#getPatchedReplies(response.on_response_received_endpoints_memo);
+    this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem).first();
 
     return this;
   }
@@ -90,23 +86,20 @@ export default class CommentThread extends YTNode {
     if (!response.on_response_received_endpoints_memo)
       throw new InnertubeError('Unexpected response.', response);
 
-    this.replies = observe(response.on_response_received_endpoints_memo.getType(Comment, CommentView).map((comment) => {
-      comment.setActions(this.#actions);
-      return comment;
-    }));
-
+    this.replies = this.#getPatchedReplies(response.on_response_received_endpoints_memo);
     this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem).first();
 
     return this;
   }
 
-  get has_continuation(): boolean {
-    if (!this.replies)
-      throw new InnertubeError('Cannot determine if there is a continuation because this thread\'s replies have not been loaded.');
-    return !!this.#continuation;
-  }
-
   setActions(actions: Actions) {
     this.#actions = actions;
+  }
+
+  #getPatchedReplies(data: Memo): ObservedArray<CommentView> {
+    return observe(data.getType(CommentView).map((comment) => {
+      comment.setActions(this.#actions);
+      return comment;
+    }));
   }
 }

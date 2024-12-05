@@ -13,8 +13,8 @@ export default class VideoSecondaryInfo extends YTNode {
   description: Text;
   subscribe_button: SubscribeButton | Button | null;
   metadata: MetadataRowContainer | null;
-  show_more_text: string;
-  show_less_text: string;
+  show_more_text: Text;
+  show_less_text: Text;
   default_expanded: string;
   description_collapsed_lines: string;
 
@@ -29,8 +29,8 @@ export default class VideoSecondaryInfo extends YTNode {
 
     this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     this.metadata = Parser.parseItem(data.metadataRowContainer, MetadataRowContainer);
-    this.show_more_text = data.showMoreText;
-    this.show_less_text = data.showLessText;
+    this.show_more_text = new Text(data.showMoreText);
+    this.show_less_text = new Text(data.showLessText);
     this.default_expanded = data.defaultExpanded;
     this.description_collapsed_lines = data.descriptionCollapsedLines;
   }

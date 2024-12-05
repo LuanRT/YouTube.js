@@ -9,11 +9,11 @@ import type { ApiResponse, Actions } from '../../core/index.ts';
 import type { IGetNotificationsMenuResponse } from '../types/index.ts';
 
 export default class NotificationsMenu {
-  #page: IGetNotificationsMenuResponse;
-  #actions: Actions;
+  readonly #page: IGetNotificationsMenuResponse;
+  readonly #actions: Actions;
 
-  header: SimpleMenuHeader;
-  contents: Notification[];
+  public header: SimpleMenuHeader;
+  public contents: Notification[];
 
   constructor(actions: Actions, response: ApiResponse) {
     this.#actions = actions;

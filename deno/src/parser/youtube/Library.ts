@@ -11,8 +11,8 @@ import type { Actions, ApiResponse } from '../../core/index.ts';
 import type { IBrowseResponse } from '../types/index.ts';
 
 export default class Library extends Feed<IBrowseResponse> {
-  header: PageHeader | null;
-  sections;
+  public header: PageHeader | null;
+  public sections;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse) {
     super(actions, data);

@@ -9,10 +9,10 @@ import type { ObservedArray, YTNode } from '../helpers.ts';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
 
 export default class VideoInfo extends MediaInfo {
-  slim_video_metadata?: SlimVideoMetadata;
-  watch_next_feed?: ObservedArray<YTNode>;
-  current_video_endpoint?: NavigationEndpoint;
-  player_overlays?: PlayerOverlay;
+  public slim_video_metadata?: SlimVideoMetadata;
+  public watch_next_feed?: ObservedArray<YTNode>;
+  public current_video_endpoint?: NavigationEndpoint;
+  public player_overlays?: PlayerOverlay;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     super(data, actions, cpn);

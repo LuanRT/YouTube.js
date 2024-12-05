@@ -17,6 +17,7 @@ export default class AccountItem extends YTNode {
   has_channel: boolean;
   endpoint: NavigationEndpoint;
   account_byline: Text;
+  channel_handle: Text;
 
   constructor(data: RawNode) {
     super();
@@ -27,5 +28,6 @@ export default class AccountItem extends YTNode {
     this.has_channel = !!data.hasChannel;
     this.endpoint = new NavigationEndpoint(data.serviceEndpoint);
     this.account_byline = new Text(data.accountByline);
+    this.channel_handle = new Text(data.channelHandle);
   }
 }

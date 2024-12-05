@@ -8,11 +8,11 @@ const TAG = 'Player';
  * Represents YouTube's player script. This is required to decipher signatures.
  */
 export default class Player {
-  player_id: string;
-  sts: number;
-  nsig_sc?: string;
-  sig_sc?: string;
-  po_token?: string;
+  public player_id: string;
+  public sts: number;
+  public nsig_sc?: string;
+  public sig_sc?: string;
+  public po_token?: string;
 
   constructor(player_id: string, signature_timestamp: number, sig_sc?: string, nsig_sc?: string) {
     this.player_id = player_id;
@@ -232,10 +232,19 @@ export default class Player {
   }
 
   static extractNSigSourceCode(data: string): string | undefined {
-    const nsig_function = findFunction(data, { includes: 'enhanced_except' });
-    if (nsig_function) {
+    // This used to be the prefix of the error tag (leaving it here for reference).
+    let nsig_function = findFunction(data, { includes: 'enhanced_except' });
+   
+    // This is the suffix of the error tag.
+    if (!nsig_function)
+      nsig_function = findFunction(data, { includes: '-_w8_' });
+    
+    // Usually, only this function uses these dates in the entire script.
+    if (!nsig_function)
+      nsig_function = findFunction(data, { includes: '1969' });
+    
+    if (nsig_function)
       return `${nsig_function.result} ${nsig_function.name}(nsig);`;
-    }
   }
 
   get url(): string {

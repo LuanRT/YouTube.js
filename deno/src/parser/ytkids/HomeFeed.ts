@@ -6,11 +6,11 @@ import KidsCategoryTab from '../classes/ytkids/KidsCategoryTab.ts';
 import KidsHomeScreen from '../classes/ytkids/KidsHomeScreen.ts';
 
 import type { ApiResponse, Actions } from '../../core/index.ts';
-import type { IBrowseResponse } from '../types/ParsedResponse.ts';
+import type { IBrowseResponse } from '../types/index.ts';
 
 export default class HomeFeed extends Feed<IBrowseResponse> {
-  header?: KidsCategoriesHeader;
-  contents?: KidsHomeScreen;
+  public header?: KidsCategoriesHeader;
+  public contents?: KidsHomeScreen;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);

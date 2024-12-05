@@ -1,5 +1,4 @@
 export { default as AccountInfo } from './AccountInfo.ts';
-export { default as Analytics } from './Analytics.ts';
 export { default as Channel } from './Channel.ts';
 export * from './Channel.ts';
 export { default as Comments } from './Comments.ts';
@@ -15,6 +14,5 @@ export { default as Playlist } from './Playlist.ts';
 export { default as Search } from './Search.ts';
 export { default as Settings } from './Settings.ts';
 export { default as SmoothedQueue } from './SmoothedQueue.ts';
-export { default as TimeWatched } from './TimeWatched.ts';
 export { default as VideoInfo } from './VideoInfo.ts';
 export { default as TranscriptInfo } from './TranscriptInfo.ts';

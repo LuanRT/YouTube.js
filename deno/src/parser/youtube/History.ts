@@ -9,8 +9,8 @@ import type Video from '../classes/Video.ts';
 
 // TODO: make feed actions usable
 export default class History extends Feed<IBrowseResponse> {
-  sections: ItemSection[];
-  feed_actions: BrowseFeedActions;
+  public sections: ItemSection[];
+  public feed_actions: BrowseFeedActions;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);

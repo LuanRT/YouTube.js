@@ -2,15 +2,23 @@ import { Constants, FormatUtils } from '../../utils/index.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 import { getStreamingInfo } from '../../utils/StreamingInfo.ts';
 
+import type {
+  INextResponse,
+  IPlayabilityStatus,
+  IPlaybackTracking,
+  IPlayerConfig,
+  IPlayerResponse,
+  IStreamingData
+} from '../../parser/index.ts';
+
 import { Parser } from '../../parser/index.ts';
 import { TranscriptInfo } from '../../parser/youtube/index.ts';
 import ContinuationItem from '../../parser/classes/ContinuationItem.ts';
 import PlayerMicroformat from '../../parser/classes/PlayerMicroformat.ts';
 import MicroformatData from '../../parser/classes/MicroformatData.ts';
 
-import type { ApiResponse, Actions } from '../index.ts';
-import type { INextResponse, IPlayabilityStatus, IPlaybackTracking, IPlayerConfig, IPlayerResponse, IStreamingData } from '../../parser/index.ts';
-import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../types/FormatUtils.ts';
+import type { Actions, ApiResponse } from '../index.ts';
+import type { DownloadOptions, FormatFilter, FormatOptions, URLTransformer } from '../../types/index.ts';
 import type Format from '../../parser/classes/misc/Format.ts';
 import type { DashOptions } from '../../types/DashOptions.ts';
 import type { ObservedArray } from '../../parser/helpers.ts';
@@ -23,19 +31,20 @@ import type PlayerLiveStoryboardSpec from '../../parser/classes/PlayerLiveStoryb
 import type PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.ts';
 
 export default class MediaInfo {
-  #page: [IPlayerResponse, INextResponse?];
-  #actions: Actions;
-  #cpn: string;
-  #playback_tracking?: IPlaybackTracking;
-  basic_info;
-  annotations?: ObservedArray<PlayerAnnotationsExpanded>;
-  storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
-  endscreen?: Endscreen;
-  captions?: PlayerCaptionsTracklist;
-  cards?: CardCollection;
-  streaming_data?: IStreamingData;
-  playability_status?: IPlayabilityStatus;
-  player_config?: IPlayerConfig;
+  readonly #page: [IPlayerResponse, INextResponse?];
+  readonly #actions: Actions;
+  readonly #cpn: string;
+  readonly #playback_tracking?: IPlaybackTracking;
+
+  public basic_info;
+  public annotations?: ObservedArray<PlayerAnnotationsExpanded>;
+  public storyboards?: PlayerStoryboardSpec | PlayerLiveStoryboardSpec;
+  public endscreen?: Endscreen;
+  public captions?: PlayerCaptionsTracklist;
+  public cards?: CardCollection;
+  public streaming_data?: IStreamingData;
+  public playability_status?: IPlayabilityStatus;
+  public player_config?: IPlayerConfig;
 
   constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
     this.#actions = actions;
@@ -209,17 +218,12 @@ export default class MediaInfo {
 
     const url = this.#playback_tracking.videostats_playback_url.replace('https://s.', replacement);
 
-    const response = await this.#actions.stats(url, {
+    return await this.#actions.stats(url, {
       client_name,
       client_version
     }, url_params);
-
-    return response;
   }
 
-  /**
-   * Actions instance.
-   */
   get actions(): Actions {
     return this.#actions;
   }
@@ -232,7 +236,7 @@ export default class MediaInfo {
   }
 
   /**
-   * Original parsed InnerTube response.
+   * Parsed InnerTube response.
    */
   get page(): [IPlayerResponse, INextResponse?] {
     return this.#page;

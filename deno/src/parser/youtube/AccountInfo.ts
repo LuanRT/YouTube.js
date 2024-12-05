@@ -7,7 +7,7 @@ import type { IParsedResponse } from '../types/index.ts';
 import type AccountItemSection from '../classes/AccountItemSection.ts';
 
 export default class AccountInfo {
-  #page: IParsedResponse;
+  readonly #page: IParsedResponse;
 
   contents: AccountItemSection | null;
 
