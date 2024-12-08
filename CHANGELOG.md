@@ -1,5 +1,13 @@
 # Changelog
 
+## [12.1.0](https://github.com/LuanRT/YouTube.js/compare/v12.0.0...v12.1.0) (2024-12-08)
+
+
+### Features
+
+* Add `MWEB` client ([4bf125b](https://github.com/LuanRT/YouTube.js/commit/4bf125b6a53460f631410e1ab949a16cc0c7d095))
+* **parser:** Add mobile guide nodes ([ad2ae51](https://github.com/LuanRT/YouTube.js/commit/ad2ae51b97d84dcb9d2547b4cfef7402f2410404))
+
 ## [12.0.0](https://github.com/LuanRT/YouTube.js/compare/v11.0.1...v12.0.0) (2024-12-05)
 
 
