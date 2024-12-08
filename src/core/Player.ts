@@ -140,6 +140,9 @@ export default class Player {
       case 'WEB':
         url_components.searchParams.set('cver', Constants.CLIENTS.WEB.VERSION);
         break;
+      case 'MWEB':
+        url_components.searchParams.set('cver', Constants.CLIENTS.MWEB.VERSION);
+        break;
       case 'WEB_REMIX':
         url_components.searchParams.set('cver', Constants.CLIENTS.YTMUSIC.VERSION);
         break;

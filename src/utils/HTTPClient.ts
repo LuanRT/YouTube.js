@@ -190,6 +190,12 @@ export default class HTTPClient {
     }
 
     switch (client.toUpperCase()) {
+      case 'MWEB':
+        ctx.client.clientVersion = Constants.CLIENTS.MWEB.VERSION;
+        ctx.client.clientName = Constants.CLIENTS.MWEB.NAME;
+        ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
+        ctx.client.platform = 'MOBILE';
+        break;
       case 'IOS':
         ctx.client.deviceMake = 'Apple';
         ctx.client.deviceModel = Constants.CLIENTS.IOS.DEVICE_MODEL;

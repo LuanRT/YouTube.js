@@ -46,8 +46,10 @@ app.get('/', async (_req, res) => {
     console.info('Innertube instance is logged in.');
 
     const userInfo = await innertube.account.getInfo();
+    
+    console.log(await innertube.getBasicInfo('R8vgwMYSQi8', 'ANDROID'));
 
-    return res.send({ userInfo  });
+    return res.send({ userInfo });
   }
 
   if (!oAuth2Client) {

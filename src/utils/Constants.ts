@@ -38,6 +38,12 @@ export const CLIENTS = Object.freeze({
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'
   },
+  MWEB: {
+    NAME_ID: '2',
+    NAME: 'MWEB',
+    VERSION: '2.20241205.01.00',
+    API_VERSION: 'v1'
+  },
   WEB_KIDS: {
     NAME_ID: '76',
     NAME: 'WEB_KIDS',
@@ -105,4 +111,4 @@ export const INNERTUBE_HEADERS_BASE = Object.freeze({
   'content-type': 'application/json'
 });
 
-export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV', 'TV_EMBEDDED', 'WEB_EMBEDDED', 'WEB_CREATOR' ];
+export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'MWEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV', 'TV_EMBEDDED', 'WEB_EMBEDDED', 'WEB_CREATOR' ];
