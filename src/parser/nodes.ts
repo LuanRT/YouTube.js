@@ -24,6 +24,7 @@ export { default as AttributionView } from './classes/AttributionView.js';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.js';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.js';
 export { default as AvatarView } from './classes/AvatarView.js';
+export { default as BackgroundPromo } from './classes/BackgroundPromo.js';
 export { default as BackstageImage } from './classes/BackstageImage.js';
 export { default as BackstagePost } from './classes/BackstagePost.js';
 export { default as BackstagePostThread } from './classes/BackstagePostThread.js';

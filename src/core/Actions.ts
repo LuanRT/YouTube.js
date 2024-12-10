@@ -117,6 +117,9 @@ export default class Actions {
         if (this.#needsLogin(data.browseId) && !this.session.logged_in)
           throw new InnertubeError('You must be signed in to perform this operation.');
       }
+      
+      if (Reflect.has(data, 'skip_auth_check'))
+        delete data.skip_auth_check;
 
       if (Reflect.has(data, 'override_endpoint'))
         delete data.override_endpoint;
