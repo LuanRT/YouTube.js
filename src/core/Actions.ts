@@ -1,9 +1,14 @@
 import type {
-  IBrowseResponse, IGetNotificationsMenuResponse, INextResponse,
-  IParsedResponse, IPlayerResponse, IRawResponse,
-  IResolveURLResponse, ISearchResponse, IUpdatedMetadataResponse
+  IBrowseResponse,
+  IGetNotificationsMenuResponse,
+  INextResponse,
+  IParsedResponse,
+  IPlayerResponse,
+  IRawResponse,
+  IResolveURLResponse,
+  ISearchResponse,
+  IUpdatedMetadataResponse
 } from '../parser/index.js';
-
 import { NavigateAction, Parser } from '../parser/index.js';
 import { InnertubeError } from '../utils/Utils.js';
 
@@ -15,17 +20,25 @@ export interface ApiResponse {
   data: IRawResponse;
 }
 
-export type InnertubeEndpoint = '/player' | '/search' | '/browse' | '/next' | '/reel' | '/updated_metadata' | '/notification/get_notification_menu' | string;
+export type InnertubeEndpoint =
+  '/player'
+  | '/search'
+  | '/browse'
+  | '/next'
+  | '/reel'
+  | '/updated_metadata'
+  | '/notification/get_notification_menu'
+  | string;
 
 export type ParsedResponse<T> =
   T extends '/player' ? IPlayerResponse :
-  T extends '/search' ? ISearchResponse :
-  T extends '/browse' ? IBrowseResponse :
-  T extends '/next' ? INextResponse :
-  T extends '/updated_metadata' ? IUpdatedMetadataResponse :
-  T extends '/navigation/resolve_url' ? IResolveURLResponse :
-  T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
-  IParsedResponse;
+    T extends '/search' ? ISearchResponse :
+      T extends '/browse' ? IBrowseResponse :
+        T extends '/next' ? INextResponse :
+          T extends '/updated_metadata' ? IUpdatedMetadataResponse :
+            T extends '/navigation/resolve_url' ? IResolveURLResponse :
+              T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
+                IParsedResponse;
 
 export default class Actions {
   public session: Session;
@@ -52,7 +65,9 @@ export default class Actions {
    * @param client - The client to use.
    * @param params - Call parameters.
    */
-  async stats(url: string, client: { client_name: string; client_version: string }, params: { [key: string]: any }): Promise<Response> {
+  async stats(url: string, client: { client_name: string; client_version: string }, params: {
+    [key: string]: any
+  }): Promise<Response> {
     const s_url = new URL(url);
 
     s_url.searchParams.set('ver', '2');
@@ -72,15 +87,33 @@ export default class Actions {
    * @param endpoint - The endpoint to call.
    * @param args - Call arguments
    */
-  async execute<T extends InnertubeEndpoint>(endpoint: T, args: { [key: string]: any; parse: true; protobuf?: false; serialized_data?: any }): Promise<ParsedResponse<T>>;
-  async execute<T extends InnertubeEndpoint>(endpoint: T, args?: { [key: string]: any; parse?: false; protobuf?: true; serialized_data?: any }): Promise<ApiResponse>;
-  async execute<T extends InnertubeEndpoint>(endpoint: T, args?: { [key: string]: any; parse?: boolean; protobuf?: boolean; serialized_data?: any }): Promise<ParsedResponse<T> | ApiResponse> {
+  async execute<T extends InnertubeEndpoint>(endpoint: T, args: {
+    [key: string]: any;
+    parse: true;
+    protobuf?: false;
+    serialized_data?: any;
+    skip_auth_check?: boolean
+  }): Promise<ParsedResponse<T>>;
+  async execute<T extends InnertubeEndpoint>(endpoint: T, args?: {
+    [key: string]: any;
+    parse?: false;
+    protobuf?: true;
+    serialized_data?: any;
+    skip_auth_check?: boolean
+  }): Promise<ApiResponse>;
+  async execute<T extends InnertubeEndpoint>(endpoint: T, args?: {
+    [key: string]: any;
+    parse?: boolean;
+    protobuf?: boolean;
+    serialized_data?: any;
+    skip_auth_check?: boolean
+  }): Promise<ParsedResponse<T> | ApiResponse> {
     let data;
 
     if (args && !args.protobuf) {
       data = { ...args };
 
-      if (Reflect.has(data, 'browseId')) {
+      if (Reflect.has(data, 'browseId') && !args.skip_auth_check) {
         if (this.#needsLogin(data.browseId) && !this.session.logged_in)
           throw new InnertubeError('You must be signed in to perform this operation.');
       }
