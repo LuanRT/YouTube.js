@@ -140,6 +140,9 @@ export default class Player {
       case 'WEB':
         url_components.searchParams.set('cver', Constants.CLIENTS.WEB.VERSION);
         break;
+      case 'MWEB':
+        url_components.searchParams.set('cver', Constants.CLIENTS.MWEB.VERSION);
+        break;
       case 'WEB_REMIX':
         url_components.searchParams.set('cver', Constants.CLIENTS.YTMUSIC.VERSION);
         break;
@@ -221,14 +224,21 @@ export default class Player {
   }
 
   static extractSigSourceCode(data: string): string {
-    const calls = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+    let calls = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+    let var_name = 'a';
+
+    if (!calls) {
+      calls = getStringBetweenStrings(data, 'function(J){J=J.split("")', 'return J.join("")}');
+      var_name = 'J';
+    }
+
     const obj_name = calls?.split(/\.|\[/)?.[0]?.replace(';', '')?.trim();
     const functions = getStringBetweenStrings(data, `var ${obj_name}={`, '};');
 
     if (!functions || !calls)
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
 
-    return `function descramble_sig(a) { a = a.split(""); let ${obj_name}={${functions}}${calls} return a.join("") } descramble_sig(sig);`;
+    return `function descramble_sig(${var_name}) { ${var_name} = ${var_name}.split(""); let ${obj_name}={${functions}}${calls} return ${var_name}.join("") } descramble_sig(sig);`;
   }
 
   static extractNSigSourceCode(data: string): string | undefined {
@@ -252,6 +262,6 @@ export default class Player {
   }
 
   static get LIBRARY_VERSION(): number {
-    return 11;
+    return 12;
   }
 }

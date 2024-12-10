@@ -15,6 +15,7 @@ import type { OAuth2Tokens, OAuth2AuthErrorEventHandler, OAuth2AuthPendingEventH
 
 export enum ClientType {
   WEB = 'WEB',
+  MWEB = 'MWEB',
   KIDS = 'WEB_KIDS',
   MUSIC = 'WEB_REMIX',
   IOS = 'iOS',

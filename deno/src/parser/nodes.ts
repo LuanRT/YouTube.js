@@ -323,6 +323,11 @@ export { default as MusicTastebuilderShelfThumbnail } from './classes/MusicTaste
 export { default as MusicThumbnail } from './classes/MusicThumbnail.ts';
 export { default as MusicTwoRowItem } from './classes/MusicTwoRowItem.ts';
 export { default as MusicVisualHeader } from './classes/MusicVisualHeader.ts';
+export { default as MobileTopbar } from './classes/mweb/MobileTopbar.ts';
+export { default as MultiPageMenuSection } from './classes/mweb/MultiPageMenuSection.ts';
+export { default as PivotBar } from './classes/mweb/PivotBar.ts';
+export { default as PivotBarItem } from './classes/mweb/PivotBarItem.ts';
+export { default as TopbarMenuButton } from './classes/mweb/TopbarMenuButton.ts';
 export { default as NavigationEndpoint } from './classes/NavigationEndpoint.ts';
 export { default as Notification } from './classes/Notification.ts';
 export { default as NotificationAction } from './classes/NotificationAction.ts';
