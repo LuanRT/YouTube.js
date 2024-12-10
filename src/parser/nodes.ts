@@ -361,6 +361,7 @@ export { default as PlaylistPanelVideoWrapper } from './classes/PlaylistPanelVid
 export { default as PlaylistSidebar } from './classes/PlaylistSidebar.js';
 export { default as PlaylistSidebarPrimaryInfo } from './classes/PlaylistSidebarPrimaryInfo.js';
 export { default as PlaylistSidebarSecondaryInfo } from './classes/PlaylistSidebarSecondaryInfo.js';
+export { default as PlaylistThumbnailOverlay } from './classes/PlaylistThumbnailOverlay.js';
 export { default as PlaylistVideo } from './classes/PlaylistVideo.js';
 export { default as PlaylistVideoList } from './classes/PlaylistVideoList.js';
 export { default as PlaylistVideoThumbnail } from './classes/PlaylistVideoThumbnail.js';

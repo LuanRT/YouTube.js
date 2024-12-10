@@ -38,6 +38,7 @@ export default class Video extends YTNode {
   show_action_menu: boolean;
   is_watched: boolean;
   menu: Menu | null;
+  byline_text?: Text;
   search_video_result_entity_key?: string;
 
   constructor(data: RawNode) {
@@ -90,6 +91,10 @@ export default class Video extends YTNode {
 
     if (Reflect.has(data, 'searchVideoResultEntityKey')) {
       this.search_video_result_entity_key = data.searchVideoResultEntityKey;
+    }
+    
+    if (Reflect.has(data, 'bylineText')) {
+      this.byline_text = new Text(data.bylineText);
     }
   }
 
