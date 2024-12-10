@@ -17,6 +17,7 @@ export { default as SignalAction } from './classes/actions/SignalAction.js';
 export { default as UpdateChannelSwitcherPageAction } from './classes/actions/UpdateChannelSwitcherPageAction.js';
 export { default as UpdateEngagementPanelAction } from './classes/actions/UpdateEngagementPanelAction.js';
 export { default as UpdateSubscribeButtonAction } from './classes/actions/UpdateSubscribeButtonAction.js';
+export { default as ActiveAccountHeader } from './classes/ActiveAccountHeader.js';
 export { default as AddToPlaylist } from './classes/AddToPlaylist.js';
 export { default as Alert } from './classes/Alert.js';
 export { default as AlertWithButton } from './classes/AlertWithButton.js';
