@@ -1,5 +1,14 @@
 # Changelog
 
+## [12.2.0](https://github.com/LuanRT/YouTube.js/compare/v12.1.0...v12.2.0) (2024-12-10)
+
+
+### Features
+
+* **Actions:** Allow auth check to be skipped ([67f13ff](https://github.com/LuanRT/YouTube.js/commit/67f13fffacec2c655a03d66c6d8016620d9abcf9))
+* **parser:** Add `ActiveAccountHeader` ([5f233ae](https://github.com/LuanRT/YouTube.js/commit/5f233ae34e278e7f7a0c48e4ba762d9bac9e312f))
+* **parser:** Add `PlaylistThumbnailOverlay` ([c8173c8](https://github.com/LuanRT/YouTube.js/commit/c8173c88e0e17ec4bb4e93af1867c55d07611cc0))
+
 ## [12.1.0](https://github.com/LuanRT/YouTube.js/compare/v12.0.0...v12.1.0) (2024-12-10)
 
 
