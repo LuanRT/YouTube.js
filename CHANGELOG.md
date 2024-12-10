@@ -1,5 +1,19 @@
 # Changelog
 
+## [12.1.0](https://github.com/LuanRT/YouTube.js/compare/v12.0.0...v12.1.0) (2024-12-10)
+
+
+### Features
+
+* Add `MWEB` client ([4bf125b](https://github.com/LuanRT/YouTube.js/commit/4bf125b6a53460f631410e1ab949a16cc0c7d095))
+* **parser:** Add mobile guide nodes ([ad2ae51](https://github.com/LuanRT/YouTube.js/commit/ad2ae51b97d84dcb9d2547b4cfef7402f2410404))
+
+
+### Bug Fixes
+
+* **Player:** Bump cache version ([283172f](https://github.com/LuanRT/YouTube.js/commit/283172f22032d60b407cb0159a391a147b569432))
+* **Player:** Fix signature algorithm extraction ([#832](https://github.com/LuanRT/YouTube.js/issues/832)) ([ce4996c](https://github.com/LuanRT/YouTube.js/commit/ce4996cea7b0607cb7f9aca7ae9c9e439d964a5a))
+
 ## [12.0.0](https://github.com/LuanRT/YouTube.js/compare/v11.0.1...v12.0.0) (2024-12-05)
 
 
