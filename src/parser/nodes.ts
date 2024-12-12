@@ -33,6 +33,7 @@ export { default as BadgeView } from './classes/BadgeView.js';
 export { default as BrowseFeedActions } from './classes/BrowseFeedActions.js';
 export { default as BrowserMediaSession } from './classes/BrowserMediaSession.js';
 export { default as Button } from './classes/Button.js';
+export { default as ButtonCardView } from './classes/ButtonCardView.js';
 export { default as ButtonView } from './classes/ButtonView.js';
 export { default as C4TabbedHeader } from './classes/C4TabbedHeader.js';
 export { default as CallToActionButton } from './classes/CallToActionButton.js';
