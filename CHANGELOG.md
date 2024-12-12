@@ -1,5 +1,24 @@
 # Changelog
 
+## [12.2.0](https://github.com/LuanRT/YouTube.js/compare/v12.1.0...v12.2.0) (2024-12-12)
+
+
+### Features
+
+* **Actions:** Allow auth check to be skipped ([67f13ff](https://github.com/LuanRT/YouTube.js/commit/67f13fffacec2c655a03d66c6d8016620d9abcf9))
+* add `VideoMetadataCarouselView` ([#839](https://github.com/LuanRT/YouTube.js/issues/839)) ([9a9bb76](https://github.com/LuanRT/YouTube.js/commit/9a9bb76a928594c5c5f3e828c86081bf79c2562d))
+* **parser:** Add `ActiveAccountHeader` ([5f233ae](https://github.com/LuanRT/YouTube.js/commit/5f233ae34e278e7f7a0c48e4ba762d9bac9e312f))
+* **parser:** Add `ButtonCardView` ([#834](https://github.com/LuanRT/YouTube.js/issues/834)) ([eeaae62](https://github.com/LuanRT/YouTube.js/commit/eeaae6209f238b838b9b7fdd9bbef89f4f858fa3))
+* **parser:** Add `ClientSideToggleMenuItem` ([#835](https://github.com/LuanRT/YouTube.js/issues/835)) ([0b2b0da](https://github.com/LuanRT/YouTube.js/commit/0b2b0da9577f8d6ad19393700071ea9f26d4da10))
+* **parser:** Add `PlaylistThumbnailOverlay` ([c8173c8](https://github.com/LuanRT/YouTube.js/commit/c8173c88e0e17ec4bb4e93af1867c55d07611cc0))
+* **parser:** Update `LiveChatBanner` ([#840](https://github.com/LuanRT/YouTube.js/issues/840)) ([69d42b2](https://github.com/LuanRT/YouTube.js/commit/69d42b291c927abb9d84f97ed03518c4ddd4506e))
+* **parser:** Update `LiveChatMembershipItem` ([#836](https://github.com/LuanRT/YouTube.js/issues/836)) ([0c319aa](https://github.com/LuanRT/YouTube.js/commit/0c319aacdeba106d84b7f44505a7a296a154f97a))
+
+
+### Bug Fixes
+
+* **Player:** Fix signature algorithm extraction again ([#837](https://github.com/LuanRT/YouTube.js/issues/837)) ([13e7961](https://github.com/LuanRT/YouTube.js/commit/13e796123b87136f2d5d3b3c9b3ed079a014bf46))
+
 ## [12.1.0](https://github.com/LuanRT/YouTube.js/compare/v12.0.0...v12.1.0) (2024-12-10)
 
 
