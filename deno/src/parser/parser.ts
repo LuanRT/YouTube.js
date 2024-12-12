@@ -76,7 +76,6 @@ const IGNORED_LIST = new Set([
   'SearchPyv',
   'MealbarPromo',
   'PrimetimePromo',
-  'BackgroundPromo',
   'PromotedSparklesWeb',
   'CompactPromotedVideo',
   'BrandVideoShelf',

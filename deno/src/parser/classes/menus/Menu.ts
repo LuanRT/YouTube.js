@@ -8,20 +8,21 @@ import SegmentedLikeDislikeButtonView from '../SegmentedLikeDislikeButtonView.ts
 import MenuFlexibleItem from './MenuFlexibleItem.ts';
 import LikeButton from '../LikeButton.ts';
 import ToggleButton from '../ToggleButton.ts';
+import FlexibleActionsView from '../FlexibleActionsView.ts';
 
 export default class Menu extends YTNode {
   static type = 'Menu';
 
   public items: ObservedArray<YTNode>;
   public flexible_items: ObservedArray<MenuFlexibleItem>;
-  public top_level_buttons: ObservedArray<ToggleButton | LikeButton | Button |ButtonView | SegmentedLikeDislikeButtonView>;
+  public top_level_buttons: ObservedArray<ToggleButton | LikeButton | Button |ButtonView | SegmentedLikeDislikeButtonView | FlexibleActionsView>;
   public label?: string;
 
   constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
     this.flexible_items = Parser.parseArray(data.flexibleItems, MenuFlexibleItem);
-    this.top_level_buttons = Parser.parseArray(data.topLevelButtons, [ ToggleButton, LikeButton, Button, ButtonView, SegmentedLikeDislikeButtonView ]);
+    this.top_level_buttons = Parser.parseArray(data.topLevelButtons, [ ToggleButton, LikeButton, Button, ButtonView, SegmentedLikeDislikeButtonView, FlexibleActionsView ]);
 
     if (Reflect.has(data, 'accessibility') && Reflect.has(data.accessibility, 'accessibilityData')) {
       this.label = data.accessibility.accessibilityData.label;
