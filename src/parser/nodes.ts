@@ -41,7 +41,9 @@ export { default as Card } from './classes/Card.js';
 export { default as CardCollection } from './classes/CardCollection.js';
 export { default as CarouselHeader } from './classes/CarouselHeader.js';
 export { default as CarouselItem } from './classes/CarouselItem.js';
+export { default as CarouselItemView } from './classes/CarouselItemView.js';
 export { default as CarouselLockup } from './classes/CarouselLockup.js';
+export { default as CarouselTitleView } from './classes/CarouselTitleView.js';
 export { default as Channel } from './classes/Channel.js';
 export { default as ChannelAboutFullMetadata } from './classes/ChannelAboutFullMetadata.js';
 export { default as ChannelAgeGate } from './classes/ChannelAgeGate.js';
@@ -441,6 +443,7 @@ export { default as SubscriptionNotificationToggleButton } from './classes/Subsc
 export { default as Tab } from './classes/Tab.js';
 export { default as Tabbed } from './classes/Tabbed.js';
 export { default as TabbedSearchResults } from './classes/TabbedSearchResults.js';
+export { default as TextCarouselItemView } from './classes/TextCarouselItemView.js';
 export { default as TextFieldView } from './classes/TextFieldView.js';
 export { default as TextHeader } from './classes/TextHeader.js';
 export { default as ThirdPartyShareTargetSection } from './classes/ThirdPartyShareTargetSection.js';
@@ -494,6 +497,7 @@ export { default as VideoDescriptionInfocardsSection } from './classes/VideoDesc
 export { default as VideoDescriptionMusicSection } from './classes/VideoDescriptionMusicSection.js';
 export { default as VideoDescriptionTranscriptSection } from './classes/VideoDescriptionTranscriptSection.js';
 export { default as VideoInfoCardContent } from './classes/VideoInfoCardContent.js';
+export { default as VideoMetadataCarouselView } from './classes/VideoMetadataCarouselView.js';
 export { default as VideoOwner } from './classes/VideoOwner.js';
 export { default as VideoPrimaryInfo } from './classes/VideoPrimaryInfo.js';
 export { default as VideoSecondaryInfo } from './classes/VideoSecondaryInfo.js';
