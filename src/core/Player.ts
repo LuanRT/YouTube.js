@@ -223,22 +223,23 @@ export default class Player {
     return parseInt(getStringBetweenStrings(data, 'signatureTimestamp:', ',') || '0');
   }
 
-  static extractSigSourceCode(data: string): string {
-    let calls = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
-    let var_name = 'a';
+  static extractSigSourceCode(data: string): string | undefined {
+    const match = data.match(/function\(([A-Za-z_0-9]+)\)\{([A-Za-z_0-9]+=[A-Za-z_0-9]+\.split\(""\)(.+?)\.join\(""\))\}/);
 
-    if (!calls) {
-      calls = getStringBetweenStrings(data, 'function(J){J=J.split("")', 'return J.join("")}');
-      var_name = 'J';
+    if (!match) {
+      Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
+      return;
     }
 
-    const obj_name = calls?.split(/\.|\[/)?.[0]?.replace(';', '')?.trim();
+    const var_name = match[1];
+
+    const obj_name = match[3].split(/\.|\[/)[0]?.replace(';', '').trim();
     const functions = getStringBetweenStrings(data, `var ${obj_name}={`, '};');
 
-    if (!functions || !calls)
+    if (!functions || !var_name)
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
 
-    return `function descramble_sig(${var_name}) { ${var_name} = ${var_name}.split(""); let ${obj_name}={${functions}}${calls} return ${var_name}.join("") } descramble_sig(sig);`;
+    return `function descramble_sig(${var_name}) { let ${obj_name}={${functions}}; ${match[2]} } descramble_sig(sig);`;
   }
 
   static extractNSigSourceCode(data: string): string | undefined {
@@ -262,6 +263,6 @@ export default class Player {
   }
 
   static get LIBRARY_VERSION(): number {
-    return 12;
+    return 13;
   }
 }
