@@ -65,6 +65,7 @@ export { default as ChipBarView } from './classes/ChipBarView.js';
 export { default as ChipCloud } from './classes/ChipCloud.js';
 export { default as ChipCloudChip } from './classes/ChipCloudChip.js';
 export { default as ChipView } from './classes/ChipView.js';
+export { default as ClientSideToggleMenuItem } from './classes/ClientSideToggleMenuItem.js';
 export { default as ClipAdState } from './classes/ClipAdState.js';
 export { default as ClipCreation } from './classes/ClipCreation.js';
 export { default as ClipCreationScrubber } from './classes/ClipCreationScrubber.js';
