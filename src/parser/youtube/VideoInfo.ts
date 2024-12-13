@@ -21,6 +21,7 @@ import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.js';
 import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import PlayerLegacyDesktopYpcTrailer from '../classes/PlayerLegacyDesktopYpcTrailer.js';
+import YpcTrailer from '../classes/YpcTrailer.js';
 import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.js';
 import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSection.js';
 import LiveChatWrap from './LiveChat.js';
@@ -335,7 +336,13 @@ export default class VideoInfo extends MediaInfo {
    */
   getTrailerInfo(): VideoInfo | null {
     if (this.has_trailer && this.playability_status) {
-      const player_response = this.playability_status.error_screen?.as(PlayerLegacyDesktopYpcTrailer).trailer?.player_response;
+      let player_response;
+      if (this.playability_status?.error_screen?.is(PlayerLegacyDesktopYpcTrailer)) {
+        player_response = this.playability_status.error_screen?.as(PlayerLegacyDesktopYpcTrailer).trailer?.player_response;
+      } else if (this.playability_status?.error_screen?.is(YpcTrailer)) {
+        player_response = this.playability_status.error_screen?.as(YpcTrailer).player_response;
+      }
+
       if (player_response) {
         return new VideoInfo([ { data: player_response } as ApiResponse ], this.actions, this.cpn);
       }
@@ -368,7 +375,7 @@ export default class VideoInfo extends MediaInfo {
    * Checks if trailer is available.
    */
   get has_trailer(): boolean {
-    return !!this.playability_status?.error_screen?.is(PlayerLegacyDesktopYpcTrailer);
+    return !!this.playability_status?.error_screen?.is(PlayerLegacyDesktopYpcTrailer, YpcTrailer);
   }
 
   /**
