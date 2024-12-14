@@ -201,6 +201,7 @@ export { default as HistorySuggestion } from './classes/HistorySuggestion.js';
 export { default as HorizontalCardList } from './classes/HorizontalCardList.js';
 export { default as HorizontalList } from './classes/HorizontalList.js';
 export { default as HorizontalMovieList } from './classes/HorizontalMovieList.js';
+export { default as HowThisWasMadeSectionView } from './classes/HowThisWasMadeSectionView.js';
 export { default as IconLink } from './classes/IconLink.js';
 export { default as ImageBannerView } from './classes/ImageBannerView.js';
 export { default as IncludingResultsFor } from './classes/IncludingResultsFor.js';
