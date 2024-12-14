@@ -8,7 +8,7 @@ import VideoDescriptionMusicSection from './VideoDescriptionMusicSection.js';
 import VideoDescriptionTranscriptSection from './VideoDescriptionTranscriptSection.js';
 import VideoDescriptionCourseSection from './VideoDescriptionCourseSection.js';
 import VideoAttributesSectionView from './VideoAttributesSectionView.js';
-import HowThisWasMadeSectionView from "./HowThisWasMadeSectionView.js";
+import HowThisWasMadeSectionView from './HowThisWasMadeSectionView.js';
 import ReelShelf from './ReelShelf.js';
 
 export default class StructuredDescriptionContent extends YTNode {
