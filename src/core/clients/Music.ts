@@ -217,10 +217,6 @@ export default class Music {
     return playlist_panel;
   }
 
-  /**
-   * Retrieves related content.
-   * @param video_id - The video id.
-   */
   async getRelated(video_id: string): Promise<SectionList | Message> {
     throwIfMissing({ video_id });
 
