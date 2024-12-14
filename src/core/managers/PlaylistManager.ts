@@ -75,14 +75,15 @@ export default class PlaylistManager {
 
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
-
-    const response = await this.#actions.execute(
-      LikeEndpoint.PATH, LikeEndpoint.build({
-        target: { playlist_id }
-      })
-    );
     
-    return response;
+    const like_playlist_endpoint = new NavigationEndpoint({
+      likeEndpoint: {
+        status: 'LIKE',
+        target: playlist_id
+      }
+    });
+
+    return await like_playlist_endpoint.call(this.#actions);
   }
 
   /**
@@ -95,13 +96,14 @@ export default class PlaylistManager {
     if (!this.#actions.session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
-    const response = await this.#actions.execute(
-      RemoveLikeEndpoint.PATH, RemoveLikeEndpoint.build({
-        target: { playlist_id }
-      })
-    );
+    const remove_like_playlist_endpoint = new NavigationEndpoint({
+      likeEndpoint: {
+        status: 'INDIFFERENT',
+        target: playlist_id
+      }
+    });
 
-    return response;
+    return await remove_like_playlist_endpoint.call(this.#actions);
   }
 
   /**
