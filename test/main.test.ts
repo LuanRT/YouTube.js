@@ -338,7 +338,8 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#music.getInfo.NavEndpoint.getUpNextContinuation', async () => {
-      const playlist = await innertube.music.getPlaylist('RDCLAK5uy_kmAg-PruVj97qHPJcOBIPtnL4roYtpcgo');
+      const playlistID = "RDTMAK5uy_nyhwsGy3aIN3Okw7vCxz-bt2-_AxQiHTM"
+      const playlist = await innertube.music.getPlaylist(playlistID);
       expect(playlist).toBeDefined();
       expect(playlist.header).toBeDefined();
       expect(playlist.contents).toBeDefined();
@@ -350,7 +351,7 @@ describe('YouTube.js Tests', () => {
       expect(info).toBeDefined();
       
       const upNext = await info.getUpNext(false);
-      expect(upNext.playlist_id).toBe("RDCLAK5uy_kmAg-PruVj97qHPJcOBIPtnL4roYtpcgo");
+      expect(upNext.playlist_id).toBe(playlistID);
       
       const endpoint = upNext.contents.filterType(YTNodes.PlaylistPanelVideo)[1].endpoint;
       

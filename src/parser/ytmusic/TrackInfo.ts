@@ -14,11 +14,10 @@ import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.js';
 import type RichGrid from '../classes/RichGrid.js';
 import type MusicQueue from '../classes/MusicQueue.js';
 import type MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
 import { PlaylistPanelContinuation } from '../continuations.js';
-import { NextEndpoint } from '../../core/endpoints/index.js';
 
 class TrackInfo extends MediaInfo {
   public tabs?: ObservedArray<Tab>;
@@ -113,9 +112,8 @@ class TrackInfo extends MediaInfo {
       throw new InnertubeError('PlaylistId from TrackInfo does not match with PlaylistPanel');
     }
     
-    const response = await this.actions.execute(
-      NextEndpoint.PATH, { ...NextEndpoint.build({ ...this.current_video_endpoint.payload, client: 'YTMUSIC', continuation: playlistPanel.continuation }), parse: true }
-    );
+    const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: { ...this.current_video_endpoint.payload, continuation: playlistPanel.continuation } });
+    const response = await watch_next_endpoint.call(this.actions, { ...this.current_video_endpoint.payload, continuation: playlistPanel.continuation, client: 'YTMUSIC', parse: true });
 
     const playlistCont = response.continuation_contents?.as(PlaylistPanelContinuation);
 
