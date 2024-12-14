@@ -229,8 +229,6 @@ export default class Innertube {
   }
 
   async getSearchSuggestions(query: string): Promise<string[]> {
-    throwIfMissing({ query });
-
     const url = new URL(`${Constants.URLS.YT_SUGGESTIONS}search`);
     url.searchParams.set('q', query);
     url.searchParams.set('hl', this.#session.context.client.hl);
