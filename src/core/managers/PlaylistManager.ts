@@ -70,7 +70,7 @@ export default class PlaylistManager {
    * Adds a given playlist to the library of a user.
    * @param playlist_id - The playlist ID.
    */
-  async likePlaylist(playlist_id: string){
+  async addToLibrary(playlist_id: string){
     throwIfMissing({ playlist_id });
 
     if (!this.#actions.session.logged_in)
@@ -90,7 +90,7 @@ export default class PlaylistManager {
    * Remove a given playlist to the library of a user.
    * @param playlist_id - The playlist ID.
    */
-  async removeLikePlaylist(playlist_id: string){
+  async removeFromLibrary(playlist_id: string){
     throwIfMissing({ playlist_id });
 
     if (!this.#actions.session.logged_in)
