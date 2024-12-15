@@ -249,6 +249,7 @@ export { default as RemoveBannerForLiveChatCommand } from './classes/livechat/Re
 export { default as RemoveChatItemAction } from './classes/livechat/RemoveChatItemAction.js';
 export { default as RemoveChatItemByAuthorAction } from './classes/livechat/RemoveChatItemByAuthorAction.js';
 export { default as ReplaceChatItemAction } from './classes/livechat/ReplaceChatItemAction.js';
+export { default as ReplaceLiveChatAction } from './classes/livechat/ReplaceLiveChatAction.js';
 export { default as ReplayChatItemAction } from './classes/livechat/ReplayChatItemAction.js';
 export { default as ShowLiveChatActionPanelAction } from './classes/livechat/ShowLiveChatActionPanelAction.js';
 export { default as ShowLiveChatDialogAction } from './classes/livechat/ShowLiveChatDialogAction.js';
