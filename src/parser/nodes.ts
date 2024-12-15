@@ -220,6 +220,7 @@ export { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBan
 export { default as AddChatItemAction } from './classes/livechat/AddChatItemAction.js';
 export { default as AddLiveChatTickerItemAction } from './classes/livechat/AddLiveChatTickerItemAction.js';
 export { default as DimChatItemAction } from './classes/livechat/DimChatItemAction.js';
+export { default as CreatorHeartView } from './classes/livechat/items/CreatorHeartView.js';
 export { default as LiveChatAutoModMessage } from './classes/livechat/items/LiveChatAutoModMessage.js';
 export { default as LiveChatBanner } from './classes/livechat/items/LiveChatBanner.js';
 export { default as LiveChatBannerChatSummary } from './classes/livechat/items/LiveChatBannerChatSummary.js';
@@ -241,6 +242,7 @@ export { default as LiveChatTickerPaidMessageItem } from './classes/livechat/ite
 export { default as LiveChatTickerPaidStickerItem } from './classes/livechat/items/LiveChatTickerPaidStickerItem.js';
 export { default as LiveChatTickerSponsorItem } from './classes/livechat/items/LiveChatTickerSponsorItem.js';
 export { default as LiveChatViewerEngagementMessage } from './classes/livechat/items/LiveChatViewerEngagementMessage.js';
+export { default as PdgReplyButtonView } from './classes/livechat/items/PdgReplyButtonView.js';
 export { default as PollHeader } from './classes/livechat/items/PollHeader.js';
 export { default as LiveChatActionPanel } from './classes/livechat/LiveChatActionPanel.js';
 export { default as MarkChatItemAsDeletedAction } from './classes/livechat/MarkChatItemAsDeletedAction.js';
