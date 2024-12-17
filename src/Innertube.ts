@@ -235,7 +235,7 @@ export default class Innertube {
     url.searchParams.set('gs_id', '0');
     url.searchParams.set('cp', '0');
     url.searchParams.set('ds', 'yt');
-    url.searchParams.set('sugexp', '');
+    url.searchParams.set('sugexp', Constants.CLIENTS.WEB.SUGG_EXP_ID);
     url.searchParams.set('hl', this.#session.context.client.hl);
     url.searchParams.set('gl', this.#session.context.client.gl);
     url.searchParams.set('q', query);
