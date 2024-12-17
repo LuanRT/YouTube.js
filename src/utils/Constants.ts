@@ -2,7 +2,7 @@
 export const URLS = Object.freeze({
   YT_BASE: 'https://www.youtube.com',
   YT_MUSIC_BASE: 'https://music.youtube.com',
-  YT_SUGGESTIONS: 'https://suggestqueries.google.com/complete/',
+  YT_SUGGESTIONS: 'https://suggestqueries-clients6.youtube.com',
   YT_UPLOAD: 'https://upload.youtube.com/',
   API: Object.freeze({
     BASE: 'https://youtubei.googleapis.com',
@@ -36,7 +36,8 @@ export const CLIENTS = Object.freeze({
     VERSION: '2.20241121.01.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
-    STATIC_VISITOR_ID: '6zpwvWUNAco'
+    STATIC_VISITOR_ID: '6zpwvWUNAco',
+    SUGG_EXP_ID: 'ytzpb5_e2,ytpo.bo.lqp.elu=1,ytpo.bo.lqp.ecsc=1,ytpo.bo.lqp.mcsc=3,ytpo.bo.lqp.mec=1,ytpo.bo.lqp.rw=0.8,ytpo.bo.lqp.fw=0.2,ytpo.bo.lqp.szp=1,ytpo.bo.lqp.mz=3,ytpo.bo.lqp.al=en_us,ytpo.bo.lqp.zrm=1,ytpo.bo.lqp.er=1,ytpo.bo.ro.erl=1,ytpo.bo.ro.mlus=3,ytpo.bo.ro.erls=3,ytpo.bo.qfo.mlus=3,ytzprp.ppp.e=1,ytzprp.ppp.st=772,ytzprp.ppp.p=5'
   },
   MWEB: {
     NAME_ID: '2',

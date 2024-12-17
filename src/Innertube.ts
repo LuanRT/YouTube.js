@@ -228,21 +228,26 @@ export default class Innertube {
     return new Search(this.actions, response);
   }
 
-  async getSearchSuggestions(query: string): Promise<string[]> {
-    const url = new URL(`${Constants.URLS.YT_SUGGESTIONS}search`);
-    url.searchParams.set('q', query);
+  async getSearchSuggestions(query: string, previous_query?: string): Promise<string[]> {
+    const url = new URL(`${Constants.URLS.YT_SUGGESTIONS}/complete/search`);
+    url.searchParams.set('client', 'youtube');
+    url.searchParams.set('gs_ri', 'youtube');
+    url.searchParams.set('gs_id', '0');
+    url.searchParams.set('cp', '0');
+    url.searchParams.set('ds', 'yt');
+    url.searchParams.set('sugexp', '');
     url.searchParams.set('hl', this.#session.context.client.hl);
     url.searchParams.set('gl', this.#session.context.client.gl);
-    url.searchParams.set('ds', 'yt');
-    url.searchParams.set('client', 'youtube');
-    url.searchParams.set('xssi', 't');
-    url.searchParams.set('oe', 'UTF');
-
+    url.searchParams.set('q', query);
+    
+    if (previous_query)
+      url.searchParams.set('pq', previous_query);
+    
     const response = await this.#session.http.fetch(url);
-    const response_data = await response.text();
+    const text = await response.text();
 
-    const data = JSON.parse(response_data.replace(')]}\'', ''));
-    return data[1].map((suggestion: any) => suggestion[0]);
+    const data = JSON.parse(text.replace('window.google.ac.h(', '').slice(0, -1));
+    return data[1].map((suggestion: (string | number)[]) => suggestion[0]);
   }
 
   async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST', comment_id?: string): Promise<Comments> {
