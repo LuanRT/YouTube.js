@@ -2,7 +2,7 @@ import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.
 import type {
   ReloadContinuationItemsCommand, Continuation, GridContinuation,
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand
+  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand, ShowMiniplayerCommand, NavigateAction
 } from '../index.js';
 
 import type { CpnSource } from './RawResponse.js';
@@ -19,7 +19,9 @@ import type AlertWithButton from '../classes/AlertWithButton.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type PlayerAnnotationsExpanded from '../classes/PlayerAnnotationsExpanded.js';
 import type EngagementPanelSectionList from '../classes/EngagementPanelSectionList.js';
-import type { AppendContinuationItemsAction, MusicThumbnail } from '../nodes.js';
+import type AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
+import type MusicThumbnail from '../classes/MusicThumbnail.js';
+import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
 
 export interface IParsedResponse {
   background?: MusicThumbnail;
@@ -34,11 +36,11 @@ export interface IParsedResponse {
   live_chat_item_context_menu_supported_renderers?: YTNode;
   live_chat_item_context_menu_supported_renderers_memo?: Memo;
   items_memo?: Memo;
-  on_response_received_actions?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
+  on_response_received_actions?: ObservedArray<AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand>;
   on_response_received_actions_memo?: Memo;
-  on_response_received_endpoints?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
+  on_response_received_endpoints?: ObservedArray<AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand>;
   on_response_received_endpoints_memo?: Memo;
-  on_response_received_commands?: ObservedArray<ReloadContinuationItemsCommand | AppendContinuationItemsAction>;
+  on_response_received_commands?: ObservedArray<AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand>;
   on_response_received_commands_memo?: Memo;
   continuation?: Continuation;
   continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
@@ -83,7 +85,7 @@ export interface IPlaybackTracking {
 export interface IPlayabilityStatus {
   status: string;
   error_screen: YTNode | null;
-  audio_only_playablility: AudioOnlyPlayability | null;
+  audio_only_playability: AudioOnlyPlayability | null;
   embeddable: boolean;
   reason: string;
 }
