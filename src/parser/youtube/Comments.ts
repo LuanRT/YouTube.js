@@ -7,7 +7,8 @@ import CommentsHeader from '../classes/comments/CommentsHeader.js';
 import CommentSimplebox from '../classes/comments/CommentSimplebox.js';
 import CommentThread from '../classes/comments/CommentThread.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
-
+import { ReloadContinuationItemsCommand } from '../index.js';
+import AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { INextResponse } from '../types/index.js';
 
@@ -28,8 +29,8 @@ export default class Comments {
     if (!contents)
       throw new InnertubeError('Comments page did not have any content.');
 
-    const header_node = contents.at(0);
-    const body_node = contents.at(1);
+    const header_node = contents.at(0)?.as(AppendContinuationItemsAction, ReloadContinuationItemsCommand);
+    const body_node = contents.at(1)?.as(AppendContinuationItemsAction, ReloadContinuationItemsCommand);
 
     this.header = header_node?.contents?.firstOfType(CommentsHeader);
 

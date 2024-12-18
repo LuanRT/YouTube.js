@@ -27,6 +27,9 @@ import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSectio
 import LiveChatWrap from './LiveChat.js';
 
 import type { RawNode } from '../index.js';
+import { ReloadContinuationItemsCommand } from '../index.js';
+import AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
+
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 
@@ -160,7 +163,7 @@ export default class VideoInfo extends MediaInfo {
     const response = await cloud_chip.endpoint?.call(this.actions, { parse: true });
     const data = response?.on_response_received_endpoints?.get({ target_id: 'watch-next-feed' });
 
-    this.watch_next_feed = data?.contents;
+    this.watch_next_feed = data?.as(AppendContinuationItemsAction, ReloadContinuationItemsCommand).contents;
 
     return this;
   }
@@ -185,7 +188,7 @@ export default class VideoInfo extends MediaInfo {
     if (!data)
       throw new InnertubeError('AppendContinuationItemsAction not found');
 
-    this.watch_next_feed = data?.contents;
+    this.watch_next_feed = data?.as(AppendContinuationItemsAction, ReloadContinuationItemsCommand).contents;
     if (this.watch_next_feed?.at(-1)?.is(ContinuationItem)) {
       this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
     } else {

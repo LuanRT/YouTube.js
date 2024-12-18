@@ -13,6 +13,8 @@ import { observe } from '../helpers.js';
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { ISearchResponse } from '../types/index.js';
+import { ReloadContinuationItemsCommand } from '../index.js';
+import AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
 
 export default class Search extends Feed<ISearchResponse> {
   public header?: SearchHeader;
@@ -28,7 +30,7 @@ export default class Search extends Feed<ISearchResponse> {
 
     const contents =
       this.page.contents_memo?.getType(SectionList).first().contents ||
-      this.page.on_response_received_commands?.first().contents;
+      this.page.on_response_received_commands?.first().as(AppendContinuationItemsAction, ReloadContinuationItemsCommand).contents;
 
     if (!contents)
       throw new InnertubeError('No contents found in search response');

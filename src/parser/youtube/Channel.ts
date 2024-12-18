@@ -23,9 +23,15 @@ import SortFilterSubMenu from '../classes/SortFilterSubMenu.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 
-import type { AppendContinuationItemsAction, ReloadContinuationItemsCommand } from '../index.js';
+import type {
+  AppendContinuationItemsAction,
+  NavigateAction,
+  ReloadContinuationItemsCommand,
+  ShowMiniplayerCommand
+} from '../index.js';
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
+import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
   public header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader | PageHeader;
@@ -291,7 +297,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 }
 
 export class ChannelListContinuation extends Feed<IBrowseResponse> {
-  contents?: ReloadContinuationItemsCommand | AppendContinuationItemsAction;
+  contents?: AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -310,7 +316,7 @@ export class ChannelListContinuation extends Feed<IBrowseResponse> {
 
 export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
   applied_filter?: ChipCloudChip;
-  contents?: ReloadContinuationItemsCommand | AppendContinuationItemsAction;
+  contents?: AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
