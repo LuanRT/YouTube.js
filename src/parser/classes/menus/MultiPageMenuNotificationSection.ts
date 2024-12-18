@@ -1,15 +1,15 @@
 import { Parser } from '../../index.js';
-import { type SuperParsedResult, YTNode } from '../../helpers.js';
+import { type ObservedArray, YTNode } from '../../helpers.js';
 import type { RawNode } from '../../index.js';
 
 export default class MultiPageMenuNotificationSection extends YTNode {
   static type = 'MultiPageMenuNotificationSection';
 
-  items: SuperParsedResult<YTNode>;
+  public items: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();
-    this.items = Parser.parse(data.items);
+    this.items = Parser.parseArray(data.items);
   }
 
   // XXX: Alias for consistency.
