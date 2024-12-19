@@ -337,6 +337,33 @@ describe('YouTube.js Tests', () => {
       expect(upNext.playlist_id).toBe("PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u");
     });
 
+    test('Innertube#music.getInfo.NavEndpoint.getUpNextContinuation', async () => {
+      const playlistID = "RDTMAK5uy_nyhwsGy3aIN3Okw7vCxz-bt2-_AxQiHTM"
+      const playlist = await innertube.music.getPlaylist(playlistID);
+      expect(playlist).toBeDefined();
+      expect(playlist.header).toBeDefined();
+      expect(playlist.contents).toBeDefined();
+      expect(playlist.contents?.length).toBeGreaterThan(0);
+      
+      const playlistPlayEndpoint = playlist.header!.as(YTNodes.MusicResponsiveHeader).buttons.firstOfType(YTNodes.MusicPlayButton)!.endpoint
+      
+      const info = await innertube.music.getInfo(playlistPlayEndpoint)
+      expect(info).toBeDefined();
+      
+      const upNext = await info.getUpNext(false);
+      expect(upNext.playlist_id).toBe(playlistID);
+      
+      const endpoint = upNext.contents.filterType(YTNodes.PlaylistPanelVideo)[1].endpoint;
+      
+      const info2 = await innertube.music.getInfo(endpoint)
+      const upNext2 = await info2.getUpNextContinuation(upNext)
+      expect(upNext2.contents?.length).toBeGreaterThan(0);
+      
+      const upNext3 = await info2.getUpNextContinuation(upNext2)
+      expect(upNext3.contents?.length).toBeGreaterThan(0);
+      
+    });
+
     describe('Innertube#music.search', () => {
       let search: YTMusic.Search;
 
