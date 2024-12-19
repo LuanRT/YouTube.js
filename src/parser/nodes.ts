@@ -220,6 +220,7 @@ export { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBan
 export { default as AddChatItemAction } from './classes/livechat/AddChatItemAction.js';
 export { default as AddLiveChatTickerItemAction } from './classes/livechat/AddLiveChatTickerItemAction.js';
 export { default as DimChatItemAction } from './classes/livechat/DimChatItemAction.js';
+export { default as BumperUserEduContentView } from './classes/livechat/items/BumperUserEduContentView.js';
 export { default as CreatorHeartView } from './classes/livechat/items/CreatorHeartView.js';
 export { default as LiveChatAutoModMessage } from './classes/livechat/items/LiveChatAutoModMessage.js';
 export { default as LiveChatBanner } from './classes/livechat/items/LiveChatBanner.js';
@@ -227,6 +228,7 @@ export { default as LiveChatBannerChatSummary } from './classes/livechat/items/L
 export { default as LiveChatBannerHeader } from './classes/livechat/items/LiveChatBannerHeader.js';
 export { default as LiveChatBannerPoll } from './classes/livechat/items/LiveChatBannerPoll.js';
 export { default as LiveChatBannerRedirect } from './classes/livechat/items/LiveChatBannerRedirect.js';
+export { default as LiveChatItemBumperView } from './classes/livechat/items/LiveChatItemBumperView.js';
 export { default as LiveChatMembershipItem } from './classes/livechat/items/LiveChatMembershipItem.js';
 export { default as LiveChatModeChangeMessage } from './classes/livechat/items/LiveChatModeChangeMessage.js';
 export { default as LiveChatPaidMessage } from './classes/livechat/items/LiveChatPaidMessage.js';
