@@ -3,7 +3,9 @@ import { Parser, type RawNode } from '../../../index.js';
 import NavigationEndpoint from '../../NavigationEndpoint.js';
 import Author from '../../misc/Author.js';
 import Text from '../../misc/Text.js';
+import Thumbnail from '../../misc/Thumbnail.js';
 import CreatorHeartView from './CreatorHeartView.js';
+import LiveChatItemBumperView from './LiveChatItemBumperView.js';
 import PdgReplyButtonView from './PdgReplyButtonView.js';
 
 export default class LiveChatPaidMessage extends YTNode {
@@ -24,7 +26,9 @@ export default class LiveChatPaidMessage extends YTNode {
   timestamp_usec: string;
   timestamp_text?: string;
   timestamp_color: number;
+  header_overlay_image?: Thumbnail[];
   text_input_background_color: number;
+  lower_bumper: LiveChatItemBumperView | null;
   creator_heart_button: CreatorHeartView | null;
   is_v2_style: boolean;
   reply_button: PdgReplyButtonView | null;
@@ -57,7 +61,13 @@ export default class LiveChatPaidMessage extends YTNode {
     }
 
     this.timestamp_color = data.timestampColor;
+
+    if (Reflect.has(data, 'headerOverlayImage')) {
+      this.header_overlay_image = Thumbnail.fromResponse(data.headerOverlayImage);
+    }
+
     this.text_input_background_color = data.textInputBackgroundColor;
+    this.lower_bumper = Parser.parseItem(data.lowerBumper, LiveChatItemBumperView);
     this.creator_heart_button = Parser.parseItem(data.creatorHeartButton, CreatorHeartView);
     this.is_v2_style = data.isV2Style;
     this.reply_button = Parser.parseItem(data.replyButton, PdgReplyButtonView);
