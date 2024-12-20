@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.js';
 import type { IEndpoint, PlaylistEditRequest, RawNode } from '../../index.js';
 
+const API_PATH = 'browse/edit_playlist';
+
 export default class PlaylistEditEndpoint extends YTNode implements IEndpoint<PlaylistEditRequest> {
   static type = 'PlaylistEditEndpoint';
 
-  #API_PATH = 'browse/edit_playlist';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class PlaylistEditEndpoint extends YTNode implements IEndpoint<Pl
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): PlaylistEditRequest {

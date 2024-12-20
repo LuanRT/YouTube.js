@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.js';
 import type { IEndpoint, RawNode, LiveChatItemContextMenuRequest } from '../../index.js';
 
+const API_PATH = 'live_chat/get_item_context_menu';
+
 export default class LiveChatItemContextMenuEndpoint extends YTNode implements IEndpoint<LiveChatItemContextMenuRequest> {
   static type = 'LiveChatItemContextMenuEndpoint';
 
-  #API_PATH = 'live_chat/get_item_context_menu';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class LiveChatItemContextMenuEndpoint extends YTNode implements I
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): LiveChatItemContextMenuRequest {

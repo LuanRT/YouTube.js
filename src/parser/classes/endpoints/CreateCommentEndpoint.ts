@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.js';
 import type { CreateCommentRequest, IEndpoint, RawNode } from '../../index.js';
 
+const API_PATH = 'comment/create_comment';
+
 export default class CreateCommentEndpoint extends YTNode implements IEndpoint<CreateCommentRequest> {
   static type = 'CreateCommentEndpoint';
 
-  #API_PATH = 'comment/create_comment';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class CreateCommentEndpoint extends YTNode implements IEndpoint<C
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): CreateCommentRequest {

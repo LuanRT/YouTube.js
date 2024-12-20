@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.js';
 import type { IEndpoint, RawNode, UnsubscribeRequest } from '../../index.js';
 
+const API_PATH = 'subscription/unsubscribe';
+
 export default class UnsubscribeEndpoint extends YTNode implements IEndpoint<UnsubscribeRequest> {
   static type = 'UnsubscribeEndpoint';
 
-  #API_PATH = 'subscription/unsubscribe';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class UnsubscribeEndpoint extends YTNode implements IEndpoint<Uns
   }
 
   public getApiPath(): string{
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): UnsubscribeRequest {
