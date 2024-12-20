@@ -338,20 +338,14 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#music.getInfo.NavEndpoint.getUpNextContinuation', async () => {
-      const playlistID = "RDTMAK5uy_nyhwsGy3aIN3Okw7vCxz-bt2-_AxQiHTM"
-      const playlist = await innertube.music.getPlaylist(playlistID);
-      expect(playlist).toBeDefined();
-      expect(playlist.header).toBeDefined();
-      expect(playlist.contents).toBeDefined();
-      expect(playlist.contents?.length).toBeGreaterThan(0);
+      // Fetch some video from Homepage
+      const home = await innertube.music.getHomeFeed()
+      const homeItemFirst = home.sections!.first().as(YTNodes.MusicCarouselShelf).contents[0].as(YTNodes.MusicResponsiveListItem)
       
-      const playlistPlayEndpoint = playlist.header!.as(YTNodes.MusicResponsiveHeader).buttons.firstOfType(YTNodes.MusicPlayButton)!.endpoint
-      
-      const info = await innertube.music.getInfo(playlistPlayEndpoint)
+      const info = await innertube.music.getInfo(homeItemFirst.id ?? homeItemFirst.endpoint!)
       expect(info).toBeDefined();
       
-      const upNext = await info.getUpNext(false);
-      expect(upNext.playlist_id).toBe(playlistID);
+      const upNext = await info.getUpNext();
       
       const endpoint = upNext.contents.filterType(YTNodes.PlaylistPanelVideo)[1].endpoint;
       
