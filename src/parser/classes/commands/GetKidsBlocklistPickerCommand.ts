@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.js';
 import type { GetKidsBlocklistPickerRequest, IEndpoint, RawNode } from '../../index.js';
 
+const API_PATH = 'kids/get_kids_blocklist_picker';
+
 export default class GetKidsBlocklistPickerCommand extends YTNode implements IEndpoint<GetKidsBlocklistPickerRequest> {
   static type = 'GetKidsBlocklistPickerCommand';
 
-  #API_PATH = 'kids/get_kids_blocklist_picker';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class GetKidsBlocklistPickerCommand extends YTNode implements IEn
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): GetKidsBlocklistPickerRequest {

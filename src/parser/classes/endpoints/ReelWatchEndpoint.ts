@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.js';
 import type { IEndpoint, RawNode, ReelWatchRequest } from '../../index.js';
 
+const API_PATH = 'reel/reel_item_watch';
+
 export default class ReelWatchEndpoint extends YTNode implements IEndpoint<ReelWatchRequest> {
   static type = 'ReelWatchEndpoint';
 
-  #API_PATH = 'reel/reel_item_watch';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class ReelWatchEndpoint extends YTNode implements IEndpoint<ReelW
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): ReelWatchRequest {

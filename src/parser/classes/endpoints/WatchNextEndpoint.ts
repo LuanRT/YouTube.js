@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.js';
 import type { IEndpoint, RawNode, WatchNextRequest } from '../../index.js';
 
+const API_PATH = 'next';
+
 export default class WatchNextEndpoint extends YTNode implements IEndpoint<WatchNextRequest> {
   static type = 'WatchNextEndpoint';
 
-  #API_PATH = 'next';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class WatchNextEndpoint extends YTNode implements IEndpoint<Watch
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): WatchNextRequest {

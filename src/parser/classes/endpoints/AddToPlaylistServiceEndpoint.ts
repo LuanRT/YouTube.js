@@ -1,10 +1,10 @@
 import { YTNode } from '../../helpers.js';
 import type { AddToPlaylistServiceRequest, IEndpoint, RawNode } from '../../index.js';
 
+const API_PATH = 'playlist/get_add_to_playlist';
+
 export default class AddToPlaylistServiceEndpoint extends YTNode implements IEndpoint<AddToPlaylistServiceRequest> {
   static type = 'AddToPlaylistServiceEndpoint';
-
-  #API_PATH = 'playlist/get_add_to_playlist';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +13,7 @@ export default class AddToPlaylistServiceEndpoint extends YTNode implements IEnd
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): AddToPlaylistServiceRequest {
