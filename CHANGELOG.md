@@ -1,5 +1,24 @@
 # Changelog
 
+## [12.3.0](https://github.com/LuanRT/YouTube.js/compare/v12.2.0...v12.3.0) (2024-12-21)
+
+
+### Features
+
+* **getSearchSuggestions:** Add optional `pq` param for better suggestions ([c61db19](https://github.com/LuanRT/YouTube.js/commit/c61db19f2e3bd44bc5bf2ebdf8de041f169d8fab))
+* **Parser:** Add `HowThisWasMadeSectionView` node ([5da8a66](https://github.com/LuanRT/YouTube.js/commit/5da8a66551c85fa45a01713383e6f621db053b46))
+* **parser:** Add `ReplaceLiveChatAction` ([#847](https://github.com/LuanRT/YouTube.js/issues/847)) ([342fdd1](https://github.com/LuanRT/YouTube.js/commit/342fdd1db30bc61de5f19fc4ed35db8931706903))
+* **parser:** Parse `OpenPopupAction` in `onResponseReceivedEndpoints` arrays ([45b7342](https://github.com/LuanRT/YouTube.js/commit/45b734288e070ef5e347cec5bae445d0cf883eba))
+* **Parser:** Parse YpcTrailer in VideoInfo ([#842](https://github.com/LuanRT/YouTube.js/issues/842)) ([c0043d0](https://github.com/LuanRT/YouTube.js/commit/c0043d0194f582c2ed85341291e2eace25dd78d8))
+* **parser:** Update `LiveChatPaidMessage` ([#846](https://github.com/LuanRT/YouTube.js/issues/846)) ([73362c6](https://github.com/LuanRT/YouTube.js/commit/73362c68fbc8b966ff46cc8b145e1e8d9fbe32ee))
+* **parser:** Update `LiveChatTickerPaidMessageItem` ([#845](https://github.com/LuanRT/YouTube.js/issues/845)) ([29e8d30](https://github.com/LuanRT/YouTube.js/commit/29e8d3015a3d17383a8be4e6f46b389d10f111f3))
+* **RichGrid:** Parse `targetId` ([e571ee2](https://github.com/LuanRT/YouTube.js/commit/e571ee2426c6003c1bc690cbf98b0ab72ebfaa10))
+
+
+### Bug Fixes
+
+* **getSearchSuggestions:** Allow empty queries ([523700b](https://github.com/LuanRT/YouTube.js/commit/523700b728e8b2f126b1b6266dc153ad683dcbcb))
+
 ## [12.2.0](https://github.com/LuanRT/YouTube.js/compare/v12.1.0...v12.2.0) (2024-12-12)
 
 
