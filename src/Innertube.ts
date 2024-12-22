@@ -42,7 +42,7 @@ import {
 
 /**
  * Provides access to various services and modules in the YouTube API.
- * 
+ *
  * @example
  * ```ts
  * import { Innertube, UniversalCache } from 'youtubei.js';
@@ -75,7 +75,7 @@ export default class Innertube {
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
 
-    const watch_response = watch_endpoint.call(this.#session.actions, {
+    const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
@@ -84,12 +84,16 @@ export default class Innertube {
           signatureTimestamp: this.#session.player?.sts
         }
       },
-      serviceIntegrityDimensions: {
-        poToken: this.#session.po_token
-      },
       client
-    });
+    };
 
+    if (this.#session.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: this.#session.po_token
+      };
+    }
+
+    const watch_response = watch_endpoint.call(this.#session.actions, extra_payload);
     const watch_next_response = watch_next_endpoint.call(this.#session.actions);
 
     const response = await Promise.all([ watch_response, watch_next_response ]);
@@ -104,7 +108,7 @@ export default class Innertube {
 
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: { videoId: video_id } });
 
-    const watch_response = await watch_endpoint.call(this.#session.actions, {
+    const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
@@ -113,11 +117,16 @@ export default class Innertube {
           signatureTimestamp: this.#session.player?.sts
         }
       },
-      serviceIntegrityDimensions: {
-        poToken: this.#session.po_token
-      },
       client
-    });
+    };
+
+    if (this.#session.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: this.#session.po_token
+      };
+    }
+    
+    const watch_response = await watch_endpoint.call(this.#session.actions, extra_payload);
 
     const cpn = generateRandomString(16);
 
@@ -136,7 +145,7 @@ export default class Innertube {
     });
 
     const reel_watch_response = reel_watch_endpoint.call(this.#session.actions, { client });
-    
+
     const writer = ReelSequence.encode({
       shortId: video_id,
       params: {
@@ -222,7 +231,12 @@ export default class Innertube {
       }
     }
 
-    const search_endpoint = new NavigationEndpoint({ searchEndpoint: { query, params: filters ? encodeURIComponent(u8ToBase64(SearchFilter.encode(search_filter).finish())) : undefined } });
+    const search_endpoint = new NavigationEndpoint({
+      searchEndpoint: {
+        query,
+        params: filters ? encodeURIComponent(u8ToBase64(SearchFilter.encode(search_filter).finish())) : undefined
+      }
+    });
     const response = await search_endpoint.call(this.#session.actions);
 
     return new Search(this.actions, response);
@@ -239,10 +253,10 @@ export default class Innertube {
     url.searchParams.set('hl', this.#session.context.client.hl);
     url.searchParams.set('gl', this.#session.context.client.gl);
     url.searchParams.set('q', query);
-    
+
     if (previous_query)
       url.searchParams.set('pq', previous_query);
-    
+
     const response = await this.#session.http.fetch(url);
     const text = await response.text();
 
@@ -287,13 +301,13 @@ export default class Innertube {
 
     return new Comments(this.actions, response.data);
   }
-  
+
   async getHomeFeed(): Promise<HomeFeed> {
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEwhat_to_watch' } });
     const response = await browse_endpoint.call(this.#session.actions);
     return new HomeFeed(this.actions, response);
   }
-  
+
   async getGuide(): Promise<Guide> {
     const response = await this.actions.execute('/guide');
     return new Guide(response.data);

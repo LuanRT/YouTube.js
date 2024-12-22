@@ -50,7 +50,7 @@ export default class Music {
       return this.#fetchInfoFromEndpoint(target.overlay?.content?.endpoint ?? target.endpoint);
     } else if (target instanceof NavigationEndpoint) {
       return this.#fetchInfoFromEndpoint(target);
-    } 
+    }
     return this.#fetchInfoFromVideoId(target);
   }
 
@@ -59,7 +59,7 @@ export default class Music {
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
 
-    const watch_response = watch_endpoint.call(this.#actions, {
+    const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
@@ -69,7 +69,15 @@ export default class Music {
         }
       },
       client: 'YTMUSIC'
-    });
+    };
+
+    if (this.#session.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: this.#session.po_token
+      };
+    }
+
+    const watch_response = watch_endpoint.call(this.#actions, extra_payload);
 
     const watch_next_response = watch_next_endpoint.call(this.#actions, { client: 'YTMUSIC' });
 
@@ -83,16 +91,25 @@ export default class Music {
     if (!endpoint)
       throw new Error('This item does not have an endpoint.');
 
-    const player_response = endpoint.call(this.#actions, {
-      client: 'YTMUSIC',
+    const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
-          ...{
-            signatureTimestamp: this.#session.player?.sts
-          }
+          vis: 0,
+          splay: false,
+          lactMilliseconds: '-1',
+          signatureTimestamp: this.#session.player?.sts
         }
-      }
-    });
+      },
+      client: 'YTMUSIC'
+    };
+
+    if (this.#session.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: this.#session.po_token
+      };
+    }
+    
+    const player_response = endpoint.call(this.#actions, extra_payload);
 
     const next_response = endpoint.call(this.#actions, {
       client: 'YTMUSIC',
@@ -271,7 +288,11 @@ export default class Music {
   }
 
   async getSearchSuggestions(input: string): Promise<ObservedArray<SearchSuggestionsSection>> {
-    const response = await this.#actions.execute('/music/get_search_suggestions', { input, client: 'YTMUSIC', parse: true });
+    const response = await this.#actions.execute('/music/get_search_suggestions', {
+      input,
+      client: 'YTMUSIC',
+      parse: true
+    });
 
     if (!response.contents_memo)
       return [] as unknown as ObservedArray<SearchSuggestionsSection>;

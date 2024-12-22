@@ -24,7 +24,7 @@ export default class Kids {
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
 
-    const watch_response = watch_endpoint.call(this.#session.actions, {
+    const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
@@ -34,7 +34,15 @@ export default class Kids {
         }
       },
       client: 'YTKIDS'
-    });
+    };
+
+    if (this.#session.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: this.#session.po_token
+      };
+    }
+    
+    const watch_response = watch_endpoint.call(this.#session.actions, extra_payload);
 
     const watch_next_response = watch_next_endpoint.call(this.#session.actions, { client: 'YTKIDS' });
 
