@@ -225,6 +225,7 @@ export default class Session extends EventEmitter {
   public api_version: string;
   public account_index: number;
   public po_token?: string;
+  public cookie?: string;
 
   constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: ICache, po_token?: string) {
     super();
@@ -239,6 +240,7 @@ export default class Session extends EventEmitter {
     this.context = context;
     this.player = player;
     this.po_token = po_token;
+    this.cookie = cookie;
   }
 
   on(type: 'auth', listener: OAuth2AuthEventHandler): void;

@@ -257,7 +257,12 @@ export default class Innertube {
     if (previous_query)
       url.searchParams.set('pq', previous_query);
 
-    const response = await this.#session.http.fetch(url);
+    const response = await this.#session.http.fetch_function(url, {
+      headers: {
+        'Cookie': this.#session.cookie || ''
+      }
+    });
+    
     const text = await response.text();
 
     const data = JSON.parse(text.replace('window.google.ac.h(', '').slice(0, -1));
