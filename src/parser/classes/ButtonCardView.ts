@@ -12,7 +12,7 @@ export default class ButtonCardView extends YTNode {
   constructor(data: RawNode) {
     super();
     this.title = data.title;
-    this.icon_name = data.icon.sources[0].clientResource.imageName;
+    this.icon_name = data.image.sources[0].clientResource.imageName;
     this.on_tap_endpoint = new NavigationEndpoint(data.rendererContext.commandContext.onTap);
   }
 }
