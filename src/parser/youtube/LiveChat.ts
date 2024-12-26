@@ -260,7 +260,7 @@ export default class LiveChat extends EventEmitter {
           channelId: this.#channel_id
         }
       },
-      number0: 1, 
+      number0: 1,
       number1: 4
     });
 
