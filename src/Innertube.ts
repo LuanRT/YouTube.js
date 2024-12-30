@@ -30,6 +30,7 @@ import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
 import type Format from './parser/classes/misc/Format.js';
 
 import {
+  CommunityPostParams,
   GetCommentsSectionParams,
   Hashtag,
   ReelSequence,
@@ -450,6 +451,33 @@ export default class Innertube {
       throw new InnertubeError('Failed to resolve URL. Expected a NavigationEndpoint but got undefined', response);
 
     return response.endpoint;
+  }
+
+  /**
+   * Gets a post page given a post id and the channel id
+   * @param postId 
+   * @param channelId
+   * @returns 
+   */
+  async GetPost(postId: string, channelId: string) : Promise<Feed<IBrowseResponse>> {
+    throwIfMissing({ postId, channelId });
+    const writer = CommunityPostParams.encode({
+      f0: 'community',
+      f1: {
+        postId: postId
+      },
+      f2: {
+        p1: 1,
+        p2: 1 
+      }
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channelId, params: params } });
+
+    const response = await browse_endpoint.call(this.#session.actions, { parse: true });
+    return new Feed(this.actions, response);
   }
 
   /**

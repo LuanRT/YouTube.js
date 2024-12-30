@@ -229,3 +229,19 @@ message ShortsParam {
 message NextParams {
   repeated string video_id = 5;
 }
+
+message CommunityPostParams {
+  string f0 = 2;
+
+  message Field1 {
+    string postId = 22;
+  }
+
+  message Field2 {
+    int64 p1 = 2;
+    int64 p2 = 3;
+  }
+
+  Field1 f1 = 25;
+  Field2 f2 = 45;
+}
