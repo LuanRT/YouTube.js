@@ -234,7 +234,7 @@ message CommunityPostParams {
   string f0 = 2;
 
   message Field1 {
-    string postId = 22;
+    string post_id = 22;
   }
 
   message Field2 {
@@ -249,7 +249,7 @@ message CommunityPostParams {
 message CommunityPostCommentsParamContainer {
   message Container {
     string location = 2;
-    string protoData = 3;
+    string proto_data = 3;
   }
 
   Container f0 = 80226972;
@@ -257,7 +257,7 @@ message CommunityPostCommentsParamContainer {
 
 message CommunityPostCommentsParam {
   message PostContainer {
-    string postId = 22;
+    string post_id = 22;
   }
 
   message Field2 {
@@ -273,12 +273,12 @@ message CommunityPostCommentsParam {
       string channelId = 30;
     }
 
-    CommentData commentData = 4;
+    CommentData comment_data = 4;
     string title = 8;
   }
 
   string title = 2;
-  PostContainer postContainer = 25;
+  PostContainer post_container = 25;
   Field2 f0 = 45;
-  CommentDataContainer commentDataContainer = 53;
+  CommentDataContainer comment_data_container = 53;
 }

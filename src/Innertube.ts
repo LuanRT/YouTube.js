@@ -458,12 +458,12 @@ export default class Innertube {
   /**
    * Gets a post page given a post id and the channel id
    */
-  async GetPost(postId: string, channelId: string) : Promise<Feed<IBrowseResponse>> {
-    throwIfMissing({ postId, channelId });
+  async getPost(post_id: string, channel_id: string) : Promise<Feed<IBrowseResponse>> {
+    throwIfMissing({ post_id, channel_id });
     const writer = CommunityPostParams.encode({
       f0: 'community',
       f1: {
-        postId: postId
+        postId: post_id
       },
       f2: {
         p1: 1,
@@ -473,7 +473,7 @@ export default class Innertube {
 
     const params = encodeURIComponent(u8ToBase64(writer.finish()));
 
-    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channelId, params: params } });
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channel_id, params: params } });
 
     const response = await browse_endpoint.call(this.#session.actions, { parse: true });
     return new Feed(this.actions, response);
@@ -482,8 +482,8 @@ export default class Innertube {
   /**
    * Get comments for a community post.
    */
-  async GetPostComments(postId: string, channelId: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
-    throwIfMissing({ postId, channelId });
+  async getPostComments(post_id: string, channel_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
+    throwIfMissing({ post_id, channel_id });
 
     const SORT_OPTIONS = {
       TOP_COMMENTS: 0,
@@ -493,7 +493,7 @@ export default class Innertube {
     const writer1 = CommunityPostCommentsParam.encode({
       title: 'community',
       postContainer: {
-        postId: postId
+        postId: post_id
       },
       f0: {
         f0: 1,
@@ -504,8 +504,8 @@ export default class Innertube {
         commentData: {
           sortBy: SORT_OPTIONS[sort_by || 'TOP_COMMENTS'],
           f0: 1,
-          channelId: channelId,
-          postId: postId
+          channelId: channel_id,
+          postId: post_id
         }
       }
     });
