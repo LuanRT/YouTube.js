@@ -245,3 +245,40 @@ message CommunityPostParams {
   Field1 f1 = 25;
   Field2 f2 = 45;
 }
+
+message CommunityPostCommentsParamContainer {
+  message Container {
+    string location = 2;
+    string protoData = 3;
+  }
+
+  Container f0 = 80226972;
+}
+
+message CommunityPostCommentsParam {
+  message PostContainer {
+    string postId = 22;
+  }
+
+  message Field2 {
+    int32 f0 = 2;
+    int32 f1 = 3;
+  }
+
+  message CommentDataContainer {
+    message CommentData {
+      int32 sortBy = 6;
+      int32 f0 = 27;
+      string postId = 29;
+      string channelId = 30;
+    }
+
+    CommentData commentData = 4;
+    string title = 8;
+  }
+
+  string title = 2;
+  PostContainer postContainer = 25;
+  Field2 f0 = 45;
+  CommentDataContainer commentDataContainer = 53;
+}

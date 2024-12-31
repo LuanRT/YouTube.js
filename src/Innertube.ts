@@ -30,6 +30,8 @@ import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
 import type Format from './parser/classes/misc/Format.js';
 
 import {
+  CommunityPostCommentsParam,
+  CommunityPostCommentsParamContainer,
   CommunityPostParams,
   GetCommentsSectionParams,
   Hashtag,
@@ -455,9 +457,6 @@ export default class Innertube {
 
   /**
    * Gets a post page given a post id and the channel id
-   * @param postId 
-   * @param channelId
-   * @returns 
    */
   async GetPost(postId: string, channelId: string) : Promise<Feed<IBrowseResponse>> {
     throwIfMissing({ postId, channelId });
@@ -478,6 +477,58 @@ export default class Innertube {
 
     const response = await browse_endpoint.call(this.#session.actions, { parse: true });
     return new Feed(this.actions, response);
+  }
+
+  /**
+   * Get comments for a community post.
+   */
+  async GetPostComments(postId: string, channelId: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
+    throwIfMissing({ postId, channelId });
+
+    const SORT_OPTIONS = {
+      TOP_COMMENTS: 0,
+      NEWEST_FIRST: 1
+    };
+
+    const writer1 = CommunityPostCommentsParam.encode({
+      title: 'community',
+      postContainer: {
+        postId: postId
+      },
+      f0: {
+        f0: 1,
+        f1: 1
+      },
+      commentDataContainer: {
+        title: 'comments-section',
+        commentData: {
+          sortBy: SORT_OPTIONS[sort_by || 'TOP_COMMENTS'],
+          f0: 1,
+          channelId: channelId,
+          postId: postId
+        }
+      }
+    });
+
+    const writer2 = CommunityPostCommentsParamContainer.encode({
+      f0: {
+        location: 'FEcomment_post_detail_page_web_top_level',
+        protoData: encodeURIComponent(u8ToBase64(writer1.finish()))
+      }
+    });
+
+    const continuation = encodeURIComponent(u8ToBase64(writer2.finish()));
+
+    const continuation_command = new NavigationEndpoint({
+      continuationCommand: {
+        request: 'CONTINUATION_REQUEST_TYPE_BROWSE',
+        token: continuation
+      }
+    });
+
+    const response = await continuation_command.call(this.#session.actions);
+
+    return new Comments(this.actions, response.data);
   }
 
   /**
