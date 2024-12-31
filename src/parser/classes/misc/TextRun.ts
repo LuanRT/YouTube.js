@@ -36,6 +36,9 @@ export default class TextRun implements Run {
     if (this.italics) tags.push('i');
     if (this.strikethrough) tags.push('s');
     if (this.deemphasize) tags.push('small');
+    
+    if (!this.text?.length)
+      return '';
 
     const escaped_text = escape(this.text);
     const styled_text = tags.map((tag) => `<${tag}>`).join('') + escaped_text + tags.map((tag) => `</${tag}>`).join('');

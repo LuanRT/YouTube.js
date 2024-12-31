@@ -6,7 +6,7 @@ import AvatarStackView from './AvatarStackView.js';
 
 export type MetadataRow = {
   metadata_parts?: {
-    text: Text;
+    text: Text | null;
     avatar_stack: AvatarStackView | null;
   }[];
 };
@@ -21,7 +21,7 @@ export default class ContentMetadataView extends YTNode {
     super();
     this.metadata_rows = data.metadataRows.map((row: RawNode) => ({
       metadata_parts: row.metadataParts?.map((part: RawNode) => ({
-        text: Text.fromAttributed(part.text || {}),
+        text: part.text ? Text.fromAttributed(part.text) : null,
         avatar_stack: Parser.parseItem(part.avatarStack, AvatarStackView)
       }))
     }));
