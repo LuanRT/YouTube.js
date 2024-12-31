@@ -6,9 +6,9 @@ import Text from './misc/Text.js';
 export default class DescriptionPreviewView extends YTNode {
   static type = 'DescriptionPreviewView';
 
-  description: Text;
-  max_lines: number;
-  truncation_text: Text;
+  description?: Text;
+  max_lines?: number;
+  truncation_text?: Text;
   always_show_truncation_text: boolean;
   more_endpoint?: {
     show_engagement_panel_endpoint: {
@@ -24,9 +24,15 @@ export default class DescriptionPreviewView extends YTNode {
   constructor(data: RawNode) {
     super();
 
-    this.description = Text.fromAttributed(data.description);
-    this.max_lines = parseInt(data.maxLines);
-    this.truncation_text = Text.fromAttributed(data.truncationText);
+    if (Reflect.has(data, 'description'))
+      this.description = Text.fromAttributed(data.description);
+
+    if (Reflect.has(data, 'maxLines'))
+      this.max_lines = parseInt(data.maxLines);
+
+    if (Reflect.has(data, 'truncationText'))
+      this.truncation_text = Text.fromAttributed(data.truncationText);
+    
     this.always_show_truncation_text = !!data.alwaysShowTruncationText;
 
     if (data.rendererContext.commandContext?.onTap?.innertubeCommand?.showEngagementPanelEndpoint) {
