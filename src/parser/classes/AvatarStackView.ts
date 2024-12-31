@@ -11,7 +11,7 @@ export default class AvatarStackView extends YTNode {
 
   public avatars: ObservedArray<AvatarView>;
   public text?: Text;
-  public renderer_context?: RendererContext;
+  public renderer_context: RendererContext;
 
   constructor(data: RawNode) {
     super();
@@ -20,7 +20,6 @@ export default class AvatarStackView extends YTNode {
     if (Reflect.has(data, 'text'))
       this.text = Text.fromAttributed(data.text);
     
-    if (Reflect.has(data, 'rendererContext'))
-      this.renderer_context = new RendererContext(data.rendererContext);
+    this.renderer_context = new RendererContext(data.rendererContext);
   }
 }

@@ -2,15 +2,16 @@ import { YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import EngagementPanelSectionList from './EngagementPanelSectionList.js';
 import Text from './misc/Text.js';
+import RendererContext from './misc/RendererContext.js';
 
 export default class DescriptionPreviewView extends YTNode {
   static type = 'DescriptionPreviewView';
 
-  description?: Text;
-  max_lines?: number;
-  truncation_text?: Text;
-  always_show_truncation_text: boolean;
-  more_endpoint?: {
+  public description?: Text;
+  public max_lines?: number;
+  public truncation_text?: Text;
+  public always_show_truncation_text: boolean;
+  public more_endpoint?: {
     show_engagement_panel_endpoint: {
       engagement_panel: EngagementPanelSectionList | null,
       engagement_panel_popup_type: string;
@@ -20,6 +21,7 @@ export default class DescriptionPreviewView extends YTNode {
       }
     }
   };
+  public renderer_context: RendererContext;
 
   constructor(data: RawNode) {
     super();
@@ -35,6 +37,7 @@ export default class DescriptionPreviewView extends YTNode {
     
     this.always_show_truncation_text = !!data.alwaysShowTruncationText;
 
+    // @TODO: Do something about this.
     if (data.rendererContext.commandContext?.onTap?.innertubeCommand?.showEngagementPanelEndpoint) {
       const endpoint = data.rendererContext.commandContext?.onTap?.innertubeCommand?.showEngagementPanelEndpoint;
 
@@ -49,5 +52,7 @@ export default class DescriptionPreviewView extends YTNode {
         }
       };
     }
+    
+    this.renderer_context = new RendererContext(data.rendererContext);
   }
 }
