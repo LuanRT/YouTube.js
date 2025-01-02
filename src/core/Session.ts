@@ -87,6 +87,7 @@ export type Context = {
         kidsNoSearchMode: string;
       };
     };
+    tvAppInfo?: {[key: string]: any};
   };
   user: {
     enableSafetyMode: boolean;
