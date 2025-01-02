@@ -5,6 +5,7 @@ export * as YT from './youtube/index.js';
 export * as YTMusic from './ytmusic/index.js';
 export * as YTKids from './ytkids/index.js';
 export * as YTShorts from './ytshorts/index.js';
+export * as YTTV from './yttv/index.js';
 export * as Helpers from './helpers.js';
 export * as Generator from './generator.js';
 export type * as APIResponseTypes from './types/index.js';
