@@ -453,6 +453,90 @@ describe('YouTube.js Tests', () => {
     });
   });
 
+  describe('YouTube TV', () => {
+    test('Innertube#tv.getHomeFeed', async () => {
+      const home = await innertube.tv.getHomeFeed()
+      expect(home).toBeDefined();
+      expect(home.sections).toBeDefined();
+    });
+
+    // Only works when logged in
+    // test('Innertube#tv.getLibrary', async () => {
+    //   // await innertube.session.signIn();
+    //   //
+    //   // // If you use this, the next call to signIn won't fire 'auth-pending' instead just 'auth'
+    //   // await innertube.session.oauth.cacheCredentials();
+    //
+    //   const info = await innertube.tv.getLibrary();
+    //   expect(info).toBeDefined();
+    //
+    //   const continuation = await info.getContinuation();
+    //   expect(continuation).toBeDefined();
+    // });
+
+    // Only works when logged in
+    // test('Innertube#tv.getSubscriptionsFeed', async () => {
+    //   // await innertube.session.signIn();
+    //   //
+    //   // // If you use this, the next call to signIn won't fire 'auth-pending' instead just 'auth'
+    //   // await innertube.session.oauth.cacheCredentials();
+    //
+    //   const info = await innertube.tv.getSubscriptionsFeed();
+    //   expect(info).toBeDefined();
+    //   const continuation = await info.getContinuation();
+    //   expect(continuation).toBeDefined();
+    // });
+    
+    // Only works when logged in
+    // test('Innertube#tv.getPlaylists', async () => {
+    //   // await innertube.session.signIn();
+    //   //
+    //   // // If you use this, the next call to signIn won't fire 'auth-pending' instead just 'auth'
+    //   // await innertube.session.oauth.cacheCredentials();
+    //
+    //   const info = await innertube.tv.getPlaylists();
+    //   expect(info).toBeDefined();
+    // });
+
+    // Only works when logged in
+    // test('Innertube#tv.getMyYoutubeFeed', async () => {
+    //   // await innertube.session.signIn();
+    //   //
+    //   // // If you use this, the next call to signIn won't fire 'auth-pending' instead just 'auth'
+    //   // await innertube.session.oauth.cacheCredentials();
+    //
+    //   const myYoutubeFeed = await innertube.tv.getMyYoutubeFeed();
+    //   expect(myYoutubeFeed).toBeDefined();
+    //   const tab = myYoutubeFeed.tabs![10];
+    //   const otherTab = await myYoutubeFeed.selectTab(tab);
+    //   expect(otherTab).toBeDefined();
+    //   const continuation = await otherTab.getContinuation();
+    //   expect(continuation).toBeDefined();
+    // });
+
+    test('Innertube#tv.getPlaylist', async () => {
+      const playlist = await innertube.tv.getPlaylist('PLPqdpObZSE_eHILqyxFf1spE-HEYvvm40');
+      expect(playlist).toBeDefined();
+      expect(playlist.contents).toBeDefined();
+      expect(playlist.contents!.length).toBeGreaterThan(0);
+      
+      const continuation = await playlist.getContinuation();
+      expect(continuation).toBeDefined();
+      expect(continuation.contents).toBeDefined();
+      expect(continuation.contents!.length).toBeGreaterThan(0);
+    });
+
+    test('Innertube#tv.getInfo', async () => {
+      // await innertube.session.signIn();
+      //
+      // // If you use this, the next call to signIn won't fire 'auth-pending' instead just 'auth'
+      // await innertube.session.oauth.cacheCredentials();
+      
+      const info = await innertube.tv.getInfo('bUHZ2k9DYHY', "TV");
+      expect(info.basic_info.id).toBe('bUHZ2k9DYHY');
+    });
+  });
+
   describe('YouTube Kids', () => {
     test('Innertube#kids.getInfo', async () => {
       const info = await innertube.kids.getInfo('juN8qEgLScw');

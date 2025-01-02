@@ -10,15 +10,18 @@ import {
   Continuation,
   ContinuationCommand,
   GridContinuation,
+  HorizontalListContinuation,
   ItemSectionContinuation,
   LiveChatContinuation,
   MusicPlaylistShelfContinuation,
   MusicShelfContinuation,
   NavigateAction,
   PlaylistPanelContinuation,
+  PlaylistVideoListContinuation,
   ReloadContinuationItemsCommand,
   SectionListContinuation,
-  ShowMiniplayerCommand
+  ShowMiniplayerCommand, 
+  TvSurfaceContentContinuation
 } from './continuations.js';
 
 import AudioOnlyPlayability from './classes/AudioOnlyPlayability.js';
@@ -722,6 +725,8 @@ export function parseLC(data: RawNode) {
     return new ItemSectionContinuation(data.itemSectionContinuation);
   if (data.sectionListContinuation)
     return new SectionListContinuation(data.sectionListContinuation);
+  if (data.horizontalListContinuation)
+    return new HorizontalListContinuation(data.horizontalListContinuation);
   if (data.liveChatContinuation)
     return new LiveChatContinuation(data.liveChatContinuation);
   if (data.musicPlaylistShelfContinuation)
@@ -732,6 +737,10 @@ export function parseLC(data: RawNode) {
     return new GridContinuation(data.gridContinuation);
   if (data.playlistPanelContinuation)
     return new PlaylistPanelContinuation(data.playlistPanelContinuation);
+  if (data.playlistVideoListContinuation)
+    return new PlaylistVideoListContinuation(data.playlistVideoListContinuation);
+  if (data.tvSurfaceContentContinuation)
+    return new TvSurfaceContentContinuation(data.tvSurfaceContentContinuation);
   if (data.continuationCommand)
     return new ContinuationCommand(data.continuationCommand);
 
