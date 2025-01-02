@@ -11,7 +11,10 @@ export default class LikeButton extends YTNode {
 
   like_status: string;
   likes_allowed: string;
+  like_count: number;
   endpoints?: NavigationEndpoint[];
+  
+  // TODO: Add Like and Dislike endpoints
 
   constructor(data: RawNode) {
     super();
@@ -22,6 +25,7 @@ export default class LikeButton extends YTNode {
 
     this.like_status = data.likeStatus;
     this.likes_allowed = data.likesAllowed;
+    this.like_count = data.likeCount;
 
     if (Reflect.has(data, 'serviceEndpoints')) {
       this.endpoints = data.serviceEndpoints.map((endpoint: RawNode) => new NavigationEndpoint(endpoint));
