@@ -77,6 +77,21 @@ export class SectionListContinuation extends YTNode {
   }
 }
 
+export class HorizontalListContinuation extends YTNode {
+  static readonly type = 'horizontalListContinuation';
+
+  continuation: string;
+  items: ObservedArray<YTNode> | null;
+
+  constructor(data: RawNode) {
+    super();
+    this.items = Parser.parse(data.items, true);
+    this.continuation =
+      data.continuations?.[0]?.nextContinuationData?.continuation ||
+      data.continuations?.[0]?.reloadContinuationData?.continuation || null;
+  }
+}
+
 export class MusicPlaylistShelfContinuation extends YTNode {
   static readonly type = 'musicPlaylistShelfContinuation';
 
@@ -133,6 +148,32 @@ export class PlaylistPanelContinuation extends YTNode {
     this.contents = Parser.parseArray(data.contents);
     this.continuation = data.continuations?.[0]?.nextContinuationData?.continuation ||
       data.continuations?.[0]?.nextRadioContinuationData?.continuation || null;
+  }
+}
+
+export class PlaylistVideoListContinuation extends YTNode {
+  static readonly type = 'playlistVideoListContinuation';
+
+  continuation?: string;
+  contents: ObservedArray<YTNode> | null;
+
+  constructor(data: RawNode) {
+    super();
+    this.contents = Parser.parseArray(data.contents);
+    this.continuation = data.continuations?.[0]?.nextContinuationData?.continuation || undefined;
+  }
+}
+
+export class TvSurfaceContentContinuation extends YTNode {
+  static readonly type = 'tvSurfaceContentContinuation';
+
+  header: YTNode | null;
+  content: YTNode | null;
+
+  constructor(data: RawNode) {
+    super();
+    this.content = Parser.parseItem(data.content);
+    this.header = Parser.parseItem(data.header);
   }
 }
 
