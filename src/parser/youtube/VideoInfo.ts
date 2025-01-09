@@ -338,12 +338,12 @@ export default class VideoInfo extends MediaInfo {
    * @returns `VideoInfo` for the trailer, or `null` if none.
    */
   getTrailerInfo(): VideoInfo | null {
-    if (this.has_trailer && this.playability_status) {
+    if (this.has_trailer && this.playability_status?.error_screen) {
       let player_response;
-      if (this.playability_status?.error_screen?.is(PlayerLegacyDesktopYpcTrailer)) {
-        player_response = this.playability_status.error_screen?.as(PlayerLegacyDesktopYpcTrailer).trailer?.player_response;
-      } else if (this.playability_status?.error_screen?.is(YpcTrailer)) {
-        player_response = this.playability_status.error_screen?.as(YpcTrailer).player_response;
+      if (this.playability_status.error_screen.is(PlayerLegacyDesktopYpcTrailer)) {
+        player_response = this.playability_status.error_screen.trailer?.player_response;
+      } else if (this.playability_status.error_screen.is(YpcTrailer)) {
+        player_response = this.playability_status.error_screen.player_response;
       }
 
       if (player_response) {
