@@ -25,7 +25,7 @@ import * as Constants from './utils/Constants.js';
 import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
 
 import type { ApiResponse } from './core/Actions.js';
-import {
+import type {
   DownloadOptions,
   EngagementType,
   FormatOptions,
@@ -543,13 +543,13 @@ export default class Innertube {
    */
   async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[]) {
     const payload: Record<string, any> = {
-      engagementType: engagement_type,
+      engagementType: engagement_type
     };
     
     if (ids)
       payload.ids = ids;
     
-    return this.actions.execute('/att/get',  { parse: true, ...payload });
+    return this.actions.execute('/att/get', { parse: true, ...payload });
   }
 
   /**
