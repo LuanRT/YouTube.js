@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
 import { Parser } from '../index.js';
-import type { RawNode } from '../types/RawResponse.js';
+import type { RawNode } from '../types/index.js';
 import BadgeView from './BadgeView.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
