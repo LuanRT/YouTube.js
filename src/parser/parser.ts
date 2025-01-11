@@ -479,6 +479,25 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   if (engagement_panels.length) {
     parsed_data.engagement_panels = engagement_panels;
   }
+  
+  if (data.bgChallenge) {
+    const interpreter_url = {
+      private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.bgChallenge.interpreterUrl.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
+      private_do_not_access_or_else_safe_script_wrapped_value: data.bgChallenge.interpreterUrl.privateDoNotAccessOrElseSafeScriptWrappedValue
+    };
+    
+    parsed_data.bg_challenge = {
+      interpreter_url,
+      interpreter_hash: data.bgChallenge.interpreterHash,
+      program: data.bgChallenge.program,
+      global_name: data.bgChallenge.globalName,
+      client_experiments_state_blob: data.bgChallenge.clientExperimentsStateBlob
+    };
+  }
+  
+  if (data.challenge) {
+    parsed_data.challenge = data.challenge;
+  }
 
   if (data.playerResponse) {
     parsed_data.player_response = parseResponse(data.playerResponse);
