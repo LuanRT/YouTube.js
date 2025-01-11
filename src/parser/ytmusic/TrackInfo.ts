@@ -14,9 +14,10 @@ import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.js';
 import type RichGrid from '../classes/RichGrid.js';
 import type MusicQueue from '../classes/MusicQueue.js';
 import type MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
+import { PlaylistPanelContinuation } from '../continuations.js';
 
 class TrackInfo extends MediaInfo {
   public tabs?: ObservedArray<Tab>;
@@ -98,6 +99,28 @@ class TrackInfo extends MediaInfo {
     }
 
     return playlist_panel;
+  }
+
+  /**
+   * Retrieves up next continuation relative to current TrackInfo.
+   */
+  async getUpNextContinuation(playlistPanel: PlaylistPanel | PlaylistPanelContinuation): Promise<PlaylistPanelContinuation> {
+    if (!this.current_video_endpoint)
+      throw new InnertubeError('Current Video Endpoint was not defined.', this.current_video_endpoint);
+    
+    if (playlistPanel instanceof PlaylistPanel && playlistPanel.playlist_id !== this.current_video_endpoint.payload.playlistId) {
+      throw new InnertubeError('PlaylistId from TrackInfo does not match with PlaylistPanel');
+    }
+    
+    const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: { ...this.current_video_endpoint.payload, continuation: playlistPanel.continuation } });
+    const response = await watch_next_endpoint.call(this.actions, { ...this.current_video_endpoint.payload, continuation: playlistPanel.continuation, client: 'YTMUSIC', parse: true });
+
+    const playlistCont = response.continuation_contents?.as(PlaylistPanelContinuation);
+
+    if (!playlistCont)
+      throw new InnertubeError('No PlaylistPanel Continuation available.', response);
+    
+    return playlistCont;
   }
 
   /**
