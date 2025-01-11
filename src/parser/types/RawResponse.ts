@@ -37,9 +37,24 @@ export interface IRawPlayerConfig {
   };
 }
 
+export interface IRawTrustedResource {
+  privateDoNotAccessOrElseTrustedResourceUrlWrappedValue?: string;
+  privateDoNotAccessOrElseSafeScriptWrappedValue?: string;
+}
+
+export interface IRawBotguardChallenge {
+  interpreterUrl: IRawTrustedResource;
+  interpreterHash: string;
+  program: string;
+  globalName: string;
+  clientExperimentsStateBlob: string;
+}
+
 export interface IRawResponse {
   responseContext?: IResponseContext;
   background?: RawNode;
+  bgChallenge?: IRawBotguardChallenge;
+  challenge?: string;
   contents?: RawData;
   onResponseReceivedActions?: RawNode[];
   onResponseReceivedEndpoints?: RawNode[];

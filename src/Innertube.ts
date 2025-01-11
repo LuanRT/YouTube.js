@@ -25,7 +25,14 @@ import * as Constants from './utils/Constants.js';
 import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
 
 import type { ApiResponse } from './core/Actions.js';
-import type { DownloadOptions, FormatOptions, InnerTubeClient, InnerTubeConfig, SearchFilters } from './types/index.js';
+import type {
+  DownloadOptions,
+  EngagementType,
+  FormatOptions,
+  InnerTubeClient,
+  InnerTubeConfig,
+  SearchFilters
+} from './types/index.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
 import type Format from './parser/classes/misc/Format.js';
 
@@ -480,7 +487,7 @@ export default class Innertube {
   }
 
   /**
-   * Get comments for a community post.
+   * Gets the comments of a post.
    */
   async getPostComments(post_id: string, channel_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
     throwIfMissing({ post_id, channel_id });
@@ -529,6 +536,20 @@ export default class Innertube {
     const response = await continuation_command.call(this.#session.actions);
 
     return new Comments(this.actions, response.data);
+  }
+
+  /**
+   * Fetches an attestation challenge.
+   */
+  async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[]) {
+    const payload: Record<string, any> = {
+      engagementType: engagement_type
+    };
+    
+    if (ids)
+      payload.ids = ids;
+    
+    return this.actions.execute('/att/get', { parse: true, ...payload });
   }
 
   /**

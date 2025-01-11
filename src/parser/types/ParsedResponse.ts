@@ -25,6 +25,8 @@ import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
 
 export interface IParsedResponse {
   background?: MusicThumbnail;
+  challenge?: string;
+  bg_challenge?: IBotguardChallenge;
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
   contents?: SuperParsedResult<YTNode>;
@@ -78,6 +80,19 @@ export interface IParsedResponse {
   watch_next_response?: INextResponse;
 }
 
+export interface ITrustedResource {
+  private_do_not_access_or_else_trusted_resource_url_wrapped_value?: string;
+  private_do_not_access_or_else_safe_script_wrapped_value?: string;
+}
+
+export interface IBotguardChallenge {
+  interpreter_url: ITrustedResource;
+  interpreter_hash: string;
+  program: string;
+  global_name: string;
+  client_experiments_state_blob: string;
+}
+
 export interface IPlaybackTracking {
   videostats_watchtime_url: string;
   videostats_playback_url: string;
@@ -121,11 +136,12 @@ export interface IStreamingData {
 }
 
 export type IPlayerResponse = Pick<IParsedResponse, 'captions' | 'cards' | 'endscreen' | 'microformat' | 'annotations' | 'playability_status' | 'streaming_data' | 'player_config' | 'playback_tracking' | 'storyboards' | 'video_details'>;
-export type INextResponse = Pick<IParsedResponse, 'contents' | 'contents_memo' | 'continuation_contents' | 'continuation_contents_memo' | 'current_video_endpoint' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'player_overlays' | 'engagement_panels'>
-export type IBrowseResponse = Pick<IParsedResponse, 'background' | 'continuation_contents' | 'continuation_contents_memo' | 'on_response_received_actions' | 'on_response_received_actions_memo' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'contents' | 'contents_memo' | 'header' | 'header_memo' | 'metadata' | 'microformat' | 'alerts' | 'sidebar' | 'sidebar_memo'>
+export type INextResponse = Pick<IParsedResponse, 'contents' | 'contents_memo' | 'continuation_contents' | 'continuation_contents_memo' | 'current_video_endpoint' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'player_overlays' | 'engagement_panels'>;
+export type IBrowseResponse = Pick<IParsedResponse, 'background' | 'continuation_contents' | 'continuation_contents_memo' | 'on_response_received_actions' | 'on_response_received_actions_memo' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'contents' | 'contents_memo' | 'header' | 'header_memo' | 'metadata' | 'microformat' | 'alerts' | 'sidebar' | 'sidebar_memo'>;
 export type ISearchResponse = Pick<IParsedResponse, 'header' | 'header_memo' | 'contents' | 'contents_memo' | 'on_response_received_commands' | 'continuation_contents' | 'continuation_contents_memo' | 'refinements' | 'estimated_results'>;
 export type IResolveURLResponse = Pick<IParsedResponse, 'endpoint'>;
-export type IGetTranscriptResponse = Pick<IParsedResponse, 'actions' | 'actions_memo'>
-export type IGetNotificationsMenuResponse = Pick<IParsedResponse, 'actions' | 'actions_memo'>
-export type IUpdatedMetadataResponse = Pick<IParsedResponse, 'actions' | 'actions_memo' | 'continuation'>
-export type IGuideResponse = Pick<IParsedResponse, 'items' | 'items_memo'>
+export type IGetTranscriptResponse = Pick<IParsedResponse, 'actions' | 'actions_memo'>;
+export type IGetNotificationsMenuResponse = Pick<IParsedResponse, 'actions' | 'actions_memo'>;
+export type IUpdatedMetadataResponse = Pick<IParsedResponse, 'actions' | 'actions_memo' | 'continuation'>;
+export type IGuideResponse = Pick<IParsedResponse, 'items' | 'items_memo'>;
+export type IGetChallengeResponse = Pick<IParsedResponse, 'challenge' | 'bg_challenge'>;
