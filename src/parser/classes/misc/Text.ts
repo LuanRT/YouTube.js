@@ -54,7 +54,6 @@ export default class Text {
   static fromAttributed(data: AttributedText) {
     const {
       content,
-      styleRuns: style_runs,
       commandRuns: command_runs,
       attachmentRuns: attachment_runs
     } = data;
@@ -65,6 +64,16 @@ export default class Text {
         startIndex: 0
       }
     ];
+
+    // In AttributedText, styleRuns may not always include the `startIndex` or `length` properties
+    // - If `startIndex` is missing, we assume the style applies from the beginning of the text
+    // - If `length` is missing, we assume the style applies to the entire text
+    // The following code ensures default values are provided for these properties
+    const style_runs = data.styleRuns?.map((run) => ({
+      ...run,
+      startIndex: run.startIndex ?? 0,
+      length: run.length ?? content.length
+    }) as StyleRun & ResponseRun);
 
     if (style_runs || command_runs || attachment_runs) {
       if (style_runs) {
@@ -271,7 +280,7 @@ interface ResponseRun {
   length: number;
 }
 
-interface StyleRun extends ResponseRun {
+interface StyleRun extends Partial<ResponseRun> {
   italic?: boolean;
   weightLabel?: string;
   strikethrough?: string;
