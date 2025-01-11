@@ -30,6 +30,9 @@ import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
 import type Format from './parser/classes/misc/Format.js';
 
 import {
+  CommunityPostCommentsParam,
+  CommunityPostCommentsParamContainer,
+  CommunityPostParams,
   GetCommentsSectionParams,
   Hashtag,
   ReelSequence,
@@ -450,6 +453,82 @@ export default class Innertube {
       throw new InnertubeError('Failed to resolve URL. Expected a NavigationEndpoint but got undefined', response);
 
     return response.endpoint;
+  }
+
+  /**
+   * Gets a post page given a post id and the channel id
+   */
+  async getPost(post_id: string, channel_id: string) : Promise<Feed<IBrowseResponse>> {
+    throwIfMissing({ post_id, channel_id });
+    const writer = CommunityPostParams.encode({
+      f0: 'community',
+      f1: {
+        postId: post_id
+      },
+      f2: {
+        p1: 1,
+        p2: 1 
+      }
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channel_id, params: params } });
+
+    const response = await browse_endpoint.call(this.#session.actions, { parse: true });
+    return new Feed(this.actions, response);
+  }
+
+  /**
+   * Get comments for a community post.
+   */
+  async getPostComments(post_id: string, channel_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
+    throwIfMissing({ post_id, channel_id });
+
+    const SORT_OPTIONS = {
+      TOP_COMMENTS: 0,
+      NEWEST_FIRST: 1
+    };
+
+    const writer1 = CommunityPostCommentsParam.encode({
+      title: 'community',
+      postContainer: {
+        postId: post_id
+      },
+      f0: {
+        f0: 1,
+        f1: 1
+      },
+      commentDataContainer: {
+        title: 'comments-section',
+        commentData: {
+          sortBy: SORT_OPTIONS[sort_by || 'TOP_COMMENTS'],
+          f0: 1,
+          channelId: channel_id,
+          postId: post_id
+        }
+      }
+    });
+
+    const writer2 = CommunityPostCommentsParamContainer.encode({
+      f0: {
+        location: 'FEcomment_post_detail_page_web_top_level',
+        protoData: encodeURIComponent(u8ToBase64(writer1.finish()))
+      }
+    });
+
+    const continuation = encodeURIComponent(u8ToBase64(writer2.finish()));
+
+    const continuation_command = new NavigationEndpoint({
+      continuationCommand: {
+        request: 'CONTINUATION_REQUEST_TYPE_BROWSE',
+        token: continuation
+      }
+    });
+
+    const response = await continuation_command.call(this.#session.actions);
+
+    return new Comments(this.actions, response.data);
   }
 
   /**
