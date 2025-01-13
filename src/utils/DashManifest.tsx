@@ -32,13 +32,13 @@ async function OTFPostLiveDvrSegmentInfo({ info }: { info: FSegmentInfo }) {
 
   const template = await info.getSegmentTemplate();
 
-  return <segment-template
+  return <segmentTemplate
     startNumber={template.init_url ? '1' : '0'}
     timescale="1000"
     initialization={template.init_url}
     media={template.media_url}
   >
-    <segment-timeline>
+    <segmentTimeline>
       {
         template.timeline.map((segment_duration) => (
           <s
@@ -47,8 +47,8 @@ async function OTFPostLiveDvrSegmentInfo({ info }: { info: FSegmentInfo }) {
           />
         ))
       }
-    </segment-timeline>
-  </segment-template>;
+    </segmentTimeline>
+  </segmentTemplate>;
 }
 
 function SegmentInfo({ info }: { info: FSegmentInfo }) {
@@ -56,12 +56,12 @@ function SegmentInfo({ info }: { info: FSegmentInfo }) {
     return <OTFPostLiveDvrSegmentInfo info={info} />;
   }
   return <>
-    <base-url>
+    <baseURL>
       {info.base_url}
-    </base-url>
-    <segment-base indexRange={`${info.index_range.start}-${info.index_range.end}`}>
+    </baseURL>
+    <segmentBase indexRange={`${info.index_range.start}-${info.index_range.end}`}>
       <initialization range={`${info.init_range.start}-${info.init_range.end}`} />
-    </segment-base>
+    </segmentBase>
   </>;
 }
 
@@ -87,7 +87,7 @@ async function DashManifest({
 
   // XXX: DASH spec: https://standards.iso.org/ittf/PubliclyAvailableStandards/c083314_ISO_IEC%2023009-1_2022(en).zip
 
-  return <mpd
+  return <mPD
     xmlns="urn:mpeg:dash:schema:mpd:2011"
     minBufferTime="PT1.500S"
     profiles="urn:mpeg:dash:profile:isoff-main:2011"
@@ -99,7 +99,7 @@ async function DashManifest({
     <period>
       {
         audio_sets.map((set, index) => (
-          <adaptation-set
+          <adaptationSet
             id={index}
             mimeType={set.mime_type}
             startWithSAP="1"
@@ -125,7 +125,7 @@ async function DashManifest({
             }
             {
               set.channels &&
-              <audio-channel-configuration
+              <audioChannelConfiguration
                 schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011"
                 value={set.channels}
               />
@@ -140,7 +140,7 @@ async function DashManifest({
                 >
                   {
                     rep.channels &&
-                    <audio-channel-configuration
+                    <audioChannelConfiguration
                       schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011"
                       value={rep.channels}
                     />
@@ -149,12 +149,12 @@ async function DashManifest({
                 </representation>
               ))
             }
-          </adaptation-set>
+          </adaptationSet>
         ))
       }
       {
         video_sets.map((set, index) => (
-          <adaptation-set
+          <adaptationSet
             id={index + audio_sets.length}
             mimeType={set.mime_type}
             startWithSAP="1"
@@ -166,21 +166,21 @@ async function DashManifest({
           >
             {
               set.color_info.primaries &&
-              <supplemental-property
+              <supplementalProperty
                 schemeIdUri="urn:mpeg:mpegB:cicp:ColourPrimaries"
                 value={set.color_info.primaries}
               />
             }
             {
               set.color_info.transfer_characteristics &&
-              <supplemental-property
+              <supplementalProperty
                 schemeIdUri="urn:mpeg:mpegB:cicp:TransferCharacteristics"
                 value={set.color_info.transfer_characteristics}
               />
             }
             {
               set.color_info.matrix_coefficients &&
-              <supplemental-property
+              <supplementalProperty
                 schemeIdUri="urn:mpeg:mpegB:cicp:MatrixCoefficients"
                 value={set.color_info.matrix_coefficients}
               />
@@ -199,12 +199,12 @@ async function DashManifest({
                 </representation>
               ))
             }
-          </adaptation-set>
+          </adaptationSet>
         ))
       }
       {
         image_sets.map(async (set, index) => {
-          return <adaptation-set
+          return <adaptationSet
             id={index + audio_sets.length + video_sets.length}
             mimeType={await set.getMimeType()}
             contentType="image"
@@ -217,11 +217,11 @@ async function DashManifest({
                   width={rep.sheet_width}
                   height={rep.sheet_height}
                 >
-                  <essential-property
+                  <essentialProperty
                     schemeIdUri="http://dashif.org/thumbnail_tile"
                     value={`${rep.columns}x${rep.rows}`}
                   />
-                  <segment-template
+                  <segmentTemplate
                     media={rep.template_url}
                     duration={rep.template_duration}
                     startNumber="0"
@@ -229,12 +229,12 @@ async function DashManifest({
                 </representation>
               ))
             }
-          </adaptation-set>;
+          </adaptationSet>;
         })
       }
       {
         text_sets.map((set, index) => {
-          return <adaptation-set
+          return <adaptationSet
             id={index + audio_sets.length + video_sets.length + image_sets.length}
             mimeType={set.mime_type}
             lang={set.language}
@@ -255,15 +255,15 @@ async function DashManifest({
               id={set.representation.uid}
               bandwidth="0"
             >
-              <base-url>
+              <baseURL>
                 {set.representation.base_url}
-              </base-url>
+              </baseURL>
             </representation>
-          </adaptation-set>;
+          </adaptationSet>;
         })
       }
     </period>
-  </mpd>;
+  </mPD>;
 }
 
 export function toDash(
