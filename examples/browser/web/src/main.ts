@@ -28,11 +28,6 @@ function fetchFn(input: RequestInfo | URL, init?: RequestInit) {
   // Now serialize the headers.
   url.searchParams.set('__headers', JSON.stringify([...headers]));
 
-  if (input instanceof Request) {
-    // @ts-expect-error - x
-    input.duplex = 'half';
-  }
-
   // Copy over the request.
   const request = new Request(
     url,
@@ -78,25 +73,14 @@ async function getPo(identifier: string): Promise<string | undefined> {
     console.warn('Unable to load VM.');
   }
 
-  const poToken = await BG.PoToken.generate({
+  return await BG.PoToken.generate({
     program: challenge.challenge,
     globalName: challenge.globalName,
     bgConfig
   });
-
-  return poToken;
 }
 
 async function main() {
-  const oauthCreds = undefined;
-  // Const oauthCreds = {
-  //   Access_token: 'ya29.abcd',
-  //   Refresh_token: '1//0abcd',
-  //   Scope: 'https://www.googleapis.com/auth/youtube-paid-content https://www.googleapis.com/auth/youtube',
-  //   Token_type: 'Bearer',
-  //   Expiry_date: '2024-08-13T04:41:34.757Z'
-  // };
-
   const visitorData = ProtoUtils.encodeVisitorData(Utils.generateRandomString(11), Math.floor(Date.now() / 1000));
   const poToken = await getPo(visitorData);
 
@@ -107,9 +91,6 @@ async function main() {
     generate_session_locally: true,
     cache: new UniversalCache(false)
   });
-
-  if (oauthCreds)
-    await yt.session.signIn(oauthCreds);
 
   form.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
   form.style.display = 'block';
@@ -171,7 +152,7 @@ async function main() {
             cache: new UniversalCache(false)
           });
 
-          await yt.session.signIn(oauthCreds);
+          // await yt.session.signIn(oauthCreds);
         }
       }
 
@@ -185,7 +166,7 @@ async function main() {
 
       metadata.innerHTML = '';
       metadata.innerHTML += `<div id="metadata-item">${info.primary_info?.published.toHTML()}</div>`;
-      metadata.innerHTML += `<div id="metadata-item">${info.primary_info?.view_count.toHTML()}</div>`;
+      metadata.innerHTML += `<div id="metadata-item">${info.primary_info?.view_count?.short_view_count.toHTML()}</div>`;
       metadata.innerHTML += `<div id="metadata-item">${info.basic_info.like_count} likes</div>`;
 
       showUI({ hidePlayer: false });
@@ -200,7 +181,7 @@ async function main() {
       }
 
       if (ui) {
-        ui.destroy();
+        await ui.destroy();
         ui = undefined;
       }
 
@@ -342,7 +323,7 @@ async function main() {
                     const streamProtectionStatus = Protos.StreamProtectionStatus.decode(data);
                     switch (streamProtectionStatus.status) {
                       case 1:
-                        console.info('[StreamProtectionStatus]: Good');
+                        console.info('[StreamProtectionStatus]: OK');
                         break;
                       case 2:
                         console.error('[StreamProtectionStatus]: Attestation pending');
@@ -405,4 +386,4 @@ function hideUI() {
   loader.style.display = 'block';
 }
 
-main();
+main().then(r => r).catch(console.error);
