@@ -24,14 +24,12 @@ export const OAUTH = Object.freeze({
 });
 export const CLIENTS = Object.freeze({
   IOS: {
-    NAME_ID: '5',
     NAME: 'iOS',
     VERSION: '18.06.35',
     USER_AGENT: 'com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)',
     DEVICE_MODEL: 'iPhone10,6'
   },
   WEB: {
-    NAME_ID: '1',
     NAME: 'WEB',
     VERSION: '2.20241121.01.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
@@ -40,51 +38,42 @@ export const CLIENTS = Object.freeze({
     SUGG_EXP_ID: 'ytzpb5_e2,ytpo.bo.lqp.elu=1,ytpo.bo.lqp.ecsc=1,ytpo.bo.lqp.mcsc=3,ytpo.bo.lqp.mec=1,ytpo.bo.lqp.rw=0.8,ytpo.bo.lqp.fw=0.2,ytpo.bo.lqp.szp=1,ytpo.bo.lqp.mz=3,ytpo.bo.lqp.al=en_us,ytpo.bo.lqp.zrm=1,ytpo.bo.lqp.er=1,ytpo.bo.ro.erl=1,ytpo.bo.ro.mlus=3,ytpo.bo.ro.erls=3,ytpo.bo.qfo.mlus=3,ytzprp.ppp.e=1,ytzprp.ppp.st=772,ytzprp.ppp.p=5'
   },
   MWEB: {
-    NAME_ID: '2',
     NAME: 'MWEB',
     VERSION: '2.20241205.01.00',
     API_VERSION: 'v1'
   },
   WEB_KIDS: {
-    NAME_ID: '76',
     NAME: 'WEB_KIDS',
     VERSION: '2.20230111.00.00'
   },
   YTMUSIC: {
-    NAME_ID: '67',
     NAME: 'WEB_REMIX',
     VERSION: '1.20211213.00.00'
   },
   ANDROID: {
-    NAME_ID: '3',
     NAME: 'ANDROID',
     VERSION: '19.35.36',
     SDK_VERSION: 33,
     USER_AGENT: 'com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip'
   },
   YTSTUDIO_ANDROID: {
-    NAME_ID: '14',
     NAME: 'ANDROID_CREATOR',
     VERSION: '22.43.101'
   },
   YTMUSIC_ANDROID: {
-    NAME_ID: '21',
     NAME: 'ANDROID_MUSIC',
     VERSION: '5.34.51'
   },
   TV: {
-    NAME_ID: '7',
     NAME: 'TVHTML5',
     VERSION: '7.20241016.15.00',
     USER_AGENT: 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'
   },
   TV_EMBEDDED: {
-    NAME_ID: '85',
     NAME: 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
     VERSION: '2.0'
   },
   WEB_EMBEDDED: {
-    NAME_ID: '56',
     NAME: 'WEB_EMBEDDED_PLAYER',
     VERSION: '2.20240111.09.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
@@ -92,13 +81,29 @@ export const CLIENTS = Object.freeze({
     STATIC_VISITOR_ID: '6zpwvWUNAco'
   },
   WEB_CREATOR: {
-    NAME_ID: '62',
     NAME: 'WEB_CREATOR',
     VERSION: '1.20240918.03.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'
   }
+});
+/**
+ * The keys correspond to the `NAME` fields in {@linkcode CLIENTS} constant
+ */
+export const CLIENT_NAME_IDS = Object.freeze({
+  iOS: '5',
+  WEB: '1',
+  MWEB: '2',
+  WEB_KIDS: '76',
+  WEB_REMIX: '67',
+  ANDROID: '3',
+  ANDROID_CREATOR: '14',
+  ANDROID_MUSIC: '21',
+  TVHTML5: '7',
+  TVHTML5_SIMPLY_EMBEDDED_PLAYER: '85',
+  WEB_EMBEDDED_PLAYER: '56',
+  WEB_CREATOR: '62'
 });
 export const STREAM_HEADERS = Object.freeze({
   'accept': '*/*',

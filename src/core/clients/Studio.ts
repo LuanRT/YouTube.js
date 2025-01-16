@@ -52,7 +52,7 @@ export default class Studio {
       context: {
         client: {
           osName: 'Android',
-          clientName: parseInt(Constants.CLIENTS.ANDROID.NAME_ID),
+          clientName: parseInt(Constants.CLIENT_NAME_IDS.ANDROID),
           clientVersion: Constants.CLIENTS.ANDROID.VERSION,
           androidSdkVersion: Constants.CLIENTS.ANDROID.SDK_VERSION,
           visitorData: this.#session.context.client.visitorData,
