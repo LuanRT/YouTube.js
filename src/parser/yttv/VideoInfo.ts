@@ -78,8 +78,8 @@ export default class VideoInfo extends MediaInfo {
       } : null;
       
       this.basic_info.like_count = this.primary_info?.like_button?.like_count;
-      this.basic_info.is_liked = this.primary_info?.like_button?.like_status === 'LIKE'; // TODO: Adapt once value known
-      this.basic_info.is_disliked = this.primary_info?.like_button?.like_status === 'DISLIKE'; // TODO: Adapt once value known
+      this.basic_info.is_liked = this.primary_info?.like_button?.like_status === 'LIKE';
+      this.basic_info.is_disliked = this.primary_info?.like_button?.like_status === 'DISLIKE';
       this.basic_info.allow_ratings = this.primary_info?.allow_ratings;
     }
   }
@@ -89,13 +89,6 @@ export default class VideoInfo extends MediaInfo {
    */
   async addToWatchHistory(): Promise<Response> {
     return super.addToWatchHistory();
-  }
-
-  /**
-   * Updates video in the watch history with specific point (after being added to watch history).
-   */
-  async updateWatchTime(playedSeconds = 0): Promise<Response> {
-    return super.updateWatchHistoryTime(Constants.CLIENTS.TV.NAME, Constants.CLIENTS.TV.VERSION, undefined, playedSeconds);
   }
 
   /**
