@@ -1,4 +1,4 @@
-import { type ObservedArray, YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import Tab from './Tab.js';
 
@@ -9,6 +9,6 @@ export default class TvSecondaryNavSection extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.tabs = Parser.parse(data.tabs, true, Tab);
+    this.tabs = Parser.parseArray(data.tabs, Tab);
   }
 }

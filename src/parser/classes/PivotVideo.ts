@@ -1,5 +1,4 @@
-import type { ObservedArray } from '../helpers.js';
-import { YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
 import { type RawNode, Parser } from '../index.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
@@ -35,6 +34,6 @@ export default class PivotVideo extends YTNode {
       icon_type: data.overlayIcon.iconType
     };
     this.overlay_label = new Text(data.overlayLabel);
-    this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays, true, ThumbnailOverlayTimeStatus);
+    this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays, ThumbnailOverlayTimeStatus);
   }
 }

@@ -1,5 +1,4 @@
-import type { ObservedArray } from '../helpers.js';
-import { YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
 import { type RawNode, Parser } from '../index.js';
 import ItemSection from './ItemSection.js';
 import SectionList from './SectionList.js';

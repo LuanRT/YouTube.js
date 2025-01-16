@@ -16,7 +16,7 @@ export default class TileHeader extends YTNode {
   constructor(data: RawNode) {
     super();
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
-    this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays, true, [ 
+    this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays, [ 
       ThumbnailOverlayTimeStatus, ThumbnailOverlayIcon, ThumbnailOverlayResumePlayback, ThumbnailOverlayStackingEffect, TileMetadata
     ]);
   }

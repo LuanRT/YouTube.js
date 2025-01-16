@@ -1,5 +1,4 @@
-import type { ObservedArray } from '../helpers.js';
-import { YTNode } from '../helpers.js';
+import { YTNode, type ObservedArray } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import Button from './Button.js';
 import ToggleButton from './ToggleButton.js';
@@ -18,7 +17,7 @@ export default class EntityMetadata extends YTNode {
     super();
     this.title = new Text(data.title);
     this.description = new Text(data.description);
-    this.buttons = Parser.parse(data.buttons, true, [ Button, ToggleButton ]);
-    this.bylines = Parser.parse(data.bylines, true, Line);
+    this.buttons = Parser.parseArray(data.buttons, [ Button, ToggleButton ]);
+    this.bylines = Parser.parseArray(data.bylines, Line);
   }
 }

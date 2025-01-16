@@ -1,5 +1,4 @@
 import { MediaInfo } from '../../core/mixins/index.js';
-import { Constants } from '../../utils/index.js';
 
 import type ChipCloud from '../classes/ChipCloud.js';
 import ItemSection from '../classes/ItemSection.js';
