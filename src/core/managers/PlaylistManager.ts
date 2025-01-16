@@ -70,7 +70,7 @@ export default class PlaylistManager {
   /**
    * Adds a given playlist to the library of a user.
    * @param playlist_id - The playlist ID.
-   @param client - Innertube client to use for action
+   * @param client - Innertube client to use for action
    */
   async addToLibrary(playlist_id: string, client?: InnerTubeClient){
     throwIfMissing({ playlist_id });
