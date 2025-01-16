@@ -178,8 +178,8 @@ export default class VideoInfo extends MediaInfo {
   /**
    * Updates video in the watch history with specific point (after being added to watch history).
    */
-  async updateWatchTime(playedSeconds = 0): Promise<Response> {
-    return super.updateWatchHistoryTime(undefined, undefined, undefined, playedSeconds);
+  async updateWatchTime(playedSeconds: number): Promise<Response> {
+    return super.updateWatchHistoryTime(playedSeconds);
   }
 
   /**
