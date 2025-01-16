@@ -1,8 +1,6 @@
 import { BG } from 'bgutils-js';
 import GoogleVideo, { PART, Protos } from 'googlevideo';
-import { Innertube, ProtoUtils, UniversalCache, Utils, YTNodes } from '../../../..';
-
-// @ts-expect-error - x
+import { Innertube, ProtoUtils, UniversalCache, Utils } from '../../../..';
 import shaka from 'shaka-player/dist/shaka-player.ui';
 
 import 'shaka-player/dist/controls.css';
@@ -26,7 +24,7 @@ function fetchFn(input: RequestInfo | URL, init?: RequestInit) {
       : new Headers();
 
   // Now serialize the headers.
-  url.searchParams.set('__headers', JSON.stringify([...headers]));
+  url.searchParams.set('__headers', JSON.stringify([ ...headers ]));
 
   // Copy over the request.
   const request = new Request(
@@ -54,45 +52,49 @@ async function getPo(identifier: string): Promise<string | undefined> {
   const requestKey = 'O43z0dpjhgX20SCx4KAo';
 
   const bgConfig = {
-    fetch: (input: RequestInfo | URL, init?: RequestInit) => fetch(input, init),
+    fetch: (input: string | URL | globalThis.Request, init?: RequestInit) => fetch(input, init),
     globalObj: window,
     requestKey,
     identifier
   };
 
-  const challenge = await BG.Challenge.create(bgConfig);
+  const bgChallenge = await BG.Challenge.create(bgConfig);
 
-  if (!challenge)
+  if (!bgChallenge)
     throw new Error('Could not get challenge');
 
-  if (challenge.script) {
-    const script = challenge.script.find((sc) => sc !== null);
-    if (script)
-      new Function(script)();
-  } else {
-    console.warn('Unable to load VM.');
-  }
+  const interpreterJavascript = bgChallenge.interpreterJavascript.privateDoNotAccessOrElseSafeScriptWrappedValue;
 
-  return await BG.PoToken.generate({
-    program: challenge.challenge,
-    globalName: challenge.globalName,
+  if (interpreterJavascript) {
+    new Function(interpreterJavascript)();
+  } else throw new Error('Could not load VM');
+
+  const poTokenResult = await BG.PoToken.generate({
+    program: bgChallenge.program,
+    globalName: bgChallenge.globalName,
     bgConfig
   });
+
+  return poTokenResult.poToken;
 }
 
 async function main() {
+  let poToken: string | undefined;
   const visitorData = ProtoUtils.encodeVisitorData(Utils.generateRandomString(11), Math.floor(Date.now() / 1000));
-  const poToken = await getPo(visitorData);
 
-  let yt = await Innertube.create({
-    po_token: poToken,
+  // Immediately mint a cold start token so we can start playback without delays.
+  const coldStartToken = BG.PoToken.generatePlaceholder(visitorData);
+  getPo(visitorData).then((webPo) => poToken = webPo);
+
+  const yt = await Innertube.create({
+    po_token: poToken || coldStartToken,
     visitor_data: visitorData,
     fetch: fetchFn,
     generate_session_locally: true,
     cache: new UniversalCache(false)
   });
 
-  form.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
+  form.animate({ opacity: [ 0, 1 ] }, { duration: 300, easing: 'ease-in-out' });
   form.style.display = 'block';
 
   showUI({ hidePlayer: true });
@@ -104,7 +106,7 @@ async function main() {
     e.preventDefault();
 
     if (player) {
-      player.destroy();
+      await player.destroy();
     }
 
     hideUI();
@@ -120,7 +122,7 @@ async function main() {
     }
 
     try {
-      if (videoIdOrURL.match(/(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])/)) {
+      if (videoIdOrURL.match(/(http|https):\/\/([\w_-]+(?:\.[\w_-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])/)) {
         const endpoint = await yt.resolveURL(videoIdOrURL);
 
         if (!endpoint.payload.videoId) {
@@ -134,28 +136,6 @@ async function main() {
         videoId = videoIdOrURL;
       }
 
-      if (yt.session.logged_in) {
-        const user = await yt.account.getInfo();
-        const accountItemSections = user.page.contents_memo?.getType(YTNodes.AccountItemSection);
-
-        if (accountItemSections) {
-          const accountItemSection = accountItemSections.first();
-          const accountItem = accountItemSection.contents.first();
-          const datasyncIdToken = `${accountItem.endpoint.payload.directSigninIdentity.effectiveObfuscatedGaiaId}||`;
-          const poToken = await getPo(datasyncIdToken);
-
-          yt = await Innertube.create({
-            po_token: poToken,
-            visitor_data: visitorData,
-            fetch: fetchFn,
-            generate_session_locally: true,
-            cache: new UniversalCache(false)
-          });
-
-          // await yt.session.signIn(oauthCreds);
-        }
-      }
-
       const info = await yt.getInfo(videoId);
 
       title.textContent = info.basic_info.title || null;
@@ -166,7 +146,7 @@ async function main() {
 
       metadata.innerHTML = '';
       metadata.innerHTML += `<div id="metadata-item">${info.primary_info?.published.toHTML()}</div>`;
-      metadata.innerHTML += `<div id="metadata-item">${info.primary_info?.view_count?.short_view_count.toHTML()}</div>`;
+      metadata.innerHTML += `<div id="metadata-item">${info.primary_info?.view_count?.short_view_count?.toHTML()}</div>`;
       metadata.innerHTML += `<div id="metadata-item">${info.basic_info.like_count} likes</div>`;
 
       showUI({ hidePlayer: false });
@@ -237,33 +217,37 @@ async function main() {
           }
         });
 
-        let rn = 0;
+        const networkingEngine = player.getNetworkingEngine();
 
-        player.getNetworkingEngine()?.registerRequestFilter((_type: unknown, request: Record<string, any>) => {
+        if (!networkingEngine) return;
+
+        networkingEngine.registerRequestFilter(async (type, request) => {
           const uri = request.uris[0];
           const url = new URL(uri);
           const headers = request.headers;
 
-          if (url.host.endsWith('.googlevideo.com') || headers.Range) {
+          // For local development.
+          if ((url.host.endsWith('.googlevideo.com') || url.href.includes('drm'))) {
             url.searchParams.set('__host', url.host);
-            url.host = 'localhost:8080';
+            url.host = 'localhost';
+            url.port = '8080';
             url.protocol = 'http';
           }
 
-          request.method = 'POST';
-          request.body = new Uint8Array([120, 0]);
-
-          if (url.pathname === '/videoplayback') {
-            if (headers.Range) {
-              request.headers = {};
-              url.searchParams.set('range', headers.Range.split('=')[1]);
-              url.searchParams.set('ump', '1');
-              url.searchParams.set('srfvp', '1');
-              url.searchParams.set('rn', rn.toString());
-              delete headers.Range;
+          if (type === shaka.net.NetworkingEngine.RequestType.SEGMENT) {
+            if (url.pathname.includes('videoplayback')) {
+              if (headers.Range) {
+                url.searchParams.set('range', headers.Range.split('=')[1]);
+                url.searchParams.set('ump', '1');
+                url.searchParams.set('srfvp', '1');
+                url.searchParams.set('pot', (poToken ?? coldStartToken) ?? '');
+                request.headers = {};
+                delete headers.Range;
+              }
             }
 
-            rn += 1;
+            request.method = 'POST';
+            request.body = new Uint8Array([ 120, 0 ]);
           }
 
           request.uris[0] = url.toString();
@@ -271,11 +255,11 @@ async function main() {
 
         const RequestType = shaka.net.NetworkingEngine.RequestType;
 
-        player.getNetworkingEngine()?.registerResponseFilter(async (type: unknown, response: Record<string, any>) => {
+        networkingEngine.registerResponseFilter(async (type, response) => {
           let mediaData = new Uint8Array(0);
 
           const handleRedirect = async (redirectData: Protos.SabrRedirect) => {
-            const redirectRequest = shaka.net.NetworkingEngine.makeRequest([redirectData.url], player!.getConfiguration().streaming.retryParameters);
+            const redirectRequest = shaka.net.NetworkingEngine.makeRequest([ redirectData.url! ], player!.getConfiguration().streaming.retryParameters);
             const requestOperation = player!.getNetworkingEngine()!.request(type, redirectRequest);
             const redirectResponse = await requestOperation.promise;
 
@@ -295,9 +279,7 @@ async function main() {
           };
 
           if (type == RequestType.SEGMENT) {
-            const dataBuffer = new GoogleVideo.ChunkedDataBuffer([new Uint8Array(response.data)]);
-
-            const googUmp = new GoogleVideo.UMP(dataBuffer);
+            const googUmp = new GoogleVideo.UMP(new GoogleVideo.ChunkedDataBuffer([ new Uint8Array(response.data as ArrayBuffer) ]));
 
             let redirect: Protos.SabrRedirect | undefined;
 
@@ -316,14 +298,14 @@ async function main() {
                   }
                   case PART.SABR_REDIRECT: {
                     redirect = Protos.SabrRedirect.decode(data);
-                    console.info('[SabrRedirect]:', redirect);
+                    console.info('[SABRRedirect]:', redirect);
                     break;
                   }
                   case PART.STREAM_PROTECTION_STATUS: {
                     const streamProtectionStatus = Protos.StreamProtectionStatus.decode(data);
                     switch (streamProtectionStatus.status) {
                       case 1:
-                        console.info('[StreamProtectionStatus]: OK');
+                        console.info('[StreamProtectionStatus]: Ok');
                         break;
                       case 2:
                         console.error('[StreamProtectionStatus]: Attestation pending');
@@ -374,7 +356,7 @@ function showUI(args: { hidePlayer?: boolean } = {
   ytplayer.style.display = args.hidePlayer ? 'none' : 'block';
 
   const video_container = document.getElementById('video-container') as HTMLDivElement;
-  video_container.animate({ opacity: [0, 1] }, { duration: 300, easing: 'ease-in-out' });
+  video_container.animate({ opacity: [ 0, 1 ] }, { duration: 300, easing: 'ease-in-out' });
   video_container.style.display = 'block';
 
   loader.style.display = 'none';
@@ -386,4 +368,4 @@ function hideUI() {
   loader.style.display = 'block';
 }
 
-main().then(r => r).catch(console.error);
+main().catch(console.error);
