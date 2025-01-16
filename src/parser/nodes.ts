@@ -24,8 +24,6 @@ export { default as AlertWithButton } from './classes/AlertWithButton.js';
 export { default as AttributionView } from './classes/AttributionView.js';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.js';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.js';
-export { default as AutonavEndpoint } from './classes/AutonavEndpoint.js';
-export { default as AutoplayEndpoint } from './classes/AutoplayEndpoint.js';
 export { default as AvatarLockup } from './classes/AvatarLockup.js';
 export { default as AvatarStackView } from './classes/AvatarStackView.js';
 export { default as AvatarView } from './classes/AvatarView.js';
@@ -138,6 +136,8 @@ export { default as EmojiPickerCategoryButton } from './classes/EmojiPickerCateg
 export { default as EmojiPickerUpsellCategory } from './classes/EmojiPickerUpsellCategory.js';
 export { default as AddToPlaylistEndpoint } from './classes/endpoints/AddToPlaylistEndpoint.js';
 export { default as AddToPlaylistServiceEndpoint } from './classes/endpoints/AddToPlaylistServiceEndpoint.js';
+export { default as AutonavEndpoint } from './classes/endpoints/AutonavEndpoint.js';
+export { default as AutoplayEndpoint } from './classes/endpoints/AutoplayEndpoint.js';
 export { default as BrowseEndpoint } from './classes/endpoints/BrowseEndpoint.js';
 export { default as CreateCommentEndpoint } from './classes/endpoints/CreateCommentEndpoint.js';
 export { default as CreatePlaylistServiceEndpoint } from './classes/endpoints/CreatePlaylistServiceEndpoint.js';

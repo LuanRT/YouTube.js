@@ -3,12 +3,12 @@ import { type RawNode, Parser } from '../index.js';
 import ItemSection from './ItemSection.js';
 import SectionList from './SectionList.js';
 import Text from './misc/Text.js';
-import AutonavEndpoint from './AutonavEndpoint.js';
+import AutonavEndpoint from './endpoints/AutonavEndpoint.js';
 import MaybeHistoryEndpoint from './MaybeHistoryEndpoint.js';
 import Author from './misc/Author.js';
 import Menu from './menus/Menu.js';
 import type NavigationEndpoint from './NavigationEndpoint.js';
-import AutoplayEndpoint from './AutoplayEndpoint.js';
+import AutoplayEndpoint from './endpoints/AutoplayEndpoint.js';
 
 export default class SingleColumnWatchNextResults extends YTNode {
   static type = 'SingleColumnWatchNextResults';
