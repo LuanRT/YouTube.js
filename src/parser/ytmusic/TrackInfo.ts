@@ -145,6 +145,13 @@ class TrackInfo extends MediaInfo {
     return super.addToWatchHistory(Constants.CLIENTS.YTMUSIC.NAME, Constants.CLIENTS.YTMUSIC.VERSION, 'https://music.');
   }
 
+  /**
+   * Updates video in the watch history with specific point (after being added to watch history).
+   */
+  async updateWatchTime(playedSeconds = 0): Promise<Response> {
+    return super.updateWatchHistoryTime(Constants.CLIENTS.YTMUSIC.NAME, Constants.CLIENTS.YTMUSIC.VERSION, 'https://music.', playedSeconds);
+  }
+
   get available_tabs(): string[] {
     return this.tabs ? this.tabs.map((tab) => tab.title) : [];
   }
