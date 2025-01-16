@@ -54,7 +54,7 @@ async function getPo(identifier: string): Promise<string | undefined> {
   const requestKey = 'O43z0dpjhgX20SCx4KAo';
 
   const bgConfig = {
-    fetch: fetchFn,
+    fetch: (input: RequestInfo | URL, init?: RequestInit) => fetch(input, init),
     globalObj: window,
     requestKey,
     identifier
