@@ -3,7 +3,6 @@ import * as Constants from './Constants.js';
 import {
   Platform,
   generateSidAuth,
-  getRandomUserAgent,
   InnertubeError,
   getCookie
 } from './Utils.js';
@@ -68,7 +67,7 @@ export default class HTTPClient {
     }
 
     if (Platform.shim.server) {
-      request_headers.set('User-Agent', getRandomUserAgent('desktop'));
+      request_headers.set('User-Agent', this.#session.user_agent || '');
       request_headers.set('Origin', request_url.origin);
     }
 
