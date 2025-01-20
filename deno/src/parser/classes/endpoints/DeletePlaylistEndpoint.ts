@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { DeletePlaylistServiceRequest, IEndpoint, RawNode } from '../../index.ts';
 
+const API_PATH = 'playlist/delete';
+
 export default class DeletePlaylistEndpoint extends YTNode implements IEndpoint<DeletePlaylistServiceRequest> {
   static type = 'DeletePlaylistEndpoint';
 
-  #API_PATH = 'playlist/delete';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class DeletePlaylistEndpoint extends YTNode implements IEndpoint<
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): DeletePlaylistServiceRequest {

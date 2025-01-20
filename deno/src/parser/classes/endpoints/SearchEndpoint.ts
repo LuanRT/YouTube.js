@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { IEndpoint, RawNode, SearchRequest } from '../../index.ts';
 
+const API_PATH = 'search';
+
 export default class SearchEndpoint extends YTNode implements IEndpoint<SearchRequest> {
   static type = 'SearchEndpoint';
 
-  #API_PATH = 'search';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class SearchEndpoint extends YTNode implements IEndpoint<SearchRe
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): SearchRequest {

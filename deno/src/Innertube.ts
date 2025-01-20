@@ -25,11 +25,21 @@ import * as Constants from './utils/Constants.ts';
 import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from './utils/Utils.ts';
 
 import type { ApiResponse } from './core/Actions.ts';
-import type { DownloadOptions, FormatOptions, InnerTubeClient, InnerTubeConfig, SearchFilters } from './types/index.ts';
+import type {
+  DownloadOptions,
+  EngagementType,
+  FormatOptions,
+  InnerTubeClient,
+  InnerTubeConfig,
+  SearchFilters
+} from './types/index.ts';
 import type { IBrowseResponse, IParsedResponse } from './parser/index.ts';
 import type Format from './parser/classes/misc/Format.ts';
 
 import {
+  CommunityPostCommentsParam,
+  CommunityPostCommentsParamContainer,
+  CommunityPostParams,
   GetCommentsSectionParams,
   Hashtag,
   ReelSequence,
@@ -42,7 +52,7 @@ import {
 
 /**
  * Provides access to various services and modules in the YouTube API.
- * 
+ *
  * @example
  * ```ts
  * import { Innertube, UniversalCache } from 'youtubei.ts';
@@ -75,7 +85,7 @@ export default class Innertube {
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
 
-    const watch_response = watch_endpoint.call(this.#session.actions, {
+    const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
@@ -84,12 +94,16 @@ export default class Innertube {
           signatureTimestamp: this.#session.player?.sts
         }
       },
-      serviceIntegrityDimensions: {
-        poToken: this.#session.po_token
-      },
       client
-    });
+    };
 
+    if (this.#session.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: this.#session.po_token
+      };
+    }
+
+    const watch_response = watch_endpoint.call(this.#session.actions, extra_payload);
     const watch_next_response = watch_next_endpoint.call(this.#session.actions);
 
     const response = await Promise.all([ watch_response, watch_next_response ]);
@@ -104,7 +118,7 @@ export default class Innertube {
 
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: { videoId: video_id } });
 
-    const watch_response = await watch_endpoint.call(this.#session.actions, {
+    const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
@@ -113,11 +127,16 @@ export default class Innertube {
           signatureTimestamp: this.#session.player?.sts
         }
       },
-      serviceIntegrityDimensions: {
-        poToken: this.#session.po_token
-      },
       client
-    });
+    };
+
+    if (this.#session.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: this.#session.po_token
+      };
+    }
+    
+    const watch_response = await watch_endpoint.call(this.#session.actions, extra_payload);
 
     const cpn = generateRandomString(16);
 
@@ -136,7 +155,7 @@ export default class Innertube {
     });
 
     const reel_watch_response = reel_watch_endpoint.call(this.#session.actions, { client });
-    
+
     const writer = ReelSequence.encode({
       shortId: video_id,
       params: {
@@ -222,29 +241,42 @@ export default class Innertube {
       }
     }
 
-    const search_endpoint = new NavigationEndpoint({ searchEndpoint: { query, params: filters ? encodeURIComponent(u8ToBase64(SearchFilter.encode(search_filter).finish())) : undefined } });
+    const search_endpoint = new NavigationEndpoint({
+      searchEndpoint: {
+        query,
+        params: filters ? encodeURIComponent(u8ToBase64(SearchFilter.encode(search_filter).finish())) : undefined
+      }
+    });
     const response = await search_endpoint.call(this.#session.actions);
 
     return new Search(this.actions, response);
   }
 
-  async getSearchSuggestions(query: string): Promise<string[]> {
-    throwIfMissing({ query });
-
-    const url = new URL(`${Constants.URLS.YT_SUGGESTIONS}search`);
-    url.searchParams.set('q', query);
+  async getSearchSuggestions(query: string, previous_query?: string): Promise<string[]> {
+    const url = new URL(`${Constants.URLS.YT_SUGGESTIONS}/complete/search`);
+    url.searchParams.set('client', 'youtube');
+    url.searchParams.set('gs_ri', 'youtube');
+    url.searchParams.set('gs_id', '0');
+    url.searchParams.set('cp', '0');
+    url.searchParams.set('ds', 'yt');
+    url.searchParams.set('sugexp', Constants.CLIENTS.WEB.SUGG_EXP_ID);
     url.searchParams.set('hl', this.#session.context.client.hl);
     url.searchParams.set('gl', this.#session.context.client.gl);
-    url.searchParams.set('ds', 'yt');
-    url.searchParams.set('client', 'youtube');
-    url.searchParams.set('xssi', 't');
-    url.searchParams.set('oe', 'UTF');
+    url.searchParams.set('q', query);
 
-    const response = await this.#session.http.fetch(url);
-    const response_data = await response.text();
+    if (previous_query)
+      url.searchParams.set('pq', previous_query);
 
-    const data = JSON.parse(response_data.replace(')]}\'', ''));
-    return data[1].map((suggestion: any) => suggestion[0]);
+    const response = await this.#session.http.fetch_function(url, {
+      headers: {
+        'Cookie': this.#session.cookie || ''
+      }
+    });
+    
+    const text = await response.text();
+
+    const data = JSON.parse(text.replace('window.google.ac.h(', '').slice(0, -1));
+    return data[1].map((suggestion: (string | number)[]) => suggestion[0]);
   }
 
   async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST', comment_id?: string): Promise<Comments> {
@@ -284,13 +316,13 @@ export default class Innertube {
 
     return new Comments(this.actions, response.data);
   }
-  
+
   async getHomeFeed(): Promise<HomeFeed> {
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEwhat_to_watch' } });
     const response = await browse_endpoint.call(this.#session.actions);
     return new HomeFeed(this.actions, response);
   }
-  
+
   async getGuide(): Promise<Guide> {
     const response = await this.actions.execute('/guide');
     return new Guide(response.data);
@@ -428,6 +460,96 @@ export default class Innertube {
       throw new InnertubeError('Failed to resolve URL. Expected a NavigationEndpoint but got undefined', response);
 
     return response.endpoint;
+  }
+
+  /**
+   * Gets a post page given a post id and the channel id
+   */
+  async getPost(post_id: string, channel_id: string) : Promise<Feed<IBrowseResponse>> {
+    throwIfMissing({ post_id, channel_id });
+    const writer = CommunityPostParams.encode({
+      f0: 'community',
+      f1: {
+        postId: post_id
+      },
+      f2: {
+        p1: 1,
+        p2: 1 
+      }
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channel_id, params: params } });
+
+    const response = await browse_endpoint.call(this.#session.actions, { parse: true });
+    return new Feed(this.actions, response);
+  }
+
+  /**
+   * Gets the comments of a post.
+   */
+  async getPostComments(post_id: string, channel_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
+    throwIfMissing({ post_id, channel_id });
+
+    const SORT_OPTIONS = {
+      TOP_COMMENTS: 0,
+      NEWEST_FIRST: 1
+    };
+
+    const writer1 = CommunityPostCommentsParam.encode({
+      title: 'community',
+      postContainer: {
+        postId: post_id
+      },
+      f0: {
+        f0: 1,
+        f1: 1
+      },
+      commentDataContainer: {
+        title: 'comments-section',
+        commentData: {
+          sortBy: SORT_OPTIONS[sort_by || 'TOP_COMMENTS'],
+          f0: 1,
+          channelId: channel_id,
+          postId: post_id
+        }
+      }
+    });
+
+    const writer2 = CommunityPostCommentsParamContainer.encode({
+      f0: {
+        location: 'FEcomment_post_detail_page_web_top_level',
+        protoData: encodeURIComponent(u8ToBase64(writer1.finish()))
+      }
+    });
+
+    const continuation = encodeURIComponent(u8ToBase64(writer2.finish()));
+
+    const continuation_command = new NavigationEndpoint({
+      continuationCommand: {
+        request: 'CONTINUATION_REQUEST_TYPE_BROWSE',
+        token: continuation
+      }
+    });
+
+    const response = await continuation_command.call(this.#session.actions);
+
+    return new Comments(this.actions, response.data);
+  }
+
+  /**
+   * Fetches an attestation challenge.
+   */
+  async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[]) {
+    const payload: Record<string, any> = {
+      engagementType: engagement_type
+    };
+    
+    if (ids)
+      payload.ids = ids;
+    
+    return this.actions.execute('/att/get', { parse: true, ...payload });
   }
 
   /**

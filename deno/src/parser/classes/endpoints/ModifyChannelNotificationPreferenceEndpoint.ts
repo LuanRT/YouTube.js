@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { IEndpoint, ModifyChannelNotificationPreferenceRequest, RawNode } from '../../index.ts';
 
+const API_PATH = 'notification/modify_channel_preference';
+
 export default class ModifyChannelNotificationPreferenceEndpoint extends YTNode implements IEndpoint<ModifyChannelNotificationPreferenceRequest> {
   static type = 'ModifyChannelNotificationPreferenceEndpoint';
 
-  #API_PATH = 'notification/modify_channel_preference';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class ModifyChannelNotificationPreferenceEndpoint extends YTNode 
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): ModifyChannelNotificationPreferenceRequest {

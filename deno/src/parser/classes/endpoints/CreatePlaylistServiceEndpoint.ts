@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { CreatePlaylistServiceRequest, IEndpoint, RawNode } from '../../index.ts';
 
+const API_PATH = 'playlist/create';
+
 export default class CreatePlaylistServiceEndpoint extends YTNode implements IEndpoint<CreatePlaylistServiceRequest> {
   static type = 'CreatePlaylistServiceEndpoint';
 
-  #API_PATH = 'playlist/create';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class CreatePlaylistServiceEndpoint extends YTNode implements IEn
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): CreatePlaylistServiceRequest {

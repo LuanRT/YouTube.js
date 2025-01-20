@@ -7,14 +7,19 @@ export default class ToggleButtonView extends YTNode {
 
   default_button: ButtonView | null;
   toggled_button: ButtonView | null;
-  identifier?: string;
   is_toggling_disabled: boolean;
+  identifier?: string;
+  is_toggled?: boolean;
 
   constructor(data: RawNode) {
     super();
     this.default_button = Parser.parseItem(data.defaultButtonViewModel, ButtonView);
     this.toggled_button = Parser.parseItem(data.toggledButtonViewModel, ButtonView);
-    this.identifier = data.identifier;
     this.is_toggling_disabled = data.isTogglingDisabled;
+    this.identifier = data.identifier;
+    
+    if (Reflect.has(data, 'isToggled')) {
+      this.is_toggled = data.isToggled;
+    }
   }
 }

@@ -13,8 +13,9 @@ export default class SubscribeButton extends YTNode {
   public item_type: string;
   public channel_id: string;
   public show_preferences: boolean;
-  public subscribed_text: Text;
-  public unsubscribed_text: Text;
+  public subscribed_text?: Text;
+  public unsubscribed_text?: Text;
+  public unsubscribe_text?: Text;
   public notification_preference_button: SubscriptionNotificationToggleButton | null;
   public service_endpoints?: NavigationEndpoint[];
   public on_subscribe_endpoints?: NavigationEndpoint[];
@@ -32,8 +33,16 @@ export default class SubscribeButton extends YTNode {
     this.item_type = data.type;
     this.channel_id = data.channelId;
     this.show_preferences = data.showPreferences;
-    this.subscribed_text = new Text(data.subscribedButtonText);
-    this.unsubscribed_text = new Text(data.unsubscribedButtonText);
+
+    if (Reflect.has(data, 'subscribedButtonText'))
+      this.subscribed_text = new Text(data.subscribedButtonText);
+
+    if (Reflect.has(data, 'unsubscribedButtonText'))
+      this.unsubscribed_text = new Text(data.unsubscribedButtonText);
+
+    if (Reflect.has(data, 'unsubscribeButtonText'))
+      this.unsubscribe_text = new Text(data.unsubscribeButtonText);
+
     this.notification_preference_button = Parser.parseItem(data.notificationPreferenceButton, SubscriptionNotificationToggleButton);
 
     if (Reflect.has(data, 'serviceEndpoints'))

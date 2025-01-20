@@ -2,6 +2,7 @@ import type { SessionOptions } from '../core/index.ts';
 
 export type InnerTubeConfig = SessionOptions;
 export type InnerTubeClient = 'IOS' | 'WEB' | 'MWEB' | 'ANDROID' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'YTSTUDIO_ANDROID' | 'TV' | 'TV_EMBEDDED' | 'YTKIDS' | 'WEB_EMBEDDED' | 'WEB_CREATOR';
+export type EngagementType = 'ENGAGEMENT_TYPE_UNBOUND' | 'ENGAGEMENT_TYPE_VIDEO_LIKE' | 'ENGAGEMENT_TYPE_VIDEO_DISLIKE' | 'ENGAGEMENT_TYPE_SUBSCRIBE' | 'ENGAGEMENT_TYPE_PLAYBACK' | 'ENGAGEMENT_TYPE_YPC_GET_PREMIUM_PAGE' | 'ENGAGEMENT_TYPE_YPC_GET_DOWNLOAD_ACTION';
 
 export type UploadDate = 'all' | 'hour' | 'today' | 'week' | 'month' | 'year';
 export type SearchType = 'all' | 'video' | 'channel' | 'playlist' | 'movie';

@@ -37,6 +37,8 @@ import VideoDetails from './classes/misc/VideoDetails.ts';
 import NavigationEndpoint from './classes/NavigationEndpoint.ts';
 import CommentView from './classes/comments/CommentView.ts';
 import MusicThumbnail from './classes/MusicThumbnail.ts';
+import OpenPopupAction from './classes/actions/OpenPopupAction.ts';
+import AppendContinuationItemsAction from './classes/actions/AppendContinuationItemsAction.ts';
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.ts';
 
 const TAG = 'Parser';
@@ -385,7 +387,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     status: data.playabilityStatus.status,
     reason: data.playabilityStatus.reason || '',
     embeddable: !!data.playabilityStatus.playableInEmbed || false,
-    audio_only_playablility: parseItem(data.playabilityStatus.audioOnlyPlayability, AudioOnlyPlayability),
+    audio_only_playability: parseItem(data.playabilityStatus.audioOnlyPlayability, AudioOnlyPlayability),
     error_screen: parseItem(data.playabilityStatus.errorScreen)
   } : null;
 
@@ -476,6 +478,25 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   const engagement_panels = parseArray(data.engagementPanels, EngagementPanelSectionList);
   if (engagement_panels.length) {
     parsed_data.engagement_panels = engagement_panels;
+  }
+  
+  if (data.bgChallenge) {
+    const interpreter_url = {
+      private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.bgChallenge.interpreterUrl.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
+      private_do_not_access_or_else_safe_script_wrapped_value: data.bgChallenge.interpreterUrl.privateDoNotAccessOrElseSafeScriptWrappedValue
+    };
+    
+    parsed_data.bg_challenge = {
+      interpreter_url,
+      interpreter_hash: data.bgChallenge.interpreterHash,
+      program: data.bgChallenge.program,
+      global_name: data.bgChallenge.globalName,
+      client_experiments_state_blob: data.bgChallenge.clientExperimentsStateBlob
+    };
+  }
+  
+  if (data.challenge) {
+    parsed_data.challenge = data.challenge;
   }
 
   if (data.playerResponse) {
@@ -716,13 +737,15 @@ export function parseRR(actions: RawNode[]) {
   return observe(actions.map((action: any) => {
     if (action.navigateAction)
       return new NavigateAction(action.navigateAction);
-    if (action.showMiniplayerCommand)
+    else if (action.showMiniplayerCommand)
       return new ShowMiniplayerCommand(action.showMiniplayerCommand);
-    if (action.reloadContinuationItemsCommand)
+    else if (action.reloadContinuationItemsCommand)
       return new ReloadContinuationItemsCommand(action.reloadContinuationItemsCommand);
-    if (action.appendContinuationItemsAction)
-      return new YTNodes.AppendContinuationItemsAction(action.appendContinuationItemsAction);
-  }).filter((item) => item) as (ReloadContinuationItemsCommand | YTNodes.AppendContinuationItemsAction)[]);
+    else if (action.appendContinuationItemsAction)
+      return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
+    else if (action.openPopupAction)
+      return new OpenPopupAction(action.openPopupAction);
+  }).filter((item) => item) as (AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand)[]);
 }
 
 export function parseActions(data: RawData) {

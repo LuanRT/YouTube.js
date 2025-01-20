@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { IEndpoint, PerformCommentActionRequest, RawNode } from '../../index.ts';
 
+const API_PATH = 'comment/perform_comment_action';
+
 export default class PerformCommentActionEndpoint extends YTNode implements IEndpoint<PerformCommentActionRequest> {
   static type = 'PerformCommentActionEndpoint';
 
-  #API_PATH = 'comment/perform_comment_action';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class PerformCommentActionEndpoint extends YTNode implements IEnd
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): PerformCommentActionRequest {

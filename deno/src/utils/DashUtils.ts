@@ -33,11 +33,7 @@ function escapeXMLString(str: string) {
 }
 
 function normalizeTag(tag: string) {
-  if (tag === 'mpd') return 'MPD';
-  if (tag === 'base-url') return 'BaseURL';
-
-  const sections = tag.split('-');
-  return sections.map((section) => section.charAt(0).toUpperCase() + section.slice(1)).join('');
+  return tag.charAt(0).toUpperCase() + tag.slice(1);
 }
 
 export function createElement(
@@ -45,7 +41,7 @@ export function createElement(
   props: { [key: string] : unknown } | null | undefined,
   ...children: DashChild[]
 ): DashNode | Promise<DashNode> {
-  const normalizedChildren = children.flat().map((child) => typeof child === 'string' ? createTextElement(child) : child);
+  const normalizedChildren = children.flat();
 
   if (typeof tagNameOrFunction === 'function') {
     return tagNameOrFunction({ ...props, children: normalizedChildren });
@@ -60,26 +56,18 @@ export function createElement(
   };
 }
 
-export function createTextElement(text: string): DashNode {
-  return {
-    type: 'TEXT_ELEMENT',
-    props: { nodeValue: text }
-  };
-}
-
-export async function renderElementToString(element: DashNode): Promise<string> {
-  if (element.type === 'TEXT_ELEMENT')
-    return escapeXMLString(typeof element.props.nodeValue === 'string' ? element.props.nodeValue : '');
+export async function renderElementToString(element: DashNode | string): Promise<string> {
+  if (typeof element === 'string')
+    return escapeXMLString(element);
 
   let dom = `<${element.type}`;
 
   if (element.props) {
-    const properties = Object.keys(element.props)
-      .filter((key) => ![ 'children', 'nodeValue' ].includes(key) && element.props[key] !== undefined)
-      .map((name) => `${name}="${escapeXMLString(`${element.props[name]}`)}"`);
-
-    if (properties.length > 0)
-      dom += ` ${properties.join(' ')}`;
+    for (const key of Object.keys(element.props)) {
+      if (key !== 'children' && element.props[key] !== undefined) {
+        dom += ` ${key}="${escapeXMLString(`${element.props[key]}`)}"`;
+      }
+    }
   }
 
   if (element.props.children) {

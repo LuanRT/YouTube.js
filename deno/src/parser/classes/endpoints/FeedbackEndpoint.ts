@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { FeedbackRequest, IEndpoint, RawNode } from '../../index.ts';
 
+const API_PATH = 'feedback';
+
 export default class FeedbackEndpoint extends YTNode implements IEndpoint<FeedbackRequest> {
   static type = 'FeedbackEndpoint';
 
-  #API_PATH = 'feedback';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class FeedbackEndpoint extends YTNode implements IEndpoint<Feedba
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): FeedbackRequest {

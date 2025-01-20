@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { IEndpoint, RawNode, ShareEntityServiceRequest } from '../../index.ts';
 
+const API_PATH = 'share/get_share_panel';
+
 export default class ShareEntityServiceEndpoint extends YTNode implements IEndpoint<ShareEntityServiceRequest> {
   static type = 'ShareEntityServiceEndpoint';
 
-  #API_PATH = 'share/get_share_panel';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class ShareEntityServiceEndpoint extends YTNode implements IEndpo
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): ShareEntityServiceRequest {

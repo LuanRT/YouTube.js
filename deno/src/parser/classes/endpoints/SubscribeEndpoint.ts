@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { IEndpoint, RawNode, SubscribeRequest } from '../../index.ts';
 
+const API_PATH = 'subscription/subscribe';
+
 export default class SubscribeEndpoint extends YTNode implements IEndpoint<SubscribeRequest> {
   static type = 'SubscribeEndpoint';
 
-  #API_PATH = 'subscription/subscribe';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class SubscribeEndpoint extends YTNode implements IEndpoint<Subsc
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): SubscribeRequest {

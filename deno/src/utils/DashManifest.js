@@ -7,12 +7,12 @@ async function OTFPostLiveDvrSegmentInfo({ info }) {
   if (!info.is_oft && !info.is_post_live_dvr)
     return null;
   const template = await info.getSegmentTemplate();
-  return /* @__PURE__ */ DashUtils.createElement("segment-template", {
+  return /* @__PURE__ */ DashUtils.createElement("segmentTemplate", {
     startNumber: template.init_url ? "1" : "0",
     timescale: "1000",
     initialization: template.init_url,
     media: template.media_url
-  }, /* @__PURE__ */ DashUtils.createElement("segment-timeline", null, template.timeline.map((segment_duration) => /* @__PURE__ */ DashUtils.createElement("s", {
+  }, /* @__PURE__ */ DashUtils.createElement("segmentTimeline", null, template.timeline.map((segment_duration) => /* @__PURE__ */ DashUtils.createElement("s", {
     d: segment_duration.duration,
     r: segment_duration.repeat_count
   }))));
@@ -24,7 +24,7 @@ function SegmentInfo({ info }) {
       info
     });
   }
-  return /* @__PURE__ */ DashUtils.createElement(DashUtils.Fragment, null, /* @__PURE__ */ DashUtils.createElement("base-url", null, info.base_url), /* @__PURE__ */ DashUtils.createElement("segment-base", {
+  return /* @__PURE__ */ DashUtils.createElement(DashUtils.Fragment, null, /* @__PURE__ */ DashUtils.createElement("baseURL", null, info.base_url), /* @__PURE__ */ DashUtils.createElement("segmentBase", {
     indexRange: `${info.index_range.start}-${info.index_range.end}`
   }, /* @__PURE__ */ DashUtils.createElement("initialization", {
     range: `${info.init_range.start}-${info.init_range.end}`
@@ -50,7 +50,7 @@ async function DashManifest({
     image_sets,
     text_sets
   } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, captionTracks, options);
-  return /* @__PURE__ */ DashUtils.createElement("mpd", {
+  return /* @__PURE__ */ DashUtils.createElement("mPD", {
     xmlns: "urn:mpeg:dash:schema:mpd:2011",
     minBufferTime: "PT1.500S",
     profiles: "urn:mpeg:dash:profile:isoff-main:2011",
@@ -58,7 +58,7 @@ async function DashManifest({
     mediaPresentationDuration: `PT${await getDuration()}S`,
     "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
     "xsi:schemaLocation": "urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd"
-  }, /* @__PURE__ */ DashUtils.createElement("period", null, audio_sets.map((set, index) => /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
+  }, /* @__PURE__ */ DashUtils.createElement("period", null, audio_sets.map((set, index) => /* @__PURE__ */ DashUtils.createElement("adaptationSet", {
     id: index,
     mimeType: set.mime_type,
     startWithSAP: "1",
@@ -72,7 +72,7 @@ async function DashManifest({
     value: role
   })), set.track_name && /* @__PURE__ */ DashUtils.createElement("label", {
     id: index
-  }, set.track_name), set.channels && /* @__PURE__ */ DashUtils.createElement("audio-channel-configuration", {
+  }, set.track_name), set.channels && /* @__PURE__ */ DashUtils.createElement("audioChannelConfiguration", {
     schemeIdUri: "urn:mpeg:dash:23003:3:audio_channel_configuration:2011",
     value: set.channels
   }), set.representations.map((rep) => /* @__PURE__ */ DashUtils.createElement("representation", {
@@ -80,12 +80,12 @@ async function DashManifest({
     bandwidth: rep.bitrate,
     codecs: rep.codecs,
     audioSamplingRate: rep.audio_sample_rate
-  }, rep.channels && /* @__PURE__ */ DashUtils.createElement("audio-channel-configuration", {
+  }, rep.channels && /* @__PURE__ */ DashUtils.createElement("audioChannelConfiguration", {
     schemeIdUri: "urn:mpeg:dash:23003:3:audio_channel_configuration:2011",
     value: rep.channels
   }), /* @__PURE__ */ DashUtils.createElement(SegmentInfo, {
     info: rep.segment_info
-  }))))), video_sets.map((set, index) => /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
+  }))))), video_sets.map((set, index) => /* @__PURE__ */ DashUtils.createElement("adaptationSet", {
     id: index + audio_sets.length,
     mimeType: set.mime_type,
     startWithSAP: "1",
@@ -94,13 +94,13 @@ async function DashManifest({
     maxPlayoutRate: "1",
     frameRate: set.fps,
     contentType: "video"
-  }, set.color_info.primaries && /* @__PURE__ */ DashUtils.createElement("supplemental-property", {
+  }, set.color_info.primaries && /* @__PURE__ */ DashUtils.createElement("supplementalProperty", {
     schemeIdUri: "urn:mpeg:mpegB:cicp:ColourPrimaries",
     value: set.color_info.primaries
-  }), set.color_info.transfer_characteristics && /* @__PURE__ */ DashUtils.createElement("supplemental-property", {
+  }), set.color_info.transfer_characteristics && /* @__PURE__ */ DashUtils.createElement("supplementalProperty", {
     schemeIdUri: "urn:mpeg:mpegB:cicp:TransferCharacteristics",
     value: set.color_info.transfer_characteristics
-  }), set.color_info.matrix_coefficients && /* @__PURE__ */ DashUtils.createElement("supplemental-property", {
+  }), set.color_info.matrix_coefficients && /* @__PURE__ */ DashUtils.createElement("supplementalProperty", {
     schemeIdUri: "urn:mpeg:mpegB:cicp:MatrixCoefficients",
     value: set.color_info.matrix_coefficients
   }), set.representations.map((rep) => /* @__PURE__ */ DashUtils.createElement("representation", {
@@ -113,7 +113,7 @@ async function DashManifest({
   }, /* @__PURE__ */ DashUtils.createElement(SegmentInfo, {
     info: rep.segment_info
   }))))), image_sets.map(async (set, index) => {
-    return /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
+    return /* @__PURE__ */ DashUtils.createElement("adaptationSet", {
       id: index + audio_sets.length + video_sets.length,
       mimeType: await set.getMimeType(),
       contentType: "image"
@@ -122,16 +122,16 @@ async function DashManifest({
       bandwidth: await rep.getBitrate(),
       width: rep.sheet_width,
       height: rep.sheet_height
-    }, /* @__PURE__ */ DashUtils.createElement("essential-property", {
+    }, /* @__PURE__ */ DashUtils.createElement("essentialProperty", {
       schemeIdUri: "http://dashif.org/thumbnail_tile",
       value: `${rep.columns}x${rep.rows}`
-    }), /* @__PURE__ */ DashUtils.createElement("segment-template", {
+    }), /* @__PURE__ */ DashUtils.createElement("segmentTemplate", {
       media: rep.template_url,
       duration: rep.template_duration,
       startNumber: "0"
     }))));
   }), text_sets.map((set, index) => {
-    return /* @__PURE__ */ DashUtils.createElement("adaptation-set", {
+    return /* @__PURE__ */ DashUtils.createElement("adaptationSet", {
       id: index + audio_sets.length + video_sets.length + image_sets.length,
       mimeType: set.mime_type,
       lang: set.language,
@@ -144,7 +144,7 @@ async function DashManifest({
     }, set.track_name), /* @__PURE__ */ DashUtils.createElement("representation", {
       id: set.representation.uid,
       bandwidth: "0"
-    }, /* @__PURE__ */ DashUtils.createElement("base-url", null, set.representation.base_url)));
+    }, /* @__PURE__ */ DashUtils.createElement("baseURL", null, set.representation.base_url)));
   })));
 }
 __name(DashManifest, "DashManifest");

@@ -6,6 +6,7 @@ export default class RichGrid extends YTNode {
 
   header: YTNode;
   contents: ObservedArray<YTNode>;
+  target_id?: string;
 
   constructor(data: RawNode) {
     super();
@@ -13,5 +14,8 @@ export default class RichGrid extends YTNode {
     // (Daniel Wykerd) XXX: reflowOptions aren't parsed, I think its only used internally for layout
     this.header = Parser.parseItem(data.header);
     this.contents = Parser.parseArray(data.contents);
+
+    if (Reflect.has(data, 'targetId'))
+      this.target_id = data.targetId;
   }
 }

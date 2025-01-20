@@ -1,10 +1,11 @@
 import { YTNode } from '../../helpers.ts';
 import type { GetAccountsListInnertubeRequest, IEndpoint, RawNode } from '../../index.ts';
 
+const API_PATH = 'account/accounts_list';
+
 export default class GetAccountsListInnertubeEndpoint extends YTNode implements IEndpoint<GetAccountsListInnertubeRequest> {
   static type = 'GetAccountsListInnertubeEndpoint';
 
-  #API_PATH = 'account/accounts_list';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +14,7 @@ export default class GetAccountsListInnertubeEndpoint extends YTNode implements 
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): GetAccountsListInnertubeRequest {

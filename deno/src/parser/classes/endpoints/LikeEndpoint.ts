@@ -1,12 +1,13 @@
 import { YTNode } from '../../helpers.ts';
 import type { IEndpoint, LikeRequest, RawNode } from '../../index.ts';
 
+const LIKE_API_PATH = 'like/like';
+const DISLIKE_API_PATH = 'like/dislike';
+const REMOVE_LIKE_API_PATH = 'like/removelike';
+
 export default class LikeEndpoint extends YTNode implements IEndpoint<LikeRequest> {
   static type = 'LikeEndpoint';
 
-  #LIKE_API_PATH = 'like/like';
-  #DISLIKE_API_PATH = 'like/dislike';
-  #REMOVE_LIKE_API_PATH = 'like/removelike';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -16,8 +17,8 @@ export default class LikeEndpoint extends YTNode implements IEndpoint<LikeReques
 
   public getApiPath(): string {
     return this.#data.status === 'DISLIKE' ?
-      this.#DISLIKE_API_PATH : this.#data.status === 'INDIFFERENT' ?
-        this.#REMOVE_LIKE_API_PATH : this.#LIKE_API_PATH;
+      DISLIKE_API_PATH : this.#data.status === 'INDIFFERENT' ?
+        REMOVE_LIKE_API_PATH : LIKE_API_PATH;
   }
 
   public buildRequest(): LikeRequest {

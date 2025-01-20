@@ -5,6 +5,7 @@ import { InnertubeError, Platform, u8ToBase64 } from '../../utils/Utils.ts';
 import { LiveChatContinuation, Parser } from '../index.ts';
 import SmoothedQueue from './SmoothedQueue.ts';
 
+import RunAttestationCommand from '../classes/commands/RunAttestationCommand.ts';
 import AddChatItemAction from '../classes/livechat/AddChatItemAction.ts';
 import UpdateDateTextAction from '../classes/livechat/UpdateDateTextAction.ts';
 import UpdateDescriptionAction from '../classes/livechat/UpdateDescriptionAction.ts';
@@ -251,7 +252,7 @@ export default class LiveChat extends EventEmitter {
    * Sends a message.
    * @param text - Text to send.
    */
-  async sendMessage(text: string): Promise<ObservedArray<AddChatItemAction>> {
+  async sendMessage(text: string): Promise<ObservedArray<AddChatItemAction | RunAttestationCommand>> {
     const writer = LiveMessageParams.encode({
       params: {
         ids: {
@@ -259,7 +260,7 @@ export default class LiveChat extends EventEmitter {
           channelId: this.#channel_id
         }
       },
-      number0: 1, 
+      number0: 1,
       number1: 4
     });
 
@@ -276,7 +277,7 @@ export default class LiveChat extends EventEmitter {
     if (!response.actions)
       throw new InnertubeError('Unexpected response from send_message', response);
 
-    return response.actions.array().as(AddChatItemAction);
+    return response.actions.array().as(AddChatItemAction, RunAttestationCommand);
   }
 
   /**

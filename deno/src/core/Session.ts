@@ -48,7 +48,7 @@ export type Context = {
     clientFormFactor: string;
     userInterfaceTheme?: string;
     timeZone: string;
-    userAgent?: string;
+    userAgent: string;
     browserName?: string;
     browserVersion?: string;
     originalUrl?: string;
@@ -96,6 +96,7 @@ type ContextData = {
   visitor_data: string;
   client_name: string;
   client_version: string;
+  user_agent: string;
   os_name: string;
   os_version: string;
   device_category: string;
@@ -118,6 +119,10 @@ export type SessionOptions = {
    * Geolocation.
    */
   location?: string;
+  /**
+   * User agent (InnerTube requests only).
+   */
+  user_agent?: string;
   /**
    * The account index to use. This is useful if you have multiple accounts logged in.
    *
@@ -201,6 +206,7 @@ export type SessionArgs = {
   lang: string;
   location: string;
   time_zone: string;
+  user_agent: string;
   device_category: DeviceCategory;
   client_name: ClientType;
   enable_safety_mode: boolean;
@@ -225,6 +231,8 @@ export default class Session extends EventEmitter {
   public api_version: string;
   public account_index: number;
   public po_token?: string;
+  public cookie?: string;
+  public user_agent?: string;
 
   constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: ICache, po_token?: string) {
     super();
@@ -239,6 +247,8 @@ export default class Session extends EventEmitter {
     this.context = context;
     this.player = player;
     this.po_token = po_token;
+    this.cookie = cookie;
+    this.user_agent = context.client.userAgent;
   }
 
   on(type: 'auth', listener: OAuth2AuthEventHandler): void;
@@ -264,6 +274,7 @@ export default class Session extends EventEmitter {
       options.location,
       options.account_index,
       options.visitor_data,
+      options.user_agent,
       options.enable_safety_mode,
       options.generate_session_locally,
       options.device_category,
@@ -311,6 +322,9 @@ export default class Session extends EventEmitter {
 
       if (session_args.on_behalf_of_user)
         result.context.user.onBehalfOfUser = session_args.on_behalf_of_user;
+      
+      if (session_args.user_agent)
+        result.context.client.userAgent = session_args.user_agent;
 
       result.context.client.timeZone = session_args.time_zone;
       result.context.client.platform = session_args.device_category.toUpperCase();
@@ -329,6 +343,7 @@ export default class Session extends EventEmitter {
     location = '',
     account_index = 0,
     visitor_data = '',
+    user_agent: string = getRandomUserAgent('desktop'),
     enable_safety_mode = false,
     generate_session_locally = false,
     device_category: DeviceCategory = 'desktop',
@@ -340,7 +355,7 @@ export default class Session extends EventEmitter {
     enable_session_cache = true,
     po_token?: string
   ) {
-    const session_args = { lang, location, time_zone: tz, device_category, client_name, enable_safety_mode, visitor_data, on_behalf_of_user, po_token };
+    const session_args = { lang, location, time_zone: tz, user_agent, device_category, client_name, enable_safety_mode, visitor_data, on_behalf_of_user, po_token };
 
     let session_data: SessionData | undefined;
 
@@ -355,13 +370,14 @@ export default class Session extends EventEmitter {
     if (!session_data) {
       Log.info(TAG, 'Generating session data.');
 
-      let api_key = Constants.CLIENTS.WEB.API_KEY;
-      let api_version = Constants.CLIENTS.WEB.API_VERSION;
+      let api_key: string = Constants.CLIENTS.WEB.API_KEY;
+      let api_version: string = Constants.CLIENTS.WEB.API_VERSION;
 
       let context_data: ContextData = {
         hl: lang || 'en',
         gl: location || 'US',
         remote_host: '',
+        user_agent: user_agent,
         visitor_data: visitor_data || ProtoUtils.encodeVisitorData(generateRandomString(11), Math.floor(Date.now() / 1000)),
         client_name: client_name,
         client_version: Constants.CLIENTS.WEB.VERSION,
@@ -431,7 +447,7 @@ export default class Session extends EventEmitter {
     const res = await fetch(url, {
       headers: {
         'Accept-Language': options.lang || 'en-US',
-        'User-Agent': getRandomUserAgent('desktop'),
+        'User-Agent': options.user_agent,
         'Accept': '*/*',
         'Referer': `${Constants.URLS.YT_BASE}/sw.js`,
         'Cookie': `PREF=tz=${options.time_zone.replace('/', '.')};VISITOR_INFO1_LIVE=${visitor_id};`
@@ -462,6 +478,7 @@ export default class Session extends EventEmitter {
       gl: options.location || device_info[2],
       remote_host: device_info[3],
       visitor_data: options.visitor_data || device_info[13],
+      user_agent: options.user_agent,
       client_name: options.client_name,
       client_version: device_info[16],
       os_name: device_info[17],
@@ -494,6 +511,7 @@ export default class Session extends EventEmitter {
         clientVersion: args.client_version,
         osName: args.os_name,
         osVersion: args.os_version,
+        userAgent: args.user_agent,
         platform: args.device_category.toUpperCase(),
         clientFormFactor: 'UNKNOWN_FORM_FACTOR',
         userInterfaceTheme: 'USER_INTERFACE_THEME_LIGHT',

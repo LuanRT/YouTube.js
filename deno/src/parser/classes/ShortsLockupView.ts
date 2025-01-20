@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 import { Parser } from '../index.ts';
-import type { RawNode } from '../types/RawResponse.ts';
+import type { RawNode } from '../types/index.ts';
 import BadgeView from './BadgeView.ts';
 import Text from './misc/Text.ts';
 import Thumbnail from './misc/Thumbnail.ts';

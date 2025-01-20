@@ -15,6 +15,7 @@ export default class PageHeaderView extends YTNode {
   title: DynamicTextView | null;
   image: ContentPreviewImageView | DecoratedAvatarView | null;
   animated_image: ContentPreviewImageView | null;
+  hero_image: ContentPreviewImageView | null;
   metadata: ContentMetadataView | null;
   actions: FlexibleActionsView | null;
   description: DescriptionPreviewView | null;
@@ -26,6 +27,7 @@ export default class PageHeaderView extends YTNode {
     this.title = Parser.parseItem(data.title, DynamicTextView);
     this.image = Parser.parseItem(data.image, [ ContentPreviewImageView, DecoratedAvatarView ]);
     this.animated_image = Parser.parseItem(data.animatedImage, ContentPreviewImageView);
+    this.hero_image = Parser.parseItem(data.heroImage, ContentPreviewImageView);
     this.metadata = Parser.parseItem(data.metadata, ContentMetadataView);
     this.actions = Parser.parseItem(data.actions, FlexibleActionsView);
     this.description = Parser.parseItem(data.description, DescriptionPreviewView);

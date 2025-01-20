@@ -1,10 +1,10 @@
 import { YTNode } from '../../helpers.ts';
 import type { BrowseRequest, IEndpoint, RawNode } from '../../index.ts';
 
+const API_PATH = 'browse';
+
 export default class BrowseEndpoint extends YTNode implements IEndpoint<BrowseRequest> {
   static type = 'BrowseEndpoint';
-
-  #API_PATH = 'browse';
   #data: RawNode;
 
   constructor(data: RawNode) {
@@ -13,7 +13,7 @@ export default class BrowseEndpoint extends YTNode implements IEndpoint<BrowseRe
   }
 
   public getApiPath(): string {
-    return this.#API_PATH;
+    return API_PATH;
   }
 
   public buildRequest(): BrowseRequest {
