@@ -17,8 +17,8 @@ export default class LiveChatTextMessage extends YTNode {
   timestamp_usec: number;
   timestamp_text?: string;
   author: Author;
-  menu_endpoint: NavigationEndpoint;
-  context_menu_accessibility_label: string;
+  menu_endpoint?: NavigationEndpoint;
+  context_menu_accessibility_label?: string;
   before_content_buttons: ObservedArray<ButtonView>;
 
   constructor(data: RawNode) {
@@ -40,8 +40,18 @@ export default class LiveChatTextMessage extends YTNode {
       data.authorExternalChannelId
     );
 
-    this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
-    this.context_menu_accessibility_label = data.contextMenuAccessibility.accessibilityData.label;
+    if (Reflect.has(data, 'contextMenuEndpoint')) {
+      this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
+    }
+
+    if (
+      Reflect.has(data, 'contextMenuAccessibility') &&
+      Reflect.has(data.contextMenuAccessibility, 'accessibilityData') &&
+      Reflect.has(data.contextMenuAccessibility.accessibilityData, 'label')
+    ) {
+      this.context_menu_accessibility_label = data.contextMenuAccessibility.accessibilityData.label;
+    }
+
     this.before_content_buttons = Parser.parseArray(data.beforeContentButtons, ButtonView);
   }
 }
