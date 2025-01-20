@@ -205,7 +205,7 @@ export default class MediaInfo {
   /**
    * Adds video to the watch history.
    */
-  async addToWatchHistory(client_name = Constants.CLIENTS.WEB.NAME, client_version = Constants.CLIENTS.WEB.VERSION, replacement = 'https://www.'): Promise<Response> {
+  async addToWatchHistory(client_name: string = Constants.CLIENTS.WEB.NAME, client_version: string = Constants.CLIENTS.WEB.VERSION, replacement = 'https://www.'): Promise<Response> {
     if (!this.#playback_tracking)
       throw new InnertubeError('Playback tracking not available');
 

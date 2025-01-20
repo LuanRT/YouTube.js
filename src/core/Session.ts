@@ -370,8 +370,8 @@ export default class Session extends EventEmitter {
     if (!session_data) {
       Log.info(TAG, 'Generating session data.');
 
-      let api_key = Constants.CLIENTS.WEB.API_KEY;
-      let api_version = Constants.CLIENTS.WEB.API_VERSION;
+      let api_key: string = Constants.CLIENTS.WEB.API_KEY;
+      let api_version: string = Constants.CLIENTS.WEB.API_VERSION;
 
       let context_data: ContextData = {
         hl: lang || 'en',
