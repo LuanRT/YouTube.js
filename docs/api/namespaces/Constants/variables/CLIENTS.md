@@ -2,242 +2,218 @@
 
 # Variable: CLIENTS
 
-> `const` **CLIENTS**: `Readonly`\<`object`\>
+> `const` **CLIENTS**: `object`
 
 ## Type declaration
 
 ### ANDROID
 
-> **ANDROID**: `object`
+> `readonly` **ANDROID**: `object`
 
 ### ANDROID.NAME
 
-> **NAME**: `string` = `'ANDROID'`
-
-### ANDROID.NAME\_ID
-
-> **NAME\_ID**: `string` = `'3'`
+> `readonly` **NAME**: `"ANDROID"` = `'ANDROID'`
 
 ### ANDROID.SDK\_VERSION
 
-> **SDK\_VERSION**: `number` = `33`
+> `readonly` **SDK\_VERSION**: `33` = `33`
 
 ### ANDROID.USER\_AGENT
 
-> **USER\_AGENT**: `string` = `'com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip'`
+> `readonly` **USER\_AGENT**: `"com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip"` = `'com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip'`
 
 ### ANDROID.VERSION
 
-> **VERSION**: `string` = `'19.35.36'`
+> `readonly` **VERSION**: `"19.35.36"` = `'19.35.36'`
 
 ### IOS
 
-> **IOS**: `object`
+> `readonly` **IOS**: `object`
 
 ### IOS.DEVICE\_MODEL
 
-> **DEVICE\_MODEL**: `string` = `'iPhone10,6'`
+> `readonly` **DEVICE\_MODEL**: `"iPhone10,6"` = `'iPhone10,6'`
 
 ### IOS.NAME
 
-> **NAME**: `string` = `'iOS'`
-
-### IOS.NAME\_ID
-
-> **NAME\_ID**: `string` = `'5'`
+> `readonly` **NAME**: `"iOS"` = `'iOS'`
 
 ### IOS.USER\_AGENT
 
-> **USER\_AGENT**: `string` = `'com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)'`
+> `readonly` **USER\_AGENT**: `"com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)"` = `'com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)'`
 
 ### IOS.VERSION
 
-> **VERSION**: `string` = `'18.06.35'`
+> `readonly` **VERSION**: `"18.06.35"` = `'18.06.35'`
+
+### MWEB
+
+> `readonly` **MWEB**: `object`
+
+### MWEB.API\_VERSION
+
+> `readonly` **API\_VERSION**: `"v1"` = `'v1'`
+
+### MWEB.NAME
+
+> `readonly` **NAME**: `"MWEB"` = `'MWEB'`
+
+### MWEB.VERSION
+
+> `readonly` **VERSION**: `"2.20241205.01.00"` = `'2.20241205.01.00'`
 
 ### TV
 
-> **TV**: `object`
+> `readonly` **TV**: `object`
 
 ### TV.NAME
 
-> **NAME**: `string` = `'TVHTML5'`
-
-### TV.NAME\_ID
-
-> **NAME\_ID**: `string` = `'7'`
+> `readonly` **NAME**: `"TVHTML5"` = `'TVHTML5'`
 
 ### TV.USER\_AGENT
 
-> **USER\_AGENT**: `string` = `'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'`
+> `readonly` **USER\_AGENT**: `"Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version"` = `'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'`
 
 ### TV.VERSION
 
-> **VERSION**: `string` = `'7.20241016.15.00'`
+> `readonly` **VERSION**: `"7.20241016.15.00"` = `'7.20241016.15.00'`
 
 ### TV\_EMBEDDED
 
-> **TV\_EMBEDDED**: `object`
+> `readonly` **TV\_EMBEDDED**: `object`
 
 ### TV\_EMBEDDED.NAME
 
-> **NAME**: `string` = `'TVHTML5_SIMPLY_EMBEDDED_PLAYER'`
-
-### TV\_EMBEDDED.NAME\_ID
-
-> **NAME\_ID**: `string` = `'85'`
+> `readonly` **NAME**: `"TVHTML5_SIMPLY_EMBEDDED_PLAYER"` = `'TVHTML5_SIMPLY_EMBEDDED_PLAYER'`
 
 ### TV\_EMBEDDED.VERSION
 
-> **VERSION**: `string` = `'2.0'`
+> `readonly` **VERSION**: `"2.0"` = `'2.0'`
 
 ### WEB
 
-> **WEB**: `object`
+> `readonly` **WEB**: `object`
 
 ### WEB.API\_KEY
 
-> **API\_KEY**: `string` = `'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'`
+> `readonly` **API\_KEY**: `"AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"` = `'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'`
 
 ### WEB.API\_VERSION
 
-> **API\_VERSION**: `string` = `'v1'`
+> `readonly` **API\_VERSION**: `"v1"` = `'v1'`
 
 ### WEB.NAME
 
-> **NAME**: `string` = `'WEB'`
-
-### WEB.NAME\_ID
-
-> **NAME\_ID**: `string` = `'1'`
+> `readonly` **NAME**: `"WEB"` = `'WEB'`
 
 ### WEB.STATIC\_VISITOR\_ID
 
-> **STATIC\_VISITOR\_ID**: `string` = `'6zpwvWUNAco'`
+> `readonly` **STATIC\_VISITOR\_ID**: `"6zpwvWUNAco"` = `'6zpwvWUNAco'`
+
+### WEB.SUGG\_EXP\_ID
+
+> `readonly` **SUGG\_EXP\_ID**: `"ytzpb5_e2,ytpo.bo.lqp.elu=1,ytpo.bo.lqp.ecsc=1,ytpo.bo.lqp.mcsc=3,ytpo.bo.lqp.mec=1,ytpo.bo.lqp.rw=0.8,ytpo.bo.lqp.fw=0.2,ytpo.bo.lqp.szp=1,ytpo.bo.lqp.mz=3,ytpo.bo.lqp.al=en_us,ytpo.bo.lqp.zrm=1,ytpo.bo.lqp.er=1,ytpo.bo.ro.erl=1,ytpo.bo.ro.mlus=3,ytpo.bo.ro.erls=3,ytpo.bo.qfo.mlus=3,ytzprp.ppp.e=1,ytzprp.ppp.st=772,ytzprp.ppp.p=5"` = `'ytzpb5_e2,ytpo.bo.lqp.elu=1,ytpo.bo.lqp.ecsc=1,ytpo.bo.lqp.mcsc=3,ytpo.bo.lqp.mec=1,ytpo.bo.lqp.rw=0.8,ytpo.bo.lqp.fw=0.2,ytpo.bo.lqp.szp=1,ytpo.bo.lqp.mz=3,ytpo.bo.lqp.al=en_us,ytpo.bo.lqp.zrm=1,ytpo.bo.lqp.er=1,ytpo.bo.ro.erl=1,ytpo.bo.ro.mlus=3,ytpo.bo.ro.erls=3,ytpo.bo.qfo.mlus=3,ytzprp.ppp.e=1,ytzprp.ppp.st=772,ytzprp.ppp.p=5'`
 
 ### WEB.VERSION
 
-> **VERSION**: `string` = `'2.20240111.09.00'`
+> `readonly` **VERSION**: `"2.20241121.01.00"` = `'2.20241121.01.00'`
 
 ### WEB\_CREATOR
 
-> **WEB\_CREATOR**: `object`
+> `readonly` **WEB\_CREATOR**: `object`
 
 ### WEB\_CREATOR.API\_KEY
 
-> **API\_KEY**: `string` = `'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'`
+> `readonly` **API\_KEY**: `"AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"` = `'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'`
 
 ### WEB\_CREATOR.API\_VERSION
 
-> **API\_VERSION**: `string` = `'v1'`
+> `readonly` **API\_VERSION**: `"v1"` = `'v1'`
 
 ### WEB\_CREATOR.NAME
 
-> **NAME**: `string` = `'WEB_CREATOR'`
-
-### WEB\_CREATOR.NAME\_ID
-
-> **NAME\_ID**: `string` = `'62'`
+> `readonly` **NAME**: `"WEB_CREATOR"` = `'WEB_CREATOR'`
 
 ### WEB\_CREATOR.STATIC\_VISITOR\_ID
 
-> **STATIC\_VISITOR\_ID**: `string` = `'6zpwvWUNAco'`
+> `readonly` **STATIC\_VISITOR\_ID**: `"6zpwvWUNAco"` = `'6zpwvWUNAco'`
 
 ### WEB\_CREATOR.VERSION
 
-> **VERSION**: `string` = `'1.20240918.03.00'`
+> `readonly` **VERSION**: `"1.20240918.03.00"` = `'1.20240918.03.00'`
 
 ### WEB\_EMBEDDED
 
-> **WEB\_EMBEDDED**: `object`
+> `readonly` **WEB\_EMBEDDED**: `object`
 
 ### WEB\_EMBEDDED.API\_KEY
 
-> **API\_KEY**: `string` = `'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'`
+> `readonly` **API\_KEY**: `"AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"` = `'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'`
 
 ### WEB\_EMBEDDED.API\_VERSION
 
-> **API\_VERSION**: `string` = `'v1'`
+> `readonly` **API\_VERSION**: `"v1"` = `'v1'`
 
 ### WEB\_EMBEDDED.NAME
 
-> **NAME**: `string` = `'WEB_EMBEDDED_PLAYER'`
-
-### WEB\_EMBEDDED.NAME\_ID
-
-> **NAME\_ID**: `string` = `'56'`
+> `readonly` **NAME**: `"WEB_EMBEDDED_PLAYER"` = `'WEB_EMBEDDED_PLAYER'`
 
 ### WEB\_EMBEDDED.STATIC\_VISITOR\_ID
 
-> **STATIC\_VISITOR\_ID**: `string` = `'6zpwvWUNAco'`
+> `readonly` **STATIC\_VISITOR\_ID**: `"6zpwvWUNAco"` = `'6zpwvWUNAco'`
 
 ### WEB\_EMBEDDED.VERSION
 
-> **VERSION**: `string` = `'2.20240111.09.00'`
+> `readonly` **VERSION**: `"2.20240111.09.00"` = `'2.20240111.09.00'`
 
 ### WEB\_KIDS
 
-> **WEB\_KIDS**: `object`
+> `readonly` **WEB\_KIDS**: `object`
 
 ### WEB\_KIDS.NAME
 
-> **NAME**: `string` = `'WEB_KIDS'`
-
-### WEB\_KIDS.NAME\_ID
-
-> **NAME\_ID**: `string` = `'76'`
+> `readonly` **NAME**: `"WEB_KIDS"` = `'WEB_KIDS'`
 
 ### WEB\_KIDS.VERSION
 
-> **VERSION**: `string` = `'2.20230111.00.00'`
+> `readonly` **VERSION**: `"2.20230111.00.00"` = `'2.20230111.00.00'`
 
 ### YTMUSIC
 
-> **YTMUSIC**: `object`
+> `readonly` **YTMUSIC**: `object`
 
 ### YTMUSIC.NAME
 
-> **NAME**: `string` = `'WEB_REMIX'`
-
-### YTMUSIC.NAME\_ID
-
-> **NAME\_ID**: `string` = `'67'`
+> `readonly` **NAME**: `"WEB_REMIX"` = `'WEB_REMIX'`
 
 ### YTMUSIC.VERSION
 
-> **VERSION**: `string` = `'1.20211213.00.00'`
+> `readonly` **VERSION**: `"1.20211213.00.00"` = `'1.20211213.00.00'`
 
 ### YTMUSIC\_ANDROID
 
-> **YTMUSIC\_ANDROID**: `object`
+> `readonly` **YTMUSIC\_ANDROID**: `object`
 
 ### YTMUSIC\_ANDROID.NAME
 
-> **NAME**: `string` = `'ANDROID_MUSIC'`
-
-### YTMUSIC\_ANDROID.NAME\_ID
-
-> **NAME\_ID**: `string` = `'21'`
+> `readonly` **NAME**: `"ANDROID_MUSIC"` = `'ANDROID_MUSIC'`
 
 ### YTMUSIC\_ANDROID.VERSION
 
-> **VERSION**: `string` = `'5.34.51'`
+> `readonly` **VERSION**: `"5.34.51"` = `'5.34.51'`
 
 ### YTSTUDIO\_ANDROID
 
-> **YTSTUDIO\_ANDROID**: `object`
+> `readonly` **YTSTUDIO\_ANDROID**: `object`
 
 ### YTSTUDIO\_ANDROID.NAME
 
-> **NAME**: `string` = `'ANDROID_CREATOR'`
-
-### YTSTUDIO\_ANDROID.NAME\_ID
-
-> **NAME\_ID**: `string` = `'14'`
+> `readonly` **NAME**: `"ANDROID_CREATOR"` = `'ANDROID_CREATOR'`
 
 ### YTSTUDIO\_ANDROID.VERSION
 
-> **VERSION**: `string` = `'22.43.101'`
+> `readonly` **VERSION**: `"22.43.101"` = `'22.43.101'`
 
 ## Defined in
 
-[src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Constants.ts#L25)
+[src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Constants.ts#L25)

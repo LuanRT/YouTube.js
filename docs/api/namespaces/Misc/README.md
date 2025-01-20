@@ -10,6 +10,7 @@
 - [ChildElement](classes/ChildElement.md)
 - [EmojiRun](classes/EmojiRun.md)
 - [Format](classes/Format.md)
+- [RendererContext](classes/RendererContext.md)
 - [Text](classes/Text.md)
 - [TextRun](classes/TextRun.md)
 - [Thumbnail](classes/Thumbnail.md)

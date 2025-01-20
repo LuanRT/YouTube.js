@@ -2,22 +2,22 @@
 
 # Variable: INNERTUBE\_HEADERS\_BASE
 
-> `const` **INNERTUBE\_HEADERS\_BASE**: `Readonly`\<`object`\>
+> `const` **INNERTUBE\_HEADERS\_BASE**: `object`
 
 ## Type declaration
 
 ### accept
 
-> **accept**: `"*/*"` = `'*/*'`
+> `readonly` **accept**: `"*/*"` = `'*/*'`
 
 ### accept-encoding
 
-> **accept-encoding**: `"gzip, deflate"` = `'gzip, deflate'`
+> `readonly` **accept-encoding**: `"gzip, deflate"` = `'gzip, deflate'`
 
 ### content-type
 
-> **content-type**: `"application/json"` = `'application/json'`
+> `readonly` **content-type**: `"application/json"` = `'application/json'`
 
 ## Defined in
 
-[src/utils/Constants.ts:102](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Constants.ts#L102)
+[src/utils/Constants.ts:114](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Constants.ts#L114)

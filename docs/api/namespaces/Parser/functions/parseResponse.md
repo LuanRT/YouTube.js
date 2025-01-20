@@ -22,4 +22,4 @@ Raw data.
 
 ## Defined in
 
-[src/parser/parser.ts:228](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/parser.ts#L228)
+[src/parser/parser.ts:229](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/parser.ts#L229)

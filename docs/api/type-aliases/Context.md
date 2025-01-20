@@ -150,9 +150,9 @@
 
 > **timeZone**: `string`
 
-### client.userAgent?
+### client.userAgent
 
-> `optional` **userAgent**: `string`
+> **userAgent**: `string`
 
 ### client.userInterfaceTheme?
 
@@ -204,4 +204,4 @@
 
 ## Defined in
 
-[src/core/Session.ts:30](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Session.ts#L30)
+[src/core/Session.ts:31](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L31)

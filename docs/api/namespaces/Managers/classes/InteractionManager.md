@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:10](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L10)
+[src/core/managers/InteractionManager.ts:10](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L10)
 
 ## Methods
 
@@ -44,7 +44,7 @@ The comment text
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:119](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L119)
+[src/core/managers/InteractionManager.ts:119](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L119)
 
 ***
 
@@ -66,7 +66,7 @@ The video ID
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:38](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L38)
+[src/core/managers/InteractionManager.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L38)
 
 ***
 
@@ -88,7 +88,7 @@ The video ID
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:18](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L18)
+[src/core/managers/InteractionManager.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L18)
 
 ***
 
@@ -110,7 +110,7 @@ The video ID
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:58](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L58)
+[src/core/managers/InteractionManager.ts:58](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L58)
 
 ***
 
@@ -137,7 +137,7 @@ The notification type.
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:174](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L174)
+[src/core/managers/InteractionManager.ts:174](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L174)
 
 ***
 
@@ -159,7 +159,7 @@ The channel ID
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:78](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L78)
+[src/core/managers/InteractionManager.ts:78](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L78)
 
 ***
 
@@ -209,7 +209,7 @@ optional arguments
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:151](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L151)
+[src/core/managers/InteractionManager.ts:151](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L151)
 
 ***
 
@@ -231,4 +231,4 @@ The channel ID
 
 #### Defined in
 
-[src/core/managers/InteractionManager.ts:98](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/InteractionManager.ts#L98)
+[src/core/managers/InteractionManager.ts:98](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/InteractionManager.ts#L98)

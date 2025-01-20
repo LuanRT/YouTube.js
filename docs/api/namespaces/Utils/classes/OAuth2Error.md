@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Utils.ts#L31)
+[src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Utils.ts#L31)
 
 ## Properties
 
@@ -56,7 +56,7 @@ node\_modules/typescript/lib/lib.es2022.error.d.ts:24
 
 #### Defined in
 
-[src/utils/Utils.ts:27](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Utils.ts#L27)
+[src/utils/Utils.ts:27](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Utils.ts#L27)
 
 ***
 
@@ -70,7 +70,7 @@ node\_modules/typescript/lib/lib.es2022.error.d.ts:24
 
 #### Defined in
 
-[src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Utils.ts#L29)
+[src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Utils.ts#L29)
 
 ***
 
@@ -126,7 +126,7 @@ node\_modules/typescript/lib/lib.es5.d.ts:1078
 
 #### Defined in
 
-[src/utils/Utils.ts:28](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Utils.ts#L28)
+[src/utils/Utils.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Utils.ts#L28)
 
 ***
 

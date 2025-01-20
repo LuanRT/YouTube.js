@@ -15,6 +15,7 @@
 ### Type Aliases
 
 - [Duration](type-aliases/Duration.md)
+- [EngagementType](type-aliases/EngagementType.md)
 - [Feature](type-aliases/Feature.md)
 - [FetchFunction](type-aliases/FetchFunction.md)
 - [FormatFilter](type-aliases/FormatFilter.md)

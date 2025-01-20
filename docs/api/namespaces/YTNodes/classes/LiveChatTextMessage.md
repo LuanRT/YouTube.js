@@ -4,7 +4,7 @@
 
 ## Extends
 
-- `LiveChatMessageBase`
+- [`YTNode`](../../Helpers/classes/YTNode.md)
 
 ## Constructors
 
@@ -22,11 +22,11 @@
 
 #### Overrides
 
-`LiveChatMessageBase.constructor`
+[`YTNode`](../../Helpers/classes/YTNode.md).[`constructor`](../../Helpers/classes/YTNode.md#constructors)
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTextMessage.ts:32](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L32)
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:24](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L24)
 
 ## Properties
 
@@ -36,7 +36,27 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTextMessage.ts:29](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L29)
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:19](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L19)
+
+***
+
+### before\_content\_buttons
+
+> **before\_content\_buttons**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ButtonView`](ButtonView.md)\>
+
+#### Defined in
+
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:22](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L22)
+
+***
+
+### context\_menu\_accessibility\_label?
+
+> `optional` **context\_menu\_accessibility\_label**: `string`
+
+#### Defined in
+
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:21](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L21)
 
 ***
 
@@ -44,13 +64,9 @@
 
 > **id**: `string`
 
-#### Inherited from
-
-`LiveChatMessageBase.id`
-
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTextMessage.ts:15](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L15)
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:13](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L13)
 
 ***
 
@@ -58,23 +74,19 @@
 
 > **inline\_action\_buttons**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Button`](Button.md)\>
 
-#### Inherited from
-
-`LiveChatMessageBase.inline_action_buttons`
-
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTextMessage.ts:13](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L13)
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:15](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L15)
 
 ***
 
-### menu\_endpoint
+### menu\_endpoint?
 
-> **menu\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **menu\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTextMessage.ts:30](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L30)
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:20](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L20)
 
 ***
 
@@ -82,13 +94,9 @@
 
 > **message**: [`Text`](../../Misc/classes/Text.md)
 
-#### Inherited from
-
-`LiveChatMessageBase.message`
-
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTextMessage.ts:12](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L12)
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:14](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L14)
 
 ***
 
@@ -96,13 +104,29 @@
 
 > **timestamp**: `number`
 
-#### Inherited from
+#### Defined in
 
-`LiveChatMessageBase.timestamp`
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:16](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L16)
+
+***
+
+### timestamp\_text?
+
+> `optional` **timestamp\_text**: `string`
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTextMessage.ts:14](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L14)
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L18)
+
+***
+
+### timestamp\_usec
+
+> **timestamp\_usec**: `number`
+
+#### Defined in
+
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:17](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L17)
 
 ***
 
@@ -112,11 +136,11 @@
 
 #### Inherited from
 
-`LiveChatMessageBase.type`
+[`YTNode`](../../Helpers/classes/YTNode.md).[`type`](../../Helpers/classes/YTNode.md#type)
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
 
 ***
 
@@ -126,11 +150,11 @@
 
 #### Overrides
 
-`LiveChatMessageBase.type`
+[`YTNode`](../../Helpers/classes/YTNode.md).[`type`](../../Helpers/classes/YTNode.md#type-1)
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTextMessage.ts:27](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L27)
+[src/parser/classes/livechat/items/LiveChatTextMessage.ts:11](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTextMessage.ts#L11)
 
 ## Methods
 
@@ -164,11 +188,11 @@ If the node is not of the given type
 
 #### Inherited from
 
-`LiveChatMessageBase.as`
+[`YTNode`](../../Helpers/classes/YTNode.md).[`as`](../../Helpers/classes/YTNode.md#as)
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
 
 ***
 
@@ -198,11 +222,11 @@ Whether the node has the key
 
 #### Inherited from
 
-`LiveChatMessageBase.hasKey`
+[`YTNode`](../../Helpers/classes/YTNode.md).[`hasKey`](../../Helpers/classes/YTNode.md#haskey)
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
 
 ***
 
@@ -232,11 +256,11 @@ whether the node is of the given type
 
 #### Inherited from
 
-`LiveChatMessageBase.is`
+[`YTNode`](../../Helpers/classes/YTNode.md).[`is`](../../Helpers/classes/YTNode.md#is)
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
 
 ***
 
@@ -270,8 +294,8 @@ If the node does not have the key
 
 #### Inherited from
 
-`LiveChatMessageBase.key`
+[`YTNode`](../../Helpers/classes/YTNode.md).[`key`](../../Helpers/classes/YTNode.md#key)
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)

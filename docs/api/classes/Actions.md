@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/Actions.ts:33](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Actions.ts#L33)
+[src/core/Actions.ts:49](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L49)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/core/Actions.ts:31](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Actions.ts#L31)
+[src/core/Actions.ts:47](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L47)
 
 ## Methods
 
@@ -60,13 +60,15 @@ Call arguments
 
 • **args.serialized\_data?**: `any`
 
+• **args.skip\_auth\_check?**: `boolean`
+
 ##### Returns
 
 `Promise`\<[`ParsedResponse`](../type-aliases/ParsedResponse.md)\<`T`\>\>
 
 ##### Defined in
 
-[src/core/Actions.ts:75](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Actions.ts#L75)
+[src/core/Actions.ts:93](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L93)
 
 #### execute(endpoint, args)
 
@@ -88,13 +90,15 @@ Call arguments
 
 • **args.serialized\_data?**: `any`
 
+• **args.skip\_auth\_check?**: `boolean`
+
 ##### Returns
 
 `Promise`\<[`ApiResponse`](../interfaces/ApiResponse.md)\>
 
 ##### Defined in
 
-[src/core/Actions.ts:76](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Actions.ts#L76)
+[src/core/Actions.ts:100](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L100)
 
 ***
 
@@ -128,4 +132,4 @@ Call parameters.
 
 #### Defined in
 
-[src/core/Actions.ts:55](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Actions.ts#L55)
+[src/core/Actions.ts:71](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L71)

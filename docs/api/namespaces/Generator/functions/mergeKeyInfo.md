@@ -32,4 +32,4 @@ The merged key info
 
 ## Defined in
 
-[src/parser/generator.ts:734](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/generator.ts#L734)
+[src/parser/generator.ts:734](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/generator.ts#L734)

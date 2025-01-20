@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Comments.ts:22](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Comments.ts#L22)
+[src/parser/youtube/Comments.ts:23](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/Comments.ts#L23)
 
 ## Properties
 
@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Comments.ts:20](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Comments.ts#L20)
+[src/parser/youtube/Comments.ts:21](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/Comments.ts#L21)
 
 ***
 
@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Comments.ts:19](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Comments.ts#L19)
+[src/parser/youtube/Comments.ts:20](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/Comments.ts#L20)
 
 ## Accessors
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Comments.ts:116](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Comments.ts#L116)
+[src/parser/youtube/Comments.ts:117](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/Comments.ts#L117)
 
 ***
 
@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[src/parser/youtube/Comments.ts:120](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Comments.ts#L120)
+[src/parser/youtube/Comments.ts:121](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/Comments.ts#L121)
 
 ## Methods
 
@@ -92,7 +92,7 @@ Sort type.
 
 #### Defined in
 
-[src/parser/youtube/Comments.ts:52](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Comments.ts#L52)
+[src/parser/youtube/Comments.ts:53](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/Comments.ts#L53)
 
 ***
 
@@ -114,7 +114,7 @@ Comment text.
 
 #### Defined in
 
-[src/parser/youtube/Comments.ts:79](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Comments.ts#L79)
+[src/parser/youtube/Comments.ts:80](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/Comments.ts#L80)
 
 ***
 
@@ -130,4 +130,4 @@ Retrieves next batch of comments.
 
 #### Defined in
 
-[src/parser/youtube/Comments.ts:97](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/youtube/Comments.ts#L97)
+[src/parser/youtube/Comments.ts:98](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/Comments.ts#L98)
