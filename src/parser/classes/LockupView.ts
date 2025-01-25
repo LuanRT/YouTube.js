@@ -1,5 +1,6 @@
 import { YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
+import ThumbnailView from './ThumbnailView.js';
 import CollectionThumbnailView from './CollectionThumbnailView.js';
 import LockupMetadataView from './LockupMetadataView.js';
 import RendererContext from './misc/RendererContext.js';
@@ -7,7 +8,7 @@ import RendererContext from './misc/RendererContext.js';
 export default class LockupView extends YTNode {
   static type = 'LockupView';
 
-  public content_image: CollectionThumbnailView | null;
+  public content_image: CollectionThumbnailView | ThumbnailView | null;
   public metadata: LockupMetadataView | null;
   public content_id: string;
   public content_type: 'VIDEO' | 'MOVIE' | 'CHANNEL' | 'CLIP' | 'SOURCE' | 'PLAYLIST' | 'ALBUM' | 'PODCAST' | 'SHOPPING_COLLECTION' | 'SHORT' | 'GAME' | 'PRODUCT';
@@ -15,7 +16,7 @@ export default class LockupView extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.content_image = Parser.parseItem(data.contentImage, CollectionThumbnailView);
+    this.content_image = Parser.parseItem(data.contentImage, [ CollectionThumbnailView, ThumbnailView ]);
     this.metadata = Parser.parseItem(data.metadata, LockupMetadataView);
     this.content_id = data.contentId;
     this.content_type = data.contentType.replace('LOCKUP_CONTENT_TYPE_', '');
