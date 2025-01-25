@@ -2230,10 +2230,10 @@ function createBaseCommunityPostParams_Field2(): CommunityPostParams_Field2 {
 export const CommunityPostParams_Field2: MessageFns<CommunityPostParams_Field2> = {
   encode(message: CommunityPostParams_Field2, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.p1 !== 0) {
-      writer.uint32(16).int64(message.p1);
+      writer.uint32(16).uint32(message.p1);
     }
     if (message.p2 !== 0) {
-      writer.uint32(24).int64(message.p2);
+      writer.uint32(24).uint32(message.p2);
     }
     return writer;
   },
@@ -2250,14 +2250,14 @@ export const CommunityPostParams_Field2: MessageFns<CommunityPostParams_Field2> 
             break;
           }
 
-          message.p1 = longToNumber(reader.int64());
+          message.p1 = reader.uint32();
           continue;
         case 3:
           if (tag !== 24) {
             break;
           }
 
-          message.p2 = longToNumber(reader.int64());
+          message.p2 = reader.uint32();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -2635,17 +2635,6 @@ export const CommunityPostCommentsParam_CommentDataContainer_CommentData: Messag
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
