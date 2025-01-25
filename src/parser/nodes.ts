@@ -455,6 +455,8 @@ export { default as TextFieldView } from './classes/TextFieldView.js';
 export { default as TextHeader } from './classes/TextHeader.js';
 export { default as ThirdPartyShareTargetSection } from './classes/ThirdPartyShareTargetSection.js';
 export { default as ThumbnailBadgeView } from './classes/ThumbnailBadgeView.js';
+export { default as ThumbnailBottomOverlayView } from './classes/ThumbnailBottomOverlayView.js';
+export { default as ThumbnailHoverOverlayToggleActionsView } from './classes/ThumbnailHoverOverlayToggleActionsView.js';
 export { default as ThumbnailHoverOverlayView } from './classes/ThumbnailHoverOverlayView.js';
 export { default as ThumbnailLandscapePortrait } from './classes/ThumbnailLandscapePortrait.js';
 export { default as ThumbnailOverlayBadgeView } from './classes/ThumbnailOverlayBadgeView.js';
@@ -466,6 +468,7 @@ export { default as ThumbnailOverlayLoadingPreview } from './classes/ThumbnailOv
 export { default as ThumbnailOverlayNowPlaying } from './classes/ThumbnailOverlayNowPlaying.js';
 export { default as ThumbnailOverlayPinking } from './classes/ThumbnailOverlayPinking.js';
 export { default as ThumbnailOverlayPlaybackStatus } from './classes/ThumbnailOverlayPlaybackStatus.js';
+export { default as ThumbnailOverlayProgressBarView } from './classes/ThumbnailOverlayProgressBarView.js';
 export { default as ThumbnailOverlayResumePlayback } from './classes/ThumbnailOverlayResumePlayback.js';
 export { default as ThumbnailOverlaySidePanel } from './classes/ThumbnailOverlaySidePanel.js';
 export { default as ThumbnailOverlayTimeStatus } from './classes/ThumbnailOverlayTimeStatus.js';

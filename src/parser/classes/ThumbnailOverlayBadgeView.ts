@@ -5,8 +5,8 @@ import ThumbnailBadgeView from './ThumbnailBadgeView.js';
 export default class ThumbnailOverlayBadgeView extends YTNode {
   static type = 'ThumbnailOverlayBadgeView';
 
-  badges: ThumbnailBadgeView[];
-  position: string;
+  public badges: ThumbnailBadgeView[];
+  public position: string;
 
   constructor(data: RawNode) {
     super();
