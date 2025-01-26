@@ -6,6 +6,10 @@ export type FormatFilter = (format: Format) => boolean;
 
 export interface FormatOptions {
   /**
+   * Video or audio itag
+   */
+  itag?: number;
+  /**
    * Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
    */
   quality?: string;
@@ -21,6 +25,10 @@ export interface FormatOptions {
    * File format, use 'any' to download any format
    */
   format?: string;
+  /**
+   * Video or audio codec, e.g. 'avc', 'vp9', 'av01' for video, 'opus', 'mp4a' for audio
+   */
+  codec?: string;
   /**
    * InnerTube client.
    */

@@ -155,9 +155,13 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
   const use_most_efficient = quality !== 'best';
 
   let candidates = formats.filter((format) => {
+    if (options.itag && format.itag !== options.itag)
+      return false;
     if (requires_audio && !format.has_audio)
       return false;
     if (requires_video && !format.has_video)
+      return false;
+    if (options.codec && !format.mime_type.includes(options.codec))
       return false;
     if (options.format !== 'any' && !format.mime_type.includes(options.format || 'mp4'))
       return false;
