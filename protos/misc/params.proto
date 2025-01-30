@@ -238,8 +238,8 @@ message CommunityPostParams {
   }
 
   message Field2 {
-    int64 p1 = 2;
-    int64 p2 = 3;
+    uint32 p1 = 2;
+    uint32 p2 = 3;
   }
 
   Field1 f1 = 25;
