@@ -42,7 +42,7 @@ npm install github:LuanRT/YouTube.js
 deno add npm:youtubei.js@latest
 ```
 
-Deno:
+Deno (deprecated):
 ```ts
 import { Innertube } from 'https://deno.land/x/youtubei/deno.ts';
 ```
