@@ -34,6 +34,7 @@ export default class CommentView extends YTNode {
   public unlike_command?: NavigationEndpoint;
   public undislike_command?: NavigationEndpoint;
   public reply_command?: NavigationEndpoint;
+  public prepare_account_command?: NavigationEndpoint;
 
   public comment_id: string;
   public is_pinned: boolean;
@@ -117,12 +118,16 @@ export default class CommentView extends YTNode {
       this.is_disliked = toolbar_state.likeState === 'TOOLBAR_LIKE_STATE_DISLIKED';
     }
 
-    if (toolbar_surface && !Reflect.has(toolbar_surface, 'prepareAccountCommand')) {
-      this.like_command = new NavigationEndpoint(toolbar_surface.likeCommand);
-      this.dislike_command = new NavigationEndpoint(toolbar_surface.dislikeCommand);
-      this.unlike_command = new NavigationEndpoint(toolbar_surface.unlikeCommand);
-      this.undislike_command = new NavigationEndpoint(toolbar_surface.undislikeCommand);
-      this.reply_command = new NavigationEndpoint(toolbar_surface.replyCommand);
+    if (toolbar_surface) {
+      if (!('prepareAccountCommand' in toolbar_surface)) {
+        this.like_command = new NavigationEndpoint(toolbar_surface.likeCommand);
+        this.dislike_command = new NavigationEndpoint(toolbar_surface.dislikeCommand);
+        this.unlike_command = new NavigationEndpoint(toolbar_surface.unlikeCommand);
+        this.undislike_command = new NavigationEndpoint(toolbar_surface.undislikeCommand);
+        this.reply_command = new NavigationEndpoint(toolbar_surface.replyCommand);
+      } else if ('prepareAccountCommand' in toolbar_surface) {
+        this.prepare_account_command = new NavigationEndpoint(toolbar_surface.prepareAccountCommand);
+      }
     }
   }
 
