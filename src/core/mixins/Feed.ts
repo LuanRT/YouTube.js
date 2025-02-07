@@ -32,6 +32,7 @@ import type { Actions, ApiResponse } from '../index.js';
 import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../../parser/helpers.js';
 import type MusicQueue from '../../parser/classes/MusicQueue.js';
 import type RichGrid from '../../parser/classes/RichGrid.js';
+import type TvSurfaceContent from '../../parser/classes/TvSurfaceContent.js';
 import type SectionList from '../../parser/classes/SectionList.js';
 
 export default class Feed<T extends IParsedResponse = IParsedResponse> {
@@ -138,7 +139,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
   /**
    * Returns contents from the page.
    */
-  get page_contents(): SectionList | MusicQueue | RichGrid | ReloadContinuationItemsCommand {
+  get page_contents(): SectionList | MusicQueue | RichGrid | TvSurfaceContent | ReloadContinuationItemsCommand {
     const tab_content = this.#memo.getType(Tab)?.first().content;
     const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand).first();
     const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction).first();
