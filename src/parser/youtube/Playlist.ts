@@ -31,9 +31,9 @@ export default class Playlist extends Feed<IBrowseResponse> {
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
 
-    const header = this.memo.getType(PlaylistHeader).first();
-    const primary_info = this.memo.getType(PlaylistSidebarPrimaryInfo).first();
-    const secondary_info = this.memo.getType(PlaylistSidebarSecondaryInfo).first();
+    const header = this.memo.getType(PlaylistHeader)[0];
+    const primary_info = this.memo.getType(PlaylistSidebarPrimaryInfo)[0];
+    const secondary_info = this.memo.getType(PlaylistSidebarSecondaryInfo)[0];
     const alert = this.page.alerts?.firstOfType(Alert);
 
     if (alert && alert.alert_type === 'ERROR')
@@ -68,7 +68,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
   }
 
   get has_continuation() {
-    const section_list = this.memo.getType(SectionList).first();
+    const section_list = this.memo.getType(SectionList)[0];
 
     if (!section_list)
       return super.has_continuation;
@@ -77,7 +77,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
   }
 
   async getContinuationData(): Promise<IBrowseResponse | undefined> {
-    const section_list = this.memo.getType(SectionList).first();
+    const section_list = this.memo.getType(SectionList)[0];
 
     /**
      * No section list means there can't be additional continuation nodes here,

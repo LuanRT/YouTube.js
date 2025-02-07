@@ -19,7 +19,7 @@ export default class HashtagFeed extends FilterableFeed<IBrowseResponse> {
     if (!this.page.contents_memo)
       throw new InnertubeError('Unexpected response', this.page);
 
-    const tab = this.page.contents_memo.getType(Tab).first();
+    const tab = this.page.contents_memo.getType(Tab)[0];
 
     if (!tab.content)
       throw new InnertubeError('Content tab has no content', tab);

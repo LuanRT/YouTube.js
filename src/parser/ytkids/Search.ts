@@ -14,7 +14,7 @@ export default class Search extends Feed<ISearchResponse> {
     super(actions, data);
     this.estimated_results = this.page.estimated_results;
 
-    const item_section = this.memo.getType(ItemSection).first();
+    const item_section = this.memo.getType(ItemSection)[0];
 
     if (!item_section)
       throw new InnertubeError('No item section found in search response.');

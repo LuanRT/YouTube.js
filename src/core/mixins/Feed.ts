@@ -139,9 +139,9 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
    * Returns contents from the page.
    */
   get page_contents(): SectionList | MusicQueue | RichGrid | ReloadContinuationItemsCommand {
-    const tab_content = this.#memo.getType(Tab)?.first().content;
-    const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand).first();
-    const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction).first();
+    const tab_content = this.#memo.getType(Tab)?.[0].content;
+    const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand)[0];
+    const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction)[0];
 
     return tab_content || reload_continuation_items || append_continuation_items;
   }

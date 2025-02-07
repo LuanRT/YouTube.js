@@ -30,7 +30,7 @@ export default class Library {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
     this.#actions = actions;
 
-    const section_list = this.#page.contents_memo?.getType(SectionList).first();
+    const section_list = this.#page.contents_memo?.getType(SectionList)[0];
 
     this.header = section_list?.header?.as(MusicSideAlignedItem);
     this.contents = section_list?.contents?.as(Grid, MusicShelf);
@@ -45,7 +45,7 @@ export default class Library {
     let target_item: MusicMultiSelectMenuItem | undefined;
 
     if (typeof sort_by === 'string') {
-      const button = this.#page.contents_memo?.getType(MusicSortFilterButton).first();
+      const button = this.#page.contents_memo?.getType(MusicSortFilterButton)[0];
 
       const options = button?.menu?.options
         .filter(
@@ -94,7 +94,7 @@ export default class Library {
   async applyFilter(filter: string | ChipCloudChip): Promise<Library> {
     let target_chip: ChipCloudChip | undefined;
 
-    const chip_cloud = this.#page.contents_memo?.getType(ChipCloud).first();
+    const chip_cloud = this.#page.contents_memo?.getType(ChipCloud)[0];
 
     if (typeof filter === 'string') {
       target_chip = chip_cloud?.chips.get({ text: filter });
@@ -134,13 +134,13 @@ export default class Library {
   }
 
   get sort_options(): string[] {
-    const button = this.#page.contents_memo?.getType(MusicSortFilterButton).first();
+    const button = this.#page.contents_memo?.getType(MusicSortFilterButton)[0];
     const options = button?.menu?.options.filter((item: MusicMultiSelectMenuItem | MusicMenuItemDivider) => item instanceof MusicMultiSelectMenuItem) as MusicMultiSelectMenuItem[];
     return options.map((item) => item.title);
   }
 
   get filters(): string[] {
-    return this.#page.contents_memo?.getType(ChipCloud)?.first().chips.map((chip: ChipCloudChip) => chip.text) || [];
+    return this.#page.contents_memo?.getType(ChipCloud)?.[0].chips.map((chip: ChipCloudChip) => chip.text) || [];
   }
 
   get page(): IBrowseResponse {
