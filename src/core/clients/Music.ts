@@ -201,7 +201,7 @@ export default class Music {
     const response = await watch_next_endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
 
     const tabs = response.contents_memo?.getType(Tab);
-    const tab = tabs?.first();
+    const tab = tabs?.[0];
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
@@ -228,7 +228,7 @@ export default class Music {
       if (!page || !page.contents_memo)
         throw new InnertubeError('Could not fetch automix');
 
-      return page.contents_memo.getType(PlaylistPanel).first();
+      return page.contents_memo.getType(PlaylistPanel)[0];
     }
 
     return playlist_panel;
@@ -242,7 +242,7 @@ export default class Music {
 
     const tabs = response.contents_memo?.getType(Tab);
 
-    const tab = tabs?.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_RELATED');
+    const tab = tabs?.find((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_RELATED');
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
@@ -263,7 +263,7 @@ export default class Music {
 
     const tabs = response.contents_memo?.getType(Tab);
 
-    const tab = tabs?.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_LYRICS');
+    const tab = tabs?.find((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === 'MUSIC_PAGE_TYPE_TRACK_LYRICS');
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');

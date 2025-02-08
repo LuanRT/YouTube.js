@@ -177,7 +177,7 @@ export default class Actions {
       let parsed_response = Parser.parseResponse<ParsedResponse<T>>(await response.json());
 
       // Handle redirects
-      if (this.#isBrowse(parsed_response) && parsed_response.on_response_received_actions?.first()?.type === 'navigateAction') {
+      if (this.#isBrowse(parsed_response) && parsed_response.on_response_received_actions?.[0]?.type === 'navigateAction') {
         const navigate_action = parsed_response.on_response_received_actions.firstOfType(NavigateAction);
         if (navigate_action) {
           parsed_response = await navigate_action.endpoint.call(this, { parse: true });

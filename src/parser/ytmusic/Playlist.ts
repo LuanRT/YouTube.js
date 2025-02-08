@@ -45,10 +45,10 @@ export default class Playlist {
     } else {
       if (!this.#page.contents_memo)
         throw new InnertubeError('No contents found in the response');
-      this.header = this.#page.contents_memo.getType(MusicResponsiveHeader, MusicEditablePlaylistDetailHeader, MusicDetailHeader)?.first();
-      this.contents = this.#page.contents_memo.getType(MusicPlaylistShelf)?.first()?.contents || observe([]);
+      this.header = this.#page.contents_memo.getType(MusicResponsiveHeader, MusicEditablePlaylistDetailHeader, MusicDetailHeader)?.[0];
+      this.contents = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0]?.contents || observe([]);
       this.background = this.#page.background;
-      this.#continuation = this.#page.contents_memo.getType(MusicPlaylistShelf)?.first()?.continuation || null;
+      this.#continuation = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0]?.continuation || null;
     }
   }
 

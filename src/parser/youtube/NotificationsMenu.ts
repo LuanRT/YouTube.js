@@ -22,12 +22,12 @@ export default class NotificationsMenu {
     if (!this.#page.actions_memo)
       throw new InnertubeError('Page actions not found');
 
-    this.header = this.#page.actions_memo.getType(SimpleMenuHeader).first();
+    this.header = this.#page.actions_memo.getType(SimpleMenuHeader)[0];
     this.contents = this.#page.actions_memo.getType(Notification);
   }
 
   async getContinuation(): Promise<NotificationsMenu> {
-    const continuation = this.#page.actions_memo?.getType(ContinuationItem).first();
+    const continuation = this.#page.actions_memo?.getType(ContinuationItem)[0];
 
     if (!continuation)
       throw new InnertubeError('Continuation not found');

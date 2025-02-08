@@ -131,7 +131,7 @@ export default class VideoInfo extends MediaInfo {
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
       this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
-      this.livechat = next?.contents_memo?.getType(LiveChat).first();
+      this.livechat = next?.contents_memo?.getType(LiveChat)[0];
     }
   }
 

@@ -16,7 +16,7 @@ export default class TranscriptInfo {
     if (!this.#page.actions_memo)
       throw new Error('Page actions not found');
 
-    this.transcript = this.#page.actions_memo.getType(Transcript).first();
+    this.transcript = this.#page.actions_memo.getType(Transcript)[0];
   }
 
   /**
