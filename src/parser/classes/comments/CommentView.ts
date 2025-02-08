@@ -119,14 +119,14 @@ export default class CommentView extends YTNode {
     }
 
     if (toolbar_surface) {
-      if (!('prepareAccountCommand' in toolbar_surface)) {
+      if ('prepareAccountCommand' in toolbar_surface) {
+        this.prepare_account_command = new NavigationEndpoint(toolbar_surface.prepareAccountCommand);
+      } else {
         this.like_command = new NavigationEndpoint(toolbar_surface.likeCommand);
         this.dislike_command = new NavigationEndpoint(toolbar_surface.dislikeCommand);
         this.unlike_command = new NavigationEndpoint(toolbar_surface.unlikeCommand);
         this.undislike_command = new NavigationEndpoint(toolbar_surface.undislikeCommand);
         this.reply_command = new NavigationEndpoint(toolbar_surface.replyCommand);
-      } else if ('prepareAccountCommand' in toolbar_surface) {
-        this.prepare_account_command = new NavigationEndpoint(toolbar_surface.prepareAccountCommand);
       }
     }
   }
