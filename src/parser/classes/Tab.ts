@@ -12,6 +12,7 @@ export default class Tab extends YTNode {
   selected: boolean;
   endpoint: NavigationEndpoint;
   content: SectionList | MusicQueue | RichGrid | null;
+  contents: (SectionList | MusicQueue | RichGrid)[] | null;
 
   constructor(data: RawNode) {
     super();
@@ -19,5 +20,6 @@ export default class Tab extends YTNode {
     this.selected = !!data.selected;
     this.endpoint = new NavigationEndpoint(data.endpoint);
     this.content = Parser.parseItem(data.content, [ SectionList, MusicQueue, RichGrid ]);
+    this.contents = Parser.parseItems(data.content, [ SectionList, MusicQueue, RichGrid ]);
   }
 }
