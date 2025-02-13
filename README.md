@@ -37,9 +37,12 @@ yarn add youtubei.js@latest
 
 # Git (edge version)
 npm install github:LuanRT/YouTube.js
+
+# Deno
+deno add npm:youtubei.js@latest
 ```
 
-Deno:
+Deno (deprecated):
 ```ts
 import { Innertube } from 'https://deno.land/x/youtubei/deno.ts';
 ```
