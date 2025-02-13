@@ -143,6 +143,14 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
     ...(streaming_data.formats || []),
     ...(streaming_data.adaptive_formats || [])
   ];
+  
+  if (options.itag) {
+    const candidates = formats.filter((format) => format.itag === options.itag);
+    if (!candidates.length)
+      throw new InnertubeError('No matching formats found', { options });
+    
+    return candidates[0];
+  }
 
   const requires_audio = options.type ? options.type.includes('audio') : true;
   const requires_video = options.type ? options.type.includes('video') : true;
@@ -155,8 +163,6 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
   const use_most_efficient = quality !== 'best';
 
   let candidates = formats.filter((format) => {
-    if (options.itag && format.itag !== options.itag)
-      return false;
     if (requires_audio && !format.has_audio)
       return false;
     if (requires_video && !format.has_video)
