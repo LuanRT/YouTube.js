@@ -55,6 +55,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
         last_updated: this.#getStat(2, primary_info),
         can_share: header?.can_share,
         can_delete: header?.can_delete,
+        can_reorder: video_list?.can_reorder,
         is_editable: video_list?.is_editable,
         privacy: header?.privacy
       }
