@@ -7,6 +7,7 @@ import PlaylistHeader from '../classes/PlaylistHeader.js';
 import PlaylistMetadata from '../classes/PlaylistMetadata.js';
 import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.js';
 import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.js';
+import PlaylistVideoList from '../classes/PlaylistVideoList.js';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.js';
 import ReelItem from '../classes/ReelItem.js';
 import ShortsLockupView from '../classes/ShortsLockupView.js';
@@ -34,6 +35,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
     const header = this.memo.getType(PlaylistHeader)[0];
     const primary_info = this.memo.getType(PlaylistSidebarPrimaryInfo)[0];
     const secondary_info = this.memo.getType(PlaylistSidebarSecondaryInfo)[0];
+    const video_list = this.memo.getType(PlaylistVideoList)[0];
     const alert = this.page.alerts?.firstOfType(Alert);
 
     if (alert && alert.alert_type === 'ERROR')
@@ -53,7 +55,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
         last_updated: this.#getStat(2, primary_info),
         can_share: header?.can_share,
         can_delete: header?.can_delete,
-        is_editable: header?.is_editable,
+        is_editable: video_list?.is_editable,
         privacy: header?.privacy
       }
     };
