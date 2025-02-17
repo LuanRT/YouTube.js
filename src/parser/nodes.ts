@@ -21,6 +21,7 @@ export { default as ActiveAccountHeader } from './classes/ActiveAccountHeader.js
 export { default as AddToPlaylist } from './classes/AddToPlaylist.js';
 export { default as Alert } from './classes/Alert.js';
 export { default as AlertWithButton } from './classes/AlertWithButton.js';
+export { default as AnimatedThumbnailOverlayView } from './classes/AnimatedThumbnailOverlayView.js';
 export { default as AttributionView } from './classes/AttributionView.js';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.js';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.js';
