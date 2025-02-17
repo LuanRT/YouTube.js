@@ -74,6 +74,9 @@ deno/
 # VSCode files
 .vscode/
 
+# Webstorm files
+.idea/
+
 # MacOS
 .DS_Store
 
