@@ -1,25 +1,14 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../types/index.js';
+import Thumbnail from './misc/Thumbnail.js';
 
 export default class AnimatedThumbnailOverlayView extends YTNode {
   static type = 'AnimatedThumbnailOverlayView';
 
-  thumbnail: {
-    sources: {
-      url: string,
-      width: number,
-      height: number
-    }[]
-  };
+  public thumbnail: Thumbnail[];
 
   constructor(data: RawNode) {
     super();
-    this.thumbnail = {
-      sources: data.thumbnail.sources.map((item: any) => ({
-        url: item.url,
-        width: item.width,
-        height: item.height
-      }))
-    };
+    this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
   }
 }
