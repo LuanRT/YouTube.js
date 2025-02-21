@@ -13,8 +13,8 @@ export default class HomeFeed extends FilterableFeed<IBrowseResponse> {
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
-    this.header = this.memo.getType(FeedTabbedHeader).first();
-    this.contents = this.memo.getType(RichGrid).first() || this.page.on_response_received_actions?.first();
+    this.header = this.memo.getType(FeedTabbedHeader)[0];
+    this.contents = this.memo.getType(RichGrid)[0] || this.page.on_response_received_actions?.[0];
   }
 
   /**

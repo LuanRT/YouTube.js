@@ -20,7 +20,7 @@ export default class Library extends Feed<IBrowseResponse> {
     if (!this.page.contents_memo)
       throw new InnertubeError('Page contents not found');
 
-    this.header = this.memo.getType(PageHeader).first();
+    this.header = this.memo.getType(PageHeader)[0];
 
     const shelves = this.page.contents_memo.getType(Shelf);
 

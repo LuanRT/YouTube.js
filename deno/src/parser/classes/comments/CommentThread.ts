@@ -58,7 +58,7 @@ export default class CommentThread extends YTNode {
       throw new InnertubeError('Unexpected response.', response);
 
     this.replies = this.#getPatchedReplies(response.on_response_received_endpoints_memo);
-    this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem).first();
+    this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem)[0];
 
     return this;
   }
@@ -87,7 +87,7 @@ export default class CommentThread extends YTNode {
       throw new InnertubeError('Unexpected response.', response);
 
     this.replies = this.#getPatchedReplies(response.on_response_received_endpoints_memo);
-    this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem).first();
+    this.#continuation = response.on_response_received_endpoints_memo.getType(ContinuationItem)[0];
 
     return this;
   }

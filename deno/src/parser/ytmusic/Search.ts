@@ -115,15 +115,15 @@ export default class Search {
   }
 
   get did_you_mean(): DidYouMean | undefined {
-    return this.#page.contents_memo?.getType(DidYouMean).first();
+    return this.#page.contents_memo?.getType(DidYouMean)[0];
   }
 
   get showing_results_for(): ShowingResultsFor | undefined {
-    return this.#page.contents_memo?.getType(ShowingResultsFor).first();
+    return this.#page.contents_memo?.getType(ShowingResultsFor)[0];
   }
 
   get message(): Message | undefined {
-    return this.#page.contents_memo?.getType(Message).first();
+    return this.#page.contents_memo?.getType(Message)[0];
   }
 
   get songs(): MusicShelf | undefined {

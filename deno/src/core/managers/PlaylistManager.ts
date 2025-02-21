@@ -237,12 +237,11 @@ export default class PlaylistManager {
   }
   
   async #getPlaylist(playlist_id: string): Promise<Playlist> {
-    let id = playlist_id;
+    if (!playlist_id.startsWith('VL')) {
+      playlist_id = `VL${playlist_id}`;
+    }
     
-    if (!id.startsWith('VL'))
-      id = `VL${id}`;
-    
-    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: `VL${id}` } });
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: playlist_id } });
     const browse_response = await browse_endpoint.call(this.#actions, { parse: true });
     
     return new Playlist(this.#actions, browse_response, true);

@@ -47,7 +47,7 @@ export default class Artist {
       throw new InnertubeError('Target shelf (Songs) did not have an endpoint.');
 
     const page = await shelf.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
-    return page.contents_memo?.getType(MusicPlaylistShelf)?.first();
+    return page.contents_memo?.getType(MusicPlaylistShelf)?.[0];
   }
 
   get page(): IBrowseResponse {

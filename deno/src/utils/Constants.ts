@@ -48,7 +48,7 @@ export const CLIENTS = {
   },
   YTMUSIC: {
     NAME: 'WEB_REMIX',
-    VERSION: '1.20211213.00.00'
+    VERSION: '1.20250219.01.00'
   },
   ANDROID: {
     NAME: 'ANDROID',
@@ -82,7 +82,7 @@ export const CLIENTS = {
   },
   WEB_CREATOR: {
     NAME: 'WEB_CREATOR',
-    VERSION: '1.20240918.03.00',
+    VERSION: '1.20241203.01.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'

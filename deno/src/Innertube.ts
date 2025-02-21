@@ -431,7 +431,7 @@ export default class Innertube {
    * @param options - Format options.
    */
   async getStreamingData(video_id: string, options: FormatOptions = {}): Promise<Format> {
-    const info = await this.getBasicInfo(video_id);
+    const info = await this.getBasicInfo(video_id, options?.client);
 
     const format = info.chooseFormat(options);
     format.url = format.decipher(this.#session.player);
@@ -478,7 +478,7 @@ export default class Innertube {
       }
     });
 
-    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+    const params = encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
 
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channel_id, params: params } });
 

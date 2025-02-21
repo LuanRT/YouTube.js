@@ -49,7 +49,7 @@ class TrackInfo extends MediaInfo {
 
     const target_tab =
       this.tabs.get({ title: title_or_page_type }) ||
-      this.tabs.matchCondition((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === title_or_page_type) ||
+      this.tabs.find((tab) => tab.endpoint.payload.browseEndpointContextSupportedConfigs?.browseEndpointContextMusicConfig?.pageType === title_or_page_type) ||
       this.tabs?.[0];
 
     if (!target_tab)

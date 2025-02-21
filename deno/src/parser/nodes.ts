@@ -21,6 +21,7 @@ export { default as ActiveAccountHeader } from './classes/ActiveAccountHeader.ts
 export { default as AddToPlaylist } from './classes/AddToPlaylist.ts';
 export { default as Alert } from './classes/Alert.ts';
 export { default as AlertWithButton } from './classes/AlertWithButton.ts';
+export { default as AnimatedThumbnailOverlayView } from './classes/AnimatedThumbnailOverlayView.ts';
 export { default as AttributionView } from './classes/AttributionView.ts';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.ts';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.ts';
@@ -83,6 +84,7 @@ export { default as ContinuationCommand } from './classes/commands/ContinuationC
 export { default as GetKidsBlocklistPickerCommand } from './classes/commands/GetKidsBlocklistPickerCommand.ts';
 export { default as RunAttestationCommand } from './classes/commands/RunAttestationCommand.ts';
 export { default as ShowDialogCommand } from './classes/commands/ShowDialogCommand.ts';
+export { default as UpdateEngagementPanelContentCommand } from './classes/commands/UpdateEngagementPanelContentCommand.ts';
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.ts';
 export { default as CommentActionButtons } from './classes/comments/CommentActionButtons.ts';
 export { default as CommentDialog } from './classes/comments/CommentDialog.ts';
@@ -455,6 +457,8 @@ export { default as TextFieldView } from './classes/TextFieldView.ts';
 export { default as TextHeader } from './classes/TextHeader.ts';
 export { default as ThirdPartyShareTargetSection } from './classes/ThirdPartyShareTargetSection.ts';
 export { default as ThumbnailBadgeView } from './classes/ThumbnailBadgeView.ts';
+export { default as ThumbnailBottomOverlayView } from './classes/ThumbnailBottomOverlayView.ts';
+export { default as ThumbnailHoverOverlayToggleActionsView } from './classes/ThumbnailHoverOverlayToggleActionsView.ts';
 export { default as ThumbnailHoverOverlayView } from './classes/ThumbnailHoverOverlayView.ts';
 export { default as ThumbnailLandscapePortrait } from './classes/ThumbnailLandscapePortrait.ts';
 export { default as ThumbnailOverlayBadgeView } from './classes/ThumbnailOverlayBadgeView.ts';
@@ -466,6 +470,7 @@ export { default as ThumbnailOverlayLoadingPreview } from './classes/ThumbnailOv
 export { default as ThumbnailOverlayNowPlaying } from './classes/ThumbnailOverlayNowPlaying.ts';
 export { default as ThumbnailOverlayPinking } from './classes/ThumbnailOverlayPinking.ts';
 export { default as ThumbnailOverlayPlaybackStatus } from './classes/ThumbnailOverlayPlaybackStatus.ts';
+export { default as ThumbnailOverlayProgressBarView } from './classes/ThumbnailOverlayProgressBarView.ts';
 export { default as ThumbnailOverlayResumePlayback } from './classes/ThumbnailOverlayResumePlayback.ts';
 export { default as ThumbnailOverlaySidePanel } from './classes/ThumbnailOverlaySidePanel.ts';
 export { default as ThumbnailOverlayTimeStatus } from './classes/ThumbnailOverlayTimeStatus.ts';

@@ -17,12 +17,12 @@ export default class AccountInfo {
     if (!this.#page.contents)
       throw new InnertubeError('Page contents not found');
 
-    const account_section_list = this.#page.contents.array().as(AccountSectionList).first();
+    const account_section_list = this.#page.contents.array().as(AccountSectionList)[0];
 
     if (!account_section_list)
       throw new InnertubeError('Account section list not found');
 
-    this.contents = account_section_list.contents.first();
+    this.contents = account_section_list.contents[0];
   }
 
   get page(): IParsedResponse {

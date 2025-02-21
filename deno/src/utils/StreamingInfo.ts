@@ -425,8 +425,7 @@ function getTrackRoles(format: Format, has_drc_streams: boolean) {
   }
 
   const roles: ('main' | 'dub' | 'description' | 'enhanced-audio-intelligibility' | 'alternate')[] = [
-    // movie trailers can have a dubbed track as the only audio track so is_original is false but format.audio_track.audio_is_default is true
-    format.is_original || format.audio_track?.audio_is_default ? 'main' : 'alternate'
+    format.is_original ? 'main' : 'alternate'
   ];
 
   if (format.is_dubbed || format.is_auto_dubbed)

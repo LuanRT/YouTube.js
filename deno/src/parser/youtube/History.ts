@@ -15,7 +15,7 @@ export default class History extends Feed<IBrowseResponse> {
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.sections = this.memo.getType(ItemSection);
-    this.feed_actions = this.memo.getType(BrowseFeedActions).first();
+    this.feed_actions = this.memo.getType(BrowseFeedActions)[0];
   }
 
   /**
