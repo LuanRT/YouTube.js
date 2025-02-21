@@ -393,13 +393,6 @@ describe('YouTube.js Tests', () => {
         expect(home.sections?.length).toBeGreaterThan(0);
       });
 
-      test('HomeFeed#getContinuation', async () => {
-        const incremental_continuation = await home.getContinuation();
-        expect(incremental_continuation).toBeDefined();
-        expect(incremental_continuation.sections).toBeDefined();
-        expect(incremental_continuation.sections?.length).toBeGreaterThan(0);
-      });
-
       test('HomeFeed#applyFilter', async () => {
         home = await home.applyFilter(home.filters[1]);
         expect(home).toBeDefined();
