@@ -1,5 +1,4 @@
-import { createWriteStream, existsSync } from 'node:fs';
-import { Innertube, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
+import { Innertube, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
 jest.useRealTimers();
 
@@ -317,7 +316,7 @@ describe('YouTube.js Tests', () => {
       expect(playlist.contents).toBeDefined();
       expect(playlist.contents?.length).toBeGreaterThan(0);
       
-      const info = await innertube.music.getInfo(playlist.contents!.first())
+      const info = await innertube.music.getInfo(playlist.contents!.first().as(YTNodes.MusicResponsiveListItem))
       expect(info).toBeDefined();
     });
 
