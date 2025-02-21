@@ -48,7 +48,7 @@ export const CLIENTS = {
   },
   YTMUSIC: {
     NAME: 'WEB_REMIX',
-    VERSION: '1.20211213.00.00'
+    VERSION: '1.20250219.01.00'
   },
   ANDROID: {
     NAME: 'ANDROID',
