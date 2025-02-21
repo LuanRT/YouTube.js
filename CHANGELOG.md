@@ -1,5 +1,37 @@
 # Changelog
 
+## [13.1.0](https://github.com/LuanRT/YouTube.js/compare/v13.0.0...v13.1.0) (2025-02-21)
+
+
+### Features
+
+* **Channel:** Add `getCourses` method ([#883](https://github.com/LuanRT/YouTube.js/issues/883)) ([b3a4862](https://github.com/LuanRT/YouTube.js/commit/b3a48621518f09d1ce309071499d9626cc1a8488))
+* **CommentView:** Parse `prepareAccountCommand` ([d0d48bf](https://github.com/LuanRT/YouTube.js/commit/d0d48bf525cc2a95dd3397a3142bea113ea9782e))
+* **CommentView:** Parse some extra tooltips ([32125c7](https://github.com/LuanRT/YouTube.js/commit/32125c704565f425806a0721edd96e01028e3fdd))
+* **CompactLink:** Parse `subtitle`, `iconType`, and `iconType` ([6d57353](https://github.com/LuanRT/YouTube.js/commit/6d57353a8021430a5253e2fb2c974ca98d731791))
+* **FormatUtils:** choose more specific format by itag or codec ([#884](https://github.com/LuanRT/YouTube.js/issues/884)) ([1c1577e](https://github.com/LuanRT/YouTube.js/commit/1c1577e85fd46cbfa15bcee6531d9aafdda787e5))
+* **parser:** `Add AnimatedThumbnailOverlayView` ([#903](https://github.com/LuanRT/YouTube.js/issues/903)) ([0cb92d9](https://github.com/LuanRT/YouTube.js/commit/0cb92d9620c13bf6b719b384f917ad2a658e15b1))
+
+
+### Bug Fixes
+
+* **dependencies:** Update `jintr` to version 3.2.1 ([02dfcae](https://github.com/LuanRT/YouTube.js/commit/02dfcae612dd528ce4f1f3f6c62ceefd02a5c790))
+* **DialogView:** Type mismatch ([#897](https://github.com/LuanRT/YouTube.js/issues/897)) ([b731db8](https://github.com/LuanRT/YouTube.js/commit/b731db86c51ba292c848272f28b5a9aa2e2a6956))
+* **FormatUtils:** itag matching ([#886](https://github.com/LuanRT/YouTube.js/issues/886)) ([774b3a7](https://github.com/LuanRT/YouTube.js/commit/774b3a75244db85ceb7b00f658dc2dfeb2eb4e7e))
+* **innertube:** Allowing `getStreamingData` to use client ([#895](https://github.com/LuanRT/YouTube.js/issues/895)) ([5aecd0a](https://github.com/LuanRT/YouTube.js/commit/5aecd0ace96c371f0b15cdc6e45ef09beb5696af))
+* **Innertube:** Properly encoded params in getPost() ([#882](https://github.com/LuanRT/YouTube.js/issues/882)) ([7d5c972](https://github.com/LuanRT/YouTube.js/commit/7d5c972c98d7c69b0b687b241c652f3098907a9f))
+* **LockupMetadataView:** Parse `menuButton` ([3ffdee9](https://github.com/LuanRT/YouTube.js/commit/3ffdee9554b06db137d93e43b33fac124becf31f))
+* **LockupView:** Add overlay nodes used by `VIDEO` views ([424c653](https://github.com/LuanRT/YouTube.js/commit/424c65356c24d19a921e24aadcbbb3cd03ab103a))
+* **LockupView:** Fix `content_image` parsing ([083aec1](https://github.com/LuanRT/YouTube.js/commit/083aec1c805cce6b04a75e4f017b5cdf0bb6108e))
+* **music#getPlaylist:** Handle `ContinuationItem` nodes ([a3fafe2](https://github.com/LuanRT/YouTube.js/commit/a3fafe2f7979313906dbaf1a7f9779f411266d6b)), closes [#904](https://github.com/LuanRT/YouTube.js/issues/904)
+* **Parser:** Add `UpdateEngagementPanelContentCommand` ([3f960ef](https://github.com/LuanRT/YouTube.js/commit/3f960effa24c3b14fa3c6aadf4c7badf0ac965c9))
+* **Playlist:** is_editable ([#894](https://github.com/LuanRT/YouTube.js/issues/894)) ([2b42199](https://github.com/LuanRT/YouTube.js/commit/2b4219959cbbb27cd80788e66b608fdeed3a1f1e))
+
+
+### Reverts
+
+* "fix(toDash): Fix default audio stream for dubbed movie trailers ([#858](https://github.com/LuanRT/YouTube.js/issues/858))" ([#896](https://github.com/LuanRT/YouTube.js/issues/896)) ([4325717](https://github.com/LuanRT/YouTube.js/commit/432571769ebc6634c2c9a4c1b5e53cfbbd2a5f0a))
+
 ## [13.0.0](https://github.com/LuanRT/YouTube.js/compare/v12.2.0...v13.0.0) (2025-01-20)
 
 
