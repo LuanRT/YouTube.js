@@ -1,6 +1,7 @@
 import type { ObservedArray } from '../helpers.js';
 import { YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
+import AnimatedThumbnailOverlayView from './AnimatedThumbnailOverlayView.js';
 import ThumbnailHoverOverlayView from './ThumbnailHoverOverlayView.js';
 import ThumbnailOverlayBadgeView from './ThumbnailOverlayBadgeView.js';
 import Thumbnail from './misc/Thumbnail.js';
@@ -19,6 +20,7 @@ export default class ThumbnailView extends YTNode {
   public overlays: ObservedArray<
     ThumbnailHoverOverlayToggleActionsView | ThumbnailBottomOverlayView |
     ThumbnailOverlayBadgeView | ThumbnailHoverOverlayView
+    | AnimatedThumbnailOverlayView
   >;
   public background_color?: ThumbnailBackgroundColor;
 
@@ -28,7 +30,8 @@ export default class ThumbnailView extends YTNode {
     this.image = Thumbnail.fromResponse(data.image);
     this.overlays = Parser.parseArray(data.overlays, [
       ThumbnailHoverOverlayToggleActionsView, ThumbnailBottomOverlayView,
-      ThumbnailOverlayBadgeView, ThumbnailHoverOverlayView
+      ThumbnailOverlayBadgeView, ThumbnailHoverOverlayView,
+      AnimatedThumbnailOverlayView
     ]);
 
     if ('backgroundColor' in data) {

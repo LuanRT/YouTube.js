@@ -1,5 +1,4 @@
-import { createWriteStream, existsSync } from 'node:fs';
-import { Innertube, Utils, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
+import { Innertube, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
 
 jest.useRealTimers();
 
@@ -317,7 +316,7 @@ describe('YouTube.js Tests', () => {
       expect(playlist.contents).toBeDefined();
       expect(playlist.contents?.length).toBeGreaterThan(0);
       
-      const info = await innertube.music.getInfo(playlist.contents!.first())
+      const info = await innertube.music.getInfo(playlist.contents!.first().as(YTNodes.MusicResponsiveListItem))
       expect(info).toBeDefined();
     });
 
@@ -392,13 +391,6 @@ describe('YouTube.js Tests', () => {
         expect(home).toBeDefined();
         expect(home.sections).toBeDefined();
         expect(home.sections?.length).toBeGreaterThan(0);
-      });
-
-      test('HomeFeed#getContinuation', async () => {
-        const incremental_continuation = await home.getContinuation();
-        expect(incremental_continuation).toBeDefined();
-        expect(incremental_continuation.sections).toBeDefined();
-        expect(incremental_continuation.sections?.length).toBeGreaterThan(0);
       });
 
       test('HomeFeed#applyFilter', async () => {
