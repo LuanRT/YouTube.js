@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.1](https://github.com/LuanRT/YouTube.js/compare/v13.1.0...v13.1.1) (2025-02-27)
+
+
+### Bug Fixes
+
+* **Format:** Parse xtags from protobuf to support SABR-only responses ([#909](https://github.com/LuanRT/YouTube.js/issues/909)) ([00c199a](https://github.com/LuanRT/YouTube.js/commit/00c199ac69bc6d7be19aeae04a245f30b64272c2))
+
 ## [13.1.0](https://github.com/LuanRT/YouTube.js/compare/v13.0.0...v13.1.0) (2025-02-21)
 
 
