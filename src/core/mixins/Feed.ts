@@ -29,10 +29,13 @@ import TwoColumnSearchResults from '../../parser/classes/TwoColumnSearchResults.
 import WatchCardCompactVideo from '../../parser/classes/WatchCardCompactVideo.js';
 
 import type { Actions, ApiResponse } from '../index.js';
-import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../../parser/helpers.js';
+import type { Memo, ObservedArray } from '../../parser/helpers.js';
 import type MusicQueue from '../../parser/classes/MusicQueue.js';
 import type RichGrid from '../../parser/classes/RichGrid.js';
 import type SectionList from '../../parser/classes/SectionList.js';
+import type SecondarySearchContainer from '../../parser/classes/SecondarySearchContainer.js';
+import type BrowseFeedActions from '../../parser/classes/BrowseFeedActions.js';
+import type ProfileColumn from '../../parser/classes/ProfileColumn.js';
 
 export default class Feed<T extends IParsedResponse = IParsedResponse> {
   readonly #page: T;
@@ -163,14 +166,14 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
   /**
    * Returns secondary contents from the page.
    */
-  get secondary_contents(): SuperParsedResult<YTNode> | undefined {
+  get secondary_contents(): SectionList | SecondarySearchContainer | BrowseFeedActions | ProfileColumn | null {
     if (!this.#page.contents?.is_node)
-      return undefined;
+      return null;
 
     const node = this.#page.contents?.item();
 
     if (!node.is(TwoColumnBrowseResults, TwoColumnSearchResults))
-      return undefined;
+      return null;
 
     return node.secondary_contents;
   }

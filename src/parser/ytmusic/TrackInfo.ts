@@ -32,7 +32,7 @@ class TrackInfo extends MediaInfo {
     if (next) {
       const tabbed_results = next.contents_memo?.getType(WatchNextTabbedResults)?.[0];
 
-      this.tabs = tabbed_results?.tabs.array().as(Tab);
+      this.tabs = tabbed_results?.tabs.as(Tab);
       this.current_video_endpoint = next.current_video_endpoint;
 
       // TODO: update PlayerOverlay, YTMusic's is a little bit different.

@@ -37,7 +37,7 @@ export default class History extends Feed<IBrowseResponse> {
     for (const section of this.sections) {
       for (const content of section.contents) {
         const video = content as Video;
-        if (video.id === video_id && video.menu) {
+        if (video.video_id === video_id && video.menu) {
           feedbackToken = video.menu.top_level_buttons[0].as(Button).endpoint.payload.feedbackToken;
           break;
         }

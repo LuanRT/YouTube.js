@@ -13,7 +13,7 @@ import MicroformatData from '../classes/MicroformatData.js';
 import SubscribeButton from '../classes/SubscribeButton.js';
 import ExpandableTab from '../classes/ExpandableTab.js';
 import SectionList from '../classes/SectionList.js';
-import Tab from '../classes/Tab.js';
+import type Tab from '../classes/Tab.js';
 import PageHeader from '../classes/PageHeader.js';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';
@@ -62,7 +62,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     this.subscribe_button = this.page.header_memo?.getType(SubscribeButton)[0];
 
     if (this.page.contents)
-      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.array().filterType(Tab, ExpandableTab).get({ selected: true });
+      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.get({ selected: true });
   }
 
   /**
