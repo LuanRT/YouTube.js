@@ -24,32 +24,34 @@ export default class Kids {
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
 
+    const session = this.#session;
+
     const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: this.#session.player?.sts
+          signatureTimestamp: session.player?.sts
         }
       },
       client: 'YTKIDS'
     };
 
-    if (this.#session.po_token) {
+    if (session.po_token) {
       extra_payload.serviceIntegrityDimensions = {
-        poToken: this.#session.po_token
+        poToken: session.po_token
       };
     }
     
-    const watch_response = watch_endpoint.call(this.#session.actions, extra_payload);
+    const watch_response = watch_endpoint.call(session.actions, extra_payload);
 
-    const watch_next_response = watch_next_endpoint.call(this.#session.actions, { client: 'YTKIDS' });
+    const watch_next_response = watch_next_endpoint.call(session.actions, { client: 'YTKIDS' });
 
     const response = await Promise.all([ watch_response, watch_next_response ]);
     const cpn = generateRandomString(16);
 
-    return new VideoInfo(response, this.#session.actions, cpn);
+    return new VideoInfo(response, session.actions, cpn);
   }
 
   async getChannel(channel_id: string): Promise<Channel> {
@@ -71,7 +73,9 @@ export default class Kids {
    * @returns A list of API responses.
    */
   async blockChannel(channel_id: string): Promise<ApiResponse[]> {
-    if (!this.#session.logged_in)
+    const session = this.#session;
+
+    if (!session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
     const kids_blocklist_picker_command = new NavigationEndpoint({
@@ -82,7 +86,7 @@ export default class Kids {
       }
     });
 
-    const response = await kids_blocklist_picker_command.call(this.#session.actions, { client: 'YTKIDS' });
+    const response = await kids_blocklist_picker_command.call(session.actions, { client: 'YTKIDS' });
     const popup = response.data.command.confirmDialogEndpoint;
     const popup_fragment = { contents: popup.content, engagementPanels: [] };
     const kid_picker = Parser.parseResponse(popup_fragment);
@@ -96,7 +100,7 @@ export default class Kids {
 
     for (const kid of kids) {
       if (!kid.block_button?.is_toggled) {
-        kid.setActions(this.#session.actions);
+        kid.setActions(session.actions);
         // Block channel and add to the response list.
         responses.push(await kid.blockChannel());
       }

@@ -33,7 +33,9 @@ export default class HTTPClient {
     input: URL | Request | string,
     init?: RequestInit & HTTPClientInit
   ): Promise<Response> {
-    const innertube_url = Constants.URLS.API.PRODUCTION_1 + this.#session.api_version;
+    const session = this.#session;
+
+    const innertube_url = Constants.URLS.API.PRODUCTION_1 + session.api_version;
     const baseURL = init?.baseURL || innertube_url;
 
     const request_url =
@@ -55,17 +57,17 @@ export default class HTTPClient {
 
     request_headers.set('Accept', '*/*');
     request_headers.set('Accept-Language', '*');
-    request_headers.set('X-Goog-Visitor-Id', this.#session.context.client.visitorData || '');
-    request_headers.set('X-Youtube-Client-Version', this.#session.context.client.clientVersion || '');
+    request_headers.set('X-Goog-Visitor-Id', session.context.client.visitorData || '');
+    request_headers.set('X-Youtube-Client-Version', session.context.client.clientVersion || '');
 
-    const client_name_id = Constants.CLIENT_NAME_IDS[this.#session.context.client.clientName as keyof typeof Constants.CLIENT_NAME_IDS];
+    const client_name_id = Constants.CLIENT_NAME_IDS[session.context.client.clientName as keyof typeof Constants.CLIENT_NAME_IDS];
 
     if (client_name_id) {
       request_headers.set('X-Youtube-Client-Name', client_name_id);
     }
 
     if (Platform.shim.server) {
-      request_headers.set('User-Agent', this.#session.user_agent || '');
+      request_headers.set('User-Agent', session.user_agent || '');
       request_headers.set('Origin', request_url.origin);
     }
 
@@ -88,7 +90,7 @@ export default class HTTPClient {
       const n_body = {
         ...json,
         // Deep copy since we're going to be modifying it
-        context: JSON.parse(JSON.stringify(this.#session.context)) as Context
+        context: JSON.parse(JSON.stringify(session.context)) as Context
       };
 
       this.#adjustContext(n_body.context, n_body.client);
@@ -121,8 +123,8 @@ export default class HTTPClient {
     }
 
     // Authenticate (NOTE: YouTube Kids does not support regular bearer tokens)
-    if (this.#session.logged_in && is_innertube_req && !is_web_kids) {
-      const oauth = this.#session.oauth;
+    if (session.logged_in && is_innertube_req && !is_web_kids) {
+      const oauth = session.oauth;
 
       if (oauth.oauth2_tokens) {
         if (oauth.shouldRefreshToken()) {
@@ -132,17 +134,19 @@ export default class HTTPClient {
         request_headers.set('Authorization', `Bearer ${oauth.oauth2_tokens.access_token}`);
       }
 
-      if (this.#cookie) {
-        const sapisid = getCookie(this.#cookie, 'SAPISID');
+      const cookie = this.#cookie;
+
+      if (cookie) {
+        const sapisid = getCookie(cookie, 'SAPISID');
 
         if (sapisid) {
           request_headers.set('Authorization', await generateSidAuth(sapisid));
-          request_headers.set('X-Goog-Authuser', this.#session.account_index.toString());
-          if (this.#session.context.user.onBehalfOfUser)
-            request_headers.set('X-Goog-PageId', this.#session.context.user.onBehalfOfUser);
+          request_headers.set('X-Goog-Authuser', session.account_index.toString());
+          if (session.context.user.onBehalfOfUser)
+            request_headers.set('X-Goog-PageId', session.context.user.onBehalfOfUser);
         }
 
-        request_headers.set('Cookie', this.#cookie);
+        request_headers.set('Cookie', cookie);
       }
     }
 
