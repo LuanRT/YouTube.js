@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.2.0](https://github.com/LuanRT/YouTube.js/compare/v13.1.0...v13.2.0) (2025-03-03)
+
+
+### Features
+
+* Add AccessibilityContext and CommandContext classes + improve type definitions and parsing logic across multiple nodes ([923e9c2](https://github.com/LuanRT/YouTube.js/commit/923e9c28e34b00841413824d82d10bf644186edc))
+
+
+### Bug Fixes
+
+* **Format:** Parse xtags from protobuf to support SABR-only responses ([#909](https://github.com/LuanRT/YouTube.js/issues/909)) ([00c199a](https://github.com/LuanRT/YouTube.js/commit/00c199ac69bc6d7be19aeae04a245f30b64272c2))
+
 ## [13.1.0](https://github.com/LuanRT/YouTube.js/compare/v13.0.0...v13.1.0) (2025-02-21)
 
 
