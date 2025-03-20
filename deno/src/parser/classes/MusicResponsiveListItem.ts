@@ -15,15 +15,16 @@ import NavigationEndpoint from './NavigationEndpoint.ts';
 import Menu from './menus/Menu.ts';
 import Text from './misc/Text.ts';
 
+interface PlaylistItemData {
+  video_id: string;
+  playlist_set_video_id: string;
+}
+
 export default class MusicResponsiveListItem extends YTNode {
   static type = 'MusicResponsiveListItem';
 
   flex_columns: ObservedArray<MusicResponsiveListItemFlexColumn>;
   fixed_columns: ObservedArray<MusicResponsiveListItemFixedColumn>;
-  #playlist_item_data: {
-    video_id: string;
-    playlist_set_video_id: string;
-  };
 
   endpoint?: NavigationEndpoint;
   item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'non_music_track' | 'video' | 'song' | 'endpoint' | 'unknown' | 'podcast_show' | undefined;
@@ -78,7 +79,7 @@ export default class MusicResponsiveListItem extends YTNode {
     this.flex_columns = Parser.parseArray(data.flexColumns, MusicResponsiveListItemFlexColumn);
     this.fixed_columns = Parser.parseArray(data.fixedColumns, MusicResponsiveListItemFixedColumn);
 
-    this.#playlist_item_data = {
+    const playlist_item_data: PlaylistItemData = {
       video_id: data?.playlistItemData?.videoId || null,
       playlist_set_video_id: data?.playlistItemData?.playlistSetVideoId || null
     };
@@ -119,7 +120,7 @@ export default class MusicResponsiveListItem extends YTNode {
         break;
       case 'MUSIC_PAGE_TYPE_NON_MUSIC_AUDIO_TRACK_PAGE':
         this.item_type = 'non_music_track';
-        this.#parseNonMusicTrack();
+        this.#parseNonMusicTrack(playlist_item_data);
         break;
       case 'MUSIC_PAGE_TYPE_PODCAST_SHOW_DETAIL_PAGE':
         this.item_type = 'podcast_show';
@@ -127,7 +128,7 @@ export default class MusicResponsiveListItem extends YTNode {
         break;
       default:
         if (this.flex_columns[1]) {
-          this.#parseVideoOrSong();
+          this.#parseVideoOrSong(playlist_item_data);
         } else {
           this.#parseOther();
         }
@@ -164,25 +165,25 @@ export default class MusicResponsiveListItem extends YTNode {
     }
   }
 
-  #parseVideoOrSong() {
+  #parseVideoOrSong(playlist_item_data: PlaylistItemData) {
     const music_video_type = (this.flex_columns.at(0)?.title.runs?.at(0) as TextRun)?.endpoint?.payload?.watchEndpointMusicSupportedConfigs?.watchEndpointMusicConfig?.musicVideoType;
     switch (music_video_type) {
       case 'MUSIC_VIDEO_TYPE_UGC':
       case 'MUSIC_VIDEO_TYPE_OMV':
         this.item_type = 'video';
-        this.#parseVideo();
+        this.#parseVideo(playlist_item_data);
         break;
       case 'MUSIC_VIDEO_TYPE_ATV':
         this.item_type = 'song';
-        this.#parseSong();
+        this.#parseSong(playlist_item_data);
         break;
       default:
         this.#parseOther();
     }
   }
 
-  #parseSong() {
-    this.id = this.#playlist_item_data.video_id || this.endpoint?.payload?.videoId;
+  #parseSong(playlist_item_data: PlaylistItemData) {
+    this.id = playlist_item_data.video_id || this.endpoint?.payload?.videoId;
     this.title = this.flex_columns[0].title.toString();
 
     const duration_text = this.flex_columns.at(1)?.title.runs?.find(
@@ -228,8 +229,8 @@ export default class MusicResponsiveListItem extends YTNode {
     }
   }
 
-  #parseVideo() {
-    this.id = this.#playlist_item_data.video_id;
+  #parseVideo(playlist_item_data: PlaylistItemData) {
+    this.id = playlist_item_data.video_id;
     this.title = this.flex_columns[0].title.toString();
     this.views = this.flex_columns.at(1)?.title.runs?.find((run) => run.text.match(/(.*?) views/))?.toString();
 
@@ -273,8 +274,8 @@ export default class MusicResponsiveListItem extends YTNode {
     this.song_count = this.subtitle?.runs?.find((run) => (/^\d+(,\d+)? songs?$/i).test(run.text))?.text || '';
   }
 
-  #parseNonMusicTrack() {
-    this.id = this.#playlist_item_data.video_id || this.endpoint?.payload?.videoId;
+  #parseNonMusicTrack(playlist_item_data: PlaylistItemData) {
+    this.id = playlist_item_data.video_id || this.endpoint?.payload?.videoId;
     this.title = this.flex_columns[0].title.toString();
   }
 

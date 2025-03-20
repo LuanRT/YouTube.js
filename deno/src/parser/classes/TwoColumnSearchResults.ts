@@ -1,15 +1,25 @@
-import { YTNode, type SuperParsedResult } from '../helpers.ts';
+import { YTNode } from '../helpers.ts';
 import { Parser, type RawNode } from '../index.ts';
+import SecondarySearchContainer from './SecondarySearchContainer.ts';
+import RichGrid from './RichGrid.ts';
+import SectionList from './SectionList.ts';
 
 export default class TwoColumnSearchResults extends YTNode {
   static type = 'TwoColumnSearchResults';
 
-  primary_contents: SuperParsedResult<YTNode>;
-  secondary_contents: SuperParsedResult<YTNode>;
-
+  public header: YTNode | null;
+  public primary_contents: RichGrid | SectionList | null;
+  public secondary_contents: SecondarySearchContainer | null;
+  public target_id?: string;
+  
   constructor(data: RawNode) {
     super();
-    this.primary_contents = Parser.parse(data.primaryContents);
-    this.secondary_contents = Parser.parse(data.secondaryContents);
+    this.header = Parser.parseItem(data.header);
+    this.primary_contents = Parser.parseItem(data.primaryContents, [ RichGrid, SectionList ]);
+    this.secondary_contents = Parser.parseItem(data.secondaryContents, [ SecondarySearchContainer ]);
+    
+    if ('targetId' in data) {
+      this.target_id = data.targetId;
+    }
   }
 }

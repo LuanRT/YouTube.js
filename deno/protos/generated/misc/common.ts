@@ -35,6 +35,10 @@ export interface KeyValuePair {
   value?: string | undefined;
 }
 
+export interface FormatXTags {
+  xtags: KeyValuePair[];
+}
+
 function createBaseHttpHeader(): HttpHeader {
   return { name: undefined, value: undefined };
 }
@@ -264,6 +268,42 @@ export const KeyValuePair: MessageFns<KeyValuePair> = {
           }
 
           message.value = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBaseFormatXTags(): FormatXTags {
+  return { xtags: [] };
+}
+
+export const FormatXTags: MessageFns<FormatXTags> = {
+  encode(message: FormatXTags, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.xtags) {
+      KeyValuePair.encode(v!, writer.uint32(10).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): FormatXTags {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFormatXTags();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.xtags.push(KeyValuePair.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

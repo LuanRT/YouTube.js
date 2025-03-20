@@ -13,7 +13,7 @@ import MicroformatData from '../classes/MicroformatData.ts';
 import SubscribeButton from '../classes/SubscribeButton.ts';
 import ExpandableTab from '../classes/ExpandableTab.ts';
 import SectionList from '../classes/SectionList.ts';
-import Tab from '../classes/Tab.ts';
+import type Tab from '../classes/Tab.ts';
 import PageHeader from '../classes/PageHeader.ts';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
 import ChipCloudChip from '../classes/ChipCloudChip.ts';
@@ -62,7 +62,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     this.subscribe_button = this.page.header_memo?.getType(SubscribeButton)[0];
 
     if (this.page.contents)
-      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.array().filterType(Tab, ExpandableTab).get({ selected: true });
+      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.get({ selected: true });
   }
 
   /**

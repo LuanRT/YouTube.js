@@ -1,5 +1,7 @@
 import type Player from '../../../core/Player.ts';
 import type { RawNode } from '../../index.ts';
+import { FormatXTags } from '../../../../protos/generated/misc/common.ts';
+import { base64ToU8 } from '../../../utils/Utils.ts';
 
 export type ProjectionType = 'RECTANGULAR' | 'EQUIRECTANGULAR' | 'EQUIRECTANGULAR_THREED_TOP_BOTTOM' | 'MESH';
 export type SpatialAudioType = 'AMBISONICS_5_1' | 'AMBISONICS_QUAD' | 'FOA_WITH_NON_DIEGETIC';
@@ -211,17 +213,16 @@ export default class Format {
       };
 
     if (this.has_audio || this.has_text) {
-      const args = new URLSearchParams(this.cipher || this.signature_cipher);
-      const url_components = new URLSearchParams(args.get('url') || this.url);
+      const xtags = this.xtags
+        ? FormatXTags.decode(base64ToU8(decodeURIComponent(this.xtags).replace(/-/g, '+').replace(/_/g, '/'))).xtags
+        : [];
 
-      const xtags = url_components.get('xtags')?.split(':');
-
-      this.language = xtags?.find((x: string) => x.startsWith('lang='))?.split('=')[1] || null;
+      this.language = xtags.find((tag) => tag.key === 'lang')?.value || null;
 
       if (this.has_audio) {
-        this.is_drc = !!data.isDrc || !!xtags?.includes('drc=1');
+        this.is_drc = !!data.isDrc || xtags.some((tag) => tag.key === 'drc' && tag.value === '1');
 
-        const audio_content = xtags?.find((x) => x.startsWith('acont='))?.split('=')[1];
+        const audio_content = xtags.find((tag) => tag.key === 'acont')?.value;
         this.is_dubbed = audio_content === 'dubbed';
         this.is_descriptive = audio_content === 'descriptive';
         this.is_secondary = audio_content === 'secondary';

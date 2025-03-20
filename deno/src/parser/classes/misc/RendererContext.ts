@@ -1,35 +1,21 @@
 import type { RawNode } from '../../types/index.ts';
-import NavigationEndpoint from '../NavigationEndpoint.ts';
-
-export type CommandContext = {
-  on_tap?: NavigationEndpoint;
-};
-
-export type AccessibilityContext = {
-  label?: string;
-};
+import CommandContext from './CommandContext.ts';
+import AccessibilityContext from './AccessibilityContext.ts';
 
 export default class RendererContext {
-  public command_context: CommandContext;
-  public accessibility_context: AccessibilityContext;
+  public command_context?: CommandContext;
+  public accessibility_context?: AccessibilityContext;
 
   constructor(data?: RawNode) {
-    this.command_context = {};
-    this.accessibility_context = {};
-
     if (!data)
       return;
 
-    if (Reflect.has(data, 'commandContext')) {
-      if (Reflect.has(data.commandContext, 'onTap')) {
-        this.command_context.on_tap = new NavigationEndpoint(data.commandContext.onTap);
-      }
+    if ('commandContext' in data) {
+      this.command_context = new CommandContext(data.commandContext);
     }
 
-    if (Reflect.has(data, 'accessibilityContext')) {
-      if (Reflect.has(data.accessibilityContext, 'label')) {
-        this.accessibility_context.label = data.accessibilityContext.label;
-      }
+    if ('accessibilityContext' in data) {
+      this.accessibility_context = new AccessibilityContext(data.accessibilityContext);
     }
   }
 }

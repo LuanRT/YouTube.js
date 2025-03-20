@@ -11,7 +11,6 @@ import SettingsSwitch from '../classes/SettingsSwitch.ts';
 import CommentsHeader from '../classes/comments/CommentsHeader.ts';
 import ItemSectionHeader from '../classes/ItemSectionHeader.ts';
 import ItemSectionTabbedHeader from '../classes/ItemSectionTabbedHeader.ts';
-import Tab from '../classes/Tab.ts';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
 
 import type { ApiResponse, Actions } from '../../core/index.ts';
@@ -34,7 +33,7 @@ export default class Settings {
     if (!this.#page.contents)
       throw new InnertubeError('Page contents not found');
 
-    const tab = this.#page.contents.item().as(TwoColumnBrowseResults).tabs.array().as(Tab).get({ selected: true });
+    const tab = this.#page.contents.item().as(TwoColumnBrowseResults).tabs.get({ selected: true });
 
     if (!tab)
       throw new InnertubeError('Target tab not found');

@@ -25,13 +25,15 @@ export const OAUTH = {
 export const CLIENTS = {
   IOS: {
     NAME: 'iOS',
-    VERSION: '18.06.35',
-    USER_AGENT: 'com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)',
-    DEVICE_MODEL: 'iPhone10,6'
+    VERSION: '20.11.6',
+    USER_AGENT: 'com.google.ios.youtube/20.11.6 (iPhone10,4; U; CPU iOS 16_7_7 like Mac OS X)',
+    DEVICE_MODEL: 'iPhone10,4',
+    OS_NAME: 'iOS',
+    OS_VERSION: '16.7.7.20H330'
   },
   WEB: {
     NAME: 'WEB',
-    VERSION: '2.20241121.01.00',
+    VERSION: '2.20250222.10.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco',
@@ -39,12 +41,12 @@ export const CLIENTS = {
   },
   MWEB: {
     NAME: 'MWEB',
-    VERSION: '2.20241205.01.00',
+    VERSION: '2.20250224.01.00',
     API_VERSION: 'v1'
   },
   WEB_KIDS: {
     NAME: 'WEB_KIDS',
-    VERSION: '2.20230111.00.00'
+    VERSION: '2.20250221.11.00'
   },
   YTMUSIC: {
     NAME: 'WEB_REMIX',
@@ -66,7 +68,7 @@ export const CLIENTS = {
   },
   TV: {
     NAME: 'TVHTML5',
-    VERSION: '7.20241016.15.00',
+    VERSION: '7.20250219.14.00',
     USER_AGENT: 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'
   },
   TV_EMBEDDED: {
@@ -75,7 +77,7 @@ export const CLIENTS = {
   },
   WEB_EMBEDDED: {
     NAME: 'WEB_EMBEDDED_PLAYER',
-    VERSION: '2.20240111.09.00',
+    VERSION: '1.20250219.01.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'
