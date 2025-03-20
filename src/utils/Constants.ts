@@ -25,9 +25,11 @@ export const OAUTH = {
 export const CLIENTS = {
   IOS: {
     NAME: 'iOS',
-    VERSION: '18.06.35',
-    USER_AGENT: 'com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)',
-    DEVICE_MODEL: 'iPhone10,6'
+    VERSION: '20.11.6',
+    USER_AGENT: 'com.google.ios.youtube/20.11.6 (iPhone10,4; U; CPU iOS 16_7_7 like Mac OS X)',
+    DEVICE_MODEL: 'iPhone10,4',
+    OS_NAME: 'iOS',
+    OS_VERSION: '16.7.7.20H330'
   },
   WEB: {
     NAME: 'WEB',
