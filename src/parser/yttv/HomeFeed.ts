@@ -16,7 +16,6 @@ export default class HomeFeed {
     this.#actions = actions;
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
     
-    // TODO: Optimize?
     const sectionList = this.#page.contents_memo?.getType(SectionList).firstOfType(SectionList);
     
     this.sections = sectionList?.contents;

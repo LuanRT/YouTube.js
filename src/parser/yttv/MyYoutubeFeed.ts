@@ -39,7 +39,6 @@ export default class MyYoutubeFeed {
       } else {
         throw new InnertubeError(`No supported content type for MyYoutubeFeed provided. Type ${content?.type}`);
       }
-      // TODO: Optimize
     } else if (this.#page.contents_memo?.getType(TvSurfaceContent).first()) {
       const content = this.#page.contents_memo?.getType(TvSurfaceContent).first().content;
       if (content?.is(Grid)) {
