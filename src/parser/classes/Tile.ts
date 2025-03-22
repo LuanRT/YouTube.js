@@ -11,7 +11,7 @@ export default class Tile extends YTNode {
   header: TileHeader | null;
   on_select_endpoint: NavigationEndpoint;
   content_id?: string;
-  content_type?: 'TILE_CONTENT_TYPE_VIDEO' | 'TILE_CONTENT_TYPE_SHORTS' | 'TILE_CONTENT_TYPE_CHANNEL' | 'TILE_CONTENT_TYPE_PLAYLIST' | 'TILE_CONTENT_TYPE_EDU'; // TODO: Extend?
+  content_type?: 'TILE_CONTENT_TYPE_VIDEO' | 'TILE_CONTENT_TYPE_SHORTS' | 'TILE_CONTENT_TYPE_CHANNEL' | 'TILE_CONTENT_TYPE_PLAYLIST' | 'TILE_CONTENT_TYPE_EDU';
   on_long_press_endpoint: NavigationEndpoint;
   metadata?: TileMetadata | null;
   on_focus_endpoint?: NavigationEndpoint;
