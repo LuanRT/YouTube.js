@@ -10,12 +10,13 @@ import SectionList from './SectionList.js';
 import StructuredDescriptionContent from './StructuredDescriptionContent.js';
 import VideoAttributeView from './VideoAttributeView.js';
 import OverlayPanelHeader from './OverlayPanelHeader.js';
+import ItemSection from './ItemSection.js';
 
 export default class EngagementPanelSectionList extends YTNode {
   static type = 'EngagementPanelSectionList';
 
   public header: EngagementPanelTitleHeader | OverlayPanelHeader | null;
-  public content: PlaylistCollaborationView | VideoAttributeView | SectionList | ContinuationItem | ClipSection | StructuredDescriptionContent | MacroMarkersList | ProductList | null;
+  public content: PlaylistCollaborationView | VideoAttributeView | ItemSection | SectionList | ContinuationItem | ClipSection | StructuredDescriptionContent | MacroMarkersList | ProductList | null;
   public target_id?: string;
   public panel_identifier?: string;
   public identifier?: {
@@ -28,7 +29,7 @@ export default class EngagementPanelSectionList extends YTNode {
     super();
     this.header = Parser.parseItem(data.header, [ EngagementPanelTitleHeader, OverlayPanelHeader ]);
     this.content = Parser.parseItem(data.content, [
-      PlaylistCollaborationView, VideoAttributeView, SectionList,
+      PlaylistCollaborationView, VideoAttributeView, ItemSection, SectionList,
       ContinuationItem, ClipSection, StructuredDescriptionContent,
       MacroMarkersList, ProductList
     ]);

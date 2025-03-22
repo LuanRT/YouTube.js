@@ -13,8 +13,6 @@ export default class LikeButton extends YTNode {
   likes_allowed: string;
   like_count: number;
   endpoints?: NavigationEndpoint[];
-  
-  // TODO: Add Like and Dislike endpoints
 
   constructor(data: RawNode) {
     super();

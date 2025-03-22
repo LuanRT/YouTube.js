@@ -9,7 +9,6 @@ export default class HorizontalList extends YTNode {
   visible_item_count: string;
   items: ObservedArray<YTNode>;
   
-  // TODO: Add continuation data here?
   continuations?: ObservedArray<NextContinuationData | ReloadContinuationData>;
 
   constructor(data: RawNode) {
