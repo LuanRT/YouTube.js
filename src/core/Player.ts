@@ -12,13 +12,15 @@ export default class Player {
   public sts: number;
   public nsig_sc?: string;
   public sig_sc?: string;
+  public global_array_obj?: Record<string, unknown>;
   public po_token?: string;
 
-  constructor(player_id: string, signature_timestamp: number, sig_sc?: string, nsig_sc?: string) {
+  constructor(player_id: string, signature_timestamp: number, sig_sc?: string, nsig_sc?: string, global_array_obj?: Record<string, unknown>) {
     this.player_id = player_id;
     this.sts = signature_timestamp;
     this.nsig_sc = nsig_sc;
     this.sig_sc = sig_sc;
+    this.global_array_obj = global_array_obj;
   }
 
   static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch, po_token?: string): Promise<Player> {
@@ -66,10 +68,15 @@ export default class Player {
     const sig_timestamp = this.extractSigTimestamp(player_js);
     const sig_sc = this.extractSigSourceCode(player_js);
     const nsig_sc = this.extractNSigSourceCode(player_js);
+    const global_array_nv = this.extractGlobalArrayVariableNameValue(player_js);
+    const global_array_obj = {} as Record<string, unknown>;
+    if (global_array_nv) {
+      global_array_obj[global_array_nv.name] = Platform.shim.eval(global_array_nv.value, {});
+    }
 
     Log.info(TAG, `Got signature timestamp (${sig_timestamp}) and algorithms needed to decipher signatures.`);
 
-    const player = await Player.fromSource(player_id, sig_timestamp, cache, sig_sc, nsig_sc);
+    const player = await Player.fromSource(player_id, sig_timestamp, cache, sig_sc, nsig_sc, global_array_obj);
     player.po_token = po_token;
 
     return player;
@@ -85,9 +92,10 @@ export default class Player {
     const url_components = new URL(args.get('url') || url);
 
     if (this.sig_sc && (signature_cipher || cipher)) {
-      const signature = Platform.shim.eval(this.sig_sc, {
-        sig: args.get('s')
-      });
+      const context = { sig: args.get('s') };
+      if (this.global_array_obj)
+        Object.assign(context, this.global_array_obj);
+      const signature = Platform.shim.eval(this.sig_sc, context);
 
       Log.info(TAG, `Transformed signature from ${args.get('s')} to ${signature}.`);
 
@@ -111,9 +119,10 @@ export default class Player {
       if (this_response_nsig_cache && this_response_nsig_cache.has(n)) {
         nsig = this_response_nsig_cache.get(n) as string;
       } else {
-        nsig = Platform.shim.eval(this.nsig_sc, {
-          nsig: n
-        });
+        const context = { nsig: n };
+        if (this.global_array_obj)
+          Object.assign(context, this.global_array_obj);
+        nsig = Platform.shim.eval(this.nsig_sc, context);
 
         Log.info(TAG, `Transformed n signature from ${n} to ${nsig}.`);
 
@@ -191,8 +200,8 @@ export default class Player {
     return new Player(player_id, sig_timestamp, sig_sc, nsig_sc);
   }
 
-  static async fromSource(player_id: string, sig_timestamp: number, cache?: ICache, sig_sc?: string, nsig_sc?: string): Promise<Player> {
-    const player = new Player(player_id, sig_timestamp, sig_sc, nsig_sc);
+  static async fromSource(player_id: string, sig_timestamp: number, cache?: ICache, sig_sc?: string, nsig_sc?: string, global_array_obj?: Record<string, unknown>): Promise<Player> {
+    const player = new Player(player_id, sig_timestamp, sig_sc, nsig_sc, global_array_obj);
     await player.cache(cache);
     return player;
   }
@@ -224,7 +233,7 @@ export default class Player {
   }
 
   static extractSigSourceCode(data: string): string | undefined {
-    const match = data.match(/function\(([A-Za-z_0-9]+)\)\{([A-Za-z_0-9]+=[A-Za-z_0-9]+\.split\(""\)(.+?)\.join\(""\))\}/);
+    const match = data.match(/function\(([A-Za-z_0-9]+)\)\{([A-Za-z_0-9]+=[A-Za-z_0-9]+\.split\((?:""|[A-Za-z0-9]+\[\d+\])\)(.+?)\.join\((?:""|[A-Za-z0-9]+\[\d+\])\))\}/);
 
     if (!match) {
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
@@ -236,8 +245,10 @@ export default class Player {
     const obj_name = match[3].split(/\.|\[/)[0]?.replace(';', '').trim();
     const functions = getStringBetweenStrings(data, `var ${obj_name}={`, '};');
 
-    if (!functions || !var_name)
+    if (!functions || !var_name) {
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
+      return;
+    }
 
     return `function descramble_sig(${var_name}) { let ${obj_name}={${functions}}; ${match[2]} } descramble_sig(sig);`;
   }
@@ -245,17 +256,41 @@ export default class Player {
   static extractNSigSourceCode(data: string): string | undefined {
     // This used to be the prefix of the error tag (leaving it here for reference).
     let nsig_function = findFunction(data, { includes: 'enhanced_except' });
-   
+
     // This is the suffix of the error tag.
     if (!nsig_function)
       nsig_function = findFunction(data, { includes: '-_w8_' });
-    
+
     // Usually, only this function uses these dates in the entire script.
     if (!nsig_function)
       nsig_function = findFunction(data, { includes: '1969' });
-    
-    if (nsig_function)
+
+    // Only this function uses this hardcoded regexp.
+    if (!nsig_function)
+      nsig_function = findFunction(data, { regexp: /catch\(\w+?\)\{return \w+?\[\d+\]\+\w+?\}return \w+?\.join\(\w+?\[\d\]\)\}/ });
+
+    if (nsig_function) {
       return `${nsig_function.result} ${nsig_function.name}(nsig);`;
+    }
+  }
+
+  static extractGlobalArrayVariableNameValue(data: string): { name: string, value: string } | undefined {
+    const regex = new RegExp(`
+      (?<q1>["'])use\\s+strict(\\k<q1>);\\s*
+        (?<code>
+            var\\s+(?<name>[a-zA-Z0-9_$]+)\\s*=\\s*
+            (?<value>
+                (?<q2>["'])(?:(?!(\\?\\k<q2>)).|\\.)+\\k<q2>
+                \\.split\\((?<q3>["'])(?:(?!\\k<q3>).)+\\k<q3>\\)
+            )
+        )[;,]
+    `.replaceAll(/\s/g, ''));
+    const match = data.match(regex);
+
+    if (!match || !match.groups)
+      return;
+
+    return { name: match.groups.name, value: match.groups.value };
   }
 
   get url(): string {
@@ -263,6 +298,6 @@ export default class Player {
   }
 
   static get LIBRARY_VERSION(): number {
-    return 13;
+    return 14;
   }
 }
