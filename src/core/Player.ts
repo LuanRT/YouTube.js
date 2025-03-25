@@ -275,7 +275,8 @@ export default class Player {
   }
 
   static extractGlobalArrayVariableNameValue(data: string): { name: string, value: string } | undefined {
-    const regex = new RegExp(`
+    // Global array variable in `string.split` form
+    const match1 = data.match(new RegExp(`
       (?<q1>["'])use\\s+strict(\\k<q1>);\\s*
         (?<code>
             var\\s+(?<name>[a-zA-Z0-9_$]+)\\s*=\\s*
@@ -284,13 +285,30 @@ export default class Player {
                 \\.split\\((?<q3>["'])(?:(?!\\k<q3>).)+\\k<q3>\\)
             )
         )[;,]
-    `.replaceAll(/\s/g, ''));
-    const match = data.match(regex);
+    `.replaceAll(/\s/g, '')));
 
-    if (!match || !match.groups)
-      return;
+    if (match1 && match1.groups)
+      return { name: match1.groups.name, value: match1.groups.value };
 
-    return { name: match.groups.name, value: match.groups.value };
+    // Global array variable in array of strings form
+    const match2 = data.match(new RegExp(`
+      (?<q1>["'])use\\s+strict(\\k<q1>);\\s*
+        (?<code>
+            var\\s+(?<name>[a-zA-Z0-9_$]+)\\s*=\\s*
+            (?<value>
+                \\[
+                  (?:
+                  (?:"(?:(?!(\\?")).|\\.)+")
+                  |
+                  (?:'(?:(?!(\\?')).|\\.)+')
+                  ,?)+
+                \\]
+            )
+        )[;,]
+    `.replaceAll(/\s/g, '')));
+
+    if (match2 && match2.groups)
+      return { name: match2.groups.name, value: match2.groups.value };
   }
 
   get url(): string {
