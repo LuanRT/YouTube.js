@@ -1,5 +1,17 @@
 # Changelog
 
+## [13.3.0](https://github.com/LuanRT/YouTube.js/compare/v13.2.0...v13.3.0) (2025-03-25)
+
+
+### Features
+
+* **MusicImmersiveHeader:** Parse buttons and menu ([cbb2535](https://github.com/LuanRT/YouTube.js/commit/cbb2535b2492777b0045be5fcf9bece03fe4f84e))
+
+
+### Bug Fixes
+
+* **Player:** Parse global variable used by nsig/sig ([#935](https://github.com/LuanRT/YouTube.js/issues/935)) ([edfd65f](https://github.com/LuanRT/YouTube.js/commit/edfd65f5e08a9155b8c31d8127a4e309313b39de))
+
 ## [13.2.0](https://github.com/LuanRT/YouTube.js/compare/v13.1.0...v13.2.0) (2025-03-20)
 
 
