@@ -1,13 +1,14 @@
-import { Memo } from '../parser/helpers.js';
-import { Text } from '../parser/misc.js';
-import * as Log from './Log.js';
-import userAgents from './user-agents.js';
+import type { Node } from 'estree';
 import { Jinter } from 'jintr';
 
 import type { EmojiRun, TextRun } from '../parser/misc.js';
 import type { FetchFunction } from '../types/index.js';
 import type PlatformShim from '../types/PlatformShim.js';
-import type { Node } from 'estree';
+
+import { Memo } from '../parser/helpers.js';
+import { Text } from '../parser/misc.js';
+import * as Log from './Log.js';
+import userAgents from './user-agents.js';
 
 const TAG_ = 'Utils';
 
@@ -17,6 +18,7 @@ export class Platform {
   static load(platform: PlatformShim): void {
     shim = platform;
   }
+
   static get shim(): PlatformShim {
     if (!shim) {
       throw new Error('Platform is not loaded');
@@ -24,6 +26,7 @@ export class Platform {
     return shim;
   }
 }
+
 export class InnertubeError extends Error {
   date: Date;
   version: string;
@@ -41,12 +44,23 @@ export class InnertubeError extends Error {
   }
 }
 
-export class ParsingError extends InnertubeError { }
-export class MissingParamError extends InnertubeError { }
-export class OAuth2Error extends InnertubeError { }
-export class PlayerError extends Error { }
-export class SessionError extends Error { }
-export class ChannelError extends Error { }
+export class ParsingError extends InnertubeError {
+}
+
+export class MissingParamError extends InnertubeError {
+}
+
+export class OAuth2Error extends InnertubeError {
+}
+
+export class PlayerError extends Error {
+}
+
+export class SessionError extends Error {
+}
+
+export class ChannelError extends Error {
+}
 
 /**
  * Compares given objects. May not work correctly for
@@ -251,7 +265,7 @@ export function getCookie(cookies: string, name: string, matchWholeName = false)
   return match ? match[2] : undefined;
 }
 
-export type FindFunctionArgs = {
+export type ASTLookupArgs = {
   /**
    * The name of the function.
    */
@@ -266,9 +280,14 @@ export type FindFunctionArgs = {
    * A regular expression that the function's code must match.
    */
   regexp?: RegExp;
+
+  /**
+   * The abstract syntax tree of the source code.
+   */
+  ast?: ReturnType<typeof Jinter.parseScript>;
 };
 
-export type FindFunctionResult = {
+export type ASTLookupResult = {
   start: number;
   end: number;
   name: string;
@@ -277,7 +296,7 @@ export type FindFunctionResult = {
 };
 
 /**
- * Finds a function in a source string based on the provided search criteria.
+ * Searches for a function in the given code based on specified criteria.
  *
  * @example
  * ```ts
@@ -286,12 +305,14 @@ export type FindFunctionResult = {
  * console.log(result);
  * // Output: { start: 69, end: 110, name: 'bar', node: { ... }, result: 'bar = function() { console.log("bar"); };' }
  * ```
+ * 
+ * @returns An object containing the function's details if found, `undefined` otherwise.
  */
-export function findFunction(source: string, args: FindFunctionArgs): FindFunctionResult | undefined {
-  const { name, includes, regexp } = args;
+export function findFunction(source: string, args: ASTLookupArgs): ASTLookupResult | undefined {
+  const { name, includes, regexp, ast } = args;
 
-  const node = Jinter.parseScript(source);
-  const stack = [ node ] as (Node & { start: number; end: number})[];
+  const node = ast ? ast : Jinter.parseScript(source);
+  const stack = [ node ] as (Node & { start: number; end: number })[];
 
   for (let i = 0; i < stack.length; i++) {
     const current = stack[i];
@@ -307,7 +328,7 @@ export function findFunction(source: string, args: FindFunctionArgs): FindFuncti
 
       if (
         (name && current.expression.left.name === name) ||
-        (includes && code.indexOf(includes) > -1) ||
+        (includes && code.includes(includes)) ||
         (regexp && regexp.test(code))
       ) {
         return {
@@ -329,4 +350,76 @@ export function findFunction(source: string, args: FindFunctionArgs): FindFuncti
       }
     }
   }
+}
+
+/**
+ * Searches for a variable declaration in the given code based on specified criteria.
+ *
+ * @example
+ * ```ts
+ * // Find a variable by name
+ * const code = 'const x = 5; let y = "hello";';
+ * const a = findVariable(code, { name: 'y' });
+ * console.log(a?.result);
+ *
+ * // Find a variable containing specific text
+ * const b = findVariable(code, { includes: 'hello' });
+ * console.log(b?.result);
+ *
+ * // Find a variable matching a pattern
+ * const c = findVariable(code, { regexp: /y\s*=\s*"hello"/ });
+ * console.log(c?.result);
+ * ```
+ * 
+ * @returns An object containing the variable's details if found, `undefined` otherwise.
+ */
+export function findVariable(code: string, options: ASTLookupArgs): ASTLookupResult | undefined {
+  const ast = options.ast ? options.ast : Jinter.parseScript(code, { ecmaVersion: 'latest', ranges: true });
+
+  let found: ASTLookupResult | undefined;
+
+  function walk(node: Node): void {
+    if (found) return;
+
+    if (node.type === 'VariableDeclaration') {
+      const [ start, end ] = node.range!;
+      const node_source = code.slice(start, end);
+
+      for (const declarator of node.declarations) {
+        if (declarator.id.type === 'Identifier') {
+          const var_name = declarator.id.name;
+          if (options.name && var_name === options.name) {
+            found = { start, end, name: var_name, node, result: node_source };
+            return;
+          }
+        }
+      }
+      if (
+        (options.includes && node_source.includes(options.includes)) ||
+        (options.regexp && options.regexp.test(node_source))) {
+        found = { start, end, name: (node.declarations?.[0]?.id as any)?.name, node, result: node_source };
+        return;
+      }
+    }
+
+    for (const key in node) {
+      if (Object.prototype.hasOwnProperty.call(node, key)) {
+        const child = node[key as keyof typeof node] as any;
+        if (Array.isArray(child)) {
+          for (const c of child) {
+            if (c && typeof c.type === 'string') {
+              walk(c);
+              if (found) return;
+            }
+          }
+        } else if (child && typeof child.type === 'string') {
+          walk(child);
+          if (found) return;
+        }
+      }
+    }
+  }
+
+  walk(ast);
+  return found;
 }

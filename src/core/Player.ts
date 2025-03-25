@@ -1,6 +1,15 @@
-import { Log, LZW, Constants } from '../utils/index.js';
-import { Platform, getRandomUserAgent, getStringBetweenStrings, findFunction, PlayerError } from '../utils/Utils.js';
-import type { ICache, FetchFunction } from '../types/index.js';
+import { Jinter } from 'jintr';
+import type { FetchFunction, ICache } from '../types/index.js';
+import { Constants, Log, LZW } from '../utils/index.js';
+import {
+  type ASTLookupResult,
+  findFunction,
+  findVariable,
+  getRandomUserAgent,
+  getStringBetweenStrings,
+  Platform,
+  PlayerError
+} from '../utils/Utils.js';
 
 const TAG = 'Player';
 
@@ -63,9 +72,12 @@ export default class Player {
 
     const player_js = await player_res.text();
 
+    const ast = Jinter.parseScript(player_js, { ecmaVersion: 'latest', ranges: true });
+
     const sig_timestamp = this.extractSigTimestamp(player_js);
-    const sig_sc = this.extractSigSourceCode(player_js);
-    const nsig_sc = this.extractNSigSourceCode(player_js);
+    const global_variable = this.extractGlobalVariable(player_js, ast);
+    const sig_sc = this.extractSigSourceCode(player_js, global_variable);
+    const nsig_sc = this.extractNSigSourceCode(player_js, ast, global_variable);
 
     Log.info(TAG, `Got signature timestamp (${sig_timestamp}) and algorithms needed to decipher signatures.`);
 
@@ -223,8 +235,27 @@ export default class Player {
     return parseInt(getStringBetweenStrings(data, 'signatureTimestamp:', ',') || '0');
   }
 
-  static extractSigSourceCode(data: string): string | undefined {
-    const match = data.match(/function\(([A-Za-z_0-9]+)\)\{([A-Za-z_0-9]+=[A-Za-z_0-9]+\.split\(""\)(.+?)\.join\(""\))\}/);
+  static extractGlobalVariable(data: string, ast: ReturnType<typeof Jinter.parseScript>): ASTLookupResult | undefined {
+    let variable = findVariable(data, { includes: '-_w8_', ast });
+
+    // For redundancy/the above fails:
+    if (!variable)
+      variable = findVariable(data, { includes: 'Untrusted URL{', ast });
+
+    if (!variable)
+      variable = findVariable(data, { includes: '1969', ast });
+
+    if (!variable)
+      variable = findVariable(data, { includes: '1970', ast });
+
+    if (!variable)
+      variable = findVariable(data, { includes: 'playerfallback', ast });
+
+    return variable;
+  }
+
+  static extractSigSourceCode(data: string, global_variable?: ASTLookupResult): string | undefined {
+    const match = data.match(/function\(([A-Za-z_0-9]+)\)\{([A-Za-z_0-9]+=[A-Za-z_0-9]+\.split\((?:[^)]+)\)(.+?)\.join\((?:[^)]+)\))\}/);
 
     if (!match) {
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
@@ -232,30 +263,45 @@ export default class Player {
     }
 
     const var_name = match[1];
-
     const obj_name = match[3].split(/\.|\[/)[0]?.replace(';', '').trim();
     const functions = getStringBetweenStrings(data, `var ${obj_name}={`, '};');
 
     if (!functions || !var_name)
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
 
-    return `function descramble_sig(${var_name}) { let ${obj_name}={${functions}}; ${match[2]} } descramble_sig(sig);`;
+    return `${global_variable?.result || ''} function descramble_sig(${var_name}) { let ${obj_name}={${functions}}; ${match[2]} } descramble_sig(sig);`;
   }
 
-  static extractNSigSourceCode(data: string): string | undefined {
-    // This used to be the prefix of the error tag (leaving it here for reference).
-    let nsig_function = findFunction(data, { includes: 'enhanced_except' });
-   
+  static extractNSigSourceCode(data: string, ast?: ReturnType<typeof Jinter.parseScript>, global_variable?: ASTLookupResult): string | undefined {
+    let nsig_function;
+
+    if (global_variable) {
+      nsig_function = findFunction(data, { includes: `new Date(${global_variable.name}`, ast });
+      
+      // For redundancy/the above fails:
+      if (!nsig_function)
+        nsig_function = findFunction(data, { includes: '.push(String.fromCharCode(', ast });
+      
+      if (!nsig_function)
+        nsig_function = findFunction(data, { includes: '.reverse().forEach(function', ast });
+      
+      if (nsig_function)
+        return `${global_variable.result} var ${nsig_function.result} ${nsig_function.name}(nsig);`;
+    }
+
     // This is the suffix of the error tag.
-    if (!nsig_function)
-      nsig_function = findFunction(data, { includes: '-_w8_' });
+    nsig_function = findFunction(data, { includes: '-_w8_', ast });
     
     // Usually, only this function uses these dates in the entire script.
     if (!nsig_function)
-      nsig_function = findFunction(data, { includes: '1969' });
+      nsig_function = findFunction(data, { includes: '1969', ast });
+    
+    // This used to be the prefix of the error tag (leaving it here for reference).
+    if (!nsig_function)
+      nsig_function = findFunction(data, { includes: 'enhanced_except', ast });
     
     if (nsig_function)
-      return `${nsig_function.result} ${nsig_function.name}(nsig);`;
+      return `let ${nsig_function.result} ${nsig_function.name}(nsig);`;
   }
 
   get url(): string {
@@ -263,6 +309,6 @@ export default class Player {
   }
 
   static get LIBRARY_VERSION(): number {
-    return 13;
+    return 14;
   }
 }
