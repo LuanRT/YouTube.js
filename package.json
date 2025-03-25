@@ -103,7 +103,7 @@
   "license": "MIT",
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0",
-    "jintr": "^3.2.1",
+    "jintr": "^3.3.0",
     "tslib": "^2.5.0",
     "undici": "^5.19.1"
   },
