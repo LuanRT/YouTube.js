@@ -199,9 +199,9 @@ export default class HTTPClient {
         ctx.client.deviceMake = 'Apple';
         ctx.client.deviceModel = Constants.CLIENTS.IOS.DEVICE_MODEL;
         ctx.client.clientVersion = Constants.CLIENTS.IOS.VERSION;
-        ctx.client.clientName = Constants.CLIENTS.IOS.NAME;
+        ctx.client.clientName = Constants.CLIENTS.IOS.OS_NAME;
         ctx.client.platform = 'MOBILE';
-        ctx.client.osName = Constants.CLIENTS.IOS.NAME;
+        ctx.client.osName = Constants.CLIENTS.IOS.OS_NAME;
         ctx.client.osVersion = Constants.CLIENTS.IOS.OS_VERSION;
         delete ctx.client.browserName;
         delete ctx.client.browserVersion;
