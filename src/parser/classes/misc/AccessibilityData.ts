@@ -1,5 +1,9 @@
 import type { RawNode } from '../../types/index.js';
 
+export interface AccessibilitySupportedDatas {
+  accessibility_data: AccessibilityData;
+}
+
 export interface AccessibilityId {
   accessibility_id_type?:
     | 'UNKNOWN'

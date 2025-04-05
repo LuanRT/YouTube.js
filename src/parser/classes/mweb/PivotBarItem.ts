@@ -1,7 +1,7 @@
 import { YTNode } from '../../helpers.js';
 import { type RawNode } from '../../index.js';
-import Text from '../misc/Text.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
+import AccessibilityData, { type AccessibilitySupportedDatas } from '../misc/AccessibilityData.js';
 
 export default class PivotBarItem extends YTNode {
   static type = 'PivotBarItem';
@@ -11,6 +11,7 @@ export default class PivotBarItem extends YTNode {
   public title: Text;
   public accessibility_label?: string;
   public icon_type?: string;
+  public accessibility?: AccessibilitySupportedDatas;
 
   constructor(data: RawNode) {
     super();
@@ -18,10 +19,18 @@ export default class PivotBarItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.title = new Text(data.title);
 
-    if (Reflect.has(data, 'accessibility') && Reflect.has(data.accessibility, 'accessibilityData'))
-      this.accessibility_label = data.accessibility.accessibilityData.label;
-
+    if ('accessibility' in data
+      && 'accessibilityData' in data.accessibility) {
+      this.accessibility = {
+        accessibility_data: new AccessibilityData(data.accessibility.accessibilityData)
+      };
+    }
+    
     if (Reflect.has(data, 'icon') && Reflect.has(data.icon, 'iconType'))
       this.icon_type = data.icon.iconType;
+  }
+  
+  get label() {
+    return this.accessibility?.accessibility_data?.label;
   }
 }
