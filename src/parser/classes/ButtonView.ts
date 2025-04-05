@@ -94,8 +94,8 @@ export default class ButtonView extends YTNode {
     if ('customFontColor' in data)
       this.custom_font_color = data.customFontColor;
     
-    if ('buttonType' in data)
-      this.button_type = data.buttonType;
+    if ('type' in data)
+      this.button_type = data.type;
     
     if ('enabled' in data)
       this.enabled = data.enabled;
