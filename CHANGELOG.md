@@ -1,5 +1,19 @@
 # Changelog
 
+## [13.4.0](https://github.com/LuanRT/YouTube.js/compare/v13.3.0...v13.4.0) (2025-04-11)
+
+
+### Features
+
+* **MultiPageMenuNotificationSection:** Add `notification_section_title` ([f869011](https://github.com/LuanRT/YouTube.js/commit/f8690118c3e4edbc22a6b9f59477a8e40e39d9a3))
+* **RichRenderers:** Parse more UI elements ([d8f731b](https://github.com/LuanRT/YouTube.js/commit/d8f731b2fa4b755324b0ef4ad68be45f735b29a9))
+* **Text:** Parse accessibility data ([a95f52a](https://github.com/LuanRT/YouTube.js/commit/a95f52a4777ea158f3d3e85f4213aee364a2d38d))
+
+
+### Bug Fixes
+
+* **HTTPClient:** Use the correct constant for the iOS client OS name ([#938](https://github.com/LuanRT/YouTube.js/issues/938)) ([95d9211](https://github.com/LuanRT/YouTube.js/commit/95d9211eae51c2d47468cacbed8cd9bdaa2fcd33))
+
 ## [13.3.0](https://github.com/LuanRT/YouTube.js/compare/v13.2.0...v13.3.0) (2025-03-25)
 
 
