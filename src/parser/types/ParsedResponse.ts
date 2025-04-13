@@ -75,6 +75,7 @@ export interface IParsedResponse {
   items?: SuperParsedResult<YTNode>;
   entries?: NavigationEndpoint[];
   entries_memo?: Memo;
+  target_id?: string;
   continuation_endpoint?: YTNode;
   player_response?: IPlayerResponse;
   watch_next_response?: INextResponse;

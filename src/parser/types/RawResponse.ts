@@ -112,6 +112,7 @@ export interface IRawResponse {
     cpn: string;
     cpnSource: CpnSource;
   },
+  targetId?: string;
   items?: RawNode[];
   frameworkUpdates?: any;
   engagementPanels?: RawNode[];
