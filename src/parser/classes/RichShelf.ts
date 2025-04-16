@@ -18,6 +18,7 @@ export default class RichShelf extends YTNode {
     | 'RICH_GRID_LAYOUT_SIZING_COMPACT'
     | 'RICH_GRID_LAYOUT_SIZING_EXTRA_COMPACT'
     | 'RICH_GRID_LAYOUT_SIZING_TINY';
+  public icon_type?: string;
   public menu: YTNode | null;
   public next_button: YTNode | null;
   public previous_button: YTNode | null;
@@ -41,6 +42,10 @@ export default class RichShelf extends YTNode {
 
     if ('layoutSizing' in data) {
       this.layout_sizing = data.layoutSizing;
+    }
+    
+    if ('icon' in data) {
+      this.icon_type = data.icon.iconType;
     }
     
     this.menu = Parser.parseItem(data.menu);
