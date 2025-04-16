@@ -446,14 +446,18 @@ export default class Session extends EventEmitter {
           const config_headers: Record<string, any> = {
             'Accept-Language': lang,
             'Accept': '*/*',
-            'Referer': Constants.URLS.YT_BASE
+            'Referer': Constants.URLS.YT_BASE,
+            'X-Goog-Visitor-Id': context_data.visitor_data,
+            'X-Origin': Constants.URLS.YT_BASE,
+            'X-Youtube-Client-Version': context_data.client_version
           };
 
           if (Platform.shim.server) {
             config_headers['User-Agent'] = user_agent;
+            config_headers['Origin'] = Constants.URLS.YT_BASE;
           }
 
-          const config = await fetch(`${Constants.URLS.API.PRODUCTION_1}v1/config`, {
+          const config = await fetch(`${Constants.URLS.API.PRODUCTION_1}v1/config?prettyPrint=false`, {
             headers: config_headers,
             method: 'POST',
             body: JSON.stringify({ context: session_data.context })
