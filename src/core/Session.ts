@@ -11,7 +11,13 @@ import {
 
 import type { DeviceCategory } from '../utils/Utils.js';
 import type { FetchFunction, ICache } from '../types/index.js';
-import type { OAuth2Tokens, OAuth2AuthErrorEventHandler, OAuth2AuthPendingEventHandler, OAuth2AuthEventHandler } from './OAuth2.js';
+import type {
+  OAuth2Tokens,
+  OAuth2AuthErrorEventHandler,
+  OAuth2AuthPendingEventHandler,
+  OAuth2AuthEventHandler
+} from './OAuth2.js';
+import type { IRawResponse } from '../parser/index.js';
 
 export enum ClientType {
   WEB = 'WEB',
@@ -65,7 +71,10 @@ export type Context = {
     };
     memoryTotalKbytes?: string;
     configInfo?: {
-      appInstallData: string;
+      appInstallData?: string;
+      coldConfigData?: string;
+      coldHashData?: string;
+      hotHashData?: string;
     },
     kidsAppInfo?: {
       categorySettings: {
@@ -148,6 +157,10 @@ export type SessionOptions = {
    */
   enable_safety_mode?: boolean;
   /**
+   * Specifies whether to retrieve the InnerTube config. Useful for "onesie" requests.
+   */
+  retrieve_innertube_config?: boolean;
+  /**
    * Specifies whether to generate the session data locally or retrieve it from YouTube.
    * This can be useful if you need more performance.
    *
@@ -198,6 +211,7 @@ export type SessionData = {
   context: Context;
   api_key: string;
   api_version: string;
+  config_data?: string;
 }
 
 export type SWSessionData = {
@@ -224,34 +238,29 @@ const TAG = 'Session';
  * Represents an InnerTube session. This holds all the data needed to make requests to YouTube.
  */
 export default class Session extends EventEmitter {
-  public context: Context;
-  public player?: Player;
   public oauth: OAuth2;
   public http: HTTPClient;
   public logged_in: boolean;
   public actions: Actions;
-  public cache?: ICache;
-  public key: string;
-  public api_version: string;
-  public account_index: number;
-  public po_token?: string;
-  public cookie?: string;
   public user_agent?: string;
 
-  constructor(context: Context, api_key: string, api_version: string, account_index: number, player?: Player, cookie?: string, fetch?: FetchFunction, cache?: ICache, po_token?: string) {
+  constructor(
+    public context: Context,
+    public api_key: string,
+    public api_version: string,
+    public account_index: number,
+    public config_data?: string,
+    public player?: Player,
+    public cookie?: string,
+    fetch?: FetchFunction,
+    public cache?: ICache,
+    public po_token?: string
+  ) {
     super();
     this.http = new HTTPClient(this, cookie, fetch);
     this.actions = new Actions(this);
     this.oauth = new OAuth2(this);
     this.logged_in = !!cookie;
-    this.cache = cache;
-    this.account_index = account_index;
-    this.key = api_key;
-    this.api_version = api_version;
-    this.context = context;
-    this.player = player;
-    this.po_token = po_token;
-    this.cookie = cookie;
     this.user_agent = context.client.userAgent;
   }
 
@@ -273,7 +282,7 @@ export default class Session extends EventEmitter {
   }
 
   static async create(options: SessionOptions = {}) {
-    const { context, api_key, api_version, account_index } = await Session.getSessionData(
+    const { context, api_key, api_version, account_index, config_data } = await Session.getSessionData(
       options.lang,
       options.location,
       options.account_index,
@@ -288,11 +297,12 @@ export default class Session extends EventEmitter {
       options.on_behalf_of_user,
       options.cache,
       options.enable_session_cache,
-      options.po_token
+      options.po_token,
+      options.retrieve_innertube_config
     );
 
     return new Session(
-      context, api_key, api_version, account_index,
+      context, api_key, api_version, account_index, config_data,
       options.retrieve_player === false ? undefined : await Player.create(options.cache, options.fetch, options.po_token),
       options.cookie, options.fetch, options.cache, options.po_token
     );
@@ -326,7 +336,7 @@ export default class Session extends EventEmitter {
 
       if (session_args.on_behalf_of_user)
         result.context.user.onBehalfOfUser = session_args.on_behalf_of_user;
-      
+
       if (session_args.user_agent)
         result.context.client.userAgent = session_args.user_agent;
 
@@ -357,9 +367,21 @@ export default class Session extends EventEmitter {
     on_behalf_of_user?: string,
     cache?: ICache,
     enable_session_cache = true,
-    po_token?: string
+    po_token?: string,
+    retrieve_innertube_config = true
   ) {
-    const session_args = { lang, location, time_zone: tz, user_agent, device_category, client_name, enable_safety_mode, visitor_data, on_behalf_of_user, po_token };
+    const session_args = {
+      lang,
+      location,
+      time_zone: tz,
+      user_agent,
+      device_category,
+      client_name,
+      enable_safety_mode,
+      visitor_data,
+      on_behalf_of_user,
+      po_token
+    };
 
     let session_data: SessionData | undefined;
 
@@ -416,6 +438,48 @@ export default class Session extends EventEmitter {
         api_version,
         context: this.#buildContext(context_data)
       };
+
+      if (retrieve_innertube_config) {
+        try {
+          Log.info(TAG, 'Retrieving InnerTube config data.');
+
+          const config_headers: Record<string, any> = {
+            'Accept-Language': lang,
+            'Accept': '*/*',
+            'Referer': Constants.URLS.YT_BASE,
+            'X-Goog-Visitor-Id': context_data.visitor_data,
+            'X-Origin': Constants.URLS.YT_BASE,
+            'X-Youtube-Client-Version': context_data.client_version
+          };
+
+          if (Platform.shim.server) {
+            config_headers['User-Agent'] = user_agent;
+            config_headers['Origin'] = Constants.URLS.YT_BASE;
+          }
+
+          const config = await fetch(`${Constants.URLS.API.PRODUCTION_1}v1/config?prettyPrint=false`, {
+            headers: config_headers,
+            method: 'POST',
+            body: JSON.stringify({ context: session_data.context })
+          });
+
+          const configJson = await config.json() as IRawResponse;
+
+          const coldConfigData = configJson.responseContext?.globalConfigGroup?.rawColdConfigGroup?.configData;
+          const coldHashData = configJson.responseContext?.globalConfigGroup?.coldHashData;
+          const hotHashData = configJson.responseContext?.globalConfigGroup?.hotHashData;
+
+          session_data.config_data = configJson.configData;
+          session_data.context.client.configInfo = {
+            ...session_data.context.client.configInfo,
+            coldConfigData,
+            coldHashData,
+            hotHashData
+          };
+        } catch (error) {
+          Log.error(TAG, 'Failed to retrieve config data.', error);
+        }
+      }
 
       if (enable_session_cache)
         await this.#storeSession(session_data, cache);
