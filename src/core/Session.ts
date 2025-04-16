@@ -54,6 +54,8 @@ export type Context = {
     originalUrl?: string;
     deviceMake: string;
     deviceModel: string;
+    deviceExperimentId?: string;
+    rolloutToken?: string;
     utcOffsetMinutes: number;
     mainAppWebInfo?: {
       graftUrl: string;
@@ -108,6 +110,8 @@ type ContextData = {
   device_make: string;
   device_model: string;
   on_behalf_of_user?: string;
+  device_experiment_id?: string;
+  rollout_token?: string;
 }
 
 export type SessionOptions = {
@@ -475,7 +479,7 @@ export default class Session extends EventEmitter {
 
     const context_info = {
       hl: options.lang || device_info[0],
-      gl: options.location || device_info[2],
+      gl: options.location || device_info[1],
       remote_host: device_info[3],
       visitor_data: options.visitor_data || device_info[13],
       user_agent: options.user_agent,
@@ -490,6 +494,8 @@ export default class Session extends EventEmitter {
       device_make: device_info[11],
       device_model: device_info[12],
       app_install_data: app_install_data,
+      device_experiment_id: device_info[103],
+      rollout_token: device_info[107],
       enable_safety_mode: options.enable_safety_mode
     };
 
@@ -523,6 +529,8 @@ export default class Session extends EventEmitter {
         browserVersion: args.browser_version,
         utcOffsetMinutes: -Math.floor((new Date()).getTimezoneOffset()),
         memoryTotalKbytes: '8000000',
+        rolloutToken: args.rollout_token,
+        deviceExperimentId: args.device_experiment_id,
         mainAppWebInfo: {
           graftUrl: Constants.URLS.YT_BASE,
           pwaInstallabilityStatus: 'PWA_INSTALLABILITY_STATUS_UNKNOWN',
