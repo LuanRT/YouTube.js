@@ -592,6 +592,29 @@ export function parseItem(data?: RawNode, validTypes?: YTNodeConstructor | YTNod
 }
 
 /**
+ * Parses multiple items in an object as an array of items.
+ * @param data - The data to parse.
+ * @param validTypes - YTNode types that are allowed to be parsed.
+ */
+export function parseItems<T extends YTNode, K extends YTNodeConstructor<T>[]>(data: RawNode | undefined, validTypes: K): InstanceType<K[number]>[] | null;
+export function parseItems<T extends YTNode>(data: RawNode | undefined, validTypes: YTNodeConstructor<T>): T[] | null;
+export function parseItems(data?: RawNode): YTNode[];
+export function parseItems(data?: RawNode, validTypes?: YTNodeConstructor | YTNodeConstructor[]) {
+  if (!data) return null;
+  const keys = Object.keys(data);
+  const results: YTNode[] = [];
+  for (const key of keys) {
+    const temp_data = { [key]: data[key] };
+
+    const result = parseItem(temp_data, validTypes as YTNodeConstructor);
+    if (result) {
+      results.push(result);
+    }
+  }
+  return results;
+}
+
+/**
  * Parses an array of items.
  * @param data - The data to parse.
  * @param validTypes - YTNode types that are allowed to be parsed.
