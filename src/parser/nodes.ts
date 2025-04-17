@@ -498,6 +498,7 @@ export { default as UniversalWatchCard } from './classes/UniversalWatchCard.js';
 export { default as UploadTimeFactoid } from './classes/UploadTimeFactoid.js';
 export { default as UpsellDialog } from './classes/UpsellDialog.js';
 export { default as VerticalList } from './classes/VerticalList.js';
+export { default as VerticalProductCard } from './classes/VerticalProductCard.js';
 export { default as VerticalWatchCardList } from './classes/VerticalWatchCardList.js';
 export { default as Video } from './classes/Video.js';
 export { default as VideoAttributesSectionView } from './classes/VideoAttributesSectionView.js';
