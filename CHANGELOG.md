@@ -1,5 +1,26 @@
 # Changelog
 
+## [13.4.0](https://github.com/LuanRT/YouTube.js/compare/v13.3.0...v13.4.0) (2025-04-23)
+
+
+### Features
+
+* **MultiPageMenuNotificationSection:** Add `notification_section_title` ([f869011](https://github.com/LuanRT/YouTube.js/commit/f8690118c3e4edbc22a6b9f59477a8e40e39d9a3))
+* **Parser:** Add `OpenOnePickAddVideoModalCommand` node ([#901](https://github.com/LuanRT/YouTube.js/issues/901)) ([ff1aa67](https://github.com/LuanRT/YouTube.js/commit/ff1aa67b8bebd8e038ea77a124d0be0ed420bc55))
+* **parser:** Parse `targetId` ([458c490](https://github.com/LuanRT/YouTube.js/commit/458c4900d78f9b16761faae421bcd8cb302f19b8))
+* **RichRenderers:** Parse more UI elements ([d8f731b](https://github.com/LuanRT/YouTube.js/commit/d8f731b2fa4b755324b0ef4ad68be45f735b29a9))
+* **RichShelf:** Add `icon_type` property ([dce51cd](https://github.com/LuanRT/YouTube.js/commit/dce51cdc4abad21812ee9e7ba02885dffde35d3a))
+* **Session:** Add `deviceExperimentId` and `rolloutToken` to session data ([c704836](https://github.com/LuanRT/YouTube.js/commit/c7048368cc38a6a322c8006a4cfd208235d27caf))
+* **Session:** Add `retrieve_innertube_config` option ([#949](https://github.com/LuanRT/YouTube.js/issues/949)) ([4808d2e](https://github.com/LuanRT/YouTube.js/commit/4808d2e13a90710cdea2c72332deb7809d5fdbdd))
+* **Session:** Add option to override Player ID ([#951](https://github.com/LuanRT/YouTube.js/issues/951)) ([5e665e8](https://github.com/LuanRT/YouTube.js/commit/5e665e8f0ba6e68d689b42be852ec20597c6b6a6))
+* **Text:** Parse accessibility data ([a95f52a](https://github.com/LuanRT/YouTube.js/commit/a95f52a4777ea158f3d3e85f4213aee364a2d38d))
+
+
+### Bug Fixes
+
+* **HTTPClient:** Use the correct constant for the iOS client OS name ([#938](https://github.com/LuanRT/YouTube.js/issues/938)) ([95d9211](https://github.com/LuanRT/YouTube.js/commit/95d9211eae51c2d47468cacbed8cd9bdaa2fcd33))
+* **Player:** Use global var to find signature algorithm ([#953](https://github.com/LuanRT/YouTube.js/issues/953)) ([7f1eeb6](https://github.com/LuanRT/YouTube.js/commit/7f1eeb6b5bbae72d455609e8fd972ad936a69e27))
+
 ## [13.3.0](https://github.com/LuanRT/YouTube.js/compare/v13.2.0...v13.3.0) (2025-03-25)
 
 
