@@ -30,18 +30,21 @@ export default class Player {
     this.sig_sc = sig_sc;
   }
 
-  static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch, po_token?: string): Promise<Player> {
-    const url = new URL('/iframe_api', Constants.URLS.YT_BASE);
-    const res = await fetch(url);
+  static async create(cache: ICache | undefined, fetch: FetchFunction = Platform.shim.fetch, po_token?: string, player_id?: string): Promise<Player> {
 
-    if (!res.ok)
-      throw new PlayerError(`Failed to get player id: ${res.status} (${res.statusText})`);
+    if (!player_id) {
+      const url = new URL('/iframe_api', Constants.URLS.YT_BASE);
+      const res = await fetch(url);
 
-    const js = await res.text();
+      if (!res.ok)
+        throw new PlayerError(`Failed to get player id: ${res.status} (${res.statusText})`);
 
-    const player_id = getStringBetweenStrings(js, 'player\\/', '\\/');
+      const js = await res.text();
 
-    Log.info(TAG, `Got player id (${player_id}). Checking for cached players..`);
+      player_id = getStringBetweenStrings(js, 'player\\/', '\\/');
+    }
+
+    Log.info(TAG, `Using player id (${player_id}). Checking for cached players..`);
 
     if (!player_id)
       throw new PlayerError('Failed to get player id');
