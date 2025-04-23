@@ -51,18 +51,6 @@ export default class Actions {
   }
 
   /**
-   * Mimics the Axios API using Fetch's Response object.
-   * @param response - The response object.
-   */
-  async #wrap(response: Response): Promise<ApiResponse> {
-    return {
-      success: response.ok,
-      status_code: response.status,
-      data: JSON.parse(await response.text())
-    };
-  }
-
-  /**
    * Makes calls to the playback tracking API.
    * @param url - The URL to call.
    * @param client - The client to use.
@@ -187,7 +175,12 @@ export default class Actions {
       return parsed_response;
     }
 
-    return this.#wrap(response);
+    // Mimics the Axios API using Fetch's Response object.
+    return {
+      success: response.ok,
+      status_code: response.status,
+      data: JSON.parse(await response.text())
+    };
   }
 
   #isBrowse(response: IParsedResponse): response is IBrowseResponse {

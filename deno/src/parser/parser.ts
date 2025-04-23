@@ -517,6 +517,10 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   if (data.entries) {
     parsed_data.entries = data.entries.map((entry) => new NavigationEndpoint(entry));
   }
+  
+  if (data.targetId) {
+    parsed_data.target_id = data.targetId;
+  }
 
   return parsed_data;
 }

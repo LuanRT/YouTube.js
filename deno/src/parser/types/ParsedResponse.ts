@@ -5,7 +5,6 @@ import type {
   PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand, ShowMiniplayerCommand, NavigateAction
 } from '../index.ts';
 
-import type { CpnSource } from './RawResponse.ts';
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.ts';
 import type CardCollection from '../classes/CardCollection.ts';
 import type Endscreen from '../classes/Endscreen.ts';
@@ -68,13 +67,17 @@ export interface IParsedResponse {
   endscreen?: Endscreen;
   cards?: CardCollection;
   cpn_info?: {
-    cpn: string;
-    cpn_source: CpnSource;
+    cpn?: string;
+    cpn_source?:
+      | 'CPN_SOURCE_TYPE_UNKNOWN'
+      | 'CPN_SOURCE_TYPE_CLIENT'
+      | 'CPN_SOURCE_TYPE_WATCH_SERVER';
   },
   engagement_panels?: ObservedArray<EngagementPanelSectionList>;
   items?: SuperParsedResult<YTNode>;
   entries?: NavigationEndpoint[];
   entries_memo?: Memo;
+  target_id?: string;
   continuation_endpoint?: YTNode;
   player_response?: IPlayerResponse;
   watch_next_response?: INextResponse;

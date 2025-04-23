@@ -2,6 +2,7 @@
 // See ./scripts/build-parser-map.js
 
 export { default as AccessibilityContext } from './classes/misc/AccessibilityContext.ts';
+export { default as AccessibilityData } from './classes/misc/AccessibilityData.ts';
 export { default as Author } from './classes/misc/Author.ts';
 export { default as ChildElement } from './classes/misc/ChildElement.ts';
 export { default as CommandContext } from './classes/misc/CommandContext.ts';

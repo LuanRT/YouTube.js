@@ -1,15 +1,24 @@
-import { Parser } from '../../index.ts';
 import { type ObservedArray, YTNode } from '../../helpers.ts';
-import type { RawNode } from '../../index.ts';
+import { Parser, type RawNode } from '../../index.ts';
+import ContinuationItem from '../ContinuationItem.ts';
+import Message from '../Message.ts';
+import Notification from '../Notification.ts';
+import Text from '../misc/Text.ts';
 
 export default class MultiPageMenuNotificationSection extends YTNode {
   static type = 'MultiPageMenuNotificationSection';
 
-  public items: ObservedArray<YTNode>;
+  public notification_section_title?: Text;
+  public items: ObservedArray<Notification | Message | ContinuationItem>;
 
   constructor(data: RawNode) {
     super();
-    this.items = Parser.parseArray(data.items);
+    
+    if ('notificationSectionTitle' in data) {
+      this.notification_section_title = new Text(data.notificationSectionTitle);
+    }
+    
+    this.items = Parser.parseArray(data.items, [ Notification, Message, ContinuationItem ]);
   }
 
   // XXX: Alias for consistency.

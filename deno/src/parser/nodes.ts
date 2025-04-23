@@ -346,6 +346,7 @@ export { default as TopbarMenuButton } from './classes/mweb/TopbarMenuButton.ts'
 export { default as NavigationEndpoint } from './classes/NavigationEndpoint.ts';
 export { default as Notification } from './classes/Notification.ts';
 export { default as NotificationAction } from './classes/NotificationAction.ts';
+export { default as OpenOnePickAddVideoModalCommand } from './classes/OpenOnePickAddVideoModalCommand.ts';
 export { default as PageHeader } from './classes/PageHeader.ts';
 export { default as PageHeaderView } from './classes/PageHeaderView.ts';
 export { default as PageIntroduction } from './classes/PageIntroduction.ts';

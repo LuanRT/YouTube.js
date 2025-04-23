@@ -2,15 +2,17 @@ import type { RawNode } from '../../index.ts';
 import { escape, type Run } from './Text.ts';
 import Thumbnail from './Thumbnail.ts';
 
+export interface Emoji {
+  emoji_id: string;
+  shortcuts: string[];
+  search_terms: string[];
+  image: Thumbnail[];
+  is_custom: boolean;
+}
+
 export default class EmojiRun implements Run {
-  text: string;
-  emoji: {
-    emoji_id: string;
-    shortcuts: string[];
-    search_terms: string[];
-    image: Thumbnail[];
-    is_custom: boolean;
-  };
+  public text: string;
+  public emoji: Emoji;
 
   constructor(data: RawNode) {
     this.text =
