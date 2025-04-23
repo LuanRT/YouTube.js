@@ -206,7 +206,9 @@ export type SessionOptions = {
    */
   po_token?: string;
   /**
-   * Player ID. Force a Player ID. Most time, this is not necessary. But when YouTube makes breaking API changes, using an older Player ID can help work around temporary breakage.
+   * Player ID override.
+   * In most cases, this isn't necessary; but when YouTube introduces breaking changes,
+   * forcing an older Player ID can help work around temporary issues.
    */
   player_id?: string;
 }
