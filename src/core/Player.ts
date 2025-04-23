@@ -255,7 +255,18 @@ export default class Player {
   }
 
   static extractSigSourceCode(data: string, global_variable?: ASTLookupResult): string | undefined {
-    const match = data.match(/function\(([A-Za-z_0-9]+)\)\{([A-Za-z_0-9]+=[A-Za-z_0-9]+\.split\((?:[^)]+)\)(.+?)\.join\((?:[^)]+)\))\}/);
+    // Classic static split/join.
+    const split_join_regex = /function\(([A-Za-z_0-9]+)\)\{([A-Za-z_0-9]+=[A-Za-z_0-9]+\.split\((?:[^)]+)\)(.+?)\.join\((?:[^)]+)\))\}/;
+
+    // Using the global lookup variable.
+    const lookup_var = global_variable?.name?.replace(/[$^\\.*+?()[\]{}|]/g, '\\$&');
+    const lookup_regex = lookup_var
+      ? new RegExp(
+        `function\\(([A-Za-z_0-9]+)\\)\\{([A-Za-z_0-9]+=[A-Za-z_0-9]+\\[${lookup_var}\\[\\d+\\]\\]\\([^)]*\\)([\\s\\S]+?)\\[${lookup_var}\\[\\d+\\]\\]\\([^)]*\\))\\}`
+      )
+      : null;
+
+    const match = data.match(split_join_regex) || (lookup_regex ? data.match(lookup_regex) : null);
 
     if (!match) {
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
