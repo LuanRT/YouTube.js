@@ -474,7 +474,7 @@ export default class Session extends EventEmitter {
           const coldConfigData = configJson.responseContext?.globalConfigGroup?.rawColdConfigGroup?.configData;
           const coldHashData = configJson.responseContext?.globalConfigGroup?.coldHashData;
           const hotHashData = configJson.responseContext?.globalConfigGroup?.hotHashData;
-          this.logged_in = !configJson.responseContext?.mainAppWebResponseContext?.loggedOut
+          this.logged_in = !configJson.responseContext?.mainAppWebResponseContext?.loggedOut;
 
           session_data.config_data = configJson.configData;
           session_data.context.client.configInfo = {
