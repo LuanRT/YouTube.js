@@ -118,7 +118,13 @@ export default class Innertube {
   async getBasicInfo(video_id: string, client?: InnerTubeClient): Promise<VideoInfo> {
     throwIfMissing({ video_id });
 
-    const watch_endpoint = new NavigationEndpoint({ watchEndpoint: { videoId: video_id } });
+    const watch_endpoint = new NavigationEndpoint({
+      watchEndpoint: {
+        videoId: video_id,
+        racyCheckOk: true,
+        contentCheckOk: true
+      }
+    });
 
     const session = this.#session;
 
