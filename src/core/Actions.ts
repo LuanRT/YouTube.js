@@ -179,7 +179,7 @@ export default class Actions {
     return {
       success: response.ok,
       status_code: response.status,
-      data: JSON.parse(await response.text())
+      data: await response.json()
     };
   }
 
