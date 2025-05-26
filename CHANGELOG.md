@@ -1,5 +1,13 @@
 # Changelog
 
+## [13.4.1](https://github.com/LuanRT/YouTube.js/compare/v13.4.0...v13.4.1) (2025-05-26)
+
+
+### Bug Fixes
+
+* **getBasicInfo:** Add racyCheckOk and contentCheckOk to payload ([#961](https://github.com/LuanRT/YouTube.js/issues/961)) ([0f1fd72](https://github.com/LuanRT/YouTube.js/commit/0f1fd7223c2e5c8e28637e84a1c00c6d88fad50f))
+* **Innertube:** Properly encoded params in getPostComments() ([#955](https://github.com/LuanRT/YouTube.js/issues/955)) ([92b8623](https://github.com/LuanRT/YouTube.js/commit/92b8623374a126d60604a54fa4be67b460ddc5e3))
+
 ## [13.4.0](https://github.com/LuanRT/YouTube.js/compare/v13.3.0...v13.4.0) (2025-04-23)
 
 
