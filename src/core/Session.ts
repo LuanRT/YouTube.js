@@ -412,7 +412,7 @@ export default class Session extends EventEmitter {
         user_agent: user_agent,
         visitor_data: visitor_data || ProtoUtils.encodeVisitorData(generateRandomString(11), Math.floor(Date.now() / 1000)),
         client_name: client_name,
-        client_version: Constants.CLIENTS.WEB.VERSION,
+        client_version: Object.values(Constants.CLIENTS).filter(v => v.NAME === client_name)[0]?.VERSION ?? Constants.CLIENTS.WEB.VERSION,
         device_category: device_category.toUpperCase(),
         os_name: 'Windows',
         os_version: '10.0',
