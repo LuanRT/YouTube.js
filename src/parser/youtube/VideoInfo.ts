@@ -56,33 +56,6 @@ export default class VideoInfo extends MediaInfo {
 
     const [ info, next ] = this.page;
 
-    // Make heat_map property enumerable for JSON serialization
-    Object.defineProperty(this, 'heat_map', {
-      get: () => {
-        const macro_markers_list = this.page[1]?.contents_memo?.getType(MacroMarkersListEntity);
-        
-        if (macro_markers_list) {
-          // Find the first MacroMarkersListEntity that is specifically a heatmap
-          const heatmap_markers = macro_markers_list.find((markers) => 
-            markers.isHeatmap()
-          );
-          
-          if (heatmap_markers) {
-            try {
-              const heatmap = heatmap_markers.toHeatmap();
-              return heatmap;
-            } catch {
-              return null;
-            }
-          }
-        }
-        
-        return null;
-      },
-      enumerable: true,
-      configurable: true
-    });
-
     if (this.streaming_data) {
       const default_audio_track = this.streaming_data.adaptive_formats.find((format) => format.audio_track?.audio_is_default);
       if (default_audio_track) {
@@ -162,6 +135,20 @@ export default class VideoInfo extends MediaInfo {
 
       this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
       this.livechat = next?.contents_memo?.getType(LiveChat)[0];
+
+      const macro_markers_list_for_heatmap = this.page[1]?.contents_memo?.getType(MacroMarkersListEntity);
+      let calculated_heat_map: Heatmap | null = null;
+      if (macro_markers_list_for_heatmap) {
+        const heatmap_markers_entity = macro_markers_list_for_heatmap.find((markers) => 
+          markers.isHeatmap()
+        );
+        if (heatmap_markers_entity) {
+          try {
+            calculated_heat_map = heatmap_markers_entity.toHeatmap();
+          } catch { /** NO-OP */ }
+        }
+      }
+      this.heat_map = calculated_heat_map;
     }
   }
 
