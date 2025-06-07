@@ -118,7 +118,13 @@ export default class Innertube {
   async getBasicInfo(video_id: string, client?: InnerTubeClient): Promise<VideoInfo> {
     throwIfMissing({ video_id });
 
-    const watch_endpoint = new NavigationEndpoint({ watchEndpoint: { videoId: video_id } });
+    const watch_endpoint = new NavigationEndpoint({
+      watchEndpoint: {
+        videoId: video_id,
+        racyCheckOk: true,
+        contentCheckOk: true
+      }
+    });
 
     const session = this.#session;
 
@@ -528,7 +534,7 @@ export default class Innertube {
     const writer2 = CommunityPostCommentsParamContainer.encode({
       f0: {
         location: 'FEcomment_post_detail_page_web_top_level',
-        protoData: encodeURIComponent(u8ToBase64(writer1.finish()))
+        protoData: encodeURIComponent(u8ToBase64(writer1.finish()).replace(/\+/g, '-').replace(/\//g, '_'))
       }
     });
 
