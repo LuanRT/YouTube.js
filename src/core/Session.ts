@@ -29,6 +29,7 @@ export enum ClientType {
   ANDROID_MUSIC = 'ANDROID_MUSIC',
   ANDROID_CREATOR = 'ANDROID_CREATOR',
   TV = 'TVHTML5',
+  TV_SIMPLY = 'TVHTML5_SIMPLY',
   TV_EMBEDDED = 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
   WEB_EMBEDDED = 'WEB_EMBEDDED_PLAYER',
   WEB_CREATOR = 'WEB_CREATOR'
@@ -357,7 +358,7 @@ export default class Session extends EventEmitter {
           result.context.client.clientVersion = Constants.CLIENTS.WEB.VERSION;
         }
       }
-      
+
       result.context.client.timeZone = session_args.time_zone;
       result.context.client.platform = session_args.device_category.toUpperCase();
       result.context.user.enableSafetyMode = session_args.enable_safety_mode;

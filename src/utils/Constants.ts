@@ -71,6 +71,10 @@ export const CLIENTS = {
     VERSION: '7.20250219.14.00',
     USER_AGENT: 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'
   },
+  TV_SIMPLY: {
+    NAME: 'TVHTML5_SIMPLY',
+    VERSION: '1.0'
+  },
   TV_EMBEDDED: {
     NAME: 'TVHTML5_SIMPLY_EMBEDDED_PLAYER',
     VERSION: '2.0'
@@ -119,4 +123,4 @@ export const INNERTUBE_HEADERS_BASE = {
   'content-type': 'application/json'
 } as const;
 
-export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'MWEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV', 'TV_EMBEDDED', 'WEB_EMBEDDED', 'WEB_CREATOR' ];
+export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'MWEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV', 'TV_SIMPLY', 'TV_EMBEDDED', 'WEB_EMBEDDED', 'WEB_CREATOR' ];
