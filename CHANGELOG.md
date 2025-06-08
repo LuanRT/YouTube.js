@@ -1,5 +1,142 @@
 # Changelog
 
+## [13.4.0](https://github.com/LuanRT/YouTube.js/compare/v13.3.0...v13.4.0) (2025-04-23)
+
+
+### Features
+
+* **MultiPageMenuNotificationSection:** Add `notification_section_title` ([f869011](https://github.com/LuanRT/YouTube.js/commit/f8690118c3e4edbc22a6b9f59477a8e40e39d9a3))
+* **Parser:** Add `OpenOnePickAddVideoModalCommand` node ([#901](https://github.com/LuanRT/YouTube.js/issues/901)) ([ff1aa67](https://github.com/LuanRT/YouTube.js/commit/ff1aa67b8bebd8e038ea77a124d0be0ed420bc55))
+* **parser:** Parse `targetId` ([458c490](https://github.com/LuanRT/YouTube.js/commit/458c4900d78f9b16761faae421bcd8cb302f19b8))
+* **RichRenderers:** Parse more UI elements ([d8f731b](https://github.com/LuanRT/YouTube.js/commit/d8f731b2fa4b755324b0ef4ad68be45f735b29a9))
+* **RichShelf:** Add `icon_type` property ([dce51cd](https://github.com/LuanRT/YouTube.js/commit/dce51cdc4abad21812ee9e7ba02885dffde35d3a))
+* **Session:** Add `deviceExperimentId` and `rolloutToken` to session data ([c704836](https://github.com/LuanRT/YouTube.js/commit/c7048368cc38a6a322c8006a4cfd208235d27caf))
+* **Session:** Add `retrieve_innertube_config` option ([#949](https://github.com/LuanRT/YouTube.js/issues/949)) ([4808d2e](https://github.com/LuanRT/YouTube.js/commit/4808d2e13a90710cdea2c72332deb7809d5fdbdd))
+* **Session:** Add option to override Player ID ([#951](https://github.com/LuanRT/YouTube.js/issues/951)) ([5e665e8](https://github.com/LuanRT/YouTube.js/commit/5e665e8f0ba6e68d689b42be852ec20597c6b6a6))
+* **Text:** Parse accessibility data ([a95f52a](https://github.com/LuanRT/YouTube.js/commit/a95f52a4777ea158f3d3e85f4213aee364a2d38d))
+
+
+### Bug Fixes
+
+* **HTTPClient:** Use the correct constant for the iOS client OS name ([#938](https://github.com/LuanRT/YouTube.js/issues/938)) ([95d9211](https://github.com/LuanRT/YouTube.js/commit/95d9211eae51c2d47468cacbed8cd9bdaa2fcd33))
+* **Player:** Use global var to find signature algorithm ([#953](https://github.com/LuanRT/YouTube.js/issues/953)) ([7f1eeb6](https://github.com/LuanRT/YouTube.js/commit/7f1eeb6b5bbae72d455609e8fd972ad936a69e27))
+
+## [13.3.0](https://github.com/LuanRT/YouTube.js/compare/v13.2.0...v13.3.0) (2025-03-25)
+
+
+### Features
+
+* **MusicImmersiveHeader:** Parse buttons and menu ([cbb2535](https://github.com/LuanRT/YouTube.js/commit/cbb2535b2492777b0045be5fcf9bece03fe4f84e))
+
+
+### Bug Fixes
+
+* **Player:** Parse global variable used by nsig/sig ([#935](https://github.com/LuanRT/YouTube.js/issues/935)) ([edfd65f](https://github.com/LuanRT/YouTube.js/commit/edfd65f5e08a9155b8c31d8127a4e309313b39de))
+
+## [13.2.0](https://github.com/LuanRT/YouTube.js/compare/v13.1.0...v13.2.0) (2025-03-20)
+
+
+### Features
+
+* Add AccessibilityContext and CommandContext classes + improve type definitions and parsing logic across multiple nodes ([923e9c2](https://github.com/LuanRT/YouTube.js/commit/923e9c28e34b00841413824d82d10bf644186edc))
+
+
+### Bug Fixes
+
+* **Constants:** Update the iOS client version ([#924](https://github.com/LuanRT/YouTube.js/issues/924)) ([219d88b](https://github.com/LuanRT/YouTube.js/commit/219d88b2005431c6697f04e1fa2c5e8528a9ce57))
+* **Format:** Parse xtags from protobuf to support SABR-only responses ([#909](https://github.com/LuanRT/YouTube.js/issues/909)) ([00c199a](https://github.com/LuanRT/YouTube.js/commit/00c199ac69bc6d7be19aeae04a245f30b64272c2))
+
+## [13.1.0](https://github.com/LuanRT/YouTube.js/compare/v13.0.0...v13.1.0) (2025-02-21)
+
+
+### Features
+
+* **Channel:** Add `getCourses` method ([#883](https://github.com/LuanRT/YouTube.js/issues/883)) ([b3a4862](https://github.com/LuanRT/YouTube.js/commit/b3a48621518f09d1ce309071499d9626cc1a8488))
+* **CommentView:** Parse `prepareAccountCommand` ([d0d48bf](https://github.com/LuanRT/YouTube.js/commit/d0d48bf525cc2a95dd3397a3142bea113ea9782e))
+* **CommentView:** Parse some extra tooltips ([32125c7](https://github.com/LuanRT/YouTube.js/commit/32125c704565f425806a0721edd96e01028e3fdd))
+* **CompactLink:** Parse `subtitle`, `iconType`, and `iconType` ([6d57353](https://github.com/LuanRT/YouTube.js/commit/6d57353a8021430a5253e2fb2c974ca98d731791))
+* **FormatUtils:** choose more specific format by itag or codec ([#884](https://github.com/LuanRT/YouTube.js/issues/884)) ([1c1577e](https://github.com/LuanRT/YouTube.js/commit/1c1577e85fd46cbfa15bcee6531d9aafdda787e5))
+* **parser:** `Add AnimatedThumbnailOverlayView` ([#903](https://github.com/LuanRT/YouTube.js/issues/903)) ([0cb92d9](https://github.com/LuanRT/YouTube.js/commit/0cb92d9620c13bf6b719b384f917ad2a658e15b1))
+
+
+### Bug Fixes
+
+* **dependencies:** Update `jintr` to version 3.2.1 ([02dfcae](https://github.com/LuanRT/YouTube.js/commit/02dfcae612dd528ce4f1f3f6c62ceefd02a5c790))
+* **DialogView:** Type mismatch ([#897](https://github.com/LuanRT/YouTube.js/issues/897)) ([b731db8](https://github.com/LuanRT/YouTube.js/commit/b731db86c51ba292c848272f28b5a9aa2e2a6956))
+* **FormatUtils:** itag matching ([#886](https://github.com/LuanRT/YouTube.js/issues/886)) ([774b3a7](https://github.com/LuanRT/YouTube.js/commit/774b3a75244db85ceb7b00f658dc2dfeb2eb4e7e))
+* **innertube:** Allowing `getStreamingData` to use client ([#895](https://github.com/LuanRT/YouTube.js/issues/895)) ([5aecd0a](https://github.com/LuanRT/YouTube.js/commit/5aecd0ace96c371f0b15cdc6e45ef09beb5696af))
+* **Innertube:** Properly encoded params in getPost() ([#882](https://github.com/LuanRT/YouTube.js/issues/882)) ([7d5c972](https://github.com/LuanRT/YouTube.js/commit/7d5c972c98d7c69b0b687b241c652f3098907a9f))
+* **LockupMetadataView:** Parse `menuButton` ([3ffdee9](https://github.com/LuanRT/YouTube.js/commit/3ffdee9554b06db137d93e43b33fac124becf31f))
+* **LockupView:** Add overlay nodes used by `VIDEO` views ([424c653](https://github.com/LuanRT/YouTube.js/commit/424c65356c24d19a921e24aadcbbb3cd03ab103a))
+* **LockupView:** Fix `content_image` parsing ([083aec1](https://github.com/LuanRT/YouTube.js/commit/083aec1c805cce6b04a75e4f017b5cdf0bb6108e))
+* **music#getPlaylist:** Handle `ContinuationItem` nodes ([a3fafe2](https://github.com/LuanRT/YouTube.js/commit/a3fafe2f7979313906dbaf1a7f9779f411266d6b)), closes [#904](https://github.com/LuanRT/YouTube.js/issues/904)
+* **Parser:** Add `UpdateEngagementPanelContentCommand` ([3f960ef](https://github.com/LuanRT/YouTube.js/commit/3f960effa24c3b14fa3c6aadf4c7badf0ac965c9))
+* **Playlist:** is_editable ([#894](https://github.com/LuanRT/YouTube.js/issues/894)) ([2b42199](https://github.com/LuanRT/YouTube.js/commit/2b4219959cbbb27cd80788e66b608fdeed3a1f1e))
+
+
+### Reverts
+
+* "fix(toDash): Fix default audio stream for dubbed movie trailers ([#858](https://github.com/LuanRT/YouTube.js/issues/858))" ([#896](https://github.com/LuanRT/YouTube.js/issues/896)) ([4325717](https://github.com/LuanRT/YouTube.js/commit/432571769ebc6634c2c9a4c1b5e53cfbbd2a5f0a))
+
+## [13.0.0](https://github.com/LuanRT/YouTube.js/compare/v12.2.0...v13.0.0) (2025-01-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove `web.bundle.min`
+
+### Features
+
+* **ContentMetadataView:** Parse `enableTruncation` ([#863](https://github.com/LuanRT/YouTube.js/issues/863)) ([0a3104b](https://github.com/LuanRT/YouTube.js/commit/0a3104bafc03ccd29420a835b420f628b380991d))
+* **getSearchSuggestions:** Add optional `pq` param for better suggestions ([c61db19](https://github.com/LuanRT/YouTube.js/commit/c61db19f2e3bd44bc5bf2ebdf8de041f169d8fab))
+* **Innertube:** Add `getAttestationChallenge` ([#869](https://github.com/LuanRT/YouTube.js/issues/869)) ([33c27dd](https://github.com/LuanRT/YouTube.js/commit/33c27ddcb5ea96241b2a0bf4ec14ec5937264998))
+* **Innertube:** Add ability to get individual community posts and community post comments ([#861](https://github.com/LuanRT/YouTube.js/issues/861)) ([360b29e](https://github.com/LuanRT/YouTube.js/commit/360b29ee60af2cf803106ca5315c365ddacbe51b))
+* **LiveChatPaidMessage:** Parse `headerOverlayImage` and `lowerBumper` ([#851](https://github.com/LuanRT/YouTube.js/issues/851)) ([ef37aa0](https://github.com/LuanRT/YouTube.js/commit/ef37aa0a5abb573f192f86d1accb88d90d707752))
+* **Music:** Add continuation support for "Up next" tab in `TrackInfo` ([#770](https://github.com/LuanRT/YouTube.js/issues/770)) ([2913d5f](https://github.com/LuanRT/YouTube.js/commit/2913d5f43dd28b9146cf05607cbe28d727463d51))
+* **PageHeaderView:** Parse `heroImage` ([a602a31](https://github.com/LuanRT/YouTube.js/commit/a602a317aaaffa575d2b03754f0625a6e5858162))
+* **Parser:** Add `AvatarStackView` ([c631022](https://github.com/LuanRT/YouTube.js/commit/c6310228fee1ed01f93a0e4e0482d09a967ef1be))
+* **Parser:** Add `HowThisWasMadeSectionView` node ([5da8a66](https://github.com/LuanRT/YouTube.js/commit/5da8a66551c85fa45a01713383e6f621db053b46))
+* **parser:** Add `ReplaceLiveChatAction` ([#847](https://github.com/LuanRT/YouTube.js/issues/847)) ([342fdd1](https://github.com/LuanRT/YouTube.js/commit/342fdd1db30bc61de5f19fc4ed35db8931706903))
+* **Parser:** Implement utility class to parse `rendererContext` ([3a11b99](https://github.com/LuanRT/YouTube.js/commit/3a11b99429ff9d8cc9aebc7bbee0b7645e30f7ff))
+* **parser:** Parse `OpenPopupAction` in `onResponseReceivedEndpoints` arrays ([45b7342](https://github.com/LuanRT/YouTube.js/commit/45b734288e070ef5e347cec5bae445d0cf883eba))
+* **Parser:** Parse YpcTrailer in VideoInfo ([#842](https://github.com/LuanRT/YouTube.js/issues/842)) ([c0043d0](https://github.com/LuanRT/YouTube.js/commit/c0043d0194f582c2ed85341291e2eace25dd78d8))
+* **parser:** Update `Button` ([#857](https://github.com/LuanRT/YouTube.js/issues/857)) ([5f899fc](https://github.com/LuanRT/YouTube.js/commit/5f899fcdb30deefc189e8325e4358812c5b05800))
+* **parser:** Update `LiveChatPaidMessage` ([#846](https://github.com/LuanRT/YouTube.js/issues/846)) ([73362c6](https://github.com/LuanRT/YouTube.js/commit/73362c68fbc8b966ff46cc8b145e1e8d9fbe32ee))
+* **parser:** Update `LiveChatPaidSticker` ([#849](https://github.com/LuanRT/YouTube.js/issues/849)) ([3c28c0d](https://github.com/LuanRT/YouTube.js/commit/3c28c0d2c2b583a31fe0e49cce4cdfbfe380874d))
+* **parser:** Update `LiveChatTextMessage` ([#864](https://github.com/LuanRT/YouTube.js/issues/864)) ([9025122](https://github.com/LuanRT/YouTube.js/commit/902512248417ae86e25082d429b13d8c57a5c5b1))
+* **parser:** Update `LiveChatTickerPaidMessageItem` ([#845](https://github.com/LuanRT/YouTube.js/issues/845)) ([29e8d30](https://github.com/LuanRT/YouTube.js/commit/29e8d3015a3d17383a8be4e6f46b389d10f111f3))
+* **parser:** Update `LiveChatTickerPaidStickerItem` ([#848](https://github.com/LuanRT/YouTube.js/issues/848)) ([5f83a74](https://github.com/LuanRT/YouTube.js/commit/5f83a7416d5dc3167e6af2767e9b90f4bf89f3dc))
+* **parser:** Update `LiveChatViewerEngagementMessage` ([#856](https://github.com/LuanRT/YouTube.js/issues/856)) ([b4a947a](https://github.com/LuanRT/YouTube.js/commit/b4a947a9eb9dd1ae6e9d1da1a00083ac1afca03e))
+* **Playlists:** Implement `addToLibrary` and `removeFromLibrary` ([#844](https://github.com/LuanRT/YouTube.js/issues/844)) ([48460e4](https://github.com/LuanRT/YouTube.js/commit/48460e4184bac0f6626550b80696f950f7626beb))
+* **RichGrid:** Parse `targetId` ([e571ee2](https://github.com/LuanRT/YouTube.js/commit/e571ee2426c6003c1bc690cbf98b0ab72ebfaa10))
+* **Session:** Allow using a fixed user agent for InnerTube requests ([#876](https://github.com/LuanRT/YouTube.js/issues/876)) ([4d36655](https://github.com/LuanRT/YouTube.js/commit/4d36655b2dad74aeb74e869ca8259e9d13dfb512))
+* **SubscribeButton:** Add `unsubscribe_text` ([75b8964](https://github.com/LuanRT/YouTube.js/commit/75b89641805abada1498edebac5b72a40860b215))
+* **ToggleButtonView:** Add `is_toggled` ([88af6d8](https://github.com/LuanRT/YouTube.js/commit/88af6d89a56907d6f2263c01fc158400788fb5b4))
+
+
+### Bug Fixes
+
+* **ButtonCardView:** Correct typo ([#855](https://github.com/LuanRT/YouTube.js/issues/855)) ([6536801](https://github.com/LuanRT/YouTube.js/commit/6536801ec2e4f9b93d1e272b7b04e2777b74abad))
+* **DescriptionPreviewView:** Parsing errors when certain fields are missing ([c2dd803](https://github.com/LuanRT/YouTube.js/commit/c2dd803eeaeec3292d92bc0efaaa2404fb87355c))
+* **getSearchSuggestions:** Allow empty queries ([523700b](https://github.com/LuanRT/YouTube.js/commit/523700b728e8b2f126b1b6266dc153ad683dcbcb))
+* **LiveChatTextMessage:** Make some fields optional ([#877](https://github.com/LuanRT/YouTube.js/issues/877)) ([a035b71](https://github.com/LuanRT/YouTube.js/commit/a035b7169614ac92081b8cb377711d7da559e65b))
+* **sendMessage:** Handle `RunAttestationCommand` in response actions ([#859](https://github.com/LuanRT/YouTube.js/issues/859)) ([826a954](https://github.com/LuanRT/YouTube.js/commit/826a9541a44121bafe4ce19f2cd4a68fcabb2384))
+* **Text#fromAttributed:** Fix `StyleRun` assuming that the `startIndex` and `length` always exist ([#862](https://github.com/LuanRT/YouTube.js/issues/862)) ([732a30c](https://github.com/LuanRT/YouTube.js/commit/732a30c09f50a9d78d5d1686ffef88a3bde2e53e))
+* **Text#toHTML:** Return empty string if the text is `undefined` ([f3c777b](https://github.com/LuanRT/YouTube.js/commit/f3c777b31638cc9c6ce7f4b7ba566ff0534b47dc))
+* **TextRun:** Add `img` element only if an URL is available ([913dcc7](https://github.com/LuanRT/YouTube.js/commit/913dcc74eadf1a5df7878688d2c6cf434642f1b5))
+* **toDash:** Fix default audio stream for dubbed movie trailers ([#858](https://github.com/LuanRT/YouTube.js/issues/858)) ([0054690](https://github.com/LuanRT/YouTube.js/commit/00546909c02841c7e404766b13f2c02e42e3f6fc))
+
+
+### Performance Improvements
+
+* **constants:** Move the client name IDs into their own CLIENT_NAME_IDS object ([#875](https://github.com/LuanRT/YouTube.js/issues/875)) ([06887e9](https://github.com/LuanRT/YouTube.js/commit/06887e99fb1c2546e74b5026cb1ae1ce0be2e3e9))
+* Optimise DASH manifest generation ([#870](https://github.com/LuanRT/YouTube.js/issues/870)) ([1a3d663](https://github.com/LuanRT/YouTube.js/commit/1a3d663cc56a54b8517eb5f82e7892d37db3082e))
+
+
+### Code Refactoring
+
+* Remove `web.bundle.min` ([e54e499](https://github.com/LuanRT/YouTube.js/commit/e54e499ff553dab51e6d9d1aebc090b50fec29ba))
+
 ## [12.2.0](https://github.com/LuanRT/YouTube.js/compare/v12.1.0...v12.2.0) (2024-12-12)
 
 

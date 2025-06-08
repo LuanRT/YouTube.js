@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.js';
-import type { RawNode } from '../types/RawResponse.js';
+import type { RawNode } from '../types/index.js';
 
 export default class BadgeView extends YTNode {
   text: string;

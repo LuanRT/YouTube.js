@@ -5,7 +5,7 @@ import { Parser, type RawNode } from '../../index.js';
 export default class MultiPageMenuSection extends YTNode {
   static type = 'MultiPageMenuSection';
 
-  public items: ObservedArray<YTNode> | null;
+  public items: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();

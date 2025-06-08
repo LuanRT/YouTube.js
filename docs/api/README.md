@@ -92,6 +92,12 @@ Re-exports [GetKidsBlocklistPickerRequest](namespaces/APIResponseTypes/type-alia
 
 ***
 
+### IBotguardChallenge
+
+Re-exports [IBotguardChallenge](namespaces/APIResponseTypes/interfaces/IBotguardChallenge.md)
+
+***
+
 ### IBrowseResponse
 
 Re-exports [IBrowseResponse](namespaces/APIResponseTypes/type-aliases/IBrowseResponse.md)
@@ -101,6 +107,12 @@ Re-exports [IBrowseResponse](namespaces/APIResponseTypes/type-aliases/IBrowseRes
 ### IEndpoint
 
 Re-exports [IEndpoint](namespaces/APIResponseTypes/interfaces/IEndpoint.md)
+
+***
+
+### IGetChallengeResponse
+
+Re-exports [IGetChallengeResponse](namespaces/APIResponseTypes/type-aliases/IGetChallengeResponse.md)
 
 ***
 
@@ -164,6 +176,12 @@ Re-exports [IPlayerResponse](namespaces/APIResponseTypes/type-aliases/IPlayerRes
 
 ***
 
+### IRawBotguardChallenge
+
+Re-exports [IRawBotguardChallenge](namespaces/APIResponseTypes/interfaces/IRawBotguardChallenge.md)
+
+***
+
 ### IRawPlayerConfig
 
 Re-exports [IRawPlayerConfig](namespaces/APIResponseTypes/interfaces/IRawPlayerConfig.md)
@@ -173,6 +191,12 @@ Re-exports [IRawPlayerConfig](namespaces/APIResponseTypes/interfaces/IRawPlayerC
 ### IRawResponse
 
 Re-exports [IRawResponse](namespaces/APIResponseTypes/interfaces/IRawResponse.md)
+
+***
+
+### IRawTrustedResource
+
+Re-exports [IRawTrustedResource](namespaces/APIResponseTypes/interfaces/IRawTrustedResource.md)
 
 ***
 
@@ -203,6 +227,12 @@ Re-exports [IServiceTrackingParams](namespaces/APIResponseTypes/interfaces/IServ
 ### IStreamingData
 
 Re-exports [IStreamingData](namespaces/APIResponseTypes/interfaces/IStreamingData.md)
+
+***
+
+### ITrustedResource
+
+Re-exports [ITrustedResource](namespaces/APIResponseTypes/interfaces/ITrustedResource.md)
 
 ***
 

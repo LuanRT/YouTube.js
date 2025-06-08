@@ -2,24 +2,22 @@
 
 # Variable: OAUTH
 
-> `const` **OAUTH**: `Readonly`\<`object`\>
+> `const` **OAUTH**: `object`
 
 ## Type declaration
 
 ### REGEX
 
-> **REGEX**: `Readonly`\<`object`\>
+> `readonly` **REGEX**: `object`
 
-#### Type declaration
+### REGEX.CLIENT\_IDENTITY
 
-##### CLIENT\_IDENTITY
+> `readonly` **CLIENT\_IDENTITY**: `RegExp`
 
-> **CLIENT\_IDENTITY**: `RegExp`
+### REGEX.TV\_SCRIPT
 
-##### TV\_SCRIPT
-
-> **TV\_SCRIPT**: `RegExp`
+> `readonly` **TV\_SCRIPT**: `RegExp`
 
 ## Defined in
 
-[src/utils/Constants.ts:19](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Constants.ts#L19)
+[src/utils/Constants.ts:19](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Constants.ts#L19)

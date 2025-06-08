@@ -9,23 +9,26 @@ import { YTNode } from '../helpers.js';
 export default class VideoSecondaryInfo extends YTNode {
   static type = 'VideoSecondaryInfo';
 
-  owner: VideoOwner | null;
-  description: Text;
-  subscribe_button: SubscribeButton | Button | null;
-  metadata: MetadataRowContainer | null;
-  show_more_text: Text;
-  show_less_text: Text;
-  default_expanded: string;
-  description_collapsed_lines: string;
+  public owner: VideoOwner | null;
+  public description: Text;
+  public description_placeholder?: Text;
+  public subscribe_button: SubscribeButton | Button | null;
+  public metadata: MetadataRowContainer | null;
+  public show_more_text: Text;
+  public show_less_text: Text;
+  public default_expanded: string;
+  public description_collapsed_lines: string;
 
   constructor(data: RawNode) {
     super();
     this.owner = Parser.parseItem(data.owner, VideoOwner);
     this.description = new Text(data.description);
 
-    if (Reflect.has(data, 'attributedDescription')) {
+    if ('attributedDescription' in data)
       this.description = Text.fromAttributed(data.attributedDescription);
-    }
+    
+    if ('descriptionPlaceholder' in data)
+      this.description_placeholder = new Text(data.descriptionPlaceholder);
 
     this.subscribe_button = Parser.parseItem(data.subscribeButton, [ SubscribeButton, Button ]);
     this.metadata = Parser.parseItem(data.metadataRowContainer, MetadataRowContainer);

@@ -29,8 +29,8 @@ export default class Search extends Feed<ISearchResponse> {
     super(actions, data, already_parsed);
 
     const contents =
-      this.page.contents_memo?.getType(SectionList).first().contents ||
-      this.page.on_response_received_commands?.first().as(AppendContinuationItemsAction, ReloadContinuationItemsCommand).contents;
+      this.page.contents_memo?.getType(SectionList)[0].contents ||
+      this.page.on_response_received_commands?.[0].as(AppendContinuationItemsAction, ReloadContinuationItemsCommand).contents;
 
     if (!contents)
       throw new InnertubeError('No contents found in search response');
@@ -44,8 +44,8 @@ export default class Search extends Feed<ISearchResponse> {
     this.estimated_results = this.page.estimated_results || 0;
 
     if (this.page.contents_memo) {
-      this.sub_menu = this.page.contents_memo.getType(SearchSubMenu).first();
-      this.watch_card = this.page.contents_memo.getType(UniversalWatchCard).first();
+      this.sub_menu = this.page.contents_memo.getType(SearchSubMenu)[0];
+      this.watch_card = this.page.contents_memo.getType(UniversalWatchCard)[0];
     }
 
     this.refinement_cards = this.results?.firstOfType(HorizontalCardList);

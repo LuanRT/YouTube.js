@@ -13,20 +13,11 @@ export class YTNode {
 
   /**
    * Check if the node is of the given type.
-   * @param type - The type to check
-   * @returns whether the node is of the given type
-   */
-  #is<T extends YTNode>(type: YTNodeConstructor<T>): this is T {
-    return this.type === type.type;
-  }
-
-  /**
-   * Check if the node is of the given type.
    * @param types - The type to check
    * @returns whether the node is of the given type
    */
   is<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): this is InstanceType<K[number]> {
-    return types.some((type) => this.#is(type));
+    return types.some((type) => this.type === type.type);
   }
 
   /**

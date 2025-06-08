@@ -45,28 +45,30 @@ export default class Studio {
    * ```
    */
   async updateVideoMetadata(video_id: string, metadata: UpdateVideoMetadataOptions): Promise<ApiResponse> {
-    if (!this.#session.logged_in)
+    const session = this.#session;
+
+    if (!session.logged_in)
       throw new InnertubeError('You must be signed in to perform this operation.');
 
     const payload: MetadataUpdateRequest = {
       context: {
         client: {
           osName: 'Android',
-          clientName: parseInt(Constants.CLIENTS.ANDROID.NAME_ID),
+          clientName: parseInt(Constants.CLIENT_NAME_IDS.ANDROID),
           clientVersion: Constants.CLIENTS.ANDROID.VERSION,
           androidSdkVersion: Constants.CLIENTS.ANDROID.SDK_VERSION,
-          visitorData: this.#session.context.client.visitorData,
+          visitorData: session.context.client.visitorData,
           osVersion: '13',
-          acceptLanguage: this.#session.context.client.hl,
-          acceptRegion: this.#session.context.client.gl,
+          acceptLanguage: session.context.client.hl,
+          acceptRegion: session.context.client.gl,
           deviceMake: 'Google',
           deviceModel: 'sdk_gphone64_x86_64',
           screenHeightPoints: 840,
           screenWidthPoints: 432,
           configInfo: {
-            appInstallData: this.#session.context.client.configInfo?.appInstallData
+            appInstallData: session.context.client.configInfo?.appInstallData
           },
-          timeZone: this.#session.context.client.timeZone,
+          timeZone: session.context.client.timeZone,
           chipset: 'qcom;taro'
         },
         activePlayers: []
@@ -131,7 +133,7 @@ export default class Studio {
 
     const writer = MetadataUpdateRequest.encode(payload);
 
-    return await this.#session.actions.execute('/video_manager/metadata_update', {
+    return await session.actions.execute('/video_manager/metadata_update', {
       protobuf: true,
       serialized_data: writer.finish()
     });

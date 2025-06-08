@@ -1,6 +1,6 @@
 // noinspection ES6MissingAwait
 
-import { Parser, MusicPlaylistShelfContinuation, SectionListContinuation } from '../index.js';
+import { MusicPlaylistShelfContinuation, Parser, SectionListContinuation } from '../index.js';
 
 import MusicCarouselShelf from '../classes/MusicCarouselShelf.js';
 import MusicDetailHeader from '../classes/MusicDetailHeader.js';
@@ -13,17 +13,19 @@ import MusicResponsiveHeader from '../classes/MusicResponsiveHeader.js';
 
 import { InnertubeError } from '../../utils/Utils.js';
 import { observe, type ObservedArray } from '../helpers.js';
-import type { ApiResponse, Actions } from '../../core/index.js';
+import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 import type MusicThumbnail from '../classes/MusicThumbnail.js';
+import ContinuationItem from '../classes/ContinuationItem.js';
+import AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
 
 export default class Playlist {
   readonly #page: IBrowseResponse;
   readonly #actions: Actions;
-  readonly #continuation: string | null;
+  readonly #continuation?: string | ContinuationItem;
 
   public header?: MusicResponsiveHeader | MusicDetailHeader | MusicEditablePlaylistDetailHeader;
-  public contents?: ObservedArray<MusicResponsiveListItem>;
+  public contents?: ObservedArray<MusicResponsiveListItem | ContinuationItem>;
   public background?: MusicThumbnail;
 
   #last_fetched_suggestions: ObservedArray<MusicResponsiveListItem> | null;
@@ -40,15 +42,19 @@ export default class Playlist {
       const data = this.#page.continuation_contents?.as(MusicPlaylistShelfContinuation);
       if (!data.contents)
         throw new InnertubeError('No contents found in the response');
-      this.contents = data.contents.as(MusicResponsiveListItem);
-      this.#continuation = data.continuation;
-    } else {
-      if (!this.#page.contents_memo)
-        throw new InnertubeError('No contents found in the response');
-      this.header = this.#page.contents_memo.getType(MusicResponsiveHeader, MusicEditablePlaylistDetailHeader, MusicDetailHeader)?.first();
-      this.contents = this.#page.contents_memo.getType(MusicPlaylistShelf)?.first()?.contents || observe([]);
+      this.contents = data.contents.as(MusicResponsiveListItem, ContinuationItem);
+      const continuation_item = this.contents.firstOfType(ContinuationItem);
+      this.#continuation = data.continuation || continuation_item;
+    } else if (this.#page.contents_memo) {
+      this.header = this.#page.contents_memo.getType(MusicResponsiveHeader, MusicEditablePlaylistDetailHeader, MusicDetailHeader)?.[0];
+      this.contents = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0]?.contents.as(MusicResponsiveListItem, ContinuationItem) || observe([]);
       this.background = this.#page.background;
-      this.#continuation = this.#page.contents_memo.getType(MusicPlaylistShelf)?.first()?.continuation || null;
+      const continuation_item = this.contents.firstOfType(ContinuationItem);
+      this.#continuation = this.#page.contents_memo.getType(MusicPlaylistShelf)?.[0]?.continuation || continuation_item;
+    } else if (this.#page.on_response_received_actions) {
+      const append_continuation_action = this.#page.on_response_received_actions.firstOfType(AppendContinuationItemsAction);
+      this.contents = append_continuation_action?.contents?.as(MusicResponsiveListItem, ContinuationItem);
+      this.#continuation = this.contents?.firstOfType(ContinuationItem);
     }
   }
 
@@ -59,11 +65,17 @@ export default class Playlist {
     if (!this.#continuation)
       throw new InnertubeError('Continuation not found.');
 
-    const response = await this.#actions.execute('/browse', {
-      client: 'YTMUSIC',
-      continuation: this.#continuation
-    });
-
+    let response: ApiResponse;
+    
+    if (typeof this.#continuation === 'string') {
+      response = await this.#actions.execute('/browse', {
+        client: 'YTMUSIC',
+        continuation: this.#continuation
+      });
+    } else {
+      response = await this.#continuation.endpoint.call(this.#actions, { client: 'YTMUSIC' });
+    }
+    
     return new Playlist(response, this.#actions);
   }
 
@@ -144,7 +156,7 @@ export default class Playlist {
     return this.#page;
   }
 
-  get items(): ObservedArray<MusicResponsiveListItem> {
+  get items(): ObservedArray<MusicResponsiveListItem | ContinuationItem> {
     return this.contents || observe([]);
   }
 

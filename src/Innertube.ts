@@ -85,38 +85,48 @@ export default class Innertube {
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
 
+    const session = this.#session;
+
     const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: this.#session.player?.sts
+          signatureTimestamp: session.player?.sts
         }
       },
       client
     };
 
-    if (this.#session.po_token) {
+    if (session.po_token) {
       extra_payload.serviceIntegrityDimensions = {
-        poToken: this.#session.po_token
+        poToken: session.po_token
       };
     }
 
-    const watch_response = watch_endpoint.call(this.#session.actions, extra_payload);
-    const watch_next_response = watch_next_endpoint.call(this.#session.actions);
+    const watch_response = watch_endpoint.call(session.actions, extra_payload);
+    const watch_next_response = watch_next_endpoint.call(session.actions);
 
     const response = await Promise.all([ watch_response, watch_next_response ]);
 
     const cpn = generateRandomString(16);
 
-    return new VideoInfo(response, this.actions, cpn);
+    return new VideoInfo(response, session.actions, cpn);
   }
 
   async getBasicInfo(video_id: string, client?: InnerTubeClient): Promise<VideoInfo> {
     throwIfMissing({ video_id });
 
-    const watch_endpoint = new NavigationEndpoint({ watchEndpoint: { videoId: video_id } });
+    const watch_endpoint = new NavigationEndpoint({
+      watchEndpoint: {
+        videoId: video_id,
+        racyCheckOk: true,
+        contentCheckOk: true
+      }
+    });
+
+    const session = this.#session;
 
     const extra_payload: Record<string, any> = {
       playbackContext: {
@@ -124,23 +134,23 @@ export default class Innertube {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: this.#session.player?.sts
+          signatureTimestamp: session.player?.sts
         }
       },
       client
     };
 
-    if (this.#session.po_token) {
+    if (session.po_token) {
       extra_payload.serviceIntegrityDimensions = {
-        poToken: this.#session.po_token
+        poToken: session.po_token
       };
     }
     
-    const watch_response = await watch_endpoint.call(this.#session.actions, extra_payload);
+    const watch_response = await watch_endpoint.call(session.actions, extra_payload);
 
     const cpn = generateRandomString(16);
 
-    return new VideoInfo([ watch_response ], this.actions, cpn);
+    return new VideoInfo([ watch_response ], session.actions, cpn);
   }
 
   async getShortsVideoInfo(video_id: string, client?: InnerTubeClient): Promise<ShortFormVideoInfo> {
@@ -154,7 +164,9 @@ export default class Innertube {
       }
     });
 
-    const reel_watch_response = reel_watch_endpoint.call(this.#session.actions, { client });
+    const actions = this.#session.actions;
+
+    const reel_watch_response = reel_watch_endpoint.call(actions, { client });
 
     const writer = ReelSequence.encode({
       shortId: video_id,
@@ -167,13 +179,13 @@ export default class Innertube {
 
     const params = encodeURIComponent(u8ToBase64(writer.finish()));
 
-    const sequence_response = this.actions.execute('/reel/reel_watch_sequence', { sequenceParams: params });
+    const sequence_response = actions.execute('/reel/reel_watch_sequence', { sequenceParams: params });
 
     const response = await Promise.all([ reel_watch_response, sequence_response ]);
 
     const cpn = generateRandomString(16);
 
-    return new ShortFormVideoInfo([ response[0] ], this.actions, cpn, response[1]);
+    return new ShortFormVideoInfo([ response[0] ], actions, cpn, response[1]);
   }
 
   async search(query: string, filters: SearchFilters = {}): Promise<Search> {
@@ -253,6 +265,8 @@ export default class Innertube {
   }
 
   async getSearchSuggestions(query: string, previous_query?: string): Promise<string[]> {
+    const session = this.#session;
+
     const url = new URL(`${Constants.URLS.YT_SUGGESTIONS}/complete/search`);
     url.searchParams.set('client', 'youtube');
     url.searchParams.set('gs_ri', 'youtube');
@@ -260,16 +274,16 @@ export default class Innertube {
     url.searchParams.set('cp', '0');
     url.searchParams.set('ds', 'yt');
     url.searchParams.set('sugexp', Constants.CLIENTS.WEB.SUGG_EXP_ID);
-    url.searchParams.set('hl', this.#session.context.client.hl);
-    url.searchParams.set('gl', this.#session.context.client.gl);
+    url.searchParams.set('hl', session.context.client.hl);
+    url.searchParams.set('gl', session.context.client.gl);
     url.searchParams.set('q', query);
 
     if (previous_query)
       url.searchParams.set('pq', previous_query);
 
-    const response = await this.#session.http.fetch_function(url, {
+    const response = await session.http.fetch_function(url, {
       headers: {
-        'Cookie': this.#session.cookie || ''
+        'Cookie': session.cookie || ''
       }
     });
     
@@ -431,7 +445,7 @@ export default class Innertube {
    * @param options - Format options.
    */
   async getStreamingData(video_id: string, options: FormatOptions = {}): Promise<Format> {
-    const info = await this.getBasicInfo(video_id);
+    const info = await this.getBasicInfo(video_id, options?.client);
 
     const format = info.chooseFormat(options);
     format.url = format.decipher(this.#session.player);
@@ -478,7 +492,7 @@ export default class Innertube {
       }
     });
 
-    const params = encodeURIComponent(u8ToBase64(writer.finish()));
+    const params = encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
 
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channel_id, params: params } });
 
@@ -520,7 +534,7 @@ export default class Innertube {
     const writer2 = CommunityPostCommentsParamContainer.encode({
       f0: {
         location: 'FEcomment_post_detail_page_web_top_level',
-        protoData: encodeURIComponent(u8ToBase64(writer1.finish()))
+        protoData: encodeURIComponent(u8ToBase64(writer1.finish()).replace(/\+/g, '-').replace(/\//g, '_'))
       }
     });
 

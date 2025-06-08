@@ -22,4 +22,4 @@ Streaming data
 
 ## Defined in
 
-[src/utils/FormatUtils.ts:138](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/FormatUtils.ts#L138)
+[src/utils/FormatUtils.ts:138](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/FormatUtils.ts#L138)

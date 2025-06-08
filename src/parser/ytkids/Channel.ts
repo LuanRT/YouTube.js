@@ -14,7 +14,7 @@ export default class Channel extends Feed<IBrowseResponse> {
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.header = this.page.header?.item().as(C4TabbedHeader);
-    this.contents = this.memo.getType(ItemSection).first() || this.page.continuation_contents?.as(ItemSectionContinuation);
+    this.contents = this.memo.getType(ItemSection)[0] || this.page.continuation_contents?.as(ItemSectionContinuation);
   }
 
   /**

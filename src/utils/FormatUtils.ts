@@ -143,6 +143,14 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
     ...(streaming_data.formats || []),
     ...(streaming_data.adaptive_formats || [])
   ];
+  
+  if (options.itag) {
+    const candidates = formats.filter((format) => format.itag === options.itag);
+    if (!candidates.length)
+      throw new InnertubeError('No matching formats found', { options });
+    
+    return candidates[0];
+  }
 
   const requires_audio = options.type ? options.type.includes('audio') : true;
   const requires_video = options.type ? options.type.includes('video') : true;
@@ -158,6 +166,8 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
     if (requires_audio && !format.has_audio)
       return false;
     if (requires_video && !format.has_video)
+      return false;
+    if (options.codec && !format.mime_type.includes(options.codec))
       return false;
     if (options.format !== 'any' && !format.mime_type.includes(options.format || 'mp4'))
       return false;

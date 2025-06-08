@@ -2,20 +2,22 @@ import Text from './misc/Text.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
+import AccessibilityData, { type AccessibilitySupportedDatas } from './misc/AccessibilityData.js';
 
 export default class Button extends YTNode {
   static type = 'Button';
 
-  text?: string;
-  label?: string;
-  tooltip?: string;
-  style?: string;
-  size?: string;
-  icon_type?: string;
-  is_disabled?: boolean;
-  target_id?: string;
-  endpoint: NavigationEndpoint;
-
+  public text?: string;
+  public label?: string;
+  public tooltip?: string;
+  public style?: string;
+  public size?: string;
+  public icon_type?: string;
+  public is_disabled?: boolean;
+  public target_id?: string;
+  public endpoint: NavigationEndpoint;
+  public accessibility?: AccessibilitySupportedDatas;
+  
   constructor(data: RawNode) {
     super();
     if (Reflect.has(data, 'text'))
@@ -23,12 +25,13 @@ export default class Button extends YTNode {
 
     if (Reflect.has(data, 'accessibility') && Reflect.has(data.accessibility, 'label')) {
       this.label = data.accessibility.label;
-    } else if (
-      Reflect.has(data, 'accessibilityData') &&
-      Reflect.has(data.accessibilityData, 'accessibilityData') &&
-      Reflect.has(data.accessibilityData.accessibilityData, 'label')
-    ) {
-      this.label = data.accessibilityData.accessibilityData.label;
+    }
+
+    if ('accessibilityData' in data
+      && 'accessibilityData' in data.accessibilityData) {
+      this.accessibility = {
+        accessibility_data: new AccessibilityData(data.accessibilityData.accessibilityData)
+      };
     }
 
     if (Reflect.has(data, 'tooltip'))

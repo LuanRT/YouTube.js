@@ -20,4 +20,4 @@ If it is a renderer, return the class name. Otherwise, return false.
 
 ## Defined in
 
-[src/parser/generator.ts:202](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/generator.ts#L202)
+[src/parser/generator.ts:202](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/generator.ts#L202)

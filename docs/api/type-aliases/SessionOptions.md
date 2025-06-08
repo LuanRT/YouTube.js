@@ -104,6 +104,12 @@ Specifies whether to retrieve the JS player. Disabling this will make session cr
 
 The time zone.
 
+### user\_agent?
+
+> `optional` **user\_agent**: `string`
+
+User agent (InnerTube requests only).
+
 ### visitor\_data?
 
 > `optional` **visitor\_data**: `string`
@@ -113,4 +119,4 @@ A good way to get a valid one is by either grabbing it from a browser or calling
 
 ## Defined in
 
-[src/core/Session.ts:111](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/Session.ts#L111)
+[src/core/Session.ts:113](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L113)

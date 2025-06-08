@@ -6,16 +6,20 @@
 
 ### Interfaces
 
+- [IBotguardChallenge](interfaces/IBotguardChallenge.md)
 - [IEndpoint](interfaces/IEndpoint.md)
 - [IParsedResponse](interfaces/IParsedResponse.md)
 - [IPlayabilityStatus](interfaces/IPlayabilityStatus.md)
 - [IPlaybackTracking](interfaces/IPlaybackTracking.md)
 - [IPlayerConfig](interfaces/IPlayerConfig.md)
+- [IRawBotguardChallenge](interfaces/IRawBotguardChallenge.md)
 - [IRawPlayerConfig](interfaces/IRawPlayerConfig.md)
 - [IRawResponse](interfaces/IRawResponse.md)
+- [IRawTrustedResource](interfaces/IRawTrustedResource.md)
 - [IResponseContext](interfaces/IResponseContext.md)
 - [IServiceTrackingParams](interfaces/IServiceTrackingParams.md)
 - [IStreamingData](interfaces/IStreamingData.md)
+- [ITrustedResource](interfaces/ITrustedResource.md)
 
 ### Type Aliases
 
@@ -33,6 +37,7 @@
 - [GetAccountsListInnertubeRequest](type-aliases/GetAccountsListInnertubeRequest.md)
 - [GetKidsBlocklistPickerRequest](type-aliases/GetKidsBlocklistPickerRequest.md)
 - [IBrowseResponse](type-aliases/IBrowseResponse.md)
+- [IGetChallengeResponse](type-aliases/IGetChallengeResponse.md)
 - [IGetNotificationsMenuResponse](type-aliases/IGetNotificationsMenuResponse.md)
 - [IGetTranscriptResponse](type-aliases/IGetTranscriptResponse.md)
 - [IGuideResponse](type-aliases/IGuideResponse.md)

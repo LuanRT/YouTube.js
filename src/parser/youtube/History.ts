@@ -15,7 +15,7 @@ export default class History extends Feed<IBrowseResponse> {
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.sections = this.memo.getType(ItemSection);
-    this.feed_actions = this.memo.getType(BrowseFeedActions).first();
+    this.feed_actions = this.memo.getType(BrowseFeedActions)[0];
   }
 
   /**
@@ -37,7 +37,7 @@ export default class History extends Feed<IBrowseResponse> {
     for (const section of this.sections) {
       for (const content of section.contents) {
         const video = content as Video;
-        if (video.id === video_id && video.menu) {
+        if (video.video_id === video_id && video.menu) {
           feedbackToken = video.menu.top_level_buttons[0].as(Button).endpoint.payload.feedbackToken;
           break;
         }

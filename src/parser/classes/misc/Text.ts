@@ -3,11 +3,18 @@ import type { RawNode } from '../../index.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
 import EmojiRun from './EmojiRun.js';
 import TextRun from './TextRun.js';
+import AccessibilityData from './AccessibilityData.js';
 
 export interface Run {
   text: string;
+
   toString(): string;
+
   toHTML(): string;
+}
+
+export interface FormattedStringSupportedAccessibilityDatas {
+  accessibility_data: AccessibilityData;
 }
 
 export function escape(text: string) {
@@ -19,36 +26,78 @@ export function escape(text: string) {
     .replace(/'/g, '&#039;');
 }
 
-// Place this here, instead of in a private static property,
-// To avoid the performance penalty of the private field polyfill
 const TAG = 'Text';
 
+/**
+ * Represents text content that may include formatting, emojis, and navigation endpoints.
+ */
 export default class Text {
-  text?: string;
-  runs?: (EmojiRun | TextRun)[];
-  endpoint?: NavigationEndpoint;
+  /**
+   * The plain text content.
+   */
+  public text?: string;
+
+  /**
+   * Individual text segments with their formatting.
+   */
+  public runs?: (EmojiRun | TextRun)[];
+
+  /**
+   * Navigation endpoint associated with this text.
+   */
+  public endpoint?: NavigationEndpoint;
+
+  /**
+   * Accessibility data associated with this text.
+   */
+  public accessibility?: FormattedStringSupportedAccessibilityDatas;
+
+  /**
+   * Indicates if the text is right-to-left.
+   */
+  public rtl: boolean;
 
   constructor(data: RawNode) {
-    if (typeof data === 'object' && data !== null && Reflect.has(data, 'runs') && Array.isArray(data.runs)) {
-      this.runs = data.runs.map((run: RawNode) => run.emoji ?
-        new EmojiRun(run) :
-        new TextRun(run)
+    if (this.isRunsData(data)) {
+      this.runs = data.runs.map((run: RawNode) =>
+        run.emoji ? new EmojiRun(run) : new TextRun(run)
       );
       this.text = this.runs.map((run) => run.text).join('');
     } else {
       this.text = data?.simpleText;
     }
-    if (typeof data === 'object' && data !== null && Reflect.has(data, 'navigationEndpoint')) {
+
+    if (this.isObject(data) && 'accessibility' in data
+      && 'accessibilityData' in data.accessibility) {
+      this.accessibility = {
+        accessibility_data: new AccessibilityData(data.accessibility.accessibilityData)
+      };
+    }
+
+    this.rtl = !!data?.rtl;
+
+    this.parseEndpoint(data);
+  }
+
+  private isRunsData(data: RawNode): data is { runs: RawNode[] } {
+    return this.isObject(data) &&
+      Reflect.has(data, 'runs') &&
+      Array.isArray(data.runs);
+  }
+
+  private parseEndpoint(data: RawNode): void {
+    if (!this.isObject(data)) return;
+    if ('navigationEndpoint' in data) {
       this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    }
-    if (typeof data === 'object' && data !== null && Reflect.has(data, 'titleNavigationEndpoint')) {
+    } else if ('titleNavigationEndpoint' in data) {
       this.endpoint = new NavigationEndpoint(data.titleNavigationEndpoint);
+    } else if ((this.runs?.[0] as TextRun)?.endpoint) {
+      this.endpoint = (this.runs?.[0] as TextRun).endpoint;
     }
-    if (!this.endpoint) {
-      if ((this.runs?.[0] as TextRun)?.endpoint) {
-        this.endpoint = (this.runs?.[0] as TextRun)?.endpoint;
-      }
-    }
+  }
+
+  private isObject(data: RawNode): boolean {
+    return typeof data === 'object' && data !== null;
   }
 
   static fromAttributed(data: AttributedText) {
@@ -75,120 +124,127 @@ export default class Text {
       length: run.length ?? content.length
     }) as StyleRun & ResponseRun);
 
-    if (style_runs || command_runs || attachment_runs) {
-      if (style_runs) {
-        for (const style_run of style_runs) {
-          if (
-            style_run.italic ||
-            style_run.strikethrough === 'LINE_STYLE_SINGLE' ||
-            style_run.weightLabel === 'FONT_WEIGHT_MEDIUM' ||
-            style_run.weightLabel === 'FONT_WEIGHT_BOLD'
-          ) {
-            const matching_run = findMatchingRun(runs, style_run);
+    if (style_runs?.length)
+      this.processStyleRuns(runs, style_runs, data);
 
-            if (!matching_run) {
-              Log.warn(TAG, 'Unable to find matching run for style run. Skipping...', {
-                style_run,
-                input_data: data,
-                // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
-                // So if we log the original runs object, it might have changed by the time the user looks at it.
-                // Deep clone, so that we log the exact state of the runs at this point.
-                parsed_runs: JSON.parse(JSON.stringify(runs))
-              });
+    if (command_runs?.length)
+      this.processCommandRuns(runs, command_runs, data);
 
-              continue;
-            }
+    if (attachment_runs?.length)
+      this.processAttachmentRuns(runs, attachment_runs, data);
 
-            // Comments use MEDIUM for bold text and video descriptions use BOLD for bold text
-            insertSubRun(runs, matching_run, style_run, {
-              bold: style_run.weightLabel === 'FONT_WEIGHT_MEDIUM' || style_run.weightLabel === 'FONT_WEIGHT_BOLD',
-              italics: style_run.italic,
-              strikethrough: style_run.strikethrough === 'LINE_STYLE_SINGLE'
-            });
-          } else {
-            Log.debug(TAG, 'Skipping style run as it is doesn\'t have any information that we parse.', {
-              style_run,
-              input_data: data
-            });
-          }
+    return new Text({ runs });
+  }
+
+  private static processStyleRuns(runs: RawRun[], style_runs: (StyleRun & ResponseRun)[], data: AttributedText) {
+    for (const style_run of style_runs) {
+      if (
+        style_run.italic ||
+        style_run.strikethrough === 'LINE_STYLE_SINGLE' ||
+        style_run.weightLabel === 'FONT_WEIGHT_MEDIUM' ||
+        style_run.weightLabel === 'FONT_WEIGHT_BOLD'
+      ) {
+        const matching_run = findMatchingRun(runs, style_run);
+
+        if (!matching_run) {
+          Log.warn(TAG, 'Unable to find matching run for style run. Skipping...', {
+            style_run,
+            input_data: data,
+            // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
+            // So if we log the original runs object, it might have changed by the time the user looks at it.
+            // Deep clone, so that we log the exact state of the runs at this point.
+            parsed_runs: JSON.parse(JSON.stringify(runs))
+          });
+
+          continue;
         }
+
+        // Comments use MEDIUM for bold text and video descriptions use BOLD for bold text
+        insertSubRun(runs, matching_run, style_run, {
+          bold: style_run.weightLabel === 'FONT_WEIGHT_MEDIUM' || style_run.weightLabel === 'FONT_WEIGHT_BOLD',
+          italics: style_run.italic,
+          strikethrough: style_run.strikethrough === 'LINE_STYLE_SINGLE'
+        });
+      } else {
+        Log.debug(TAG, 'Skipping style run as it is doesn\'t have any information that we parse.', {
+          style_run,
+          input_data: data
+        });
+      }
+    }
+  }
+
+  private static processCommandRuns(runs: RawRun[], command_runs: CommandRun[], data: AttributedText) {
+    for (const command_run of command_runs) {
+      if (command_run.onTap) {
+        const matching_run = findMatchingRun(runs, command_run);
+
+        if (!matching_run) {
+          Log.warn(TAG, 'Unable to find matching run for command run. Skipping...', {
+            command_run,
+            input_data: data,
+            // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
+            // So if we log the original runs object, it might have changed by the time the user looks at it.
+            // Deep clone, so that we log the exact state of the runs at this point.
+            parsed_runs: JSON.parse(JSON.stringify(runs))
+          });
+
+          continue;
+        }
+
+        insertSubRun(runs, matching_run, command_run, {
+          navigationEndpoint: command_run.onTap
+        });
+      } else {
+        Log.debug(TAG, 'Skipping command run as it is missing the "doTap" property.', {
+          command_run,
+          input_data: data
+        });
+      }
+    }
+  }
+
+  private static processAttachmentRuns(runs: RawRun[], attachment_runs: AttachmentRun[], data: AttributedText) {
+    for (const attachment_run of attachment_runs) {
+      const matching_run = findMatchingRun(runs, attachment_run);
+
+      if (!matching_run) {
+        Log.warn(TAG, 'Unable to find matching run for attachment run. Skipping...', {
+          attachment_run,
+          input_data: data,
+          // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
+          // So if we log the original runs object, it might have changed by the time the user looks at it.
+          // Deep clone, so that we log the exact state of the runs at this point.
+          parsed_runs: JSON.parse(JSON.stringify(runs))
+        });
+
+        continue;
       }
 
-      if (command_runs) {
-        for (const command_run of command_runs) {
-          if (command_run.onTap) {
-            const matching_run = findMatchingRun(runs, command_run);
+      if (attachment_run.length === 0) {
+        matching_run.attachment = attachment_run;
+      } else {
+        const offset_start_index = attachment_run.startIndex - matching_run.startIndex;
 
-            if (!matching_run) {
-              Log.warn(TAG, 'Unable to find matching run for command run. Skipping...', {
-                command_run,
-                input_data: data,
-                // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
-                // So if we log the original runs object, it might have changed by the time the user looks at it.
-                // Deep clone, so that we log the exact state of the runs at this point.
-                parsed_runs: JSON.parse(JSON.stringify(runs))
-              });
+        const text = matching_run.text.substring(offset_start_index, offset_start_index + attachment_run.length);
 
-              continue;
-            }
+        const is_custom_emoji = (/^:[^:]+:$/).test(text);
 
-            insertSubRun(runs, matching_run, command_run, {
-              navigationEndpoint: command_run.onTap
-            });
-          } else {
-            Log.debug(TAG, 'Skipping command run as it is missing the "doTap" property.', {
-              command_run,
-              input_data: data
-            });
-          }
-        }
-      }
+        if (attachment_run.element?.type?.imageType?.image && (is_custom_emoji || (/^(?:\p{Emoji}|\u200d)+$/u).test(text))) {
+          const emoji = {
+            image: attachment_run.element.type.imageType.image,
+            isCustomEmoji: is_custom_emoji,
+            shortcuts: is_custom_emoji ? [ text ] : undefined
+          };
 
-      if (attachment_runs) {
-        for (const attachment_run of attachment_runs) {
-          const matching_run = findMatchingRun(runs, attachment_run);
-
-          if (!matching_run) {
-            Log.warn(TAG, 'Unable to find matching run for attachment run. Skipping...', {
-              attachment_run,
-              input_data: data,
-              // For performance reasons, web browser consoles only expand an object, when the user clicks on it,
-              // So if we log the original runs object, it might have changed by the time the user looks at it.
-              // Deep clone, so that we log the exact state of the runs at this point.
-              parsed_runs: JSON.parse(JSON.stringify(runs))
-            });
-
-            continue;
-          }
-
-          if (attachment_run.length === 0) {
-            matching_run.attachment = attachment_run;
-          } else {
-            const offset_start_index = attachment_run.startIndex - matching_run.startIndex;
-
-            const text = matching_run.text.substring(offset_start_index, offset_start_index + attachment_run.length);
-
-            const is_custom_emoji = (/^:[^:]+:$/).test(text);
-
-            if (attachment_run.element?.type?.imageType?.image && (is_custom_emoji || (/^(?:\p{Emoji}|\u200d)+$/u).test(text))) {
-              const emoji = {
-                image: attachment_run.element.type.imageType.image,
-                isCustomEmoji: is_custom_emoji,
-                shortcuts: is_custom_emoji ? [ text ] : undefined
-              };
-
-              insertSubRun(runs, matching_run, attachment_run, { emoji });
-            } else {
-              insertSubRun(runs, matching_run, attachment_run, {
-                attachment: attachment_run
-              });
-            }
-          }
+          insertSubRun(runs, matching_run, attachment_run, { emoji });
+        } else {
+          insertSubRun(runs, matching_run, attachment_run, {
+            attachment: attachment_run
+          });
         }
       }
     }
-
-    return new Text({ runs });
   }
 
   /**
@@ -292,7 +348,7 @@ interface StyleRun extends Partial<ResponseRun> {
         value: number
       }[]
     }
-  }
+  };
 }
 
 interface CommandRun extends ResponseRun {

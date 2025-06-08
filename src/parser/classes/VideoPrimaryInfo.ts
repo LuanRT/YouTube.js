@@ -1,5 +1,5 @@
 import { Parser, type RawNode } from '../index.js';
-import { YTNode, type ObservedArray } from '../helpers.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 
 import Text from './misc/Text.js';
 import Menu from './menus/Menu.js';
@@ -11,6 +11,7 @@ export default class VideoPrimaryInfo extends YTNode {
 
   public title: Text;
   public super_title_link?: Text;
+  public station_name?: Text;
   public view_count: VideoViewCount | null;
   public badges: ObservedArray<MetadataBadge>;
   public published: Text;
@@ -21,9 +22,12 @@ export default class VideoPrimaryInfo extends YTNode {
     super();
     this.title = new Text(data.title);
 
-    if (Reflect.has(data, 'superTitleLink'))
+    if ('superTitleLink' in data)
       this.super_title_link = new Text(data.superTitleLink);
 
+    if ('stationName' in data)
+      this.station_name = new Text(data.stationName);
+    
     this.view_count = Parser.parseItem(data.viewCount, VideoViewCount);
     this.badges = Parser.parseArray(data.badges, MetadataBadge);
     this.published = new Text(data.dateText);

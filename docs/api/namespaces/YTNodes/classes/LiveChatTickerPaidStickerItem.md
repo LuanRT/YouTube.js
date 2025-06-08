@@ -4,7 +4,7 @@
 
 ## Extends
 
-- [`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md)
+- [`YTNode`](../../Helpers/classes/YTNode.md)
 
 ## Constructors
 
@@ -20,69 +20,63 @@
 
 [`LiveChatTickerPaidStickerItem`](LiveChatTickerPaidStickerItem.md)
 
-#### Inherited from
+#### Overrides
 
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`constructor`](LiveChatTickerPaidMessageItem.md#constructors)
+[`YTNode`](../../Helpers/classes/YTNode.md).[`constructor`](../../Helpers/classes/YTNode.md#constructors)
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:20](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L20)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:23](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L23)
 
 ## Properties
 
-### amount
+### author\_external\_channel\_id
 
-> **amount**: [`Text`](../../Misc/classes/Text.md)
-
-#### Inherited from
-
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`amount`](LiveChatTickerPaidMessageItem.md#amount)
+> **author\_external\_channel\_id**: `string`
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L13)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:10](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L10)
 
 ***
 
-### author
+### author\_photo
 
-> **author**: [`Author`](../../Misc/classes/Author.md)
-
-#### Inherited from
-
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`author`](LiveChatTickerPaidMessageItem.md#author)
+> **author\_photo**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L12)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:11](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L11)
 
 ***
 
 ### duration\_sec
 
-> **duration\_sec**: `string`
-
-#### Inherited from
-
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`duration_sec`](LiveChatTickerPaidMessageItem.md#duration_sec)
+> **duration\_sec**: `number`
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:14](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L14)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:14](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L14)
+
+***
+
+### end\_background\_color
+
+> **end\_background\_color**: `number`
+
+#### Defined in
+
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L13)
 
 ***
 
 ### full\_duration\_sec
 
-> **full\_duration\_sec**: `string`
-
-#### Inherited from
-
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`full_duration_sec`](LiveChatTickerPaidMessageItem.md#full_duration_sec)
+> **full\_duration\_sec**: `number`
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L15)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L15)
 
 ***
 
@@ -90,13 +84,9 @@
 
 > **id**: `string`
 
-#### Inherited from
-
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`id`](LiveChatTickerPaidMessageItem.md#id)
-
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:18](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L18)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:9](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L9)
 
 ***
 
@@ -104,13 +94,9 @@
 
 > **show\_item**: [`YTNode`](../../Helpers/classes/YTNode.md)
 
-#### Inherited from
-
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`show_item`](LiveChatTickerPaidMessageItem.md#show_item)
-
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L16)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L16)
 
 ***
 
@@ -118,13 +104,29 @@
 
 > **show\_item\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-#### Inherited from
+#### Defined in
 
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`show_item_endpoint`](LiveChatTickerPaidMessageItem.md#show_item_endpoint)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:17](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L17)
+
+***
+
+### start\_background\_color
+
+> **start\_background\_color**: `number`
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts:17](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidMessageItem.ts#L17)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L12)
+
+***
+
+### ticker\_thumbnails
+
+> **ticker\_thumbnails**: `object`[]
+
+#### Defined in
+
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L18)
 
 ***
 
@@ -134,11 +136,11 @@
 
 #### Inherited from
 
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`type`](LiveChatTickerPaidMessageItem.md#type)
+[`YTNode`](../../Helpers/classes/YTNode.md).[`type`](../../Helpers/classes/YTNode.md#type)
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
 
 ***
 
@@ -148,11 +150,11 @@
 
 #### Overrides
 
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`type`](LiveChatTickerPaidMessageItem.md#type-1)
+[`YTNode`](../../Helpers/classes/YTNode.md).[`type`](../../Helpers/classes/YTNode.md#type-1)
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:4](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L4)
+[src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts:7](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/livechat/items/LiveChatTickerPaidStickerItem.ts#L7)
 
 ## Methods
 
@@ -186,11 +188,11 @@ If the node is not of the given type
 
 #### Inherited from
 
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`as`](LiveChatTickerPaidMessageItem.md#as)
+[`YTNode`](../../Helpers/classes/YTNode.md).[`as`](../../Helpers/classes/YTNode.md#as)
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
 
 ***
 
@@ -220,11 +222,11 @@ Whether the node has the key
 
 #### Inherited from
 
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`hasKey`](LiveChatTickerPaidMessageItem.md#haskey)
+[`YTNode`](../../Helpers/classes/YTNode.md).[`hasKey`](../../Helpers/classes/YTNode.md#haskey)
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
 
 ***
 
@@ -254,11 +256,11 @@ whether the node is of the given type
 
 #### Inherited from
 
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`is`](LiveChatTickerPaidMessageItem.md#is)
+[`YTNode`](../../Helpers/classes/YTNode.md).[`is`](../../Helpers/classes/YTNode.md#is)
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
 
 ***
 
@@ -292,8 +294,8 @@ If the node does not have the key
 
 #### Inherited from
 
-[`LiveChatTickerPaidMessageItem`](LiveChatTickerPaidMessageItem.md).[`key`](LiveChatTickerPaidMessageItem.md#key)
+[`YTNode`](../../Helpers/classes/YTNode.md).[`key`](../../Helpers/classes/YTNode.md#key)
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)

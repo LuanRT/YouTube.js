@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[src/utils/Cache.ts:6](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Cache.ts#L6)
+[src/utils/Cache.ts:6](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Cache.ts#L6)
 
 ## Accessors
 
@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[src/utils/Cache.ts:9](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Cache.ts#L9)
+[src/utils/Cache.ts:9](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Cache.ts#L9)
 
 ## Methods
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[src/utils/Cache.ts:12](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Cache.ts#L12)
+[src/utils/Cache.ts:12](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Cache.ts#L12)
 
 ***
 
@@ -86,7 +86,7 @@
 
 #### Defined in
 
-[src/utils/Cache.ts:18](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Cache.ts#L18)
+[src/utils/Cache.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Cache.ts#L18)
 
 ***
 
@@ -110,4 +110,4 @@
 
 #### Defined in
 
-[src/utils/Cache.ts:15](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Cache.ts#L15)
+[src/utils/Cache.ts:15](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Cache.ts#L15)

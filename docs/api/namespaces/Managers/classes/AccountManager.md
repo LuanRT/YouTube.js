@@ -18,23 +18,47 @@
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:12](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/AccountManager.ts#L12)
+[src/core/managers/AccountManager.ts:13](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/AccountManager.ts#L13)
 
 ## Methods
 
 ### getInfo()
 
-> **getInfo**(): `Promise`\<[`AccountInfo`](../../YT/classes/AccountInfo.md)\>
+#### getInfo(all)
 
-Retrieves channel info.
+> **getInfo**(`all`): `Promise`\<[`AccountItem`](../../YTNodes/classes/AccountItem.md)[]\>
 
-#### Returns
+Retrieves the list of channels belonging to the signed-in account. Only useful when signed in through cookie. If signed in through OAuth, you will get the active channel only.
+
+##### Parameters
+
+• **all**: `true`
+
+##### Returns
+
+`Promise`\<[`AccountItem`](../../YTNodes/classes/AccountItem.md)[]\>
+
+##### Defined in
+
+[src/core/managers/AccountManager.ts:20](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/AccountManager.ts#L20)
+
+#### getInfo(all)
+
+> **getInfo**(`all`?): `Promise`\<[`AccountInfo`](../../YT/classes/AccountInfo.md)\>
+
+Retrieves the active channel info for the signed-in account. Throws error if `on_behalf_of_user` was used to create the Innertube instance; use `getInfo(true)` instead.
+
+##### Parameters
+
+• **all?**: `false`
+
+##### Returns
 
 `Promise`\<[`AccountInfo`](../../YT/classes/AccountInfo.md)\>
 
-#### Defined in
+##### Defined in
 
-[src/core/managers/AccountManager.ts:19](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/AccountManager.ts#L19)
+[src/core/managers/AccountManager.ts:24](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/AccountManager.ts#L24)
 
 ***
 
@@ -50,4 +74,4 @@ Gets YouTube settings.
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:30](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/core/managers/AccountManager.ts#L30)
+[src/core/managers/AccountManager.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/managers/AccountManager.ts#L50)

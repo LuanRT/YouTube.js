@@ -34,11 +34,12 @@ export default class SegmentedLikeDislikeButtonView extends YTNode {
       if (toggle_button.default_button) {
         this.short_like_count = toggle_button.default_button.title;
 
-        this.like_count = parseInt(toggle_button.default_button.accessibility_text.replace(/\D/g, ''));
+        if (toggle_button.default_button.accessibility_text)
+          this.like_count = parseInt(toggle_button.default_button.accessibility_text.replace(/\D/g, ''));
       } else if (toggle_button.toggled_button) {
         this.short_like_count = toggle_button.toggled_button.title;
-
-        this.like_count = parseInt(toggle_button.toggled_button.accessibility_text.replace(/\D/g, ''));
+        if (toggle_button.toggled_button.accessibility_text)
+          this.like_count = parseInt(toggle_button.toggled_button.accessibility_text.replace(/\D/g, ''));
       }
     }
 

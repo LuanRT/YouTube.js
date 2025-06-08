@@ -24,7 +24,7 @@ Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] 
 
 #### Defined in
 
-[src/parser/helpers.ts:330](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L330)
+[src/parser/helpers.ts:330](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L330)
 
 ## Accessors
 
@@ -38,7 +38,7 @@ Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] 
 
 #### Defined in
 
-[src/parser/helpers.ts:337](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L337)
+[src/parser/helpers.ts:337](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L337)
 
 ***
 
@@ -52,7 +52,7 @@ Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] 
 
 #### Defined in
 
-[src/parser/helpers.ts:340](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L340)
+[src/parser/helpers.ts:340](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L340)
 
 ***
 
@@ -66,7 +66,7 @@ Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] 
 
 #### Defined in
 
-[src/parser/helpers.ts:334](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L334)
+[src/parser/helpers.ts:334](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L334)
 
 ## Methods
 
@@ -80,7 +80,7 @@ Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] 
 
 #### Defined in
 
-[src/parser/helpers.ts:344](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L344)
+[src/parser/helpers.ts:344](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L344)
 
 ***
 
@@ -94,4 +94,4 @@ Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] 
 
 #### Defined in
 
-[src/parser/helpers.ts:351](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L351)
+[src/parser/helpers.ts:351](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L351)

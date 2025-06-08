@@ -13,7 +13,7 @@ import MicroformatData from '../classes/MicroformatData.js';
 import SubscribeButton from '../classes/SubscribeButton.js';
 import ExpandableTab from '../classes/ExpandableTab.js';
 import SectionList from '../classes/SectionList.js';
-import Tab from '../classes/Tab.js';
+import type Tab from '../classes/Tab.js';
 import PageHeader from '../classes/PageHeader.js';
 import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
 import ChipCloudChip from '../classes/ChipCloudChip.js';
@@ -48,7 +48,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     const microformat = this.page.microformat?.as(MicroformatData);
 
     if (this.page.alerts) {
-      const alert = this.page.alerts.first();
+      const alert = this.page.alerts[0];
       if (alert?.alert_type === 'ERROR') {
         throw new ChannelError(alert.text.toString());
       }
@@ -59,10 +59,10 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 
     this.metadata = { ...metadata, ...(microformat || {}) };
 
-    this.subscribe_button = this.page.header_memo?.getType(SubscribeButton).first();
+    this.subscribe_button = this.page.header_memo?.getType(SubscribeButton)[0];
 
     if (this.page.contents)
-      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.array().filterType(Tab, ExpandableTab).get({ selected: true });
+      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.get({ selected: true });
   }
 
   /**
@@ -72,7 +72,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
   async applyFilter(filter: string | ChipCloudChip): Promise<FilteredChannelList> {
     let target_filter: ChipCloudChip | undefined;
 
-    const filter_chipbar = this.memo.getType(FeedFilterChipBar).first();
+    const filter_chipbar = this.memo.getType(FeedFilterChipBar)[0];
 
     if (typeof filter === 'string') {
       target_filter = filter_chipbar?.contents.get({ text: filter });
@@ -98,7 +98,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
    * @param sort - The sort filter to apply
    */
   async applySort(sort: string): Promise<Channel> {
-    const sort_filter_sub_menu = this.memo.getType(SortFilterSubMenu).first();
+    const sort_filter_sub_menu = this.memo.getType(SortFilterSubMenu)[0];
 
     if (!sort_filter_sub_menu || !sort_filter_sub_menu.sub_menu_items)
       throw new InnertubeError('No sort filter sub menu found');
@@ -144,7 +144,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
   }
 
   get sort_filters(): string[] {
-    const sort_filter_sub_menu = this.memo.getType(SortFilterSubMenu).first();
+    const sort_filter_sub_menu = this.memo.getType(SortFilterSubMenu)[0];
     return sort_filter_sub_menu?.sub_menu_items?.map((item) => item.title) || [];
   }
 
@@ -180,6 +180,11 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 
   async getPodcasts(): Promise<Channel> {
     const tab = await this.getTabByURL('podcasts');
+    return new Channel(this.actions, tab.page, true);
+  }
+
+  async getCourses(): Promise<Channel> {
+    const tab = await this.getTabByURL('courses');
     return new Channel(this.actions, tab.page, true);
   }
 
@@ -269,6 +274,10 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     return this.hasTabWithURL('podcasts');
   }
 
+  get has_courses(): boolean {
+    return this.hasTabWithURL('courses');
+  }
+
   get has_playlists(): boolean {
     return this.hasTabWithURL('playlists');
   }
@@ -302,8 +311,8 @@ export class ChannelListContinuation extends Feed<IBrowseResponse> {
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
     this.contents =
-      this.page.on_response_received_actions?.first() ||
-      this.page.on_response_received_endpoints?.first();
+      this.page.on_response_received_actions?.[0] ||
+      this.page.on_response_received_endpoints?.[0];
   }
 
   async getContinuation(): Promise<ChannelListContinuation> {
@@ -331,7 +340,7 @@ export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
       this.page.on_response_received_actions.shift();
     }
 
-    this.contents = this.page.on_response_received_actions?.first();
+    this.contents = this.page.on_response_received_actions?.[0];
   }
 
   /**

@@ -21,6 +21,7 @@ export { default as ActiveAccountHeader } from './classes/ActiveAccountHeader.js
 export { default as AddToPlaylist } from './classes/AddToPlaylist.js';
 export { default as Alert } from './classes/Alert.js';
 export { default as AlertWithButton } from './classes/AlertWithButton.js';
+export { default as AnimatedThumbnailOverlayView } from './classes/AnimatedThumbnailOverlayView.js';
 export { default as AttributionView } from './classes/AttributionView.js';
 export { default as AudioOnlyPlayability } from './classes/AudioOnlyPlayability.js';
 export { default as AutomixPreviewVideo } from './classes/AutomixPreviewVideo.js';
@@ -83,6 +84,7 @@ export { default as ContinuationCommand } from './classes/commands/ContinuationC
 export { default as GetKidsBlocklistPickerCommand } from './classes/commands/GetKidsBlocklistPickerCommand.js';
 export { default as RunAttestationCommand } from './classes/commands/RunAttestationCommand.js';
 export { default as ShowDialogCommand } from './classes/commands/ShowDialogCommand.js';
+export { default as UpdateEngagementPanelContentCommand } from './classes/commands/UpdateEngagementPanelContentCommand.js';
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.js';
 export { default as CommentActionButtons } from './classes/comments/CommentActionButtons.js';
 export { default as CommentDialog } from './classes/comments/CommentDialog.js';
@@ -276,6 +278,7 @@ export { default as LockupMetadataView } from './classes/LockupMetadataView.js';
 export { default as LockupView } from './classes/LockupView.js';
 export { default as MacroMarkersInfoItem } from './classes/MacroMarkersInfoItem.js';
 export { default as MacroMarkersList } from './classes/MacroMarkersList.js';
+export { default as MacroMarkersListEntity } from './classes/MacroMarkersListEntity.js';
 export { default as MacroMarkersListItem } from './classes/MacroMarkersListItem.js';
 export { default as Menu } from './classes/menus/Menu.js';
 export { default as MenuFlexibleItem } from './classes/menus/MenuFlexibleItem.js';
@@ -344,6 +347,7 @@ export { default as TopbarMenuButton } from './classes/mweb/TopbarMenuButton.js'
 export { default as NavigationEndpoint } from './classes/NavigationEndpoint.js';
 export { default as Notification } from './classes/Notification.js';
 export { default as NotificationAction } from './classes/NotificationAction.js';
+export { default as OpenOnePickAddVideoModalCommand } from './classes/OpenOnePickAddVideoModalCommand.js';
 export { default as PageHeader } from './classes/PageHeader.js';
 export { default as PageHeaderView } from './classes/PageHeaderView.js';
 export { default as PageIntroduction } from './classes/PageIntroduction.js';
@@ -455,6 +459,8 @@ export { default as TextFieldView } from './classes/TextFieldView.js';
 export { default as TextHeader } from './classes/TextHeader.js';
 export { default as ThirdPartyShareTargetSection } from './classes/ThirdPartyShareTargetSection.js';
 export { default as ThumbnailBadgeView } from './classes/ThumbnailBadgeView.js';
+export { default as ThumbnailBottomOverlayView } from './classes/ThumbnailBottomOverlayView.js';
+export { default as ThumbnailHoverOverlayToggleActionsView } from './classes/ThumbnailHoverOverlayToggleActionsView.js';
 export { default as ThumbnailHoverOverlayView } from './classes/ThumbnailHoverOverlayView.js';
 export { default as ThumbnailLandscapePortrait } from './classes/ThumbnailLandscapePortrait.js';
 export { default as ThumbnailOverlayBadgeView } from './classes/ThumbnailOverlayBadgeView.js';
@@ -466,6 +472,7 @@ export { default as ThumbnailOverlayLoadingPreview } from './classes/ThumbnailOv
 export { default as ThumbnailOverlayNowPlaying } from './classes/ThumbnailOverlayNowPlaying.js';
 export { default as ThumbnailOverlayPinking } from './classes/ThumbnailOverlayPinking.js';
 export { default as ThumbnailOverlayPlaybackStatus } from './classes/ThumbnailOverlayPlaybackStatus.js';
+export { default as ThumbnailOverlayProgressBarView } from './classes/ThumbnailOverlayProgressBarView.js';
 export { default as ThumbnailOverlayResumePlayback } from './classes/ThumbnailOverlayResumePlayback.js';
 export { default as ThumbnailOverlaySidePanel } from './classes/ThumbnailOverlaySidePanel.js';
 export { default as ThumbnailOverlayTimeStatus } from './classes/ThumbnailOverlayTimeStatus.js';

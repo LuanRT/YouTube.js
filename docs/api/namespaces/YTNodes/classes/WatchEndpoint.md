@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[src/parser/classes/endpoints/WatchEndpoint.ts:10](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/endpoints/WatchEndpoint.ts#L10)
+[src/parser/classes/endpoints/WatchEndpoint.ts:11](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/endpoints/WatchEndpoint.ts#L11)
 
 ## Properties
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
 
 ***
 
@@ -62,7 +62,7 @@
 
 #### Defined in
 
-[src/parser/classes/endpoints/WatchEndpoint.ts:5](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/endpoints/WatchEndpoint.ts#L5)
+[src/parser/classes/endpoints/WatchEndpoint.ts:7](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/endpoints/WatchEndpoint.ts#L7)
 
 ## Methods
 
@@ -100,7 +100,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
 
 ***
 
@@ -118,7 +118,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/classes/endpoints/WatchEndpoint.ts:19](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/endpoints/WatchEndpoint.ts#L19)
+[src/parser/classes/endpoints/WatchEndpoint.ts:20](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/endpoints/WatchEndpoint.ts#L20)
 
 ***
 
@@ -136,7 +136,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/classes/endpoints/WatchEndpoint.ts:15](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/endpoints/WatchEndpoint.ts#L15)
+[src/parser/classes/endpoints/WatchEndpoint.ts:16](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/endpoints/WatchEndpoint.ts#L16)
 
 ***
 
@@ -170,7 +170,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
 
 ***
 
@@ -204,7 +204,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
 
 ***
 
@@ -242,4 +242,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)

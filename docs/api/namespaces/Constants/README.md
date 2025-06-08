@@ -6,6 +6,7 @@
 
 ### Variables
 
+- [CLIENT\_NAME\_IDS](variables/CLIENT_NAME_IDS.md)
 - [CLIENTS](variables/CLIENTS.md)
 - [INNERTUBE\_HEADERS\_BASE](variables/INNERTUBE_HEADERS_BASE.md)
 - [OAUTH](variables/OAUTH.md)

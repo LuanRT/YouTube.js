@@ -27,8 +27,8 @@ export default class Album {
     if (!this.#page.contents_memo)
       throw new Error('No contents found in the response');
 
-    this.header = this.#page.contents_memo.getType(MusicDetailHeader, MusicResponsiveHeader)?.first();
-    this.contents = this.#page.contents_memo.getType(MusicShelf)?.first().contents || observe([]);
+    this.header = this.#page.contents_memo.getType(MusicDetailHeader, MusicResponsiveHeader)?.[0];
+    this.contents = this.#page.contents_memo.getType(MusicShelf)?.[0].contents || observe([]);
     this.sections = this.#page.contents_memo.getType(MusicCarouselShelf) || observe([]);
     this.background = this.#page.background;
     this.url = this.#page.microformat?.as(MicroformatData).url_canonical;

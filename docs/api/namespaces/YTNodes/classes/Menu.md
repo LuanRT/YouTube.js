@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/menus/Menu.ts:20](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/menus/Menu.ts#L20)
+[src/parser/classes/menus/Menu.ts:21](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/menus/Menu.ts#L21)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/menus/Menu.ts:16](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/menus/Menu.ts#L16)
+[src/parser/classes/menus/Menu.ts:17](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/menus/Menu.ts#L17)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/menus/Menu.ts:15](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/menus/Menu.ts#L15)
+[src/parser/classes/menus/Menu.ts:16](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/menus/Menu.ts#L16)
 
 ***
 
@@ -56,17 +56,17 @@
 
 #### Defined in
 
-[src/parser/classes/menus/Menu.ts:18](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/menus/Menu.ts#L18)
+[src/parser/classes/menus/Menu.ts:19](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/menus/Menu.ts#L19)
 
 ***
 
 ### top\_level\_buttons
 
-> **top\_level\_buttons**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Button`](Button.md) \| [`ButtonView`](ButtonView.md) \| [`SegmentedLikeDislikeButtonView`](SegmentedLikeDislikeButtonView.md) \| [`LikeButton`](LikeButton.md) \| [`ToggleButton`](ToggleButton.md)\>
+> **top\_level\_buttons**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Button`](Button.md) \| [`ButtonView`](ButtonView.md) \| [`SegmentedLikeDislikeButtonView`](SegmentedLikeDislikeButtonView.md) \| [`LikeButton`](LikeButton.md) \| [`ToggleButton`](ToggleButton.md) \| [`FlexibleActionsView`](FlexibleActionsView.md)\>
 
 #### Defined in
 
-[src/parser/classes/menus/Menu.ts:17](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/menus/Menu.ts#L17)
+[src/parser/classes/menus/Menu.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/menus/Menu.ts#L18)
 
 ***
 
@@ -80,7 +80,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
 
 ***
 
@@ -94,7 +94,7 @@
 
 #### Defined in
 
-[src/parser/classes/menus/Menu.ts:13](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/menus/Menu.ts#L13)
+[src/parser/classes/menus/Menu.ts:14](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/menus/Menu.ts#L14)
 
 ## Accessors
 
@@ -108,7 +108,7 @@
 
 #### Defined in
 
-[src/parser/classes/menus/Menu.ts:32](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/classes/menus/Menu.ts#L32)
+[src/parser/classes/menus/Menu.ts:33](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/menus/Menu.ts#L33)
 
 ## Methods
 
@@ -146,7 +146,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
 
 ***
 
@@ -180,7 +180,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
 
 ***
 
@@ -214,7 +214,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
 
 ***
 
@@ -252,4 +252,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)

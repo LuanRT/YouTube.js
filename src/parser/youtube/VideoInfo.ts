@@ -25,6 +25,7 @@ import YpcTrailer from '../classes/YpcTrailer.js';
 import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.js';
 import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSection.js';
 import LiveChatWrap from './LiveChat.js';
+import MacroMarkersListEntity from '../classes/MacroMarkersListEntity.js';
 
 import type { RawNode } from '../index.js';
 import { ReloadContinuationItemsCommand } from '../index.js';
@@ -32,6 +33,7 @@ import AppendContinuationItemsAction from '../classes/actions/AppendContinuation
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
+import type Heatmap from '../classes/Heatmap.js';
 
 export default class VideoInfo extends MediaInfo {
   public primary_info?: VideoPrimaryInfo | null;
@@ -45,6 +47,7 @@ export default class VideoInfo extends MediaInfo {
   public comments_entry_point_header?: CommentsEntryPointHeader | null;
   public livechat?: LiveChat | null;
   public autoplay?: TwoColumnWatchNextResults['autoplay'];
+  public heat_map?: Heatmap | null;
 
   #watch_next_continuation?: ContinuationItem;
   
@@ -131,7 +134,21 @@ export default class VideoInfo extends MediaInfo {
       const comments_entry_point = results.get({ target_id: 'comments-entry-point' })?.as(ItemSection);
 
       this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
-      this.livechat = next?.contents_memo?.getType(LiveChat).first();
+      this.livechat = next?.contents_memo?.getType(LiveChat)[0];
+
+      const macro_markers_list_for_heatmap = this.page[1]?.contents_memo?.getType(MacroMarkersListEntity);
+      let calculated_heat_map: Heatmap | null = null;
+      if (macro_markers_list_for_heatmap) {
+        const heatmap_markers_entity = macro_markers_list_for_heatmap.find((markers) => 
+          markers.isHeatmap()
+        );
+        if (heatmap_markers_entity) {
+          try {
+            calculated_heat_map = heatmap_markers_entity.toHeatmap();
+          } catch { /** NO-OP */ }
+        }
+      }
+      this.heat_map = calculated_heat_map;
     }
   }
 
@@ -222,6 +239,9 @@ export default class VideoInfo extends MediaInfo {
       if (like_status === 'LIKE')
         throw new InnertubeError('This video is already liked', { video_id: this.basic_info.id });
 
+      if (!button.default_button.on_tap)
+        throw new InnertubeError('onTap command not found', { video_id: this.basic_info.id });
+      
       const endpoint = new NavigationEndpoint(button.default_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
 
       return await endpoint.call(this.actions);
@@ -259,6 +279,9 @@ export default class VideoInfo extends MediaInfo {
       if (like_status === 'DISLIKE')
         throw new InnertubeError('This video is already disliked', { video_id: this.basic_info.id });
 
+      if (!button.default_button.on_tap)
+        throw new InnertubeError('onTap command not found', { video_id: this.basic_info.id });
+      
       const endpoint = new NavigationEndpoint(button.default_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
 
       return await endpoint.call(this.actions);
@@ -305,7 +328,10 @@ export default class VideoInfo extends MediaInfo {
 
       if (!button || !button.toggled_button)
         throw new InnertubeError('Like/Dislike button not found', { video_id: this.basic_info.id });
-
+      
+      if (!button.toggled_button.on_tap)
+        throw new InnertubeError('onTap command not found', { video_id: this.basic_info.id });
+      
       const endpoint = new NavigationEndpoint(button.toggled_button.on_tap.payload.commands.find((cmd: RawNode) => cmd.innertubeCommand));
 
       return await endpoint.call(this.actions);
@@ -408,7 +434,7 @@ export default class VideoInfo extends MediaInfo {
           // If the song isn't in the video_lockup, it should be in the info_rows
           song = lookup.video_lockup?.title?.toString();
           // If the video id isn't in the video_lockup, it should be in the info_rows
-          videoId = lookup.video_lockup?.endpoint.payload.videoId;
+          videoId = lookup.video_lockup?.endpoint?.payload.videoId;
           for (let i = 0; i < lookup.info_rows.length; i++) {
             const info_row = lookup.info_rows[i];
             if (info_row.info_row_expand_status_key === undefined) {

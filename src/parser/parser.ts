@@ -32,6 +32,7 @@ import Alert from './classes/Alert.js';
 import AlertWithButton from './classes/AlertWithButton.js';
 import EngagementPanelSectionList from './classes/EngagementPanelSectionList.js';
 import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem.js';
+import MacroMarkersListEntity from './classes/MacroMarkersListEntity.js';
 import Format from './classes/misc/Format.js';
 import VideoDetails from './classes/misc/VideoDetails.js';
 import NavigationEndpoint from './classes/NavigationEndpoint.js';
@@ -517,6 +518,10 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   if (data.entries) {
     parsed_data.entries = data.entries.map((entry) => new NavigationEndpoint(entry));
   }
+  
+  if (data.targetId) {
+    parsed_data.target_id = data.targetId;
+  }
 
   return parsed_data;
 }
@@ -794,6 +799,24 @@ export function applyMutations(memo: Memo, mutations: RawNode[]) {
         failed: missing_or_invalid_mutations.length,
         titles: missing_or_invalid_mutations
       });
+    }
+  }
+
+  // Apply mutations to MacroMarkersListEntity
+  if (mutations) {
+    const heat_map_mutations = mutations.filter((mutation) =>
+      mutation.payload?.macroMarkersListEntity &&
+      mutation.payload.macroMarkersListEntity.markersList?.markerType === 'MARKER_TYPE_HEATMAP'
+    );
+
+    for (const mutation of heat_map_mutations) {
+      const macro_markers_entity = new MacroMarkersListEntity(mutation.payload.macroMarkersListEntity);
+      const list = memo.get('MacroMarkersListEntity');
+      if (!list) {
+        memo.set('MacroMarkersListEntity', [ macro_markers_entity ]);
+      } else {
+        list.push(macro_markers_entity);
+      }
     }
   }
 }

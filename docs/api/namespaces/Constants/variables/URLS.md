@@ -2,68 +2,66 @@
 
 # Variable: URLS
 
-> `const` **URLS**: `Readonly`\<`object`\>
+> `const` **URLS**: `object`
 
 ## Type declaration
 
 ### API
 
-> **API**: `Readonly`\<`object`\>
+> `readonly` **API**: `object`
 
-#### Type declaration
+### API.BASE
 
-##### BASE
+> `readonly` **BASE**: `"https://youtubei.googleapis.com"` = `'https://youtubei.googleapis.com'`
 
-> **BASE**: `"https://youtubei.googleapis.com"` = `'https://youtubei.googleapis.com'`
+### API.CAMI
 
-##### CAMI
+> `readonly` **CAMI**: `"http://cami-youtubei.sandbox.googleapis.com/youtubei/"` = `'http://cami-youtubei.sandbox.googleapis.com/youtubei/'`
 
-> **CAMI**: `"http://cami-youtubei.sandbox.googleapis.com/youtubei/"` = `'http://cami-youtubei.sandbox.googleapis.com/youtubei/'`
+### API.PRODUCTION\_1
 
-##### PRODUCTION\_1
+> `readonly` **PRODUCTION\_1**: `"https://www.youtube.com/youtubei/"` = `'https://www.youtube.com/youtubei/'`
 
-> **PRODUCTION\_1**: `"https://www.youtube.com/youtubei/"` = `'https://www.youtube.com/youtubei/'`
+### API.PRODUCTION\_2
 
-##### PRODUCTION\_2
+> `readonly` **PRODUCTION\_2**: `"https://youtubei.googleapis.com/youtubei/"` = `'https://youtubei.googleapis.com/youtubei/'`
 
-> **PRODUCTION\_2**: `"https://youtubei.googleapis.com/youtubei/"` = `'https://youtubei.googleapis.com/youtubei/'`
+### API.RELEASE
 
-##### RELEASE
+> `readonly` **RELEASE**: `"https://release-youtubei.sandbox.googleapis.com/youtubei/"` = `'https://release-youtubei.sandbox.googleapis.com/youtubei/'`
 
-> **RELEASE**: `"https://release-youtubei.sandbox.googleapis.com/youtubei/"` = `'https://release-youtubei.sandbox.googleapis.com/youtubei/'`
+### API.STAGING
 
-##### STAGING
+> `readonly` **STAGING**: `"https://green-youtubei.sandbox.googleapis.com/youtubei/"` = `'https://green-youtubei.sandbox.googleapis.com/youtubei/'`
 
-> **STAGING**: `"https://green-youtubei.sandbox.googleapis.com/youtubei/"` = `'https://green-youtubei.sandbox.googleapis.com/youtubei/'`
+### API.TEST
 
-##### TEST
+> `readonly` **TEST**: `"https://test-youtubei.sandbox.googleapis.com/youtubei/"` = `'https://test-youtubei.sandbox.googleapis.com/youtubei/'`
 
-> **TEST**: `"https://test-youtubei.sandbox.googleapis.com/youtubei/"` = `'https://test-youtubei.sandbox.googleapis.com/youtubei/'`
+### API.UYTFE
 
-##### UYTFE
-
-> **UYTFE**: `"https://uytfe.sandbox.google.com/youtubei/"` = `'https://uytfe.sandbox.google.com/youtubei/'`
+> `readonly` **UYTFE**: `"https://uytfe.sandbox.google.com/youtubei/"` = `'https://uytfe.sandbox.google.com/youtubei/'`
 
 ### GOOGLE\_SEARCH\_BASE
 
-> **GOOGLE\_SEARCH\_BASE**: `"https://www.google.com/"` = `'https://www.google.com/'`
+> `readonly` **GOOGLE\_SEARCH\_BASE**: `"https://www.google.com/"` = `'https://www.google.com/'`
 
 ### YT\_BASE
 
-> **YT\_BASE**: `"https://www.youtube.com"` = `'https://www.youtube.com'`
+> `readonly` **YT\_BASE**: `"https://www.youtube.com"` = `'https://www.youtube.com'`
 
 ### YT\_MUSIC\_BASE
 
-> **YT\_MUSIC\_BASE**: `"https://music.youtube.com"` = `'https://music.youtube.com'`
+> `readonly` **YT\_MUSIC\_BASE**: `"https://music.youtube.com"` = `'https://music.youtube.com'`
 
 ### YT\_SUGGESTIONS
 
-> **YT\_SUGGESTIONS**: `"https://suggestqueries.google.com/complete/"` = `'https://suggestqueries.google.com/complete/'`
+> `readonly` **YT\_SUGGESTIONS**: `"https://suggestqueries-clients6.youtube.com"` = `'https://suggestqueries-clients6.youtube.com'`
 
 ### YT\_UPLOAD
 
-> **YT\_UPLOAD**: `"https://upload.youtube.com/"` = `'https://upload.youtube.com/'`
+> `readonly` **YT\_UPLOAD**: `"https://upload.youtube.com/"` = `'https://upload.youtube.com/'`
 
 ## Defined in
 
-[src/utils/Constants.ts:2](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/utils/Constants.ts#L2)
+[src/utils/Constants.ts:2](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Constants.ts#L2)

@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Album.ts:24](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/ytmusic/Album.ts#L24)
+[src/parser/ytmusic/Album.ts:24](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/ytmusic/Album.ts#L24)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Album.ts:21](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/ytmusic/Album.ts#L21)
+[src/parser/ytmusic/Album.ts:21](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/ytmusic/Album.ts#L21)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Album.ts:19](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/ytmusic/Album.ts#L19)
+[src/parser/ytmusic/Album.ts:19](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/ytmusic/Album.ts#L19)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Album.ts:18](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/ytmusic/Album.ts#L18)
+[src/parser/ytmusic/Album.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/ytmusic/Album.ts#L18)
 
 ***
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Album.ts:20](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/ytmusic/Album.ts#L20)
+[src/parser/ytmusic/Album.ts:20](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/ytmusic/Album.ts#L20)
 
 ***
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Album.ts:22](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/ytmusic/Album.ts#L22)
+[src/parser/ytmusic/Album.ts:22](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/ytmusic/Album.ts#L22)
 
 ## Accessors
 
@@ -82,4 +82,4 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Album.ts:37](https://github.com/LuanRT/YouTube.js/blob/4729016fb98e7045ee4043857be7eef780c01e35/src/parser/ytmusic/Album.ts#L37)
+[src/parser/ytmusic/Album.ts:37](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/ytmusic/Album.ts#L37)

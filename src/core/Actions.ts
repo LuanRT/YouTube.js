@@ -51,18 +51,6 @@ export default class Actions {
   }
 
   /**
-   * Mimics the Axios API using Fetch's Response object.
-   * @param response - The response object.
-   */
-  async #wrap(response: Response): Promise<ApiResponse> {
-    return {
-      success: response.ok,
-      status_code: response.status,
-      data: JSON.parse(await response.text())
-    };
-  }
-
-  /**
    * Makes calls to the playback tracking API.
    * @param url - The URL to call.
    * @param client - The client to use.
@@ -177,7 +165,7 @@ export default class Actions {
       let parsed_response = Parser.parseResponse<ParsedResponse<T>>(await response.json());
 
       // Handle redirects
-      if (this.#isBrowse(parsed_response) && parsed_response.on_response_received_actions?.first()?.type === 'navigateAction') {
+      if (this.#isBrowse(parsed_response) && parsed_response.on_response_received_actions?.[0]?.type === 'navigateAction') {
         const navigate_action = parsed_response.on_response_received_actions.firstOfType(NavigateAction);
         if (navigate_action) {
           parsed_response = await navigate_action.endpoint.call(this, { parse: true });
@@ -187,7 +175,12 @@ export default class Actions {
       return parsed_response;
     }
 
-    return this.#wrap(response);
+    // Mimics the Axios API using Fetch's Response object.
+    return {
+      success: response.ok,
+      status_code: response.status,
+      data: await response.json()
+    };
   }
 
   #isBrowse(response: IParsedResponse): response is IBrowseResponse {

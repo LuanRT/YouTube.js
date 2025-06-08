@@ -34,6 +34,7 @@ export default class CommentView extends YTNode {
   public unlike_command?: NavigationEndpoint;
   public undislike_command?: NavigationEndpoint;
   public reply_command?: NavigationEndpoint;
+  public prepare_account_command?: NavigationEndpoint;
 
   public comment_id: string;
   public is_pinned: boolean;
@@ -42,8 +43,18 @@ export default class CommentView extends YTNode {
   public content?: Text;
   public published_time?: string;
   public author_is_channel_owner?: boolean;
+  public creator_thumbnail_url?: string;
+  public like_button_a11y?: string;
   public like_count?: string;
+  public like_count_liked?: string;
+  public like_count_a11y?: string;
+  public like_active_tooltip?: string;
+  public like_inactive_tooltip?: string;
+  public dislike_active_tooltip?: string;
+  public dislike_inactive_tooltip?: string;
+  public heart_active_tooltip?: string;
   public reply_count?: string;
+  public reply_count_a11y?: string;
   public is_member?: boolean;
   public member_badge?: MemberBadge;
   public author?: Author;
@@ -72,8 +83,18 @@ export default class CommentView extends YTNode {
       this.content = Text.fromAttributed(comment.properties.content);
       this.published_time = comment.properties.publishedTime;
       this.author_is_channel_owner = !!comment.author.isCreator;
-
+      this.creator_thumbnail_url = comment.toolbar.creatorThumbnailUrl;
+      
       this.like_count = comment.toolbar.likeCountNotliked ? comment.toolbar.likeCountNotliked : '0';
+      this.like_count_liked = comment.toolbar.likeCountLiked ? comment.toolbar.likeCountLiked : '0';
+      this.like_count_a11y = comment.toolbar.likeCountA11y;
+      this.like_active_tooltip = comment.toolbar.likeActiveTooltip;
+      this.like_inactive_tooltip = comment.toolbar.likeInactiveTooltip;
+      this.dislike_active_tooltip = comment.toolbar.dislikeActiveTooltip;
+      this.dislike_inactive_tooltip = comment.toolbar.dislikeInactiveTooltip;
+      this.like_button_a11y = comment.toolbar.likeButtonA11y;
+      this.heart_active_tooltip = comment.toolbar.heartActiveTooltip;
+      this.reply_count_a11y = comment.toolbar.replyCountA11y;
       this.reply_count = comment.toolbar.replyCount ? comment.toolbar.replyCount : '0';
 
       this.is_member = !!comment.author.sponsorBadgeUrl;
@@ -97,12 +118,16 @@ export default class CommentView extends YTNode {
       this.is_disliked = toolbar_state.likeState === 'TOOLBAR_LIKE_STATE_DISLIKED';
     }
 
-    if (toolbar_surface && !Reflect.has(toolbar_surface, 'prepareAccountCommand')) {
-      this.like_command = new NavigationEndpoint(toolbar_surface.likeCommand);
-      this.dislike_command = new NavigationEndpoint(toolbar_surface.dislikeCommand);
-      this.unlike_command = new NavigationEndpoint(toolbar_surface.unlikeCommand);
-      this.undislike_command = new NavigationEndpoint(toolbar_surface.undislikeCommand);
-      this.reply_command = new NavigationEndpoint(toolbar_surface.replyCommand);
+    if (toolbar_surface) {
+      if ('prepareAccountCommand' in toolbar_surface) {
+        this.prepare_account_command = new NavigationEndpoint(toolbar_surface.prepareAccountCommand);
+      } else {
+        this.like_command = new NavigationEndpoint(toolbar_surface.likeCommand);
+        this.dislike_command = new NavigationEndpoint(toolbar_surface.dislikeCommand);
+        this.unlike_command = new NavigationEndpoint(toolbar_surface.unlikeCommand);
+        this.undislike_command = new NavigationEndpoint(toolbar_surface.undislikeCommand);
+        this.reply_command = new NavigationEndpoint(toolbar_surface.replyCommand);
+      }
     }
   }
 
