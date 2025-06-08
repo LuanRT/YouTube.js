@@ -139,7 +139,7 @@ export default class MediaInfo {
       manifest_options
     );
   }
-  
+
   /**
    * Get a cleaned up representation of the adaptive_formats
    */
@@ -207,10 +207,7 @@ export default class MediaInfo {
     return new TranscriptInfo(this.actions, response);
   }
 
-  /**
-   * Adds video to the watch history.
-   */
-  async addToWatchHistory(client_name: string = Constants.CLIENTS.WEB.NAME, client_version: string = Constants.CLIENTS.WEB.VERSION, replacement = 'https://www.'): Promise<Response> {
+  async addToWatchHistory(client_name?: string, client_version?: string, replacement = 'https://www.'): Promise<Response> {
     if (!this.#playback_tracking)
       throw new InnertubeError('Playback tracking not available');
 
@@ -222,6 +219,26 @@ export default class MediaInfo {
     };
 
     const url = this.#playback_tracking.videostats_playback_url.replace('https://s.', replacement);
+
+    return await this.#actions.stats(url, {
+      client_name: client_name || Constants.CLIENTS.WEB.NAME,
+      client_version: client_version || Constants.CLIENTS.WEB.VERSION
+    }, url_params);
+  }
+
+  async updateWatchTime(startTime: number, client_name: string = Constants.CLIENTS.WEB.NAME, client_version: string = Constants.CLIENTS.WEB.VERSION, replacement = 'https://www.'): Promise<Response> {
+    if (!this.#playback_tracking)
+      throw new InnertubeError('Playback tracking not available');
+
+    const url_params = {
+      cpn: this.#cpn,
+      st: startTime.toFixed(3),
+      et: startTime.toFixed(3),
+      cmt: startTime.toFixed(3),
+      final: '1'
+    };
+
+    const url = this.#playback_tracking.videostats_watchtime_url.replace('https://s.', replacement);
 
     return await this.#actions.stats(url, {
       client_name,
@@ -243,7 +260,7 @@ export default class MediaInfo {
   /**
    * Parsed InnerTube response.
    */
-  get page(): [ IPlayerResponse, INextResponse? ] {
+  get page(): [IPlayerResponse, INextResponse?] {
     return this.#page;
   }
 }

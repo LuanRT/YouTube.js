@@ -193,6 +193,13 @@ export default class VideoInfo extends MediaInfo {
   }
 
   /**
+   * Updates watch time for the video.
+   */
+  async updateWatchTime(startTime: number): Promise<Response> {
+    return super.updateWatchTime(startTime);
+  }
+
+  /**
    * Retrieves watch next feed continuation.
    */
   async getWatchNextContinuation(): Promise<VideoInfo> {
