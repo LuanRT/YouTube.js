@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/EventEmitterLike.ts#L6)
+[src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/utils/EventEmitterLike.ts#L6)
 
 ## Methods
 
@@ -115,7 +115,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/EventEmitterLike.ts#L10)
+[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/utils/EventEmitterLike.ts#L10)
 
 ***
 
@@ -135,7 +135,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/EventEmitterLike.ts#L40)
+[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/utils/EventEmitterLike.ts#L40)
 
 ***
 
@@ -155,7 +155,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/EventEmitterLike.ts#L15)
+[src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/utils/EventEmitterLike.ts#L15)
 
 ***
 
@@ -175,7 +175,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/EventEmitterLike.ts#L27)
+[src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/utils/EventEmitterLike.ts#L27)
 
 ***
 

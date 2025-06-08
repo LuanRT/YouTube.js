@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:109](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/types/ParsedResponse.ts#L109)
+[src/parser/types/ParsedResponse.ts:112](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/types/ParsedResponse.ts#L112)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:117](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/types/ParsedResponse.ts#L117)
+[src/parser/types/ParsedResponse.ts:120](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/types/ParsedResponse.ts#L120)
 
 ***
 
@@ -70,4 +70,4 @@
 
 #### Defined in
 
-[src/parser/types/ParsedResponse.ts:114](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/types/ParsedResponse.ts#L114)
+[src/parser/types/ParsedResponse.ts:117](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/types/ParsedResponse.ts#L117)

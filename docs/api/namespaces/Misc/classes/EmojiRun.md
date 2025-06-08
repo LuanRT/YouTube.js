@@ -22,37 +22,17 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:15](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/EmojiRun.ts#L15)
+[src/parser/classes/misc/EmojiRun.ts:17](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/EmojiRun.ts#L17)
 
 ## Properties
 
 ### emoji
 
-> **emoji**: `object`
-
-#### emoji\_id
-
-> **emoji\_id**: `string`
-
-#### image
-
-> **image**: [`Thumbnail`](Thumbnail.md)[]
-
-#### is\_custom
-
-> **is\_custom**: `boolean`
-
-#### search\_terms
-
-> **search\_terms**: `string`[]
-
-#### shortcuts
-
-> **shortcuts**: `string`[]
+> **emoji**: `Emoji`
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:7](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/EmojiRun.ts#L7)
+[src/parser/classes/misc/EmojiRun.ts:15](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/EmojiRun.ts#L15)
 
 ***
 
@@ -66,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:6](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/EmojiRun.ts#L6)
+[src/parser/classes/misc/EmojiRun.ts:14](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/EmojiRun.ts#L14)
 
 ## Methods
 
@@ -84,7 +64,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:35](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/EmojiRun.ts#L35)
+[src/parser/classes/misc/EmojiRun.ts:37](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/EmojiRun.ts#L37)
 
 ***
 
@@ -102,4 +82,4 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:31](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/EmojiRun.ts#L31)
+[src/parser/classes/misc/EmojiRun.ts:33](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/EmojiRun.ts#L33)

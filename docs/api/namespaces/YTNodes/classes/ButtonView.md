@@ -26,87 +26,287 @@
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:17](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L17)
+[src/parser/classes/ButtonView.ts:38](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L38)
 
 ## Properties
 
-### accessibility\_text
+### accessibility\_id?
 
-> **accessibility\_text**: `string`
+> `optional` **accessibility\_id**: `string`
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:10](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L10)
+[src/parser/classes/ButtonView.ts:30](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L30)
 
 ***
 
-### button\_size
+### accessibility\_text?
 
-> **button\_size**: `string`
+> `optional` **accessibility\_text**: `string`
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:14](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L14)
+[src/parser/classes/ButtonView.ts:36](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L36)
 
 ***
 
-### button\_type
+### button\_size?
 
-> **button\_type**: `string`
+> `optional` **button\_size**: `"BUTTON_VIEW_MODEL_SIZE_UNKNOWN"` \| `"BUTTON_VIEW_MODEL_SIZE_DEFAULT"` \| `"BUTTON_VIEW_MODEL_SIZE_COMPACT"` \| `"BUTTON_VIEW_MODEL_SIZE_XSMALL"` \| `"BUTTON_VIEW_MODEL_SIZE_LARGE"` \| `"BUTTON_VIEW_MODEL_SIZE_XLARGE"` \| `"BUTTON_VIEW_MODEL_SIZE_XXLARGE"`
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:13](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L13)
+[src/parser/classes/ButtonView.ts:14](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L14)
 
 ***
 
-### icon\_name
+### button\_type?
 
-> **icon\_name**: `string`
+> `optional` **button\_type**: `"BUTTON_VIEW_MODEL_TYPE_UNKNOWN"` \| `"BUTTON_VIEW_MODEL_TYPE_FILLED"` \| `"BUTTON_VIEW_MODEL_TYPE_OUTLINE"` \| `"BUTTON_VIEW_MODEL_TYPE_TEXT"` \| `"BUTTON_VIEW_MODEL_TYPE_TONAL"`
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L8)
+[src/parser/classes/ButtonView.ts:28](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L28)
 
 ***
 
-### is\_full\_width
+### custom\_background\_color?
 
-> **is\_full\_width**: `boolean`
+> `optional` **custom\_background\_color**: `number`
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:12](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L12)
+[src/parser/classes/ButtonView.ts:31](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L31)
 
 ***
 
-### on\_tap
+### custom\_border\_color?
 
-> **on\_tap**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **custom\_border\_color**: `number`
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:15](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L15)
+[src/parser/classes/ButtonView.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L19)
 
 ***
 
-### style
+### custom\_dark\_theme\_border\_color?
 
-> **style**: `string`
+> `optional` **custom\_dark\_theme\_border\_color**: `number`
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:11](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L11)
+[src/parser/classes/ButtonView.ts:23](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L23)
 
 ***
 
-### title
+### custom\_font\_color?
 
-> **title**: `string`
+> `optional` **custom\_font\_color**: `number`
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:9](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L9)
+[src/parser/classes/ButtonView.ts:27](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L27)
+
+***
+
+### enable\_full\_width\_margins?
+
+> `optional` **enable\_full\_width\_margins**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:26](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L26)
+
+***
+
+### enable\_icon\_button?
+
+> `optional` **enable\_icon\_button**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:11](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L11)
+
+***
+
+### enabled?
+
+> `optional` **enabled**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L29)
+
+***
+
+### icon\_image?
+
+> `optional` **icon\_image**: `object`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:22](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L22)
+
+***
+
+### icon\_image\_flip\_for\_rtl?
+
+> `optional` **icon\_image\_flip\_for\_rtl**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:13](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L13)
+
+***
+
+### icon\_name?
+
+> `optional` **icon\_name**: `string`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:10](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L10)
+
+***
+
+### icon\_position?
+
+> `optional` **icon\_position**: `"BUTTON_VIEW_MODEL_ICON_POSITION_UNKNOWN"` \| `"BUTTON_VIEW_MODEL_ICON_POSITION_TRAILING"` \| `"BUTTON_VIEW_MODEL_ICON_POSITION_LEADING"` \| `"BUTTON_VIEW_MODEL_ICON_POSITION_ABOVE"` \| `"BUTTON_VIEW_MODEL_ICON_POSITION_LEADING_TRAILING"`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:15](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L15)
+
+***
+
+### icon\_trailing?
+
+> `optional` **icon\_trailing**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:35](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L35)
+
+***
+
+### is\_full\_width?
+
+> `optional` **is\_full\_width**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:16](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L16)
+
+***
+
+### on\_disabled\_tap?
+
+> `optional` **on\_disabled\_tap**: [`NavigationEndpoint`](NavigationEndpoint.md)
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:18](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L18)
+
+***
+
+### on\_long\_press?
+
+> `optional` **on\_long\_press**: [`NavigationEndpoint`](NavigationEndpoint.md)
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:32](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L32)
+
+***
+
+### on\_tap?
+
+> `optional` **on\_tap**: [`NavigationEndpoint`](NavigationEndpoint.md)
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:20](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L20)
+
+***
+
+### on\_visible?
+
+> `optional` **on\_visible**: `object`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:34](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L34)
+
+***
+
+### secondary\_icon\_image?
+
+> `optional` **secondary\_icon\_image**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:9](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L9)
+
+***
+
+### state?
+
+> `optional` **state**: `"BUTTON_VIEW_MODEL_STATE_UNKNOWN"` \| `"BUTTON_VIEW_MODEL_STATE_ACTIVE"` \| `"BUTTON_VIEW_MODEL_STATE_INACTIVE"` \| `"BUTTON_VIEW_MODEL_STATE_DISABLED"`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:17](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L17)
+
+***
+
+### style?
+
+> `optional` **style**: `"BUTTON_VIEW_MODEL_STYLE_UNKNOWN"` \| `"BUTTON_VIEW_MODEL_STYLE_CTA"` \| `"BUTTON_VIEW_MODEL_STYLE_BRAND"` \| `"BUTTON_VIEW_MODEL_STYLE_ADS_CTA"` \| `"BUTTON_VIEW_MODEL_STYLE_OVERLAY"` \| `"BUTTON_VIEW_MODEL_STYLE_CTA_THEMED"` \| `"BUTTON_VIEW_MODEL_STYLE_BLACK_CTA"` \| `"BUTTON_VIEW_MODEL_STYLE_CUSTOM"` \| `"BUTTON_VIEW_MODEL_STYLE_MONO"` \| `"BUTTON_VIEW_MODEL_STYLE_OVERLAY_DARK"` \| `"BUTTON_VIEW_MODEL_STYLE_CTA_OVERLAY"` \| `"BUTTON_VIEW_MODEL_STYLE_BRAND_AI"` \| `"BUTTON_VIEW_MODEL_STYLE_YT_GRADIENT"` \| `"BUTTON_VIEW_MODEL_STYLE_BRAND_GRADIENT"`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:21](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L21)
+
+***
+
+### target\_id?
+
+> `optional` **target\_id**: `string`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:25](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L25)
+
+***
+
+### title?
+
+> `optional` **title**: `string`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:24](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L24)
+
+***
+
+### title\_formatted?
+
+> `optional` **title\_formatted**: `object`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:33](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L33)
+
+***
+
+### tooltip?
+
+> `optional` **tooltip**: `string`
+
+#### Defined in
+
+[src/parser/classes/ButtonView.ts:12](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L12)
 
 ***
 
@@ -120,7 +320,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L8)
 
 ***
 
@@ -134,7 +334,7 @@
 
 #### Defined in
 
-[src/parser/classes/ButtonView.ts:6](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/ButtonView.ts#L6)
+[src/parser/classes/ButtonView.ts:7](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/ButtonView.ts#L7)
 
 ## Methods
 
@@ -172,7 +372,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L29)
 
 ***
 
@@ -206,7 +406,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L41)
 
 ***
 
@@ -240,7 +440,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L19)
 
 ***
 
@@ -278,4 +478,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L51)

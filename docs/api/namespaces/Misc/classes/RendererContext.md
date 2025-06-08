@@ -18,24 +18,24 @@
 
 #### Defined in
 
-[src/parser/classes/misc/RendererContext.ts:16](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/RendererContext.ts#L16)
+[src/parser/classes/misc/RendererContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/RendererContext.ts#L9)
 
 ## Properties
 
-### accessibility\_context
+### accessibility\_context?
 
-> **accessibility\_context**: `AccessibilityContext`
+> `optional` **accessibility\_context**: [`AccessibilityContext`](AccessibilityContext.md)
 
 #### Defined in
 
-[src/parser/classes/misc/RendererContext.ts:14](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/RendererContext.ts#L14)
+[src/parser/classes/misc/RendererContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/RendererContext.ts#L7)
 
 ***
 
-### command\_context
+### command\_context?
 
-> **command\_context**: `CommandContext`
+> `optional` **command\_context**: [`CommandContext`](CommandContext.md)
 
 #### Defined in
 
-[src/parser/classes/misc/RendererContext.ts:13](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/RendererContext.ts#L13)
+[src/parser/classes/misc/RendererContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/RendererContext.ts#L6)

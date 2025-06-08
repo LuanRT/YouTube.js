@@ -26,9 +26,19 @@
 
 #### Defined in
 
-[src/parser/classes/SortFilterSubMenu.ts:21](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/SortFilterSubMenu.ts#L21)
+[src/parser/classes/SortFilterSubMenu.ts:23](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/SortFilterSubMenu.ts#L23)
 
 ## Properties
+
+### accessibility?
+
+> `optional` **accessibility**: `AccessibilitySupportedDatas`
+
+#### Defined in
+
+[src/parser/classes/SortFilterSubMenu.ts:21](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/SortFilterSubMenu.ts#L21)
+
+***
 
 ### icon\_type?
 
@@ -36,27 +46,17 @@
 
 #### Defined in
 
-[src/parser/classes/SortFilterSubMenu.ts:9](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/SortFilterSubMenu.ts#L9)
-
-***
-
-### label?
-
-> `optional` **label**: `string`
-
-#### Defined in
-
-[src/parser/classes/SortFilterSubMenu.ts:10](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/SortFilterSubMenu.ts#L10)
+[src/parser/classes/SortFilterSubMenu.ts:18](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/SortFilterSubMenu.ts#L18)
 
 ***
 
 ### sub\_menu\_items?
 
-> `optional` **sub\_menu\_items**: `object`[]
+> `optional` **sub\_menu\_items**: `SubMenuItem`[]
 
 #### Defined in
 
-[src/parser/classes/SortFilterSubMenu.ts:13](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/SortFilterSubMenu.ts#L13)
+[src/parser/classes/SortFilterSubMenu.ts:20](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/SortFilterSubMenu.ts#L20)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[src/parser/classes/SortFilterSubMenu.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/SortFilterSubMenu.ts#L8)
+[src/parser/classes/SortFilterSubMenu.ts:17](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/SortFilterSubMenu.ts#L17)
 
 ***
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[src/parser/classes/SortFilterSubMenu.ts:11](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/SortFilterSubMenu.ts#L11)
+[src/parser/classes/SortFilterSubMenu.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/SortFilterSubMenu.ts#L19)
 
 ***
 
@@ -90,7 +90,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L8)
 
 ***
 
@@ -104,7 +104,21 @@
 
 #### Defined in
 
-[src/parser/classes/SortFilterSubMenu.ts:6](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/SortFilterSubMenu.ts#L6)
+[src/parser/classes/SortFilterSubMenu.ts:15](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/SortFilterSubMenu.ts#L15)
+
+## Accessors
+
+### label
+
+> `get` **label**(): `undefined` \| `string`
+
+#### Returns
+
+`undefined` \| `string`
+
+#### Defined in
+
+[src/parser/classes/SortFilterSubMenu.ts:55](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/SortFilterSubMenu.ts#L55)
 
 ## Methods
 
@@ -142,7 +156,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L29)
 
 ***
 
@@ -176,7 +190,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L41)
 
 ***
 
@@ -210,7 +224,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L19)
 
 ***
 
@@ -248,4 +262,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L51)

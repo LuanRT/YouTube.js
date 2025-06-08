@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:33](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L33)
+[src/parser/classes/CompactVideo.ts:35](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L35)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L18)
+[src/parser/classes/CompactVideo.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L19)
 
 ***
 
@@ -46,45 +46,47 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:22](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L22)
+[src/parser/classes/CompactVideo.ts:25](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L25)
 
 ***
 
-### duration
+### endpoint?
 
-> **duration**: `object`
-
-#### seconds
-
-> **seconds**: `number`
-
-#### text
-
-> **text**: `string`
+> `optional` **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:24](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L24)
+[src/parser/classes/CompactVideo.ts:27](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L27)
 
 ***
 
-### endpoint
+### is\_watched
 
-> **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> **is\_watched**: `boolean`
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:30](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L30)
+[src/parser/classes/CompactVideo.ts:30](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L30)
 
 ***
 
-### id
+### length\_text?
 
-> **id**: `string`
+> `optional` **length\_text**: [`Text`](../../Misc/classes/Text.md)
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:14](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L14)
+[src/parser/classes/CompactVideo.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L29)
+
+***
+
+### long\_byline\_text?
+
+> `optional` **long\_byline\_text**: [`Text`](../../Misc/classes/Text.md)
+
+#### Defined in
+
+[src/parser/classes/CompactVideo.ts:23](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L23)
 
 ***
 
@@ -94,17 +96,17 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:31](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L31)
+[src/parser/classes/CompactVideo.ts:28](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L28)
 
 ***
 
-### published
+### published?
 
-> **published**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **published**: [`Text`](../../Misc/classes/Text.md)
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:21](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L21)
+[src/parser/classes/CompactVideo.ts:24](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L24)
 
 ***
 
@@ -114,17 +116,57 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:16](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L16)
+[src/parser/classes/CompactVideo.ts:17](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L17)
 
 ***
 
-### short\_view\_count
+### service\_endpoint?
 
-> **short\_view\_count**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **service\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:20](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L20)
+[src/parser/classes/CompactVideo.ts:32](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L32)
+
+***
+
+### service\_endpoints?
+
+> `optional` **service\_endpoints**: [`NavigationEndpoint`](NavigationEndpoint.md)[]
+
+#### Defined in
+
+[src/parser/classes/CompactVideo.ts:31](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L31)
+
+***
+
+### short\_byline\_text?
+
+> `optional` **short\_byline\_text**: [`Text`](../../Misc/classes/Text.md)
+
+#### Defined in
+
+[src/parser/classes/CompactVideo.ts:22](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L22)
+
+***
+
+### short\_view\_count?
+
+> `optional` **short\_view\_count**: [`Text`](../../Misc/classes/Text.md)
+
+#### Defined in
+
+[src/parser/classes/CompactVideo.ts:21](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L21)
+
+***
+
+### style?
+
+> `optional` **style**: `"COMPACT_VIDEO_STYLE_TYPE_UNKNOWN"` \| `"COMPACT_VIDEO_STYLE_TYPE_NORMAL"` \| `"COMPACT_VIDEO_STYLE_TYPE_PROMINENT_THUMBNAIL"` \| `"COMPACT_VIDEO_STYLE_TYPE_HERO"`
+
+#### Defined in
+
+[src/parser/classes/CompactVideo.ts:33](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L33)
 
 ***
 
@@ -134,7 +176,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:29](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L29)
+[src/parser/classes/CompactVideo.ts:26](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L26)
 
 ***
 
@@ -144,7 +186,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:15](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L15)
+[src/parser/classes/CompactVideo.ts:16](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L16)
 
 ***
 
@@ -154,7 +196,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:17](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L17)
+[src/parser/classes/CompactVideo.ts:18](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L18)
 
 ***
 
@@ -168,17 +210,27 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L8)
 
 ***
 
-### view\_count
+### video\_id
 
-> **view\_count**: [`Text`](../../Misc/classes/Text.md)
+> **video\_id**: `string`
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:19](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L19)
+[src/parser/classes/CompactVideo.ts:15](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L15)
+
+***
+
+### view\_count?
+
+> `optional` **view\_count**: [`Text`](../../Misc/classes/Text.md)
+
+#### Defined in
+
+[src/parser/classes/CompactVideo.ts:20](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L20)
 
 ***
 
@@ -192,7 +244,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:12](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L12)
+[src/parser/classes/CompactVideo.ts:13](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L13)
 
 ## Accessors
 
@@ -206,7 +258,47 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:59](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L59)
+[src/parser/classes/CompactVideo.ts:96](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L96)
+
+***
+
+### duration
+
+> `get` **duration**(): `object`
+
+#### Returns
+
+`object`
+
+##### seconds
+
+> **seconds**: `number`
+
+##### text
+
+> **text**: `undefined` \| `string` = `length_text`
+
+#### Defined in
+
+[src/parser/classes/CompactVideo.ts:87](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L87)
+
+***
+
+### id
+
+> `get` **id**(): `string`
+
+#### Deprecated
+
+Use [`video_id`](CompactVideo.md#video_id) instead.
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[src/parser/classes/CompactVideo.ts:83](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L83)
 
 ***
 
@@ -220,7 +312,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:63](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L63)
+[src/parser/classes/CompactVideo.ts:100](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L100)
 
 ***
 
@@ -234,7 +326,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:67](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L67)
+[src/parser/classes/CompactVideo.ts:104](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L104)
 
 ***
 
@@ -248,7 +340,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:74](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L74)
+[src/parser/classes/CompactVideo.ts:111](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L111)
 
 ***
 
@@ -262,7 +354,7 @@
 
 #### Defined in
 
-[src/parser/classes/CompactVideo.ts:78](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/CompactVideo.ts#L78)
+[src/parser/classes/CompactVideo.ts:115](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/CompactVideo.ts#L115)
 
 ## Methods
 
@@ -300,7 +392,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L29)
 
 ***
 
@@ -334,7 +426,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L41)
 
 ***
 
@@ -368,7 +460,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L19)
 
 ***
 
@@ -406,4 +498,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L51)

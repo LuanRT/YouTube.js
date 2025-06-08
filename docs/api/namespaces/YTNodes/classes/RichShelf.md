@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/RichShelf.ts:14](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/RichShelf.ts#L14)
+[src/parser/classes/RichShelf.ts:26](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L26)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/RichShelf.ts:10](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/RichShelf.ts#L10)
+[src/parser/classes/RichShelf.ts:10](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L10)
 
 ***
 
@@ -46,7 +46,87 @@
 
 #### Defined in
 
-[src/parser/classes/RichShelf.ts:11](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/RichShelf.ts#L11)
+[src/parser/classes/RichShelf.ts:11](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L11)
+
+***
+
+### icon\_type?
+
+> `optional` **icon\_type**: `string`
+
+#### Defined in
+
+[src/parser/classes/RichShelf.ts:21](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L21)
+
+***
+
+### is\_bottom\_divider\_hidden
+
+> **is\_bottom\_divider\_hidden**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/RichShelf.ts:14](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L14)
+
+***
+
+### is\_expanded
+
+> **is\_expanded**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/RichShelf.ts:13](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L13)
+
+***
+
+### is\_top\_divider\_hidden
+
+> **is\_top\_divider\_hidden**: `boolean`
+
+#### Defined in
+
+[src/parser/classes/RichShelf.ts:15](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L15)
+
+***
+
+### layout\_sizing?
+
+> `optional` **layout\_sizing**: `"RICH_GRID_LAYOUT_SIZING_UNSPECIFIED"` \| `"RICH_GRID_LAYOUT_SIZING_STANDARD"` \| `"RICH_GRID_LAYOUT_SIZING_COMPACT"` \| `"RICH_GRID_LAYOUT_SIZING_EXTRA_COMPACT"` \| `"RICH_GRID_LAYOUT_SIZING_TINY"`
+
+#### Defined in
+
+[src/parser/classes/RichShelf.ts:16](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L16)
+
+***
+
+### menu
+
+> **menu**: `null` \| [`YTNode`](../../Helpers/classes/YTNode.md)
+
+#### Defined in
+
+[src/parser/classes/RichShelf.ts:22](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L22)
+
+***
+
+### next\_button
+
+> **next\_button**: `null` \| [`YTNode`](../../Helpers/classes/YTNode.md)
+
+#### Defined in
+
+[src/parser/classes/RichShelf.ts:23](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L23)
+
+***
+
+### previous\_button
+
+> **previous\_button**: `null` \| [`YTNode`](../../Helpers/classes/YTNode.md)
+
+#### Defined in
+
+[src/parser/classes/RichShelf.ts:24](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L24)
 
 ***
 
@@ -56,7 +136,7 @@
 
 #### Defined in
 
-[src/parser/classes/RichShelf.ts:12](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/RichShelf.ts#L12)
+[src/parser/classes/RichShelf.ts:12](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L12)
 
 ***
 
@@ -66,7 +146,7 @@
 
 #### Defined in
 
-[src/parser/classes/RichShelf.ts:9](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/RichShelf.ts#L9)
+[src/parser/classes/RichShelf.ts:9](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L9)
 
 ***
 
@@ -80,7 +160,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L8)
 
 ***
 
@@ -94,7 +174,7 @@
 
 #### Defined in
 
-[src/parser/classes/RichShelf.ts:7](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/RichShelf.ts#L7)
+[src/parser/classes/RichShelf.ts:7](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/RichShelf.ts#L7)
 
 ## Methods
 
@@ -132,7 +212,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L29)
 
 ***
 
@@ -166,7 +246,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L41)
 
 ***
 
@@ -200,7 +280,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L19)
 
 ***
 
@@ -238,4 +318,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L51)

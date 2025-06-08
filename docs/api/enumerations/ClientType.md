@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:22](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L22)
+[src/core/Session.ts:28](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L28)
 
 ***
 
@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:24](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L24)
+[src/core/Session.ts:30](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L30)
 
 ***
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:23](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L23)
+[src/core/Session.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L29)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:21](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L21)
+[src/core/Session.ts:27](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L27)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:19](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L19)
+[src/core/Session.ts:25](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L25)
 
 ***
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:20](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L20)
+[src/core/Session.ts:26](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L26)
 
 ***
 
@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L18)
+[src/core/Session.ts:24](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L24)
 
 ***
 
@@ -80,7 +80,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:25](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L25)
+[src/core/Session.ts:31](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L31)
 
 ***
 
@@ -90,7 +90,17 @@
 
 #### Defined in
 
-[src/core/Session.ts:26](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L26)
+[src/core/Session.ts:33](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L33)
+
+***
+
+### TV\_SIMPLY
+
+> **TV\_SIMPLY**: `"TVHTML5_SIMPLY"`
+
+#### Defined in
+
+[src/core/Session.ts:32](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L32)
 
 ***
 
@@ -100,7 +110,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:17](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L17)
+[src/core/Session.ts:23](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L23)
 
 ***
 
@@ -110,7 +120,7 @@
 
 #### Defined in
 
-[src/core/Session.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L28)
+[src/core/Session.ts:35](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L35)
 
 ***
 
@@ -120,4 +130,4 @@
 
 #### Defined in
 
-[src/core/Session.ts:27](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L27)
+[src/core/Session.ts:34](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L34)

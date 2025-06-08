@@ -27,7 +27,7 @@ const innertube = await Innertube.create({ cache: new UniversalCache(true)});
 
 #### Defined in
 
-[src/Innertube.ts:65](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L65)
+[src/Innertube.ts:65](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L65)
 
 ## Accessors
 
@@ -43,7 +43,7 @@ An interface for managing and retrieving account information.
 
 #### Defined in
 
-[src/Innertube.ts:588](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L588)
+[src/Innertube.ts:602](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L602)
 
 ***
 
@@ -59,7 +59,7 @@ An internal class used to dispatch requests.
 
 #### Defined in
 
-[src/Innertube.ts:609](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L609)
+[src/Innertube.ts:623](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L623)
 
 ***
 
@@ -75,7 +75,7 @@ An interface for directly interacting with certain YouTube features.
 
 #### Defined in
 
-[src/Innertube.ts:602](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L602)
+[src/Innertube.ts:616](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L616)
 
 ***
 
@@ -91,7 +91,7 @@ An interface for interacting with YouTube Kids.
 
 #### Defined in
 
-[src/Innertube.ts:581](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L581)
+[src/Innertube.ts:595](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L595)
 
 ***
 
@@ -107,7 +107,7 @@ An interface for interacting with YouTube Music.
 
 #### Defined in
 
-[src/Innertube.ts:567](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L567)
+[src/Innertube.ts:581](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L581)
 
 ***
 
@@ -123,7 +123,7 @@ An interface for managing playlists.
 
 #### Defined in
 
-[src/Innertube.ts:595](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L595)
+[src/Innertube.ts:609](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L609)
 
 ***
 
@@ -139,7 +139,7 @@ The session used by this instance.
 
 #### Defined in
 
-[src/Innertube.ts:616](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L616)
+[src/Innertube.ts:630](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L630)
 
 ***
 
@@ -155,7 +155,7 @@ An interface for interacting with YouTube Studio.
 
 #### Defined in
 
-[src/Innertube.ts:574](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L574)
+[src/Innertube.ts:588](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L588)
 
 ## Methods
 
@@ -185,7 +185,7 @@ Utility method to call an endpoint without having to use [Actions](Actions.md).
 
 ##### Defined in
 
-[src/Innertube.ts:558](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L558)
+[src/Innertube.ts:572](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L572)
 
 #### call(endpoint, args)
 
@@ -205,7 +205,7 @@ Utility method to call an endpoint without having to use [Actions](Actions.md).
 
 ##### Defined in
 
-[src/Innertube.ts:559](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L559)
+[src/Innertube.ts:573](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L573)
 
 ***
 
@@ -232,7 +232,7 @@ Download options.
 
 #### Defined in
 
-[src/Innertube.ts:448](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L448)
+[src/Innertube.ts:462](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L462)
 
 ***
 
@@ -254,7 +254,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:544](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L544)
+[src/Innertube.ts:558](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L558)
 
 ***
 
@@ -274,7 +274,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:116](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L116)
+[src/Innertube.ts:118](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L118)
 
 ***
 
@@ -292,7 +292,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:367](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L367)
+[src/Innertube.ts:381](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L381)
 
 ***
 
@@ -306,7 +306,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:361](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L361)
+[src/Innertube.ts:375](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L375)
 
 ***
 
@@ -328,7 +328,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:282](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L282)
+[src/Innertube.ts:296](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L296)
 
 ***
 
@@ -342,7 +342,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:349](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L349)
+[src/Innertube.ts:363](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L363)
 
 ***
 
@@ -356,7 +356,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:326](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L326)
+[src/Innertube.ts:340](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L340)
 
 ***
 
@@ -374,7 +374,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:407](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L407)
+[src/Innertube.ts:421](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L421)
 
 ***
 
@@ -388,7 +388,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:337](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L337)
+[src/Innertube.ts:351](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L351)
 
 ***
 
@@ -402,7 +402,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:320](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L320)
+[src/Innertube.ts:334](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L334)
 
 ***
 
@@ -422,7 +422,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:73](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L73)
+[src/Innertube.ts:73](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L73)
 
 ***
 
@@ -436,7 +436,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:331](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L331)
+[src/Innertube.ts:345](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L345)
 
 ***
 
@@ -450,7 +450,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:374](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L374)
+[src/Innertube.ts:388](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L388)
 
 ***
 
@@ -468,7 +468,7 @@ Fetches an attestation challenge.
 
 #### Defined in
 
-[src/Innertube.ts:394](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L394)
+[src/Innertube.ts:408](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L408)
 
 ***
 
@@ -484,7 +484,7 @@ Retrieves the user's playlists.
 
 #### Defined in
 
-[src/Innertube.ts:388](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L388)
+[src/Innertube.ts:402](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L402)
 
 ***
 
@@ -506,7 +506,7 @@ Gets a post page given a post id and the channel id
 
 #### Defined in
 
-[src/Innertube.ts:468](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L468)
+[src/Innertube.ts:482](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L482)
 
 ***
 
@@ -530,7 +530,7 @@ Gets the comments of a post.
 
 #### Defined in
 
-[src/Innertube.ts:492](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L492)
+[src/Innertube.ts:506](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L506)
 
 ***
 
@@ -550,7 +550,7 @@ Gets the comments of a post.
 
 #### Defined in
 
-[src/Innertube.ts:255](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L255)
+[src/Innertube.ts:267](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L267)
 
 ***
 
@@ -570,7 +570,7 @@ Gets the comments of a post.
 
 #### Defined in
 
-[src/Innertube.ts:146](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L146)
+[src/Innertube.ts:156](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L156)
 
 ***
 
@@ -599,7 +599,7 @@ Format options.
 
 #### Defined in
 
-[src/Innertube.ts:433](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L433)
+[src/Innertube.ts:447](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L447)
 
 ***
 
@@ -613,7 +613,7 @@ Format options.
 
 #### Defined in
 
-[src/Innertube.ts:355](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L355)
+[src/Innertube.ts:369](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L369)
 
 ***
 
@@ -627,7 +627,7 @@ Format options.
 
 #### Defined in
 
-[src/Innertube.ts:343](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L343)
+[src/Innertube.ts:357](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L357)
 
 ***
 
@@ -641,7 +641,7 @@ Format options.
 
 #### Defined in
 
-[src/Innertube.ts:379](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L379)
+[src/Innertube.ts:393](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L393)
 
 ***
 
@@ -661,7 +661,7 @@ Resolves the given URL.
 
 #### Defined in
 
-[src/Innertube.ts:456](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L456)
+[src/Innertube.ts:470](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L470)
 
 ***
 
@@ -681,7 +681,7 @@ Resolves the given URL.
 
 #### Defined in
 
-[src/Innertube.ts:179](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L179)
+[src/Innertube.ts:191](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L191)
 
 ***
 
@@ -699,4 +699,4 @@ Resolves the given URL.
 
 #### Defined in
 
-[src/Innertube.ts:69](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/Innertube.ts#L69)
+[src/Innertube.ts:69](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/Innertube.ts#L69)

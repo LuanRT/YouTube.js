@@ -32,19 +32,27 @@
 
 ### IOS.DEVICE\_MODEL
 
-> `readonly` **DEVICE\_MODEL**: `"iPhone10,6"` = `'iPhone10,6'`
+> `readonly` **DEVICE\_MODEL**: `"iPhone10,4"` = `'iPhone10,4'`
 
 ### IOS.NAME
 
 > `readonly` **NAME**: `"iOS"` = `'iOS'`
 
+### IOS.OS\_NAME
+
+> `readonly` **OS\_NAME**: `"iOS"` = `'iOS'`
+
+### IOS.OS\_VERSION
+
+> `readonly` **OS\_VERSION**: `"16.7.7.20H330"` = `'16.7.7.20H330'`
+
 ### IOS.USER\_AGENT
 
-> `readonly` **USER\_AGENT**: `"com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)"` = `'com.google.ios.youtube/18.06.35 (iPhone; CPU iPhone OS 14_4 like Mac OS X; en_US)'`
+> `readonly` **USER\_AGENT**: `"com.google.ios.youtube/20.11.6 (iPhone10,4; U; CPU iOS 16_7_7 like Mac OS X)"` = `'com.google.ios.youtube/20.11.6 (iPhone10,4; U; CPU iOS 16_7_7 like Mac OS X)'`
 
 ### IOS.VERSION
 
-> `readonly` **VERSION**: `"18.06.35"` = `'18.06.35'`
+> `readonly` **VERSION**: `"20.11.6"` = `'20.11.6'`
 
 ### MWEB
 
@@ -60,7 +68,7 @@
 
 ### MWEB.VERSION
 
-> `readonly` **VERSION**: `"2.20241205.01.00"` = `'2.20241205.01.00'`
+> `readonly` **VERSION**: `"2.20250224.01.00"` = `'2.20250224.01.00'`
 
 ### TV
 
@@ -76,7 +84,7 @@
 
 ### TV.VERSION
 
-> `readonly` **VERSION**: `"7.20241016.15.00"` = `'7.20241016.15.00'`
+> `readonly` **VERSION**: `"7.20250219.14.00"` = `'7.20250219.14.00'`
 
 ### TV\_EMBEDDED
 
@@ -89,6 +97,18 @@
 ### TV\_EMBEDDED.VERSION
 
 > `readonly` **VERSION**: `"2.0"` = `'2.0'`
+
+### TV\_SIMPLY
+
+> `readonly` **TV\_SIMPLY**: `object`
+
+### TV\_SIMPLY.NAME
+
+> `readonly` **NAME**: `"TVHTML5_SIMPLY"` = `'TVHTML5_SIMPLY'`
+
+### TV\_SIMPLY.VERSION
+
+> `readonly` **VERSION**: `"1.0"` = `'1.0'`
 
 ### WEB
 
@@ -116,7 +136,7 @@
 
 ### WEB.VERSION
 
-> `readonly` **VERSION**: `"2.20241121.01.00"` = `'2.20241121.01.00'`
+> `readonly` **VERSION**: `"2.20250222.10.00"` = `'2.20250222.10.00'`
 
 ### WEB\_CREATOR
 
@@ -140,7 +160,7 @@
 
 ### WEB\_CREATOR.VERSION
 
-> `readonly` **VERSION**: `"1.20240918.03.00"` = `'1.20240918.03.00'`
+> `readonly` **VERSION**: `"1.20241203.01.00"` = `'1.20241203.01.00'`
 
 ### WEB\_EMBEDDED
 
@@ -164,7 +184,7 @@
 
 ### WEB\_EMBEDDED.VERSION
 
-> `readonly` **VERSION**: `"2.20240111.09.00"` = `'2.20240111.09.00'`
+> `readonly` **VERSION**: `"1.20250219.01.00"` = `'1.20250219.01.00'`
 
 ### WEB\_KIDS
 
@@ -176,7 +196,7 @@
 
 ### WEB\_KIDS.VERSION
 
-> `readonly` **VERSION**: `"2.20230111.00.00"` = `'2.20230111.00.00'`
+> `readonly` **VERSION**: `"2.20250221.11.00"` = `'2.20250221.11.00'`
 
 ### YTMUSIC
 
@@ -188,7 +208,7 @@
 
 ### YTMUSIC.VERSION
 
-> `readonly` **VERSION**: `"1.20211213.00.00"` = `'1.20211213.00.00'`
+> `readonly` **VERSION**: `"1.20250219.01.00"` = `'1.20250219.01.00'`
 
 ### YTMUSIC\_ANDROID
 
@@ -216,4 +236,4 @@
 
 ## Defined in
 
-[src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Constants.ts#L25)
+[src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/utils/Constants.ts#L25)

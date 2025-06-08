@@ -2,19 +2,21 @@
 
 # Function: findFunction()
 
-> **findFunction**(`source`, `args`): [`FindFunctionResult`](../type-aliases/FindFunctionResult.md) \| `undefined`
+> **findFunction**(`source`, `args`): [`ASTLookupResult`](../type-aliases/ASTLookupResult.md) \| `undefined`
 
-Finds a function in a source string based on the provided search criteria.
+Searches for a function in the given code based on specified criteria.
 
 ## Parameters
 
 • **source**: `string`
 
-• **args**: [`FindFunctionArgs`](../type-aliases/FindFunctionArgs.md)
+• **args**: [`ASTLookupArgs`](../type-aliases/ASTLookupArgs.md)
 
 ## Returns
 
-[`FindFunctionResult`](../type-aliases/FindFunctionResult.md) \| `undefined`
+[`ASTLookupResult`](../type-aliases/ASTLookupResult.md) \| `undefined`
+
+An object containing the function's details if found, `undefined` otherwise.
 
 ## Example
 
@@ -27,4 +29,4 @@ console.log(result);
 
 ## Defined in
 
-[src/utils/Utils.ts:289](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/utils/Utils.ts#L289)
+[src/utils/Utils.ts:311](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/utils/Utils.ts#L311)

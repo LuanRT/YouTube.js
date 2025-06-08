@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:37](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L37)
+[src/core/clients/Music.ts:37](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L37)
 
 ## Methods
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:177](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L177)
+[src/core/clients/Music.ts:177](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L177)
 
 ***
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:167](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L167)
+[src/core/clients/Music.ts:167](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L167)
 
 ***
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:154](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L154)
+[src/core/clients/Music.ts:154](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L154)
 
 ***
 
@@ -82,7 +82,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:148](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L148)
+[src/core/clients/Music.ts:148](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L148)
 
 ***
 
@@ -104,7 +104,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:46](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L46)
+[src/core/clients/Music.ts:46](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L46)
 
 ***
 
@@ -118,7 +118,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:161](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L161)
+[src/core/clients/Music.ts:161](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L161)
 
 ***
 
@@ -136,7 +136,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:258](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L258)
+[src/core/clients/Music.ts:258](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L258)
 
 ***
 
@@ -154,7 +154,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:187](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L187)
+[src/core/clients/Music.ts:187](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L187)
 
 ***
 
@@ -168,7 +168,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:284](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L284)
+[src/core/clients/Music.ts:284](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L284)
 
 ***
 
@@ -186,7 +186,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:237](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L237)
+[src/core/clients/Music.ts:237](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L237)
 
 ***
 
@@ -204,7 +204,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:290](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L290)
+[src/core/clients/Music.ts:290](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L290)
 
 ***
 
@@ -224,7 +224,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:197](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L197)
+[src/core/clients/Music.ts:197](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L197)
 
 ***
 
@@ -244,4 +244,4 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:126](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/clients/Music.ts#L126)
+[src/core/clients/Music.ts:126](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L126)

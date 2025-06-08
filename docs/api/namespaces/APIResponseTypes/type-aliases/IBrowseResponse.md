@@ -6,4 +6,4 @@
 
 ## Defined in
 
-[src/parser/types/ParsedResponse.ts:140](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/types/ParsedResponse.ts#L140)
+[src/parser/types/ParsedResponse.ts:143](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/types/ParsedResponse.ts#L143)

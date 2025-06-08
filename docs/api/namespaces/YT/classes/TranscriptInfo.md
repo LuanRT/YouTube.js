@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/youtube/TranscriptInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/TranscriptInfo.ts#L12)
+[src/parser/youtube/TranscriptInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/youtube/TranscriptInfo.ts#L12)
 
 ## Properties
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/youtube/TranscriptInfo.ts:10](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/TranscriptInfo.ts#L10)
+[src/parser/youtube/TranscriptInfo.ts:10](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/youtube/TranscriptInfo.ts#L10)
 
 ## Accessors
 
@@ -46,7 +46,7 @@ Returns available languages.
 
 #### Defined in
 
-[src/parser/youtube/TranscriptInfo.ts:45](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/TranscriptInfo.ts#L45)
+[src/parser/youtube/TranscriptInfo.ts:45](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/youtube/TranscriptInfo.ts#L45)
 
 ***
 
@@ -60,7 +60,7 @@ Returns available languages.
 
 #### Defined in
 
-[src/parser/youtube/TranscriptInfo.ts:56](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/TranscriptInfo.ts#L56)
+[src/parser/youtube/TranscriptInfo.ts:56](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/youtube/TranscriptInfo.ts#L56)
 
 ***
 
@@ -76,7 +76,7 @@ Returns the currently selected language.
 
 #### Defined in
 
-[src/parser/youtube/TranscriptInfo.ts:52](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/TranscriptInfo.ts#L52)
+[src/parser/youtube/TranscriptInfo.ts:52](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/youtube/TranscriptInfo.ts#L52)
 
 ## Methods
 
@@ -98,4 +98,4 @@ Language to select.
 
 #### Defined in
 
-[src/parser/youtube/TranscriptInfo.ts:26](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/youtube/TranscriptInfo.ts#L26)
+[src/parser/youtube/TranscriptInfo.ts:26](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/youtube/TranscriptInfo.ts#L26)

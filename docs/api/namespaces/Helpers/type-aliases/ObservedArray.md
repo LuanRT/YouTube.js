@@ -188,4 +188,4 @@ The first matching item or undefined if none found
 
 ## Defined in
 
-[src/parser/helpers.ts:362](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L362)
+[src/parser/helpers.ts:353](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L353)

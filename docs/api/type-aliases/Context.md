@@ -42,9 +42,25 @@
 
 > `optional` **configInfo**: `object`
 
-### client.configInfo.appInstallData
+### client.configInfo.appInstallData?
 
-> **appInstallData**: `string`
+> `optional` **appInstallData**: `string`
+
+### client.configInfo.coldConfigData?
+
+> `optional` **coldConfigData**: `string`
+
+### client.configInfo.coldHashData?
+
+> `optional` **coldHashData**: `string`
+
+### client.configInfo.hotHashData?
+
+> `optional` **hotHashData**: `string`
+
+### client.deviceExperimentId?
+
+> `optional` **deviceExperimentId**: `string`
 
 ### client.deviceMake
 
@@ -130,6 +146,10 @@
 
 > `optional` **remoteHost**: `string`
 
+### client.rolloutToken?
+
+> `optional` **rolloutToken**: `string`
+
 ### client.screenDensityFloat?
 
 > `optional` **screenDensityFloat**: `number`
@@ -204,4 +224,4 @@
 
 ## Defined in
 
-[src/core/Session.ts:31](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Session.ts#L31)
+[src/core/Session.ts:38](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Session.ts#L38)

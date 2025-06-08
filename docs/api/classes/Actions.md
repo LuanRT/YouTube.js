@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/Actions.ts:49](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L49)
+[src/core/Actions.ts:49](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Actions.ts#L49)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/core/Actions.ts:47](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L47)
+[src/core/Actions.ts:47](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Actions.ts#L47)
 
 ## Methods
 
@@ -68,7 +68,7 @@ Call arguments
 
 ##### Defined in
 
-[src/core/Actions.ts:93](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L93)
+[src/core/Actions.ts:81](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Actions.ts#L81)
 
 #### execute(endpoint, args)
 
@@ -98,7 +98,7 @@ Call arguments
 
 ##### Defined in
 
-[src/core/Actions.ts:100](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L100)
+[src/core/Actions.ts:88](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Actions.ts#L88)
 
 ***
 
@@ -132,4 +132,4 @@ Call parameters.
 
 #### Defined in
 
-[src/core/Actions.ts:71](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/core/Actions.ts#L71)
+[src/core/Actions.ts:59](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/Actions.ts#L59)

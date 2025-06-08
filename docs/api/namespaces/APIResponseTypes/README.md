@@ -16,8 +16,6 @@
 - [IRawPlayerConfig](interfaces/IRawPlayerConfig.md)
 - [IRawResponse](interfaces/IRawResponse.md)
 - [IRawTrustedResource](interfaces/IRawTrustedResource.md)
-- [IResponseContext](interfaces/IResponseContext.md)
-- [IServiceTrackingParams](interfaces/IServiceTrackingParams.md)
 - [IStreamingData](interfaces/IStreamingData.md)
 - [ITrustedResource](interfaces/ITrustedResource.md)
 
@@ -27,7 +25,6 @@
 - [BrowseRequest](type-aliases/BrowseRequest.md)
 - [BrowseRequestSupportedMetadata](type-aliases/BrowseRequestSupportedMetadata.md)
 - [ContinuationRequest](type-aliases/ContinuationRequest.md)
-- [CpnSource](type-aliases/CpnSource.md)
 - [CreateCommentRequest](type-aliases/CreateCommentRequest.md)
 - [CreatePlaylistServiceRequest](type-aliases/CreatePlaylistServiceRequest.md)
 - [DeletePlaylistServiceRequest](type-aliases/DeletePlaylistServiceRequest.md)

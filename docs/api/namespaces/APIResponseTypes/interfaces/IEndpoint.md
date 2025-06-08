@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/types/CommandEndpoints.ts:3](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/types/CommandEndpoints.ts#L3)
+[src/parser/types/CommandEndpoints.ts:3](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/types/CommandEndpoints.ts#L3)
 
 ***
 
@@ -32,4 +32,4 @@
 
 #### Defined in
 
-[src/parser/types/CommandEndpoints.ts:2](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/types/CommandEndpoints.ts#L2)
+[src/parser/types/CommandEndpoints.ts:2](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/types/CommandEndpoints.ts#L2)

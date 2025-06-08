@@ -2,6 +2,8 @@
 
 # Class: Text
 
+Represents text content that may include formatting, emojis, and navigation endpoints.
+
 ## Constructors
 
 ### new Text()
@@ -18,27 +20,55 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:31](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/Text.ts#L31)
+[src/parser/classes/misc/Text.ts:60](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L60)
 
 ## Properties
+
+### accessibility?
+
+> `optional` **accessibility**: `FormattedStringSupportedAccessibilityDatas`
+
+Accessibility data associated with this text.
+
+#### Defined in
+
+[src/parser/classes/misc/Text.ts:53](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L53)
+
+***
 
 ### endpoint?
 
 > `optional` **endpoint**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
+Navigation endpoint associated with this text.
+
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:29](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/Text.ts#L29)
+[src/parser/classes/misc/Text.ts:48](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L48)
+
+***
+
+### rtl
+
+> **rtl**: `boolean`
+
+Indicates if the text is right-to-left.
+
+#### Defined in
+
+[src/parser/classes/misc/Text.ts:58](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L58)
 
 ***
 
 ### runs?
 
-> `optional` **runs**: ([`EmojiRun`](EmojiRun.md) \| [`TextRun`](TextRun.md))[]
+> `optional` **runs**: ([`TextRun`](TextRun.md) \| [`EmojiRun`](EmojiRun.md))[]
+
+Individual text segments with their formatting.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/Text.ts#L28)
+[src/parser/classes/misc/Text.ts:43](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L43)
 
 ***
 
@@ -46,9 +76,11 @@
 
 > `optional` **text**: `string`
 
+The plain text content.
+
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:27](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/Text.ts#L27)
+[src/parser/classes/misc/Text.ts:38](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L38)
 
 ## Methods
 
@@ -66,7 +98,7 @@ Whether the text is empty.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:206](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/Text.ts#L206)
+[src/parser/classes/misc/Text.ts:262](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L262)
 
 ***
 
@@ -84,7 +116,7 @@ The HTML.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:198](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/Text.ts#L198)
+[src/parser/classes/misc/Text.ts:254](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L254)
 
 ***
 
@@ -102,7 +134,7 @@ The text.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:214](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/Text.ts#L214)
+[src/parser/classes/misc/Text.ts:270](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L270)
 
 ***
 
@@ -120,4 +152,4 @@ The text.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:54](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/misc/Text.ts#L54)
+[src/parser/classes/misc/Text.ts:103](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/Text.ts#L103)

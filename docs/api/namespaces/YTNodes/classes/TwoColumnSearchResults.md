@@ -26,27 +26,47 @@
 
 #### Defined in
 
-[src/parser/classes/TwoColumnSearchResults.ts:10](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/TwoColumnSearchResults.ts#L10)
+[src/parser/classes/TwoColumnSearchResults.ts:15](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/TwoColumnSearchResults.ts#L15)
 
 ## Properties
 
-### primary\_contents
+### header
 
-> **primary\_contents**: [`SuperParsedResult`](../../Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
+> **header**: `null` \| [`YTNode`](../../Helpers/classes/YTNode.md)
 
 #### Defined in
 
-[src/parser/classes/TwoColumnSearchResults.ts:7](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/TwoColumnSearchResults.ts#L7)
+[src/parser/classes/TwoColumnSearchResults.ts:10](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/TwoColumnSearchResults.ts#L10)
+
+***
+
+### primary\_contents
+
+> **primary\_contents**: `null` \| [`SectionList`](SectionList.md) \| [`RichGrid`](RichGrid.md)
+
+#### Defined in
+
+[src/parser/classes/TwoColumnSearchResults.ts:11](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/TwoColumnSearchResults.ts#L11)
 
 ***
 
 ### secondary\_contents
 
-> **secondary\_contents**: [`SuperParsedResult`](../../Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
+> **secondary\_contents**: `null` \| [`SecondarySearchContainer`](SecondarySearchContainer.md)
 
 #### Defined in
 
-[src/parser/classes/TwoColumnSearchResults.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/TwoColumnSearchResults.ts#L8)
+[src/parser/classes/TwoColumnSearchResults.ts:12](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/TwoColumnSearchResults.ts#L12)
+
+***
+
+### target\_id?
+
+> `optional` **target\_id**: `string`
+
+#### Defined in
+
+[src/parser/classes/TwoColumnSearchResults.ts:13](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/TwoColumnSearchResults.ts#L13)
 
 ***
 
@@ -60,7 +80,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L8)
 
 ***
 
@@ -74,7 +94,7 @@
 
 #### Defined in
 
-[src/parser/classes/TwoColumnSearchResults.ts:5](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/TwoColumnSearchResults.ts#L5)
+[src/parser/classes/TwoColumnSearchResults.ts:8](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/TwoColumnSearchResults.ts#L8)
 
 ## Methods
 
@@ -112,7 +132,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L29)
 
 ***
 
@@ -146,7 +166,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L41)
 
 ***
 
@@ -180,7 +200,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L19)
 
 ***
 
@@ -218,4 +238,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L51)

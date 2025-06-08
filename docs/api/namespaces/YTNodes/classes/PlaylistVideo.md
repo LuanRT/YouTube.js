@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:33](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L33)
+[src/parser/classes/PlaylistVideo.ts:33](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L33)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:25](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L25)
+[src/parser/classes/PlaylistVideo.ts:25](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L25)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:16](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L16)
+[src/parser/classes/PlaylistVideo.ts:16](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L16)
 
 ***
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L28)
+[src/parser/classes/PlaylistVideo.ts:28](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L28)
 
 ***
 
@@ -74,7 +74,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:20](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L20)
+[src/parser/classes/PlaylistVideo.ts:20](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L20)
 
 ***
 
@@ -84,7 +84,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:13](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L13)
+[src/parser/classes/PlaylistVideo.ts:13](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L13)
 
 ***
 
@@ -94,7 +94,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:14](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L14)
+[src/parser/classes/PlaylistVideo.ts:14](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L14)
 
 ***
 
@@ -104,7 +104,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:21](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L21)
+[src/parser/classes/PlaylistVideo.ts:21](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L21)
 
 ***
 
@@ -114,7 +114,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:22](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L22)
+[src/parser/classes/PlaylistVideo.ts:22](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L22)
 
 ***
 
@@ -124,7 +124,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:19](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L19)
+[src/parser/classes/PlaylistVideo.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L19)
 
 ***
 
@@ -134,7 +134,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:26](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L26)
+[src/parser/classes/PlaylistVideo.ts:26](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L26)
 
 ***
 
@@ -144,7 +144,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:18](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L18)
+[src/parser/classes/PlaylistVideo.ts:18](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L18)
 
 ***
 
@@ -154,7 +154,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:17](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L17)
+[src/parser/classes/PlaylistVideo.ts:17](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L17)
 
 ***
 
@@ -164,7 +164,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:15](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L15)
+[src/parser/classes/PlaylistVideo.ts:15](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L15)
 
 ***
 
@@ -178,7 +178,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L8)
 
 ***
 
@@ -188,7 +188,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:23](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L23)
+[src/parser/classes/PlaylistVideo.ts:23](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L23)
 
 ***
 
@@ -198,7 +198,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:24](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L24)
+[src/parser/classes/PlaylistVideo.ts:24](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L24)
 
 ***
 
@@ -212,7 +212,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:11](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L11)
+[src/parser/classes/PlaylistVideo.ts:11](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L11)
 
 ## Accessors
 
@@ -226,7 +226,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:63](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L63)
+[src/parser/classes/PlaylistVideo.ts:63](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L63)
 
 ***
 
@@ -240,7 +240,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlaylistVideo.ts:67](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/classes/PlaylistVideo.ts#L67)
+[src/parser/classes/PlaylistVideo.ts:67](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/PlaylistVideo.ts#L67)
 
 ## Methods
 
@@ -278,7 +278,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:38](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L38)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L29)
 
 ***
 
@@ -312,7 +312,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:50](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L50)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L41)
 
 ***
 
@@ -346,7 +346,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L28)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L19)
 
 ***
 
@@ -384,4 +384,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:60](https://github.com/LuanRT/YouTube.js/blob/e54e499ff553dab51e6d9d1aebc090b50fec29ba/src/parser/helpers.ts#L60)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L51)
