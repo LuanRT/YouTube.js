@@ -31,7 +31,7 @@ import type PlayerLiveStoryboardSpec from '../../parser/classes/PlayerLiveStoryb
 import type PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.js';
 
 export default class MediaInfo {
-  readonly #page: [IPlayerResponse, INextResponse?];
+  readonly #page: [ IPlayerResponse, INextResponse? ];
   readonly #actions: Actions;
   readonly #cpn: string;
   readonly #playback_tracking?: IPlaybackTracking;
@@ -46,7 +46,7 @@ export default class MediaInfo {
   public playability_status?: IPlayabilityStatus;
   public player_config?: IPlayerConfig;
 
-  constructor(data: [ApiResponse, ApiResponse?], actions: Actions, cpn: string) {
+  constructor(data: [ ApiResponse, ApiResponse? ], actions: Actions, cpn: string) {
     this.#actions = actions;
 
     const info = Parser.parseResponse<IPlayerResponse>(data[0].data.playerResponse ? data[0].data.playerResponse : data[0].data);
@@ -98,13 +98,18 @@ export default class MediaInfo {
 
   /**
    * Generates a DASH manifest from the streaming data.
-   * @param url_transformer - Function to transform the URLs.
-   * @param format_filter - Function to filter the formats.
-   * @param options - Additional options to customise the manifest generation
+   * @param options
    * @returns DASH manifest
    */
-  async toDash(url_transformer?: URLTransformer, format_filter?: FormatFilter, options: DashOptions = { include_thumbnails: false }): Promise<string> {
+  async toDash(options: {
+    url_transformer?: URLTransformer;
+    format_filter?: FormatFilter;
+    include_thumbnails?: boolean;
+    captions_format?: string;
+    manifest_options?: DashOptions;
+  } = {}): Promise<string> {
     const player_response = this.#page[0];
+    const manifest_options = options.manifest_options || {};
 
     if (player_response.video_details && (player_response.video_details.is_live)) {
       throw new InnertubeError('Generating DASH manifests for live videos is not supported. Please use the DASH and HLS manifests provided by YouTube in `streaming_data.dash_manifest_url` and `streaming_data.hls_manifest_url` instead.');
@@ -113,28 +118,28 @@ export default class MediaInfo {
     let storyboards;
     let captions;
 
-    if (options.include_thumbnails && player_response.storyboards) {
+    if (manifest_options.include_thumbnails && player_response.storyboards) {
       storyboards = player_response.storyboards;
     }
 
-    if (typeof options.captions_format === 'string' && player_response.captions?.caption_tracks) {
+    if (typeof manifest_options.captions_format === 'string' && player_response.captions?.caption_tracks) {
       captions = player_response.captions.caption_tracks;
     }
 
     return FormatUtils.toDash(
       this.streaming_data,
       this.page[0].video_details?.is_post_live_dvr,
-      url_transformer,
-      format_filter,
+      options.url_transformer,
+      options.format_filter,
       this.#cpn,
       this.#actions.session.player,
       this.#actions,
       storyboards,
       captions,
-      options
+      manifest_options
     );
   }
-
+  
   /**
    * Get a cleaned up representation of the adaptive_formats
    */
@@ -238,7 +243,7 @@ export default class MediaInfo {
   /**
    * Parsed InnerTube response.
    */
-  get page(): [IPlayerResponse, INextResponse?] {
+  get page(): [ IPlayerResponse, INextResponse? ] {
     return this.#page;
   }
 }
