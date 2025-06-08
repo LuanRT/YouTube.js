@@ -803,18 +803,20 @@ export function applyMutations(memo: Memo, mutations: RawNode[]) {
   }
 
   // Apply mutations to MacroMarkersListEntity
-  const heat_map_mutations = mutations.filter((mutation) =>
-    mutation.payload?.macroMarkersListEntity && 
-    mutation.payload.macroMarkersListEntity.markersList?.markerType === 'MARKER_TYPE_HEATMAP'
-  );
+  if (mutations) {
+    const heat_map_mutations = mutations.filter((mutation) =>
+      mutation.payload?.macroMarkersListEntity &&
+      mutation.payload.macroMarkersListEntity.markersList?.markerType === 'MARKER_TYPE_HEATMAP'
+    );
 
-  for (const mutation of heat_map_mutations) {
-    const macro_markers_entity = new MacroMarkersListEntity(mutation.payload.macroMarkersListEntity);
-    const list = memo.get('MacroMarkersListEntity');
-    if (!list) {
-      memo.set('MacroMarkersListEntity', [ macro_markers_entity ]);
-    } else {
-      list.push(macro_markers_entity);
+    for (const mutation of heat_map_mutations) {
+      const macro_markers_entity = new MacroMarkersListEntity(mutation.payload.macroMarkersListEntity);
+      const list = memo.get('MacroMarkersListEntity');
+      if (!list) {
+        memo.set('MacroMarkersListEntity', [ macro_markers_entity ]);
+      } else {
+        list.push(macro_markers_entity);
+      }
     }
   }
 }
