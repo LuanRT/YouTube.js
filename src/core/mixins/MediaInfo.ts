@@ -207,7 +207,7 @@ export default class MediaInfo {
     return new TranscriptInfo(this.actions, response);
   }
 
-  async addToWatchHistory(client_name = Constants.CLIENTS.WEB.NAME, client_version = Constants.CLIENTS.WEB.VERSION, replacement = 'https://www.'): Promise<Response> {
+  async addToWatchHistory(client_name?: string, client_version?: string, replacement = 'https://www.'): Promise<Response> {
     if (!this.#playback_tracking)
       throw new InnertubeError('Playback tracking not available');
 
@@ -221,8 +221,8 @@ export default class MediaInfo {
     const url = this.#playback_tracking.videostats_playback_url.replace('https://s.', replacement);
 
     return await this.#actions.stats(url, {
-      client_name,
-      client_version
+      client_name: client_name || Constants.CLIENTS.WEB.NAME,
+      client_version: client_version || Constants.CLIENTS.WEB.VERSION
     }, url_params);
   }
 
