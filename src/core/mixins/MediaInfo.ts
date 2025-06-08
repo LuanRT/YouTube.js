@@ -202,9 +202,6 @@ export default class MediaInfo {
     return new TranscriptInfo(this.actions, response);
   }
 
-  /**
-   * Adds video to the watch history.
-   */
   async addToWatchHistory(client_name = Constants.CLIENTS.WEB.NAME, client_version = Constants.CLIENTS.WEB.VERSION, replacement = 'https://www.'): Promise<Response> {
     if (!this.#playback_tracking)
       throw new InnertubeError('Playback tracking not available');
@@ -224,18 +221,15 @@ export default class MediaInfo {
     }, url_params);
   }
 
-  /**
-   * Adds video to the watch history.
-   */
-  async updateWatchHistoryTime(playedSeconds: number, client_name: string = Constants.CLIENTS.WEB.NAME, client_version: string = Constants.CLIENTS.WEB.VERSION, replacement = 'https://www.'): Promise<Response> {
+  async updateWatchTime(startTime: number, client_name: string = Constants.CLIENTS.WEB.NAME, client_version: string = Constants.CLIENTS.WEB.VERSION, replacement = 'https://www.'): Promise<Response> {
     if (!this.#playback_tracking)
       throw new InnertubeError('Playback tracking not available');
 
     const url_params = {
       cpn: this.#cpn,
-      st: playedSeconds.toFixed(3),
-      et: playedSeconds.toFixed(3),
-      cmt: playedSeconds.toFixed(3),
+      st: startTime.toFixed(3),
+      et: startTime.toFixed(3),
+      cmt: startTime.toFixed(3),
       final: '1'
     };
 
