@@ -27,4 +27,9 @@ export interface StreamingInfoOptions {
    * Defaults to `(audio_track_display_name) => audio_track_display_name + " (Stable Volume)"`
    */
   label_drc_multiple?: (audio_track_display_name: string) => string;
+
+  /**
+   * If `true`, the generated manifest will contain URLs that are suitable for use with the SABR protocol.
+   */
+  is_sabr?: boolean;
 }
