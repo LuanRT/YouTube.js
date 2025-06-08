@@ -59,47 +59,106 @@ module.exports = (program, pluginConfig, { ts: tsInstance }) => {
 
             if (isNumeric) {
               if (hasMinus) {
-                properties.push(
-                  factory.createPropertyAssignment(
-                    name,
-                    factory.createPrefixUnaryExpression(
-                      tsInstance.SyntaxKind.MinusToken,
-                      factory.createNumericLiteral(value)
-                    )
-                  ),
-                  factory.createPropertyAssignment(
-                    factory.createStringLiteral(`-${value}`),
-                    factory.createStringLiteral(name)
-                  )
-                )
-              } else {
-                properties.push(
-                  factory.createPropertyAssignment(
-                    name,
+                const mapping = factory.createPropertyAssignment(
+                  name,
+                  factory.createPrefixUnaryExpression(
+                    tsInstance.SyntaxKind.MinusToken,
                     factory.createNumericLiteral(value)
-                  ),
-                  factory.createPropertyAssignment(
-                    value,
-                    factory.createStringLiteral(name)
                   )
                 )
+
+                tsInstance.setOriginalNode(mapping, member)
+                tsInstance.setTextRange(mapping, member)
+
+                tsInstance.setOriginalNode(mapping.name, member.name)
+                tsInstance.setTextRange(mapping.name, member.name)
+
+                if (member.initializer) {
+                  tsInstance.setOriginalNode(mapping.initializer, member.initializer)
+                  tsInstance.setTextRange(mapping.initializer, member.initializer)
+                }
+
+                const reverseMapping = factory.createPropertyAssignment(
+                  factory.createStringLiteral(`-${value}`),
+                  factory.createStringLiteral(name)
+                )
+
+                tsInstance.setOriginalNode(reverseMapping, member)
+                tsInstance.setTextRange(reverseMapping, member)
+
+                tsInstance.setOriginalNode(reverseMapping.initializer, member.name)
+                tsInstance.setTextRange(reverseMapping.initializer, member.name)
+
+                if (member.initializer) {
+                  tsInstance.setOriginalNode(reverseMapping.name, member.initializer)
+                  tsInstance.setTextRange(reverseMapping.name, member.initializer)
+                }
+
+                properties.push(mapping, reverseMapping)
+              } else {
+                const mapping = factory.createPropertyAssignment(
+                  name,
+                  factory.createNumericLiteral(value)
+                )
+
+                tsInstance.setOriginalNode(mapping, member)
+                tsInstance.setTextRange(mapping, member)
+
+                tsInstance.setOriginalNode(mapping.name, member.name)
+                tsInstance.setTextRange(mapping.name, member.name)
+
+                if (member.initializer) {
+                  tsInstance.setOriginalNode(mapping.initializer, member.initializer)
+                  tsInstance.setTextRange(mapping.initializer, member.initializer)
+                }
+
+                const reverseMapping = factory.createPropertyAssignment(
+                  value,
+                  factory.createStringLiteral(name)
+                )
+
+                tsInstance.setOriginalNode(reverseMapping, member)
+                tsInstance.setTextRange(reverseMapping, member)
+
+                tsInstance.setOriginalNode(reverseMapping.initializer, member.name)
+                tsInstance.setTextRange(reverseMapping.initializer, member.name)
+
+                if (member.initializer) {
+                  tsInstance.setOriginalNode(reverseMapping.name, member.initializer)
+                  tsInstance.setTextRange(reverseMapping.name, member.initializer)
+                }
+
+                properties.push(mapping, reverseMapping)
               }
             } else {
-              properties.push(
-                factory.createPropertyAssignment(
-                  name,
-                  factory.createStringLiteral(value)
-                )
+              const mapping = factory.createPropertyAssignment(
+                name,
+                factory.createStringLiteral(value)
               )
+
+              tsInstance.setOriginalNode(mapping, member)
+              tsInstance.setTextRange(mapping, member)
+
+              tsInstance.setOriginalNode(mapping.name, member.name)
+              tsInstance.setTextRange(mapping.name, member.name)
+
+              tsInstance.setOriginalNode(mapping.initializer, member.initializer)
+              tsInstance.setTextRange(mapping.initializer, member.initializer)
+
+              properties.push(mapping)
             }
           }
+
+          const convertedNameIdentifier = factory.createIdentifier(node.name.text)
+          tsInstance.setOriginalNode(convertedNameIdentifier, node.name)
+          tsInstance.setTextRange(convertedNameIdentifier, node.name)
 
           const convertedEnum = factory.createVariableStatement(
             variableStatementModifiers,
             factory.createVariableDeclarationList(
               [
                 factory.createVariableDeclaration(
-                  factory.createIdentifier(node.name.text),
+                  convertedNameIdentifier,
                   undefined,
                   undefined,
                   factory.createObjectLiteralExpression(
@@ -111,6 +170,9 @@ module.exports = (program, pluginConfig, { ts: tsInstance }) => {
               tsInstance.NodeFlags.Const
             )
           )
+
+          tsInstance.setOriginalNode(convertedEnum, node)
+          tsInstance.setTextRange(convertedEnum, node)
 
           return convertedEnum
         }
