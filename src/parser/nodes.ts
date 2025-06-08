@@ -278,6 +278,7 @@ export { default as LockupMetadataView } from './classes/LockupMetadataView.js';
 export { default as LockupView } from './classes/LockupView.js';
 export { default as MacroMarkersInfoItem } from './classes/MacroMarkersInfoItem.js';
 export { default as MacroMarkersList } from './classes/MacroMarkersList.js';
+export { default as MacroMarkersListEntity } from './classes/MacroMarkersListEntity.js';
 export { default as MacroMarkersListItem } from './classes/MacroMarkersListItem.js';
 export { default as Menu } from './classes/menus/Menu.js';
 export { default as MenuFlexibleItem } from './classes/menus/MenuFlexibleItem.js';
