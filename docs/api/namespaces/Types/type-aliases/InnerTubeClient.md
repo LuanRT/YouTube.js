@@ -2,7 +2,7 @@
 
 # Type Alias: InnerTubeClient
 
-> **InnerTubeClient**: `"IOS"` \| `"WEB"` \| `"MWEB"` \| `"ANDROID"` \| `"YTMUSIC"` \| `"YTMUSIC_ANDROID"` \| `"YTSTUDIO_ANDROID"` \| `"TV"` \| `"TV_EMBEDDED"` \| `"YTKIDS"` \| `"WEB_EMBEDDED"` \| `"WEB_CREATOR"`
+> **InnerTubeClient**: `"IOS"` \| `"WEB"` \| `"MWEB"` \| `"ANDROID"` \| `"YTMUSIC"` \| `"YTMUSIC_ANDROID"` \| `"YTSTUDIO_ANDROID"` \| `"TV"` \| `"TV_SIMPLY"` \| `"TV_EMBEDDED"` \| `"YTKIDS"` \| `"WEB_EMBEDDED"` \| `"WEB_CREATOR"`
 
 ## Defined in
 
