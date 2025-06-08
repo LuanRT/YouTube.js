@@ -34,7 +34,7 @@ An example can be found [here](https://github.com/LuanRT/YouTube.js/blob/main/ex
 
 ## Cache Credentials
 
-If you don't want to start the sign in flow every time you initialize the session, you can cache the credentials. Note that this SHOULD NOT be used in production, save your credentials in a database/file instead and pass them to `Session#signIn(creds?)` when signing in.
+If you don't want to start the sign-in flow every time you initialize the session, you can cache the credentials. Note that this SHOULD NOT be used in production, save your credentials in a database/file instead and pass them to `Session#signIn(creds?)` when signing in.
 
 ```js
 // If you use this, the next call to signIn won't fire 'auth-pending' instead just 'auth'
