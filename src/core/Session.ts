@@ -346,9 +346,20 @@ export default class Session extends EventEmitter {
       if (session_args.user_agent)
         result.context.client.userAgent = session_args.user_agent;
 
+      if (session_args.client_name) {
+        const client = Object.values(Constants.CLIENTS).find((c) => c.NAME === session_args.client_name);
+        if (client) {
+          result.context.client.clientName = client.NAME;
+          result.context.client.clientVersion = client.VERSION;
+        } else {
+          Log.warn(TAG, `Unknown client name: ${session_args.client_name}. Using default WEB client.`);
+          result.context.client.clientName = ClientType.WEB;
+          result.context.client.clientVersion = Constants.CLIENTS.WEB.VERSION;
+        }
+      }
+      
       result.context.client.timeZone = session_args.time_zone;
       result.context.client.platform = session_args.device_category.toUpperCase();
-      result.context.client.clientName = session_args.client_name;
       result.context.user.enableSafetyMode = session_args.enable_safety_mode;
 
       return result;
@@ -554,7 +565,9 @@ export default class Session extends EventEmitter {
       visitor_data: options.visitor_data || device_info[13],
       user_agent: options.user_agent,
       client_name: options.client_name,
-      client_version: device_info[16],
+      client_version: Object.values(Constants.CLIENTS).filter(
+        (v) => v.NAME === options.client_name
+      )[0]?.VERSION ?? device_info[16],
       os_name: device_info[17],
       os_version: device_info[18],
       time_zone: device_info[79] || options.time_zone,
