@@ -1,5 +1,29 @@
 # Changelog
 
+## [14.0.0](https://github.com/LuanRT/YouTube.js/compare/v13.4.0...v14.0.0) (2025-06-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **StreamingInfoOptions:** Add `is_sabr` option ([#974](https://github.com/LuanRT/YouTube.js/issues/974))
+
+### Features
+
+* Add `TV_SIMPLY` client ([8cf6581](https://github.com/LuanRT/YouTube.js/commit/8cf658151fc4e4266fadfb7e53dd5db3db693355))
+* **MediaInfo:** Add `updateWatchTime` ([#874](https://github.com/LuanRT/YouTube.js/issues/874)) ([065e9a4](https://github.com/LuanRT/YouTube.js/commit/065e9a4e7c3fee90f68d06992cf979338f8e3aba))
+* **StreamingInfoOptions:** Add `is_sabr` option ([#974](https://github.com/LuanRT/YouTube.js/issues/974)) ([561e60b](https://github.com/LuanRT/YouTube.js/commit/561e60b934df29520eb0bd83a98e42fa4d7d35bb))
+* **VideoInfo:** implement `MacroMarkersListEntity` parser for heatmap ([#973](https://github.com/LuanRT/YouTube.js/issues/973)) ([876e94a](https://github.com/LuanRT/YouTube.js/commit/876e94ad03398f546ef7942deb9ba5eb8baa6c6d))
+
+
+### Bug Fixes
+
+* add missing `TV_SIMPLY` parts on some files ([#975](https://github.com/LuanRT/YouTube.js/issues/975)) ([689fb0b](https://github.com/LuanRT/YouTube.js/commit/689fb0b90edab6f0e4326a35144541d68f72fe01))
+* **Constants:** Add `TVHTML5_SIMPLY` to `CLIENT_NAME_IDS` ([b15f623](https://github.com/LuanRT/YouTube.js/commit/b15f623dab3acb44eaef33175df2d22d35be2979))
+* **getBasicInfo:** Add racyCheckOk and contentCheckOk to payload ([#961](https://github.com/LuanRT/YouTube.js/issues/961)) ([0f1fd72](https://github.com/LuanRT/YouTube.js/commit/0f1fd7223c2e5c8e28637e84a1c00c6d88fad50f))
+* Handle CommandExecutorCommand in NavigationEndpoint.call ([#968](https://github.com/LuanRT/YouTube.js/issues/968)) ([698121a](https://github.com/LuanRT/YouTube.js/commit/698121ab8f62fbed6e78892277caf93a9890b930))
+* **Innertube:** Properly encoded params in getPostComments() ([#955](https://github.com/LuanRT/YouTube.js/issues/955)) ([92b8623](https://github.com/LuanRT/YouTube.js/commit/92b8623374a126d60604a54fa4be67b460ddc5e3))
+* **Session:** Initialize client version based on provided client name ([#971](https://github.com/LuanRT/YouTube.js/issues/971)) ([bb022e8](https://github.com/LuanRT/YouTube.js/commit/bb022e8285e0bf2dfa709e7401b80f9de18833e1))
+
 ## [13.4.0](https://github.com/LuanRT/YouTube.js/compare/v13.3.0...v13.4.0) (2025-04-23)
 
 
