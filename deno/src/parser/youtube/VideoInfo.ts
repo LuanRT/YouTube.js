@@ -25,6 +25,7 @@ import YpcTrailer from '../classes/YpcTrailer.ts';
 import StructuredDescriptionContent from '../classes/StructuredDescriptionContent.ts';
 import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSection.ts';
 import LiveChatWrap from './LiveChat.ts';
+import MacroMarkersListEntity from '../classes/MacroMarkersListEntity.ts';
 
 import type { RawNode } from '../index.ts';
 import { ReloadContinuationItemsCommand } from '../index.ts';
@@ -32,6 +33,7 @@ import AppendContinuationItemsAction from '../classes/actions/AppendContinuation
 
 import type { Actions, ApiResponse } from '../../core/index.ts';
 import type { ObservedArray, YTNode } from '../helpers.ts';
+import type Heatmap from '../classes/Heatmap.ts';
 
 export default class VideoInfo extends MediaInfo {
   public primary_info?: VideoPrimaryInfo | null;
@@ -45,6 +47,7 @@ export default class VideoInfo extends MediaInfo {
   public comments_entry_point_header?: CommentsEntryPointHeader | null;
   public livechat?: LiveChat | null;
   public autoplay?: TwoColumnWatchNextResults['autoplay'];
+  public heat_map?: Heatmap | null;
 
   #watch_next_continuation?: ContinuationItem;
   
@@ -132,6 +135,20 @@ export default class VideoInfo extends MediaInfo {
 
       this.comments_entry_point_header = comments_entry_point?.contents?.firstOfType(CommentsEntryPointHeader);
       this.livechat = next?.contents_memo?.getType(LiveChat)[0];
+
+      const macro_markers_list_for_heatmap = this.page[1]?.contents_memo?.getType(MacroMarkersListEntity);
+      let calculated_heat_map: Heatmap | null = null;
+      if (macro_markers_list_for_heatmap) {
+        const heatmap_markers_entity = macro_markers_list_for_heatmap.find((markers) => 
+          markers.isHeatmap()
+        );
+        if (heatmap_markers_entity) {
+          try {
+            calculated_heat_map = heatmap_markers_entity.toHeatmap();
+          } catch { /** NO-OP */ }
+        }
+      }
+      this.heat_map = calculated_heat_map;
     }
   }
 
@@ -173,6 +190,13 @@ export default class VideoInfo extends MediaInfo {
    */
   async addToWatchHistory(): Promise<Response> {
     return super.addToWatchHistory();
+  }
+
+  /**
+   * Updates watch time for the video.
+   */
+  async updateWatchTime(startTime: number): Promise<Response> {
+    return super.updateWatchTime(startTime);
   }
 
   /**

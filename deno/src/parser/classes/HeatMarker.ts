@@ -10,8 +10,8 @@ export default class HeatMarker extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.time_range_start_millis = data.timeRangeStartMillis;
-    this.marker_duration_millis = data.markerDurationMillis;
-    this.heat_marker_intensity_score_normalized = data.heatMarkerIntensityScoreNormalized;
+    this.time_range_start_millis = Number.parseInt(data.startMillis, 10);
+    this.marker_duration_millis = Number.parseInt(data.durationMillis, 10);
+    this.heat_marker_intensity_score_normalized = data.intensityScoreNormalized;
   }
 }

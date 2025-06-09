@@ -1,6 +1,7 @@
 import { Parser, type RawNode } from '../index.ts';
 import HeatMarker from './HeatMarker.ts';
 import { type ObservedArray, YTNode } from '../helpers.ts';
+import TimedMarkerDecoration from './TimedMarkerDecoration.ts';
 
 export default class Heatmap extends YTNode {
   static type = 'Heatmap';
@@ -17,6 +18,6 @@ export default class Heatmap extends YTNode {
     this.min_height_dp = data.minHeightDp;
     this.show_hide_animation_duration_millis = data.showHideAnimationDurationMillis;
     this.heat_markers = Parser.parseArray(data.heatMarkers, HeatMarker);
-    this.heat_markers_decorations = Parser.parseArray(data.heatMarkersDecorations);
+    this.heat_markers_decorations = Parser.parseArray(data.heatMarkersDecorations, TimedMarkerDecoration);
   }
 }

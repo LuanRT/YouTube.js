@@ -144,6 +144,13 @@ class TrackInfo extends MediaInfo {
   async addToWatchHistory(): Promise<Response> {
     return super.addToWatchHistory(Constants.CLIENTS.YTMUSIC.NAME, Constants.CLIENTS.YTMUSIC.VERSION, 'https://music.');
   }
+  
+  /**
+   * Updates the watch time of the song.
+   */
+  async updateWatchTime(startTime: number): Promise<Response> {
+    return super.updateWatchTime(startTime, Constants.CLIENTS.YTMUSIC.NAME, Constants.CLIENTS.YTMUSIC.VERSION, 'https://music.');
+  }
 
   get available_tabs(): string[] {
     return this.tabs ? this.tabs.map((tab) => tab.title) : [];

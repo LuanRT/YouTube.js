@@ -2,6 +2,7 @@ import { YTNode } from '../helpers.ts';
 import { Parser, type IEndpoint, type RawNode } from '../index.ts';
 import OpenPopupAction from './actions/OpenPopupAction.ts';
 import CreatePlaylistDialog from './CreatePlaylistDialog.ts';
+import CommandExecutorCommand from './commands/CommandExecutorCommand.ts';
 
 import type Actions from '../../core/Actions.ts';
 import type ModalWithTitleAndButton from './ModalWithTitleAndButton.ts';
@@ -124,7 +125,12 @@ export default class NavigationEndpoint extends YTNode {
       throw new Error('An API caller must be provided');
 
     if (this.command) {
-      const command = this.command as (YTNode & IEndpoint);
+      let command = this.command as (YTNode & IEndpoint);
+
+      if (command.is(CommandExecutorCommand)) {
+        command = command.commands.at(-1) as (YTNode & IEndpoint);
+      }
+
       return actions.execute(command.getApiPath(), { ...command.buildRequest(), ...args });
     }
 

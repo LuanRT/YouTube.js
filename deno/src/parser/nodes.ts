@@ -278,6 +278,7 @@ export { default as LockupMetadataView } from './classes/LockupMetadataView.ts';
 export { default as LockupView } from './classes/LockupView.ts';
 export { default as MacroMarkersInfoItem } from './classes/MacroMarkersInfoItem.ts';
 export { default as MacroMarkersList } from './classes/MacroMarkersList.ts';
+export { default as MacroMarkersListEntity } from './classes/MacroMarkersListEntity.ts';
 export { default as MacroMarkersListItem } from './classes/MacroMarkersListItem.ts';
 export { default as Menu } from './classes/menus/Menu.ts';
 export { default as MenuFlexibleItem } from './classes/menus/MenuFlexibleItem.ts';
