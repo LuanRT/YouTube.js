@@ -18,6 +18,22 @@ export default class Tab extends YTNode {
     this.title = data.title || 'N/A';
     this.selected = !!data.selected;
     this.endpoint = new NavigationEndpoint(data.endpoint);
-    this.content = Parser.parseItem(data.content, [ SectionList, MusicQueue, RichGrid ]);
+    const contents = Parser.parseItems(data.content, [ SectionList, MusicQueue, RichGrid ]);
+    this.content = null;
+    if (contents !== null && contents.length > 0) {
+      for (const item of contents) {
+        if (item.is(SectionList) && item.contents.length > 0) {
+          this.content = item;
+        } else if (item.is(RichGrid) && item.contents.length > 0) {
+          this.content = item;
+        } else if (item.is(MusicQueue)) {
+          this.content = item;
+        }
+      }
+
+      if (this.content === null) {
+        this.content = contents[0];
+      }
+    }
   }
 }
