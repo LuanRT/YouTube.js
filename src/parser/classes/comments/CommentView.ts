@@ -1,8 +1,10 @@
+import { Parser } from '../../index.js';
 import { YTNode } from '../../helpers.js';
 import NavigationEndpoint from '../NavigationEndpoint.js';
 import Author from '../misc/Author.js';
 import Text from '../misc/Text.js';
 import CommentReplyDialog from './CommentReplyDialog.js';
+import VoiceReplyContainerView from './VoiceReplyContainerView.js';
 import { InnertubeError } from '../../../utils/Utils.js';
 import * as ProtoUtils from '../../../utils/ProtoUtils.js';
 
@@ -63,7 +65,7 @@ export default class CommentView extends YTNode {
   public is_disliked?: boolean;
   public is_hearted?: boolean;
 
-  public voice_reply_transcript?: Text;
+  public voice_reply_container?: VoiceReplyContainerView | null;
 
   constructor(data: RawNode) {
     super();
@@ -134,7 +136,7 @@ export default class CommentView extends YTNode {
 
     if (comment_surface) {
       if ('voiceReplyContainerViewModel' in comment_surface) {
-        this.voice_reply_transcript = Text.fromAttributed(comment_surface.voiceReplyContainerViewModel.voiceReplyContainerViewModel.transcriptText);
+        this.voice_reply_container = Parser.parseItem(comment_surface.voiceReplyContainerViewModel, VoiceReplyContainerView);
       }
     }
   }

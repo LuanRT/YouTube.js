@@ -101,6 +101,7 @@ export { default as CreatorHeart } from './classes/comments/CreatorHeart.js';
 export { default as EmojiPicker } from './classes/comments/EmojiPicker.js';
 export { default as PdgCommentChip } from './classes/comments/PdgCommentChip.js';
 export { default as SponsorCommentBadge } from './classes/comments/SponsorCommentBadge.js';
+export { default as VoiceReplyContainerView } from './classes/comments/VoiceReplyContainerView.js';
 export { default as CompactChannel } from './classes/CompactChannel.js';
 export { default as CompactLink } from './classes/CompactLink.js';
 export { default as CompactMix } from './classes/CompactMix.js';
