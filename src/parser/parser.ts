@@ -844,7 +844,11 @@ export function applyCommentsMutations(memo: Memo, mutations: RawNode[]) {
       const engagement_toolbar = mutations.find((mutation) => mutation.entityKey === comment_view.keys.toolbar_surface)
         ?.payload?.engagementToolbarSurfaceEntityPayload;
 
-      comment_view.applyMutations(comment_mutation, toolbar_state_mutation, engagement_toolbar);
+      const comment_surface_mutation = mutations
+        .find((mutation) => mutation.payload?.commentSurfaceEntityPayload?.key === comment_view.keys.comment_surface)
+        ?.payload?.commentSurfaceEntityPayload;
+
+      comment_view.applyMutations(comment_mutation, toolbar_state_mutation, engagement_toolbar, comment_surface_mutation);
     }
   }
 }
