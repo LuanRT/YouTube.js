@@ -63,6 +63,8 @@ export default class CommentView extends YTNode {
   public is_disliked?: boolean;
   public is_hearted?: boolean;
 
+  public voice_reply_transcript?: Text;
+
   constructor(data: RawNode) {
     super();
 
@@ -78,7 +80,7 @@ export default class CommentView extends YTNode {
     };
   }
 
-  applyMutations(comment?: RawNode, toolbar_state?: RawNode, toolbar_surface?: RawNode) {
+  applyMutations(comment?: RawNode, toolbar_state?: RawNode, toolbar_surface?: RawNode, comment_surface?: RawNode) {
     if (comment) {
       this.content = Text.fromAttributed(comment.properties.content);
       this.published_time = comment.properties.publishedTime;
@@ -127,6 +129,12 @@ export default class CommentView extends YTNode {
         this.unlike_command = new NavigationEndpoint(toolbar_surface.unlikeCommand);
         this.undislike_command = new NavigationEndpoint(toolbar_surface.undislikeCommand);
         this.reply_command = new NavigationEndpoint(toolbar_surface.replyCommand);
+      }
+    }
+
+    if (comment_surface) {
+      if ('voiceReplyContainerViewModel' in comment_surface) {
+        this.voice_reply_transcript = Text.fromAttributed(comment_surface.voiceReplyContainerViewModel.voiceReplyContainerViewModel.transcriptText);
       }
     }
   }
