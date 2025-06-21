@@ -32,6 +32,8 @@ export interface AudioSet {
   track_name?: string;
   track_roles?: ('main' | 'dub' | 'description' | 'enhanced-audio-intelligibility' | 'alternate')[];
   channels?: number;
+  drm_families?: string[];
+  drm_track_type?: string;
   representations: AudioRepresentation[];
 }
 
@@ -81,6 +83,8 @@ export interface VideoSet {
   color_info: ColorInfo;
   codecs?: string;
   fps?: number;
+  drm_families?: string[];
+  drm_track_type?: string;
   representations: VideoRepresentation[]
 }
 
@@ -481,6 +485,8 @@ function getAudioSet(
     track_name,
     track_roles: getTrackRoles(first_format, has_drc_streams),
     channels: hoistAudioChannelsIfPossible(formats, hoisted),
+    drm_families: first_format.drm_families,
+    drm_track_type: first_format.drm_track_type,
     representations: formats.map((format) => getAudioRepresentation(format, hoisted, url_transformer, actions, player, cpn, shared_post_live_dvr_info, is_sabr))
   };
 
@@ -596,6 +602,8 @@ function getVideoSet(
     color_info,
     codecs: hoistCodecsIfPossible(formats, hoisted),
     fps: hoistNumberAttributeIfPossible(formats, 'fps', hoisted),
+    drm_families: first_format.drm_families,
+    drm_track_type: first_format.drm_track_type,
     representations: formats.map((format) => getVideoRepresentation(format, url_transformer, hoisted, player, actions, cpn, shared_post_live_dvr_info, is_sabr))
   };
 
