@@ -109,6 +109,7 @@ export { default as CompactMovie } from './classes/CompactMovie.js';
 export { default as CompactPlaylist } from './classes/CompactPlaylist.js';
 export { default as CompactStation } from './classes/CompactStation.js';
 export { default as CompactVideo } from './classes/CompactVideo.js';
+export { default as CompositeVideoPrimaryInfo } from './classes/CompositeVideoPrimaryInfo.js';
 export { default as ConfirmDialog } from './classes/ConfirmDialog.js';
 export { default as ContentMetadataView } from './classes/ContentMetadataView.js';
 export { default as ContentPreviewImageView } from './classes/ContentPreviewImageView.js';
