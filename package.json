@@ -105,7 +105,7 @@
     "@bufbuild/protobuf": "^2.0.0",
     "jintr": "^3.3.1",
     "tslib": "^2.5.0",
-    "undici": "^5.19.1"
+    "undici": "^6.21.3"
   },
   "overrides": {
     "typescript": "^5.0.0"
