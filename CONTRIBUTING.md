@@ -11,7 +11,7 @@ If you want to lend a hand by solving an issue, it's always good to browse exist
 ## Making Changes
 
 1. Fork the repository on GitHub.
-2. Ensure that you have the latest Node.js v16 version installed.
+2. Ensure that you have the latest Node.js v20 version installed.
 3. Create a working branch and start making your changes and improvements!
 
 ### Committing updates
