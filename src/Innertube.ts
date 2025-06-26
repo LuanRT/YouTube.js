@@ -491,7 +491,6 @@ export default class Innertube {
 
     const params = encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
 
-    console.log(params);
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEpost_detail', params: params } });
 
     const response = await browse_endpoint.call(this.#session.actions, { parse: true });
