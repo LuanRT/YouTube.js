@@ -482,19 +482,17 @@ export default class Innertube {
   async getPost(post_id: string, channel_id: string) : Promise<Feed<IBrowseResponse>> {
     throwIfMissing({ post_id, channel_id });
     const writer = CommunityPostParams.encode({
-      f0: 'community',
       f1: {
-        postId: post_id
-      },
-      f2: {
-        p1: 1,
-        p2: 1 
+        ucid1: channel_id,
+        postId: post_id,
+        ucid2: channel_id
       }
     });
 
     const params = encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
 
-    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: channel_id, params: params } });
+    console.log(params);
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEpost_detail', params: params } });
 
     const response = await browse_endpoint.call(this.#session.actions, { parse: true });
     return new Feed(this.actions, response);
@@ -512,22 +510,17 @@ export default class Innertube {
     };
 
     const writer1 = CommunityPostCommentsParam.encode({
-      title: 'community',
-      postContainer: {
-        postId: post_id
-      },
-      f0: {
-        f0: 1,
-        f1: 1
-      },
+      title: 'posts',
       commentDataContainer: {
         title: 'comments-section',
         commentData: {
           sortBy: SORT_OPTIONS[sort_by || 'TOP_COMMENTS'],
-          f0: 1,
+          f0: 2,
+          f1: 0,
           channelId: channel_id,
           postId: post_id
-        }
+        },
+        f0: 0
       }
     });
 
