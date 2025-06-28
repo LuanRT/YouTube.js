@@ -4,9 +4,7 @@ import type { RawNode } from '../index.js';
 export default class SectionHeaderView extends YTNode {
   static type = 'SectionHeaderView';
   
-  headline: {
-      content: string
-    };
+  headline: Text;
   leading_accessory: {
       image: {
         sources: {
@@ -19,9 +17,7 @@ export default class SectionHeaderView extends YTNode {
   
   constructor(data: RawNode) {
     super();
-    this.headline = {
-      content: data.headline.content
-    };
+    this.headline = Text.fromAttributed(data.headline);
     this.leading_accessory = {
       image: {
         sources: data.leadingAccessory.image.sources.map((item: any) => ({

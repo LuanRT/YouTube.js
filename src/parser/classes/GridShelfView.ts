@@ -29,11 +29,5 @@ export default class GridShelfView extends YTNode {
     this.show_more_button = Parser.parseItem(data.showMoreButton, YTNodes.ButtonView);
     this.show_less_button = Parser.parseItem(data.showLessButton, YTNodes.ButtonView);
     this.min_collapsed_item_count = data.minCollapsedItemCount;
-    this.logging_directives = {
-      tracking_params: data.loggingDirectives.trackingParams,
-      visibility: {
-        types: data.loggingDirectives.visibility.types
-      }
-    };
   }
 }
