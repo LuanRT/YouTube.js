@@ -15,12 +15,6 @@ export default class GridShelfView extends YTNode {
   show_more_button: ButtonView | null;
   show_less_button: ButtonView | null;
   min_collapsed_item_count: number;
-  logging_directives?: {
-      tracking_params: string,
-      visibility: {
-        types: string
-      }
-    };
   
   constructor(data: RawNode) {
     super();
@@ -31,9 +25,5 @@ export default class GridShelfView extends YTNode {
     this.show_more_button = Parser.parseItem(data.showMoreButton, ButtonView);
     this.show_less_button = Parser.parseItem(data.showLessButton, ButtonView);
     this.min_collapsed_item_count = data.minCollapsedItemCount;
-    
-    if (Reflect.has(data, 'loggingDirectives')) {
-      this.logging_directives = data.loggingDirectives;
-    }
   }
 }
