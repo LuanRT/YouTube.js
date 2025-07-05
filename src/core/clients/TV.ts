@@ -20,7 +20,7 @@ export default class TV {
     this.#actions = session.actions;
   }
 
-  async getInfo(target: string | NavigationEndpoint, client?: InnerTubeClient): Promise<VideoInfo> {
+  async getInfo(target: string | NavigationEndpoint): Promise<VideoInfo> {
     throwIfMissing({ target });
 
     const payload = {
@@ -46,13 +46,10 @@ export default class TV {
       },
       serviceIntegrityDimensions: {
         poToken: this.#session.po_token
-      },
-      client
+      }
     });
 
-    const watch_next_response = await watch_next_endpoint.call(this.#actions, {
-      client
-    });
+    const watch_next_response = await watch_next_endpoint.call(this.#actions);
 
     const response = await Promise.all([ watch_response, watch_next_response ]);
 
