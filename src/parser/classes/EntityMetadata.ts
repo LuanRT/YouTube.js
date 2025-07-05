@@ -10,8 +10,8 @@ export default class EntityMetadata extends YTNode {
 
   title: Text;
   description: Text;
-  buttons: ObservedArray<Button | ToggleButton> | null;
-  bylines: ObservedArray<Line> | null;
+  buttons: ObservedArray<Button | ToggleButton>;
+  bylines: ObservedArray<Line>;
 
   constructor(data: RawNode) {
     super();
