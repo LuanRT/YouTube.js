@@ -1,8 +1,8 @@
-import { YTNode } from '../helpers.js';
-import { Parser, type RawNode } from '../index.js';
-import TwoColumn from './TwoColumn.js';
-import Grid from './Grid.js';
-import SectionList from './SectionList.js';
+import { YTNode } from '../../helpers.js';
+import { Parser, type RawNode } from '../../index.js';
+import TwoColumn from '../TwoColumn.js';
+import Grid from '../Grid.js';
+import SectionList from '../SectionList.js';
 
 export default class TvSurfaceContent extends YTNode {
   static type = 'TvSurfaceContent';
