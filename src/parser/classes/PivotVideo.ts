@@ -19,7 +19,7 @@ export default class PivotVideo extends YTNode {
     icon_type: string
   };
   overlay_label: Text;
-  thumbnail_overlays: ObservedArray<ThumbnailOverlayTimeStatus> | null;
+  thumbnail_overlays: ObservedArray<ThumbnailOverlayTimeStatus>;
 
   constructor(data: RawNode) {
     super();

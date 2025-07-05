@@ -11,7 +11,7 @@ export default class TileHeader extends YTNode {
   static type = 'TileHeader';
 
   thumbnail: Thumbnail[];
-  thumbnail_overlays: ObservedArray<ThumbnailOverlayTimeStatus | ThumbnailOverlayIcon | ThumbnailOverlayResumePlayback | ThumbnailOverlayStackingEffect | TileMetadata> | null;
+  thumbnail_overlays: ObservedArray<ThumbnailOverlayTimeStatus | ThumbnailOverlayIcon | ThumbnailOverlayResumePlayback | ThumbnailOverlayStackingEffect | TileMetadata>;
 
   constructor(data: RawNode) {
     super();

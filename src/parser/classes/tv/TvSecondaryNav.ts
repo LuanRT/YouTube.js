@@ -6,7 +6,7 @@ import Text from '../misc/Text.js';
 export default class TvSecondaryNav extends YTNode {
   static type = 'TvSecondaryNav';
 
-  sections: ObservedArray<TvSecondaryNavSection> | null;
+  sections: ObservedArray<TvSecondaryNavSection>;
   title: Text;
 
   constructor(data: RawNode) {

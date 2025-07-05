@@ -155,7 +155,7 @@ export class PlaylistVideoListContinuation extends YTNode {
   static readonly type = 'playlistVideoListContinuation';
 
   continuation?: string;
-  contents: ObservedArray<YTNode> | null;
+  contents: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();
