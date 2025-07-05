@@ -18,7 +18,7 @@ import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
 import { PlaylistPanelContinuation } from '../continuations.js';
-import type TvSurfaceContent from '../classes/TvSurfaceContent.js';
+import type TvSurfaceContent from '../classes/tv/TvSurfaceContent.js';
 
 class TrackInfo extends MediaInfo {
   public tabs?: ObservedArray<Tab>;

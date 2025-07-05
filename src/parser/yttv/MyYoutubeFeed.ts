@@ -5,9 +5,9 @@ import type { ObservedArray, YTNode } from '../helpers.js';
 import { observe } from '../helpers.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import Tab from '../classes/Tab.js';
-import TvSecondaryNavSection from '../classes/TvSecondaryNavSection.js';
+import TvSecondaryNavSection from '../classes/tv/TvSecondaryNavSection.js';
 import Grid from '../classes/Grid.js';
-import TvSurfaceContent from '../classes/TvSurfaceContent.js';
+import TvSurfaceContent from '../classes/tv/TvSurfaceContent.js';
 
 export default class MyYoutubeFeed {
   readonly #page: IBrowseResponse;

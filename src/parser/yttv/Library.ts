@@ -7,7 +7,7 @@ import { observe } from '../helpers.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import SectionList from '../classes/SectionList.js';
 import type Tile from '../classes/Tile.js';
-import TvSurfaceContent from '../classes/TvSurfaceContent.js';
+import TvSurfaceContent from '../classes/tv/TvSurfaceContent.js';
 import Grid from '../classes/Grid.js';
 
 export default class Library {
