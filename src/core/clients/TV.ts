@@ -1,15 +1,17 @@
 import { HorizontalListContinuation, type IBrowseResponse, Parser } from '../../parser/index.js';
 import type { Actions, Session } from '../index.js';
 import type { InnerTubeClient } from '../../types/index.js';
-import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
-import { HomeFeed, VideoInfo, MyYoutubeFeed } from '../../parser/yttv/index.js';
 import { generateRandomString, InnertubeError, throwIfMissing } from '../../utils/Utils.js';
+import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 import HorizontalList from '../../parser/classes/HorizontalList.js';
 import type { YTNode } from '../../parser/helpers.js';
 import Playlist from '../../parser/yttv/Playlist.js';
 import Library from '../../parser/yttv/Library.js';
 import SubscriptionsFeed from '../../parser/yttv/SubscriptionsFeed.js';
 import PlaylistsFeed from '../../parser/yttv/PlaylistsFeed.js';
+import HomeFeed from '../../parser/yttv/HomeFeed.js';
+import VideoInfo from '../../parser/yttv/VideoInfo.js';
+import MyYoutubeFeed from '../../parser/yttv/MyYoutubeFeed.js';
 
 export default class TV {
   #session: Session;
