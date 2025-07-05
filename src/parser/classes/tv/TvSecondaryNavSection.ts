@@ -5,7 +5,7 @@ import Tab from '../Tab.js';
 export default class TvSecondaryNavSection extends YTNode {
   static type = 'TvSecondaryNavSection';
 
-  tabs: ObservedArray<Tab> | null;
+  tabs: ObservedArray<Tab>;
 
   constructor(data: RawNode) {
     super();
