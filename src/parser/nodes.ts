@@ -529,10 +529,10 @@ export { default as TranscriptSearchPanel } from './classes/TranscriptSearchPane
 export { default as TranscriptSectionHeader } from './classes/TranscriptSectionHeader.js';
 export { default as TranscriptSegment } from './classes/TranscriptSegment.js';
 export { default as TranscriptSegmentList } from './classes/TranscriptSegmentList.js';
-export { default as TvBrowse } from './classes/TvBrowse.js';
-export { default as TvSecondaryNav } from './classes/TvSecondaryNav.js';
-export { default as TvSecondaryNavSection } from './classes/TvSecondaryNavSection.js';
-export { default as TvSurfaceContent } from './classes/TvSurfaceContent.js';
+export { default as TvBrowse } from './classes/tv/TvBrowse.js';
+export { default as TvSecondaryNav } from './classes/tv/TvSecondaryNav.js';
+export { default as TvSecondaryNavSection } from './classes/tv/TvSecondaryNavSection.js';
+export { default as TvSurfaceContent } from './classes/tv/TvSurfaceContent.js';
 export { default as TwoColumn } from './classes/TwoColumn.js';
 export { default as TwoColumnBrowseResults } from './classes/TwoColumnBrowseResults.js';
 export { default as TwoColumnSearchResults } from './classes/TwoColumnSearchResults.js';
