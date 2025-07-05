@@ -5,11 +5,9 @@ export default class NextContinuationData extends YTNode {
   static type = 'NextContinuationData';
 
   continuation: string;
-  click_tracking_params: string;
 
   constructor(data: RawNode) {
     super();
     this.continuation = data.continuation;
-    this.click_tracking_params = data.clickTrackingParams;
   }
 }
