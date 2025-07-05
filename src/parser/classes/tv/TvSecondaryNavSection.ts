@@ -1,6 +1,6 @@
-import { YTNode, type ObservedArray } from '../helpers.js';
-import { Parser, type RawNode } from '../index.js';
-import Tab from './Tab.js';
+import { YTNode, type ObservedArray } from '../../helpers.js';
+import { Parser, type RawNode } from '../../index.js';
+import Tab from '../Tab.js';
 
 export default class TvSecondaryNavSection extends YTNode {
   static type = 'TvSecondaryNavSection';

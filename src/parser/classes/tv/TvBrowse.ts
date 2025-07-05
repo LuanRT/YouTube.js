@@ -1,5 +1,5 @@
-import { YTNode } from '../helpers.js';
-import { Parser, type RawNode } from '../index.js';
+import { YTNode } from '../../helpers.js';
+import { Parser, type RawNode } from '../../index.js';
 import TvSurfaceContent from './TvSurfaceContent.js';
 import TvSecondaryNav from './TvSecondaryNav.js';
 
