@@ -7,7 +7,7 @@ export default class TileMetadata extends YTNode {
   static type = 'TileMetadata';
 
   title: Text;
-  lines?: ObservedArray<Line> | null;
+  lines?: ObservedArray<Line>;
 
   constructor(data: RawNode) {
     super();

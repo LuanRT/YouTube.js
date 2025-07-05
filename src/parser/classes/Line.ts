@@ -5,7 +5,7 @@ import LineItem from './LineItem.js';
 export default class Line extends YTNode {
   static type = 'Line';
 
-  items: ObservedArray<LineItem> | null;
+  items: ObservedArray<LineItem>;
 
   constructor(data: RawNode) {
     super();
