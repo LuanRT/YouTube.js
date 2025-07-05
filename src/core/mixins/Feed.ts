@@ -32,7 +32,7 @@ import type { Actions, ApiResponse } from '../index.js';
 import type { Memo, ObservedArray } from '../../parser/helpers.js';
 import type MusicQueue from '../../parser/classes/MusicQueue.js';
 import type RichGrid from '../../parser/classes/RichGrid.js';
-import type TvSurfaceContent from '../../parser/classes/TvSurfaceContent.js';
+import type TvSurfaceContent from '../../parser/classes/tv/TvSurfaceContent.js';
 import type SectionList from '../../parser/classes/SectionList.js';
 import type SecondarySearchContainer from '../../parser/classes/SecondarySearchContainer.js';
 import type BrowseFeedActions from '../../parser/classes/BrowseFeedActions.js';
