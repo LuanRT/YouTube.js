@@ -126,6 +126,7 @@ export { default as DialogHeaderView } from './classes/DialogHeaderView.js';
 export { default as DialogView } from './classes/DialogView.js';
 export { default as DidYouMean } from './classes/DidYouMean.js';
 export { default as DislikeButtonView } from './classes/DislikeButtonView.js';
+export { default as DismissableDialog } from './classes/DismissableDialog.js';
 export { default as DismissableDialogContentSection } from './classes/DismissableDialogContentSection.js';
 export { default as DownloadButton } from './classes/DownloadButton.js';
 export { default as Dropdown } from './classes/Dropdown.js';
