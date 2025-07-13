@@ -38,7 +38,7 @@ export default class Artist {
     if (!music_shelves.length)
       throw new InnertubeError('Could not find any node of type MusicShelf.');
 
-    const shelf = music_shelves.find((shelf) => shelf.title.text.toString() === 'Top songs') as MusicShelf;
+    const shelf = music_shelves.find((shelf) => shelf.title?.text === 'Top songs') as MusicShelf;
 
     if (!shelf)
       throw new InnertubeError('Could not find target shelf (Top songs).');
