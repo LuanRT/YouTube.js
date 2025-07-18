@@ -104,8 +104,6 @@ export default class MediaInfo {
   async toDash(options: {
     url_transformer?: URLTransformer;
     format_filter?: FormatFilter;
-    include_thumbnails?: boolean;
-    captions_format?: string;
     manifest_options?: DashOptions;
   } = {}): Promise<string> {
     const player_response = this.#page[0];
