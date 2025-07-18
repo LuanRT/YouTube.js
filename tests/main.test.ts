@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, test } from 'vitest';
+import { describe, expect, beforeAll, test } from 'vitest';
 
 import { Innertube, YT, YTMusic, YTNodes } from '../dist/src/platform/node.js';
 
