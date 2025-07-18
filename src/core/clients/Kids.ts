@@ -19,7 +19,7 @@ export default class Kids {
     return new Search(this.#session.actions, response);
   }
 
-  async getInfo(video_id: string, options: Omit<GetVideoInfoOptions, 'client'>): Promise<VideoInfo> {
+  async getInfo(video_id: string, options?: Omit<GetVideoInfoOptions, 'client'>): Promise<VideoInfo> {
     const payload = { videoId: video_id };
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
