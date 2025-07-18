@@ -336,11 +336,8 @@ describe('YouTube.js Tests', () => {
       expect(upNext.playlist_id).toBe("PLQxo8OvVvJ1WI_Bp67F2wdIl_R2Rc_1-u");
     });
 
-    test('Innertube#music.getInfo.NavEndpoint.getUpNextContinuation', async () => {
-      const home = await innertube.music.getHomeFeed()
-      const homeItemFirst = home.sections!.first().as(YTNodes.MusicCarouselShelf).contents.firstOfType(YTNodes.MusicResponsiveListItem)
-      
-      const info = await innertube.music.getInfo(homeItemFirst?.id ?? homeItemFirst?.endpoint!)
+    test('Innertube#music.getInfo.getUpNextContinuation', async () => {
+      const info = await innertube.music.getInfo('sOa4VVlI9tE');
       expect(info).toBeDefined();
       
       const upNext = await info.getUpNext();
