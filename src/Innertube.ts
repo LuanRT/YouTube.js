@@ -71,7 +71,7 @@ export default class Innertube {
     return new Innertube(await Session.create(config));
   }
 
-  async getInfo(target: string | NavigationEndpoint, options: GetVideoInfoOptions): Promise<VideoInfo> {
+  async getInfo(target: string | NavigationEndpoint, options?: GetVideoInfoOptions): Promise<VideoInfo> {
     throwIfMissing({ target });
 
     const payload = {

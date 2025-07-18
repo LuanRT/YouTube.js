@@ -7,7 +7,6 @@ export default class VideoCard extends Video {
   static type = 'VideoCard';
   
   public metadata_text?: Text;
-  public byline_text?: Text;
 
   constructor(data: RawNode) {
     super(data);
