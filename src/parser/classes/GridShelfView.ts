@@ -2,24 +2,22 @@ import type { ObservedArray } from '../helpers.js';
 import { YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import ButtonView from './ButtonView.js';
-import SectionHeaderView from './SectionHeaderView.js';
-import ShortsLockupView from './ShortsLockupView.js';
 
 export default class GridShelfView extends YTNode {
   static type = 'GridShelfView';
-  
-  contents: ObservedArray<ShortsLockupView> | null;
-  header: SectionHeaderView | null;
-  content_aspect_ratio: string;
-  enable_vertical_expansion: boolean;
-  show_more_button: ButtonView | null;
-  show_less_button: ButtonView | null;
-  min_collapsed_item_count: number;
+
+  public contents: ObservedArray<YTNode>;
+  public header: YTNode | null;
+  public content_aspect_ratio: string;
+  public enable_vertical_expansion: boolean;
+  public show_more_button: ButtonView | null;
+  public show_less_button: ButtonView | null;
+  public min_collapsed_item_count: number;
   
   constructor(data: RawNode) {
     super();
-    this.contents = Parser.parse(data.contents, true, ShortsLockupView);
-    this.header = Parser.parseItem(data.header, SectionHeaderView);
+    this.contents = Parser.parseArray(data.contents);
+    this.header = Parser.parseItem(data.header);
     this.content_aspect_ratio = data.contentAspectRatio;
     this.enable_vertical_expansion = data.enableVerticalExpansion;
     this.show_more_button = Parser.parseItem(data.showMoreButton, ButtonView);
