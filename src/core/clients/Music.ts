@@ -16,8 +16,8 @@ import AutomixPreviewVideo from '../../parser/classes/AutomixPreviewVideo.js';
 import Message from '../../parser/classes/Message.js';
 import MusicDescriptionShelf from '../../parser/classes/MusicDescriptionShelf.js';
 import MusicQueue from '../../parser/classes/MusicQueue.js';
-import MusicTwoRowItem from '../../parser/classes/MusicTwoRowItem.js';
 import MusicResponsiveListItem from '../../parser/classes/MusicResponsiveListItem.js';
+import MusicTwoRowItem from '../../parser/classes/MusicTwoRowItem.js';
 import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 import PlaylistPanel from '../../parser/classes/PlaylistPanel.js';
 import SearchSuggestionsSection from '../../parser/classes/SearchSuggestionsSection.js';
@@ -27,7 +27,7 @@ import Tab from '../../parser/classes/Tab.js';
 import { SearchFilter } from '../../../protos/generated/misc/params.js';
 
 import type { ObservedArray } from '../../parser/helpers.js';
-import type { MusicSearchFilters } from '../../types/index.js';
+import type { GetVideoInfoOptions, MusicSearchFilters } from '../../types/index.js';
 import type { Actions, Session } from '../index.js';
 
 export default class Music {
@@ -42,19 +42,20 @@ export default class Music {
   /**
    * Retrieves track info. Passing a list item of type MusicTwoRowItem automatically starts a radio.
    * @param target - Video id or a list item.
+   * @param options - Options for fetching video info.
    */
-  getInfo(target: string | MusicTwoRowItem | MusicResponsiveListItem | NavigationEndpoint): Promise<TrackInfo> {
+  getInfo(target: string | MusicTwoRowItem | MusicResponsiveListItem | NavigationEndpoint, options?: Omit<GetVideoInfoOptions, 'client'>): Promise<TrackInfo> {
     if (target instanceof MusicTwoRowItem) {
-      return this.#fetchInfoFromEndpoint(target.endpoint);
+      return this.#fetchInfoFromEndpoint(target.endpoint, options);
     } else if (target instanceof MusicResponsiveListItem) {
-      return this.#fetchInfoFromEndpoint(target.overlay?.content?.endpoint ?? target.endpoint);
+      return this.#fetchInfoFromEndpoint(target.overlay?.content?.endpoint ?? target.endpoint, options);
     } else if (target instanceof NavigationEndpoint) {
-      return this.#fetchInfoFromEndpoint(target);
+      return this.#fetchInfoFromEndpoint(target, options);
     }
-    return this.#fetchInfoFromVideoId(target);
+    return this.#fetchInfoFromVideoId(target, options);
   }
 
-  async #fetchInfoFromVideoId(video_id: string): Promise<TrackInfo> {
+  async #fetchInfoFromVideoId(video_id: string, options?: GetVideoInfoOptions): Promise<TrackInfo> {
     const payload = { videoId: video_id, racyCheckOk: true, contentCheckOk: true };
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
@@ -71,7 +72,11 @@ export default class Music {
       client: 'YTMUSIC'
     };
 
-    if (this.#session.po_token) {
+    if (options?.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: options.po_token
+      };
+    } else if (this.#session.po_token) {
       extra_payload.serviceIntegrityDimensions = {
         poToken: this.#session.po_token
       };
@@ -87,7 +92,7 @@ export default class Music {
     return new TrackInfo(response, this.#actions, cpn);
   }
 
-  async #fetchInfoFromEndpoint(endpoint?: NavigationEndpoint): Promise<TrackInfo> {
+  async #fetchInfoFromEndpoint(endpoint?: NavigationEndpoint, options?: GetVideoInfoOptions): Promise<TrackInfo> {
     if (!endpoint)
       throw new Error('This item does not have an endpoint.');
 
@@ -103,7 +108,11 @@ export default class Music {
       client: 'YTMUSIC'
     };
 
-    if (this.#session.po_token) {
+    if (options?.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: options.po_token
+      };
+    } else if (this.#session.po_token) {
       extra_payload.serviceIntegrityDimensions = {
         poToken: this.#session.po_token
       };
