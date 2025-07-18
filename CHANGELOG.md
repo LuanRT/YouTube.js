@@ -1,5 +1,39 @@
 # Changelog
 
+## [15.0.0](https://github.com/LuanRT/YouTube.js/compare/v14.0.0...v15.0.0) (2025-07-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for CommonJS
+* **Innertube:** The second parameters of `Innertube.getInfo()` and `Innertube.getBasicInfo()` have changed to an object, that means that `Innertube.getInfo('jNQXAC9IVRw', 'MWEB')` becomes `Innertube.getInfo('jNQXAC9IVRw', { client: 'MWEB' })` and `Innertube.getBasicInfo('jNQXAC9IVRw', 'MWEB')` becomes `Innertube.getBasicInfo('jNQXAC9IVRw', { client: 'MWEB' })`. The same applies to the `getInfo` method in the `Music` and `Kids` client classes.
+
+### Features
+
+* **CommentsView:** parse `voice_reply_transcript` ([#981](https://github.com/LuanRT/YouTube.js/issues/981)) ([d6f13e2](https://github.com/LuanRT/YouTube.js/commit/d6f13e20ac6806e7a97dc8c3bd6bb947be6fd76c))
+* **DashManifest:** Add DRM infos to MPD ([7ae4ccf](https://github.com/LuanRT/YouTube.js/commit/7ae4ccf70ad78bac7d6421d94df529f8f79a13f3))
+* **Innertube:** Add `GetVideoInfoOptions` to support content bound PoTokens ([#994](https://github.com/LuanRT/YouTube.js/issues/994)) ([b6386e4](https://github.com/LuanRT/YouTube.js/commit/b6386e40274432591a9063059e8b688da0d26c38))
+* **parser-classes:** Add `CompositeVideoPrimaryInfo` parser class ([#984](https://github.com/LuanRT/YouTube.js/issues/984)) ([6386976](https://github.com/LuanRT/YouTube.js/commit/638697696f54482c5270b0d11d1a7a33b5cd902a))
+* **Parser:** Add `DismissableDialog` and `DismissableDialogContentSection` nodes ([#997](https://github.com/LuanRT/YouTube.js/issues/997)) ([e94ef37](https://github.com/LuanRT/YouTube.js/commit/e94ef3748e6a38f192d79e5f12165933c6e6dc94))
+* **Parser:** Add `HypePointsFactoid` node ([0091f51](https://github.com/LuanRT/YouTube.js/commit/0091f51dd2691dd1031896dd52c989426534dae8))
+* **Parser:** Add `SectionHeaderView` and `GridShelfView` ([#988](https://github.com/LuanRT/YouTube.js/issues/988)) ([bc386db](https://github.com/LuanRT/YouTube.js/commit/bc386db6bad4040580b85ce64a39a30d9a04cb38))
+* **Parser:** Add `ToggleFormField` node ([#902](https://github.com/LuanRT/YouTube.js/issues/902)) ([42bcf19](https://github.com/LuanRT/YouTube.js/commit/42bcf197bc8b3117e40d8f61300a97332e4963ba))
+
+
+### Bug Fixes
+
+* **Artist:** `getAllSongs` not finding target shelf ([#999](https://github.com/LuanRT/YouTube.js/issues/999)) ([64f9955](https://github.com/LuanRT/YouTube.js/commit/64f995585fd0ee908bdc5404929996e9a5e5c3c9))
+* **Channel:** Use new URL for community tab ([#986](https://github.com/LuanRT/YouTube.js/issues/986)) ([dfaf150](https://github.com/LuanRT/YouTube.js/commit/dfaf1501c93e29bd27a5553df0ee5b46d490ac12))
+* **Innertube#getPost:** Update protobuf schema ([#987](https://github.com/LuanRT/YouTube.js/issues/987)) ([e9d6483](https://github.com/LuanRT/YouTube.js/commit/e9d6483e5a3c53efab6e29083e32f9a2e238bedc))
+* Make "deno" conditional export have higher precedence than "node" ([#983](https://github.com/LuanRT/YouTube.js/issues/983)) ([2996ebb](https://github.com/LuanRT/YouTube.js/commit/2996ebb334d98cfde72243c233366285db945d02))
+* **MediaInfo:** Remove unused parameters from `toDash` method ([3fcf987](https://github.com/LuanRT/YouTube.js/commit/3fcf987aecbb43ed16aa4d29a2d66c3c4ef15175))
+* **Session:** Incorrect session client logic ([76504c0](https://github.com/LuanRT/YouTube.js/commit/76504c0d0875228299dddf24bd550ed2a5e4244f))
+
+
+### Code Refactoring
+
+* Drop support for CommonJS ([d134fd2](https://github.com/LuanRT/YouTube.js/commit/d134fd2e9e1b27aebd1095562cd5c5da32cbf6d8))
+
 ## [14.0.0](https://github.com/LuanRT/YouTube.js/compare/v13.4.0...v14.0.0) (2025-06-08)
 
 
