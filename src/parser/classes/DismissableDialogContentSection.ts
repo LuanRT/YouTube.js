@@ -5,8 +5,8 @@ import Text from './misc/Text.js';
 export default class DismissableDialogContentSection extends YTNode {
   static type = 'DismissableDialogContentSection';
 
-  title: Text;
-  subtitle: Text;
+  public title: Text;
+  public subtitle: Text;
 
   constructor(data: RawNode) {
     super();

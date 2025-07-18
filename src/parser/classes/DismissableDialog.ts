@@ -1,26 +1,20 @@
 import { type ObservedArray, YTNode } from '../helpers.js';
-import { Parser, type RawNode, YTNodes } from '../index.js';
+import { Parser, type RawNode } from '../index.js';
+import DismissableDialogContentSection from './DismissableDialogContentSection.js';
 
 export default class DismissableDialog extends YTNode {
   static type = 'DismissableDialog';
 
-  title: string;
-  sections: ObservedArray<YTNodes.DismissableDialogContentSection> | null;
-  metadata: YTNodes.MusicMultiRowListItem | null;
-  display_style: string;
+  public title: string;
+  public sections: ObservedArray<DismissableDialogContentSection>;
+  public metadata: YTNode | null;
+  public display_style: string;
 
   constructor(data: RawNode) {
     super();
     this.title = data.title;
-    this.sections = Parser.parse(
-      data.sections,
-      true,
-      YTNodes.DismissableDialogContentSection
-    );
-    this.metadata = Parser.parseItem(
-      data.metadata,
-      YTNodes.MusicMultiRowListItem
-    );
+    this.sections = Parser.parseArray(data.sections, DismissableDialogContentSection);
+    this.metadata = Parser.parseItem(data.metadata);
     this.display_style = data.displayStyle;
   }
 }
