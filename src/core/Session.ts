@@ -1,8 +1,8 @@
-import OAuth2 from './OAuth2.js';
-import { Log, EventEmitter, HTTPClient, LZW, ProtoUtils } from '../utils/index.js';
-import * as Constants from '../utils/Constants.js';
 import Actions from './Actions.js';
+import OAuth2 from './OAuth2.js';
 import Player from './Player.js';
+import * as Constants from '../utils/Constants.js';
+import { EventEmitter, HTTPClient, Log, LZW, ProtoUtils } from '../utils/index.js';
 
 import {
   generateRandomString, getRandomUserAgent,

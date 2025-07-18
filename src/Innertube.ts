@@ -1,4 +1,5 @@
 import Session from './core/Session.js';
+
 import { Kids, Music, Studio } from './core/clients/index.js';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
 import { Feed, TabbedFeed } from './core/mixins/index.js';
@@ -16,10 +17,10 @@ import {
   Search,
   VideoInfo
 } from './parser/youtube/index.js';
-
 import { ShortFormVideoInfo } from './parser/ytshorts/index.js';
 
 import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
+import type Format from './parser/classes/misc/Format.js';
 
 import * as Constants from './utils/Constants.js';
 import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
@@ -35,7 +36,6 @@ import type {
   SearchFilters
 } from './types/index.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
-import type Format from './parser/classes/misc/Format.js';
 
 import {
   CommunityPostCommentsParam,
