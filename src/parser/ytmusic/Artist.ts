@@ -38,13 +38,13 @@ export default class Artist {
     if (!music_shelves.length)
       throw new InnertubeError('Could not find any node of type MusicShelf.');
 
-    const shelf = music_shelves.find((shelf) => shelf.title.toString() === 'Songs') as MusicShelf;
+    const shelf = music_shelves.find((shelf) => shelf.title?.text === 'Top songs') as MusicShelf;
 
     if (!shelf)
-      throw new InnertubeError('Could not find target shelf (Songs).');
+      throw new InnertubeError('Could not find target shelf (Top songs).');
 
     if (!shelf.endpoint)
-      throw new InnertubeError('Target shelf (Songs) did not have an endpoint.');
+      throw new InnertubeError('Target shelf (Top songs) did not have an endpoint.');
 
     const page = await shelf.endpoint.call(this.#actions, { client: 'YTMUSIC', parse: true });
     return page.contents_memo?.getType(MusicPlaylistShelf)?.[0];
