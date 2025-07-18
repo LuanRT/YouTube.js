@@ -50,7 +50,6 @@ import { Innertube } from 'https://deno.land/x/youtubei/deno.ts';
 ## Basic Usage
 
 ```ts
-// const { Innertube } = require('youtubei.js');
 import { Innertube } from 'youtubei.js';
 const innertube = await Innertube.create(/* options */);
 ```
