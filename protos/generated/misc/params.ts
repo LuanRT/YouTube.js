@@ -237,18 +237,13 @@ export interface NextParams {
 }
 
 export interface CommunityPostParams {
-  f0: string;
   f1: CommunityPostParams_Field1 | undefined;
-  f2: CommunityPostParams_Field2 | undefined;
 }
 
 export interface CommunityPostParams_Field1 {
+  ucid1: string;
   postId: string;
-}
-
-export interface CommunityPostParams_Field2 {
-  p1: number;
-  p2: number;
+  ucid2: string;
 }
 
 export interface CommunityPostCommentsParamContainer {
@@ -262,28 +257,19 @@ export interface CommunityPostCommentsParamContainer_Container {
 
 export interface CommunityPostCommentsParam {
   title: string;
-  postContainer: CommunityPostCommentsParam_PostContainer | undefined;
-  f0: CommunityPostCommentsParam_Field2 | undefined;
   commentDataContainer: CommunityPostCommentsParam_CommentDataContainer | undefined;
-}
-
-export interface CommunityPostCommentsParam_PostContainer {
-  postId: string;
-}
-
-export interface CommunityPostCommentsParam_Field2 {
-  f0: number;
-  f1: number;
 }
 
 export interface CommunityPostCommentsParam_CommentDataContainer {
   commentData: CommunityPostCommentsParam_CommentDataContainer_CommentData | undefined;
+  f0: number;
   title: string;
 }
 
 export interface CommunityPostCommentsParam_CommentDataContainer_CommentData {
   sortBy: number;
   f0: number;
+  f1: number;
   postId: string;
   channelId: string;
 }
@@ -2132,19 +2118,13 @@ export const NextParams: MessageFns<NextParams> = {
 };
 
 function createBaseCommunityPostParams(): CommunityPostParams {
-  return { f0: "", f1: undefined, f2: undefined };
+  return { f1: undefined };
 }
 
 export const CommunityPostParams: MessageFns<CommunityPostParams> = {
   encode(message: CommunityPostParams, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.f0 !== "") {
-      writer.uint32(18).string(message.f0);
-    }
     if (message.f1 !== undefined) {
-      CommunityPostParams_Field1.encode(message.f1, writer.uint32(202).fork()).join();
-    }
-    if (message.f2 !== undefined) {
-      CommunityPostParams_Field2.encode(message.f2, writer.uint32(362).fork()).join();
+      CommunityPostParams_Field1.encode(message.f1, writer.uint32(450).fork()).join();
     }
     return writer;
   },
@@ -2156,26 +2136,12 @@ export const CommunityPostParams: MessageFns<CommunityPostParams> = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.f0 = reader.string();
-          continue;
-        case 25:
-          if (tag !== 202) {
+        case 56:
+          if (tag !== 450) {
             break;
           }
 
           message.f1 = CommunityPostParams_Field1.decode(reader, reader.uint32());
-          continue;
-        case 45:
-          if (tag !== 362) {
-            break;
-          }
-
-          message.f2 = CommunityPostParams_Field2.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -2188,13 +2154,19 @@ export const CommunityPostParams: MessageFns<CommunityPostParams> = {
 };
 
 function createBaseCommunityPostParams_Field1(): CommunityPostParams_Field1 {
-  return { postId: "" };
+  return { ucid1: "", postId: "", ucid2: "" };
 }
 
 export const CommunityPostParams_Field1: MessageFns<CommunityPostParams_Field1> = {
   encode(message: CommunityPostParams_Field1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.ucid1 !== "") {
+      writer.uint32(18).string(message.ucid1);
+    }
     if (message.postId !== "") {
-      writer.uint32(178).string(message.postId);
+      writer.uint32(26).string(message.postId);
+    }
+    if (message.ucid2 !== "") {
+      writer.uint32(90).string(message.ucid2);
     }
     return writer;
   },
@@ -2206,58 +2178,26 @@ export const CommunityPostParams_Field1: MessageFns<CommunityPostParams_Field1> 
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 22:
-          if (tag !== 178) {
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.ucid1 = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
             break;
           }
 
           message.postId = reader.string();
           continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-};
-
-function createBaseCommunityPostParams_Field2(): CommunityPostParams_Field2 {
-  return { p1: 0, p2: 0 };
-}
-
-export const CommunityPostParams_Field2: MessageFns<CommunityPostParams_Field2> = {
-  encode(message: CommunityPostParams_Field2, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.p1 !== 0) {
-      writer.uint32(16).uint32(message.p1);
-    }
-    if (message.p2 !== 0) {
-      writer.uint32(24).uint32(message.p2);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): CommunityPostParams_Field2 {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCommunityPostParams_Field2();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 2:
-          if (tag !== 16) {
+        case 11:
+          if (tag !== 90) {
             break;
           }
 
-          message.p1 = reader.uint32();
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.p2 = reader.uint32();
+          message.ucid2 = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -2356,19 +2296,13 @@ export const CommunityPostCommentsParamContainer_Container: MessageFns<Community
   };
 
 function createBaseCommunityPostCommentsParam(): CommunityPostCommentsParam {
-  return { title: "", postContainer: undefined, f0: undefined, commentDataContainer: undefined };
+  return { title: "", commentDataContainer: undefined };
 }
 
 export const CommunityPostCommentsParam: MessageFns<CommunityPostCommentsParam> = {
   encode(message: CommunityPostCommentsParam, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.title !== "") {
       writer.uint32(18).string(message.title);
-    }
-    if (message.postContainer !== undefined) {
-      CommunityPostCommentsParam_PostContainer.encode(message.postContainer, writer.uint32(202).fork()).join();
-    }
-    if (message.f0 !== undefined) {
-      CommunityPostCommentsParam_Field2.encode(message.f0, writer.uint32(362).fork()).join();
     }
     if (message.commentDataContainer !== undefined) {
       CommunityPostCommentsParam_CommentDataContainer.encode(message.commentDataContainer, writer.uint32(426).fork())
@@ -2391,20 +2325,6 @@ export const CommunityPostCommentsParam: MessageFns<CommunityPostCommentsParam> 
 
           message.title = reader.string();
           continue;
-        case 25:
-          if (tag !== 202) {
-            break;
-          }
-
-          message.postContainer = CommunityPostCommentsParam_PostContainer.decode(reader, reader.uint32());
-          continue;
-        case 45:
-          if (tag !== 362) {
-            break;
-          }
-
-          message.f0 = CommunityPostCommentsParam_Field2.decode(reader, reader.uint32());
-          continue;
         case 53:
           if (tag !== 426) {
             break;
@@ -2425,90 +2345,8 @@ export const CommunityPostCommentsParam: MessageFns<CommunityPostCommentsParam> 
   },
 };
 
-function createBaseCommunityPostCommentsParam_PostContainer(): CommunityPostCommentsParam_PostContainer {
-  return { postId: "" };
-}
-
-export const CommunityPostCommentsParam_PostContainer: MessageFns<CommunityPostCommentsParam_PostContainer> = {
-  encode(message: CommunityPostCommentsParam_PostContainer, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.postId !== "") {
-      writer.uint32(178).string(message.postId);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): CommunityPostCommentsParam_PostContainer {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCommunityPostCommentsParam_PostContainer();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 22:
-          if (tag !== 178) {
-            break;
-          }
-
-          message.postId = reader.string();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-};
-
-function createBaseCommunityPostCommentsParam_Field2(): CommunityPostCommentsParam_Field2 {
-  return { f0: 0, f1: 0 };
-}
-
-export const CommunityPostCommentsParam_Field2: MessageFns<CommunityPostCommentsParam_Field2> = {
-  encode(message: CommunityPostCommentsParam_Field2, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.f0 !== 0) {
-      writer.uint32(16).int32(message.f0);
-    }
-    if (message.f1 !== 0) {
-      writer.uint32(24).int32(message.f1);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): CommunityPostCommentsParam_Field2 {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseCommunityPostCommentsParam_Field2();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.f0 = reader.int32();
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.f1 = reader.int32();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-};
-
 function createBaseCommunityPostCommentsParam_CommentDataContainer(): CommunityPostCommentsParam_CommentDataContainer {
-  return { commentData: undefined, title: "" };
+  return { commentData: undefined, f0: 0, title: "" };
 }
 
 export const CommunityPostCommentsParam_CommentDataContainer: MessageFns<
@@ -2521,6 +2359,9 @@ export const CommunityPostCommentsParam_CommentDataContainer: MessageFns<
     if (message.commentData !== undefined) {
       CommunityPostCommentsParam_CommentDataContainer_CommentData.encode(message.commentData, writer.uint32(34).fork())
         .join();
+    }
+    if (message.f0 !== 0) {
+      writer.uint32(56).int32(message.f0);
     }
     if (message.title !== "") {
       writer.uint32(66).string(message.title);
@@ -2545,6 +2386,13 @@ export const CommunityPostCommentsParam_CommentDataContainer: MessageFns<
             reader.uint32(),
           );
           continue;
+        case 7:
+          if (tag !== 56) {
+            break;
+          }
+
+          message.f0 = reader.int32();
+          continue;
         case 8:
           if (tag !== 66) {
             break;
@@ -2563,7 +2411,7 @@ export const CommunityPostCommentsParam_CommentDataContainer: MessageFns<
 };
 
 function createBaseCommunityPostCommentsParam_CommentDataContainer_CommentData(): CommunityPostCommentsParam_CommentDataContainer_CommentData {
-  return { sortBy: 0, f0: 0, postId: "", channelId: "" };
+  return { sortBy: 0, f0: 0, f1: 0, postId: "", channelId: "" };
 }
 
 export const CommunityPostCommentsParam_CommentDataContainer_CommentData: MessageFns<
@@ -2577,7 +2425,10 @@ export const CommunityPostCommentsParam_CommentDataContainer_CommentData: Messag
       writer.uint32(48).int32(message.sortBy);
     }
     if (message.f0 !== 0) {
-      writer.uint32(216).int32(message.f0);
+      writer.uint32(120).int32(message.f0);
+    }
+    if (message.f1 !== 0) {
+      writer.uint32(200).int32(message.f1);
     }
     if (message.postId !== "") {
       writer.uint32(234).string(message.postId);
@@ -2605,12 +2456,19 @@ export const CommunityPostCommentsParam_CommentDataContainer_CommentData: Messag
 
           message.sortBy = reader.int32();
           continue;
-        case 27:
-          if (tag !== 216) {
+        case 15:
+          if (tag !== 120) {
             break;
           }
 
           message.f0 = reader.int32();
+          continue;
+        case 25:
+          if (tag !== 200) {
+            break;
+          }
+
+          message.f1 = reader.int32();
           continue;
         case 29:
           if (tag !== 234) {
