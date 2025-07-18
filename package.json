@@ -28,11 +28,11 @@
   },
   "exports": {
     ".": {
+      "deno": "./dist/src/platform/deno.js",
       "node": {
         "import": "./dist/src/platform/node.js",
         "require": "./bundle/node.cjs"
       },
-      "deno": "./dist/src/platform/deno.js",
       "types": "./dist/src/platform/lib.d.ts",
       "browser": "./dist/src/platform/web.js",
       "react-native": "./dist/src/platform/react-native.js",
