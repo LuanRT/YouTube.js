@@ -1,6 +1,6 @@
-import { Innertube, YT, YTMusic, YTNodes } from '../bundle/node.cjs';
+import { describe, it, expect, beforeAll, test } from 'vitest';
 
-jest.useRealTimers();
+import { Innertube, YT, YTMusic, YTNodes } from '../dist/src/platform/node.js';
 
 describe('YouTube.js Tests', () => {
   let innertube: Innertube;
@@ -337,11 +337,10 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#music.getInfo.NavEndpoint.getUpNextContinuation', async () => {
-      // Fetch some video from Homepage
       const home = await innertube.music.getHomeFeed()
-      const homeItemFirst = home.sections!.first().as(YTNodes.MusicCarouselShelf).contents[0].as(YTNodes.MusicResponsiveListItem)
+      const homeItemFirst = home.sections!.first().as(YTNodes.MusicCarouselShelf).contents.firstOfType(YTNodes.MusicResponsiveListItem)
       
-      const info = await innertube.music.getInfo(homeItemFirst.id ?? homeItemFirst.endpoint!)
+      const info = await innertube.music.getInfo(homeItemFirst?.id ?? homeItemFirst?.endpoint!)
       expect(info).toBeDefined();
       
       const upNext = await info.getUpNext();
