@@ -488,6 +488,7 @@ export { default as TimedMarkerDecoration } from './classes/TimedMarkerDecoratio
 export { default as TitleAndButtonListHeader } from './classes/TitleAndButtonListHeader.js';
 export { default as ToggleButton } from './classes/ToggleButton.js';
 export { default as ToggleButtonView } from './classes/ToggleButtonView.js';
+export { default as ToggleFormField } from './classes/ToggleFormField.js';
 export { default as ToggleMenuServiceItem } from './classes/ToggleMenuServiceItem.js';
 export { default as Tooltip } from './classes/Tooltip.js';
 export { default as TopicChannelDetails } from './classes/TopicChannelDetails.js';
