@@ -1,10 +1,10 @@
 import { Parser } from '../../parser/index.ts';
 import { Channel, HomeFeed, Search, VideoInfo } from '../../parser/ytkids/index.ts';
-import { InnertubeError, generateRandomString } from '../../utils/Utils.ts';
-import type { Session, ApiResponse } from '../index.ts';
-
 import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.ts';
 import KidsBlocklistPickerItem from '../../parser/classes/ytkids/KidsBlocklistPickerItem.ts';
+import { InnertubeError, generateRandomString } from '../../utils/Utils.ts';
+import type { Session, ApiResponse } from '../index.ts';
+import type { GetVideoInfoOptions } from '../../types/index.ts';
 
 export default class Kids {
   #session: Session;
@@ -19,7 +19,7 @@ export default class Kids {
     return new Search(this.#session.actions, response);
   }
 
-  async getInfo(video_id: string): Promise<VideoInfo> {
+  async getInfo(video_id: string, options?: Omit<GetVideoInfoOptions, 'client'>): Promise<VideoInfo> {
     const payload = { videoId: video_id };
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
@@ -38,7 +38,11 @@ export default class Kids {
       client: 'YTKIDS'
     };
 
-    if (session.po_token) {
+    if (options?.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: options.po_token
+      };
+    } else if (session.po_token) {
       extra_payload.serviceIntegrityDimensions = {
         poToken: session.po_token
       };

@@ -1,8 +1,10 @@
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 import NavigationEndpoint from '../NavigationEndpoint.ts';
 import Author from '../misc/Author.ts';
 import Text from '../misc/Text.ts';
 import CommentReplyDialog from './CommentReplyDialog.ts';
+import VoiceReplyContainerView from './VoiceReplyContainerView.ts';
 import { InnertubeError } from '../../../utils/Utils.ts';
 import * as ProtoUtils from '../../../utils/ProtoUtils.ts';
 
@@ -63,6 +65,8 @@ export default class CommentView extends YTNode {
   public is_disliked?: boolean;
   public is_hearted?: boolean;
 
+  public voice_reply_container?: VoiceReplyContainerView | null;
+
   constructor(data: RawNode) {
     super();
 
@@ -78,7 +82,7 @@ export default class CommentView extends YTNode {
     };
   }
 
-  applyMutations(comment?: RawNode, toolbar_state?: RawNode, toolbar_surface?: RawNode) {
+  applyMutations(comment?: RawNode, toolbar_state?: RawNode, toolbar_surface?: RawNode, comment_surface?: RawNode) {
     if (comment) {
       this.content = Text.fromAttributed(comment.properties.content);
       this.published_time = comment.properties.publishedTime;
@@ -127,6 +131,12 @@ export default class CommentView extends YTNode {
         this.unlike_command = new NavigationEndpoint(toolbar_surface.unlikeCommand);
         this.undislike_command = new NavigationEndpoint(toolbar_surface.undislikeCommand);
         this.reply_command = new NavigationEndpoint(toolbar_surface.replyCommand);
+      }
+    }
+
+    if (comment_surface) {
+      if ('voiceReplyContainerViewModel' in comment_surface) {
+        this.voice_reply_container = Parser.parseItem(comment_surface.voiceReplyContainerViewModel, VoiceReplyContainerView);
       }
     }
   }

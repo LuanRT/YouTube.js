@@ -65,6 +65,17 @@ function SegmentInfo({ info }: { info: FSegmentInfo }) {
   </>;
 }
 
+function getDrmSystemId(drm_family?: string): string | null {
+  switch (drm_family) {
+    case 'WIDEVINE':
+      return 'edef8ba9-79d6-4ace-a3c8-27dcd51d21ed';
+    case 'PLAYREADY':
+      return '9a04f079-9840-4286-ab92-e65be0885f95'; 
+    default:
+      return null;
+  }
+}
+
 async function DashManifest({
   streamingData,
   isPostLiveDvr,
@@ -109,6 +120,11 @@ async function DashManifest({
             audioSamplingRate={set.audio_sample_rate}
             contentType="audio"
           >
+            {
+              set.drm_families && set.drm_families.map((drm_family) => (
+                <contentProtection schemeIdUri={`urn:uuid:${getDrmSystemId(drm_family)}`}/>
+              ))
+            }
             {
               set.track_roles && set.track_roles.map((role) => (
                 <role
@@ -164,6 +180,11 @@ async function DashManifest({
             frameRate={set.fps}
             contentType="video"
           >
+            {
+              set.drm_families && set.drm_families.map((drm_family) => (
+                <contentProtection schemeIdUri={`urn:uuid:${getDrmSystemId(drm_family)}`}/>
+              ))
+            }
             {
               set.color_info.primaries &&
               <supplementalProperty

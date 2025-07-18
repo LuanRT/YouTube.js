@@ -203,16 +203,22 @@ export default class HTTPClient {
     if (!client)
       return;
 
-    if (!Constants.SUPPORTED_CLIENTS.includes(client.toUpperCase())) {
+    const clientName = client.toUpperCase();
+    
+    if (!Constants.SUPPORTED_CLIENTS.includes(clientName)) {
       throw new InnertubeError(`Invalid client: ${client}`, {
         available_innertube_clients: Constants.SUPPORTED_CLIENTS
       });
     }
 
+    if (clientName !== 'WEB') {
+      delete ctx.client.configInfo;
+    }
+    
     if (
-      client === 'ANDROID' ||
-      client === 'YTMUSIC_ANDROID' ||
-      client === 'YTSTUDIO_ANDROID'
+      clientName === 'ANDROID' ||
+      clientName === 'YTMUSIC_ANDROID' ||
+      clientName === 'YTSTUDIO_ANDROID'
     ) {
       ctx.client.androidSdkVersion = Constants.CLIENTS.ANDROID.SDK_VERSION;
       ctx.client.userAgent = Constants.CLIENTS.ANDROID.USER_AGENT;
@@ -221,7 +227,7 @@ export default class HTTPClient {
       ctx.client.platform = 'MOBILE';
     }
 
-    switch (client.toUpperCase()) {
+    switch (clientName) {
       case 'MWEB':
         ctx.client.clientVersion = Constants.CLIENTS.MWEB.VERSION;
         ctx.client.clientName = Constants.CLIENTS.MWEB.NAME;

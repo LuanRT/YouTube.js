@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "description": "A JavaScript client for YouTube's private API, known as InnerTube.",
   "type": "module",
   "types": "./dist/src/platform/lib.d.ts",
@@ -28,11 +28,11 @@
   },
   "exports": {
     ".": {
+      "deno": "./dist/src/platform/deno.js",
       "node": {
         "import": "./dist/src/platform/node.js",
-        "require": "./bundle/node.cjs"
+        "default": "./dist/src/platform/node.js"
       },
-      "deno": "./dist/src/platform/deno.js",
       "types": "./dist/src/platform/lib.d.ts",
       "browser": "./dist/src/platform/web.js",
       "react-native": "./dist/src/platform/react-native.js",
@@ -71,17 +71,16 @@
     "Absidue (https://github.com/absidue)"
   ],
   "scripts": {
-    "test": "jest --verbose",
+    "test": "vitest run --reporter verbose",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
-    "clean:source-maps": "rimraf ./bundle/browser.js.map ./bundle/node.cjs.map ./bundle/cf-worker.js.map ./bundle/react-native.js.map",
-    "clean:build-output": "rimraf ./dist ./bundle/browser.js ./bundle/node.cjs ./bundle/cf-worker.js ./bundle/react-native.js ./deno",
-    "build": "npm run clean:build-output && npm run clean:source-maps && npm run build:parser-map && npm run build:esm && npm run bundle:node && npm run bundle:browser && npm run bundle:cf-worker && npm run bundle:react-native",
+    "clean:source-maps": "rimraf ./bundle/browser.js.map ./bundle/cf-worker.js.map ./bundle/react-native.js.map",
+    "clean:build-output": "rimraf ./dist ./bundle/browser.js ./bundle/cf-worker.js ./bundle/react-native.js ./deno",
+    "build": "npm run clean:build-output && npm run clean:source-maps && npm run build:parser-map && npm run build:esm && npm run bundle:browser && npm run bundle:cf-worker && npm run bundle:react-native",
     "build:esm": "tspc",
     "build:deno": "cpy ./src ./deno && cpy ./protos ./deno && esbuild ./src/utils/DashManifest.tsx --keep-names --format=esm --platform=neutral --target=es2020 --outfile=./deno/src/utils/DashManifest.js && cpy ./package.json ./deno && replace \".ts';\" \".ts';\" ./deno -r && replace '.js\";' '.ts\";' ./deno -r && replace \"'./DashManifest.js';\" \"'./DashManifest.js';\" ./deno -r && replace \"'jsr:@luanrt/jintr';\" \"'jsr:@luanrt/jintr';\" ./deno -r && replace \"https://esm.sh/@bufbuild/protobuf@2.0.0/wire\" \"https://esm.sh/@bufbuild/protobuf@2.0.0/wire\" ./deno -r",
     "build:proto": "rimraf ./protos/generated && node ./dev-scripts/generate-proto.mjs",
     "build:parser-map": "node ./dev-scripts/gen-parser-map.mjs",
-    "bundle:node": "esbuild ./dist/src/platform/node.js --bundle --sourcemap --target=node16 --keep-names --format=cjs --platform=node --outfile=./bundle/node.cjs --external:undici --external:linkedom --external:tslib --banner:js=\"/* eslint-disable */\"",
     "bundle:browser": "esbuild ./dist/src/platform/web.js --banner:js=\"/* eslint-disable */\" --bundle --sourcemap --target=chrome70 --keep-names --format=esm --define:global=globalThis --conditions=module --outfile=./bundle/browser.js --platform=browser",
     "bundle:react-native": "esbuild ./dist/src/platform/react-native.js --bundle --sourcemap --target=es2020 --keep-names --format=esm --platform=neutral --define:global=globalThis --conditions=module --outfile=./bundle/react-native.js",
     "bundle:cf-worker": "esbuild ./dist/src/platform/cf-worker.js --banner:js=\"/* eslint-disable */\" --bundle --sourcemap --target=es2020 --keep-names --format=esm --define:global=globalThis --conditions=module --outfile=./bundle/cf-worker.js --platform=node",
@@ -105,7 +104,7 @@
     "@bufbuild/protobuf": "^2.0.0",
     "jintr": "^3.3.1",
     "tslib": "^2.5.0",
-    "undici": "^5.19.1"
+    "undici": "^6.21.3"
   },
   "overrides": {
     "typescript": "^5.0.0"
@@ -114,24 +113,22 @@
     "@eslint/js": "^9.9.0",
     "@types/estree": "^1.0.6",
     "@types/glob": "^8.1.0",
-    "@types/jest": "^28.1.7",
-    "@types/node": "^17.0.45",
+    "@types/node": "^24.0.14",
     "cpy-cli": "^4.2.0",
-    "esbuild": "^0.14.49",
+    "esbuild": "^0.25.6",
     "eslint": "^9.9.0",
     "glob": "^8.0.3",
     "globals": "^15.9.0",
-    "jest": "^29.7.0",
     "replace": "^1.2.2",
     "rimraf": "^6.0.1",
-    "ts-jest": "^29.1.4",
     "ts-patch": "^3.0.2",
     "ts-proto": "^2.2.0",
     "ts-transformer-inline-file": "^0.2.0",
     "typedoc": "^0.26.7",
     "typedoc-plugin-markdown": "^4.2.7",
     "typescript": "^5.0.0",
-    "typescript-eslint": "^8.2.0"
+    "typescript-eslint": "^8.2.0",
+    "vitest": "^3.2.4"
   },
   "bugs": {
     "url": "https://github.com/LuanRT/YouTube.js/issues"

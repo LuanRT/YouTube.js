@@ -2,7 +2,7 @@
 import type { ICache } from '../types/Cache.ts';
 import { Platform } from '../utils/Utils.ts';
 import sha1Hash from './polyfills/web-crypto.ts';
-import package_json from '../../package.json' assert { type: 'json' };
+import package_json from '../../package.json' with { type: 'json' };
 import evaluate from './jsruntime/jinter.ts';
 
 class Cache implements ICache {

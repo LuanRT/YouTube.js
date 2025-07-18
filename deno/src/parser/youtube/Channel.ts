@@ -194,7 +194,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
   }
 
   async getCommunity(): Promise<Channel> {
-    const tab = await this.getTabByURL('community');
+    const tab = await this.getTabByURL('posts');
     return new Channel(this.actions, tab.page, true);
   }
 
@@ -283,7 +283,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
   }
 
   get has_community(): boolean {
-    return this.hasTabWithURL('community');
+    return this.hasTabWithURL('posts');
   }
 
   get has_about(): boolean {

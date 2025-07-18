@@ -1,10 +1,10 @@
-import type { InnerTubeClient } from '../types/index.ts';
+import type { GetVideoInfoOptions } from '../types/index.ts';
 import type { Format } from '../parser/misc.ts';
 
 export type URLTransformer = (url: URL) => URL;
 export type FormatFilter = (format: Format) => boolean;
 
-export interface FormatOptions {
+export interface FormatOptions extends GetVideoInfoOptions {
   /**
    * Video or audio itag
    */
@@ -29,10 +29,6 @@ export interface FormatOptions {
    * Video or audio codec, e.g. 'avc', 'vp9', 'av01' for video, 'opus', 'mp4a' for audio
    */
   codec?: string;
-  /**
-   * InnerTube client.
-   */
-  client?: InnerTubeClient;
 }
 
 export interface DownloadOptions extends FormatOptions {

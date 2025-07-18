@@ -231,19 +231,13 @@ message NextParams {
 }
 
 message CommunityPostParams {
-  string f0 = 2;
-
   message Field1 {
-    string post_id = 22;
+    string ucid1 = 2;
+    string post_id = 3;
+    string ucid2 = 11;
   }
 
-  message Field2 {
-    uint32 p1 = 2;
-    uint32 p2 = 3;
-  }
-
-  Field1 f1 = 25;
-  Field2 f2 = 45;
+  Field1 f1 = 56;
 }
 
 message CommunityPostCommentsParamContainer {
@@ -256,29 +250,20 @@ message CommunityPostCommentsParamContainer {
 }
 
 message CommunityPostCommentsParam {
-  message PostContainer {
-    string post_id = 22;
-  }
-
-  message Field2 {
-    int32 f0 = 2;
-    int32 f1 = 3;
-  }
-
   message CommentDataContainer {
     message CommentData {
       int32 sortBy = 6;
-      int32 f0 = 27;
+      int32 f0 = 15;
+      int32 f1 = 25;
       string postId = 29;
       string channelId = 30;
     }
 
     CommentData comment_data = 4;
+    int32 f0 = 7;
     string title = 8;
   }
 
   string title = 2;
-  PostContainer post_container = 25;
-  Field2 f0 = 45;
   CommentDataContainer comment_data_container = 53;
 }
