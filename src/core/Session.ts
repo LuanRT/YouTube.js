@@ -2,8 +2,7 @@ import Actions from './Actions.js';
 import OAuth2 from './OAuth2.js';
 import Player from './Player.js';
 import * as Constants from '../utils/Constants.js';
-import { EventEmitter, HTTPClient, Log, LZW, ProtoUtils } from '../utils/index.js';
-
+import { EventEmitter, HTTPClient, BinarySerializer, Log, ProtoUtils } from '../utils/index.js';
 import {
   generateRandomString, getRandomUserAgent,
   InnertubeError, Platform, SessionError
@@ -221,6 +220,10 @@ export type SessionData = {
   config_data?: string;
 }
 
+interface SerializableSession extends SessionData {
+  library_version: number;
+}
+
 export type SWSessionData = {
   context_data: ContextData;
   api_key: string;
@@ -326,42 +329,45 @@ export default class Session extends EventEmitter {
     if (!buffer)
       return null;
 
-    const data = new TextDecoder().decode(buffer.slice(4));
-
     try {
-      const result = JSON.parse(LZW.decompress(data)) as SessionData;
+      const session_data = BinarySerializer.deserialize<SerializableSession>(new Uint8Array(buffer));
+
+      if (session_data.library_version !== parseInt(Platform.shim.info.version.split('.')[0])) {
+        Log.warn(TAG, `Cached session data is from a different library version (${session_data.library_version}). Regenerating session data.`);
+        return null;
+      }
 
       if (session_args.visitor_data) {
-        result.context.client.visitorData = session_args.visitor_data;
+        session_data.context.client.visitorData = session_args.visitor_data;
       }
 
       if (session_args.lang)
-        result.context.client.hl = session_args.lang;
+        session_data.context.client.hl = session_args.lang;
 
       if (session_args.location)
-        result.context.client.gl = session_args.location;
+        session_data.context.client.gl = session_args.location;
 
       if (session_args.on_behalf_of_user)
-        result.context.user.onBehalfOfUser = session_args.on_behalf_of_user;
+        session_data.context.user.onBehalfOfUser = session_args.on_behalf_of_user;
 
       if (session_args.user_agent)
-        result.context.client.userAgent = session_args.user_agent;
+        session_data.context.client.userAgent = session_args.user_agent;
 
       if (session_args.client_name) {
         const client = Object.values(Constants.CLIENTS).find((c) => c.NAME === session_args.client_name);
         if (client) {
-          result.context.client.clientName = client.NAME;
-          result.context.client.clientVersion = client.VERSION;
+          session_data.context.client.clientName = client.NAME;
+          session_data.context.client.clientVersion = client.VERSION;
         } else Log.warn(TAG, `Unknown client name: ${session_args.client_name}.`);
       }
 
-      result.context.client.timeZone = session_args.time_zone;
-      result.context.client.platform = session_args.device_category.toUpperCase();
-      result.context.user.enableSafetyMode = session_args.enable_safety_mode;
+      session_data.context.client.timeZone = session_args.time_zone;
+      session_data.context.client.platform = session_args.device_category.toUpperCase();
+      session_data.context.user.enableSafetyMode = session_args.enable_safety_mode;
 
-      return result;
+      return session_data;
     } catch (error) {
-      Log.error(TAG, 'Failed to parse session data from cache.', error);
+      Log.error(TAG, 'Failed to deserialize session data from cache.', error);
       return null;
     }
   }
@@ -509,13 +515,12 @@ export default class Session extends EventEmitter {
 
     Log.info(TAG, 'Compressing and caching session data.');
 
-    const compressed_session_data = new TextEncoder().encode(LZW.compress(JSON.stringify(session_data)));
+    const buffer = BinarySerializer.serialize({
+      ...session_data,
+      library_version: parseInt(Platform.shim.info.version)
+    });
 
-    const buffer = new ArrayBuffer(4 + compressed_session_data.byteLength);
-    new DataView(buffer).setUint32(0, compressed_session_data.byteLength, true); // (Luan) XX: Leave this here for debugging purposes
-    new Uint8Array(buffer).set(compressed_session_data, 4);
-
-    await cache.set('innertube_session_data', new Uint8Array(buffer));
+    await cache.set('innertube_session_data', buffer);
   }
 
   static async #getSessionData(options: SessionArgs, fetch: FetchFunction = Platform.shim.fetch): Promise<SWSessionData> {
