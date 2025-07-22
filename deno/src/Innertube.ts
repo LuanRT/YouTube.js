@@ -19,6 +19,7 @@ import {
 } from './parser/youtube/index.ts';
 import { ShortFormVideoInfo } from './parser/ytshorts/index.ts';
 
+import { NavigateAction } from './parser/continuations.ts';
 import NavigationEndpoint from './parser/classes/NavigationEndpoint.ts';
 import type Format from './parser/classes/misc/Format.ts';
 
@@ -390,8 +391,13 @@ export default class Innertube {
   async getChannel(id: string): Promise<Channel> {
     throwIfMissing({ id });
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: id } });
-    const response = await browse_endpoint.call(this.#session.actions);
-    return new Channel(this.actions, response);
+    let response = await browse_endpoint.call<IBrowseResponse>(this.#session.actions, { parse: true });
+
+    if (response.on_response_received_actions?.[0].is(NavigateAction)) {
+      response = await response.on_response_received_actions[0].endpoint.call<IBrowseResponse>(this.#session.actions, { parse: true });
+    }
+
+    return new Channel(this.actions, response, true);
   }
 
   async getNotifications(): Promise<NotificationsMenu> {
