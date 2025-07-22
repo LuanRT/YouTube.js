@@ -105,11 +105,13 @@
 - [`EmojiPicker`](../../YTNodes/classes/EmojiPicker.md)
 - [`PdgCommentChip`](../../YTNodes/classes/PdgCommentChip.md)
 - [`SponsorCommentBadge`](../../YTNodes/classes/SponsorCommentBadge.md)
+- [`VoiceReplyContainerView`](../../YTNodes/classes/VoiceReplyContainerView.md)
 - [`CompactChannel`](../../YTNodes/classes/CompactChannel.md)
 - [`CompactLink`](../../YTNodes/classes/CompactLink.md)
 - [`CompactMovie`](../../YTNodes/classes/CompactMovie.md)
 - [`CompactStation`](../../YTNodes/classes/CompactStation.md)
 - [`CompactVideo`](../../YTNodes/classes/CompactVideo.md)
+- [`CompositeVideoPrimaryInfo`](../../YTNodes/classes/CompositeVideoPrimaryInfo.md)
 - [`ConfirmDialog`](../../YTNodes/classes/ConfirmDialog.md)
 - [`ContentMetadataView`](../../YTNodes/classes/ContentMetadataView.md)
 - [`ContentPreviewImageView`](../../YTNodes/classes/ContentPreviewImageView.md)
@@ -126,6 +128,8 @@
 - [`DialogView`](../../YTNodes/classes/DialogView.md)
 - [`DidYouMean`](../../YTNodes/classes/DidYouMean.md)
 - [`DislikeButtonView`](../../YTNodes/classes/DislikeButtonView.md)
+- [`DismissableDialog`](../../YTNodes/classes/DismissableDialog.md)
+- [`DismissableDialogContentSection`](../../YTNodes/classes/DismissableDialogContentSection.md)
 - [`DownloadButton`](../../YTNodes/classes/DownloadButton.md)
 - [`Dropdown`](../../YTNodes/classes/Dropdown.md)
 - [`DropdownItem`](../../YTNodes/classes/DropdownItem.md)
@@ -184,6 +188,7 @@
 - [`GridMix`](../../YTNodes/classes/GridMix.md)
 - [`GridMovie`](../../YTNodes/classes/GridMovie.md)
 - [`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md)
+- [`GridShelfView`](../../YTNodes/classes/GridShelfView.md)
 - [`GridShow`](../../YTNodes/classes/GridShow.md)
 - [`GridVideo`](../../YTNodes/classes/GridVideo.md)
 - [`GuideCollapsibleEntry`](../../YTNodes/classes/GuideCollapsibleEntry.md)
@@ -200,6 +205,7 @@
 - [`HorizontalList`](../../YTNodes/classes/HorizontalList.md)
 - [`HorizontalMovieList`](../../YTNodes/classes/HorizontalMovieList.md)
 - [`HowThisWasMadeSectionView`](../../YTNodes/classes/HowThisWasMadeSectionView.md)
+- [`HypePointsFactoid`](../../YTNodes/classes/HypePointsFactoid.md)
 - [`IconLink`](../../YTNodes/classes/IconLink.md)
 - [`ImageBannerView`](../../YTNodes/classes/ImageBannerView.md)
 - [`IncludingResultsFor`](../../YTNodes/classes/IncludingResultsFor.md)
@@ -407,6 +413,7 @@
 - [`SearchSuggestion`](../../YTNodes/classes/SearchSuggestion.md)
 - [`SearchSuggestionsSection`](../../YTNodes/classes/SearchSuggestionsSection.md)
 - [`SecondarySearchContainer`](../../YTNodes/classes/SecondarySearchContainer.md)
+- [`SectionHeaderView`](../../YTNodes/classes/SectionHeaderView.md)
 - [`SectionList`](../../YTNodes/classes/SectionList.md)
 - [`SegmentedLikeDislikeButton`](../../YTNodes/classes/SegmentedLikeDislikeButton.md)
 - [`SegmentedLikeDislikeButtonView`](../../YTNodes/classes/SegmentedLikeDislikeButtonView.md)
@@ -472,6 +479,7 @@
 - [`TitleAndButtonListHeader`](../../YTNodes/classes/TitleAndButtonListHeader.md)
 - [`ToggleButton`](../../YTNodes/classes/ToggleButton.md)
 - [`ToggleButtonView`](../../YTNodes/classes/ToggleButtonView.md)
+- [`ToggleFormField`](../../YTNodes/classes/ToggleFormField.md)
 - [`ToggleMenuServiceItem`](../../YTNodes/classes/ToggleMenuServiceItem.md)
 - [`Tooltip`](../../YTNodes/classes/Tooltip.md)
 - [`TopicChannelDetails`](../../YTNodes/classes/TopicChannelDetails.md)
@@ -543,7 +551,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:10](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L10)
+[src/parser/helpers.ts:10](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L10)
 
 ## Properties
 
@@ -553,7 +561,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L8)
 
 ***
 
@@ -563,7 +571,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:7](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L7)
+[src/parser/helpers.ts:7](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L7)
 
 ## Methods
 
@@ -597,7 +605,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L29)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L29)
 
 ***
 
@@ -627,7 +635,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L41)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L41)
 
 ***
 
@@ -657,7 +665,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L19)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L19)
 
 ***
 
@@ -691,4 +699,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/helpers.ts#L51)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L51)

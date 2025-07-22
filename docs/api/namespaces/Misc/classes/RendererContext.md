@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/RendererContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/RendererContext.ts#L9)
+[src/parser/classes/misc/RendererContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/RendererContext.ts#L9)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/RendererContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/RendererContext.ts#L7)
+[src/parser/classes/misc/RendererContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/RendererContext.ts#L7)
 
 ***
 
@@ -38,4 +38,4 @@
 
 #### Defined in
 
-[src/parser/classes/misc/RendererContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/RendererContext.ts#L6)
+[src/parser/classes/misc/RendererContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/RendererContext.ts#L6)

@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:17](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L17)
+[src/types/PlatformShim.ts:17](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L17)
 
 ***
 
@@ -34,13 +34,13 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:28](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L28)
+[src/types/PlatformShim.ts:28](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L28)
 
 ***
 
 ### fetch()
 
-> **fetch**: (`input`, `init`?) => `Promise`\<`Response`\>
+> **fetch**: (`input`, `init`?) => `Promise`\<`Response`\>(`input`, `init`?) => `Promise`\<`Response`\>
 
 [MDN Reference](https://developer.mozilla.org/docs/Web/API/fetch)
 
@@ -54,9 +54,19 @@
 
 `Promise`\<`Response`\>
 
+#### Parameters
+
+• **input**: `string` \| `URL` \| `Request`
+
+• **init?**: `RequestInit`
+
+#### Returns
+
+`Promise`\<`Response`\>
+
 #### Defined in
 
-[src/types/PlatformShim.ts:21](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L21)
+[src/types/PlatformShim.ts:21](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L21)
 
 ***
 
@@ -82,7 +92,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:26](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L26)
+[src/types/PlatformShim.ts:26](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L26)
 
 ***
 
@@ -106,7 +116,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:25](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L25)
+[src/types/PlatformShim.ts:25](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L25)
 
 ***
 
@@ -128,7 +138,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:24](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L24)
+[src/types/PlatformShim.ts:24](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L24)
 
 ***
 
@@ -150,7 +160,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:11](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L11)
+[src/types/PlatformShim.ts:11](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L11)
 
 ***
 
@@ -196,7 +206,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:27](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L27)
+[src/types/PlatformShim.ts:27](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L27)
 
 ***
 
@@ -220,7 +230,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:22](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L22)
+[src/types/PlatformShim.ts:22](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L22)
 
 ***
 
@@ -280,7 +290,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:23](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L23)
+[src/types/PlatformShim.ts:23](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L23)
 
 ***
 
@@ -290,7 +300,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:10](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L10)
+[src/types/PlatformShim.ts:10](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L10)
 
 ***
 
@@ -300,7 +310,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:16](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L16)
+[src/types/PlatformShim.ts:16](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L16)
 
 ## Methods
 
@@ -320,7 +330,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:20](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L20)
+[src/types/PlatformShim.ts:20](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L20)
 
 ***
 
@@ -338,7 +348,7 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:18](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L18)
+[src/types/PlatformShim.ts:18](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L18)
 
 ***
 
@@ -352,4 +362,4 @@
 
 #### Defined in
 
-[src/types/PlatformShim.ts:19](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/types/PlatformShim.ts#L19)
+[src/types/PlatformShim.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/types/PlatformShim.ts#L19)

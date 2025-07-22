@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/AccessibilityData.ts:120](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/AccessibilityData.ts#L120)
+[src/parser/classes/misc/AccessibilityData.ts:120](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/AccessibilityData.ts#L120)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/AccessibilityData.ts:116](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/AccessibilityData.ts#L116)
+[src/parser/classes/misc/AccessibilityData.ts:116](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/AccessibilityData.ts#L116)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/AccessibilityData.ts:117](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/AccessibilityData.ts#L117)
+[src/parser/classes/misc/AccessibilityData.ts:117](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/AccessibilityData.ts#L117)
 
 ***
 
@@ -48,4 +48,4 @@
 
 #### Defined in
 
-[src/parser/classes/misc/AccessibilityData.ts:118](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/classes/misc/AccessibilityData.ts#L118)
+[src/parser/classes/misc/AccessibilityData.ts:118](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/AccessibilityData.ts#L118)

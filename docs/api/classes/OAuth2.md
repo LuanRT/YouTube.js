@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:46](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L46)
+[src/core/OAuth2.ts:46](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L46)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:39](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L39)
+[src/core/OAuth2.ts:39](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L39)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:41](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L41)
+[src/core/OAuth2.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L41)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:40](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L40)
+[src/core/OAuth2.ts:40](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L40)
 
 ***
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:43](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L43)
+[src/core/OAuth2.ts:43](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L43)
 
 ***
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:44](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L44)
+[src/core/OAuth2.ts:44](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L44)
 
 ***
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:38](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L38)
+[src/core/OAuth2.ts:38](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L38)
 
 ## Methods
 
@@ -92,7 +92,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:105](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L105)
+[src/core/OAuth2.ts:105](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L105)
 
 ***
 
@@ -106,7 +106,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:268](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L268)
+[src/core/OAuth2.ts:268](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L268)
 
 ***
 
@@ -120,7 +120,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:236](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L236)
+[src/core/OAuth2.ts:236](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L236)
 
 ***
 
@@ -138,7 +138,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:54](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L54)
+[src/core/OAuth2.ts:54](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L54)
 
 ***
 
@@ -156,7 +156,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:130](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L130)
+[src/core/OAuth2.ts:130](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L130)
 
 ***
 
@@ -170,7 +170,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:197](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L197)
+[src/core/OAuth2.ts:197](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L197)
 
 ***
 
@@ -184,7 +184,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:126](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L126)
+[src/core/OAuth2.ts:126](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L126)
 
 ***
 
@@ -198,7 +198,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:185](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L185)
+[src/core/OAuth2.ts:185](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L185)
 
 ***
 
@@ -216,7 +216,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:85](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L85)
+[src/core/OAuth2.ts:85](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L85)
 
 ***
 
@@ -230,7 +230,7 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:313](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L313)
+[src/core/OAuth2.ts:313](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L313)
 
 ***
 
@@ -248,4 +248,4 @@
 
 #### Defined in
 
-[src/core/OAuth2.ts:319](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/OAuth2.ts#L319)
+[src/core/OAuth2.ts:319](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L319)

@@ -327,6 +327,7 @@ Re-exports [WatchRequest](namespaces/APIResponseTypes/type-aliases/WatchRequest.
 ## Namespaces
 
 - [APIResponseTypes](namespaces/APIResponseTypes/README.md)
+- [BinarySerializer](namespaces/BinarySerializer/README.md)
 - [Clients](namespaces/Clients/README.md)
 - [Constants](namespaces/Constants/README.md)
 - [FormatUtils](namespaces/FormatUtils/README.md)

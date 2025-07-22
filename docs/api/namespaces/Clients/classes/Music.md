@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:37](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L37)
+[src/core/clients/Music.ts:37](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L37)
 
 ## Methods
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:177](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L177)
+[src/core/clients/Music.ts:186](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L186)
 
 ***
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:167](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L167)
+[src/core/clients/Music.ts:176](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L176)
 
 ***
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:154](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L154)
+[src/core/clients/Music.ts:163](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L163)
 
 ***
 
@@ -82,13 +82,13 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:148](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L148)
+[src/core/clients/Music.ts:157](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L157)
 
 ***
 
 ### getInfo()
 
-> **getInfo**(`target`): `Promise`\<[`TrackInfo`](../../YTMusic/classes/TrackInfo.md)\>
+> **getInfo**(`target`, `options`?): `Promise`\<[`TrackInfo`](../../YTMusic/classes/TrackInfo.md)\>
 
 Retrieves track info. Passing a list item of type MusicTwoRowItem automatically starts a radio.
 
@@ -98,13 +98,17 @@ Retrieves track info. Passing a list item of type MusicTwoRowItem automatically 
 
 Video id or a list item.
 
+• **options?**: `Omit`\<[`GetVideoInfoOptions`](../../Types/interfaces/GetVideoInfoOptions.md), `"client"`\>
+
+Options for fetching video info.
+
 #### Returns
 
 `Promise`\<[`TrackInfo`](../../YTMusic/classes/TrackInfo.md)\>
 
 #### Defined in
 
-[src/core/clients/Music.ts:46](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L46)
+[src/core/clients/Music.ts:47](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L47)
 
 ***
 
@@ -118,7 +122,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:161](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L161)
+[src/core/clients/Music.ts:170](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L170)
 
 ***
 
@@ -136,7 +140,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:258](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L258)
+[src/core/clients/Music.ts:267](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L267)
 
 ***
 
@@ -154,7 +158,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:187](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L187)
+[src/core/clients/Music.ts:196](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L196)
 
 ***
 
@@ -168,7 +172,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:284](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L284)
+[src/core/clients/Music.ts:293](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L293)
 
 ***
 
@@ -186,7 +190,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:237](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L237)
+[src/core/clients/Music.ts:246](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L246)
 
 ***
 
@@ -204,7 +208,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:290](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L290)
+[src/core/clients/Music.ts:299](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L299)
 
 ***
 
@@ -224,7 +228,7 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:197](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L197)
+[src/core/clients/Music.ts:206](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L206)
 
 ***
 
@@ -244,4 +248,4 @@ Video id or a list item.
 
 #### Defined in
 
-[src/core/clients/Music.ts:126](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/core/clients/Music.ts#L126)
+[src/core/clients/Music.ts:135](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L135)

@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Explore.ts:20](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/ytmusic/Explore.ts#L20)
+[src/parser/ytmusic/Explore.ts:20](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Explore.ts#L20)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Explore.ts:18](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/ytmusic/Explore.ts#L18)
+[src/parser/ytmusic/Explore.ts:18](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Explore.ts#L18)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Explore.ts:17](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/ytmusic/Explore.ts#L17)
+[src/parser/ytmusic/Explore.ts:17](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Explore.ts#L17)
 
 ## Accessors
 
@@ -52,4 +52,4 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Explore.ts:37](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/ytmusic/Explore.ts#L37)
+[src/parser/ytmusic/Explore.ts:37](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Explore.ts#L37)

@@ -2,7 +2,7 @@
 
 # Function: parseRR()
 
-> **parseRR**(`actions`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`AppendContinuationItemsAction`](../../YTNodes/classes/AppendContinuationItemsAction.md) \| [`OpenPopupAction`](../../YTNodes/classes/OpenPopupAction.md) \| [`NavigateAction`](../../../classes/NavigateAction.md) \| [`ShowMiniplayerCommand`](../../../classes/ShowMiniplayerCommand.md) \| [`ReloadContinuationItemsCommand`](../../../classes/ReloadContinuationItemsCommand.md)\>
+> **parseRR**(`actions`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`OpenPopupAction`](../../YTNodes/classes/OpenPopupAction.md) \| [`AppendContinuationItemsAction`](../../YTNodes/classes/AppendContinuationItemsAction.md) \| [`ReloadContinuationItemsCommand`](../../../classes/ReloadContinuationItemsCommand.md) \| [`NavigateAction`](../../../classes/NavigateAction.md) \| [`ShowMiniplayerCommand`](../../../classes/ShowMiniplayerCommand.md)\>
 
 ## Parameters
 
@@ -10,8 +10,8 @@
 
 ## Returns
 
-[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`AppendContinuationItemsAction`](../../YTNodes/classes/AppendContinuationItemsAction.md) \| [`OpenPopupAction`](../../YTNodes/classes/OpenPopupAction.md) \| [`NavigateAction`](../../../classes/NavigateAction.md) \| [`ShowMiniplayerCommand`](../../../classes/ShowMiniplayerCommand.md) \| [`ReloadContinuationItemsCommand`](../../../classes/ReloadContinuationItemsCommand.md)\>
+[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`OpenPopupAction`](../../YTNodes/classes/OpenPopupAction.md) \| [`AppendContinuationItemsAction`](../../YTNodes/classes/AppendContinuationItemsAction.md) \| [`ReloadContinuationItemsCommand`](../../../classes/ReloadContinuationItemsCommand.md) \| [`NavigateAction`](../../../classes/NavigateAction.md) \| [`ShowMiniplayerCommand`](../../../classes/ShowMiniplayerCommand.md)\>
 
 ## Defined in
 
-[src/parser/parser.ts:741](https://github.com/LuanRT/YouTube.js/blob/e1650e12979e68b9546bc63989f86b651960a10a/src/parser/parser.ts#L741)
+[src/parser/parser.ts:741](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/parser.ts#L741)

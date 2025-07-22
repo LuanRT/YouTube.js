@@ -8,6 +8,7 @@
 
 - [DownloadOptions](interfaces/DownloadOptions.md)
 - [FormatOptions](interfaces/FormatOptions.md)
+- [GetVideoInfoOptions](interfaces/GetVideoInfoOptions.md)
 - [ICache](interfaces/ICache.md)
 - [ICacheConstructor](interfaces/ICacheConstructor.md)
 - [PlatformShim](interfaces/PlatformShim.md)
