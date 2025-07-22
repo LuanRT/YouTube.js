@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/LuanRT/YouTube.js/compare/v15.0.0...v15.0.1) (2025-07-22)
+
+
+### Bug Fixes
+
+* **Innertube:** Handle redirects in getChannel() ([#1002](https://github.com/LuanRT/YouTube.js/issues/1002)) ([cb87cc1](https://github.com/LuanRT/YouTube.js/commit/cb87cc1cae43b75ea31f984a9c6939097d58dd6f))
+
 ## [15.0.0](https://github.com/LuanRT/YouTube.js/compare/v14.0.0...v15.0.0) (2025-07-18)
 
 
