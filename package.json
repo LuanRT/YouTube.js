@@ -38,6 +38,7 @@
       "react-native": "./dist/src/platform/react-native.js",
       "default": "./dist/src/platform/web.js"
     },
+    "./package.json": "./package.json",
     "./agnostic": {
       "types": "./dist/src/platform/lib.d.ts",
       "default": "./dist/src/platform/lib.js"
@@ -122,7 +123,6 @@
     "rimraf": "^6.0.1",
     "ts-patch": "^3.0.2",
     "ts-proto": "^2.2.0",
-    "ts-transformer-inline-file": "^0.2.0",
     "typedoc": "^0.26.7",
     "typedoc-plugin-markdown": "^4.2.7",
     "typescript": "^5.0.0",
