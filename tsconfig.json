@@ -100,7 +100,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "plugins": [
-      { "transform": "ts-transformer-inline-file/transformer" },
       { "transform": "./dev-scripts/enum-optimising-transformer.cjs" }
     ]
   },

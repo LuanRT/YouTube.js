@@ -8,11 +8,6 @@ export type VMPrimative = string | number | boolean | null | undefined;
 
 interface PlatformShim {
     runtime: Runtime;
-    info: {
-        version: string,
-        bugs_url: string,
-        repo_url: string
-    },
     server: boolean;
     Cache: ICacheConstructor;
     sha1Hash(data: string): Promise<string>;

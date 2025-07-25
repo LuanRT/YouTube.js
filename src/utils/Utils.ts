@@ -9,6 +9,7 @@ import { Memo } from '../parser/helpers.js';
 import { Text } from '../parser/misc.js';
 import * as Log from './Log.js';
 import userAgents from './user-agents.js';
+import packageInfo from '../../package.json' with { type: 'json' };
 
 const TAG_ = 'Utils';
 
@@ -40,7 +41,7 @@ export class InnertubeError extends Error {
     }
 
     this.date = new Date();
-    this.version = Platform.shim.info.version;
+    this.version = packageInfo.version;
   }
 }
 

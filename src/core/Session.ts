@@ -7,6 +7,7 @@ import {
   generateRandomString, getRandomUserAgent,
   InnertubeError, Platform, SessionError
 } from '../utils/Utils.js';
+import packageInfo from '../../package.json' with { type: 'json' };
 
 import type { DeviceCategory } from '../utils/Utils.js';
 import type { FetchFunction, ICache } from '../types/index.js';
@@ -332,7 +333,7 @@ export default class Session extends EventEmitter {
     try {
       const session_data = BinarySerializer.deserialize<SerializableSession>(new Uint8Array(buffer));
 
-      if (session_data.library_version !== parseInt(Platform.shim.info.version.split('.')[0])) {
+      if (session_data.library_version !== parseInt(packageInfo.version.split('.', 1)[0])) {
         Log.warn(TAG, `Cached session data is from a different library version (${session_data.library_version}). Regenerating session data.`);
         return null;
       }
@@ -517,7 +518,7 @@ export default class Session extends EventEmitter {
 
     const buffer = BinarySerializer.serialize({
       ...session_data,
-      library_version: parseInt(Platform.shim.info.version)
+      library_version: parseInt(packageInfo.version)
     });
 
     await cache.set('innertube_session_data', buffer);
