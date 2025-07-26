@@ -18,7 +18,7 @@ export default class PlaylistsFeed {
     this.#actions = actions;
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
-    const grid = this.#page.contents_memo?.getType(Grid)?.first();
+    const grid = this.#page.contents_memo?.getType(Grid)?.[0];
     if (grid) {
       this.contents = grid.contents;
       this.#continuation = grid.continuation ?? undefined;

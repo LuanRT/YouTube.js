@@ -20,7 +20,7 @@ export default class SubscriptionsFeed {
     this.#actions = actions;
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
-    const grid = this.#page.contents_memo?.getType(Tab)?.first()?.content?.as(TvSurfaceContent)?.content?.as(Grid);
+    const grid = this.#page.contents_memo?.getType(Tab)?.[0]?.content?.as(TvSurfaceContent)?.content?.as(Grid);
     if (grid) {
       this.contents = grid.contents;
       this.#continuation = grid.continuation ?? undefined;
@@ -35,8 +35,6 @@ export default class SubscriptionsFeed {
       this.#continuation = data.continuation ?? undefined;
     }
   }
-  
-  // TODO: Add option to switch to other tabs (other channels) available
 
   /**
    * Retrieves subscription items continuation.
