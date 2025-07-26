@@ -22,7 +22,7 @@ export default class MyYoutubeFeed {
     this.#actions = actions;
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
     
-    const navSection = this.#page.contents_memo?.getType(TvSecondaryNavSection).first();
+    const navSection = this.#page.contents_memo?.getType(TvSecondaryNavSection)?.[0];
     
     if (navSection) {
       this.tabs = navSection.tabs ?? undefined;
@@ -39,8 +39,8 @@ export default class MyYoutubeFeed {
       } else {
         throw new InnertubeError(`No supported content type for MyYoutubeFeed provided. Type ${content?.type}`);
       }
-    } else if (this.#page.contents_memo?.getType(TvSurfaceContent).first()) {
-      const content = this.#page.contents_memo?.getType(TvSurfaceContent).first().content;
+    } else if (this.#page.contents_memo?.getType(TvSurfaceContent)?.[0]) {
+      const content = this.#page.contents_memo?.getType(TvSurfaceContent)?.[0]?.content;
       if (content?.is(Grid)) {
         this.contents = content.contents;
         this.#continuation = content.continuation ?? undefined;

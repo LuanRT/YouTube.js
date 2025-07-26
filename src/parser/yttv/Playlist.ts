@@ -18,16 +18,13 @@ export default class Playlist {
   public contents?: ObservedArray<YTNode>;
   public background?: MusicThumbnail;
 
-  // #last_fetched_suggestions: ObservedArray<MusicResponsiveListItem> | null;
-  // #suggestions_continuation: string | null;
-
   constructor(response: ApiResponse, actions: Actions) {
     this.#actions = actions;
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
     this.#continuation = null;
     
-    const two_col = this.#page.contents_memo?.getType(TwoColumn)?.first();
+    const two_col = this.#page.contents_memo?.getType(TwoColumn)?.[0];
     if (two_col) {
       this.header = two_col.left_column ?? undefined;
       
