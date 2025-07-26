@@ -1,4 +1,5 @@
 import { MediaInfo } from '../../core/mixins/index.js';
+import { Constants } from '../../utils/index.js';
 
 import type ChipCloud from '../classes/ChipCloud.js';
 import ItemSection from '../classes/ItemSection.js';
@@ -87,7 +88,7 @@ export default class VideoInfo extends MediaInfo {
    * Adds video to the watch history.
    */
   async addToWatchHistory(): Promise<Response> {
-    return super.addToWatchHistory();
+    return super.addToWatchHistory(Constants.CLIENTS.TV.NAME, Constants.CLIENTS.TV.VERSION);
   }
 
   /**

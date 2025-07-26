@@ -124,7 +124,7 @@ export default class TV {
     let continuation: string | undefined;
     
     if (item.is(HorizontalList)) {
-      continuation = item.continuations?.first()?.continuation;
+      continuation = item.continuations?.[0]?.continuation;
     } else if (item.is(HorizontalListContinuation)) {
       continuation = item.continuation;
     } else {
