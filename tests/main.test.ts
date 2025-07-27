@@ -455,7 +455,7 @@ describe('YouTube.js Tests', () => {
 
   describe('YouTube TV', () => {
     test('Innertube#tv.getHomeFeed', async () => {
-      const home = await innertube.tv.getHomeFeed()
+      const home = await innertube.tv.getHomeFeed();
       expect(home).toBeDefined();
       expect(home.sections).toBeDefined();
     });
