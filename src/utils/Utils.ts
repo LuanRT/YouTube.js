@@ -385,12 +385,14 @@ export function findVariable(code: string, options: ASTLookupArgs): ASTLookupRes
       const [ start, end ] = node.range!;
       const node_source = code.slice(start, end);
 
-      for (const declarator of node.declarations) {
-        if (declarator.id.type === 'Identifier') {
-          const var_name = declarator.id.name;
-          if (options.name && var_name === options.name) {
-            found = { start, end, name: var_name, node, result: node_source };
-            return;
+      if (options.name) {
+        for (const declarator of node.declarations) {
+          if (declarator.id.type === 'Identifier') {
+            const var_name = declarator.id.name;
+            if (var_name === options.name) {
+              found = { start, end, name: var_name, node, result: node_source };
+              return;
+            }
           }
         }
       }
