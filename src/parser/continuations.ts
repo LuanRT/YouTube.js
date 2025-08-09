@@ -9,7 +9,7 @@ import type { ObservedArray } from './helpers.js';
 export class ItemSectionContinuation extends YTNode {
   static readonly type = 'itemSectionContinuation';
 
-  contents: ObservedArray<YTNode> | null;
+  contents: ObservedArray<YTNode>;
   continuation?: string;
 
   constructor(data: RawNode) {
@@ -94,7 +94,7 @@ export class MusicShelfContinuation extends YTNode {
   static readonly type = 'musicShelfContinuation';
 
   continuation: string;
-  contents: ObservedArray<YTNode> | null;
+  contents: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();
@@ -126,7 +126,7 @@ export class PlaylistPanelContinuation extends YTNode {
   static readonly type = 'playlistPanelContinuation';
 
   continuation: string;
-  contents: ObservedArray<YTNode> | null;
+  contents: ObservedArray<YTNode>;
 
   constructor(data: RawNode) {
     super();
