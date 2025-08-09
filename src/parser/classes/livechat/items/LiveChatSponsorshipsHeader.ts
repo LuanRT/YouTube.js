@@ -12,7 +12,7 @@ export default class LiveChatSponsorshipsHeader extends YTNode {
 
   author_name: Text;
   author_photo: Thumbnail[];
-  author_badges: ObservedArray<LiveChatAuthorBadge> | null;
+  author_badges: ObservedArray<LiveChatAuthorBadge>;
   primary_text: Text;
   menu_endpoint: NavigationEndpoint;
   context_menu_accessibility_label: string;

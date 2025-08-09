@@ -24,7 +24,7 @@ export default class Video extends YTNode {
   public thumbnail_overlays: ObservedArray<YTNode>;
   public rich_thumbnail?: YTNode;
   public author: Author;
-  public badges: MetadataBadge[];
+  public badges: ObservedArray<MetadataBadge>;
   public endpoint?: NavigationEndpoint;
   public published?: Text;
   public view_count?: Text;

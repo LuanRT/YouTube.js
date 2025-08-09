@@ -22,7 +22,7 @@ export default class CompactVideo extends YTNode {
   public short_byline_text?: Text;
   public long_byline_text?: Text;
   public published?: Text;
-  public badges: MetadataBadge[];
+  public badges: ObservedArray<MetadataBadge>;
   public thumbnail_overlays: ObservedArray<YTNode>;
   public endpoint?: NavigationEndpoint;
   public menu: Menu | null;

@@ -22,7 +22,7 @@ export default class Playlist extends YTNode {
   menu: YTNode;
   badges: ObservedArray<YTNode>;
   endpoint: NavigationEndpoint;
-  thumbnail_overlays;
+  thumbnail_overlays: ObservedArray<YTNode>;
   view_playlist?: Text;
 
   constructor(data: RawNode) {

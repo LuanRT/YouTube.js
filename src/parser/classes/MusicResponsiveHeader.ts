@@ -22,7 +22,7 @@ export default class MusicResponsiveHeader extends YTNode {
   strapline_text_one: Text;
   strapline_thumbnail: MusicThumbnail | null;
   second_subtitle: Text;
-  subtitle_badge?: ObservedArray<MusicInlineBadge> | null;
+  subtitle_badge?: ObservedArray<MusicInlineBadge>;
   description?: MusicDescriptionShelf | null;
 
   constructor(data: RawNode) {

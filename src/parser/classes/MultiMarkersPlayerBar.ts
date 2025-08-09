@@ -10,7 +10,7 @@ export class Marker extends YTNode {
   marker_key: string;
   value: {
     heatmap?: Heatmap | null;
-    chapters?: Chapter[];
+    chapters?: ObservedArray<Chapter>;
   };
 
   constructor(data: RawNode) {
