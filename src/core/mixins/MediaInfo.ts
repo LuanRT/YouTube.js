@@ -188,8 +188,8 @@ export default class MediaInfo {
     if (!next_response.engagement_panels)
       throw new InnertubeError('Engagement panels not found. Video likely has no transcript.');
 
-    const transcript_panel = next_response.engagement_panels.get({
-      panel_identifier: 'engagement-panel-searchable-transcript'
+    const transcript_panel = next_response.engagement_panels.find((panel) => {
+      return panel.panel_identifier === 'engagement-panel-searchable-transcript';
     });
 
     if (!transcript_panel)

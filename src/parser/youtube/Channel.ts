@@ -62,7 +62,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     this.subscribe_button = this.page.header_memo?.getType(SubscribeButton)[0];
 
     if (this.page.contents)
-      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.get({ selected: true });
+      this.current_tab = this.page.contents.item().as(TwoColumnBrowseResults).tabs.find((tab) => tab.selected);
   }
 
   /**
@@ -75,7 +75,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     const filter_chipbar = this.memo.getType(FeedFilterChipBar)[0];
 
     if (typeof filter === 'string') {
-      target_filter = filter_chipbar?.contents.get({ text: filter });
+      target_filter = filter_chipbar?.contents.find((chip) => chip.text === filter);
       if (!target_filter)
         throw new InnertubeError(`Filter ${filter} not found`, { available_filters: this.filters });
     } else {
@@ -330,7 +330,7 @@ export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
 
-    this.applied_filter = this.memo.getType(ChipCloudChip).get({ is_selected: true });
+    this.applied_filter = this.memo.getType(ChipCloudChip).find((chip) => chip.is_selected);
 
     // Removes the filter chipbar from the actions list
     if (

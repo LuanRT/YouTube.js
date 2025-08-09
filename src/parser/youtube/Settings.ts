@@ -33,7 +33,7 @@ export default class Settings {
     if (!this.#page.contents)
       throw new InnertubeError('Page contents not found');
 
-    const tab = this.#page.contents.item().as(TwoColumnBrowseResults).tabs.get({ selected: true });
+    const tab = this.#page.contents.item().as(TwoColumnBrowseResults).tabs.find((tab) => tab.selected);
 
     if (!tab)
       throw new InnertubeError('Target tab not found');
@@ -58,7 +58,7 @@ export default class Settings {
     let item: CompactLink | undefined;
 
     if (typeof target_item === 'string') {
-      item = this.sidebar.items.get({ title: target_item });
+      item = this.sidebar.items.find((link) => link.title === target_item);
       if (!item)
         throw new InnertubeError(`Item "${target_item}" not found`, { available_items: this.sidebar_items });
     } else if (target_item?.is(CompactLink)) {
