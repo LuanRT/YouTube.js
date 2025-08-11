@@ -32,7 +32,7 @@ export default class Search {
     if (!this.#page.contents || !this.#page.contents_memo)
       throw new InnertubeError('Response did not contain any contents.');
 
-    const tab = this.#page.contents.item().as(TabbedSearchResults).tabs.get({ selected: true });
+    const tab = this.#page.contents.item().as(TabbedSearchResults).tabs.find((tab) => tab.selected);
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
@@ -87,7 +87,7 @@ export default class Search {
     let cloud_chip: ChipCloudChip | undefined;
 
     if (typeof target_filter === 'string') {
-      cloud_chip = this.header?.chips?.as(ChipCloudChip).get({ text: target_filter });
+      cloud_chip = this.header?.chips?.as(ChipCloudChip).find((chip) => chip.text === target_filter);
       if (!cloud_chip)
         throw new InnertubeError('Could not find filter with given name.', { available_filters: this.filters });
     } else if (target_filter?.is(ChipCloudChip)) {

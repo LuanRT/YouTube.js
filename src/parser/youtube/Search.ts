@@ -59,7 +59,9 @@ export default class Search extends Feed<ISearchResponse> {
 
     if (typeof card === 'string') {
       if (!this.refinement_cards) throw new InnertubeError('No refinement cards found.');
-      target_card = this.refinement_cards?.cards.get({ query: card })?.as(SearchRefinementCard);
+      target_card = this.refinement_cards?.cards.find((refinement_card): refinement_card is SearchRefinementCard => {
+        return refinement_card.is(SearchRefinementCard) && refinement_card.query === card;
+      });
       if (!target_card)
         throw new InnertubeError(`Refinement card "${card}" not found`, { available_cards: this.refinement_card_queries });
     } else if (card.type === 'SearchRefinementCard') {
