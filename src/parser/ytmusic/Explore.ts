@@ -20,7 +20,7 @@ export default class Explore {
   constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
-    const tab = this.#page.contents?.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
+    const tab = this.#page.contents?.item().as(SingleColumnBrowseResults).tabs.find((tab) => tab.selected);
 
     if (!tab)
       throw new InnertubeError('Could not find target tab.');
