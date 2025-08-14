@@ -1,8 +1,10 @@
+import type { ObservedArray } from '../helpers.js';
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../index.js';
 import { Text } from '../misc.js';
 import { Parser } from '../index.js';
 import AvatarStackView from './AvatarStackView.js';
+import BadgeView from './BadgeView.js';
 
 export type MetadataRow = {
   metadata_parts?: {
@@ -10,6 +12,7 @@ export type MetadataRow = {
     avatar_stack: AvatarStackView | null;
     enable_truncation?: boolean;
   }[];
+  badges: ObservedArray<BadgeView>
 };
 
 export default class ContentMetadataView extends YTNode {
@@ -25,7 +28,8 @@ export default class ContentMetadataView extends YTNode {
         text: part.text ? Text.fromAttributed(part.text) : null,
         avatar_stack: Parser.parseItem(part.avatarStack, AvatarStackView),
         enable_truncation: data.enableTruncation
-      }))
+      })),
+      badges: Parser.parseArray(row.badges, BadgeView)
     }));
     this.delimiter = data.delimiter;
   }
