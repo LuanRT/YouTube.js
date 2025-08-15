@@ -355,6 +355,7 @@ export { default as PageIntroduction } from './classes/PageIntroduction.js';
 export { default as PanelFooterView } from './classes/PanelFooterView.js';
 export { default as PivotButton } from './classes/PivotButton.js';
 export { default as PlayerAnnotationsExpanded } from './classes/PlayerAnnotationsExpanded.js';
+export { default as PlayerCaptchaView } from './classes/PlayerCaptchaView.js';
 export { default as PlayerCaptionsTracklist } from './classes/PlayerCaptionsTracklist.js';
 export { default as PlayerControlsOverlay } from './classes/PlayerControlsOverlay.js';
 export { default as PlayerErrorMessage } from './classes/PlayerErrorMessage.js';
