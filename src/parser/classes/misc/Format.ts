@@ -240,11 +240,12 @@ export default class Format {
   /**
    * Deciphers the URL using the provided player instance.
    * @param player - An optional instance of the Player class used to decipher the URL.
+   * @param po_token - An optional po_token used in deciphered url.
    * @returns The deciphered URL as a string. If no player is provided, returns the original URL or an empty string.
    */
-  decipher(player?: Player): string {
+  decipher(player?: Player, po_token?: string): string {
     if (!player)
       return this.url || '';
-    return player.decipher(this.url, this.signature_cipher, this.cipher, this.#this_response_nsig_cache);
+    return player.decipher(this.url, this.signature_cipher, this.cipher, this.#this_response_nsig_cache, po_token);
   }
 }
