@@ -97,7 +97,7 @@ export default class Player {
     return player;
   }
 
-  decipher(url?: string, signature_cipher?: string, cipher?: string, this_response_nsig_cache?: Map<string, string>): string {
+  decipher(url?: string, signature_cipher?: string, cipher?: string, this_response_nsig_cache?: Map<string, string>, po_token?: string): string {
     url = url || signature_cipher || cipher;
 
     if (!url)
@@ -153,8 +153,12 @@ export default class Player {
     }
 
     // @NOTE: SABR requests should include the PoToken (not base64d, but as bytes!) in the payload.
-    if (url_components.searchParams.get('sabr') !== '1' && this.po_token)
-      url_components.searchParams.set('pot', this.po_token);
+    if (url_components.searchParams.get('sabr') !== '1'){
+      const pot = po_token || this.po_token;
+      if (pot) {
+        url_components.searchParams.set('pot', pot);
+      }
+    }
 
     const client = url_components.searchParams.get('c');
 
