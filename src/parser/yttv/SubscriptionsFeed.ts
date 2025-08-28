@@ -1,4 +1,4 @@
-import { GridContinuation, Parser } from '../index.js';
+import { GridContinuation, Parser, SectionListContinuation } from '../index.js';
 
 import type { IBrowseResponse } from '../types/index.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
@@ -8,6 +8,7 @@ import { InnertubeError } from '../../utils/Utils.js';
 import Tab from '../classes/Tab.js';
 import TvSurfaceContent from '../classes/tv/TvSurfaceContent.js';
 import Grid from '../classes/Grid.js';
+import SectionList from '../classes/SectionList.js';
 
 export default class SubscriptionsFeed {
   readonly #page: IBrowseResponse;
@@ -20,19 +21,21 @@ export default class SubscriptionsFeed {
     this.#actions = actions;
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
 
-    const grid = this.#page.contents_memo?.getType(Tab)?.[0]?.content?.as(TvSurfaceContent)?.content?.as(Grid);
-    if (grid) {
-      this.contents = grid.contents;
-      this.#continuation = grid.continuation ?? undefined;
+    const surfaceContent = this.#page.contents_memo?.getType(Tab)?.[0]?.content?.as(TvSurfaceContent)?.content;
+    if (surfaceContent?.is(Grid, SectionList)) {
+      this.contents = surfaceContent.contents;
+      this.#continuation = surfaceContent.continuation ?? undefined;
     }
 
     if (this.#page.continuation_contents) {
-      const data = this.#page.continuation_contents?.as(GridContinuation);
-      if (!data.contents) {
-        throw new InnertubeError('No contents found in the response');
+      if (this.#page.continuation_contents?.is(GridContinuation, SectionListContinuation)) {
+        const data = this.#page.continuation_contents?.as(GridContinuation, SectionListContinuation);
+        if (!data.contents) {
+          throw new InnertubeError('No contents found in the response');
+        }
+        this.contents = data.contents;
+        this.#continuation = data.continuation ?? undefined;
       }
-      this.contents = data.contents;
-      this.#continuation = data.continuation ?? undefined;
     }
   }
 
