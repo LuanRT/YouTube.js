@@ -1,6 +1,6 @@
 import { HorizontalListContinuation, type IBrowseResponse, Parser } from '../../parser/index.js';
 import type { Actions, Session } from '../index.js';
-import type { InnerTubeClient } from '../../types/index.js';
+import type { GetVideoInfoOptions, InnerTubeClient } from '../../types/index.js';
 import { generateRandomString, InnertubeError, throwIfMissing } from '../../utils/Utils.js';
 import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
 import HorizontalList from '../../parser/classes/HorizontalList.js';
@@ -22,7 +22,7 @@ export default class TV {
     this.#actions = session.actions;
   }
 
-  async getInfo(target: string | NavigationEndpoint): Promise<VideoInfo> {
+  async getInfo(target: string | NavigationEndpoint, options?: Omit<GetVideoInfoOptions, 'client'>): Promise<VideoInfo> {
     throwIfMissing({ target });
 
     const payload = {
@@ -37,7 +37,7 @@ export default class TV {
     const watch_endpoint = new NavigationEndpoint({ watchEndpoint: payload });
     const watch_next_endpoint = new NavigationEndpoint({ watchNextEndpoint: payload });
 
-    const watch_response = watch_endpoint.call(this.#actions, {
+    const extra_payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
@@ -46,12 +46,22 @@ export default class TV {
           signatureTimestamp: this.#session.player?.sts
         }
       },
-      serviceIntegrityDimensions: {
-        poToken: this.#session.po_token
-      }
-    });
+      client: 'TV'
+    };
 
-    const watch_next_response = await watch_next_endpoint.call(this.#actions);
+    if (options?.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: options.po_token
+      };
+    } else if (this.#session.po_token) {
+      extra_payload.serviceIntegrityDimensions = {
+        poToken: this.#session.po_token
+      };
+    }
+
+    const watch_response = watch_endpoint.call(this.#actions, extra_payload);
+
+    const watch_next_response = await watch_next_endpoint.call(this.#actions, { client: 'TV' });
 
     const response = await Promise.all([ watch_response, watch_next_response ]);
 
