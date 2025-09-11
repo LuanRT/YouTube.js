@@ -30,7 +30,7 @@ export default class MusicResponsiveListItem extends YTNode {
   item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'non_music_track' | 'video' | 'song' | 'endpoint' | 'unknown' | 'podcast_show' | undefined;
   index?: Text;
   thumbnail?: MusicThumbnail | null;
-  badges;
+  badges?: ObservedArray<YTNode>;
   menu?: Menu | null;
   overlay?: MusicItemThumbnailOverlay | null;
 
