@@ -10,6 +10,7 @@ import {
   Platform,
   PlayerError
 } from '../utils/Utils.js';
+import packageInfo from '../../package.json' with { type: 'json' };
 
 const TAG = 'Player';
 
@@ -199,7 +200,7 @@ export default class Player {
       return null;
 
     try {
-      const current_library_version = parseInt(Platform.shim.info.version.split('.')[0]);
+      const current_library_version = parseInt(packageInfo.version.split('.', 1)[0]);
       const player_data = BinarySerializer.deserialize<SerializablePlayer>(new Uint8Array(buffer));
 
       if (player_data.library_version !== current_library_version) {
@@ -224,7 +225,7 @@ export default class Player {
     if (!cache || !this.sig_sc || !this.nsig_sc)
       return;
 
-    const current_library_version = parseInt(Platform.shim.info.version.split('.')[0]);
+    const current_library_version = parseInt(packageInfo.version.split('.', 1)[0]);
 
     const buffer = BinarySerializer.serialize({
       player_id: this.player_id,

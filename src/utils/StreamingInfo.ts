@@ -1,8 +1,9 @@
 import type { StoryboardData } from '../parser/classes/PlayerStoryboardSpec.js';
 import PlayerStoryboardSpec from '../parser/classes/PlayerStoryboardSpec.js';
-import { getStringBetweenStrings, InnertubeError, Platform } from './Utils.js';
+import { getStringBetweenStrings, InnertubeError } from './Utils.js';
 import * as Constants from './Constants.js';
 import * as Log from './Log.js';
+import packageInfo from '../../package.json' with { type: 'json' };
 
 import type Actions from '../core/Actions.js';
 import type Player from '../core/Player.js';
@@ -543,7 +544,7 @@ function getColorInfo(format: Format) {
         anonymisedFormat.cipher = 'REDACTED';
 
         Log.warn(TAG_, `Unknown matrix coefficients "${color_info.matrix_coefficients}". The DASH manifest is still usable without this.\n`
-          + `Please report it at ${Platform.shim.info.bugs_url} so we can add support for it.\n`
+          + `Please report it at ${packageInfo.bugs.url} so we can add support for it.\n`
           + `InnerTube client: ${url.searchParams.get('c')}\nformat:`, anonymisedFormat);
       }
     }
