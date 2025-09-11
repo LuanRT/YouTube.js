@@ -14,7 +14,7 @@ export default class GridShow extends YTNode {
   thumbnail_renderer: ShowCustomThumbnail | null;
   endpoint: NavigationEndpoint;
   long_byline_text: Text;
-  thumbnail_overlays: ObservedArray<ThumbnailOverlayBottomPanel> | null;
+  thumbnail_overlays: ObservedArray<ThumbnailOverlayBottomPanel>;
   author: Author;
 
   constructor(data: RawNode) {

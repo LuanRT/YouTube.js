@@ -20,7 +20,7 @@ export default class TwoColumnWatchNextResults extends YTNode {
     id: string,
     title: string,
     author: Text | Author,
-    contents: YTNode[],
+    contents: ObservedArray<YTNode>,
     current_index: number,
     is_infinite: boolean,
     menu: Menu | null

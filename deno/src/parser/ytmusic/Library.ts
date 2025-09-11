@@ -97,7 +97,7 @@ export default class Library {
     const chip_cloud = this.#page.contents_memo?.getType(ChipCloud)[0];
 
     if (typeof filter === 'string') {
-      target_chip = chip_cloud?.chips.get({ text: filter });
+      target_chip = chip_cloud?.chips.find((chip) => chip.text === filter);
 
       if (!target_chip)
         throw new InnertubeError(`Filter "${filter}" not found`, { available_filters: this.filters });

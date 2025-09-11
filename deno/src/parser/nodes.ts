@@ -224,6 +224,8 @@ export { default as ItemSectionTab } from './classes/ItemSectionTab.ts';
 export { default as ItemSectionTabbedHeader } from './classes/ItemSectionTabbedHeader.ts';
 export { default as LikeButton } from './classes/LikeButton.ts';
 export { default as LikeButtonView } from './classes/LikeButtonView.ts';
+export { default as ListItemView } from './classes/ListItemView.ts';
+export { default as ListView } from './classes/ListView.ts';
 export { default as LiveChat } from './classes/LiveChat.ts';
 export { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBannerToLiveChatCommand.ts';
 export { default as AddChatItemAction } from './classes/livechat/AddChatItemAction.ts';
@@ -457,6 +459,7 @@ export { default as StructuredDescriptionPlaylistLockup } from './classes/Struct
 export { default as SubFeedOption } from './classes/SubFeedOption.ts';
 export { default as SubFeedSelector } from './classes/SubFeedSelector.ts';
 export { default as SubscribeButton } from './classes/SubscribeButton.ts';
+export { default as SubscribeButtonView } from './classes/SubscribeButtonView.ts';
 export { default as SubscriptionNotificationToggleButton } from './classes/SubscriptionNotificationToggleButton.ts';
 export { default as Tab } from './classes/Tab.ts';
 export { default as Tabbed } from './classes/Tabbed.ts';

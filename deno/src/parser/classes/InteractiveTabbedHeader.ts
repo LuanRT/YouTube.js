@@ -14,7 +14,7 @@ export default class InteractiveTabbedHeader extends YTNode {
   title: Text;
   description: Text;
   metadata: Text;
-  badges: MetadataBadge[];
+  badges: ObservedArray<MetadataBadge>;
   box_art: Thumbnail[];
   banner: Thumbnail[];
   buttons: ObservedArray<SubscribeButton | Button>;

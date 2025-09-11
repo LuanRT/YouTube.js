@@ -2,7 +2,6 @@
 import type { ICache } from '../types/Cache.ts';
 import { Platform } from '../utils/Utils.ts';
 import sha1Hash from './polyfills/web-crypto.ts';
-import package_json from '../../package.json' assert { type: 'json' };
 import evaluate from './jsruntime/jinter.ts';
 import * as Log from '../utils/Log.ts';
 
@@ -95,11 +94,6 @@ class Cache implements ICache {
 Platform.load({
   runtime: 'browser',
   server: false,
-  info: {
-    version: package_json.version,
-    bugs_url: package_json.bugs.url,
-    repo_url: package_json.homepage.split('#')[0]
-  },
   Cache: Cache,
   sha1Hash,
   uuidv4() {

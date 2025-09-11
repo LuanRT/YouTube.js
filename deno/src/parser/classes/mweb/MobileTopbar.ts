@@ -1,3 +1,4 @@
+import type { ObservedArray } from '../../helpers.ts';
 import { YTNode } from '../../helpers.ts';
 import Text from '../misc/Text.ts';
 import { Parser, type RawNode } from '../../index.ts';
@@ -6,7 +7,7 @@ export default class MobileTopbar extends YTNode {
   static type = 'MobileTopbar';
 
   public placeholder_text: Text;
-  public buttons;
+  public buttons: ObservedArray<YTNode>;
   public logo_type?: string;
 
   constructor(data: RawNode) {

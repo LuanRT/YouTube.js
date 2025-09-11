@@ -6,7 +6,7 @@ import { YTNode } from '../../helpers.ts';
 export default class AppendContinuationItemsAction extends YTNode {
   static type = 'AppendContinuationItemsAction';
 
-  contents: ObservedArray<YTNode> | null;
+  contents: ObservedArray<YTNode>;
   target: string;
 
   constructor(data: RawNode) {

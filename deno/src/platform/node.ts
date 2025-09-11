@@ -18,14 +18,10 @@ import fs from 'fs/promises';
 import CustomEvent from './polyfills/node-custom-event.ts';
 import { fileURLToPath } from 'url';
 import evaluate from './jsruntime/jinter.ts';
-import { $INLINE_JSON } from 'ts-transformer-inline-file';
 
 const meta_url = import.meta.url;
 const is_cjs = !meta_url;
 const __dirname__ = is_cjs ? __dirname : path.dirname(fileURLToPath(meta_url));
-
-const { homepage, version, bugs } = $INLINE_JSON('../../package.json');
-const repo_url = homepage?.split('#')[0];
 
 class Cache implements ICache {
   #persistent_directory: string;
@@ -100,11 +96,6 @@ class Cache implements ICache {
 
 Platform.load({
   runtime: 'node',
-  info: {
-    version: version,
-    bugs_url: bugs?.url || `${repo_url}/issues`,
-    repo_url
-  },
   server: true,
   Cache: Cache,
   sha1Hash: async (data: string) => {

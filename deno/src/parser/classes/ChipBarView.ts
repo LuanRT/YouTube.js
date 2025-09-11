@@ -5,7 +5,7 @@ import ChipView from './ChipView.ts';
 export default class ChipBarView extends YTNode {
   static type = 'ChipBarView';
 
-  chips: ObservedArray<ChipView> | null;
+  chips: ObservedArray<ChipView>;
 
   constructor(data: RawNode) {
     super();
