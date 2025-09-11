@@ -1,5 +1,25 @@
 # Changelog
 
+## [15.1.0](https://github.com/LuanRT/YouTube.js/compare/v15.0.1...v15.1.0) (2025-09-11)
+
+
+### Features
+
+* **parser:** Add ListView, ListItemView and SubscribeButtonView ([#1025](https://github.com/LuanRT/YouTube.js/issues/1025)) ([68a6af9](https://github.com/LuanRT/YouTube.js/commit/68a6af9b2c2e4e5a31b2d6f5c5add6c238e5113e))
+* **parser:** Parse badges in ContentMetadataView ([#1017](https://github.com/LuanRT/YouTube.js/issues/1017)) ([aa7cf56](https://github.com/LuanRT/YouTube.js/commit/aa7cf561a7cdec017383b9daa6c9401f08995d4c))
+
+
+### Bug Fixes
+
+* **parser:** LockupMetadataView.image can also be an AvatarStackView ([#1026](https://github.com/LuanRT/YouTube.js/issues/1026)) ([bac8965](https://github.com/LuanRT/YouTube.js/commit/bac896501b9525c28b319301151a0dde93d08ec0))
+* **Player:** Fix global variable extraction in the deciphering code ([#1029](https://github.com/LuanRT/YouTube.js/issues/1029)) ([3ea2815](https://github.com/LuanRT/YouTube.js/commit/3ea2815abac03ae7371e45ae2f2758caf9db2266))
+* **types:** Parser.parseArray always returns an ObservedArray ([#1014](https://github.com/LuanRT/YouTube.js/issues/1014)) ([8be677a](https://github.com/LuanRT/YouTube.js/commit/8be677adec6631be557c95adc8f687e5d01b4fdf))
+
+
+### Performance Improvements
+
+* Replace uses of ObservableArray#get with Array#find ([#1013](https://github.com/LuanRT/YouTube.js/issues/1013)) ([95976de](https://github.com/LuanRT/YouTube.js/commit/95976de115587d8f266bc44355440835f3b2b02f))
+
 ## [15.0.1](https://github.com/LuanRT/YouTube.js/compare/v15.0.0...v15.0.1) (2025-07-22)
 
 
