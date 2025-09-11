@@ -286,7 +286,7 @@ export default class Player {
     if (!functions || !var_name)
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
 
-    return `${global_variable?.result || ''} function descramble_sig(${var_name}) { let ${obj_name}={${functions}}; ${match[2]} } descramble_sig(sig);`;
+    return `${global_variable?.result ? `var ${global_variable.result};` : ''} function descramble_sig(${var_name}) { let ${obj_name}={${functions}}; ${match[2]} } descramble_sig(sig);`;
   }
 
   static extractNSigSourceCode(data: string, ast?: ReturnType<typeof Jinter.parseScript>, global_variable?: ASTLookupResult): string | undefined {
@@ -303,7 +303,7 @@ export default class Player {
         nsig_function = findFunction(data, { includes: '.reverse().forEach(function', ast });
 
       if (nsig_function)
-        return `${global_variable.result} var ${nsig_function.result} ${nsig_function.name}(nsig);`;
+        return `var ${global_variable.result}; var ${nsig_function.result} ${nsig_function.name}(nsig);`;
     }
 
     // This is the suffix of the error tag.
