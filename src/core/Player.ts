@@ -19,7 +19,7 @@ interface SerializablePlayer {
   sts: number;
   sig_sc?: string;
   nsig_sc?: string;
-  library_version: number;
+  library_version: string;
 }
 
 /**
@@ -200,10 +200,9 @@ export default class Player {
       return null;
 
     try {
-      const current_library_version = parseInt(packageInfo.version.split('.', 1)[0]);
       const player_data = BinarySerializer.deserialize<SerializablePlayer>(new Uint8Array(buffer));
 
-      if (player_data.library_version !== current_library_version) {
+      if (player_data.library_version !== packageInfo.version) {
         Log.warn(TAG, `Cached player data is from a different library version (${player_data.library_version}). Ignoring it.`);
         return null;
       }
@@ -225,14 +224,12 @@ export default class Player {
     if (!cache || !this.sig_sc || !this.nsig_sc)
       return;
 
-    const current_library_version = parseInt(packageInfo.version.split('.', 1)[0]);
-
     const buffer = BinarySerializer.serialize({
       player_id: this.player_id,
       sts: this.sts,
       sig_sc: this.sig_sc,
       nsig_sc: this.nsig_sc,
-      library_version: current_library_version
+      library_version: packageInfo.version
     });
 
     await cache.set(this.player_id, buffer);
