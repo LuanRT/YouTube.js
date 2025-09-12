@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.1](https://github.com/LuanRT/YouTube.js/compare/v15.1.0...v15.1.1) (2025-09-12)
+
+
+### Bug Fixes
+
+* **Player:** Store the full library version in cache entries ([#1032](https://github.com/LuanRT/YouTube.js/issues/1032)) ([a2c3774](https://github.com/LuanRT/YouTube.js/commit/a2c3774e9a0212d7aab7af2baee1f48ad3319a08))
+
 ## [15.1.0](https://github.com/LuanRT/YouTube.js/compare/v15.0.1...v15.1.0) (2025-09-11)
 
 
