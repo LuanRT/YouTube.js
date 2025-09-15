@@ -5,6 +5,7 @@ import Menu from './menus/Menu.js';
 import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
+import MetadataBadge from './MetadataBadge.js';
 
 export default class GridVideo extends YTNode {
   static type = 'GridVideo';
@@ -21,6 +22,7 @@ export default class GridVideo extends YTNode {
   public short_view_count: Text;
   public endpoint: NavigationEndpoint;
   public menu: Menu | null;
+  public badges: ObservedArray<MetadataBadge>;
   public buttons?: ObservedArray<YTNode>;
   public upcoming?: Date;
   public upcoming_text?: Text;
@@ -42,6 +44,7 @@ export default class GridVideo extends YTNode {
     this.short_view_count = new Text(data.shortViewCountText);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.menu = Parser.parseItem(data.menu, Menu);
+    this.badges = Parser.parseArray(data.badges, MetadataBadge);
 
     if (Reflect.has(data, 'buttons')) {
       this.buttons = Parser.parseArray(data.buttons);
@@ -63,5 +66,9 @@ export default class GridVideo extends YTNode {
 
   get is_upcoming(): boolean {
     return Boolean(this.upcoming && this.upcoming > new Date());
+  }
+
+  get is_members_only(): boolean {
+    return this.badges.some(badge => badge.style === 'BADGE_STYLE_TYPE_MEMBERS_ONLY');
   }
 }

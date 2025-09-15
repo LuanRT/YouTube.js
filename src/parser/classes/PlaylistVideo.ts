@@ -6,6 +6,7 @@ import Menu from './menus/Menu.js';
 import Author from './misc/Author.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
+import MetadataBadge from './MetadataBadge.js';
 
 export default class PlaylistVideo extends YTNode {
   static type = 'PlaylistVideo';
@@ -22,6 +23,7 @@ export default class PlaylistVideo extends YTNode {
   menu: Menu | null;
   upcoming?: Date;
   video_info: Text;
+  badges: ObservedArray<MetadataBadge>;
   accessibility_label?: string;
   style?: string;
 
@@ -44,6 +46,7 @@ export default class PlaylistVideo extends YTNode {
     this.menu = Parser.parseItem(data.menu, Menu);
     this.video_info = new Text(data.videoInfo);
     this.accessibility_label = data.title.accessibility.accessibilityData.label;
+    this.badges = Parser.parseArray(data.badges, MetadataBadge);
 
     if (Reflect.has(data, 'style')) {
       this.style = data.style;
@@ -66,5 +69,9 @@ export default class PlaylistVideo extends YTNode {
 
   get is_upcoming(): boolean {
     return this.thumbnail_overlays.firstOfType(ThumbnailOverlayTimeStatus)?.style === 'UPCOMING';
+  }
+
+  get is_members_only(): boolean {
+    return this.badges.some(badge => badge.style === 'BADGE_STYLE_TYPE_MEMBERS_ONLY');
   }
 }

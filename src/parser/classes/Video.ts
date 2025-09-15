@@ -141,6 +141,10 @@ export default class Video extends YTNode {
     return this.badges.some((badge) => badge.label === '4K');
   }
 
+  get is_members_only(): boolean {
+    return this.badges.some(badge => badge.style === 'BADGE_STYLE_TYPE_MEMBERS_ONLY');
+  }
+
   get has_captions(): boolean {
     return this.badges.some((badge) => badge.label === 'CC');
   }
