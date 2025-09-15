@@ -72,6 +72,6 @@ export default class PlaylistVideo extends YTNode {
   }
 
   get is_members_only(): boolean {
-    return this.badges.some(badge => badge.style === 'BADGE_STYLE_TYPE_MEMBERS_ONLY');
+    return this.badges.some((badge) => badge.style === 'BADGE_STYLE_TYPE_MEMBERS_ONLY');
   }
 }
