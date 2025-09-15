@@ -26,7 +26,7 @@ glob.sync('../src/parser/classes/**/*.{js,ts}', { cwd: __dirname })
 fs.writeFileSync(
   path.resolve(__dirname, '../src/parser/nodes.ts'),
   `// This file was auto generated, do not edit.
-// See ./scripts/build-parser-map.js
+// See ./dev-scripts/gen-parser-map.mjs
 
 ${import_list.join('\n')}
 `
