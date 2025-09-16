@@ -1,11 +1,10 @@
-import { type ObservedArray, YTNode } from '../helpers.js';
+import { YTNode } from '../helpers.js';
 import { Parser } from '../index.js';
 import type { RawNode } from '../types/index.js';
 import BadgeView from './BadgeView.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
-import MetadataBadge from './MetadataBadge.js';
 
 export default class ShortsLockupView extends YTNode {
   static type = 'ShortsLockupView';
@@ -22,7 +21,6 @@ export default class ShortsLockupView extends YTNode {
     secondary_text?: Text;
   };
   inline_player_data?: NavigationEndpoint;
-  badges: ObservedArray<MetadataBadge>;
   badge?: BadgeView | null;
 
   constructor(data: RawNode) {
@@ -35,7 +33,6 @@ export default class ShortsLockupView extends YTNode {
     this.menu_on_tap = new NavigationEndpoint(data.menuOnTap);
     this.index_in_collection = data.indexInCollection;
     this.menu_on_tap_a11y_label = data.menuOnTapA11yLabel;
-    this.badges = Parser.parseArray(data.badges, MetadataBadge);
 
     this.overlay_metadata = {
       primary_text: data.overlayMetadata.primaryText ? Text.fromAttributed(data.overlayMetadata.primaryText) : undefined,
@@ -49,9 +46,5 @@ export default class ShortsLockupView extends YTNode {
     if (data.badge) {
       this.badge = Parser.parseItem(data.badge, BadgeView);
     }
-  }
-
-  get is_members_only(): boolean {
-    return this.badges.some((badge) => badge.style === 'BADGE_STYLE_TYPE_MEMBERS_ONLY');
   }
 }
