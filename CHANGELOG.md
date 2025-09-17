@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.2.0](https://github.com/LuanRT/YouTube.js/compare/v15.1.1...v15.2.0) (2025-09-17)
+
+
+### Features
+
+* **protos:** Add playlistTitle field to NextParams ([#1040](https://github.com/LuanRT/YouTube.js/issues/1040)) ([ee9c184](https://github.com/LuanRT/YouTube.js/commit/ee9c184eeb02d1074e06c81897a6fd97078da18b))
+
 ## [15.1.1](https://github.com/LuanRT/YouTube.js/compare/v15.1.0...v15.1.1) (2025-09-12)
 
 
