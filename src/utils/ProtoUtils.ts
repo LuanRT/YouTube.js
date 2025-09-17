@@ -48,7 +48,7 @@ export function encodeCommentActionParams(type: number, args: CommentActionParam
   return encodeURIComponent(u8ToBase64(writer.finish()));
 }
 
-export function encodeNextParams(video_ids: string[]): string {
-  const writer = NextParams.encode({ videoId: video_ids });
+export function encodeNextParams(video_ids: string[], playlist_title?: string): string {
+  const writer = NextParams.encode({ videoId: video_ids, playlistTitle: playlist_title });
   return encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
 }
