@@ -228,6 +228,7 @@ message ShortsParam {
 
 message NextParams {
   repeated string video_id = 5;
+  optional string playlist_title = 6;
 }
 
 message CommunityPostParams {
