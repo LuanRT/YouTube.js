@@ -52,6 +52,13 @@ import {
   SearchFilter_SortBy
 } from '../protos/generated/misc/params.js';
 
+export enum TrendingPage {
+  Gaming = 0,
+  Movies = 1,
+  Music = 2,
+  Livestreams = 3,
+}
+
 /**
  * Provides access to various services and modules in the YouTube API.
  *
@@ -364,8 +371,27 @@ export default class Innertube {
     return new History(this.actions, response);
   }
 
-  async getTrending(): Promise<TabbedFeed<IBrowseResponse>> {
-    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEtrending' } });
+  async getTrending(trendingPage?: TrendingPage): Promise<TabbedFeed<IBrowseResponse>> {
+    let params = null;
+    let browseId = 'FEtrending';
+
+    switch (trendingPage) {
+      case TrendingPage.Gaming:
+        params = '4gIcGhpnYW1pbmdfY29ycHVzX21vc3RfcG9wdWxhcg%3D%3D';
+        break;
+      case TrendingPage.Movies:
+        params = '4gIKGgh0cmFpbGVycw%3D%3D';
+        break;
+      case TrendingPage.Music:
+        params = '4gINGgt5dG1hX2NoYXJ0cw%3D%3D';
+        break;
+      case TrendingPage.Livestreams:
+        params = 'EgdsaXZldGFikgEDCKEK';
+        browseId = 'UC4R8DWoMoI7CAwX8_LjQHig';
+        break;
+    }
+
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: browseId, params: params } });
     const response = await browse_endpoint.call(this.#session.actions);
     return new TabbedFeed(this.actions, response);
   }
