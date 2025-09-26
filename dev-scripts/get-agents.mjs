@@ -1,4 +1,3 @@
-import { fetch } from 'undici';
 import { gunzip } from 'zlib';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';

@@ -1,17 +1,8 @@
 // Node.js Platform Support
 import { ReadableStream } from 'stream/web';
-import {
-  fetch as defaultFetch,
-  Request,
-  Response,
-  Headers,
-  FormData,
-  File
-} from 'undici';
 import type { ICache } from '../types/Cache.js';
 import { Platform } from '../utils/Utils.js';
 import crypto from 'crypto';
-import type { FetchFunction } from '../types/PlatformShim.js';
 import path from 'path';
 import os from 'os';
 import fs from 'fs/promises';
@@ -105,12 +96,12 @@ Platform.load({
     return crypto.randomUUID();
   },
   eval: evaluate,
-  fetch: defaultFetch as unknown as FetchFunction,
-  Request: Request as unknown as typeof globalThis.Request,
-  Response: Response as unknown as typeof globalThis.Response,
-  Headers: Headers as unknown as typeof globalThis.Headers,
-  FormData: FormData as unknown as typeof globalThis.FormData,
-  File: File as unknown as typeof globalThis.File,
+  fetch: globalThis.fetch,
+  Request: globalThis.Request,
+  Response: globalThis.Response,
+  Headers: globalThis.Headers,
+  FormData: globalThis.FormData,
+  File: globalThis.File,
   ReadableStream: ReadableStream as unknown as typeof globalThis.ReadableStream,
   CustomEvent: CustomEvent as unknown as typeof globalThis.CustomEvent
 });
