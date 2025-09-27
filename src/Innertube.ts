@@ -463,7 +463,7 @@ export default class Innertube {
     const info = await this.getBasicInfo(video_id, options);
 
     const format = info.chooseFormat(options);
-    format.url = format.decipher(this.#session.player);
+    format.url = await format.decipher(this.#session.player);
 
     return format;
   }
