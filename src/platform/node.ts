@@ -1,31 +1,18 @@
 // Node.js Platform Support
 import { ReadableStream } from 'stream/web';
-import {
-  fetch as defaultFetch,
-  Request,
-  Response,
-  Headers,
-  FormData,
-  File
-} from 'undici';
 import type { ICache } from '../types/Cache.js';
 import { Platform } from '../utils/Utils.js';
 import crypto from 'crypto';
-import type { FetchFunction } from '../types/PlatformShim.js';
 import path from 'path';
 import os from 'os';
 import fs from 'fs/promises';
 import CustomEvent from './polyfills/node-custom-event.js';
 import { fileURLToPath } from 'url';
 import evaluate from './jsruntime/jinter.js';
-import { $INLINE_JSON } from 'ts-transformer-inline-file';
 
 const meta_url = import.meta.url;
 const is_cjs = !meta_url;
 const __dirname__ = is_cjs ? __dirname : path.dirname(fileURLToPath(meta_url));
-
-const { homepage, version, bugs } = $INLINE_JSON('../../package.json');
-const repo_url = homepage?.split('#')[0];
 
 class Cache implements ICache {
   #persistent_directory: string;
@@ -100,11 +87,6 @@ class Cache implements ICache {
 
 Platform.load({
   runtime: 'node',
-  info: {
-    version: version,
-    bugs_url: bugs?.url || `${repo_url}/issues`,
-    repo_url
-  },
   server: true,
   Cache: Cache,
   sha1Hash: async (data: string) => {
@@ -114,12 +96,12 @@ Platform.load({
     return crypto.randomUUID();
   },
   eval: evaluate,
-  fetch: defaultFetch as unknown as FetchFunction,
-  Request: Request as unknown as typeof globalThis.Request,
-  Response: Response as unknown as typeof globalThis.Response,
-  Headers: Headers as unknown as typeof globalThis.Headers,
-  FormData: FormData as unknown as typeof globalThis.FormData,
-  File: File as unknown as typeof globalThis.File,
+  fetch: globalThis.fetch,
+  Request: globalThis.Request,
+  Response: globalThis.Response,
+  Headers: globalThis.Headers,
+  FormData: globalThis.FormData,
+  File: globalThis.File,
   ReadableStream: ReadableStream as unknown as typeof globalThis.ReadableStream,
   CustomEvent: CustomEvent as unknown as typeof globalThis.CustomEvent
 });

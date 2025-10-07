@@ -160,7 +160,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
    * Finds shelf by title.
    */
   getShelf(title: string) {
-    return this.shelves.get({ title });
+    return this.shelves.find((shelf) => shelf.title.toString() === title);
   }
 
   /**

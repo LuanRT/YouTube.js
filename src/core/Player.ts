@@ -10,6 +10,7 @@ import {
   Platform,
   PlayerError
 } from '../utils/Utils.js';
+import packageInfo from '../../package.json' with { type: 'json' };
 
 const TAG = 'Player';
 
@@ -18,7 +19,7 @@ interface SerializablePlayer {
   sts: number;
   sig_sc?: string;
   nsig_sc?: string;
-  library_version: number;
+  library_version: string;
 }
 
 /**
@@ -199,10 +200,9 @@ export default class Player {
       return null;
 
     try {
-      const current_library_version = parseInt(Platform.shim.info.version.split('.')[0]);
       const player_data = BinarySerializer.deserialize<SerializablePlayer>(new Uint8Array(buffer));
 
-      if (player_data.library_version !== current_library_version) {
+      if (player_data.library_version !== packageInfo.version) {
         Log.warn(TAG, `Cached player data is from a different library version (${player_data.library_version}). Ignoring it.`);
         return null;
       }
@@ -224,14 +224,12 @@ export default class Player {
     if (!cache || !this.sig_sc || !this.nsig_sc)
       return;
 
-    const current_library_version = parseInt(Platform.shim.info.version.split('.')[0]);
-
     const buffer = BinarySerializer.serialize({
       player_id: this.player_id,
       sts: this.sts,
       sig_sc: this.sig_sc,
       nsig_sc: this.nsig_sc,
-      library_version: current_library_version
+      library_version: packageInfo.version
     });
 
     await cache.set(this.player_id, buffer);
@@ -286,7 +284,7 @@ export default class Player {
     if (!functions || !var_name)
       Log.warn(TAG, 'Failed to extract signature decipher algorithm.');
 
-    return `${global_variable?.result || ''} function descramble_sig(${var_name}) { let ${obj_name}={${functions}}; ${match[2]} } descramble_sig(sig);`;
+    return `${global_variable?.result ? `var ${global_variable.result};` : ''} function descramble_sig(${var_name}) { let ${obj_name}={${functions}}; ${match[2]} } descramble_sig(sig);`;
   }
 
   static extractNSigSourceCode(data: string, ast?: ReturnType<typeof Jinter.parseScript>, global_variable?: ASTLookupResult): string | undefined {
@@ -303,7 +301,7 @@ export default class Player {
         nsig_function = findFunction(data, { includes: '.reverse().forEach(function', ast });
 
       if (nsig_function)
-        return `${global_variable.result} var ${nsig_function.result} ${nsig_function.name}(nsig);`;
+        return `var ${global_variable.result}; var ${nsig_function.result} ${nsig_function.name}(nsig);`;
     }
 
     // This is the suffix of the error tag.

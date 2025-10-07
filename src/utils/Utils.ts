@@ -9,6 +9,7 @@ import { Memo } from '../parser/helpers.js';
 import { Text } from '../parser/misc.js';
 import * as Log from './Log.js';
 import userAgents from './user-agents.js';
+import packageInfo from '../../package.json' with { type: 'json' };
 
 const TAG_ = 'Utils';
 
@@ -40,7 +41,7 @@ export class InnertubeError extends Error {
     }
 
     this.date = new Date();
-    this.version = Platform.shim.info.version;
+    this.version = packageInfo.version;
   }
 }
 
@@ -353,7 +354,7 @@ export function findFunction(source: string, args: ASTLookupArgs): ASTLookupResu
 }
 
 /**
- * Searches for a variable declaration in the given code based on specified criteria.
+ * Searches for a variable declarator in the given code based on specified criteria.
  *
  * @example
  * ```ts
@@ -381,23 +382,21 @@ export function findVariable(code: string, options: ASTLookupArgs): ASTLookupRes
   function walk(node: Node): void {
     if (found) return;
 
-    if (node.type === 'VariableDeclaration') {
+    if (node.type === 'VariableDeclarator') {
       const [ start, end ] = node.range!;
       const node_source = code.slice(start, end);
 
-      for (const declarator of node.declarations) {
-        if (declarator.id.type === 'Identifier') {
-          const var_name = declarator.id.name;
-          if (options.name && var_name === options.name) {
-            found = { start, end, name: var_name, node, result: node_source };
-            return;
-          }
+      if (node.id.type === 'Identifier') {
+        const var_name = node.id.name;
+        if (options.name && var_name === options.name) {
+          found = { start, end, name: var_name, node, result: node_source };
+          return;
         }
       }
       if (
         (options.includes && node_source.includes(options.includes)) ||
         (options.regexp && options.regexp.test(node_source))) {
-        found = { start, end, name: (node.declarations?.[0]?.id as any)?.name, node, result: node_source };
+        found = { start, end, name: (node?.id as any)?.name, node, result: node_source };
         return;
       }
     }

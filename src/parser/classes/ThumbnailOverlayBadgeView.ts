@@ -1,3 +1,4 @@
+import type { ObservedArray } from '../helpers.js';
 import { YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import ThumbnailBadgeView from './ThumbnailBadgeView.js';
@@ -5,7 +6,7 @@ import ThumbnailBadgeView from './ThumbnailBadgeView.js';
 export default class ThumbnailOverlayBadgeView extends YTNode {
   static type = 'ThumbnailOverlayBadgeView';
 
-  public badges: ThumbnailBadgeView[];
+  public badges: ObservedArray<ThumbnailBadgeView>;
   public position: string;
 
   constructor(data: RawNode) {
