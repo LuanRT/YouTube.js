@@ -37,6 +37,7 @@ import type {
   SearchFilters
 } from './types/index.js';
 import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
+import { YTNode } from './parser/helpers.js';
 
 import {
   CommunityPostCommentsParam,
@@ -638,3 +639,11 @@ export default class Innertube {
     return this.#session;
   }
 }
+
+export const Patch = {
+  HomeFeed,
+  History,
+  YTNode
+}
+
+export type P_YTNode = YTNode;
