@@ -12,7 +12,7 @@ interface PlatformShim {
     Cache: ICacheConstructor;
     sha1Hash(data: string): Promise<string>;
     uuidv4(): string;
-    eval(code: string, env: Record<string, VMPrimative>): unknown;
+    eval(code: string, env: Record<string, VMPrimative>): Promise<unknown>;
     fetch: FetchFunction;
     Request: typeof Request;
     Response: typeof Response;

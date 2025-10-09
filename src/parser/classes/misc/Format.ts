@@ -242,7 +242,7 @@ export default class Format {
    * @param player - An optional instance of the Player class used to decipher the URL.
    * @returns The deciphered URL as a string. If no player is provided, returns the original URL or an empty string.
    */
-  decipher(player?: Player): string {
+  async decipher(player?: Player): Promise<string> {
     if (!player)
       return this.url || '';
     return player.decipher(this.url, this.signature_cipher, this.cipher, this.#this_response_nsig_cache);
