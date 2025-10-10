@@ -6,7 +6,7 @@ export type SideEffectMode = 'strict' | 'loose';
 
 export interface SideEffectPolicyOptions {
   /**
-   * Determines how strivtly side-effect detection should behave.
+   * Determines how strictly side-effect detection should behave.
    * Use `"loose"` to allow benign computed expressions.
    */
   mode?: SideEffectMode;
