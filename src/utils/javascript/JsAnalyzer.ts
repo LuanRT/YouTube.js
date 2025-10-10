@@ -6,7 +6,7 @@ export interface ExtractionConfig {
   /**
    * Predicate that determines whether the current node should be considered a match.
    */
-  match: (node: ESTree.Node, parent: ESTree.Node | null, ancestors: ESTree.Node[]) => boolean | ESTree.Node;
+  match: (node: ESTree.Node) => boolean | ESTree.Node;
   /**
    * When `false`, dependency resolution is not enforced and extractions are marked as ready immediately
    * when `stopWhenReady` is true.
@@ -103,7 +103,7 @@ export class JsAnalyzer {
    * Walks the AST to collect declarations and resolve initial targets.
    */
   private analyzeAst(): void {
-    let iifeBody: ESTree.Node | null = null;
+    let iifeBody: ESTree.BlockStatement | undefined;
 
     walkAst(this.programAst, (currentNode, parentNode, ancestors) => {
       if (
@@ -122,27 +122,25 @@ export class JsAnalyzer {
 
         if (functionExpression.body?.type === 'BlockStatement') {
           iifeBody = functionExpression.body;
+          return WALK_STOP;
         }
-
-        // Return cause there's nothing else worth checking at this level.
-        return;
       }
+    });
 
-      // Program > ExpressionStatement > CallExpression > FunctionExpression > BlockStatement
-      if (!iifeBody || ancestors.length !== 5 || ancestors[4] !== iifeBody) return;
+    if (!iifeBody) return;
 
-      // Now let's look for declarations and assignments within the IIFE body.
+    for (const currentNode of iifeBody.body) {
       switch (currentNode.type) {
         case 'ExpressionStatement': {
           const assignment = currentNode.expression;
-          if (assignment.type !== 'AssignmentExpression') return;
+          if (assignment.type !== 'AssignmentExpression') continue;
 
           const left = assignment.left;
           const right = assignment.right;
 
           if (left.type === 'Identifier') {
             const existingVariable = this.declaredVariables.get(left.name);
-            if (!existingVariable) return;
+            if (!existingVariable) continue;
 
             existingVariable.node.init = right;
 
@@ -150,10 +148,10 @@ export class JsAnalyzer {
               existingVariable.dependencies = this.findDependencies(assignment.right, left.name);
             }
 
-            if (this.onMatch(existingVariable.node, parentNode, ancestors, existingVariable)) return WALK_STOP;
+            if (this.onMatch(existingVariable.node, existingVariable)) break;
           } else if (assignment.left.type === 'MemberExpression') {
             const memberName = memberToString(assignment.left, this.source);
-            if (!memberName || this.declaredVariables.has(memberName)) return;
+            if (!memberName || this.declaredVariables.has(memberName)) continue;
 
             const metadata: VariableMetadata = {
               name: memberName,
@@ -174,7 +172,7 @@ export class JsAnalyzer {
 
             this.declaredVariables.set(memberName, metadata);
 
-            if (this.onMatch(currentNode, parentNode, ancestors, metadata)) return WALK_STOP;
+            if (this.onMatch(currentNode, metadata)) break;
           }
           break;
         }
@@ -205,17 +203,17 @@ export class JsAnalyzer {
 
             this.declaredVariables.set(metadata.name, metadata);
 
-            if (this.onMatch(declaration, currentNode, ancestors, metadata)) return WALK_STOP;
+            if (this.onMatch(declaration, metadata)) break;
           }
           break;
         }
       }
-    });
+    }
   }
 
   /**
- * Quick check if node type requires dependency analysis
- */
+   * Quick check if node type requires dependency analysis
+   */
   private needsDependencyAnalysis(node: ESTree.Node | null): boolean {
     if (!node) return false;
     switch (node.type) {
@@ -238,13 +236,11 @@ export class JsAnalyzer {
   }
 
   /**
-    * Records a match, attaches metadata, and updates readiness state.
-    * @returns True when traversal can stop as a result of the match.
-    */
+   * Records a match, attaches metadata, and updates readiness state.
+   * @returns True when traversal can stop as a result of the match.
+   */
   private onMatch(
     node: ESTree.Node,
-    parentNode: ESTree.Node | null,
-    ancestors: ESTree.Node[],
     metadata?: VariableMetadata
   ): boolean {
     if (!this.hasExtractions) return false;
@@ -255,7 +251,7 @@ export class JsAnalyzer {
     for (const state of this.extractionStates) {
       if (!state.node) {
         if (node.type === 'VariableDeclarator' && !node.init) continue;
-        result = state.config.match(node, parentNode, ancestors);
+        result = state.config.match(node);
         if (!result) continue;
         state.node = node;
       } else if (state.node !== node) {
@@ -333,10 +329,10 @@ export class JsAnalyzer {
   }
 
   /**
-  * Checks if every dependency resolves to a declaration or built-in symbol.
-  * @param dependencies - Dependencies to validate.
-  * @param seen - Tracks recursively visited identifiers.
-  */
+   * Checks if every dependency resolves to a declaration or built-in symbol.
+   * @param dependencies - Dependencies to validate.
+   * @param seen - Tracks recursively visited identifiers.
+   */
   private areDependenciesResolved(
     dependencies: Set<string>,
     seen: Set<string> = new Set()
