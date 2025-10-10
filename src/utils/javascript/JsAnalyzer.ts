@@ -148,7 +148,7 @@ export class JsAnalyzer {
               existingVariable.dependencies = this.findDependencies(assignment.right, left.name);
             }
 
-            if (this.onMatch(existingVariable.node, existingVariable)) break;
+            if (this.onMatch(existingVariable.node, existingVariable)) return;
           } else if (assignment.left.type === 'MemberExpression') {
             const memberName = memberToString(assignment.left, this.source);
             if (!memberName || this.declaredVariables.has(memberName)) continue;
@@ -172,7 +172,7 @@ export class JsAnalyzer {
 
             this.declaredVariables.set(memberName, metadata);
 
-            if (this.onMatch(currentNode, metadata)) break;
+            if (this.onMatch(currentNode, metadata)) return;
           }
           break;
         }
@@ -203,7 +203,7 @@ export class JsAnalyzer {
 
             this.declaredVariables.set(metadata.name, metadata);
 
-            if (this.onMatch(declaration, metadata)) break;
+            if (this.onMatch(declaration, metadata)) return;
           }
           break;
         }
