@@ -2,7 +2,7 @@
 import type { ICache } from '../types/Cache.js';
 import { Platform } from '../utils/Utils.js';
 import sha1Hash from './polyfills/web-crypto.js';
-import evaluate from './jsruntime/jinter.js';
+import evaluate from './jsruntime/default.js';
 
 class Cache implements ICache {
   #persistent_directory: string;
