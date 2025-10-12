@@ -13,7 +13,7 @@ when `stopWhenReady` is true.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L14)
+[src/utils/javascript/JsAnalyzer.ts:14](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L14)
 
 ***
 
@@ -25,7 +25,7 @@ Name for easier identification of extractions.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:23](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L23)
+[src/utils/javascript/JsAnalyzer.ts:23](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L23)
 
 ***
 
@@ -45,7 +45,7 @@ Predicate that determines whether the current node should be considered a match.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:9](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L9)
+[src/utils/javascript/JsAnalyzer.ts:9](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L9)
 
 ***
 
@@ -58,4 +58,4 @@ Only useful for small functions/vars without too many dependencies.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L19)
+[src/utils/javascript/JsAnalyzer.ts:19](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L19)

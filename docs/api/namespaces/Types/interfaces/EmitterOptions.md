@@ -14,7 +14,7 @@ Use `{ mode: 'loose' }` to allow a broader set of expressions.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:26](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L26)
+[src/utils/javascript/JsExtractor.ts:26](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L26)
 
 ***
 
@@ -26,7 +26,7 @@ When true, also export raw values of matched nodes.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:35](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L35)
+[src/utils/javascript/JsExtractor.ts:35](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L35)
 
 ***
 
@@ -39,7 +39,7 @@ encountered, even if it originally had an initializer.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:31](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L31)
+[src/utils/javascript/JsExtractor.ts:31](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L31)
 
 ***
 
@@ -52,7 +52,7 @@ If not specified, there is no limit on the depth.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:20](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L20)
+[src/utils/javascript/JsExtractor.ts:20](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L20)
 
 ***
 
@@ -64,4 +64,4 @@ Array of names to skip emitting code/deps for, but still export the raw value.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:39](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L39)
+[src/utils/javascript/JsExtractor.ts:39](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L39)

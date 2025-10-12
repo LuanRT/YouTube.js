@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:16](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L16)
+[src/parser/classes/misc/CommandContext.ts:16](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L16)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:13](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L13)
+[src/parser/classes/misc/CommandContext.ts:13](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L13)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:5](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L5)
+[src/parser/classes/misc/CommandContext.ts:5](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L5)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L6)
+[src/parser/classes/misc/CommandContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L6)
 
 ***
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L14)
+[src/parser/classes/misc/CommandContext.ts:14](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L14)
 
 ***
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L9)
+[src/parser/classes/misc/CommandContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L9)
 
 ***
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:10](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L10)
+[src/parser/classes/misc/CommandContext.ts:10](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L10)
 
 ***
 
@@ -88,7 +88,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L7)
+[src/parser/classes/misc/CommandContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L7)
 
 ***
 
@@ -98,7 +98,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L8)
+[src/parser/classes/misc/CommandContext.ts:8](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L8)
 
 ***
 
@@ -108,7 +108,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:11](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L11)
+[src/parser/classes/misc/CommandContext.ts:11](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L11)
 
 ***
 
@@ -118,4 +118,4 @@
 
 #### Defined in
 
-[src/parser/classes/misc/CommandContext.ts:12](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/CommandContext.ts#L12)
+[src/parser/classes/misc/CommandContext.ts:12](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/CommandContext.ts#L12)

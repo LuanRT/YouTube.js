@@ -20,7 +20,7 @@ Represents text content that may include formatting, emojis, and navigation endp
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:60](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L60)
+[src/parser/classes/misc/Text.ts:60](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L60)
 
 ## Properties
 
@@ -32,7 +32,7 @@ Accessibility data associated with this text.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:53](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L53)
+[src/parser/classes/misc/Text.ts:53](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L53)
 
 ***
 
@@ -44,7 +44,7 @@ Navigation endpoint associated with this text.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:48](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L48)
+[src/parser/classes/misc/Text.ts:48](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L48)
 
 ***
 
@@ -56,7 +56,7 @@ Indicates if the text is right-to-left.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:58](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L58)
+[src/parser/classes/misc/Text.ts:58](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L58)
 
 ***
 
@@ -68,7 +68,7 @@ Individual text segments with their formatting.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:43](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L43)
+[src/parser/classes/misc/Text.ts:43](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L43)
 
 ***
 
@@ -80,7 +80,7 @@ The plain text content.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:38](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L38)
+[src/parser/classes/misc/Text.ts:38](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L38)
 
 ## Methods
 
@@ -98,7 +98,7 @@ Whether the text is empty.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:262](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L262)
+[src/parser/classes/misc/Text.ts:262](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L262)
 
 ***
 
@@ -116,7 +116,7 @@ The HTML.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:254](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L254)
+[src/parser/classes/misc/Text.ts:254](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L254)
 
 ***
 
@@ -134,7 +134,7 @@ The text.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:270](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L270)
+[src/parser/classes/misc/Text.ts:270](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L270)
 
 ***
 
@@ -152,4 +152,4 @@ The text.
 
 #### Defined in
 
-[src/parser/classes/misc/Text.ts:103](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Text.ts#L103)
+[src/parser/classes/misc/Text.ts:103](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Text.ts#L103)

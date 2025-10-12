@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:13](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/managers/AccountManager.ts#L13)
+[src/core/managers/AccountManager.ts:13](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/managers/AccountManager.ts#L13)
 
 ## Methods
 
@@ -40,7 +40,7 @@ Retrieves the list of channels belonging to the signed-in account. Only useful w
 
 ##### Defined in
 
-[src/core/managers/AccountManager.ts:20](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/managers/AccountManager.ts#L20)
+[src/core/managers/AccountManager.ts:20](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/managers/AccountManager.ts#L20)
 
 #### getInfo(all)
 
@@ -58,7 +58,7 @@ Retrieves the active channel info for the signed-in account. Throws error if `on
 
 ##### Defined in
 
-[src/core/managers/AccountManager.ts:24](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/managers/AccountManager.ts#L24)
+[src/core/managers/AccountManager.ts:24](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/managers/AccountManager.ts#L24)
 
 ***
 
@@ -74,4 +74,4 @@ Gets YouTube settings.
 
 #### Defined in
 
-[src/core/managers/AccountManager.ts:50](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/managers/AccountManager.ts#L50)
+[src/core/managers/AccountManager.ts:50](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/managers/AccountManager.ts#L50)

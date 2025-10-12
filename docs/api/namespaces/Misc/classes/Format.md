@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:87](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L87)
+[src/parser/classes/misc/Format.ts:87](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L87)
 
 ## Properties
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:60](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L60)
+[src/parser/classes/misc/Format.ts:60](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L60)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:62](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L62)
+[src/parser/classes/misc/Format.ts:62](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L62)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:59](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L59)
+[src/parser/classes/misc/Format.ts:59](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L59)
 
 ***
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:61](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L61)
+[src/parser/classes/misc/Format.ts:61](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L61)
 
 ***
 
@@ -70,7 +70,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:74](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L74)
+[src/parser/classes/misc/Format.ts:74](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L74)
 
 ***
 
@@ -80,7 +80,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:51](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L51)
+[src/parser/classes/misc/Format.ts:51](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L51)
 
 ***
 
@@ -90,7 +90,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:52](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L52)
+[src/parser/classes/misc/Format.ts:52](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L52)
 
 ***
 
@@ -100,7 +100,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:85](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L85)
+[src/parser/classes/misc/Format.ts:85](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L85)
 
 ***
 
@@ -110,7 +110,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:73](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L73)
+[src/parser/classes/misc/Format.ts:73](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L73)
 
 ***
 
@@ -120,7 +120,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:84](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L84)
+[src/parser/classes/misc/Format.ts:84](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L84)
 
 ***
 
@@ -130,7 +130,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:44](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L44)
+[src/parser/classes/misc/Format.ts:44](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L44)
 
 ***
 
@@ -140,7 +140,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:67](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L67)
+[src/parser/classes/misc/Format.ts:67](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L67)
 
 ***
 
@@ -150,7 +150,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:47](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L47)
+[src/parser/classes/misc/Format.ts:47](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L47)
 
 ***
 
@@ -160,7 +160,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:66](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L66)
+[src/parser/classes/misc/Format.ts:66](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L66)
 
 ***
 
@@ -170,7 +170,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:55](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L55)
+[src/parser/classes/misc/Format.ts:55](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L55)
 
 ***
 
@@ -180,7 +180,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:48](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L48)
+[src/parser/classes/misc/Format.ts:48](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L48)
 
 ***
 
@@ -190,7 +190,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:75](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L75)
+[src/parser/classes/misc/Format.ts:75](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L75)
 
 ***
 
@@ -200,7 +200,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:77](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L77)
+[src/parser/classes/misc/Format.ts:77](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L77)
 
 ***
 
@@ -210,7 +210,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:76](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L76)
+[src/parser/classes/misc/Format.ts:76](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L76)
 
 ***
 
@@ -220,7 +220,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:41](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L41)
+[src/parser/classes/misc/Format.ts:41](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L41)
 
 ***
 
@@ -230,7 +230,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:58](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L58)
+[src/parser/classes/misc/Format.ts:58](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L58)
 
 ***
 
@@ -240,7 +240,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:72](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L72)
+[src/parser/classes/misc/Format.ts:72](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L72)
 
 ***
 
@@ -250,7 +250,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:71](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L71)
+[src/parser/classes/misc/Format.ts:71](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L71)
 
 ***
 
@@ -260,7 +260,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:80](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L80)
+[src/parser/classes/misc/Format.ts:80](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L80)
 
 ***
 
@@ -270,7 +270,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:81](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L81)
+[src/parser/classes/misc/Format.ts:81](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L81)
 
 ***
 
@@ -280,7 +280,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:65](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L65)
+[src/parser/classes/misc/Format.ts:65](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L65)
 
 ***
 
@@ -290,7 +290,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:79](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L79)
+[src/parser/classes/misc/Format.ts:79](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L79)
 
 ***
 
@@ -300,7 +300,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:83](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L83)
+[src/parser/classes/misc/Format.ts:83](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L83)
 
 ***
 
@@ -310,7 +310,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:82](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L82)
+[src/parser/classes/misc/Format.ts:82](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L82)
 
 ***
 
@@ -320,7 +320,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:70](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L70)
+[src/parser/classes/misc/Format.ts:70](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L70)
 
 ***
 
@@ -330,7 +330,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:38](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L38)
+[src/parser/classes/misc/Format.ts:38](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L38)
 
 ***
 
@@ -340,7 +340,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:78](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L78)
+[src/parser/classes/misc/Format.ts:78](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L78)
 
 ***
 
@@ -350,7 +350,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:42](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L42)
+[src/parser/classes/misc/Format.ts:42](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L42)
 
 ***
 
@@ -360,7 +360,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:43](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L43)
+[src/parser/classes/misc/Format.ts:43](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L43)
 
 ***
 
@@ -370,7 +370,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:63](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L63)
+[src/parser/classes/misc/Format.ts:63](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L63)
 
 ***
 
@@ -380,7 +380,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:57](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L57)
+[src/parser/classes/misc/Format.ts:57](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L57)
 
 ***
 
@@ -390,7 +390,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:69](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L69)
+[src/parser/classes/misc/Format.ts:69](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L69)
 
 ***
 
@@ -400,7 +400,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:50](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L50)
+[src/parser/classes/misc/Format.ts:50](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L50)
 
 ***
 
@@ -410,7 +410,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:45](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L45)
+[src/parser/classes/misc/Format.ts:45](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L45)
 
 ***
 
@@ -420,7 +420,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:49](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L49)
+[src/parser/classes/misc/Format.ts:49](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L49)
 
 ***
 
@@ -430,7 +430,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:64](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L64)
+[src/parser/classes/misc/Format.ts:64](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L64)
 
 ***
 
@@ -440,7 +440,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:53](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L53)
+[src/parser/classes/misc/Format.ts:53](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L53)
 
 ***
 
@@ -450,7 +450,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:56](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L56)
+[src/parser/classes/misc/Format.ts:56](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L56)
 
 ***
 
@@ -460,7 +460,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:54](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L54)
+[src/parser/classes/misc/Format.ts:54](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L54)
 
 ***
 
@@ -470,7 +470,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:68](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L68)
+[src/parser/classes/misc/Format.ts:68](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L68)
 
 ***
 
@@ -480,7 +480,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:39](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L39)
+[src/parser/classes/misc/Format.ts:39](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L39)
 
 ***
 
@@ -490,7 +490,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:40](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L40)
+[src/parser/classes/misc/Format.ts:40](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L40)
 
 ***
 
@@ -500,7 +500,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:46](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L46)
+[src/parser/classes/misc/Format.ts:46](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L46)
 
 ## Methods
 
@@ -524,4 +524,4 @@ The deciphered URL as a string. If no player is provided, returns the original U
 
 #### Defined in
 
-[src/parser/classes/misc/Format.ts:245](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Format.ts#L245)
+[src/parser/classes/misc/Format.ts:245](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/Format.ts#L245)

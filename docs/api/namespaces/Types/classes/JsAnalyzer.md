@@ -28,7 +28,7 @@ Optional traversal settings.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:76](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L76)
+[src/utils/javascript/JsAnalyzer.ts:76](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L76)
 
 ## Properties
 
@@ -38,7 +38,7 @@ Optional traversal settings.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:68](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L68)
+[src/utils/javascript/JsAnalyzer.ts:68](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L68)
 
 ***
 
@@ -48,7 +48,7 @@ Optional traversal settings.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:69](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L69)
+[src/utils/javascript/JsAnalyzer.ts:69](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L69)
 
 ## Methods
 
@@ -64,7 +64,7 @@ Returns the current set of matched extractions.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:555](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L555)
+[src/utils/javascript/JsAnalyzer.ts:555](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L555)
 
 ***
 
@@ -80,4 +80,4 @@ Returns the raw, original source.
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:563](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L563)
+[src/utils/javascript/JsAnalyzer.ts:563](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L563)

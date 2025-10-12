@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:32](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L32)
+[src/parser/classes/misc/TextRun.ts:32](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L32)
 
 ## Properties
 
@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:30](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L30)
+[src/parser/classes/misc/TextRun.ts:30](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L30)
 
 ***
 
@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:9](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L9)
+[src/parser/classes/misc/TextRun.ts:9](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L9)
 
 ***
 
@@ -52,7 +52,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:10](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L10)
+[src/parser/classes/misc/TextRun.ts:10](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L10)
 
 ***
 
@@ -62,7 +62,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:11](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L11)
+[src/parser/classes/misc/TextRun.ts:11](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L11)
 
 ***
 
@@ -72,7 +72,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:12](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L12)
+[src/parser/classes/misc/TextRun.ts:12](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L12)
 
 ***
 
@@ -82,7 +82,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L8)
+[src/parser/classes/misc/TextRun.ts:8](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L8)
 
 ***
 
@@ -92,7 +92,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:15](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L15)
+[src/parser/classes/misc/TextRun.ts:15](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L15)
 
 ***
 
@@ -102,7 +102,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:17](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L17)
+[src/parser/classes/misc/TextRun.ts:17](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L17)
 
 ***
 
@@ -112,7 +112,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:13](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L13)
+[src/parser/classes/misc/TextRun.ts:13](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L13)
 
 ***
 
@@ -122,7 +122,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L14)
+[src/parser/classes/misc/TextRun.ts:14](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L14)
 
 ***
 
@@ -136,7 +136,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:6](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L6)
+[src/parser/classes/misc/TextRun.ts:6](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L6)
 
 ***
 
@@ -146,7 +146,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:7](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L7)
+[src/parser/classes/misc/TextRun.ts:7](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L7)
 
 ***
 
@@ -156,7 +156,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:16](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L16)
+[src/parser/classes/misc/TextRun.ts:16](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L16)
 
 ## Methods
 
@@ -174,7 +174,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:65](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L65)
+[src/parser/classes/misc/TextRun.ts:65](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L65)
 
 ***
 
@@ -192,4 +192,4 @@
 
 #### Defined in
 
-[src/parser/classes/misc/TextRun.ts:61](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/TextRun.ts#L61)
+[src/parser/classes/misc/TextRun.ts:61](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/misc/TextRun.ts#L61)

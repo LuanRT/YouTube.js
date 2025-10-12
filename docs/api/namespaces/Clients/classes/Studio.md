@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/clients/Studio.ts:25](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/clients/Studio.ts#L25)
+[src/core/clients/Studio.ts:25](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Studio.ts#L25)
 
 ## Methods
 
@@ -57,7 +57,7 @@ const response = await yt.studio.updateVideoMetadata(videoId, {
 
 #### Defined in
 
-[src/core/clients/Studio.ts:47](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/clients/Studio.ts#L47)
+[src/core/clients/Studio.ts:47](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Studio.ts#L47)
 
 ***
 
@@ -86,4 +86,4 @@ const response = await yt.studio.upload(file.buffer, { title: 'Wow!' });
 
 #### Defined in
 
-[src/core/clients/Studio.ts:150](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/clients/Studio.ts#L150)
+[src/core/clients/Studio.ts:150](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Studio.ts#L150)

@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:21](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L21)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:21](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L21)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:16](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L16)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:16](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L16)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L14)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:14](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L14)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:18](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L18)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:18](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L18)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:17](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L17)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:17](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L17)
 
 ***
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L19)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:19](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L19)
 
 ***
 
@@ -86,7 +86,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:12](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L12)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:12](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L12)
 
 ***
 
@@ -96,7 +96,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:10](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L10)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:10](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L10)
 
 ***
 
@@ -106,7 +106,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:15](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L15)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:15](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L15)
 
 ***
 
@@ -116,7 +116,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:11](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L11)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:11](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L11)
 
 ***
 
@@ -130,7 +130,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L8)
 
 ***
 
@@ -140,7 +140,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:13](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L13)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:13](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L13)
 
 ***
 
@@ -154,7 +154,7 @@
 
 #### Defined in
 
-[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L8)
+[src/parser/classes/StructuredDescriptionPlaylistLockup.ts:8](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/StructuredDescriptionPlaylistLockup.ts#L8)
 
 ## Methods
 
@@ -192,7 +192,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L29)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L29)
 
 ***
 
@@ -226,7 +226,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L41)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L41)
 
 ***
 
@@ -260,7 +260,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L19)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L19)
 
 ***
 
@@ -298,4 +298,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L51)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L51)

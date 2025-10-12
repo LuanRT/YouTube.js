@@ -34,7 +34,7 @@ Array of ancestor nodes, starting from the root down to the parent.
 
 #### Defined in
 
-[src/utils/javascript/helpers.ts:39](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/helpers.ts#L39)
+[src/utils/javascript/helpers.ts:39](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/helpers.ts#L39)
 
 ***
 
@@ -67,4 +67,4 @@ Array of ancestor nodes, starting from the root down to the parent.
 
 #### Defined in
 
-[src/utils/javascript/helpers.ts:49](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/helpers.ts#L49)
+[src/utils/javascript/helpers.ts:49](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/helpers.ts#L49)

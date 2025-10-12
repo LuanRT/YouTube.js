@@ -21,7 +21,7 @@ based on analysis results from a `JsAnalyzer` instance.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:62](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L62)
+[src/utils/javascript/JsExtractor.ts:62](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L62)
 
 ## Methods
 
@@ -45,4 +45,4 @@ Configuration options for the emitter.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:320](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L320)
+[src/utils/javascript/JsExtractor.ts:320](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L320)

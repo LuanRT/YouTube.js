@@ -16,7 +16,7 @@ InnerTube client.
 
 #### Defined in
 
-[src/types/GetVideoInfoOptions.ts:7](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/types/GetVideoInfoOptions.ts#L7)
+[src/types/GetVideoInfoOptions.ts:7](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/types/GetVideoInfoOptions.ts#L7)
 
 ***
 
@@ -29,4 +29,4 @@ If not provided, session bound token will be used.
 
 #### Defined in
 
-[src/types/GetVideoInfoOptions.ts:12](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/types/GetVideoInfoOptions.ts#L12)
+[src/types/GetVideoInfoOptions.ts:12](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/types/GetVideoInfoOptions.ts#L12)

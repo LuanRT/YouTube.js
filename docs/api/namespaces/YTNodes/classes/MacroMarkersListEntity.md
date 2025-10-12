@@ -30,7 +30,7 @@ Represents a list of markers for a video. Can contain different types of markers
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:30](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L30)
+[src/parser/classes/MacroMarkersListEntity.ts:30](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L30)
 
 ## Properties
 
@@ -40,7 +40,7 @@ Represents a list of markers for a video. Can contain different types of markers
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:17](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L17)
+[src/parser/classes/MacroMarkersListEntity.ts:17](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L17)
 
 ***
 
@@ -50,7 +50,7 @@ Represents a list of markers for a video. Can contain different types of markers
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:16](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L16)
+[src/parser/classes/MacroMarkersListEntity.ts:16](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L16)
 
 ***
 
@@ -62,7 +62,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L19)
+[src/parser/classes/MacroMarkersListEntity.ts:19](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L19)
 
 ***
 
@@ -72,7 +72,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:20](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L20)
+[src/parser/classes/MacroMarkersListEntity.ts:20](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L20)
 
 ***
 
@@ -82,7 +82,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:21](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L21)
+[src/parser/classes/MacroMarkersListEntity.ts:21](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L21)
 
 ***
 
@@ -92,7 +92,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:22](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L22)
+[src/parser/classes/MacroMarkersListEntity.ts:22](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L22)
 
 ***
 
@@ -102,7 +102,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:23](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L23)
+[src/parser/classes/MacroMarkersListEntity.ts:23](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L23)
 
 ***
 
@@ -112,7 +112,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:24](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L24)
+[src/parser/classes/MacroMarkersListEntity.ts:24](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L24)
 
 ***
 
@@ -126,7 +126,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L8)
 
 ***
 
@@ -140,7 +140,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L14)
+[src/parser/classes/MacroMarkersListEntity.ts:14](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L14)
 
 ## Methods
 
@@ -178,7 +178,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L29)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L29)
 
 ***
 
@@ -212,7 +212,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L41)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L41)
 
 ***
 
@@ -246,7 +246,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L19)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L19)
 
 ***
 
@@ -263,7 +263,7 @@ Only heatmap markers can be converted to Heatmap objects.
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:65](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L65)
+[src/parser/classes/MacroMarkersListEntity.ts:65](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L65)
 
 ***
 
@@ -301,7 +301,7 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L51)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L51)
 
 ***
 
@@ -320,4 +320,4 @@ Heatmap object if this entity contains heatmap data, null otherwise
 
 #### Defined in
 
-[src/parser/classes/MacroMarkersListEntity.ts:74](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/MacroMarkersListEntity.ts#L74)
+[src/parser/classes/MacroMarkersListEntity.ts:74](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/MacroMarkersListEntity.ts#L74)

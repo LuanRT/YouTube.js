@@ -10,7 +10,7 @@
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:42](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L42)
+[src/utils/javascript/JsAnalyzer.ts:42](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L42)
 
 ***
 
@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:45](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L45)
+[src/utils/javascript/JsAnalyzer.ts:45](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L45)
 
 ***
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:46](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L46)
+[src/utils/javascript/JsAnalyzer.ts:46](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L46)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:47](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L47)
+[src/utils/javascript/JsAnalyzer.ts:47](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L47)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:44](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L44)
+[src/utils/javascript/JsAnalyzer.ts:44](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L44)
 
 ***
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:43](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L43)
+[src/utils/javascript/JsAnalyzer.ts:43](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L43)
 
 ***
 
@@ -70,4 +70,4 @@
 
 #### Defined in
 
-[src/utils/javascript/JsAnalyzer.ts:48](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsAnalyzer.ts#L48)
+[src/utils/javascript/JsAnalyzer.ts:48](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsAnalyzer.ts#L48)

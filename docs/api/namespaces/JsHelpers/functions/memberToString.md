@@ -22,4 +22,4 @@ Original source code for range lookups.
 
 ## Defined in
 
-[src/utils/javascript/helpers.ts:153](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/helpers.ts#L153)
+[src/utils/javascript/helpers.ts:153](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/helpers.ts#L153)

@@ -394,7 +394,6 @@ Re-exports [WatchRequest](namespaces/APIResponseTypes/type-aliases/WatchRequest.
 
 - [ApiResponse](interfaces/ApiResponse.md)
 - [HTTPClientInit](interfaces/HTTPClientInit.md)
-- [PlayerInitializationOptions](interfaces/PlayerInitializationOptions.md)
 
 ## Type Aliases
 

@@ -12,7 +12,7 @@ An array of exported variable names.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:50](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L50)
+[src/utils/javascript/JsExtractor.ts:50](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L50)
 
 ***
 
@@ -24,7 +24,7 @@ An object mapping exported variable names to their raw values, if `exportRawValu
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:54](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L54)
+[src/utils/javascript/JsExtractor.ts:54](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L54)
 
 ***
 
@@ -36,4 +36,4 @@ The generated output script as a string.
 
 #### Defined in
 
-[src/utils/javascript/JsExtractor.ts:46](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/javascript/JsExtractor.ts#L46)
+[src/utils/javascript/JsExtractor.ts:46](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/javascript/JsExtractor.ts#L46)

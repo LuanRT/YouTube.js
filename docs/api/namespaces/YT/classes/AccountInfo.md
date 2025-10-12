@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/youtube/AccountInfo.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/youtube/AccountInfo.ts#L14)
+[src/parser/youtube/AccountInfo.ts:14](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/youtube/AccountInfo.ts#L14)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/youtube/AccountInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/youtube/AccountInfo.ts#L12)
+[src/parser/youtube/AccountInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/youtube/AccountInfo.ts#L12)
 
 ## Accessors
 
@@ -42,4 +42,4 @@
 
 #### Defined in
 
-[src/parser/youtube/AccountInfo.ts:28](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/youtube/AccountInfo.ts#L28)
+[src/parser/youtube/AccountInfo.ts:28](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/youtube/AccountInfo.ts#L28)

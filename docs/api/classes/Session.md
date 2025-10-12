@@ -46,7 +46,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:258](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L258)
+[src/core/Session.ts:258](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L258)
 
 ## Properties
 
@@ -56,7 +56,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:262](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L262)
+[src/core/Session.ts:262](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L262)
 
 ***
 
@@ -66,7 +66,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:255](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L255)
+[src/core/Session.ts:255](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L255)
 
 ***
 
@@ -76,7 +76,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:260](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L260)
+[src/core/Session.ts:260](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L260)
 
 ***
 
@@ -86,7 +86,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:261](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L261)
+[src/core/Session.ts:261](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L261)
 
 ***
 
@@ -96,7 +96,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:267](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L267)
+[src/core/Session.ts:267](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L267)
 
 ***
 
@@ -106,7 +106,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:263](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L263)
+[src/core/Session.ts:263](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L263)
 
 ***
 
@@ -116,7 +116,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:259](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L259)
+[src/core/Session.ts:259](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L259)
 
 ***
 
@@ -126,7 +126,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:265](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L265)
+[src/core/Session.ts:265](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L265)
 
 ***
 
@@ -136,7 +136,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:253](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L253)
+[src/core/Session.ts:253](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L253)
 
 ***
 
@@ -146,7 +146,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:254](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L254)
+[src/core/Session.ts:254](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L254)
 
 ***
 
@@ -156,7 +156,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:252](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L252)
+[src/core/Session.ts:252](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L252)
 
 ***
 
@@ -166,7 +166,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:264](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L264)
+[src/core/Session.ts:264](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L264)
 
 ***
 
@@ -176,7 +176,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:268](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L268)
+[src/core/Session.ts:268](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L268)
 
 ***
 
@@ -186,7 +186,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:256](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L256)
+[src/core/Session.ts:256](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L256)
 
 ## Accessors
 
@@ -200,7 +200,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:688](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L688)
+[src/core/Session.ts:688](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L688)
 
 ***
 
@@ -214,7 +214,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:684](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L684)
+[src/core/Session.ts:684](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L684)
 
 ***
 
@@ -228,7 +228,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 #### Defined in
 
-[src/core/Session.ts:692](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L692)
+[src/core/Session.ts:692](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L692)
 
 ## Methods
 
@@ -320,7 +320,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/EventEmitterLike.ts#L10)
+[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/EventEmitterLike.ts#L10)
 
 ***
 
@@ -344,7 +344,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 #### Defined in
 
-[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/EventEmitterLike.ts#L40)
+[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/EventEmitterLike.ts#L40)
 
 ***
 
@@ -370,7 +370,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 ##### Defined in
 
-[src/core/Session.ts:278](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L278)
+[src/core/Session.ts:278](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L278)
 
 #### on(type, listener)
 
@@ -392,7 +392,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 ##### Defined in
 
-[src/core/Session.ts:279](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L279)
+[src/core/Session.ts:279](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L279)
 
 #### on(type, listener)
 
@@ -414,7 +414,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 ##### Defined in
 
-[src/core/Session.ts:280](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L280)
+[src/core/Session.ts:280](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L280)
 
 #### on(type, listener)
 
@@ -436,7 +436,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 ##### Defined in
 
-[src/core/Session.ts:281](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L281)
+[src/core/Session.ts:281](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L281)
 
 ***
 
@@ -462,7 +462,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 ##### Defined in
 
-[src/core/Session.ts:287](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L287)
+[src/core/Session.ts:287](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L287)
 
 #### once(type, listener)
 
@@ -484,7 +484,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 ##### Defined in
 
-[src/core/Session.ts:288](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L288)
+[src/core/Session.ts:288](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L288)
 
 #### once(type, listener)
 
@@ -506,7 +506,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 ##### Defined in
 
-[src/core/Session.ts:289](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L289)
+[src/core/Session.ts:289](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L289)
 
 ***
 
@@ -554,7 +554,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:8268
 
 #### Defined in
 
-[src/core/Session.ts:651](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L651)
+[src/core/Session.ts:651](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L651)
 
 ***
 
@@ -570,7 +570,7 @@ Signs out of the current account and revokes the credentials.
 
 #### Defined in
 
-[src/core/Session.ts:674](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L674)
+[src/core/Session.ts:674](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L674)
 
 ***
 
@@ -588,7 +588,7 @@ Signs out of the current account and revokes the credentials.
 
 #### Defined in
 
-[src/core/Session.ts:295](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L295)
+[src/core/Session.ts:295](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L295)
 
 ***
 
@@ -614,7 +614,7 @@ User provided session arguments.
 
 #### Defined in
 
-[src/core/Session.ts:327](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L327)
+[src/core/Session.ts:327](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L327)
 
 ***
 
@@ -682,4 +682,4 @@ User provided session arguments.
 
 #### Defined in
 
-[src/core/Session.ts:376](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/core/Session.ts#L376)
+[src/core/Session.ts:376](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L376)
