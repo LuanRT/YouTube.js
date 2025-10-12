@@ -1,5 +1,5 @@
 // This file was auto generated, do not edit.
-// See ./scripts/build-parser-map.js
+// See ./dev-scripts/gen-parser-map.mjs
 
 export { default as AboutChannel } from './classes/AboutChannel.js';
 export { default as AboutChannelView } from './classes/AboutChannelView.js';
