@@ -16,6 +16,6 @@ export default class FormPopup extends YTNode {
     super();
     this.title = new Text(data.title);
     this.form = Parser.parseItem(data.form, Form);
-    this.buttons = Parser.parse(data.buttons, true, Button);
+    this.buttons = Parser.parseArray(data.buttons, Button);
   }
 }
