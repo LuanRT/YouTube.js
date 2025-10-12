@@ -10,6 +10,6 @@ export default class Form extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.fields = Parser.parse(data.fields, true, ToggleFormField);
+    this.fields = Parser.parseArray(data.fields, ToggleFormField);
   }
 }
