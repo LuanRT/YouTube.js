@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:17](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/EmojiRun.ts#L17)
+[src/parser/classes/misc/EmojiRun.ts:17](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/EmojiRun.ts#L17)
 
 ## Properties
 
@@ -32,7 +32,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:15](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/EmojiRun.ts#L15)
+[src/parser/classes/misc/EmojiRun.ts:15](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/EmojiRun.ts#L15)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:14](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/EmojiRun.ts#L14)
+[src/parser/classes/misc/EmojiRun.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/EmojiRun.ts#L14)
 
 ## Methods
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:37](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/EmojiRun.ts#L37)
+[src/parser/classes/misc/EmojiRun.ts:37](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/EmojiRun.ts#L37)
 
 ***
 
@@ -82,4 +82,4 @@
 
 #### Defined in
 
-[src/parser/classes/misc/EmojiRun.ts:33](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/EmojiRun.ts#L33)
+[src/parser/classes/misc/EmojiRun.ts:33](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/EmojiRun.ts#L33)

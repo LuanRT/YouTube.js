@@ -224,6 +224,18 @@ Re-exports [IUpdatedMetadataResponse](namespaces/APIResponseTypes/type-aliases/I
 
 ***
 
+### JsAnalyzer
+
+Re-exports [JsAnalyzer](namespaces/Types/classes/JsAnalyzer.md)
+
+***
+
+### JsExtractor
+
+Re-exports [JsExtractor](namespaces/Types/classes/JsExtractor.md)
+
+***
+
 ### LikeRequest
 
 Re-exports [LikeRequest](namespaces/APIResponseTypes/type-aliases/LikeRequest.md)
@@ -333,6 +345,8 @@ Re-exports [WatchRequest](namespaces/APIResponseTypes/type-aliases/WatchRequest.
 - [FormatUtils](namespaces/FormatUtils/README.md)
 - [Generator](namespaces/Generator/README.md)
 - [Helpers](namespaces/Helpers/README.md)
+- [JsHelpers](namespaces/JsHelpers/README.md)
+- [JsMatchers](namespaces/JsMatchers/README.md)
 - [Log](namespaces/Log/README.md)
 - [LZW](namespaces/LZW/README.md)
 - [Managers](namespaces/Managers/README.md)
@@ -380,6 +394,7 @@ Re-exports [WatchRequest](namespaces/APIResponseTypes/type-aliases/WatchRequest.
 
 - [ApiResponse](interfaces/ApiResponse.md)
 - [HTTPClientInit](interfaces/HTTPClientInit.md)
+- [PlayerInitializationOptions](interfaces/PlayerInitializationOptions.md)
 
 ## Type Aliases
 

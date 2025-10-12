@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:23](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L23)
+[src/parser/classes/ClientSideToggleMenuItem.ts:23](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L23)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L15)
+[src/parser/classes/ClientSideToggleMenuItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L15)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:10](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L10)
+[src/parser/classes/ClientSideToggleMenuItem.ts:10](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L10)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L13)
+[src/parser/classes/ClientSideToggleMenuItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L13)
 
 ***
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L16)
+[src/parser/classes/ClientSideToggleMenuItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L16)
 
 ***
 
@@ -88,7 +88,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:14](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L14)
+[src/parser/classes/ClientSideToggleMenuItem.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L14)
 
 ***
 
@@ -98,7 +98,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:9](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L9)
+[src/parser/classes/ClientSideToggleMenuItem.ts:9](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L9)
 
 ***
 
@@ -108,7 +108,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L12)
+[src/parser/classes/ClientSideToggleMenuItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L12)
 
 ***
 
@@ -118,7 +118,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:11](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L11)
+[src/parser/classes/ClientSideToggleMenuItem.ts:11](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L11)
 
 ***
 
@@ -132,7 +132,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L8)
 
 ***
 
@@ -146,7 +146,7 @@
 
 #### Defined in
 
-[src/parser/classes/ClientSideToggleMenuItem.ts:7](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/ClientSideToggleMenuItem.ts#L7)
+[src/parser/classes/ClientSideToggleMenuItem.ts:7](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/ClientSideToggleMenuItem.ts#L7)
 
 ## Methods
 
@@ -184,7 +184,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L29)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L29)
 
 ***
 
@@ -218,7 +218,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L41)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L41)
 
 ***
 
@@ -252,7 +252,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L19)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L19)
 
 ***
 
@@ -290,4 +290,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L51)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L51)

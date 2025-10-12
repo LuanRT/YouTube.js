@@ -24,4 +24,4 @@ If it is a misc type, return the InferenceType. Otherwise, return false.
 
 ## Defined in
 
-[src/parser/generator.ts:163](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/generator.ts#L163)
+[src/parser/generator.ts:163](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/generator.ts#L163)

@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L41)
+[src/parser/classes/PlayerMicroformat.ts:41](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L41)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:37](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L37)
+[src/parser/classes/PlayerMicroformat.ts:37](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L37)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:34](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L34)
+[src/parser/classes/PlayerMicroformat.ts:34](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L34)
 
 ***
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:24](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L24)
+[src/parser/classes/PlayerMicroformat.ts:24](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L24)
 
 ***
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:10](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L10)
+[src/parser/classes/PlayerMicroformat.ts:10](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L10)
 
 ***
 
@@ -108,7 +108,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:13](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L13)
+[src/parser/classes/PlayerMicroformat.ts:13](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L13)
 
 ***
 
@@ -118,7 +118,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:39](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L39)
+[src/parser/classes/PlayerMicroformat.ts:39](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L39)
 
 ***
 
@@ -128,7 +128,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:32](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L32)
+[src/parser/classes/PlayerMicroformat.ts:32](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L32)
 
 ***
 
@@ -138,7 +138,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:30](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L30)
+[src/parser/classes/PlayerMicroformat.ts:30](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L30)
 
 ***
 
@@ -148,7 +148,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:31](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L31)
+[src/parser/classes/PlayerMicroformat.ts:31](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L31)
 
 ***
 
@@ -158,7 +158,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:22](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L22)
+[src/parser/classes/PlayerMicroformat.ts:22](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L22)
 
 ***
 
@@ -168,7 +168,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:35](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L35)
+[src/parser/classes/PlayerMicroformat.ts:35](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L35)
 
 ***
 
@@ -178,7 +178,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:38](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L38)
+[src/parser/classes/PlayerMicroformat.ts:38](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L38)
 
 ***
 
@@ -188,7 +188,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:11](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L11)
+[src/parser/classes/PlayerMicroformat.ts:11](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L11)
 
 ***
 
@@ -198,7 +198,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:9](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L9)
+[src/parser/classes/PlayerMicroformat.ts:9](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L9)
 
 ***
 
@@ -212,7 +212,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L8)
 
 ***
 
@@ -222,7 +222,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:36](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L36)
+[src/parser/classes/PlayerMicroformat.ts:36](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L36)
 
 ***
 
@@ -232,7 +232,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:33](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L33)
+[src/parser/classes/PlayerMicroformat.ts:33](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L33)
 
 ***
 
@@ -246,7 +246,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerMicroformat.ts:7](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerMicroformat.ts#L7)
+[src/parser/classes/PlayerMicroformat.ts:7](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/PlayerMicroformat.ts#L7)
 
 ## Methods
 
@@ -284,7 +284,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L29)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L29)
 
 ***
 
@@ -318,7 +318,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L41)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L41)
 
 ***
 
@@ -352,7 +352,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L19)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L19)
 
 ***
 
@@ -390,4 +390,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L51)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L51)

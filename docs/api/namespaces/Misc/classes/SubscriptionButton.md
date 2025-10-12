@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/SubscriptionButton.ts:11](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/SubscriptionButton.ts#L11)
+[src/parser/classes/misc/SubscriptionButton.ts:11](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/SubscriptionButton.ts#L11)
 
 ## Properties
 
@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/SubscriptionButton.ts:8](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/SubscriptionButton.ts#L8)
+[src/parser/classes/misc/SubscriptionButton.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/SubscriptionButton.ts#L8)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/SubscriptionButton.ts:9](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/SubscriptionButton.ts#L9)
+[src/parser/classes/misc/SubscriptionButton.ts:9](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/SubscriptionButton.ts#L9)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/SubscriptionButton.ts:7](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/SubscriptionButton.ts#L7)
+[src/parser/classes/misc/SubscriptionButton.ts:7](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/SubscriptionButton.ts#L7)
 
 ***
 
@@ -58,4 +58,4 @@
 
 #### Defined in
 
-[src/parser/classes/misc/SubscriptionButton.ts:5](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/SubscriptionButton.ts#L5)
+[src/parser/classes/misc/SubscriptionButton.ts:5](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/SubscriptionButton.ts#L5)

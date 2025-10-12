@@ -2,11 +2,13 @@
 
 # Function: encodeNextParams()
 
-> **encodeNextParams**(`video_ids`): `string`
+> **encodeNextParams**(`video_ids`, `playlist_title`?): `string`
 
 ## Parameters
 
 • **video\_ids**: `string`[]
+
+• **playlist\_title?**: `string`
 
 ## Returns
 
@@ -14,4 +16,4 @@
 
 ## Defined in
 
-[src/utils/ProtoUtils.ts:51](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/utils/ProtoUtils.ts#L51)
+[src/utils/ProtoUtils.ts:51](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/utils/ProtoUtils.ts#L51)

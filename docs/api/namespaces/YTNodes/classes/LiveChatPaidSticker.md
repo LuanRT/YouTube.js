@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L29)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:29](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L29)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:12](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L12)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:12](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L12)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:16](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L16)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:16](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L16)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:15](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L15)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:15](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L15)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:23](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L23)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:23](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L23)
 
 ***
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:24](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L24)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:24](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L24)
 
 ***
 
@@ -86,7 +86,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:11](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L11)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:11](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L11)
 
 ***
 
@@ -96,7 +96,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:27](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L27)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:27](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L27)
 
 ***
 
@@ -106,7 +106,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:22](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L22)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:22](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L22)
 
 ***
 
@@ -116,7 +116,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:13](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L13)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:13](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L13)
 
 ***
 
@@ -126,7 +126,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:14](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L14)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L14)
 
 ***
 
@@ -136,7 +136,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:21](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L21)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:21](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L21)
 
 ***
 
@@ -146,7 +146,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:17](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L17)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:17](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L17)
 
 ***
 
@@ -156,7 +156,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:18](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L18)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:18](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L18)
 
 ***
 
@@ -166,7 +166,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:20](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L20)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:20](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L20)
 
 ***
 
@@ -176,7 +176,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L19)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L19)
 
 ***
 
@@ -186,7 +186,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:25](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L25)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:25](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L25)
 
 ***
 
@@ -196,7 +196,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:26](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L26)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:26](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L26)
 
 ***
 
@@ -210,7 +210,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L8)
 
 ***
 
@@ -224,7 +224,7 @@
 
 #### Defined in
 
-[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:9](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L9)
+[src/parser/classes/livechat/items/LiveChatPaidSticker.ts:9](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/livechat/items/LiveChatPaidSticker.ts#L9)
 
 ## Methods
 
@@ -262,7 +262,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L29)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L29)
 
 ***
 
@@ -296,7 +296,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L41)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L41)
 
 ***
 
@@ -330,7 +330,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L19)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L19)
 
 ***
 
@@ -368,4 +368,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L51)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/helpers.ts#L51)

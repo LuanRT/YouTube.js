@@ -16,8 +16,6 @@
 
 ### Type Aliases
 
-- [ASTLookupArgs](type-aliases/ASTLookupArgs.md)
-- [ASTLookupResult](type-aliases/ASTLookupResult.md)
 - [DeviceCategory](type-aliases/DeviceCategory.md)
 
 ### Functions
@@ -27,8 +25,6 @@
 - [debugFetch](functions/debugFetch.md)
 - [deepCompare](functions/deepCompare.md)
 - [escapeStringRegexp](functions/escapeStringRegexp.md)
-- [findFunction](functions/findFunction.md)
-- [findVariable](functions/findVariable.md)
 - [generateRandomString](functions/generateRandomString.md)
 - [generateSidAuth](functions/generateSidAuth.md)
 - [getCookie](functions/getCookie.md)

@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:21](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L21)
+[src/parser/classes/misc/Author.ts:21](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L21)
 
 ## Properties
 
@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:15](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L15)
+[src/parser/classes/misc/Author.ts:15](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L15)
 
 ***
 
@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:14](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L14)
+[src/parser/classes/misc/Author.ts:14](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L14)
 
 ***
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:11](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L11)
+[src/parser/classes/misc/Author.ts:11](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L11)
 
 ***
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:16](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L16)
+[src/parser/classes/misc/Author.ts:16](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L16)
 
 ***
 
@@ -74,7 +74,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:17](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L17)
+[src/parser/classes/misc/Author.ts:17](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L17)
 
 ***
 
@@ -84,7 +84,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:18](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L18)
+[src/parser/classes/misc/Author.ts:18](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L18)
 
 ***
 
@@ -94,7 +94,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:12](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L12)
+[src/parser/classes/misc/Author.ts:12](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L12)
 
 ***
 
@@ -104,7 +104,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:13](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L13)
+[src/parser/classes/misc/Author.ts:13](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L13)
 
 ***
 
@@ -114,7 +114,7 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L19)
+[src/parser/classes/misc/Author.ts:19](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L19)
 
 ## Accessors
 
@@ -128,4 +128,4 @@
 
 #### Defined in
 
-[src/parser/classes/misc/Author.ts:51](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/misc/Author.ts#L51)
+[src/parser/classes/misc/Author.ts:51](https://github.com/LuanRT/YouTube.js/blob/427d14d3b0798020bb95b78fdb9a78429edb1de9/src/parser/classes/misc/Author.ts#L51)
