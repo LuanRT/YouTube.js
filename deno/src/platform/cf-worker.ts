@@ -1,6 +1,6 @@
 import type { ICache } from '../types/Cache.ts';
 import { Platform } from '../utils/Utils.ts';
-import evaluate from './jsruntime/jinter.ts';
+import evaluate from './jsruntime/default.ts';
 import sha1Hash from './polyfills/web-crypto.ts';
 
 class Cache implements ICache {

@@ -60,7 +60,7 @@ async function DashManifest({
     video_sets,
     image_sets,
     text_sets
-  } = getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, captionTracks, options);
+  } = await getStreamingInfo(streamingData, isPostLiveDvr, transformURL, rejectFormat, cpn, player, actions, storyboards, captionTracks, options);
   return /* @__PURE__ */ DashUtils.createElement(
     "mPD",
     {

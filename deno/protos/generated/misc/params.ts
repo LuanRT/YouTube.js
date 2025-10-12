@@ -234,6 +234,7 @@ export interface ShortsParam_Field1 {
 
 export interface NextParams {
   videoId: string[];
+  playlistTitle?: string | undefined;
 }
 
 export interface CommunityPostParams {
@@ -2082,13 +2083,16 @@ export const ShortsParam_Field1: MessageFns<ShortsParam_Field1> = {
 };
 
 function createBaseNextParams(): NextParams {
-  return { videoId: [] };
+  return { videoId: [], playlistTitle: undefined };
 }
 
 export const NextParams: MessageFns<NextParams> = {
   encode(message: NextParams, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     for (const v of message.videoId) {
       writer.uint32(42).string(v!);
+    }
+    if (message.playlistTitle !== undefined) {
+      writer.uint32(50).string(message.playlistTitle);
     }
     return writer;
   },
@@ -2106,6 +2110,13 @@ export const NextParams: MessageFns<NextParams> = {
           }
 
           message.videoId.push(reader.string());
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.playlistTitle = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

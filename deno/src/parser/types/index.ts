@@ -1,3 +1,3 @@
-export * from './RawResponse.ts';
-export * from './ParsedResponse.ts';
-export * from './CommandEndpoints.ts';
+export type * from './RawResponse.ts';
+export type * from './ParsedResponse.ts';
+export type * from './CommandEndpoints.ts';

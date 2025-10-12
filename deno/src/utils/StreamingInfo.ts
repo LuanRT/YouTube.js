@@ -303,7 +303,7 @@ async function getPostLiveDvrDuration(
   cpn?: string
 ) {
   if (!shared_post_live_dvr_info.item) {
-    const url = new URL(format.decipher(player));
+    const url = new URL(await format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
 
     const transformed_url = url_transformer(url).toString();
@@ -314,7 +314,7 @@ async function getPostLiveDvrDuration(
   return shared_post_live_dvr_info.item.duration;
 }
 
-function getSegmentInfo(
+async function getSegmentInfo(
   format: Format,
   url_transformer: URLTransformer,
   actions?: Actions,
@@ -329,7 +329,7 @@ function getSegmentInfo(
     const formatKey = `${format.itag || ''}:${format.xtags || ''}`;
     transformed_url = `sabr://${format.has_video ? 'video' : 'audio'}?key=${formatKey}`;
   } else {
-    const url = new URL(format.decipher(player));
+    const url = new URL(await format.decipher(player));
     url.searchParams.set('cpn', cpn || '');
     transformed_url = url_transformer(url).toString();
   }
@@ -397,7 +397,7 @@ function getSegmentInfo(
   return info;
 }
 
-function getAudioRepresentation(
+async function getAudioRepresentation(
   format: Format,
   hoisted: string[],
   url_transformer: URLTransformer,
@@ -423,7 +423,7 @@ function getAudioRepresentation(
     codecs: !hoisted.includes('codecs') ? getStringBetweenStrings(format.mime_type, 'codecs="', '"') : undefined,
     audio_sample_rate: !hoisted.includes('audio_sample_rate') ? format.audio_sample_rate : undefined,
     channels: !hoisted.includes('AudioChannelConfiguration') ? format.audio_channels || 2 : undefined,
-    segment_info: getSegmentInfo(format, url_transformer, actions, player, cpn, shared_post_live_dvr_info, is_sabr)
+    segment_info: await getSegmentInfo(format, url_transformer, actions, player, cpn, shared_post_live_dvr_info, is_sabr)
   };
 
   return rep;
@@ -450,7 +450,7 @@ function getTrackRoles(format: Format, has_drc_streams: boolean) {
   return roles;
 }
 
-function getAudioSet(
+async function getAudioSet(
   formats: Format[],
   url_transformer: URLTransformer,
   actions?: Actions,
@@ -488,7 +488,7 @@ function getAudioSet(
     channels: hoistAudioChannelsIfPossible(formats, hoisted),
     drm_families: first_format.drm_families,
     drm_track_type: first_format.drm_track_type,
-    representations: formats.map((format) => getAudioRepresentation(format, hoisted, url_transformer, actions, player, cpn, shared_post_live_dvr_info, is_sabr))
+    representations: await Promise.all(formats.map((format) => getAudioRepresentation(format, hoisted, url_transformer, actions, player, cpn, shared_post_live_dvr_info, is_sabr)))
   };
 
   return set;
@@ -562,7 +562,7 @@ function getColorInfo(format: Format) {
   return info;
 }
 
-function getVideoRepresentation(
+async function getVideoRepresentation(
   format: Format,
   url_transformer: URLTransformer,
   hoisted: string[],
@@ -579,13 +579,13 @@ function getVideoRepresentation(
     height: format.height,
     codecs: !hoisted.includes('codecs') ? getStringBetweenStrings(format.mime_type, 'codecs="', '"') : undefined,
     fps: !hoisted.includes('fps') ? format.fps : undefined,
-    segment_info: getSegmentInfo(format, url_transformer, actions, player, cpn, shared_post_live_dvr_info, is_sabr)
+    segment_info: await getSegmentInfo(format, url_transformer, actions, player, cpn, shared_post_live_dvr_info, is_sabr)
   };
 
   return rep;
 }
 
-function getVideoSet(
+async function getVideoSet(
   formats: Format[],
   url_transformer: URLTransformer,
   player?: Player,
@@ -605,7 +605,7 @@ function getVideoSet(
     fps: hoistNumberAttributeIfPossible(formats, 'fps', hoisted),
     drm_families: first_format.drm_families,
     drm_track_type: first_format.drm_track_type,
-    representations: formats.map((format) => getVideoRepresentation(format, url_transformer, hoisted, player, actions, cpn, shared_post_live_dvr_info, is_sabr))
+    representations: await Promise.all(formats.map((format) => getVideoRepresentation(format, url_transformer, hoisted, player, actions, cpn, shared_post_live_dvr_info, is_sabr)))
   };
 
   return set;
@@ -795,7 +795,7 @@ function getTextSets(
   });
 }
 
-export function getStreamingInfo(
+export async function getStreamingInfo(
   streaming_data?: IStreamingData,
   is_post_live_dvr = false,
   url_transformer: URLTransformer = (url) => url,
@@ -877,9 +877,9 @@ export function getStreamingInfo(
     };
   }
 
-  const audio_sets = audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn, shared_post_live_dvr_info, drc_labels, options?.is_sabr));
+  const audio_sets = await Promise.all(audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn, shared_post_live_dvr_info, drc_labels, options?.is_sabr)));
 
-  const video_sets = video_groups.map((formats) => getVideoSet(formats, url_transformer, player, actions, cpn, shared_post_live_dvr_info, options?.is_sabr));
+  const video_sets = await Promise.all(video_groups.map((formats) => getVideoSet(formats, url_transformer, player, actions, cpn, shared_post_live_dvr_info, options?.is_sabr)));
 
   let image_sets: ImageSet[] = [];
 

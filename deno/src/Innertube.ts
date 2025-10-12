@@ -95,7 +95,7 @@ export default class Innertube {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: session.player?.sts
+          signatureTimestamp: session.player?.signature_timestamp
         }
       },
       client: options?.client
@@ -140,7 +140,7 @@ export default class Innertube {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: session.player?.sts
+          signatureTimestamp: session.player?.signature_timestamp
         }
       },
       client: options?.client  
@@ -463,7 +463,7 @@ export default class Innertube {
     const info = await this.getBasicInfo(video_id, options);
 
     const format = info.chooseFormat(options);
-    format.url = format.decipher(this.#session.player);
+    format.url = await format.decipher(this.#session.player);
 
     return format;
   }

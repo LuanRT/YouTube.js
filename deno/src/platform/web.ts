@@ -2,7 +2,7 @@
 import type { ICache } from '../types/Cache.ts';
 import { Platform } from '../utils/Utils.ts';
 import sha1Hash from './polyfills/web-crypto.ts';
-import evaluate from './jsruntime/jinter.ts';
+import evaluate from './jsruntime/default.ts';
 import * as Log from '../utils/Log.ts';
 
 const CACHE_TAG = 'Cache';
@@ -60,7 +60,7 @@ class Cache implements ICache {
         if (result instanceof ArrayBuffer) {
           resolve(result);
         } else if (ArrayBuffer.isView(result)) {
-          resolve(result.buffer);
+          resolve(result.buffer as ArrayBuffer);
         } else {
           resolve(undefined);
         }

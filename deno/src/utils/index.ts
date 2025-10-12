@@ -17,3 +17,4 @@ export * as LZW from './LZW.ts';
 export * as BinarySerializer from './BinarySerializer.ts';
 
 export * as ProtoUtils from './ProtoUtils.ts';
+export * from './javascript/index.ts';

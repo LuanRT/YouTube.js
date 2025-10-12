@@ -170,6 +170,11 @@ export type SessionOptions = {
    */
   generate_session_locally?: boolean;
   /**
+   * If set to `true`, session creation will fail if it's not possible to retrieve session data from YouTube.
+   * If `false`, a local fallback will be used.
+   */
+  fail_fast?: boolean;
+  /**
    * Specifies whether the session data should be cached.
    */
   enable_session_cache?: boolean;
@@ -301,6 +306,7 @@ export default class Session extends EventEmitter {
       options.user_agent,
       options.enable_safety_mode,
       options.generate_session_locally,
+      options.fail_fast,
       options.device_category,
       options.client_type,
       options.timezone,
@@ -381,6 +387,7 @@ export default class Session extends EventEmitter {
     user_agent: string = getRandomUserAgent('desktop'),
     enable_safety_mode = false,
     generate_session_locally = false,
+    fail_fast = false,
     device_category: DeviceCategory = 'desktop',
     client_name: ClientType = ClientType.WEB,
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -446,6 +453,8 @@ export default class Session extends EventEmitter {
           api_version = sw_session_data.api_version;
           context_data = sw_session_data.context_data;
         } catch (error) {
+          if (fail_fast)
+            throw error;
           Log.error(TAG, 'Failed to retrieve session data from server. Session data generated locally will be used instead.', error);
         }
       }
