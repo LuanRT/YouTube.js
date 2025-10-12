@@ -31,31 +31,50 @@ export default class History extends Feed<IBrowseResponse> {
   /**
    * Removes a video from watch history.
    */
-  async removeVideo(video_id: string): Promise<boolean> {
-    let feedbackToken;
+  async removeVideo(video_id: string, pages_to_load: number = 1): Promise<boolean> {
+    let pagesToLoad = pages_to_load;
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    let currentHistory: History = this;
 
-    for (const section of this.sections) {
-      for (const content of section.contents) {
-        const video = content as Video;
-        if (video.video_id === video_id && video.menu) {
-          feedbackToken = video.menu.top_level_buttons[0].as(Button).endpoint.payload.feedbackToken;
+    while (pagesToLoad > 0) {
+      let feedbackToken;
+
+      for (const section of currentHistory.sections) {
+        for (const content of section.contents) {
+          const video = content as Video;
+          if (video.video_id === video_id && video.menu) {
+            feedbackToken = video.menu.top_level_buttons[0].as(Button).endpoint.payload.feedbackToken;
+            break;
+          }
+        }
+        if (feedbackToken) {
           break;
         }
       }
+
+      if (feedbackToken) {
+        const body = { feedbackTokens: [ feedbackToken ] };
+        const response = await this.actions.execute('/feedback', body);
+        const data = response.data;
+
+        if (!data.feedbackResponses[0].isProcessed) {
+          throw new Error('Failed to remove video from watch history');
+        }
+
+        return true;
+      }
+
+      if (--pagesToLoad > 0) {
+        try {
+          currentHistory = await currentHistory.getContinuation();
+        } catch {
+          throw new Error('Unable to find video in watch history');
+        }
+      } else {
+        throw new Error('Unable to find video in watch history');
+      }
     }
 
-    if (!feedbackToken) {
-      throw new Error('Failed to get feedback token');
-    }
-
-    const body = { feedbackTokens: [ feedbackToken ] };
-    const response = await this.actions.execute('/feedback', body);
-    const data = response.data;
-
-    if (!data.feedbackResponses[0].isProcessed) {
-      throw new Error('Failed to remove video from watch history');
-    }
-
-    return true;
+    return false;
   }
 }
