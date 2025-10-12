@@ -10,7 +10,7 @@ export default class FormPopup extends YTNode {
 
   title: Text;
   form: Form | null;
-  buttons: ObservedArray<Button> | null;
+  buttons: ObservedArray<Button>;
 
   constructor(data: RawNode) {
     super();
