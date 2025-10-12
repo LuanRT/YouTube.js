@@ -2,6 +2,8 @@
 
 # Class: EventEmitter
 
+Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L3)
+
 ## Extends
 
 - `EventTarget`
@@ -9,31 +11,31 @@
 ## Extended by
 
 - [`Session`](Session.md)
-- [`LiveChat`](../namespaces/YT/classes/LiveChat.md)
+- [`LiveChat`](../youtubei.js/namespaces/YT/classes/LiveChat.md)
 
 ## Constructors
 
-### new EventEmitter()
+### Constructor
 
-> **new EventEmitter**(): [`EventEmitter`](EventEmitter.md)
+> **new EventEmitter**(): `EventEmitterLike`
+
+Defined in: [src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L6)
 
 #### Returns
 
-[`EventEmitter`](EventEmitter.md)
+`EventEmitterLike`
 
 #### Overrides
 
 `EventTarget.constructor`
 
-#### Defined in
-
-[src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/EventEmitterLike.ts#L6)
-
 ## Methods
 
 ### addEventListener()
 
-> **addEventListener**(`type`, `callback`, `options`?): `void`
+> **addEventListener**(`type`, `callback`, `options?`): `void`
+
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8256
 
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -53,11 +55,17 @@ The event listener is appended to target's event listener list and is not append
 
 #### Parameters
 
-• **type**: `string`
+##### type
 
-• **callback**: `null` \| `EventListenerOrEventListenerObject`
+`string`
 
-• **options?**: `boolean` \| `AddEventListenerOptions`
+##### callback
+
+`EventListenerOrEventListenerObject` | `null`
+
+##### options?
+
+`boolean` | `AddEventListenerOptions`
 
 #### Returns
 
@@ -67,15 +75,13 @@ The event listener is appended to target's event listener list and is not append
 
 `EventTarget.addEventListener`
 
-#### Defined in
-
-node\_modules/typescript/lib/lib.dom.d.ts:8256
-
 ***
 
 ### dispatchEvent()
 
 > **dispatchEvent**(`event`): `boolean`
+
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 
@@ -83,7 +89,9 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 #### Parameters
 
-• **event**: `Event`
+##### event
+
+`Event`
 
 #### Returns
 
@@ -93,29 +101,27 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 `EventTarget.dispatchEvent`
 
-#### Defined in
-
-node\_modules/typescript/lib/lib.dom.d.ts:8262
-
 ***
 
 ### emit()
 
 > **emit**(`type`, ...`args`): `void`
 
+Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L10)
+
 #### Parameters
 
-• **type**: `string`
+##### type
 
-• ...**args**: `any`[]
+`string`
+
+##### args
+
+...`any`[]
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-[src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/EventEmitterLike.ts#L10)
 
 ***
 
@@ -123,19 +129,21 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 > **off**(`type`, `listener`): `void`
 
+Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L40)
+
 #### Parameters
 
-• **type**: `string`
+##### type
 
-• **listener**
+`string`
+
+##### listener
+
+(...`args`) => `void`
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-[src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/EventEmitterLike.ts#L40)
 
 ***
 
@@ -143,19 +151,21 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 > **on**(`type`, `listener`): `void`
 
+Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L15)
+
 #### Parameters
 
-• **type**: `string`
+##### type
 
-• **listener**
+`string`
+
+##### listener
+
+(...`args`) => `void`
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-[src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/EventEmitterLike.ts#L15)
 
 ***
 
@@ -163,25 +173,29 @@ node\_modules/typescript/lib/lib.dom.d.ts:8262
 
 > **once**(`type`, `listener`): `void`
 
+Defined in: [src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L27)
+
 #### Parameters
 
-• **type**: `string`
+##### type
 
-• **listener**
+`string`
+
+##### listener
+
+(...`args`) => `void`
 
 #### Returns
 
 `void`
 
-#### Defined in
-
-[src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/utils/EventEmitterLike.ts#L27)
-
 ***
 
 ### removeEventListener()
 
-> **removeEventListener**(`type`, `callback`, `options`?): `void`
+> **removeEventListener**(`type`, `callback`, `options?`): `void`
+
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8268
 
 Removes the event listener in target's event listener list with the same type, callback, and options.
 
@@ -189,11 +203,17 @@ Removes the event listener in target's event listener list with the same type, c
 
 #### Parameters
 
-• **type**: `string`
+##### type
 
-• **callback**: `null` \| `EventListenerOrEventListenerObject`
+`string`
 
-• **options?**: `boolean` \| `EventListenerOptions`
+##### callback
+
+`EventListenerOrEventListenerObject` | `null`
+
+##### options?
+
+`boolean` | `EventListenerOptions`
 
 #### Returns
 
@@ -202,7 +222,3 @@ Removes the event listener in target's event listener list with the same type, c
 #### Inherited from
 
 `EventTarget.removeEventListener`
-
-#### Defined in
-
-node\_modules/typescript/lib/lib.dom.d.ts:8268

@@ -2,41 +2,41 @@
 
 # Class: MusicShelfContinuation
 
+Defined in: [src/parser/continuations.ts:93](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L93)
+
 ## Extends
 
-- [`YTNode`](../namespaces/Helpers/classes/YTNode.md)
+- [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
 
 ## Constructors
 
-### new MusicShelfContinuation()
+### Constructor
 
-> **new MusicShelfContinuation**(`data`): [`MusicShelfContinuation`](MusicShelfContinuation.md)
+> **new MusicShelfContinuation**(`data`): `MusicShelfContinuation`
+
+Defined in: [src/parser/continuations.ts:99](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L99)
 
 #### Parameters
 
-• **data**: [`RawNode`](../namespaces/APIResponseTypes/type-aliases/RawNode.md)
+##### data
+
+[`RawNode`](../type-aliases/RawNode.md)
 
 #### Returns
 
-[`MusicShelfContinuation`](MusicShelfContinuation.md)
+`MusicShelfContinuation`
 
 #### Overrides
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`constructor`](../namespaces/Helpers/classes/YTNode.md#constructors)
-
-#### Defined in
-
-[src/parser/continuations.ts:99](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/continuations.ts#L99)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`constructor`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#constructor)
 
 ## Properties
 
 ### contents
 
-> **contents**: [`ObservedArray`](../namespaces/Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../namespaces/Helpers/classes/YTNode.md)\>
+> **contents**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\>
 
-#### Defined in
-
-[src/parser/continuations.ts:97](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/continuations.ts#L97)
+Defined in: [src/parser/continuations.ts:97](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L97)
 
 ***
 
@@ -44,9 +44,7 @@
 
 > **continuation**: `string`
 
-#### Defined in
-
-[src/parser/continuations.ts:96](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/continuations.ts#L96)
+Defined in: [src/parser/continuations.ts:96](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L96)
 
 ***
 
@@ -54,13 +52,11 @@
 
 > `readonly` **type**: `string`
 
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L8)
+
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`type`](../namespaces/Helpers/classes/YTNode.md#type)
-
-#### Defined in
-
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L8)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`type`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#type)
 
 ***
 
@@ -68,13 +64,11 @@
 
 > `readonly` `static` **type**: `"musicShelfContinuation"` = `'musicShelfContinuation'`
 
+Defined in: [src/parser/continuations.ts:94](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L94)
+
 #### Overrides
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`type`](../namespaces/Helpers/classes/YTNode.md#type-1)
-
-#### Defined in
-
-[src/parser/continuations.ts:94](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/continuations.ts#L94)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`type`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#type-1)
 
 ## Methods
 
@@ -82,17 +76,25 @@
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L29)
+
 Cast to one of the given types.
 
 #### Type Parameters
 
-• **T** *extends* [`YTNode`](../namespaces/Helpers/classes/YTNode.md)
+##### T
 
-• **K** *extends* [`YTNodeConstructor`](../namespaces/Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
+`T` *extends* [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
+
+##### K
+
+`K` *extends* [`YTNodeConstructor`](../youtubei.js/namespaces/Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
 
 #### Parameters
 
-• ...**types**: `K`
+##### types
+
+...`K`
 
 The types to cast to
 
@@ -108,11 +110,7 @@ If the node is not of the given type
 
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`as`](../namespaces/Helpers/classes/YTNode.md#as)
-
-#### Defined in
-
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L29)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`as`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#as)
 
 ***
 
@@ -120,17 +118,25 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is MusicShelfContinuation & { [k in string]: R }`
 
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L41)
+
 Check for a key without asserting the type.
 
 #### Type Parameters
 
-• **T** *extends* `string`
+##### T
 
-• **R** = `any`
+`T` *extends* `string`
+
+##### R
+
+`R` = `any`
 
 #### Parameters
 
-• **key**: `T`
+##### key
+
+`T`
 
 The key to check
 
@@ -142,11 +148,7 @@ Whether the node has the key
 
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`hasKey`](../namespaces/Helpers/classes/YTNode.md#haskey)
-
-#### Defined in
-
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L41)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`hasKey`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#haskey)
 
 ***
 
@@ -154,17 +156,25 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L19)
+
 Check if the node is of the given type.
 
 #### Type Parameters
 
-• **T** *extends* [`YTNode`](../namespaces/Helpers/classes/YTNode.md)
+##### T
 
-• **K** *extends* [`YTNodeConstructor`](../namespaces/Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
+`T` *extends* [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
+
+##### K
+
+`K` *extends* [`YTNodeConstructor`](../youtubei.js/namespaces/Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
 
 #### Parameters
 
-• ...**types**: `K`
+##### types
+
+...`K`
 
 The type to check
 
@@ -176,35 +186,39 @@ whether the node is of the given type
 
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`is`](../namespaces/Helpers/classes/YTNode.md#is)
-
-#### Defined in
-
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L19)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`is`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#is)
 
 ***
 
 ### key()
 
-> **key**\<`T`, `R`\>(`key`): [`Maybe`](../namespaces/Helpers/classes/Maybe.md)
+> **key**\<`T`, `R`\>(`key`): [`Maybe`](../youtubei.js/namespaces/Helpers/classes/Maybe.md)
+
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 
 #### Type Parameters
 
-• **T** *extends* `string`
+##### T
 
-• **R** = `any`
+`T` *extends* `string`
+
+##### R
+
+`R` = `any`
 
 #### Parameters
 
-• **key**: `T`
+##### key
+
+`T`
 
 The key to check
 
 #### Returns
 
-[`Maybe`](../namespaces/Helpers/classes/Maybe.md)
+[`Maybe`](../youtubei.js/namespaces/Helpers/classes/Maybe.md)
 
 The value of the key wrapped in a Maybe
 
@@ -214,8 +228,4 @@ If the node does not have the key
 
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`key`](../namespaces/Helpers/classes/YTNode.md#key)
-
-#### Defined in
-
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L51)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`key`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#key)
