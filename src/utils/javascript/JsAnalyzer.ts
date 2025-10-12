@@ -105,27 +105,24 @@ export class JsAnalyzer {
   private analyzeAst(): void {
     let iifeBody: ESTree.BlockStatement | undefined;
 
-    walkAst(this.programAst, (currentNode, parentNode, ancestors) => {
-      if (
-        !iifeBody &&
-        currentNode.type === 'CallExpression' &&
-        currentNode.callee.type === 'FunctionExpression' &&
-        parentNode?.type === 'ExpressionStatement' &&
-        ancestors.length >= 1
-      ) {
-        const functionExpression = currentNode.callee;
-        const firstParam = functionExpression.params.length > 0 ? functionExpression.params[0] : null;
+    for (const statement of this.programAst.body) {
+      if (statement.type === 'ExpressionStatement' && statement.expression.type === 'CallExpression') {
+        const callExpr = statement.expression;
+        if (callExpr.callee.type === 'FunctionExpression') {
+          const funcExpr = callExpr.callee;
+          const firstParam = funcExpr.params.length > 0 ? funcExpr.params[0] : null;
 
-        if (!this.iifeParamName && firstParam?.type === 'Identifier') {
-          this.iifeParamName = firstParam.name; // Maybe it should be an array?
-        }
+          if (!this.iifeParamName && firstParam?.type === 'Identifier') {
+            this.iifeParamName = firstParam.name; // Maybe it should be an array?
+          }
 
-        if (functionExpression.body?.type === 'BlockStatement') {
-          iifeBody = functionExpression.body;
-          return WALK_STOP;
+          if (funcExpr.body?.type === 'BlockStatement') {
+            iifeBody = funcExpr.body;
+            break; // Found it, no need to continue.
+          }
         }
       }
-    });
+    }
 
     if (!iifeBody) return;
 
