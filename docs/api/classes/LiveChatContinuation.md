@@ -2,7 +2,7 @@
 
 # Class: LiveChatContinuation
 
-Defined in: [src/parser/continuations.ts:156](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L156)
+Defined in: [src/parser/continuations.ts:156](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L156)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/continuations.ts:156](https://github.com/LuanRT/YouTube.
 
 > **new LiveChatContinuation**(`data`): `LiveChatContinuation`
 
-Defined in: [src/parser/continuations.ts:174](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L174)
+Defined in: [src/parser/continuations.ts:174](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L174)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/continuations.ts:174](https://github.com/LuanRT/YouTube.
 
 > **action\_panel**: [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md) \| `null`
 
-Defined in: [src/parser/continuations.ts:160](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L160)
+Defined in: [src/parser/continuations.ts:160](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L160)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/continuations.ts:160](https://github.com/LuanRT/YouTube.
 
 > **actions**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/continuations.ts:159](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L159)
+Defined in: [src/parser/continuations.ts:159](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L159)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/continuations.ts:159](https://github.com/LuanRT/YouTube.
 
 > **continuation**: [`Continuation`](Continuation.md)
 
-Defined in: [src/parser/continuations.ts:171](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L171)
+Defined in: [src/parser/continuations.ts:171](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L171)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/continuations.ts:171](https://github.com/LuanRT/YouTube.
 
 > **emojis**: `object`[]
 
-Defined in: [src/parser/continuations.ts:165](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L165)
+Defined in: [src/parser/continuations.ts:165](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L165)
 
 #### emoji\_id
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/continuations.ts:165](https://github.com/LuanRT/YouTube.
 
 > **header**: [`LiveChatHeader`](../youtubei.js/namespaces/YTNodes/classes/LiveChatHeader.md) \| `null`
 
-Defined in: [src/parser/continuations.ts:162](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L162)
+Defined in: [src/parser/continuations.ts:162](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L162)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/continuations.ts:162](https://github.com/LuanRT/YouTube.
 
 > **item\_list**: [`LiveChatItemList`](../youtubei.js/namespaces/YTNodes/classes/LiveChatItemList.md) \| `null`
 
-Defined in: [src/parser/continuations.ts:161](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L161)
+Defined in: [src/parser/continuations.ts:161](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L161)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/continuations.ts:161](https://github.com/LuanRT/YouTube.
 
 > **participants\_list**: [`LiveChatParticipantsList`](../youtubei.js/namespaces/YTNodes/classes/LiveChatParticipantsList.md) \| `null`
 
-Defined in: [src/parser/continuations.ts:163](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L163)
+Defined in: [src/parser/continuations.ts:163](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L163)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/continuations.ts:163](https://github.com/LuanRT/YouTube.
 
 > **popout\_message**: [`Message`](../youtubei.js/namespaces/YTNodes/classes/Message.md) \| `null`
 
-Defined in: [src/parser/continuations.ts:164](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L164)
+Defined in: [src/parser/continuations.ts:164](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L164)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/continuations.ts:164](https://github.com/LuanRT/YouTube.
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -128,7 +128,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **viewer\_name**: `string`
 
-Defined in: [src/parser/continuations.ts:172](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L172)
+Defined in: [src/parser/continuations.ts:172](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L172)
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: [src/parser/continuations.ts:172](https://github.com/LuanRT/YouTube.
 
 > `readonly` `static` **type**: `"liveChatContinuation"` = `'liveChatContinuation'`
 
-Defined in: [src/parser/continuations.ts:157](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L157)
+Defined in: [src/parser/continuations.ts:157](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L157)
 
 #### Overrides
 
@@ -148,7 +148,7 @@ Defined in: [src/parser/continuations.ts:157](https://github.com/LuanRT/YouTube.
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -190,7 +190,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is LiveChatContinuation & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -228,7 +228,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -266,7 +266,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../youtubei.js/namespaces/Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

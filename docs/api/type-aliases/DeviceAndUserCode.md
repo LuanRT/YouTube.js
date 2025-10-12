@@ -4,7 +4,7 @@
 
 > **DeviceAndUserCode** = `object`
 
-Defined in: [src/core/OAuth2.ts:22](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L22)
+Defined in: [src/core/OAuth2.ts:22](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L22)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/core/OAuth2.ts:22](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **device\_code**: `string`
 
-Defined in: [src/core/OAuth2.ts:23](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L23)
+Defined in: [src/core/OAuth2.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L23)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/core/OAuth2.ts:23](https://github.com/LuanRT/YouTube.js/blob/41
 
 > `optional` **error\_code**: `string`
 
-Defined in: [src/core/OAuth2.ts:28](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L28)
+Defined in: [src/core/OAuth2.ts:28](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L28)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/core/OAuth2.ts:28](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **expires\_in**: `number`
 
-Defined in: [src/core/OAuth2.ts:24](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L24)
+Defined in: [src/core/OAuth2.ts:24](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L24)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/core/OAuth2.ts:24](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **interval**: `number`
 
-Defined in: [src/core/OAuth2.ts:25](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L25)
+Defined in: [src/core/OAuth2.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L25)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/core/OAuth2.ts:25](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **user\_code**: `string`
 
-Defined in: [src/core/OAuth2.ts:26](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L26)
+Defined in: [src/core/OAuth2.ts:26](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L26)
 
 ***
 
@@ -52,4 +52,4 @@ Defined in: [src/core/OAuth2.ts:26](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **verification\_url**: `string`
 
-Defined in: [src/core/OAuth2.ts:27](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L27)
+Defined in: [src/core/OAuth2.ts:27](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L27)

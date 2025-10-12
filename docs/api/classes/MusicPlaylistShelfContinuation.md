@@ -2,7 +2,7 @@
 
 # Class: MusicPlaylistShelfContinuation
 
-Defined in: [src/parser/continuations.ts:80](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L80)
+Defined in: [src/parser/continuations.ts:80](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L80)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/continuations.ts:80](https://github.com/LuanRT/YouTube.j
 
 > **new MusicPlaylistShelfContinuation**(`data`): `MusicPlaylistShelfContinuation`
 
-Defined in: [src/parser/continuations.ts:86](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L86)
+Defined in: [src/parser/continuations.ts:86](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L86)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/continuations.ts:86](https://github.com/LuanRT/YouTube.j
 
 > **contents**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\> \| `null`
 
-Defined in: [src/parser/continuations.ts:84](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L84)
+Defined in: [src/parser/continuations.ts:84](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L84)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/continuations.ts:84](https://github.com/LuanRT/YouTube.j
 
 > **continuation**: `string`
 
-Defined in: [src/parser/continuations.ts:83](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L83)
+Defined in: [src/parser/continuations.ts:83](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L83)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/continuations.ts:83](https://github.com/LuanRT/YouTube.j
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -64,7 +64,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `readonly` `static` **type**: `"musicPlaylistShelfContinuation"` = `'musicPlaylistShelfContinuation'`
 
-Defined in: [src/parser/continuations.ts:81](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/continuations.ts#L81)
+Defined in: [src/parser/continuations.ts:81](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L81)
 
 #### Overrides
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/continuations.ts:81](https://github.com/LuanRT/YouTube.j
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -118,7 +118,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is MusicPlaylistShelfContinuation & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -156,7 +156,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -194,7 +194,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../youtubei.js/namespaces/Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

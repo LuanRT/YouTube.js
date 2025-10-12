@@ -4,7 +4,7 @@
 
 > **SessionArgs** = `object`
 
-Defined in: [src/core/Session.ts:234](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L234)
+Defined in: [src/core/Session.ts:234](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L234)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/core/Session.ts:234](https://github.com/LuanRT/YouTube.js/blob/
 
 > **client\_name**: [`ClientType`](../enumerations/ClientType.md)
 
-Defined in: [src/core/Session.ts:240](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L240)
+Defined in: [src/core/Session.ts:240](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L240)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/core/Session.ts:240](https://github.com/LuanRT/YouTube.js/blob/
 
 > **device\_category**: [`DeviceCategory`](../youtubei.js/namespaces/Utils/type-aliases/DeviceCategory.md)
 
-Defined in: [src/core/Session.ts:239](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L239)
+Defined in: [src/core/Session.ts:239](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L239)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/core/Session.ts:239](https://github.com/LuanRT/YouTube.js/blob/
 
 > **enable\_safety\_mode**: `boolean`
 
-Defined in: [src/core/Session.ts:241](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L241)
+Defined in: [src/core/Session.ts:241](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L241)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/core/Session.ts:241](https://github.com/LuanRT/YouTube.js/blob/
 
 > **lang**: `string`
 
-Defined in: [src/core/Session.ts:235](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L235)
+Defined in: [src/core/Session.ts:235](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L235)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/core/Session.ts:235](https://github.com/LuanRT/YouTube.js/blob/
 
 > **location**: `string`
 
-Defined in: [src/core/Session.ts:236](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L236)
+Defined in: [src/core/Session.ts:236](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L236)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/core/Session.ts:236](https://github.com/LuanRT/YouTube.js/blob/
 
 > **on\_behalf\_of\_user**: `string` \| `undefined`
 
-Defined in: [src/core/Session.ts:243](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L243)
+Defined in: [src/core/Session.ts:243](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L243)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/core/Session.ts:243](https://github.com/LuanRT/YouTube.js/blob/
 
 > **time\_zone**: `string`
 
-Defined in: [src/core/Session.ts:237](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L237)
+Defined in: [src/core/Session.ts:237](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L237)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/core/Session.ts:237](https://github.com/LuanRT/YouTube.js/blob/
 
 > **user\_agent**: `string`
 
-Defined in: [src/core/Session.ts:238](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L238)
+Defined in: [src/core/Session.ts:238](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L238)
 
 ***
 
@@ -76,4 +76,4 @@ Defined in: [src/core/Session.ts:238](https://github.com/LuanRT/YouTube.js/blob/
 
 > **visitor\_data**: `string`
 
-Defined in: [src/core/Session.ts:242](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L242)
+Defined in: [src/core/Session.ts:242](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L242)

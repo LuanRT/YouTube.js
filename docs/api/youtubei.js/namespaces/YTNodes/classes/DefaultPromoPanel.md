@@ -1,0 +1,303 @@
+[youtubei.js](../../../../README.md) / [YTNodes](../README.md) / DefaultPromoPanel
+
+# Class: DefaultPromoPanel
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L6)
+
+## Extends
+
+- [`YTNode`](../../Helpers/classes/YTNode.md)
+
+## Constructors
+
+### Constructor
+
+> **new DefaultPromoPanel**(`data`): `DefaultPromoPanel`
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:21](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L21)
+
+#### Parameters
+
+##### data
+
+[`RawNode`](../../../../type-aliases/RawNode.md)
+
+#### Returns
+
+`DefaultPromoPanel`
+
+#### Overrides
+
+[`YTNode`](../../Helpers/classes/YTNode.md).[`constructor`](../../Helpers/classes/YTNode.md#constructor)
+
+## Properties
+
+### description
+
+> **description**: [`Text`](../../Misc/classes/Text.md)
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L10)
+
+***
+
+### endpoint
+
+> **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L11)
+
+***
+
+### large\_form\_factor\_background\_thumbnail
+
+> **large\_form\_factor\_background\_thumbnail**: [`YTNode`](../../Helpers/classes/YTNode.md)
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L12)
+
+***
+
+### metadata\_order
+
+> **metadata\_order**: `string`
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L18)
+
+***
+
+### min\_panel\_display\_duration\_ms
+
+> **min\_panel\_display\_duration\_ms**: `number`
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L15)
+
+***
+
+### min\_video\_play\_duration\_ms
+
+> **min\_video\_play\_duration\_ms**: `number`
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L16)
+
+***
+
+### panel\_layout
+
+> **panel\_layout**: `string`
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L19)
+
+***
+
+### scrim\_color\_values
+
+> **scrim\_color\_values**: `number`[]
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L14)
+
+***
+
+### scrim\_duration
+
+> **scrim\_duration**: `number`
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:17](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L17)
+
+***
+
+### small\_form\_factor\_background\_thumbnail
+
+> **small\_form\_factor\_background\_thumbnail**: [`YTNode`](../../Helpers/classes/YTNode.md)
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L13)
+
+***
+
+### title
+
+> **title**: [`Text`](../../Misc/classes/Text.md)
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L9)
+
+***
+
+### type
+
+> `readonly` **type**: `string`
+
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+
+#### Inherited from
+
+[`YTNode`](../../Helpers/classes/YTNode.md).[`type`](../../Helpers/classes/YTNode.md#type)
+
+***
+
+### type
+
+> `static` **type**: `string` = `'DefaultPromoPanel'`
+
+Defined in: [src/parser/classes/DefaultPromoPanel.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DefaultPromoPanel.ts#L7)
+
+#### Overrides
+
+[`YTNode`](../../Helpers/classes/YTNode.md).[`type`](../../Helpers/classes/YTNode.md#type-1)
+
+## Methods
+
+### as()
+
+> **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
+
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+
+Cast to one of the given types.
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* [`YTNode`](../../Helpers/classes/YTNode.md)
+
+##### K
+
+`K` *extends* [`YTNodeConstructor`](../../Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
+
+#### Parameters
+
+##### types
+
+...`K`
+
+The types to cast to
+
+#### Returns
+
+`InstanceType`\<`K`\[`number`\]\>
+
+The node cast to one of the given types
+
+#### Throws
+
+If the node is not of the given type
+
+#### Inherited from
+
+[`YTNode`](../../Helpers/classes/YTNode.md).[`as`](../../Helpers/classes/YTNode.md#as)
+
+***
+
+### hasKey()
+
+> **hasKey**\<`T`, `R`\>(`key`): `this is DefaultPromoPanel & { [k in string]: R }`
+
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+
+Check for a key without asserting the type.
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* `string`
+
+##### R
+
+`R` = `any`
+
+#### Parameters
+
+##### key
+
+`T`
+
+The key to check
+
+#### Returns
+
+`this is DefaultPromoPanel & { [k in string]: R }`
+
+Whether the node has the key
+
+#### Inherited from
+
+[`YTNode`](../../Helpers/classes/YTNode.md).[`hasKey`](../../Helpers/classes/YTNode.md#haskey)
+
+***
+
+### is()
+
+> **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
+
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+
+Check if the node is of the given type.
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* [`YTNode`](../../Helpers/classes/YTNode.md)
+
+##### K
+
+`K` *extends* [`YTNodeConstructor`](../../Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
+
+#### Parameters
+
+##### types
+
+...`K`
+
+The type to check
+
+#### Returns
+
+`this is InstanceType<K[number]>`
+
+whether the node is of the given type
+
+#### Inherited from
+
+[`YTNode`](../../Helpers/classes/YTNode.md).[`is`](../../Helpers/classes/YTNode.md#is)
+
+***
+
+### key()
+
+> **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
+
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+
+Assert that the node has the given key and return it.
+
+#### Type Parameters
+
+##### T
+
+`T` *extends* `string`
+
+##### R
+
+`R` = `any`
+
+#### Parameters
+
+##### key
+
+`T`
+
+The key to check
+
+#### Returns
+
+[`Maybe`](../../Helpers/classes/Maybe.md)
+
+The value of the key wrapped in a Maybe
+
+#### Throws
+
+If the node does not have the key
+
+#### Inherited from
+
+[`YTNode`](../../Helpers/classes/YTNode.md).[`key`](../../Helpers/classes/YTNode.md#key)

@@ -2,7 +2,7 @@
 
 # Class: UniversalCache
 
-Defined in: [src/utils/Cache.ts:4](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Cache.ts#L4)
+Defined in: [src/utils/Cache.ts:4](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Cache.ts#L4)
 
 ## Implements
 
@@ -14,7 +14,7 @@ Defined in: [src/utils/Cache.ts:4](https://github.com/LuanRT/YouTube.js/blob/41b
 
 > **new UniversalCache**(`persistent`, `persistent_directory?`): `UniversalCache`
 
-Defined in: [src/utils/Cache.ts:6](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Cache.ts#L6)
+Defined in: [src/utils/Cache.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Cache.ts#L6)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: [src/utils/Cache.ts:6](https://github.com/LuanRT/YouTube.js/blob/41b
 
 > **get** **cache\_dir**(): `string`
 
-Defined in: [src/utils/Cache.ts:9](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Cache.ts#L9)
+Defined in: [src/utils/Cache.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Cache.ts#L9)
 
 ##### Returns
 
@@ -54,7 +54,7 @@ Defined in: [src/utils/Cache.ts:9](https://github.com/LuanRT/YouTube.js/blob/41b
 
 > **get**(`key`): `Promise`\<`ArrayBuffer` \| `undefined`\>
 
-Defined in: [src/utils/Cache.ts:12](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Cache.ts#L12)
+Defined in: [src/utils/Cache.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Cache.ts#L12)
 
 #### Parameters
 
@@ -76,7 +76,7 @@ Defined in: [src/utils/Cache.ts:12](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **remove**(`key`): `Promise`\<`void`\>
 
-Defined in: [src/utils/Cache.ts:18](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Cache.ts#L18)
+Defined in: [src/utils/Cache.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Cache.ts#L18)
 
 #### Parameters
 
@@ -98,7 +98,7 @@ Defined in: [src/utils/Cache.ts:18](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **set**(`key`, `value`): `Promise`\<`void`\>
 
-Defined in: [src/utils/Cache.ts:15](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Cache.ts#L15)
+Defined in: [src/utils/Cache.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Cache.ts#L15)
 
 #### Parameters
 

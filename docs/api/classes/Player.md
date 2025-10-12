@@ -2,7 +2,7 @@
 
 # Class: Player
 
-Defined in: [src/core/Player.ts:37](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L37)
+Defined in: [src/core/Player.ts:37](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L37)
 
 Represents YouTube's player script. This is required to decipher signatures.
 
@@ -12,7 +12,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 > **new Player**(`player_id`, `signature_timestamp`, `data?`): `Player`
 
-Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L40)
+Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L40)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/41
 
 > `optional` **data**: [`BuildScriptResult`](../youtubei.js/namespaces/Types/interfaces/BuildScriptResult.md)
 
-Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L40)
+Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L40)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **player\_id**: `string`
 
-Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L40)
+Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L40)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/41
 
 > `optional` **po\_token**: `string`
 
-Defined in: [src/core/Player.ts:38](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L38)
+Defined in: [src/core/Player.ts:38](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L38)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [src/core/Player.ts:38](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **signature\_timestamp**: `number`
 
-Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L40)
+Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L40)
 
 ## Accessors
 
@@ -72,7 +72,7 @@ Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **get** **url**(): `string`
 
-Defined in: [src/core/Player.ts:284](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L284)
+Defined in: [src/core/Player.ts:284](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L284)
 
 ##### Returns
 
@@ -86,7 +86,7 @@ Defined in: [src/core/Player.ts:284](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **get** `static` **LIBRARY\_VERSION**(): `number`
 
-Defined in: [src/core/Player.ts:288](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L288)
+Defined in: [src/core/Player.ts:288](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L288)
 
 ##### Returns
 
@@ -98,7 +98,7 @@ Defined in: [src/core/Player.ts:288](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **cache**(`cache?`): `Promise`\<`void`\>
 
-Defined in: [src/core/Player.ts:270](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L270)
+Defined in: [src/core/Player.ts:270](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L270)
 
 #### Parameters
 
@@ -116,7 +116,7 @@ Defined in: [src/core/Player.ts:270](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **decipher**(`url?`, `signature_cipher?`, `cipher?`, `this_response_nsig_cache?`): `Promise`\<`string`\>
 
-Defined in: [src/core/Player.ts:134](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L134)
+Defined in: [src/core/Player.ts:134](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L134)
 
 #### Parameters
 
@@ -146,7 +146,7 @@ Defined in: [src/core/Player.ts:134](https://github.com/LuanRT/YouTube.js/blob/4
 
 > `static` **create**(`cache`, `fetch`, `po_token?`, `player_id?`): `Promise`\<`Player`\>
 
-Defined in: [src/core/Player.ts:42](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L42)
+Defined in: [src/core/Player.ts:42](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L42)
 
 #### Parameters
 
@@ -176,7 +176,7 @@ Defined in: [src/core/Player.ts:42](https://github.com/LuanRT/YouTube.js/blob/41
 
 > `static` **fromCache**(`cache`, `player_id`): `Promise`\<`Player` \| `null`\>
 
-Defined in: [src/core/Player.ts:243](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L243)
+Defined in: [src/core/Player.ts:243](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L243)
 
 #### Parameters
 
@@ -198,7 +198,7 @@ Defined in: [src/core/Player.ts:243](https://github.com/LuanRT/YouTube.js/blob/4
 
 > `static` **fromSource**(`player_id`, `options`): `Promise`\<`Player`\>
 
-Defined in: [src/core/Player.ts:264](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Player.ts#L264)
+Defined in: [src/core/Player.ts:264](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L264)
 
 #### Parameters
 

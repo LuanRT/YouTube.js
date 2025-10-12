@@ -2,7 +2,7 @@
 
 # Class: OAuth2
 
-Defined in: [src/core/OAuth2.ts:35](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L35)
+Defined in: [src/core/OAuth2.ts:35](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L35)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/OAuth2.ts:35](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **new OAuth2**(`session`): `OAuth2`
 
-Defined in: [src/core/OAuth2.ts:46](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L46)
+Defined in: [src/core/OAuth2.ts:46](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L46)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/core/OAuth2.ts:46](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **AUTH\_SERVER\_CODE\_URL**: `URL`
 
-Defined in: [src/core/OAuth2.ts:39](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L39)
+Defined in: [src/core/OAuth2.ts:39](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L39)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/core/OAuth2.ts:39](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **AUTH\_SERVER\_REVOKE\_TOKEN\_URL**: `URL`
 
-Defined in: [src/core/OAuth2.ts:41](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L41)
+Defined in: [src/core/OAuth2.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L41)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/core/OAuth2.ts:41](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **AUTH\_SERVER\_TOKEN\_URL**: `URL`
 
-Defined in: [src/core/OAuth2.ts:40](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L40)
+Defined in: [src/core/OAuth2.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L40)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/core/OAuth2.ts:40](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **client\_id**: [`OAuth2ClientID`](../type-aliases/OAuth2ClientID.md) \| `undefined`
 
-Defined in: [src/core/OAuth2.ts:43](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L43)
+Defined in: [src/core/OAuth2.ts:43](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L43)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/core/OAuth2.ts:43](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **oauth2\_tokens**: [`OAuth2Tokens`](../type-aliases/OAuth2Tokens.md) \| `undefined`
 
-Defined in: [src/core/OAuth2.ts:44](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L44)
+Defined in: [src/core/OAuth2.ts:44](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L44)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/core/OAuth2.ts:44](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **YTTV\_URL**: `URL`
 
-Defined in: [src/core/OAuth2.ts:38](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L38)
+Defined in: [src/core/OAuth2.ts:38](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L38)
 
 ## Methods
 
@@ -76,7 +76,7 @@ Defined in: [src/core/OAuth2.ts:38](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **cacheCredentials**(): `Promise`\<`void`\>
 
-Defined in: [src/core/OAuth2.ts:105](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L105)
+Defined in: [src/core/OAuth2.ts:105](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L105)
 
 #### Returns
 
@@ -88,7 +88,7 @@ Defined in: [src/core/OAuth2.ts:105](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **getClientID**(): `Promise`\<[`OAuth2ClientID`](../type-aliases/OAuth2ClientID.md)\>
 
-Defined in: [src/core/OAuth2.ts:268](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L268)
+Defined in: [src/core/OAuth2.ts:268](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L268)
 
 #### Returns
 
@@ -100,7 +100,7 @@ Defined in: [src/core/OAuth2.ts:268](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **getDeviceAndUserCode**(): `Promise`\<[`DeviceAndUserCode`](../type-aliases/DeviceAndUserCode.md)\>
 
-Defined in: [src/core/OAuth2.ts:236](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L236)
+Defined in: [src/core/OAuth2.ts:236](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L236)
 
 #### Returns
 
@@ -112,7 +112,7 @@ Defined in: [src/core/OAuth2.ts:236](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **init**(`tokens?`): `Promise`\<`void`\>
 
-Defined in: [src/core/OAuth2.ts:54](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L54)
+Defined in: [src/core/OAuth2.ts:54](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L54)
 
 #### Parameters
 
@@ -130,7 +130,7 @@ Defined in: [src/core/OAuth2.ts:54](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **pollForAccessToken**(`device_and_user_code`): `void`
 
-Defined in: [src/core/OAuth2.ts:130](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L130)
+Defined in: [src/core/OAuth2.ts:130](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L130)
 
 #### Parameters
 
@@ -148,7 +148,7 @@ Defined in: [src/core/OAuth2.ts:130](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **refreshAccessToken**(): `Promise`\<`void`\>
 
-Defined in: [src/core/OAuth2.ts:197](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L197)
+Defined in: [src/core/OAuth2.ts:197](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L197)
 
 #### Returns
 
@@ -160,7 +160,7 @@ Defined in: [src/core/OAuth2.ts:197](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **removeCache**(): `Promise`\<`void`\>
 
-Defined in: [src/core/OAuth2.ts:126](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L126)
+Defined in: [src/core/OAuth2.ts:126](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L126)
 
 #### Returns
 
@@ -172,7 +172,7 @@ Defined in: [src/core/OAuth2.ts:126](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **revokeCredentials**(): `Promise`\<`Response` \| `undefined`\>
 
-Defined in: [src/core/OAuth2.ts:185](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L185)
+Defined in: [src/core/OAuth2.ts:185](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L185)
 
 #### Returns
 
@@ -184,7 +184,7 @@ Defined in: [src/core/OAuth2.ts:185](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **setTokens**(`tokens`): `void`
 
-Defined in: [src/core/OAuth2.ts:85](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L85)
+Defined in: [src/core/OAuth2.ts:85](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L85)
 
 #### Parameters
 
@@ -202,7 +202,7 @@ Defined in: [src/core/OAuth2.ts:85](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **shouldRefreshToken**(): `boolean`
 
-Defined in: [src/core/OAuth2.ts:313](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L313)
+Defined in: [src/core/OAuth2.ts:313](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L313)
 
 #### Returns
 
@@ -214,7 +214,7 @@ Defined in: [src/core/OAuth2.ts:313](https://github.com/LuanRT/YouTube.js/blob/4
 
 > **validateTokens**(`tokens`): `boolean`
 
-Defined in: [src/core/OAuth2.ts:319](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/OAuth2.ts#L319)
+Defined in: [src/core/OAuth2.ts:319](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L319)
 
 #### Parameters
 

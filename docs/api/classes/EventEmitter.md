@@ -2,7 +2,7 @@
 
 # Class: EventEmitter
 
-Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L3)
+Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L3)
 
 ## Extends
 
@@ -19,7 +19,7 @@ Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.
 
 > **new EventEmitter**(): `EventEmitterLike`
 
-Defined in: [src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L6)
+Defined in: [src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L6)
 
 #### Returns
 
@@ -107,7 +107,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 > **emit**(`type`, ...`args`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L10)
+Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L10)
 
 #### Parameters
 
@@ -129,7 +129,7 @@ Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube
 
 > **off**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L40)
+Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L40)
 
 #### Parameters
 
@@ -151,7 +151,7 @@ Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube
 
 > **on**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L15)
+Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L15)
 
 #### Parameters
 
@@ -173,7 +173,7 @@ Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube
 
 > **once**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/EventEmitterLike.ts#L27)
+Defined in: [src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L27)
 
 #### Parameters
 

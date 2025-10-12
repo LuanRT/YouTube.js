@@ -4,7 +4,7 @@
 
 > **SessionOptions** = `object`
 
-Defined in: [src/core/Session.ts:127](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L127)
+Defined in: [src/core/Session.ts:127](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L127)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/core/Session.ts:127](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **account\_index**: `number`
 
-Defined in: [src/core/Session.ts:145](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L145)
+Defined in: [src/core/Session.ts:145](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L145)
 
 The account index to use. This is useful if you have multiple accounts logged in.
 
@@ -24,7 +24,7 @@ The account index to use. This is useful if you have multiple accounts logged in
 
 > `optional` **cache**: [`ICache`](../youtubei.js/namespaces/Types/interfaces/ICache.md)
 
-Defined in: [src/core/Session.ts:191](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L191)
+Defined in: [src/core/Session.ts:191](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L191)
 
 Used to cache algorithms, session data, and OAuth2 tokens.
 
@@ -34,7 +34,7 @@ Used to cache algorithms, session data, and OAuth2 tokens.
 
 > `optional` **client\_type**: [`ClientType`](../enumerations/ClientType.md)
 
-Defined in: [src/core/Session.ts:183](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L183)
+Defined in: [src/core/Session.ts:183](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L183)
 
 InnerTube client type.
 
@@ -44,7 +44,7 @@ InnerTube client type.
 
 > `optional` **cookie**: `string`
 
-Defined in: [src/core/Session.ts:195](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L195)
+Defined in: [src/core/Session.ts:195](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L195)
 
 YouTube cookies.
 
@@ -54,7 +54,7 @@ YouTube cookies.
 
 > `optional` **device\_category**: [`DeviceCategory`](../youtubei.js/namespaces/Utils/type-aliases/DeviceCategory.md)
 
-Defined in: [src/core/Session.ts:179](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L179)
+Defined in: [src/core/Session.ts:179](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L179)
 
 Platform to use for the session.
 
@@ -64,7 +64,7 @@ Platform to use for the session.
 
 > `optional` **enable\_safety\_mode**: `boolean`
 
-Defined in: [src/core/Session.ts:159](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L159)
+Defined in: [src/core/Session.ts:159](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L159)
 
 Specifies whether to enable safety mode. This will prevent the session from loading any potentially unsafe content.
 
@@ -74,7 +74,7 @@ Specifies whether to enable safety mode. This will prevent the session from load
 
 > `optional` **enable\_session\_cache**: `boolean`
 
-Defined in: [src/core/Session.ts:175](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L175)
+Defined in: [src/core/Session.ts:175](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L175)
 
 Specifies whether the session data should be cached.
 
@@ -84,7 +84,7 @@ Specifies whether the session data should be cached.
 
 > `optional` **fetch**: [`FetchFunction`](../youtubei.js/namespaces/Types/type-aliases/FetchFunction.md)
 
-Defined in: [src/core/Session.ts:204](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L204)
+Defined in: [src/core/Session.ts:204](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L204)
 
 Fetch function to use.
 
@@ -94,7 +94,7 @@ Fetch function to use.
 
 > `optional` **generate\_session\_locally**: `boolean`
 
-Defined in: [src/core/Session.ts:171](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L171)
+Defined in: [src/core/Session.ts:171](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L171)
 
 Specifies whether to generate the session data locally or retrieve it from YouTube.
 This can be useful if you need more performance.
@@ -108,7 +108,7 @@ If you want to force a new session to be generated, you must clear the cache or 
 
 > `optional` **lang**: `string`
 
-Defined in: [src/core/Session.ts:131](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L131)
+Defined in: [src/core/Session.ts:131](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L131)
 
 Language.
 
@@ -118,7 +118,7 @@ Language.
 
 > `optional` **location**: `string`
 
-Defined in: [src/core/Session.ts:135](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L135)
+Defined in: [src/core/Session.ts:135](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L135)
 
 Geolocation.
 
@@ -128,7 +128,7 @@ Geolocation.
 
 > `optional` **on\_behalf\_of\_user**: `string`
 
-Defined in: [src/core/Session.ts:149](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L149)
+Defined in: [src/core/Session.ts:149](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L149)
 
 Specify the Page ID of the YouTube profile/channel to use, if the logged-in account has multiple profiles.
 
@@ -138,7 +138,7 @@ Specify the Page ID of the YouTube profile/channel to use, if the logged-in acco
 
 > `optional` **player\_id**: `string`
 
-Defined in: [src/core/Session.ts:214](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L214)
+Defined in: [src/core/Session.ts:214](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L214)
 
 Player ID override.
 In most cases, this isn't necessary; but when YouTube introduces breaking changes,
@@ -150,7 +150,7 @@ forcing an older Player ID can help work around temporary issues.
 
 > `optional` **po\_token**: `string`
 
-Defined in: [src/core/Session.ts:208](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L208)
+Defined in: [src/core/Session.ts:208](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L208)
 
 Session bound Proof of Origin Token. This is an attestation token generated by BotGuard/DroidGuard. It is used to confirm that the request is coming from a real client.
 
@@ -160,7 +160,7 @@ Session bound Proof of Origin Token. This is an attestation token generated by B
 
 > `optional` **retrieve\_innertube\_config**: `boolean`
 
-Defined in: [src/core/Session.ts:163](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L163)
+Defined in: [src/core/Session.ts:163](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L163)
 
 Specifies whether to retrieve the InnerTube config. Useful for "onesie" requests.
 
@@ -170,7 +170,7 @@ Specifies whether to retrieve the InnerTube config. Useful for "onesie" requests
 
 > `optional` **retrieve\_player**: `boolean`
 
-Defined in: [src/core/Session.ts:155](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L155)
+Defined in: [src/core/Session.ts:155](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L155)
 
 Specifies whether to retrieve the JS player. Disabling this will make session creation faster.
 
@@ -182,7 +182,7 @@ Specifies whether to retrieve the JS player. Disabling this will make session cr
 
 > `optional` **timezone**: `string`
 
-Defined in: [src/core/Session.ts:187](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L187)
+Defined in: [src/core/Session.ts:187](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L187)
 
 The time zone.
 
@@ -192,7 +192,7 @@ The time zone.
 
 > `optional` **user\_agent**: `string`
 
-Defined in: [src/core/Session.ts:139](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L139)
+Defined in: [src/core/Session.ts:139](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L139)
 
 User agent (InnerTube requests only).
 
@@ -202,7 +202,7 @@ User agent (InnerTube requests only).
 
 > `optional` **visitor\_data**: `string`
 
-Defined in: [src/core/Session.ts:200](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L200)
+Defined in: [src/core/Session.ts:200](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L200)
 
 Setting this to a valid and persistent visitor data string will allow YouTube to give this session tailored content even when not logged in.
 A good way to get a valid one is by either grabbing it from a browser or calling InnerTube's `/visitor_id` endpoint.

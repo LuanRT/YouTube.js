@@ -4,7 +4,7 @@
 
 > **SWSessionData** = `object`
 
-Defined in: [src/core/Session.ts:228](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L228)
+Defined in: [src/core/Session.ts:228](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L228)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/core/Session.ts:228](https://github.com/LuanRT/YouTube.js/blob/
 
 > **api\_key**: `string`
 
-Defined in: [src/core/Session.ts:230](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L230)
+Defined in: [src/core/Session.ts:230](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L230)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/core/Session.ts:230](https://github.com/LuanRT/YouTube.js/blob/
 
 > **api\_version**: `string`
 
-Defined in: [src/core/Session.ts:231](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L231)
+Defined in: [src/core/Session.ts:231](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L231)
 
 ***
 
@@ -28,4 +28,4 @@ Defined in: [src/core/Session.ts:231](https://github.com/LuanRT/YouTube.js/blob/
 
 > **context\_data**: `ContextData`
 
-Defined in: [src/core/Session.ts:229](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/core/Session.ts#L229)
+Defined in: [src/core/Session.ts:229](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L229)

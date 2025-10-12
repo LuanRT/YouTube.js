@@ -2,7 +2,7 @@
 
 # Class: Platform
 
-Defined in: [src/utils/Utils.ts:15](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Utils.ts#L15)
+Defined in: [src/utils/Utils.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Utils.ts#L15)
 
 ## Constructors
 
@@ -22,7 +22,7 @@ Defined in: [src/utils/Utils.ts:15](https://github.com/LuanRT/YouTube.js/blob/41
 
 > **get** `static` **shim**(): [`PlatformShim`](../youtubei.js/namespaces/Types/interfaces/PlatformShim.md)
 
-Defined in: [src/utils/Utils.ts:20](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Utils.ts#L20)
+Defined in: [src/utils/Utils.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Utils.ts#L20)
 
 ##### Returns
 
@@ -34,7 +34,7 @@ Defined in: [src/utils/Utils.ts:20](https://github.com/LuanRT/YouTube.js/blob/41
 
 > `static` **load**(`platform`): `void`
 
-Defined in: [src/utils/Utils.ts:16](https://github.com/LuanRT/YouTube.js/blob/41b810629b3dc2bbebfa322c0c452c3f7303e993/src/utils/Utils.ts#L16)
+Defined in: [src/utils/Utils.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Utils.ts#L16)
 
 #### Parameters
 
