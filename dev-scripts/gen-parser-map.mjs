@@ -35,7 +35,7 @@ ${import_list.join('\n')}
 fs.writeFileSync(
   path.resolve(__dirname, '../src/parser/misc.ts'),
   `// This file was auto generated, do not edit.
-// See ./scripts/build-parser-map.js
+// See ./dev-scripts/gen-parser-map.mjs
 
 ${misc_imports.join('\n')}
 `
