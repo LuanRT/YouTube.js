@@ -181,6 +181,7 @@ export { default as FeedFilterChipBar } from './classes/FeedFilterChipBar.js';
 export { default as FeedNudge } from './classes/FeedNudge.js';
 export { default as FeedTabbedHeader } from './classes/FeedTabbedHeader.js';
 export { default as FlexibleActionsView } from './classes/FlexibleActionsView.js';
+export { default as Form } from './classes/Form.js';
 export { default as FormFooterView } from './classes/FormFooterView.js';
 export { default as GameCard } from './classes/GameCard.js';
 export { default as GameDetails } from './classes/GameDetails.js';
