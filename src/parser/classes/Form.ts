@@ -6,7 +6,7 @@ import ToggleFormField from './ToggleFormField.js';
 export default class Form extends YTNode {
   static type = 'Form';
 
-  fields: ObservedArray<ToggleFormField> | null;
+  fields: ObservedArray<ToggleFormField>;
 
   constructor(data: RawNode) {
     super();
