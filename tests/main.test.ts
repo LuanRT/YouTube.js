@@ -364,7 +364,7 @@ describe('YouTube.js Tests', () => {
       });
 
       test('Search#applyFilter', async () => {
-        search = await search.applyFilter(search.filters[1]);
+        search = await search.applyFilter('Songs');
         expect(search).toBeDefined();
         expect(search.contents).toBeDefined();
         expect(search.contents?.length).toBeGreaterThan(0);
