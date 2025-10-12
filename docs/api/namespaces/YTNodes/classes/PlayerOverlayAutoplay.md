@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:28](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L28)
+[src/parser/classes/PlayerOverlayAutoplay.ts:28](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L28)
 
 ## Properties
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:23](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L23)
+[src/parser/classes/PlayerOverlayAutoplay.ts:23](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L23)
 
 ***
 
@@ -46,7 +46,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:21](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L21)
+[src/parser/classes/PlayerOverlayAutoplay.ts:21](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L21)
 
 ***
 
@@ -56,7 +56,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:24](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L24)
+[src/parser/classes/PlayerOverlayAutoplay.ts:24](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L24)
 
 ***
 
@@ -66,7 +66,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:26](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L26)
+[src/parser/classes/PlayerOverlayAutoplay.ts:26](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L26)
 
 ***
 
@@ -76,7 +76,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:18](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L18)
+[src/parser/classes/PlayerOverlayAutoplay.ts:18](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L18)
 
 ***
 
@@ -86,7 +86,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:25](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L25)
+[src/parser/classes/PlayerOverlayAutoplay.ts:25](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L25)
 
 ***
 
@@ -96,7 +96,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:17](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L17)
+[src/parser/classes/PlayerOverlayAutoplay.ts:17](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L17)
 
 ***
 
@@ -106,7 +106,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:20](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L20)
+[src/parser/classes/PlayerOverlayAutoplay.ts:20](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L20)
 
 ***
 
@@ -116,7 +116,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:14](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L14)
+[src/parser/classes/PlayerOverlayAutoplay.ts:14](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L14)
 
 ***
 
@@ -126,7 +126,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:22](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L22)
+[src/parser/classes/PlayerOverlayAutoplay.ts:22](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L22)
 
 ***
 
@@ -136,7 +136,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:11](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L11)
+[src/parser/classes/PlayerOverlayAutoplay.ts:11](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L11)
 
 ***
 
@@ -150,7 +150,7 @@
 
 #### Defined in
 
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L8)
+[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L8)
 
 ***
 
@@ -160,7 +160,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:12](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L12)
+[src/parser/classes/PlayerOverlayAutoplay.ts:12](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L12)
 
 ***
 
@@ -170,7 +170,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:13](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L13)
+[src/parser/classes/PlayerOverlayAutoplay.ts:13](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L13)
 
 ***
 
@@ -184,7 +184,7 @@
 
 #### Defined in
 
-[src/parser/classes/PlayerOverlayAutoplay.ts:9](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/classes/PlayerOverlayAutoplay.ts#L9)
+[src/parser/classes/PlayerOverlayAutoplay.ts:9](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/classes/PlayerOverlayAutoplay.ts#L9)
 
 ## Methods
 
@@ -222,7 +222,7 @@ If the node is not of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L29)
+[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L29)
 
 ***
 
@@ -256,7 +256,7 @@ Whether the node has the key
 
 #### Defined in
 
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L41)
+[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L41)
 
 ***
 
@@ -290,7 +290,7 @@ whether the node is of the given type
 
 #### Defined in
 
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L19)
+[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L19)
 
 ***
 
@@ -328,4 +328,4 @@ If the node does not have the key
 
 #### Defined in
 
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L51)
+[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/helpers.ts#L51)

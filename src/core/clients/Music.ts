@@ -66,7 +66,7 @@ export default class Music {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: this.#session.player?.sts
+          signatureTimestamp: this.#session.player?.signature_timestamp
         }
       },
       client: 'YTMUSIC'
@@ -102,7 +102,7 @@ export default class Music {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: this.#session.player?.sts
+          signatureTimestamp: this.#session.player?.signature_timestamp
         }
       },
       client: 'YTMUSIC'

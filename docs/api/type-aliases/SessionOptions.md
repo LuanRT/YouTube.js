@@ -133,4 +133,4 @@ A good way to get a valid one is by either grabbing it from a browser or calling
 
 ## Defined in
 
-[src/core/Session.ts:126](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Session.ts#L126)
+[src/core/Session.ts:127](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/Session.ts#L127)

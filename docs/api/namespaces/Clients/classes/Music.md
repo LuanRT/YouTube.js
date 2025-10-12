@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:37](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L37)
+[src/core/clients/Music.ts:37](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L37)
 
 ## Methods
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:186](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L186)
+[src/core/clients/Music.ts:186](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L186)
 
 ***
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:176](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L176)
+[src/core/clients/Music.ts:176](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L176)
 
 ***
 
@@ -68,7 +68,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:163](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L163)
+[src/core/clients/Music.ts:163](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L163)
 
 ***
 
@@ -82,7 +82,7 @@
 
 #### Defined in
 
-[src/core/clients/Music.ts:157](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L157)
+[src/core/clients/Music.ts:157](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L157)
 
 ***
 
@@ -108,7 +108,7 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:47](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L47)
+[src/core/clients/Music.ts:47](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L47)
 
 ***
 
@@ -122,7 +122,7 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:170](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L170)
+[src/core/clients/Music.ts:170](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L170)
 
 ***
 
@@ -140,7 +140,7 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:267](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L267)
+[src/core/clients/Music.ts:267](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L267)
 
 ***
 
@@ -158,7 +158,7 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:196](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L196)
+[src/core/clients/Music.ts:196](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L196)
 
 ***
 
@@ -172,7 +172,7 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:293](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L293)
+[src/core/clients/Music.ts:293](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L293)
 
 ***
 
@@ -190,7 +190,7 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:246](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L246)
+[src/core/clients/Music.ts:246](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L246)
 
 ***
 
@@ -208,7 +208,7 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:299](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L299)
+[src/core/clients/Music.ts:299](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L299)
 
 ***
 
@@ -228,7 +228,7 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:206](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L206)
+[src/core/clients/Music.ts:206](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L206)
 
 ***
 
@@ -248,4 +248,4 @@ Options for fetching video info.
 
 #### Defined in
 
-[src/core/clients/Music.ts:135](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/clients/Music.ts#L135)
+[src/core/clients/Music.ts:135](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/core/clients/Music.ts#L135)

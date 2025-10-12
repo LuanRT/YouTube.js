@@ -3,7 +3,7 @@ import { compress, decompress } from './LZW.js';
 export const MAGIC_HEADER = 0x594254; // 'YTB' in hex...
 export const VERSION = 1;
 
-export function serialize(data: any): Uint8Array {
+export function serialize(data: any): ArrayBuffer {
   const json_str = JSON.stringify(data);
   const compressed = compress(json_str);
   const compressed_bytes = new TextEncoder().encode(compressed);
@@ -17,7 +17,7 @@ export function serialize(data: any): Uint8Array {
 
   new Uint8Array(buffer).set(compressed_bytes, 12);
 
-  return new Uint8Array(buffer);
+  return buffer;
 }
 
 export function deserialize<T>(buffer: Uint8Array): T {

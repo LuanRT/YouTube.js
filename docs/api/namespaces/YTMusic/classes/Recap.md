@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Recap.ts:26](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Recap.ts#L26)
+[src/parser/ytmusic/Recap.ts:26](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/ytmusic/Recap.ts#L26)
 
 ## Properties
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Recap.ts:23](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Recap.ts#L23)
+[src/parser/ytmusic/Recap.ts:23](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/ytmusic/Recap.ts#L23)
 
 ***
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Recap.ts:24](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Recap.ts#L24)
+[src/parser/ytmusic/Recap.ts:24](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/ytmusic/Recap.ts#L24)
 
 ## Accessors
 
@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/parser/ytmusic/Recap.ts:60](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Recap.ts#L60)
+[src/parser/ytmusic/Recap.ts:60](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/ytmusic/Recap.ts#L60)
 
 ## Methods
 
@@ -70,4 +70,4 @@ Retrieves recap playlist.
 
 #### Defined in
 
-[src/parser/ytmusic/Recap.ts:47](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/ytmusic/Recap.ts#L47)
+[src/parser/ytmusic/Recap.ts:47](https://github.com/LuanRT/YouTube.js/blob/af92984523f90200a18314b94478a2697c9deab0/src/parser/ytmusic/Recap.ts#L47)
