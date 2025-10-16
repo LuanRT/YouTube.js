@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.0.1](https://github.com/LuanRT/YouTube.js/compare/v16.0.0...v16.0.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* **FormatUtils#download:** Add missing await for format.decipher() call in download function ([ca05eab](https://github.com/LuanRT/YouTube.js/commit/ca05eab0c38042fa28f526947870edd6659fd208))
+
 ## [16.0.0](https://github.com/LuanRT/YouTube.js/compare/v15.1.1...v16.0.0) (2025-10-12)
 
 
