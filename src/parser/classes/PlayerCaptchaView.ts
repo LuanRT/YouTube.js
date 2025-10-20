@@ -1,52 +1,52 @@
 import { YTNode } from '../helpers.js';
 import type { RawNode } from '../types/index.js';
-import type { AttributedText } from './misc/Text.js';
+import Text from './misc/Text.js';
 
 export default class PlayerCaptchaView extends YTNode {
   static type = 'PlayerCaptchaView';
 
-  captcha_loading_message: AttributedText;
-  challenge_reason: AttributedText;
-  captcha_successful_message: AttributedText;
-  captcha_cookie_set_failure_message: AttributedText;
-  captcha_failed_message: AttributedText;
+  captcha_loading_message: Text;
+  challenge_reason: Text;
+  captcha_successful_message: Text;
+  captcha_cookie_set_failure_message: Text;
+  captcha_failed_message: Text;
 
   constructor(data: RawNode) {
     super();
-    this.captcha_loading_message = {
+    this.captcha_loading_message = Text.fromAttributed({
       content: data.captchaLoadingMessage.content,
       styleRuns: data.captchaLoadingMessage.styleRuns.map((item: any) => ({
         start_index: item.startIndex,
         length: item.length
       }))
-    };
-    this.challenge_reason = {
+    });
+    this.challenge_reason = Text.fromAttributed({
       content: data.challengeReason.content,
       styleRuns: data.challengeReason.styleRuns.map((item: any) => ({
         start_index: item.startIndex,
         length: item.length
       }))
-    };
-    this.captcha_successful_message = {
+    });
+    this.captcha_successful_message = Text.fromAttributed({
       content: data.captchaSuccessfulMessage.content,
       styleRuns: data.captchaSuccessfulMessage.styleRuns.map((item: any) => ({
         start_index: item.startIndex,
         length: item.length
       }))
-    };
-    this.captcha_cookie_set_failure_message = {
+    });
+    this.captcha_cookie_set_failure_message = Text.fromAttributed({
       content: data.captchaCookieSetFailureMessage.content,
       styleRuns: data.captchaCookieSetFailureMessage.styleRuns.map((item: any) => ({
         start_index: item.startIndex,
         length: item.length
       }))
-    };
-    this.captcha_failed_message = {
+    });
+    this.captcha_failed_message = Text.fromAttributed({
       content: data.captchaFailedMessage.content,
       styleRuns: data.captchaFailedMessage.styleRuns.map((item: any) => ({
         start_index: item.startIndex,
         length: item.length
       }))
-    };
+    });
   }
 }
