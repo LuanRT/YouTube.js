@@ -43,7 +43,7 @@ export default class TV {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: this.#session.player?.sts
+          signatureTimestamp: this.#session.player?.signature_timestamp
         }
       },
       client: 'TV'
