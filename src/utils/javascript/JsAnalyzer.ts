@@ -136,6 +136,8 @@ export class JsAnalyzer {
           const right = assignment.right;
 
           if (left.type === 'Identifier') {
+            // This identifier existing means it was a pre-declared and
+            // we just got to it.
             const existingVariable = this.declaredVariables.get(left.name);
             if (!existingVariable) continue;
 
@@ -187,10 +189,10 @@ export class JsAnalyzer {
 
             const init = declaration.init;
 
+            // "var x, y, z;"
             if (!init && currentNode.kind === 'var') {
               metadata.predeclared = true;
             } else if (init && this.needsDependencyAnalysis(init)) {
-              // "var x, y, z;"
               metadata.dependencies = this.findDependencies(init, metadata.name);
             }
 
