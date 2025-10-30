@@ -515,7 +515,7 @@ describe('YouTube.js Tests', () => {
     // });
 
     test('Innertube#tv.getPlaylist', async () => {
-      const playlist = await innertube.tv.getPlaylist('PLPqdpObZSE_eHILqyxFf1spE-HEYvvm40');
+      const playlist = await innertube.tv.getPlaylist('PLsPUh22kYmNBl4h0i4mI5zDflExXJMo_x');
       expect(playlist).toBeDefined();
       expect(playlist.contents).toBeDefined();
       expect(playlist.contents!.length).toBeGreaterThan(0);
