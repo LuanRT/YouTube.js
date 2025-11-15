@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.0](https://github.com/LuanRT/YouTube.js/compare/v16.0.1...v16.1.0) (2025-11-15)
+
+
+### Features
+
+* **Format:** Add support for Voice Boost & Super Resolution formats ([#1092](https://github.com/LuanRT/YouTube.js/issues/1092)) ([769721c](https://github.com/LuanRT/YouTube.js/commit/769721c193f2073522a9d35708a07dc8b493f1c7))
+
 ## [16.0.1](https://github.com/LuanRT/YouTube.js/compare/v16.0.0...v16.0.1) (2025-10-16)
 
 
