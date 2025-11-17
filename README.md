@@ -56,6 +56,16 @@ const innertube = await Innertube.create(/* options */);
 
 For detailed usage, check out the [YouTube.js Guide and API Documentation](https://ytjs.dev).
 
+## Cloudflare Workers / Edge
+
+Use the Cloudflare Workers-specific entrypoint:
+
+```ts
+import { Innertube } from 'youtubei.js/cf-worker';
+```
+
+See docs/cloudflare-workers.md for details and `examples/cloudflare-worker/` for a runnable example.
+
 ## Contributing
 We welcome all contributions, issues and feature requests, whether small or large. If you want to contribute, feel free to check out our [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
 
