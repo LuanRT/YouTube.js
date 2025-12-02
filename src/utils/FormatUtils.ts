@@ -1,5 +1,6 @@
 import * as Constants from './Constants.js';
 import { InnertubeError, Platform, streamToIterable } from './Utils.js';
+import * as Log from './Log.js';
 
 import type Player from '../core/Player.js';
 import type Actions from '../core/Actions.js';
@@ -26,6 +27,7 @@ export async function download(
     quality: '360p',
     type: 'video+audio',
     format: 'mp4',
+    language: 'original',
     range: undefined,
     ...options
   };
@@ -145,9 +147,37 @@ export function chooseFormat(options: FormatOptions, streaming_data?: IStreaming
   ];
   
   if (options.itag) {
-    const candidates = formats.filter((format) => format.itag === options.itag);
+    let candidates = formats.filter((format) => format.itag === options.itag);
     if (!candidates.length)
       throw new InnertubeError('No matching formats found', { options });
+    
+    // If multiple formats with same itag exist (e.g., original + dubbed audio tracks)
+    // and language parameter is specified, filter by language to avoid wrong selection
+    if (candidates.length > 1 && options.language) {
+      const language_filtered = candidates.filter((format) => {
+        if (options.language === 'original') {
+          // For 'original' keyword, use is_original flag
+          return format.is_original === true;
+        }
+        // For specific language codes (e.g., 'en-US', 'ja'), match exactly
+        return format.language === options.language;
+      });
+      
+      if (language_filtered.length > 0) {
+        candidates = language_filtered;
+      } else {
+        // Warn user that requested language was not found
+        const available_languages = candidates
+          .map((f) => f.language || 'unknown')
+          .filter((lang, idx, arr) => arr.indexOf(lang) === idx) // unique
+          .join(', ');
+        
+        Log.warn(
+          'FormatUtils',
+          `Requested language '${options.language}' not found. Available: ${available_languages}. Falling back to first format.`
+        );
+      }
+    }
     
     return candidates[0];
   }
