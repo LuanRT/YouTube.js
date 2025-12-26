@@ -27,6 +27,7 @@ import type CardCollection from '../../parser/classes/CardCollection.js';
 import type Endscreen from '../../parser/classes/Endscreen.js';
 import type PlayerAnnotationsExpanded from '../../parser/classes/PlayerAnnotationsExpanded.js';
 import type PlayerCaptionsTracklist from '../../parser/classes/PlayerCaptionsTracklist.js';
+import type { CaptionTrackContent, CaptionTrackContentLine, CaptionTrackData } from '../../parser/classes/PlayerCaptionsTracklist.js';
 import type PlayerLiveStoryboardSpec from '../../parser/classes/PlayerLiveStoryboardSpec.js';
 import type PlayerStoryboardSpec from '../../parser/classes/PlayerStoryboardSpec.js';
 
@@ -203,6 +204,62 @@ export default class MediaInfo {
     const response = await transcript_continuation.endpoint.call(this.actions);
 
     return new TranscriptInfo(this.actions, response);
+  }
+
+  /**
+   * Retrieves the content of a caption track from the video.
+   *
+   * This uses a separate API from the searchable transcript, which may result
+   * in different content.
+   */
+  async getCaptionTrackContent(track: CaptionTrackData): Promise<CaptionTrackContent> {
+    function decodeHtmlEntities(text: string) {                                            
+      return text                                                                         
+        .replace(/&#39;/g, '\'')                                                           
+        .replace(/&quot;/g, '"')                                                          
+        .replace(/&amp;/g, '&')                                                           
+        .replace(/&lt;/g, '<')                                                            
+        .replace(/&gt;/g, '>')                                                            
+        .replace(/&nbsp;/g, ' ')                                                          
+        .replace(/&#(\d+);/g, (_, num: string) => String.fromCharCode(parseInt(num, 10)));        
+    }
+
+    const base_url = track.base_url;
+    const response = await this.actions.session.http.fetch_function(base_url);
+    const response_text = response.text();
+
+    const line_regex = /<text start="(.*?)" dur="(.*?)">(.*?)<\/text>/gs;
+    const lines: CaptionTrackContentLine[] = [];
+    let line_match;
+    while ((line_match = line_regex.exec(response_text)) !== null) {
+      const start = parseFloat(line_match[1]);
+      const duration = parseFloat(line_match[2]);
+      const end = start + duration;
+
+      // There may be multiple levels of encoding that all need to be decoded,
+      // such as &amp;quot; (2 levels of encoding)
+      const max_decode_depth = 5;
+      let text = line_match[3];
+      let previous_text = text; 
+      for (let i = 0; i < max_decode_depth; i++) {
+        text = decodeHtmlEntities(text);
+        if (previous_text == text) {
+          break;
+        }
+        previous_text = text;
+      }
+
+      lines.push({
+        start,
+        duration,
+        end,
+        text
+      });
+    }
+
+    return {
+      lines
+    };
   }
 
   async addToWatchHistory(client_name?: string, client_version?: string, replacement = 'https://www.'): Promise<Response> {

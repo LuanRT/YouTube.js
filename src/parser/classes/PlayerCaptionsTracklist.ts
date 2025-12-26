@@ -11,6 +11,17 @@ export interface CaptionTrackData {
   is_translatable: boolean;
 }
 
+export interface CaptionTrackContentLine {
+  start: number;
+  duration: number;
+  end: number;
+  text: string;
+}
+
+export interface CaptionTrackContent {
+  lines: CaptionTrackContentLine[];
+}
+
 export default class PlayerCaptionsTracklist extends YTNode {
   static type = 'PlayerCaptionsTracklist';
 
