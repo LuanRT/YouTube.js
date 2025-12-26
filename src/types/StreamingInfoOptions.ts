@@ -27,7 +27,19 @@ export interface StreamingInfoOptions {
    * Defaults to `(audio_track_display_name) => audio_track_display_name + " (Stable Volume)"`
    */
   label_drc_multiple?: (audio_track_display_name: string) => string;
-
+  /**
+   * The label to use for the VB (Voice Boost) streams when a video has VB streams.
+   *
+   * Defaults to `"Voice Boost"`
+   */
+  label_vb?: string;
+  /**
+   * A function that generates the label to use for the VB streams when a video has multiple audio tracks and VB streams.
+   * The non-VB streams use the unmodified audio track label provided by YouTube.
+   *
+   * Defaults to `(audio_track_display_name) => audio_track_display_name + " (Voice Boost)"`
+   */
+  label_vb_multiple?: (audio_track_display_name: string) => string;
   /**
    * If `true`, the generated manifest will contain URLs that are suitable for use with the SABR protocol.
    */

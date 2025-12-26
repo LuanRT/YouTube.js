@@ -157,15 +157,22 @@ interface DrcLabels {
   label_drc_multiple: (audio_track_display_name: string) => string;
 }
 
+interface VbLabels {
+  label_original: string;
+  label_vb: string;
+  label_vb_multiple: (audio_track_display_name: string) => string;
+}
+
 function getFormatGroupings(formats: Format[], is_post_live_dvr: boolean) {
   const group_info = new Map<string, Format[]>();
 
   const has_multiple_audio_tracks = formats.some((fmt) => !!fmt.audio_track);
 
   for (const format of formats) {
-    if ((!format.index_range || !format.init_range) && !format.is_type_otf && !is_post_live_dvr) {
+    if (((!format.index_range || !format.init_range) && !format.is_type_otf && !is_post_live_dvr)) {
       continue;
     }
+
     const mime_type = format.mime_type.split(';')[0];
 
     // Codec without any profile or level information
@@ -177,8 +184,9 @@ function getFormatGroupings(formats: Format[], is_post_live_dvr: boolean) {
     const audio_track_id = format.audio_track?.id || '';
 
     const drc = format.is_drc ? 'drc' : '';
+    const vb = format.is_vb ? 'vb' : '';
 
-    const group_id = `${mime_type}-${just_codec}-${color_info}-${audio_track_id}-${drc}`;
+    const group_id = `${mime_type}-${just_codec}-${color_info}-${audio_track_id}-${drc}-${vb}`;
 
     if (!group_info.has(group_id)) {
       group_info.set(group_id, []);
@@ -324,7 +332,7 @@ async function getSegmentInfo(
   is_sabr?: boolean
 ) {
   let transformed_url = '';
-  
+
   if (is_sabr) {
     const formatKey = `${format.itag || ''}:${format.xtags || ''}`;
     transformed_url = `sabr://${format.has_video ? 'video' : 'audio'}?key=${formatKey}`;
@@ -333,7 +341,7 @@ async function getSegmentInfo(
     url.searchParams.set('cpn', cpn || '');
     transformed_url = url_transformer(url).toString();
   }
-  
+
   if (format.is_type_otf) {
     if (!actions)
       throw new InnertubeError('Unable to get segment durations for this OTF stream without an Actions instance', { format });
@@ -407,7 +415,7 @@ async function getAudioRepresentation(
   shared_post_live_dvr_info?: SharedPostLiveDvrInfo,
   is_sabr?: boolean
 ) {
-  const uid_parts = [ format.itag.toString() ];
+  const uid_parts = [format.itag.toString()];
 
   if (format.audio_track) {
     uid_parts.push(format.audio_track.id);
@@ -415,6 +423,10 @@ async function getAudioRepresentation(
 
   if (format.is_drc) {
     uid_parts.push('drc');
+  }
+
+  if (format.is_vb) {
+    uid_parts.push('vb');
   }
 
   const rep: AudioRepresentation = {
@@ -444,7 +456,7 @@ function getTrackRoles(format: Format, has_drc_streams: boolean) {
   if (format.is_descriptive)
     roles.push('description');
 
-  if (format.is_drc)
+  if (format.is_drc || format.is_vb)
     roles.push('enhanced-audio-intelligibility');
 
   return roles;
@@ -458,6 +470,7 @@ async function getAudioSet(
   cpn?: string,
   shared_post_live_dvr_info?: SharedPostLiveDvrInfo,
   drc_labels?: DrcLabels,
+  vb_labels?: VbLabels,
   is_sabr?: boolean
 ) {
   const first_format = formats[0];
@@ -465,17 +478,27 @@ async function getAudioSet(
   const hoisted: string[] = [];
 
   const has_drc_streams = !!drc_labels;
+  const has_vb_streams = !!vb_labels;
 
   let track_name;
 
   if (audio_track) {
     if (has_drc_streams && first_format.is_drc) {
       track_name = drc_labels.label_drc_multiple(audio_track.display_name);
+    } else if (has_vb_streams && first_format.is_vb) {
+      track_name = vb_labels.label_vb_multiple(audio_track.display_name);
     } else {
       track_name = audio_track.display_name;
     }
-  } else if (has_drc_streams) {
-    track_name = first_format.is_drc ? drc_labels.label_drc : drc_labels.label_original;
+  } else if (has_drc_streams || has_vb_streams) {
+    if (has_drc_streams && first_format.is_drc) {
+      track_name = drc_labels.label_drc;
+    } else if (has_vb_streams && first_format.is_vb) {
+      track_name = vb_labels.label_vb;
+    } else {
+      // Both use the same param, so it doesn't matter which one is defined here.
+      track_name = (drc_labels || vb_labels)?.label_original;
+    }
   }
 
   const set: AudioSet = {
@@ -619,7 +642,7 @@ function getStoryboardInfo(
 
   const mime_info = new Map<string, AnyStoryboardData[]>();
 
-  const boards = storyboards.is(PlayerStoryboardSpec) ? storyboards.boards : [ storyboards.board ];
+  const boards = storyboards.is(PlayerStoryboardSpec) ? storyboards.boards : [storyboards.board];
 
   for (const storyboard of boards) {
     const extension = new URL(storyboard.template_url).pathname.split('.').pop();
@@ -756,7 +779,7 @@ function getImageSets(
 
   const shared_response: SharedStoryboardResponse = {};
 
-  return Array.from(mime_info.entries()).map<ImageSet>(([ type, boards ]) => ({
+  return Array.from(mime_info.entries()).map<ImageSet>(([type, boards]) => ({
     probable_mime_type: type,
     getMimeType() {
       return getStoryboardMimeType(actions, boards[0], transform_url, type, shared_response);
@@ -776,7 +799,7 @@ function getTextSets(
     const url = new URL(caption_track.base_url);
     url.searchParams.set('fmt', format);
 
-    const track_roles: ('caption' | 'dub')[] = [ 'caption' ];
+    const track_roles: ('caption' | 'dub')[] = ['caption'];
 
     if (url.searchParams.has('tlang')) {
       track_roles.push('dub');
@@ -868,8 +891,23 @@ export async function getStreamingInfo(
   });
 
   let drc_labels: DrcLabels | undefined;
+  let vb_labels: VbLabels | undefined;
 
-  if (audio_groups.flat().some((format) => format.is_drc)) {
+  let hasDrc = false;
+  let hasVb = false;
+
+  for (const ag of audio_groups.flat()) {
+    if (hasDrc === false && ag.is_drc) {
+      hasDrc = true;
+    }
+
+    if (hasVb === false && ag.is_vb) {
+      hasVb = true;
+    }
+  }
+
+  // TODO: Put these audio fields in a shared object to reduce dups.
+  if (hasDrc) {
     drc_labels = {
       label_original: options?.label_original || 'Original',
       label_drc: options?.label_drc || 'Stable Volume',
@@ -877,7 +915,15 @@ export async function getStreamingInfo(
     };
   }
 
-  const audio_sets = await Promise.all(audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn, shared_post_live_dvr_info, drc_labels, options?.is_sabr)));
+  if (hasVb) {
+    vb_labels = {
+      label_original: options?.label_original || 'Original',
+      label_vb: options?.label_vb || 'Voice Boost',
+      label_vb_multiple: options?.label_vb_multiple || ((display_name) => `${display_name} (Voice Boost)`)
+    };
+  }
+
+  const audio_sets = await Promise.all(audio_groups.map((formats) => getAudioSet(formats, url_transformer, actions, player, cpn, shared_post_live_dvr_info, drc_labels, vb_labels, options?.is_sabr)));
 
   const video_sets = await Promise.all(video_groups.map((formats) => getVideoSet(formats, url_transformer, player, actions, cpn, shared_post_live_dvr_info, options?.is_sabr)));
 
@@ -908,7 +954,7 @@ export async function getStreamingInfo(
     text_sets = getTextSets(caption_tracks, options.captions_format, url_transformer);
   }
 
-  const info : StreamingInfo = {
+  const info: StreamingInfo = {
     getDuration,
     audio_sets,
     video_sets,
