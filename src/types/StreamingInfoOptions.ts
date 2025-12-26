@@ -9,7 +9,7 @@ export interface StreamingInfoOptions {
    */
   captions_format?: 'vtt' | 'ttml';
   /**
-   * The label to use for the non-DRC streams when a video has DRC and streams.
+   * The label to use for the non-DRC/VB streams when a video has DRC and Voice Boost streams.
    *
    * Defaults to `"Original"`
    */
