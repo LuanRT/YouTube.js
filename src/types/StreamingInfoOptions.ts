@@ -34,8 +34,8 @@ export interface StreamingInfoOptions {
    */
   label_vb?: string;
   /**
-   * A function that generates the label to use for the VB streams when a video has multiple audio tracks and VB streams.
-   * The non-VB streams use the unmodified audio track label provided by YouTube.
+   * A function that generates the label to use for the Voice Boost streams when a video has multiple audio tracks and Voice Boost streams.
+   * The non-Voice Boost streams use the unmodified audio track label provided by YouTube.
    *
    * Defaults to `(audio_track_display_name) => audio_track_display_name + " (Voice Boost)"`
    */
