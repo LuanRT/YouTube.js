@@ -415,7 +415,7 @@ async function getAudioRepresentation(
   shared_post_live_dvr_info?: SharedPostLiveDvrInfo,
   is_sabr?: boolean
 ) {
-  const uid_parts = [format.itag.toString()];
+  const uid_parts = [ format.itag.toString() ];
 
   if (format.audio_track) {
     uid_parts.push(format.audio_track.id);
@@ -642,7 +642,7 @@ function getStoryboardInfo(
 
   const mime_info = new Map<string, AnyStoryboardData[]>();
 
-  const boards = storyboards.is(PlayerStoryboardSpec) ? storyboards.boards : [storyboards.board];
+  const boards = storyboards.is(PlayerStoryboardSpec) ? storyboards.boards : [ storyboards.board ];
 
   for (const storyboard of boards) {
     const extension = new URL(storyboard.template_url).pathname.split('.').pop();
@@ -779,7 +779,7 @@ function getImageSets(
 
   const shared_response: SharedStoryboardResponse = {};
 
-  return Array.from(mime_info.entries()).map<ImageSet>(([type, boards]) => ({
+  return Array.from(mime_info.entries()).map<ImageSet>(([ type, boards ]) => ({
     probable_mime_type: type,
     getMimeType() {
       return getStoryboardMimeType(actions, boards[0], transform_url, type, shared_response);
@@ -799,7 +799,7 @@ function getTextSets(
     const url = new URL(caption_track.base_url);
     url.searchParams.set('fmt', format);
 
-    const track_roles: ('caption' | 'dub')[] = ['caption'];
+    const track_roles: ('caption' | 'dub')[] = [ 'caption' ];
 
     if (url.searchParams.has('tlang')) {
       track_roles.push('dub');
