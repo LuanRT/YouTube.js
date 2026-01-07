@@ -31,7 +31,7 @@ export async function download(
   };
 
   const format = chooseFormat(opts, streaming_data);
-  const format_url = format.decipher(player);
+  const format_url = await format.decipher(player);
 
   // If we're not downloading the video in chunks, we just use fetch once.
   if (opts.type === 'video+audio' && !options.range) {

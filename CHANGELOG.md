@@ -1,5 +1,39 @@
 # Changelog
 
+## [16.0.1](https://github.com/LuanRT/YouTube.js/compare/v16.0.0...v16.0.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* **FormatUtils#download:** Add missing await for format.decipher() call in download function ([ca05eab](https://github.com/LuanRT/YouTube.js/commit/ca05eab0c38042fa28f526947870edd6659fd208))
+
+## [16.0.0](https://github.com/LuanRT/YouTube.js/compare/v15.1.1...v16.0.0) (2025-10-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Player:** Use AST-based JS extraction with side-effect safe code emission ([#1052](https://github.com/LuanRT/YouTube.js/issues/1052))
+* Use async/await for the javascript evaluator ([#1047](https://github.com/LuanRT/YouTube.js/issues/1047))
+
+### Features
+
+* **history:** Load additional watch history pages ([#1055](https://github.com/LuanRT/YouTube.js/issues/1055)) ([6c12719](https://github.com/LuanRT/YouTube.js/commit/6c127199bad65f3a0086c02c48463eaac22e5077))
+* **parser:** Add `Form.ts` parser class ([#1056](https://github.com/LuanRT/YouTube.js/issues/1056)) ([3d6ed1d](https://github.com/LuanRT/YouTube.js/commit/3d6ed1def90f5e673969cac650c2250fe98d8768))
+* **parser:** Add FormPopup.ts parser class ([#1057](https://github.com/LuanRT/YouTube.js/issues/1057)) ([f738a17](https://github.com/LuanRT/YouTube.js/commit/f738a173fc88d04adb6276894d577b437cf0e532))
+* **protos:** Add playlistTitle field to NextParams ([#1040](https://github.com/LuanRT/YouTube.js/issues/1040)) ([ee9c184](https://github.com/LuanRT/YouTube.js/commit/ee9c184eeb02d1074e06c81897a6fd97078da18b))
+* **Session:** Add `fail_fast` option ([#1066](https://github.com/LuanRT/YouTube.js/issues/1066)) ([d4e4683](https://github.com/LuanRT/YouTube.js/commit/d4e4683d9435814e1b0807b4343df81b0a12116a))
+
+
+### Bug Fixes
+
+* **gen-parser-map:** update reference to the script in auto-generated files ([#1036](https://github.com/LuanRT/YouTube.js/issues/1036)) ([d448fd2](https://github.com/LuanRT/YouTube.js/commit/d448fd28064bac396b20856e39e499bb84955876))
+
+
+### Code Refactoring
+
+* **Player:** Use AST-based JS extraction with side-effect safe code emission ([#1052](https://github.com/LuanRT/YouTube.js/issues/1052)) ([25d0876](https://github.com/LuanRT/YouTube.js/commit/25d0876b913d15039be3655cb266ca706b2409d8))
+* Use async/await for the javascript evaluator ([#1047](https://github.com/LuanRT/YouTube.js/issues/1047)) ([977b13c](https://github.com/LuanRT/YouTube.js/commit/977b13cc23981935b9ea0500238eed93d0a19022))
+
 ## [15.1.1](https://github.com/LuanRT/YouTube.js/compare/v15.1.0...v15.1.1) (2025-09-12)
 
 

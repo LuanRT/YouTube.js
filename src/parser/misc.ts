@@ -1,5 +1,5 @@
 // This file was auto generated, do not edit.
-// See ./scripts/build-parser-map.js
+// See ./dev-scripts/gen-parser-map.mjs
 
 export { default as AccessibilityContext } from './classes/misc/AccessibilityContext.js';
 export { default as AccessibilityData } from './classes/misc/AccessibilityData.js';

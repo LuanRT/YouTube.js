@@ -32,7 +32,7 @@ export default class Kids {
           vis: 0,
           splay: false,
           lactMilliseconds: '-1',
-          signatureTimestamp: session.player?.sts
+          signatureTimestamp: session.player?.signature_timestamp
         }
       },
       client: 'YTKIDS'

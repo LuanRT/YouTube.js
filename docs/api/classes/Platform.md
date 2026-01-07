@@ -2,29 +2,31 @@
 
 # Class: Platform
 
+Defined in: [src/utils/Utils.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Utils.ts#L15)
+
 ## Constructors
 
-### new Platform()
+### Constructor
 
-> **new Platform**(): [`Platform`](Platform.md)
+> **new Platform**(): `Platform`
 
 #### Returns
 
-[`Platform`](Platform.md)
+`Platform`
 
 ## Accessors
 
 ### shim
 
-> `get` `static` **shim**(): [`PlatformShim`](../namespaces/Types/interfaces/PlatformShim.md)
+#### Get Signature
 
-#### Returns
+> **get** `static` **shim**(): [`PlatformShim`](../youtubei.js/namespaces/Types/interfaces/PlatformShim.md)
 
-[`PlatformShim`](../namespaces/Types/interfaces/PlatformShim.md)
+Defined in: [src/utils/Utils.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Utils.ts#L20)
 
-#### Defined in
+##### Returns
 
-[src/utils/Utils.ts:22](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/utils/Utils.ts#L22)
+[`PlatformShim`](../youtubei.js/namespaces/Types/interfaces/PlatformShim.md)
 
 ## Methods
 
@@ -32,14 +34,14 @@
 
 > `static` **load**(`platform`): `void`
 
+Defined in: [src/utils/Utils.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Utils.ts#L16)
+
 #### Parameters
 
-• **platform**: [`PlatformShim`](../namespaces/Types/interfaces/PlatformShim.md)
+##### platform
+
+[`PlatformShim`](../youtubei.js/namespaces/Types/interfaces/PlatformShim.md)
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-[src/utils/Utils.ts:18](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/utils/Utils.ts#L18)

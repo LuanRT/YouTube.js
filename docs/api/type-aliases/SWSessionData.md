@@ -2,22 +2,30 @@
 
 # Type Alias: SWSessionData
 
-> **SWSessionData**: `object`
+> **SWSessionData** = `object`
 
-## Type declaration
+Defined in: [src/core/Session.ts:228](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L228)
+
+## Properties
 
 ### api\_key
 
 > **api\_key**: `string`
 
+Defined in: [src/core/Session.ts:230](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L230)
+
+***
+
 ### api\_version
 
 > **api\_version**: `string`
+
+Defined in: [src/core/Session.ts:231](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L231)
+
+***
 
 ### context\_data
 
 > **context\_data**: `ContextData`
 
-## Defined in
-
-[src/core/Session.ts:227](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Session.ts#L227)
+Defined in: [src/core/Session.ts:229](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L229)

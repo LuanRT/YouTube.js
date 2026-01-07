@@ -63,6 +63,8 @@ export default class Format {
   public loudness_db?: number;
   public signature_cipher?: string;
   public is_drc?: boolean;
+  public is_vb?: boolean;
+  public is_sr?: boolean;
   public drm_track_type?: string;
   public distinct_params?: string;
   public track_absolute_loudness_lkfs?: number;
@@ -212,15 +214,16 @@ export default class Format {
         id: data.captionTrack.id
       };
 
-    if (this.has_audio || this.has_text) {
-      const xtags = this.xtags
-        ? FormatXTags.decode(base64ToU8(decodeURIComponent(this.xtags).replace(/-/g, '+').replace(/_/g, '/'))).xtags
-        : [];
+    const xtags = this.xtags
+      ? FormatXTags.decode(base64ToU8(decodeURIComponent(this.xtags).replace(/-/g, '+').replace(/_/g, '/'))).xtags
+      : [];
 
+    if (this.has_audio || this.has_text) {
       this.language = xtags.find((tag) => tag.key === 'lang')?.value || null;
 
       if (this.has_audio) {
         this.is_drc = !!data.isDrc || xtags.some((tag) => tag.key === 'drc' && tag.value === '1');
+        this.is_vb = !!data.isVb || xtags.some((tag) => tag.key === 'vb' && tag.value === '1');
 
         const audio_content = xtags.find((tag) => tag.key === 'acont')?.value;
         this.is_dubbed = audio_content === 'dubbed';
@@ -235,6 +238,10 @@ export default class Format {
         this.language = this.caption_track.language_code;
       }
     }
+
+    if (this.has_video) {
+      this.is_sr = xtags.some((tag) => tag.key === 'sr' && tag.value === '1');
+    }
   }
 
   /**
@@ -242,7 +249,7 @@ export default class Format {
    * @param player - An optional instance of the Player class used to decipher the URL.
    * @returns The deciphered URL as a string. If no player is provided, returns the original URL or an empty string.
    */
-  decipher(player?: Player): string {
+  async decipher(player?: Player): Promise<string> {
     if (!player)
       return this.url || '';
     return player.decipher(this.url, this.signature_cipher, this.cipher, this.#this_response_nsig_cache);

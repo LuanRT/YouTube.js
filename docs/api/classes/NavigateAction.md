@@ -2,41 +2,41 @@
 
 # Class: NavigateAction
 
+Defined in: [src/parser/continuations.ts:24](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L24)
+
 ## Extends
 
-- [`YTNode`](../namespaces/Helpers/classes/YTNode.md)
+- [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
 
 ## Constructors
 
-### new NavigateAction()
+### Constructor
 
-> **new NavigateAction**(`data`): [`NavigateAction`](NavigateAction.md)
+> **new NavigateAction**(`data`): `NavigateAction`
+
+Defined in: [src/parser/continuations.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L29)
 
 #### Parameters
 
-• **data**: [`RawNode`](../namespaces/APIResponseTypes/type-aliases/RawNode.md)
+##### data
+
+[`RawNode`](../type-aliases/RawNode.md)
 
 #### Returns
 
-[`NavigateAction`](NavigateAction.md)
+`NavigateAction`
 
 #### Overrides
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`constructor`](../namespaces/Helpers/classes/YTNode.md#constructors)
-
-#### Defined in
-
-[src/parser/continuations.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/continuations.ts#L29)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`constructor`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#constructor)
 
 ## Properties
 
 ### endpoint
 
-> **endpoint**: [`NavigationEndpoint`](../namespaces/YTNodes/classes/NavigationEndpoint.md)
+> **endpoint**: [`NavigationEndpoint`](../youtubei.js/namespaces/YTNodes/classes/NavigationEndpoint.md)
 
-#### Defined in
-
-[src/parser/continuations.ts:27](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/continuations.ts#L27)
+Defined in: [src/parser/continuations.ts:27](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L27)
 
 ***
 
@@ -44,13 +44,11 @@
 
 > `readonly` **type**: `string`
 
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`type`](../namespaces/Helpers/classes/YTNode.md#type)
-
-#### Defined in
-
-[src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L8)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`type`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#type)
 
 ***
 
@@ -58,13 +56,11 @@
 
 > `readonly` `static` **type**: `"navigateAction"` = `'navigateAction'`
 
+Defined in: [src/parser/continuations.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/continuations.ts#L25)
+
 #### Overrides
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`type`](../namespaces/Helpers/classes/YTNode.md#type-1)
-
-#### Defined in
-
-[src/parser/continuations.ts:25](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/continuations.ts#L25)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`type`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#type-1)
 
 ## Methods
 
@@ -72,17 +68,25 @@
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+
 Cast to one of the given types.
 
 #### Type Parameters
 
-• **T** *extends* [`YTNode`](../namespaces/Helpers/classes/YTNode.md)
+##### T
 
-• **K** *extends* [`YTNodeConstructor`](../namespaces/Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
+`T` *extends* [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
+
+##### K
+
+`K` *extends* [`YTNodeConstructor`](../youtubei.js/namespaces/Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
 
 #### Parameters
 
-• ...**types**: `K`
+##### types
+
+...`K`
 
 The types to cast to
 
@@ -98,11 +102,7 @@ If the node is not of the given type
 
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`as`](../namespaces/Helpers/classes/YTNode.md#as)
-
-#### Defined in
-
-[src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L29)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`as`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#as)
 
 ***
 
@@ -110,17 +110,25 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is NavigateAction & { [k in string]: R }`
 
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+
 Check for a key without asserting the type.
 
 #### Type Parameters
 
-• **T** *extends* `string`
+##### T
 
-• **R** = `any`
+`T` *extends* `string`
+
+##### R
+
+`R` = `any`
 
 #### Parameters
 
-• **key**: `T`
+##### key
+
+`T`
 
 The key to check
 
@@ -132,11 +140,7 @@ Whether the node has the key
 
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`hasKey`](../namespaces/Helpers/classes/YTNode.md#haskey)
-
-#### Defined in
-
-[src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L41)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`hasKey`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#haskey)
 
 ***
 
@@ -144,17 +148,25 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+
 Check if the node is of the given type.
 
 #### Type Parameters
 
-• **T** *extends* [`YTNode`](../namespaces/Helpers/classes/YTNode.md)
+##### T
 
-• **K** *extends* [`YTNodeConstructor`](../namespaces/Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
+`T` *extends* [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
+
+##### K
+
+`K` *extends* [`YTNodeConstructor`](../youtubei.js/namespaces/Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
 
 #### Parameters
 
-• ...**types**: `K`
+##### types
+
+...`K`
 
 The type to check
 
@@ -166,35 +178,39 @@ whether the node is of the given type
 
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`is`](../namespaces/Helpers/classes/YTNode.md#is)
-
-#### Defined in
-
-[src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L19)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`is`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#is)
 
 ***
 
 ### key()
 
-> **key**\<`T`, `R`\>(`key`): [`Maybe`](../namespaces/Helpers/classes/Maybe.md)
+> **key**\<`T`, `R`\>(`key`): [`Maybe`](../youtubei.js/namespaces/Helpers/classes/Maybe.md)
+
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 
 #### Type Parameters
 
-• **T** *extends* `string`
+##### T
 
-• **R** = `any`
+`T` *extends* `string`
+
+##### R
+
+`R` = `any`
 
 #### Parameters
 
-• **key**: `T`
+##### key
+
+`T`
 
 The key to check
 
 #### Returns
 
-[`Maybe`](../namespaces/Helpers/classes/Maybe.md)
+[`Maybe`](../youtubei.js/namespaces/Helpers/classes/Maybe.md)
 
 The value of the key wrapped in a Maybe
 
@@ -204,8 +220,4 @@ If the node does not have the key
 
 #### Inherited from
 
-[`YTNode`](../namespaces/Helpers/classes/YTNode.md).[`key`](../namespaces/Helpers/classes/YTNode.md#key)
-
-#### Defined in
-
-[src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/parser/helpers.ts#L51)
+[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md).[`key`](../youtubei.js/namespaces/Helpers/classes/YTNode.md#key)

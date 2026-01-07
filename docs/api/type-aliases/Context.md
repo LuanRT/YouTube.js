@@ -2,226 +2,238 @@
 
 # Type Alias: Context
 
-> **Context**: `object`
+> **Context** = `object`
 
-## Type declaration
+Defined in: [src/core/Session.ts:38](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L38)
+
+## Properties
 
 ### client
 
 > **client**: `object`
 
-### client.androidSdkVersion?
+Defined in: [src/core/Session.ts:39](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L39)
+
+#### androidSdkVersion?
 
 > `optional` **androidSdkVersion**: `number`
 
-### client.browserName?
+#### browserName?
 
 > `optional` **browserName**: `string`
 
-### client.browserVersion?
+#### browserVersion?
 
 > `optional` **browserVersion**: `string`
 
-### client.clientFormFactor
+#### clientFormFactor
 
 > **clientFormFactor**: `string`
 
-### client.clientName
+#### clientName
 
 > **clientName**: `string`
 
-### client.clientScreen?
+#### clientScreen?
 
 > `optional` **clientScreen**: `string`
 
-### client.clientVersion
+#### clientVersion
 
 > **clientVersion**: `string`
 
-### client.configInfo?
+#### configInfo?
 
 > `optional` **configInfo**: `object`
 
-### client.configInfo.appInstallData?
+##### configInfo.appInstallData?
 
 > `optional` **appInstallData**: `string`
 
-### client.configInfo.coldConfigData?
+##### configInfo.coldConfigData?
 
 > `optional` **coldConfigData**: `string`
 
-### client.configInfo.coldHashData?
+##### configInfo.coldHashData?
 
 > `optional` **coldHashData**: `string`
 
-### client.configInfo.hotHashData?
+##### configInfo.hotHashData?
 
 > `optional` **hotHashData**: `string`
 
-### client.deviceExperimentId?
+#### deviceExperimentId?
 
 > `optional` **deviceExperimentId**: `string`
 
-### client.deviceMake
+#### deviceMake
 
 > **deviceMake**: `string`
 
-### client.deviceModel
+#### deviceModel
 
 > **deviceModel**: `string`
 
-### client.gl
+#### gl
 
 > **gl**: `string`
 
-### client.hl
+#### hl
 
 > **hl**: `string`
 
-### client.kidsAppInfo?
+#### kidsAppInfo?
 
 > `optional` **kidsAppInfo**: `object`
 
-### client.kidsAppInfo.categorySettings
+##### kidsAppInfo.categorySettings
 
 > **categorySettings**: `object`
 
-### client.kidsAppInfo.categorySettings.enabledCategories
+##### kidsAppInfo.categorySettings.enabledCategories
 
 > **enabledCategories**: `string`[]
 
-### client.kidsAppInfo.contentSettings
+##### kidsAppInfo.contentSettings
 
 > **contentSettings**: `object`
 
-### client.kidsAppInfo.contentSettings.corpusPreference
+##### kidsAppInfo.contentSettings.corpusPreference
 
 > **corpusPreference**: `string`
 
-### client.kidsAppInfo.contentSettings.kidsNoSearchMode
+##### kidsAppInfo.contentSettings.kidsNoSearchMode
 
 > **kidsNoSearchMode**: `string`
 
-### client.mainAppWebInfo?
+#### mainAppWebInfo?
 
 > `optional` **mainAppWebInfo**: `object`
 
-### client.mainAppWebInfo.graftUrl
+##### mainAppWebInfo.graftUrl
 
 > **graftUrl**: `string`
 
-### client.mainAppWebInfo.isWebNativeShareAvailable
+##### mainAppWebInfo.isWebNativeShareAvailable
 
 > **isWebNativeShareAvailable**: `boolean`
 
-### client.mainAppWebInfo.pwaInstallabilityStatus
+##### mainAppWebInfo.pwaInstallabilityStatus
 
 > **pwaInstallabilityStatus**: `string`
 
-### client.mainAppWebInfo.webDisplayMode
+##### mainAppWebInfo.webDisplayMode
 
 > **webDisplayMode**: `string`
 
-### client.memoryTotalKbytes?
+#### memoryTotalKbytes?
 
 > `optional` **memoryTotalKbytes**: `string`
 
-### client.originalUrl?
+#### originalUrl?
 
 > `optional` **originalUrl**: `string`
 
-### client.osName
+#### osName
 
 > **osName**: `string`
 
-### client.osVersion
+#### osVersion
 
 > **osVersion**: `string`
 
-### client.platform
+#### platform
 
 > **platform**: `string`
 
-### client.remoteHost?
+#### remoteHost?
 
 > `optional` **remoteHost**: `string`
 
-### client.rolloutToken?
+#### rolloutToken?
 
 > `optional` **rolloutToken**: `string`
 
-### client.screenDensityFloat?
+#### screenDensityFloat?
 
 > `optional` **screenDensityFloat**: `number`
 
-### client.screenHeightPoints?
+#### screenHeightPoints?
 
 > `optional` **screenHeightPoints**: `number`
 
-### client.screenPixelDensity?
+#### screenPixelDensity?
 
 > `optional` **screenPixelDensity**: `number`
 
-### client.screenWidthPoints?
+#### screenWidthPoints?
 
 > `optional` **screenWidthPoints**: `number`
 
-### client.timeZone
+#### timeZone
 
 > **timeZone**: `string`
 
-### client.userAgent
+#### userAgent
 
 > **userAgent**: `string`
 
-### client.userInterfaceTheme?
+#### userInterfaceTheme?
 
 > `optional` **userInterfaceTheme**: `string`
 
-### client.utcOffsetMinutes
+#### utcOffsetMinutes
 
 > **utcOffsetMinutes**: `number`
 
-### client.visitorData?
+#### visitorData?
 
 > `optional` **visitorData**: `string`
+
+***
 
 ### request?
 
 > `optional` **request**: `object`
 
-### request.internalExperimentFlags
+Defined in: [src/core/Session.ts:98](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L98)
+
+#### internalExperimentFlags
 
 > **internalExperimentFlags**: `any`[]
 
-### request.useSsl
+#### useSsl
 
 > **useSsl**: `boolean`
+
+***
 
 ### thirdParty?
 
 > `optional` **thirdParty**: `object`
 
-### thirdParty.embedUrl
+Defined in: [src/core/Session.ts:95](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L95)
+
+#### embedUrl
 
 > **embedUrl**: `string`
+
+***
 
 ### user
 
 > **user**: `object`
 
-### user.enableSafetyMode
+Defined in: [src/core/Session.ts:90](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L90)
+
+#### enableSafetyMode
 
 > **enableSafetyMode**: `boolean`
 
-### user.lockedSafetyMode
+#### lockedSafetyMode
 
 > **lockedSafetyMode**: `boolean`
 
-### user.onBehalfOfUser?
+#### onBehalfOfUser?
 
 > `optional` **onBehalfOfUser**: `string`
-
-## Defined in
-
-[src/core/Session.ts:37](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Session.ts#L37)

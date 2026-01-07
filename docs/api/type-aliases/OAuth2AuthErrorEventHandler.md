@@ -2,16 +2,16 @@
 
 # Type Alias: OAuth2AuthErrorEventHandler()
 
-> **OAuth2AuthErrorEventHandler**: (`err`) => `void`
+> **OAuth2AuthErrorEventHandler** = (`err`) => `void`
+
+Defined in: [src/core/OAuth2.ts:33](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L33)
 
 ## Parameters
 
-• **err**: [`OAuth2Error`](../namespaces/Utils/classes/OAuth2Error.md)
+### err
+
+[`OAuth2Error`](../youtubei.js/namespaces/Utils/classes/OAuth2Error.md)
 
 ## Returns
 
 `void`
-
-## Defined in
-
-[src/core/OAuth2.ts:33](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/OAuth2.ts#L33)

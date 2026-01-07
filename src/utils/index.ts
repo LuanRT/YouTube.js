@@ -17,3 +17,4 @@ export * as LZW from './LZW.js';
 export * as BinarySerializer from './BinarySerializer.js';
 
 export * as ProtoUtils from './ProtoUtils.js';
+export * from './javascript/index.js';

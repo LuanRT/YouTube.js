@@ -2,41 +2,43 @@
 
 # Class: Player
 
+Defined in: [src/core/Player.ts:37](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L37)
+
 Represents YouTube's player script. This is required to decipher signatures.
 
 ## Constructors
 
-### new Player()
+### Constructor
 
-> **new Player**(`player_id`, `signature_timestamp`, `sig_sc`?, `nsig_sc`?): [`Player`](Player.md)
+> **new Player**(`player_id`, `signature_timestamp`, `data?`): `Player`
+
+Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L40)
 
 #### Parameters
 
-• **player\_id**: `string`
+##### player\_id
 
-• **signature\_timestamp**: `number`
+`string`
 
-• **sig\_sc?**: `string`
+##### signature\_timestamp
 
-• **nsig\_sc?**: `string`
+`number`
+
+##### data?
+
+[`BuildScriptResult`](../youtubei.js/namespaces/Types/interfaces/BuildScriptResult.md)
 
 #### Returns
 
-[`Player`](Player.md)
-
-#### Defined in
-
-[src/core/Player.ts:34](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L34)
+`Player`
 
 ## Properties
 
-### nsig\_sc?
+### data?
 
-> `optional` **nsig\_sc**: `string`
+> `optional` **data**: [`BuildScriptResult`](../youtubei.js/namespaces/Types/interfaces/BuildScriptResult.md)
 
-#### Defined in
-
-[src/core/Player.ts:30](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L30)
+Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L40)
 
 ***
 
@@ -44,9 +46,7 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 > **player\_id**: `string`
 
-#### Defined in
-
-[src/core/Player.ts:28](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L28)
+Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L40)
 
 ***
 
@@ -54,246 +54,162 @@ Represents YouTube's player script. This is required to decipher signatures.
 
 > `optional` **po\_token**: `string`
 
-#### Defined in
-
-[src/core/Player.ts:32](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L32)
+Defined in: [src/core/Player.ts:38](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L38)
 
 ***
 
-### sig\_sc?
+### signature\_timestamp
 
-> `optional` **sig\_sc**: `string`
+> **signature\_timestamp**: `number`
 
-#### Defined in
-
-[src/core/Player.ts:31](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L31)
-
-***
-
-### sts
-
-> **sts**: `number`
-
-#### Defined in
-
-[src/core/Player.ts:29](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L29)
+Defined in: [src/core/Player.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L40)
 
 ## Accessors
 
 ### url
 
-> `get` **url**(): `string`
+#### Get Signature
 
-#### Returns
+> **get** **url**(): `string`
+
+Defined in: [src/core/Player.ts:284](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L284)
+
+##### Returns
 
 `string`
-
-#### Defined in
-
-[src/core/Player.ts:324](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L324)
 
 ***
 
 ### LIBRARY\_VERSION
 
-> `get` `static` **LIBRARY\_VERSION**(): `number`
+#### Get Signature
 
-#### Returns
+> **get** `static` **LIBRARY\_VERSION**(): `number`
+
+Defined in: [src/core/Player.ts:288](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L288)
+
+##### Returns
 
 `number`
-
-#### Defined in
-
-[src/core/Player.ts:328](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L328)
 
 ## Methods
 
 ### cache()
 
-> **cache**(`cache`?): `Promise`\<`void`\>
+> **cache**(`cache?`): `Promise`\<`void`\>
+
+Defined in: [src/core/Player.ts:270](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L270)
 
 #### Parameters
 
-• **cache?**: [`ICache`](../namespaces/Types/interfaces/ICache.md)
+##### cache?
+
+[`ICache`](../youtubei.js/namespaces/Types/interfaces/ICache.md)
 
 #### Returns
 
 `Promise`\<`void`\>
 
-#### Defined in
-
-[src/core/Player.ts:223](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L223)
-
 ***
 
 ### decipher()
 
-> **decipher**(`url`?, `signature_cipher`?, `cipher`?, `this_response_nsig_cache`?): `string`
+> **decipher**(`url?`, `signature_cipher?`, `cipher?`, `this_response_nsig_cache?`): `Promise`\<`string`\>
+
+Defined in: [src/core/Player.ts:134](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L134)
 
 #### Parameters
 
-• **url?**: `string`
-
-• **signature\_cipher?**: `string`
-
-• **cipher?**: `string`
-
-• **this\_response\_nsig\_cache?**: `Map`\<`string`, `string`\>
-
-#### Returns
+##### url?
 
 `string`
 
-#### Defined in
+##### signature\_cipher?
 
-[src/core/Player.ts:100](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L100)
+`string`
+
+##### cipher?
+
+`string`
+
+##### this\_response\_nsig\_cache?
+
+`Map`\<`string`, `string`\>
+
+#### Returns
+
+`Promise`\<`string`\>
 
 ***
 
 ### create()
 
-> `static` **create**(`cache`, `fetch`, `po_token`?, `player_id`?): `Promise`\<[`Player`](Player.md)\>
+> `static` **create**(`cache`, `fetch`, `po_token?`, `player_id?`): `Promise`\<`Player`\>
+
+Defined in: [src/core/Player.ts:42](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L42)
 
 #### Parameters
 
-• **cache**: `undefined` \| [`ICache`](../namespaces/Types/interfaces/ICache.md)
+##### cache
 
-• **fetch** = `Platform.shim.fetch`
+[`ICache`](../youtubei.js/namespaces/Types/interfaces/ICache.md) | `undefined`
 
-• **po\_token?**: `string`
+##### fetch
 
-• **player\_id?**: `string`
+\{(`input`, `init?`): `Promise`\<`Response`\>; (`input`, `init?`): `Promise`\<`Response`\>; \}
 
-#### Returns
+##### po\_token?
 
-`Promise`\<[`Player`](Player.md)\>
+`string`
 
-#### Defined in
+##### player\_id?
 
-[src/core/Player.ts:41](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L41)
-
-***
-
-### extractGlobalVariable()
-
-> `static` **extractGlobalVariable**(`data`, `ast`): `undefined` \| [`ASTLookupResult`](../namespaces/Utils/type-aliases/ASTLookupResult.md)
-
-#### Parameters
-
-• **data**: `string`
-
-• **ast**: `ExtendNode`\<`Program`\>
+`string`
 
 #### Returns
 
-`undefined` \| [`ASTLookupResult`](../namespaces/Utils/type-aliases/ASTLookupResult.md)
-
-#### Defined in
-
-[src/core/Player.ts:244](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L244)
-
-***
-
-### extractNSigSourceCode()
-
-> `static` **extractNSigSourceCode**(`data`, `ast`?, `global_variable`?): `undefined` \| `string`
-
-#### Parameters
-
-• **data**: `string`
-
-• **ast?**: `ExtendNode`\<`Program`\>
-
-• **global\_variable?**: [`ASTLookupResult`](../namespaces/Utils/type-aliases/ASTLookupResult.md)
-
-#### Returns
-
-`undefined` \| `string`
-
-#### Defined in
-
-[src/core/Player.ts:292](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L292)
-
-***
-
-### extractSigSourceCode()
-
-> `static` **extractSigSourceCode**(`data`, `global_variable`?): `undefined` \| `string`
-
-#### Parameters
-
-• **data**: `string`
-
-• **global\_variable?**: [`ASTLookupResult`](../namespaces/Utils/type-aliases/ASTLookupResult.md)
-
-#### Returns
-
-`undefined` \| `string`
-
-#### Defined in
-
-[src/core/Player.ts:263](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L263)
-
-***
-
-### extractSigTimestamp()
-
-> `static` **extractSigTimestamp**(`data`): `number`
-
-#### Parameters
-
-• **data**: `string`
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[src/core/Player.ts:240](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L240)
+`Promise`\<`Player`\>
 
 ***
 
 ### fromCache()
 
-> `static` **fromCache**(`cache`, `player_id`): `Promise`\<`null` \| [`Player`](Player.md)\>
+> `static` **fromCache**(`cache`, `player_id`): `Promise`\<`Player` \| `null`\>
+
+Defined in: [src/core/Player.ts:243](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L243)
 
 #### Parameters
 
-• **cache**: [`ICache`](../namespaces/Types/interfaces/ICache.md)
+##### cache
 
-• **player\_id**: `string`
+[`ICache`](../youtubei.js/namespaces/Types/interfaces/ICache.md)
+
+##### player\_id
+
+`string`
 
 #### Returns
 
-`Promise`\<`null` \| [`Player`](Player.md)\>
-
-#### Defined in
-
-[src/core/Player.ts:195](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L195)
+`Promise`\<`Player` \| `null`\>
 
 ***
 
 ### fromSource()
 
-> `static` **fromSource**(`player_id`, `sig_timestamp`, `cache`?, `sig_sc`?, `nsig_sc`?): `Promise`\<[`Player`](Player.md)\>
+> `static` **fromSource**(`player_id`, `options`): `Promise`\<`Player`\>
+
+Defined in: [src/core/Player.ts:264](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Player.ts#L264)
 
 #### Parameters
 
-• **player\_id**: `string`
+##### player\_id
 
-• **sig\_timestamp**: `number`
+`string`
 
-• **cache?**: [`ICache`](../namespaces/Types/interfaces/ICache.md)
+##### options
 
-• **sig\_sc?**: `string`
-
-• **nsig\_sc?**: `string`
+`PlayerInitializationOptions`
 
 #### Returns
 
-`Promise`\<[`Player`](Player.md)\>
-
-#### Defined in
-
-[src/core/Player.ts:217](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Player.ts#L217)
+`Promise`\<`Player`\>

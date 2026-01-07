@@ -2,23 +2,25 @@
 
 # Class: Actions
 
+Defined in: [src/core/Actions.ts:46](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L46)
+
 ## Constructors
 
-### new Actions()
+### Constructor
 
-> **new Actions**(`session`): [`Actions`](Actions.md)
+> **new Actions**(`session`): `Actions`
+
+Defined in: [src/core/Actions.ts:49](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L49)
 
 #### Parameters
 
-• **session**: [`Session`](Session.md)
+##### session
+
+[`Session`](Session.md)
 
 #### Returns
 
-[`Actions`](Actions.md)
-
-#### Defined in
-
-[src/core/Actions.ts:49](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Actions.ts#L49)
+`Actions`
 
 ## Properties
 
@@ -26,79 +28,103 @@
 
 > **session**: [`Session`](Session.md)
 
-#### Defined in
-
-[src/core/Actions.ts:47](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Actions.ts#L47)
+Defined in: [src/core/Actions.ts:47](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L47)
 
 ## Methods
 
 ### execute()
 
-#### execute(endpoint, args)
+#### Call Signature
 
 > **execute**\<`T`\>(`endpoint`, `args`): `Promise`\<[`ParsedResponse`](../type-aliases/ParsedResponse.md)\<`T`\>\>
+
+Defined in: [src/core/Actions.ts:81](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L81)
 
 Executes an API call.
 
 ##### Type Parameters
 
-• **T** *extends* `string`
+###### T
+
+`T` *extends* `string`
 
 ##### Parameters
 
-• **endpoint**: `T`
+###### endpoint
+
+`T`
 
 The endpoint to call.
 
-• **args**
+###### args
 
 Call arguments
 
-• **args.parse**: `true`
+###### parse
 
-• **args.protobuf?**: `false`
+`true`
 
-• **args.serialized\_data?**: `any`
+###### protobuf?
 
-• **args.skip\_auth\_check?**: `boolean`
+`false`
+
+###### serialized_data?
+
+`any`
+
+###### skip_auth_check?
+
+`boolean`
 
 ##### Returns
 
 `Promise`\<[`ParsedResponse`](../type-aliases/ParsedResponse.md)\<`T`\>\>
 
-##### Defined in
+#### Call Signature
 
-[src/core/Actions.ts:81](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Actions.ts#L81)
+> **execute**\<`T`\>(`endpoint`, `args?`): `Promise`\<[`ApiResponse`](../interfaces/ApiResponse.md)\>
 
-#### execute(endpoint, args)
+Defined in: [src/core/Actions.ts:88](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L88)
 
-> **execute**\<`T`\>(`endpoint`, `args`?): `Promise`\<[`ApiResponse`](../interfaces/ApiResponse.md)\>
+Executes an API call.
 
 ##### Type Parameters
 
-• **T** *extends* `string`
+###### T
+
+`T` *extends* `string`
 
 ##### Parameters
 
-• **endpoint**: `T`
+###### endpoint
 
-• **args?**
+`T`
 
-• **args.parse?**: `false`
+The endpoint to call.
 
-• **args.protobuf?**: `true`
+###### args?
 
-• **args.serialized\_data?**: `any`
+Call arguments
 
-• **args.skip\_auth\_check?**: `boolean`
+###### parse?
+
+`false`
+
+###### protobuf?
+
+`true`
+
+###### serialized_data?
+
+`any`
+
+###### skip_auth_check?
+
+`boolean`
 
 ##### Returns
 
 `Promise`\<[`ApiResponse`](../interfaces/ApiResponse.md)\>
-
-##### Defined in
-
-[src/core/Actions.ts:88](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Actions.ts#L88)
 
 ***
 
@@ -106,30 +132,34 @@ Call arguments
 
 > **stats**(`url`, `client`, `params`): `Promise`\<`Response`\>
 
+Defined in: [src/core/Actions.ts:59](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L59)
+
 Makes calls to the playback tracking API.
 
 #### Parameters
 
-• **url**: `string`
+##### url
+
+`string`
 
 The URL to call.
 
-• **client**
+##### client
 
 The client to use.
 
-• **client.client\_name**: `string`
+###### client_name
 
-• **client.client\_version**: `string`
+`string`
 
-• **params**
+###### client_version
+
+`string`
+
+##### params
 
 Call parameters.
 
 #### Returns
 
 `Promise`\<`Response`\>
-
-#### Defined in
-
-[src/core/Actions.ts:59](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/core/Actions.ts#L59)

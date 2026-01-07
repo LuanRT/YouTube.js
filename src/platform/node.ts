@@ -8,7 +8,7 @@ import os from 'os';
 import fs from 'fs/promises';
 import CustomEvent from './polyfills/node-custom-event.js';
 import { fileURLToPath } from 'url';
-import evaluate from './jsruntime/jinter.js';
+import evaluate from './jsruntime/default.js';
 
 const meta_url = import.meta.url;
 const is_cjs = !meta_url;
@@ -56,7 +56,7 @@ class Cache implements ICache {
       const stat = await fs.stat(file);
       if (stat.isFile()) {
         const data: Buffer = await fs.readFile(file);
-        return data.buffer;
+        return data.buffer as ArrayBuffer;
       }
       throw new Error('An unexpected file was found in place of the cache key');
 

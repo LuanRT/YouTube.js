@@ -2,7 +2,7 @@ import Innertube from '../Innertube.js';
 
 export * from '../core/index.js';
 export * from '../parser/index.js';
-export * as Types from '../types/index.js';
+export type * as Types from '../types/index.js';
 export * from '../utils/index.js';
 
 export * from '../Innertube.js';

@@ -2,80 +2,100 @@
 
 # Class: HTTPClient
 
+Defined in: [src/utils/HTTPClient.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/HTTPClient.ts#L25)
+
 ## Constructors
 
-### new HTTPClient()
+### Constructor
 
-> **new HTTPClient**(`session`, `cookie`?, `fetch`?): [`HTTPClient`](HTTPClient.md)
+> **new HTTPClient**(`session`, `cookie?`, `fetch?`): `HTTPClient`
+
+Defined in: [src/utils/HTTPClient.ts:30](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/HTTPClient.ts#L30)
 
 #### Parameters
 
-• **session**: [`Session`](Session.md)
+##### session
 
-• **cookie?**: `string`
+[`Session`](Session.md)
 
-• **fetch?**
+##### cookie?
+
+`string`
+
+##### fetch?
+
+\{(`input`, `init?`): `Promise`\<`Response`\>; (`input`, `init?`): `Promise`\<`Response`\>; \}
 
 #### Returns
 
-[`HTTPClient`](HTTPClient.md)
-
-#### Defined in
-
-[src/utils/HTTPClient.ts:30](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/utils/HTTPClient.ts#L30)
+`HTTPClient`
 
 ## Accessors
 
 ### fetch\_function
 
-> `get` **fetch\_function**(): (`input`, `init`?) => `Promise`\<`Response`\>(`input`, `init`?) => `Promise`\<`Response`\>
+#### Get Signature
 
-#### Returns
+> **get** **fetch\_function**(): \{(`input`, `init?`): `Promise`\<`Response`\>; (`input`, `init?`): `Promise`\<`Response`\>; \}
 
-`Function`
+Defined in: [src/utils/HTTPClient.ts:36](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/HTTPClient.ts#L36)
+
+##### Returns
+
+> (`input`, `init?`): `Promise`\<`Response`\>
 
 [MDN Reference](https://developer.mozilla.org/docs/Web/API/fetch)
 
-##### Parameters
+###### Parameters
 
-• **input**: `URL` \| `RequestInfo`
+###### input
 
-• **init?**: `RequestInit`
+`URL` | `RequestInfo`
 
-##### Returns
+###### init?
 
-`Promise`\<`Response`\>
+`RequestInit`
 
-##### Parameters
-
-• **input**: `string` \| `URL` \| `Request`
-
-• **init?**: `RequestInit`
-
-##### Returns
+###### Returns
 
 `Promise`\<`Response`\>
 
-#### Defined in
+> (`input`, `init?`): `Promise`\<`Response`\>
 
-[src/utils/HTTPClient.ts:36](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/utils/HTTPClient.ts#L36)
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/fetch)
+
+###### Parameters
+
+###### input
+
+`string` | `URL` | `Request`
+
+###### init?
+
+`RequestInit`
+
+###### Returns
+
+`Promise`\<`Response`\>
 
 ## Methods
 
 ### fetch()
 
-> **fetch**(`input`, `init`?): `Promise`\<`Response`\>
+> **fetch**(`input`, `init?`): `Promise`\<`Response`\>
+
+Defined in: [src/utils/HTTPClient.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/HTTPClient.ts#L40)
 
 #### Parameters
 
-• **input**: `string` \| `URL` \| `Request`
+##### input
 
-• **init?**: `RequestInit` & [`HTTPClientInit`](../interfaces/HTTPClientInit.md)
+`string` | `URL` | `Request`
+
+##### init?
+
+`RequestInit` & [`HTTPClientInit`](../interfaces/HTTPClientInit.md)
 
 #### Returns
 
 `Promise`\<`Response`\>
-
-#### Defined in
-
-[src/utils/HTTPClient.ts:40](https://github.com/LuanRT/YouTube.js/blob/4ae0cc5c523a2080e68d6c0c1437c78fe318ea30/src/utils/HTTPClient.ts#L40)

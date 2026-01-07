@@ -1,5 +1,5 @@
 // This file was auto generated, do not edit.
-// See ./scripts/build-parser-map.js
+// See ./dev-scripts/gen-parser-map.mjs
 
 export { default as AboutChannel } from './classes/AboutChannel.js';
 export { default as AboutChannelView } from './classes/AboutChannelView.js';
@@ -181,7 +181,9 @@ export { default as FeedFilterChipBar } from './classes/FeedFilterChipBar.js';
 export { default as FeedNudge } from './classes/FeedNudge.js';
 export { default as FeedTabbedHeader } from './classes/FeedTabbedHeader.js';
 export { default as FlexibleActionsView } from './classes/FlexibleActionsView.js';
+export { default as Form } from './classes/Form.js';
 export { default as FormFooterView } from './classes/FormFooterView.js';
+export { default as FormPopup } from './classes/FormPopup.js';
 export { default as GameCard } from './classes/GameCard.js';
 export { default as GameDetails } from './classes/GameDetails.js';
 export { default as Grid } from './classes/Grid.js';
