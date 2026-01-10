@@ -364,12 +364,6 @@ export default class Innertube {
     return new History(this.actions, response);
   }
 
-  async getTrending(): Promise<TabbedFeed<IBrowseResponse>> {
-    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEtrending' } });
-    const response = await browse_endpoint.call(this.#session.actions);
-    return new TabbedFeed(this.actions, response);
-  }
-
   async getCourses(): Promise<Feed<IBrowseResponse>> {
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEcourses_destination' } });
     const response = await browse_endpoint.call(this.#session.actions, { parse: true });

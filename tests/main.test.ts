@@ -156,14 +156,6 @@ describe('YouTube.js Tests', () => {
       expect(guide.contents?.length).toBeGreaterThan(0);
     });
 
-    test('Innertube#getTrending', async () => {
-      const trending = await innertube.getTrending();
-      expect(trending).toBeDefined();
-      expect(trending.page.contents).toBeDefined();
-      expect(trending.page.contents_memo).toBeDefined();
-      expect(trending.videos.length).toBeGreaterThan(0);
-    });
-
     test('Innertube#getCourses', async () => {
       const courses = await innertube.getCourses();
       expect(courses).toBeDefined();
