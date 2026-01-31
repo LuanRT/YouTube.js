@@ -360,6 +360,7 @@ export { default as NotificationAction } from './classes/NotificationAction.js';
 export { default as OpenOnePickAddVideoModalCommand } from './classes/OpenOnePickAddVideoModalCommand.js';
 export { default as PageHeader } from './classes/PageHeader.js';
 export { default as PageHeaderView } from './classes/PageHeaderView.js';
+export { default as PageIndicatorView } from './classes/PageIndicatorView.js';
 export { default as PageIntroduction } from './classes/PageIntroduction.js';
 export { default as PanelFooterView } from './classes/PanelFooterView.js';
 export { default as PivotButton } from './classes/PivotButton.js';
@@ -488,6 +489,7 @@ export { default as ThumbnailOverlayProgressBarView } from './classes/ThumbnailO
 export { default as ThumbnailOverlayResumePlayback } from './classes/ThumbnailOverlayResumePlayback.js';
 export { default as ThumbnailOverlaySidePanel } from './classes/ThumbnailOverlaySidePanel.js';
 export { default as ThumbnailOverlayTimeStatus } from './classes/ThumbnailOverlayTimeStatus.js';
+export { default as ThumbnailOverlayTitleView } from './classes/ThumbnailOverlayTitleView.js';
 export { default as ThumbnailOverlayToggleButton } from './classes/ThumbnailOverlayToggleButton.js';
 export { default as ThumbnailView } from './classes/ThumbnailView.js';
 export { default as TimedMarkerDecoration } from './classes/TimedMarkerDecoration.js';
