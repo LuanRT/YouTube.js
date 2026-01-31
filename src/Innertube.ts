@@ -387,7 +387,7 @@ export default class Innertube {
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: id } });
     let response = await browse_endpoint.call<IBrowseResponse>(this.#session.actions, { parse: true });
 
-    if (response.on_response_received_actions?.[0].is(NavigateAction)) {
+    if (response.on_response_received_actions?.[0]?.is(NavigateAction)) {
       response = await response.on_response_received_actions[0].endpoint.call<IBrowseResponse>(this.#session.actions, { parse: true });
     }
 
