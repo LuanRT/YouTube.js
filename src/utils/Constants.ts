@@ -33,7 +33,7 @@ export const CLIENTS = {
   },
   WEB: {
     NAME: 'WEB',
-    VERSION: '2.20250222.10.00',
+    VERSION: '2.20260206.01.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco',
@@ -41,12 +41,12 @@ export const CLIENTS = {
   },
   MWEB: {
     NAME: 'MWEB',
-    VERSION: '2.20250224.01.00',
+    VERSION: '2.20260205.04.01',
     API_VERSION: 'v1'
   },
   WEB_KIDS: {
     NAME: 'WEB_KIDS',
-    VERSION: '2.20250221.11.00'
+    VERSION: '2.20260205.00.00'
   },
   YTMUSIC: {
     NAME: 'WEB_REMIX',
@@ -81,7 +81,7 @@ export const CLIENTS = {
   },
   WEB_EMBEDDED: {
     NAME: 'WEB_EMBEDDED_PLAYER',
-    VERSION: '1.20250219.01.00',
+    VERSION: '1.20260206.01.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'
