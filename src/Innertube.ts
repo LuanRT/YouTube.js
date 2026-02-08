@@ -49,7 +49,7 @@ import {
   SearchFilter_Filters_Duration,
   SearchFilter_Filters_SearchType,
   SearchFilter_Filters_UploadDate,
-  SearchFilter_SortBy
+  SearchFilter_Prioritize
 } from '../protos/generated/misc/params.js';
 
 /**
@@ -205,8 +205,8 @@ export default class Innertube {
 
     search_filter.filters = {};
 
-    if (filters.sort_by) {
-      search_filter.sortBy = SearchFilter_SortBy[filters.sort_by.toUpperCase() as keyof typeof SearchFilter_SortBy];
+    if (filters.prioritize) {
+      search_filter.prioritize = SearchFilter_Prioritize[filters.prioritize.toUpperCase() as keyof typeof SearchFilter_Prioritize];
     }
 
     if (filters.upload_date) {
