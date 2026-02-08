@@ -25,7 +25,7 @@ export default class PlaylistVideo extends YTNode {
   accessibility_label?: string;
   style?: string;
 
-  duration: {
+  duration?: {
     text: string;
     seconds: number;
   };
@@ -54,10 +54,12 @@ export default class PlaylistVideo extends YTNode {
       this.upcoming = new Date(upcoming);
     }
 
-    this.duration = {
-      text: new Text(data.lengthText).toString(),
-      seconds: parseInt(data.lengthSeconds)
-    };
+    if (data.lengthText) {
+      this.duration = {
+        text: new Text(data.lengthText).toString(),
+        seconds: parseInt(data.lengthSeconds)
+      };
+    }
   }
 
   get is_live(): boolean {
