@@ -12,12 +12,12 @@
   "devDependencies": {
     "patch-package": "^8.0.1",
     "typescript": "^4.6.4",
-    "vite": "^5.4.20"
+    "vite": "^5.4.21"
   },
   "dependencies": {
     "bgutils-js": "^3.1.2",
     "googlevideo": "^2.0.0",
     "shaka-player": "4.11.7",
-    "youtubei.js": "^12.2.0"
+    "youtubei.js": "^16.0.1"
   }
 }
