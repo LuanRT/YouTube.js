@@ -4,6 +4,7 @@ import SectionList from './SectionList.js';
 import MusicQueue from './MusicQueue.js';
 import RichGrid from './RichGrid.js';
 import { YTNode } from '../helpers.js';
+import TvSurfaceContent from './tv/TvSurfaceContent.js';
 
 export default class Tab extends YTNode {
   static type = 'Tab';
@@ -11,13 +12,13 @@ export default class Tab extends YTNode {
   title: string;
   selected: boolean;
   endpoint: NavigationEndpoint;
-  content: SectionList | MusicQueue | RichGrid | null;
+  content: SectionList | MusicQueue | TvSurfaceContent | RichGrid | null;
 
   constructor(data: RawNode) {
     super();
     this.title = data.title || 'N/A';
     this.selected = !!data.selected;
     this.endpoint = new NavigationEndpoint(data.endpoint);
-    this.content = Parser.parseItem(data.content, [ SectionList, MusicQueue, RichGrid ]);
+    this.content = Parser.parseItem(data.content, [ SectionList, MusicQueue, TvSurfaceContent, RichGrid ]);
   }
 }

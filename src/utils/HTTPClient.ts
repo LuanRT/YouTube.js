@@ -268,6 +268,12 @@ export default class HTTPClient {
         ctx.client.clientVersion = Constants.CLIENTS.TV.VERSION;
         ctx.client.clientName = Constants.CLIENTS.TV.NAME;
         ctx.client.userAgent = Constants.CLIENTS.TV.USER_AGENT;
+        ctx.client.browserName = 'Cobalt';
+        ctx.client.tvAppInfo = {
+          appQuality: 'TV_APP_QUALITY_FULL_ANIMATION',
+          zylonLeftNav: true
+        };
+        delete ctx.client.browserVersion;
         break;
       case 'TV_SIMPLY':
         ctx.client.clientVersion = Constants.CLIENTS.TV_SIMPLY.VERSION;

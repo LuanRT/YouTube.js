@@ -8,12 +8,14 @@ import ProductList from './ProductList.js';
 import SectionList from './SectionList.js';
 import StructuredDescriptionContent from './StructuredDescriptionContent.js';
 import VideoAttributeView from './VideoAttributeView.js';
+import OverlayPanelHeader from './OverlayPanelHeader.js';
+import ItemSection from './ItemSection.js';
 
 export default class EngagementPanelSectionList extends YTNode {
   static type = 'EngagementPanelSectionList';
 
-  header: EngagementPanelTitleHeader | null;
-  content: VideoAttributeView | SectionList | ContinuationItem | ClipSection | StructuredDescriptionContent | MacroMarkersList | ProductList | null;
+  header: EngagementPanelTitleHeader | OverlayPanelHeader | null;
+  content: VideoAttributeView | ItemSection | SectionList | ContinuationItem | ClipSection | StructuredDescriptionContent | MacroMarkersList | ProductList | null;
   target_id?: string;
   panel_identifier?: string;
   identifier?: {
@@ -24,8 +26,8 @@ export default class EngagementPanelSectionList extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.header = Parser.parseItem(data.header, EngagementPanelTitleHeader);
-    this.content = Parser.parseItem(data.content, [ VideoAttributeView, SectionList, ContinuationItem, ClipSection, StructuredDescriptionContent, MacroMarkersList, ProductList ]);
+    this.header = Parser.parseItem(data.header, [ EngagementPanelTitleHeader, OverlayPanelHeader ]);
+    this.content = Parser.parseItem(data.content, [ VideoAttributeView, ItemSection, SectionList, ContinuationItem, ClipSection, StructuredDescriptionContent, MacroMarkersList, ProductList ]);
     this.panel_identifier = data.panelIdentifier;
     this.identifier = data.identifier ? {
       surface: data.identifier.surface,
