@@ -15,7 +15,7 @@ export default class ChannelSubMenu extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.content_type_sub_menu_items = data.contentTypeSubMenuItems.map((item: RawNode) => ({
+    this.content_type_sub_menu_items = data.sortSetting.sortFilterSubMenuRenderer.subMenuItems.map((item: RawNode) => ({
       endpoint: new NavigationEndpoint(item.navigationEndpoint || item.endpoint),
       selected: item.selected,
       title: item.title
