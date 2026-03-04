@@ -54,9 +54,9 @@ export const CLIENTS = {
   },
   ANDROID: {
     NAME: 'ANDROID',
-    VERSION: '19.35.36',
-    SDK_VERSION: 33,
-    USER_AGENT: 'com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip'
+    VERSION: '21.03.36',
+    SDK_VERSION: 36,
+    USER_AGENT: 'com.google.android.youtube/21.03.36(Linux; U; Android 16; en_US; SM-S908E Build/TP1A.220624.014) gzip'
   },
   YTSTUDIO_ANDROID: {
     NAME: 'ANDROID_CREATOR',
