@@ -384,6 +384,19 @@ export class JsAnalyzer {
       return false;
     };
 
+    const registerDependency = (dependency: string) => {
+      dependencies.add(dependency);
+
+      // Preserve constructor/class deps when member chains reference `.prototype`.
+      // Example: `g.q = ij.prototype` must retain `ij` in extracted output.
+      if (!dependency.includes('.prototype'))
+        return;
+
+      const baseName = dependency.split('.prototype')[0];
+      if (baseName && !isInScope(baseName) && !jsBuiltIns.has(baseName))
+        dependencies.add(baseName);
+    };
+
     const rootIdentifierName = 'id' in rootNode && rootNode?.id?.type === 'Identifier' ? rootNode.id.name : undefined;
 
     const collectBindingIdentifiers = (pattern: ESTree.Node | null, target: Set<string>) => {
@@ -488,7 +501,7 @@ export class JsAnalyzer {
               const declaredVariable = this.declaredVariables.get(full);
               if (declaredVariable) {
                 declaredVariable.dependents.add(identifierName);
-                dependencies.add(full);
+                registerDependency(full);
               } else if (parent.object.type === 'Identifier') {
                 const baseName = parent.object.name;
                 const declaredBaseVariable = this.declaredVariables.get(baseName);
@@ -497,7 +510,7 @@ export class JsAnalyzer {
                   !isInScope(baseName) && !jsBuiltIns.has(baseName)
                 ) {
                   declaredBaseVariable?.dependents.add(identifierName);
-                  dependencies.add(full);
+                  registerDependency(full);
 
                   // We have this object, but not the full member chain.
                   const existingTracker = this.dependentsTracker.get(full);
@@ -514,7 +527,7 @@ export class JsAnalyzer {
             if (isInScope(n.name) || jsBuiltIns.has(n.name)) return;
 
             // It's a free variable, so it's a dependency.
-            dependencies.add(n.name);
+            registerDependency(n.name);
 
             const declaredVariable = this.declaredVariables.get(n.name);
             if (declaredVariable) {
