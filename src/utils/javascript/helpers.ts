@@ -232,8 +232,33 @@ export function createWrapperFunction(analyzer: JsAnalyzer, name: string, node: 
     node.init?.type === 'FunctionExpression' &&
     node.id.type === 'Identifier'
   ) {
+    if (looksLikeSignatureHelper(node.init)) {
+      return generateSignatureWrapper(name, node.id.name);
+    }
+
     return generateWrapper(name, node.id.name, parseFunctionArguments(analyzer, node.init.params));
+  } else if (
+    name === 'nFunction' &&
+    node.type === 'ExpressionStatement' &&
+    node.expression.type === 'AssignmentExpression' &&
+    node.expression.operator === '=' &&
+    node.expression.right.type === 'FunctionExpression'
+  ) {
+    const targetName = memberToString(node.expression.left, analyzer.getSource());
+
+    if (targetName?.startsWith('g.')) {
+      return generateNClassWrapper(name, targetName);
+    }
   }
+}
+
+export function isTruthyBooleanNode(node: ESTree.Node | null | undefined): boolean {
+  return (node?.type === 'Literal' && node.value === true) || (
+    node?.type === 'UnaryExpression' &&
+    node.operator === '!' &&
+    node.argument.type === 'Literal' &&
+    node.argument.value === 0
+  );
 }
 
 /**
@@ -248,6 +273,119 @@ function generateWrapper(functionName: string, targetFunction: string, args: str
     `${indent}${indent}return ${targetFunction}(${args});`,
     `${indent}}`
   ].join('\n');
+}
+
+function generateNClassWrapper(functionName: string, targetClass: string): string {
+  return [
+    `${indent}function ${functionName}(input) {`,
+    `${indent}${indent}let url = input;`,
+    `${indent}${indent}if (typeof input !== 'string' || (!input.startsWith('http://') && !input.startsWith('https://'))) {`,
+    `${indent}${indent}${indent}url = 'https://www.youtube.com/videoplayback?n=' + encodeURIComponent(String(input));`,
+    `${indent}${indent}}`,
+    `${indent}${indent}const helper = new ${targetClass}(url, true);`,
+    `${indent}${indent}return helper.get('n');`,
+    `${indent}}`
+  ].join('\n');
+}
+
+function generateSignatureWrapper(functionName: string, targetFunction: string): string {
+  return [
+    `${indent}function ${functionName}(input) {`,
+    `${indent}${indent}const helper = ${targetFunction}('https://www.youtube.com/videoplayback', 'signature', String(input));`,
+    `${indent}${indent}return helper.get('signature');`,
+    `${indent}}`
+  ].join('\n');
+}
+
+export function looksLikeSignatureHelper(node: ESTree.FunctionExpression): boolean {
+  if (node.params.length !== 3 || !node.body) {
+    return false;
+  }
+
+  const helperName = node.params[0]?.type === 'Identifier' ? node.params[0].name : null;
+  const signatureParam = node.params[1]?.type === 'Identifier' ? node.params[1].name : null;
+
+  if (!helperName || !signatureParam) {
+    return false;
+  }
+
+  let hasUrlHelperConstructor = false;
+  let hasAlrSet = false;
+  let hasSignatureWrite = false;
+  let returnsHelper = false;
+
+  walkAst(node.body, (innerNode) => {
+    if (
+      innerNode.type === 'NewExpression' &&
+      innerNode.callee.type === 'MemberExpression' &&
+      innerNode.arguments.length >= 2 &&
+      innerNode.arguments[0]?.type === 'Identifier' &&
+      innerNode.arguments[0].name === helperName &&
+      isTruthyBooleanNode(innerNode.arguments[1])
+    ) {
+      const calleeName = memberToString(innerNode.callee, '');
+      hasUrlHelperConstructor ||= typeof calleeName === 'string' && calleeName.startsWith('g.');
+    } else if (
+      innerNode.type === 'CallExpression' &&
+      innerNode.callee.type === 'MemberExpression' &&
+      innerNode.callee.object.type === 'Identifier' &&
+      innerNode.callee.object.name === helperName
+    ) {
+      if (
+        innerNode.arguments.length >= 2 &&
+        innerNode.arguments[0]?.type === 'Literal' &&
+        innerNode.arguments[0].value === 'alr' &&
+        innerNode.arguments[1]?.type === 'Literal' &&
+        innerNode.arguments[1].value === 'yes'
+      ) {
+        hasAlrSet = true;
+      } else if (
+        innerNode.arguments.length >= 2 &&
+        innerNode.arguments[0]?.type === 'Identifier' &&
+        innerNode.arguments[0].name === signatureParam
+      ) {
+        hasSignatureWrite = true;
+      }
+    } else if (
+      innerNode.type === 'ReturnStatement' &&
+      innerNode.argument?.type === 'Identifier' &&
+      innerNode.argument.name === helperName
+    ) {
+      returnsHelper = true;
+    }
+  });
+
+  return hasUrlHelperConstructor && hasAlrSet && hasSignatureWrite && returnsHelper;
+}
+export function getUrlHelperClassName(node: ESTree.FunctionExpression): string | null {
+  if (!node.body) return null;
+
+  const helperName = node.params[0]?.type === 'Identifier' ? node.params[0].name : null;
+
+  if (!helperName) {
+    return null;
+  }
+
+  let className: string | null = null;
+
+  walkAst(node.body, (innerNode) => {
+    if (
+      innerNode.type === 'NewExpression' &&
+      innerNode.callee.type === 'MemberExpression' &&
+      innerNode.arguments.length >= 2 &&
+      innerNode.arguments[0]?.type === 'Identifier' &&
+      innerNode.arguments[0].name === helperName &&
+      isTruthyBooleanNode(innerNode.arguments[1])
+    ) {
+      const calleeName = memberToString(innerNode.callee, '');
+      if (calleeName?.startsWith('g.')) {
+        className = calleeName;
+        return WALK_STOP;
+      }
+    }
+  });
+
+  return className;
 }
 
 /**
