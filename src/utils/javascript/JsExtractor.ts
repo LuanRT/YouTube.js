@@ -327,6 +327,7 @@ export class JsExtractor {
     const extractions = this.analyzer.getExtractedMatches();
     const seen = new Set<string>(extractions.map((e) => e.metadata?.name || ''));
     const emittedNodes = new Set<ESTree.Node>();
+    const expandedMemberFamilies = new Set<string>();
 
     const snippets: string[] = [];
     const predeclaredVarSet = new Set<string>();
@@ -369,17 +370,21 @@ export class JsExtractor {
       if (!baseName || depth > maxDepth)
         return;
 
-      for (const [ declaredName, declaredMetadata ] of this.analyzer.declaredVariables.entries()) {
-        if (
-          declaredName === baseName ||
-          !(
-            declaredName.startsWith(`${baseName}.prototype.`) ||
-            declaredName.startsWith(`${baseName}[`)
-          ) ||
-          seen.has(declaredName)
-        ) {
+      if (expandedMemberFamilies.has(baseName))
+        return;
+
+      expandedMemberFamilies.add(baseName);
+
+      const relatedAssignments = this.analyzer.relatedMemberAssignments.get(baseName);
+      if (!relatedAssignments) {
+        emitPrototypeAliasAssignments(baseName, depth);
+        return;
+      }
+
+      for (const declaredMetadata of relatedAssignments) {
+        const declaredName = declaredMetadata.name;
+        if (declaredName === baseName || seen.has(declaredName))
           continue;
-        }
 
         seen.add(declaredName);
 

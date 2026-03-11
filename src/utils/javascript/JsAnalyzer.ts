@@ -68,6 +68,7 @@ export class JsAnalyzer {
 
   public declaredVariables: Map<string, VariableMetadata> = new Map();
   public prototypeAliasAssignments: Map<string, VariableMetadata[]> = new Map();
+  public relatedMemberAssignments: Map<string, VariableMetadata[]> = new Map();
   public iifeParamName: string | null = null;
 
   /**
@@ -129,6 +130,29 @@ export class JsAnalyzer {
     }
 
     if (!iifeBody) return;
+
+    const registerRelatedMemberAssignment = (memberName: string, metadata: VariableMetadata) => {
+      const baseNames = new Set<string>();
+
+      const prototypeIndex = memberName.indexOf('.prototype.');
+      if (prototypeIndex !== -1) {
+        baseNames.add(memberName.slice(0, prototypeIndex));
+      }
+
+      const computedIndex = memberName.indexOf('[');
+      if (computedIndex !== -1) {
+        baseNames.add(memberName.slice(0, computedIndex));
+      }
+
+      for (const baseName of baseNames) {
+        const existing = this.relatedMemberAssignments.get(baseName);
+        if (existing) {
+          existing.push(metadata);
+        } else {
+          this.relatedMemberAssignments.set(baseName, [ metadata ]);
+        }
+      }
+    };
 
     const registerPrototypeAliasAssignment = (
       baseName: string,
@@ -235,6 +259,7 @@ export class JsAnalyzer {
               }
 
               this.declaredVariables.set(memberName, metadata);
+              registerRelatedMemberAssignment(memberName, metadata);
 
               if (this.onMatch(currentNode, metadata))
                 return WALK_STOP;
