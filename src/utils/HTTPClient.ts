@@ -254,6 +254,18 @@ export default class HTTPClient {
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.ANDROID.NAME;
         break;
+      case 'ANDROID_VR':
+        ctx.client.androidSdkVersion = 32;
+        ctx.client.osName = 'Android';
+        ctx.client.osVersion = '12L';
+        ctx.client.platform = 'MOBILE';
+        ctx.client.userAgent = Constants.CLIENTS.ANDROID_VR.USER_AGENT;
+        ctx.client.deviceMake = Constants.CLIENTS.ANDROID_VR.DEVICE_MAKE;
+        ctx.client.deviceModel = Constants.CLIENTS.ANDROID_VR.DEVICE_MODEL;
+        ctx.client.clientVersion = Constants.CLIENTS.ANDROID_VR.VERSION;
+        ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
+        ctx.client.clientName = Constants.CLIENTS.ANDROID_VR.NAME;
+        break;
       case 'YTMUSIC_ANDROID':
         ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC_ANDROID.VERSION;
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
