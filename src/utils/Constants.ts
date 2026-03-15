@@ -76,7 +76,7 @@ export const CLIENTS = {
   },
   TV: {
     NAME: 'TVHTML5',
-    VERSION: '7.20250219.14.00',
+    VERSION: '7.20260311.12.00',
     USER_AGENT: 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'
   },
   TV_SIMPLY: {
