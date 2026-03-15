@@ -4,12 +4,13 @@ import { Constants, BinarySerializer, Log } from '../utils/index.js';
 import {
   getRandomUserAgent,
   getStringBetweenStrings,
+  NSIG_PROCESSOR_FN,
   Platform,
   PlayerError
 } from '../utils/Utils.js';
 
 import { JsExtractor, JsAnalyzer } from '../utils/index.js';
-import { nMatcher, sigMatcher, timestampMatcher } from '../utils/javascript/matchers.js';
+import { nsigMatcher, timestampMatcher } from '../utils/javascript/matchers.js';
 
 import type { ExtractionConfig } from '../utils/javascript/JsAnalyzer.js';
 import type { BuildScriptResult } from '../utils/javascript/JsExtractor.js';
@@ -71,7 +72,7 @@ export default class Player {
       }
     }
 
-    const player_url = new URL(`/s/player/${player_id}/player_ias.vflset/en_US/base.js`, Constants.URLS.YT_BASE);
+    const player_url = new URL(`/s/player/${player_id}/player_es6.vflset/en_US/base.js`, Constants.URLS.YT_BASE);
 
     Log.info(TAG, `Could not find any cached player. Will download a new player from ${player_url}.`);
 
@@ -87,13 +88,11 @@ export default class Player {
 
     const player_js = await player_res.text();
 
-    const sigFunctionName = 'sigFunction';
-    const nFunctionName = 'nFunction';
+    const nsigFunctionName = 'nsigFunction';
     const timestampVarName = 'signatureTimestampVar';
 
     const extractions: ExtractionConfig[] = [
-      { friendlyName: sigFunctionName, match: sigMatcher },
-      { friendlyName: nFunctionName, match: nMatcher },
+      { friendlyName: nsigFunctionName, match: nsigMatcher },
       { friendlyName: timestampVarName, match: timestampMatcher, collectDependencies: false }
     ];
 
@@ -110,12 +109,8 @@ export default class Player {
       Log.warn(TAG, 'Failed to extract signature timestamp.');
     }
 
-    if (!result.exported.includes(sigFunctionName)) {
-      Log.warn(TAG, 'Failed to extract signature decipher function.');
-    }
-
-    if (!result.exported.includes(nFunctionName)) {
-      Log.warn(TAG, 'Failed to extract n decipher function.');
+    if (!result.exported.includes(nsigFunctionName)) {
+      Log.warn(TAG, 'Failed to extract n/sig decipher function.');
     }
 
     const signatureTimestamp = result.exportedRawValues?.[timestampVarName];
@@ -145,10 +140,11 @@ export default class Player {
     const sp = args.get('sp');
 
     if (this.data && ((signature_cipher || cipher) || n)) {
-      const eval_args: { sig?: string | null; n?: string | null } = {};
+      const eval_args: { sig?: string | null; n?: string | null; sp?: string | null } = {};
 
       if (signature_cipher || cipher) {
         eval_args.sig = s;
+        eval_args.sp = sp;
       }
 
       if (n) {
@@ -161,7 +157,12 @@ export default class Player {
       }
 
       if (Object.keys(eval_args).length > 0) {
-        const result = await Platform.shim.eval(this.data, eval_args) as Record<string, unknown>;
+        // Shallow copy to avoid mutating the original data.
+        const data = { ...this.data };
+
+        data.output = `${data.output}\n${NSIG_PROCESSOR_FN(eval_args.n, eval_args.sp, eval_args.sig)}`;
+
+        const result = await Platform.shim.eval(data, eval_args) as Record<string, unknown>;
 
         if (typeof result !== 'object' || result === null) {
           throw new PlayerError('Got invalid result from player script evaluation.');
