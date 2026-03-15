@@ -1,6 +1,5 @@
-import type { ESTree } from 'meriyah';
-import { parseScript } from 'meriyah';
-import { WALK_STOP, jsBuiltIns, memberBaseName, memberToString, walkAst } from './helpers.js';
+import { parseScript, type ESTree } from 'meriyah';
+import { jsBuiltIns, memberBaseName, memberToString, walkAst } from './helpers.js';
 
 export interface ExtractionConfig {
   /**
@@ -14,9 +13,20 @@ export interface ExtractionConfig {
   collectDependencies?: boolean;
   /**
    * When `true`, traversal stops once the extraction is matched and all its dependencies (when `collectDependencies=true`) resolve.
-   * Only useful for small functions/vars without too many dependencies.
+   * Only useful for small functions/vars without too many dependencies. Deeper dependency trees will usually have the unresolvable
+   * member expression here and there, for example:
+   * ```js
+   *  var Vmi = g.dX.window, Wr = Vmi?.yt?.config_ || Vmi?.ytcfg?.data_ || {};
+   * ```
+   * 
+   * Since `Vmi.ytcfg` is a dependency, it will never resolve because it comes from `g.dX.window`, which is an external object we don't have access to. 
+   * In cases like this, `stopWhenReady` option does nothing useful.
    */
   stopWhenReady?: boolean;
+  /**
+   * If `true`, dependency collection is limited to the match context node itself.
+   */
+  onlyProcessMatchContext?: boolean;
   /**
    * Name for easier identification of extractions.
    */
@@ -35,6 +45,7 @@ export interface VariableMetadata {
   node?: any;
   dependencies: Set<string>;
   dependents: Set<string>;
+  prototypeAliases: Map<string, Set<VariableMetadata>>;
   predeclared: boolean;
 }
 
@@ -64,9 +75,10 @@ export class JsAnalyzer {
   private readonly hasExtractions: boolean;
   private readonly extractionStates: ExtractionState[];
   private readonly dependentsTracker: Map<string, Set<string>> = new Map();
+  private pendingPrototypeAliasBinding: [string, VariableMetadata] | null = null;
 
-  public declaredVariables: Map<string, VariableMetadata> = new Map();
   public iifeParamName: string | null = null;
+  public readonly declaredVariables: Map<string, VariableMetadata> = new Map();
 
   /**
    * Creates a new instance over the provided source.
@@ -135,6 +147,34 @@ export class JsAnalyzer {
           const left = assignment.left;
           const right = assignment.right;
 
+          // Detect things like `a.b = g.c.prototype` so later `a.b.foo = ...` can be attributed back to `g.c`.
+          if (
+            right.type === 'MemberExpression' &&
+            !right.computed &&
+            right.property.type === 'Identifier' &&
+            right.property.name === 'prototype'
+          ) {
+            const prototypeSourceExpr = memberToString(right, this.source);
+            const aliasTargetExpr = left.type === 'Identifier' ? left.name : memberToString(left, this.source);
+
+            if (prototypeSourceExpr) {
+              const prototypeOwnerMeta = this.declaredVariables.get(
+                prototypeSourceExpr.replace('.prototype', '')
+              );
+
+              if (aliasTargetExpr && prototypeOwnerMeta) {
+                const aliasedPrototypeMembers = new Set<VariableMetadata>();
+                const aliasExpr = `${aliasTargetExpr}.`; // Had to add a dot here so we can detect it later when matching member expressions..
+
+                // Activate an alias binding context, so subsequent member assignments to the alias (`a.b.foo = ...`) can be tracked.
+                // NOTE: This assumes that the alias members come right after this declaration and are grouped together in the code, hehe :)
+                this.pendingPrototypeAliasBinding = [ aliasExpr, prototypeOwnerMeta ];
+
+                prototypeOwnerMeta.prototypeAliases.set(aliasExpr, aliasedPrototypeMembers);
+              }
+            }
+          }
+
           if (left.type === 'Identifier') {
             // This identifier existing means it was a pre-declared and
             // we just got to it.
@@ -150,6 +190,33 @@ export class JsAnalyzer {
             if (this.onMatch(existingVariable.node, existingVariable)) return;
           } else if (assignment.left.type === 'MemberExpression') {
             const memberName = memberToString(assignment.left, this.source);
+            const activeAliasExpr = this.pendingPrototypeAliasBinding?.[0];
+
+            // While an alias binding is active, collect member assignments made through the alias (`g.q.foo = ...`).
+            if (activeAliasExpr && (memberName?.includes(activeAliasExpr) || memberName === activeAliasExpr.slice(0, -1))) {
+              const aliasOwnerMeta = this.declaredVariables.get(this.pendingPrototypeAliasBinding?.[1].name || '');
+              if (aliasOwnerMeta) {
+                const existingAliasedMembers = aliasOwnerMeta.prototypeAliases.get(activeAliasExpr);
+
+                const aliasedMemberMeta: VariableMetadata = {
+                  name: memberName,
+                  node: currentNode,
+                  dependents: this.dependentsTracker.get(memberName) || new Set<string>(),
+                  predeclared: false,
+                  prototypeAliases: new Map<string, Set<VariableMetadata>>(),
+                  dependencies: this.findDependencies(right, memberName)
+                };
+
+                if (existingAliasedMembers) {
+                  existingAliasedMembers.add(aliasedMemberMeta);
+                } else {
+                  aliasOwnerMeta.prototypeAliases.set(activeAliasExpr, new Set([ aliasedMemberMeta ]));
+                }
+              }
+            } else {
+              this.pendingPrototypeAliasBinding = null;
+            }
+
             if (!memberName || this.declaredVariables.has(memberName)) continue;
 
             const metadata: VariableMetadata = {
@@ -157,6 +224,7 @@ export class JsAnalyzer {
               node: currentNode,
               dependents: this.dependentsTracker.get(memberName) || new Set<string>(),
               predeclared: false,
+              prototypeAliases: new Map<string, Set<VariableMetadata>>(),
               dependencies: this.findDependencies(right, memberName)
             };
 
@@ -176,6 +244,8 @@ export class JsAnalyzer {
           break;
         }
         case 'VariableDeclaration': {
+          this.pendingPrototypeAliasBinding = null;
+
           for (const declaration of currentNode.declarations) {
             if (declaration.id.type !== 'Identifier') continue;
 
@@ -183,15 +253,15 @@ export class JsAnalyzer {
               name: declaration.id.name,
               node: declaration,
               dependents: this.dependentsTracker.get(declaration.id.name) || new Set<string>(),
+              prototypeAliases: new Map<string, Set<VariableMetadata>>(),
               dependencies: new Set(),
               predeclared: false
             };
 
             const init = declaration.init;
 
-            // "var x, y, z;"
             if (!init && currentNode.kind === 'var') {
-              metadata.predeclared = true;
+              metadata.predeclared = true; // "var x, y, z;"
             } else if (init && this.needsDependencyAnalysis(init)) {
               metadata.dependencies = this.findDependencies(init, metadata.name);
             }
@@ -227,6 +297,7 @@ export class JsAnalyzer {
       case 'ConditionalExpression':
       case 'ObjectExpression':
       case 'SequenceExpression':
+      case 'ClassExpression':
       case 'Identifier':
         return true;
       default:
@@ -250,9 +321,23 @@ export class JsAnalyzer {
     for (const state of this.extractionStates) {
       if (!state.node) {
         if (node.type === 'VariableDeclarator' && !node.init) continue;
+
         result = state.config.match(node);
+
         if (!result) continue;
         state.node = node;
+
+        matched = true;
+
+        if (metadata) {
+          state.metadata = metadata;
+          state.dependents = metadata.dependents;
+          state.dependencies = metadata.dependencies;
+          if (typeof result !== 'boolean')
+            state.matchContext = result;
+        }
+
+        this.refreshExtractionState(state);
       } else if (state.node !== node) {
         // Use this as a chance to refresh readiness in case dependencies were resolved since last time
         // we checked.
@@ -261,21 +346,7 @@ export class JsAnalyzer {
         if (this.shouldStopTraversal()) {
           return true;
         }
-
-        continue;
       }
-
-      matched = true;
-
-      if (metadata) {
-        state.metadata = metadata;
-        state.dependents = metadata.dependents;
-        state.dependencies = metadata.dependencies;
-        if (typeof result !== 'boolean')
-          state.matchContext = result;
-      }
-
-      this.refreshExtractionState(state);
     }
 
     if (!matched) return false;
@@ -425,6 +496,9 @@ export class JsAnalyzer {
     walkAst(rootNode, {
       enter: (n, parent) => {
         switch (n.type) {
+          // Note for anybody debugging this in the future:
+          // *DO NOT* add MethodDefinition here.
+          // MethodDefinition.value is a FunctionExpression, so it is already handled...
           case 'FunctionDeclaration':
           case 'FunctionExpression':
           case 'ArrowFunctionExpression': {
@@ -458,9 +532,12 @@ export class JsAnalyzer {
             break;
           }
           case 'VariableDeclaration': {
-            const scope = currentScope();
+            // var hoists to function scope...
+            const targetScope = n.kind === 'var'
+              ? scopeStack.findLast((s) => s.type === 'function') ?? currentScope()
+              : currentScope();
             for (const d of n.declarations) {
-              collectBindingIdentifiers(d.id, scope.names);
+              collectBindingIdentifiers(d.id, targetScope.names);
             }
             break;
           }
@@ -479,8 +556,10 @@ export class JsAnalyzer {
 
             // Ignore if it's a property name (e.g., "obj.prop" or "{prop: 1}"", we don't care about the "prop" name itself).
             if (parent?.type === 'Property' && parent.key === n && !parent.computed) return;
+            // Ignore class method names. They are declarations, not external dependencies.
+            if (parent?.type === 'MethodDefinition' && parent.key === n && !parent.computed) return;
             if (parent?.type === 'MemberExpression' && parent.property === n && !parent.computed) {
-              if (parent.object.type === 'ThisExpression') return; // Skip 'this.property' stuff.
+              if (parent.object.type === 'ThisExpression') return; // Skip 'this.property', etc.
 
               const full = memberToString(parent, this.source);
               if (!full) return;
@@ -491,6 +570,7 @@ export class JsAnalyzer {
                 dependencies.add(full);
               } else if (parent.object.type === 'Identifier') {
                 const baseName = parent.object.name;
+
                 const declaredBaseVariable = this.declaredVariables.get(baseName);
                 if (
                   (declaredBaseVariable || baseName === this.iifeParamName) &&
@@ -509,6 +589,10 @@ export class JsAnalyzer {
                 }
               }
               return;
+            }
+
+            if (parent?.type === 'MetaProperty') {
+              return; // Skip stuff like "new.target" or "import.meta"
             }
 
             if (isInScope(n.name) || jsBuiltIns.has(n.name)) return;
@@ -530,6 +614,12 @@ export class JsAnalyzer {
             }
             break;
           }
+          case 'ForStatement':
+          case 'ForInStatement':
+          case 'ForOfStatement': {
+            scopeStack.push({ names: new Set<string>(), type: 'block' });
+            break;
+          }
         }
       },
       leave: (n: any) => {
@@ -539,6 +629,9 @@ export class JsAnalyzer {
           case 'ArrowFunctionExpression':
           case 'BlockStatement':
           case 'CatchClause':
+          case 'ForStatement':
+          case 'ForInStatement':
+          case 'ForOfStatement':
             if (scopeStack.length > 1) scopeStack.pop();
             break;
         }

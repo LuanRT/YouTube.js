@@ -52,7 +52,7 @@ export interface AstVisitObject {
 export type AstVisitor = AstVisitFn | AstVisitObject;
 
 /**
- * Performs a non-recursive traversal of an ESTree AST.
+ * Performs traversal of an ESTree AST.
  * @param root - Root AST node to start the traversal from.
  * @param visitor - Callbacks invoked when nodes are entered or left.
  * @remarks
@@ -132,7 +132,7 @@ export function getNodeSourceRange(node: ESTree.Node | null | undefined): [numbe
   if (Array.isArray(node.range)) return node.range;
   if (typeof node.start === 'number' && typeof node.end === 'number') return [ node.start, node.end ];
   return null;
-}
+};
 
 /**
  * Extracts the source code corresponding to a given AST node.
@@ -143,7 +143,7 @@ export function getNodeSourceRange(node: ESTree.Node | null | undefined): [numbe
 export function extractNodeSource(node: ESTree.Node | null | undefined, source: string): string | null {
   const range = getNodeSourceRange(node);
   return range ? source.slice(range[0], range[1]) : null;
-}
+};
 
 /**
  * Converts a member expression into its dot/bracket string form.
@@ -183,7 +183,7 @@ export function memberToString(memberExpression: ESTree.Node, source: string): s
   }
 
   return base ? base + segments.join('') : null;
-}
+};
 
 /**
  * Retrieves the base identifier for a member expression chain.
@@ -203,7 +203,7 @@ export function memberBaseName(memberExpression: ESTree.MemberExpression, source
   if (target?.type === 'ThisExpression') return 'this';
 
   return null;
-}
+};
 
 /**
  * Analyzes an AST node to determine if it's a function call or a function
@@ -233,6 +233,14 @@ export function createWrapperFunction(analyzer: JsAnalyzer, name: string, node: 
     node.id.type === 'Identifier'
   ) {
     return generateWrapper(name, node.id.name, parseFunctionArguments(analyzer, node.init.params));
+  } else if (
+    node.type === 'NewExpression' &&
+    node.callee.type === 'MemberExpression' &&
+    node.callee.object.type === 'Identifier'
+  ) {
+    const targetFunction = memberToString(node.callee, analyzer.getSource());
+    if (!targetFunction) return undefined;
+    return generateWrapper(name, targetFunction, parseFunctionArguments(analyzer, node.arguments), true);
   }
 }
 
@@ -242,10 +250,10 @@ export function createWrapperFunction(analyzer: JsAnalyzer, name: string, node: 
  * @param targetFunction - The name of the target function to call.
  * @param args - The arguments to pass to the target function.
  */
-function generateWrapper(functionName: string, targetFunction: string, args: string): string {
+function generateWrapper(functionName: string, targetFunction: string, args: string[], useNew: boolean = false): string {
   return [
-    `${indent}function ${functionName}(input) {`,
-    `${indent}${indent}return ${targetFunction}(${args});`,
+    `${indent}function ${functionName}(${args.join(', ')}) {`,
+    `${indent}${indent}return ${useNew ? 'new ' : ''}${targetFunction}(${args.join(', ')});`,
     `${indent}}`
   ].join('\n');
 }
@@ -264,9 +272,18 @@ function parseFunctionArguments(analyzer: JsAnalyzer, args: ESTree.Node[]) {
       params.push(arg.name);
     } else if (arg.type === 'Literal' && (typeof arg.value === 'string' || typeof arg.value === 'number')) {
       params.push(JSON.stringify(arg.value));
+    } else if (arg.type === 'UnaryExpression') {
+      const argSource = extractNodeSource(arg, analyzer.getSource());
+      if (argSource) {
+        params.push(argSource.trim());
+      }
+    } else if (arg.type === 'AssignmentPattern' && arg.left.type === 'Identifier') {
+      params.push(arg.left.name);
+    } else if (arg.type === 'Identifier') {
+      params.push(arg.name);
     } else if (!params.includes('input'))
       params.push('input');
   }
 
-  return params.join(', ');
+  return params;
 }
