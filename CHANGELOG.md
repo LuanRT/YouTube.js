@@ -1,5 +1,28 @@
 # Changelog
 
+## [17.0.0](https://github.com/LuanRT/YouTube.js/compare/v16.0.1...v17.0.0) (2026-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Search:** Update search filters to match YouTube changes ([#1136](https://github.com/LuanRT/YouTube.js/issues/1136))
+* **Innertube:** Remove getTrending as YouTube removed the trending feed ([#1114](https://github.com/LuanRT/YouTube.js/issues/1114))
+
+### Features
+
+* **Format:** Add support for Voice Boost & Super Resolution formats ([#1092](https://github.com/LuanRT/YouTube.js/issues/1092)) ([769721c](https://github.com/LuanRT/YouTube.js/commit/769721c193f2073522a9d35708a07dc8b493f1c7))
+* **Search:** Update search filters to match YouTube changes ([#1136](https://github.com/LuanRT/YouTube.js/issues/1136)) ([e830396](https://github.com/LuanRT/YouTube.js/commit/e83039637e4d7ac857f437a630a8013d6528a544))
+* **Session:** Add the `ANDROID_VR` client ([#1149](https://github.com/LuanRT/YouTube.js/issues/1149)) ([f9bd5d0](https://github.com/LuanRT/YouTube.js/commit/f9bd5d0e8db39dcb6c68ccc52446fbaa793e04fa))
+* **StreamingInfo:** Label Voice Boost audio streams ([#1105](https://github.com/LuanRT/YouTube.js/issues/1105)) ([458f881](https://github.com/LuanRT/YouTube.js/commit/458f88104344fda2e2ca41c9504d946d367a0cb7))
+
+
+### Bug Fixes
+
+* **Innertube:** getChannel() if subscribed ([#1128](https://github.com/LuanRT/YouTube.js/issues/1128)) ([3df4c61](https://github.com/LuanRT/YouTube.js/commit/3df4c61bd7853cc7e9d5c3be13c1ef7a8360807b))
+* **Innertube:** Remove getTrending as YouTube removed the trending feed ([#1114](https://github.com/LuanRT/YouTube.js/issues/1114)) ([7c144ee](https://github.com/LuanRT/YouTube.js/commit/7c144ee013c2d168d93f203c34f88c8c3bfb4068))
+* **Parser:** Fix ChannelSubMenu parsing ([#1144](https://github.com/LuanRT/YouTube.js/issues/1144)) ([5da9dd3](https://github.com/LuanRT/YouTube.js/commit/5da9dd37a727be792ff4da2c5031cc000d692502))
+* **Session:** Add the ID for ANDROID_VR, remove the mistaken ANDROID_TV key. ([#1151](https://github.com/LuanRT/YouTube.js/issues/1151)) ([c712c54](https://github.com/LuanRT/YouTube.js/commit/c712c546c3c4b5b3766ac77205ccef683eb51545))
+
 ## [16.0.1](https://github.com/LuanRT/YouTube.js/compare/v16.0.0...v16.0.1) (2025-10-16)
 
 
