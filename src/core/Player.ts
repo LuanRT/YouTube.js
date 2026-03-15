@@ -4,7 +4,7 @@ import { Constants, BinarySerializer, Log } from '../utils/index.js';
 import {
   getRandomUserAgent,
   getStringBetweenStrings,
-  NSIG_PROCESSOR_FN,
+  getNsigProcessorFn,
   Platform,
   PlayerError
 } from '../utils/Utils.js';
@@ -160,7 +160,7 @@ export default class Player {
         // Shallow copy to avoid mutating the original data.
         const data = { ...this.data };
 
-        data.output = `${data.output}\n${NSIG_PROCESSOR_FN(eval_args.n, eval_args.sp, eval_args.sig)}`;
+        data.output = `${data.output}\n${getNsigProcessorFn(eval_args.n, eval_args.sp, eval_args.sig)}`;
 
         const result = await Platform.shim.eval(data, eval_args) as Record<string, unknown>;
 

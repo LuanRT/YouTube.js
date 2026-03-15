@@ -263,7 +263,7 @@ export function getCookie(cookies: string, name: string, matchWholeName = false)
   return match ? match[2] : undefined;
 }
 
-export function NSIG_PROCESSOR_FN(n?: string | null, sp?: string | null, s?: string | null) {
+export function getNsigProcessorFn(n?: string | null, sp?: string | null, s?: string | null) {
   return `function process(n = "", sp = "", s = "") {
   const mockStreamingURL = "https://ytjs.googlevideo.com/videoplayback?expire=1234567890&"+"n="+encodeURIComponent(n);
   const urlCtorFunction = exportedVars.nsigFunction || (() => { throw new Error('No n/sig decipher function extracted') });
