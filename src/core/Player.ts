@@ -101,7 +101,6 @@ export default class Player {
     const jsExtractor = new JsExtractor(jsAnalyzer);
 
     const result = jsExtractor.buildScript({
-      disallowSideEffectInitializers: true,
       exportRawValues: true,
       rawValueOnly: [ timestampVarName ]
     });

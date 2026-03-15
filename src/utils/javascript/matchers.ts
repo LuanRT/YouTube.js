@@ -1,65 +1,48 @@
 import type { ESTree } from 'meriyah';
-import { WALK_STOP, walkAst } from './helpers.js';
+import { WALK_STOP, walkAst, getUrlHelperClassName, looksLikeSignatureHelper } from './helpers.js';
 
 export function sigMatcher(node: ESTree.Node) {
-  if (node.type === 'VariableDeclarator' && node.id?.type === 'Identifier') {
-    const idNode = node.id;
-    const initNode = node.init;
-
-    if (idNode.type === 'Identifier' && initNode?.type === 'FunctionExpression' && initNode.params.length === 3) {
-      const functionInitNode = initNode.body;
-      if (!functionInitNode || functionInitNode.type !== 'BlockStatement') return false;
-
-      for (const st of functionInitNode.body) {
-        if (st?.type === 'ExpressionStatement') {
-          const expression = st.expression;
-          if (
-            expression.type === 'LogicalExpression' &&
-            expression.operator === '&&' &&
-            expression.left.type === 'Identifier' &&
-            expression.right.type === 'SequenceExpression'
-          ) {
-            const firstExp = expression.right.expressions[0];
-            if (
-              firstExp.type === 'AssignmentExpression' &&
-              firstExp.operator === '=' &&
-              firstExp.left.type === 'Identifier' &&
-              firstExp.right.type === 'CallExpression' &&
-              firstExp.right.callee.type === 'Identifier'
-            ) {
-              const rightArguments = firstExp.right.arguments;
-              // sigFn(64, decodeURIComponent(sig))
-              if (rightArguments.length >= 1) {
-                const callExpression = rightArguments.find((exp) => exp.type === 'CallExpression');
-                if (
-                  callExpression?.type === 'CallExpression' &&
-                  callExpression?.callee.type === 'Identifier' &&
-                  callExpression.callee.name === 'decodeURIComponent' &&
-                  callExpression.arguments[0].type === 'Identifier'
-                ) {
-                  return firstExp.right;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+  if (
+    node.type === 'VariableDeclarator' &&
+    node.id.type === 'Identifier' &&
+    node.init?.type === 'FunctionExpression' &&
+    // sigFn(64, decodeURIComponent(sig))
+    looksLikeSignatureHelper(node.init)
+  ) {
+    return node;
   }
 
   return false;
 }
 
 export function nMatcher(node: ESTree.Node) {
-  if (node.type !== 'VariableDeclarator')
-    return false;
+  if (node.type === 'VariableDeclarator') {
+    if (
+      node.id.type === 'Identifier' &&
+      node.init?.type === 'FunctionExpression' &&
+      looksLikeSignatureHelper(node.init)
+    ) {
+      const className = getUrlHelperClassName(node.init);
+      if (className) {
+        return {
+          type: 'Identifier',
+          name: className,
+          start: node.id.start,
+          end: node.id.end,
+          range: node.id.range
+        } as unknown as ESTree.Identifier;
+      }
+    }
 
-  if (
-    node.id.type === 'Identifier' &&
-    node.init?.type === 'ArrayExpression' &&
-    node.init.elements[0]?.type === 'Identifier'
-  ) {
-    return node.init.elements[0];
+    if (
+      node.id.type === 'Identifier' &&
+      node.init?.type === 'ArrayExpression' &&
+      node.init.elements[0]?.type === 'Identifier'
+    ) {
+      return node.init.elements[0];
+    }
+
+    return false;
   }
 
   return false;

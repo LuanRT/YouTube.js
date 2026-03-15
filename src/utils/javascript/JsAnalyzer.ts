@@ -33,6 +33,7 @@ export interface AnalyzerOptions {
 export interface VariableMetadata {
   name: string;
   node?: any;
+  emitNode?: ESTree.Node;
   dependencies: Set<string>;
   dependents: Set<string>;
   predeclared: boolean;
@@ -66,6 +67,8 @@ export class JsAnalyzer {
   private readonly dependentsTracker: Map<string, Set<string>> = new Map();
 
   public declaredVariables: Map<string, VariableMetadata> = new Map();
+  public prototypeAliasAssignments: Map<string, VariableMetadata[]> = new Map();
+  public relatedMemberAssignments: Map<string, VariableMetadata[]> = new Map();
   public iifeParamName: string | null = null;
 
   /**
@@ -104,6 +107,8 @@ export class JsAnalyzer {
    */
   private analyzeAst(): void {
     let iifeBody: ESTree.BlockStatement | undefined;
+    const prototypeAliases = new Map<string, string>();
+    let prototypeAliasCounter = 0;
 
     for (const statement of this.programAst.body) {
       if (statement.type === 'ExpressionStatement' && statement.expression.type === 'CallExpression') {
@@ -126,88 +131,177 @@ export class JsAnalyzer {
 
     if (!iifeBody) return;
 
-    for (const currentNode of iifeBody.body) {
-      switch (currentNode.type) {
-        case 'ExpressionStatement': {
-          const assignment = currentNode.expression;
-          if (assignment.type !== 'AssignmentExpression') continue;
+    const registerRelatedMemberAssignment = (memberName: string, metadata: VariableMetadata) => {
+      const baseNames = new Set<string>();
 
-          const left = assignment.left;
-          const right = assignment.right;
+      const prototypeIndex = memberName.indexOf('.prototype.');
+      if (prototypeIndex !== -1) {
+        baseNames.add(memberName.slice(0, prototypeIndex));
+      }
 
-          if (left.type === 'Identifier') {
-            // This identifier existing means it was a pre-declared and
-            // we just got to it.
-            const existingVariable = this.declaredVariables.get(left.name);
-            if (!existingVariable) continue;
+      const computedIndex = memberName.indexOf('[');
+      if (computedIndex !== -1) {
+        baseNames.add(memberName.slice(0, computedIndex));
+      }
 
-            existingVariable.node.init = right;
-
-            if (this.needsDependencyAnalysis(right)) {
-              existingVariable.dependencies = this.findDependencies(assignment.right, left.name);
-            }
-
-            if (this.onMatch(existingVariable.node, existingVariable)) return;
-          } else if (assignment.left.type === 'MemberExpression') {
-            const memberName = memberToString(assignment.left, this.source);
-            if (!memberName || this.declaredVariables.has(memberName)) continue;
-
-            const metadata: VariableMetadata = {
-              name: memberName,
-              node: currentNode,
-              dependents: this.dependentsTracker.get(memberName) || new Set<string>(),
-              predeclared: false,
-              dependencies: this.findDependencies(right, memberName)
-            };
-
-            const baseName = memberBaseName(assignment.left, this.source);
-            if (baseName && baseName !== memberName && !baseName.startsWith('this.')) {
-              metadata.dependencies.add(baseName.replace('.prototype', ''));
-            }
-
-            if (this.dependentsTracker.has(memberName)) {
-              this.dependentsTracker.delete(memberName);
-            }
-
-            this.declaredVariables.set(memberName, metadata);
-
-            if (this.onMatch(currentNode, metadata)) return;
-          }
-          break;
-        }
-        case 'VariableDeclaration': {
-          for (const declaration of currentNode.declarations) {
-            if (declaration.id.type !== 'Identifier') continue;
-
-            const metadata: VariableMetadata = {
-              name: declaration.id.name,
-              node: declaration,
-              dependents: this.dependentsTracker.get(declaration.id.name) || new Set<string>(),
-              dependencies: new Set(),
-              predeclared: false
-            };
-
-            const init = declaration.init;
-
-            // "var x, y, z;"
-            if (!init && currentNode.kind === 'var') {
-              metadata.predeclared = true;
-            } else if (init && this.needsDependencyAnalysis(init)) {
-              metadata.dependencies = this.findDependencies(init, metadata.name);
-            }
-
-            if (this.dependentsTracker.has(metadata.name)) {
-              this.dependentsTracker.delete(metadata.name);
-            }
-
-            this.declaredVariables.set(metadata.name, metadata);
-
-            if (this.onMatch(declaration, metadata)) return;
-          }
-          break;
+      for (const baseName of baseNames) {
+        const existing = this.relatedMemberAssignments.get(baseName);
+        if (existing) {
+          existing.push(metadata);
+        } else {
+          this.relatedMemberAssignments.set(baseName, [ metadata ]);
         }
       }
-    }
+    };
+
+    const registerPrototypeAliasAssignment = (
+      baseName: string,
+      node: ESTree.ExpressionStatement,
+      right: ESTree.Node,
+      syntheticHint: string
+    ) => {
+      const syntheticName = `[[proto:${baseName}:${syntheticHint}:${prototypeAliasCounter++}]]`;
+      const metadata: VariableMetadata = {
+        name: syntheticName,
+        node,
+        dependents: new Set<string>(),
+        predeclared: false,
+        dependencies: this.findDependencies(right, syntheticName)
+      };
+
+      metadata.dependencies.add(baseName);
+
+      const existing = this.prototypeAliasAssignments.get(baseName);
+      if (existing) {
+        existing.push(metadata);
+      } else {
+        this.prototypeAliasAssignments.set(baseName, [ metadata ]);
+      }
+    };
+
+    walkAst(iifeBody, {
+      enter: (currentNode, parent) => {
+        if (
+          currentNode !== iifeBody &&
+          (
+            currentNode.type === 'FunctionDeclaration' ||
+            currentNode.type === 'FunctionExpression' ||
+            currentNode.type === 'ArrowFunctionExpression'
+          )
+        ) {
+          return true;
+        }
+
+        switch (currentNode.type) {
+          case 'ExpressionStatement': {
+            const assignment = currentNode.expression;
+            if (assignment.type !== 'AssignmentExpression') break;
+
+            const left = assignment.left;
+            const right = assignment.right;
+
+            if (left.type === 'Identifier') {
+              // This identifier existing means it was a pre-declared and
+              // we just got to it.
+              const existingVariable = this.declaredVariables.get(left.name);
+              if (!existingVariable) break;
+
+              existingVariable.node.init = right;
+
+              if (this.needsDependencyAnalysis(right)) {
+                existingVariable.dependencies = this.findDependencies(assignment.right, left.name);
+              }
+
+              if (this.onMatch(existingVariable.node, existingVariable))
+                return WALK_STOP;
+            } else if (left.type === 'MemberExpression') {
+              const memberName = memberToString(left, this.source);
+              if (!memberName) break;
+
+              const rightMemberName = right.type === 'MemberExpression' ? memberToString(right, this.source) : null;
+              if (rightMemberName?.endsWith('.prototype')) {
+                const baseName = rightMemberName.slice(0, -'.prototype'.length);
+                prototypeAliases.set(memberName, baseName);
+                registerPrototypeAliasAssignment(baseName, currentNode, right, memberName);
+              } else {
+                const aliasObjectName = memberBaseName(left, this.source);
+                if (aliasObjectName && prototypeAliases.has(aliasObjectName)) {
+                  registerPrototypeAliasAssignment(
+                    prototypeAliases.get(aliasObjectName) as string,
+                    currentNode,
+                    right,
+                    memberName
+                  );
+                }
+              }
+
+              const metadata = this.declaredVariables.get(memberName) || {
+                name: memberName,
+                node: currentNode,
+                emitNode: currentNode,
+                dependents: this.dependentsTracker.get(memberName) || new Set<string>(),
+                predeclared: false,
+                dependencies: new Set<string>()
+              };
+
+              metadata.node = currentNode;
+              metadata.emitNode = currentNode;
+              metadata.predeclared = false;
+              metadata.dependencies = this.findDependencies(right, memberName);
+
+              const baseName = memberBaseName(left, this.source);
+              if (baseName && baseName !== memberName && !baseName.startsWith('this.')) {
+                metadata.dependencies.add(baseName.replace('.prototype', ''));
+              }
+
+              if (this.dependentsTracker.has(memberName)) {
+                this.dependentsTracker.delete(memberName);
+              }
+
+              this.declaredVariables.set(memberName, metadata);
+              registerRelatedMemberAssignment(memberName, metadata);
+
+              if (this.onMatch(currentNode, metadata))
+                return WALK_STOP;
+            }
+            break;
+          }
+          case 'VariableDeclaration': {
+            for (const declaration of currentNode.declarations) {
+              if (declaration.id.type !== 'Identifier') continue;
+
+              const metadata: VariableMetadata = {
+                name: declaration.id.name,
+                node: declaration,
+                emitNode: parent?.type === 'ForStatement' && parent.init === currentNode ? parent : declaration,
+                dependents: this.dependentsTracker.get(declaration.id.name) || new Set<string>(),
+                dependencies: new Set(),
+                predeclared: false
+              };
+
+              const init = declaration.init;
+
+              // "var x, y, z;"
+              if (!init && currentNode.kind === 'var') {
+                metadata.predeclared = true;
+              } else if (init && this.needsDependencyAnalysis(init)) {
+                metadata.dependencies = this.findDependencies(init, metadata.name);
+              }
+
+              if (this.dependentsTracker.has(metadata.name)) {
+                this.dependentsTracker.delete(metadata.name);
+              }
+
+              this.declaredVariables.set(metadata.name, metadata);
+
+              if (this.onMatch(declaration, metadata))
+                return WALK_STOP;
+            }
+            break;
+          }
+        }
+      }
+    });
   }
 
   /**

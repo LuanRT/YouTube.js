@@ -245,6 +245,10 @@ export class JsExtractor {
     const source = this.analyzer.getSource();
     const declaredVariables = this.analyzer.declaredVariables;
 
+    if (node.type === 'ForStatement') {
+      return `${indent}${extractNodeSource(node, source)?.trim() || ''}`;
+    }
+
     const sideEffectPolicy = options.disallowSideEffectInitializers;
     const sideEffectMode = typeof sideEffectPolicy === 'object' && sideEffectPolicy !== null ?
       sideEffectPolicy.mode ?? 'strict' : 'strict';
@@ -322,6 +326,8 @@ export class JsExtractor {
 
     const extractions = this.analyzer.getExtractedMatches();
     const seen = new Set<string>(extractions.map((e) => e.metadata?.name || ''));
+    const emittedNodes = new Set<ESTree.Node>();
+    const expandedMemberFamilies = new Set<string>();
 
     const snippets: string[] = [];
     const predeclaredVarSet = new Set<string>();
@@ -332,6 +338,67 @@ export class JsExtractor {
       if (!name || name.includes('.')) return;
       predeclaredVarSet.add(name);
     }
+
+    const emitMetadataNode = (metadata: VariableMetadata, preDeclared: boolean) => {
+      const node = metadata.emitNode || metadata.node;
+      if (!node || emittedNodes.has(node))
+        return;
+
+      emittedNodes.add(node);
+      snippets.push(this.renderNode(node, preDeclared, config));
+    };
+
+    const emitPrototypeAliasAssignments = (baseName?: string, depth: number = 0) => {
+      if (!baseName || depth > maxDepth)
+        return;
+
+      const aliasAssignments = this.analyzer.prototypeAliasAssignments.get(baseName);
+      if (!aliasAssignments)
+        return;
+
+      for (const aliasMetadata of aliasAssignments) {
+        if (seen.has(aliasMetadata.name))
+          continue;
+
+        seen.add(aliasMetadata.name);
+        visit(aliasMetadata, depth + 1);
+        emitMetadataNode(aliasMetadata, false);
+      }
+    };
+
+    const includeRelatedMemberAssignments = (baseName?: string, depth: number = 0) => {
+      if (!baseName || depth > maxDepth)
+        return;
+
+      if (expandedMemberFamilies.has(baseName))
+        return;
+
+      expandedMemberFamilies.add(baseName);
+
+      const relatedAssignments = this.analyzer.relatedMemberAssignments.get(baseName);
+      if (!relatedAssignments) {
+        emitPrototypeAliasAssignments(baseName, depth);
+        return;
+      }
+
+      for (const declaredMetadata of relatedAssignments) {
+        const declaredName = declaredMetadata.name;
+        if (declaredName === baseName || seen.has(declaredName))
+          continue;
+
+        seen.add(declaredName);
+
+        const shouldPredeclare = forceVarPredeclaration || declaredMetadata.predeclared;
+        if (shouldPredeclare) {
+          registerPredeclaredVar(declaredName);
+        }
+
+        visit(declaredMetadata, depth + 1);
+        emitMetadataNode(declaredMetadata, shouldPredeclare);
+      }
+
+      emitPrototypeAliasAssignments(baseName, depth);
+    };
 
     const visit = (metadata?: VariableMetadata, depth: number = 0) => {
       if (!metadata || depth > maxDepth) return;
@@ -354,11 +421,12 @@ export class JsExtractor {
 
         // Usually not used by anything we care about. Less code = better.
         // e.g. `x.y = ...`
-        if (!dependency.includes('.')) {
-          visit(dependencyMetadata, depth + 1);
-        }
+        // Member chains can depend on other members (e.g. prototype-attached helpers),
+        // so recurse regardless of dotted vs non-dotted dependency names.
+        visit(dependencyMetadata, depth + 1);
 
-        snippets.push(this.renderNode(dependencyMetadata.node, shouldPredeclare, config));
+        emitMetadataNode(dependencyMetadata, shouldPredeclare);
+        includeRelatedMemberAssignments(dependencyMetadata.name, depth + 1);
       }
     };
 
@@ -402,7 +470,8 @@ export class JsExtractor {
         }
 
         if (!shouldSkip) {
-          snippets.push(this.renderNode(extraction.metadata.node, shouldPredeclare, config));
+          emitMetadataNode(extraction.metadata, shouldPredeclare);
+          includeRelatedMemberAssignments(extraction.metadata.name, 1);
           snippets.push(`${indent}//#endregion --- end [${fname || 'Unknown'}] ---\n`);
         }
       }
@@ -432,7 +501,42 @@ export class JsExtractor {
         const decl = this.analyzer.declaredVariables.get(node.name);
         if (decl?.node?.type === 'VariableDeclarator' && decl.node.init?.type === 'FunctionExpression') {
           currentFunctionNode = decl.node;
+        } else if (
+          decl?.emitNode?.type === 'ExpressionStatement' &&
+          decl.emitNode.expression.type === 'AssignmentExpression' &&
+          decl.emitNode.expression.right.type === 'FunctionExpression'
+        ) {
+          currentFunctionNode = decl.emitNode;
         }
+      } else if (node.type === 'VariableDeclarator' && node.id.type === 'Identifier') {
+        if (node.init?.type === 'FunctionExpression') {
+          currentFunctionNode = node;
+        } else {
+          const decl = this.analyzer.declaredVariables.get(node.id.name);
+          if (
+            decl?.emitNode?.type === 'ExpressionStatement' &&
+            decl.emitNode.expression.type === 'AssignmentExpression' &&
+            decl.emitNode.expression.right.type === 'FunctionExpression'
+          ) {
+            currentFunctionNode = decl.emitNode;
+          }
+        }
+      } else if (node.type === 'MemberExpression') {
+        const memberName = memberToString(node, this.analyzer.getSource());
+        const decl = memberName ? this.analyzer.declaredVariables.get(memberName) : undefined;
+        if (
+          decl?.node?.type === 'ExpressionStatement' &&
+          decl.node.expression.type === 'AssignmentExpression' &&
+          decl.node.expression.right.type === 'FunctionExpression'
+        ) {
+          currentFunctionNode = decl.node;
+        }
+      } else if (
+        node.type === 'ExpressionStatement' &&
+        node.expression.type === 'AssignmentExpression' &&
+        node.expression.right.type === 'FunctionExpression'
+      ) {
+        currentFunctionNode = node;
       } else if (node.type === 'CallExpression') {
         currentFunctionNode = node;
       }
