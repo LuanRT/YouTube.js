@@ -374,7 +374,7 @@ export class JsExtractor {
         snippets.push(this.renderNode(dependencyMetadata.node, shouldPredeclare, config));
 
         if (dependencyMetadata.prototypeAliases.size > 0) {
-          for (const [, aliasMembers] of dependencyMetadata.prototypeAliases) {
+          for (const [ , aliasMembers ] of dependencyMetadata.prototypeAliases) {
             for (const member of aliasMembers) {
               // This is deeper than the first visit, so no need to pass the whitelist, we want all deps of the member to be included.
               visit(member, depth);
@@ -468,7 +468,7 @@ export class JsExtractor {
     const exportedVars = [];
 
     // Finally, export the matched stuff.
-    for (const [friendlyName, node] of exported) {
+    for (const [ friendlyName, node ] of exported) {
       let currentFunctionNode: ESTree.Node | null = null;
 
       if (node.type === 'Identifier') {
