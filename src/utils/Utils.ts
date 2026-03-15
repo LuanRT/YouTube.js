@@ -262,3 +262,33 @@ export function getCookie(cookies: string, name: string, matchWholeName = false)
   const match = cookies.match(new RegExp(regex));
   return match ? match[2] : undefined;
 }
+
+export function NSIG_PROCESSOR_FN(n?: string | null, sp?: string | null, s?: string | null) {
+  return `function process(n = "", sp = "", s = "") {
+  const mockStreamingURL = "https://ytjs.googlevideo.com/videoplayback?expire=1234567890&"+"n="+encodeURIComponent(n);
+  const urlCtorFunction = exportedVars.nsigFunction || (() => { throw new Error('No n/sig decipher function extracted') });
+  const urlCtor = urlCtorFunction(mockStreamingURL, sp, s);
+
+  const proto = Object.getPrototypeOf(urlCtor);
+  const properties = Object.getOwnPropertyNames(proto);
+  const methodBlacklist = ['constructor', 'clone', 'set', 'get'];
+
+  for (const prop of properties) {
+    if (methodBlacklist.includes(prop))
+      continue;
+
+    if (typeof urlCtor[prop] === 'function')
+      urlCtor[prop]();
+  }
+
+  const sigResult = urlCtor.get(sp);
+  const nResult = urlCtor.get('n');
+
+  return {
+    sig: sigResult ? decodeURIComponent(sigResult) : undefined,
+    n: nResult ? decodeURIComponent(nResult) : undefined
+  };
+}
+
+return process("${n || ''}", "${sp || ''}", "${s || ''}");`;
+}
