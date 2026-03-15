@@ -277,15 +277,8 @@ function parseFunctionArguments(analyzer: JsAnalyzer, args: ESTree.Node[]) {
       if (argSource) {
         params.push(argSource.trim());
       }
-    } else if (arg.type === 'AssignmentPattern') {
-      const left = arg.left;
-      let leftName = '';
-
-      if (left.type === 'Identifier') {
-        leftName = left.name;
-      }
-
-      params.push(leftName);
+    } else if (arg.type === 'AssignmentPattern' && arg.left.type === 'Identifier') {
+      params.push(arg.left.name);
     } else if (arg.type === 'Identifier') {
       params.push(arg.name);
     } else if (!params.includes('input'))
