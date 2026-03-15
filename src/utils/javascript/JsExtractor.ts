@@ -89,6 +89,8 @@ export class JsExtractor {
     if (!node) return true;
 
     switch (node.type) {
+      case 'ClassExpression':
+        return true;
       case 'Literal': {
         const literal = node as ESTree.Literal & { regex?: unknown };
         return (
@@ -168,6 +170,12 @@ export class JsExtractor {
           }
           return this.isSafeInitializer(node.object, mode);
         }
+
+        // Allow cases such as a.b = c.prototype;
+        if (!node.computed && node.property.type === 'Identifier' && node.property.name === 'prototype') {
+          return true;
+        }
+
         return false;
       }
       case 'LogicalExpression':
@@ -269,16 +277,17 @@ export class JsExtractor {
         initSource = initializerFallback;
       } else {
         const left = assignmentTarget?.left;
+        const isPrototypeAlias = init?.type === 'MemberExpression' && !init.computed && init.property.type === 'Identifier' && init.property.name === 'prototype';
 
-        // Often useless..
-        // e.g. `xyz.someProp = ...`
-        if (left?.type === 'MemberExpression' && init) {
+        // Skip things we don't need.
+        if (!isPrototypeAlias && left?.type === 'MemberExpression' && init) {
           if (
             canDisallow &&
             left.object.type === 'Identifier' &&
             init.type !== 'FunctionExpression' &&
             init.type !== 'ArrowFunctionExpression' &&
-            init.type !== 'LogicalExpression'
+            init.type !== 'LogicalExpression' &&
+            init.type !== 'ClassExpression'
           ) {
             return `${indent}// Skipped ${memberToString(left, source)} assignment.`;
           }
@@ -287,7 +296,7 @@ export class JsExtractor {
         // e.g. `someVar = someOtherVarFuncOrCall`
         initSource = extractNodeSource(init, source)
           ?.trim()
-          .replace(/;\s*$/, '') || 'kk';
+          .replace(/;\s*$/, '') || 'undefined // [JsExtractor] Failed to extract initializer source.';
       }
     }
 
@@ -333,10 +342,18 @@ export class JsExtractor {
       predeclaredVarSet.add(name);
     }
 
-    const visit = (metadata?: VariableMetadata, depth: number = 0) => {
+    const visit = (metadata?: VariableMetadata, depth: number = 0, whitelistedDep?: string) => {
       if (!metadata || depth > maxDepth) return;
 
       for (const dependency of metadata.dependencies) {
+        if (whitelistedDep && whitelistedDep !== dependency) {
+          // If we haven't yet encountered the whitelisted dependency, skip this one.
+          // And if we have, delete the whitelist var so that all subsequent dependencies are included.
+          if (!seen.has(whitelistedDep))
+            continue;
+          whitelistedDep = undefined;
+        }
+
         if (seen.has(dependency))
           continue;
 
@@ -352,13 +369,19 @@ export class JsExtractor {
           registerPredeclaredVar(dependency);
         }
 
-        // Usually not used by anything we care about. Less code = better.
-        // e.g. `x.y = ...`
-        if (!dependency.includes('.')) {
-          visit(dependencyMetadata, depth + 1);
-        }
+        visit(dependencyMetadata, depth + 1, whitelistedDep);
 
         snippets.push(this.renderNode(dependencyMetadata.node, shouldPredeclare, config));
+
+        if (dependencyMetadata.prototypeAliases.size > 0) {
+          for (const [, aliasMembers] of dependencyMetadata.prototypeAliases) {
+            for (const member of aliasMembers) {
+              // This is deepter than the first visit, so no need to pass the whitelist, we want all deps of the member to be included.
+              visit(member, depth);
+              snippets.push(this.renderNode(member.node, shouldPredeclare, config));
+            }
+          }
+        }
       }
     };
 
@@ -372,13 +395,26 @@ export class JsExtractor {
           snippets.push(`${indent}//#region --- start [${fname || 'Unknown'}] ---`);
 
         const shouldPredeclare = (forceVarPredeclaration || extraction.metadata.predeclared) && !shouldSkip;
+        const onlyProcessMatchContext = extraction.config.onlyProcessMatchContext;
 
         if (shouldPredeclare) {
           registerPredeclaredVar(extraction.metadata.name);
         }
 
         if (extraction.config.collectDependencies && !shouldSkip) {
-          visit(extraction.metadata);
+          let whitelistedDep;
+
+          const matchContextNode = extraction.matchContext;
+
+          if (matchContextNode?.type === 'NewExpression' && onlyProcessMatchContext) {
+            if (matchContextNode.callee.type === 'Identifier') {
+              whitelistedDep = matchContextNode.callee.name;
+            } else if (matchContextNode.callee.type === 'MemberExpression') {
+              whitelistedDep = memberToString(matchContextNode.callee, this.analyzer.getSource()) || undefined;
+            }
+          }
+
+          visit(extraction.metadata, undefined, whitelistedDep);
         }
 
         if (extraction.matchContext && fname) {
@@ -402,7 +438,10 @@ export class JsExtractor {
         }
 
         if (!shouldSkip) {
-          snippets.push(this.renderNode(extraction.metadata.node, shouldPredeclare, config));
+          if (!onlyProcessMatchContext) {
+            snippets.push(this.renderNode(extraction.metadata.node, shouldPredeclare, config));
+          }
+
           snippets.push(`${indent}//#endregion --- end [${fname || 'Unknown'}] ---\n`);
         }
       }
@@ -410,12 +449,16 @@ export class JsExtractor {
 
     const output = [];
 
-    // Not required by any means, but add it anyway, "just in case".
-    output.push('const window = Object.assign({}, globalThis);');
-    output.push('const document = {};');
-    output.push('const self = window;\n');
+    output.push('const __jsExtractorGlobal = typeof globalThis !== \'undefined\' ? globalThis :');
+    output.push(`${indent}typeof self !== 'undefined' ? self :`);
+    output.push(`${indent}typeof window !== 'undefined' ? window :`);
+    output.push(`${indent}typeof global !== 'undefined' ? global : {};\n`);
 
     output.push(`const exportedVars = (function(${this.analyzer.iifeParamName}) {`);
+    output.push(`${indent}const window = typeof __jsExtractorGlobal.window !== 'undefined' ? __jsExtractorGlobal.window : Object.create(null);`);
+    output.push(`${indent}const document = typeof __jsExtractorGlobal.document !== 'undefined' ? __jsExtractorGlobal.document : {};`);
+    output.push(`${indent}const self = typeof __jsExtractorGlobal.self !== 'undefined' ? __jsExtractorGlobal.self : window;\n`);
+
     if (predeclaredVarSet.size > 0) {
       output.push(`${indent}var ${Array.from(predeclaredVarSet).join(', ')};\n`);
     }
@@ -425,7 +468,7 @@ export class JsExtractor {
     const exportedVars = [];
 
     // Finally, export the matched stuff.
-    for (const [ friendlyName, node ] of exported) {
+    for (const [friendlyName, node] of exported) {
       let currentFunctionNode: ESTree.Node | null = null;
 
       if (node.type === 'Identifier') {
@@ -433,7 +476,7 @@ export class JsExtractor {
         if (decl?.node?.type === 'VariableDeclarator' && decl.node.init?.type === 'FunctionExpression') {
           currentFunctionNode = decl.node;
         }
-      } else if (node.type === 'CallExpression') {
+      } else if (node.type === 'CallExpression' || node.type === 'NewExpression' || node.type === 'VariableDeclarator') {
         currentFunctionNode = node;
       }
 
@@ -450,8 +493,9 @@ export class JsExtractor {
       const rawJson = JSON.stringify(exportedRawValues, null, indent.length);
       const rawJsonLines = rawJson.split('\n');
 
-      // Indent all lines except the first one...
-      const formattedRawJson = `${rawJsonLines[0]}\n${rawJsonLines.slice(1).map((line) => indent + line).join('\n')}`;
+      // Indent all lines except the first one..
+      const formattedRawJson =
+        `${rawJsonLines[0]}\n${rawJsonLines.slice(1).map((line) => indent + line).join('\n')}`;
 
       output.push(`${indent}const rawValues = ${formattedRawJson};\n`);
 
