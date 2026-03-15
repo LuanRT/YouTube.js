@@ -376,7 +376,7 @@ export class JsExtractor {
         if (dependencyMetadata.prototypeAliases.size > 0) {
           for (const [, aliasMembers] of dependencyMetadata.prototypeAliases) {
             for (const member of aliasMembers) {
-              // This is deepter than the first visit, so no need to pass the whitelist, we want all deps of the member to be included.
+              // This is deeper than the first visit, so no need to pass the whitelist, we want all deps of the member to be included.
               visit(member, depth);
               snippets.push(this.renderNode(member.node, shouldPredeclare, config));
             }
