@@ -376,7 +376,6 @@ export class JsAnalyzer {
     }
 
     state.ready = this.areDependenciesResolved(state.dependencies);
-    // console.log(state.dependencies, state.ready)
   }
 
   /**
