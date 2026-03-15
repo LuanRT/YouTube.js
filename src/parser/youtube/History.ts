@@ -5,7 +5,8 @@ import Button from '../classes/Button.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
-import type Video from '../classes/Video.js';
+import Video from '../classes/Video.js';
+import LockupView from '../classes/LockupView.js';
 
 // TODO: make feed actions usable
 export default class History extends Feed<IBrowseResponse> {
@@ -33,20 +34,27 @@ export default class History extends Feed<IBrowseResponse> {
    */
   async removeVideo(video_id: string, pages_to_load: number = 1): Promise<boolean> {
     let pagesToLoad = pages_to_load;
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    let currentHistory: History = this;
 
     while (pagesToLoad > 0) {
       let feedbackToken;
 
-      for (const section of currentHistory.sections) {
+      for (const section of this.sections) {
         for (const content of section.contents) {
-          const video = content as Video;
-          if (video.video_id === video_id && video.menu) {
-            feedbackToken = video.menu.top_level_buttons[0].as(Button).endpoint.payload.feedbackToken;
-            break;
+          if (content.is(Video)) {
+            if (content.video_id === video_id && content.menu) {
+              feedbackToken = content.menu.top_level_buttons[0].as(Button).endpoint.payload.feedbackToken;
+              break;
+            }
+          } else if (content.is(LockupView)) {
+            if (content.content_id === video_id) {
+              const listItems = content.metadata?.menu_button?.on_tap?.payload.panelLoadingStrategy.inlineContent.sheetViewModel.content.listViewModel.listItems;
+              const listItem = listItems.find((video: { listItemViewModel: { title: { content: string; }; }; }) => video.listItemViewModel?.title.content === 'Remove from watch history');
+              feedbackToken = listItem.listItemViewModel.rendererContext.commandContext.onTap.innertubeCommand.feedbackEndpoint.feedbackToken;
+              break;
+            }
           }
         }
+
         if (feedbackToken) {
           break;
         }
@@ -66,7 +74,7 @@ export default class History extends Feed<IBrowseResponse> {
 
       if (--pagesToLoad > 0) {
         try {
-          currentHistory = await currentHistory.getContinuation();
+          Object.assign(this, await this.getContinuation());
         } catch {
           throw new Error('Unable to find video in watch history');
         }
