@@ -26,13 +26,13 @@ export default class DescriptionPreviewView extends YTNode {
   constructor(data: RawNode) {
     super();
 
-    if (Reflect.has(data, 'description'))
+    if ('description' in data)
       this.description = Text.fromAttributed(data.description);
 
-    if (Reflect.has(data, 'maxLines'))
+    if ('maxLines' in data)
       this.max_lines = parseInt(data.maxLines);
 
-    if (Reflect.has(data, 'truncationText'))
+    if ('truncationText' in data)
       this.truncation_text = Text.fromAttributed(data.truncationText);
     
     this.always_show_truncation_text = !!data.alwaysShowTruncationText;

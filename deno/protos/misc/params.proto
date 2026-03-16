@@ -7,13 +7,11 @@ message VisitorData {
 }
 
 message SearchFilter {
-  optional SortBy sort_by = 1;
+  optional Prioritize prioritize = 1;
   
-   enum SortBy {
+   enum Prioritize {
     RELEVANCE = 0;
-    RATING = 1;
-    UPLOAD_DATE = 2;
-    VIEW_COUNT = 3;
+    POPULARITY = 3;
   }
 
   message Filters {
@@ -36,7 +34,6 @@ message SearchFilter {
 
     enum UploadDate {
       ANY_DATE = 0;
-      HOUR = 1;
       TODAY = 2;
       WEEK = 3;
       MONTH = 4;
@@ -49,13 +46,14 @@ message SearchFilter {
       CHANNEL = 2;
       PLAYLIST = 3;
       MOVIE = 4;
+      SHORTS = 9;
     }
 
     enum Duration {
       ANY_DURATION = 0;
-      SHORT = 1;
-      LONG = 2;
-      MEDIUM = 3;
+      OVER_TWENTY_MINS = 2;
+      UNDER_THREE_MINS = 4;
+      THREE_TO_TWENTY_MINS = 5;
     }
 
     message MusicSearchType {

@@ -1,23 +1,57 @@
-import Text from '../misc/Text.ts';
+import type Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
-import type { RawNode } from '../../index.ts';
+import { Parser, type RawNode } from '../../index.ts';
+import VideoViewCount from '../VideoViewCount.ts';
 
 export default class UpdateViewershipAction extends YTNode {
   static type = 'UpdateViewershipAction';
 
-  view_count: Text;
-  extra_short_view_count: Text;
-  original_view_count: number;
-  unlabeled_view_count_value: Text;
-  is_live: boolean;
+  public view_count_node: VideoViewCount | null;
+
+  /**
+   * @deprecated Use `view_count_node.view_count` instead.
+   */
+  get view_count(): Text | undefined {
+    return this.view_count_node?.view_count;
+  }
+
+  /**
+   * @deprecated Use `view_count_node.extra_short_view_count` instead.
+   */
+  get extra_short_view_count(): Text | undefined {
+    return this.view_count_node?.extra_short_view_count;
+  }
+
+  /**
+   * @deprecated Use `view_count_node.short_view_count` instead.
+   */
+  get short_view_count(): Text | undefined {
+    return this.view_count_node?.short_view_count;
+  }
+
+  /**
+   * @deprecated Use `view_count_node.original_view_count` instead.
+   */
+  get original_view_count(): number | undefined {
+    return this.view_count_node?.original_view_count;
+  }
+
+  /**
+   * @deprecated Use `view_count_node.unlabeled_view_count_value` instead.
+   */
+  get unlabeled_view_count_value(): Text | undefined {
+    return this.view_count_node?.unlabeled_view_count_value;
+  }
+
+  /**
+   * @deprecated Use `view_count_node.is_live` instead.
+   */
+  get is_live(): boolean | undefined {
+    return this.view_count_node?.is_live;
+  }
 
   constructor(data: RawNode) {
     super();
-    const view_count_renderer = data.viewCount.videoViewCountRenderer;
-    this.view_count = new Text(view_count_renderer.viewCount);
-    this.extra_short_view_count = new Text(view_count_renderer.extraShortViewCount);
-    this.original_view_count = parseInt(view_count_renderer.originalViewCount);
-    this.unlabeled_view_count_value = new Text(view_count_renderer.unlabeledViewCountValue);
-    this.is_live = view_count_renderer.isLive;
+    this.view_count_node = Parser.parseItem(data.viewCount, VideoViewCount);
   }
 }

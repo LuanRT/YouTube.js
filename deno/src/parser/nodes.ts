@@ -364,6 +364,7 @@ export { default as PageIntroduction } from './classes/PageIntroduction.ts';
 export { default as PanelFooterView } from './classes/PanelFooterView.ts';
 export { default as PivotButton } from './classes/PivotButton.ts';
 export { default as PlayerAnnotationsExpanded } from './classes/PlayerAnnotationsExpanded.ts';
+export { default as PlayerCaptchaView } from './classes/PlayerCaptchaView.ts';
 export { default as PlayerCaptionsTracklist } from './classes/PlayerCaptionsTracklist.ts';
 export { default as PlayerControlsOverlay } from './classes/PlayerControlsOverlay.ts';
 export { default as PlayerErrorMessage } from './classes/PlayerErrorMessage.ts';
@@ -528,6 +529,8 @@ export { default as VideoMetadataCarouselView } from './classes/VideoMetadataCar
 export { default as VideoOwner } from './classes/VideoOwner.ts';
 export { default as VideoPrimaryInfo } from './classes/VideoPrimaryInfo.ts';
 export { default as VideoSecondaryInfo } from './classes/VideoSecondaryInfo.ts';
+export { default as VideoSummaryContentView } from './classes/VideoSummaryContentView.ts';
+export { default as VideoSummaryParagraphView } from './classes/VideoSummaryParagraphView.ts';
 export { default as VideoViewCount } from './classes/VideoViewCount.ts';
 export { default as ViewCountFactoid } from './classes/ViewCountFactoid.ts';
 export { default as WatchCardCompactVideo } from './classes/WatchCardCompactVideo.ts';

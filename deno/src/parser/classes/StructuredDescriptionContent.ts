@@ -10,6 +10,8 @@ import VideoDescriptionCourseSection from './VideoDescriptionCourseSection.ts';
 import VideoAttributesSectionView from './VideoAttributesSectionView.ts';
 import HowThisWasMadeSectionView from './HowThisWasMadeSectionView.ts';
 import ReelShelf from './ReelShelf.ts';
+import ExpandableMetadata from './ExpandableMetadata.ts';
+import MerchandiseShelf from './MerchandiseShelf.ts';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
@@ -18,7 +20,7 @@ export default class StructuredDescriptionContent extends YTNode {
     VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
     VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection |
     VideoDescriptionCourseSection | HorizontalCardList | ReelShelf | VideoAttributesSectionView |
-    HowThisWasMadeSectionView
+    HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf
   >;
 
   constructor(data: RawNode) {
@@ -27,7 +29,7 @@ export default class StructuredDescriptionContent extends YTNode {
       VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
       VideoDescriptionInfocardsSection, VideoDescriptionCourseSection, VideoDescriptionTranscriptSection,
       VideoDescriptionTranscriptSection, HorizontalCardList, ReelShelf, VideoAttributesSectionView,
-      HowThisWasMadeSectionView
+      HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf 
     ]);
   }
 }

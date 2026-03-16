@@ -49,7 +49,7 @@ import {
   SearchFilter_Filters_Duration,
   SearchFilter_Filters_SearchType,
   SearchFilter_Filters_UploadDate,
-  SearchFilter_SortBy
+  SearchFilter_Prioritize
 } from '../protos/generated/misc/params.ts';
 
 /**
@@ -205,8 +205,8 @@ export default class Innertube {
 
     search_filter.filters = {};
 
-    if (filters.sort_by) {
-      search_filter.sortBy = SearchFilter_SortBy[filters.sort_by.toUpperCase() as keyof typeof SearchFilter_SortBy];
+    if (filters.prioritize) {
+      search_filter.prioritize = SearchFilter_Prioritize[filters.prioritize.toUpperCase() as keyof typeof SearchFilter_Prioritize];
     }
 
     if (filters.upload_date) {
@@ -364,12 +364,6 @@ export default class Innertube {
     return new History(this.actions, response);
   }
 
-  async getTrending(): Promise<TabbedFeed<IBrowseResponse>> {
-    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEtrending' } });
-    const response = await browse_endpoint.call(this.#session.actions);
-    return new TabbedFeed(this.actions, response);
-  }
-
   async getCourses(): Promise<Feed<IBrowseResponse>> {
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEcourses_destination' } });
     const response = await browse_endpoint.call(this.#session.actions, { parse: true });
@@ -393,7 +387,7 @@ export default class Innertube {
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: id } });
     let response = await browse_endpoint.call<IBrowseResponse>(this.#session.actions, { parse: true });
 
-    if (response.on_response_received_actions?.[0].is(NavigateAction)) {
+    if (response.on_response_received_actions?.[0]?.is(NavigateAction)) {
       response = await response.on_response_received_actions[0].endpoint.call<IBrowseResponse>(this.#session.actions, { parse: true });
     }
 
