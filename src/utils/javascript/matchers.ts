@@ -1,68 +1,54 @@
 import type { ESTree } from 'meriyah';
 import { WALK_STOP, walkAst } from './helpers.js';
 
-export function sigMatcher(node: ESTree.Node) {
-  if (node.type === 'VariableDeclarator' && node.id?.type === 'Identifier') {
-    const idNode = node.id;
-    const initNode = node.init;
+export function nsigMatcher(node: ESTree.Node) {
+  if (node.type !== 'VariableDeclarator')
+    return false;
 
-    if (idNode.type === 'Identifier' && initNode?.type === 'FunctionExpression' && initNode.params.length === 3) {
-      const functionInitNode = initNode.body;
-      if (!functionInitNode || functionInitNode.type !== 'BlockStatement') return false;
+  const init = node.init;
 
-      for (const st of functionInitNode.body) {
-        if (st?.type === 'ExpressionStatement') {
-          const expression = st.expression;
-          if (
-            expression.type === 'LogicalExpression' &&
-            expression.operator === '&&' &&
-            expression.left.type === 'Identifier' &&
-            expression.right.type === 'SequenceExpression'
-          ) {
-            const firstExp = expression.right.expressions[0];
-            if (
-              firstExp.type === 'AssignmentExpression' &&
-              firstExp.operator === '=' &&
-              firstExp.left.type === 'Identifier' &&
-              firstExp.right.type === 'CallExpression' &&
-              firstExp.right.callee.type === 'Identifier'
-            ) {
-              const rightArguments = firstExp.right.arguments;
-              // sigFn(64, decodeURIComponent(sig))
-              if (rightArguments.length >= 1) {
-                const callExpression = rightArguments.find((exp) => exp.type === 'CallExpression');
-                if (
-                  callExpression?.type === 'CallExpression' &&
-                  callExpression?.callee.type === 'Identifier' &&
-                  callExpression.callee.name === 'decodeURIComponent' &&
-                  callExpression.arguments[0].type === 'Identifier'
-                ) {
-                  return firstExp.right;
-                }
-              }
-            }
-          }
-        }
+  if (!init || init.type !== 'FunctionExpression')
+    return false;
+
+  if (init.params.length < 3)
+    return false;
+
+  const [ url, sigName, sigValue ] = init.params;
+
+  if (url.type !== 'Identifier' || sigName.type !== 'AssignmentPattern' || sigValue.type !== 'AssignmentPattern')
+    return false;
+
+  const body = init.body;
+  const blockStatementBody = body?.body || [];
+
+  let hasUrlCtor = false;
+  let hasSetAlr = false;
+
+  for (const statement of blockStatementBody) {
+    if (statement.type !== 'ExpressionStatement')
+      continue;
+
+    const expr = statement.expression;
+
+    if (expr.type === 'AssignmentExpression' && expr.operator === '=' && expr.left.type === 'Identifier' && expr.left.name === url.name) {
+      const right = expr.right;
+      if (right.type === 'NewExpression' && right.callee.type === 'MemberExpression') {
+        hasUrlCtor = true;
+      }
+    }
+
+    if (expr.type === 'CallExpression' && expr.callee.type === 'MemberExpression') {
+      const args = expr.arguments;
+      if (args.length === 2 && args[0].type === 'Literal' && args[0].value === 'alr' && args[1].type === 'Literal' && args[1].value === 'yes') {
+        hasSetAlr = true;
       }
     }
   }
 
-  return false;
-}
-
-export function nMatcher(node: ESTree.Node) {
-  if (node.type !== 'VariableDeclarator')
+  if (!hasUrlCtor || !hasSetAlr)
     return false;
 
-  if (
-    node.id.type === 'Identifier' &&
-    node.init?.type === 'ArrayExpression' &&
-    node.init.elements[0]?.type === 'Identifier'
-  ) {
-    return node.init.elements[0];
-  }
-
-  return false;
+  return node;
 }
 
 export function timestampMatcher(node: ESTree.Node) {
