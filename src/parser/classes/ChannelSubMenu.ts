@@ -5,21 +5,21 @@ import NavigationEndpoint from './NavigationEndpoint.js';
 export default class ChannelSubMenu extends YTNode {
   static type = 'ChannelSubMenu';
 
-  content_type_sub_menu_items: {
+  public content_type_sub_menu_items: {
     endpoint: NavigationEndpoint;
     selected: boolean;
     title: string;
   }[];
 
-  sort_setting;
+  public sort_setting: YTNode;
 
   constructor(data: RawNode) {
     super();
-    this.content_type_sub_menu_items = data.sortSetting.sortFilterSubMenuRenderer.subMenuItems.map((item: RawNode) => ({
+    this.content_type_sub_menu_items = data.sortSetting?.sortFilterSubMenuRenderer?.subMenuItems?.map((item: RawNode) => ({
       endpoint: new NavigationEndpoint(item.navigationEndpoint || item.endpoint),
       selected: item.selected,
       title: item.title
-    }));
+    })) || [];
     this.sort_setting = Parser.parseItem(data.sortSetting);
   }
 }
