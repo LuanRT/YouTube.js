@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/LuanRT/YouTube.js/compare/v17.0.0...v17.0.1) (2026-03-16)
+
+
+### Miscellaneous Chores
+
+* **release:** release 17.0.1 ([3cae95c](https://github.com/LuanRT/YouTube.js/commit/3cae95c5314c66029cf97f400f79a99eef03899d))
+
 ## [17.0.0](https://github.com/LuanRT/YouTube.js/compare/v16.0.1...v17.0.0) (2026-03-16)
 
 
