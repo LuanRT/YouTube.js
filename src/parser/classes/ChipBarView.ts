@@ -1,6 +1,6 @@
 import { YTNode, type ObservedArray } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
-import { RendererContext } from '../misc.js';
+import RendererContext from './misc/RendererContext.js';
 import ChipView from './ChipView.js';
 
 export default class ChipBarView extends YTNode {
