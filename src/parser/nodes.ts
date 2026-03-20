@@ -84,6 +84,7 @@ export { default as ContinuationCommand } from './classes/commands/ContinuationC
 export { default as GetKidsBlocklistPickerCommand } from './classes/commands/GetKidsBlocklistPickerCommand.js';
 export { default as RunAttestationCommand } from './classes/commands/RunAttestationCommand.js';
 export { default as ShowDialogCommand } from './classes/commands/ShowDialogCommand.js';
+export { default as ShowSheetCommand } from './classes/commands/ShowSheetCommand.js';
 export { default as UpdateEngagementPanelContentCommand } from './classes/commands/UpdateEngagementPanelContentCommand.js';
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.js';
 export { default as CommentActionButtons } from './classes/comments/CommentActionButtons.js';
@@ -442,6 +443,7 @@ export { default as SharedPost } from './classes/SharedPost.js';
 export { default as SharePanelHeader } from './classes/SharePanelHeader.js';
 export { default as SharePanelTitleV15 } from './classes/SharePanelTitleV15.js';
 export { default as ShareTarget } from './classes/ShareTarget.js';
+export { default as SheetView } from './classes/SheetView.js';
 export { default as Shelf } from './classes/Shelf.js';
 export { default as ShortsLockupView } from './classes/ShortsLockupView.js';
 export { default as ShowCustomThumbnail } from './classes/ShowCustomThumbnail.js';
