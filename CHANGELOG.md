@@ -1,5 +1,16 @@
 # Changelog
 
+## [17.1.0](https://github.com/LuanRT/YouTube.js/compare/v17.0.1...v17.1.0) (2026-03-20)
+
+
+### Features
+
+* **ChipBarView:** Parse `renderer_context` ([3915883](https://github.com/LuanRT/YouTube.js/commit/39158838f1b4a8c414ddbabd94b5a48198b16b2f))
+* **ChipView:** Improve types ([32623de](https://github.com/LuanRT/YouTube.js/commit/32623de4850fb2ae27c2b8317c2d00fea1a78227))
+* **ListView:** Add some missing fields ([cf54129](https://github.com/LuanRT/YouTube.js/commit/cf5412986b102be7e8e11c87a0d877249caedce5))
+* **parser:** Add `ShowSheetCommand` and `SheetView` ([37a4808](https://github.com/LuanRT/YouTube.js/commit/37a480869372831429de439924baabde5d8ac43b))
+* **Parser:** Add `ThumbnailOverlayTitleView` and `PageIndicatorView` classes ([#1120](https://github.com/LuanRT/YouTube.js/issues/1120)) ([2a33fbc](https://github.com/LuanRT/YouTube.js/commit/2a33fbc85fd7a25b25696e1a1ab75ed4afde3e10))
+
 ## [17.0.1](https://github.com/LuanRT/YouTube.js/compare/v17.0.0...v17.0.1) (2026-03-16)
 
 
