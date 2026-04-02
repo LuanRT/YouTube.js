@@ -28,7 +28,7 @@ export default class ShortsLockupView extends YTNode {
 
     this.entity_id = data.entityId;
     this.accessibility_text = data.accessibilityText;
-    this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
+    this.thumbnail = Thumbnail.fromResponse(data.thumbnailViewModel.thumbnailViewModel.image);
     this.on_tap_endpoint = new NavigationEndpoint(data.onTap);
     this.menu_on_tap = new NavigationEndpoint(data.menuOnTap);
     this.index_in_collection = data.indexInCollection;
