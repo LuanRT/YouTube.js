@@ -1,8 +1,7 @@
-import type { RawNode } from '../../index.js';
-import { YTNode } from '../../helpers.js';
-import { Parser } from '../../index.js';
+import type { RawNode } from '../index.js';
+import { YTNode } from '../helpers.js';
 
-import NavigationEndpoint from '../NavigationEndpoint.js';
+import NavigationEndpoint from './NavigationEndpoint.js';
 import RendererContext from './misc/RendererContext.js';
 
 export default class DownloadListItemView extends YTNode {
