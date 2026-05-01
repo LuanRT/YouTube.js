@@ -1,0 +1,14 @@
+In some cases, comment threads don't include a pre-built continuation token for fetching replies. Previously, `getReplies()` would throw an error when this happened.
+
+This PR adds a fallback that builds a continuation token from scratch using `GetCommentsSectionParams` when no continuation is available. A `videoId` must be provided to `getReplies(videoId)` for this fallback to work.
+
+## Changes
+- `CommentThread.getReplies()` now accepts an optional `videoId` parameter
+- When `comment_replies_data` lacks a continuation token, the method constructs one via protobuf instead of throwing
+- Required imports added (`NavigationEndpoint`, `u8ToBase64`, `GetCommentsSectionParams`)
+
+## Usage
+```ts
+const thread = await innertube.getComments(videoId, sort, commentId);
+await thread.getReplies(videoId);
+```

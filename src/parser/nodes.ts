@@ -229,6 +229,7 @@ export { default as LikeButton } from './classes/LikeButton.js';
 export { default as LikeButtonView } from './classes/LikeButtonView.js';
 export { default as ListItemView } from './classes/ListItemView.js';
 export { default as ListView } from './classes/ListView.js';
+export { default as DownloadListItemView } from './classes/DownloadListItemView.js';
 export { default as LiveChat } from './classes/LiveChat.js';
 export { default as AddBannerToLiveChatCommand } from './classes/livechat/AddBannerToLiveChatCommand.js';
 export { default as AddChatItemAction } from './classes/livechat/AddChatItemAction.js';
