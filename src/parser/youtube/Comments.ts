@@ -118,6 +118,13 @@ export default class Comments {
     return !!this.#continuation;
   }
 
+  get continuation_token(): string | null {
+    if (!this.#continuation)
+      return null;
+    const payload = (this.#continuation as any).endpoint?.payload;
+    return payload?.continuationCommand?.token || payload?.token || null;
+  }
+
   get page(): INextResponse {
     return this.#page;
   }

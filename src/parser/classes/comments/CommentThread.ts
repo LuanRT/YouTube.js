@@ -56,7 +56,8 @@ export default class CommentThread extends YTNode {
     if (continuation) {
       response = await continuation.endpoint.call(this.#actions, { parse: true });
     } else {
-      if (!videoId)
+      const effectiveVideoId = videoId || (this as any).__videoId;
+      if (!effectiveVideoId)
         throw new InnertubeError('Cannot retrieve replies: videoId is required when no continuation token is available.');
 
       const commentId = this.comment?.comment_id;
@@ -66,13 +67,13 @@ export default class CommentThread extends YTNode {
         throw new InnertubeError('Cannot build replies token: missing commentId or channelId.');
 
       const token = GetCommentsSectionParams.encode({
-        ctx: { videoId },
+        ctx: { videoId: effectiveVideoId },
         unkParam: 6,
         params: {
           target: 'comments-section',
           repliesOpts: {
             commentId,
-            videoId,
+            videoId: effectiveVideoId,
             channelId,
             unkParam1: 4,
             unkParam2: 50,
