@@ -130,6 +130,7 @@ export { default as DislikeButtonView } from './classes/DislikeButtonView.js';
 export { default as DismissableDialog } from './classes/DismissableDialog.js';
 export { default as DismissableDialogContentSection } from './classes/DismissableDialogContentSection.js';
 export { default as DownloadButton } from './classes/DownloadButton.js';
+export { default as DownloadListItemView } from './classes/DownloadListItemView.js';
 export { default as Dropdown } from './classes/Dropdown.js';
 export { default as DropdownItem } from './classes/DropdownItem.js';
 export { default as DropdownView } from './classes/DropdownView.js';
