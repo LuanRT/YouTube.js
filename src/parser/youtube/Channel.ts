@@ -1,4 +1,5 @@
 import Feed from '../../core/mixins/Feed.js';
+import type { FilterNodes } from '../../core/mixins/FilterableFeed.js';
 import FilterableFeed from '../../core/mixins/FilterableFeed.js';
 import { ChannelError, InnertubeError } from '../../utils/Utils.js';
 
@@ -22,6 +23,12 @@ import ChannelSubMenu from '../classes/ChannelSubMenu.js';
 import SortFilterSubMenu from '../classes/SortFilterSubMenu.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import SheetView from '../classes/SheetView.js';
+import ListView from '../classes/ListView.js';
+import ChipBarView from '../classes/ChipBarView.js';
+import ShowSheetCommand from '../classes/commands/ShowSheetCommand.js';
+import ChipView from '../classes/ChipView.js';
+import ListItemView from '../classes/ListItemView.js';
 
 import type {
   AppendContinuationItemsAction,
@@ -29,15 +36,20 @@ import type {
   ReloadContinuationItemsCommand,
   ShowMiniplayerCommand
 } from '../index.js';
+
 import type { ApiResponse, Actions } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
+import type { ObservedArray } from '../helpers.js';
+import { observe } from '../helpers.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
   public header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader | PageHeader;
   public metadata;
   public subscribe_button?: SubscribeButton;
   public current_tab?: Tab | ExpandableTab;
+
+  #filter_nodes?: FilterNodes;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -66,47 +78,89 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
   }
 
   /**
-   * Applies given filter to the list. Use {@link filters} to get available filters.
-   * @param filter - The filter to apply
+   * Applies a filter to the channel list. {@link filters}, {@link secondary_filters}, and {@link filter_nodes} can be used to get available filters.
+   *
+   * @param primaryFilter - The primary filter to apply. Can be a string representing the filter name,
+   * a {@link ChipView} instance, or a {@link ListItemView} instance.
+   * @param secondaryFilter - An optional secondary filter to apply after the primary filter.
+   * Can be a string representing the filter name or a {@link ChipView} instance.
+   *
+   * @example
+   * ```ts
+   * // Apply a primary filter by name.
+   * const filtered = await videos.applyFilter('Oldest');
+   *
+   * // Apply a primary and secondary filter by name.
+   * const filtered = await videos.applyFilter('Oldest', 'Members only');
+   * 
+   * // Since we're using `filtered`, the following will return the latest members-only videos, 
+   * // unless the secondary filter is explicitly changed.
+   * const latestMembersOnly = await filtered.applyFilter('Latest');
+   * ```
    */
-  async applyFilter(filter: string | ChipCloudChip): Promise<FilteredChannelList> {
-    let target_filter: ChipCloudChip | undefined;
+  async applyFilter(primaryFilter: string | ChipView | ListItemView, secondaryFilter?: string | ChipView) {
+    const chipBarView = this.memo.getType(ChipBarView)[0];
 
-    const filter_chipbar = this.memo.getType(FeedFilterChipBar)[0];
-
-    if (typeof filter === 'string') {
-      target_filter = filter_chipbar?.contents.find((chip) => chip.text === filter);
-      if (!target_filter)
-        throw new InnertubeError(`Filter ${filter} not found`, { available_filters: this.filters });
-    } else {
-      target_filter = filter;
+    if (!chipBarView) {
+      throw new InnertubeError('Filter chip bar not found');
     }
 
-    if (!target_filter.endpoint)
-      throw new InnertubeError('Invalid filter', filter);
+    let endpoint: NavigationEndpoint | undefined;
 
-    const page = await target_filter.endpoint.call<IBrowseResponse>(this.actions, { parse: true });
+    if (typeof primaryFilter === 'string') {
+      if (!this.filters.includes(primaryFilter))
+        throw new InnertubeError(`Filter '${primaryFilter}' not found`, { available_filters: this.filters });
 
-    if (!page)
-      throw new InnertubeError('No page returned', { filter: target_filter });
+      const dropdownMenu = chipBarView.chips.find((chip) => chip.display_type === 'CHIP_VIEW_MODEL_DISPLAY_TYPE_DROP_DOWN');
 
-    return new FilteredChannelList(this.actions, page, true);
+      if (dropdownMenu) {
+        const tapCommand = dropdownMenu.tap_command?.command;
+
+        if (tapCommand?.is(ShowSheetCommand) && tapCommand.inline_content?.is(SheetView) && tapCommand.inline_content.content?.is(ListView)) {
+          const listViewItems = tapCommand.inline_content.content.items;
+          const matchingListItem = listViewItems.as(ListItemView).find((item) => item.title?.toString() === primaryFilter);
+          endpoint = matchingListItem?.renderer_context?.command_context?.on_tap?.as(NavigationEndpoint);
+        }
+      } else {
+        endpoint = chipBarView.chips.find((chip) => chip.text === primaryFilter)?.endpoint;
+      }
+    } else if (primaryFilter.is(ChipView)) {
+      endpoint = primaryFilter.endpoint;
+    } else if (primaryFilter.is(ListItemView)) {
+      endpoint = primaryFilter.renderer_context?.command_context?.on_tap?.as(NavigationEndpoint);
+    } else {
+      throw new InnertubeError('Invalid primary filter type');
+    }
+
+    if (!endpoint)
+      throw new InnertubeError('Could not find endpoint for the specified filter');
+
+    const page = await endpoint.call<IBrowseResponse>(this.actions, { parse: true });
+
+    let filteredChannelList = new FilteredChannelList(this.actions, page, true);
+
+    // Then apply secondary filter if provided.
+    if (secondaryFilter) {
+      filteredChannelList = await filteredChannelList.applyFilter(primaryFilter, secondaryFilter);
+    }
+
+    return filteredChannelList;
   }
 
   /**
-   * Applies given sort filter to the list. Use {@link sort_filters} to get available filters.
-   * @param sort - The sort filter to apply
+   * Applies a sort filter to the list. Use {@link sort_filters} to get available filters.
+   * @param sortFilter - The sort filter to apply
    */
-  async applySort(sort: string): Promise<Channel> {
+  async applySort(sortFilter: string): Promise<Channel> {
     const sort_filter_sub_menu = this.memo.getType(SortFilterSubMenu)[0];
 
     if (!sort_filter_sub_menu || !sort_filter_sub_menu.sub_menu_items)
       throw new InnertubeError('No sort filter sub menu found');
 
-    const target_sort = sort_filter_sub_menu.sub_menu_items.find((item) => item.title === sort);
+    const target_sort = sort_filter_sub_menu.sub_menu_items.find((item) => item.title === sortFilter);
 
     if (!target_sort)
-      throw new InnertubeError(`Sort filter ${sort} not found`, { available_sort_filters: this.sort_filters });
+      throw new InnertubeError(`Sort filter '${sortFilter}' not found`, { available_sort_filters: this.sort_filters });
 
     if (target_sort.selected)
       return this;
@@ -129,7 +183,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     const item = sub_menu.content_type_sub_menu_items.find((item) => item.title === content_type_filter);
 
     if (!item)
-      throw new InnertubeError(`Sub menu item ${content_type_filter} not found`, { available_filters: this.content_type_filters });
+      throw new InnertubeError(`Sub menu item '${content_type_filter}' not found`, { available_filters: this.content_type_filters });
 
     if (item.selected)
       return this;
@@ -139,8 +193,77 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
     return new Channel(this.actions, page, true);
   }
 
+  /**
+   * Returns the InnerTube renderer nodes representing filters. 
+   */
+  get filter_nodes(): FilterNodes {
+    if (this.#filter_nodes)
+      return this.#filter_nodes;
+
+    let primary_filters: ObservedArray<ChipCloudChip | ListItemView | ChipView> | undefined;
+    let secondary_filters: ObservedArray<ChipView> | undefined;
+
+    if (this.memo.getType(FeedFilterChipBar)?.length > 1)
+      throw new InnertubeError('There are too many feed filter chipbars, you\'ll need to find the correct one yourself in this.page');
+
+    if (this.memo.has('FeedFilterChipBar')) {
+      primary_filters = this.memo.getType(ChipCloudChip);;
+    } else if (this.memo.has('ChipView')) {
+      const chips = this.memo.getType(ChipView);
+      const firstChip = chips[0];
+
+      if (firstChip.is(ChipView)) {
+        const hasDropdown =
+          firstChip.display_type === 'CHIP_VIEW_MODEL_DISPLAY_TYPE_DROP_DOWN' ||
+          firstChip.display_type === 'CHIP_VIEW_MODEL_DISPLAY_TYPE_DROP_DOWN_WITH_CLEAR';
+
+        if (hasDropdown) {
+          const tapCommand = firstChip.tap_command?.command;
+          if (
+            tapCommand?.is(ShowSheetCommand) &&
+            tapCommand.inline_content?.is(SheetView) &&
+            tapCommand.inline_content.content?.is(ListView)
+          ) {
+            primary_filters = tapCommand.inline_content.content.items.as(ListItemView);
+          }
+
+          secondary_filters = observe(chips.slice(1) as ChipView[]);
+        } else primary_filters = chips;
+      }
+    }
+
+    this.#filter_nodes = {
+      primary_filters,
+      secondary_filters
+    };
+
+    return this.#filter_nodes;
+  }
+
+  /**
+   * Returns the available primary filters as strings.
+   */
   get filters(): string[] {
-    return this.memo.getType(FeedFilterChipBar)?.[0]?.contents.filterType(ChipCloudChip).map((chip) => chip.text) || [];
+    return this.filter_nodes?.primary_filters?.map((chip) => {
+      if (chip.is(ChipView) || chip.is(ChipCloudChip)) {
+        return chip.text?.toString() || '';
+      } else if (chip.is(ListItemView)) {
+        return chip.title?.toString() || '';
+      }
+      return '';
+    }) || [];
+  }
+
+  /**
+   * Returns the available secondary filters as strings. 
+   * 
+   * ---
+   * 
+   * NOTE: 
+   * Not all channels have secondary filters!
+   */
+  get secondary_filters(): string[] {
+    return this.filter_nodes?.secondary_filters?.map((chip) => chip.text?.toString() || '') || [];
   }
 
   get sort_filters(): string[] {
@@ -324,13 +447,36 @@ export class ChannelListContinuation extends Feed<IBrowseResponse> {
 }
 
 export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
-  applied_filter?: ChipCloudChip;
-  contents?: AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand;
+  public filter?: ChipView | ListItemView;
+  public secondary_filter?: ChipView;
+  public contents?: AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
 
-    this.applied_filter = this.memo.getType(ChipCloudChip).find((chip) => chip.is_selected);
+    const chipBarView = this.memo.getType(ChipBarView)[0];
+
+    if (chipBarView) {
+      const firstChip = chipBarView.chips[0];
+
+      const hasDropdown =
+        firstChip.display_type === 'CHIP_VIEW_MODEL_DISPLAY_TYPE_DROP_DOWN' ||
+        firstChip.display_type === 'CHIP_VIEW_MODEL_DISPLAY_TYPE_DROP_DOWN_WITH_CLEAR';
+
+      if (hasDropdown) {
+        this.secondary_filter = chipBarView.chips.slice(1).find((chip) => chip.selected);
+        const tapCommand = firstChip.tap_command?.command;
+        if (
+          tapCommand?.is(ShowSheetCommand) &&
+          tapCommand.inline_content?.is(SheetView) &&
+          tapCommand.inline_content.content?.is(ListView)
+        ) {
+          this.filter = tapCommand.inline_content.content.items.as(ListItemView).find((item) => item.is_selected);
+        }
+      } else {
+        this.filter = chipBarView.chips.find((chip) => chip.selected);
+      }
+    }
 
     // Removes the filter chipbar from the actions list
     if (
@@ -347,8 +493,8 @@ export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
    * Applies given filter to the list.
    * @param filter - The filter to apply
    */
-  async applyFilter(filter: string | ChipCloudChip): Promise<FilteredChannelList> {
-    const feed = await super.getFilteredFeed(filter);
+  async applyFilter(filter: string | ChipView | ChipCloudChip | ListItemView, secondaryFilter?: string | ChipView): Promise<FilteredChannelList> {
+    const feed = await super.getFilteredFeed(filter, secondaryFilter);
     return new FilteredChannelList(this.actions, feed.page, true);
   }
 
@@ -358,9 +504,23 @@ export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
     if (!page?.on_response_received_actions_memo)
       throw new InnertubeError('Unexpected continuation data', page);
 
-    // Keep the filters
-    page.on_response_received_actions_memo.set('FeedFilterChipBar', this.memo.getType(FeedFilterChipBar));
-    page.on_response_received_actions_memo.set('ChipCloudChip', this.memo.getType(ChipCloudChip));
+    // Legacy filter system. Keep it here in case YouTube changes its mind.
+    if (this.memo.has('FeedFilterChipBar')) {
+      page.on_response_received_actions_memo.set('FeedFilterChipBar', this.memo.getType(FeedFilterChipBar));
+    }
+
+    if (this.memo.has('ChipCloudChip')) {
+      page.on_response_received_actions_memo.set('ChipCloudChip', this.memo.getType(ChipCloudChip));
+    }
+
+    // New filter system
+    if (this.memo.has('ChipBarView')) {
+      page.on_response_received_actions_memo.set('ChipBarView', this.memo.getType(ChipBarView));
+    }
+
+    if (this.memo.has('ChipView')) {
+      page.on_response_received_actions_memo.set('ChipView', this.memo.getType(ChipView));
+    }
 
     return new FilteredChannelList(this.actions, page, true);
   }
