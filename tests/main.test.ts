@@ -420,21 +420,21 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#music.getLyrics', async () => {
-      const lyrics = await innertube.music.getLyrics('eaJHysi5tYg');
+      const lyrics = await innertube.music.getLyrics('CO0-a3O0G7g');
       expect(lyrics).toBeDefined();
       expect(lyrics?.description).toBeDefined();
       expect(lyrics?.footer).toBeDefined();
     });
 
     test('Innertube#music.getUpNext', async () => {
-      const upnext = await innertube.music.getUpNext('eaJHysi5tYg');
+      const upnext = await innertube.music.getUpNext('CO0-a3O0G7g');
       expect(upnext).toBeDefined();
       expect(upnext?.contents).toBeDefined();
       expect(upnext?.contents?.length).toBeGreaterThan(0);
     });
 
     test('Innertube#music.getRelated', async () => {
-      const related = await innertube.music.getRelated('eaJHysi5tYg');
+      const related = await innertube.music.getRelated('CO0-a3O0G7g');
       expect(related).toBeDefined();
     });
 
