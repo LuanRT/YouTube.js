@@ -29,7 +29,7 @@ import TwoColumnSearchResults from '../../parser/classes/TwoColumnSearchResults.
 import WatchCardCompactVideo from '../../parser/classes/WatchCardCompactVideo.js';
 
 import type { Actions, ApiResponse } from '../index.js';
-import type { Memo, ObservedArray } from '../../parser/helpers.js';
+import { observe, type Memo, type ObservedArray } from '../../parser/helpers.js';
 import type MusicQueue from '../../parser/classes/MusicQueue.js';
 import type RichGrid from '../../parser/classes/RichGrid.js';
 import type SectionList from '../../parser/classes/SectionList.js';
@@ -76,16 +76,17 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
    * Get all videos on a given page via memo
    */
   static getVideosFromMemo(memo: Memo) {
-    return memo.getType(
+    return observe(memo.getType(
       Video,
       GridVideo,
       ReelItem,
       ShortsLockupView,
       CompactVideo,
+      LockupView,
       PlaylistVideo,
       PlaylistPanelVideo,
       WatchCardCompactVideo
-    );
+    ).filter((item) => !item.is(LockupView) || (item.content_type === 'VIDEO' || item.content_type === 'MOVIE' || item.content_type === 'SHORT')));
   }
 
   /**
@@ -145,7 +146,6 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
     const tab_content = this.#memo.getType(Tab)?.[0].content;
     const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand)[0];
     const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction)[0];
-
     return tab_content || reload_continuation_items || append_continuation_items;
   }
 
@@ -202,7 +202,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
   async getContinuationData(): Promise<T | undefined> {
     if (this.#continuation) {
       if (this.#continuation.length === 0)
-        throw new InnertubeError('There are no continuations.');
+        throw new InnertubeError('There are no continuations');
 
       return await this.#continuation[0].endpoint.call<T>(this.#actions, { parse: true });
     }
