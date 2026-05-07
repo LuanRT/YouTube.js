@@ -2,7 +2,7 @@
 
 # Class: Kids
 
-Defined in: [src/core/clients/Kids.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Kids.ts#L9)
+Defined in: [src/core/clients/Kids.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Kids.ts#L9)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/clients/Kids.ts:9](https://github.com/LuanRT/YouTube.js/bl
 
 > **new Kids**(`session`): `Kids`
 
-Defined in: [src/core/clients/Kids.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Kids.ts#L12)
+Defined in: [src/core/clients/Kids.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Kids.ts#L12)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/core/clients/Kids.ts:12](https://github.com/LuanRT/YouTube.js/b
 
 > **blockChannel**(`channel_id`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)[]\>
 
-Defined in: [src/core/clients/Kids.ts:79](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Kids.ts#L79)
+Defined in: [src/core/clients/Kids.ts:79](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Kids.ts#L79)
 
 Retrieves the list of supervised accounts that the signed-in user has
 access to, and blocks the given channel for each of them.
@@ -53,7 +53,7 @@ A list of API responses.
 
 > **getChannel**(`channel_id`): `Promise`\<[`Channel`](../../YTKids/classes/Channel.md)\>
 
-Defined in: [src/core/clients/Kids.ts:61](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Kids.ts#L61)
+Defined in: [src/core/clients/Kids.ts:61](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Kids.ts#L61)
 
 #### Parameters
 
@@ -71,7 +71,7 @@ Defined in: [src/core/clients/Kids.ts:61](https://github.com/LuanRT/YouTube.js/b
 
 > **getHomeFeed**(): `Promise`\<[`HomeFeed`](../../YTKids/classes/HomeFeed.md)\>
 
-Defined in: [src/core/clients/Kids.ts:67](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Kids.ts#L67)
+Defined in: [src/core/clients/Kids.ts:67](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Kids.ts#L67)
 
 #### Returns
 
@@ -83,7 +83,7 @@ Defined in: [src/core/clients/Kids.ts:67](https://github.com/LuanRT/YouTube.js/b
 
 > **getInfo**(`video_id`, `options?`): `Promise`\<[`VideoInfo`](../../YTKids/classes/VideoInfo.md)\>
 
-Defined in: [src/core/clients/Kids.ts:22](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Kids.ts#L22)
+Defined in: [src/core/clients/Kids.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Kids.ts#L22)
 
 #### Parameters
 
@@ -105,7 +105,7 @@ Defined in: [src/core/clients/Kids.ts:22](https://github.com/LuanRT/YouTube.js/b
 
 > **search**(`query`): `Promise`\<[`Search`](../../YTKids/classes/Search.md)\>
 
-Defined in: [src/core/clients/Kids.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Kids.ts#L16)
+Defined in: [src/core/clients/Kids.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Kids.ts#L16)
 
 #### Parameters
 

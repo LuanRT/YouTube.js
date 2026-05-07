@@ -4,7 +4,7 @@
 
 > **UnsubscribeRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:132](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L132)
+Defined in: [src/parser/types/CommandEndpoints.ts:132](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L132)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:132](https://github.com/LuanRT
 
 > `optional` **channelIds**: `string`[]
 
-Defined in: [src/parser/types/CommandEndpoints.ts:133](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L133)
+Defined in: [src/parser/types/CommandEndpoints.ts:133](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L133)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:133](https://github.com/LuanRT
 
 > `optional` **params**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:135](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L135)
+Defined in: [src/parser/types/CommandEndpoints.ts:135](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L135)
 
 ***
 
@@ -28,4 +28,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:135](https://github.com/LuanRT
 
 > `optional` **siloName**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:134](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L134)
+Defined in: [src/parser/types/CommandEndpoints.ts:134](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L134)

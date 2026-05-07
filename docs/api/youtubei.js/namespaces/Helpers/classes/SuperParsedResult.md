@@ -2,7 +2,7 @@
 
 # Class: SuperParsedResult\<T\>
 
-Defined in: [src/parser/helpers.ts:318](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L318)
+Defined in: [src/parser/helpers.ts:318](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L318)
 
 Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] or null.
 
@@ -18,7 +18,7 @@ Represents a parsed response in an unknown state. Either a YTNode or a YTNode[] 
 
 > **new SuperParsedResult**\<`T`\>(`result`): `SuperParsedResult`\<`T`\>
 
-Defined in: [src/parser/helpers.ts:321](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L321)
+Defined in: [src/parser/helpers.ts:321](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L321)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: [src/parser/helpers.ts:321](https://github.com/LuanRT/YouTube.js/blo
 
 > **get** **is\_array**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:328](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L328)
+Defined in: [src/parser/helpers.ts:328](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L328)
 
 ##### Returns
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/helpers.ts:328](https://github.com/LuanRT/YouTube.js/blo
 
 > **get** **is\_node**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:331](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L331)
+Defined in: [src/parser/helpers.ts:331](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L331)
 
 ##### Returns
 
@@ -66,7 +66,7 @@ Defined in: [src/parser/helpers.ts:331](https://github.com/LuanRT/YouTube.js/blo
 
 > **get** **is\_null**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:325](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L325)
+Defined in: [src/parser/helpers.ts:325](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L325)
 
 ##### Returns
 
@@ -78,7 +78,7 @@ Defined in: [src/parser/helpers.ts:325](https://github.com/LuanRT/YouTube.js/blo
 
 > **array**(): [`ObservedArray`](../type-aliases/ObservedArray.md)\<`T`\>
 
-Defined in: [src/parser/helpers.ts:335](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L335)
+Defined in: [src/parser/helpers.ts:335](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L335)
 
 #### Returns
 
@@ -90,7 +90,7 @@ Defined in: [src/parser/helpers.ts:335](https://github.com/LuanRT/YouTube.js/blo
 
 > **item**(): `T`
 
-Defined in: [src/parser/helpers.ts:342](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L342)
+Defined in: [src/parser/helpers.ts:342](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L342)
 
 #### Returns
 

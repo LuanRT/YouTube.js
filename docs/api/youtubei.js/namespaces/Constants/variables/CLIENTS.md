@@ -4,7 +4,7 @@
 
 > `const` **CLIENTS**: `object`
 
-Defined in: [src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Constants.ts#L25)
+Defined in: [src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/Constants.ts#L25)
 
 ## Type Declaration
 
@@ -18,15 +18,43 @@ Defined in: [src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blo
 
 #### ANDROID.SDK\_VERSION
 
-> `readonly` **SDK\_VERSION**: `33` = `33`
+> `readonly` **SDK\_VERSION**: `36` = `36`
 
 #### ANDROID.USER\_AGENT
 
-> `readonly` **USER\_AGENT**: `"com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip"` = `'com.google.android.youtube/19.35.36(Linux; U; Android 13; en_US; SM-S908E Build/TP1A.220624.014) gzip'`
+> `readonly` **USER\_AGENT**: `"com.google.android.youtube/21.03.36(Linux; U; Android 16; en_US; SM-S908E Build/TP1A.220624.014) gzip"` = `'com.google.android.youtube/21.03.36(Linux; U; Android 16; en_US; SM-S908E Build/TP1A.220624.014) gzip'`
 
 #### ANDROID.VERSION
 
-> `readonly` **VERSION**: `"19.35.36"` = `'19.35.36'`
+> `readonly` **VERSION**: `"21.03.36"` = `'21.03.36'`
+
+### ANDROID\_VR
+
+> `readonly` **ANDROID\_VR**: `object`
+
+#### ANDROID\_VR.DEVICE\_MAKE
+
+> `readonly` **DEVICE\_MAKE**: `"Oculus"` = `'Oculus'`
+
+#### ANDROID\_VR.DEVICE\_MODEL
+
+> `readonly` **DEVICE\_MODEL**: `"Quest 3"` = `'Quest 3'`
+
+#### ANDROID\_VR.NAME
+
+> `readonly` **NAME**: `"ANDROID_VR"` = `'ANDROID_VR'`
+
+#### ANDROID\_VR.SDK\_VERSION
+
+> `readonly` **SDK\_VERSION**: `32` = `32`
+
+#### ANDROID\_VR.USER\_AGENT
+
+> `readonly` **USER\_AGENT**: `"com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip"` = `'com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip'`
+
+#### ANDROID\_VR.VERSION
+
+> `readonly` **VERSION**: `"1.65.10"` = `'1.65.10'`
 
 ### IOS
 
@@ -70,7 +98,7 @@ Defined in: [src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blo
 
 #### MWEB.VERSION
 
-> `readonly` **VERSION**: `"2.20250224.01.00"` = `'2.20250224.01.00'`
+> `readonly` **VERSION**: `"2.20260205.04.01"` = `'2.20260205.04.01'`
 
 ### TV
 
@@ -86,7 +114,7 @@ Defined in: [src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blo
 
 #### TV.VERSION
 
-> `readonly` **VERSION**: `"7.20250219.14.00"` = `'7.20250219.14.00'`
+> `readonly` **VERSION**: `"7.20260311.12.00"` = `'7.20260311.12.00'`
 
 ### TV\_EMBEDDED
 
@@ -138,7 +166,7 @@ Defined in: [src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blo
 
 #### WEB.VERSION
 
-> `readonly` **VERSION**: `"2.20250222.10.00"` = `'2.20250222.10.00'`
+> `readonly` **VERSION**: `"2.20260206.01.00"` = `'2.20260206.01.00'`
 
 ### WEB\_CREATOR
 
@@ -186,7 +214,7 @@ Defined in: [src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blo
 
 #### WEB\_EMBEDDED.VERSION
 
-> `readonly` **VERSION**: `"1.20250219.01.00"` = `'1.20250219.01.00'`
+> `readonly` **VERSION**: `"1.20260206.01.00"` = `'1.20260206.01.00'`
 
 ### WEB\_KIDS
 
@@ -198,7 +226,7 @@ Defined in: [src/utils/Constants.ts:25](https://github.com/LuanRT/YouTube.js/blo
 
 #### WEB\_KIDS.VERSION
 
-> `readonly` **VERSION**: `"2.20250221.11.00"` = `'2.20250221.11.00'`
+> `readonly` **VERSION**: `"2.20260205.00.00"` = `'2.20260205.00.00'`
 
 ### YTMUSIC
 

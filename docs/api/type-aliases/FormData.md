@@ -4,7 +4,7 @@
 
 > **FormData** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L16)
+Defined in: [src/parser/types/CommandEndpoints.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L16)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:16](https://github.com/LuanRT/
 
 > **accountSettingsFormData**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:17](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L17)
+Defined in: [src/parser/types/CommandEndpoints.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L17)
 
 #### flagAudioDescriptionDefaultOn
 

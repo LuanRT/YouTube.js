@@ -2,7 +2,7 @@
 
 # Interface: PrimitiveInferenceType
 
-Defined in: [src/parser/generator.ts:49](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/generator.ts#L49)
+Defined in: [src/parser/generator.ts:49](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/generator.ts#L49)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/generator.ts:49](https://github.com/LuanRT/YouTube.js/bl
 
 > **optional**: `boolean`
 
-Defined in: [src/parser/generator.ts:52](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/generator.ts#L52)
+Defined in: [src/parser/generator.ts:52](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/generator.ts#L52)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/generator.ts:52](https://github.com/LuanRT/YouTube.js/bl
 
 > **type**: `"primitive"`
 
-Defined in: [src/parser/generator.ts:50](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/generator.ts#L50)
+Defined in: [src/parser/generator.ts:50](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/generator.ts#L50)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [src/parser/generator.ts:50](https://github.com/LuanRT/YouTube.js/bl
 
 > **typeof**: (`"string"` \| `"number"` \| `"bigint"` \| `"boolean"` \| `"symbol"` \| `"undefined"` \| `"function"` \| `"unknown"` \| `"never"`)[]
 
-Defined in: [src/parser/generator.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/generator.ts#L51)
+Defined in: [src/parser/generator.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/generator.ts#L51)

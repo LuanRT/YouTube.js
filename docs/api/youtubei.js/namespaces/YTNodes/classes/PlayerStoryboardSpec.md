@@ -2,7 +2,7 @@
 
 # Class: PlayerStoryboardSpec
 
-Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlayerStoryboardSpec.ts#L16)
+Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlayerStoryboardSpec.ts#L16)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:16](https://github.com/L
 
 > **new PlayerStoryboardSpec**(`data`): `PlayerStoryboardSpec`
 
-Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:21](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlayerStoryboardSpec.ts#L21)
+Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlayerStoryboardSpec.ts#L21)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:21](https://github.com/L
 
 > **boards**: `StoryboardData`[]
 
-Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlayerStoryboardSpec.ts#L19)
+Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlayerStoryboardSpec.ts#L19)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:19](https://github.com/L
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -56,7 +56,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'PlayerStoryboardSpec'`
 
-Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:17](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlayerStoryboardSpec.ts#L17)
+Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlayerStoryboardSpec.ts#L17)
 
 #### Overrides
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/PlayerStoryboardSpec.ts:17](https://github.com/L
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -110,7 +110,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is PlayerStoryboardSpec & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -148,7 +148,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -186,7 +186,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

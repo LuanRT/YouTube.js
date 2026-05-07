@@ -4,7 +4,7 @@
 
 > **SubscribeRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:124](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L124)
+Defined in: [src/parser/types/CommandEndpoints.ts:124](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L124)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:124](https://github.com/LuanRT
 
 > `optional` **botguardResponse**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:128](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L128)
+Defined in: [src/parser/types/CommandEndpoints.ts:128](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L128)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:128](https://github.com/LuanRT
 
 > `optional` **channelIds**: `string`[]
 
-Defined in: [src/parser/types/CommandEndpoints.ts:125](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L125)
+Defined in: [src/parser/types/CommandEndpoints.ts:125](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L125)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:125](https://github.com/LuanRT
 
 > `optional` **clientFeature**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:129](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L129)
+Defined in: [src/parser/types/CommandEndpoints.ts:129](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L129)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:129](https://github.com/LuanRT
 
 > `optional` **params**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:127](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L127)
+Defined in: [src/parser/types/CommandEndpoints.ts:127](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L127)
 
 ***
 
@@ -44,4 +44,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:127](https://github.com/LuanRT
 
 > `optional` **siloName**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:126](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L126)
+Defined in: [src/parser/types/CommandEndpoints.ts:126](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L126)

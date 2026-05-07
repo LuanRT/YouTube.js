@@ -2,7 +2,7 @@
 
 # Class: AccessibilityData
 
-Defined in: [src/parser/classes/misc/AccessibilityData.ts:115](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/AccessibilityData.ts#L115)
+Defined in: [src/parser/classes/misc/AccessibilityData.ts:115](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/AccessibilityData.ts#L115)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/AccessibilityData.ts:115](https://github.co
 
 > **new AccessibilityData**(`data`): `AccessibilityData`
 
-Defined in: [src/parser/classes/misc/AccessibilityData.ts:120](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/AccessibilityData.ts#L120)
+Defined in: [src/parser/classes/misc/AccessibilityData.ts:120](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/AccessibilityData.ts#L120)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/classes/misc/AccessibilityData.ts:120](https://github.co
 
 > `optional` **accessibility\_identifier**: `string`
 
-Defined in: [src/parser/classes/misc/AccessibilityData.ts:116](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/AccessibilityData.ts#L116)
+Defined in: [src/parser/classes/misc/AccessibilityData.ts:116](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/AccessibilityData.ts#L116)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/misc/AccessibilityData.ts:116](https://github.co
 
 > `optional` **identifier**: `AccessibilityId`
 
-Defined in: [src/parser/classes/misc/AccessibilityData.ts:117](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/AccessibilityData.ts#L117)
+Defined in: [src/parser/classes/misc/AccessibilityData.ts:117](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/AccessibilityData.ts#L117)
 
 ***
 
@@ -44,4 +44,4 @@ Defined in: [src/parser/classes/misc/AccessibilityData.ts:117](https://github.co
 
 > `optional` **label**: `string`
 
-Defined in: [src/parser/classes/misc/AccessibilityData.ts:118](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/AccessibilityData.ts#L118)
+Defined in: [src/parser/classes/misc/AccessibilityData.ts:118](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/AccessibilityData.ts#L118)

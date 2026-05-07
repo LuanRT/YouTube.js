@@ -2,7 +2,7 @@
 
 # Class: AccessibilityContext
 
-Defined in: [src/parser/classes/misc/AccessibilityContext.ts:3](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/AccessibilityContext.ts#L3)
+Defined in: [src/parser/classes/misc/AccessibilityContext.ts:3](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/AccessibilityContext.ts#L3)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/AccessibilityContext.ts:3](https://github.c
 
 > **new AccessibilityContext**(`data`): `AccessibilityContext`
 
-Defined in: [src/parser/classes/misc/AccessibilityContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/AccessibilityContext.ts#L6)
+Defined in: [src/parser/classes/misc/AccessibilityContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/AccessibilityContext.ts#L6)
 
 #### Parameters
 
@@ -28,4 +28,4 @@ Defined in: [src/parser/classes/misc/AccessibilityContext.ts:6](https://github.c
 
 > **label**: `string`
 
-Defined in: [src/parser/classes/misc/AccessibilityContext.ts:4](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/AccessibilityContext.ts#L4)
+Defined in: [src/parser/classes/misc/AccessibilityContext.ts:4](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/AccessibilityContext.ts#L4)

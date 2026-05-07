@@ -2,7 +2,7 @@
 
 # Class: ChipView
 
-Defined in: [src/parser/classes/ChipView.ts:5](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ChipView.ts#L5)
+Defined in: [src/parser/classes/ChipView.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L5)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ChipView.ts:5](https://github.com/LuanRT/YouTube
 
 > **new ChipView**(`data`): `ChipView`
 
-Defined in: [src/parser/classes/ChipView.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ChipView.ts#L13)
+Defined in: [src/parser/classes/ChipView.ts:33](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L33)
 
 #### Parameters
 
@@ -32,35 +32,99 @@ Defined in: [src/parser/classes/ChipView.ts:13](https://github.com/LuanRT/YouTub
 
 ## Properties
 
-### chip\_entity\_key
+### accessibility\_hint?
 
-> **chip\_entity\_key**: `string`
+> `optional` **accessibility\_hint**: `string`
 
-Defined in: [src/parser/classes/ChipView.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ChipView.ts#L11)
-
-***
-
-### display\_type
-
-> **display\_type**: `string`
-
-Defined in: [src/parser/classes/ChipView.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ChipView.ts#L9)
+Defined in: [src/parser/classes/ChipView.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L8)
 
 ***
 
-### endpoint
+### accessibility\_label?
 
-> **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **accessibility\_label**: `string`
 
-Defined in: [src/parser/classes/ChipView.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ChipView.ts#L10)
+Defined in: [src/parser/classes/ChipView.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L9)
 
 ***
 
-### text
+### chip\_entity\_key?
 
-> **text**: `string`
+> `optional` **chip\_entity\_key**: `string`
 
-Defined in: [src/parser/classes/ChipView.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ChipView.ts#L8)
+Defined in: [src/parser/classes/ChipView.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L26)
+
+***
+
+### display\_type?
+
+> `optional` **display\_type**: `"CHIP_VIEW_MODEL_DISPLAY_TYPE_UNSPECIFIED"` \| `"CHIP_VIEW_MODEL_DISPLAY_TYPE_DROP_DOWN"` \| `"CHIP_VIEW_MODEL_DISPLAY_TYPE_DROP_DOWN_WITH_CLEAR"` \| `"CHIP_VIEW_MODEL_DISPLAY_TYPE_FILTER"` \| `"CHIP_VIEW_MODEL_DISPLAY_TYPE_NO_ICON"` \| `"CHIP_VIEW_MODEL_DISPLAY_TYPE_ADJUST"` \| `"CHIP_VIEW_MODEL_DISPLAY_TYPE_CLEAR"` \| `"CHIP_VIEW_MODEL_DISPLAY_TYPE_ADD"` \| `"CHIP_VIEW_MODEL_DISPLAY_TYPE_SPARK"`
+
+Defined in: [src/parser/classes/ChipView.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L12)
+
+***
+
+### max\_text\_width?
+
+> `optional` **max\_text\_width**: `number`
+
+Defined in: [src/parser/classes/ChipView.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L21)
+
+***
+
+### original\_text?
+
+> `optional` **original\_text**: `string`
+
+Defined in: [src/parser/classes/ChipView.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L23)
+
+***
+
+### secondary\_accessibility\_label?
+
+> `optional` **secondary\_accessibility\_label**: `string`
+
+Defined in: [src/parser/classes/ChipView.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L22)
+
+***
+
+### secondary\_tap\_command?
+
+> `optional` **secondary\_tap\_command**: [`NavigationEndpoint`](NavigationEndpoint.md)
+
+Defined in: [src/parser/classes/ChipView.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L25)
+
+***
+
+### selected
+
+> **selected**: `boolean`
+
+Defined in: [src/parser/classes/ChipView.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L27)
+
+***
+
+### tap\_command?
+
+> `optional` **tap\_command**: [`NavigationEndpoint`](NavigationEndpoint.md)
+
+Defined in: [src/parser/classes/ChipView.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L24)
+
+***
+
+### text?
+
+> `optional` **text**: `string`
+
+Defined in: [src/parser/classes/ChipView.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L10)
+
+***
+
+### trailing\_text?
+
+> `optional` **trailing\_text**: `string`
+
+Defined in: [src/parser/classes/ChipView.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L11)
 
 ***
 
@@ -68,7 +132,7 @@ Defined in: [src/parser/classes/ChipView.ts:8](https://github.com/LuanRT/YouTube
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -80,11 +144,25 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'ChipView'`
 
-Defined in: [src/parser/classes/ChipView.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ChipView.ts#L6)
+Defined in: [src/parser/classes/ChipView.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L6)
 
 #### Overrides
 
 [`YTNode`](../../Helpers/classes/YTNode.md).[`type`](../../Helpers/classes/YTNode.md#type-1)
+
+## Accessors
+
+### endpoint
+
+#### Get Signature
+
+> **get** **endpoint**(): [`NavigationEndpoint`](NavigationEndpoint.md) \| `undefined`
+
+Defined in: [src/parser/classes/ChipView.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ChipView.ts#L29)
+
+##### Returns
+
+[`NavigationEndpoint`](NavigationEndpoint.md) \| `undefined`
 
 ## Methods
 
@@ -92,7 +170,7 @@ Defined in: [src/parser/classes/ChipView.ts:6](https://github.com/LuanRT/YouTube
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -134,7 +212,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ChipView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -172,7 +250,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -210,7 +288,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

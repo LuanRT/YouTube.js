@@ -2,7 +2,7 @@
 
 # Class: Menu
 
-Defined in: [src/parser/classes/menus/Menu.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L14)
+Defined in: [src/parser/classes/menus/Menu.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L14)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:14](https://github.com/LuanRT/YouT
 
 > **new Menu**(`data`): `Menu`
 
-Defined in: [src/parser/classes/menus/Menu.ts:22](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L22)
+Defined in: [src/parser/classes/menus/Menu.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L22)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:22](https://github.com/LuanRT/YouT
 
 > `optional` **accessibility**: `AccessibilitySupportedDatas`
 
-Defined in: [src/parser/classes/menus/Menu.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L20)
+Defined in: [src/parser/classes/menus/Menu.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L20)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:20](https://github.com/LuanRT/YouT
 
 > **flexible\_items**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MenuFlexibleItem`](MenuFlexibleItem.md)\>
 
-Defined in: [src/parser/classes/menus/Menu.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L18)
+Defined in: [src/parser/classes/menus/Menu.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L18)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:18](https://github.com/LuanRT/YouT
 
 > **items**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/menus/Menu.ts:17](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L17)
+Defined in: [src/parser/classes/menus/Menu.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L17)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:17](https://github.com/LuanRT/YouT
 
 > **top\_level\_buttons**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Button`](Button.md) \| [`ToggleButton`](ToggleButton.md) \| [`ButtonView`](ButtonView.md) \| [`SegmentedLikeDislikeButtonView`](SegmentedLikeDislikeButtonView.md) \| [`LikeButton`](LikeButton.md) \| [`FlexibleActionsView`](FlexibleActionsView.md)\>
 
-Defined in: [src/parser/classes/menus/Menu.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L19)
+Defined in: [src/parser/classes/menus/Menu.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L19)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:19](https://github.com/LuanRT/YouT
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'Menu'`
 
-Defined in: [src/parser/classes/menus/Menu.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L15)
+Defined in: [src/parser/classes/menus/Menu.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L15)
 
 #### Overrides
 
@@ -94,7 +94,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:15](https://github.com/LuanRT/YouT
 
 > **get** **contents**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/menus/Menu.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L41)
+Defined in: [src/parser/classes/menus/Menu.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L41)
 
 ##### Returns
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:41](https://github.com/LuanRT/YouT
 
 > **get** **label**(): `string` \| `undefined`
 
-Defined in: [src/parser/classes/menus/Menu.ts:36](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/menus/Menu.ts#L36)
+Defined in: [src/parser/classes/menus/Menu.ts:36](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/menus/Menu.ts#L36)
 
 ##### Returns
 
@@ -120,7 +120,7 @@ Defined in: [src/parser/classes/menus/Menu.ts:36](https://github.com/LuanRT/YouT
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -162,7 +162,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is Menu & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -200,7 +200,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -238,7 +238,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

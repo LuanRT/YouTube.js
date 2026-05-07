@@ -2,7 +2,7 @@
 
 # Class: SlimVideoMetadata
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:5](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L5)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L5)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:5](https://github.com/LuanR
 
 > **new SlimVideoMetadata**(`data`): `SlimVideoMetadata`
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L16)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L16)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:16](https://github.com/Luan
 
 > **collapsed\_subtitle**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L9)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L9)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:9](https://github.com/LuanR
 
 > **date**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L14)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L14)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:14](https://github.com/Luan
 
 > **description**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L12)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L12)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:12](https://github.com/Luan
 
 > **expanded\_subtitle**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L10)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L10)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:10](https://github.com/Luan
 
 > **owner**: [`YTNode`](../../Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L11)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L11)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:11](https://github.com/Luan
 
 > **title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L8)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L8)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:8](https://github.com/LuanR
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **video\_id**: `string`
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L13)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L13)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:13](https://github.com/Luan
 
 > `static` **type**: `string` = `'SlimVideoMetadata'`
 
-Defined in: [src/parser/classes/SlimVideoMetadata.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/SlimVideoMetadata.ts#L6)
+Defined in: [src/parser/classes/SlimVideoMetadata.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SlimVideoMetadata.ts#L6)
 
 #### Overrides
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/classes/SlimVideoMetadata.ts:6](https://github.com/LuanR
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -158,7 +158,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is SlimVideoMetadata & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -196,7 +196,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -234,7 +234,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

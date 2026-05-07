@@ -2,9 +2,9 @@
 
 # Function: toTypeDeclaration()
 
-> **toTypeDeclaration**(`inference_type`, `indentation`): `string`
+> **toTypeDeclaration**(`inference_type`, `indentation?`): `string`
 
-Defined in: [src/parser/generator.ts:520](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/generator.ts#L520)
+Defined in: [src/parser/generator.ts:520](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/generator.ts#L520)
 
 For a given inference type, get the typescript type declaration
 
@@ -16,7 +16,7 @@ For a given inference type, get the typescript type declaration
 
 The inference type to get the declaration for
 
-### indentation
+### indentation?
 
 `number` = `0`
 

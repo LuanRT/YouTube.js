@@ -2,7 +2,7 @@
 
 # Class: DeletePlaylistEndpoint
 
-Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L6)
+Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L6)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:6](https://g
 
 > **new DeletePlaylistEndpoint**(`data`): `DeletePlaylistEndpoint`
 
-Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L11)
+Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L11)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:11](https://
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'DeletePlaylistEndpoint'`
 
-Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L7)
+Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L7)
 
 #### Overrides
 
@@ -64,7 +64,7 @@ Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:7](https://g
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -106,7 +106,7 @@ If the node is not of the given type
 
 > **buildRequest**(): [`DeletePlaylistServiceRequest`](../../../../type-aliases/DeletePlaylistServiceRequest.md)
 
-Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L20)
+Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L20)
 
 #### Returns
 
@@ -122,7 +122,7 @@ Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:20](https://
 
 > **getApiPath**(): `string`
 
-Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L16)
+Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/endpoints/DeletePlaylistEndpoint.ts#L16)
 
 #### Returns
 
@@ -138,7 +138,7 @@ Defined in: [src/parser/classes/endpoints/DeletePlaylistEndpoint.ts:16](https://
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is DeletePlaylistEndpoint & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -176,7 +176,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -214,7 +214,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

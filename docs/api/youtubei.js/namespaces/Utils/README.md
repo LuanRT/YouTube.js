@@ -29,6 +29,7 @@
 - [generateRandomString](functions/generateRandomString.md)
 - [generateSidAuth](functions/generateSidAuth.md)
 - [getCookie](functions/getCookie.md)
+- [getNsigProcessorFn](functions/getNsigProcessorFn.md)
 - [getRandomUserAgent](functions/getRandomUserAgent.md)
 - [getStringBetweenStrings](functions/getStringBetweenStrings.md)
 - [hasKeys](functions/hasKeys.md)

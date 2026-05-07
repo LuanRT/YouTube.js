@@ -2,7 +2,7 @@
 
 # Interface: ICacheConstructor
 
-Defined in: [src/types/Cache.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/Cache.ts#L8)
+Defined in: [src/types/Cache.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/Cache.ts#L8)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/types/Cache.ts:8](https://github.com/LuanRT/YouTube.js/blob/073
 
 > **new ICacheConstructor**(`persistent`, `persistent_directory?`): [`ICache`](ICache.md)
 
-Defined in: [src/types/Cache.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/Cache.ts#L9)
+Defined in: [src/types/Cache.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/Cache.ts#L9)
 
 #### Parameters
 

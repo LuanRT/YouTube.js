@@ -2,7 +2,7 @@
 
 # Interface: AnalyzerOptions
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:26](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/javascript/JsAnalyzer.ts#L26)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:36](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L36)
 
 ## Properties
 
@@ -10,6 +10,6 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:26](https://github.com/LuanRT/Yo
 
 > `optional` **extractions**: [`ExtractionConfig`](ExtractionConfig.md) \| [`ExtractionConfig`](ExtractionConfig.md)[]
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:30](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/javascript/JsAnalyzer.ts#L30)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L40)
 
 One or more extraction configurations to look for while traversing.

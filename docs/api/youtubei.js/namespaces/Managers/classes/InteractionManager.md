@@ -2,7 +2,7 @@
 
 # Class: InteractionManager
 
-Defined in: [src/core/managers/InteractionManager.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L7)
+Defined in: [src/core/managers/InteractionManager.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L7)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/managers/InteractionManager.ts:7](https://github.com/LuanR
 
 > **new InteractionManager**(`actions`): `InteractionManager`
 
-Defined in: [src/core/managers/InteractionManager.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L10)
+Defined in: [src/core/managers/InteractionManager.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L10)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/core/managers/InteractionManager.ts:10](https://github.com/Luan
 
 > **comment**(`video_id`, `text`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/managers/InteractionManager.ts:119](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L119)
+Defined in: [src/core/managers/InteractionManager.ts:119](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L119)
 
 Posts a comment on a given video.
 
@@ -56,7 +56,7 @@ The comment text
 
 > **dislike**(`video_id`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/managers/InteractionManager.ts:38](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L38)
+Defined in: [src/core/managers/InteractionManager.ts:38](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L38)
 
 Dislikes a given video.
 
@@ -78,7 +78,7 @@ The video ID
 
 > **like**(`video_id`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/managers/InteractionManager.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L18)
+Defined in: [src/core/managers/InteractionManager.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L18)
 
 Likes a given video.
 
@@ -100,7 +100,7 @@ The video ID
 
 > **removeRating**(`video_id`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/managers/InteractionManager.ts:58](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L58)
+Defined in: [src/core/managers/InteractionManager.ts:58](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L58)
 
 Removes a like/dislike.
 
@@ -122,7 +122,7 @@ The video ID
 
 > **setNotificationPreferences**(`channel_id`, `type`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/managers/InteractionManager.ts:174](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L174)
+Defined in: [src/core/managers/InteractionManager.ts:174](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L174)
 
 Changes notification preferences for a given channel.
 Only works with channels you are subscribed to.
@@ -151,7 +151,7 @@ The notification type.
 
 > **subscribe**(`channel_id`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/managers/InteractionManager.ts:78](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L78)
+Defined in: [src/core/managers/InteractionManager.ts:78](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L78)
 
 Subscribes to the given channel.
 
@@ -171,9 +171,9 @@ The channel ID
 
 ### translate()
 
-> **translate**(`text`, `target_language`, `args`): `Promise`\<\{ `data`: [`IRawResponse`](../../../../interfaces/IRawResponse.md); `status_code`: `number`; `success`: `boolean`; `translated_content`: `any`; \}\>
+> **translate**(`text`, `target_language`, `args?`): `Promise`\<\{ `data`: [`IRawResponse`](../../../../interfaces/IRawResponse.md); `status_code`: `number`; `success`: `boolean`; `translated_content`: `any`; \}\>
 
-Defined in: [src/core/managers/InteractionManager.ts:151](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L151)
+Defined in: [src/core/managers/InteractionManager.ts:151](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L151)
 
 Translates a given text using YouTube's comment translation feature.
 
@@ -191,7 +191,7 @@ The text to translate
 
 an ISO language code
 
-##### args
+##### args?
 
 optional arguments
 
@@ -213,7 +213,7 @@ optional arguments
 
 > **unsubscribe**(`channel_id`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/managers/InteractionManager.ts:98](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/managers/InteractionManager.ts#L98)
+Defined in: [src/core/managers/InteractionManager.ts:98](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/InteractionManager.ts#L98)
 
 Unsubscribes from the given channel.
 

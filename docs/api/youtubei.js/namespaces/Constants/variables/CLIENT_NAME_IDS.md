@@ -4,7 +4,7 @@
 
 > `const` **CLIENT\_NAME\_IDS**: `object`
 
-Defined in: [src/utils/Constants.ts:100](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Constants.ts#L100)
+Defined in: [src/utils/Constants.ts:108](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/Constants.ts#L108)
 
 The keys correspond to the `NAME` fields in [`CLIENTS`](CLIENTS.md) constant
 
@@ -21,6 +21,10 @@ The keys correspond to the `NAME` fields in [`CLIENTS`](CLIENTS.md) constant
 ### ANDROID\_MUSIC
 
 > `readonly` **ANDROID\_MUSIC**: `"21"` = `'21'`
+
+### ANDROID\_VR
+
+> `readonly` **ANDROID\_VR**: `"28"` = `'28'`
 
 ### iOS
 

@@ -2,7 +2,7 @@
 
 # Class: ClientSideToggleMenuItem
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L6)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L6)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:6](https://github.co
 
 > **new ClientSideToggleMenuItem**(`data`): `ClientSideToggleMenuItem`
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L23)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L23)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:23](https://github.c
 
 > **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L15)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L15)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:15](https://github.c
 
 > **icon\_type**: `string`
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L10)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L10)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:10](https://github.c
 
 > `optional` **is\_toggled**: `boolean`
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L13)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L13)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:13](https://github.c
 
 > `optional` **logging\_directives**: `object`
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L16)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L16)
 
 #### enable\_displaylogger\_experiment
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:16](https://github.c
 
 > **menu\_item\_identifier**: `string`
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L14)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L14)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:14](https://github.c
 
 > **text**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L9)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L9)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:9](https://github.co
 
 > **toggled\_icon\_type**: `string`
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L12)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L12)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:12](https://github.c
 
 > **toggled\_text**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L11)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L11)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:11](https://github.c
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'ClientSideToggleMenuItem'`
 
-Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ClientSideToggleMenuItem.ts#L7)
+Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ClientSideToggleMenuItem.ts#L7)
 
 #### Overrides
 
@@ -136,7 +136,7 @@ Defined in: [src/parser/classes/ClientSideToggleMenuItem.ts:7](https://github.co
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -178,7 +178,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ClientSideToggleMenuItem & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -216,7 +216,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -254,7 +254,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

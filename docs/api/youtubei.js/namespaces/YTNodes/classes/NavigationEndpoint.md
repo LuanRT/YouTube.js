@@ -2,7 +2,7 @@
 
 # Class: NavigationEndpoint
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L19)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L19)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:19](https://github.com/Lua
 
 > **new NavigationEndpoint**(`data`): `NavigationEndpoint`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:32](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L32)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:32](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L32)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:32](https://github.com/Lua
 
 > `optional` **command**: [`YTNode`](../../Helpers/classes/YTNode.md) \| [`YTNode`](../../Helpers/classes/YTNode.md) & [`IEndpoint`](../../../../interfaces/IEndpoint.md)\<`any`\>
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L29)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L29)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:29](https://github.com/Lua
 
 > `optional` **commands**: `NavigationEndpoint`[]
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:30](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L30)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:30](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L30)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:30](https://github.com/Lua
 
 > `optional` **dialog**: [`YTNode`](../../Helpers/classes/YTNode.md) \| [`CreatePlaylistDialog`](CreatePlaylistDialog.md) \| `null`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:24](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L24)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L24)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:24](https://github.com/Lua
 
 > **metadata**: `Metadata`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:28](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L28)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L28)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:28](https://github.com/Lua
 
 > `optional` **modal**: [`YTNode`](../../Helpers/classes/YTNode.md) \| [`ModalWithTitleAndButton`](ModalWithTitleAndButton.md) \| `null`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L25)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L25)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:25](https://github.com/Lua
 
 > `optional` **name**: `string`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:22](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L22)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L22)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:22](https://github.com/Lua
 
 > `optional` **next\_endpoint**: `NavigationEndpoint`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:27](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L27)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L27)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:27](https://github.com/Lua
 
 > `optional` **open\_popup**: [`OpenPopupAction`](OpenPopupAction.md) \| `null`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:26](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L26)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L26)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:26](https://github.com/Lua
 
 > **payload**: `any`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L23)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L23)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:23](https://github.com/Lua
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -120,7 +120,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'NavigationEndpoint'`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L20)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L20)
 
 #### Overrides
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:20](https://github.com/Lua
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -176,7 +176,7 @@ If the node is not of the given type
 
 > **call**\<`T`\>(`actions`, `args`): `Promise`\<`T`\>
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:121](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L121)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:121](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L121)
 
 ##### Type Parameters
 
@@ -204,7 +204,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:121](https://github.com/Lu
 
 > **call**(`actions`, `args?`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:122](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L122)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:122](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L122)
 
 ##### Parameters
 
@@ -228,7 +228,7 @@ Defined in: [src/parser/classes/NavigationEndpoint.ts:122](https://github.com/Lu
 
 > **getPath**(`name`): `"/browse"` \| `"/player"` \| `"/search"` \| `"/next"` \| `"/live_chat/get_item_context_menu"` \| `undefined`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:105](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L105)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:105](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L105)
 
 Sometimes InnerTube does not return an API url, in that case the library should set it based on the name of the payload object.
 
@@ -252,7 +252,7 @@ This should be removed in the future.
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is NavigationEndpoint & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -290,7 +290,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -328,7 +328,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 
@@ -370,7 +370,7 @@ If the node does not have the key
 
 > **toURL**(): `string` \| `undefined`
 
-Defined in: [src/parser/classes/NavigationEndpoint.ts:143](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/NavigationEndpoint.ts#L143)
+Defined in: [src/parser/classes/NavigationEndpoint.ts:143](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/NavigationEndpoint.ts#L143)
 
 #### Returns
 

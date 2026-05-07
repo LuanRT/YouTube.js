@@ -4,7 +4,7 @@
 
 > **OAuth2ClientID** = `object`
 
-Defined in: [src/core/OAuth2.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L7)
+Defined in: [src/core/OAuth2.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/OAuth2.ts#L7)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/core/OAuth2.ts:7](https://github.com/LuanRT/YouTube.js/blob/073
 
 > **client\_id**: `string`
 
-Defined in: [src/core/OAuth2.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L8)
+Defined in: [src/core/OAuth2.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/OAuth2.ts#L8)
 
 ***
 
@@ -20,4 +20,4 @@ Defined in: [src/core/OAuth2.ts:8](https://github.com/LuanRT/YouTube.js/blob/073
 
 > **client\_secret**: `string`
 
-Defined in: [src/core/OAuth2.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/OAuth2.ts#L9)
+Defined in: [src/core/OAuth2.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/OAuth2.ts#L9)

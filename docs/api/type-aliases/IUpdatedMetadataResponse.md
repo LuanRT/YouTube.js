@@ -4,4 +4,4 @@
 
 > **IUpdatedMetadataResponse** = `Pick`\<[`IParsedResponse`](../interfaces/IParsedResponse.md), `"actions"` \| `"actions_memo"` \| `"continuation"`\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:148](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/ParsedResponse.ts#L148)
+Defined in: [src/parser/types/ParsedResponse.ts:148](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L148)

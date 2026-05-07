@@ -2,6 +2,6 @@
 
 # Type Alias: Duration
 
-> **Duration** = `"all"` \| `"short"` \| `"medium"` \| `"long"`
+> **Duration** = `"all"` \| `"over_twenty_mins"` \| `"under_three_mins"` \| `"three_to_twenty_mins"`
 
-Defined in: [src/types/Misc.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/Misc.ts#L9)
+Defined in: [src/types/Misc.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/Misc.ts#L9)

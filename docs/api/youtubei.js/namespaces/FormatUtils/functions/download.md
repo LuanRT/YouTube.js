@@ -2,9 +2,9 @@
 
 # Function: download()
 
-> **download**(`options`, `actions`, `playability_status?`, `streaming_data?`, `player?`, `cpn?`): `Promise`\<`ReadableStream`\<`Uint8Array`\>\>
+> **download**(`options`, `actions`, `playability_status?`, `streaming_data?`, `player?`, `cpn?`): `Promise`\<`ReadableStream`\<`Uint8Array`\<`ArrayBufferLike`\>\>\>
 
-Defined in: [src/utils/FormatUtils.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/FormatUtils.ts#L10)
+Defined in: [src/utils/FormatUtils.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/FormatUtils.ts#L10)
 
 ## Parameters
 
@@ -34,4 +34,4 @@ Defined in: [src/utils/FormatUtils.ts:10](https://github.com/LuanRT/YouTube.js/b
 
 ## Returns
 
-`Promise`\<`ReadableStream`\<`Uint8Array`\>\>
+`Promise`\<`ReadableStream`\<`Uint8Array`\<`ArrayBufferLike`\>\>\>

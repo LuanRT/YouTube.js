@@ -2,7 +2,7 @@
 
 # Interface: IRawPlayerConfig
 
-Defined in: [src/parser/types/RawResponse.ts:1546](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/RawResponse.ts#L1546)
+Defined in: [src/parser/types/RawResponse.ts:1546](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1546)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/RawResponse.ts:1546](https://github.com/LuanRT/You
 
 > **audioConfig**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1547](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/RawResponse.ts#L1547)
+Defined in: [src/parser/types/RawResponse.ts:1547](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1547)
 
 #### enablePerFormatLoudness
 
@@ -30,7 +30,7 @@ Defined in: [src/parser/types/RawResponse.ts:1547](https://github.com/LuanRT/You
 
 > **mediaCommonConfig**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1555](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/RawResponse.ts#L1555)
+Defined in: [src/parser/types/RawResponse.ts:1555](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1555)
 
 #### dynamicReadaheadConfig?
 
@@ -62,7 +62,7 @@ Defined in: [src/parser/types/RawResponse.ts:1555](https://github.com/LuanRT/You
 
 > **streamSelectionConfig**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1552](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/RawResponse.ts#L1552)
+Defined in: [src/parser/types/RawResponse.ts:1552](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1552)
 
 #### maxBitrate
 

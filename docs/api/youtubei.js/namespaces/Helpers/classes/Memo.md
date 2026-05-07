@@ -2,7 +2,7 @@
 
 # Class: Memo
 
-Defined in: [src/parser/helpers.ts:502](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L502)
+Defined in: [src/parser/helpers.ts:502](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L502)
 
 ## Extends
 
@@ -40,7 +40,7 @@ Defined in: node\_modules/typescript/lib/lib.es2015.collection.d.ts:49
 
 ##### iterable?
 
-`Iterable`\<readonly \[`string`, [`YTNode`](YTNode.md)[]\]\> | `null`
+`Iterable`\<readonly \[`string`, [`YTNode`](YTNode.md)[]\], `any`, `any`\> | `null`
 
 #### Returns
 
@@ -94,15 +94,15 @@ Defined in: node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:319
 
 ### \[iterator\]()
 
-> **\[iterator\]**(): `IterableIterator`\<\[`string`, [`YTNode`](YTNode.md)[]\]\>
+> **\[iterator\]**(): `MapIterator`\<\[`string`, [`YTNode`](YTNode.md)[]\]\>
 
-Defined in: node\_modules/typescript/lib/lib.es2015.iterable.d.ts:119
+Defined in: node\_modules/typescript/lib/lib.es2015.iterable.d.ts:143
 
 Returns an iterable of entries in the map.
 
 #### Returns
 
-`IterableIterator`\<\[`string`, [`YTNode`](YTNode.md)[]\]\>
+`MapIterator`\<\[`string`, [`YTNode`](YTNode.md)[]\]\>
 
 #### Inherited from
 
@@ -152,15 +152,15 @@ true if an element in the Map existed and has been removed, or false if the elem
 
 ### entries()
 
-> **entries**(): `IterableIterator`\<\[`string`, [`YTNode`](YTNode.md)[]\]\>
+> **entries**(): `MapIterator`\<\[`string`, [`YTNode`](YTNode.md)[]\]\>
 
-Defined in: node\_modules/typescript/lib/lib.es2015.iterable.d.ts:124
+Defined in: node\_modules/typescript/lib/lib.es2015.iterable.d.ts:148
 
 Returns an iterable of key, value pairs for every entry in the map.
 
 #### Returns
 
-`IterableIterator`\<\[`string`, [`YTNode`](YTNode.md)[]\]\>
+`MapIterator`\<\[`string`, [`YTNode`](YTNode.md)[]\]\>
 
 #### Inherited from
 
@@ -228,7 +228,7 @@ Returns the element associated with the specified key. If no element is associat
 
 > **getType**\<`T`, `K`\>(`types`): [`ObservedArray`](../type-aliases/ObservedArray.md)\<`InstanceType`\<`K`\[`number`\]\>\>
 
-Defined in: [src/parser/helpers.ts:503](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L503)
+Defined in: [src/parser/helpers.ts:503](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L503)
 
 ##### Type Parameters
 
@@ -254,7 +254,7 @@ Defined in: [src/parser/helpers.ts:503](https://github.com/LuanRT/YouTube.js/blo
 
 > **getType**\<`T`, `K`\>(...`types`): [`ObservedArray`](../type-aliases/ObservedArray.md)\<`InstanceType`\<`K`\[`number`\]\>\>
 
-Defined in: [src/parser/helpers.ts:504](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L504)
+Defined in: [src/parser/helpers.ts:504](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L504)
 
 ##### Type Parameters
 
@@ -304,15 +304,15 @@ boolean indicating whether an element with the specified key exists or not.
 
 ### keys()
 
-> **keys**(): `IterableIterator`\<`string`\>
+> **keys**(): `MapIterator`\<`string`\>
 
-Defined in: node\_modules/typescript/lib/lib.es2015.iterable.d.ts:129
+Defined in: node\_modules/typescript/lib/lib.es2015.iterable.d.ts:153
 
 Returns an iterable of keys in the map
 
 #### Returns
 
-`IterableIterator`\<`string`\>
+`MapIterator`\<`string`\>
 
 #### Inherited from
 
@@ -350,15 +350,15 @@ Adds a new element with a specified key and value to the Map. If an element with
 
 ### values()
 
-> **values**(): `IterableIterator`\<[`YTNode`](YTNode.md)[]\>
+> **values**(): `MapIterator`\<[`YTNode`](YTNode.md)[]\>
 
-Defined in: node\_modules/typescript/lib/lib.es2015.iterable.d.ts:134
+Defined in: node\_modules/typescript/lib/lib.es2015.iterable.d.ts:158
 
 Returns an iterable of values in the map
 
 #### Returns
 
-`IterableIterator`\<[`YTNode`](YTNode.md)[]\>
+`MapIterator`\<[`YTNode`](YTNode.md)[]\>
 
 #### Inherited from
 
@@ -370,7 +370,7 @@ Returns an iterable of values in the map
 
 > `static` **groupBy**\<`K`, `T`\>(`items`, `keySelector`): `Map`\<`K`, `T`[]\>
 
-Defined in: node\_modules/typescript/lib/lib.esnext.collection.d.ts:25
+Defined in: node\_modules/typescript/lib/lib.es2024.collection.d.ts:25
 
 Groups members of an iterable according to the return value of the passed callback.
 

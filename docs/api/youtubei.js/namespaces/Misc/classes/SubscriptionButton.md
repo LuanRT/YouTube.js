@@ -2,7 +2,7 @@
 
 # Class: SubscriptionButton
 
-Defined in: [src/parser/classes/misc/SubscriptionButton.ts:4](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/SubscriptionButton.ts#L4)
+Defined in: [src/parser/classes/misc/SubscriptionButton.ts:4](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/SubscriptionButton.ts#L4)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/SubscriptionButton.ts:4](https://github.com
 
 > **new SubscriptionButton**(`data`): `SubscriptionButton`
 
-Defined in: [src/parser/classes/misc/SubscriptionButton.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/SubscriptionButton.ts#L11)
+Defined in: [src/parser/classes/misc/SubscriptionButton.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/SubscriptionButton.ts#L11)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/classes/misc/SubscriptionButton.ts:11](https://github.co
 
 > **subscribed**: `boolean`
 
-Defined in: [src/parser/classes/misc/SubscriptionButton.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/SubscriptionButton.ts#L8)
+Defined in: [src/parser/classes/misc/SubscriptionButton.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/SubscriptionButton.ts#L8)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/misc/SubscriptionButton.ts:8](https://github.com
 
 > `optional` **subscription\_type**: `"FREE"` \| `"PAID"` \| `"UNAVAILABLE"`
 
-Defined in: [src/parser/classes/misc/SubscriptionButton.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/SubscriptionButton.ts#L9)
+Defined in: [src/parser/classes/misc/SubscriptionButton.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/SubscriptionButton.ts#L9)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/misc/SubscriptionButton.ts:9](https://github.com
 
 > **text**: [`Text`](Text.md)
 
-Defined in: [src/parser/classes/misc/SubscriptionButton.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/SubscriptionButton.ts#L7)
+Defined in: [src/parser/classes/misc/SubscriptionButton.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/SubscriptionButton.ts#L7)
 
 ***
 
@@ -52,4 +52,4 @@ Defined in: [src/parser/classes/misc/SubscriptionButton.ts:7](https://github.com
 
 > `static` **type**: `string` = `'SubscriptionButton'`
 
-Defined in: [src/parser/classes/misc/SubscriptionButton.ts:5](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/misc/SubscriptionButton.ts#L5)
+Defined in: [src/parser/classes/misc/SubscriptionButton.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/SubscriptionButton.ts#L5)

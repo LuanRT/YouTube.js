@@ -4,7 +4,7 @@
 
 > `const` **STREAM\_HEADERS**: `object`
 
-Defined in: [src/utils/Constants.ts:115](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/Constants.ts#L115)
+Defined in: [src/utils/Constants.ts:124](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/Constants.ts#L124)
 
 ## Type Declaration
 

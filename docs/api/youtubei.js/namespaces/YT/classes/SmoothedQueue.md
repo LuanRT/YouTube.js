@@ -2,7 +2,7 @@
 
 # Class: SmoothedQueue
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:46](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L46)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:46](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L46)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:46](https://github.com/LuanRT/Y
 
 > **new SmoothedQueue**(): `SmoothedQueue`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:55](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L55)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:55](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L55)
 
 #### Returns
 
@@ -24,7 +24,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:55](https://github.com/LuanRT/Y
 
 > **get** **action\_queue**(): [`YTNode`](../../Helpers/classes/YTNode.md)[][]
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:141](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L141)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:141](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L141)
 
 ##### Returns
 
@@ -38,7 +38,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:141](https://github.com/LuanRT/
 
 > **get** **callback**(): (`actions`) => `void` \| `null`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:137](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L137)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:137](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L137)
 
 ##### Returns
 
@@ -48,7 +48,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:137](https://github.com/LuanRT/
 
 > **set** **callback**(`cb`): `void`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:133](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L133)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:133](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L133)
 
 ##### Parameters
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:133](https://github.com/LuanRT/
 
 > **get** **estimated\_update\_interval**(): `number` \| `null`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:145](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L145)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:145](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L145)
 
 ##### Returns
 
@@ -82,7 +82,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:145](https://github.com/LuanRT/
 
 > **get** **last\_update\_time**(): `number` \| `null`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:149](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L149)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:149](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L149)
 
 ##### Returns
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:149](https://github.com/LuanRT/
 
 > **get** **next\_update\_id**(): `any`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:153](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L153)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:153](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L153)
 
 ##### Returns
 
@@ -110,7 +110,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:153](https://github.com/LuanRT/
 
 > **get** **poll\_response\_delay\_queue**(): `DelayQueue`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:157](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L157)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:157](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L157)
 
 ##### Returns
 
@@ -122,7 +122,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:157](https://github.com/LuanRT/
 
 > **clear**(): `void`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:125](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L125)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:125](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L125)
 
 #### Returns
 
@@ -134,7 +134,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:125](https://github.com/LuanRT/
 
 > **emitSmoothedActions**(): `void`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:92](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L92)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:92](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L92)
 
 #### Returns
 
@@ -146,7 +146,7 @@ Defined in: [src/parser/youtube/SmoothedQueue.ts:92](https://github.com/LuanRT/Y
 
 > **enqueueActionGroup**(`group`): `void`
 
-Defined in: [src/parser/youtube/SmoothedQueue.ts:64](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/SmoothedQueue.ts#L64)
+Defined in: [src/parser/youtube/SmoothedQueue.ts:64](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/SmoothedQueue.ts#L64)
 
 #### Parameters
 

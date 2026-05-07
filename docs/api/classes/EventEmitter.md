@@ -2,7 +2,7 @@
 
 # Class: EventEmitter
 
-Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L3)
+Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/EventEmitterLike.ts#L3)
 
 ## Extends
 
@@ -19,7 +19,7 @@ Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.
 
 > **new EventEmitter**(): `EventEmitterLike`
 
-Defined in: [src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L6)
+Defined in: [src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/EventEmitterLike.ts#L6)
 
 #### Returns
 
@@ -35,21 +35,9 @@ Defined in: [src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.
 
 > **addEventListener**(`type`, `callback`, `options?`): `void`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8256
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11569
 
-Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-
-The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-
-When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-
-When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-
-When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-
-If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-
-The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+The **`addEventListener()`** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
 
 [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 
@@ -81,9 +69,9 @@ The event listener is appended to target's event listener list and is not append
 
 > **dispatchEvent**(`event`): `boolean`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8262
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11575
 
-Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+The **`dispatchEvent()`** method of the EventTarget sends an Event to the object, (synchronously) invoking the affected event listeners in the appropriate order.
 
 [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 
@@ -107,7 +95,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 > **emit**(`type`, ...`args`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L10)
+Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/EventEmitterLike.ts#L10)
 
 #### Parameters
 
@@ -129,7 +117,7 @@ Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube
 
 > **off**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L40)
+Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/EventEmitterLike.ts#L40)
 
 #### Parameters
 
@@ -151,7 +139,7 @@ Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube
 
 > **on**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L15)
+Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/EventEmitterLike.ts#L15)
 
 #### Parameters
 
@@ -173,7 +161,7 @@ Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube
 
 > **once**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L27)
+Defined in: [src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/EventEmitterLike.ts#L27)
 
 #### Parameters
 
@@ -195,9 +183,9 @@ Defined in: [src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube
 
 > **removeEventListener**(`type`, `callback`, `options?`): `void`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8268
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11581
 
-Removes the event listener in target's event listener list with the same type, callback, and options.
+The **`removeEventListener()`** method of the EventTarget interface removes an event listener previously registered with EventTarget.addEventListener() from the target.
 
 [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 

@@ -2,7 +2,7 @@
 
 # Class: PlaylistPanelVideo
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L9)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L9)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:9](https://github.com/Luan
 
 > **new PlaylistPanelVideo**(`data`): `PlaylistPanelVideo`
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:42](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L42)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:42](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L42)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:42](https://github.com/Lua
 
 > `optional` **album**: `object`
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L25)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L25)
 
 #### endpoint?
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:25](https://github.com/Lua
 
 > `optional` **artists**: `object`[]
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:32](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L32)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:32](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L32)
 
 #### channel\_id?
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:32](https://github.com/Lua
 
 > **author**: `string`
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L23)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L23)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:23](https://github.com/Lua
 
 > **badges**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:38](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L38)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:38](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L38)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:38](https://github.com/Lua
 
 > **duration**: `object`
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L18)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L18)
 
 #### seconds
 
@@ -112,7 +112,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:18](https://github.com/Lua
 
 > **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L14)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L14)
 
 ***
 
@@ -120,7 +120,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:14](https://github.com/Lua
 
 > **menu**: [`YTNode`](../../Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:39](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L39)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:39](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L39)
 
 ***
 
@@ -128,7 +128,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:39](https://github.com/Lua
 
 > **selected**: `boolean`
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L15)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L15)
 
 ***
 
@@ -136,7 +136,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:15](https://github.com/Lua
 
 > `optional` **set\_video\_id**: `string`
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L40)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L40)
 
 ***
 
@@ -144,7 +144,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:40](https://github.com/Lua
 
 > **thumbnail**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L13)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L13)
 
 ***
 
@@ -152,7 +152,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:13](https://github.com/Lua
 
 > **title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L12)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L12)
 
 ***
 
@@ -160,7 +160,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:12](https://github.com/Lua
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -172,7 +172,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **video\_id**: `string`
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L16)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L16)
 
 ***
 
@@ -180,7 +180,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:16](https://github.com/Lua
 
 > `static` **type**: `string` = `'PlaylistPanelVideo'`
 
-Defined in: [src/parser/classes/PlaylistPanelVideo.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PlaylistPanelVideo.ts#L10)
+Defined in: [src/parser/classes/PlaylistPanelVideo.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PlaylistPanelVideo.ts#L10)
 
 #### Overrides
 
@@ -192,7 +192,7 @@ Defined in: [src/parser/classes/PlaylistPanelVideo.ts:10](https://github.com/Lua
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -234,7 +234,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is PlaylistPanelVideo & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -272,7 +272,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -310,7 +310,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

@@ -4,7 +4,7 @@
 
 > **CreateCommentRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:179](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L179)
+Defined in: [src/parser/types/CommandEndpoints.ts:179](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L179)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:179](https://github.com/LuanRT
 
 > `optional` **accessRestrictions**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:186](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L186)
+Defined in: [src/parser/types/CommandEndpoints.ts:186](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L186)
 
 #### restriction
 
@@ -24,7 +24,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:186](https://github.com/LuanRT
 
 > `optional` **botguardResponse**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:187](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L187)
+Defined in: [src/parser/types/CommandEndpoints.ts:187](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L187)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:187](https://github.com/LuanRT
 
 > `optional` **commentText**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:181](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L181)
+Defined in: [src/parser/types/CommandEndpoints.ts:181](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L181)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:181](https://github.com/LuanRT
 
 > `optional` **createCommentParams**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:180](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L180)
+Defined in: [src/parser/types/CommandEndpoints.ts:180](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L180)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:180](https://github.com/LuanRT
 
 > `optional` **imageAttachment**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:184](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L184)
+Defined in: [src/parser/types/CommandEndpoints.ts:184](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L184)
 
 #### encryptedBlobId
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:184](https://github.com/LuanRT
 
 > `optional` **pollAttachment**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:183](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L183)
+Defined in: [src/parser/types/CommandEndpoints.ts:183](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L183)
 
 #### choices
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:183](https://github.com/LuanRT
 
 > `optional` **sharedPostAttachment**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:185](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L185)
+Defined in: [src/parser/types/CommandEndpoints.ts:185](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L185)
 
 #### postId
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:185](https://github.com/LuanRT
 
 > `optional` **videoAttachment**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:182](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/types/CommandEndpoints.ts#L182)
+Defined in: [src/parser/types/CommandEndpoints.ts:182](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L182)
 
 #### videoId
 

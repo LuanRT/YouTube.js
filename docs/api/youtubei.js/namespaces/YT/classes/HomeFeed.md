@@ -2,7 +2,7 @@
 
 # Class: HomeFeed
 
-Defined in: [src/parser/youtube/HomeFeed.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/HomeFeed.ts#L10)
+Defined in: [src/parser/youtube/HomeFeed.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/HomeFeed.ts#L10)
 
 ## Extends
 
@@ -12,9 +12,9 @@ Defined in: [src/parser/youtube/HomeFeed.ts:10](https://github.com/LuanRT/YouTub
 
 ### Constructor
 
-> **new HomeFeed**(`actions`, `data`, `already_parsed`): `HomeFeed`
+> **new HomeFeed**(`actions`, `data`, `already_parsed?`): `HomeFeed`
 
-Defined in: [src/parser/youtube/HomeFeed.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/HomeFeed.ts#L14)
+Defined in: [src/parser/youtube/HomeFeed.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/HomeFeed.ts#L14)
 
 #### Parameters
 
@@ -26,7 +26,7 @@ Defined in: [src/parser/youtube/HomeFeed.ts:14](https://github.com/LuanRT/YouTub
 
 [`ApiResponse`](../../../../interfaces/ApiResponse.md) | [`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)
 
-##### already\_parsed
+##### already\_parsed?
 
 `boolean` = `false`
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/youtube/HomeFeed.ts:14](https://github.com/LuanRT/YouTub
 
 > `optional` **contents**: [`RichGrid`](../../YTNodes/classes/RichGrid.md) \| [`AppendContinuationItemsAction`](../../../../classes/AppendContinuationItemsAction.md) \| [`ReloadContinuationItemsCommand`](../../../../classes/ReloadContinuationItemsCommand.md)
 
-Defined in: [src/parser/youtube/HomeFeed.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/HomeFeed.ts#L11)
+Defined in: [src/parser/youtube/HomeFeed.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/HomeFeed.ts#L11)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/youtube/HomeFeed.ts:11](https://github.com/LuanRT/YouTub
 
 > `optional` **header**: [`FeedTabbedHeader`](../../YTNodes/classes/FeedTabbedHeader.md)
 
-Defined in: [src/parser/youtube/HomeFeed.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/HomeFeed.ts#L12)
+Defined in: [src/parser/youtube/HomeFeed.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/HomeFeed.ts#L12)
 
 ## Accessors
 
@@ -62,7 +62,7 @@ Defined in: [src/parser/youtube/HomeFeed.ts:12](https://github.com/LuanRT/YouTub
 
 > **get** **actions**(): [`Actions`](../../../../classes/Actions.md)
 
-Defined in: [src/core/mixins/Feed.ts:181](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L181)
+Defined in: [src/core/mixins/Feed.ts:181](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L181)
 
 ##### Returns
 
@@ -80,7 +80,7 @@ Defined in: [src/core/mixins/Feed.ts:181](https://github.com/LuanRT/YouTube.js/b
 
 > **get** **channels**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Channel`](../../YTNodes/classes/Channel.md) \| [`GridChannel`](../../YTNodes/classes/GridChannel.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:126](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L126)
+Defined in: [src/core/mixins/Feed.ts:127](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L127)
 
 Get all the channels in the feed
 
@@ -94,23 +94,23 @@ Get all the channels in the feed
 
 ***
 
-### filter\_chips
+### filter\_nodes
 
 #### Get Signature
 
-> **get** **filter\_chips**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ChipCloudChip`](../../YTNodes/classes/ChipCloudChip.md)\>
+> **get** **filter\_nodes**(): `FilterNodes`
 
-Defined in: [src/core/mixins/FilterableFeed.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/FilterableFeed.ts#L20)
+Defined in: [src/core/mixins/FilterableFeed.ts:31](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/FilterableFeed.ts#L31)
 
-Returns the filter chips.
+Returns the InnerTube renderer nodes representing filters.
 
 ##### Returns
 
-[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ChipCloudChip`](../../YTNodes/classes/ChipCloudChip.md)\>
+`FilterNodes`
 
 #### Inherited from
 
-[`FilterableFeed`](../../Mixins/classes/FilterableFeed.md).[`filter_chips`](../../Mixins/classes/FilterableFeed.md#filter_chips)
+[`FilterableFeed`](../../Mixins/classes/FilterableFeed.md).[`filter_nodes`](../../Mixins/classes/FilterableFeed.md#filter_nodes)
 
 ***
 
@@ -120,9 +120,9 @@ Returns the filter chips.
 
 > **get** **filters**(): `string`[]
 
-Defined in: [src/core/mixins/FilterableFeed.ts:38](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/FilterableFeed.ts#L38)
+Defined in: [src/core/mixins/FilterableFeed.ts:78](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/FilterableFeed.ts#L78)
 
-Returns available filters.
+Returns the available primary filters as strings.
 
 ##### Returns
 
@@ -140,7 +140,7 @@ Returns available filters.
 
 > **get** **has\_continuation**(): `boolean`
 
-Defined in: [src/core/mixins/Feed.ts:195](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L195)
+Defined in: [src/core/mixins/Feed.ts:195](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L195)
 
 Checks if the feed has continuation.
 
@@ -160,7 +160,7 @@ Checks if the feed has continuation.
 
 > **get** **memo**(): [`Memo`](../../Helpers/classes/Memo.md)
 
-Defined in: [src/core/mixins/Feed.ts:137](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L137)
+Defined in: [src/core/mixins/Feed.ts:138](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L138)
 
 ##### Returns
 
@@ -178,7 +178,7 @@ Defined in: [src/core/mixins/Feed.ts:137](https://github.com/LuanRT/YouTube.js/b
 
 > **get** **page**(): `T`
 
-Defined in: [src/core/mixins/Feed.ts:188](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L188)
+Defined in: [src/core/mixins/Feed.ts:188](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L188)
 
 Get the original page data
 
@@ -198,7 +198,7 @@ Get the original page data
 
 > **get** **page\_contents**(): [`SectionList`](../../YTNodes/classes/SectionList.md) \| [`MusicQueue`](../../YTNodes/classes/MusicQueue.md) \| [`RichGrid`](../../YTNodes/classes/RichGrid.md) \| [`ReloadContinuationItemsCommand`](../../../../classes/ReloadContinuationItemsCommand.md)
 
-Defined in: [src/core/mixins/Feed.ts:144](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L144)
+Defined in: [src/core/mixins/Feed.ts:145](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L145)
 
 Returns contents from the page.
 
@@ -218,7 +218,7 @@ Returns contents from the page.
 
 > **get** **playlists**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:133](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L133)
+Defined in: [src/core/mixins/Feed.ts:134](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L134)
 
 Get all playlists in the feed
 
@@ -238,7 +238,7 @@ Get all playlists in the feed
 
 > **get** **posts**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`BackstagePost`](../../YTNodes/classes/BackstagePost.md) \| [`Post`](../../YTNodes/classes/Post.md) \| [`SharedPost`](../../YTNodes/classes/SharedPost.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:119](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L119)
+Defined in: [src/core/mixins/Feed.ts:120](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L120)
 
 Get all the community posts in the feed
 
@@ -258,7 +258,7 @@ Get all the community posts in the feed
 
 > **get** **secondary\_contents**(): [`SectionList`](../../YTNodes/classes/SectionList.md) \| [`BrowseFeedActions`](../../YTNodes/classes/BrowseFeedActions.md) \| [`ProfileColumn`](../../YTNodes/classes/ProfileColumn.md) \| [`SecondarySearchContainer`](../../YTNodes/classes/SecondarySearchContainer.md) \| `null`
 
-Defined in: [src/core/mixins/Feed.ts:169](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L169)
+Defined in: [src/core/mixins/Feed.ts:169](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L169)
 
 Returns secondary contents from the page.
 
@@ -272,13 +272,33 @@ Returns secondary contents from the page.
 
 ***
 
+### secondary\_filters
+
+#### Get Signature
+
+> **get** **secondary\_filters**(): `string`[]
+
+Defined in: [src/core/mixins/FilterableFeed.ts:92](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/FilterableFeed.ts#L92)
+
+Returns the available secondary filters as strings.
+
+##### Returns
+
+`string`[]
+
+#### Inherited from
+
+[`FilterableFeed`](../../Mixins/classes/FilterableFeed.md).[`secondary_filters`](../../Mixins/classes/FilterableFeed.md#secondary_filters)
+
+***
+
 ### shelves
 
 #### Get Signature
 
 > **get** **shelves**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ReelShelf`](../../YTNodes/classes/ReelShelf.md) \| [`RichShelf`](../../YTNodes/classes/RichShelf.md) \| [`Shelf`](../../YTNodes/classes/Shelf.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:155](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L155)
+Defined in: [src/core/mixins/Feed.ts:155](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L155)
 
 Returns all segments/sections from the page.
 
@@ -296,15 +316,15 @@ Returns all segments/sections from the page.
 
 #### Get Signature
 
-> **get** **videos**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
+> **get** **videos**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:112](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L112)
+Defined in: [src/core/mixins/Feed.ts:113](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L113)
 
 Get all the videos in the feed
 
 ##### Returns
 
-[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
+[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
 
 #### Inherited from
 
@@ -316,7 +336,7 @@ Get all the videos in the feed
 
 > **applyFilter**(`filter`): `Promise`\<`HomeFeed`\>
 
-Defined in: [src/parser/youtube/HomeFeed.ts:24](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/HomeFeed.ts#L24)
+Defined in: [src/parser/youtube/HomeFeed.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/HomeFeed.ts#L24)
 
 Applies given filter to the feed. Use [filters](HashtagFeed.md#filters) to get available filters.
 
@@ -338,7 +358,7 @@ Filter to apply.
 
 > **getContinuation**(): `Promise`\<`HomeFeed`\>
 
-Defined in: [src/parser/youtube/HomeFeed.ts:32](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/HomeFeed.ts#L32)
+Defined in: [src/parser/youtube/HomeFeed.ts:32](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/HomeFeed.ts#L32)
 
 Retrieves next batch of contents.
 
@@ -356,7 +376,7 @@ Retrieves next batch of contents.
 
 > **getContinuationData**(): `Promise`\<[`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md) \| `undefined`\>
 
-Defined in: [src/core/mixins/Feed.ts:202](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L202)
+Defined in: [src/core/mixins/Feed.ts:202](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L202)
 
 Retrieves continuation data as it is.
 
@@ -372,9 +392,9 @@ Retrieves continuation data as it is.
 
 ### getFilteredFeed()
 
-> **getFilteredFeed**(`filter`): `Promise`\<[`Feed`](../../Mixins/classes/Feed.md)\<[`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)\>\>
+> **getFilteredFeed**(`filter`, `secondaryFilter?`): `Promise`\<[`Feed`](../../Mixins/classes/Feed.md)\<[`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)\>\>
 
-Defined in: [src/core/mixins/FilterableFeed.ts:45](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/FilterableFeed.ts#L45)
+Defined in: [src/core/mixins/FilterableFeed.ts:99](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/FilterableFeed.ts#L99)
 
 Applies given filter and returns a new [Feed](../../Mixins/classes/Feed.md) object.
 
@@ -382,7 +402,11 @@ Applies given filter and returns a new [Feed](../../Mixins/classes/Feed.md) obje
 
 ##### filter
 
-`string` | [`ChipCloudChip`](../../YTNodes/classes/ChipCloudChip.md)
+`string` | [`ListItemView`](../../YTNodes/classes/ListItemView.md) | [`ChipCloudChip`](../../YTNodes/classes/ChipCloudChip.md) | [`ChipView`](../../YTNodes/classes/ChipView.md)
+
+##### secondaryFilter?
+
+`string` | [`ChipView`](../../YTNodes/classes/ChipView.md)
 
 #### Returns
 
@@ -398,7 +422,7 @@ Applies given filter and returns a new [Feed](../../Mixins/classes/Feed.md) obje
 
 > **getShelf**(`title`): [`ReelShelf`](../../YTNodes/classes/ReelShelf.md) \| [`RichShelf`](../../YTNodes/classes/RichShelf.md) \| [`Shelf`](../../YTNodes/classes/Shelf.md) \| `undefined`
 
-Defined in: [src/core/mixins/Feed.ts:162](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L162)
+Defined in: [src/core/mixins/Feed.ts:162](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L162)
 
 Finds shelf by title.
 
@@ -422,7 +446,7 @@ Finds shelf by title.
 
 > `static` **getPlaylistsFromMemo**(`memo`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:94](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L94)
+Defined in: [src/core/mixins/Feed.ts:95](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L95)
 
 Get all playlists on a given page via memo
 
@@ -444,9 +468,9 @@ Get all playlists on a given page via memo
 
 ### getVideosFromMemo()
 
-> `static` **getVideosFromMemo**(`memo`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
+> `static` **getVideosFromMemo**(`memo`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:78](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/mixins/Feed.ts#L78)
+Defined in: [src/core/mixins/Feed.ts:78](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/mixins/Feed.ts#L78)
 
 Get all videos on a given page via memo
 
@@ -458,7 +482,7 @@ Get all videos on a given page via memo
 
 #### Returns
 
-[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
+[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
 
 #### Inherited from
 

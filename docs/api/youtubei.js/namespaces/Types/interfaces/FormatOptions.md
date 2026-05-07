@@ -2,7 +2,7 @@
 
 # Interface: FormatOptions
 
-Defined in: [src/types/FormatUtils.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/FormatUtils.ts#L7)
+Defined in: [src/types/FormatUtils.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/FormatUtils.ts#L7)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/types/FormatUtils.ts:7](https://github.com/LuanRT/YouTube.js/bl
 
 > `optional` **client**: [`InnerTubeClient`](../type-aliases/InnerTubeClient.md)
 
-Defined in: [src/types/GetVideoInfoOptions.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/GetVideoInfoOptions.ts#L7)
+Defined in: [src/types/GetVideoInfoOptions.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/GetVideoInfoOptions.ts#L7)
 
 InnerTube client.
 
@@ -32,7 +32,7 @@ InnerTube client.
 
 > `optional` **codec**: `string`
 
-Defined in: [src/types/FormatUtils.ts:31](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/FormatUtils.ts#L31)
+Defined in: [src/types/FormatUtils.ts:31](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/FormatUtils.ts#L31)
 
 Video or audio codec, e.g. 'avc', 'vp9', 'av01' for video, 'opus', 'mp4a' for audio
 
@@ -42,7 +42,7 @@ Video or audio codec, e.g. 'avc', 'vp9', 'av01' for video, 'opus', 'mp4a' for au
 
 > `optional` **format**: `string`
 
-Defined in: [src/types/FormatUtils.ts:27](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/FormatUtils.ts#L27)
+Defined in: [src/types/FormatUtils.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/FormatUtils.ts#L27)
 
 File format, use 'any' to download any format
 
@@ -52,7 +52,7 @@ File format, use 'any' to download any format
 
 > `optional` **itag**: `number`
 
-Defined in: [src/types/FormatUtils.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/FormatUtils.ts#L11)
+Defined in: [src/types/FormatUtils.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/FormatUtils.ts#L11)
 
 Video or audio itag
 
@@ -62,7 +62,7 @@ Video or audio itag
 
 > `optional` **language**: `string`
 
-Defined in: [src/types/FormatUtils.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/FormatUtils.ts#L23)
+Defined in: [src/types/FormatUtils.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/FormatUtils.ts#L23)
 
 Language code, defaults to 'original'.
 
@@ -72,7 +72,7 @@ Language code, defaults to 'original'.
 
 > `optional` **po\_token**: `string`
 
-Defined in: [src/types/GetVideoInfoOptions.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/GetVideoInfoOptions.ts#L12)
+Defined in: [src/types/GetVideoInfoOptions.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/GetVideoInfoOptions.ts#L12)
 
 Proof of Origin token, bound to the video ID being requested.
 If not provided, session bound token will be used.
@@ -87,7 +87,7 @@ If not provided, session bound token will be used.
 
 > `optional` **quality**: `string`
 
-Defined in: [src/types/FormatUtils.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/FormatUtils.ts#L15)
+Defined in: [src/types/FormatUtils.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/FormatUtils.ts#L15)
 
 Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency'.
 
@@ -97,6 +97,6 @@ Video quality; 360p, 720p, 1080p, etc... also accepts 'best' and 'bestefficiency
 
 > `optional` **type**: `"video"` \| `"audio"` \| `"video+audio"`
 
-Defined in: [src/types/FormatUtils.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/types/FormatUtils.ts#L19)
+Defined in: [src/types/FormatUtils.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/FormatUtils.ts#L19)
 
 Download type, can be: video, audio or video+audio

@@ -2,7 +2,7 @@
 
 # Class: TimedMarkerDecoration
 
-Defined in: [src/parser/classes/TimedMarkerDecoration.ts:5](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/TimedMarkerDecoration.ts#L5)
+Defined in: [src/parser/classes/TimedMarkerDecoration.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/TimedMarkerDecoration.ts#L5)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/TimedMarkerDecoration.ts:5](https://github.com/L
 
 > **new TimedMarkerDecoration**(`data`): `TimedMarkerDecoration`
 
-Defined in: [src/parser/classes/TimedMarkerDecoration.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/TimedMarkerDecoration.ts#L14)
+Defined in: [src/parser/classes/TimedMarkerDecoration.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/TimedMarkerDecoration.ts#L14)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/TimedMarkerDecoration.ts:14](https://github.com/
 
 > **decoration\_time\_millis**: `number`
 
-Defined in: [src/parser/classes/TimedMarkerDecoration.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/TimedMarkerDecoration.ts#L10)
+Defined in: [src/parser/classes/TimedMarkerDecoration.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/TimedMarkerDecoration.ts#L10)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/TimedMarkerDecoration.ts:10](https://github.com/
 
 > **icon**: `string`
 
-Defined in: [src/parser/classes/TimedMarkerDecoration.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/TimedMarkerDecoration.ts#L12)
+Defined in: [src/parser/classes/TimedMarkerDecoration.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/TimedMarkerDecoration.ts#L12)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/TimedMarkerDecoration.ts:12](https://github.com/
 
 > **label**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/TimedMarkerDecoration.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/TimedMarkerDecoration.ts#L11)
+Defined in: [src/parser/classes/TimedMarkerDecoration.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/TimedMarkerDecoration.ts#L11)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/TimedMarkerDecoration.ts:11](https://github.com/
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **visible\_time\_range\_end\_millis**: `number`
 
-Defined in: [src/parser/classes/TimedMarkerDecoration.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/TimedMarkerDecoration.ts#L9)
+Defined in: [src/parser/classes/TimedMarkerDecoration.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/TimedMarkerDecoration.ts#L9)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/classes/TimedMarkerDecoration.ts:9](https://github.com/L
 
 > **visible\_time\_range\_start\_millis**: `number`
 
-Defined in: [src/parser/classes/TimedMarkerDecoration.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/TimedMarkerDecoration.ts#L8)
+Defined in: [src/parser/classes/TimedMarkerDecoration.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/TimedMarkerDecoration.ts#L8)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/classes/TimedMarkerDecoration.ts:8](https://github.com/L
 
 > `static` **type**: `string` = `'TimedMarkerDecoration'`
 
-Defined in: [src/parser/classes/TimedMarkerDecoration.ts:6](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/TimedMarkerDecoration.ts#L6)
+Defined in: [src/parser/classes/TimedMarkerDecoration.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/TimedMarkerDecoration.ts#L6)
 
 #### Overrides
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/TimedMarkerDecoration.ts:6](https://github.com/L
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -142,7 +142,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is TimedMarkerDecoration & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -180,7 +180,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -218,7 +218,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

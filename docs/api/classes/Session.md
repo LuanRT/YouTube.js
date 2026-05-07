@@ -2,7 +2,7 @@
 
 # Class: Session
 
-Defined in: [src/core/Session.ts:251](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L251)
+Defined in: [src/core/Session.ts:257](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L257)
 
 Represents an InnerTube session. This holds all the data needed to make requests to YouTube.
 
@@ -16,7 +16,7 @@ Represents an InnerTube session. This holds all the data needed to make requests
 
 > **new Session**(`context`, `api_key`, `api_version`, `account_index`, `config_data?`, `player?`, `cookie?`, `fetch?`, `cache?`, `po_token?`): `Session`
 
-Defined in: [src/core/Session.ts:258](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L258)
+Defined in: [src/core/Session.ts:264](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L264)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ Defined in: [src/core/Session.ts:258](https://github.com/LuanRT/YouTube.js/blob/
 
 > **account\_index**: `number`
 
-Defined in: [src/core/Session.ts:262](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L262)
+Defined in: [src/core/Session.ts:268](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L268)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [src/core/Session.ts:262](https://github.com/LuanRT/YouTube.js/blob/
 
 > **actions**: [`Actions`](Actions.md)
 
-Defined in: [src/core/Session.ts:255](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L255)
+Defined in: [src/core/Session.ts:261](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L261)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: [src/core/Session.ts:255](https://github.com/LuanRT/YouTube.js/blob/
 
 > **api\_key**: `string`
 
-Defined in: [src/core/Session.ts:260](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L260)
+Defined in: [src/core/Session.ts:266](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L266)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: [src/core/Session.ts:260](https://github.com/LuanRT/YouTube.js/blob/
 
 > **api\_version**: `string`
 
-Defined in: [src/core/Session.ts:261](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L261)
+Defined in: [src/core/Session.ts:267](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L267)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: [src/core/Session.ts:261](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **cache**: [`ICache`](../youtubei.js/namespaces/Types/interfaces/ICache.md)
 
-Defined in: [src/core/Session.ts:267](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L267)
+Defined in: [src/core/Session.ts:273](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L273)
 
 ***
 
@@ -114,7 +114,7 @@ Defined in: [src/core/Session.ts:267](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **config\_data**: `string`
 
-Defined in: [src/core/Session.ts:263](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L263)
+Defined in: [src/core/Session.ts:269](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L269)
 
 ***
 
@@ -122,7 +122,7 @@ Defined in: [src/core/Session.ts:263](https://github.com/LuanRT/YouTube.js/blob/
 
 > **context**: [`Context`](../type-aliases/Context.md)
 
-Defined in: [src/core/Session.ts:259](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L259)
+Defined in: [src/core/Session.ts:265](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L265)
 
 ***
 
@@ -130,7 +130,7 @@ Defined in: [src/core/Session.ts:259](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **cookie**: `string`
 
-Defined in: [src/core/Session.ts:265](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L265)
+Defined in: [src/core/Session.ts:271](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L271)
 
 ***
 
@@ -138,7 +138,7 @@ Defined in: [src/core/Session.ts:265](https://github.com/LuanRT/YouTube.js/blob/
 
 > **http**: [`HTTPClient`](HTTPClient.md)
 
-Defined in: [src/core/Session.ts:253](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L253)
+Defined in: [src/core/Session.ts:259](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L259)
 
 ***
 
@@ -146,7 +146,7 @@ Defined in: [src/core/Session.ts:253](https://github.com/LuanRT/YouTube.js/blob/
 
 > **logged\_in**: `boolean`
 
-Defined in: [src/core/Session.ts:254](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L254)
+Defined in: [src/core/Session.ts:260](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L260)
 
 ***
 
@@ -154,7 +154,7 @@ Defined in: [src/core/Session.ts:254](https://github.com/LuanRT/YouTube.js/blob/
 
 > **oauth**: [`OAuth2`](OAuth2.md)
 
-Defined in: [src/core/Session.ts:252](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L252)
+Defined in: [src/core/Session.ts:258](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L258)
 
 ***
 
@@ -162,7 +162,7 @@ Defined in: [src/core/Session.ts:252](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **player**: [`Player`](Player.md)
 
-Defined in: [src/core/Session.ts:264](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L264)
+Defined in: [src/core/Session.ts:270](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L270)
 
 ***
 
@@ -170,7 +170,7 @@ Defined in: [src/core/Session.ts:264](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **po\_token**: `string`
 
-Defined in: [src/core/Session.ts:268](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L268)
+Defined in: [src/core/Session.ts:274](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L274)
 
 ***
 
@@ -178,7 +178,7 @@ Defined in: [src/core/Session.ts:268](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **user\_agent**: `string`
 
-Defined in: [src/core/Session.ts:256](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L256)
+Defined in: [src/core/Session.ts:262](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L262)
 
 ## Accessors
 
@@ -188,7 +188,7 @@ Defined in: [src/core/Session.ts:256](https://github.com/LuanRT/YouTube.js/blob/
 
 > **get** **client\_name**(): `string`
 
-Defined in: [src/core/Session.ts:688](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L688)
+Defined in: [src/core/Session.ts:698](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L698)
 
 ##### Returns
 
@@ -202,7 +202,7 @@ Defined in: [src/core/Session.ts:688](https://github.com/LuanRT/YouTube.js/blob/
 
 > **get** **client\_version**(): `string`
 
-Defined in: [src/core/Session.ts:684](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L684)
+Defined in: [src/core/Session.ts:694](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L694)
 
 ##### Returns
 
@@ -216,7 +216,7 @@ Defined in: [src/core/Session.ts:684](https://github.com/LuanRT/YouTube.js/blob/
 
 > **get** **lang**(): `string`
 
-Defined in: [src/core/Session.ts:692](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L692)
+Defined in: [src/core/Session.ts:702](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L702)
 
 ##### Returns
 
@@ -228,21 +228,9 @@ Defined in: [src/core/Session.ts:692](https://github.com/LuanRT/YouTube.js/blob/
 
 > **addEventListener**(`type`, `callback`, `options?`): `void`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8256
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11569
 
-Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-
-The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-
-When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-
-When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-
-When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-
-If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-
-The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+The **`addEventListener()`** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
 
 [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
 
@@ -274,9 +262,9 @@ The event listener is appended to target's event listener list and is not append
 
 > **dispatchEvent**(`event`): `boolean`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8262
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11575
 
-Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
+The **`dispatchEvent()`** method of the EventTarget sends an Event to the object, (synchronously) invoking the affected event listeners in the appropriate order.
 
 [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
 
@@ -300,7 +288,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 > **emit**(`type`, ...`args`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L10)
+Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/EventEmitterLike.ts#L10)
 
 #### Parameters
 
@@ -326,7 +314,7 @@ Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube
 
 > **off**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/EventEmitterLike.ts#L40)
+Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/EventEmitterLike.ts#L40)
 
 #### Parameters
 
@@ -354,7 +342,7 @@ Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube
 
 > **on**(`type`, `listener`): `void`
 
-Defined in: [src/core/Session.ts:278](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L278)
+Defined in: [src/core/Session.ts:284](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L284)
 
 ##### Parameters
 
@@ -378,7 +366,7 @@ Defined in: [src/core/Session.ts:278](https://github.com/LuanRT/YouTube.js/blob/
 
 > **on**(`type`, `listener`): `void`
 
-Defined in: [src/core/Session.ts:279](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L279)
+Defined in: [src/core/Session.ts:285](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L285)
 
 ##### Parameters
 
@@ -402,7 +390,7 @@ Defined in: [src/core/Session.ts:279](https://github.com/LuanRT/YouTube.js/blob/
 
 > **on**(`type`, `listener`): `void`
 
-Defined in: [src/core/Session.ts:280](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L280)
+Defined in: [src/core/Session.ts:286](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L286)
 
 ##### Parameters
 
@@ -426,7 +414,7 @@ Defined in: [src/core/Session.ts:280](https://github.com/LuanRT/YouTube.js/blob/
 
 > **on**(`type`, `listener`): `void`
 
-Defined in: [src/core/Session.ts:281](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L281)
+Defined in: [src/core/Session.ts:287](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L287)
 
 ##### Parameters
 
@@ -454,7 +442,7 @@ Defined in: [src/core/Session.ts:281](https://github.com/LuanRT/YouTube.js/blob/
 
 > **once**(`type`, `listener`): `void`
 
-Defined in: [src/core/Session.ts:287](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L287)
+Defined in: [src/core/Session.ts:293](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L293)
 
 ##### Parameters
 
@@ -478,7 +466,7 @@ Defined in: [src/core/Session.ts:287](https://github.com/LuanRT/YouTube.js/blob/
 
 > **once**(`type`, `listener`): `void`
 
-Defined in: [src/core/Session.ts:288](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L288)
+Defined in: [src/core/Session.ts:294](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L294)
 
 ##### Parameters
 
@@ -502,7 +490,7 @@ Defined in: [src/core/Session.ts:288](https://github.com/LuanRT/YouTube.js/blob/
 
 > **once**(`type`, `listener`): `void`
 
-Defined in: [src/core/Session.ts:289](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L289)
+Defined in: [src/core/Session.ts:295](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L295)
 
 ##### Parameters
 
@@ -528,9 +516,9 @@ Defined in: [src/core/Session.ts:289](https://github.com/LuanRT/YouTube.js/blob/
 
 > **removeEventListener**(`type`, `callback`, `options?`): `void`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8268
+Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11581
 
-Removes the event listener in target's event listener list with the same type, callback, and options.
+The **`removeEventListener()`** method of the EventTarget interface removes an event listener previously registered with EventTarget.addEventListener() from the target.
 
 [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
 
@@ -562,7 +550,7 @@ Removes the event listener in target's event listener list with the same type, c
 
 > **signIn**(`credentials?`): `Promise`\<`void`\>
 
-Defined in: [src/core/Session.ts:651](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L651)
+Defined in: [src/core/Session.ts:661](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L661)
 
 #### Parameters
 
@@ -580,7 +568,7 @@ Defined in: [src/core/Session.ts:651](https://github.com/LuanRT/YouTube.js/blob/
 
 > **signOut**(): `Promise`\<`Response` \| `undefined`\>
 
-Defined in: [src/core/Session.ts:674](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L674)
+Defined in: [src/core/Session.ts:684](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L684)
 
 Signs out of the current account and revokes the credentials.
 
@@ -592,13 +580,13 @@ Signs out of the current account and revokes the credentials.
 
 ### create()
 
-> `static` **create**(`options`): `Promise`\<`Session`\>
+> `static` **create**(`options?`): `Promise`\<`Session`\>
 
-Defined in: [src/core/Session.ts:295](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L295)
+Defined in: [src/core/Session.ts:301](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L301)
 
 #### Parameters
 
-##### options
+##### options?
 
 [`SessionOptions`](../type-aliases/SessionOptions.md) = `{}`
 
@@ -612,7 +600,7 @@ Defined in: [src/core/Session.ts:295](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **fromCache**(`cache`, `session_args`): `Promise`\<[`SessionData`](../type-aliases/SessionData.md) \| `null`\>
 
-Defined in: [src/core/Session.ts:327](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L327)
+Defined in: [src/core/Session.ts:334](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L334)
 
 Retrieves session data from cache.
 
@@ -638,53 +626,57 @@ User provided session arguments.
 
 ### getSessionData()
 
-> `static` **getSessionData**(`lang`, `location`, `account_index`, `visitor_data`, `user_agent`, `enable_safety_mode`, `generate_session_locally`, `device_category`, `client_name`, `tz`, `fetch`, `on_behalf_of_user?`, `cache?`, `enable_session_cache?`, `po_token?`, `retrieve_innertube_config?`): `Promise`\<\{ `account_index`: `number`; `api_key`: `string`; `api_version`: `string`; `config_data?`: `string`; `context`: [`Context`](../type-aliases/Context.md); \}\>
+> `static` **getSessionData**(`lang?`, `location?`, `account_index?`, `visitor_data?`, `user_agent?`, `enable_safety_mode?`, `generate_session_locally?`, `fail_fast?`, `device_category?`, `client_name?`, `tz?`, `fetch?`, `on_behalf_of_user?`, `cache?`, `enable_session_cache?`, `po_token?`, `retrieve_innertube_config?`): `Promise`\<\{ `account_index`: `number`; `api_key`: `string`; `api_version`: `string`; `config_data?`: `string`; `context`: [`Context`](../type-aliases/Context.md); \}\>
 
-Defined in: [src/core/Session.ts:376](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Session.ts#L376)
+Defined in: [src/core/Session.ts:383](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L383)
 
 #### Parameters
 
-##### lang
+##### lang?
 
 `string` = `''`
 
-##### location
+##### location?
 
 `string` = `''`
 
-##### account\_index
+##### account\_index?
 
 `number` = `0`
 
-##### visitor\_data
+##### visitor\_data?
 
 `string` = `''`
 
-##### user\_agent
+##### user\_agent?
 
 `string` = `...`
 
-##### enable\_safety\_mode
+##### enable\_safety\_mode?
 
 `boolean` = `false`
 
-##### generate\_session\_locally
+##### generate\_session\_locally?
 
 `boolean` = `false`
 
-##### device\_category
+##### fail\_fast?
+
+`boolean` = `false`
+
+##### device\_category?
 
 [`DeviceCategory`](../youtubei.js/namespaces/Utils/type-aliases/DeviceCategory.md) = `'desktop'`
 
-##### client\_name
+##### client\_name?
 
 [`ClientType`](../enumerations/ClientType.md) = `ClientType.WEB`
 
-##### tz
+##### tz?
 
 `string` = `...`
 
-##### fetch
+##### fetch?
 
 \{(`input`, `init?`): `Promise`\<`Response`\>; (`input`, `init?`): `Promise`\<`Response`\>; \}
 

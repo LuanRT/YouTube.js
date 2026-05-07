@@ -2,7 +2,7 @@
 
 # Class: Studio
 
-Defined in: [src/core/clients/Studio.ts:22](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Studio.ts#L22)
+Defined in: [src/core/clients/Studio.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Studio.ts#L22)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/clients/Studio.ts:22](https://github.com/LuanRT/YouTube.js
 
 > **new Studio**(`session`): `Studio`
 
-Defined in: [src/core/clients/Studio.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Studio.ts#L25)
+Defined in: [src/core/clients/Studio.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Studio.ts#L25)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/core/clients/Studio.ts:25](https://github.com/LuanRT/YouTube.js
 
 > **updateVideoMetadata**(`video_id`, `metadata`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/clients/Studio.ts:47](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Studio.ts#L47)
+Defined in: [src/core/clients/Studio.ts:47](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Studio.ts#L47)
 
 Updates the metadata of a video.
 
@@ -67,9 +67,9 @@ const response = await yt.studio.updateVideoMetadata(videoId, {
 
 ### upload()
 
-> **upload**(`file`, `metadata`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
+> **upload**(`file`, `metadata?`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/clients/Studio.ts:150](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/clients/Studio.ts#L150)
+Defined in: [src/core/clients/Studio.ts:150](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/clients/Studio.ts#L150)
 
 Uploads a video to YouTube.
 
@@ -79,7 +79,7 @@ Uploads a video to YouTube.
 
 `BodyInit`
 
-##### metadata
+##### metadata?
 
 [`UploadedVideoMetadataOptions`](../../Types/type-aliases/UploadedVideoMetadataOptions.md) = `{}`
 

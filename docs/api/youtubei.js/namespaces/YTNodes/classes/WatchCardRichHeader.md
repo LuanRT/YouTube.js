@@ -2,7 +2,7 @@
 
 # Class: WatchCardRichHeader
 
-Defined in: [src/parser/classes/WatchCardRichHeader.ts:7](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/WatchCardRichHeader.ts#L7)
+Defined in: [src/parser/classes/WatchCardRichHeader.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/WatchCardRichHeader.ts#L7)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/WatchCardRichHeader.ts:7](https://github.com/Lua
 
 > **new WatchCardRichHeader**(`data`): `WatchCardRichHeader`
 
-Defined in: [src/parser/classes/WatchCardRichHeader.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/WatchCardRichHeader.ts#L16)
+Defined in: [src/parser/classes/WatchCardRichHeader.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/WatchCardRichHeader.ts#L16)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/WatchCardRichHeader.ts:16](https://github.com/Lu
 
 > **author**: [`Author`](../../Misc/classes/Author.md)
 
-Defined in: [src/parser/classes/WatchCardRichHeader.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/WatchCardRichHeader.ts#L13)
+Defined in: [src/parser/classes/WatchCardRichHeader.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/WatchCardRichHeader.ts#L13)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/WatchCardRichHeader.ts:13](https://github.com/Lu
 
 > **style**: `string`
 
-Defined in: [src/parser/classes/WatchCardRichHeader.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/WatchCardRichHeader.ts#L14)
+Defined in: [src/parser/classes/WatchCardRichHeader.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/WatchCardRichHeader.ts#L14)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/WatchCardRichHeader.ts:14](https://github.com/Lu
 
 > **subtitle**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/WatchCardRichHeader.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/WatchCardRichHeader.ts#L12)
+Defined in: [src/parser/classes/WatchCardRichHeader.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/WatchCardRichHeader.ts#L12)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/WatchCardRichHeader.ts:12](https://github.com/Lu
 
 > **title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/WatchCardRichHeader.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/WatchCardRichHeader.ts#L10)
+Defined in: [src/parser/classes/WatchCardRichHeader.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/WatchCardRichHeader.ts#L10)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/WatchCardRichHeader.ts:10](https://github.com/Lu
 
 > **title\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/WatchCardRichHeader.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/WatchCardRichHeader.ts#L11)
+Defined in: [src/parser/classes/WatchCardRichHeader.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/WatchCardRichHeader.ts#L11)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/WatchCardRichHeader.ts:11](https://github.com/Lu
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'WatchCardRichHeader'`
 
-Defined in: [src/parser/classes/WatchCardRichHeader.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/WatchCardRichHeader.ts#L8)
+Defined in: [src/parser/classes/WatchCardRichHeader.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/WatchCardRichHeader.ts#L8)
 
 #### Overrides
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/WatchCardRichHeader.ts:8](https://github.com/Lua
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -142,7 +142,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is WatchCardRichHeader & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -180,7 +180,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -218,7 +218,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

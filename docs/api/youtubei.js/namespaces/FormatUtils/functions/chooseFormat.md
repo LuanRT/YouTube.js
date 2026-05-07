@@ -4,7 +4,7 @@
 
 > **chooseFormat**(`options`, `streaming_data?`): [`Format`](../../Misc/classes/Format.md)
 
-Defined in: [src/utils/FormatUtils.ts:138](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/FormatUtils.ts#L138)
+Defined in: [src/utils/FormatUtils.ts:138](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/FormatUtils.ts#L138)
 
 Selects the format that best matches the given options.
 

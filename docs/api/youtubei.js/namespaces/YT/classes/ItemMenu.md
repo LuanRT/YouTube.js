@@ -2,7 +2,7 @@
 
 # Class: ItemMenu
 
-Defined in: [src/parser/youtube/ItemMenu.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/ItemMenu.ts#L11)
+Defined in: [src/parser/youtube/ItemMenu.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/ItemMenu.ts#L11)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/youtube/ItemMenu.ts:11](https://github.com/LuanRT/YouTub
 
 > **new ItemMenu**(`data`, `actions`): `ItemMenu`
 
-Defined in: [src/parser/youtube/ItemMenu.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/ItemMenu.ts#L16)
+Defined in: [src/parser/youtube/ItemMenu.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/ItemMenu.ts#L16)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/youtube/ItemMenu.ts:16](https://github.com/LuanRT/YouTub
 
 > **items**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/youtube/ItemMenu.ts:59](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/ItemMenu.ts#L59)
+Defined in: [src/parser/youtube/ItemMenu.ts:59](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/ItemMenu.ts#L59)
 
 #### Returns
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/youtube/ItemMenu.ts:59](https://github.com/LuanRT/YouTub
 
 > **page**(): [`IParsedResponse`](../../../../interfaces/IParsedResponse.md)
 
-Defined in: [src/parser/youtube/ItemMenu.ts:63](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/ItemMenu.ts#L63)
+Defined in: [src/parser/youtube/ItemMenu.ts:63](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/ItemMenu.ts#L63)
 
 #### Returns
 
@@ -58,7 +58,7 @@ Defined in: [src/parser/youtube/ItemMenu.ts:63](https://github.com/LuanRT/YouTub
 
 > **selectItem**(`icon_type`): `Promise`\<[`IParsedResponse`](../../../../interfaces/IParsedResponse.md)\>
 
-Defined in: [src/parser/youtube/ItemMenu.ts:28](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/ItemMenu.ts#L28)
+Defined in: [src/parser/youtube/ItemMenu.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/ItemMenu.ts#L28)
 
 ##### Parameters
 
@@ -74,7 +74,7 @@ Defined in: [src/parser/youtube/ItemMenu.ts:28](https://github.com/LuanRT/YouTub
 
 > **selectItem**(`button`): `Promise`\<[`IParsedResponse`](../../../../interfaces/IParsedResponse.md)\>
 
-Defined in: [src/parser/youtube/ItemMenu.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/ItemMenu.ts#L29)
+Defined in: [src/parser/youtube/ItemMenu.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/ItemMenu.ts#L29)
 
 ##### Parameters
 

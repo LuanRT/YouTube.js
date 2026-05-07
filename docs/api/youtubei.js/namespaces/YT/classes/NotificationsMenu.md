@@ -2,7 +2,7 @@
 
 # Class: NotificationsMenu
 
-Defined in: [src/parser/youtube/NotificationsMenu.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/NotificationsMenu.ts#L11)
+Defined in: [src/parser/youtube/NotificationsMenu.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/NotificationsMenu.ts#L11)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/youtube/NotificationsMenu.ts:11](https://github.com/Luan
 
 > **new NotificationsMenu**(`actions`, `response`): `NotificationsMenu`
 
-Defined in: [src/parser/youtube/NotificationsMenu.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/NotificationsMenu.ts#L18)
+Defined in: [src/parser/youtube/NotificationsMenu.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/NotificationsMenu.ts#L18)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/youtube/NotificationsMenu.ts:18](https://github.com/Luan
 
 > **contents**: [`Notification`](../../YTNodes/classes/Notification.md)[]
 
-Defined in: [src/parser/youtube/NotificationsMenu.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/NotificationsMenu.ts#L16)
+Defined in: [src/parser/youtube/NotificationsMenu.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/NotificationsMenu.ts#L16)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/youtube/NotificationsMenu.ts:16](https://github.com/Luan
 
 > **header**: [`SimpleMenuHeader`](../../YTNodes/classes/SimpleMenuHeader.md)
 
-Defined in: [src/parser/youtube/NotificationsMenu.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/NotificationsMenu.ts#L15)
+Defined in: [src/parser/youtube/NotificationsMenu.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/NotificationsMenu.ts#L15)
 
 ## Accessors
 
@@ -50,7 +50,7 @@ Defined in: [src/parser/youtube/NotificationsMenu.ts:15](https://github.com/Luan
 
 > **get** **page**(): [`IGetNotificationsMenuResponse`](../../../../type-aliases/IGetNotificationsMenuResponse.md)
 
-Defined in: [src/parser/youtube/NotificationsMenu.ts:40](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/NotificationsMenu.ts#L40)
+Defined in: [src/parser/youtube/NotificationsMenu.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/NotificationsMenu.ts#L40)
 
 ##### Returns
 
@@ -62,7 +62,7 @@ Defined in: [src/parser/youtube/NotificationsMenu.ts:40](https://github.com/Luan
 
 > **getContinuation**(): `Promise`\<`NotificationsMenu`\>
 
-Defined in: [src/parser/youtube/NotificationsMenu.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/youtube/NotificationsMenu.ts#L29)
+Defined in: [src/parser/youtube/NotificationsMenu.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/NotificationsMenu.ts#L29)
 
 #### Returns
 

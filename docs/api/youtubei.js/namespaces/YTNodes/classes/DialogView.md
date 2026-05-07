@@ -2,7 +2,7 @@
 
 # Class: DialogView
 
-Defined in: [src/parser/classes/DialogView.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DialogView.ts#L9)
+Defined in: [src/parser/classes/DialogView.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DialogView.ts#L9)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/DialogView.ts:9](https://github.com/LuanRT/YouTu
 
 > **new DialogView**(`data`): `DialogView`
 
-Defined in: [src/parser/classes/DialogView.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DialogView.ts#L16)
+Defined in: [src/parser/classes/DialogView.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DialogView.ts#L16)
 
 #### Parameters
 
@@ -34,9 +34,9 @@ Defined in: [src/parser/classes/DialogView.ts:16](https://github.com/LuanRT/YouT
 
 ### custom\_content
 
-> **custom\_content**: [`CreatePlaylistDialogFormView`](CreatePlaylistDialogFormView.md) \| [`ListView`](ListView.md) \| `null`
+> **custom\_content**: [`ListView`](ListView.md) \| [`CreatePlaylistDialogFormView`](CreatePlaylistDialogFormView.md) \| `null`
 
-Defined in: [src/parser/classes/DialogView.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DialogView.ts#L14)
+Defined in: [src/parser/classes/DialogView.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DialogView.ts#L14)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/DialogView.ts:14](https://github.com/LuanRT/YouT
 
 > **footer**: [`PanelFooterView`](PanelFooterView.md) \| [`FormFooterView`](FormFooterView.md) \| `null`
 
-Defined in: [src/parser/classes/DialogView.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DialogView.ts#L13)
+Defined in: [src/parser/classes/DialogView.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DialogView.ts#L13)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/DialogView.ts:13](https://github.com/LuanRT/YouT
 
 > **header**: [`DialogHeaderView`](DialogHeaderView.md) \| `null`
 
-Defined in: [src/parser/classes/DialogView.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DialogView.ts#L12)
+Defined in: [src/parser/classes/DialogView.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DialogView.ts#L12)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/DialogView.ts:12](https://github.com/LuanRT/YouT
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'DialogView'`
 
-Defined in: [src/parser/classes/DialogView.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/DialogView.ts#L10)
+Defined in: [src/parser/classes/DialogView.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DialogView.ts#L10)
 
 #### Overrides
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/DialogView.ts:10](https://github.com/LuanRT/YouT
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -126,7 +126,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is DialogView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -164,7 +164,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -202,7 +202,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

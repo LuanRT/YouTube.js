@@ -2,7 +2,7 @@
 
 # Class: PageHeaderView
 
-Defined in: [src/parser/classes/PageHeaderView.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L12)
+Defined in: [src/parser/classes/PageHeaderView.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L12)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:12](https://github.com/LuanRT/
 
 > **new PageHeaderView**(`data`): `PageHeaderView`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L25)
+Defined in: [src/parser/classes/PageHeaderView.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L25)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:25](https://github.com/LuanRT/
 
 > **actions**: [`FlexibleActionsView`](FlexibleActionsView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L20)
+Defined in: [src/parser/classes/PageHeaderView.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L20)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:20](https://github.com/LuanRT/
 
 > **animated\_image**: [`ContentPreviewImageView`](ContentPreviewImageView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:17](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L17)
+Defined in: [src/parser/classes/PageHeaderView.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L17)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:17](https://github.com/LuanRT/
 
 > **attributation**: [`AttributionView`](AttributionView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:22](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L22)
+Defined in: [src/parser/classes/PageHeaderView.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L22)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:22](https://github.com/LuanRT/
 
 > **banner**: [`ImageBannerView`](ImageBannerView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L23)
+Defined in: [src/parser/classes/PageHeaderView.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L23)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:23](https://github.com/LuanRT/
 
 > **description**: [`DescriptionPreviewView`](DescriptionPreviewView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:21](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L21)
+Defined in: [src/parser/classes/PageHeaderView.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L21)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:21](https://github.com/LuanRT/
 
 > **hero\_image**: [`ContentPreviewImageView`](ContentPreviewImageView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L18)
+Defined in: [src/parser/classes/PageHeaderView.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L18)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:18](https://github.com/LuanRT/
 
 > **image**: [`DecoratedAvatarView`](DecoratedAvatarView.md) \| [`ContentPreviewImageView`](ContentPreviewImageView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L16)
+Defined in: [src/parser/classes/PageHeaderView.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L16)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:16](https://github.com/LuanRT/
 
 > **metadata**: [`ContentMetadataView`](ContentMetadataView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L19)
+Defined in: [src/parser/classes/PageHeaderView.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L19)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:19](https://github.com/LuanRT/
 
 > **title**: [`DynamicTextView`](DynamicTextView.md) \| `null`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L15)
+Defined in: [src/parser/classes/PageHeaderView.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L15)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:15](https://github.com/LuanRT/
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -120,7 +120,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'PageHeaderView'`
 
-Defined in: [src/parser/classes/PageHeaderView.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/PageHeaderView.ts#L13)
+Defined in: [src/parser/classes/PageHeaderView.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/PageHeaderView.ts#L13)
 
 #### Overrides
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/PageHeaderView.ts:13](https://github.com/LuanRT/
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -174,7 +174,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is PageHeaderView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -212,7 +212,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -250,7 +250,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

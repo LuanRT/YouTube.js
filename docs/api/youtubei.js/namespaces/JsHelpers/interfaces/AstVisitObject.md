@@ -2,7 +2,7 @@
 
 # Interface: AstVisitObject
 
-Defined in: [src/utils/javascript/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/javascript/helpers.ts#L28)
+Defined in: [src/utils/javascript/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/helpers.ts#L28)
 
 ## Methods
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/javascript/helpers.ts:28](https://github.com/LuanRT/YouTu
 
 > `optional` **enter**(`node`, `parent`, `ancestors`): [`AstVisitResult`](../type-aliases/AstVisitResult.md)
 
-Defined in: [src/utils/javascript/helpers.ts:39](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/javascript/helpers.ts#L39)
+Defined in: [src/utils/javascript/helpers.ts:39](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/helpers.ts#L39)
 
 Callback invoked when an AST node is entered.
 
@@ -48,7 +48,7 @@ Array of ancestor nodes, starting from the root down to the parent.
 
 > `optional` **leave**(`node`, `parent`, `ancestors`): [`AstVisitResult`](../type-aliases/AstVisitResult.md)
 
-Defined in: [src/utils/javascript/helpers.ts:49](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/utils/javascript/helpers.ts#L49)
+Defined in: [src/utils/javascript/helpers.ts:49](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/helpers.ts#L49)
 
 Callback invoked when an AST node is exited.
 

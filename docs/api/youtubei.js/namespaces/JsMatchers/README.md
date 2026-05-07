@@ -4,6 +4,5 @@
 
 ## Functions
 
-- [nMatcher](functions/nMatcher.md)
-- [sigMatcher](functions/sigMatcher.md)
+- [nsigMatcher](functions/nsigMatcher.md)
 - [timestampMatcher](functions/timestampMatcher.md)

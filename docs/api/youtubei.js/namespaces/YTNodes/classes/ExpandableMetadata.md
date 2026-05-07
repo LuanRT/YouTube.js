@@ -2,7 +2,7 @@
 
 # Class: ExpandableMetadata
 
-Defined in: [src/parser/classes/ExpandableMetadata.ts:9](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ExpandableMetadata.ts#L9)
+Defined in: [src/parser/classes/ExpandableMetadata.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ExpandableMetadata.ts#L10)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ExpandableMetadata.ts:9](https://github.com/Luan
 
 > **new ExpandableMetadata**(`data`): `ExpandableMetadata`
 
-Defined in: [src/parser/classes/ExpandableMetadata.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ExpandableMetadata.ts#L23)
+Defined in: [src/parser/classes/ExpandableMetadata.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ExpandableMetadata.ts#L24)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/ExpandableMetadata.ts:23](https://github.com/Lua
 
 > **collapse\_button**: [`Button`](Button.md) \| `null`
 
-Defined in: [src/parser/classes/ExpandableMetadata.ts:21](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ExpandableMetadata.ts#L21)
+Defined in: [src/parser/classes/ExpandableMetadata.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ExpandableMetadata.ts#L22)
 
 ***
 
@@ -44,15 +44,15 @@ Defined in: [src/parser/classes/ExpandableMetadata.ts:21](https://github.com/Lua
 
 > **expand\_button**: [`Button`](Button.md) \| `null`
 
-Defined in: [src/parser/classes/ExpandableMetadata.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ExpandableMetadata.ts#L20)
+Defined in: [src/parser/classes/ExpandableMetadata.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ExpandableMetadata.ts#L21)
 
 ***
 
 ### expanded\_content
 
-> **expanded\_content**: [`HorizontalCardList`](HorizontalCardList.md) \| [`HorizontalList`](HorizontalList.md) \| `null`
+> **expanded\_content**: [`HorizontalCardList`](HorizontalCardList.md) \| [`HorizontalList`](HorizontalList.md) \| [`VideoSummaryContentView`](VideoSummaryContentView.md) \| `null`
 
-Defined in: [src/parser/classes/ExpandableMetadata.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ExpandableMetadata.ts#L19)
+Defined in: [src/parser/classes/ExpandableMetadata.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ExpandableMetadata.ts#L20)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/ExpandableMetadata.ts:19](https://github.com/Lua
 
 > `optional` **header**: `object`
 
-Defined in: [src/parser/classes/ExpandableMetadata.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ExpandableMetadata.ts#L12)
+Defined in: [src/parser/classes/ExpandableMetadata.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ExpandableMetadata.ts#L13)
 
 #### collapsed\_label
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/ExpandableMetadata.ts:12](https://github.com/Lua
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'ExpandableMetadata'`
 
-Defined in: [src/parser/classes/ExpandableMetadata.ts:10](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/ExpandableMetadata.ts#L10)
+Defined in: [src/parser/classes/ExpandableMetadata.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ExpandableMetadata.ts#L11)
 
 #### Overrides
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/ExpandableMetadata.ts:10](https://github.com/Lua
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -150,7 +150,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ExpandableMetadata & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -188,7 +188,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -226,7 +226,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

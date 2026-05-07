@@ -2,7 +2,7 @@
 
 # Class: C4TabbedHeader
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L12)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L12)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:12](https://github.com/LuanRT/
 
 > **new C4TabbedHeader**(`data`): `C4TabbedHeader`
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:28](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L28)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L28)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:28](https://github.com/LuanRT/
 
 > **author**: [`Author`](../../Misc/classes/Author.md)
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L15)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L15)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:15](https://github.com/LuanRT/
 
 > `optional` **banner**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L16)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L16)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:16](https://github.com/LuanRT/
 
 > `optional` **channel\_handle**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:24](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L24)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L24)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:24](https://github.com/LuanRT/
 
 > `optional` **channel\_id**: `string`
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L25)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L25)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:25](https://github.com/LuanRT/
 
 > `optional` **header\_links**: [`ChannelHeaderLinks`](ChannelHeaderLinks.md) \| [`ChannelHeaderLinksView`](ChannelHeaderLinksView.md) \| `null`
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L23)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L23)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:23](https://github.com/LuanRT/
 
 > `optional` **mobile\_banner**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L18)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L18)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:18](https://github.com/LuanRT/
 
 > `optional` **sponsor\_button**: [`Button`](Button.md) \| `null`
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:21](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L21)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L21)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:21](https://github.com/LuanRT/
 
 > `optional` **subscribe\_button**: [`Button`](Button.md) \| [`SubscribeButton`](SubscribeButton.md) \| `null`
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:22](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L22)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L22)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:22](https://github.com/LuanRT/
 
 > `optional` **subscribers**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L19)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L19)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:19](https://github.com/LuanRT/
 
 > `optional` **tagline**: [`ChannelTagline`](ChannelTagline.md) \| `null`
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:26](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L26)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L26)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:26](https://github.com/LuanRT/
 
 > `optional` **tv\_banner**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:17](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L17)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L17)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:17](https://github.com/LuanRT/
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -136,7 +136,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **videos\_count**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L20)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L20)
 
 ***
 
@@ -144,7 +144,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:20](https://github.com/LuanRT/
 
 > `static` **type**: `string` = `'C4TabbedHeader'`
 
-Defined in: [src/parser/classes/C4TabbedHeader.ts:13](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/C4TabbedHeader.ts#L13)
+Defined in: [src/parser/classes/C4TabbedHeader.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/C4TabbedHeader.ts#L13)
 
 #### Overrides
 
@@ -156,7 +156,7 @@ Defined in: [src/parser/classes/C4TabbedHeader.ts:13](https://github.com/LuanRT/
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -198,7 +198,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is C4TabbedHeader & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -236,7 +236,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -274,7 +274,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

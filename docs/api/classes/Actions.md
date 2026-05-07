@@ -2,7 +2,7 @@
 
 # Class: Actions
 
-Defined in: [src/core/Actions.ts:46](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L46)
+Defined in: [src/core/Actions.ts:46](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Actions.ts#L46)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/Actions.ts:46](https://github.com/LuanRT/YouTube.js/blob/0
 
 > **new Actions**(`session`): `Actions`
 
-Defined in: [src/core/Actions.ts:49](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L49)
+Defined in: [src/core/Actions.ts:49](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Actions.ts#L49)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/core/Actions.ts:49](https://github.com/LuanRT/YouTube.js/blob/0
 
 > **session**: [`Session`](Session.md)
 
-Defined in: [src/core/Actions.ts:47](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L47)
+Defined in: [src/core/Actions.ts:47](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Actions.ts#L47)
 
 ## Methods
 
@@ -38,7 +38,7 @@ Defined in: [src/core/Actions.ts:47](https://github.com/LuanRT/YouTube.js/blob/0
 
 > **execute**\<`T`\>(`endpoint`, `args`): `Promise`\<[`ParsedResponse`](../type-aliases/ParsedResponse.md)\<`T`\>\>
 
-Defined in: [src/core/Actions.ts:81](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L81)
+Defined in: [src/core/Actions.ts:81](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Actions.ts#L81)
 
 Executes an API call.
 
@@ -84,7 +84,7 @@ Call arguments
 
 > **execute**\<`T`\>(`endpoint`, `args?`): `Promise`\<[`ApiResponse`](../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/Actions.ts:88](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L88)
+Defined in: [src/core/Actions.ts:88](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Actions.ts#L88)
 
 Executes an API call.
 
@@ -132,7 +132,7 @@ Call arguments
 
 > **stats**(`url`, `client`, `params`): `Promise`\<`Response`\>
 
-Defined in: [src/core/Actions.ts:59](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/core/Actions.ts#L59)
+Defined in: [src/core/Actions.ts:59](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Actions.ts#L59)
 
 Makes calls to the playback tracking API.
 

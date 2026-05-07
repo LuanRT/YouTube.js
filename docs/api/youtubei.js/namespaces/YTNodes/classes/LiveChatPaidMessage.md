@@ -2,7 +2,7 @@
 
 # Class: LiveChatPaidMessage
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:11](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L11)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L11)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:11](https:
 
 > **new LiveChatPaidMessage**(`data`): `LiveChatPaidMessage`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:36](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L36)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:36](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L36)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:36](https:
 
 > **author**: [`Author`](../../Misc/classes/Author.md)
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:16](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L16)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L16)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:16](https:
 
 > **author\_name\_text\_color**: `number`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:17](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L17)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L17)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:17](https:
 
 > **body\_background\_color**: `number`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:20](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L20)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L20)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:20](https:
 
 > **body\_text\_color**: `number`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:21](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L21)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L21)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:21](https:
 
 > **context\_menu\_accessibility\_label**: `string`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:24](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L24)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L24)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:24](https:
 
 > **creator\_heart\_button**: [`CreatorHeartView`](CreatorHeartView.md) \| `null`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:32](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L32)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:32](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L32)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:32](https:
 
 > **header\_background\_color**: `number`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:18](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L18)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L18)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:18](https:
 
 > `optional` **header\_overlay\_image**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L29)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L29)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:29](https:
 
 > **header\_text\_color**: `number`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L19)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L19)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:19](https:
 
 > **id**: `string`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:14](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L14)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L14)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:14](https:
 
 > **is\_v2\_style**: `boolean`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:33](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L33)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:33](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L33)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:33](https:
 
 > **lower\_bumper**: [`LiveChatItemBumperView`](LiveChatItemBumperView.md) \| `null`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:31](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L31)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:31](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L31)
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:31](https:
 
 > **menu\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:23](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L23)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L23)
 
 ***
 
@@ -140,7 +140,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:23](https:
 
 > **message**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:15](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L15)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L15)
 
 ***
 
@@ -148,7 +148,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:15](https:
 
 > **purchase\_amount**: `string`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:22](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L22)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L22)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:22](https:
 
 > **reply\_button**: [`PdgReplyButtonView`](PdgReplyButtonView.md) \| `null`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:34](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L34)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:34](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L34)
 
 ***
 
@@ -164,7 +164,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:34](https:
 
 > **text\_input\_background\_color**: `number`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:30](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L30)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:30](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L30)
 
 ***
 
@@ -172,7 +172,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:30](https:
 
 > **timestamp**: `number`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:25](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L25)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L25)
 
 ***
 
@@ -180,7 +180,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:25](https:
 
 > **timestamp\_color**: `number`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:28](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L28)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L28)
 
 ***
 
@@ -188,7 +188,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:28](https:
 
 > `optional` **timestamp\_text**: `string`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:27](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L27)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L27)
 
 ***
 
@@ -196,7 +196,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:27](https:
 
 > **timestamp\_usec**: `string`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:26](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L26)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L26)
 
 ***
 
@@ -204,7 +204,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:26](https:
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -216,7 +216,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'LiveChatPaidMessage'`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:12](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L12)
+Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatPaidMessage.ts#L12)
 
 #### Overrides
 
@@ -228,7 +228,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatPaidMessage.ts:12](https:
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -270,7 +270,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is LiveChatPaidMessage & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -308,7 +308,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -346,7 +346,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/0733f60b57877f6b8b87dfd5cc6195b5085f5c09/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 
