@@ -12,6 +12,7 @@ import HowThisWasMadeSectionView from './HowThisWasMadeSectionView.js';
 import ReelShelf from './ReelShelf.js';
 import ExpandableMetadata from './ExpandableMetadata.js';
 import MerchandiseShelf from './MerchandiseShelf.js';
+import HypeFanCreditsSectionView from './HypeFanCreditsSectionView.js';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
@@ -20,7 +21,7 @@ export default class StructuredDescriptionContent extends YTNode {
     VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
     VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection |
     VideoDescriptionCourseSection | HorizontalCardList | ReelShelf | VideoAttributesSectionView |
-    HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf
+    HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf | HypeFanCreditsSectionView
   >;
 
   constructor(data: RawNode) {
@@ -29,7 +30,7 @@ export default class StructuredDescriptionContent extends YTNode {
       VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
       VideoDescriptionInfocardsSection, VideoDescriptionCourseSection, VideoDescriptionTranscriptSection,
       VideoDescriptionTranscriptSection, HorizontalCardList, ReelShelf, VideoAttributesSectionView,
-      HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf 
+      HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf, HypeFanCreditsSectionView
     ]);
   }
 }
