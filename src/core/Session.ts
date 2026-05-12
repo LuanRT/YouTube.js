@@ -528,7 +528,7 @@ export default class Session extends EventEmitter {
 
     const buffer = BinarySerializer.serialize({
       ...session_data,
-      library_version: parseInt(packageInfo.version)
+      library_version: parseInt(packageInfo.version.split('.', 1)[0])
     });
 
     await cache.set('innertube_session_data', buffer);
