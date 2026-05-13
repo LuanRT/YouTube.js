@@ -4,7 +4,7 @@
 
 > **GetAccountsListInnertubeRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:162](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L162)
+Defined in: [src/parser/types/CommandEndpoints.ts:162](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L162)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:162](https://github.com/LuanRT
 
 > `optional` **callCircumstance**: `"SUPPLEMENTAL_USER"` \| `"SWITCHING_USERS_FULL"`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:168](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L168)
+Defined in: [src/parser/types/CommandEndpoints.ts:168](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L168)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:168](https://github.com/LuanRT
 
 > `optional` **channelSwitcherQuery**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:165](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L165)
+Defined in: [src/parser/types/CommandEndpoints.ts:165](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L165)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:165](https://github.com/LuanRT
 
 > `optional` **contentOwnerConfig**: `Record`\<`string`, `any`\>
 
-Defined in: [src/parser/types/CommandEndpoints.ts:167](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L167)
+Defined in: [src/parser/types/CommandEndpoints.ts:167](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L167)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:167](https://github.com/LuanRT
 
 > `optional` **nextNavendpoint**: [`NextNavendpoint`](NextNavendpoint.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:164](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L164)
+Defined in: [src/parser/types/CommandEndpoints.ts:164](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L164)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:164](https://github.com/LuanRT
 
 > `optional` **obfuscatedSelectedGaiaId**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:169](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L169)
+Defined in: [src/parser/types/CommandEndpoints.ts:169](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L169)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:169](https://github.com/LuanRT
 
 > `optional` **requestType**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:163](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L163)
+Defined in: [src/parser/types/CommandEndpoints.ts:163](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L163)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:163](https://github.com/LuanRT
 
 > `optional` **selectedSerializedDelegationContext**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:170](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L170)
+Defined in: [src/parser/types/CommandEndpoints.ts:170](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L170)
 
 ***
 
@@ -68,4 +68,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:170](https://github.com/LuanRT
 
 > `optional` **triggerChannelCreation**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:166](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L166)
+Defined in: [src/parser/types/CommandEndpoints.ts:166](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L166)

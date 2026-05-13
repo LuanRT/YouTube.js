@@ -4,7 +4,7 @@
 
 > **timestampMatcher**(`node`): `boolean`
 
-Defined in: [src/utils/javascript/matchers.ts:54](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/matchers.ts#L54)
+Defined in: [src/utils/javascript/matchers.ts:54](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/matchers.ts#L54)
 
 ## Parameters
 

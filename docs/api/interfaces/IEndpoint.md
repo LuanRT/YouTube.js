@@ -2,7 +2,7 @@
 
 # Interface: IEndpoint\<T\>
 
-Defined in: [src/parser/types/CommandEndpoints.ts:1](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L1)
+Defined in: [src/parser/types/CommandEndpoints.ts:1](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L1)
 
 ## Type Parameters
 
@@ -16,7 +16,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:1](https://github.com/LuanRT/Y
 
 > **buildRequest**(): `T`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:3](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L3)
+Defined in: [src/parser/types/CommandEndpoints.ts:3](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L3)
 
 #### Returns
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:3](https://github.com/LuanRT/Y
 
 > **getApiPath**(): `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:2](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L2)
+Defined in: [src/parser/types/CommandEndpoints.ts:2](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L2)
 
 #### Returns
 

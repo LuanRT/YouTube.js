@@ -4,7 +4,7 @@
 
 > **CommentActionParamsArgs** = `object`
 
-Defined in: [src/utils/ProtoUtils.ts:4](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/ProtoUtils.ts#L4)
+Defined in: [src/utils/ProtoUtils.ts:4](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L4)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/utils/ProtoUtils.ts:4](https://github.com/LuanRT/YouTube.js/blo
 
 > `optional` **comment\_id**: `string`
 
-Defined in: [src/utils/ProtoUtils.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/ProtoUtils.ts#L5)
+Defined in: [src/utils/ProtoUtils.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L5)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/utils/ProtoUtils.ts:5](https://github.com/LuanRT/YouTube.js/blo
 
 > `optional` **target\_language**: `string`
 
-Defined in: [src/utils/ProtoUtils.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/ProtoUtils.ts#L8)
+Defined in: [src/utils/ProtoUtils.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L8)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/utils/ProtoUtils.ts:8](https://github.com/LuanRT/YouTube.js/blo
 
 > `optional` **text**: `string`
 
-Defined in: [src/utils/ProtoUtils.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/ProtoUtils.ts#L7)
+Defined in: [src/utils/ProtoUtils.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L7)
 
 ***
 
@@ -36,4 +36,4 @@ Defined in: [src/utils/ProtoUtils.ts:7](https://github.com/LuanRT/YouTube.js/blo
 
 > `optional` **video\_id**: `string`
 
-Defined in: [src/utils/ProtoUtils.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/ProtoUtils.ts#L6)
+Defined in: [src/utils/ProtoUtils.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L6)

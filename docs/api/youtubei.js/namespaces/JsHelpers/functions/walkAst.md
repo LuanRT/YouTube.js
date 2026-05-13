@@ -4,7 +4,7 @@
 
 > **walkAst**(`root`, `visitor`): `void`
 
-Defined in: [src/utils/javascript/helpers.ts:62](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/helpers.ts#L62)
+Defined in: [src/utils/javascript/helpers.ts:62](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/helpers.ts#L62)
 
 Performs traversal of an ESTree AST.
 

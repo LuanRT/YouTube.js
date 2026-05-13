@@ -2,7 +2,7 @@
 
 # Interface: GetVideoInfoOptions
 
-Defined in: [src/types/GetVideoInfoOptions.ts:3](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/GetVideoInfoOptions.ts#L3)
+Defined in: [src/types/GetVideoInfoOptions.ts:3](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/GetVideoInfoOptions.ts#L3)
 
 ## Extended by
 
@@ -14,7 +14,7 @@ Defined in: [src/types/GetVideoInfoOptions.ts:3](https://github.com/LuanRT/YouTu
 
 > `optional` **client**: [`InnerTubeClient`](../type-aliases/InnerTubeClient.md)
 
-Defined in: [src/types/GetVideoInfoOptions.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/GetVideoInfoOptions.ts#L7)
+Defined in: [src/types/GetVideoInfoOptions.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/GetVideoInfoOptions.ts#L7)
 
 InnerTube client.
 
@@ -24,7 +24,7 @@ InnerTube client.
 
 > `optional` **po\_token**: `string`
 
-Defined in: [src/types/GetVideoInfoOptions.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/GetVideoInfoOptions.ts#L12)
+Defined in: [src/types/GetVideoInfoOptions.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/GetVideoInfoOptions.ts#L12)
 
 Proof of Origin token, bound to the video ID being requested.
 If not provided, session bound token will be used.

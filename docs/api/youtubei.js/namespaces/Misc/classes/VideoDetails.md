@@ -2,7 +2,7 @@
 
 # Class: VideoDetails
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:4](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L4)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:4](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L4)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:4](https://github.com/LuanR
 
 > **new VideoDetails**(`data`): `VideoDetails`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L26)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L26)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:26](https://github.com/Luan
 
 > **allow\_ratings**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L13)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L13)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:13](https://github.com/Luan
 
 > **author**: `string`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L15)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L15)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:15](https://github.com/Luan
 
 > **channel\_id**: `string`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L6)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L6)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:6](https://github.com/LuanR
 
 > **duration**: `number`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L8)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L8)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:8](https://github.com/LuanR
 
 > **id**: `string`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L5)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L5)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:5](https://github.com/LuanR
 
 > **is\_crawlable**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L21)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L21)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:21](https://github.com/Luan
 
 > **is\_live**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L17)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L17)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:17](https://github.com/Luan
 
 > **is\_live\_content**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L18)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L18)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:18](https://github.com/Luan
 
 > **is\_live\_dvr\_enabled**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L19)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L19)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:19](https://github.com/Luan
 
 > **is\_low\_latency\_live\_stream**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L23)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L23)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:23](https://github.com/Luan
 
 > **is\_owner\_viewing**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L10)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L10)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:10](https://github.com/Luan
 
 > **is\_post\_live\_dvr**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L22)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L22)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:22](https://github.com/Luan
 
 > **is\_private**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L16)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L16)
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:16](https://github.com/Luan
 
 > **is\_upcoming**: `boolean`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L20)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L20)
 
 ***
 
@@ -140,7 +140,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:20](https://github.com/Luan
 
 > **keywords**: `string`[]
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L9)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L9)
 
 ***
 
@@ -148,7 +148,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:9](https://github.com/LuanR
 
 > `optional` **live\_chunk\_readahead**: `number`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L24)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L24)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:24](https://github.com/Luan
 
 > **short\_description**: `string`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L11)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L11)
 
 ***
 
@@ -164,7 +164,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:11](https://github.com/Luan
 
 > **thumbnail**: [`Thumbnail`](Thumbnail.md)[]
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L12)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L12)
 
 ***
 
@@ -172,7 +172,7 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:12](https://github.com/Luan
 
 > **title**: `string`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L7)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L7)
 
 ***
 
@@ -180,4 +180,4 @@ Defined in: [src/parser/classes/misc/VideoDetails.ts:7](https://github.com/LuanR
 
 > **view\_count**: `number`
 
-Defined in: [src/parser/classes/misc/VideoDetails.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/VideoDetails.ts#L14)
+Defined in: [src/parser/classes/misc/VideoDetails.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/VideoDetails.ts#L14)

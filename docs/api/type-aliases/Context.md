@@ -4,7 +4,7 @@
 
 > **Context** = `object`
 
-Defined in: [src/core/Session.ts:39](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L39)
+Defined in: [src/core/Session.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L39)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/core/Session.ts:39](https://github.com/LuanRT/YouTube.js/blob/f
 
 > **client**: `object`
 
-Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L40)
+Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L40)
 
 #### androidSdkVersion?
 
@@ -196,7 +196,7 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/f
 
 > `optional` **request**: `object`
 
-Defined in: [src/core/Session.ts:99](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L99)
+Defined in: [src/core/Session.ts:99](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L99)
 
 #### internalExperimentFlags
 
@@ -212,7 +212,7 @@ Defined in: [src/core/Session.ts:99](https://github.com/LuanRT/YouTube.js/blob/f
 
 > `optional` **thirdParty**: `object`
 
-Defined in: [src/core/Session.ts:96](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L96)
+Defined in: [src/core/Session.ts:96](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L96)
 
 #### embedUrl
 
@@ -224,7 +224,7 @@ Defined in: [src/core/Session.ts:96](https://github.com/LuanRT/YouTube.js/blob/f
 
 > **user**: `object`
 
-Defined in: [src/core/Session.ts:91](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Session.ts#L91)
+Defined in: [src/core/Session.ts:91](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L91)
 
 #### enableSafetyMode
 

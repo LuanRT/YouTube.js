@@ -2,7 +2,7 @@
 
 # Class: ThumbnailOverlayToggleButton
 
-Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailOverlayToggleButton.ts#L5)
+Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailOverlayToggleButton.ts#L5)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:5](https://githu
 
 > **new ThumbnailOverlayToggleButton**(`data`): `ThumbnailOverlayToggleButton`
 
-Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailOverlayToggleButton.ts#L23)
+Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailOverlayToggleButton.ts#L23)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:23](https://gith
 
 > **icon\_type**: `object`
 
-Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailOverlayToggleButton.ts#L10)
+Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailOverlayToggleButton.ts#L10)
 
 #### toggled
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:10](https://gith
 
 > `optional` **is\_toggled**: `boolean`
 
-Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailOverlayToggleButton.ts#L8)
+Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailOverlayToggleButton.ts#L8)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:8](https://githu
 
 > `optional` **toggled\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailOverlayToggleButton.ts#L20)
+Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailOverlayToggleButton.ts#L20)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:20](https://gith
 
 > **tooltip**: `object`
 
-Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailOverlayToggleButton.ts#L15)
+Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailOverlayToggleButton.ts#L15)
 
 #### toggled
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:15](https://gith
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **untoggled\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailOverlayToggleButton.ts#L21)
+Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailOverlayToggleButton.ts#L21)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:21](https://gith
 
 > `static` **type**: `string` = `'ThumbnailOverlayToggleButton'`
 
-Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailOverlayToggleButton.ts#L6)
+Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailOverlayToggleButton.ts#L6)
 
 #### Overrides
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/classes/ThumbnailOverlayToggleButton.ts:6](https://githu
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -158,7 +158,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ThumbnailOverlayToggleButton & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -196,7 +196,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -234,7 +234,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

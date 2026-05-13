@@ -193,6 +193,7 @@
 - [HorizontalList](classes/HorizontalList.md)
 - [HorizontalMovieList](classes/HorizontalMovieList.md)
 - [HowThisWasMadeSectionView](classes/HowThisWasMadeSectionView.md)
+- [HypeFanCreditsSectionView](classes/HypeFanCreditsSectionView.md)
 - [HypePointsFactoid](classes/HypePointsFactoid.md)
 - [IconLink](classes/IconLink.md)
 - [ImageBannerView](classes/ImageBannerView.md)

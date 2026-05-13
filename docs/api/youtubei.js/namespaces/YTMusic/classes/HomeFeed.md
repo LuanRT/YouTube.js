@@ -2,7 +2,7 @@
 
 # Class: HomeFeed
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L14)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L14)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/ytmusic/HomeFeed.ts:14](https://github.com/LuanRT/YouTub
 
 > **new HomeFeed**(`response`, `actions`): `HomeFeed`
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L22)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L22)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/ytmusic/HomeFeed.ts:22](https://github.com/LuanRT/YouTub
 
 > `optional` **header**: [`ChipCloud`](../../YTNodes/classes/ChipCloud.md)
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L20)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L20)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/ytmusic/HomeFeed.ts:20](https://github.com/LuanRT/YouTub
 
 > `optional` **sections**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MusicCarouselShelf`](../../YTNodes/classes/MusicCarouselShelf.md) \| [`MusicTastebuilderShelf`](../../YTNodes/classes/MusicTastebuilderShelf.md)\>
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L19)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L19)
 
 ## Accessors
 
@@ -50,7 +50,7 @@ Defined in: [src/parser/ytmusic/HomeFeed.ts:19](https://github.com/LuanRT/YouTub
 
 > **get** **filters**(): `string`[]
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:84](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L84)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:84](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L84)
 
 ##### Returns
 
@@ -64,7 +64,7 @@ Defined in: [src/parser/ytmusic/HomeFeed.ts:84](https://github.com/LuanRT/YouTub
 
 > **get** **has\_continuation**(): `boolean`
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:88](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L88)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:88](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L88)
 
 ##### Returns
 
@@ -78,7 +78,7 @@ Defined in: [src/parser/ytmusic/HomeFeed.ts:88](https://github.com/LuanRT/YouTub
 
 > **get** **page**(): [`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:92](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L92)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:92](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L92)
 
 ##### Returns
 
@@ -90,7 +90,7 @@ Defined in: [src/parser/ytmusic/HomeFeed.ts:92](https://github.com/LuanRT/YouTub
 
 > **applyFilter**(`target_filter`): `Promise`\<`HomeFeed`\>
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:61](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L61)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:61](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L61)
 
 #### Parameters
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/ytmusic/HomeFeed.ts:61](https://github.com/LuanRT/YouTub
 
 > **getContinuation**(): `Promise`\<`HomeFeed`\>
 
-Defined in: [src/parser/ytmusic/HomeFeed.ts:49](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/HomeFeed.ts#L49)
+Defined in: [src/parser/ytmusic/HomeFeed.ts:49](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/HomeFeed.ts#L49)
 
 Retrieves home feed continuation.
 

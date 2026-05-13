@@ -2,7 +2,7 @@
 
 # Class: LiveChatBannerPoll
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L8)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L8)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:8](https://
 
 > **new LiveChatBannerPoll**(`data`): `LiveChatBannerPoll`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L23)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L23)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:23](https:/
 
 > **author\_photo**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L12)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L12)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:12](https:/
 
 > **choices**: `object`[]
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L14)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L14)
 
 #### option\_id
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:14](https:/
 
 > **collapsed\_state\_entity\_key**: `string`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L19)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L19)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:19](https:/
 
 > **context\_menu\_button**: [`Button`](Button.md) \| `null`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L21)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L21)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:21](https:/
 
 > **live\_chat\_poll\_state\_entity\_key**: `string`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L20)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L20)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:20](https:/
 
 > **poll\_question**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L11)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L11)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:11](https:/
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -104,7 +104,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'LiveChatBannerPoll'`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L9)
+Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatBannerPoll.ts#L9)
 
 #### Overrides
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatBannerPoll.ts:9](https://
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -158,7 +158,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is LiveChatBannerPoll & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -196,7 +196,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -234,7 +234,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

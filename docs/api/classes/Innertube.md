@@ -2,7 +2,7 @@
 
 # Class: Innertube
 
-Defined in: [src/Innertube.ts:64](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L64)
+Defined in: [src/Innertube.ts:64](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L64)
 
 Provides access to various services and modules in the YouTube API.
 
@@ -19,7 +19,7 @@ const innertube = await Innertube.create({ cache: new UniversalCache(true)});
 
 > **new Innertube**(`session`): `Innertube`
 
-Defined in: [src/Innertube.ts:67](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L67)
+Defined in: [src/Innertube.ts:67](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L67)
 
 #### Parameters
 
@@ -39,7 +39,7 @@ Defined in: [src/Innertube.ts:67](https://github.com/LuanRT/YouTube.js/blob/faaf
 
 > **get** **account**(): [`AccountManager`](../youtubei.js/namespaces/Managers/classes/AccountManager.md)
 
-Defined in: [src/Innertube.ts:603](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L603)
+Defined in: [src/Innertube.ts:603](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L603)
 
 An interface for managing and retrieving account information.
 
@@ -55,7 +55,7 @@ An interface for managing and retrieving account information.
 
 > **get** **actions**(): [`Actions`](Actions.md)
 
-Defined in: [src/Innertube.ts:624](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L624)
+Defined in: [src/Innertube.ts:624](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L624)
 
 An internal class used to dispatch requests.
 
@@ -71,7 +71,7 @@ An internal class used to dispatch requests.
 
 > **get** **interact**(): [`InteractionManager`](../youtubei.js/namespaces/Managers/classes/InteractionManager.md)
 
-Defined in: [src/Innertube.ts:617](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L617)
+Defined in: [src/Innertube.ts:617](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L617)
 
 An interface for directly interacting with certain YouTube features.
 
@@ -87,7 +87,7 @@ An interface for directly interacting with certain YouTube features.
 
 > **get** **kids**(): [`Kids`](../youtubei.js/namespaces/Clients/classes/Kids.md)
 
-Defined in: [src/Innertube.ts:596](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L596)
+Defined in: [src/Innertube.ts:596](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L596)
 
 An interface for interacting with YouTube Kids.
 
@@ -103,7 +103,7 @@ An interface for interacting with YouTube Kids.
 
 > **get** **music**(): [`Music`](../youtubei.js/namespaces/Clients/classes/Music.md)
 
-Defined in: [src/Innertube.ts:582](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L582)
+Defined in: [src/Innertube.ts:582](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L582)
 
 An interface for interacting with YouTube Music.
 
@@ -119,7 +119,7 @@ An interface for interacting with YouTube Music.
 
 > **get** **playlist**(): [`PlaylistManager`](../youtubei.js/namespaces/Managers/classes/PlaylistManager.md)
 
-Defined in: [src/Innertube.ts:610](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L610)
+Defined in: [src/Innertube.ts:610](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L610)
 
 An interface for managing playlists.
 
@@ -135,7 +135,7 @@ An interface for managing playlists.
 
 > **get** **session**(): [`Session`](Session.md)
 
-Defined in: [src/Innertube.ts:631](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L631)
+Defined in: [src/Innertube.ts:631](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L631)
 
 The session used by this instance.
 
@@ -151,7 +151,7 @@ The session used by this instance.
 
 > **get** **studio**(): [`Studio`](../youtubei.js/namespaces/Clients/classes/Studio.md)
 
-Defined in: [src/Innertube.ts:589](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L589)
+Defined in: [src/Innertube.ts:589](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L589)
 
 An interface for interacting with YouTube Studio.
 
@@ -167,7 +167,7 @@ An interface for interacting with YouTube Studio.
 
 > **call**\<`T`\>(`endpoint`, `args`): `Promise`\<`T`\>
 
-Defined in: [src/Innertube.ts:573](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L573)
+Defined in: [src/Innertube.ts:573](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L573)
 
 Utility method to call an endpoint without having to use [Actions](Actions.md).
 
@@ -197,7 +197,7 @@ Utility method to call an endpoint without having to use [Actions](Actions.md).
 
 > **call**(`endpoint`, `args?`): `Promise`\<[`ApiResponse`](../interfaces/ApiResponse.md)\>
 
-Defined in: [src/Innertube.ts:574](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L574)
+Defined in: [src/Innertube.ts:574](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L574)
 
 Utility method to call an endpoint without having to use [Actions](Actions.md).
 
@@ -223,7 +223,7 @@ Utility method to call an endpoint without having to use [Actions](Actions.md).
 
 > **download**(`video_id`, `options?`): `Promise`\<`ReadableStream`\<`Uint8Array`\<`ArrayBufferLike`\>\>\>
 
-Defined in: [src/Innertube.ts:471](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L471)
+Defined in: [src/Innertube.ts:471](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L471)
 
 Downloads a given video. If all you need the direct download link, see [getStreamingData](#getstreamingdata).
 If you wish to retrieve the video info too, have a look at [getBasicInfo](#getbasicinfo) or [getInfo](#getinfo).
@@ -252,7 +252,7 @@ Download options.
 
 > **getAttestationChallenge**(`engagement_type`, `ids?`): `Promise`\<[`IGetChallengeResponse`](../type-aliases/IGetChallengeResponse.md)\>
 
-Defined in: [src/Innertube.ts:559](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L559)
+Defined in: [src/Innertube.ts:559](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L559)
 
 Fetches an attestation challenge.
 
@@ -276,7 +276,7 @@ Fetches an attestation challenge.
 
 > **getBasicInfo**(`video_id`, `options?`): `Promise`\<[`VideoInfo`](../youtubei.js/namespaces/YT/classes/VideoInfo.md)\>
 
-Defined in: [src/Innertube.ts:124](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L124)
+Defined in: [src/Innertube.ts:124](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L124)
 
 #### Parameters
 
@@ -298,7 +298,7 @@ Defined in: [src/Innertube.ts:124](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getChannel**(`id`): `Promise`\<[`Channel`](../youtubei.js/namespaces/YT/classes/Channel.md)\>
 
-Defined in: [src/Innertube.ts:385](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L385)
+Defined in: [src/Innertube.ts:385](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L385)
 
 #### Parameters
 
@@ -316,7 +316,7 @@ Defined in: [src/Innertube.ts:385](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getChannelsFeed**(): `Promise`\<[`Feed`](../youtubei.js/namespaces/Mixins/classes/Feed.md)\<[`IBrowseResponse`](../type-aliases/IBrowseResponse.md)\>\>
 
-Defined in: [src/Innertube.ts:379](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L379)
+Defined in: [src/Innertube.ts:379](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L379)
 
 #### Returns
 
@@ -328,7 +328,7 @@ Defined in: [src/Innertube.ts:379](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getComments**(`video_id`, `sort_by?`, `comment_id?`): `Promise`\<[`Comments`](../youtubei.js/namespaces/YT/classes/Comments.md)\>
 
-Defined in: [src/Innertube.ts:306](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L306)
+Defined in: [src/Innertube.ts:306](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L306)
 
 #### Parameters
 
@@ -354,7 +354,7 @@ Defined in: [src/Innertube.ts:306](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getCourses**(): `Promise`\<[`Feed`](../youtubei.js/namespaces/Mixins/classes/Feed.md)\<[`IBrowseResponse`](../type-aliases/IBrowseResponse.md)\>\>
 
-Defined in: [src/Innertube.ts:367](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L367)
+Defined in: [src/Innertube.ts:367](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L367)
 
 #### Returns
 
@@ -366,7 +366,7 @@ Defined in: [src/Innertube.ts:367](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getGuide**(): `Promise`\<[`Guide`](../youtubei.js/namespaces/YT/classes/Guide.md)\>
 
-Defined in: [src/Innertube.ts:350](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L350)
+Defined in: [src/Innertube.ts:350](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L350)
 
 #### Returns
 
@@ -378,7 +378,7 @@ Defined in: [src/Innertube.ts:350](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getHashtag**(`hashtag`): `Promise`\<[`HashtagFeed`](../youtubei.js/namespaces/YT/classes/HashtagFeed.md)\>
 
-Defined in: [src/Innertube.ts:430](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L430)
+Defined in: [src/Innertube.ts:430](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L430)
 
 #### Parameters
 
@@ -396,7 +396,7 @@ Defined in: [src/Innertube.ts:430](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getHistory**(): `Promise`\<[`History`](../youtubei.js/namespaces/YT/classes/History.md)\>
 
-Defined in: [src/Innertube.ts:361](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L361)
+Defined in: [src/Innertube.ts:361](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L361)
 
 #### Returns
 
@@ -408,7 +408,7 @@ Defined in: [src/Innertube.ts:361](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getHomeFeed**(): `Promise`\<[`HomeFeed`](../youtubei.js/namespaces/YT/classes/HomeFeed.md)\>
 
-Defined in: [src/Innertube.ts:344](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L344)
+Defined in: [src/Innertube.ts:344](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L344)
 
 #### Returns
 
@@ -420,7 +420,7 @@ Defined in: [src/Innertube.ts:344](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getInfo**(`target`, `options?`): `Promise`\<[`VideoInfo`](../youtubei.js/namespaces/YT/classes/VideoInfo.md)\>
 
-Defined in: [src/Innertube.ts:75](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L75)
+Defined in: [src/Innertube.ts:75](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L75)
 
 #### Parameters
 
@@ -442,7 +442,7 @@ Defined in: [src/Innertube.ts:75](https://github.com/LuanRT/YouTube.js/blob/faaf
 
 > **getLibrary**(): `Promise`\<[`Library`](../youtubei.js/namespaces/YT/classes/Library.md)\>
 
-Defined in: [src/Innertube.ts:355](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L355)
+Defined in: [src/Innertube.ts:355](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L355)
 
 #### Returns
 
@@ -454,7 +454,7 @@ Defined in: [src/Innertube.ts:355](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getNotifications**(): `Promise`\<[`NotificationsMenu`](../youtubei.js/namespaces/YT/classes/NotificationsMenu.md)\>
 
-Defined in: [src/Innertube.ts:397](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L397)
+Defined in: [src/Innertube.ts:397](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L397)
 
 #### Returns
 
@@ -466,7 +466,7 @@ Defined in: [src/Innertube.ts:397](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getPlaylist**(`id`): `Promise`\<[`Playlist`](../youtubei.js/namespaces/YT/classes/Playlist.md)\>
 
-Defined in: [src/Innertube.ts:417](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L417)
+Defined in: [src/Innertube.ts:417](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L417)
 
 #### Parameters
 
@@ -484,7 +484,7 @@ Defined in: [src/Innertube.ts:417](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getPlaylists**(): `Promise`\<[`Feed`](../youtubei.js/namespaces/Mixins/classes/Feed.md)\<[`IBrowseResponse`](../type-aliases/IBrowseResponse.md)\>\>
 
-Defined in: [src/Innertube.ts:411](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L411)
+Defined in: [src/Innertube.ts:411](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L411)
 
 Retrieves the user's playlists.
 
@@ -498,7 +498,7 @@ Retrieves the user's playlists.
 
 > **getPost**(`post_id`, `channel_id`): `Promise`\<[`Feed`](../youtubei.js/namespaces/Mixins/classes/Feed.md)\<[`IBrowseResponse`](../type-aliases/IBrowseResponse.md)\>\>
 
-Defined in: [src/Innertube.ts:491](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L491)
+Defined in: [src/Innertube.ts:491](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L491)
 
 Gets a post page given a post id and the channel id
 
@@ -522,7 +522,7 @@ Gets a post page given a post id and the channel id
 
 > **getPostComments**(`post_id`, `channel_id`, `sort_by?`): `Promise`\<[`Comments`](../youtubei.js/namespaces/YT/classes/Comments.md)\>
 
-Defined in: [src/Innertube.ts:512](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L512)
+Defined in: [src/Innertube.ts:512](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L512)
 
 Gets the comments of a post.
 
@@ -550,7 +550,7 @@ Gets the comments of a post.
 
 > **getSearchSuggestions**(`query`, `previous_query?`): `Promise`\<`string`[]\>
 
-Defined in: [src/Innertube.ts:277](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L277)
+Defined in: [src/Innertube.ts:277](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L277)
 
 #### Parameters
 
@@ -572,7 +572,7 @@ Defined in: [src/Innertube.ts:277](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getShortsVideoInfo**(`video_id`, `client?`): `Promise`\<[`ShortFormVideoInfo`](../youtubei.js/namespaces/YTShorts/classes/ShortFormVideoInfo.md)\>
 
-Defined in: [src/Innertube.ts:166](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L166)
+Defined in: [src/Innertube.ts:166](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L166)
 
 #### Parameters
 
@@ -594,7 +594,7 @@ Defined in: [src/Innertube.ts:166](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getStreamingData**(`video_id`, `options?`): `Promise`\<[`Format`](../youtubei.js/namespaces/Misc/classes/Format.md)\>
 
-Defined in: [src/Innertube.ts:456](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L456)
+Defined in: [src/Innertube.ts:456](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L456)
 
 An alternative to [download](#download).
 Returns deciphered streaming data.
@@ -625,7 +625,7 @@ Format options.
 
 > **getSubscriptionsFeed**(): `Promise`\<[`Feed`](../youtubei.js/namespaces/Mixins/classes/Feed.md)\<[`IBrowseResponse`](../type-aliases/IBrowseResponse.md)\>\>
 
-Defined in: [src/Innertube.ts:373](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L373)
+Defined in: [src/Innertube.ts:373](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L373)
 
 #### Returns
 
@@ -637,7 +637,7 @@ Defined in: [src/Innertube.ts:373](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **getUnseenNotificationsCount**(): `Promise`\<`number`\>
 
-Defined in: [src/Innertube.ts:402](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L402)
+Defined in: [src/Innertube.ts:402](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L402)
 
 #### Returns
 
@@ -649,7 +649,7 @@ Defined in: [src/Innertube.ts:402](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > **resolveURL**(`url`): `Promise`\<[`NavigationEndpoint`](../youtubei.js/namespaces/YTNodes/classes/NavigationEndpoint.md)\>
 
-Defined in: [src/Innertube.ts:479](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L479)
+Defined in: [src/Innertube.ts:479](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L479)
 
 Resolves the given URL.
 
@@ -669,7 +669,7 @@ Resolves the given URL.
 
 > **search**(`query`, `filters?`): `Promise`\<[`Search`](../youtubei.js/namespaces/YT/classes/Search.md)\>
 
-Defined in: [src/Innertube.ts:201](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L201)
+Defined in: [src/Innertube.ts:201](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L201)
 
 #### Parameters
 
@@ -691,7 +691,7 @@ Defined in: [src/Innertube.ts:201](https://github.com/LuanRT/YouTube.js/blob/faa
 
 > `static` **create**(`config?`): `Promise`\<`Innertube`\>
 
-Defined in: [src/Innertube.ts:71](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/Innertube.ts#L71)
+Defined in: [src/Innertube.ts:71](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/Innertube.ts#L71)
 
 #### Parameters
 

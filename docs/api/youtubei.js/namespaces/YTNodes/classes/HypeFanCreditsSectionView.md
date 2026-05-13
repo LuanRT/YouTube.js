@@ -1,8 +1,8 @@
-[youtubei.js](../../../../README.md) / [YTNodes](../README.md) / LiveChatRestrictedParticipation
+[youtubei.js](../../../../README.md) / [YTNodes](../README.md) / HypeFanCreditsSectionView
 
-# Class: LiveChatRestrictedParticipation
+# Class: HypeFanCreditsSectionView
 
-Defined in: [src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts#L5)
+Defined in: [src/parser/classes/HypeFanCreditsSectionView.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/HypeFanCreditsSectionView.ts#L5)
 
 ## Extends
 
@@ -12,9 +12,9 @@ Defined in: [src/parser/classes/livechat/items/LiveChatRestrictedParticipation.t
 
 ### Constructor
 
-> **new LiveChatRestrictedParticipation**(`data`): `LiveChatRestrictedParticipation`
+> **new HypeFanCreditsSectionView**(`data`): `HypeFanCreditsSectionView`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts#L11)
+Defined in: [src/parser/classes/HypeFanCreditsSectionView.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/HypeFanCreditsSectionView.ts#L10)
 
 #### Parameters
 
@@ -24,7 +24,7 @@ Defined in: [src/parser/classes/livechat/items/LiveChatRestrictedParticipation.t
 
 #### Returns
 
-`LiveChatRestrictedParticipation`
+`HypeFanCreditsSectionView`
 
 #### Overrides
 
@@ -32,19 +32,11 @@ Defined in: [src/parser/classes/livechat/items/LiveChatRestrictedParticipation.t
 
 ## Properties
 
-### icon\_type?
+### header
 
-> `optional` **icon\_type**: `string`
+> **header**: [`SectionHeaderView`](SectionHeaderView.md) \| `null`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts#L9)
-
-***
-
-### message
-
-> **message**: [`Text`](../../Misc/classes/Text.md)
-
-Defined in: [src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts#L8)
+Defined in: [src/parser/classes/HypeFanCreditsSectionView.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/HypeFanCreditsSectionView.ts#L8)
 
 ***
 
@@ -62,9 +54,9 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 ### type
 
-> `static` **type**: `string` = `'LiveChatRestrictedParticipation'`
+> `static` **type**: `string` = `'HypeFanCreditsSectionView'`
 
-Defined in: [src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/items/LiveChatRestrictedParticipation.ts#L6)
+Defined in: [src/parser/classes/HypeFanCreditsSectionView.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/HypeFanCreditsSectionView.ts#L6)
 
 #### Overrides
 
@@ -116,7 +108,7 @@ If the node is not of the given type
 
 ### hasKey()
 
-> **hasKey**\<`T`, `R`\>(`key`): `this is LiveChatRestrictedParticipation & { [k in string]: R }`
+> **hasKey**\<`T`, `R`\>(`key`): `this is HypeFanCreditsSectionView & { [k in string]: R }`
 
 Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
@@ -142,7 +134,7 @@ The key to check
 
 #### Returns
 
-`this is LiveChatRestrictedParticipation & { [k in string]: R }`
+`this is HypeFanCreditsSectionView & { [k in string]: R }`
 
 Whether the node has the key
 

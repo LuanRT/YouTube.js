@@ -2,7 +2,7 @@
 
 # Class: TranscriptInfo
 
-Defined in: [src/parser/youtube/TranscriptInfo.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/TranscriptInfo.ts#L7)
+Defined in: [src/parser/youtube/TranscriptInfo.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/TranscriptInfo.ts#L7)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/youtube/TranscriptInfo.ts:7](https://github.com/LuanRT/Y
 
 > **new TranscriptInfo**(`actions`, `response`): `TranscriptInfo`
 
-Defined in: [src/parser/youtube/TranscriptInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/TranscriptInfo.ts#L12)
+Defined in: [src/parser/youtube/TranscriptInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/TranscriptInfo.ts#L12)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/youtube/TranscriptInfo.ts:12](https://github.com/LuanRT/
 
 > **transcript**: [`Transcript`](../../YTNodes/classes/Transcript.md)
 
-Defined in: [src/parser/youtube/TranscriptInfo.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/TranscriptInfo.ts#L10)
+Defined in: [src/parser/youtube/TranscriptInfo.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/TranscriptInfo.ts#L10)
 
 ## Accessors
 
@@ -42,7 +42,7 @@ Defined in: [src/parser/youtube/TranscriptInfo.ts:10](https://github.com/LuanRT/
 
 > **get** **languages**(): `string`[]
 
-Defined in: [src/parser/youtube/TranscriptInfo.ts:45](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/TranscriptInfo.ts#L45)
+Defined in: [src/parser/youtube/TranscriptInfo.ts:45](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/TranscriptInfo.ts#L45)
 
 Returns available languages.
 
@@ -58,7 +58,7 @@ Returns available languages.
 
 > **get** **page**(): [`IGetTranscriptResponse`](../../../../type-aliases/IGetTranscriptResponse.md)
 
-Defined in: [src/parser/youtube/TranscriptInfo.ts:56](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/TranscriptInfo.ts#L56)
+Defined in: [src/parser/youtube/TranscriptInfo.ts:56](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/TranscriptInfo.ts#L56)
 
 ##### Returns
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/youtube/TranscriptInfo.ts:56](https://github.com/LuanRT/
 
 > **get** **selectedLanguage**(): `string`
 
-Defined in: [src/parser/youtube/TranscriptInfo.ts:52](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/TranscriptInfo.ts#L52)
+Defined in: [src/parser/youtube/TranscriptInfo.ts:52](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/TranscriptInfo.ts#L52)
 
 Returns the currently selected language.
 
@@ -86,7 +86,7 @@ Returns the currently selected language.
 
 > **selectLanguage**(`language`): `Promise`\<`TranscriptInfo`\>
 
-Defined in: [src/parser/youtube/TranscriptInfo.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/TranscriptInfo.ts#L26)
+Defined in: [src/parser/youtube/TranscriptInfo.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/TranscriptInfo.ts#L26)
 
 Selects a language from the language menu and returns the updated transcript.
 

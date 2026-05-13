@@ -2,7 +2,7 @@
 
 # Class: Explore
 
-Defined in: [src/parser/ytmusic/Explore.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Explore.ts#L14)
+Defined in: [src/parser/ytmusic/Explore.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Explore.ts#L14)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/ytmusic/Explore.ts:14](https://github.com/LuanRT/YouTube
 
 > **new Explore**(`response`): `Explore`
 
-Defined in: [src/parser/ytmusic/Explore.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Explore.ts#L20)
+Defined in: [src/parser/ytmusic/Explore.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Explore.ts#L20)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/ytmusic/Explore.ts:20](https://github.com/LuanRT/YouTube
 
 > **sections**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MusicCarouselShelf`](../../YTNodes/classes/MusicCarouselShelf.md)\>
 
-Defined in: [src/parser/ytmusic/Explore.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Explore.ts#L18)
+Defined in: [src/parser/ytmusic/Explore.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Explore.ts#L18)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/ytmusic/Explore.ts:18](https://github.com/LuanRT/YouTube
 
 > **top\_buttons**: [`MusicNavigationButton`](../../YTNodes/classes/MusicNavigationButton.md)[]
 
-Defined in: [src/parser/ytmusic/Explore.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Explore.ts#L17)
+Defined in: [src/parser/ytmusic/Explore.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Explore.ts#L17)
 
 ## Accessors
 
@@ -46,7 +46,7 @@ Defined in: [src/parser/ytmusic/Explore.ts:17](https://github.com/LuanRT/YouTube
 
 > **get** **page**(): [`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)
 
-Defined in: [src/parser/ytmusic/Explore.ts:37](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Explore.ts#L37)
+Defined in: [src/parser/ytmusic/Explore.ts:37](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Explore.ts#L37)
 
 ##### Returns
 

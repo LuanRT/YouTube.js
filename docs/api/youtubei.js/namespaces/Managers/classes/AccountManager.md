@@ -2,7 +2,7 @@
 
 # Class: AccountManager
 
-Defined in: [src/core/managers/AccountManager.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/AccountManager.ts#L10)
+Defined in: [src/core/managers/AccountManager.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/managers/AccountManager.ts#L10)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/managers/AccountManager.ts:10](https://github.com/LuanRT/Y
 
 > **new AccountManager**(`actions`): `AccountManager`
 
-Defined in: [src/core/managers/AccountManager.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/AccountManager.ts#L13)
+Defined in: [src/core/managers/AccountManager.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/managers/AccountManager.ts#L13)
 
 #### Parameters
 
@@ -30,7 +30,7 @@ Defined in: [src/core/managers/AccountManager.ts:13](https://github.com/LuanRT/Y
 
 > **getInfo**(`all`): `Promise`\<[`AccountItem`](../../YTNodes/classes/AccountItem.md)[]\>
 
-Defined in: [src/core/managers/AccountManager.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/AccountManager.ts#L20)
+Defined in: [src/core/managers/AccountManager.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/managers/AccountManager.ts#L20)
 
 Retrieves the list of channels belonging to the signed-in account. Only useful when signed in through cookie. If signed in through OAuth, you will get the active channel only.
 
@@ -48,7 +48,7 @@ Retrieves the list of channels belonging to the signed-in account. Only useful w
 
 > **getInfo**(`all?`): `Promise`\<[`AccountInfo`](../../YT/classes/AccountInfo.md)\>
 
-Defined in: [src/core/managers/AccountManager.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/AccountManager.ts#L24)
+Defined in: [src/core/managers/AccountManager.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/managers/AccountManager.ts#L24)
 
 Retrieves the active channel info for the signed-in account. Throws error if `on_behalf_of_user` was used to create the Innertube instance; use `getInfo(true)` instead.
 
@@ -68,7 +68,7 @@ Retrieves the active channel info for the signed-in account. Throws error if `on
 
 > **getSettings**(): `Promise`\<[`Settings`](../../YT/classes/Settings.md)\>
 
-Defined in: [src/core/managers/AccountManager.ts:50](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/managers/AccountManager.ts#L50)
+Defined in: [src/core/managers/AccountManager.ts:50](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/managers/AccountManager.ts#L50)
 
 Gets YouTube settings.
 

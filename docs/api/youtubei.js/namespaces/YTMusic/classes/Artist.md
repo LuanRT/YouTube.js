@@ -2,7 +2,7 @@
 
 # Class: Artist
 
-Defined in: [src/parser/ytmusic/Artist.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Artist.ts#L16)
+Defined in: [src/parser/ytmusic/Artist.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Artist.ts#L16)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/ytmusic/Artist.ts:16](https://github.com/LuanRT/YouTube.
 
 > **new Artist**(`response`, `actions`): `Artist`
 
-Defined in: [src/parser/ytmusic/Artist.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Artist.ts#L23)
+Defined in: [src/parser/ytmusic/Artist.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Artist.ts#L23)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/ytmusic/Artist.ts:23](https://github.com/LuanRT/YouTube.
 
 > `optional` **header**: [`MusicImmersiveHeader`](../../YTNodes/classes/MusicImmersiveHeader.md) \| [`MusicVisualHeader`](../../YTNodes/classes/MusicVisualHeader.md) \| [`MusicHeader`](../../YTNodes/classes/MusicHeader.md)
 
-Defined in: [src/parser/ytmusic/Artist.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Artist.ts#L20)
+Defined in: [src/parser/ytmusic/Artist.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Artist.ts#L20)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/ytmusic/Artist.ts:20](https://github.com/LuanRT/YouTube.
 
 > **sections**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MusicCarouselShelf`](../../YTNodes/classes/MusicCarouselShelf.md) \| [`MusicShelf`](../../YTNodes/classes/MusicShelf.md)\>
 
-Defined in: [src/parser/ytmusic/Artist.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Artist.ts#L21)
+Defined in: [src/parser/ytmusic/Artist.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Artist.ts#L21)
 
 ## Accessors
 
@@ -50,7 +50,7 @@ Defined in: [src/parser/ytmusic/Artist.ts:21](https://github.com/LuanRT/YouTube.
 
 > **get** **page**(): [`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)
 
-Defined in: [src/parser/ytmusic/Artist.ts:53](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Artist.ts#L53)
+Defined in: [src/parser/ytmusic/Artist.ts:53](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Artist.ts#L53)
 
 ##### Returns
 
@@ -62,7 +62,7 @@ Defined in: [src/parser/ytmusic/Artist.ts:53](https://github.com/LuanRT/YouTube.
 
 > **getAllSongs**(): `Promise`\<[`MusicPlaylistShelf`](../../YTNodes/classes/MusicPlaylistShelf.md) \| `undefined`\>
 
-Defined in: [src/parser/ytmusic/Artist.ts:35](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Artist.ts#L35)
+Defined in: [src/parser/ytmusic/Artist.ts:35](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Artist.ts#L35)
 
 #### Returns
 

@@ -2,7 +2,7 @@
 
 # Interface: IRawBotguardChallenge
 
-Defined in: [src/parser/types/RawResponse.ts:1572](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1572)
+Defined in: [src/parser/types/RawResponse.ts:1572](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1572)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/RawResponse.ts:1572](https://github.com/LuanRT/You
 
 > **clientExperimentsStateBlob**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1577](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1577)
+Defined in: [src/parser/types/RawResponse.ts:1577](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1577)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/types/RawResponse.ts:1577](https://github.com/LuanRT/You
 
 > **globalName**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1576](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1576)
+Defined in: [src/parser/types/RawResponse.ts:1576](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1576)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/parser/types/RawResponse.ts:1576](https://github.com/LuanRT/You
 
 > **interpreterHash**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1574](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1574)
+Defined in: [src/parser/types/RawResponse.ts:1574](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1574)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/parser/types/RawResponse.ts:1574](https://github.com/LuanRT/You
 
 > **interpreterUrl**: [`IRawTrustedResource`](IRawTrustedResource.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1573](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1573)
+Defined in: [src/parser/types/RawResponse.ts:1573](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1573)
 
 ***
 
@@ -42,4 +42,4 @@ Defined in: [src/parser/types/RawResponse.ts:1573](https://github.com/LuanRT/You
 
 > **program**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1575](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1575)
+Defined in: [src/parser/types/RawResponse.ts:1575](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1575)

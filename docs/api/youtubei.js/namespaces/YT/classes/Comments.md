@@ -2,7 +2,7 @@
 
 # Class: Comments
 
-Defined in: [src/parser/youtube/Comments.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L15)
+Defined in: [src/parser/youtube/Comments.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L15)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/youtube/Comments.ts:15](https://github.com/LuanRT/YouTub
 
 > **new Comments**(`actions`, `data`, `already_parsed?`): `Comments`
 
-Defined in: [src/parser/youtube/Comments.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L23)
+Defined in: [src/parser/youtube/Comments.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L23)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/youtube/Comments.ts:23](https://github.com/LuanRT/YouTub
 
 > **contents**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CommentThread`](../../YTNodes/classes/CommentThread.md)\>
 
-Defined in: [src/parser/youtube/Comments.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L21)
+Defined in: [src/parser/youtube/Comments.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L21)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/youtube/Comments.ts:21](https://github.com/LuanRT/YouTub
 
 > `optional` **header**: [`CommentsHeader`](../../YTNodes/classes/CommentsHeader.md)
 
-Defined in: [src/parser/youtube/Comments.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L20)
+Defined in: [src/parser/youtube/Comments.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L20)
 
 ## Accessors
 
@@ -54,7 +54,7 @@ Defined in: [src/parser/youtube/Comments.ts:20](https://github.com/LuanRT/YouTub
 
 > **get** **has\_continuation**(): `boolean`
 
-Defined in: [src/parser/youtube/Comments.ts:117](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L117)
+Defined in: [src/parser/youtube/Comments.ts:117](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L117)
 
 ##### Returns
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/youtube/Comments.ts:117](https://github.com/LuanRT/YouTu
 
 > **get** **page**(): [`INextResponse`](../../../../type-aliases/INextResponse.md)
 
-Defined in: [src/parser/youtube/Comments.ts:121](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L121)
+Defined in: [src/parser/youtube/Comments.ts:121](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L121)
 
 ##### Returns
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/youtube/Comments.ts:121](https://github.com/LuanRT/YouTu
 
 > **applySort**(`sort`): `Promise`\<`Comments`\>
 
-Defined in: [src/parser/youtube/Comments.ts:53](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L53)
+Defined in: [src/parser/youtube/Comments.ts:53](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L53)
 
 Applies given sort option to the comments.
 
@@ -102,7 +102,7 @@ Sort type.
 
 > **createComment**(`text`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/parser/youtube/Comments.ts:80](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L80)
+Defined in: [src/parser/youtube/Comments.ts:80](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L80)
 
 Creates a top-level comment.
 
@@ -124,7 +124,7 @@ Comment text.
 
 > **getContinuation**(): `Promise`\<`Comments`\>
 
-Defined in: [src/parser/youtube/Comments.ts:98](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Comments.ts#L98)
+Defined in: [src/parser/youtube/Comments.ts:98](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Comments.ts#L98)
 
 Retrieves next batch of comments.
 

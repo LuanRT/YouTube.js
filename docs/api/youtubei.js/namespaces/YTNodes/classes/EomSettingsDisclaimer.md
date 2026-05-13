@@ -2,7 +2,7 @@
 
 # Class: EomSettingsDisclaimer
 
-Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/EomSettingsDisclaimer.ts#L5)
+Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/EomSettingsDisclaimer.ts#L5)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:5](https://github.com/L
 
 > **new EomSettingsDisclaimer**(`data`): `EomSettingsDisclaimer`
 
-Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/EomSettingsDisclaimer.ts#L14)
+Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/EomSettingsDisclaimer.ts#L14)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:14](https://github.com/
 
 > **disclaimer**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/EomSettingsDisclaimer.ts#L8)
+Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/EomSettingsDisclaimer.ts#L8)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:8](https://github.com/L
 
 > **info\_icon**: `object`
 
-Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/EomSettingsDisclaimer.ts#L9)
+Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/EomSettingsDisclaimer.ts#L9)
 
 #### icon\_type
 
@@ -56,7 +56,7 @@ Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:9](https://github.com/L
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **usage\_scenario**: `string`
 
-Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/EomSettingsDisclaimer.ts#L12)
+Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/EomSettingsDisclaimer.ts#L12)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:12](https://github.com/
 
 > `static` **type**: `string` = `'EomSettingsDisclaimer'`
 
-Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/EomSettingsDisclaimer.ts#L6)
+Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/EomSettingsDisclaimer.ts#L6)
 
 #### Overrides
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/classes/EomSettingsDisclaimer.ts:6](https://github.com/L
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -130,7 +130,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is EomSettingsDisclaimer & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -168,7 +168,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -206,7 +206,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

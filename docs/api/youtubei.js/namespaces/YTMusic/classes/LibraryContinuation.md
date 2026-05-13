@@ -2,7 +2,7 @@
 
 # Class: LibraryContinuation
 
-Defined in: [src/parser/ytmusic/Library.ts:151](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Library.ts#L151)
+Defined in: [src/parser/ytmusic/Library.ts:151](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Library.ts#L151)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/ytmusic/Library.ts:151](https://github.com/LuanRT/YouTub
 
 > **new LibraryContinuation**(`response`, `actions`): `LibraryContinuation`
 
-Defined in: [src/parser/ytmusic/Library.ts:158](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Library.ts#L158)
+Defined in: [src/parser/ytmusic/Library.ts:158](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Library.ts#L158)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/ytmusic/Library.ts:158](https://github.com/LuanRT/YouTub
 
 > **contents**: [`MusicShelfContinuation`](../../../../classes/MusicShelfContinuation.md) \| [`GridContinuation`](../../../../classes/GridContinuation.md)
 
-Defined in: [src/parser/ytmusic/Library.ts:156](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Library.ts#L156)
+Defined in: [src/parser/ytmusic/Library.ts:156](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Library.ts#L156)
 
 ## Accessors
 
@@ -42,7 +42,7 @@ Defined in: [src/parser/ytmusic/Library.ts:156](https://github.com/LuanRT/YouTub
 
 > **get** **has\_continuation**(): `boolean`
 
-Defined in: [src/parser/ytmusic/Library.ts:182](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Library.ts#L182)
+Defined in: [src/parser/ytmusic/Library.ts:182](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Library.ts#L182)
 
 ##### Returns
 
@@ -56,7 +56,7 @@ Defined in: [src/parser/ytmusic/Library.ts:182](https://github.com/LuanRT/YouTub
 
 > **get** **page**(): [`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)
 
-Defined in: [src/parser/ytmusic/Library.ts:186](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Library.ts#L186)
+Defined in: [src/parser/ytmusic/Library.ts:186](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Library.ts#L186)
 
 ##### Returns
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/ytmusic/Library.ts:186](https://github.com/LuanRT/YouTub
 
 > **getContinuation**(): `Promise`\<`LibraryContinuation`\>
 
-Defined in: [src/parser/ytmusic/Library.ts:170](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/ytmusic/Library.ts#L170)
+Defined in: [src/parser/ytmusic/Library.ts:170](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/Library.ts#L170)
 
 #### Returns
 

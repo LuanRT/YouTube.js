@@ -2,7 +2,7 @@
 
 # Class: JsAnalyzer
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:72](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L72)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:72](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L72)
 
 Performs dependency-aware extraction of variables inside an IIFE.
 
@@ -12,7 +12,7 @@ Performs dependency-aware extraction of variables inside an IIFE.
 
 > **new JsAnalyzer**(`code`, `options?`): `JsAnalyzer`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:88](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L88)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:88](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L88)
 
 Creates a new instance over the provided source.
 
@@ -40,7 +40,7 @@ Optional traversal settings.
 
 > `readonly` **declaredVariables**: `Map`\<`string`, [`VariableMetadata`](../interfaces/VariableMetadata.md)\>
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:81](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L81)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:81](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L81)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:81](https://github.com/LuanRT/Yo
 
 > **iifeParamName**: `string` \| `null` = `null`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:80](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L80)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:80](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L80)
 
 ## Methods
 
@@ -56,7 +56,7 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:80](https://github.com/LuanRT/Yo
 
 > **getExtractedMatches**(): [`ExtractionState`](../interfaces/ExtractionState.md)[]
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:647](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L647)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:647](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L647)
 
 Returns the current set of matched extractions.
 
@@ -70,7 +70,7 @@ Returns the current set of matched extractions.
 
 > **getSource**(): `string`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:655](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L655)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:655](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L655)
 
 Returns the raw, original source.
 

@@ -4,7 +4,7 @@
 
 > **parse**(`key`, `inference_type`, `data`, `key_path?`): `any`
 
-Defined in: [src/parser/generator.ts:681](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/generator.ts#L681)
+Defined in: [src/parser/generator.ts:681](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/generator.ts#L681)
 
 Parse a value from a given key path using the given inference type
 

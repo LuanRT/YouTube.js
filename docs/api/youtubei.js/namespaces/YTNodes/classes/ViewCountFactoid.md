@@ -2,7 +2,7 @@
 
 # Class: ViewCountFactoid
 
-Defined in: [src/parser/classes/ViewCountFactoid.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ViewCountFactoid.ts#L6)
+Defined in: [src/parser/classes/ViewCountFactoid.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ViewCountFactoid.ts#L6)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ViewCountFactoid.ts:6](https://github.com/LuanRT
 
 > **new ViewCountFactoid**(`data`): `ViewCountFactoid`
 
-Defined in: [src/parser/classes/ViewCountFactoid.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ViewCountFactoid.ts#L13)
+Defined in: [src/parser/classes/ViewCountFactoid.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ViewCountFactoid.ts#L13)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/ViewCountFactoid.ts:13](https://github.com/LuanR
 
 > **factoid**: [`Factoid`](Factoid.md) \| `null`
 
-Defined in: [src/parser/classes/ViewCountFactoid.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ViewCountFactoid.ts#L10)
+Defined in: [src/parser/classes/ViewCountFactoid.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ViewCountFactoid.ts#L10)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/ViewCountFactoid.ts:10](https://github.com/LuanR
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -56,7 +56,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **view\_count\_entity\_key**: `string`
 
-Defined in: [src/parser/classes/ViewCountFactoid.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ViewCountFactoid.ts#L9)
+Defined in: [src/parser/classes/ViewCountFactoid.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ViewCountFactoid.ts#L9)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [src/parser/classes/ViewCountFactoid.ts:9](https://github.com/LuanRT
 
 > **view\_count\_type**: `string`
 
-Defined in: [src/parser/classes/ViewCountFactoid.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ViewCountFactoid.ts#L11)
+Defined in: [src/parser/classes/ViewCountFactoid.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ViewCountFactoid.ts#L11)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/classes/ViewCountFactoid.ts:11](https://github.com/LuanR
 
 > `static` **type**: `string` = `'ViewCountFactoid'`
 
-Defined in: [src/parser/classes/ViewCountFactoid.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ViewCountFactoid.ts#L7)
+Defined in: [src/parser/classes/ViewCountFactoid.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ViewCountFactoid.ts#L7)
 
 #### Overrides
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/ViewCountFactoid.ts:7](https://github.com/LuanRT
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -126,7 +126,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ViewCountFactoid & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -164,7 +164,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -202,7 +202,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

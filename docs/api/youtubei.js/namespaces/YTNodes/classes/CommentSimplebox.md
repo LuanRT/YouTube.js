@@ -2,7 +2,7 @@
 
 # Class: CommentSimplebox
 
-Defined in: [src/parser/classes/comments/CommentSimplebox.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/comments/CommentSimplebox.ts#L9)
+Defined in: [src/parser/classes/comments/CommentSimplebox.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentSimplebox.ts#L9)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/comments/CommentSimplebox.ts:9](https://github.c
 
 > **new CommentSimplebox**(`data`): `CommentSimplebox`
 
-Defined in: [src/parser/classes/comments/CommentSimplebox.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/comments/CommentSimplebox.ts#L18)
+Defined in: [src/parser/classes/comments/CommentSimplebox.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentSimplebox.ts#L18)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/comments/CommentSimplebox.ts:18](https://github.
 
 > **author\_thumbnail**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/comments/CommentSimplebox.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/comments/CommentSimplebox.ts#L14)
+Defined in: [src/parser/classes/comments/CommentSimplebox.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentSimplebox.ts#L14)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/comments/CommentSimplebox.ts:14](https://github.
 
 > **avatar\_size**: `string`
 
-Defined in: [src/parser/classes/comments/CommentSimplebox.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/comments/CommentSimplebox.ts#L16)
+Defined in: [src/parser/classes/comments/CommentSimplebox.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentSimplebox.ts#L16)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/comments/CommentSimplebox.ts:16](https://github.
 
 > **cancel\_button**: [`Button`](Button.md) \| `null`
 
-Defined in: [src/parser/classes/comments/CommentSimplebox.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/comments/CommentSimplebox.ts#L13)
+Defined in: [src/parser/classes/comments/CommentSimplebox.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentSimplebox.ts#L13)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/comments/CommentSimplebox.ts:13](https://github.
 
 > **placeholder**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/comments/CommentSimplebox.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/comments/CommentSimplebox.ts#L15)
+Defined in: [src/parser/classes/comments/CommentSimplebox.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentSimplebox.ts#L15)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/comments/CommentSimplebox.ts:15](https://github.
 
 > **submit\_button**: [`Button`](Button.md) \| `null`
 
-Defined in: [src/parser/classes/comments/CommentSimplebox.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/comments/CommentSimplebox.ts#L12)
+Defined in: [src/parser/classes/comments/CommentSimplebox.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentSimplebox.ts#L12)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/comments/CommentSimplebox.ts:12](https://github.
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'CommentSimplebox'`
 
-Defined in: [src/parser/classes/comments/CommentSimplebox.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/comments/CommentSimplebox.ts#L10)
+Defined in: [src/parser/classes/comments/CommentSimplebox.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentSimplebox.ts#L10)
 
 #### Overrides
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/comments/CommentSimplebox.ts:10](https://github.
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -142,7 +142,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is CommentSimplebox & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -180,7 +180,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -218,7 +218,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

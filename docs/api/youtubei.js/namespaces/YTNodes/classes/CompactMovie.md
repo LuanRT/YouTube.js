@@ -2,7 +2,7 @@
 
 # Class: CompactMovie
 
-Defined in: [src/parser/classes/CompactMovie.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L11)
+Defined in: [src/parser/classes/CompactMovie.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L11)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:11](https://github.com/LuanRT/Yo
 
 > **new CompactMovie**(`data`): `CompactMovie`
 
-Defined in: [src/parser/classes/CompactMovie.ts:31](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L31)
+Defined in: [src/parser/classes/CompactMovie.ts:31](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L31)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:31](https://github.com/LuanRT/Yo
 
 > **author**: [`Author`](../../Misc/classes/Author.md)
 
-Defined in: [src/parser/classes/CompactMovie.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L19)
+Defined in: [src/parser/classes/CompactMovie.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L19)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:19](https://github.com/LuanRT/Yo
 
 > **badges**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/CompactMovie.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L27)
+Defined in: [src/parser/classes/CompactMovie.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L27)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:27](https://github.com/LuanRT/Yo
 
 > **duration**: `object`
 
-Defined in: [src/parser/classes/CompactMovie.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L21)
+Defined in: [src/parser/classes/CompactMovie.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L21)
 
 #### seconds
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:21](https://github.com/LuanRT/Yo
 
 > **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/CompactMovie.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L26)
+Defined in: [src/parser/classes/CompactMovie.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L26)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:26](https://github.com/LuanRT/Yo
 
 > **id**: `string`
 
-Defined in: [src/parser/classes/CompactMovie.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L14)
+Defined in: [src/parser/classes/CompactMovie.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L14)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:14](https://github.com/LuanRT/Yo
 
 > **menu**: [`Menu`](Menu.md) \| `null`
 
-Defined in: [src/parser/classes/CompactMovie.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L29)
+Defined in: [src/parser/classes/CompactMovie.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L29)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:29](https://github.com/LuanRT/Yo
 
 > **thumbnail\_overlays**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/CompactMovie.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L18)
+Defined in: [src/parser/classes/CompactMovie.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L18)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:18](https://github.com/LuanRT/Yo
 
 > **thumbnails**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/CompactMovie.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L17)
+Defined in: [src/parser/classes/CompactMovie.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L17)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:17](https://github.com/LuanRT/Yo
 
 > **title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/CompactMovie.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L15)
+Defined in: [src/parser/classes/CompactMovie.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L15)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:15](https://github.com/LuanRT/Yo
 
 > **top\_metadata\_items**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/CompactMovie.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L16)
+Defined in: [src/parser/classes/CompactMovie.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L16)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:16](https://github.com/LuanRT/Yo
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -136,7 +136,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **use\_vertical\_poster**: `boolean`
 
-Defined in: [src/parser/classes/CompactMovie.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L28)
+Defined in: [src/parser/classes/CompactMovie.ts:28](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L28)
 
 ***
 
@@ -144,7 +144,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:28](https://github.com/LuanRT/Yo
 
 > `static` **type**: `string` = `'CompactMovie'`
 
-Defined in: [src/parser/classes/CompactMovie.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/CompactMovie.ts#L12)
+Defined in: [src/parser/classes/CompactMovie.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/CompactMovie.ts#L12)
 
 #### Overrides
 
@@ -156,7 +156,7 @@ Defined in: [src/parser/classes/CompactMovie.ts:12](https://github.com/LuanRT/Yo
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -198,7 +198,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is CompactMovie & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -236,7 +236,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -274,7 +274,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

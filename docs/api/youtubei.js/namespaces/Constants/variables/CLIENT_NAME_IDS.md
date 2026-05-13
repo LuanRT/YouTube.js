@@ -4,7 +4,7 @@
 
 > `const` **CLIENT\_NAME\_IDS**: `object`
 
-Defined in: [src/utils/Constants.ts:108](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/Constants.ts#L108)
+Defined in: [src/utils/Constants.ts:108](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/Constants.ts#L108)
 
 The keys correspond to the `NAME` fields in [`CLIENTS`](CLIENTS.md) constant
 

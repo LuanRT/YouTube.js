@@ -2,7 +2,7 @@
 
 # Interface: VariableMetadata
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:43](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L43)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:43](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L43)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:43](https://github.com/LuanRT/Yo
 
 > **dependencies**: `Set`\<`string`\>
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:46](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L46)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:46](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L46)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:46](https://github.com/LuanRT/Yo
 
 > **dependents**: `Set`\<`string`\>
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:47](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L47)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:47](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L47)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:47](https://github.com/LuanRT/Yo
 
 > **name**: `string`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:44](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L44)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:44](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L44)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:44](https://github.com/LuanRT/Yo
 
 > `optional` **node**: `any`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:45](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L45)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:45](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L45)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:45](https://github.com/LuanRT/Yo
 
 > **predeclared**: `boolean`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:49](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L49)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:49](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L49)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:49](https://github.com/LuanRT/Yo
 
 > **prototypeAliases**: `Map`\<`string`, `Set`\<`VariableMetadata`\>\>
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:48](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsAnalyzer.ts#L48)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:48](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsAnalyzer.ts#L48)

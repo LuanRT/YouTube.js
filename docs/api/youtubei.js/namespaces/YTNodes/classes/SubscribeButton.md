@@ -2,7 +2,7 @@
 
 # Class: SubscribeButton
 
-Defined in: [src/parser/classes/SubscribeButton.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L7)
+Defined in: [src/parser/classes/SubscribeButton.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L7)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:7](https://github.com/LuanRT/
 
 > **new SubscribeButton**(`data`): `SubscribeButton`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L28)
+Defined in: [src/parser/classes/SubscribeButton.ts:28](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L28)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:28](https://github.com/LuanRT
 
 > **button\_text**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SubscribeButton.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L10)
+Defined in: [src/parser/classes/SubscribeButton.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L10)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:10](https://github.com/LuanRT
 
 > **channel\_id**: `string`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L14)
+Defined in: [src/parser/classes/SubscribeButton.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L14)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:14](https://github.com/LuanRT
 
 > **enabled**: `boolean`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L12)
+Defined in: [src/parser/classes/SubscribeButton.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L12)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:12](https://github.com/LuanRT
 
 > **item\_type**: `string`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L13)
+Defined in: [src/parser/classes/SubscribeButton.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L13)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:13](https://github.com/LuanRT
 
 > **notification\_preference\_button**: [`SubscriptionNotificationToggleButton`](SubscriptionNotificationToggleButton.md) \| `null`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L19)
+Defined in: [src/parser/classes/SubscribeButton.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L19)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:19](https://github.com/LuanRT
 
 > `optional` **on\_subscribe\_endpoints**: [`NavigationEndpoint`](NavigationEndpoint.md)[]
 
-Defined in: [src/parser/classes/SubscribeButton.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L21)
+Defined in: [src/parser/classes/SubscribeButton.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L21)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:21](https://github.com/LuanRT
 
 > `optional` **on\_unsubscribe\_endpoints**: [`NavigationEndpoint`](NavigationEndpoint.md)[]
 
-Defined in: [src/parser/classes/SubscribeButton.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L22)
+Defined in: [src/parser/classes/SubscribeButton.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L22)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:22](https://github.com/LuanRT
 
 > `optional` **service\_endpoints**: [`NavigationEndpoint`](NavigationEndpoint.md)[]
 
-Defined in: [src/parser/classes/SubscribeButton.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L20)
+Defined in: [src/parser/classes/SubscribeButton.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L20)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:20](https://github.com/LuanRT
 
 > **show\_preferences**: `boolean`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L15)
+Defined in: [src/parser/classes/SubscribeButton.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L15)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:15](https://github.com/LuanRT
 
 > `optional` **subscribe\_accessibility\_label**: `string`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L25)
+Defined in: [src/parser/classes/SubscribeButton.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L25)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:25](https://github.com/LuanRT
 
 > **subscribed**: `boolean`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L11)
+Defined in: [src/parser/classes/SubscribeButton.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L11)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:11](https://github.com/LuanRT
 
 > `optional` **subscribed\_entity\_key**: `string`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L23)
+Defined in: [src/parser/classes/SubscribeButton.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L23)
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:23](https://github.com/LuanRT
 
 > `optional` **subscribed\_text**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SubscribeButton.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L16)
+Defined in: [src/parser/classes/SubscribeButton.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L16)
 
 ***
 
@@ -140,7 +140,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:16](https://github.com/LuanRT
 
 > `optional` **target\_id**: `string`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L24)
+Defined in: [src/parser/classes/SubscribeButton.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L24)
 
 ***
 
@@ -148,7 +148,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:24](https://github.com/LuanRT
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -160,7 +160,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **unsubscribe\_accessibility\_label**: `string`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L26)
+Defined in: [src/parser/classes/SubscribeButton.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L26)
 
 ***
 
@@ -168,7 +168,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:26](https://github.com/LuanRT
 
 > `optional` **unsubscribe\_text**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SubscribeButton.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L18)
+Defined in: [src/parser/classes/SubscribeButton.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L18)
 
 ***
 
@@ -176,7 +176,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:18](https://github.com/LuanRT
 
 > `optional` **unsubscribed\_text**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/SubscribeButton.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L17)
+Defined in: [src/parser/classes/SubscribeButton.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L17)
 
 ***
 
@@ -184,7 +184,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:17](https://github.com/LuanRT
 
 > `static` **type**: `string` = `'SubscribeButton'`
 
-Defined in: [src/parser/classes/SubscribeButton.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SubscribeButton.ts#L8)
+Defined in: [src/parser/classes/SubscribeButton.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SubscribeButton.ts#L8)
 
 #### Overrides
 
@@ -196,7 +196,7 @@ Defined in: [src/parser/classes/SubscribeButton.ts:8](https://github.com/LuanRT/
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -238,7 +238,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is SubscribeButton & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -276,7 +276,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -314,7 +314,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

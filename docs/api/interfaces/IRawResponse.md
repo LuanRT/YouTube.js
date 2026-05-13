@@ -2,7 +2,7 @@
 
 # Interface: IRawResponse
 
-Defined in: [src/parser/types/RawResponse.ts:1580](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1580)
+Defined in: [src/parser/types/RawResponse.ts:1580](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1580)
 
 ## Indexable
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/types/RawResponse.ts:1580](https://github.com/LuanRT/You
 
 > `optional` **actions**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1590](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1590)
+Defined in: [src/parser/types/RawResponse.ts:1590](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1590)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/parser/types/RawResponse.ts:1590](https://github.com/LuanRT/You
 
 > `optional` **alerts**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1598](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1598)
+Defined in: [src/parser/types/RawResponse.ts:1598](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1598)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/parser/types/RawResponse.ts:1598](https://github.com/LuanRT/You
 
 > `optional` **annotations**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1634](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1634)
+Defined in: [src/parser/types/RawResponse.ts:1634](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1634)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/parser/types/RawResponse.ts:1634](https://github.com/LuanRT/You
 
 > `optional` **background**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1582](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1582)
+Defined in: [src/parser/types/RawResponse.ts:1582](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1582)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/parser/types/RawResponse.ts:1582](https://github.com/LuanRT/You
 
 > `optional` **bgChallenge**: [`IRawBotguardChallenge`](IRawBotguardChallenge.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1583](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1583)
+Defined in: [src/parser/types/RawResponse.ts:1583](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1583)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [src/parser/types/RawResponse.ts:1583](https://github.com/LuanRT/You
 
 > `optional` **captions**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1632](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1632)
+Defined in: [src/parser/types/RawResponse.ts:1632](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1632)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [src/parser/types/RawResponse.ts:1632](https://github.com/LuanRT/You
 
 > `optional` **cards**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1637](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1637)
+Defined in: [src/parser/types/RawResponse.ts:1637](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1637)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [src/parser/types/RawResponse.ts:1637](https://github.com/LuanRT/You
 
 > `optional` **challenge**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1584](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1584)
+Defined in: [src/parser/types/RawResponse.ts:1584](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1584)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [src/parser/types/RawResponse.ts:1584](https://github.com/LuanRT/You
 
 > `optional` **contents**: [`RawData`](../type-aliases/RawData.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1585](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1585)
+Defined in: [src/parser/types/RawResponse.ts:1585](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1585)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [src/parser/types/RawResponse.ts:1585](https://github.com/LuanRT/You
 
 > `optional` **continuation**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1594](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1594)
+Defined in: [src/parser/types/RawResponse.ts:1594](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1594)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [src/parser/types/RawResponse.ts:1594](https://github.com/LuanRT/You
 
 > `optional` **continuationContents**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1589](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1589)
+Defined in: [src/parser/types/RawResponse.ts:1589](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1589)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [src/parser/types/RawResponse.ts:1589](https://github.com/LuanRT/You
 
 > `optional` **cpnInfo**: `IYoutubeApiInnertubeCpnInfo`
 
-Defined in: [src/parser/types/RawResponse.ts:1638](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1638)
+Defined in: [src/parser/types/RawResponse.ts:1638](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1638)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [src/parser/types/RawResponse.ts:1638](https://github.com/LuanRT/You
 
 > `optional` **currentVideoEndpoint**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1628](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1628)
+Defined in: [src/parser/types/RawResponse.ts:1628](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1628)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [src/parser/types/RawResponse.ts:1628](https://github.com/LuanRT/You
 
 > `optional` **endpoint**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1631](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1631)
+Defined in: [src/parser/types/RawResponse.ts:1631](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1631)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [src/parser/types/RawResponse.ts:1631](https://github.com/LuanRT/You
 
 > `optional` **endscreen**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1636](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1636)
+Defined in: [src/parser/types/RawResponse.ts:1636](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1636)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: [src/parser/types/RawResponse.ts:1636](https://github.com/LuanRT/You
 
 > `optional` **engagementPanels**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1642](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1642)
+Defined in: [src/parser/types/RawResponse.ts:1642](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1642)
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: [src/parser/types/RawResponse.ts:1642](https://github.com/LuanRT/You
 
 > `optional` **entries**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1643](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1643)
+Defined in: [src/parser/types/RawResponse.ts:1643](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1643)
 
 ***
 
@@ -150,7 +150,7 @@ Defined in: [src/parser/types/RawResponse.ts:1643](https://github.com/LuanRT/You
 
 > `optional` **estimatedResults**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1600](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1600)
+Defined in: [src/parser/types/RawResponse.ts:1600](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1600)
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: [src/parser/types/RawResponse.ts:1600](https://github.com/LuanRT/You
 
 > `optional` **frameworkUpdates**: `any`
 
-Defined in: [src/parser/types/RawResponse.ts:1641](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1641)
+Defined in: [src/parser/types/RawResponse.ts:1641](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1641)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: [src/parser/types/RawResponse.ts:1641](https://github.com/LuanRT/You
 
 > `optional` **header**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1592](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1592)
+Defined in: [src/parser/types/RawResponse.ts:1592](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1592)
 
 ***
 
@@ -174,7 +174,7 @@ Defined in: [src/parser/types/RawResponse.ts:1592](https://github.com/LuanRT/You
 
 > `optional` **items**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1640](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1640)
+Defined in: [src/parser/types/RawResponse.ts:1640](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1640)
 
 ***
 
@@ -182,7 +182,7 @@ Defined in: [src/parser/types/RawResponse.ts:1640](https://github.com/LuanRT/You
 
 > `optional` **liveChatItemContextMenuSupportedRenderers**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1591](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1591)
+Defined in: [src/parser/types/RawResponse.ts:1591](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1591)
 
 ***
 
@@ -190,7 +190,7 @@ Defined in: [src/parser/types/RawResponse.ts:1591](https://github.com/LuanRT/You
 
 > `optional` **metadata**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1595](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1595)
+Defined in: [src/parser/types/RawResponse.ts:1595](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1595)
 
 ***
 
@@ -198,7 +198,7 @@ Defined in: [src/parser/types/RawResponse.ts:1595](https://github.com/LuanRT/You
 
 > `optional` **microformat**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1596](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1596)
+Defined in: [src/parser/types/RawResponse.ts:1596](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1596)
 
 ***
 
@@ -206,7 +206,7 @@ Defined in: [src/parser/types/RawResponse.ts:1596](https://github.com/LuanRT/You
 
 > `optional` **onResponseReceivedActions**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1586](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1586)
+Defined in: [src/parser/types/RawResponse.ts:1586](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1586)
 
 ***
 
@@ -214,7 +214,7 @@ Defined in: [src/parser/types/RawResponse.ts:1586](https://github.com/LuanRT/You
 
 > `optional` **onResponseReceivedCommands**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1588](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1588)
+Defined in: [src/parser/types/RawResponse.ts:1588](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1588)
 
 ***
 
@@ -222,7 +222,7 @@ Defined in: [src/parser/types/RawResponse.ts:1588](https://github.com/LuanRT/You
 
 > `optional` **onResponseReceivedEndpoints**: [`RawNode`](../type-aliases/RawNode.md)[]
 
-Defined in: [src/parser/types/RawResponse.ts:1587](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1587)
+Defined in: [src/parser/types/RawResponse.ts:1587](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1587)
 
 ***
 
@@ -230,7 +230,7 @@ Defined in: [src/parser/types/RawResponse.ts:1587](https://github.com/LuanRT/You
 
 > `optional` **overlay**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1597](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1597)
+Defined in: [src/parser/types/RawResponse.ts:1597](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1597)
 
 ***
 
@@ -238,7 +238,7 @@ Defined in: [src/parser/types/RawResponse.ts:1597](https://github.com/LuanRT/You
 
 > `optional` **playabilityStatus**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1610](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1610)
+Defined in: [src/parser/types/RawResponse.ts:1610](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1610)
 
 #### audioOnlyPlayability?
 
@@ -266,7 +266,7 @@ Defined in: [src/parser/types/RawResponse.ts:1610](https://github.com/LuanRT/You
 
 > `optional` **playbackTracking**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1602](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1602)
+Defined in: [src/parser/types/RawResponse.ts:1602](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1602)
 
 #### videostatsPlaybackUrl
 
@@ -290,7 +290,7 @@ Defined in: [src/parser/types/RawResponse.ts:1602](https://github.com/LuanRT/You
 
 > `optional` **playerConfig**: [`IRawPlayerConfig`](IRawPlayerConfig.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1625](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1625)
+Defined in: [src/parser/types/RawResponse.ts:1625](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1625)
 
 ***
 
@@ -298,7 +298,7 @@ Defined in: [src/parser/types/RawResponse.ts:1625](https://github.com/LuanRT/You
 
 > `optional` **playerOverlays**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1601](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1601)
+Defined in: [src/parser/types/RawResponse.ts:1601](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1601)
 
 ***
 
@@ -306,7 +306,7 @@ Defined in: [src/parser/types/RawResponse.ts:1601](https://github.com/LuanRT/You
 
 > `optional` **playerResponse**: `IRawResponse`
 
-Defined in: [src/parser/types/RawResponse.ts:1626](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1626)
+Defined in: [src/parser/types/RawResponse.ts:1626](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1626)
 
 ***
 
@@ -314,7 +314,7 @@ Defined in: [src/parser/types/RawResponse.ts:1626](https://github.com/LuanRT/You
 
 > `optional` **playlistId**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1630](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1630)
+Defined in: [src/parser/types/RawResponse.ts:1630](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1630)
 
 ***
 
@@ -322,7 +322,7 @@ Defined in: [src/parser/types/RawResponse.ts:1630](https://github.com/LuanRT/You
 
 > `optional` **refinements**: `string`[]
 
-Defined in: [src/parser/types/RawResponse.ts:1599](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1599)
+Defined in: [src/parser/types/RawResponse.ts:1599](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1599)
 
 ***
 
@@ -330,7 +330,7 @@ Defined in: [src/parser/types/RawResponse.ts:1599](https://github.com/LuanRT/You
 
 > `optional` **responseContext**: `IYoutubeApiInnertubeResponseContext`
 
-Defined in: [src/parser/types/RawResponse.ts:1581](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1581)
+Defined in: [src/parser/types/RawResponse.ts:1581](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1581)
 
 ***
 
@@ -338,7 +338,7 @@ Defined in: [src/parser/types/RawResponse.ts:1581](https://github.com/LuanRT/You
 
 > `optional` **sidebar**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1593](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1593)
+Defined in: [src/parser/types/RawResponse.ts:1593](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1593)
 
 ***
 
@@ -346,7 +346,7 @@ Defined in: [src/parser/types/RawResponse.ts:1593](https://github.com/LuanRT/You
 
 > `optional` **storyboards**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1635](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1635)
+Defined in: [src/parser/types/RawResponse.ts:1635](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1635)
 
 ***
 
@@ -354,7 +354,7 @@ Defined in: [src/parser/types/RawResponse.ts:1635](https://github.com/LuanRT/You
 
 > `optional` **streamingData**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1617](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1617)
+Defined in: [src/parser/types/RawResponse.ts:1617](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1617)
 
 #### adaptiveFormats
 
@@ -386,7 +386,7 @@ Defined in: [src/parser/types/RawResponse.ts:1617](https://github.com/LuanRT/You
 
 > `optional` **targetId**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1639](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1639)
+Defined in: [src/parser/types/RawResponse.ts:1639](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1639)
 
 ***
 
@@ -394,7 +394,7 @@ Defined in: [src/parser/types/RawResponse.ts:1639](https://github.com/LuanRT/You
 
 > `optional` **unseenCount**: `number`
 
-Defined in: [src/parser/types/RawResponse.ts:1629](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1629)
+Defined in: [src/parser/types/RawResponse.ts:1629](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1629)
 
 ***
 
@@ -402,7 +402,7 @@ Defined in: [src/parser/types/RawResponse.ts:1629](https://github.com/LuanRT/You
 
 > `optional` **videoDetails**: [`RawNode`](../type-aliases/RawNode.md)
 
-Defined in: [src/parser/types/RawResponse.ts:1633](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1633)
+Defined in: [src/parser/types/RawResponse.ts:1633](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1633)
 
 ***
 
@@ -410,4 +410,4 @@ Defined in: [src/parser/types/RawResponse.ts:1633](https://github.com/LuanRT/You
 
 > `optional` **watchNextResponse**: `IRawResponse`
 
-Defined in: [src/parser/types/RawResponse.ts:1627](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/RawResponse.ts#L1627)
+Defined in: [src/parser/types/RawResponse.ts:1627](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1627)

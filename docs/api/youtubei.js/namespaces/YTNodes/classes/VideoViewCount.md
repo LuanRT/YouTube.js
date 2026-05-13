@@ -2,7 +2,7 @@
 
 # Class: VideoViewCount
 
-Defined in: [src/parser/classes/VideoViewCount.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L5)
+Defined in: [src/parser/classes/VideoViewCount.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L5)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:5](https://github.com/LuanRT/Y
 
 > **new VideoViewCount**(`data`): `VideoViewCount`
 
-Defined in: [src/parser/classes/VideoViewCount.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L15)
+Defined in: [src/parser/classes/VideoViewCount.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L15)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:15](https://github.com/LuanRT/
 
 > `optional` **extra\_short\_view\_count**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/VideoViewCount.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L11)
+Defined in: [src/parser/classes/VideoViewCount.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L11)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:11](https://github.com/LuanRT/
 
 > **is\_live**: `boolean`
 
-Defined in: [src/parser/classes/VideoViewCount.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L13)
+Defined in: [src/parser/classes/VideoViewCount.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L13)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:13](https://github.com/LuanRT/
 
 > `optional` **original\_view\_count**: `number`
 
-Defined in: [src/parser/classes/VideoViewCount.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L8)
+Defined in: [src/parser/classes/VideoViewCount.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L8)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:8](https://github.com/LuanRT/Y
 
 > `optional` **short\_view\_count**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/VideoViewCount.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L10)
+Defined in: [src/parser/classes/VideoViewCount.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L10)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:10](https://github.com/LuanRT/
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **unlabeled\_view\_count\_value**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/VideoViewCount.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L9)
+Defined in: [src/parser/classes/VideoViewCount.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L9)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:9](https://github.com/LuanRT/Y
 
 > `optional` **view\_count**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/VideoViewCount.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L12)
+Defined in: [src/parser/classes/VideoViewCount.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L12)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:12](https://github.com/LuanRT/
 
 > `static` **type**: `string` = `'VideoViewCount'`
 
-Defined in: [src/parser/classes/VideoViewCount.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/VideoViewCount.ts#L6)
+Defined in: [src/parser/classes/VideoViewCount.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoViewCount.ts#L6)
 
 #### Overrides
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/VideoViewCount.ts:6](https://github.com/LuanRT/Y
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -150,7 +150,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is VideoViewCount & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -188,7 +188,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -226,7 +226,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

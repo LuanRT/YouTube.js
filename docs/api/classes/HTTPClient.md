@@ -2,7 +2,7 @@
 
 # Class: HTTPClient
 
-Defined in: [src/utils/HTTPClient.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/HTTPClient.ts#L25)
+Defined in: [src/utils/HTTPClient.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/HTTPClient.ts#L25)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/HTTPClient.ts:25](https://github.com/LuanRT/YouTube.js/bl
 
 > **new HTTPClient**(`session`, `cookie?`, `fetch?`): `HTTPClient`
 
-Defined in: [src/utils/HTTPClient.ts:30](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/HTTPClient.ts#L30)
+Defined in: [src/utils/HTTPClient.ts:30](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/HTTPClient.ts#L30)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: [src/utils/HTTPClient.ts:30](https://github.com/LuanRT/YouTube.js/bl
 
 > **get** **fetch\_function**(): \{(`input`, `init?`): `Promise`\<`Response`\>; (`input`, `init?`): `Promise`\<`Response`\>; \}
 
-Defined in: [src/utils/HTTPClient.ts:36](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/HTTPClient.ts#L36)
+Defined in: [src/utils/HTTPClient.ts:36](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/HTTPClient.ts#L36)
 
 ##### Returns
 
@@ -84,7 +84,7 @@ Defined in: [src/utils/HTTPClient.ts:36](https://github.com/LuanRT/YouTube.js/bl
 
 > **fetch**(`input`, `init?`): `Promise`\<`Response`\>
 
-Defined in: [src/utils/HTTPClient.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/HTTPClient.ts#L40)
+Defined in: [src/utils/HTTPClient.ts:40](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/HTTPClient.ts#L40)
 
 #### Parameters
 

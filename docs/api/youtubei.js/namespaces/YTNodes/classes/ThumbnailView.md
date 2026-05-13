@@ -2,7 +2,7 @@
 
 # Class: ThumbnailView
 
-Defined in: [src/parser/classes/ThumbnailView.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailView.ts#L16)
+Defined in: [src/parser/classes/ThumbnailView.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailView.ts#L16)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ThumbnailView.ts:16](https://github.com/LuanRT/Y
 
 > **new ThumbnailView**(`data`): `ThumbnailView`
 
-Defined in: [src/parser/classes/ThumbnailView.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailView.ts#L27)
+Defined in: [src/parser/classes/ThumbnailView.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailView.ts#L27)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/ThumbnailView.ts:27](https://github.com/LuanRT/Y
 
 > `optional` **background\_color**: `ThumbnailBackgroundColor`
 
-Defined in: [src/parser/classes/ThumbnailView.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailView.ts#L25)
+Defined in: [src/parser/classes/ThumbnailView.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailView.ts#L25)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/ThumbnailView.ts:25](https://github.com/LuanRT/Y
 
 > **image**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/ThumbnailView.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailView.ts#L19)
+Defined in: [src/parser/classes/ThumbnailView.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailView.ts#L19)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/ThumbnailView.ts:19](https://github.com/LuanRT/Y
 
 > **overlays**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`AnimatedThumbnailOverlayView`](AnimatedThumbnailOverlayView.md) \| [`ThumbnailHoverOverlayView`](ThumbnailHoverOverlayView.md) \| [`ThumbnailOverlayBadgeView`](ThumbnailOverlayBadgeView.md) \| [`ThumbnailHoverOverlayToggleActionsView`](ThumbnailHoverOverlayToggleActionsView.md) \| [`ThumbnailBottomOverlayView`](ThumbnailBottomOverlayView.md)\>
 
-Defined in: [src/parser/classes/ThumbnailView.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailView.ts#L20)
+Defined in: [src/parser/classes/ThumbnailView.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailView.ts#L20)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/ThumbnailView.ts:20](https://github.com/LuanRT/Y
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'ThumbnailView'`
 
-Defined in: [src/parser/classes/ThumbnailView.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/ThumbnailView.ts#L17)
+Defined in: [src/parser/classes/ThumbnailView.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ThumbnailView.ts#L17)
 
 #### Overrides
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/ThumbnailView.ts:17](https://github.com/LuanRT/Y
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -126,7 +126,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ThumbnailView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -164,7 +164,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -202,7 +202,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

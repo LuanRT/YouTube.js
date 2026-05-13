@@ -4,7 +4,7 @@
 
 > **SearchRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:117](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L117)
+Defined in: [src/parser/types/CommandEndpoints.ts:117](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L117)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:117](https://github.com/LuanRT
 
 > `optional` **params**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:119](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L119)
+Defined in: [src/parser/types/CommandEndpoints.ts:119](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L119)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:119](https://github.com/LuanRT
 
 > `optional` **query**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:118](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L118)
+Defined in: [src/parser/types/CommandEndpoints.ts:118](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L118)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:118](https://github.com/LuanRT
 
 > `optional` **suggestStats**: `unknown`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:121](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L121)
+Defined in: [src/parser/types/CommandEndpoints.ts:121](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L121)
 
 ***
 
@@ -36,4 +36,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:121](https://github.com/LuanRT
 
 > `optional` **webSearchboxStatsUrl**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:120](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L120)
+Defined in: [src/parser/types/CommandEndpoints.ts:120](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L120)

@@ -4,7 +4,7 @@
 
 > **FeedbackRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:39](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L39)
+Defined in: [src/parser/types/CommandEndpoints.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L39)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:39](https://github.com/LuanRT/
 
 > `optional` **feedbackContext**: [`FeedbackContext`](FeedbackContext.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L41)
+Defined in: [src/parser/types/CommandEndpoints.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L41)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:41](https://github.com/LuanRT/
 
 > `optional` **feedbackTokens**: `string`[]
 
-Defined in: [src/parser/types/CommandEndpoints.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L40)
+Defined in: [src/parser/types/CommandEndpoints.ts:40](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L40)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:40](https://github.com/LuanRT/
 
 > `optional` **isFeedbackTokenUnencrypted**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:42](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L42)
+Defined in: [src/parser/types/CommandEndpoints.ts:42](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L42)
 
 ***
 
@@ -36,4 +36,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:42](https://github.com/LuanRT/
 
 > `optional` **shouldMerge**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:43](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L43)
+Defined in: [src/parser/types/CommandEndpoints.ts:43](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L43)

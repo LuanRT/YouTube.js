@@ -2,7 +2,7 @@
 
 # Interface: IParsedResponse
 
-Defined in: [src/parser/types/ParsedResponse.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L25)
+Defined in: [src/parser/types/ParsedResponse.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L25)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:25](https://github.com/LuanRT/Yo
 
 > `optional` **actions**: [`SuperParsedResult`](../youtubei.js/namespaces/Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L29)
+Defined in: [src/parser/types/ParsedResponse.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L29)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:29](https://github.com/LuanRT/Yo
 
 > `optional` **actions\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:30](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L30)
+Defined in: [src/parser/types/ParsedResponse.ts:30](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L30)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:30](https://github.com/LuanRT/Yo
 
 > `optional` **alerts**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`Alert`](../youtubei.js/namespaces/YTNodes/classes/Alert.md) \| [`AlertWithButton`](../youtubei.js/namespaces/YTNodes/classes/AlertWithButton.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:53](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L53)
+Defined in: [src/parser/types/ParsedResponse.ts:53](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L53)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:53](https://github.com/LuanRT/Yo
 
 > `optional` **annotations**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`PlayerAnnotationsExpanded`](../youtubei.js/namespaces/YTNodes/classes/PlayerAnnotationsExpanded.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:65](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L65)
+Defined in: [src/parser/types/ParsedResponse.ts:65](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L65)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:65](https://github.com/LuanRT/Yo
 
 > `optional` **background**: [`MusicThumbnail`](../youtubei.js/namespaces/YTNodes/classes/MusicThumbnail.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L26)
+Defined in: [src/parser/types/ParsedResponse.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L26)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:26](https://github.com/LuanRT/Yo
 
 > `optional` **bg\_challenge**: [`IBotguardChallenge`](IBotguardChallenge.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L28)
+Defined in: [src/parser/types/ParsedResponse.ts:28](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L28)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:28](https://github.com/LuanRT/Yo
 
 > `optional` **captions**: [`PlayerCaptionsTracklist`](../youtubei.js/namespaces/YTNodes/classes/PlayerCaptionsTracklist.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:63](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L63)
+Defined in: [src/parser/types/ParsedResponse.ts:63](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L63)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:63](https://github.com/LuanRT/Yo
 
 > `optional` **cards**: [`CardCollection`](../youtubei.js/namespaces/YTNodes/classes/CardCollection.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:68](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L68)
+Defined in: [src/parser/types/ParsedResponse.ts:68](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L68)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:68](https://github.com/LuanRT/Yo
 
 > `optional` **challenge**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L27)
+Defined in: [src/parser/types/ParsedResponse.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L27)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:27](https://github.com/LuanRT/Yo
 
 > `optional` **contents**: [`SuperParsedResult`](../youtubei.js/namespaces/Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:31](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L31)
+Defined in: [src/parser/types/ParsedResponse.ts:31](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L31)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:31](https://github.com/LuanRT/Yo
 
 > `optional` **contents\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:32](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L32)
+Defined in: [src/parser/types/ParsedResponse.ts:32](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L32)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:32](https://github.com/LuanRT/Yo
 
 > `optional` **continuation**: [`Continuation`](../classes/Continuation.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:46](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L46)
+Defined in: [src/parser/types/ParsedResponse.ts:46](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L46)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:46](https://github.com/LuanRT/Yo
 
 > `optional` **continuation\_contents**: [`ItemSectionContinuation`](../classes/ItemSectionContinuation.md) \| [`SectionListContinuation`](../classes/SectionListContinuation.md) \| [`LiveChatContinuation`](../classes/LiveChatContinuation.md) \| [`MusicPlaylistShelfContinuation`](../classes/MusicPlaylistShelfContinuation.md) \| [`MusicShelfContinuation`](../classes/MusicShelfContinuation.md) \| [`GridContinuation`](../classes/GridContinuation.md) \| [`PlaylistPanelContinuation`](../classes/PlaylistPanelContinuation.md) \| [`ContinuationCommand`](../classes/ContinuationCommand.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:47](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L47)
+Defined in: [src/parser/types/ParsedResponse.ts:47](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L47)
 
 ***
 
@@ -114,7 +114,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:47](https://github.com/LuanRT/Yo
 
 > `optional` **continuation\_contents\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:49](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L49)
+Defined in: [src/parser/types/ParsedResponse.ts:49](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L49)
 
 ***
 
@@ -122,7 +122,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:49](https://github.com/LuanRT/Yo
 
 > `optional` **continuation\_endpoint**: [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:81](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L81)
+Defined in: [src/parser/types/ParsedResponse.ts:81](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L81)
 
 ***
 
@@ -130,7 +130,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:81](https://github.com/LuanRT/Yo
 
 > `optional` **cpn\_info**: `object`
 
-Defined in: [src/parser/types/ParsedResponse.ts:69](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L69)
+Defined in: [src/parser/types/ParsedResponse.ts:69](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L69)
 
 #### cpn?
 
@@ -146,7 +146,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:69](https://github.com/LuanRT/Yo
 
 > `optional` **current\_video\_endpoint**: [`NavigationEndpoint`](../youtubei.js/namespaces/YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:61](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L61)
+Defined in: [src/parser/types/ParsedResponse.ts:61](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L61)
 
 ***
 
@@ -154,7 +154,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:61](https://github.com/LuanRT/Yo
 
 > `optional` **endpoint**: [`NavigationEndpoint`](../youtubei.js/namespaces/YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:62](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L62)
+Defined in: [src/parser/types/ParsedResponse.ts:62](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L62)
 
 ***
 
@@ -162,7 +162,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:62](https://github.com/LuanRT/Yo
 
 > `optional` **endscreen**: [`Endscreen`](../youtubei.js/namespaces/YTNodes/classes/Endscreen.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:67](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L67)
+Defined in: [src/parser/types/ParsedResponse.ts:67](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L67)
 
 ***
 
@@ -170,7 +170,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:67](https://github.com/LuanRT/Yo
 
 > `optional` **engagement\_panels**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`EngagementPanelSectionList`](../youtubei.js/namespaces/YTNodes/classes/EngagementPanelSectionList.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:76](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L76)
+Defined in: [src/parser/types/ParsedResponse.ts:76](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L76)
 
 ***
 
@@ -178,7 +178,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:76](https://github.com/LuanRT/Yo
 
 > `optional` **entries**: [`NavigationEndpoint`](../youtubei.js/namespaces/YTNodes/classes/NavigationEndpoint.md)[]
 
-Defined in: [src/parser/types/ParsedResponse.ts:78](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L78)
+Defined in: [src/parser/types/ParsedResponse.ts:78](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L78)
 
 ***
 
@@ -186,7 +186,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:78](https://github.com/LuanRT/Yo
 
 > `optional` **entries\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:79](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L79)
+Defined in: [src/parser/types/ParsedResponse.ts:79](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L79)
 
 ***
 
@@ -194,7 +194,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:79](https://github.com/LuanRT/Yo
 
 > `optional` **estimated\_results**: `number`
 
-Defined in: [src/parser/types/ParsedResponse.ts:55](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L55)
+Defined in: [src/parser/types/ParsedResponse.ts:55](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L55)
 
 ***
 
@@ -202,7 +202,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:55](https://github.com/LuanRT/Yo
 
 > `optional` **header**: [`SuperParsedResult`](../youtubei.js/namespaces/Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:33](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L33)
+Defined in: [src/parser/types/ParsedResponse.ts:33](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L33)
 
 ***
 
@@ -210,7 +210,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:33](https://github.com/LuanRT/Yo
 
 > `optional` **header\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:34](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L34)
+Defined in: [src/parser/types/ParsedResponse.ts:34](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L34)
 
 ***
 
@@ -218,7 +218,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:34](https://github.com/LuanRT/Yo
 
 > `optional` **items**: [`SuperParsedResult`](../youtubei.js/namespaces/Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:77](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L77)
+Defined in: [src/parser/types/ParsedResponse.ts:77](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L77)
 
 ***
 
@@ -226,7 +226,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:77](https://github.com/LuanRT/Yo
 
 > `optional` **items\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:39](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L39)
+Defined in: [src/parser/types/ParsedResponse.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L39)
 
 ***
 
@@ -234,7 +234,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:39](https://github.com/LuanRT/Yo
 
 > `optional` **live\_chat\_item\_context\_menu\_supported\_renderers**: [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:37](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L37)
+Defined in: [src/parser/types/ParsedResponse.ts:37](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L37)
 
 ***
 
@@ -242,7 +242,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:37](https://github.com/LuanRT/Yo
 
 > `optional` **live\_chat\_item\_context\_menu\_supported\_renderers\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:38](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L38)
+Defined in: [src/parser/types/ParsedResponse.ts:38](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L38)
 
 ***
 
@@ -250,7 +250,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:38](https://github.com/LuanRT/Yo
 
 > `optional` **metadata**: [`SuperParsedResult`](../youtubei.js/namespaces/Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:50](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L50)
+Defined in: [src/parser/types/ParsedResponse.ts:50](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L50)
 
 ***
 
@@ -258,7 +258,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:50](https://github.com/LuanRT/Yo
 
 > `optional` **microformat**: [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L51)
+Defined in: [src/parser/types/ParsedResponse.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L51)
 
 ***
 
@@ -266,7 +266,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:51](https://github.com/LuanRT/Yo
 
 > `optional` **on\_response\_received\_actions**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`OpenPopupAction`](../youtubei.js/namespaces/YTNodes/classes/OpenPopupAction.md) \| [`AppendContinuationItemsAction`](../classes/AppendContinuationItemsAction.md) \| [`ReloadContinuationItemsCommand`](../classes/ReloadContinuationItemsCommand.md) \| [`NavigateAction`](../classes/NavigateAction.md) \| [`ShowMiniplayerCommand`](../classes/ShowMiniplayerCommand.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:40](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L40)
+Defined in: [src/parser/types/ParsedResponse.ts:40](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L40)
 
 ***
 
@@ -274,7 +274,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:40](https://github.com/LuanRT/Yo
 
 > `optional` **on\_response\_received\_actions\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L41)
+Defined in: [src/parser/types/ParsedResponse.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L41)
 
 ***
 
@@ -282,7 +282,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:41](https://github.com/LuanRT/Yo
 
 > `optional` **on\_response\_received\_commands**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`OpenPopupAction`](../youtubei.js/namespaces/YTNodes/classes/OpenPopupAction.md) \| [`AppendContinuationItemsAction`](../classes/AppendContinuationItemsAction.md) \| [`ReloadContinuationItemsCommand`](../classes/ReloadContinuationItemsCommand.md) \| [`NavigateAction`](../classes/NavigateAction.md) \| [`ShowMiniplayerCommand`](../classes/ShowMiniplayerCommand.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:44](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L44)
+Defined in: [src/parser/types/ParsedResponse.ts:44](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L44)
 
 ***
 
@@ -290,7 +290,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:44](https://github.com/LuanRT/Yo
 
 > `optional` **on\_response\_received\_commands\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:45](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L45)
+Defined in: [src/parser/types/ParsedResponse.ts:45](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L45)
 
 ***
 
@@ -298,7 +298,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:45](https://github.com/LuanRT/Yo
 
 > `optional` **on\_response\_received\_endpoints**: [`ObservedArray`](../youtubei.js/namespaces/Helpers/type-aliases/ObservedArray.md)\<[`OpenPopupAction`](../youtubei.js/namespaces/YTNodes/classes/OpenPopupAction.md) \| [`AppendContinuationItemsAction`](../classes/AppendContinuationItemsAction.md) \| [`ReloadContinuationItemsCommand`](../classes/ReloadContinuationItemsCommand.md) \| [`NavigateAction`](../classes/NavigateAction.md) \| [`ShowMiniplayerCommand`](../classes/ShowMiniplayerCommand.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:42](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L42)
+Defined in: [src/parser/types/ParsedResponse.ts:42](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L42)
 
 ***
 
@@ -306,7 +306,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:42](https://github.com/LuanRT/Yo
 
 > `optional` **on\_response\_received\_endpoints\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:43](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L43)
+Defined in: [src/parser/types/ParsedResponse.ts:43](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L43)
 
 ***
 
@@ -314,7 +314,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:43](https://github.com/LuanRT/Yo
 
 > `optional` **overlay**: [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:52](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L52)
+Defined in: [src/parser/types/ParsedResponse.ts:52](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L52)
 
 ***
 
@@ -322,7 +322,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:52](https://github.com/LuanRT/Yo
 
 > `optional` **playability\_status**: [`IPlayabilityStatus`](IPlayabilityStatus.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:58](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L58)
+Defined in: [src/parser/types/ParsedResponse.ts:58](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L58)
 
 ***
 
@@ -330,7 +330,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:58](https://github.com/LuanRT/Yo
 
 > `optional` **playback\_tracking**: [`IPlaybackTracking`](IPlaybackTracking.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:57](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L57)
+Defined in: [src/parser/types/ParsedResponse.ts:57](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L57)
 
 ***
 
@@ -338,7 +338,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:57](https://github.com/LuanRT/Yo
 
 > `optional` **player\_config**: [`IPlayerConfig`](IPlayerConfig.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:60](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L60)
+Defined in: [src/parser/types/ParsedResponse.ts:60](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L60)
 
 ***
 
@@ -346,7 +346,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:60](https://github.com/LuanRT/Yo
 
 > `optional` **player\_overlays**: [`SuperParsedResult`](../youtubei.js/namespaces/Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/types/ParsedResponse.ts:56](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L56)
+Defined in: [src/parser/types/ParsedResponse.ts:56](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L56)
 
 ***
 
@@ -354,7 +354,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:56](https://github.com/LuanRT/Yo
 
 > `optional` **player\_response**: [`IPlayerResponse`](../type-aliases/IPlayerResponse.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:82](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L82)
+Defined in: [src/parser/types/ParsedResponse.ts:82](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L82)
 
 ***
 
@@ -362,7 +362,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:82](https://github.com/LuanRT/Yo
 
 > `optional` **refinements**: `string`[]
 
-Defined in: [src/parser/types/ParsedResponse.ts:54](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L54)
+Defined in: [src/parser/types/ParsedResponse.ts:54](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L54)
 
 ***
 
@@ -370,7 +370,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:54](https://github.com/LuanRT/Yo
 
 > `optional` **sidebar**: [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:35](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L35)
+Defined in: [src/parser/types/ParsedResponse.ts:35](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L35)
 
 ***
 
@@ -378,7 +378,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:35](https://github.com/LuanRT/Yo
 
 > `optional` **sidebar\_memo**: [`Memo`](../youtubei.js/namespaces/Helpers/classes/Memo.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:36](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L36)
+Defined in: [src/parser/types/ParsedResponse.ts:36](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L36)
 
 ***
 
@@ -386,7 +386,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:36](https://github.com/LuanRT/Yo
 
 > `optional` **storyboards**: [`PlayerStoryboardSpec`](../youtubei.js/namespaces/YTNodes/classes/PlayerStoryboardSpec.md) \| [`PlayerLiveStoryboardSpec`](../youtubei.js/namespaces/YTNodes/classes/PlayerLiveStoryboardSpec.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:66](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L66)
+Defined in: [src/parser/types/ParsedResponse.ts:66](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L66)
 
 ***
 
@@ -394,7 +394,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:66](https://github.com/LuanRT/Yo
 
 > `optional` **streaming\_data**: [`IStreamingData`](IStreamingData.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:59](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L59)
+Defined in: [src/parser/types/ParsedResponse.ts:59](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L59)
 
 ***
 
@@ -402,7 +402,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:59](https://github.com/LuanRT/Yo
 
 > `optional` **target\_id**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:80](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L80)
+Defined in: [src/parser/types/ParsedResponse.ts:80](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L80)
 
 ***
 
@@ -410,7 +410,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:80](https://github.com/LuanRT/Yo
 
 > `optional` **video\_details**: [`VideoDetails`](../youtubei.js/namespaces/Misc/classes/VideoDetails.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:64](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L64)
+Defined in: [src/parser/types/ParsedResponse.ts:64](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L64)
 
 ***
 
@@ -418,4 +418,4 @@ Defined in: [src/parser/types/ParsedResponse.ts:64](https://github.com/LuanRT/Yo
 
 > `optional` **watch\_next\_response**: [`INextResponse`](../type-aliases/INextResponse.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:83](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L83)
+Defined in: [src/parser/types/ParsedResponse.ts:83](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L83)

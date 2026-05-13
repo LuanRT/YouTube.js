@@ -2,7 +2,7 @@
 
 # Class: Settings
 
-Defined in: [src/parser/youtube/Settings.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L19)
+Defined in: [src/parser/youtube/Settings.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L19)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/youtube/Settings.ts:19](https://github.com/LuanRT/YouTub
 
 > **new Settings**(`actions`, `response`): `Settings`
 
-Defined in: [src/parser/youtube/Settings.ts:27](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L27)
+Defined in: [src/parser/youtube/Settings.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L27)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/youtube/Settings.ts:27](https://github.com/LuanRT/YouTub
 
 > `optional` **introduction**: [`PageIntroduction`](../../YTNodes/classes/PageIntroduction.md)
 
-Defined in: [src/parser/youtube/Settings.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L24)
+Defined in: [src/parser/youtube/Settings.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L24)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/youtube/Settings.ts:24](https://github.com/LuanRT/YouTub
 
 > **sections**: `object`[] \| `undefined`
 
-Defined in: [src/parser/youtube/Settings.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L25)
+Defined in: [src/parser/youtube/Settings.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L25)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [src/parser/youtube/Settings.ts:25](https://github.com/LuanRT/YouTub
 
 > `optional` **sidebar**: [`SettingsSidebar`](../../YTNodes/classes/SettingsSidebar.md)
 
-Defined in: [src/parser/youtube/Settings.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L23)
+Defined in: [src/parser/youtube/Settings.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L23)
 
 ## Accessors
 
@@ -58,7 +58,7 @@ Defined in: [src/parser/youtube/Settings.ts:23](https://github.com/LuanRT/YouTub
 
 > **get** **page**(): [`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)
 
-Defined in: [src/parser/youtube/Settings.ts:131](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L131)
+Defined in: [src/parser/youtube/Settings.ts:131](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L131)
 
 ##### Returns
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/youtube/Settings.ts:131](https://github.com/LuanRT/YouTu
 
 > **get** **setting\_options**(): `string`[]
 
-Defined in: [src/parser/youtube/Settings.ts:104](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L104)
+Defined in: [src/parser/youtube/Settings.ts:104](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L104)
 
 Returns settings available in the page.
 
@@ -88,7 +88,7 @@ Returns settings available in the page.
 
 > **get** **sidebar\_items**(): `string`[]
 
-Defined in: [src/parser/youtube/Settings.ts:124](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L124)
+Defined in: [src/parser/youtube/Settings.ts:124](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L124)
 
 Returns options available in the sidebar.
 
@@ -102,7 +102,7 @@ Returns options available in the sidebar.
 
 > **getSettingOption**(`name`): [`SettingsSwitch`](../../YTNodes/classes/SettingsSwitch.md)
 
-Defined in: [src/parser/youtube/Settings.ts:78](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L78)
+Defined in: [src/parser/youtube/Settings.ts:78](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L78)
 
 Finds a setting by name and returns it. Use [setting\_options](#setting_options) to see available options.
 
@@ -122,7 +122,7 @@ Finds a setting by name and returns it. Use [setting\_options](#setting_options)
 
 > **selectSidebarItem**(`target_item`): `Promise`\<`Settings`\>
 
-Defined in: [src/parser/youtube/Settings.ts:54](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/Settings.ts#L54)
+Defined in: [src/parser/youtube/Settings.ts:54](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Settings.ts#L54)
 
 Selects an item from the sidebar menu. Use [sidebar\_items](#sidebar_items) to see available items.
 

@@ -2,7 +2,7 @@
 
 # Class: Maybe
 
-Defined in: [src/parser/helpers.ts:64](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L64)
+Defined in: [src/parser/helpers.ts:64](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L64)
 
 A wrapper class that provides type-safe access to a value.
 
@@ -12,7 +12,7 @@ A wrapper class that provides type-safe access to a value.
 
 > **new Maybe**(`value`): `Maybe`
 
-Defined in: [src/parser/helpers.ts:67](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L67)
+Defined in: [src/parser/helpers.ts:67](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L67)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/helpers.ts:67](https://github.com/LuanRT/YouTube.js/blob
 
 > **get** **typeof**(): `"string"` \| `"number"` \| `"bigint"` \| `"boolean"` \| `"symbol"` \| `"undefined"` \| `"object"` \| `"function"`
 
-Defined in: [src/parser/helpers.ts:82](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L82)
+Defined in: [src/parser/helpers.ts:82](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L82)
 
 ##### Returns
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/helpers.ts:82](https://github.com/LuanRT/YouTube.js/blob
 
 > **any**(): `any`
 
-Defined in: [src/parser/helpers.ts:278](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L278)
+Defined in: [src/parser/helpers.ts:278](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L278)
 
 #### Returns
 
@@ -60,7 +60,7 @@ This call is not meant to be used outside of debugging. Please use the specific 
 
 > **array**(): `any`[]
 
-Defined in: [src/parser/helpers.ts:166](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L166)
+Defined in: [src/parser/helpers.ts:166](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L166)
 
 Get the value as an array.
 
@@ -80,7 +80,7 @@ If the value is not an array.
 
 > **arrayOfMaybe**(): `Maybe`[]
 
-Defined in: [src/parser/helpers.ts:178](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L178)
+Defined in: [src/parser/helpers.ts:178](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L178)
 
 More typesafe variant of [Maybe#array](#array).
 
@@ -100,7 +100,7 @@ If the value is not an array
 
 > **bigint**(): `bigint`
 
-Defined in: [src/parser/helpers.ts:102](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L102)
+Defined in: [src/parser/helpers.ts:102](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L102)
 
 #### Returns
 
@@ -112,7 +112,7 @@ Defined in: [src/parser/helpers.ts:102](https://github.com/LuanRT/YouTube.js/blo
 
 > **boolean**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:110](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L110)
+Defined in: [src/parser/helpers.ts:110](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L110)
 
 #### Returns
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/helpers.ts:110](https://github.com/LuanRT/YouTube.js/blo
 
 > **function**(): `Function`
 
-Defined in: [src/parser/helpers.ts:153](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L153)
+Defined in: [src/parser/helpers.ts:153](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L153)
 
 #### Returns
 
@@ -136,7 +136,7 @@ Defined in: [src/parser/helpers.ts:153](https://github.com/LuanRT/YouTube.js/blo
 
 > **instanceof**\<`T`\>(`type`): `T`
 
-Defined in: [src/parser/helpers.ts:289](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L289)
+Defined in: [src/parser/helpers.ts:289](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L289)
 
 Get the node as an instance of the given class.
 
@@ -170,7 +170,7 @@ If the node is not of the given type.
 
 > **isArray**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:194](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L194)
+Defined in: [src/parser/helpers.ts:194](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L194)
 
 Check whether the value is an array.
 
@@ -186,7 +186,7 @@ whether the value is an array.
 
 > **isBigint**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:106](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L106)
+Defined in: [src/parser/helpers.ts:106](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L106)
 
 #### Returns
 
@@ -198,7 +198,7 @@ Defined in: [src/parser/helpers.ts:106](https://github.com/LuanRT/YouTube.js/blo
 
 > **isBoolean**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:114](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L114)
+Defined in: [src/parser/helpers.ts:114](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L114)
 
 #### Returns
 
@@ -210,7 +210,7 @@ Defined in: [src/parser/helpers.ts:114](https://github.com/LuanRT/YouTube.js/blo
 
 > **isFunction**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:157](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L157)
+Defined in: [src/parser/helpers.ts:157](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L157)
 
 #### Returns
 
@@ -222,7 +222,7 @@ Defined in: [src/parser/helpers.ts:157](https://github.com/LuanRT/YouTube.js/blo
 
 > **isInstanceof**\<`T`\>(`type`): `this is Maybe & T`
 
-Defined in: [src/parser/helpers.ts:301](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L301)
+Defined in: [src/parser/helpers.ts:301](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L301)
 
 Check if the node is an instance of the given class.
 
@@ -252,7 +252,7 @@ Whether the node is an instance of the given type.
 
 > **isNode**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:214](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L214)
+Defined in: [src/parser/helpers.ts:214](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L214)
 
 Check if the value is a YTNode.
 
@@ -268,7 +268,7 @@ Whether the value is a YTNode.
 
 > **isNodeOfType**\<`T`, `K`\>(...`types`): `boolean`
 
-Defined in: [src/parser/helpers.ts:233](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L233)
+Defined in: [src/parser/helpers.ts:233](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L233)
 
 Check if the value is a YTNode of the given type.
 
@@ -302,7 +302,7 @@ Whether the value is a YTNode of the given type.
 
 > **isNull**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:140](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L140)
+Defined in: [src/parser/helpers.ts:140](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L140)
 
 #### Returns
 
@@ -314,7 +314,7 @@ Defined in: [src/parser/helpers.ts:140](https://github.com/LuanRT/YouTube.js/blo
 
 > **isNumber**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:98](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L98)
+Defined in: [src/parser/helpers.ts:98](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L98)
 
 #### Returns
 
@@ -326,7 +326,7 @@ Defined in: [src/parser/helpers.ts:98](https://github.com/LuanRT/YouTube.js/blob
 
 > **isObject**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:148](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L148)
+Defined in: [src/parser/helpers.ts:148](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L148)
 
 #### Returns
 
@@ -338,7 +338,7 @@ Defined in: [src/parser/helpers.ts:148](https://github.com/LuanRT/YouTube.js/blo
 
 > **isObserved**(): `any`
 
-Defined in: [src/parser/helpers.ts:251](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L251)
+Defined in: [src/parser/helpers.ts:251](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L251)
 
 Check if the value is an ObservedArray.
 
@@ -352,7 +352,7 @@ Check if the value is an ObservedArray.
 
 > **isParsed**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:270](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L270)
+Defined in: [src/parser/helpers.ts:270](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L270)
 
 Is the result a SuperParsedResult?
 
@@ -366,7 +366,7 @@ Is the result a SuperParsedResult?
 
 > **isString**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:90](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L90)
+Defined in: [src/parser/helpers.ts:90](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L90)
 
 #### Returns
 
@@ -378,7 +378,7 @@ Defined in: [src/parser/helpers.ts:90](https://github.com/LuanRT/YouTube.js/blob
 
 > **isSymbol**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:122](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L122)
+Defined in: [src/parser/helpers.ts:122](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L122)
 
 #### Returns
 
@@ -390,7 +390,7 @@ Defined in: [src/parser/helpers.ts:122](https://github.com/LuanRT/YouTube.js/blo
 
 > **isUndefined**(): `boolean`
 
-Defined in: [src/parser/helpers.ts:130](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L130)
+Defined in: [src/parser/helpers.ts:130](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L130)
 
 #### Returns
 
@@ -402,7 +402,7 @@ Defined in: [src/parser/helpers.ts:130](https://github.com/LuanRT/YouTube.js/blo
 
 > **node**(): [`YTNode`](YTNode.md)
 
-Defined in: [src/parser/helpers.ts:203](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L203)
+Defined in: [src/parser/helpers.ts:203](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L203)
 
 Get the value as a YTNode.
 
@@ -422,7 +422,7 @@ If the value is not a YTNode.
 
 > **nodeOfType**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:224](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L224)
+Defined in: [src/parser/helpers.ts:224](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L224)
 
 Get the value as a YTNode of the given type.
 
@@ -460,7 +460,7 @@ If the node is not of the given type.
 
 > **null**(): `null`
 
-Defined in: [src/parser/helpers.ts:134](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L134)
+Defined in: [src/parser/helpers.ts:134](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L134)
 
 #### Returns
 
@@ -472,7 +472,7 @@ Defined in: [src/parser/helpers.ts:134](https://github.com/LuanRT/YouTube.js/blo
 
 > **number**(): `number`
 
-Defined in: [src/parser/helpers.ts:94](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L94)
+Defined in: [src/parser/helpers.ts:94](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L94)
 
 #### Returns
 
@@ -484,7 +484,7 @@ Defined in: [src/parser/helpers.ts:94](https://github.com/LuanRT/YouTube.js/blob
 
 > **object**(): `object`
 
-Defined in: [src/parser/helpers.ts:144](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L144)
+Defined in: [src/parser/helpers.ts:144](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L144)
 
 #### Returns
 
@@ -496,7 +496,7 @@ Defined in: [src/parser/helpers.ts:144](https://github.com/LuanRT/YouTube.js/blo
 
 > **observed**(): [`ObservedArray`](../type-aliases/ObservedArray.md)\<[`YTNode`](YTNode.md)\>
 
-Defined in: [src/parser/helpers.ts:241](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L241)
+Defined in: [src/parser/helpers.ts:241](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L241)
 
 Get the value as an ObservedArray.
 
@@ -512,7 +512,7 @@ the value of the Maybe as a ObservedArray.
 
 > **parsed**(): [`SuperParsedResult`](SuperParsedResult.md)
 
-Defined in: [src/parser/helpers.ts:260](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L260)
+Defined in: [src/parser/helpers.ts:260](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L260)
 
 Get the value of the Maybe as a SuperParsedResult.
 
@@ -532,7 +532,7 @@ If the value is not a SuperParsedResult.
 
 > **string**(): `string`
 
-Defined in: [src/parser/helpers.ts:86](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L86)
+Defined in: [src/parser/helpers.ts:86](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L86)
 
 #### Returns
 
@@ -544,7 +544,7 @@ Defined in: [src/parser/helpers.ts:86](https://github.com/LuanRT/YouTube.js/blob
 
 > **symbol**(): `symbol`
 
-Defined in: [src/parser/helpers.ts:118](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L118)
+Defined in: [src/parser/helpers.ts:118](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L118)
 
 #### Returns
 
@@ -556,7 +556,7 @@ Defined in: [src/parser/helpers.ts:118](https://github.com/LuanRT/YouTube.js/blo
 
 > **undefined**(): `undefined`
 
-Defined in: [src/parser/helpers.ts:126](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L126)
+Defined in: [src/parser/helpers.ts:126](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L126)
 
 #### Returns
 

@@ -2,7 +2,7 @@
 
 # Interface: IStreamingData
 
-Defined in: [src/parser/types/ParsedResponse.ts:132](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L132)
+Defined in: [src/parser/types/ParsedResponse.ts:132](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L132)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:132](https://github.com/LuanRT/Y
 
 > **adaptive\_formats**: [`Format`](../youtubei.js/namespaces/Misc/classes/Format.md)[]
 
-Defined in: [src/parser/types/ParsedResponse.ts:135](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L135)
+Defined in: [src/parser/types/ParsedResponse.ts:135](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L135)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:135](https://github.com/LuanRT/Y
 
 > `optional` **dash\_manifest\_url**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:136](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L136)
+Defined in: [src/parser/types/ParsedResponse.ts:136](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L136)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:136](https://github.com/LuanRT/Y
 
 > **expires**: `Date`
 
-Defined in: [src/parser/types/ParsedResponse.ts:133](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L133)
+Defined in: [src/parser/types/ParsedResponse.ts:133](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L133)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:133](https://github.com/LuanRT/Y
 
 > **formats**: [`Format`](../youtubei.js/namespaces/Misc/classes/Format.md)[]
 
-Defined in: [src/parser/types/ParsedResponse.ts:134](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L134)
+Defined in: [src/parser/types/ParsedResponse.ts:134](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L134)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:134](https://github.com/LuanRT/Y
 
 > `optional` **hls\_manifest\_url**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:137](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L137)
+Defined in: [src/parser/types/ParsedResponse.ts:137](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L137)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [src/parser/types/ParsedResponse.ts:137](https://github.com/LuanRT/Y
 
 > `optional` **server\_abr\_streaming\_url**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:138](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/ParsedResponse.ts#L138)
+Defined in: [src/parser/types/ParsedResponse.ts:138](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L138)

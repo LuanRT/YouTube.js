@@ -2,7 +2,7 @@
 
 # Class: UpdateViewershipAction
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L6)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L6)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:6](https://gi
 
 > **new UpdateViewershipAction**(`data`): `UpdateViewershipAction`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:53](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L53)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:53](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L53)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:53](https://g
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -48,7 +48,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **view\_count\_node**: [`VideoViewCount`](VideoViewCount.md) \| `null`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L9)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L9)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:9](https://gi
 
 > `static` **type**: `string` = `'UpdateViewershipAction'`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L7)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L7)
 
 #### Overrides
 
@@ -70,7 +70,7 @@ Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:7](https://gi
 
 > **get** **extra\_short\_view\_count**(): [`Text`](../../Misc/classes/Text.md) \| `undefined`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L21)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L21)
 
 ##### Deprecated
 
@@ -88,7 +88,7 @@ Use `view_count_node.extra_short_view_count` instead.
 
 > **get** **is\_live**(): `boolean` \| `undefined`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:49](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L49)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:49](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L49)
 
 ##### Deprecated
 
@@ -106,7 +106,7 @@ Use `view_count_node.is_live` instead.
 
 > **get** **original\_view\_count**(): `number` \| `undefined`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:35](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L35)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:35](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L35)
 
 ##### Deprecated
 
@@ -124,7 +124,7 @@ Use `view_count_node.original_view_count` instead.
 
 > **get** **short\_view\_count**(): [`Text`](../../Misc/classes/Text.md) \| `undefined`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L28)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:28](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L28)
 
 ##### Deprecated
 
@@ -142,7 +142,7 @@ Use `view_count_node.short_view_count` instead.
 
 > **get** **unlabeled\_view\_count\_value**(): [`Text`](../../Misc/classes/Text.md) \| `undefined`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:42](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L42)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:42](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L42)
 
 ##### Deprecated
 
@@ -160,7 +160,7 @@ Use `view_count_node.unlabeled_view_count_value` instead.
 
 > **get** **view\_count**(): [`Text`](../../Misc/classes/Text.md) \| `undefined`
 
-Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/livechat/UpdateViewershipAction.ts#L14)
+Defined in: [src/parser/classes/livechat/UpdateViewershipAction.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/livechat/UpdateViewershipAction.ts#L14)
 
 ##### Deprecated
 
@@ -176,7 +176,7 @@ Use `view_count_node.view_count` instead.
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -218,7 +218,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is UpdateViewershipAction & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -256,7 +256,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -294,7 +294,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

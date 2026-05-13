@@ -2,7 +2,7 @@
 
 # Class: MacroMarkersListEntity
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L13)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L13)
 
 Represents a list of markers for a video. Can contain different types of markers:
 - MARKER_TYPE_HEATMAP: Heat map markers showing audience engagement data
@@ -18,7 +18,7 @@ Represents a list of markers for a video. Can contain different types of markers
 
 > **new MacroMarkersListEntity**(`data`): `MacroMarkersListEntity`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:30](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L30)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:30](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L30)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:30](https://github.com
 
 > **external\_video\_id**: `string`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L17)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L17)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:17](https://github.com
 
 > **marker\_entity\_key**: `string`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L16)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L16)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:16](https://github.com
 
 > **marker\_type**: `string`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L19)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L19)
 
 The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
@@ -66,7 +66,7 @@ The type of markers in this entity (e.g., 'MARKER_TYPE_HEATMAP')
 
 > **markers**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`HeatMarker`](HeatMarker.md)\>
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L20)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L20)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:20](https://github.com
 
 > **max\_height\_dp**: `number`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L21)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L21)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:21](https://github.com
 
 > **min\_height\_dp**: `number`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L22)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L22)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:22](https://github.com
 
 > **show\_hide\_animation\_duration\_millis**: `number`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L23)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L23)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:23](https://github.com
 
 > **timed\_marker\_decorations**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`TimedMarkerDecoration`](TimedMarkerDecoration.md)\>
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L24)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L24)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:24](https://github.com
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -118,7 +118,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'MacroMarkersListEntity'`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L14)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L14)
 
 #### Overrides
 
@@ -130,7 +130,7 @@ Defined in: [src/parser/classes/MacroMarkersListEntity.ts:14](https://github.com
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -172,7 +172,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is MacroMarkersListEntity & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -210,7 +210,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -248,7 +248,7 @@ whether the node is of the given type
 
 > **isHeatmap**(): `boolean`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:65](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L65)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:65](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L65)
 
 Checks if this MacroMarkersListEntity represents heatmap data.
 Only heatmap markers can be converted to Heatmap objects.
@@ -263,7 +263,7 @@ Only heatmap markers can be converted to Heatmap objects.
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 
@@ -305,7 +305,7 @@ If the node does not have the key
 
 > **toHeatmap**(): [`Heatmap`](Heatmap.md) \| `null`
 
-Defined in: [src/parser/classes/MacroMarkersListEntity.ts:74](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/MacroMarkersListEntity.ts#L74)
+Defined in: [src/parser/classes/MacroMarkersListEntity.ts:74](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MacroMarkersListEntity.ts#L74)
 
 Converts this MacroMarkersListEntity to a Heatmap object
 for compatibility with existing code. Only works for heatmap markers.

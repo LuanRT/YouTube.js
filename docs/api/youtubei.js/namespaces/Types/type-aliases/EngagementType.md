@@ -4,4 +4,4 @@
 
 > **EngagementType** = `"ENGAGEMENT_TYPE_UNBOUND"` \| `"ENGAGEMENT_TYPE_VIDEO_LIKE"` \| `"ENGAGEMENT_TYPE_VIDEO_DISLIKE"` \| `"ENGAGEMENT_TYPE_SUBSCRIBE"` \| `"ENGAGEMENT_TYPE_PLAYBACK"` \| `"ENGAGEMENT_TYPE_YPC_GET_PREMIUM_PAGE"` \| `"ENGAGEMENT_TYPE_YPC_GET_DOWNLOAD_ACTION"`
 
-Defined in: [src/types/Misc.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/Misc.ts#L5)
+Defined in: [src/types/Misc.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/Misc.ts#L5)

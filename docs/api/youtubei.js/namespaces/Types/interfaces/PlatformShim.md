@@ -2,7 +2,7 @@
 
 # Interface: PlatformShim
 
-Defined in: [src/types/PlatformShim.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L12)
+Defined in: [src/types/PlatformShim.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L12)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/PlatformShim.ts:12](https://github.com/LuanRT/YouTube.js/
 
 > **Cache**: [`ICacheConstructor`](ICacheConstructor.md)
 
-Defined in: [src/types/PlatformShim.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L15)
+Defined in: [src/types/PlatformShim.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L15)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/PlatformShim.ts:15](https://github.com/LuanRT/YouTube.js/
 
 > **CustomEvent**: \{\<`T`\>(`type`, `eventInitDict?`): `CustomEvent`\<`T`\>; `prototype`: `CustomEvent`; \}
 
-Defined in: [src/types/PlatformShim.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L26)
+Defined in: [src/types/PlatformShim.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L26)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: [src/types/PlatformShim.ts:26](https://github.com/LuanRT/YouTube.js/
 
 > **fetch**: \{(`input`, `init?`): `Promise`\<`Response`\>; (`input`, `init?`): `Promise`\<`Response`\>; \}
 
-Defined in: [src/types/PlatformShim.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L19)
+Defined in: [src/types/PlatformShim.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L19)
 
 #### Call Signature
 
@@ -92,7 +92,7 @@ Defined in: [src/types/PlatformShim.ts:19](https://github.com/LuanRT/YouTube.js/
 
 > **File**: \{(`fileBits`, `fileName`, `options?`): `File`; `prototype`: `File`; \}
 
-Defined in: [src/types/PlatformShim.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L24)
+Defined in: [src/types/PlatformShim.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L24)
 
 #### Parameters
 
@@ -122,7 +122,7 @@ Defined in: [src/types/PlatformShim.ts:24](https://github.com/LuanRT/YouTube.js/
 
 > **FormData**: \{(`form?`, `submitter?`): `FormData`; `prototype`: `FormData`; \}
 
-Defined in: [src/types/PlatformShim.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L23)
+Defined in: [src/types/PlatformShim.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L23)
 
 #### Parameters
 
@@ -148,7 +148,7 @@ Defined in: [src/types/PlatformShim.ts:23](https://github.com/LuanRT/YouTube.js/
 
 > **Headers**: \{(`init?`): `Headers`; `prototype`: `Headers`; \}
 
-Defined in: [src/types/PlatformShim.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L22)
+Defined in: [src/types/PlatformShim.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L22)
 
 #### Parameters
 
@@ -170,7 +170,7 @@ Defined in: [src/types/PlatformShim.ts:22](https://github.com/LuanRT/YouTube.js/
 
 > **ReadableStream**: \{(`underlyingSource`, `strategy?`): `ReadableStream`\<`Uint8Array`\<`ArrayBuffer`\>\>; \<`R`\>(`underlyingSource`, `strategy?`): `ReadableStream`\<`R`\>; \<`R`\>(`underlyingSource?`, `strategy?`): `ReadableStream`\<`R`\>; `prototype`: `ReadableStream`; \}
 
-Defined in: [src/types/PlatformShim.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L25)
+Defined in: [src/types/PlatformShim.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L25)
 
 #### Call Signature
 
@@ -238,7 +238,7 @@ Defined in: [src/types/PlatformShim.ts:25](https://github.com/LuanRT/YouTube.js/
 
 > **Request**: \{(`input`, `init?`): `Request`; `prototype`: `Request`; \}
 
-Defined in: [src/types/PlatformShim.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L20)
+Defined in: [src/types/PlatformShim.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L20)
 
 #### Parameters
 
@@ -264,7 +264,7 @@ Defined in: [src/types/PlatformShim.ts:20](https://github.com/LuanRT/YouTube.js/
 
 > **Response**: \{(`body?`, `init?`): `Response`; `prototype`: `Response`; `error`: `Response`; `json`: `Response`; `redirect`: `Response`; \}
 
-Defined in: [src/types/PlatformShim.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L21)
+Defined in: [src/types/PlatformShim.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L21)
 
 #### Parameters
 
@@ -346,7 +346,7 @@ The **`redirect()`** static method of the Response interface returns a `Response
 
 > **runtime**: [`Runtime`](../type-aliases/Runtime.md)
 
-Defined in: [src/types/PlatformShim.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L13)
+Defined in: [src/types/PlatformShim.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L13)
 
 ***
 
@@ -354,7 +354,7 @@ Defined in: [src/types/PlatformShim.ts:13](https://github.com/LuanRT/YouTube.js/
 
 > **server**: `boolean`
 
-Defined in: [src/types/PlatformShim.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L14)
+Defined in: [src/types/PlatformShim.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L14)
 
 ## Methods
 
@@ -362,7 +362,7 @@ Defined in: [src/types/PlatformShim.ts:14](https://github.com/LuanRT/YouTube.js/
 
 > **eval**(`data`, `env`): [`EvalResult`](../type-aliases/EvalResult.md) \| `Promise`\<[`EvalResult`](../type-aliases/EvalResult.md)\>
 
-Defined in: [src/types/PlatformShim.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L18)
+Defined in: [src/types/PlatformShim.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L18)
 
 #### Parameters
 
@@ -384,7 +384,7 @@ Defined in: [src/types/PlatformShim.ts:18](https://github.com/LuanRT/YouTube.js/
 
 > **sha1Hash**(`data`): `Promise`\<`string`\>
 
-Defined in: [src/types/PlatformShim.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L16)
+Defined in: [src/types/PlatformShim.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L16)
 
 #### Parameters
 
@@ -402,7 +402,7 @@ Defined in: [src/types/PlatformShim.ts:16](https://github.com/LuanRT/YouTube.js/
 
 > **uuidv4**(): `string`
 
-Defined in: [src/types/PlatformShim.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/types/PlatformShim.ts#L17)
+Defined in: [src/types/PlatformShim.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/types/PlatformShim.ts#L17)
 
 #### Returns
 

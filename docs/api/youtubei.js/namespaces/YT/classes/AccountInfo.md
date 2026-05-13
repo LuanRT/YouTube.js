@@ -2,7 +2,7 @@
 
 # Class: AccountInfo
 
-Defined in: [src/parser/youtube/AccountInfo.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/AccountInfo.ts#L9)
+Defined in: [src/parser/youtube/AccountInfo.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/AccountInfo.ts#L9)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/youtube/AccountInfo.ts:9](https://github.com/LuanRT/YouT
 
 > **new AccountInfo**(`response`): `AccountInfo`
 
-Defined in: [src/parser/youtube/AccountInfo.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/AccountInfo.ts#L14)
+Defined in: [src/parser/youtube/AccountInfo.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/AccountInfo.ts#L14)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/youtube/AccountInfo.ts:14](https://github.com/LuanRT/You
 
 > **contents**: [`AccountItemSection`](../../YTNodes/classes/AccountItemSection.md) \| `null`
 
-Defined in: [src/parser/youtube/AccountInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/AccountInfo.ts#L12)
+Defined in: [src/parser/youtube/AccountInfo.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/AccountInfo.ts#L12)
 
 ## Accessors
 
@@ -38,7 +38,7 @@ Defined in: [src/parser/youtube/AccountInfo.ts:12](https://github.com/LuanRT/You
 
 > **get** **page**(): [`IParsedResponse`](../../../../interfaces/IParsedResponse.md)
 
-Defined in: [src/parser/youtube/AccountInfo.ts:28](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/youtube/AccountInfo.ts#L28)
+Defined in: [src/parser/youtube/AccountInfo.ts:28](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/AccountInfo.ts#L28)
 
 ##### Returns
 

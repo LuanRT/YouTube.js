@@ -2,7 +2,7 @@
 
 # Class: DescriptionPreviewView
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L7)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L7)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:7](https://github.com/
 
 > **new DescriptionPreviewView**(`data`): `DescriptionPreviewView`
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:26](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L26)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L26)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:26](https://github.com
 
 > **always\_show\_truncation\_text**: `boolean`
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L13)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L13)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:13](https://github.com
 
 > `optional` **description**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L10)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L10)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:10](https://github.com
 
 > `optional` **max\_lines**: `number`
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L11)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L11)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:11](https://github.com
 
 > `optional` **more\_endpoint**: `object`
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L14)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L14)
 
 #### show\_engagement\_panel\_endpoint
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:14](https://github.com
 
 > **renderer\_context**: [`RendererContext`](../../Misc/classes/RendererContext.md)
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:24](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L24)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L24)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:24](https://github.com
 
 > `optional` **truncation\_text**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L12)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L12)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:12](https://github.com
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -120,7 +120,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'DescriptionPreviewView'`
 
-Defined in: [src/parser/classes/DescriptionPreviewView.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/DescriptionPreviewView.ts#L8)
+Defined in: [src/parser/classes/DescriptionPreviewView.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/DescriptionPreviewView.ts#L8)
 
 #### Overrides
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/DescriptionPreviewView.ts:8](https://github.com/
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -174,7 +174,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is DescriptionPreviewView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -212,7 +212,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -250,7 +250,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

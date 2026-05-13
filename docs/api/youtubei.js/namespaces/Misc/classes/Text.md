@@ -2,7 +2,7 @@
 
 # Class: Text
 
-Defined in: [src/parser/classes/misc/Text.ts:34](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L34)
+Defined in: [src/parser/classes/misc/Text.ts:34](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L34)
 
 Represents text content that may include formatting, emojis, and navigation endpoints.
 
@@ -12,7 +12,7 @@ Represents text content that may include formatting, emojis, and navigation endp
 
 > **new Text**(`data`): `Text`
 
-Defined in: [src/parser/classes/misc/Text.ts:60](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L60)
+Defined in: [src/parser/classes/misc/Text.ts:60](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L60)
 
 #### Parameters
 
@@ -30,7 +30,7 @@ Defined in: [src/parser/classes/misc/Text.ts:60](https://github.com/LuanRT/YouTu
 
 > `optional` **accessibility**: `FormattedStringSupportedAccessibilityDatas`
 
-Defined in: [src/parser/classes/misc/Text.ts:53](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L53)
+Defined in: [src/parser/classes/misc/Text.ts:53](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L53)
 
 Accessibility data associated with this text.
 
@@ -40,7 +40,7 @@ Accessibility data associated with this text.
 
 > `optional` **endpoint**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/Text.ts:48](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L48)
+Defined in: [src/parser/classes/misc/Text.ts:48](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L48)
 
 Navigation endpoint associated with this text.
 
@@ -50,7 +50,7 @@ Navigation endpoint associated with this text.
 
 > **rtl**: `boolean`
 
-Defined in: [src/parser/classes/misc/Text.ts:58](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L58)
+Defined in: [src/parser/classes/misc/Text.ts:58](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L58)
 
 Indicates if the text is right-to-left.
 
@@ -60,7 +60,7 @@ Indicates if the text is right-to-left.
 
 > `optional` **runs**: ([`TextRun`](TextRun.md) \| [`EmojiRun`](EmojiRun.md))[]
 
-Defined in: [src/parser/classes/misc/Text.ts:43](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L43)
+Defined in: [src/parser/classes/misc/Text.ts:43](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L43)
 
 Individual text segments with their formatting.
 
@@ -70,7 +70,7 @@ Individual text segments with their formatting.
 
 > `optional` **text**: `string`
 
-Defined in: [src/parser/classes/misc/Text.ts:38](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L38)
+Defined in: [src/parser/classes/misc/Text.ts:38](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L38)
 
 The plain text content.
 
@@ -80,7 +80,7 @@ The plain text content.
 
 > **isEmpty**(): `boolean`
 
-Defined in: [src/parser/classes/misc/Text.ts:262](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L262)
+Defined in: [src/parser/classes/misc/Text.ts:262](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L262)
 
 Checks if the text is empty.
 
@@ -96,7 +96,7 @@ Whether the text is empty.
 
 > **toHTML**(): `string` \| `undefined`
 
-Defined in: [src/parser/classes/misc/Text.ts:254](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L254)
+Defined in: [src/parser/classes/misc/Text.ts:254](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L254)
 
 Converts the text to HTML.
 
@@ -112,7 +112,7 @@ The HTML.
 
 > **toString**(): `string`
 
-Defined in: [src/parser/classes/misc/Text.ts:270](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L270)
+Defined in: [src/parser/classes/misc/Text.ts:270](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L270)
 
 Converts the text to a string.
 
@@ -128,7 +128,7 @@ The text.
 
 > `static` **fromAttributed**(`data`): `Text`
 
-Defined in: [src/parser/classes/misc/Text.ts:103](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/Text.ts#L103)
+Defined in: [src/parser/classes/misc/Text.ts:103](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/Text.ts#L103)
 
 #### Parameters
 

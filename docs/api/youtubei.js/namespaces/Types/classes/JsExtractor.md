@@ -2,7 +2,7 @@
 
 # Class: JsExtractor
 
-Defined in: [src/utils/javascript/JsExtractor.ts:61](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsExtractor.ts#L61)
+Defined in: [src/utils/javascript/JsExtractor.ts:61](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L61)
 
 Class responsible for extracting and emitting JavaScript code snippets
 based on analysis results from a `JsAnalyzer` instance.
@@ -13,7 +13,7 @@ based on analysis results from a `JsAnalyzer` instance.
 
 > **new JsExtractor**(`analyzer`): `JsExtractor`
 
-Defined in: [src/utils/javascript/JsExtractor.ts:62](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsExtractor.ts#L62)
+Defined in: [src/utils/javascript/JsExtractor.ts:62](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L62)
 
 #### Parameters
 
@@ -31,7 +31,7 @@ Defined in: [src/utils/javascript/JsExtractor.ts:62](https://github.com/LuanRT/Y
 
 > **buildScript**(`config`): [`BuildScriptResult`](../interfaces/BuildScriptResult.md)
 
-Defined in: [src/utils/javascript/JsExtractor.ts:329](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/utils/javascript/JsExtractor.ts#L329)
+Defined in: [src/utils/javascript/JsExtractor.ts:329](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L329)
 
 Processes extracted matches from the analyzer, handles dependencies, predeclares 
 variables as needed, and generates an IIFE-wrapped output string containing the

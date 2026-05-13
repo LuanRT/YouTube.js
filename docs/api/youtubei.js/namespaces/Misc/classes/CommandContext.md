@@ -2,7 +2,7 @@
 
 # Class: CommandContext
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:4](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L4)
+Defined in: [src/parser/classes/misc/CommandContext.ts:4](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L4)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:4](https://github.com/Lua
 
 > **new CommandContext**(`data`): `CommandContext`
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L16)
+Defined in: [src/parser/classes/misc/CommandContext.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L16)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:16](https://github.com/Lu
 
 > `optional` **on\_first\_visible**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L13)
+Defined in: [src/parser/classes/misc/CommandContext.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L13)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:13](https://github.com/Lu
 
 > `optional` **on\_focus**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:5](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L5)
+Defined in: [src/parser/classes/misc/CommandContext.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L5)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:5](https://github.com/Lua
 
 > `optional` **on\_hidden**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L6)
+Defined in: [src/parser/classes/misc/CommandContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L6)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:6](https://github.com/Lua
 
 > `optional` **on\_hover**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L14)
+Defined in: [src/parser/classes/misc/CommandContext.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L14)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:14](https://github.com/Lu
 
 > `optional` **on\_long\_press**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L9)
+Defined in: [src/parser/classes/misc/CommandContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L9)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:9](https://github.com/Lua
 
 > `optional` **on\_tap**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L10)
+Defined in: [src/parser/classes/misc/CommandContext.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L10)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:10](https://github.com/Lu
 
 > `optional` **on\_touch\_end**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L7)
+Defined in: [src/parser/classes/misc/CommandContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L7)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:7](https://github.com/Lua
 
 > `optional` **on\_touch\_move**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L8)
+Defined in: [src/parser/classes/misc/CommandContext.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L8)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:8](https://github.com/Lua
 
 > `optional` **on\_touch\_start**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L11)
+Defined in: [src/parser/classes/misc/CommandContext.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L11)
 
 ***
 
@@ -100,4 +100,4 @@ Defined in: [src/parser/classes/misc/CommandContext.ts:11](https://github.com/Lu
 
 > `optional` **on\_visible**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/CommandContext.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/misc/CommandContext.ts#L12)
+Defined in: [src/parser/classes/misc/CommandContext.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/CommandContext.ts#L12)

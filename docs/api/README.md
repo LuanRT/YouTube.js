@@ -12,7 +12,6 @@
 - [JsHelpers](youtubei.js/namespaces/JsHelpers/README.md)
 - [JsMatchers](youtubei.js/namespaces/JsMatchers/README.md)
 - [Log](youtubei.js/namespaces/Log/README.md)
-- [LZW](youtubei.js/namespaces/LZW/README.md)
 - [Managers](youtubei.js/namespaces/Managers/README.md)
 - [Misc](youtubei.js/namespaces/Misc/README.md)
 - [Mixins](youtubei.js/namespaces/Mixins/README.md)

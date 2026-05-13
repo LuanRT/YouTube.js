@@ -2,7 +2,7 @@
 
 # Class: GridMovie
 
-Defined in: [src/parser/classes/GridMovie.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L8)
+Defined in: [src/parser/classes/GridMovie.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L8)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/GridMovie.ts:8](https://github.com/LuanRT/YouTub
 
 > **new GridMovie**(`data`): `GridMovie`
 
-Defined in: [src/parser/classes/GridMovie.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L20)
+Defined in: [src/parser/classes/GridMovie.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L20)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/GridMovie.ts:20](https://github.com/LuanRT/YouTu
 
 > **badges**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MetadataBadge`](MetadataBadge.md)\>
 
-Defined in: [src/parser/classes/GridMovie.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L16)
+Defined in: [src/parser/classes/GridMovie.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L16)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/GridMovie.ts:16](https://github.com/LuanRT/YouTu
 
 > **duration**: [`Text`](../../Misc/classes/Text.md) \| `null`
 
-Defined in: [src/parser/classes/GridMovie.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L14)
+Defined in: [src/parser/classes/GridMovie.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L14)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/GridMovie.ts:14](https://github.com/LuanRT/YouTu
 
 > **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/GridMovie.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L15)
+Defined in: [src/parser/classes/GridMovie.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L15)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/GridMovie.ts:15](https://github.com/LuanRT/YouTu
 
 > **id**: `string`
 
-Defined in: [src/parser/classes/GridMovie.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L11)
+Defined in: [src/parser/classes/GridMovie.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L11)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/GridMovie.ts:11](https://github.com/LuanRT/YouTu
 
 > **metadata**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/GridMovie.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L17)
+Defined in: [src/parser/classes/GridMovie.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L17)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/GridMovie.ts:17](https://github.com/LuanRT/YouTu
 
 > **thumbnail\_overlays**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/GridMovie.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L18)
+Defined in: [src/parser/classes/GridMovie.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L18)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/GridMovie.ts:18](https://github.com/LuanRT/YouTu
 
 > **thumbnails**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/GridMovie.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L13)
+Defined in: [src/parser/classes/GridMovie.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L13)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/GridMovie.ts:13](https://github.com/LuanRT/YouTu
 
 > **title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/GridMovie.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L12)
+Defined in: [src/parser/classes/GridMovie.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L12)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/GridMovie.ts:12](https://github.com/LuanRT/YouTu
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -112,7 +112,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'GridMovie'`
 
-Defined in: [src/parser/classes/GridMovie.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/GridMovie.ts#L9)
+Defined in: [src/parser/classes/GridMovie.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridMovie.ts#L9)
 
 #### Overrides
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/classes/GridMovie.ts:9](https://github.com/LuanRT/YouTub
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -166,7 +166,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is GridMovie & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -204,7 +204,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -242,7 +242,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

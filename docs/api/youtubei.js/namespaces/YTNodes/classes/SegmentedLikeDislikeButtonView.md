@@ -2,7 +2,7 @@
 
 # Class: SegmentedLikeDislikeButtonView
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:6](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L6)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L6)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:6](https://git
 
 > **new SegmentedLikeDislikeButtonView**(`data`): `SegmentedLikeDislikeButtonView`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:25](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L25)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L25)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:25](https://gi
 
 > **dislike\_button**: [`DislikeButtonView`](DislikeButtonView.md) \| `null`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L10)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L10)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:10](https://gi
 
 > **dynamic\_like\_count\_update\_data**: `object`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L15)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L15)
 
 #### placeholder\_like\_count\_values\_key
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:15](https://gi
 
 > **icon\_type**: `string`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L11)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L11)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:11](https://gi
 
 > **like\_button**: [`LikeButtonView`](LikeButtonView.md) \| `null`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:9](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L9)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L9)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:9](https://git
 
 > `optional` **like\_count**: `number`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:22](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L22)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L22)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:22](https://gi
 
 > **like\_count\_entity**: `object`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:12](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L12)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L12)
 
 #### key
 
@@ -104,7 +104,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:12](https://gi
 
 > `optional` **short\_like\_count**: `string`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L23)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L23)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:23](https://gi
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'SegmentedLikeDislikeButtonView'`
 
-Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:7](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L7)
+Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/SegmentedLikeDislikeButtonView.ts#L7)
 
 #### Overrides
 
@@ -136,7 +136,7 @@ Defined in: [src/parser/classes/SegmentedLikeDislikeButtonView.ts:7](https://git
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -178,7 +178,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is SegmentedLikeDislikeButtonView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -216,7 +216,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -254,7 +254,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

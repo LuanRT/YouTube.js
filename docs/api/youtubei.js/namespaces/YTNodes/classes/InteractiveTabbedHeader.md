@@ -2,7 +2,7 @@
 
 # Class: InteractiveTabbedHeader
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:10](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L10)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L10)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:10](https://github.co
 
 > **new InteractiveTabbedHeader**(`data`): `InteractiveTabbedHeader`
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:23](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L23)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L23)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:23](https://github.co
 
 > **auto\_generated**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:21](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L21)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L21)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:21](https://github.co
 
 > **badges**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MetadataBadge`](MetadataBadge.md)\>
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:17](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L17)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L17)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:17](https://github.co
 
 > **banner**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L19)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L19)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:19](https://github.co
 
 > **box\_art**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:18](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L18)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L18)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:18](https://github.co
 
 > **buttons**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Button`](Button.md) \| [`SubscribeButton`](SubscribeButton.md)\>
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:20](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L20)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L20)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:20](https://github.co
 
 > **description**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:15](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L15)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L15)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:15](https://github.co
 
 > **header\_type**: `string`
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:13](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L13)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L13)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:13](https://github.co
 
 > **metadata**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:16](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L16)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L16)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:16](https://github.co
 
 > **title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:14](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L14)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L14)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:14](https://github.co
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -120,7 +120,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'InteractiveTabbedHeader'`
 
-Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:11](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/classes/InteractiveTabbedHeader.ts#L11)
+Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/InteractiveTabbedHeader.ts#L11)
 
 #### Overrides
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/InteractiveTabbedHeader.ts:11](https://github.co
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -174,7 +174,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is InteractiveTabbedHeader & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -212,7 +212,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -250,7 +250,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

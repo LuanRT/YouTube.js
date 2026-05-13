@@ -4,7 +4,7 @@
 
 > **WatchRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:62](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L62)
+Defined in: [src/parser/types/CommandEndpoints.ts:62](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L62)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:62](https://github.com/LuanRT/
 
 > `optional` **contentCheckOk**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:70](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L70)
+Defined in: [src/parser/types/CommandEndpoints.ts:70](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L70)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:70](https://github.com/LuanRT/
 
 > `optional` **disablePlayerResponse**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:71](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L71)
+Defined in: [src/parser/types/CommandEndpoints.ts:71](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L71)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:71](https://github.com/LuanRT/
 
 > `optional` **overrideMutedAtStart**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:68](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L68)
+Defined in: [src/parser/types/CommandEndpoints.ts:68](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L68)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:68](https://github.com/LuanRT/
 
 > `optional` **params**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:66](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L66)
+Defined in: [src/parser/types/CommandEndpoints.ts:66](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L66)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:66](https://github.com/LuanRT/
 
 > `optional` **playerRequest**: `Record`\<`string`, `any`\>
 
-Defined in: [src/parser/types/CommandEndpoints.ts:72](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L72)
+Defined in: [src/parser/types/CommandEndpoints.ts:72](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L72)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:72](https://github.com/LuanRT/
 
 > `optional` **playlistId**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:64](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L64)
+Defined in: [src/parser/types/CommandEndpoints.ts:64](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L64)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:64](https://github.com/LuanRT/
 
 > `optional` **playlistIndex**: `number`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:65](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L65)
+Defined in: [src/parser/types/CommandEndpoints.ts:65](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L65)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:65](https://github.com/LuanRT/
 
 > `optional` **racyCheckOk**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:69](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L69)
+Defined in: [src/parser/types/CommandEndpoints.ts:69](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L69)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:69](https://github.com/LuanRT/
 
 > `optional` **startTimeSecs**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:67](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L67)
+Defined in: [src/parser/types/CommandEndpoints.ts:67](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L67)
 
 ***
 
@@ -84,4 +84,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:67](https://github.com/LuanRT/
 
 > `optional` **videoId**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:63](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/parser/types/CommandEndpoints.ts#L63)
+Defined in: [src/parser/types/CommandEndpoints.ts:63](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L63)

@@ -4,7 +4,7 @@
 
 > **ParsedResponse**\<`T`\> = `T` *extends* `"/player"` ? [`IPlayerResponse`](IPlayerResponse.md) : `T` *extends* `"/search"` ? [`ISearchResponse`](ISearchResponse.md) : `T` *extends* `"/browse"` ? [`IBrowseResponse`](IBrowseResponse.md) : `T` *extends* `"/next"` ? [`INextResponse`](INextResponse.md) : `T` *extends* `"/updated_metadata"` ? [`IUpdatedMetadataResponse`](IUpdatedMetadataResponse.md) : `T` *extends* `"/navigation/resolve_url"` ? [`IResolveURLResponse`](IResolveURLResponse.md) : `T` *extends* `"/notification/get_notification_menu"` ? [`IGetNotificationsMenuResponse`](IGetNotificationsMenuResponse.md) : `T` *extends* `"/att/get"` ? [`IGetChallengeResponse`](IGetChallengeResponse.md) : [`IParsedResponse`](../interfaces/IParsedResponse.md)
 
-Defined in: [src/core/Actions.ts:35](https://github.com/LuanRT/YouTube.js/blob/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f/src/core/Actions.ts#L35)
+Defined in: [src/core/Actions.ts:35](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Actions.ts#L35)
 
 ## Type Parameters
 
