@@ -22,7 +22,7 @@
 
 </div>
 
-YouTube.js is a JavaScript client for YouTube's private API, known as "InnerTube". It allows you to interact with YouTube programmatically, providing access to videos, comments, live chats, streaming data and more. It works seamlessly across Node.js, Deno, and modern browsers.
+YouTube.js is a JavaScript client for YouTube's private API, known as "InnerTube". It allows you to interact with YouTube programmatically, providing access to videos, comments, live chats, streaming data, and more. Runs on Node.js, Deno, and modern browsers.
 
 ## Installation
 
@@ -57,7 +57,7 @@ const innertube = await Innertube.create(/* options */);
 For detailed usage, check out the [YouTube.js Guide and API Documentation](https://ytjs.dev).
 
 ## Contributing
-We welcome all contributions, issues and feature requests, whether small or large. If you want to contribute, feel free to check out our [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
+All contributions are welcome, big or small. If you want to contribute, take a look at the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
 
 ## Contributors
 <a href="https://github.com/LuanRT/YouTube.js/graphs/contributors">
