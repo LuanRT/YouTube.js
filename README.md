@@ -55,7 +55,7 @@ const innertube = await Innertube.create(/* options */);
 For detailed usage, read the [YouTube.js Guide and API Documentation](https://ytjs.dev).
 
 ## Contributing
-All contributions are welcome, big or small. If you want to contribute, take a look at the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/tree/main?tab=contributing-ov-file).
+All contributions are welcome, big or small. If you want to contribute, take a look at the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
 
 ## Contributors
 <a href="https://github.com/LuanRT/YouTube.js/graphs/contributors">
