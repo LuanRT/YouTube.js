@@ -25,7 +25,7 @@ export default class ThumbnailBadgeView extends YTNode {
       };
     }
 
-    if (data.iconName) {
+    if (data.icon) {
       this.icon_name = data.icon.sources[0].clientResource.imageName;
     }
   }
