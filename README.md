@@ -12,7 +12,7 @@
       <img src="https://luanrt.github.io/assets/img/ytjs.svg" alt="YouTube.js Logo" width="200" />
     </a>
   </p>
-  <p>A JavaScript client for YouTube's internal API.<br/>Works on Node.js, Deno, modern browsers, and more.</p>
+  <p>A JavaScript client for YouTube's internal API.<br/>Works on Node.js, Deno, modern browsers, Cloudflare Workers, and more.</p>
 
 [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
 [![CI](https://github.com/LuanRT/YouTube.js/actions/workflows/test.yml/badge.svg)][actions]
@@ -51,6 +51,17 @@ import { Innertube } from 'https://deno.land/x/youtubei/deno.ts';
 import { Innertube } from 'youtubei.js';
 const innertube = await Innertube.create(/* options */);
 ```
+
+### Cloudflare Workers
+
+YouTube.js provides a dedicated `cf-worker` entrypoint optimized for Cloudflare Workers and edge environments:
+
+```ts
+import { Innertube } from 'youtubei.js/cf-worker';
+const innertube = await Innertube.create(/* options */);
+```
+
+This entrypoint uses a worker-compatible HTTP client and avoids APIs unavailable in the Workers runtime. An example is available in [`examples/cloudflare-worker/`](examples/cloudflare-worker/).
 
 For detailed usage, read the [YouTube.js Guide and API Documentation](https://ytjs.dev).
 
