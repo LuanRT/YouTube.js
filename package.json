@@ -114,7 +114,7 @@
     "@typescript-eslint/parser": "^8.46.0",
     "cpy-cli": "^6.0.0",
     "esbuild": "^0.25.6",
-    "eslint": "^9.37.0",
+    "eslint": "^10.4.0",
     "globals": "^17.0.0",
     "replace": "^1.2.2",
     "rimraf": "^6.0.1",
