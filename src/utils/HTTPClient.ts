@@ -98,6 +98,8 @@ export default class HTTPClient {
         request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
       } else if (adjustedClientName === Constants.CLIENTS.IOS.NAME) {
         request_headers.set('User-Agent', Constants.CLIENTS.IOS.USER_AGENT);
+      } else if (adjustedClientName === Constants.CLIENTS.ANDROID_VR.NAME) {
+        request_headers.set('User-Agent', Constants.CLIENTS.ANDROID_VR.USER_AGENT);
       }
     } else if (content_type === 'application/x-protobuf') {
       // Assume it is always an Android request.
