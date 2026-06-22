@@ -1,5 +1,25 @@
 # Changelog
 
+## [17.1.0](https://github.com/LuanRT/YouTube.js/compare/v17.0.1...v17.1.0) (2026-06-22)
+
+
+### Features
+
+* **ChipBarView:** Parse `renderer_context` ([3915883](https://github.com/LuanRT/YouTube.js/commit/39158838f1b4a8c414ddbabd94b5a48198b16b2f))
+* **ChipView:** Improve types ([32623de](https://github.com/LuanRT/YouTube.js/commit/32623de4850fb2ae27c2b8317c2d00fea1a78227))
+* **ListView:** Add some missing fields ([cf54129](https://github.com/LuanRT/YouTube.js/commit/cf5412986b102be7e8e11c87a0d877249caedce5))
+* **Parser:** Add `HypeFanCreditsSectionView` ([853a363](https://github.com/LuanRT/YouTube.js/commit/853a36307b5d644ada14dcb1216c2c22c2ae7b73))
+* **parser:** Add `ShowSheetCommand` and `SheetView` ([37a4808](https://github.com/LuanRT/YouTube.js/commit/37a480869372831429de439924baabde5d8ac43b))
+* **Parser:** Add `ThumbnailOverlayTitleView` and `PageIndicatorView` classes ([#1120](https://github.com/LuanRT/YouTube.js/issues/1120)) ([2a33fbc](https://github.com/LuanRT/YouTube.js/commit/2a33fbc85fd7a25b25696e1a1ab75ed4afde3e10))
+* **Search:** Add support for refinement chips ([#1167](https://github.com/LuanRT/YouTube.js/issues/1167)) ([f748b8b](https://github.com/LuanRT/YouTube.js/commit/f748b8b3622e20494b10982a6c5b63aade7b23ba))
+
+
+### Bug Fixes
+
+* **Channel:** Add support for new feed filter nodes ([#1163](https://github.com/LuanRT/YouTube.js/issues/1163)) ([faaf5fc](https://github.com/LuanRT/YouTube.js/commit/faaf5fc5c15ff93eac8442b2fbdb4767d9a47b3f))
+* **ItemSection:** ChipBarView parser warning ([#1188](https://github.com/LuanRT/YouTube.js/issues/1188)) ([1b26b83](https://github.com/LuanRT/YouTube.js/commit/1b26b83c2ce6477da206034dc2dc08bee920b3d7))
+* **ThumbnailBadgeView:** Parse icon ([#1174](https://github.com/LuanRT/YouTube.js/issues/1174)) ([47b1df7](https://github.com/LuanRT/YouTube.js/commit/47b1df752915e0626fb2fdc8c0d8ca2412e8c94e))
+
 ## [17.0.1](https://github.com/LuanRT/YouTube.js/compare/v17.0.0...v17.0.1) (2026-03-16)
 
 
