@@ -13,7 +13,6 @@ export { Platform } from './Utils.ts';
 export * as Utils from './Utils.ts';
 
 export * as Log from './Log.ts';
-export * as LZW from './LZW.ts';
 export * as BinarySerializer from './BinarySerializer.ts';
 
 export * as ProtoUtils from './ProtoUtils.ts';

@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "17.0.1",
+  "version": "17.1.0",
   "description": "A JavaScript client for YouTube's private API, known as InnerTube.",
   "type": "module",
   "types": "./dist/src/platform/lib.d.ts",
@@ -103,6 +103,7 @@
   "license": "MIT",
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0",
+    "fflate": "^0.8.2",
     "meriyah": "^6.1.4"
   },
   "devDependencies": {
@@ -112,7 +113,7 @@
     "@typescript-eslint/eslint-plugin": "^8.46.0",
     "@typescript-eslint/parser": "^8.46.0",
     "cpy-cli": "^6.0.0",
-    "esbuild": "^0.25.6",
+    "esbuild": "^0.28.0",
     "eslint": "^9.37.0",
     "globals": "^17.0.0",
     "replace": "^1.2.2",

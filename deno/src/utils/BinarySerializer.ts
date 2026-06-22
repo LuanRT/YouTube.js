@@ -1,30 +1,31 @@
-import { compress, decompress } from './LZW.ts';
+import { gunzipSync, gzipSync } from 'fflate';
 
 export const MAGIC_HEADER = 0x594254; // 'YTB' in hex...
-export const VERSION = 1;
+export const VERSION = 2;
 
 export function serialize(data: any): ArrayBuffer {
-  const json_str = JSON.stringify(data);
-  const compressed = compress(json_str);
-  const compressed_bytes = new TextEncoder().encode(compressed);
+  const json = JSON.stringify(data);
+  const jsonBytes = new TextEncoder().encode(json);
+  const compressed = gzipSync(jsonBytes);
 
-  const buffer = new ArrayBuffer(12 + compressed_bytes.byteLength);
+  const buffer = new ArrayBuffer(12 + compressed.byteLength);
   const view = new DataView(buffer);
 
   view.setUint32(0, MAGIC_HEADER, true);
   view.setUint32(4, VERSION, true);
-  view.setUint32(8, compressed_bytes.byteLength, true);
+  view.setUint32(8, compressed.byteLength, true);
 
-  new Uint8Array(buffer).set(compressed_bytes, 12);
+  new Uint8Array(buffer).set(compressed, 12);
 
   return buffer;
 }
 
 export function deserialize<T>(buffer: Uint8Array): T {
-  if (buffer.byteLength < 12)
+  if (buffer.byteLength < 12) {
     throw new Error('Invalid binary format: buffer too short');
+  }
 
-  const view = new DataView(buffer.buffer, buffer.byteOffset);
+  const view = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
 
   const magic = view.getUint32(0, true);
   if (magic !== MAGIC_HEADER) {
@@ -36,11 +37,14 @@ export function deserialize<T>(buffer: Uint8Array): T {
     throw new Error(`Unsupported binary format version: ${version}`);
   }
 
-  const data_length = view.getUint32(8, true);
-  const compressed_data = buffer.slice(12, 12 + data_length);
+  const length = view.getUint32(8, true);
+  if (12 + length > buffer.byteLength) {
+    throw new Error('Invalid binary format: data length out of bounds');
+  }
 
-  const compressed = new TextDecoder().decode(compressed_data);
-  const json_str = decompress(compressed);
+  const compressed = buffer.subarray(12, 12 + length);
+  const decompressed = gunzipSync(compressed);
+  const json = new TextDecoder().decode(decompressed);
 
-  return JSON.parse(json_str);
+  return JSON.parse(json) as T;
 }

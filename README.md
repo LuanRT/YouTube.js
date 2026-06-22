@@ -12,7 +12,7 @@
       <img src="https://luanrt.github.io/assets/img/ytjs.svg" alt="YouTube.js Logo" width="200" />
     </a>
   </p>
-  <p>A JavaScript client for YouTube's private API</p>
+  <p>A JavaScript client for YouTube's internal API.<br/>Works on Node.js, Deno, modern browsers, and more.</p>
 
 [![Discord](https://img.shields.io/badge/discord-online-brightgreen.svg)][discord]
 [![CI](https://github.com/LuanRT/YouTube.js/actions/workflows/test.yml/badge.svg)][actions]
@@ -21,8 +21,6 @@
 [![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
 
 </div>
-
-YouTube.js is a JavaScript client for YouTube's private API, known as "InnerTube". It allows you to interact with YouTube programmatically, providing access to videos, comments, live chats, streaming data and more. It works seamlessly across Node.js, Deno, and modern browsers.
 
 ## Installation
 
@@ -54,10 +52,10 @@ import { Innertube } from 'youtubei.js';
 const innertube = await Innertube.create(/* options */);
 ```
 
-For detailed usage, check out the [YouTube.js Guide and API Documentation](https://ytjs.dev).
+For detailed usage, read the [YouTube.js Guide and API Documentation](https://ytjs.dev).
 
 ## Contributing
-We welcome all contributions, issues and feature requests, whether small or large. If you want to contribute, feel free to check out our [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
+All contributions are welcome, big or small. If you want to contribute, take a look at the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
 
 ## Contributors
 <a href="https://github.com/LuanRT/YouTube.js/graphs/contributors">
