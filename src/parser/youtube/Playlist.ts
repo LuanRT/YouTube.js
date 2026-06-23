@@ -15,6 +15,7 @@ import ShortsLockupView from '../classes/ShortsLockupView.js';
 import VideoOwner from '../classes/VideoOwner.js';
 import Alert from '../classes/Alert.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
+import ContinuationItemView from '../classes/ContinuationItemView.js';
 import PlaylistVideo from '../classes/PlaylistVideo.js';
 import SectionList from '../classes/SectionList.js';
 import { observe, type ObservedArray, type YTNode } from '../helpers.js';
@@ -77,7 +78,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
     if (!section_list)
       return super.has_continuation;
 
-    return !!this.memo.getType(ContinuationItem).find((node) => !section_list.contents.includes(node));
+    return !!this.memo.getType(ContinuationItem, ContinuationItemView).find((node) => !section_list.contents.includes(node));
   }
 
   async getContinuationData(): Promise<IBrowseResponse | undefined> {
@@ -90,7 +91,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
     if (!section_list)
       return await super.getContinuationData();
 
-    const playlist_contents_continuation = this.memo.getType(ContinuationItem)
+    const playlist_contents_continuation = this.memo.getType(ContinuationItem, ContinuationItemView)
       .find((node) => !section_list.contents.includes(node));
 
     if (!playlist_contents_continuation)
