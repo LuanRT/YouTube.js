@@ -9,6 +9,7 @@ import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.js
 import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.js';
 import PlaylistVideoList from '../classes/PlaylistVideoList.js';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.js';
+import LockupView from '../classes/LockupView.js';
 import ReelItem from '../classes/ReelItem.js';
 import ShortsLockupView from '../classes/ShortsLockupView.js';
 import VideoOwner from '../classes/VideoOwner.js';
@@ -66,8 +67,8 @@ export default class Playlist extends Feed<IBrowseResponse> {
     this.messages = this.memo.getType(Message);
   }
 
-  get items(): ObservedArray<PlaylistVideo | ReelItem | ShortsLockupView> {
-    return observe(this.videos.as(PlaylistVideo, ReelItem, ShortsLockupView).filter((video) => (video as PlaylistVideo).style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
+  get items(): ObservedArray<LockupView | PlaylistVideo | ReelItem | ShortsLockupView> {
+    return observe(this.videos.as(LockupView, PlaylistVideo, ReelItem, ShortsLockupView).filter((video) => (video as PlaylistVideo).style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
   }
 
   get has_continuation() {
