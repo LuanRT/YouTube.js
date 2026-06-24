@@ -115,6 +115,7 @@ export { default as ConfirmDialog } from './classes/ConfirmDialog.ts';
 export { default as ContentMetadataView } from './classes/ContentMetadataView.ts';
 export { default as ContentPreviewImageView } from './classes/ContentPreviewImageView.ts';
 export { default as ContinuationItem } from './classes/ContinuationItem.ts';
+export { default as ContinuationItemView } from './classes/ContinuationItemView.ts';
 export { default as ConversationBar } from './classes/ConversationBar.ts';
 export { default as CopyLink } from './classes/CopyLink.ts';
 export { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.ts';

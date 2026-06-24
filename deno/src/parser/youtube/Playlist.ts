@@ -9,11 +9,13 @@ import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.ts
 import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.ts';
 import PlaylistVideoList from '../classes/PlaylistVideoList.ts';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.ts';
+import LockupView from '../classes/LockupView.ts';
 import ReelItem from '../classes/ReelItem.ts';
 import ShortsLockupView from '../classes/ShortsLockupView.ts';
 import VideoOwner from '../classes/VideoOwner.ts';
 import Alert from '../classes/Alert.ts';
 import ContinuationItem from '../classes/ContinuationItem.ts';
+import ContinuationItemView from '../classes/ContinuationItemView.ts';
 import PlaylistVideo from '../classes/PlaylistVideo.ts';
 import SectionList from '../classes/SectionList.ts';
 import { observe, type ObservedArray, type YTNode } from '../helpers.ts';
@@ -66,8 +68,8 @@ export default class Playlist extends Feed<IBrowseResponse> {
     this.messages = this.memo.getType(Message);
   }
 
-  get items(): ObservedArray<PlaylistVideo | ReelItem | ShortsLockupView> {
-    return observe(this.videos.as(PlaylistVideo, ReelItem, ShortsLockupView).filter((video) => (video as PlaylistVideo).style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
+  get items(): ObservedArray<LockupView | PlaylistVideo | ReelItem | ShortsLockupView> {
+    return observe(this.videos.as(LockupView, PlaylistVideo, ReelItem, ShortsLockupView).filter((video) => (video as PlaylistVideo).style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
   }
 
   get has_continuation() {
@@ -76,7 +78,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
     if (!section_list)
       return super.has_continuation;
 
-    return !!this.memo.getType(ContinuationItem).find((node) => !section_list.contents.includes(node));
+    return !!this.memo.getType(ContinuationItem, ContinuationItemView).find((node) => !section_list.contents.includes(node));
   }
 
   async getContinuationData(): Promise<IBrowseResponse | undefined> {
@@ -89,7 +91,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
     if (!section_list)
       return await super.getContinuationData();
 
-    const playlist_contents_continuation = this.memo.getType(ContinuationItem)
+    const playlist_contents_continuation = this.memo.getType(ContinuationItem, ContinuationItemView)
       .find((node) => !section_list.contents.includes(node));
 
     if (!playlist_contents_continuation)

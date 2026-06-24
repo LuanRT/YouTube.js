@@ -24,6 +24,7 @@ import Video from '../../parser/classes/Video.ts';
 
 import AppendContinuationItemsAction from '../../parser/classes/actions/AppendContinuationItemsAction.ts';
 import ContinuationItem from '../../parser/classes/ContinuationItem.ts';
+import ContinuationItemView from '../../parser/classes/ContinuationItemView.ts';
 import TwoColumnBrowseResults from '../../parser/classes/TwoColumnBrowseResults.ts';
 import TwoColumnSearchResults from '../../parser/classes/TwoColumnSearchResults.ts';
 import WatchCardCompactVideo from '../../parser/classes/WatchCardCompactVideo.ts';
@@ -225,11 +226,11 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
 
   #getBodyContinuations(): ObservedArray<ContinuationItem> {
     if (this.#page.header_memo) {
-      const header_continuations = this.#page.header_memo.getType(ContinuationItem);
-      return this.#memo.getType(ContinuationItem).filter(
+      const header_continuations = this.#page.header_memo.getType(ContinuationItem, ContinuationItemView);
+      return this.#memo.getType(ContinuationItem, ContinuationItemView).filter(
         (continuation) => !header_continuations.includes(continuation)
       ) as ObservedArray<ContinuationItem>;
     }
-    return this.#memo.getType(ContinuationItem);
+    return this.#memo.getType(ContinuationItem, ContinuationItemView);
   }
 }
