@@ -1,5 +1,17 @@
 # Changelog
 
+## [17.2.0](https://github.com/LuanRT/YouTube.js/compare/v17.1.0...v17.2.0) (2026-06-23)
+
+
+### Features
+
+* **parser:** Add ContinuationItemView and treat it as a continuation ([#1193](https://github.com/LuanRT/YouTube.js/issues/1193)) ([48ebd1b](https://github.com/LuanRT/YouTube.js/commit/48ebd1b7d43441d9f294161dfa68b65431a8b430))
+
+
+### Bug Fixes
+
+* **parser:** Parse LockupViews in playlist items ([ae90ff4](https://github.com/LuanRT/YouTube.js/commit/ae90ff4f10f647f25a94c36fa5a5fa33c4f1d981))
+
 ## [17.1.0](https://github.com/LuanRT/YouTube.js/compare/v17.0.1...v17.1.0) (2026-06-22)
 
 
