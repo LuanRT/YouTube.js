@@ -18,6 +18,7 @@ import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
 import { PlaylistPanelContinuation } from '../continuations.js';
+import type TvSurfaceContent from '../classes/tv/TvSurfaceContent.js';
 
 class TrackInfo extends MediaInfo {
   public tabs?: ObservedArray<Tab>;
@@ -43,7 +44,7 @@ class TrackInfo extends MediaInfo {
   /**
    * Retrieves contents of the given tab.
    */
-  async getTab(title_or_page_type: string): Promise<ObservedArray<YTNode> | SectionList | MusicQueue | RichGrid | Message> {
+  async getTab(title_or_page_type: string): Promise<ObservedArray<YTNode> | SectionList | MusicQueue | TvSurfaceContent | RichGrid | Message> {
     if (!this.tabs)
       throw new InnertubeError('Could not find any tab');
 
