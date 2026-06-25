@@ -175,6 +175,7 @@ export { default as EngagementPanelSectionList } from './classes/EngagementPanel
 export { default as EngagementPanelTitleHeader } from './classes/EngagementPanelTitleHeader.js';
 export { default as EomSettingsDisclaimer } from './classes/EomSettingsDisclaimer.js';
 export { default as ExpandableMetadata } from './classes/ExpandableMetadata.js';
+export { default as ExpandableSurveyResponse } from './classes/ExpandableSurveyResponse.js';
 export { default as ExpandableTab } from './classes/ExpandableTab.js';
 export { default as ExpandableVideoDescriptionBody } from './classes/ExpandableVideoDescriptionBody.js';
 export { default as ExpandedShelfContents } from './classes/ExpandedShelfContents.js';
@@ -223,6 +224,7 @@ export { default as IncludingResultsFor } from './classes/IncludingResultsFor.js
 export { default as InfoPanelContainer } from './classes/InfoPanelContainer.js';
 export { default as InfoPanelContent } from './classes/InfoPanelContent.js';
 export { default as InfoRow } from './classes/InfoRow.js';
+export { default as InlineSurvey } from './classes/InlineSurvey.js';
 export { default as InteractiveTabbedHeader } from './classes/InteractiveTabbedHeader.js';
 export { default as ItemSection } from './classes/ItemSection.js';
 export { default as ItemSectionHeader } from './classes/ItemSectionHeader.js';
@@ -410,6 +412,8 @@ export { default as ProfileColumnStats } from './classes/ProfileColumnStats.js';
 export { default as ProfileColumnStatsEntry } from './classes/ProfileColumnStatsEntry.js';
 export { default as ProfileColumnUserInfo } from './classes/ProfileColumnUserInfo.js';
 export { default as Quiz } from './classes/Quiz.js';
+export { default as RatingSurvey } from './classes/RatingSurvey.js';
+export { default as RatingSurveyOption } from './classes/RatingSurveyOption.js';
 export { default as RecognitionShelf } from './classes/RecognitionShelf.js';
 export { default as ReelItem } from './classes/ReelItem.js';
 export { default as ReelPlayerHeader } from './classes/ReelPlayerHeader.js';
