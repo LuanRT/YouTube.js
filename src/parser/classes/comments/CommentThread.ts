@@ -54,7 +54,7 @@ export default class CommentThread extends YTNode {
    * Indicates whether this comment thread has prepopulated reply data. If false, you will need to call {@link CommentThread.getReplies} to fetch the initial batch of replies.
    */
   get is_prepopulated(): boolean {
-    return !!this.comment_replies_data && this.comment_replies_data.sub_threads[0].is(CommentThread);
+    return !!this.comment_replies_data && this.comment_replies_data.sub_threads[0]?.is(CommentThread);
   }
 
   /**
