@@ -124,7 +124,7 @@
     "typedoc-plugin-markdown": "^4.9.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.0",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.9"
   },
   "bugs": {
     "url": "https://github.com/LuanRT/YouTube.js/issues"
