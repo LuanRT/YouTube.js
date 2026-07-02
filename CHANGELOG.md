@@ -1,5 +1,16 @@
 # Changelog
 
+## [18.0.0](https://github.com/LuanRT/YouTube.js/compare/v17.2.0...v18.0.0) (2026-07-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Comments.ts:** Add support for threaded comments ([#1194](https://github.com/LuanRT/YouTube.js/issues/1194))
+
+### Bug Fixes
+
+* **Comments.ts:** Add support for threaded comments ([#1194](https://github.com/LuanRT/YouTube.js/issues/1194)) ([c69d19f](https://github.com/LuanRT/YouTube.js/commit/c69d19f8cbe262a31a59e2991060b904f37e5768))
+
 ## [17.2.0](https://github.com/LuanRT/YouTube.js/compare/v17.1.0...v17.2.0) (2026-06-23)
 
 
