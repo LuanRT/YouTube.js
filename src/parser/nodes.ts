@@ -482,6 +482,7 @@ export { default as ThumbnailBottomOverlayView } from './classes/ThumbnailBottom
 export { default as ThumbnailHoverOverlayToggleActionsView } from './classes/ThumbnailHoverOverlayToggleActionsView.js';
 export { default as ThumbnailHoverOverlayView } from './classes/ThumbnailHoverOverlayView.js';
 export { default as ThumbnailLandscapePortrait } from './classes/ThumbnailLandscapePortrait.js';
+export { default as ThumbnailOverlayAvatarStackView } from './classes/ThumbnailOverlayAvatarStackView.js';
 export { default as ThumbnailOverlayBadgeView } from './classes/ThumbnailOverlayBadgeView.js';
 export { default as ThumbnailOverlayBottomPanel } from './classes/ThumbnailOverlayBottomPanel.js';
 export { default as ThumbnailOverlayEndorsement } from './classes/ThumbnailOverlayEndorsement.js';
