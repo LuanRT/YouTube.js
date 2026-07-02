@@ -6,7 +6,7 @@ describe('YouTube.js Tests', () => {
   let innertube: Innertube;
 
   beforeAll(async () => {
-    innertube = await Innertube.create({ generate_session_locally: true });
+    innertube = await Innertube.create({ generate_session_locally: false });
   });
 
   describe('Main', () => {
