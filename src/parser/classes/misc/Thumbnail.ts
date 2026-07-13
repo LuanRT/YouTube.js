@@ -23,6 +23,8 @@ export default class Thumbnail {
       thumbnail_data = data.thumbnails;
     } else if (data.sources) {
       thumbnail_data = data.sources;
+    } else if (data.image) {
+      thumbnail_data = data.image;
     }
 
     if (thumbnail_data) {
