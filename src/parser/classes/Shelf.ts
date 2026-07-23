@@ -3,6 +3,7 @@ import { Parser, type RawNode } from '../index.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import { YTNode } from '../helpers.js';
 import Button from './Button.js';
+import ShelfHeader from './ShelfHeader.js';
 
 export default class Shelf extends YTNode {
   static type = 'Shelf';
@@ -14,6 +15,7 @@ export default class Shelf extends YTNode {
   menu?: YTNode | null;
   play_all_button?: Button | null;
   subtitle?: Text;
+  header?: ShelfHeader | null;
 
   constructor(data: RawNode) {
     super();
@@ -39,6 +41,10 @@ export default class Shelf extends YTNode {
 
     if (Reflect.has(data, 'subtitle')) {
       this.subtitle = new Text(data.subtitle);
+    }
+    
+    if (Reflect.has(data, 'headerRenderer')) {
+      this.header = Parser.parseItem(data.headerRenderer, ShelfHeader);
     }
   }
 }
