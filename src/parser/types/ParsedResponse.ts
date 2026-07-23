@@ -22,6 +22,7 @@ import type EngagementPanelSectionList from '../classes/EngagementPanelSectionLi
 import type AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
 import type MusicThumbnail from '../classes/MusicThumbnail.js';
 import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
+import type TransportControls from '../classes/TransportControls.js';
 
 export interface IParsedResponse {
   background?: MusicThumbnail;
@@ -61,6 +62,7 @@ export interface IParsedResponse {
   playability_status_memo?: Memo;
   streaming_data?: IStreamingData;
   player_config?: IPlayerConfig;
+  transport_controls?: TransportControls;
   current_video_endpoint?: NavigationEndpoint;
   endpoint?: NavigationEndpoint;
   captions?: PlayerCaptionsTracklist;
@@ -158,7 +160,7 @@ export interface IStreamingData {
 
 export type IPlayerResponse = Pick<IParsedResponse, 'captions' | 'cards' | 'endscreen' | 'microformat' | 'annotations' | 'playability_status' | 'streaming_data' | 'player_config' | 'heartbeat_params' | 'playback_tracking' | 'storyboards' | 'video_details'>;
 export type IPlayerHeartbeatResponse = Pick<IParsedResponse, 'playability_status' | 'playability_status_memo' | 'heartbeat_server_data' | 'poll_delay_ms' | 'stop_heartbeat'>;
-export type INextResponse = Pick<IParsedResponse, 'contents' | 'contents_memo' | 'continuation_contents' | 'continuation_contents_memo' | 'current_video_endpoint' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'player_overlays' | 'engagement_panels'>;
+export type INextResponse = Pick<IParsedResponse, 'contents' | 'contents_memo' | 'continuation_contents' | 'continuation_contents_memo' | 'current_video_endpoint' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'player_overlays' | 'engagement_panels' | 'transport_controls'>;
 export type IBrowseResponse = Pick<IParsedResponse, 'background' | 'continuation_contents' | 'continuation_contents_memo' | 'on_response_received_actions' | 'on_response_received_actions_memo' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'contents' | 'contents_memo' | 'header' | 'header_memo' | 'metadata' | 'microformat' | 'alerts' | 'sidebar' | 'sidebar_memo'>;
 export type ISearchResponse = Pick<IParsedResponse, 'header' | 'header_memo' | 'contents' | 'contents_memo' | 'on_response_received_commands' | 'on_response_received_commands_memo' | 'continuation_contents' | 'continuation_contents_memo' | 'refinements' | 'estimated_results'>;
 export type IResolveURLResponse = Pick<IParsedResponse, 'endpoint'>;

@@ -366,6 +366,7 @@ export { default as MusicTastebuilderShelfThumbnail } from './classes/MusicTaste
 export { default as MusicThumbnail } from './classes/MusicThumbnail.js';
 export { default as MusicTwoRowItem } from './classes/MusicTwoRowItem.js';
 export { default as MusicVisualHeader } from './classes/MusicVisualHeader.js';
+export { default as MusicWatchMetadata } from './classes/MusicWatchMetadata.js';
 export { default as MobileTopbar } from './classes/mweb/MobileTopbar.js';
 export { default as MultiPageMenuSection } from './classes/mweb/MultiPageMenuSection.js';
 export { default as PivotBar } from './classes/mweb/PivotBar.js';
@@ -549,6 +550,7 @@ export { default as TranscriptSearchPanel } from './classes/TranscriptSearchPane
 export { default as TranscriptSectionHeader } from './classes/TranscriptSectionHeader.js';
 export { default as TranscriptSegment } from './classes/TranscriptSegment.js';
 export { default as TranscriptSegmentList } from './classes/TranscriptSegmentList.js';
+export { default as TransportControls } from './classes/TransportControls.js';
 export { default as TvBrowse } from './classes/tv/TvBrowse.js';
 export { default as TvSecondaryNav } from './classes/tv/TvSecondaryNav.js';
 export { default as TvSecondaryNavSection } from './classes/tv/TvSecondaryNavSection.js';
