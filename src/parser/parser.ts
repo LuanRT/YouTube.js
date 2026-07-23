@@ -44,6 +44,7 @@ import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
 import OpenPopupAction from './classes/actions/OpenPopupAction.js';
 import AppendContinuationItemsAction from './classes/actions/AppendContinuationItemsAction.js';
+import TransportControls from './classes/TransportControls.js';
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
 const TAG = 'Parser';
@@ -479,6 +480,11 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   const cards = parseItem(data.cards, CardCollection);
   if (cards) {
     parsed_data.cards = cards;
+  }
+
+  const transport_controls = parseItem(data.transportControls, TransportControls);
+  if (transport_controls) {
+    parsed_data.transport_controls = transport_controls;
   }
 
   const engagement_panels = parseArray(data.engagementPanels, EngagementPanelSectionList);

@@ -9,28 +9,28 @@ import Author from './misc/Author.js';
 import Menu from './menus/Menu.js';
 import type NavigationEndpoint from './NavigationEndpoint.js';
 import AutoplayEndpoint from './endpoints/AutoplayEndpoint.js';
+import PivotVideo from './PivotVideo.js';
 
 export default class SingleColumnWatchNextResults extends YTNode {
   static type = 'SingleColumnWatchNextResults';
 
-  results: {
+  results?: {
     results: {
       contents: ObservedArray<ItemSection> | null,
       tracking_params: string
     }
   };
-  autoplay: {
+  autoplay?: {
     autoplay: {
       sets: {
         mode: string,
         autoplay_video_renderer: AutonavEndpoint | AutoplayEndpoint | null,
-        next_video_renderer: MaybeHistoryEndpoint | null,
+        next_video_renderer: MaybeHistoryEndpoint | AutoplayEndpoint | null,
         previous_video_renderer: MaybeHistoryEndpoint | null
       }[],
       title: Text,
       count_down_secs: number,
-      // replay_video_renderer: PivotVideo | null,
-      replay_video_renderer: YTNode | null,
+      replay_video_renderer: PivotVideo | null,
       tracking_params: string
     }
   };
@@ -51,26 +51,38 @@ export default class SingleColumnWatchNextResults extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.results = {
-      results: {
-        contents: Parser.parse(data.results.results.contents, true, ItemSection),
-        tracking_params: data.results.results.trackingParams
-      }
-    };
-    this.autoplay = {
-      autoplay: {
-        sets: data.autoplay.autoplay.sets.map((item: any) => ({
-          mode: item.mode,
-          autoplay_video_renderer: Parser.parseItem(item.autoplayVideoRenderer, [ AutoplayEndpoint, AutonavEndpoint ]),
-          next_video_renderer: Parser.parseItem(item.nextVideoRenderer, MaybeHistoryEndpoint),
-          previous_video_renderer: Parser.parseItem(item.previousVideoRenderer, MaybeHistoryEndpoint)
-        })),
-        title: new Text(data.autoplay.autoplay.title),
-        count_down_secs: data.autoplay.autoplay.countDownSecs,
-        replay_video_renderer: Parser.parseItem(data.autoplay.autoplay.replayVideoRenderer),
-        tracking_params: data.autoplay.autoplay.trackingParams
-      }
-    };
+    const results_data = data.results?.results;
+    if (results_data) {
+      this.results = {
+        results: {
+          contents: Parser.parse(results_data.contents, true, ItemSection),
+          tracking_params: results_data.trackingParams
+        }
+      };
+    }
+
+    const autoplay_data = data.autoplay?.autoplay;
+    if (autoplay_data) {
+      this.autoplay = {
+        autoplay: {
+          sets: (autoplay_data.sets || []).map((item: any) => {
+            const next_video_renderer = item.nextVideoRenderer?.autoplayVideoWrapperRenderer?.primaryEndpointRenderer ||
+              item.nextVideoRenderer;
+
+            return {
+              mode: item.mode,
+              autoplay_video_renderer: Parser.parseItem(item.autoplayVideoRenderer, [ AutoplayEndpoint, AutonavEndpoint ]),
+              next_video_renderer: Parser.parseItem(next_video_renderer, [ MaybeHistoryEndpoint, AutoplayEndpoint ]),
+              previous_video_renderer: Parser.parseItem(item.previousVideoRenderer, MaybeHistoryEndpoint)
+            };
+          }),
+          title: new Text(autoplay_data.title),
+          count_down_secs: autoplay_data.countDownSecs,
+          replay_video_renderer: Parser.parseItem(autoplay_data.replayVideoRenderer, PivotVideo),
+          tracking_params: autoplay_data.trackingParams
+        }
+      };
+    }
     const playlistData = data.playlist?.playlist;
     
     if (playlistData) {
@@ -90,6 +102,9 @@ export default class SingleColumnWatchNextResults extends YTNode {
         totalVideos: playlistData.totalVideos
       };
     }
-    this.pivot = Parser.parseItem(data.pivot, SectionList);
+    // Depending on the TV response version, suggestions are either wrapped in a
+    // sectionListRenderer or in an additional pivot object.
+    const pivot_data = data.pivot?.pivot ? { sectionListRenderer: data.pivot.pivot } : data.pivot;
+    this.pivot = Parser.parseItem(pivot_data, SectionList);
   }
 }

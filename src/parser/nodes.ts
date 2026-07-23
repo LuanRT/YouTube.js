@@ -363,6 +363,7 @@ export { default as MusicTastebuilderShelfThumbnail } from './classes/MusicTaste
 export { default as MusicThumbnail } from './classes/MusicThumbnail.js';
 export { default as MusicTwoRowItem } from './classes/MusicTwoRowItem.js';
 export { default as MusicVisualHeader } from './classes/MusicVisualHeader.js';
+export { default as MusicWatchMetadata } from './classes/MusicWatchMetadata.js';
 export { default as MobileTopbar } from './classes/mweb/MobileTopbar.js';
 export { default as MultiPageMenuSection } from './classes/mweb/MultiPageMenuSection.js';
 export { default as PivotBar } from './classes/mweb/PivotBar.js';
@@ -534,6 +535,7 @@ export { default as ToggleButton } from './classes/ToggleButton.js';
 export { default as ToggleButtonView } from './classes/ToggleButtonView.js';
 export { default as ToggleFormField } from './classes/ToggleFormField.js';
 export { default as ToggleMenuServiceItem } from './classes/ToggleMenuServiceItem.js';
+export { default as TransportControls } from './classes/TransportControls.js';
 export { default as Tooltip } from './classes/Tooltip.js';
 export { default as TopicChannelDetails } from './classes/TopicChannelDetails.js';
 export { default as Transcript } from './classes/Transcript.js';

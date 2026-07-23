@@ -16,6 +16,8 @@ export default class VideoMetadata extends YTNode {
   date_text: Text;
   video_id: string;
   like_button: LikeButton | null;
+  like_status?: string;
+  like_count?: number;
   owner: VideoOwner | null;
   view_count: VideoViewCount | null;
   is_limited_state: boolean;
@@ -34,6 +36,8 @@ export default class VideoMetadata extends YTNode {
     this.date_text = new Text(data.dateText);
     this.video_id = data.videoId;
     this.like_button = Parser.parseItem(data.likeButton, LikeButton);
+    this.like_status = data.likeStatus || data.likeButton?.likeButtonRenderer?.likeStatus || this.like_button?.like_status;
+    this.like_count = data.likeButton?.likeButtonRenderer?.likeCount ?? this.like_button?.like_count;
     this.owner = Parser.parseItem(data.owner, VideoOwner);
     this.view_count = Parser.parseItem(data.viewCount, VideoViewCount);
     this.is_limited_state = data.isLimitedState;
