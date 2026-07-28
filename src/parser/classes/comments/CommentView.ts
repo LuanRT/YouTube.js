@@ -112,8 +112,8 @@ export default class CommentView extends YTNode {
 
       this.author = new Author({
         simpleText: comment.author.displayName,
-        navigationEndpoint: comment.avatar.endpoint
-      }, comment.author, comment.avatar.image, comment.author.channelId);
+        navigationEndpoint: comment.avatar?.endpoint
+      }, comment.author, comment.avatar?.image, comment.author.channelId);
     }
 
     if (toolbar_state) {
