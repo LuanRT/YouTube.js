@@ -62,10 +62,14 @@ message SearchFilter {
       optional bool album = 3;
       optional bool artist = 4;
       optional bool playlist = 5;
+      optional bool episode = 9;
+      optional bool podcast = 10;
     }
   }
   
   optional Filters filters = 2;
+  // Opaque search options supplied by YouTube Music filter endpoints.
+  optional bytes options = 13;
 }
 
 message ChannelAnalytics {
