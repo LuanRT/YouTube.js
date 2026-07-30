@@ -4,15 +4,14 @@ import { Parser, type RawNode } from '../../index.js';
 import Text from './Text.js';
 import Thumbnail from './Thumbnail.js';
 import type TextRun from './TextRun.js';
-import Collaborator from './Collaborator.js';
-import type ShowDialogCommand from '../commands/ShowDialogCommand.js';
-import type DialogView from '../DialogView.js';
-import type ListView from '../ListView.js';
+import ShowDialogCommand from '../commands/ShowDialogCommand.js';
+import DialogView from '../DialogView.js';
+import ListView from '../ListView.js';
+import ListItemView from '../ListItemView.js';
 
 export default class Author {
   public id: string;
   public name: string;
-  public collaborators: Collaborator[];
   public thumbnails: Thumbnail[];
   public endpoint?: NavigationEndpoint;
   public badges: ObservedArray<YTNode>;
@@ -29,9 +28,6 @@ export default class Author {
 
     this.id = id || (nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.browseId || nav_text?.endpoint?.payload?.browseId || badges?.channelId;
     this.name = nav_text?.text || 'N/A';
-    this.collaborators = (((nav_text?.endpoint?.command as ShowDialogCommand)?.inline_content as DialogView)?.custom_content as ListView)?.items
-      ?.filter((item: any) => item.renderer_context?.command_context?.on_tap?.metadata?.page_type === 'WEB_PAGE_TYPE_CHANNEL')
-      .map((item: any) => new Collaborator(item)) ?? [];
     this.thumbnails = thumbs ? Thumbnail.fromResponse(thumbs) : [];
     this.endpoint = ((nav_text?.runs?.[0] as TextRun) as TextRun)?.endpoint || nav_text?.endpoint;
 
@@ -79,5 +75,18 @@ export default class Author {
 
   get best_thumbnail(): Thumbnail | undefined {
     return this.thumbnails[0];
+  }
+
+  get collaborators(): ListItemView[] {
+    if (this.endpoint?.command?.is(ShowDialogCommand) && this.endpoint.command.inline_content?.is(DialogView)) {
+      const dialog = this.endpoint.command.inline_content;
+
+      if (dialog.custom_content?.is(ListView)) {
+        return dialog.custom_content.items.as(ListItemView)
+          .filter((item) => item.renderer_context?.command_context?.on_tap?.metadata?.page_type === 'WEB_PAGE_TYPE_CHANNEL');
+      }
+    }
+
+    return [];
   }
 }
