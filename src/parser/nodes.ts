@@ -499,6 +499,8 @@ export { default as ThumbnailOverlayTimeStatus } from './classes/ThumbnailOverla
 export { default as ThumbnailOverlayTitleView } from './classes/ThumbnailOverlayTitleView.js';
 export { default as ThumbnailOverlayToggleButton } from './classes/ThumbnailOverlayToggleButton.js';
 export { default as ThumbnailView } from './classes/ThumbnailView.js';
+export { default as TicketEvent } from './classes/TicketEvent.js';
+export { default as TicketShelf } from './classes/TicketShelf.js';
 export { default as TimedMarkerDecoration } from './classes/TimedMarkerDecoration.js';
 export { default as TitleAndButtonListHeader } from './classes/TitleAndButtonListHeader.js';
 export { default as ToggleButton } from './classes/ToggleButton.js';
