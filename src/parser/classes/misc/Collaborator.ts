@@ -3,11 +3,11 @@ import type { RawNode } from '../../types/RawResponse.js';
 import Thumbnail from './Thumbnail.js';
 
 export default class Collaborator {
-  id: string;
-  name: string;
-  thumbnails: Thumbnail[];
-  url: string;
-  channel_info: string;
+  public id: string;
+  public name: string;
+  public thumbnails: Thumbnail[];
+  public url: string;
+  public channel_info: string;
 
   constructor(data: RawNode) {
     this.id = data.renderer_context?.command_context?.on_tap?.payload?.browseId || 'N/A';
