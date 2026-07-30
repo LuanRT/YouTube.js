@@ -1,18 +1,16 @@
-import { Parser } from '../../index.js';
-import { YTNode } from '../../helpers.js';
-import NavigationEndpoint from '../NavigationEndpoint.js';
+import { Parser, type RawNode } from '../../index.js';
 import Author from '../misc/Author.js';
+import NavigationEndpoint from '../NavigationEndpoint.js';
 import Text from '../misc/Text.js';
+import { YTNode } from '../../helpers.js';
 import CommentReplyDialog from './CommentReplyDialog.js';
 import VoiceReplyContainerView from './VoiceReplyContainerView.js';
+import { encodeCommentActionParams } from '../../../utils/ProtoUtils.js';
 import { InnertubeError } from '../../../utils/Utils.js';
-import * as ProtoUtils from '../../../utils/ProtoUtils.js';
 
 import type Actions from '../../../core/Actions.js';
 import type { ApiResponse } from '../../../core/Actions.js';
-import type { RawNode } from '../../index.js';
 
-// TODO: Move these types to a different file.
 export type CommentKeys = {
   comment: string;
   comment_surface: string;
@@ -23,7 +21,7 @@ export type CommentKeys = {
 
 export type MemberBadge = {
   url: string;
-  a11y: string;
+  a11y?: string;
 }
 
 export default class CommentView extends YTNode {
@@ -45,6 +43,7 @@ export default class CommentView extends YTNode {
   public content?: Text;
   public published_time?: string;
   public author_is_channel_owner?: boolean;
+  public author_button_a11y?: string;
   public creator_thumbnail_url?: string;
   public like_button_a11y?: string;
   public like_count?: string;
@@ -57,6 +56,7 @@ export default class CommentView extends YTNode {
   public heart_active_tooltip?: string;
   public reply_count?: string;
   public reply_count_a11y?: string;
+  public reply_level?: number;
   public is_member?: boolean;
   public member_badge?: MemberBadge;
   public author?: Author;
@@ -82,13 +82,15 @@ export default class CommentView extends YTNode {
     };
   }
 
-  applyMutations(comment?: RawNode, toolbar_state?: RawNode, toolbar_surface?: RawNode, comment_surface?: RawNode) {
+  public applyMutations(comment?: RawNode, toolbar_state?: RawNode, toolbar_surface?: RawNode, comment_surface?: RawNode) {
     if (comment) {
       this.content = Text.fromAttributed(comment.properties.content);
       this.published_time = comment.properties.publishedTime;
+      this.reply_level = comment.properties?.replyLevel ? comment.properties?.replyLevel : 0;
+      this.author_button_a11y = comment.properties?.authorButtonA11y;
       this.author_is_channel_owner = !!comment.author.isCreator;
       this.creator_thumbnail_url = comment.toolbar.creatorThumbnailUrl;
-      
+
       this.like_count = comment.toolbar.likeCountNotliked ? comment.toolbar.likeCountNotliked : '0';
       this.like_count_liked = comment.toolbar.likeCountLiked ? comment.toolbar.likeCountLiked : '0';
       this.like_count_a11y = comment.toolbar.likeCountA11y;
@@ -103,17 +105,25 @@ export default class CommentView extends YTNode {
 
       this.is_member = !!comment.author.sponsorBadgeUrl;
 
-      if (Reflect.has(comment.author, 'sponsorBadgeUrl')) {
+      if ('sponsorBadgeUrl' in comment.author) {
         this.member_badge = {
           url: comment.author.sponsorBadgeUrl,
-          a11y: comment.author.A11y
+          a11y: comment.author?.sponsorBadgeA11y
         };
+      }
+
+      let thumbs = comment.avatar?.image;
+
+      // 88 seems to be the default size for these.
+      // NOTE: This info is nowhere to be found in the response now, so had to hardcode it.
+      if (!thumbs && 'avatarThumbnailUrl' in comment.author) {
+        thumbs = { thumbnails: [ { url: comment.author.avatarThumbnailUrl, width: 88, height: 88 } ] };
       }
 
       this.author = new Author({
         simpleText: comment.author.displayName,
-        navigationEndpoint: comment.avatar?.endpoint
-      }, comment.author, comment.avatar?.image, comment.author.channelId);
+        navigationEndpoint: comment.avatar?.endpoint || comment.author?.channelCommand
+      }, comment.author, thumbs, comment.author.channelId);
     }
 
     if (toolbar_state) {
@@ -146,7 +156,7 @@ export default class CommentView extends YTNode {
    * @returns A promise that resolves to the API response.
    * @throws If the Actions instance is not set for this comment or if the like command is not found.
    */
-  async like(): Promise<ApiResponse> {
+  public async like(): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('Actions instance not set for this comment.');
 
@@ -164,7 +174,7 @@ export default class CommentView extends YTNode {
    * @returns A promise that resolves to the API response.
    * @throws If the Actions instance is not set for this comment or if the dislike command is not found.
    */
-  async dislike(): Promise<ApiResponse> {
+  public async dislike(): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('Actions instance not set for this comment.');
 
@@ -182,7 +192,7 @@ export default class CommentView extends YTNode {
    * @returns A promise that resolves to the API response.
    * @throws If the Actions instance is not set for this comment or if the unlike command is not found.
    */
-  async unlike(): Promise<ApiResponse> {
+  public async unlike(): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('Actions instance not set for this comment.');
 
@@ -200,7 +210,7 @@ export default class CommentView extends YTNode {
    * @returns A promise that resolves to the API response.
    * @throws If the Actions instance is not set for this comment or if the undislike command is not found.
    */
-  async undislike(): Promise<ApiResponse> {
+  public async undislike(): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('Actions instance not set for this comment.');
 
@@ -219,7 +229,7 @@ export default class CommentView extends YTNode {
    * @returns A promise that resolves to the API response.
    * @throws If the Actions instance is not set for this comment or if the reply command is not found.
    */
-  async reply(comment_text: string): Promise<ApiResponse> {
+  public async reply(comment_text: string): Promise<ApiResponse> {
     if (!this.#actions)
       throw new InnertubeError('Actions instance not set for this comment.');
 
@@ -248,7 +258,7 @@ export default class CommentView extends YTNode {
    * @returns Resolves to an ApiResponse object with the translated content, if available.
    * @throws if the Actions instance is not set for this comment or if the comment content is not found.
    */
-  async translate(target_language: string): Promise<ApiResponse & { content?: string }> {
+  public async translate(target_language: string): Promise<ApiResponse & { content?: string }> {
     if (!this.#actions)
       throw new InnertubeError('Actions instance not set for this comment.');
 
@@ -260,7 +270,7 @@ export default class CommentView extends YTNode {
 
     const payload = { text, target_language };
 
-    const action = ProtoUtils.encodeCommentActionParams(22, payload);
+    const action = encodeCommentActionParams(22, payload);
     const response = await this.#actions.execute('comment/perform_comment_action', { action });
 
     // XXX: Should move this to Parser#parseResponse
@@ -270,7 +280,7 @@ export default class CommentView extends YTNode {
     return { ...response, content };
   }
 
-  setActions(actions: Actions | undefined) {
+  public setActions(actions: Actions | undefined) {
     this.#actions = actions;
   }
 }
