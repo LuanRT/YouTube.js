@@ -118,7 +118,7 @@
     "globals": "^17.0.0",
     "replace": "^1.2.2",
     "rimraf": "^6.0.1",
-    "ts-patch": "^3.0.2",
+    "ts-patch": "^4.0.1",
     "ts-proto": "^2.2.0",
     "typedoc": "^0.28.14",
     "typedoc-plugin-markdown": "^4.9.0",
