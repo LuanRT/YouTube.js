@@ -75,7 +75,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
       throw new Error('You must be signed in to perform this operation.');
 
     const writer = PlaylistCollaboratorParams.encode({
-      params : {
+      params: {
         playlistId: this.endpoint?.payload.playlistId
       }
     });
