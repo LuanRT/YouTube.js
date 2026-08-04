@@ -195,3 +195,8 @@ export type ModifyChannelNotificationPreferenceRequest = {
   params?: string;
   secondaryParams?: string;
 }
+
+export type GetPlaylistCollaboratorsRequest = {
+  panelId?: string;
+  params?: string;
+}

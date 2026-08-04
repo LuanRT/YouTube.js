@@ -1,4 +1,4 @@
-import { InnertubeError } from '../../utils/Utils.js';
+import { InnertubeError, u8ToBase64 } from '../../utils/Utils.js';
 
 import Feed from '../../core/mixins/Feed.js';
 import Message from '../classes/Message.js';
@@ -23,7 +23,9 @@ import { observe, type ObservedArray, type YTNode } from '../helpers.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 import type Thumbnail from '../classes/misc/Thumbnail.js';
-import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import { PlaylistCollaboratorParams } from '../../../protos/generated/misc/params.js';
+import { ShowEngagementPanelEndpoint } from '../nodes.js';
 
 export default class Playlist extends Feed<IBrowseResponse> {
   public info;
@@ -66,6 +68,27 @@ export default class Playlist extends Feed<IBrowseResponse> {
     this.menu = primary_info?.menu;
     this.endpoint = primary_info?.endpoint;
     this.messages = this.memo.getType(Message);
+  }
+
+  async getCollaborators(): Promise<ApiResponse> {
+    if (!this.actions.session.logged_in)
+      throw new Error('You must be signed in to perform this operation.');
+
+    const writer = PlaylistCollaboratorParams.encode({
+      params : {
+        playlistId: this.endpoint?.payload.playlistId
+      }
+    });
+
+    const params = encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
+    const get_collaborators_endpoint = new NavigationEndpoint({
+      showEngagementPanelEndpoint: {
+        panelIdentifier: 'PAplaylist_collaborate',
+        sourcePanelIdentifier: params
+      }
+    });
+
+    return get_collaborators_endpoint.call(this.actions);
   }
 
   get items(): ObservedArray<LockupView | PlaylistVideo | ReelItem | ShortsLockupView> {
