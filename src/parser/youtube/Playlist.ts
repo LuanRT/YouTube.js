@@ -25,7 +25,6 @@ import type { IBrowseResponse } from '../types/index.js';
 import type Thumbnail from '../classes/misc/Thumbnail.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import { PlaylistCollaboratorParams } from '../../../protos/generated/misc/params.js';
-import { ShowEngagementPanelEndpoint } from '../nodes.js';
 
 export default class Playlist extends Feed<IBrowseResponse> {
   public info;
