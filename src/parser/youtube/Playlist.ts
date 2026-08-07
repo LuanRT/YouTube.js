@@ -24,7 +24,7 @@ import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 import type Thumbnail from '../classes/misc/Thumbnail.js';
 import NavigationEndpoint from '../classes/NavigationEndpoint.js';
-import { PlaylistCollaboratorParams } from '../../../protos/generated/misc/params.js';
+import AvatarStackView from '../classes/AvatarStackView.js';
 
 export default class Playlist extends Feed<IBrowseResponse> {
   public info;
@@ -73,13 +73,12 @@ export default class Playlist extends Feed<IBrowseResponse> {
     if (!this.actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const writer = PlaylistCollaboratorParams.encode({
-      params: {
-        playlistId: this.endpoint?.payload.playlistId
-      }
-    });
+    const avatarStackView = this.memo.getType(AvatarStackView)?.find((item) => item.renderer_context.command_context);
+    const params = avatarStackView?.renderer_context.command_context?.on_tap?.payload?.globalConfiguration?.params;
 
-    const params = encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
+    if(!params)
+      throw new InnertubeError('Encoded playlist ID not found')
+
     const get_collaborators_endpoint = new NavigationEndpoint({
       showEngagementPanelEndpoint: {
         panelIdentifier: 'PAplaylist_collaborate',

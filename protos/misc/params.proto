@@ -266,11 +266,3 @@ message CommunityPostCommentsParam {
   string title = 2;
   CommentDataContainer comment_data_container = 53;
 }
-
-message PlaylistCollaboratorParams {
-  message Params {
-    string playlist_id = 1;
-  }
-
-  Params params = 138;
-}
