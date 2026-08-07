@@ -1,4 +1,4 @@
-import { InnertubeError, u8ToBase64 } from '../../utils/Utils.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
 import Feed from '../../core/mixins/Feed.js';
 import Message from '../classes/Message.js';
@@ -75,17 +75,11 @@ export default class Playlist extends Feed<IBrowseResponse> {
 
     const avatar_stack_view = this.memo.getType(AvatarStackView)?.find((item) => item.renderer_context.command_context);
     const endpoint = avatar_stack_view?.renderer_context.command_context?.on_tap;
-    const params = endpoint?.payload?.globalConfiguration?.params;
 
-    if (!params)
-      throw new InnertubeError('Encoded playlist ID not found');
+    if (!endpoint)
+      throw new InnertubeError('Collaborators endpoint not found');
 
-    return endpoint.call(this.actions, {
-      panelIdentifier: 'PAplaylist_collaborate',
-      globalConfiguration: {
-        params: params
-      }
-    });
+    return endpoint.call(this.actions);
   }
 
   get items(): ObservedArray<LockupView | PlaylistVideo | ReelItem | ShortsLockupView> {

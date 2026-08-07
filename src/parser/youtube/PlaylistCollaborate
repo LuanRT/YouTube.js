@@ -1,0 +1,20 @@
+import { Parser } from '../index.js';
+import { InnertubeError } from '../../utils/Utils.js';
+
+import { ApiResponse, Actions } from '../../core/index.js';
+import { IBrowseResponse } from '../types/index.js';
+
+export default class PlaylistCollaborate {
+  readonly #page: IBrowseResponse;
+  readonly #actions: Actions;
+
+  constructor(actions: Actions, response: ApiResponse) {
+    this.#actions = actions;
+    this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
+
+    if (!this.#page.contents)
+      throw new InnertubeError('Page contents not found');
+
+    console.log(this.#page);
+  }
+}
