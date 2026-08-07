@@ -25,11 +25,12 @@ export default class ShowEngagementPanelEndpoint extends YTNode implements IEndp
   buildRequest(): ShowEngagementPanelRequest {
     const request: ShowEngagementPanelRequest = {};
 
-    if (this.#data.panelIdentifier) 
-      request.panelId = this.#data.panelIdentifier;
+    const panelId = this.#data.panelIdentifier || this.#data.identifier?.tag;
+    if (panelId)
+      request.panelId = panelId;
 
-    if (this.#data.sourcePanelIdentifier)
-      request.params = this.#data.sourcePanelIdentifier;
+    if (this.#data.globalConfiguration?.params)
+      request.params = this.#data.globalConfiguration?.params;
 
     return request;
   }

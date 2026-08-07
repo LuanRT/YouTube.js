@@ -84,7 +84,9 @@ export default class Playlist extends Feed<IBrowseResponse> {
     const get_collaborators_endpoint = new NavigationEndpoint({
       showEngagementPanelEndpoint: {
         panelIdentifier: 'PAplaylist_collaborate',
-        sourcePanelIdentifier: params
+        globalConfiguration: {
+          params: params
+        }
       }
     });
 
