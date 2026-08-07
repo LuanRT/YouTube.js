@@ -23,7 +23,7 @@ import { observe, type ObservedArray, type YTNode } from '../helpers.js';
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 import type Thumbnail from '../classes/misc/Thumbnail.js';
-import NavigationEndpoint from '../classes/NavigationEndpoint.js';
+import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
 import AvatarStackView from '../classes/AvatarStackView.js';
 
 export default class Playlist extends Feed<IBrowseResponse> {
@@ -77,14 +77,14 @@ export default class Playlist extends Feed<IBrowseResponse> {
     const endpoint = avatar_stack_view?.renderer_context.command_context?.on_tap;
     const params = endpoint?.payload?.globalConfiguration?.params;
 
-    if(!params)
-      throw new InnertubeError('Encoded playlist ID not found')
+    if (!params)
+      throw new InnertubeError('Encoded playlist ID not found');
 
     return endpoint.call(this.actions, {
-        panelIdentifier: 'PAplaylist_collaborate',
-        globalConfiguration: {
-          params: params
-        }
+      panelIdentifier: 'PAplaylist_collaborate',
+      globalConfiguration: {
+        params: params
+      }
     });
   }
 
