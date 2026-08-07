@@ -73,22 +73,19 @@ export default class Playlist extends Feed<IBrowseResponse> {
     if (!this.actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
-    const avatarStackView = this.memo.getType(AvatarStackView)?.find((item) => item.renderer_context.command_context);
-    const params = avatarStackView?.renderer_context.command_context?.on_tap?.payload?.globalConfiguration?.params;
+    const avatar_stack_view = this.memo.getType(AvatarStackView)?.find((item) => item.renderer_context.command_context);
+    const endpoint = avatar_stack_view?.renderer_context.command_context?.on_tap;
+    const params = endpoint?.payload?.globalConfiguration?.params;
 
     if(!params)
       throw new InnertubeError('Encoded playlist ID not found')
 
-    const get_collaborators_endpoint = new NavigationEndpoint({
-      showEngagementPanelEndpoint: {
+    return endpoint.call(this.actions, {
         panelIdentifier: 'PAplaylist_collaborate',
         globalConfiguration: {
           params: params
         }
-      }
     });
-
-    return get_collaborators_endpoint.call(this.actions);
   }
 
   get items(): ObservedArray<LockupView | PlaylistVideo | ReelItem | ShortsLockupView> {
