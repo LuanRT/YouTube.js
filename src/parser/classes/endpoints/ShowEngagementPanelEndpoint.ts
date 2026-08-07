@@ -1,9 +1,9 @@
 import { YTNode } from '../../helpers.js';
-import type { GetPlaylistCollaboratorsRequest, IEndpoint, RawNode } from '../../index.js';
+import type { ShowEngagementPanelRequest, IEndpoint, RawNode } from '../../index.js';
 
 const API_PATH = 'get_panel';
 
-export default class ShowEngagementPanelEndpoint extends YTNode implements IEndpoint<GetPlaylistCollaboratorsRequest>{
+export default class ShowEngagementPanelEndpoint extends YTNode implements IEndpoint<ShowEngagementPanelRequest>{
   static type = 'ShowEngagementPanelEndpoint';
 
   #data: RawNode;
@@ -22,8 +22,8 @@ export default class ShowEngagementPanelEndpoint extends YTNode implements IEndp
     return API_PATH;
   }
 
-  buildRequest(): GetPlaylistCollaboratorsRequest {
-    const request: GetPlaylistCollaboratorsRequest = {};
+  buildRequest(): ShowEngagementPanelRequest {
+    const request: ShowEngagementPanelRequest = {};
 
     if (this.#data.panelIdentifier) 
       request.panelId = this.#data.panelIdentifier;
