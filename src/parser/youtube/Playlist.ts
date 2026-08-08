@@ -19,6 +19,7 @@ import ContinuationItemView from '../classes/ContinuationItemView.js';
 import PlaylistVideo from '../classes/PlaylistVideo.js';
 import SectionList from '../classes/SectionList.js';
 import { observe, type ObservedArray, type YTNode } from '../helpers.js';
+import PlaylistCollaborate from './PlaylistCollaborate.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
@@ -69,7 +70,7 @@ export default class Playlist extends Feed<IBrowseResponse> {
     this.messages = this.memo.getType(Message);
   }
 
-  async getCollaborators(): Promise<ApiResponse> {
+  async getCollaborators(): Promise<PlaylistCollaborate> {
     if (!this.actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
@@ -79,7 +80,8 @@ export default class Playlist extends Feed<IBrowseResponse> {
     if (!endpoint)
       throw new InnertubeError('Collaborators endpoint not found');
 
-    return endpoint.call(this.actions);
+    const response = await endpoint.call(this.actions);
+    return new PlaylistCollaborate(response);
   }
 
   get items(): ObservedArray<LockupView | PlaylistVideo | ReelItem | ShortsLockupView> {

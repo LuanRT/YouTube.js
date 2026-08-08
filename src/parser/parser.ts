@@ -525,6 +525,11 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.target_id = data.targetId;
   }
 
+  const content = data.content;
+  if (content) {
+    parsed_data.content = content;
+  }
+
   return parsed_data;
 }
 
