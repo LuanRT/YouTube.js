@@ -20,6 +20,15 @@ interface PlaylistItemData {
   playlist_set_video_id: string;
 }
 
+// A duration is a timestamp ("3:31", "1:02:03"), never a bare number. Matching
+// on digits alone also matches an artist or album named after a number, and
+// those runs come before the duration in the row, so the name won.
+const DURATION_TEXT = /^\d+(?::[0-5]\d)+$/;
+
+function findDurationText(runs?: Text['runs']): string | undefined {
+  return runs?.findLast((run) => DURATION_TEXT.test(run.text))?.text;
+}
+
 export default class MusicResponsiveListItem extends YTNode {
   static type = 'MusicResponsiveListItem';
 
@@ -186,8 +195,7 @@ export default class MusicResponsiveListItem extends YTNode {
     this.id = playlist_item_data.video_id || this.endpoint?.payload?.videoId;
     this.title = this.flex_columns[0].title.toString();
 
-    const duration_text = this.flex_columns.at(1)?.title.runs?.find(
-      (run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text || this.fixed_columns[0]?.title?.toString();
+    const duration_text = findDurationText(this.flex_columns.at(1)?.title.runs) || this.fixed_columns[0]?.title?.toString();
 
     if (duration_text) {
       this.duration = {
@@ -250,8 +258,7 @@ export default class MusicResponsiveListItem extends YTNode {
       });
     }
 
-    const duration_text = this.flex_columns[1].title.runs?.find(
-      (run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text || this.fixed_columns[0]?.title.runs?.find((run) => (/^\d+$/).test(run.text.replace(/:/g, '')))?.text;
+    const duration_text = findDurationText(this.flex_columns[1].title.runs) || findDurationText(this.fixed_columns[0]?.title.runs);
 
     if (duration_text) {
       this.duration = {
