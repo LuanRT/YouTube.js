@@ -104,7 +104,7 @@
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0",
     "fflate": "^0.8.2",
-    "meriyah": "^6.1.4"
+    "meriyah": "^7.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
