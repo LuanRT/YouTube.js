@@ -1,7 +1,10 @@
 import type {
   IBrowseResponse,
+  IESRChallengeResponse,
   IGetChallengeResponse,
   IGetNotificationsMenuResponse,
+  IGetSessionTokenResponse,
+  IGetWebReauthURLResponse,
   INextResponse,
   IParsedResponse,
   IPlayerResponse,
@@ -34,14 +37,17 @@ export type InnertubeEndpoint =
 
 export type ParsedResponse<T> =
   T extends '/player' ? IPlayerResponse :
-    T extends '/search' ? ISearchResponse :
-      T extends '/browse' ? IBrowseResponse :
-        T extends '/next' ? INextResponse :
-          T extends '/updated_metadata' ? IUpdatedMetadataResponse :
-            T extends '/navigation/resolve_url' ? IResolveURLResponse :
-              T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
-                T extends '/att/get' ? IGetChallengeResponse :
-                  IParsedResponse;
+  T extends '/search' ? ISearchResponse :
+  T extends '/browse' ? IBrowseResponse :
+  T extends '/next' ? INextResponse :
+  T extends '/updated_metadata' ? IUpdatedMetadataResponse :
+  T extends '/navigation/resolve_url' ? IResolveURLResponse :
+  T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
+  T extends '/att/get' ? IGetChallengeResponse :
+  T extends '/att/esr' ? IESRChallengeResponse :
+  T extends '/ars/grst' ? IGetSessionTokenResponse :
+  T extends '/security/get_web_reauth_url' ? IGetWebReauthURLResponse :
+  IParsedResponse;
 
 export default class Actions {
   public session: Session;
@@ -145,6 +151,34 @@ export default class Actions {
       if (data?.client === 'YTMUSIC') {
         data.isAudioOnly = true;
       }
+      if (data?.client === 'WEB_CREATOR') {
+        if (this.session.context.request) { // should just be true
+          this.session.context.request.returnLogEntry = true;
+
+          // TODO maybe I want to manually fetch the initial eats; but it seems that it doesn't matter to much...
+          if (data?.eats) {
+            this.session.context.request.eats = data?.eats;
+            delete data?.eats;
+          } else {
+            // TODO put this in CONSTANTS
+            this.session.context.request.eats = 'AeCS5zA8mwKJA3VzvwD--o2-ZsGbWYFt6LMN2EuOPJLQrg6MIuKxBpbf9WNlMPlARBhbMM-hSWg982LQDZEnOBj-yHFw1TDTzIUdINTExUA6U5lOgLtxyv6guJS9HQ==';
+          }
+
+          if (data.reauth_proof_token) {
+            this.session.context.request.reauthRequestInfo = { encodedReauthProofToken: data.reauth_proof_token };
+            delete data.reauth_proof_token;
+          }
+
+          if (data.session_token) {
+            this.session.context.request.sessionInfo = { token: data.session_token };
+            delete data.session_token;
+          }
+
+          if (data.attestation_response_data && Reflect.has(data.attestation_response_data, 'challenge') && Reflect.has(data.attestation_response_data, 'webResponse')) {
+            this.session.context.request.attestationResponseData = data.attestation_response_data;
+          }
+        }
+      }
     } else if (args) {
       data = args.serialized_data;
     }
@@ -160,6 +194,15 @@ export default class Actions {
           'application/json'
       }
     });
+
+    // YouTube Studio Web Context Cleanup
+    {
+      delete this.session.context.request?.returnLogEntry;
+      delete this.session.context.request?.eats;
+      delete this.session.context.request?.reauthRequestInfo;
+      delete this.session.context.request?.sessionInfo;
+      delete this.session.context.request?.attestationResponseData;
+    }
 
     if (args?.parse) {
       let parsed_response = Parser.parseResponse<ParsedResponse<T>>(await response.json());

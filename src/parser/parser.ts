@@ -502,6 +502,42 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.challenge = data.challenge;
   }
 
+  if (data.botguardData) {
+    const interpreter_url = {
+      private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
+      private_do_not_access_or_else_safe_script_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseSafeScriptWrappedValue
+    };
+
+    parsed_data.botguard_data = {
+      interpreter_url,
+      program: data.botguardData.program
+    };
+  }
+
+  if (data.eats) {
+    parsed_data.eats = data.eats;
+  }
+
+  if (data.ctx) {
+    parsed_data.ctx = data.ctx;
+  }
+
+  if (data.shouldFetchReauthSessionToken) {
+    parsed_data.should_fetch_reauth_session_token = data.shouldFetchReauthSessionToken;
+  }
+
+  if (data.encodedReauthProofToken) {
+    parsed_data.encoded_reauth_proof_token = data.encodedReauthProofToken;
+  }
+
+  if (data.sessionRiskCtx) {
+    parsed_data.session_risk_ctx = data.sessionRiskCtx;
+  }
+
+  if (data.sessionToken) {
+    parsed_data.session_token = data.sessionToken;
+  }
+
   if (data.playerResponse) {
     parsed_data.player_response = parseResponse(data.playerResponse);
   }

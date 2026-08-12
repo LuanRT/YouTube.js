@@ -99,6 +99,17 @@ export type Context = {
   request?: {
     useSsl: boolean;
     internalExperimentFlags: any[];
+    // Studio Web params
+    eats?: string;
+    returnLogEntry?: boolean;
+    sessionInfo?: { token: string };
+    attestationResponseData?: {
+      challenge: string;
+      webResponse: string;
+    };
+    reauthRequestInfo?: {
+      encodedReauthProofToken: string;
+    };
   };
 }
 
