@@ -352,14 +352,14 @@ export default class StudioWeb {
   }
 
   async managedExecute<T extends object>(endpoint: string, payload: object, channel_id?: string, attestation_placement: AttestationPlacement = 'none', eats?: string, is_retry = false): Promise<T> {
-    const attestation_response_data = attestation_placement === 'none' ? {} : { attestationResponseData: await this.#getBotGuardAttestation() };
+    const attestation_response_data = attestation_placement === 'none' ? undefined : await this.#getBotGuardAttestation();
 
     const response = await this.#actions.execute(endpoint, {
       client: 'WEB_CREATOR',
       session_token: await this.getSessionToken(),
       ...payload,
-      ...(attestation_placement === 'context' ? {} : { attestation_response_data }),
-      ...(attestation_placement === 'top_level' ? {} : attestation_response_data),
+      ...(attestation_placement === 'context' ? { attestation_response_data } : {}),
+      ...(attestation_placement === 'top_level' ? { attestationResponseData: attestation_response_data } : {}),
       ...(!eats ? {} : { eats }),
       ...(!channel_id ? {} : { channel_id })
     });
@@ -646,6 +646,8 @@ export default class StudioWeb {
     const start = await this.#scottyStart(UPLOAD_TYPES_TO_START_URL['VIDEO'], file, { frontendUploadId: frontend_upload_id });
 
     const chunks_uploaded = this.#scottyUploadChunks(start.upload_url, file, on_scotty_progress);
+
+    if (!start.resource_id) throw new InnertubeError('Scotty didn\'t resolve a resource ID');
 
     const created = await this.managedExecute<CreateVideoResponse>('/upload/createvideo', {
       channelId: this.#channel_id,
