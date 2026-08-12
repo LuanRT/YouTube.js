@@ -1,57 +1,44 @@
-import { BotGuardClient } from "bgutils-js/botguard";
-import { USER_AGENT } from "bgutils-js/utils";
-import { JSDOM, VirtualConsole } from "jsdom";
-import Innertube, { UniversalCache, type Types } from 'youtubei.js';
-
-const botguard_solver: Types.BotGuardSolver<string> = {
-  solve: async(botguard_challenge, binding) => {
-    const virtual_console = new VirtualConsole();
-    const dom = new JSDOM('<!DOCTYPE html><html lang="en"><head><title></title></head><body></body></html>', { url: "https://www.youtube.com", referrer: "https://www.youtube.com/", userAgent: USER_AGENT, resources: "usable", runScripts: "dangerously", virtualConsole: virtual_console });
-
-    Object.assign(globalThis, { window: dom.window, document: dom.window.document, location: dom.window.location, origin: dom.window.origin });
-
-    if (!("navigator" in globalThis)) {
-      Object.defineProperty(globalThis, "navigator", { value: dom.window.navigator });
-    }
-
-    Object.defineProperty(dom.window.HTMLCanvasElement.prototype, "getContext", { value: () => null, writable: true });
-
-    let interpreter_url = botguard_challenge.interpreter_url ?? "";
-
-    if (interpreter_url.startsWith("//")) interpreter_url = `https:${interpreter_url}`;
-
-    const bg_script_response = await fetch(interpreter_url);
-    const interpreter_javascript = await bg_script_response.text();
-
-    new Function(interpreter_javascript)();
-
-    const botguard = await BotGuardClient.create({ program: botguard_challenge.program, globalName: botguard_challenge.global_name, globalObject: globalThis });
-
-    const botguard_response = await botguard.snapshot({ contentBinding: { atr_challenge: binding } });
-    return botguard_response;
-  }
-};
-
-async function get_channel_id(yt: Innertube, index?: number): Promise<string> {
-  const account_info = await yt.account.getInfo(true);
-  const account = account_info[index ?? 0];
-  if (account === undefined) throw new Error("No accounts found");
-  const resolve_url = `https://www.youtube.com/${account.channel_handle.text}`;
-  const resolved = await yt.resolveURL(resolve_url);
-  const channel_id = resolved.payload.browseId as string;
-  return channel_id;
-}
+import Innertube, { UniversalCache } from 'youtubei.js';
+import { botguard_solver, get_channel_id, get_file_named_buffer_base64, get_file_named_buffer_reader } from "./utils.ts";
 
 const COOKIES = ""; // ?? Place your YouTube cookies here
+const VIDEO_FILE_PATH = ""; // ?? Place your video file path here
+const THUMBNAIL_FILE_PATH = ""; // ?? Place your thumbnail file path here
+const SRT_FILE_PATH = ""; // ?? Place your srt file path here
 
 (async () => {
   const yt = await Innertube.create({ cache: new UniversalCache(false), cookie: COOKIES });
 
   // ?? Place your channel_ID here or use `await get_channel_id(yt)`
-  const CHANNEL_ID = "";
+  const CHANNEL_ID = '';
 
   const yt_studio_web = yt.studioWeb(CHANNEL_ID);
   yt_studio_web.setBotGuardSolver(botguard_solver);
-  const session_token = await yt_studio_web.getSessionToken();
-  console.log(session_token);
+
+  console.log('creating...');
+
+  const created_response = await yt_studio_web.uploadVideo(await get_file_named_buffer_reader(VIDEO_FILE_PATH), {
+    title: "This is a test upload",
+    thumbnail: await get_file_named_buffer_reader(THUMBNAIL_FILE_PATH),
+    subtitles: {
+      synced: true,
+      data: await get_file_named_buffer_base64(SRT_FILE_PATH)
+    },
+    description: "This is a test description",
+    visibility: "PRIVATE"
+  }, (written_bytes, total_bytes) => {
+    // NOTE this callback only fires around every 100mb
+    console.log(`${written_bytes / total_bytes}%`);
+  }, async (full_created) => {
+    // NOTE this cycle fires every 2s-ish
+    await yt_studio_web.uploadFeedbackCycle([full_created.feedback_token], (content) => {
+      if (content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]?.transferProgressBar)
+        console.log(content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]?.transferProgressBar);
+      else if (content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]?.uploadChecksRenderer)
+        console.log(content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]?.uploadChecksRenderer);
+      else console.log(content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]);
+      return true;
+    });
+  });
+  console.log(created_response);
 })();
