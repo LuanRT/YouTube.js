@@ -592,9 +592,10 @@ export default class Innertube {
 
   /**
    * An interface for interacting with YouTube Studio Web.
+   * @param channel_id - the channel id to interface with
    */
-  get studioWeb() {
-    return new StudioWeb(this.#session);
+  studioWeb(channel_id: string) {
+    return new StudioWeb(this.#session, channel_id);
   }
 
   /**
