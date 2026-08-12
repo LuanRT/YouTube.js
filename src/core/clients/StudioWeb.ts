@@ -376,13 +376,12 @@ export default class StudioWeb {
     return data;
   }
 
-  async #uploadSubtitles(video_id: string, subtitles: NonNullable<UploadVideoDetails['subtitles']>, language = 'en-US'): Promise<UploadSubtitlesResponse> {
+  async uploadSubtitles(video_id: string, subtitles: NonNullable<UploadVideoDetails['subtitles']>, language = 'en-US'): Promise<UploadSubtitlesResponse> {
     const data_base64 = await subtitles.data.source.base64;
     const data_uri = `data:application/octet-stream;base64,${data_base64}`;
     const tts_track_id = { lang: language, kind: '', name: '' };
 
     const created = await this.managedExecute<CreateCaptionsResponse>('/globalization/create_captions', {
-      parse: true,
       videoId: video_id,
       channelId: this.#channel_id,
       newTrack: tts_track_id,
@@ -547,7 +546,7 @@ export default class StudioWeb {
       update_metadata_response = await this.#updateMetadata(video_id, payload);
     }
     if (details.subtitles !== undefined) {
-      update_subtitles_response = await this.#uploadSubtitles(video_id, details.subtitles, details.video_language);
+      update_subtitles_response = await this.uploadSubtitles(video_id, details.subtitles, details.video_language);
     }
     return { update_metadata_response, update_subtitles_response };
   }
