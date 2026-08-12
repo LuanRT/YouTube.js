@@ -11,11 +11,6 @@ export interface FileNamedBufferReader {
   source: BufferReader;
 };
 
-export interface FileNamedBufferReader {
-  file_name: string;
-  source: BufferReader;
-};
-
 export interface FileNamedBufferBase64 {
   file_name: string;
   source: BufferBase64;
