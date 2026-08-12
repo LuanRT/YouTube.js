@@ -1,7 +1,7 @@
 import type NavigationEndpoint from '../NavigationEndpoint.js';
 import { observe, type ObservedArray, type YTNode } from '../../helpers.js';
 import { Parser, type RawNode } from '../../index.js';
-import Text from './Text.js';
+import Text, { type AttributedText } from './Text.js';
 import Thumbnail from './Thumbnail.js';
 import type TextRun from './TextRun.js';
 import ShowDialogCommand from '../commands/ShowDialogCommand.js';
@@ -24,7 +24,15 @@ export default class Author {
   public is_verified_artist?: boolean;
 
   constructor(item: RawNode, badges?: any, thumbs?: any, id?: string) {
-    const nav_text = new Text(item);
+    let nav_text: Text | undefined;
+
+    if (item) {
+      if ('content' in item) {
+        nav_text = Text.fromAttributed(item as AttributedText);
+      } else {
+        nav_text = new Text(item);
+      }
+    }
 
     this.id = id || (nav_text?.runs?.[0] as TextRun)?.endpoint?.payload?.browseId || nav_text?.endpoint?.payload?.browseId || badges?.channelId;
     this.name = nav_text?.text || 'N/A';
