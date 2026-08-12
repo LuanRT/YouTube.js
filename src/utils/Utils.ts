@@ -295,6 +295,6 @@ return process("${n || ''}", "${sp || ''}", "${s || ''}");`;
 
 export async function wait(milliseconds: number) {
   return new Promise(function (resolve) {
-    setTimeout(resolve, milliseconds, 'HASH_TIMED_OUT');
+    setTimeout(resolve, milliseconds);
   });
 }
