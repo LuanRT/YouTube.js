@@ -22,6 +22,7 @@ import {
 } from '../../protos/generated/youtube/api/pfiinnertube/user_info.js';
 
 import type { Session } from './index.js';
+import { Constants } from '../utils/index.js';
 
 export interface ApiResponse {
   success: boolean;
@@ -165,8 +166,7 @@ export default class Actions {
             this.session.context.request.eats = data?.eats;
             delete data?.eats;
           } else {
-            // TODO put this in CONSTANTS
-            this.session.context.request.eats = 'AeCS5zA8mwKJA3VzvwD--o2-ZsGbWYFt6LMN2EuOPJLQrg6MIuKxBpbf9WNlMPlARBhbMM-hSWg982LQDZEnOBj-yHFw1TDTzIUdINTExUA6U5lOgLtxyv6guJS9HQ==';
+            this.session.context.request.eats = Constants.CLIENTS.WEB_CREATOR.EATS;
           }
 
           if (data.reauth_proof_token) {
