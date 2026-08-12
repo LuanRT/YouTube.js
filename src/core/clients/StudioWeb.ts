@@ -656,7 +656,6 @@ export default class StudioWeb {
         privacy: { newPrivacy: 'PRIVATE' },
         draftState: { isDraft: true },
         ...(details.tags === undefined ? {} : { tags: { newTags: details.tags } }),
-        // audience here is age restriction, not made for kids; details.audience goes up as madeForKids below
         targetedAudience: {
           operation: 'MDE_TARGETED_AUDIENCE_UPDATE_OPERATION_SET',
           newTargetedAudience: 'MDE_TARGETED_AUDIENCE_TYPE_ALL'
@@ -664,7 +663,7 @@ export default class StudioWeb {
       },
       contentLevelProtection: { enableRequiresContentLevelProtection: false },
       presumedShort: false
-    }, this.#channel_id, 'context'); // createvideo reads its snapshot out of context.request
+    }, this.#channel_id, 'context');
 
     on_initial_create_video?.({ created, feedback_token: this.#tryGetUploadVideoFeedbackToken(created) });
 
