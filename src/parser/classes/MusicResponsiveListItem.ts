@@ -20,9 +20,6 @@ interface PlaylistItemData {
   playlist_set_video_id: string;
 }
 
-// A duration is a timestamp ("3:31", "1:02:03"), never a bare number. Matching
-// on digits alone also matches an artist or album named after a number, and
-// those runs come before the duration in the row, so the name won.
 const DURATION_TEXT = /^\d+(?::[0-5]\d)+$/;
 
 function findDurationText(runs?: Text['runs']): string | undefined {
@@ -32,56 +29,56 @@ function findDurationText(runs?: Text['runs']): string | undefined {
 export default class MusicResponsiveListItem extends YTNode {
   static type = 'MusicResponsiveListItem';
 
-  flex_columns: ObservedArray<MusicResponsiveListItemFlexColumn>;
-  fixed_columns: ObservedArray<MusicResponsiveListItemFixedColumn>;
+  public flex_columns: ObservedArray<MusicResponsiveListItemFlexColumn>;
+  public fixed_columns: ObservedArray<MusicResponsiveListItemFixedColumn>;
 
-  endpoint?: NavigationEndpoint;
-  item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'non_music_track' | 'video' | 'song' | 'endpoint' | 'unknown' | 'podcast_show' | undefined;
-  index?: Text;
-  thumbnail?: MusicThumbnail | null;
-  badges?: ObservedArray<YTNode>;
-  menu?: Menu | null;
-  overlay?: MusicItemThumbnailOverlay | null;
+  public endpoint?: NavigationEndpoint;
+  public item_type: 'album' | 'playlist' | 'artist' | 'library_artist' | 'non_music_track' | 'video' | 'song' | 'endpoint' | 'unknown' | 'podcast_show' | undefined;
+  public index?: Text;
+  public thumbnail?: MusicThumbnail | null;
+  public badges?: ObservedArray<YTNode>;
+  public menu?: Menu | null;
+  public overlay?: MusicItemThumbnailOverlay | null;
 
-  id?: string;
-  title?: string;
-  duration?: {
+  public id?: string;
+  public title?: string;
+  public duration?: {
     text: string;
     seconds: number;
   };
 
-  album?: {
+  public album?: {
     id?: string,
     name: string,
     endpoint?: NavigationEndpoint
   };
 
-  artists?: {
+  public artists?: {
     name: string,
     channel_id?: string,
     endpoint?: NavigationEndpoint
   }[];
 
-  views?: string;
-  authors?: {
+  public views?: string;
+  public authors?: {
     name: string,
-    channel_id?: string
-    endpoint?: NavigationEndpoint
+    channel_id?: string;
+    endpoint?: NavigationEndpoint;
   }[];
 
-  name?: string;
-  subtitle?: Text;
-  subscribers?: string;
-  song_count?: string;
+  public name?: string;
+  public subtitle?: Text;
+  public subscribers?: string;
+  public song_count?: string;
 
   // TODO: these might be replaceable with Author class
-  author?: {
+  public author?: {
     name: string,
-    channel_id?: string
-    endpoint?: NavigationEndpoint
+    channel_id?: string;
+    endpoint?: NavigationEndpoint;
   };
-  item_count?: string;
-  year?: string;
+  public item_count?: string;
+  public year?: string;
 
   constructor(data: RawNode) {
     super();
@@ -93,7 +90,7 @@ export default class MusicResponsiveListItem extends YTNode {
       playlist_set_video_id: data?.playlistItemData?.playlistSetVideoId || null
     };
 
-    if (Reflect.has(data, 'navigationEndpoint')) {
+    if ('navigationEndpoint' in data) {
       this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     }
 
@@ -143,23 +140,23 @@ export default class MusicResponsiveListItem extends YTNode {
         }
     }
 
-    if (Reflect.has(data, 'index')) {
+    if ('index' in data) {
       this.index = new Text(data.index);
     }
 
-    if (Reflect.has(data, 'thumbnail')) {
+    if ('thumbnail' in data) {
       this.thumbnail = Parser.parseItem(data.thumbnail, MusicThumbnail);
     }
 
-    if (Reflect.has(data, 'badges')) {
+    if ('badges' in data) {
       this.badges = Parser.parseArray(data.badges);
     }
 
-    if (Reflect.has(data, 'menu')) {
+    if ('menu' in data) {
       this.menu = Parser.parseItem(data.menu, Menu);
     }
 
-    if (Reflect.has(data, 'overlay')) {
+    if ('overlay' in data) {
       this.overlay = Parser.parseItem(data.overlay, MusicItemThumbnailOverlay);
     }
   }
