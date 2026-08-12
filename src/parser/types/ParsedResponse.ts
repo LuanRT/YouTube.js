@@ -28,6 +28,7 @@ export interface IParsedResponse {
   bg_challenge?: IBotguardChallenge;
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
+  content?: YTNode;
   contents?: SuperParsedResult<YTNode>;
   contents_memo?: Memo;
   header?: SuperParsedResult<YTNode>;
@@ -148,3 +149,4 @@ export type IGetNotificationsMenuResponse = Pick<IParsedResponse, 'actions' | 'a
 export type IUpdatedMetadataResponse = Pick<IParsedResponse, 'actions' | 'actions_memo' | 'continuation'>;
 export type IGuideResponse = Pick<IParsedResponse, 'items' | 'items_memo'>;
 export type IGetChallengeResponse = Pick<IParsedResponse, 'challenge' | 'bg_challenge'>;
+export type IShowEngagementPanelResponse = Pick<IParsedResponse, 'content'>;
