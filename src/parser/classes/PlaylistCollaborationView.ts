@@ -1,5 +1,4 @@
-import type { ObservedArray } from '../helpers.js';
-import { YTNode } from '../helpers.js';
+import { type ObservedArray, YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import ContentListItemView from './ContentListItemView.js';
 import PlaylistCollaborationFormSchema from './misc/PlaylistCollaborationFormSchema.js';

@@ -4,11 +4,11 @@ import ClipSection from './ClipSection.js';
 import ContinuationItem from './ContinuationItem.js';
 import EngagementPanelTitleHeader from './EngagementPanelTitleHeader.js';
 import MacroMarkersList from './MacroMarkersList.js';
+import PlaylistCollaborationView from './PlaylistCollaborationView.js';
 import ProductList from './ProductList.js';
 import SectionList from './SectionList.js';
 import StructuredDescriptionContent from './StructuredDescriptionContent.js';
 import VideoAttributeView from './VideoAttributeView.js';
-import PlaylistCollaborationView from './PlaylistCollaborationView.js';
 
 export default class EngagementPanelSectionList extends YTNode {
   static type = 'EngagementPanelSectionList';
