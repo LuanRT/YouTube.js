@@ -273,6 +273,18 @@ export interface CommunityPostCommentsParam_CommentDataContainer_CommentData {
   channelId: string;
 }
 
+export interface ClipParams {
+  clipParamData: ClipParams_ClipParamsData | undefined;
+}
+
+export interface ClipParams_ClipParamsData {
+  clipId: string;
+  startTime: number;
+  endTime: number;
+  clipTitle: string;
+  clipMetadata: string;
+}
+
 function createBaseVisitorData(): VisitorData {
   return { id: "", timestamp: 0 };
 }
@@ -2599,6 +2611,124 @@ export const CommunityPostCommentsParam_CommentDataContainer_CommentData: Messag
           }
 
           message.channelId = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBaseClipParams(): ClipParams {
+  return { clipParamData: undefined };
+}
+
+export const ClipParams: MessageFns<ClipParams> = {
+  encode(message: ClipParams, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.clipParamData !== undefined) {
+      ClipParams_ClipParamsData.encode(message.clipParamData, writer.uint32(402).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ClipParams {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseClipParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 50: {
+          if (tag !== 402) {
+            break;
+          }
+
+          message.clipParamData = ClipParams_ClipParamsData.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBaseClipParams_ClipParamsData(): ClipParams_ClipParamsData {
+  return { clipId: "", startTime: 0, endTime: 0, clipTitle: "", clipMetadata: "" };
+}
+
+export const ClipParams_ClipParamsData: MessageFns<ClipParams_ClipParamsData> = {
+  encode(message: ClipParams_ClipParamsData, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.clipId !== "") {
+      writer.uint32(10).string(message.clipId);
+    }
+    if (message.startTime !== 0) {
+      writer.uint32(16).int32(message.startTime);
+    }
+    if (message.endTime !== 0) {
+      writer.uint32(24).int32(message.endTime);
+    }
+    if (message.clipTitle !== "") {
+      writer.uint32(34).string(message.clipTitle);
+    }
+    if (message.clipMetadata !== "") {
+      writer.uint32(42).string(message.clipMetadata);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): ClipParams_ClipParamsData {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseClipParams_ClipParamsData();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.clipId = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.startTime = reader.int32();
+          continue;
+        }
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.endTime = reader.int32();
+          continue;
+        }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.clipTitle = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.clipMetadata = reader.string();
           continue;
         }
       }
