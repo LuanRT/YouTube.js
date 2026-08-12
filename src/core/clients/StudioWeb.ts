@@ -641,7 +641,7 @@ export default class StudioWeb {
     }
   }
 
-  async uploadVideo(channel_id: string, file: FileNamedBufferReader, details: Partial<UploadVideoDetails> = {}, on_scotty_progress?: (written_bytes: number, total_bytes: number) => void,
+  async uploadVideo(file: FileNamedBufferReader, details: Partial<UploadVideoDetails> = {}, on_scotty_progress?: (written_bytes: number, total_bytes: number) => void,
     on_initial_create_video?: (full_created: { created: CreateVideoResponse, feedback_token: string | null }) => any) {
     const frontend_upload_id = `innertube_studio:${Platform.shim.uuidv4().toUpperCase()}:0`;
     const start = await this.#scottyStart(UPLOAD_TYPES_TO_START_URL['VIDEO'], file, { frontendUploadId: frontend_upload_id });
@@ -649,7 +649,7 @@ export default class StudioWeb {
     const chunks_uploaded = this.#scottyUploadChunks(start.upload_url, file, on_scotty_progress);
 
     const created = await this.managedExecute<CreateVideoResponse>('/upload/createvideo', {
-      channelId: channel_id,
+      channelId: this.#channel_id,
       resourceId: { scottyResourceId: { id: start.resource_id } },
       frontendUploadId: frontend_upload_id,
       initialMetadata: {
@@ -664,9 +664,8 @@ export default class StudioWeb {
         }
       },
       contentLevelProtection: { enableRequiresContentLevelProtection: false },
-      presumedShort: false,
-      channel_id
-    }, channel_id, 'context'); // createvideo reads its snapshot out of context.request
+      presumedShort: false
+    }, this.#channel_id, 'context'); // createvideo reads its snapshot out of context.request
 
     on_initial_create_video?.({ created, feedback_token: this.#tryGetUploadVideoFeedbackToken(created) });
 
