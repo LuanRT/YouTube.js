@@ -522,7 +522,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.ctx = data.ctx;
   }
 
-  if (data.shouldFetchReauthSessionToken) {
+  if (data.shouldFetchReauthSessionToken !== undefined) {
     parsed_data.should_fetch_reauth_session_token = data.shouldFetchReauthSessionToken;
   }
 
