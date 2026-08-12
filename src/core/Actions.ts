@@ -157,6 +157,14 @@ export default class Actions {
       if (data?.client === 'YTMUSIC') {
         data.isAudioOnly = true;
       }
+
+      delete this.session.context.request?.returnLogEntry;
+      delete this.session.context.request?.eats;
+      delete this.session.context.request?.reauthRequestInfo;
+      delete this.session.context.request?.sessionInfo;
+      delete this.session.context.request?.attestationResponseData;
+      delete this.session.context.user?.delegationContext;
+      delete this.session.context.user?.serializedDelegationContext;
       if (data?.client === 'WEB_CREATOR') {
         if (this.session.context.request) { // should just be true
           this.session.context.request.returnLogEntry = true;
