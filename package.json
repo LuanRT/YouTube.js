@@ -112,7 +112,7 @@
     "@types/node": "^26.2.0",
     "@typescript-eslint/eslint-plugin": "^8.46.0",
     "@typescript-eslint/parser": "^8.46.0",
-    "cpy-cli": "^6.0.0",
+    "cpy-cli": "^7.0.0",
     "esbuild": "^0.28.0",
     "eslint": "^10.8.0",
     "globals": "^17.0.0",
