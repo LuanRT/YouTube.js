@@ -22,6 +22,16 @@ interface StudioCreatorStudioChallenge {
   eats: string;
 };
 
+interface BufferReader {
+  total_bytes: number;
+  read_chunk: (position: number, length: number) => Promise<Uint8Array>;
+};
+
+interface ScottyStart { upload_url: string, resource_id?: string };
+interface ScottyUploadResult { status?: string, scottyResourceId?: string };
+type ScottyProgress = (written_bytes: number, total_bytes: number) => void;
+type ScottyUploadType = 'VIDEO' | 'THUMBNAIL';
+
 export default class StudioWeb {
   #session: Session;
   #actions: Actions;
@@ -141,5 +151,87 @@ export default class StudioWeb {
     
     if (grst_data.session_token === undefined) throw new InnertubeError('/ars/grst did not return a session token');
     return grst_data.session_token;
+  }
+
+  #scottyHeaders(file_name: string): Record<string, string> {
+    if (!this.#session.cookie) throw new InnertubeError('Unable to produce scottyHeaders with cookies');
+    return {
+      'Cookie': this.#session.cookie,
+      'Accept': '*/*',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      'Origin': Constants.URLS.YT_STUDIO_WEB_BASE,
+      'Referer': `${Constants.URLS.YT_STUDIO_WEB_BASE}/`,
+      'User-Agent': Constants.CLIENTS['WEB_CREATOR'].USER_AGENT,
+      'x-goog-upload-file-name': encodeURIComponent(file_name)
+    };
+  }
+
+  async #scottyStart(start_upload_url: string, file_name: string, source: BufferReader, start_payload: object): Promise<ScottyStart> {
+    if (source.total_bytes <= 0) throw new InnertubeError('Can\'t upload an empty file to scotty');
+
+    const start_response = await fetch(`${start_upload_url}?authuser=0`, {
+      method: 'POST',
+      headers: {
+        ...this.#scottyHeaders(file_name),
+        'x-goog-upload-command': 'start',
+        'x-goog-upload-header-content-length': String(source.total_bytes),
+        'x-goog-upload-protocol': 'resumable'
+      },
+      referrer: Constants.URLS.YT_STUDIO_WEB_BASE,
+      body: JSON.stringify(start_payload)
+    });
+    const upload_url = start_response.headers.get('x-goog-upload-url');
+    if (upload_url === null || upload_url === '') throw new InnertubeError('Scotty did not return an upload url');
+
+    const resource_id = start_response.headers.get('x-goog-upload-header-scotty-resource-id');
+
+    return { upload_url, resource_id: !resource_id ? undefined : resource_id };
+  }
+
+  async #scottyUploadChunks(upload_url: string, file_name: string, source: BufferReader, on_progress?: ScottyProgress): Promise<{ resource_id?: string }> {
+    const UPLOAD_CHUNK_SIZE_BYTES = 100 * 1024 * 1024;
+
+    let offset = 0;
+    while (offset < source.total_bytes) {
+      const chunk = await source.read_chunk(offset, Math.min(UPLOAD_CHUNK_SIZE_BYTES, source.total_bytes - offset));
+      if (chunk.byteLength === 0) throw new InnertubeError('Ran out of bytes before scotty finalized the upload');
+
+      const is_final = offset + chunk.byteLength >= source.total_bytes;
+      const chunk_response = await fetch(upload_url, {
+        method: 'POST',
+        headers: {
+          ...this.#scottyHeaders(file_name),
+          'x-goog-upload-command': is_final ? 'upload, finalize' : 'upload',
+          'x-goog-upload-offset': String(offset)
+        },
+        body: chunk as BodyInit
+      });
+      if (!chunk_response.ok) throw new InnertubeError('Unable to upload a chunk of the buffer to scotty');
+
+      offset += chunk.byteLength;
+      on_progress?.(offset, source.total_bytes);
+      if (!is_final) {
+        await chunk_response.body?.cancel();
+        continue;
+      }
+
+      const result = await chunk_response.json() as ScottyUploadResult;
+      if (result.status !== 'STATUS_SUCCESS') throw new InnertubeError('Scotty did not finalize the upload');
+      return { resource_id: result.scottyResourceId };
+    }
+    throw new InnertubeError('Scotty upload loop ended without finalizing');
+  }
+
+  async #uploadToScotty(upload_type: ScottyUploadType, file_name: string, source: BufferReader, start_payload: object, on_progress?: ScottyProgress): Promise<string> {
+    const UPLOAD_TYPES_TO_START_URL: Record<ScottyUploadType, string> = {
+      VIDEO: Constants.URLS.YT_UPLOAD_VIDEO_WEB,
+      THUMBNAIL: Constants.URLS.YT_UPLOAD_THUMBNAIL_WEB
+    };
+    const start = await this.#scottyStart(UPLOAD_TYPES_TO_START_URL[upload_type], file_name, source, start_payload);
+    const uploaded = await this.#scottyUploadChunks(start.upload_url, file_name, source, on_progress);
+    const resource_id = start.resource_id ?? uploaded.resource_id;
+    if (!resource_id) throw new InnertubeError('Scotty did not return a resource id');
+    return resource_id;
   }
 }

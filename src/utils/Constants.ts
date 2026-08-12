@@ -1,4 +1,3 @@
-
 export const URLS = {
   YT_BASE: 'https://www.youtube.com',
   YT_MUSIC_BASE: 'https://music.youtube.com',
@@ -102,7 +101,8 @@ export const CLIENTS = {
     VERSION: '1.20260728.03.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
-    STATIC_VISITOR_ID: '6zpwvWUNAco'
+    STATIC_VISITOR_ID: '6zpwvWUNAco',
+    USER_AGENT: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36'
   }
 } as const;
 /**
