@@ -2,7 +2,8 @@ import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.
 import type {
   ReloadContinuationItemsCommand, Continuation, GridContinuation,
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand, ShowMiniplayerCommand, NavigateAction
+  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand, ShowMiniplayerCommand, NavigateAction,
+  UpdateCardItemOnClickCommand
 } from '../index.js';
 
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
@@ -22,6 +23,14 @@ import type AppendContinuationItemsAction from '../classes/actions/AppendContinu
 import type MusicThumbnail from '../classes/MusicThumbnail.js';
 import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
 
+export type ResponseReceived =
+  | AppendContinuationItemsAction
+  | OpenPopupAction
+  | NavigateAction
+  | ShowMiniplayerCommand
+  | ReloadContinuationItemsCommand
+  | UpdateCardItemOnClickCommand;
+
 export interface IParsedResponse {
   background?: MusicThumbnail;
   challenge?: string;
@@ -37,11 +46,11 @@ export interface IParsedResponse {
   live_chat_item_context_menu_supported_renderers?: YTNode;
   live_chat_item_context_menu_supported_renderers_memo?: Memo;
   items_memo?: Memo;
-  on_response_received_actions?: ObservedArray<AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand>;
+  on_response_received_actions?: ObservedArray<ResponseReceived>;
   on_response_received_actions_memo?: Memo;
-  on_response_received_endpoints?: ObservedArray<AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand>;
+  on_response_received_endpoints?: ObservedArray<ResponseReceived>;
   on_response_received_endpoints_memo?: Memo;
-  on_response_received_commands?: ObservedArray<AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand>;
+  on_response_received_commands?: ObservedArray<ResponseReceived>;
   on_response_received_commands_memo?: Memo;
   continuation?: Continuation;
   continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |

@@ -41,7 +41,7 @@ import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
 import OpenPopupAction from './classes/actions/OpenPopupAction.js';
 import AppendContinuationItemsAction from './classes/actions/AppendContinuationItemsAction.js';
-import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
+import type { IParsedResponse, IRawResponse, RawData, RawNode, ResponseReceived } from './types/index.js';
 
 const TAG = 'Parser';
 
@@ -482,13 +482,13 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   if (engagement_panels.length) {
     parsed_data.engagement_panels = engagement_panels;
   }
-  
+
   if (data.bgChallenge) {
     const interpreter_url = {
       private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.bgChallenge.interpreterUrl.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
       private_do_not_access_or_else_safe_script_wrapped_value: data.bgChallenge.interpreterUrl.privateDoNotAccessOrElseSafeScriptWrappedValue
     };
-    
+
     parsed_data.bg_challenge = {
       interpreter_url,
       interpreter_hash: data.bgChallenge.interpreterHash,
@@ -497,7 +497,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
       client_experiments_state_blob: data.bgChallenge.clientExperimentsStateBlob
     };
   }
-  
+
   if (data.challenge) {
     parsed_data.challenge = data.challenge;
   }
@@ -520,7 +520,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   if (data.entries) {
     parsed_data.entries = data.entries.map((entry) => new NavigationEndpoint(entry));
   }
-  
+
   if (data.targetId) {
     parsed_data.target_id = data.targetId;
   }
@@ -750,9 +750,11 @@ export function parseRR(actions: RawNode[]) {
       return new ReloadContinuationItemsCommand(action.reloadContinuationItemsCommand);
     else if (action.appendContinuationItemsAction)
       return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
+    else if (action.updateCardItemOnClickCommand)
+      return new YTNodes.UpdateCardItemOnClickCommand(action.updateCardItemOnClickCommand);
     else if (action.openPopupAction)
       return new OpenPopupAction(action.openPopupAction);
-  }).filter((item) => item) as (AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand)[]);
+  }).filter((item) => item) as ResponseReceived[]);
 }
 
 export function parseActions(data: RawData) {

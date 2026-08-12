@@ -9,7 +9,7 @@ export * as FormatUtils from './FormatUtils.js';
 export { default as HTTPClient } from './HTTPClient.js';
 export * from './HTTPClient.js';
 
-export { Platform } from './Utils.js';
+export { InnertubeError, Platform } from './Utils.js';
 export * as Utils from './Utils.js';
 
 export * as Log from './Log.js';

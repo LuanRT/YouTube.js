@@ -46,6 +46,7 @@ export class ShowMiniplayerCommand extends YTNode {
 }
 
 export { default as AppendContinuationItemsAction } from './classes/actions/AppendContinuationItemsAction.js';
+export { default as UpdateCardItemOnClickCommand } from './classes/actions/UpdateCardItemOnClickCommand.js';
 
 export class ReloadContinuationItemsCommand extends YTNode {
   static readonly type = 'reloadContinuationItemsCommand';

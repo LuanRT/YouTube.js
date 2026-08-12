@@ -13,6 +13,7 @@ import {
   HomeFeed,
   Library,
   NotificationsMenu,
+  PaidMemberships,
   Playlist,
   Search,
   VideoInfo
@@ -143,7 +144,7 @@ export default class Innertube {
           signatureTimestamp: session.player?.signature_timestamp
         }
       },
-      client: options?.client  
+      client: options?.client
     };
 
     if (options?.po_token) {
@@ -155,7 +156,7 @@ export default class Innertube {
         poToken: session.po_token
       };
     }
-    
+
     const watch_response = await watch_endpoint.call(session.actions, extra_payload);
 
     const cpn = generateRandomString(16);
@@ -296,7 +297,7 @@ export default class Innertube {
         'Cookie': session.cookie || ''
       }
     });
-    
+
     const text = await response.text();
 
     const data = JSON.parse(text.replace('window.google.ac.h(', '').slice(0, -1));
@@ -554,16 +555,55 @@ export default class Innertube {
   }
 
   /**
+   * Gets the user's paid purchases and memberships.
+   *
+   * @see {@link https://www.youtube.com/paid_memberships}
+   *
+   * @example
+   * ```ts
+   * const page = await yt.getPaidMemberships();
+   *
+   * // Digital purchases & rentals (paginated)
+   * let section = page.purchases;
+   * while (section) {
+   *   for (const item of section.items) {
+   *     console.log(item.title?.text?.toString());
+   *   }
+   *   try {
+   *     section = await section.getContinuation();
+   *   } catch {
+   *     break;
+   *   }
+   * }
+   *
+   * // Active memberships
+   * for (const m of page.memberships) {
+   *   console.log(m.channel_name, m.membership_level, m.price);
+   * }
+   *
+   * // Inactive memberships
+   * for (const m of page.inactive_memberships) {
+   *   console.log(m.channel_name, m.expired_date);
+   * }
+   * ```
+   */
+  async getPaidMemberships(): Promise<PaidMemberships> {
+    const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEmemberships_and_purchases' } });
+    const response = await browse_endpoint.call(this.#session.actions);
+    return await PaidMemberships.create(this.actions, response);
+  }
+
+  /**
    * Fetches an attestation challenge.
    */
   async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[]) {
     const payload: Record<string, any> = {
       engagementType: engagement_type
     };
-    
+
     if (ids)
       payload.ids = ids;
-    
+
     return this.actions.execute('/att/get', { parse: true, ...payload });
   }
 

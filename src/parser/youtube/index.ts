@@ -10,6 +10,8 @@ export { default as ItemMenu } from './ItemMenu.js';
 export { default as Library } from './Library.js';
 export { default as LiveChat } from './LiveChat.js';
 export { default as NotificationsMenu } from './NotificationsMenu.js';
+export { default as PaidMemberships } from './PaidMemberships.js';
+export { default as PaidPurchasesSection } from './PaidPurchasesSection.js';
 export { default as Playlist } from './Playlist.js';
 export { default as Search } from './Search.js';
 export { default as Settings } from './Settings.js';
