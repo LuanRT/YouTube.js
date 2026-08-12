@@ -1,14 +1,23 @@
 import type { BotGuardChallenge, BotGuardSolver } from '../../types/BotGuard.js';
 import type { EngagementType } from '../../types/Misc.js';
+import type { FileNamedBufferReader, UploadVideoDetails } from '../../types/StudioWebUploading.js';
 import { Constants } from '../../utils/index.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import type { Actions, Session } from '../index.js';
+
+type AttestationPlacement = 'none' | 'context' | 'top_level';
+
+interface BotGuardAttestationResponse {
+  challenge: string;
+  webResponse: string;
+};
 
 interface StudioUnboundChallenge {
   bg_challenge: BotGuardChallenge;
   challenge: string;
   eats: string;
   expires_at_ms: number;
+  result?: string;
 };
 
 interface StudioBotguardData {
@@ -22,32 +31,49 @@ interface StudioCreatorStudioChallenge {
   eats: string;
 };
 
-interface BufferReader {
-  total_bytes: number;
-  read_chunk: (position: number, length: number) => Promise<Uint8Array>;
+interface StudioSessionTokenCache {
+  session_token: string;
+  expires_at_ms: number;
 };
 
-interface ScottyStart { upload_url: string, resource_id?: string };
-interface ScottyUploadResult { status?: string, scottyResourceId?: string };
+interface ScottyStart { upload_url: string; resource_id?: string };
+interface ScottyUploadResult { status?: string; scottyResourceId?: string };
 type ScottyProgress = (written_bytes: number, total_bytes: number) => void;
 type ScottyUploadType = 'VIDEO' | 'THUMBNAIL';
+
+interface StudioChallengeResponseContext {
+  responseContext?: { webResponseContextExtensionData?: { challenge?: { type?: 'CHALLENGE_PROMPT_TYPE_AUTHENTICATE' } } };
+}
+
+interface CreateCaptionsResponse { translation?: { captionsTranslations?: { contentUpdateTime?: string }[] } };
+interface ParseCaptionsResponse { captionSegments?: object }
+interface UpdateCaptionsResponse { framework_updates?: object }
 
 export default class StudioWeb {
   #session: Session;
   #actions: Actions;
   #botguard_solver: BotGuardSolver<string>|null;
   #unbound_challenge_cache: StudioUnboundChallenge|undefined;
+  #auto_retry: boolean;
+  #force_refresh_session_token: boolean;
+  #channel_id_session_token_cache: Record<string, StudioSessionTokenCache>;
 
   constructor(session: Session) {
     this.#session = session;
     this.#actions = session.actions;
     this.#botguard_solver = null;
+    this.#auto_retry = true;
+    this.#force_refresh_session_token = false;
+    this.#channel_id_session_token_cache = {};
     if (!session.logged_in)
       throw new InnertubeError('You must be signed in to use this client.');
   }
 
   setBotGuardSolver(botguard_solver: BotGuardSolver<string>) {
     this.#botguard_solver = botguard_solver;
+  }
+  setAutoRetrying(auto_retry: boolean) {
+    this.#auto_retry = auto_retry;
   }
 
   async #attGet(engagement_type: EngagementType, ids?: Record<string, any>[], eats?: string) {
@@ -109,13 +135,30 @@ export default class StudioWeb {
     };
   }
 
-  // TODO add caching support and whatnot
+  async #getBotGuardAttestation(): Promise<BotGuardAttestationResponse> {
+    if (!this.#botguard_solver) throw new InnertubeError('BotGuard Solver is not initialized. Please setup with setBotGuardSolver()');
+    const unbound_challenge = this.#unbound_challenge_cache && this.#unbound_challenge_cache.expires_at_ms > Date.now() ? this.#unbound_challenge_cache : await this.#getUnboundChallenge();
+    if (unbound_challenge.result) return { challenge: unbound_challenge.challenge, webResponse: unbound_challenge.result };
+    const botguard_response = await this.#botguard_solver.solve(unbound_challenge.bg_challenge, unbound_challenge.challenge);
+    unbound_challenge.result = botguard_response;
+    this.#unbound_challenge_cache = unbound_challenge;
+    return { challenge: unbound_challenge.challenge, webResponse: botguard_response };
+  }
+
+  #eatForceRefreshSessionToken() {
+    const force_refresh_session_token = this.#force_refresh_session_token;
+    this.#force_refresh_session_token = false;
+    return force_refresh_session_token;
+  }
+
   async getSessionToken(channel_id: string): Promise<string> {
     if (!this.#botguard_solver) throw new InnertubeError('BotGuard Solver is not initialized. Please setup with setBotGuardSolver()');
+    if (this.#channel_id_session_token_cache[channel_id]?.expires_at_ms > Date.now() && !this.#eatForceRefreshSessionToken()) return this.#channel_id_session_token_cache[channel_id].session_token;
 
     const unbound_challenge = await this.#getUnboundChallenge();
     const creator_studio_challenge = await this.#getCreatorStudioChallenge(channel_id, unbound_challenge.eats);
 
+    // don't cache this result into the unbounded cache since it uses different challenge kinda
     const botguard_response = await this.#botguard_solver.solve(unbound_challenge.bg_challenge, creator_studio_challenge.challenge);
 
     const esr_data = await this.#actions.execute('/att/esr', { 
@@ -167,15 +210,15 @@ export default class StudioWeb {
     };
   }
 
-  async #scottyStart(start_upload_url: string, file_name: string, source: BufferReader, start_payload: object): Promise<ScottyStart> {
-    if (source.total_bytes <= 0) throw new InnertubeError('Can\'t upload an empty file to scotty');
+  async #scottyStart(start_upload_url: string, file_name_buffer_reader: FileNamedBufferReader, start_payload: object): Promise<ScottyStart> {
+    if (file_name_buffer_reader.source.total_bytes <= 0) throw new InnertubeError('Can\'t upload an empty file to scotty');
 
     const start_response = await fetch(`${start_upload_url}?authuser=0`, {
       method: 'POST',
       headers: {
-        ...this.#scottyHeaders(file_name),
+        ...this.#scottyHeaders(file_name_buffer_reader.file_name),
         'x-goog-upload-command': 'start',
-        'x-goog-upload-header-content-length': String(source.total_bytes),
+        'x-goog-upload-header-content-length': String(file_name_buffer_reader.source.total_bytes),
         'x-goog-upload-protocol': 'resumable'
       },
       referrer: Constants.URLS.YT_STUDIO_WEB_BASE,
@@ -189,19 +232,19 @@ export default class StudioWeb {
     return { upload_url, resource_id: !resource_id ? undefined : resource_id };
   }
 
-  async #scottyUploadChunks(upload_url: string, file_name: string, source: BufferReader, on_progress?: ScottyProgress): Promise<{ resource_id?: string }> {
+  async #scottyUploadChunks(upload_url: string, file_name_buffer_reader: FileNamedBufferReader, on_progress?: ScottyProgress): Promise<{ resource_id?: string }> {
     const UPLOAD_CHUNK_SIZE_BYTES = 100 * 1024 * 1024;
 
     let offset = 0;
-    while (offset < source.total_bytes) {
-      const chunk = await source.read_chunk(offset, Math.min(UPLOAD_CHUNK_SIZE_BYTES, source.total_bytes - offset));
+    while (offset < file_name_buffer_reader.source.total_bytes) {
+      const chunk = await file_name_buffer_reader.source.read_chunk(offset, Math.min(UPLOAD_CHUNK_SIZE_BYTES, file_name_buffer_reader.source.total_bytes - offset));
       if (chunk.byteLength === 0) throw new InnertubeError('Ran out of bytes before scotty finalized the upload');
 
-      const is_final = offset + chunk.byteLength >= source.total_bytes;
+      const is_final = offset + chunk.byteLength >= file_name_buffer_reader.source.total_bytes;
       const chunk_response = await fetch(upload_url, {
         method: 'POST',
         headers: {
-          ...this.#scottyHeaders(file_name),
+          ...this.#scottyHeaders(file_name_buffer_reader.file_name),
           'x-goog-upload-command': is_final ? 'upload, finalize' : 'upload',
           'x-goog-upload-offset': String(offset)
         },
@@ -210,7 +253,7 @@ export default class StudioWeb {
       if (!chunk_response.ok) throw new InnertubeError('Unable to upload a chunk of the buffer to scotty');
 
       offset += chunk.byteLength;
-      on_progress?.(offset, source.total_bytes);
+      on_progress?.(offset, file_name_buffer_reader.source.total_bytes);
       if (!is_final) {
         await chunk_response.body?.cancel();
         continue;
@@ -223,15 +266,86 @@ export default class StudioWeb {
     throw new InnertubeError('Scotty upload loop ended without finalizing');
   }
 
-  async #uploadToScotty(upload_type: ScottyUploadType, file_name: string, source: BufferReader, start_payload: object, on_progress?: ScottyProgress): Promise<string> {
+  async #uploadToScotty(upload_type: ScottyUploadType, file_name_buffer_reader: FileNamedBufferReader, start_payload: object, on_progress?: ScottyProgress): Promise<string> {
     const UPLOAD_TYPES_TO_START_URL: Record<ScottyUploadType, string> = {
       VIDEO: Constants.URLS.YT_UPLOAD_VIDEO_WEB,
       THUMBNAIL: Constants.URLS.YT_UPLOAD_THUMBNAIL_WEB
     };
-    const start = await this.#scottyStart(UPLOAD_TYPES_TO_START_URL[upload_type], file_name, source, start_payload);
-    const uploaded = await this.#scottyUploadChunks(start.upload_url, file_name, source, on_progress);
+    const start = await this.#scottyStart(UPLOAD_TYPES_TO_START_URL[upload_type], file_name_buffer_reader, start_payload);
+    const uploaded = await this.#scottyUploadChunks(start.upload_url, file_name_buffer_reader, on_progress);
     const resource_id = start.resource_id ?? uploaded.resource_id;
     if (!resource_id) throw new InnertubeError('Scotty did not return a resource id');
     return resource_id;
+  }
+
+  async #uploadThumbnailResource(file_name_buffer_reader: FileNamedBufferReader): Promise<string> {
+    return await this.#uploadToScotty('THUMBNAIL', file_name_buffer_reader, {});
+  }
+
+  async managedExecute<T extends object>(endpoint: string, payload: object, channel_id: string, attestation_placement: AttestationPlacement = 'none', eats?: string, is_retry = false): Promise<T> {
+    const attestation_response_data = attestation_placement === 'none' ? {} : { attestationResponseData: await this.#getBotGuardAttestation() };
+
+    const response = await this.#actions.execute(endpoint, {
+      client: 'WEB_CREATOR',
+      session_token: await this.getSessionToken(channel_id),
+      ...payload,
+      ...(attestation_placement === 'context' ? {} : { attestation_response_data }),
+      ...(attestation_placement === 'top_level' ? {} : attestation_response_data),
+      ...(!eats ? {} : { eats })
+    });
+    if (!response.success) throw new InnertubeError(`YouTube Studio call to ${endpoint} failed`);
+    const data = response.data as T & StudioChallengeResponseContext;
+
+    if (data.responseContext?.webResponseContextExtensionData?.challenge?.type === 'CHALLENGE_PROMPT_TYPE_AUTHENTICATE') {
+      if (!is_retry && this.#auto_retry && channel_id !== undefined) {
+        this.#force_refresh_session_token = true;
+        return await this.managedExecute<T>(endpoint, payload, channel_id, attestation_placement, eats, true);
+      }
+      throw new InnertubeError('YouTube Studio is requesting an authentication challenge, likely a stale session token');
+    }
+    return data;
+  }
+
+  async #uploadSubtitles(channel_id: string, video_id: string, subtitles: NonNullable<UploadVideoDetails['subtitles']>, language = 'en-US') {
+    const data_base64 = await subtitles.data.source.base64;
+    const data_uri = `data:application/octet-stream;base64,${data_base64}`;
+    const tts_track_id = { lang: language, kind: '', name: '' };
+
+    const created = await this.managedExecute<CreateCaptionsResponse>('/globalization/create_captions', {
+      parse: true,
+      videoId: video_id,
+      channelId: channel_id,
+      newTrack: tts_track_id,
+      overwrite: subtitles.overwrite ?? true,
+      autoTranslate: subtitles.auto_translate ?? false,
+      channel_id
+    }, channel_id);
+
+    const content_update_time = created.translation?.captionsTranslations?.[0]?.contentUpdateTime;
+    if (content_update_time === undefined) throw new InnertubeError('create_captions did not return a contentUpdateTime');
+
+    const parsed = await this.managedExecute<ParseCaptionsResponse>('/globalization/parse_captions', {
+      fileType: subtitles.synced ? 'CAPTIONS_FILE_TYPE_TIMED_TEXT' : 'CAPTIONS_FILE_TYPE_TRANSCRIPT',
+      fileName: subtitles.data.file_name,
+      dataUri: data_uri,
+      channel_id
+    }, channel_id);
+
+    const updated = await this.managedExecute<UpdateCaptionsResponse>('/globalization/update_captions', {
+      videoId: video_id,
+      channelId: channel_id,
+      operations: [
+        {
+          ttsTrackId: tts_track_id,
+          userIntent: 'USER_INTENT_EDIT_LATEST_DRAFT',
+          vote: 'VOTE_PUBLISH',
+          isContentEdited: false,
+          contentUpdateTime: content_update_time,
+          captionsFile: { dataUri: data_uri, fileName: subtitles.data.file_name }
+        }
+      ],
+      channel_id
+    }, channel_id);
+    return { created, parsed, updated };
   }
 }

@@ -28,6 +28,18 @@ export interface UserInfo_DelegatePurchases {
 }
 
 export interface UserInfo_DelegationContext {
+  externalChannelId?: string | undefined;
+  roleType?: UserInfo_DelegationContext_RoleType | undefined;
+}
+
+export interface UserInfo_DelegationContext_RoleType {
+  channelRoleType?: UserInfo_DelegationContext_RoleType_ChannelRoleType | undefined;
+}
+
+export enum UserInfo_DelegationContext_RoleType_ChannelRoleType {
+  CHANNEL_ROLE_TYPE_UNKNOWN = 0,
+  CREATOR_CHANNEL_ROLE_TYPE_OWNER = 8,
+  UNRECOGNIZED = -1,
 }
 
 export interface UserInfo_CredentialTransferToken {
@@ -221,11 +233,17 @@ export const UserInfo_DelegatePurchases: MessageFns<UserInfo_DelegatePurchases> 
 };
 
 function createBaseUserInfo_DelegationContext(): UserInfo_DelegationContext {
-  return {};
+  return { externalChannelId: undefined, roleType: undefined };
 }
 
 export const UserInfo_DelegationContext: MessageFns<UserInfo_DelegationContext> = {
-  encode(_: UserInfo_DelegationContext, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+  encode(message: UserInfo_DelegationContext, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.externalChannelId !== undefined) {
+      writer.uint32(18).string(message.externalChannelId);
+    }
+    if (message.roleType !== undefined) {
+      UserInfo_DelegationContext_RoleType.encode(message.roleType, writer.uint32(42).fork()).join();
+    }
     return writer;
   },
 
@@ -236,6 +254,59 @@ export const UserInfo_DelegationContext: MessageFns<UserInfo_DelegationContext> 
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 2: {
+          if (tag !== 18) {
+            break;
+          }
+
+          message.externalChannelId = reader.string();
+          continue;
+        }
+        case 5: {
+          if (tag !== 42) {
+            break;
+          }
+
+          message.roleType = UserInfo_DelegationContext_RoleType.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBaseUserInfo_DelegationContext_RoleType(): UserInfo_DelegationContext_RoleType {
+  return { channelRoleType: undefined };
+}
+
+export const UserInfo_DelegationContext_RoleType: MessageFns<UserInfo_DelegationContext_RoleType> = {
+  encode(message: UserInfo_DelegationContext_RoleType, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.channelRoleType !== undefined) {
+      writer.uint32(8).int32(message.channelRoleType);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): UserInfo_DelegationContext_RoleType {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseUserInfo_DelegationContext_RoleType();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.channelRoleType = reader.int32() as any;
+          continue;
+        }
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;

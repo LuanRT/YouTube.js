@@ -1,5 +1,6 @@
 export type { default as PlatformShim } from './PlatformShim.js';
 
+export type * from './StudioWebUploading.js';
 export type * from './BotGuard.js';
 export type * from './Cache.js';
 export type * from './PlatformShim.js';

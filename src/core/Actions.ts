@@ -14,7 +14,12 @@ import type {
   IUpdatedMetadataResponse
 } from '../parser/index.js';
 import { NavigateAction, Parser } from '../parser/index.js';
-import { InnertubeError } from '../utils/Utils.js';
+import { InnertubeError, u8ToBase64 } from '../utils/Utils.js';
+
+import {
+  UserInfo_DelegationContext,
+  UserInfo_DelegationContext_RoleType_ChannelRoleType
+} from '../../protos/generated/youtube/api/pfiinnertube/user_info.js';
 
 import type { Session } from './index.js';
 
@@ -177,6 +182,19 @@ export default class Actions {
           if (data.attestation_response_data && Reflect.has(data.attestation_response_data, 'challenge') && Reflect.has(data.attestation_response_data, 'webResponse')) {
             this.session.context.request.attestationResponseData = data.attestation_response_data;
           }
+
+          if (data.channel_id && this.session.context.user) {
+            const delegation_context = {
+              externalChannelId: data.channel_id,
+              roleType: { channelRoleType: 'CREATOR_CHANNEL_ROLE_TYPE_OWNER' as const }
+            };
+
+            this.session.context.user.delegationContext = delegation_context;
+            this.session.context.user.serializedDelegationContext = u8ToBase64(UserInfo_DelegationContext.encode({
+              externalChannelId: delegation_context.externalChannelId,
+              roleType: { channelRoleType: UserInfo_DelegationContext_RoleType_ChannelRoleType.CREATOR_CHANNEL_ROLE_TYPE_OWNER }
+            }).finish());
+          }
         }
       }
     } else if (args) {
@@ -202,6 +220,8 @@ export default class Actions {
       delete this.session.context.request?.reauthRequestInfo;
       delete this.session.context.request?.sessionInfo;
       delete this.session.context.request?.attestationResponseData;
+      delete this.session.context.user?.delegationContext;
+      delete this.session.context.user?.serializedDelegationContext;
     }
 
     if (args?.parse) {

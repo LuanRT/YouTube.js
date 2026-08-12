@@ -92,6 +92,12 @@ export type Context = {
     enableSafetyMode: boolean;
     lockedSafetyMode: boolean;
     onBehalfOfUser?: string;
+    // Studio Web params
+    delegationContext?: {
+      externalChannelId: string,
+      roleType: { channelRoleType: 'CREATOR_CHANNEL_ROLE_TYPE_OWNER' }
+    }
+    serializedDelegationContext?: string;
   };
   thirdParty?: {
     embedUrl: string;
