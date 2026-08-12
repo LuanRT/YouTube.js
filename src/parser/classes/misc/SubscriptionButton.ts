@@ -11,7 +11,9 @@ export default class SubscriptionButton {
   constructor(data: RawNode) {
     this.text = new Text(data.text);
     this.subscribed = data.isSubscribed;
-    if ('subscriptionType' in data)
-      this.subscription_type = data.subscriptionType;
+    
+    if ('type' in data) {
+      this.subscription_type = data.type;
+    }
   }
 }
