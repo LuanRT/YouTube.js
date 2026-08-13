@@ -536,6 +536,7 @@ export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHea
 export { default as VideoDescriptionInfocardsSection } from './classes/VideoDescriptionInfocardsSection.js';
 export { default as VideoDescriptionMusicSection } from './classes/VideoDescriptionMusicSection.js';
 export { default as VideoDescriptionTranscriptSection } from './classes/VideoDescriptionTranscriptSection.js';
+export { default as VideoDescriptionYouchatSectionView } from './classes/VideoDescriptionYouchatSectionView.js';
 export { default as VideoInfoCardContent } from './classes/VideoInfoCardContent.js';
 export { default as VideoMetadataCarouselView } from './classes/VideoMetadataCarouselView.js';
 export { default as VideoOwner } from './classes/VideoOwner.js';

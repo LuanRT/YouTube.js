@@ -13,14 +13,15 @@ import ReelShelf from './ReelShelf.js';
 import ExpandableMetadata from './ExpandableMetadata.js';
 import MerchandiseShelf from './MerchandiseShelf.js';
 import HypeFanCreditsSectionView from './HypeFanCreditsSectionView.js';
+import VideoDescriptionYouchatSectionView from './VideoDescriptionYouchatSectionView.js';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
 
   public items: ObservedArray<
     VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
-    VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection |
-    VideoDescriptionCourseSection | HorizontalCardList | ReelShelf | VideoAttributesSectionView |
+    VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | VideoDescriptionCourseSection |
+    VideoDescriptionYouchatSectionView | HorizontalCardList | ReelShelf | VideoAttributesSectionView |
     HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf | HypeFanCreditsSectionView
   >;
 
@@ -29,7 +30,7 @@ export default class StructuredDescriptionContent extends YTNode {
     this.items = Parser.parseArray(data.items, [
       VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
       VideoDescriptionInfocardsSection, VideoDescriptionCourseSection, VideoDescriptionTranscriptSection,
-      VideoDescriptionTranscriptSection, HorizontalCardList, ReelShelf, VideoAttributesSectionView,
+      VideoDescriptionYouchatSectionView, HorizontalCardList, ReelShelf, VideoAttributesSectionView,
       HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf, HypeFanCreditsSectionView
     ]);
   }
