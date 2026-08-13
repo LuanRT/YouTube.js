@@ -437,7 +437,7 @@ export default class Innertube {
       }
     });
 
-    const params = encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
+    const params = encodeURIComponent(u8ToBase64(writer.finish(), true));
 
     const browse_endpoint = new NavigationEndpoint({ browseEndpoint: { browseId: 'FEhashtag', params } });
     const response = await browse_endpoint.call(this.#session.actions);
