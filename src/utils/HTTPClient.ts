@@ -100,6 +100,8 @@ export default class HTTPClient {
         request_headers.set('User-Agent', Constants.CLIENTS.IOS.USER_AGENT);
       } else if (adjustedClientName === Constants.CLIENTS.ANDROID_VR.NAME) {
         request_headers.set('User-Agent', Constants.CLIENTS.ANDROID_VR.USER_AGENT);
+      } else if (adjustedClientName === Constants.CLIENTS.VISIONOS.NAME) {
+        request_headers.set('User-Agent', Constants.CLIENTS.VISIONOS.USER_AGENT);
       }
     } else if (content_type === 'application/x-protobuf') {
       // Assume it is always an Android request.
@@ -267,6 +269,18 @@ export default class HTTPClient {
         ctx.client.clientVersion = Constants.CLIENTS.ANDROID_VR.VERSION;
         ctx.client.clientFormFactor = 'SMALL_FORM_FACTOR';
         ctx.client.clientName = Constants.CLIENTS.ANDROID_VR.NAME;
+        break;
+      case 'VISIONOS':
+        ctx.client.deviceMake = Constants.CLIENTS.VISIONOS.DEVICE_MAKE;
+        ctx.client.deviceModel = Constants.CLIENTS.VISIONOS.DEVICE_MODEL;
+        ctx.client.clientVersion = Constants.CLIENTS.VISIONOS.VERSION;
+        ctx.client.clientName = Constants.CLIENTS.VISIONOS.NAME;
+        ctx.client.platform = 'MOBILE';
+        ctx.client.osName = Constants.CLIENTS.VISIONOS.OS_NAME;
+        ctx.client.osVersion = Constants.CLIENTS.VISIONOS.OS_VERSION;
+        ctx.client.userAgent = Constants.CLIENTS.VISIONOS.USER_AGENT;
+        delete ctx.client.browserName;
+        delete ctx.client.browserVersion;
         break;
       case 'YTMUSIC_ANDROID':
         ctx.client.clientVersion = Constants.CLIENTS.YTMUSIC_ANDROID.VERSION;

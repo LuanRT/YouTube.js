@@ -66,6 +66,15 @@ export const CLIENTS = {
     DEVICE_MODEL: 'Quest 3',
     USER_AGENT: 'com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip'
   },
+  VISIONOS: {
+    NAME: 'VISIONOS',
+    VERSION: '1.02',
+    DEVICE_MAKE: 'Apple',
+    DEVICE_MODEL: 'RealityDevice17,1',
+    OS_NAME: 'visionOS',
+    OS_VERSION: '26.5.23O471',
+    USER_AGENT: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15'
+  },
   YTSTUDIO_ANDROID: {
     NAME: 'ANDROID_CREATOR',
     VERSION: '22.43.101'
@@ -115,6 +124,7 @@ export const CLIENT_NAME_IDS = {
   ANDROID_CREATOR: '14',
   ANDROID_MUSIC: '21',
   ANDROID_VR: '28',
+  VISIONOS: '101',
   TVHTML5: '7',
   TVHTML5_SIMPLY: '74',
   TVHTML5_SIMPLY_EMBEDDED_PLAYER: '85',
@@ -133,4 +143,4 @@ export const INNERTUBE_HEADERS_BASE = {
   'content-type': 'application/json'
 } as const;
 
-export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'MWEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'ANDROID_VR', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV', 'TV_SIMPLY', 'TV_EMBEDDED', 'WEB_EMBEDDED', 'WEB_CREATOR' ];
+export const SUPPORTED_CLIENTS = [ 'IOS', 'WEB', 'MWEB', 'YTKIDS', 'YTMUSIC', 'ANDROID', 'ANDROID_VR', 'VISIONOS', 'YTSTUDIO_ANDROID', 'YTMUSIC_ANDROID', 'TV', 'TV_SIMPLY', 'TV_EMBEDDED', 'WEB_EMBEDDED', 'WEB_CREATOR' ];
