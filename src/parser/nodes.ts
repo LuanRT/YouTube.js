@@ -544,6 +544,7 @@ export { default as VideoPrimaryInfo } from './classes/VideoPrimaryInfo.js';
 export { default as VideoSecondaryInfo } from './classes/VideoSecondaryInfo.js';
 export { default as VideoSummaryContentView } from './classes/VideoSummaryContentView.js';
 export { default as VideoSummaryParagraphView } from './classes/VideoSummaryParagraphView.js';
+export { default as VideoTitleHeaderView } from './classes/VideoTitleHeaderView.js';
 export { default as VideoViewCount } from './classes/VideoViewCount.js';
 export { default as ViewCountFactoid } from './classes/ViewCountFactoid.js';
 export { default as WatchCardCompactVideo } from './classes/WatchCardCompactVideo.js';
