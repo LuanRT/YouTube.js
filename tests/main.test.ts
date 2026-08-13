@@ -273,6 +273,12 @@ describe('YouTube.js Tests', () => {
         expect(incremental_continuation).toBeDefined();
         expect(incremental_continuation.videos.length).toBeGreaterThan(0);
       });
+
+      test('supports hashtags whose params require URL-safe Base64', async () => {
+        const cyrillic_hashtag = await innertube.getHashtag('биткоин');
+        expect(cyrillic_hashtag).toBeDefined();
+        expect(cyrillic_hashtag.videos.length).toBeGreaterThan(0);
+      });
     });
 
     test('Innertube#resolveURL', async () => {
