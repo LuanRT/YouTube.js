@@ -112,6 +112,7 @@ export { default as CompactStation } from './classes/CompactStation.js';
 export { default as CompactVideo } from './classes/CompactVideo.js';
 export { default as CompositeVideoPrimaryInfo } from './classes/CompositeVideoPrimaryInfo.js';
 export { default as ConfirmDialog } from './classes/ConfirmDialog.js';
+export { default as ContentListItemView } from './classes/ContentListItemView.js';
 export { default as ContentMetadataView } from './classes/ContentMetadataView.js';
 export { default as ContentPreviewImageView } from './classes/ContentPreviewImageView.js';
 export { default as ContinuationItem } from './classes/ContinuationItem.js';
@@ -384,6 +385,7 @@ export { default as PlayerOverlayVideoDetails } from './classes/PlayerOverlayVid
 export { default as PlayerStoryboardSpec } from './classes/PlayerStoryboardSpec.js';
 export { default as Playlist } from './classes/Playlist.js';
 export { default as PlaylistAddToOption } from './classes/PlaylistAddToOption.js';
+export { default as PlaylistCollaborationView } from './classes/PlaylistCollaborationView.js';
 export { default as PlaylistCustomThumbnail } from './classes/PlaylistCustomThumbnail.js';
 export { default as PlaylistHeader } from './classes/PlaylistHeader.js';
 export { default as PlaylistInfoCardContent } from './classes/PlaylistInfoCardContent.js';
@@ -534,6 +536,7 @@ export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHea
 export { default as VideoDescriptionInfocardsSection } from './classes/VideoDescriptionInfocardsSection.js';
 export { default as VideoDescriptionMusicSection } from './classes/VideoDescriptionMusicSection.js';
 export { default as VideoDescriptionTranscriptSection } from './classes/VideoDescriptionTranscriptSection.js';
+export { default as VideoDescriptionYouchatSectionView } from './classes/VideoDescriptionYouchatSectionView.js';
 export { default as VideoInfoCardContent } from './classes/VideoInfoCardContent.js';
 export { default as VideoMetadataCarouselView } from './classes/VideoMetadataCarouselView.js';
 export { default as VideoOwner } from './classes/VideoOwner.js';

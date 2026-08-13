@@ -482,13 +482,18 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   if (engagement_panels.length) {
     parsed_data.engagement_panels = engagement_panels;
   }
-  
+
+  const content = parseItem(data.content);
+  if (content) {
+    parsed_data.content = content;
+  }
+
   if (data.bgChallenge) {
     const interpreter_url = {
       private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.bgChallenge.interpreterUrl.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
       private_do_not_access_or_else_safe_script_wrapped_value: data.bgChallenge.interpreterUrl.privateDoNotAccessOrElseSafeScriptWrappedValue
     };
-    
+
     parsed_data.bg_challenge = {
       interpreter_url,
       interpreter_hash: data.bgChallenge.interpreterHash,
@@ -497,7 +502,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
       client_experiments_state_blob: data.bgChallenge.clientExperimentsStateBlob
     };
   }
-  
+
   if (data.challenge) {
     parsed_data.challenge = data.challenge;
   }
@@ -556,7 +561,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   if (data.entries) {
     parsed_data.entries = data.entries.map((entry) => new NavigationEndpoint(entry));
   }
-  
+
   if (data.targetId) {
     parsed_data.target_id = data.targetId;
   }

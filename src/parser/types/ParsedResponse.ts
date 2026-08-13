@@ -35,6 +35,7 @@ export interface IParsedResponse {
   eats?: string;
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
+  content?: YTNode;
   contents?: SuperParsedResult<YTNode>;
   contents_memo?: Memo;
   header?: SuperParsedResult<YTNode>;
@@ -163,3 +164,4 @@ export type IGetChallengeResponse = Pick<IParsedResponse, 'challenge' | 'bg_chal
 export type IESRChallengeResponse = Pick<IParsedResponse, 'ctx' | 'should_fetch_reauth_session_token'>;
 export type IGetSessionTokenResponse = Pick<IParsedResponse, 'session_token'>;
 export type IGetWebReauthURLResponse = Pick<IParsedResponse, 'encoded_reauth_proof_token' | 'session_risk_ctx'>;
+export type IShowEngagementPanelResponse = Pick<IParsedResponse, 'content'>;

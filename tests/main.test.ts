@@ -273,6 +273,12 @@ describe('YouTube.js Tests', () => {
         expect(incremental_continuation).toBeDefined();
         expect(incremental_continuation.videos.length).toBeGreaterThan(0);
       });
+
+      test('supports hashtags whose params require URL-safe Base64', async () => {
+        const cyrillic_hashtag = await innertube.getHashtag('биткоин');
+        expect(cyrillic_hashtag).toBeDefined();
+        expect(cyrillic_hashtag.videos.length).toBeGreaterThan(0);
+      });
     });
 
     test('Innertube#resolveURL', async () => {
@@ -439,7 +445,7 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#music.getSearchSuggestions', async () => {
-      const suggestions = await innertube.music.getSearchSuggestions('Joji - In Tongues');
+      const suggestions = await innertube.music.getSearchSuggestions('Windows96');
       expect(suggestions).toBeDefined();
       expect(suggestions?.length).toBeGreaterThan(0);
     });
