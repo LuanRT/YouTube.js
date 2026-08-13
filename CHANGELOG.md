@@ -1,5 +1,34 @@
 # Changelog
 
+## [18.0.0](https://github.com/LuanRT/YouTube.js/compare/v17.2.0...v18.0.0) (2026-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **Comments.ts:** Add support for threaded comments ([#1194](https://github.com/LuanRT/YouTube.js/issues/1194))
+
+### Features
+
+* **Collaborators:** Add `Author#collaborators` and `Playlist#getCollaborators()` ([#1203](https://github.com/LuanRT/YouTube.js/issues/1203)) ([049f9a6](https://github.com/LuanRT/YouTube.js/commit/049f9a6381aafb0fc57ec5558a955188e8a24b4b))
+* **LockupView:** Add station as possible `content_type` ([#1229](https://github.com/LuanRT/YouTube.js/issues/1229)) ([cfc7604](https://github.com/LuanRT/YouTube.js/commit/cfc7604f51e19a935b1a1711a42419ed3fabe5c3))
+* **parser:** Add `VideoDescriptionYouchatSectionView` and fix related parsing warnings ([fcb07d3](https://github.com/LuanRT/YouTube.js/commit/fcb07d333ad3cb961fa6afa6a250b903e2016ad6))
+* **parser:** Add ThumbnailOverlayAvatarStackView class ([#1200](https://github.com/LuanRT/YouTube.js/issues/1200)) ([14825d7](https://github.com/LuanRT/YouTube.js/commit/14825d7712e32b208830895701973a5a934a3522))
+* **parser:** Add TicketEvent and TicketShelf classes ([#1205](https://github.com/LuanRT/YouTube.js/issues/1205)) ([55cf854](https://github.com/LuanRT/YouTube.js/commit/55cf854e324b04517077ddd86ec9d6e031b7bcfe))
+* **protos:** Add `ClipParams` ([#1215](https://github.com/LuanRT/YouTube.js/issues/1215)) ([a6f8a77](https://github.com/LuanRT/YouTube.js/commit/a6f8a772cbcae54aa109b7cd0730949bae32e901))
+* **Session:** Add the `VISIONOS` client ([#1213](https://github.com/LuanRT/YouTube.js/issues/1213)) ([e518645](https://github.com/LuanRT/YouTube.js/commit/e5186450cf9ea781f2b7d397ccace60bc43af367))
+
+
+### Bug Fixes
+
+* **Comments.ts:** Add support for threaded comments ([#1194](https://github.com/LuanRT/YouTube.js/issues/1194)) ([c69d19f](https://github.com/LuanRT/YouTube.js/commit/c69d19f8cbe262a31a59e2991060b904f37e5768))
+* **CommentView:** Handle undefined endpoint when applying mutations ([#1208](https://github.com/LuanRT/YouTube.js/issues/1208)) ([483c866](https://github.com/LuanRT/YouTube.js/commit/483c866606c1ddf33aece5037a623ee725d0b021))
+* **HTTPClient:** add User-Agent header override for ANDROID_VR client ([#1184](https://github.com/LuanRT/YouTube.js/issues/1184)) ([38bc0a3](https://github.com/LuanRT/YouTube.js/commit/38bc0a35d025c2005d7883353adcc08e124c9904))
+* **Innertube#getHashtag:** Use URL-safe Base64 for hashtag params ([#1211](https://github.com/LuanRT/YouTube.js/issues/1211)) ([c59c8fe](https://github.com/LuanRT/YouTube.js/commit/c59c8fe4525eab1e99f17da7ebe5880c65fb9c0a))
+* **MusicResponsiveListItem:** Match a timestamp when reading a music item duration ([#1230](https://github.com/LuanRT/YouTube.js/issues/1230)) ([5df35ac](https://github.com/LuanRT/YouTube.js/commit/5df35aca368459bb0deea6c2d3d1bfdefe41c380))
+* **SubscriptionButton:** `subscription_type` never being set due to typo ([bffabed](https://github.com/LuanRT/YouTube.js/commit/bffabede8869ff30828f05a61028b56b06e3ffea))
+* **SubscriptionButton:** `text` and `subscribed` fields aren't always there ([125b2c2](https://github.com/LuanRT/YouTube.js/commit/125b2c22652db2b33731d957456f2b047d650b21))
+* **VideoOwner:** Fix a few parsing issues ([782730e](https://github.com/LuanRT/YouTube.js/commit/782730e6ca37c654a72dbe0f3e22180ad7f48188))
+
 ## [17.2.0](https://github.com/LuanRT/YouTube.js/compare/v17.1.0...v17.2.0) (2026-06-23)
 
 
