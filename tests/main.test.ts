@@ -439,7 +439,7 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#music.getSearchSuggestions', async () => {
-      const suggestions = await innertube.music.getSearchSuggestions('Joji - In Tongues');
+      const suggestions = await innertube.music.getSearchSuggestions('Windows96');
       expect(suggestions).toBeDefined();
       expect(suggestions?.length).toBeGreaterThan(0);
     });
