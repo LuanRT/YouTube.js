@@ -112,6 +112,7 @@ export { default as CompactStation } from './classes/CompactStation.ts';
 export { default as CompactVideo } from './classes/CompactVideo.ts';
 export { default as CompositeVideoPrimaryInfo } from './classes/CompositeVideoPrimaryInfo.ts';
 export { default as ConfirmDialog } from './classes/ConfirmDialog.ts';
+export { default as ContentListItemView } from './classes/ContentListItemView.ts';
 export { default as ContentMetadataView } from './classes/ContentMetadataView.ts';
 export { default as ContentPreviewImageView } from './classes/ContentPreviewImageView.ts';
 export { default as ContinuationItem } from './classes/ContinuationItem.ts';
@@ -384,6 +385,7 @@ export { default as PlayerOverlayVideoDetails } from './classes/PlayerOverlayVid
 export { default as PlayerStoryboardSpec } from './classes/PlayerStoryboardSpec.ts';
 export { default as Playlist } from './classes/Playlist.ts';
 export { default as PlaylistAddToOption } from './classes/PlaylistAddToOption.ts';
+export { default as PlaylistCollaborationView } from './classes/PlaylistCollaborationView.ts';
 export { default as PlaylistCustomThumbnail } from './classes/PlaylistCustomThumbnail.ts';
 export { default as PlaylistHeader } from './classes/PlaylistHeader.ts';
 export { default as PlaylistInfoCardContent } from './classes/PlaylistInfoCardContent.ts';
@@ -482,6 +484,7 @@ export { default as ThumbnailBottomOverlayView } from './classes/ThumbnailBottom
 export { default as ThumbnailHoverOverlayToggleActionsView } from './classes/ThumbnailHoverOverlayToggleActionsView.ts';
 export { default as ThumbnailHoverOverlayView } from './classes/ThumbnailHoverOverlayView.ts';
 export { default as ThumbnailLandscapePortrait } from './classes/ThumbnailLandscapePortrait.ts';
+export { default as ThumbnailOverlayAvatarStackView } from './classes/ThumbnailOverlayAvatarStackView.ts';
 export { default as ThumbnailOverlayBadgeView } from './classes/ThumbnailOverlayBadgeView.ts';
 export { default as ThumbnailOverlayBottomPanel } from './classes/ThumbnailOverlayBottomPanel.ts';
 export { default as ThumbnailOverlayEndorsement } from './classes/ThumbnailOverlayEndorsement.ts';
@@ -498,6 +501,8 @@ export { default as ThumbnailOverlayTimeStatus } from './classes/ThumbnailOverla
 export { default as ThumbnailOverlayTitleView } from './classes/ThumbnailOverlayTitleView.ts';
 export { default as ThumbnailOverlayToggleButton } from './classes/ThumbnailOverlayToggleButton.ts';
 export { default as ThumbnailView } from './classes/ThumbnailView.ts';
+export { default as TicketEvent } from './classes/TicketEvent.ts';
+export { default as TicketShelf } from './classes/TicketShelf.ts';
 export { default as TimedMarkerDecoration } from './classes/TimedMarkerDecoration.ts';
 export { default as TitleAndButtonListHeader } from './classes/TitleAndButtonListHeader.ts';
 export { default as ToggleButton } from './classes/ToggleButton.ts';
@@ -531,6 +536,7 @@ export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHea
 export { default as VideoDescriptionInfocardsSection } from './classes/VideoDescriptionInfocardsSection.ts';
 export { default as VideoDescriptionMusicSection } from './classes/VideoDescriptionMusicSection.ts';
 export { default as VideoDescriptionTranscriptSection } from './classes/VideoDescriptionTranscriptSection.ts';
+export { default as VideoDescriptionYouchatSectionView } from './classes/VideoDescriptionYouchatSectionView.ts';
 export { default as VideoInfoCardContent } from './classes/VideoInfoCardContent.ts';
 export { default as VideoMetadataCarouselView } from './classes/VideoMetadataCarouselView.ts';
 export { default as VideoOwner } from './classes/VideoOwner.ts';

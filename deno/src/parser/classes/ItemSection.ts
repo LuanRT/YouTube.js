@@ -6,18 +6,19 @@ import CommentsHeader from './comments/CommentsHeader.ts';
 import SortFilterHeader from './SortFilterHeader.ts';
 import FeedFilterChipBar from './FeedFilterChipBar.ts';
 import ChipBarView from './ChipBarView.ts';
+import RelatedChipCloud from './RelatedChipCloud.ts';
 
 export default class ItemSection extends YTNode {
   static type = 'ItemSection';
 
-  header: CommentsHeader | ItemSectionHeader | ItemSectionTabbedHeader | SortFilterHeader | FeedFilterChipBar | ChipBarView | null;
-  contents: ObservedArray<YTNode>;
-  target_id?: string;
-  continuation?: string;
+  public header: CommentsHeader | ItemSectionHeader | ItemSectionTabbedHeader | SortFilterHeader | FeedFilterChipBar | ChipBarView | RelatedChipCloud | null;
+  public contents: ObservedArray<YTNode>;
+  public target_id?: string;
+  public continuation?: string;
 
   constructor(data: RawNode) {
     super();
-    this.header = Parser.parseItem(data.header, [ CommentsHeader, ItemSectionHeader, ItemSectionTabbedHeader, SortFilterHeader, FeedFilterChipBar, ChipBarView ]);
+    this.header = Parser.parseItem(data.header, [ CommentsHeader, ItemSectionHeader, ItemSectionTabbedHeader, SortFilterHeader, FeedFilterChipBar, ChipBarView, RelatedChipCloud ]);
     this.contents = Parser.parseArray(data.contents);
 
     if (data.targetId || data.sectionIdentifier) {
@@ -25,7 +26,7 @@ export default class ItemSection extends YTNode {
     }
 
     if (data.continuations) {
-      this.continuation = data.continuations?.at(0)?.nextContinuationData?.continuation;
+      this.continuation = data.continuations?.[0]?.nextContinuationData?.continuation;
     }
   }
 }

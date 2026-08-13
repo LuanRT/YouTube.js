@@ -1,29 +1,31 @@
 import { InnertubeError } from '../../utils/Utils.ts';
 
 import Feed from '../../core/mixins/Feed.ts';
+import Alert from '../classes/Alert.ts';
+import AvatarStackView from '../classes/AvatarStackView.ts';
+import ContinuationItem from '../classes/ContinuationItem.ts';
+import ContinuationItemView from '../classes/ContinuationItemView.ts';
+import LockupView from '../classes/LockupView.ts';
 import Message from '../classes/Message.ts';
 import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail.ts';
 import PlaylistHeader from '../classes/PlaylistHeader.ts';
 import PlaylistMetadata from '../classes/PlaylistMetadata.ts';
 import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.ts';
 import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.ts';
+import PlaylistVideo from '../classes/PlaylistVideo.ts';
 import PlaylistVideoList from '../classes/PlaylistVideoList.ts';
 import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.ts';
-import LockupView from '../classes/LockupView.ts';
 import ReelItem from '../classes/ReelItem.ts';
+import SectionList from '../classes/SectionList.ts';
 import ShortsLockupView from '../classes/ShortsLockupView.ts';
 import VideoOwner from '../classes/VideoOwner.ts';
-import Alert from '../classes/Alert.ts';
-import ContinuationItem from '../classes/ContinuationItem.ts';
-import ContinuationItemView from '../classes/ContinuationItemView.ts';
-import PlaylistVideo from '../classes/PlaylistVideo.ts';
-import SectionList from '../classes/SectionList.ts';
+import ShowEngagementPanelEndpoint from '../classes/endpoints/ShowEngagementPanelEndpoint.ts';
 import { observe, type ObservedArray, type YTNode } from '../helpers.ts';
 
 import type { Actions, ApiResponse } from '../../core/index.ts';
-import type { IBrowseResponse } from '../types/index.ts';
-import type Thumbnail from '../classes/misc/Thumbnail.ts';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.ts';
+import type Thumbnail from '../classes/misc/Thumbnail.ts';
+import type { IBrowseResponse, IShowEngagementPanelResponse } from '../types/index.ts';
 
 export default class Playlist extends Feed<IBrowseResponse> {
   public info;
@@ -66,6 +68,23 @@ export default class Playlist extends Feed<IBrowseResponse> {
     this.menu = primary_info?.menu;
     this.endpoint = primary_info?.endpoint;
     this.messages = this.memo.getType(Message);
+  }
+
+  async getCollaborators(): Promise<IShowEngagementPanelResponse> {
+    if (!this.actions.session.logged_in)
+      throw new Error('You must be signed in to perform this operation.');
+
+    const avatar_stack_view = this.memo.getType(AvatarStackView)?.find((item) => item.renderer_context.command_context);
+    const endpoint = avatar_stack_view?.renderer_context.command_context?.on_tap;
+
+    if (!endpoint)
+      throw new InnertubeError('AvatarStackView on_tap endpoint not found');
+
+    if (endpoint.command?.is(ShowEngagementPanelEndpoint)) {
+      return await endpoint.call(this.actions, { parse: true });
+    }
+
+    throw new InnertubeError(`Unexpected endpoint type. Expected ShowEngagementPanelEndpoint, got ${endpoint.command?.type}`);
   }
 
   get items(): ObservedArray<LockupView | PlaylistVideo | ReelItem | ShortsLockupView> {

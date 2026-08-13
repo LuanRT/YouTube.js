@@ -1,23 +1,46 @@
 import Text from './misc/Text.ts';
 import Author from './misc/Author.ts';
 import { YTNode } from '../helpers.ts';
-import type { RawNode } from '../index.ts';
+import { Parser, type RawNode } from '../index.ts';
 import SubscriptionButton from './misc/SubscriptionButton.ts';
+import AvatarStackView from './AvatarStackView.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
 export default class VideoOwner extends YTNode {
   static type = 'VideoOwner';
 
+  public title?: Text;
+  public attributed_title?: Text;
   public subscription_button?: SubscriptionButton;
   public subscriber_count: Text;
+  public avatar_stack: AvatarStackView | null;
+  public endpoint?: NavigationEndpoint;
   public author: Author;
 
   constructor(data: RawNode) {
     super();
-    if ('subscriptionButton' in data)
+    if ('title' in data) {
+      this.title = new Text(data.title);
+    }
+
+    if ('attributedTitle' in data) {
+      this.attributed_title = Text.fromAttributed(data.attributedTitle);
+    }
+
+    if ('subscriptionButton' in data) {
       this.subscription_button = new SubscriptionButton(data.subscriptionButton);
+    }
+
+    if ('navigationEndpoint' in data) {
+      this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
+    }
+
+    this.avatar_stack = Parser.parseItem(data.avatarStack, AvatarStackView);
+
     this.subscriber_count = new Text(data.subscriberCountText);
+
     this.author = new Author({
-      ...data.title,
+      ...(data.title || data.attributedTitle),
       navigationEndpoint: data.navigationEndpoint
     }, data.badges, data.thumbnail);
   }

@@ -87,7 +87,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
       PlaylistVideo,
       PlaylistPanelVideo,
       WatchCardCompactVideo
-    ).filter((item) => !item.is(LockupView) || (item.content_type === 'VIDEO' || item.content_type === 'MOVIE' || item.content_type === 'SHORT')));
+    ).filter((item) => !item.is(LockupView) || (item.content_type === 'VIDEO' || item.content_type === 'MOVIE' || item.content_type === 'SHORT' || item.content_type == 'STATION')));
   }
 
   /**

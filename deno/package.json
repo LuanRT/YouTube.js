@@ -1,6 +1,6 @@
 {
   "name": "youtubei.js",
-  "version": "17.2.0",
+  "version": "18.0.0",
   "description": "A JavaScript client for YouTube's private API, known as InnerTube.",
   "type": "module",
   "types": "./dist/src/platform/lib.d.ts",
@@ -104,17 +104,17 @@
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0",
     "fflate": "^0.8.2",
-    "meriyah": "^6.1.4"
+    "meriyah": "^7.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
     "@types/estree": "^1.0.6",
-    "@types/node": "^25.0.3",
+    "@types/node": "^26.2.0",
     "@typescript-eslint/eslint-plugin": "^8.46.0",
     "@typescript-eslint/parser": "^8.46.0",
-    "cpy-cli": "^6.0.0",
+    "cpy-cli": "^7.0.0",
     "esbuild": "^0.28.0",
-    "eslint": "^9.37.0",
+    "eslint": "^10.8.0",
     "globals": "^17.0.0",
     "replace": "^1.2.2",
     "rimraf": "^6.0.1",
@@ -124,7 +124,7 @@
     "typedoc-plugin-markdown": "^4.9.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.0",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.10"
   },
   "bugs": {
     "url": "https://github.com/LuanRT/YouTube.js/issues"

@@ -27,7 +27,7 @@ export default class Comments {
     const contents = this.#page.on_response_received_endpoints;
 
     if (!contents)
-      throw new InnertubeError('Comments page did not have any content.');
+      throw new InnertubeError('The comments page did not have any content');
 
     const header_node = contents.at(0)?.as(AppendContinuationItemsAction, ReloadContinuationItemsCommand);
     const body_node = contents.at(1)?.as(AppendContinuationItemsAction, ReloadContinuationItemsCommand);
@@ -40,6 +40,7 @@ export default class Comments {
       if (thread.comment)
         thread.comment.setActions(this.#actions);
       thread.setActions(this.#actions);
+      thread.processRepliesData();
       return thread;
     }));
 
@@ -52,7 +53,7 @@ export default class Comments {
    */
   async applySort(sort: 'TOP_COMMENTS' | 'NEWEST_FIRST'): Promise<Comments> {
     if (!this.header)
-      throw new InnertubeError('Page header is missing. Cannot apply sort option.');
+      throw new InnertubeError('Could not apply sort because the comments header is missing');
 
     let button;
 
@@ -63,7 +64,7 @@ export default class Comments {
     }
 
     if (!button)
-      throw new InnertubeError('Could not find target button.');
+      throw new InnertubeError('Could not apply sort because the sort button is missing');
 
     if (button.selected)
       return this;
@@ -79,15 +80,15 @@ export default class Comments {
    */
   async createComment(text: string): Promise<ApiResponse> {
     if (!this.header)
-      throw new InnertubeError('Page header is missing. Cannot create comment.');
+      throw new InnertubeError('Comment could not be created because the page header is missing');
 
     const button = this.header.create_renderer?.as(CommentSimplebox).submit_button;
 
     if (!button)
-      throw new InnertubeError('Could not find target button. You are probably not logged in.');
+      throw new InnertubeError('Comment could not be created because the comment button is missing');
 
     if (!button.endpoint)
-      throw new InnertubeError('Button does not have an endpoint.');
+      throw new InnertubeError('Comment could not be created because the comment button does not have an endpoint');
 
     return await button.endpoint.call(this.#actions, { commentText: text });
   }
@@ -97,7 +98,7 @@ export default class Comments {
    */
   async getContinuation(): Promise<Comments> {
     if (!this.#continuation)
-      throw new InnertubeError('Continuation not found');
+      throw new InnertubeError('No continuation item found');
 
     const data = await this.#continuation.endpoint.call(this.#actions, { parse: true });
 
@@ -105,7 +106,7 @@ export default class Comments {
     const page = Object.assign({}, this.#page);
 
     if (!page.on_response_received_endpoints || !data.on_response_received_endpoints)
-      throw new InnertubeError('Invalid reponse format, missing on_response_received_endpoints.');
+      throw new InnertubeError('Invalid reponse format, missing on_response_received_endpoints');
 
     // Remove previous items and append the continuation.
     page.on_response_received_endpoints.pop();

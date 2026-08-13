@@ -6,8 +6,11 @@ export { default as AccessibilityData } from './classes/misc/AccessibilityData.t
 export { default as Author } from './classes/misc/Author.ts';
 export { default as ChildElement } from './classes/misc/ChildElement.ts';
 export { default as CommandContext } from './classes/misc/CommandContext.ts';
+export { default as CommentsContinuation } from './classes/misc/CommentsContinuation.ts';
 export { default as EmojiRun } from './classes/misc/EmojiRun.ts';
 export { default as Format } from './classes/misc/Format.ts';
+export { default as PlaylistCollaborationFormSchema } from './classes/misc/PlaylistCollaborationFormSchema.ts';
+export { default as PlaylistCollaborationViewModelPlaylistCollaboratorData } from './classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts';
 export { default as RendererContext } from './classes/misc/RendererContext.ts';
 export { default as SubscriptionButton } from './classes/misc/SubscriptionButton.ts';
 export { default as Text } from './classes/misc/Text.ts';
