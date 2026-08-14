@@ -4,6 +4,9 @@ import type {
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
   PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand, ShowMiniplayerCommand, NavigateAction
 } from '../index.js';
+import type Translation from '../classes/ytstudio/Translation.js';
+import type CreatorVideo from '../classes/ytstudio/CreatorVideo.js';
+import type UploadFeedbackItem from '../classes/ytstudio/UploadFeedbackItem.js';
 
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
 import type CardCollection from '../classes/CardCollection.js';
@@ -89,6 +92,13 @@ export interface IParsedResponse {
   continuation_endpoint?: YTNode;
   player_response?: IPlayerResponse;
   watch_next_response?: INextResponse;
+  video_id?: string;
+  translation?: Translation;
+  creator_videos?: CreatorVideo[];
+  feedback_responses?: { isProcessed: boolean }[];
+  upload_feedback_item?: UploadFeedbackItem;
+  upload_feedback_items?: UploadFeedbackItem[];
+  challenge_prompt_type?: 'CHALLENGE_PROMPT_TYPE_UNSPECIFIED' | 'CHALLENGE_PROMPT_TYPE_AUTHENTICATE';
 }
 
 export interface ITrustedResource {
@@ -165,3 +175,9 @@ export type IESRChallengeResponse = Pick<IParsedResponse, 'ctx' | 'should_fetch_
 export type IGetSessionTokenResponse = Pick<IParsedResponse, 'session_token'>;
 export type IGetWebReauthURLResponse = Pick<IParsedResponse, 'encoded_reauth_proof_token' | 'session_risk_ctx'>;
 export type IShowEngagementPanelResponse = Pick<IParsedResponse, 'content'>;
+export type ICreateCaptionsResponse = Pick<IParsedResponse, 'translation' | 'challenge_prompt_type'>;
+export type IParseCaptionsResponse = Pick<IParsedResponse, 'translation' | 'challenge_prompt_type'>;
+export type IUpdateCaptionsResponse = Pick<IParsedResponse, 'challenge_prompt_type'>;
+export type IMetadataUpdateResponse = Pick<IParsedResponse, 'creator_videos' | 'challenge_prompt_type'>;
+export type ICreateVideoResponse = Pick<IParsedResponse, 'video_id' | 'upload_feedback_item' | 'challenge_prompt_type'>;
+export type IUploadFeedbackResponse = Pick<IParsedResponse, 'feedback_responses' | 'upload_feedback_items' | 'challenge_prompt_type'>;

@@ -1,17 +1,23 @@
 import type {
   IBrowseResponse,
+  ICreateCaptionsResponse,
+  ICreateVideoResponse,
   IESRChallengeResponse,
   IGetChallengeResponse,
   IGetNotificationsMenuResponse,
   IGetSessionTokenResponse,
   IGetWebReauthURLResponse,
+  IMetadataUpdateResponse,
   INextResponse,
+  IParseCaptionsResponse,
   IParsedResponse,
   IPlayerResponse,
   IRawResponse,
   IResolveURLResponse,
   ISearchResponse,
-  IUpdatedMetadataResponse
+  IUpdateCaptionsResponse,
+  IUpdatedMetadataResponse,
+  IUploadFeedbackResponse
 } from '../parser/index.js';
 import { NavigateAction, Parser } from '../parser/index.js';
 import { InnertubeError, u8ToBase64 } from '../utils/Utils.js';
@@ -53,6 +59,12 @@ export type ParsedResponse<T> =
   T extends '/att/esr' ? IESRChallengeResponse :
   T extends '/ars/grst' ? IGetSessionTokenResponse :
   T extends '/security/get_web_reauth_url' ? IGetWebReauthURLResponse :
+  T extends '/globalization/create_captions' ? ICreateCaptionsResponse :
+  T extends '/globalization/parse_captions' ? IParseCaptionsResponse :
+  T extends '/globalization/update_captions' ? IUpdateCaptionsResponse :
+  T extends '/video_manager/metadata_update' ? IMetadataUpdateResponse :
+  T extends '/upload/createvideo' ? ICreateVideoResponse :
+  T extends '/upload/feedback' ? IUploadFeedbackResponse :
   IParsedResponse;
 
 export default class Actions {
@@ -194,6 +206,7 @@ export default class Actions {
           if (data.channel_id && this.session.context.user) {
             const delegation_context = {
               externalChannelId: data.channel_id,
+              // ?? Not to sure when this is ever not 'CREATOR_CHANNEL_ROLE_TYPE_OWNER', but if it can be else-things then gotta fetch it...
               roleType: { channelRoleType: 'CREATOR_CHANNEL_ROLE_TYPE_OWNER' as const }
             };
 

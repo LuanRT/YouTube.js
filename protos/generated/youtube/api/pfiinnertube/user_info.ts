@@ -39,6 +39,7 @@ export interface UserInfo_DelegationContext_RoleType {
 export enum UserInfo_DelegationContext_RoleType_ChannelRoleType {
   CHANNEL_ROLE_TYPE_UNKNOWN = 0,
   CREATOR_CHANNEL_ROLE_TYPE_OWNER = 8,
+  // TODO fill in the rest off the role types
   UNRECOGNIZED = -1,
 }
 

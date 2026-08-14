@@ -1,11 +1,21 @@
 import type { BotGuardChallenge, BotGuardSolver } from '../../types/BotGuard.js';
 import type { EngagementType } from '../../types/Misc.js';
-import type { ContinuationsUploadFeedback, CreateVideoResponse, CreatorVideo, FileNamedBufferReader, StudioVisibility, UploadVideoDetails } from '../../types/StudioWebUploading.js';
+import type { FileNamedBufferReader, StudioVisibility, UploadVideoDetails } from '../../types/StudioWebUploading.js';
+import type { ICreateCaptionsResponse, ICreateVideoResponse, IMetadataUpdateResponse, IParseCaptionsResponse, IParsedResponse, IUpdateCaptionsResponse } from '../../parser/index.js';
+import type UploadFeedbackItem from '../../parser/classes/ytstudio/UploadFeedbackItem.js';
 import { Constants, Log } from '../../utils/index.js';
 import { InnertubeError, Platform, wait } from '../../utils/Utils.js';
-import type { Actions, Session } from '../index.js';
+import type { Actions, ParsedResponse, Session } from '../index.js';
 
 type AttestationPlacement = 'none' | 'context' | 'top_level';
+
+type StudioManagedEndpoint =
+  | '/globalization/create_captions'
+  | '/globalization/parse_captions'
+  | '/globalization/update_captions'
+  | '/video_manager/metadata_update'
+  | '/upload/createvideo'
+  | '/upload/feedback';
 
 interface BotGuardAttestationResponse {
   challenge: string;
@@ -41,24 +51,15 @@ interface ScottyUploadResult { status?: string; scottyResourceId?: string };
 type ScottyProgress = (written_bytes: number, total_bytes: number) => void;
 type ScottyUploadType = 'VIDEO' | 'THUMBNAIL';
 
-interface StudioChallengeResponseContext {
-  responseContext?: { webResponseContextExtensionData?: { challenge?: { type?: 'CHALLENGE_PROMPT_TYPE_AUTHENTICATE' } } };
-}
-
-interface CreateCaptionsResponse { translation?: { captionsTranslations?: { contentUpdateTime?: string }[] } };
-interface ParseCaptionsResponse { captionSegments?: object }
-interface UpdateCaptionsResponse { framework_updates?: object }
-
-interface MetadataUpdateResponse { videos?: CreatorVideo[] };
 type UpdateMetadataPayload = Record<string, unknown>;
 
 interface UploadSubtitlesResponse {
-  created: CreateCaptionsResponse;
-  parsed: ParseCaptionsResponse;
-  updated: UpdateCaptionsResponse;
+  created: ICreateCaptionsResponse;
+  parsed: IParseCaptionsResponse;
+  updated: IUpdateCaptionsResponse;
 }
 
-interface UploadFeedbackResult { contents: ContinuationsUploadFeedback, next: () => Promise<UploadFeedbackResult | null> };
+interface UploadFeedbackResult { contents: UploadFeedbackItem[], next: () => Promise<UploadFeedbackResult | null> };
 
 const VIDEO_READ_MASK = {
   videoId: true,
@@ -351,29 +352,28 @@ export default class StudioWeb {
     return await this.#uploadToScotty('THUMBNAIL', file_name_buffer_reader, {});
   }
 
-  async managedExecute<T extends object>(endpoint: string, payload: object, channel_id?: string, attestation_placement: AttestationPlacement = 'none', eats?: string, is_retry = false): Promise<T> {
+  async managedExecute<T extends StudioManagedEndpoint>(endpoint: T, payload: object, channel_id?: string, attestation_placement: AttestationPlacement = 'none', eats?: string, is_retry = false): Promise<ParsedResponse<T>> {
     const attestation_response_data = attestation_placement === 'none' ? undefined : await this.#getBotGuardAttestation();
 
-    const response = await this.#actions.execute(endpoint, {
+    const data = await this.#actions.execute(endpoint, {
       client: 'WEB_CREATOR',
+      parse: true,
       session_token: await this.getSessionToken(),
       ...payload,
       ...(attestation_placement === 'context' ? { attestation_response_data } : {}),
       ...(attestation_placement === 'top_level' ? { attestationResponseData: attestation_response_data } : {}),
       ...(!eats ? {} : { eats }),
       ...(!channel_id ? {} : { channel_id })
-    });
-    if (!response.success) throw new InnertubeError(`YouTube Studio call to ${endpoint} failed`);
-    const data = response.data as T & StudioChallengeResponseContext;
+    }) as IParsedResponse;
 
-    if (data.responseContext?.webResponseContextExtensionData?.challenge?.type === 'CHALLENGE_PROMPT_TYPE_AUTHENTICATE') {
+    if (data.challenge_prompt_type === 'CHALLENGE_PROMPT_TYPE_AUTHENTICATE') {
       if (!is_retry && this.#auto_retry && channel_id !== undefined) {
         this.#force_refresh_session_token = true;
         return await this.managedExecute<T>(endpoint, payload, channel_id, attestation_placement, eats, true);
       }
       throw new InnertubeError('YouTube Studio is requesting an authentication challenge, likely a stale session token');
     }
-    return data;
+    return data as ParsedResponse<T>;
   }
 
   async uploadSubtitles(video_id: string, subtitles: NonNullable<UploadVideoDetails['subtitles']>, language = 'en-US'): Promise<UploadSubtitlesResponse> {
@@ -381,7 +381,7 @@ export default class StudioWeb {
     const data_uri = `data:application/octet-stream;base64,${data_base64}`;
     const tts_track_id = { lang: language, kind: '', name: '' };
 
-    const created = await this.managedExecute<CreateCaptionsResponse>('/globalization/create_captions', {
+    const created = await this.managedExecute('/globalization/create_captions', {
       videoId: video_id,
       channelId: this.#channel_id,
       newTrack: tts_track_id,
@@ -389,16 +389,16 @@ export default class StudioWeb {
       autoTranslate: subtitles.auto_translate ?? false
     }, this.#channel_id);
 
-    const content_update_time = created.translation?.captionsTranslations?.[0]?.contentUpdateTime;
+    const content_update_time = created.translation?.captions_translations?.[0]?.content_update_time;
     if (content_update_time === undefined) throw new InnertubeError('create_captions did not return a contentUpdateTime');
 
-    const parsed = await this.managedExecute<ParseCaptionsResponse>('/globalization/parse_captions', {
+    const parsed = await this.managedExecute('/globalization/parse_captions', {
       fileType: subtitles.synced ? 'CAPTIONS_FILE_TYPE_TIMED_TEXT' : 'CAPTIONS_FILE_TYPE_TRANSCRIPT',
       fileName: subtitles.data.file_name,
       dataUri: data_uri
     }, this.#channel_id);
 
-    const updated = await this.managedExecute<UpdateCaptionsResponse>('/globalization/update_captions', {
+    const updated = await this.managedExecute('/globalization/update_captions', {
       videoId: video_id,
       channelId: this.#channel_id,
       operations: [
@@ -521,8 +521,8 @@ export default class StudioWeb {
     return payload;
   }
 
-  async #updateMetadata(video_id: string, payload: UpdateMetadataPayload): Promise<MetadataUpdateResponse> {
-    return await this.managedExecute<MetadataUpdateResponse>('/video_manager/metadata_update', {
+  async #updateMetadata(video_id: string, payload: UpdateMetadataPayload): Promise<IMetadataUpdateResponse> {
+    return await this.managedExecute('/video_manager/metadata_update', {
       encryptedVideoId: video_id,
       videoReadMask: VIDEO_READ_MASK,
       flowType: 'MDE_FLOW_TYPE_UPLOAD',
@@ -539,7 +539,7 @@ export default class StudioWeb {
 
     const payload = this.#buildMetadataUpdate(details, thumbnail_resource_id);
 
-    let update_metadata_response: MetadataUpdateResponse | object = {};
+    let update_metadata_response: IMetadataUpdateResponse | object = {};
     let update_subtitles_response: UploadSubtitlesResponse | object = {};
 
     if (Object.keys(payload).length > 0) {
@@ -559,43 +559,20 @@ export default class StudioWeb {
     return update_metadata_response;
   }
 
-  #tryGetFeedbackToken(feedback: ContinuationsUploadFeedback): string | null {
-    try {
-      const feedback_token = feedback[0].uploadFeedbackItemContinuation.continuations[0].uploadFeedbackRefreshContinuation?.continuation;
-      if (feedback_token) return feedback_token;
-      const timed_token = feedback[0].uploadFeedbackItemContinuation.continuations[0].timedContinuationData?.continuation;
-      if (timed_token) return timed_token;
-      return null;
-    } catch (_) {
-      return null;
-    }
-  }
-  #tryGetFeedbackDelay(feedback: ContinuationsUploadFeedback): number | null {
-    try {
-      const feedback_timeout = feedback[0].uploadFeedbackItemContinuation.continuations[0].uploadFeedbackRefreshContinuation?.continueInMs;
-      if (feedback_timeout) return feedback_timeout;
-      const timed_timeout = feedback[0].uploadFeedbackItemContinuation.continuations[0].timedContinuationData?.timeoutMs;
-      if (timed_timeout) return timed_timeout;
-      return null;
-    } catch (_) {
-      return null;
-    }
-  }
-
   // from https://studio.youtube.com/youtubei/v1/creator/get_channel_dashboard?alt=json under interactionRecordingParams; likely useless
   async uploadFeedback(tokens: string[], type: 'FEEDBACK_TOKENS'): Promise<{ isProcessed: boolean }>
   // initial from createvideo under uploadFeedbackRefreshContinuation
   async uploadFeedback(tokens: string[], type: 'CONTINUATION_TOKENS'): Promise<UploadFeedbackResult>
   async uploadFeedback(tokens: string[], type: 'FEEDBACK_TOKENS' | 'CONTINUATION_TOKENS'): Promise<{ isProcessed: boolean } | UploadFeedbackResult | null> {
     if (tokens.filter((token) => token).length === 0) return null;
-    const feedback_data = await this.managedExecute<{ feedbackResponse?: { isProcessed: boolean }, continuationContents?: ContinuationsUploadFeedback }>('upload/feedback',
+    const feedback_data = await this.managedExecute('/upload/feedback',
       type === 'CONTINUATION_TOKENS' ? { continuations: tokens } : { feedbackTokens: tokens });
     try {
-      if (type === 'FEEDBACK_TOKENS') return feedback_data.feedbackResponse as { isProcessed: boolean };
-      const contents = feedback_data.continuationContents as ContinuationsUploadFeedback;
+      if (type === 'FEEDBACK_TOKENS') return feedback_data.feedback_responses?.[0] as { isProcessed: boolean };
+      const contents = feedback_data.upload_feedback_items ?? [];
       return {
         contents, next: async () => await this.uploadFeedback([
-          this.#tryGetFeedbackToken(contents) ?? ''
+          contents[0]?.continuation_token ?? ''
         ], 'CONTINUATION_TOKENS')
       };
     } catch (_) {
@@ -603,14 +580,14 @@ export default class StudioWeb {
     }
   }
 
-  async uploadFeedbackCycle(initial_tokens: (string | null)[], callback_continue: (content: ContinuationsUploadFeedback) => boolean) {
+  async uploadFeedbackCycle(initial_tokens: (string | null)[], callback_continue: (content: UploadFeedbackItem[]) => boolean) {
     if (initial_tokens.some((token) => token === null)) return;
     let feedback: null | UploadFeedbackResult = await this.uploadFeedback(initial_tokens as string[], 'CONTINUATION_TOKENS');
     if (feedback === null) return;
     do {
       try {
         if (!callback_continue(feedback.contents)) break;
-        const delay = this.#tryGetFeedbackDelay(feedback.contents);
+        const delay = feedback.contents[0]?.continuation_delay_ms ?? null;
         if (delay === null) {
           Log.warn('upload feedback delay is null; exiting for safety');
           break;
@@ -628,20 +605,8 @@ export default class StudioWeb {
     while ((feedback = await feedback.next()) !== null);
   }
 
-  #tryGetUploadVideoFeedbackToken(created: CreateVideoResponse): string | null {
-    try {
-      const feedback = created.contents.uploadFeedbackItemRenderer.continuations[0].uploadFeedbackRefreshContinuation?.continuation;
-      if (feedback) return feedback;
-      const timed = created.contents.uploadFeedbackItemRenderer.continuations[0].timedContinuationData?.continuation;
-      if (timed) return timed;
-      return null;
-    } catch (_) {
-      return null;
-    }
-  }
-
   async uploadVideo(file: FileNamedBufferReader, details: Partial<UploadVideoDetails> = {}, on_scotty_progress?: (written_bytes: number, total_bytes: number) => void,
-    on_initial_create_video?: (full_created: { created: CreateVideoResponse, feedback_token: string | null }) => any) {
+    on_initial_create_video?: (full_created: { created: ICreateVideoResponse, feedback_token: string | null }) => any) {
     const frontend_upload_id = `innertube_studio:${Platform.shim.uuidv4().toUpperCase()}:0`;
     const start = await this.#scottyStart(UPLOAD_TYPES_TO_START_URL['VIDEO'], file, { frontendUploadId: frontend_upload_id });
 
@@ -649,7 +614,7 @@ export default class StudioWeb {
 
     if (!start.resource_id) throw new InnertubeError('Scotty didn\'t resolve a resource ID');
 
-    const created = await this.managedExecute<CreateVideoResponse>('/upload/createvideo', {
+    const created = await this.managedExecute('/upload/createvideo', {
       channelId: this.#channel_id,
       resourceId: { scottyResourceId: { id: start.resource_id } },
       frontendUploadId: frontend_upload_id,
@@ -667,15 +632,15 @@ export default class StudioWeb {
       presumedShort: false
     }, this.#channel_id, 'context');
 
-    on_initial_create_video?.({ created, feedback_token: this.#tryGetUploadVideoFeedbackToken(created) });
+    on_initial_create_video?.({ created, feedback_token: created.upload_feedback_item?.continuation_token ?? null });
 
-    const video_id = created.videoId;
+    const video_id = created.video_id;
     if (video_id === undefined || video_id === '') {
       await chunks_uploaded;
       throw new InnertubeError('createvideo did not return a videoId');
     }
 
-    const uploaded = await chunks_uploaded;
+    await chunks_uploaded;
 
     // title and tags already went up with createvideo
     const { title: _title, tags: _tags, visibility, ...remaining_details } = details;

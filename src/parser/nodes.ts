@@ -559,3 +559,8 @@ export { default as KidsBlocklistPickerItem } from './classes/ytkids/KidsBlockli
 export { default as KidsCategoriesHeader } from './classes/ytkids/KidsCategoriesHeader.js';
 export { default as KidsCategoryTab } from './classes/ytkids/KidsCategoryTab.js';
 export { default as KidsHomeScreen } from './classes/ytkids/KidsHomeScreen.js';
+export { default as CreatorVideo } from './classes/ytstudio/CreatorVideo.js';
+export { default as DataFreshnessEntity } from './classes/ytstudio/DataFreshnessEntity.js';
+export { default as Translation } from './classes/ytstudio/Translation.js';
+export { default as UploadFeedbackItem } from './classes/ytstudio/UploadFeedbackItem.js';
+export { default as VideoUploadChecks } from './classes/ytstudio/VideoUploadChecks.js';

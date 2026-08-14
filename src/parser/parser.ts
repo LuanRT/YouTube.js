@@ -232,8 +232,15 @@ export function getDynamicParsers() {
 export function parseResponse<T extends IParsedResponse = IParsedResponse>(data: IRawResponse): T {
   const parsed_data = {} as T;
 
+  const upload_feedback_item = (data.contents && !Array.isArray(data.contents) && data.contents.uploadFeedbackItemRenderer) ?
+    new YTNodes.UploadFeedbackItem(data.contents.uploadFeedbackItemRenderer) :
+    null;
+  if (upload_feedback_item) {
+    parsed_data.upload_feedback_item = upload_feedback_item;
+  }
+
   _createMemo();
-  const contents = parse(data.contents);
+  const contents = upload_feedback_item ? null : parse(data.contents);
   const contents_memo = _getMemo();
   if (contents) {
     parsed_data.contents = contents;
@@ -267,9 +274,15 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.on_response_received_commands_memo = on_response_received_commands_memo;
   }
   _clearMemo();
+  if (Array.isArray(data.continuationContents)) {
+    parsed_data.upload_feedback_items = data.continuationContents
+      .map((entry) => entry.uploadFeedbackItemContinuation)
+      .filter((entry) => entry)
+      .map((entry) => new YTNodes.UploadFeedbackItem(entry));
+  }
 
   _createMemo();
-  const continuation_contents = data.continuationContents ? parseLC(data.continuationContents) : null;
+  const continuation_contents = (data.continuationContents && !Array.isArray(data.continuationContents)) ? parseLC(data.continuationContents) : null;
   const continuation_contents_memo = _getMemo();
   if (continuation_contents) {
     parsed_data.continuation_contents = continuation_contents;
@@ -566,6 +579,27 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.target_id = data.targetId;
   }
 
+  if (data.videoId) {
+    parsed_data.video_id = data.videoId;
+  }
+
+  if (data.translation) {
+    parsed_data.translation = new YTNodes.Translation(data.translation);
+  }
+
+  if (data.videos) {
+    parsed_data.creator_videos = data.videos.map((video) => new YTNodes.CreatorVideo(video));
+  }
+
+  if (data.feedbackResponses) {
+    parsed_data.feedback_responses = data.feedbackResponses;
+  }
+
+  const challenge_prompt_type = data.responseContext?.webResponseContextExtensionData?.challenge?.type;
+  if (challenge_prompt_type) {
+    parsed_data.challenge_prompt_type = challenge_prompt_type;
+  }
+
   return parsed_data;
 }
 
@@ -808,6 +842,27 @@ export function parseActions(data: RawData) {
 
 export function parseFormats(formats: RawNode[], this_response_nsig_cache: Map<string, string>): Format[] {
   return formats?.map((format) => new Format(format, this_response_nsig_cache)) || [];
+}
+
+// useful for YTStudio since it outputs more in a nested data format rather than a 'rendering' format
+export function parseObject<T = any>(data: unknown): T {
+  if (Array.isArray(data)) {
+    return data.map((item) => parseObject(item)) as T;
+  }
+
+  if (data !== null && typeof data === 'object') {
+    const result: Record<string, unknown> = {};
+    for (const [ key, value ] of Object.entries(data)) {
+      result[camelToSnake(key)] = parseObject(value);
+    }
+    return result as T;
+  }
+
+  return data as T;
+}
+export function parseAll<T = any>(data: unknown): T[] {
+  if (!Array.isArray(data)) return [];
+  return data.map((item) => parseObject<T>(item));
 }
 
 export function applyMutations(memo: Memo, mutations: RawNode[]) {
