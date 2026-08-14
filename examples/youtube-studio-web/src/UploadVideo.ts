@@ -9,8 +9,7 @@ const SRT_FILE_PATH = ""; // ?? Place your srt file path here
 (async () => {
   const yt = await Innertube.create({ cache: new UniversalCache(false), cookie: COOKIES });
 
-  // ?? Place your channel_ID here or use `await get_channel_id(yt)`
-  const CHANNEL_ID = '';
+  const CHANNEL_ID = await get_channel_id(yt);
 
   const yt_studio_web = yt.studioWeb(CHANNEL_ID);
   yt_studio_web.setBotGuardSolver(botguard_solver);
