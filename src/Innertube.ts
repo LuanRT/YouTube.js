@@ -34,7 +34,9 @@ import type {
   GetVideoInfoOptions,
   InnerTubeClient,
   InnerTubeConfig,
-  SearchFilters
+  SearchFilters,
+  CreatePost,
+  BotGuardSolver
 } from './types/index.js';
 import type { IBrowseResponse, IGetChallengeResponse, IParsedResponse, RawData } from './parser/index.js';
 
@@ -51,8 +53,6 @@ import {
   SearchFilter_Filters_UploadDate,
   SearchFilter_Prioritize
 } from '../protos/generated/misc/params.js';
-import type { CreatePost } from './types/CreatePost.js';
-import type { BotGuardSolver } from './types/BotGuard.js';
 import { parseResponse } from './parser/parser.js';
 import RunAttestationCommand from './parser/classes/commands/RunAttestationCommand.js';
 
