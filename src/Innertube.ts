@@ -591,8 +591,10 @@ export default class Innertube {
 
   // TODO better names this??
   async initialData(page_url: string) {
-    const inital_data = await this.session.http.fetch(page_url, {
+    const url = new URL(page_url);
+    const inital_data = await this.session.http.fetch(url.pathname, {
       method: 'GET',
+      baseURL: url.origin,
       headers: {
         'Content-Type': 'text/html'
       }
@@ -607,7 +609,7 @@ export default class Innertube {
 
     return {
       ytcfg: ytcfg_string ? JSON.parse(ytcfg_string) as RawData : null,
-      atn: attestation_data_string ? parseResponse<IGetChallengeResponse>(parseLooseJSON(attestation_data_string)) : null
+      atn: attestation_data_string ? parseResponse<IGetChallengeResponse>(parseLooseJSON(attestation_data_string).R) : null
     };
   }
 
