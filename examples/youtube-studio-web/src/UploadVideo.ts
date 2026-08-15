@@ -31,11 +31,8 @@ const SRT_FILE_PATH = ""; // ?? Place your srt file path here
   }, async (full_created) => {
     // NOTE this cycle fires every 2s-ish
     await yt_studio_web.uploadFeedbackCycle([full_created.feedback_token], (content) => {
-      if (content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]?.transferProgressBar)
-        console.log(content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]?.transferProgressBar);
-      else if (content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]?.uploadChecksRenderer)
-        console.log(content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]?.uploadChecksRenderer);
-      else console.log(content?.[0]?.uploadFeedbackItemContinuation?.contents?.[0]);
+      if(content[0].transfer_progress_bar?.progress_message) console.log(content[0].transfer_progress_bar?.progress_message);
+      if(content[0].is_processing) console.log("processing...");
       return true;
     });
   });
