@@ -587,8 +587,8 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.translation = new YTNodes.Translation(data.translation);
   }
 
-  if (data.videos) {
-    parsed_data.creator_videos = data.videos.map((video) => new YTNodes.CreatorVideo(video));
+  if (data?.creatorEntities?.wrappedVideoData?.video) {
+    parsed_data.creator_video = new YTNodes.CreatorVideo(data.creatorEntities.wrappedVideoData.video);
   }
 
   if (data.feedbackResponses) {

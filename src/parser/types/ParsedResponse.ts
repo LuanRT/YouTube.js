@@ -94,7 +94,7 @@ export interface IParsedResponse {
   watch_next_response?: INextResponse;
   video_id?: string;
   translation?: Translation;
-  creator_videos?: CreatorVideo[];
+  creator_video?: CreatorVideo;
   feedback_responses?: { isProcessed: boolean }[];
   upload_feedback_item?: UploadFeedbackItem;
   upload_feedback_items?: UploadFeedbackItem[];
@@ -178,6 +178,6 @@ export type IShowEngagementPanelResponse = Pick<IParsedResponse, 'content'>;
 export type ICreateCaptionsResponse = Pick<IParsedResponse, 'translation' | 'challenge_prompt_type'>;
 export type IParseCaptionsResponse = Pick<IParsedResponse, 'translation' | 'challenge_prompt_type'>;
 export type IUpdateCaptionsResponse = Pick<IParsedResponse, 'challenge_prompt_type'>;
-export type IMetadataUpdateResponse = Pick<IParsedResponse, 'creator_videos' | 'challenge_prompt_type'>;
+export type IMetadataUpdateResponse = Pick<IParsedResponse, 'creator_video' | 'challenge_prompt_type'>;
 export type ICreateVideoResponse = Pick<IParsedResponse, 'video_id' | 'upload_feedback_item' | 'challenge_prompt_type'>;
 export type IUploadFeedbackResponse = Pick<IParsedResponse, 'feedback_responses' | 'upload_feedback_items' | 'challenge_prompt_type'>;
