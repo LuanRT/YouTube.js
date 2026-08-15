@@ -24,7 +24,7 @@ import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
 import type Format from './parser/classes/misc/Format.js';
 
 import * as Constants from './utils/Constants.js';
-import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
+import { generateRandomString, InnertubeError, parseLooseJSON, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
 
 import type { ApiResponse } from './core/Actions.js';
 import type {
@@ -36,7 +36,7 @@ import type {
   InnerTubeConfig,
   SearchFilters
 } from './types/index.js';
-import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
+import type { IBrowseResponse, IGetChallengeResponse, IParsedResponse, RawData } from './parser/index.js';
 
 import {
   CommunityPostCommentsParam,
@@ -51,6 +51,10 @@ import {
   SearchFilter_Filters_UploadDate,
   SearchFilter_Prioritize
 } from '../protos/generated/misc/params.js';
+import type { CreatePost } from './types/CreatePost.js';
+import type { BotGuardSolver } from './types/BotGuard.js';
+import { parseResponse } from './parser/parser.js';
+import RunAttestationCommand from './parser/classes/actions/RunAttestationCommand.js';
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -553,6 +557,24 @@ export default class Innertube {
     return new Comments(this.actions, response.data);
   }
 
+  async createPost(channel_id: string, post: CreatePost, botguard_solver: BotGuardSolver<string>) {
+    if (!this.#session.logged_in) throw new InnertubeError('Must be logged-in to create a post');
+    const create_post_response = await this.actions.execute('/backstage/create_post', {
+      parse: true,
+      ...post
+    });
+    if (!create_post_response.actions?.is_array) return false;
+    const attestation_command = create_post_response.actions.array()[0].as(RunAttestationCommand);
+    const attestation_run_response = await attestation_command.run(this, botguard_solver, undefined, `https://www.youtube.com/channel/${channel_id}/posts`);
+    const attestation_log_response = this.actions.execute('/att/log', {
+      challenge: attestation_run_response.challenge.challenge,
+      engagementType: attestation_command.engagement_type,
+      ids: attestation_command.ids,
+      webResponse: attestation_run_response.web_response
+    });
+    return { create_post_response, attestation_log_response };
+  }
+
   /**
    * Fetches an attestation challenge.
    */
@@ -560,11 +582,33 @@ export default class Innertube {
     const payload: Record<string, any> = {
       engagementType: engagement_type
     };
-    
+
     if (ids)
       payload.ids = ids;
     
     return this.actions.execute('/att/get', { parse: true, ...payload });
+  }
+
+  // TODO better names this??
+  async initialData(page_url: string) {
+    const inital_data = await this.session.http.fetch(page_url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'text/html'
+      }
+    });
+    const html = await inital_data.text();
+
+    const ytcfg_regex = /ytcfg\.set\(({.+?})\);/s;
+    const attestation_data_regex = /window\.ytAtN\(\s*({[\s\S]*?})\s*\)/;
+
+    const ytcfg_string = ytcfg_regex.exec(html)?.[1];
+    const attestation_data_string = attestation_data_regex.exec(html)?.[1];
+
+    return {
+      ytcfg: ytcfg_string ? JSON.parse(ytcfg_string) as RawData : null,
+      atn: attestation_data_string ? parseResponse<IGetChallengeResponse>(parseLooseJSON(attestation_data_string)) : null
+    };
   }
 
   /**

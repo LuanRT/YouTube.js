@@ -41,6 +41,7 @@ import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
 import OpenPopupAction from './classes/actions/OpenPopupAction.js';
 import AppendContinuationItemsAction from './classes/actions/AppendContinuationItemsAction.js';
+import RunAttestationCommand from './classes/actions/RunAttestationCommand.js';
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
 const TAG = 'Parser';
@@ -757,7 +758,9 @@ export function parseRR(actions: RawNode[]) {
       return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
     else if (action.openPopupAction)
       return new OpenPopupAction(action.openPopupAction);
-  }).filter((item) => item) as (AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand)[]);
+    else if (action.runAttestationCommand)
+      return new RunAttestationCommand(action.runAttestationCommand);
+  }).filter((item) => item) as (AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand | RunAttestationCommand)[]);
 }
 
 export function parseActions(data: RawData) {

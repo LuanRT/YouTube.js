@@ -61,10 +61,12 @@ export default class HTTPClient {
 
     this.#setupCommonHeaders(request_headers, session, request_url);
 
-    request_url.searchParams.set('prettyPrint', 'false');
-    request_url.searchParams.set('alt', 'json');
-
     const content_type = request_headers.get('Content-Type');
+
+    if (content_type !== 'text/html') {
+      request_url.searchParams.set('prettyPrint', 'false');
+      request_url.searchParams.set('alt', 'json');
+    }
 
     let request_body = body;
     let is_web_kids = false;
