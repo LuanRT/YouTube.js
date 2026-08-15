@@ -539,8 +539,8 @@ export default class StudioWeb {
 
     const payload = this.#buildMetadataUpdate(details, thumbnail_resource_id);
 
-    let update_metadata_response: IMetadataUpdateResponse | object = {};
-    let update_subtitles_response: UploadSubtitlesResponse | object = {};
+    let update_metadata_response: IMetadataUpdateResponse | null = null;
+    let update_subtitles_response: UploadSubtitlesResponse | null = null;
 
     if (Object.keys(payload).length > 0) {
       update_metadata_response = await this.#updateMetadata(video_id, payload);
