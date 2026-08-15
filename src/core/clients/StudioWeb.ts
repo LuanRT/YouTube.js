@@ -2,10 +2,10 @@ import type { BotGuardChallenge, BotGuardSolver } from '../../types/BotGuard.js'
 import type { EngagementType } from '../../types/Misc.js';
 import type { FileNamedBufferReader, StudioVisibility, UploadVideoDetails } from '../../types/StudioWebUploading.js';
 import type { ICreateCaptionsResponse, ICreateVideoResponse, IMetadataUpdateResponse, IParseCaptionsResponse, IParsedResponse, IUpdateCaptionsResponse } from '../../parser/index.js';
-import type UploadFeedbackItem from '../../parser/classes/ytstudio/UploadFeedbackItem.js';
 import { Constants, Log } from '../../utils/index.js';
 import { InnertubeError, Platform, wait } from '../../utils/Utils.js';
 import type { Actions, ParsedResponse, Session } from '../index.js';
+import { UploadFeedbackItem } from '../../parser/nodes.js';
 
 type AttestationPlacement = 'none' | 'context' | 'top_level';
 
@@ -569,10 +569,10 @@ export default class StudioWeb {
       type === 'CONTINUATION_TOKENS' ? { continuations: tokens } : { feedbackTokens: tokens });
     try {
       if (type === 'FEEDBACK_TOKENS') return feedback_data.feedback_responses?.[0] as { isProcessed: boolean };
-      const contents = feedback_data.upload_feedback_items ?? [];
+      const contents = (feedback_data.continuation_contents_array ?? []) as UploadFeedbackItem[];
       return {
         contents, next: async () => await this.uploadFeedback([
-          contents[0]?.continuation_token ?? ''
+          contents[0]?.as(UploadFeedbackItem)?.continuation_token ?? ''
         ], 'CONTINUATION_TOKENS')
       };
     } catch (_) {
@@ -632,7 +632,7 @@ export default class StudioWeb {
       presumedShort: false
     }, this.#channel_id, 'context');
 
-    on_initial_create_video?.({ created, feedback_token: created.upload_feedback_item?.continuation_token ?? null });
+    on_initial_create_video?.({ created, feedback_token: created.contents?.item()?.as(UploadFeedbackItem).continuation_token ?? null });
 
     const video_id = created.video_id;
     if (video_id === undefined || video_id === '') {

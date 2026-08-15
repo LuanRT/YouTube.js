@@ -41,6 +41,9 @@ import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
 import OpenPopupAction from './classes/actions/OpenPopupAction.js';
 import AppendContinuationItemsAction from './classes/actions/AppendContinuationItemsAction.js';
+import UploadFeedbackItem from './classes/ytstudio/UploadFeedbackItem.js';
+import CreatorVideo from './classes/ytstudio/CreatorVideo.js';
+import Translation from './classes/ytstudio/Translation.js';
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
 const TAG = 'Parser';
@@ -232,15 +235,8 @@ export function getDynamicParsers() {
 export function parseResponse<T extends IParsedResponse = IParsedResponse>(data: IRawResponse): T {
   const parsed_data = {} as T;
 
-  const upload_feedback_item = (data.contents && !Array.isArray(data.contents) && data.contents.uploadFeedbackItemRenderer) ?
-    new YTNodes.UploadFeedbackItem(data.contents.uploadFeedbackItemRenderer) :
-    null;
-  if (upload_feedback_item) {
-    parsed_data.upload_feedback_item = upload_feedback_item;
-  }
-
   _createMemo();
-  const contents = upload_feedback_item ? null : parse(data.contents);
+  const contents = parse(data.contents);
   const contents_memo = _getMemo();
   if (contents) {
     parsed_data.contents = contents;
@@ -274,19 +270,22 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.on_response_received_commands_memo = on_response_received_commands_memo;
   }
   _clearMemo();
-  if (Array.isArray(data.continuationContents)) {
-    parsed_data.upload_feedback_items = data.continuationContents
-      .map((entry) => entry.uploadFeedbackItemContinuation)
-      .filter((entry) => entry)
-      .map((entry) => new YTNodes.UploadFeedbackItem(entry));
-  }
 
   _createMemo();
-  const continuation_contents = (data.continuationContents && !Array.isArray(data.continuationContents)) ? parseLC(data.continuationContents) : null;
+  const continuation_contents = data.continuationContents ? parseLC(data.continuationContents) : null;
   const continuation_contents_memo = _getMemo();
   if (continuation_contents) {
     parsed_data.continuation_contents = continuation_contents;
     parsed_data.continuation_contents_memo = continuation_contents_memo;
+  }
+  _clearMemo();
+
+  _createMemo();
+  const continuation_contents_array = data.continuationContents && Array.isArray(data.continuationContents) ? data.continuationContents.map((item) => parseLC(item)) : null;
+  const continuation_contents_array_memo = _getMemo();
+  if (continuation_contents_array) {
+    parsed_data.continuation_contents_array = continuation_contents_array;
+    parsed_data.continuation_contents_array_memo = continuation_contents_array_memo;
   }
   _clearMemo();
 
@@ -584,11 +583,11 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   }
 
   if (data.translation) {
-    parsed_data.translation = new YTNodes.Translation(data.translation);
+    parsed_data.translation = new Translation(data.translation);
   }
 
   if (data?.creatorEntities?.wrappedVideoData?.video) {
-    parsed_data.creator_video = new YTNodes.CreatorVideo(data.creatorEntities.wrappedVideoData.video);
+    parsed_data.creator_video = new CreatorVideo(data.creatorEntities.wrappedVideoData.video);
   }
 
   if (data.feedbackResponses) {
@@ -794,7 +793,11 @@ export function parseC(data: RawNode) {
   return null;
 }
 
-export function parseLC(data: RawNode) {
+export type ContinuationContents = null | ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | 
+  MusicPlaylistShelfContinuation | MusicShelfContinuation | GridContinuation | 
+  PlaylistPanelContinuation | ContinuationCommand | UploadFeedbackItem;
+export function parseLC(data: RawNode): ContinuationContents
+export function parseLC(data: RawNode): ContinuationContents {
   if (data.itemSectionContinuation)
     return new ItemSectionContinuation(data.itemSectionContinuation);
   if (data.sectionListContinuation)
@@ -811,7 +814,8 @@ export function parseLC(data: RawNode) {
     return new PlaylistPanelContinuation(data.playlistPanelContinuation);
   if (data.continuationCommand)
     return new ContinuationCommand(data.continuationCommand);
-
+  if (data.uploadFeedbackItemContinuation)
+    return new UploadFeedbackItem(data.uploadFeedbackItemContinuation);
   return null;
 }
 
