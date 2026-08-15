@@ -54,7 +54,7 @@ import {
 import type { CreatePost } from './types/CreatePost.js';
 import type { BotGuardSolver } from './types/BotGuard.js';
 import { parseResponse } from './parser/parser.js';
-import RunAttestationCommand from './parser/classes/actions/RunAttestationCommand.js';
+import RunAttestationCommand from './parser/classes/commands/RunAttestationCommand.js';
 
 /**
  * Provides access to various services and modules in the YouTube API.

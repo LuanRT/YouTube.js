@@ -41,7 +41,7 @@ import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
 import OpenPopupAction from './classes/actions/OpenPopupAction.js';
 import AppendContinuationItemsAction from './classes/actions/AppendContinuationItemsAction.js';
-import RunAttestationCommand from './classes/actions/RunAttestationCommand.js';
+import RunAttestationCommand from './classes/commands/RunAttestationCommand.js';
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
 const TAG = 'Parser';

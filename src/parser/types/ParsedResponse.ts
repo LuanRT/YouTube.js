@@ -21,7 +21,7 @@ import type EngagementPanelSectionList from '../classes/EngagementPanelSectionLi
 import type AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
 import type MusicThumbnail from '../classes/MusicThumbnail.js';
 import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
-import type RunAttestationCommand from '../classes/actions/RunAttestationCommand.js';
+import type RunAttestationCommand from '../classes/commands/RunAttestationCommand.js';
 
 export interface IParsedResponse {
   background?: MusicThumbnail;
