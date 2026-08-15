@@ -179,8 +179,6 @@ export default class Actions {
       delete this.session.context.user?.serializedDelegationContext;
       if (data?.client === 'WEB_CREATOR') {
         if (this.session.context.request) { // should just be true
-          this.session.context.request.returnLogEntry = true;
-
           // TODO maybe I want to manually fetch the initial eats; but it seems that it doesn't matter to much...
           if (data?.eats) {
             this.session.context.request.eats = data?.eats;
