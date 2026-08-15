@@ -27,7 +27,7 @@ const SRT_FILE_PATH = ""; // ?? Place your srt file path here
     visibility: "PRIVATE"
   }, (written_bytes, total_bytes) => {
     // NOTE this callback only fires around every 100mb
-    console.log(`${written_bytes / total_bytes}%`);
+    console.log(`${(written_bytes / total_bytes) * 100}%`);
   }, async (full_created) => {
     // NOTE this cycle fires every 2s-ish
     await yt_studio_web.uploadFeedbackCycle([full_created.feedback_token], (content) => {
