@@ -1,222 +1,215 @@
 import { YTNode } from '../../helpers.js';
 import { type RawNode } from '../../index.js';
-import { parseAll, parseObject } from '../../parser.js';
 import Thumbnail from '../misc/Thumbnail.js';
 import VideoUploadChecks from './VideoUploadChecks.js';
 
-export type CreatorVideoStatus =
-  'VIDEO_STATUS_DELETED' | 'VIDEO_STATUS_FAILED' | 'VIDEO_STATUS_PROCESSED' |
-  'VIDEO_STATUS_REJECTED' | 'VIDEO_STATUS_UNKNOWN' | 'VIDEO_STATUS_UPLOADED' | 'VIDEO_STATUS_WRONG';
+export type CreatorVideoStatus = 'DELETED' | 'FAILED' | 'PROCESSED' | 'REJECTED' | 'UNKNOWN' | 'UPLOADED' | 'WRONG';
 
-export type DraftStatus = 'DRAFT_STATUS_NONE' | 'DRAFT_STATUS_PUBLIC' | 'DRAFT_STATUS_SCHEDULED';
+export type DraftStatus = 'NONE' | 'PUBLIC' | 'SCHEDULED';
 
-export type CreatorVideoPrivacy =
-  'VIDEO_PRIVACY_PRIVATE' | 'VIDEO_PRIVACY_PUBLIC' | 'VIDEO_PRIVACY_SCHEDULED' |
-  'VIDEO_PRIVACY_UNKNOWN' | 'VIDEO_PRIVACY_UNLISTED';
+export type CreatorVideoPrivacy = 'PRIVATE' | 'PUBLIC' | 'SCHEDULED' | 'UNKNOWN' | 'UNLISTED';
 
 export type CreatorVideoCategory =
-  'CREATOR_VIDEO_CATEGORY_AUTOS' | 'CREATOR_VIDEO_CATEGORY_COMEDY' | 'CREATOR_VIDEO_CATEGORY_EDUCATION' |
-  'CREATOR_VIDEO_CATEGORY_ENTERTAINMENT' | 'CREATOR_VIDEO_CATEGORY_FILM' | 'CREATOR_VIDEO_CATEGORY_GADGETS' |
-  'CREATOR_VIDEO_CATEGORY_GOVERNMENT' | 'CREATOR_VIDEO_CATEGORY_HOWTO' | 'CREATOR_VIDEO_CATEGORY_MUSIC' |
-  'CREATOR_VIDEO_CATEGORY_NEWS' | 'CREATOR_VIDEO_CATEGORY_PEOPLE' | 'CREATOR_VIDEO_CATEGORY_PETS' |
-  'CREATOR_VIDEO_CATEGORY_SCIENCE' | 'CREATOR_VIDEO_CATEGORY_SPORTS' | 'CREATOR_VIDEO_CATEGORY_TRAVEL' |
-  'CREATOR_VIDEO_CATEGORY_UNKNOWN';
+  'AUTOS' | 'COMEDY' | 'EDUCATION' |
+  'ENTERTAINMENT' | 'FILM' | 'GADGETS' |
+  'GOVERNMENT' | 'HOWTO' | 'MUSIC' |
+  'NEWS' | 'PEOPLE' | 'PETS' |
+  'SCIENCE' | 'SPORTS' | 'TRAVEL' |
+  'UNKNOWN';
 
 export type VideoCommentFilter =
-  'VIDEO_COMMENT_FILTER_APPROVE' | 'VIDEO_COMMENT_FILTER_AUTO_MODERATE' |
-  'VIDEO_COMMENT_FILTER_AUTO_MODERATE_HOLD_MORE' | 'VIDEO_COMMENT_FILTER_NONE' | 'VIDEO_COMMENT_FILTER_UNKNOWN';
+  'APPROVE' | 'AUTO_MODERATE' |
+  'AUTO_MODERATE_HOLD_MORE' | 'NONE' | 'UNKNOWN';
 
-export type VideoCommentSortOrder = 'VIDEO_COMMENT_SORT_ORDER_LATEST' | 'VIDEO_COMMENT_SORT_ORDER_TOP';
+export type VideoCommentSortOrder = 'LATEST' | 'TOP';
 
-export type VideoAgeRestriction =
-  'VIDEO_AGE_RESTRICTION_APPEAL_BUTTON' | 'VIDEO_AGE_RESTRICTION_NONE' |
-  'VIDEO_AGE_RESTRICTION_SELF' | 'VIDEO_AGE_RESTRICTION_SYSTEM';
+export type VideoAgeRestriction = 'APPEAL_BUTTON' | 'NONE' | 'SELF' | 'SYSTEM';
 
-export type VideoLicense = 'VIDEO_LICENSE_CREATIVE_COMMONS' | 'VIDEO_LICENSE_STANDARD' | 'VIDEO_LICENSE_UNKNOWN';
+export type VideoLicense = 'CREATIVE_COMMONS' | 'STANDARD' | 'UNKNOWN';
 
 export type VideoUncaptionedReason =
-  'VIDEO_UNCAPTIONED_REASON_CAPTIONLESS_TV_CONTENT' | 'VIDEO_UNCAPTIONED_REASON_EXCEPTION_GRANTED' |
-  'VIDEO_UNCAPTIONED_REASON_LEGACY' | 'VIDEO_UNCAPTIONED_REASON_NO_FULL_LENGTH_VIDEO' |
-  'VIDEO_UNCAPTIONED_REASON_NO_US_TV_CONTENT' | 'VIDEO_UNCAPTIONED_REASON_NOT_REQUIRED' |
-  'VIDEO_UNCAPTIONED_REASON_UNNECESSARY_OR_NOT_SET';
+  'CAPTIONLESS_TV_CONTENT' | 'EXCEPTION_GRANTED' |
+  'LEGACY' | 'NO_FULL_LENGTH_VIDEO' |
+  'NO_US_TV_CONTENT' | 'NOT_REQUIRED' |
+  'UNNECESSARY_OR_NOT_SET';
 
 export type VideoSubscriberNotification =
-  'VIDEO_SUBSCRIBER_NOTIFICATION_DISABLED' | 'VIDEO_SUBSCRIBER_NOTIFICATION_ENABLED' |
-  'VIDEO_SUBSCRIBER_NOTIFICATION_NONE' | 'VIDEO_SUBSCRIBER_NOTIFICATION_UNKNOWN';
+  'DISABLED' | 'ENABLED' | 'NONE' | 'UNKNOWN';
 
 export type VideoPaidProductPlacement =
-  'VIDEO_PAID_PRODUCT_PLACEMENT_NO' | 'VIDEO_PAID_PRODUCT_PLACEMENT_NOTIFY' |
-  'VIDEO_PAID_PRODUCT_PLACEMENT_UNKNOWN' | 'VIDEO_PAID_PRODUCT_PLACEMENT_UNSET' | 'VIDEO_PAID_PRODUCT_PLACEMENT_YES';
+  'NO' | 'NOTIFY' | 'UNKNOWN' | 'UNSET' | 'YES';
 
 export type VideoMusicLicensedStatus =
-  'VIDEO_MUSIC_LICENSED_STATUS_CLAIMED_BY_CHANNEL_OWNER' | 'VIDEO_MUSIC_LICENSED_STATUS_DISABLED_BY_CLAIM_PREFERENCE' |
-  'VIDEO_MUSIC_LICENSED_STATUS_ENABLED_BY_CHANNEL_OWNER' | 'VIDEO_MUSIC_LICENSED_STATUS_ENABLED_BY_CHANNEL_OWNER_UNCLAIMED' |
-  'VIDEO_MUSIC_LICENSED_STATUS_ENABLED_BY_PARTNER_UPLOADED_CLAIM' | 'VIDEO_MUSIC_LICENSED_STATUS_ENABLED_BY_THIRD_PARTY_CLAIMS' |
-  'VIDEO_MUSIC_LICENSED_STATUS_UNCLAIMED';
+  'CLAIMED_BY_CHANNEL_OWNER' | 'DISABLED_BY_CLAIM_PREFERENCE' |
+  'ENABLED_BY_CHANNEL_OWNER' | 'ENABLED_BY_CHANNEL_OWNER_UNCLAIMED' |
+  'ENABLED_BY_PARTNER_UPLOADED_CLAIM' | 'ENABLED_BY_THIRD_PARTY_CLAIMS' |
+  'UNCLAIMED';
 
-export type VideoUserSetMonetization = 'VIDEO_USER_SET_MONETIZATION_OFF' | 'VIDEO_USER_SET_MONETIZATION_ON';
+export type VideoUserSetMonetization = 'OFF' | 'ON';
 
 export type VideoMonetizingStatus =
-  'VIDEO_MONETIZING_STATUS_INDETERMINATE' | 'VIDEO_MONETIZING_STATUS_MONETIZING' |
-  'VIDEO_MONETIZING_STATUS_MONETIZING_CREATOR_REVSHARE' | 'VIDEO_MONETIZING_STATUS_MONETIZING_IN_ESCROW' |
-  'VIDEO_MONETIZING_STATUS_MONETIZING_WITH_EXCEPTIONS' | 'VIDEO_MONETIZING_STATUS_MONETIZING_WITH_LIMITED_ADS' |
-  'VIDEO_MONETIZING_STATUS_MONETIZING_WITH_REVSHARE' | 'VIDEO_MONETIZING_STATUS_NOT_FOR_DISPLAY' |
-  'VIDEO_MONETIZING_STATUS_NOT_MONETIZING_CHANNEL_NOT_MONETIZING' | 'VIDEO_MONETIZING_STATUS_NOT_MONETIZING_INELIGIBLE' |
-  'VIDEO_MONETIZING_STATUS_NOT_MONETIZING_INELIGIBLE_INNOCUOUS' | 'VIDEO_MONETIZING_STATUS_NOT_MONETIZING_OFF' |
-  'VIDEO_MONETIZING_STATUS_NOT_MONETIZING_OFF_CREATOR_REVSHARE' | 'VIDEO_MONETIZING_STATUS_NOT_MONETIZING_OFF_SHORTS_REVSHARE' |
-  'VIDEO_MONETIZING_STATUS_NOT_MONETIZING_OFF_WITH_REVSHARE' | 'VIDEO_MONETIZING_STATUS_PENDING_CHECKS' |
-  'VIDEO_MONETIZING_STATUS_UNSPECIFIED' | 'VIDEO_MONETIZING_STATUS_VIDEO_NOT_FINAL';
+  'INDETERMINATE' | 'MONETIZING' |
+  'MONETIZING_CREATOR_REVSHARE' | 'MONETIZING_IN_ESCROW' |
+  'MONETIZING_WITH_EXCEPTIONS' | 'MONETIZING_WITH_LIMITED_ADS' |
+  'MONETIZING_WITH_REVSHARE' | 'NOT_FOR_DISPLAY' |
+  'NOT_MONETIZING_CHANNEL_NOT_MONETIZING' | 'NOT_MONETIZING_INELIGIBLE' |
+  'NOT_MONETIZING_INELIGIBLE_INNOCUOUS' | 'NOT_MONETIZING_OFF' |
+  'NOT_MONETIZING_OFF_CREATOR_REVSHARE' | 'NOT_MONETIZING_OFF_SHORTS_REVSHARE' |
+  'NOT_MONETIZING_OFF_WITH_REVSHARE' | 'PENDING_CHECKS' |
+  'UNSPECIFIED' | 'VIDEO_NOT_FINAL';
 
 export type VideoVisibilityStatus =
-  'VIDEO_VISIBILITY_STATUS_AGE_RESTRICTED' | 'VIDEO_VISIBILITY_STATUS_BLOCKED_FOR_COPYRIGHT_GLOBALLY' |
-  'VIDEO_VISIBILITY_STATUS_BLOCKED_FOR_COPYRIGHT_PARTIALLY' | 'VIDEO_VISIBILITY_STATUS_DRAFT' |
-  'VIDEO_VISIBILITY_STATUS_FORCED_PRIVATE' | 'VIDEO_VISIBILITY_STATUS_INDETERMINATE' |
-  'VIDEO_VISIBILITY_STATUS_LIMITED_FEATURES' | 'VIDEO_VISIBILITY_STATUS_PENDING_REMOVAL_FOR_COPYRIGHT' |
-  'VIDEO_VISIBILITY_STATUS_REMOVED_FOR_COMMUNITY_GUIDELINES' | 'VIDEO_VISIBILITY_STATUS_REMOVED_FOR_COPYRIGHT' |
-  'VIDEO_VISIBILITY_STATUS_TARGETED_FOR_KIDS' | 'VIDEO_VISIBILITY_STATUS_UNKNOWN' |
-  'VIDEO_VISIBILITY_STATUS_UPLOAD_FAILED' | 'VIDEO_VISIBILITY_STATUS_UPLOADING_OR_PROCESSING' |
-  'VIDEO_VISIBILITY_STATUS_USER_CONFIG';
+  'AGE_RESTRICTED' | 'BLOCKED_FOR_COPYRIGHT_GLOBALLY' |
+  'BLOCKED_FOR_COPYRIGHT_PARTIALLY' | 'DRAFT' |
+  'FORCED_PRIVATE' | 'INDETERMINATE' |
+  'LIMITED_FEATURES' | 'PENDING_REMOVAL_FOR_COPYRIGHT' |
+  'REMOVED_FOR_COMMUNITY_GUIDELINES' | 'REMOVED_FOR_COPYRIGHT' |
+  'TARGETED_FOR_KIDS' | 'UNKNOWN' |
+  'UPLOAD_FAILED' | 'UPLOADING_OR_PROCESSING' |
+  'USER_CONFIG';
 
 export type VideoUserSetVisibility =
-  'VIDEO_USER_SET_VISIBILITY_DRAFT' | 'VIDEO_USER_SET_VISIBILITY_FUTURE_PREMIERE' | 'VIDEO_USER_SET_VISIBILITY_MEMBERS' |
-  'VIDEO_USER_SET_VISIBILITY_PREMIERING' | 'VIDEO_USER_SET_VISIBILITY_PRIMETIME_SUBSCRIBERS' | 'VIDEO_USER_SET_VISIBILITY_PRIVATE' |
-  'VIDEO_USER_SET_VISIBILITY_PUBLIC' | 'VIDEO_USER_SET_VISIBILITY_SCHEDULED' |
-  'VIDEO_USER_SET_VISIBILITY_SCHEDULED_TO_PRIMETIME_SUBSCRIBERS' | 'VIDEO_USER_SET_VISIBILITY_SPECIFIC_PEOPLE' |
-  'VIDEO_USER_SET_VISIBILITY_SUPERFANS' | 'VIDEO_USER_SET_VISIBILITY_UNLISTED' | 'VIDEO_USER_SET_VISIBILITY_UNSPECIFIED';
+  'DRAFT' | 'FUTURE_PREMIERE' | 'MEMBERS' |
+  'PREMIERING' | 'PRIMETIME_SUBSCRIBERS' | 'PRIVATE' |
+  'PUBLIC' | 'SCHEDULED' |
+  'SCHEDULED_TO_PRIMETIME_SUBSCRIBERS' | 'SPECIFIC_PEOPLE' |
+  'SUPERFANS' | 'UNLISTED' | 'UNSPECIFIED';
 
-export type VideoUserInflictedVisibility = 'VIDEO_USER_INFLICTED_VISIBILITY_AGE_RESTRICTED' | 'VIDEO_USER_INFLICTED_VISIBILITY_UNSPECIFIED';
+export type VideoUserInflictedVisibility = 'AGE_RESTRICTED' | 'UNSPECIFIED';
 
 export type VideoEffectiveVisibility =
-  'VIDEO_EFFECTIVE_VISIBILITY_BLOCKED' | 'VIDEO_EFFECTIVE_VISIBILITY_FORCED_PRIVATE' |
-  'VIDEO_EFFECTIVE_VISIBILITY_REMOVED' | 'VIDEO_EFFECTIVE_VISIBILITY_UNSPECIFIED' |
-  'VIDEO_EFFECTIVE_VISIBILITY_UPLOAD_FAILED' | 'VIDEO_EFFECTIVE_VISIBILITY_UPLOADING_OR_PROCESSING' |
-  'VIDEO_EFFECTIVE_VISIBILITY_USER_CONFIG';
+  'BLOCKED' | 'FORCED_PRIVATE' |
+  'REMOVED' | 'UNSPECIFIED' |
+  'UPLOAD_FAILED' | 'UPLOADING_OR_PROCESSING' |
+  'USER_CONFIG';
 
-export type VideoOrigin = 'VIDEO_ORIGIN_LIVESTREAM' | 'VIDEO_ORIGIN_STORY' | 'VIDEO_ORIGIN_UNKNOWN' | 'VIDEO_ORIGIN_UPLOAD';
+export type VideoOrigin = 'LIVESTREAM' | 'STORY' | 'UNKNOWN' | 'UPLOAD';
 
 export type VideoProcessingStatus =
-  'VIDEO_PROCESSING_STATUS_EDITED' | 'VIDEO_PROCESSING_STATUS_FAILED' | 'VIDEO_PROCESSING_STATUS_PROCESSING' |
-  'VIDEO_PROCESSING_STATUS_PROCESSING_NON_PRIMARY_ASSETS' | 'VIDEO_PROCESSING_STATUS_READY' |
-  'VIDEO_PROCESSING_STATUS_REVERTED' | 'VIDEO_PROCESSING_STATUS_UNEDITED' | 'VIDEO_PROCESSING_STATUS_UNKNOWN';
+  'EDITED' | 'FAILED' | 'PROCESSING' |
+  'PROCESSING_NON_PRIMARY_ASSETS' | 'READY' |
+  'REVERTED' | 'UNEDITED' | 'UNKNOWN';
 
 export type VideoTargetedAudience =
-  'VIDEO_TARGETED_AUDIENCE_ALL' | 'VIDEO_TARGETED_AUDIENCE_AGE_RESTRICTED' |
-  'VIDEO_TARGETED_AUDIENCE_CROSSWALK' | 'VIDEO_TARGETED_AUDIENCE_UNKNOWN';
+  'ALL' | 'AGE_RESTRICTED' |
+  'CROSSWALK' | 'UNKNOWN';
 
 export type VideoTargetedAudienceImposer =
-  'VIDEO_TARGETED_AUDIENCE_IMPOSER_SELF' | 'VIDEO_TARGETED_AUDIENCE_IMPOSER_SYSTEM' | 'VIDEO_TARGETED_AUDIENCE_IMPOSER_UNSPECIFIED';
+  'SELF' | 'SYSTEM' | 'UNSPECIFIED';
 
 export type ResolutionStatus =
-  'RESOLUTION_STATUS_APPEAL_IN_PROGRESS' | 'RESOLUTION_STATUS_APPEAL_REJECTED' | 'RESOLUTION_STATUS_AVAILABLE' |
-  'RESOLUTION_STATUS_DEFERRED' | 'RESOLUTION_STATUS_DONE' | 'RESOLUTION_STATUS_PROCESSING' |
-  'RESOLUTION_STATUS_STARTING_SOON' | 'RESOLUTION_STATUS_UNAVAILABLE' | 'RESOLUTION_STATUS_UNKNOWN' |
-  'RESOLUTION_STATUS_UNSPECIFIED';
+  'APPEAL_IN_PROGRESS' | 'APPEAL_REJECTED' | 'AVAILABLE' |
+  'DEFERRED' | 'DONE' | 'PROCESSING' |
+  'STARTING_SOON' | 'UNAVAILABLE' | 'UNKNOWN' |
+  'UNSPECIFIED';
 
-export type MonetizedStatus = 'MONETIZED_STATUS_ACTIVE' | 'MONETIZED_STATUS_INACTIVE' | 'MONETIZED_STATUS_UNSPECIFIED';
+export type MonetizedStatus = 'ACTIVE' | 'INACTIVE' | 'UNSPECIFIED';
 
 export type RestrictionsSeverity =
-  'VIDEO_RESTRICTIONS_SEVERITY_HIGH' | 'VIDEO_RESTRICTIONS_SEVERITY_LOW' |
-  'VIDEO_RESTRICTIONS_SEVERITY_MEDIUM' | 'VIDEO_RESTRICTIONS_SEVERITY_UNSPECIFIED';
+  'HIGH' | 'LOW' |
+  'MEDIUM' | 'UNSPECIFIED';
 
-export type AutoGenMidrollsStatus = 'AUTO_GEN_MIDROLLS_STATUS_AVAILABLE' | 'AUTO_GEN_MIDROLLS_STATUS_FAILED' | 'AUTO_GEN_MIDROLLS_STATUS_PROCESSING';
+export type AutoGenMidrollsStatus = 'AVAILABLE' | 'FAILED' | 'PROCESSING';
 
 export type VideoCopyrightSummaryStatus =
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_BLOCKED' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_COPYRIGHT_CONTENT_FOUND' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_COUNTER_REJECTED' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_DELAYED_TAKEDOWN' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_EXPIRED_STRIKE_TAKEDOWN' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_LICENSED' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_LIKENESS_CLAIM' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_LIKENESS_PENDING_REMOVAL' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_LIKENESS_REMOVAL' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZABLE_WITH_LICENSES' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_CREATOR_REVSHARE' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_CREATOR_REVSHARE_ELIGIBLE' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_ENABLED_WITH_LICENSES' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_RESTRICTED' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_REVSHARE_ELIGIBLE' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_REVSHARE_ENABLED' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_SHORTS_REVSHARE' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_SHORTS_REVSHARE_ELIGIBLE' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_MONETIZATION_UNAVAILABLE' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_MULTIPLE_CLAIMS' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_MULTIPLE_REMOVALS' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_NO_CLAIMS_FOUND' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_PARTIALLY_BLOCKED_REVSHARE_ENABLED' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_SHORTS_NO_UPLOADER_CLAIM' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_STRIKE_TAKEDOWN' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_TAKEDOWN' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_TAKEDOWN_COUNTER' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_TAKEDOWN_NO_STRIKE' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_TAKEDOWN_UNDER_REVIEW' | 'VIDEO_COPYRIGHT_SUMMARY_STATUS_VIDEO_APPEAL' |
-  'VIDEO_COPYRIGHT_SUMMARY_STATUS_VIDEO_DISPUTE';
+  'BLOCKED' | 'COPYRIGHT_CONTENT_FOUND' |
+  'COUNTER_REJECTED' | 'DELAYED_TAKEDOWN' |
+  'EXPIRED_STRIKE_TAKEDOWN' | 'LICENSED' |
+  'LIKENESS_CLAIM' | 'LIKENESS_PENDING_REMOVAL' |
+  'LIKENESS_REMOVAL' | 'MONETIZABLE_WITH_LICENSES' |
+  'MONETIZATION_CREATOR_REVSHARE' | 'MONETIZATION_CREATOR_REVSHARE_ELIGIBLE' |
+  'MONETIZATION_ENABLED_WITH_LICENSES' | 'MONETIZATION_RESTRICTED' |
+  'MONETIZATION_REVSHARE_ELIGIBLE' | 'MONETIZATION_REVSHARE_ENABLED' |
+  'MONETIZATION_SHORTS_REVSHARE' | 'MONETIZATION_SHORTS_REVSHARE_ELIGIBLE' |
+  'MONETIZATION_UNAVAILABLE' | 'MULTIPLE_CLAIMS' |
+  'MULTIPLE_REMOVALS' | 'NO_CLAIMS_FOUND' |
+  'PARTIALLY_BLOCKED_REVSHARE_ENABLED' | 'SHORTS_NO_UPLOADER_CLAIM' |
+  'STRIKE_TAKEDOWN' | 'TAKEDOWN' |
+  'TAKEDOWN_COUNTER' | 'TAKEDOWN_NO_STRIKE' |
+  'TAKEDOWN_UNDER_REVIEW' | 'VIDEO_APPEAL' |
+  'VIDEO_DISPUTE';
 
 export type VideoCopyrightChannelImpact =
-  'VIDEO_COPYRIGHT_CHANNEL_IMPACT_NO_CHANNEL_IMPACT' | 'VIDEO_COPYRIGHT_CHANNEL_IMPACT_NO_CHANNEL_IMPACT_WITH_LICENSES' |
-  'VIDEO_COPYRIGHT_CHANNEL_IMPACT_NO_CHANNEL_IMPACT_WITHOUT_CLAIMS' | 'VIDEO_COPYRIGHT_CHANNEL_IMPACT_PENDING_STRIKE_REVIEW' |
-  'VIDEO_COPYRIGHT_CHANNEL_IMPACT_STRIKE' | 'VIDEO_COPYRIGHT_CHANNEL_IMPACT_STRIKE_COUNTER' |
-  'VIDEO_COPYRIGHT_CHANNEL_IMPACT_STRIKE_EXPIRED' | 'VIDEO_COPYRIGHT_CHANNEL_IMPACT_STRIKE_PENDING' |
-  'VIDEO_COPYRIGHT_CHANNEL_IMPACT_STRIKE_RELEASED_DURING_COUNTER';
+  'NO_CHANNEL_IMPACT' | 'NO_CHANNEL_IMPACT_WITH_LICENSES' |
+  'NO_CHANNEL_IMPACT_WITHOUT_CLAIMS' | 'PENDING_STRIKE_REVIEW' |
+  'STRIKE' | 'STRIKE_COUNTER' |
+  'STRIKE_EXPIRED' | 'STRIKE_PENDING' |
+  'STRIKE_RELEASED_DURING_COUNTER';
 
 export type VideoCopyrightVisibilityImpact =
-  'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_APPEAL' | 'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_CLAIM_BLOCK' |
-  'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_CLAIM_PARTIAL_BLOCK' | 'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_COMMERCIAL_SHORTS_BLOCK' |
-  'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_DELAYED_TAKEDOWN' | 'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_DISPUTE' |
-  'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_LICENSE_RESTRICTED_SHORTS_BLOCK' | 'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_LIKENESS_BLOCK' |
-  'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_MULTIPLE_CLAIMS_BLOCK' | 'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_NOT_AFFECTED' |
-  'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_PENDING_LIKENESS_REMOVAL' | 'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_TAKEDOWN' |
-  'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_TAKEDOWN_COUNTER' | 'VIDEO_COPYRIGHT_VISIBILITY_IMPACT_UNKNOWN';
+  'APPEAL' | 'CLAIM_BLOCK' |
+  'CLAIM_PARTIAL_BLOCK' | 'COMMERCIAL_SHORTS_BLOCK' |
+  'DELAYED_TAKEDOWN' | 'DISPUTE' |
+  'LICENSE_RESTRICTED_SHORTS_BLOCK' | 'LIKENESS_BLOCK' |
+  'MULTIPLE_CLAIMS_BLOCK' | 'NOT_AFFECTED' |
+  'PENDING_LIKENESS_REMOVAL' | 'TAKEDOWN' |
+  'TAKEDOWN_COUNTER' | 'UNKNOWN';
 
 export type VideoCopyrightMonetizationImpact =
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_CLAIM_BLOCK' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_CLAIM_PARTIAL_BLOCK' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_CLAIM_PARTIAL_BLOCK_MONETIZED' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_CREATOR_REVSHARE' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_CREATOR_REVSHARE_ELIGIBLE' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_DO_NOT_DISPLAY' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_LIKENESS_REVSHARE_ELIGIBLE' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_LIKENESS_REVSHARE_ENABLED' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_MONETIZABLE_WITH_LICENSES' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_MONETIZED_DURING_DISPUTE' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_NOT_AFFECTED' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_NOT_AFFECTED_LICENSED' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_RESTRICTED' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_REVSHARE_ELIGIBLE' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_REVSHARE_ENABLED' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_SHORTS_NO_UPLOADER_CLAIM' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_SHUNA_CLAIM_DEMONETIZATION' | 'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_TAKEDOWN' |
-  'VIDEO_COPYRIGHT_MONETIZATION_IMPACT_UNKNOWN';
+  'CLAIM_BLOCK' | 'CLAIM_PARTIAL_BLOCK' |
+  'CLAIM_PARTIAL_BLOCK_MONETIZED' | 'CREATOR_REVSHARE' |
+  'CREATOR_REVSHARE_ELIGIBLE' | 'DO_NOT_DISPLAY' |
+  'LIKENESS_REVSHARE_ELIGIBLE' | 'LIKENESS_REVSHARE_ENABLED' |
+  'MONETIZABLE_WITH_LICENSES' | 'MONETIZED_DURING_DISPUTE' |
+  'NOT_AFFECTED' | 'NOT_AFFECTED_LICENSED' |
+  'RESTRICTED' | 'REVSHARE_ELIGIBLE' |
+  'REVSHARE_ENABLED' | 'SHORTS_NO_UPLOADER_CLAIM' |
+  'SHUNA_CLAIM_DEMONETIZATION' | 'TAKEDOWN' |
+  'UNKNOWN';
 
 export type TouPolicyVertical =
-  'TOU_POLICY_VERTICAL_CHILD_SAFETY' | 'TOU_POLICY_VERTICAL_HARMFUL_DANGEROUS' | 'TOU_POLICY_VERTICAL_SUICIDE_SELF_HARM' |
-  'TOU_POLICY_VERTICAL_UNKNOWN' | 'TOU_POLICY_VERTICAL_VIOLENT_GRAPHIC_SHOCKING';
+  'CHILD_SAFETY' | 'HARMFUL_DANGEROUS' | 'SUICIDE_SELF_HARM' |
+  'UNKNOWN' | 'VIOLENT_GRAPHIC_SHOCKING';
 
-export type HumanReviewState = 'HUMAN_REVIEW_STATE_DONE' | 'HUMAN_REVIEW_STATE_INELIGIBLE' | 'HUMAN_REVIEW_STATE_NOT_REQUESTED';
+export type HumanReviewState = 'DONE' | 'INELIGIBLE' | 'NOT_REQUESTED';
 
-export type VideoMadeForKids = 'VIDEO_MADE_FOR_KIDS_MFK' | 'VIDEO_MADE_FOR_KIDS_NOT_MFK' | 'VIDEO_MADE_FOR_KIDS_UNKNOWN';
+export type VideoMadeForKids = 'MFK' | 'NOT_MFK' | 'UNKNOWN';
 
 export type VideoMadeForKidsImposer =
-  'VIDEO_MADE_FOR_KIDS_IMPOSER_SELF' | 'VIDEO_MADE_FOR_KIDS_IMPOSER_UNSPECIFIED' | 'VIDEO_MADE_FOR_KIDS_IMPOSER_YOUTUBE';
+  'SELF' | 'UNSPECIFIED' | 'YOUTUBE';
 
 export type RemixSourceOptionEligibility =
-  'REMIX_SOURCE_OPTION_ELIGIBILITY_BY_CLIENT' | 'REMIX_SOURCE_OPTION_ELIGIBILITY_ELIGIBLE' | 'REMIX_SOURCE_OPTION_ELIGIBILITY_INELIGIBLE';
+  'BY_CLIENT' | 'ELIGIBLE' | 'INELIGIBLE';
 
-export type RemixSourceShorts = 'REMIX_SOURCE_SHORTS_IS_SHORT' | 'REMIX_SOURCE_SHORTS_NOT_SHORT' | 'REMIX_SOURCE_SHORTS_PROCESSING';
+export type RemixSourceShorts = 'IS_SHORT' | 'NOT_SHORT' | 'PROCESSING';
 
 export type VideoCommentsEnabledState =
-  'VIDEO_COMMENTS_ENABLED_STATE_OFF' | 'VIDEO_COMMENTS_ENABLED_STATE_ON' |
-  'VIDEO_COMMENTS_ENABLED_STATE_PAUSED' | 'VIDEO_COMMENTS_ENABLED_STATE_UNKNOWN';
+  'OFF' | 'ON' |
+  'PAUSED' | 'UNKNOWN';
 
 export type AllowedCommenterMode =
-  'ALLOWED_COMMENTER_MODE_ANYONE' | 'ALLOWED_COMMENTER_MODE_SUBSCRIBERS_MEMBERS_APPROVED_USERS' | 'ALLOWED_COMMENTER_MODE_UNKNOWN';
+  'ANYONE' | 'SUBSCRIBERS_MEMBERS_APPROVED_USERS' | 'UNKNOWN';
 
 export type CommenterMinimumSubscriptionTime =
-  'COMMENTER_MINIMUM_SUBSCRIPTION_TIME_ANY' | 'COMMENTER_MINIMUM_SUBSCRIPTION_TIME_ONE_DAY' |
-  'COMMENTER_MINIMUM_SUBSCRIPTION_TIME_ONE_HOUR' | 'COMMENTER_MINIMUM_SUBSCRIPTION_TIME_ONE_WEEK' |
-  'COMMENTER_MINIMUM_SUBSCRIPTION_TIME_UNKNOWN';
+  'ANY' | 'ONE_DAY' |
+  'ONE_HOUR' | 'ONE_WEEK' |
+  'UNKNOWN';
 
 export type CreatorContentType =
-  'CREATOR_CONTENT_TYPE_LIVE_STREAM' | 'CREATOR_CONTENT_TYPE_SHORTS' |
-  'CREATOR_CONTENT_TYPE_UNSPECIFIED' | 'CREATOR_CONTENT_TYPE_VIDEO_ON_DEMAND';
+  'LIVE_STREAM' | 'SHORTS' |
+  'UNSPECIFIED' | 'VIDEO_ON_DEMAND';
 
 export type CreatorVideoPermission =
-  'CREATOR_VIDEO_PERMISSION_ANALYTICS_READ' | 'CREATOR_VIDEO_PERMISSION_BASIC_METADATA_READ' |
-  'CREATOR_VIDEO_PERMISSION_CAPTIONS_READ' | 'CREATOR_VIDEO_PERMISSION_CAPTIONS_WRITE' |
-  'CREATOR_VIDEO_PERMISSION_COLLABORATOR' | 'CREATOR_VIDEO_PERMISSION_COLLABORATOR_INVITEE' |
-  'CREATOR_VIDEO_PERMISSION_COLLABORATOR_LIMITED' | 'CREATOR_VIDEO_PERMISSION_COLLABORATOR_LIMITED_INVITEE' |
-  'CREATOR_VIDEO_PERMISSION_COMMENTS_MANAGER' | 'CREATOR_VIDEO_PERMISSION_COMMENTS_READ' |
-  'CREATOR_VIDEO_PERMISSION_COMMENT_SETTINGS_READ' | 'CREATOR_VIDEO_PERMISSION_COMMENT_SETTINGS_WRITE' |
-  'CREATOR_VIDEO_PERMISSION_DELETE' | 'CREATOR_VIDEO_PERMISSION_DOWNLOAD' |
-  'CREATOR_VIDEO_PERMISSION_ENFORCEMENT_APPELLANT' | 'CREATOR_VIDEO_PERMISSION_ENFORCEMENT_READER' |
-  'CREATOR_VIDEO_PERMISSION_MONETIZATION_SETTINGS_READ' | 'CREATOR_VIDEO_PERMISSION_MONETIZATION_WRITE' |
-  'CREATOR_VIDEO_PERMISSION_PRIVACY_STATUS_PRIVATE_WRITE' | 'CREATOR_VIDEO_PERMISSION_PRIVACY_STATUS_PUBLIC_WRITE' |
-  'CREATOR_VIDEO_PERMISSION_RATING_SETTINGS_WRITE' | 'CREATOR_VIDEO_PERMISSION_READ' |
-  'CREATOR_VIDEO_PERMISSION_WATCH' | 'CREATOR_VIDEO_PERMISSION_WRITE';
+  'ANALYTICS_READ' | 'BASIC_METADATA_READ' |
+  'CAPTIONS_READ' | 'CAPTIONS_WRITE' |
+  'COLLABORATOR' | 'COLLABORATOR_INVITEE' |
+  'COLLABORATOR_LIMITED' | 'COLLABORATOR_LIMITED_INVITEE' |
+  'COMMENTS_MANAGER' | 'COMMENTS_READ' |
+  'COMMENT_SETTINGS_READ' | 'COMMENT_SETTINGS_WRITE' |
+  'DELETE' | 'DOWNLOAD' |
+  'ENFORCEMENT_APPELLANT' | 'ENFORCEMENT_READER' |
+  'MONETIZATION_SETTINGS_READ' | 'MONETIZATION_WRITE' |
+  'PRIVACY_STATUS_PRIVATE_WRITE' | 'PRIVACY_STATUS_PUBLIC_WRITE' |
+  'RATING_SETTINGS_WRITE' | 'READ' |
+  'WATCH' | 'WRITE';
 
-export type CreatorEntityStatus = 'CREATOR_ENTITY_STATUS_FAILURE' | 'CREATOR_ENTITY_STATUS_OK' | 'CREATOR_ENTITY_STATUS_PARTIAL_FAILURE';
+export type CreatorEntityStatus = 'FAILURE' | 'OK' | 'PARTIAL_FAILURE';
 
 export type CreatorFeatureStatus =
-  'CREATOR_FEATURE_STATUS_DISABLED' | 'CREATOR_FEATURE_STATUS_ELIGIBLE' |
-  'CREATOR_FEATURE_STATUS_ENABLED' | 'CREATOR_FEATURE_STATUS_UNKNOWN';
+  'DISABLED' | 'ELIGIBLE' |
+  'ENABLED' | 'UNKNOWN';
+
+export type CreatorFeatureStatusDetails = 'NOT_APPLICABLE';
 
 export interface ClaimDetails {
   is_embed_disabled?: boolean;
@@ -256,7 +249,7 @@ export interface AudioLanguage {
 
 export interface FeatureState {
   status?: CreatorFeatureStatus;
-  status_details?: 'CREATOR_FEATURE_STATUS_DETAILS_NOT_APPLICABLE';
+  status_details?: CreatorFeatureStatusDetails;
 }
 
 export interface Publishing {
@@ -418,12 +411,6 @@ export interface SuperfansOnly {
   is_superfans_only?: boolean;
 }
 
-function toInt(value: unknown): number | undefined {
-  if (typeof value === 'number') return value;
-  if (typeof value !== 'string' || value === '' || isNaN(Number(value))) return undefined;
-  return parseInt(value, 10);
-}
-
 export default class CreatorVideo extends YTNode {
   static type = 'CreatorVideo';
 
@@ -516,15 +503,15 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'privacy')) {
-      this.privacy = data.privacy;
+      this.privacy = data.privacy.replace('VIDEO_PRIVACY_', '');
     }
 
     if (Reflect.has(data, 'status')) {
-      this.status = data.status;
+      this.status = data.status.replace('VIDEO_STATUS_', '');
     }
 
     if (Reflect.has(data, 'draftStatus')) {
-      this.draft_status = data.draftStatus;
+      this.draft_status = data.draftStatus.replace('DRAFT_STATUS_', '');
     }
 
     if (Reflect.has(data, 'shareUrl')) {
@@ -536,19 +523,19 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'lengthSeconds')) {
-      this.length_seconds = toInt(data.lengthSeconds);
+      this.length_seconds = Number(data.lengthSeconds);
     }
 
     if (Reflect.has(data, 'videoDurationMs')) {
-      this.video_duration_ms = toInt(data.videoDurationMs);
+      this.video_duration_ms = Number(data.videoDurationMs);
     }
 
     if (Reflect.has(data, 'timeCreatedSeconds')) {
-      this.time_created_seconds = toInt(data.timeCreatedSeconds);
+      this.time_created_seconds = Number(data.timeCreatedSeconds);
     }
 
     if (Reflect.has(data, 'timePublishedSeconds')) {
-      this.time_published_seconds = toInt(data.timePublishedSeconds);
+      this.time_published_seconds = Number(data.timePublishedSeconds);
     }
 
     if (Reflect.has(data, 'thumbnailDetails')) {
@@ -556,15 +543,27 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'claimDetails')) {
-      this.claim_details = parseObject<ClaimDetails>(data.claimDetails);
+      const claim_details = data.claimDetails;
+      this.claim_details = {
+        is_embed_disabled: claim_details.isEmbedDisabled,
+        video_has_commercial_block: claim_details.videoHasCommercialBlock,
+        video_has_third_party_claim: claim_details.videoHasThirdPartyClaim
+      };
     }
 
     if (Reflect.has(data, 'permissions')) {
-      this.permissions = parseObject<Permissions>(data.permissions);
+      const permissions = data.permissions;
+      this.permissions = {
+        overall_permissions: Array.isArray(permissions.overallPermissions) ?
+          permissions.overallPermissions.map((permission: string) => permission.replace('CREATOR_VIDEO_PERMISSION_', '')) : undefined
+      };
     }
 
     if (Reflect.has(data, 'responseStatus')) {
-      this.response_status = parseObject<ResponseStatus>(data.responseStatus);
+      const response_status = data.responseStatus;
+      this.response_status = {
+        status_code: Reflect.has(response_status, 'statusCode') ? response_status.statusCode.replace('CREATOR_ENTITY_STATUS_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'thumbnailEditorState')) {
@@ -577,31 +576,41 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'videoEditorProject')) {
-      this.video_editor_project = parseObject<VideoEditorProject>(data.videoEditorProject);
+      const video_dimensions = data.videoEditorProject.videoDimensions;
+      this.video_editor_project = {
+        video_dimensions: video_dimensions ? {
+          width: video_dimensions.width,
+          height: video_dimensions.height
+        } : undefined
+      };
     }
 
     if (Reflect.has(data, 'statusDetails')) {
-      this.status_details = parseObject<StatusDetails>(data.statusDetails);
+      this.status_details = {
+        feedback_service_continuation_token: data.statusDetails.feedbackServiceContinuationToken
+      };
     }
 
     if (Reflect.has(data, 'tags')) {
-      this.tags = parseAll<VideoTag>(data.tags);
+      this.tags = Array.isArray(data.tags) ? data.tags.map((tag: RawNode) => ({ value: tag.value })) : undefined;
     }
 
     if (Reflect.has(data, 'category')) {
-      this.category = data.category;
+      this.category = data.category.replace('CREATOR_VIDEO_CATEGORY_', '');
     }
 
     if (Reflect.has(data, 'commentFilter')) {
-      this.comment_filter = data.commentFilter;
+      this.comment_filter = data.commentFilter.replace('VIDEO_COMMENT_FILTER_', '');
     }
 
     if (Reflect.has(data, 'defaultCommentSortOrder')) {
-      this.default_comment_sort_order = data.defaultCommentSortOrder;
+      this.default_comment_sort_order = data.defaultCommentSortOrder.replace('VIDEO_COMMENT_SORT_ORDER_', '');
     }
 
     if (Reflect.has(data, 'audioLanguage')) {
-      this.audio_language = parseObject<AudioLanguage>(data.audioLanguage);
+      this.audio_language = {
+        language_code: data.audioLanguage.languageCode
+      };
     }
 
     if (Reflect.has(data, 'allowRatings')) {
@@ -609,27 +618,36 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'ageRestriction')) {
-      this.age_restriction = data.ageRestriction;
+      this.age_restriction = data.ageRestriction.replace('VIDEO_AGE_RESTRICTION_', '');
     }
 
     if (Reflect.has(data, 'license')) {
-      this.license = data.license;
+      this.license = data.license.replace('VIDEO_LICENSE_', '');
     }
 
     if (Reflect.has(data, 'features')) {
-      this.features = parseObject<Record<string, FeatureState>>(data.features);
+      const features: Record<string, FeatureState> = {};
+      for (const [ key, value ] of Object.entries<RawNode>(data.features)) {
+        features[key] = {
+          status: Reflect.has(value, 'status') ? value.status.replace('CREATOR_FEATURE_STATUS_', '') : undefined,
+          status_details: Reflect.has(value, 'statusDetails') ? value.statusDetails.replace('CREATOR_FEATURE_STATUS_DETAILS_', '') : undefined
+        };
+      }
+      this.features = features;
     }
 
     if (Reflect.has(data, 'uncaptionedReason')) {
-      this.uncaptioned_reason = data.uncaptionedReason;
+      this.uncaptioned_reason = data.uncaptionedReason.replace('VIDEO_UNCAPTIONED_REASON_', '');
     }
 
     if (Reflect.has(data, 'publishing')) {
-      this.publishing = parseObject<Publishing>(data.publishing);
+      this.publishing = {
+        notify_subscribers: Reflect.has(data.publishing, 'notifySubscribers') ? data.publishing.notifySubscribers.replace('VIDEO_SUBSCRIBER_NOTIFICATION_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'paidProductPlacement')) {
-      this.paid_product_placement = data.paidProductPlacement;
+      this.paid_product_placement = data.paidProductPlacement.replace('VIDEO_PAID_PRODUCT_PLACEMENT_', '');
     }
 
     if (Reflect.has(data, 'allowEmbed')) {
@@ -637,31 +655,56 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'music')) {
-      this.music = parseObject<Music>(data.music);
+      this.music = {
+        licensed_status: Reflect.has(data.music, 'licensedStatus') ? data.music.licensedStatus.replace('VIDEO_MUSIC_LICENSED_STATUS_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'monetization')) {
-      this.monetization = parseObject<Monetization>(data.monetization);
+      const ad_monetization = data.monetization.adMonetization;
+      this.monetization = {
+        ad_monetization: ad_monetization ? {
+          user_set_monetization: Reflect.has(ad_monetization, 'userSetMonetization') ? ad_monetization.userSetMonetization.replace('VIDEO_USER_SET_MONETIZATION_', '') : undefined,
+          effective_status: Reflect.has(ad_monetization, 'effectiveStatus') ? ad_monetization.effectiveStatus.replace('VIDEO_MONETIZING_STATUS_', '') : undefined
+        } : undefined
+      };
     }
 
     if (Reflect.has(data, 'visibility')) {
-      this.visibility = parseObject<VideoVisibility>(data.visibility);
+      const visibility = data.visibility;
+      this.visibility = {
+        effective_status: Reflect.has(visibility, 'effectiveStatus') ? visibility.effectiveStatus.replace('VIDEO_VISIBILITY_STATUS_', '') : undefined,
+        user_set_visibility: Reflect.has(visibility, 'userSetVisibility') ? visibility.userSetVisibility.replace('VIDEO_USER_SET_VISIBILITY_', '') : undefined,
+        user_inflicted_visibility: Reflect.has(visibility, 'userInflictedVisibility') ? visibility.userInflictedVisibility.replace('VIDEO_USER_INFLICTED_VISIBILITY_', '') : undefined,
+        effective_visibility: Reflect.has(visibility, 'effectiveVisibility') ? visibility.effectiveVisibility.replace('VIDEO_EFFECTIVE_VISIBILITY_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'origin')) {
-      this.origin = data.origin;
+      this.origin = data.origin.replace('VIDEO_ORIGIN_', '');
     }
 
     if (Reflect.has(data, 'inlineEditProcessingStatus')) {
-      this.inline_edit_processing_status = data.inlineEditProcessingStatus;
+      this.inline_edit_processing_status = data.inlineEditProcessingStatus.replace('VIDEO_PROCESSING_STATUS_', '');
     }
 
     if (Reflect.has(data, 'copyrightSummary')) {
-      this.copyright_summary = parseObject<CopyrightSummary>(data.copyrightSummary);
+      const copyright_summary = data.copyrightSummary;
+      this.copyright_summary = {
+        video_copyright_summary_status: Reflect.has(copyright_summary, 'videoCopyrightSummaryStatus') ? copyright_summary.videoCopyrightSummaryStatus.replace('VIDEO_COPYRIGHT_SUMMARY_STATUS_', '') : undefined,
+        channel_impacts: Array.isArray(copyright_summary.channelImpacts) ?
+          copyright_summary.channelImpacts.map((impact: string) => impact.replace('VIDEO_COPYRIGHT_CHANNEL_IMPACT_', '')) : undefined,
+        video_visibility_impacts: Array.isArray(copyright_summary.videoVisibilityImpacts) ?
+          copyright_summary.videoVisibilityImpacts.map((impact: string) => impact.replace('VIDEO_COPYRIGHT_VISIBILITY_IMPACT_', '')) : undefined,
+        video_monetization_impact: Reflect.has(copyright_summary, 'videoMonetizationImpact') ? copyright_summary.videoMonetizationImpact.replace('VIDEO_COPYRIGHT_MONETIZATION_IMPACT_', '') : undefined,
+        active_third_party_claims_count: copyright_summary.activeThirdPartyClaimsCount
+      };
     }
 
     if (Reflect.has(data, 'sponsorsOnly')) {
-      this.sponsors_only = parseObject<SponsorsOnly>(data.sponsorsOnly);
+      this.sponsors_only = {
+        is_sponsors_only: data.sponsorsOnly.isSponsorsOnly
+      };
     }
 
     if (Reflect.has(data, 'serializedShareEntity')) {
@@ -677,15 +720,26 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'audienceRestriction')) {
-      this.audience_restriction = parseObject<AudienceRestriction>(data.audienceRestriction);
+      const audience_restriction = data.audienceRestriction;
+      this.audience_restriction = {
+        self_rating: Reflect.has(audience_restriction, 'selfRating') ? audience_restriction.selfRating.replace('VIDEO_TARGETED_AUDIENCE_', '') : undefined,
+        system_rating: Reflect.has(audience_restriction, 'systemRating') ? audience_restriction.systemRating.replace('VIDEO_TARGETED_AUDIENCE_', '') : undefined,
+        override_enabled: audience_restriction.overrideEnabled,
+        effective_rating: Reflect.has(audience_restriction, 'effectiveRating') ? audience_restriction.effectiveRating.replace('VIDEO_TARGETED_AUDIENCE_', '') : undefined,
+        imposer: Reflect.has(audience_restriction, 'imposer') ? audience_restriction.imposer.replace('VIDEO_TARGETED_AUDIENCE_IMPOSER_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'ownedClaimDetails')) {
-      this.owned_claim_details = parseObject<OwnedClaimDetails>(data.ownedClaimDetails);
+      const owned_claim_details = data.ownedClaimDetails;
+      this.owned_claim_details = {
+        can_edit_owned_claim: owned_claim_details.canEditOwnedClaim,
+        can_enable_matching: owned_claim_details.canEnableMatching
+      };
     }
 
     if (Reflect.has(data, 'monetizedStatus')) {
-      this.monetized_status = data.monetizedStatus;
+      this.monetized_status = data.monetizedStatus.replace('MONETIZED_STATUS_', '');
     }
 
     if (Reflect.has(data, 'commentsDisabledInternally')) {
@@ -693,25 +747,60 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'allRestrictions')) {
-      this.all_restrictions = parseObject<AllRestrictions>(data.allRestrictions);
+      const summary = data.allRestrictions.summary;
+      this.all_restrictions = {
+        summary: summary ? {
+          severity: Reflect.has(summary, 'severity') ? summary.severity.replace('VIDEO_RESTRICTIONS_SEVERITY_', '') : undefined
+        } : undefined
+      };
     }
 
     if (Reflect.has(data, 'videoResolutions')) {
-      this.video_resolutions = parseObject<VideoResolutions>(data.videoResolutions);
+      const video_resolutions = data.videoResolutions;
+      this.video_resolutions = {
+        status_sd: Reflect.has(video_resolutions, 'statusSd') ? video_resolutions.statusSd.replace('RESOLUTION_STATUS_', '') : undefined,
+        status_hd: Reflect.has(video_resolutions, 'statusHd') ? video_resolutions.statusHd.replace('RESOLUTION_STATUS_', '') : undefined,
+        status4k: Reflect.has(video_resolutions, 'status4k') ? video_resolutions.status4k.replace('RESOLUTION_STATUS_', '') : undefined,
+        status2k: Reflect.has(video_resolutions, 'status2k') ? video_resolutions.status2k.replace('RESOLUTION_STATUS_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'adSettings')) {
-      this.ad_settings = parseObject<AdSettings>(data.adSettings);
+      const ad_formats = data.adSettings.adFormats;
+      const ad_breaks = data.adSettings.adBreaks;
+      this.ad_settings = {
+        ad_formats: ad_formats ? {
+          has_skippable_video_ads: ad_formats.hasSkippableVideoAds,
+          has_non_skippable_video_ads: ad_formats.hasNonSkippableVideoAds,
+          has_display_ads: ad_formats.hasDisplayAds,
+          has_live_display_ads: ad_formats.hasLiveDisplayAds
+        } : undefined,
+        ad_breaks: ad_breaks ? {
+          has_preroll_ads: ad_breaks.hasPrerollAds,
+          has_midroll_ads: ad_breaks.hasMidrollAds,
+          has_postroll_ads: ad_breaks.hasPostrollAds,
+          auto_gen_midrolls_status: Reflect.has(ad_breaks, 'autoGenMidrollsStatus') ? ad_breaks.autoGenMidrollsStatus.replace('AUTO_GEN_MIDROLLS_STATUS_', '') : undefined
+        } : undefined
+      };
     }
 
     if (Reflect.has(data, 'videoPrechecks')) {
       const raw_prechecks = data.videoPrechecks;
+      const community_guidelines_details = raw_prechecks.additionalDetails?.communityGuidelinesDetails;
       this.video_prechecks = {
         copyright_prechecks_done: raw_prechecks.copyrightPrechecksDone,
         brand_safety_prechecks_done: raw_prechecks.brandSafetyPrechecksDone,
         video_upload_checks_monetized: Reflect.has(raw_prechecks, 'videoUploadChecksMonetized') ? new VideoUploadChecks(raw_prechecks.videoUploadChecksMonetized) : undefined,
         video_upload_checks_not_monetized: Reflect.has(raw_prechecks, 'videoUploadChecksNotMonetized') ? new VideoUploadChecks(raw_prechecks.videoUploadChecksNotMonetized) : undefined,
-        additional_details: Reflect.has(raw_prechecks, 'additionalDetails') ? parseObject<AdditionalDetails>(raw_prechecks.additionalDetails) : undefined
+        additional_details: Reflect.has(raw_prechecks, 'additionalDetails') ? {
+          community_guidelines_details: community_guidelines_details ? {
+            all_policy_details: Array.isArray(community_guidelines_details.allPolicyDetails) ?
+              community_guidelines_details.allPolicyDetails.map((policy_detail: RawNode) => ({
+                vertical: Reflect.has(policy_detail, 'vertical') ? policy_detail.vertical.replace('TOU_POLICY_VERTICAL_', '') : undefined
+              })) : undefined,
+            human_review_state: Reflect.has(community_guidelines_details, 'humanReviewState') ? community_guidelines_details.humanReviewState.replace('HUMAN_REVIEW_STATE_', '') : undefined
+          } : undefined
+        } : undefined
       };
     }
 
@@ -720,45 +809,67 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'notification')) {
-      this.notification = parseObject<Notification>(data.notification);
+      this.notification = {
+        precheck_notifications_enabled: data.notification.precheckNotificationsEnabled
+      };
     }
 
     if (Reflect.has(data, 'mfkSettings')) {
-      this.mfk_settings = parseObject<MfkSettings>(data.mfkSettings);
+      const mfk_settings = data.mfkSettings;
+      this.mfk_settings = {
+        mfk_by_creator: Reflect.has(mfk_settings, 'mfkByCreator') ? mfk_settings.mfkByCreator.replace('VIDEO_MADE_FOR_KIDS_', '') : undefined,
+        mfk_without_creator_input: Reflect.has(mfk_settings, 'mfkWithoutCreatorInput') ? mfk_settings.mfkWithoutCreatorInput.replace('VIDEO_MADE_FOR_KIDS_', '') : undefined,
+        override_enabled: mfk_settings.overrideEnabled,
+        effective_mfk: Reflect.has(mfk_settings, 'effectiveMfk') ? mfk_settings.effectiveMfk.replace('VIDEO_MADE_FOR_KIDS_', '') : undefined,
+        imposer: Reflect.has(mfk_settings, 'imposer') ? mfk_settings.imposer.replace('VIDEO_MADE_FOR_KIDS_IMPOSER_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'autoChapterSettings')) {
-      this.auto_chapter_settings = parseObject<CreatorOptOutSetting>(data.autoChapterSettings);
+      this.auto_chapter_settings = {
+        creator_opt_out: data.autoChapterSettings.creatorOptOut
+      };
     }
 
     if (Reflect.has(data, 'remix')) {
-      this.remix = parseObject<Remix>(data.remix);
+      const remix = data.remix;
+      this.remix = {
+        remix_source_option_eligibility: Reflect.has(remix, 'remixSourceOptionEligibility') ? remix.remixSourceOptionEligibility.replace('REMIX_SOURCE_OPTION_ELIGIBILITY_', '') : undefined,
+        is_source: remix.isSource,
+        remix_source_shorts: Reflect.has(remix, 'remixSourceShorts') ? remix.remixSourceShorts.replace('REMIX_SOURCE_SHORTS_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'contentOwnershipModelSettings')) {
-      this.content_ownership_model_settings = parseObject<ContentOwnershipModelSettings>(data.contentOwnershipModelSettings);
+      this.content_ownership_model_settings = {
+        is_off_network_upload: data.contentOwnershipModelSettings.isOffNetworkUpload
+      };
     }
 
     if (Reflect.has(data, 'publicMetrics')) {
-      const public_metrics = parseObject<PublicMetrics>(data.publicMetrics);
-      for (const key of [ 'view_count', 'comment_count', 'like_count', 'external_view_count' ] as const) {
-        if (Reflect.has(public_metrics, key)) {
-          public_metrics[key] = toInt(public_metrics[key]);
-        }
-      }
-      this.public_metrics = public_metrics;
+      const public_metrics = data.publicMetrics;
+      this.public_metrics = {
+        view_count: Number(public_metrics.viewCount),
+        comment_count: Number(public_metrics.commentCount),
+        like_count: Number(public_metrics.likeCount),
+        external_view_count: Number(public_metrics.externalViewCount)
+      };
     }
 
     if (Reflect.has(data, 'autoPlacesMentionedSettings')) {
-      this.auto_places_mentioned_settings = parseObject<CreatorOptOutSetting>(data.autoPlacesMentionedSettings);
+      this.auto_places_mentioned_settings = {
+        creator_opt_out: data.autoPlacesMentionedSettings.creatorOptOut
+      };
     }
 
     if (Reflect.has(data, 'shorts')) {
-      this.shorts = parseObject<Shorts>(data.shorts);
+      this.shorts = {
+        is_shorts_renderable: data.shorts.isShortsRenderable
+      };
     }
 
     if (Reflect.has(data, 'contentType')) {
-      this.content_type = data.contentType;
+      this.content_type = data.contentType.replace('CREATOR_CONTENT_TYPE_', '');
     }
 
     if (Reflect.has(data, 'isPaygated')) {
@@ -766,27 +877,42 @@ export default class CreatorVideo extends YTNode {
     }
 
     if (Reflect.has(data, 'learningConceptSettings')) {
-      this.learning_concept_settings = parseObject<CreatorOptOutSetting>(data.learningConceptSettings);
+      this.learning_concept_settings = {
+        creator_opt_out: data.learningConceptSettings.creatorOptOut
+      };
     }
 
     if (Reflect.has(data, 'commentSettings')) {
-      this.comment_settings = parseObject<CommentSettings>(data.commentSettings);
+      const comment_settings = data.commentSettings;
+      this.comment_settings = {
+        comments_enabled_state: Reflect.has(comment_settings, 'commentsEnabledState') ? comment_settings.commentsEnabledState.replace('VIDEO_COMMENTS_ENABLED_STATE_', '') : undefined,
+        allowed_commenter_mode: Reflect.has(comment_settings, 'allowedCommenterMode') ? comment_settings.allowedCommenterMode.replace('ALLOWED_COMMENTER_MODE_', '') : undefined,
+        commenter_minimum_subscription_time: Reflect.has(comment_settings, 'commenterMinimumSubscriptionTime') ? comment_settings.commenterMinimumSubscriptionTime.replace('COMMENTER_MINIMUM_SUBSCRIPTION_TIME_', '') : undefined
+      };
     }
 
     if (Reflect.has(data, 'productAutotaggingSettings')) {
-      this.product_autotagging_settings = parseObject<CreatorOptOutSetting>(data.productAutotaggingSettings);
+      this.product_autotagging_settings = {
+        creator_opt_out: data.productAutotaggingSettings.creatorOptOut
+      };
     }
 
     if (Reflect.has(data, 'collaboration')) {
-      this.collaboration = parseObject<Collaboration>(data.collaboration);
+      this.collaboration = {
+        serialized_share_entity: data.collaboration.serializedShareEntity
+      };
     }
 
     if (Reflect.has(data, 'paidPoliticalContent')) {
-      this.paid_political_content = parseObject<PaidPoliticalContent>(data.paidPoliticalContent);
+      this.paid_political_content = {
+        paid_product_placement_political_content_from_eu_creator: data.paidPoliticalContent.paidProductPlacementPoliticalContentFromEuCreator
+      };
     }
 
     if (Reflect.has(data, 'superfansOnly')) {
-      this.superfans_only = parseObject<SuperfansOnly>(data.superfansOnly);
+      this.superfans_only = {
+        is_superfans_only: data.superfansOnly.isSuperfansOnly
+      };
     }
   }
 }

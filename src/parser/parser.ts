@@ -848,27 +848,6 @@ export function parseFormats(formats: RawNode[], this_response_nsig_cache: Map<s
   return formats?.map((format) => new Format(format, this_response_nsig_cache)) || [];
 }
 
-// useful for YTStudio since it outputs more in a nested data format rather than a 'rendering' format
-export function parseObject<T = any>(data: unknown): T {
-  if (Array.isArray(data)) {
-    return data.map((item) => parseObject(item)) as T;
-  }
-
-  if (data !== null && typeof data === 'object') {
-    const result: Record<string, unknown> = {};
-    for (const [ key, value ] of Object.entries(data)) {
-      result[camelToSnake(key)] = parseObject(value);
-    }
-    return result as T;
-  }
-
-  return data as T;
-}
-export function parseAll<T = any>(data: unknown): T[] {
-  if (!Array.isArray(data)) return [];
-  return data.map((item) => parseObject<T>(item));
-}
-
 export function applyMutations(memo: Memo, mutations: RawNode[]) {
   // Apply mutations to MusicMultiSelectMenuItems
   const music_multi_select_menu_items = memo.getType(MusicMultiSelectMenuItem);

@@ -1,19 +1,16 @@
 import { YTNode } from '../../helpers.js';
 import { type RawNode } from '../../index.js';
-import { parseObject } from '../../parser.js';
 import DataFreshnessEntity from './DataFreshnessEntity.js';
 import VideoUploadChecks from './VideoUploadChecks.js';
 
 export interface TimedContinuationData {
   timeout_ms: number;
   continuation: string;
-  click_tracking_params: string;
 }
 
 export interface UploadFeedbackRefreshContinuation {
   continuation: string;
   continue_in_ms: number;
-  click_tracking_params: string;
 }
 
 export interface UploadFeedbackContinuation {
@@ -74,9 +71,17 @@ export default class UploadFeedbackItem extends YTNode {
       });
     }
     if (Reflect.has(data, 'continuations')) {
+      const timed_continuation_data = data.continuations[0]?.timedContinuationData;
+      const upload_feedback_refresh_continuation_data = data.continuations[1]?.uploadFeedbackRefreshContinuation;
       this.continuations = {
-        timed_continuation_data: parseObject(data.continuations[0]?.timedContinuationData),
-        upload_feedback_refresh_continuation: parseObject(data.continuations[1]?.uploadFeedbackRefreshContinuation)
+        timed_continuation_data: {
+          continuation: timed_continuation_data.continuation,
+          timeout_ms: timed_continuation_data.timeoutMs
+        },
+        upload_feedback_refresh_continuation: {
+          continuation: upload_feedback_refresh_continuation_data.continuation,
+          continue_in_ms: upload_feedback_refresh_continuation_data.continueInMs
+        }
       };
     }
     if (Reflect.has(data, 'dataFreshnessEntity')) {
