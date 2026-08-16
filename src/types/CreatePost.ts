@@ -79,7 +79,7 @@ export type CreatePostPayload = CreatePostPayloadBase | (CreatePostPayloadBase &
 
 // The actual 'Create Post' interface ----
 export interface CreatePostImage {
-  reader: PostImage;
+  source: PostImage;
   preview_coordinates: PreviewCoordinates;
 }
 export interface CreatePostOptions_ImagePoll {

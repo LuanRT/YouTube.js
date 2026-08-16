@@ -25,7 +25,7 @@ export default class PostManager {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
         'x-goog-upload-command': 'start',
-        'x-goog-upload-header-content-length': String(image.reader.size),
+        'x-goog-upload-header-content-length': String(image.source.size),
         'x-goog-upload-protocol': 'resumable',
         'x-youtube-channelid': channel_id
       }
@@ -43,7 +43,7 @@ export default class PostManager {
         'x-goog-upload-offset': '0',
         'x-youtube-channelid': channel_id
       },
-      body: image.reader.body
+      body: image.source.body
     });
     const image_upload_json = await image_upload_response.json() as { encryptedBlobId: string };
     return image_upload_json.encryptedBlobId;
@@ -98,10 +98,10 @@ export default class PostManager {
                 id: index,
                 imageBlob: {},
                 localImageSrc: {
-                  privateDoNotAccessOrElseWrappedUrl: opt.image.reader.base64
+                  privateDoNotAccessOrElseWrappedUrl: opt.image.source.base64
                 },
-                naturalHeight: opt.image.reader.height,
-                naturalWidth: opt.image.reader.width,
+                naturalHeight: opt.image.source.height,
+                naturalWidth: opt.image.source.width,
                 previewCoordinates: opt.image.preview_coordinates
               },
               text: opt.text
