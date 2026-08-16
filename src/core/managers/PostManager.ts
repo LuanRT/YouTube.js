@@ -49,6 +49,8 @@ export default class PostManager {
     return image_upload_json.encryptedBlobId;
   }
   async #buildPost(opts: CreatePostBaseOptions, channel_id: string, extra_opts?: CreatePostExtraOptions): Promise<CreatePostPayload> {
+    if (opts.scheduled_publish_time_seconds && !Number.isInteger(opts.scheduled_publish_time_seconds))
+      throw new Error('opts.scheduled_publish_time_seconds must be an integer');
     const base_post: CreatePostPayloadBase = {
       commentText: opts.comment_text,
       scheduledPublishTimeSec: opts.scheduled_publish_time_seconds,
