@@ -1,3 +1,10 @@
+export interface ImageReader {
+  body: BodyInit;
+  size: number;
+  height: number;
+  width: number;
+  base64: string;
+};
 
 /*
   all coords 0-1
@@ -31,7 +38,7 @@ export interface PollAttachmentData_Option {
   image: PollAttachmentData_Image;
 }
 export interface PollAttachmentData {
-  pollAttachmentData: { options: PollAttachmentData_Option[]; };
+  pollAttachmentData: { options: PollAttachmentData_Option[] };
 }
 
 export interface ImagesAttachment_PostImageData {
@@ -39,7 +46,7 @@ export interface ImagesAttachment_PostImageData {
   previewCoordinates: PreviewCoordinates;
 }
 export interface ImagesAttachment {
-  imagesAttachment: { imagesData: ImagesAttachment_PostImageData[]; };
+  imagesAttachment: { imagesData: ImagesAttachment_PostImageData[] };
 }
 
 export interface QuizAttachmentData_PollOption {
@@ -55,15 +62,41 @@ export interface QuizAttachmentData {
 }
 
 export interface PollAttachment {
-  pollAttachment: { choices: string[]; };
+  pollAttachment: { choices: string[] };
 }
 
 export interface VideoAttachment {
-  videoAttachment: { videoId: string; };
+  videoAttachment: { videoId: string };
 }
 
-export interface PostBase {
+export interface CreatePostPayloadBase {
   commentText: string;
   createBackstagePostParams: string;
 }
-export type CreatePost = PostBase & (VideoAttachment|PollAttachment|QuizAttachmentData|ImagesAttachment|PollAttachmentData);
+export type CreatePostPayload = CreatePostPayloadBase | (CreatePostPayloadBase & (VideoAttachment|PollAttachment|QuizAttachmentData|ImagesAttachment|PollAttachmentData));
+
+export interface CreatePostImage {
+  reader: ImageReader;
+  preview_coordinates: PreviewCoordinates;
+}
+export interface CreatePostOptions_ImagePoll {
+  type: 'IMAGE_POLL';
+  options: {text: string, image: CreatePostImage}[];
+}
+export interface CreatePostOptions_Image {
+  type: 'IMAGE';
+  images: CreatePostImage[];
+}
+export interface CreatePostOptions_Quiz {
+  type: 'QUIZ';
+  choices: (QuizAttachmentData_PollOption & {is_correct: boolean})[];
+}
+export interface CreatePostOptions_Poll {
+  type: 'POLL';
+  choices: string[];
+}
+export interface CreatePostOptions_Video {
+  type: 'VIDEO';
+  video_id: string;
+}
+export type CreatePostOptions = (CreatePostOptions_Video|CreatePostOptions_Poll|CreatePostOptions_Quiz|CreatePostOptions_Image|CreatePostOptions_ImagePoll);

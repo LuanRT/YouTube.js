@@ -35,7 +35,6 @@ import type {
   InnerTubeClient,
   InnerTubeConfig,
   SearchFilters,
-  CreatePost,
   BotGuardSolver
 } from './types/index.js';
 import type { IBrowseResponse, IGetChallengeResponse, IParsedResponse, RawData } from './parser/index.js';
@@ -55,6 +54,7 @@ import {
 } from '../protos/generated/misc/params.js';
 import { parseResponse } from './parser/parser.js';
 import RunAttestationCommand from './parser/classes/commands/RunAttestationCommand.js';
+import PostManager from './core/managers/PostManager.js';
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -557,24 +557,6 @@ export default class Innertube {
     return new Comments(this.actions, response.data);
   }
 
-  async createPost(channel_id: string, post: CreatePost, botguard_solver: BotGuardSolver<string>) {
-    if (!this.#session.logged_in) throw new InnertubeError('Must be logged-in to create a post');
-    const create_post_response = await this.actions.execute('/backstage/create_post', {
-      parse: true,
-      ...post
-    });
-    if (!create_post_response.actions?.is_array) return false;
-    const attestation_command = create_post_response.actions.array()[0].as(RunAttestationCommand);
-    const attestation_run_response = await attestation_command.run(this, botguard_solver, undefined, `https://www.youtube.com/channel/${channel_id}/posts`);
-    const attestation_log_response = this.actions.execute('/att/log', {
-      challenge: attestation_run_response.challenge.challenge,
-      engagementType: attestation_command.engagement_type,
-      ids: attestation_command.ids,
-      webResponse: attestation_run_response.web_response
-    });
-    return { create_post_response, attestation_log_response };
-  }
-
   /**
    * Fetches an attestation challenge.
    */
@@ -655,6 +637,13 @@ export default class Innertube {
    */
   get playlist() {
     return new PlaylistManager(this.#session.actions);
+  }
+
+  /**
+   * An interface for managing posts.
+   */
+  posts(botguard_solver: BotGuardSolver<string>) {
+    return new PostManager(this, this.#session.actions, botguard_solver);
   }
 
   /**
