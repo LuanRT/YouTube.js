@@ -124,7 +124,7 @@ export default class PostManager {
     if (!create_post_response.actions?.is_array) throw new InnertubeError('create_post_response doesn\'t have any actions');
     const attestation_command = create_post_response.actions.array()[0].as(RunAttestationCommand);
     const attestation_run_response = await attestation_command.run(this.#innertube, this.#botguard_solver, undefined, `https://www.youtube.com/channel/${channel_id}/posts`);
-    const attestation_log_response = this.#actions.execute('/att/log', {
+    const attestation_log_response = await this.#actions.execute('/att/log', {
       challenge: attestation_run_response.challenge.challenge,
       engagementType: attestation_command.engagement_type,
       ids: attestation_command.raw_ids,

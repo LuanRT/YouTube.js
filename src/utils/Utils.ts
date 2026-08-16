@@ -303,12 +303,12 @@ return process("${n || ''}", "${sp || ''}", "${s || ''}");`;
 
 // Could also just be done with an eval...
 export function parseLooseJSON(looseJson: string) {
-  const sanitizedString = looseJson.replace(/\\x([0-9A-Fa-f]{2})/g, (_match, hex) => {
-    return String.fromCharCode(parseInt(hex, 16));
-  });
-  let jsonStr = sanitizedString.replace(/,\s*([\]}])/g, '$1');
+  let jsonStr = looseJson.replace(/,\s*([\]}])/g, '$1');
   jsonStr = jsonStr.replace(/'((?:[^'\\]|\\[\s\S])*)'/g, (_match, innerStr) => {
-    const unescaped = innerStr.replace(/\\'/g, '\'');
+    const unescaped = innerStr.replace(/\\(\\|'|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4})/g, (_m: string, esc: string) => {
+      if (esc === '\\' || esc === '\'') return esc;
+      return String.fromCharCode(parseInt(esc.slice(1), 16));
+    });
     return JSON.stringify(unescaped);
   });
   // just in case
