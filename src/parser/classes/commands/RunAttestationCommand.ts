@@ -16,17 +16,30 @@ export type AttIds = {
   share_id?: string;
 }
 
+export type AttIdsRaw = {
+  encryptedVideoId?: string;
+  externalChannelId?: string;
+  commentId?: string;
+  externalOwnerId?: string;
+  artistId?: string;
+  playlistId?: string;
+  externalPostId?: string;
+  shareId?: string;
+}
+
 export default class RunAttestationCommand extends YTNode {
   static page_attestation_cache: Record<string, IGetChallengeResponse>;
   static type = 'RunAttestationCommand';
-  
+
   public engagement_type: EngagementType;
   public ids?: AttIds[];
+  public raw_ids?: AttIdsRaw[];
 
   constructor(data: RawNode) {
     super();
     this.engagement_type = data.engagementType;
     if (Reflect.has(data, 'ids')) {
+      this.raw_ids = data.ids;
       this.ids = data.ids.map((id: RawNode) => ({
         encrypted_video_id: id.encryptedVideoId,
         external_channel_id: id.externalChannelId,
@@ -42,7 +55,7 @@ export default class RunAttestationCommand extends YTNode {
 
   async #getChallenge(innertube: Innertube, atn_page_url?: string): Promise<IGetChallengeResponse> {
     // TODO maybe cache this part too?
-    if (!atn_page_url) return await innertube.getAttestationChallenge(this.engagement_type, this.ids);
+    if (!atn_page_url) return await innertube.getAttestationChallenge(this.engagement_type, this.raw_ids);
     if (RunAttestationCommand.page_attestation_cache[atn_page_url]) {
       const params = new URLSearchParams(RunAttestationCommand.page_attestation_cache[atn_page_url].challenge);
       const issued_seconds = Number(params.get('c'));
