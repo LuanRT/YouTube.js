@@ -1,4 +1,4 @@
-export interface ImageReader {
+export interface PostImage {
   body: BodyInit;
   size: number;
   height: number;
@@ -20,6 +20,7 @@ export interface PreviewCoordinates {
   left: number;
 }
 
+// The Create Post body ----
 export interface PollAttachmentData_LocalImageSrc {
   privateDoNotAccessOrElseWrappedUrl: string;
 }
@@ -72,11 +73,13 @@ export interface VideoAttachment {
 export interface CreatePostPayloadBase {
   commentText: string;
   createBackstagePostParams: string;
+  scheduledPublishTimeSec?: string;
 }
 export type CreatePostPayload = CreatePostPayloadBase | (CreatePostPayloadBase & (VideoAttachment|PollAttachment|QuizAttachmentData|ImagesAttachment|PollAttachmentData));
 
+// The actual 'Create Post' interface ----
 export interface CreatePostImage {
-  reader: ImageReader;
+  reader: PostImage;
   preview_coordinates: PreviewCoordinates;
 }
 export interface CreatePostOptions_ImagePoll {
@@ -99,4 +102,8 @@ export interface CreatePostOptions_Video {
   type: 'VIDEO';
   video_id: string;
 }
-export type CreatePostOptions = (CreatePostOptions_Video|CreatePostOptions_Poll|CreatePostOptions_Quiz|CreatePostOptions_Image|CreatePostOptions_ImagePoll);
+export interface CreatePostBaseOptions {
+  comment_text: string;
+  scheduled_publish_time_seconds?: string;
+};
+export type CreatePostExtraOptions = (CreatePostOptions_Video|CreatePostOptions_Poll|CreatePostOptions_Quiz|CreatePostOptions_Image|CreatePostOptions_ImagePoll);

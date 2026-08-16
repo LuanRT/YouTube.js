@@ -4,7 +4,7 @@ import { InnertubeError } from '../../utils/Utils.js';
 import type { BotGuardSolver } from '../../types/BotGuard.js';
 import { RunAttestationCommand } from '../../parser/nodes.js';
 import { encodeCreateBackstagePostParams } from '../../utils/ProtoUtils.js';
-import type { CreatePostImage, CreatePostOptions, CreatePostPayload, ImagesAttachment_PostImageData, PollAttachmentData_Option, CreatePostPayloadBase } from '../../types/CreatePost.ts';
+import type { CreatePostImage, CreatePostExtraOptions, CreatePostPayload, ImagesAttachment_PostImageData, PollAttachmentData_Option, CreatePostPayloadBase, CreatePostBaseOptions } from '../../types/CreatePost.ts';
 
 export default class PostManager {
   readonly #innertube: Innertube;
@@ -48,24 +48,25 @@ export default class PostManager {
     const image_upload_json = await image_upload_response.json() as { encryptedBlobId: string };
     return image_upload_json.encryptedBlobId;
   }
-  async #buildPost(comment_text: string, channel_id: string, options?: CreatePostOptions): Promise<CreatePostPayload> {
+  async #buildPost(opts: CreatePostBaseOptions, channel_id: string, extra_opts?: CreatePostExtraOptions): Promise<CreatePostPayload> {
     const base_post: CreatePostPayloadBase = {
-      commentText: comment_text,
+      commentText: opts.comment_text,
+      scheduledPublishTimeSec: opts.scheduled_publish_time_seconds,
       createBackstagePostParams: encodeCreateBackstagePostParams(channel_id)
     };
-    if (!options) return base_post;
-    switch (options.type) {
+    if (!extra_opts) return base_post;
+    switch (extra_opts.type) {
       case 'VIDEO': return {
         ...base_post,
-        videoAttachment: { videoId: options.video_id } 
+        videoAttachment: { videoId: extra_opts.video_id } 
       };
       case 'POLL': return {
         ...base_post,
-        pollAttachment: { choices: options.choices } 
+        pollAttachment: { choices: extra_opts.choices } 
       };
       case 'QUIZ': return {
         ...base_post,
-        quizAttachmentData: { options: options.choices.map((choice) => (
+        quizAttachmentData: { options: extra_opts.choices.map((choice) => (
           {
             pollOption: {
               text: choice.text,
@@ -77,7 +78,7 @@ export default class PostManager {
       };
       case 'IMAGE': {
         const images_data: ImagesAttachment_PostImageData[] = await Promise.all(
-          options.images.map(async(image) => (
+          extra_opts.images.map(async(image) => (
             {
               encryptedBlobId: await this.#uploadImage(image, channel_id),
               previewCoordinates: image.preview_coordinates
@@ -90,7 +91,7 @@ export default class PostManager {
       }
       case 'IMAGE_POLL': {
         const data: PollAttachmentData_Option[] = await Promise.all(
-          options.options.map(async(opt, index) => (
+          extra_opts.options.map(async(opt, index) => (
             {
               image: {
                 encryptedBlobId: await this.#uploadImage(opt.image, channel_id),
@@ -115,11 +116,11 @@ export default class PostManager {
     }
   }
 
-  async create(comment_text: string, channel_id: string, options?: CreatePostOptions) {
+  async create(opts: CreatePostBaseOptions, channel_id: string, extra_opts?: CreatePostExtraOptions) {
     if (!this.#actions.session.logged_in) throw new InnertubeError('You must be signed in to perform this operation.');
     const create_post_response = await this.#actions.execute('/backstage/create_post', {
       parse: true,
-      ...(await this.#buildPost(comment_text, channel_id, options))
+      ...(await this.#buildPost(opts, channel_id, extra_opts))
     });
     if (!create_post_response.actions?.is_array) throw new InnertubeError('create_post_response doesn\'t have any actions');
     const attestation_command = create_post_response.actions.array()[0].as(RunAttestationCommand);
