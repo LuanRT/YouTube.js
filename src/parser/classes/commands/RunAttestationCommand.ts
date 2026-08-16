@@ -28,7 +28,7 @@ export type AttIdsRaw = {
 }
 
 export default class RunAttestationCommand extends YTNode {
-  static page_attestation_cache: Record<string, IGetChallengeResponse>;
+  static page_attestation_cache: Record<string, IGetChallengeResponse> = {};
   static type = 'RunAttestationCommand';
 
   public engagement_type: EngagementType;
@@ -64,6 +64,7 @@ export default class RunAttestationCommand extends YTNode {
     }
     const initial_data = await innertube.initialData(atn_page_url);
     if (initial_data.atn === null) throw new InnertubeError(`Was unable to find a challenge in atn_page_url: ${atn_page_url}`);
+    RunAttestationCommand.page_attestation_cache[atn_page_url] = initial_data.atn;
     return initial_data.atn;
   };
 
@@ -72,7 +73,7 @@ export default class RunAttestationCommand extends YTNode {
     if (!challenge.challenge || !challenge.bg_challenge)
       throw new InnertubeError(`Couldn't get data for botguard_challenge for engagement type: ${this.engagement_type} with ids: ${JSON.stringify(this.ids)}`);
     return {
-      web_response: botguard_solver.solve(challenge.bg_challenge, content_binding ?? challenge.challenge as T),
+      web_response: await botguard_solver.solve(challenge.bg_challenge, content_binding ?? challenge.challenge as T),
       challenge
     };
   }
