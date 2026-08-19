@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/LuanRT/YouTube.js/compare/v18.0.0...v18.0.1) (2026-08-19)
+
+
+### Bug Fixes
+
+* **Format:** Rename `target_duration_dec` to `target_duration_sec` ([0bdd5f1](https://github.com/LuanRT/YouTube.js/commit/0bdd5f198305c40f09f39ea2bf12f686dce02b55))
+
 ## [18.0.0](https://github.com/LuanRT/YouTube.js/compare/v17.2.0...v18.0.0) (2026-08-13)
 
 
