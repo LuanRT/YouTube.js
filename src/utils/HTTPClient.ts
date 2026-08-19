@@ -72,7 +72,7 @@ export default class HTTPClient {
       baseURL === innertube_url ||
       baseURL === Constants.URLS.YT_UPLOAD;
 
-    if (content_type !== 'text/html' && is_innertube_req) {
+    if (request_headers.get('Accept') !== 'text/html' && is_innertube_req) {
       request_url.searchParams.set('prettyPrint', 'false');
       request_url.searchParams.set('alt', 'json');
     }

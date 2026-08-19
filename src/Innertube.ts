@@ -578,7 +578,7 @@ export default class Innertube {
       method: 'GET',
       baseURL: url.origin,
       headers: {
-        'Content-Type': 'text/html'
+        'Accept': 'text/html'
       }
     });
     const html = await inital_data.text();
