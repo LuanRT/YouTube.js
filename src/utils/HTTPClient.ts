@@ -46,8 +46,10 @@ export default class HTTPClient {
     const innertube_url = Constants.URLS.API.PRODUCTION_1 + session.api_version;
     const baseURL = init?.baseURL || innertube_url;
 
+    const input_is_raw_url = typeof input === 'string' && (/^https?:\/\//i).test(input);
+
     const request_url = typeof input === 'string'
-      ? ((/^https?:\/\//i).test(input)
+      ? (input_is_raw_url
         ? new URL(input)
         : new URL(`${baseURL.replace(/\/+$/, '')}/${input.replace(/^\/+/, '')}`))
       : input instanceof URL ? input : new URL(input.url, baseURL);
@@ -72,7 +74,7 @@ export default class HTTPClient {
       baseURL === innertube_url ||
       baseURL === Constants.URLS.YT_UPLOAD;
 
-    if (request_headers.get('Accept') !== 'text/html' && is_innertube_req) {
+    if (!input_is_raw_url && is_innertube_req) {
       request_url.searchParams.set('prettyPrint', 'false');
       request_url.searchParams.set('alt', 'json');
     }

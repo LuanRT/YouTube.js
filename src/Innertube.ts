@@ -576,10 +576,7 @@ export default class Innertube {
     const url = new URL(page_url);
     const inital_data = await this.session.http.fetch(url.pathname, {
       method: 'GET',
-      baseURL: url.origin,
-      headers: {
-        'Accept': 'text/html'
-      }
+      baseURL: url.origin
     });
     const html = await inital_data.text();
 
