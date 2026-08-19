@@ -2,9 +2,14 @@ import type { Actions } from '../index.js';
 import type Innertube from '../../Innertube.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import type { BotGuardSolver } from '../../types/BotGuard.js';
-import { RunAttestationCommand } from '../../parser/nodes.js';
+import { AddBackstagePostAction, BackstagePost, RunAttestationCommand } from '../../parser/nodes.js';
 import { encodeCreateBackstagePostParams } from '../../utils/ProtoUtils.js';
 import type { CreatePostImage, CreatePostExtraOptions, CreatePostPayload, ImagesAttachment_PostImageData, PollAttachmentData_Option, CreatePostPayloadBase, CreatePostBaseOptions } from '../../types/CreatePost.ts';
+
+export interface CreatePostResponse {
+  post_id: string;
+  post?: BackstagePost;
+}
 
 export default class PostManager {
   readonly #innertube: Innertube;
@@ -118,21 +123,30 @@ export default class PostManager {
     }
   }
 
-  async create(opts: CreatePostBaseOptions, channel_id: string, extra_opts?: CreatePostExtraOptions) {
+  async create(opts: Omit<CreatePostBaseOptions, 'scheduled_publish_time_seconds'>, channel_id: string, extra_opts?: CreatePostExtraOptions): Promise<Required<CreatePostResponse>>
+  async create(opts: Required<CreatePostBaseOptions>, channel_id: string, extra_opts?: CreatePostExtraOptions): Promise<Omit<CreatePostResponse, 'post'>>
+  async create(opts: CreatePostBaseOptions, channel_id: string, extra_opts?: CreatePostExtraOptions): Promise<CreatePostResponse> {
     if (!this.#actions.session.logged_in) throw new InnertubeError('You must be signed in to perform this operation.');
     const create_post_response = await this.#actions.execute('/backstage/create_post', {
       parse: true,
       ...(await this.#buildPost(opts, channel_id, extra_opts))
     });
     if (!create_post_response.actions?.is_array) throw new InnertubeError('create_post_response doesn\'t have any actions');
-    const attestation_command = create_post_response.actions.array()[0].as(RunAttestationCommand);
+    const attestation_command = create_post_response.actions.array().firstOfType(RunAttestationCommand);
+    if (!attestation_command) throw new InnertubeError('Post didn\'t send an attestation command');
     const attestation_run_response = await attestation_command.run(this.#innertube, this.#botguard_solver, undefined, `https://www.youtube.com/channel/${channel_id}/posts`);
-    const attestation_log_response = await this.#actions.execute('/att/log', {
+    await this.#actions.execute('/att/log', {
       challenge: attestation_run_response.challenge.challenge,
       engagementType: attestation_command.engagement_type,
       ids: attestation_command.raw_ids,
       webResponse: attestation_run_response.web_response
     });
-    return { create_post_response, attestation_log_response };
+
+    const add_backstage_post_action = create_post_response.actions.array().firstOfType(AddBackstagePostAction);
+
+    return {
+      post_id: attestation_command.ids?.[0].external_post_id ?? '',
+      post: add_backstage_post_action?.renderer?.post.as(BackstagePost)
+    };
   }
 }
