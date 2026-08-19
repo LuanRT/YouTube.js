@@ -24,7 +24,7 @@ import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
 import type Format from './parser/classes/misc/Format.js';
 
 import * as Constants from './utils/Constants.js';
-import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
+import { generateRandomString, InnertubeError, parseLooseJSON, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
 
 import type { ApiResponse } from './core/Actions.js';
 import type {
@@ -34,9 +34,10 @@ import type {
   GetVideoInfoOptions,
   InnerTubeClient,
   InnerTubeConfig,
-  SearchFilters
+  SearchFilters,
+  BotGuardSolver
 } from './types/index.js';
-import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
+import type { IBrowseResponse, IGetChallengeResponse, IParsedResponse, RawData } from './parser/index.js';
 
 import {
   CommunityPostCommentsParam,
@@ -51,6 +52,9 @@ import {
   SearchFilter_Filters_UploadDate,
   SearchFilter_Prioritize
 } from '../protos/generated/misc/params.js';
+import { parseResponse } from './parser/parser.js';
+import RunAttestationCommand from './parser/classes/commands/RunAttestationCommand.js';
+import PostManager from './core/managers/PostManager.js';
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -560,11 +564,32 @@ export default class Innertube {
     const payload: Record<string, any> = {
       engagementType: engagement_type
     };
-    
+
     if (ids)
       payload.ids = ids;
     
     return this.actions.execute('/att/get', { parse: true, ...payload });
+  }
+
+  // TODO better names this??
+  async initialData(page_url: string) {
+    const url = new URL(page_url);
+    const inital_data = await this.session.http.fetch(url.pathname, {
+      method: 'GET',
+      baseURL: url.origin
+    });
+    const html = await inital_data.text();
+
+    const ytcfg_regex = /ytcfg\.set\(({.+?})\);/s;
+    const attestation_data_regex = /window\.ytAtN\(\s*({[\s\S]*?})\s*\)/;
+
+    const ytcfg_string = ytcfg_regex.exec(html)?.[1];
+    const attestation_data_string = attestation_data_regex.exec(html)?.[1];
+
+    return {
+      ytcfg: ytcfg_string ? JSON.parse(ytcfg_string) as RawData : null,
+      atn: attestation_data_string ? parseResponse<IGetChallengeResponse>(parseLooseJSON(attestation_data_string).R) : null
+    };
   }
 
   /**
@@ -609,6 +634,13 @@ export default class Innertube {
    */
   get playlist() {
     return new PlaylistManager(this.#session.actions);
+  }
+
+  /**
+   * An interface for managing posts.
+   */
+  posts(botguard_solver: BotGuardSolver<string>) {
+    return new PostManager(this, this.#session.actions, botguard_solver);
   }
 
   /**
