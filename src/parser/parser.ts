@@ -41,6 +41,9 @@ import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
 import OpenPopupAction from './classes/actions/OpenPopupAction.js';
 import AppendContinuationItemsAction from './classes/actions/AppendContinuationItemsAction.js';
+import UploadFeedbackItem from './classes/ytstudio/UploadFeedbackItem.js';
+import CreatorVideo from './classes/ytstudio/CreatorVideo.js';
+import Translation from './classes/ytstudio/Translation.js';
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
 const TAG = 'Parser';
@@ -278,6 +281,15 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   _clearMemo();
 
   _createMemo();
+  const continuation_contents_array = data.continuationContents && Array.isArray(data.continuationContents) ? data.continuationContents.map((item) => parseLC(item)) : null;
+  const continuation_contents_array_memo = _getMemo();
+  if (continuation_contents_array) {
+    parsed_data.continuation_contents_array = continuation_contents_array;
+    parsed_data.continuation_contents_array_memo = continuation_contents_array_memo;
+  }
+  _clearMemo();
+
+  _createMemo();
   const actions = data.actions ? parseActions(data.actions) : null;
   const actions_memo = _getMemo();
   if (actions) {
@@ -507,6 +519,42 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.challenge = data.challenge;
   }
 
+  if (data.botguardData) {
+    const interpreter_url = {
+      private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
+      private_do_not_access_or_else_safe_script_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseSafeScriptWrappedValue
+    };
+
+    parsed_data.botguard_data = {
+      interpreter_url,
+      program: data.botguardData.program
+    };
+  }
+
+  if (data.eats) {
+    parsed_data.eats = data.eats;
+  }
+
+  if (data.ctx) {
+    parsed_data.ctx = data.ctx;
+  }
+
+  if (data.shouldFetchReauthSessionToken !== undefined) {
+    parsed_data.should_fetch_reauth_session_token = data.shouldFetchReauthSessionToken;
+  }
+
+  if (data.encodedReauthProofToken) {
+    parsed_data.encoded_reauth_proof_token = data.encodedReauthProofToken;
+  }
+
+  if (data.sessionRiskCtx) {
+    parsed_data.session_risk_ctx = data.sessionRiskCtx;
+  }
+
+  if (data.sessionToken) {
+    parsed_data.session_token = data.sessionToken;
+  }
+
   if (data.playerResponse) {
     parsed_data.player_response = parseResponse(data.playerResponse);
   }
@@ -528,6 +576,27 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
 
   if (data.targetId) {
     parsed_data.target_id = data.targetId;
+  }
+
+  if (data.videoId) {
+    parsed_data.video_id = data.videoId;
+  }
+
+  if (data.translation) {
+    parsed_data.translation = new Translation(data.translation);
+  }
+
+  if (data?.creatorEntities?.wrappedVideoData?.video) {
+    parsed_data.creator_video = new CreatorVideo(data.creatorEntities.wrappedVideoData.video);
+  }
+
+  if (data.feedbackResponses) {
+    parsed_data.feedback_responses = data.feedbackResponses;
+  }
+
+  const challenge_prompt_type = data.responseContext?.webResponseContextExtensionData?.challenge?.type;
+  if (challenge_prompt_type) {
+    parsed_data.challenge_prompt_type = challenge_prompt_type;
   }
 
   return parsed_data;
@@ -724,7 +793,11 @@ export function parseC(data: RawNode) {
   return null;
 }
 
-export function parseLC(data: RawNode) {
+export type ContinuationContents = null | ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | 
+  MusicPlaylistShelfContinuation | MusicShelfContinuation | GridContinuation | 
+  PlaylistPanelContinuation | ContinuationCommand | UploadFeedbackItem;
+export function parseLC(data: RawNode): ContinuationContents
+export function parseLC(data: RawNode): ContinuationContents {
   if (data.itemSectionContinuation)
     return new ItemSectionContinuation(data.itemSectionContinuation);
   if (data.sectionListContinuation)
@@ -741,7 +814,8 @@ export function parseLC(data: RawNode) {
     return new PlaylistPanelContinuation(data.playlistPanelContinuation);
   if (data.continuationCommand)
     return new ContinuationCommand(data.continuationCommand);
-
+  if (data.uploadFeedbackItemContinuation)
+    return new UploadFeedbackItem(data.uploadFeedbackItemContinuation);
   return null;
 }
 

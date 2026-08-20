@@ -1,9 +1,11 @@
-
 export const URLS = {
   YT_BASE: 'https://www.youtube.com',
   YT_MUSIC_BASE: 'https://music.youtube.com',
+  YT_STUDIO_WEB_BASE: 'https://studio.youtube.com',
   YT_SUGGESTIONS: 'https://suggestqueries-clients6.youtube.com',
   YT_UPLOAD: 'https://upload.youtube.com/',
+  YT_UPLOAD_VIDEO_WEB: 'https://upload.youtube.com/upload/studio',
+  YT_UPLOAD_THUMBNAIL_WEB: 'https://upload.youtube.com/upload/studiothumbnail',
   API: {
     BASE: 'https://youtubei.googleapis.com',
     PRODUCTION_1: 'https://www.youtube.com/youtubei/',
@@ -105,10 +107,12 @@ export const CLIENTS = {
   },
   WEB_CREATOR: {
     NAME: 'WEB_CREATOR',
-    VERSION: '1.20241203.01.00',
+    VERSION: '1.20260728.03.00',
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
-    STATIC_VISITOR_ID: '6zpwvWUNAco'
+    STATIC_VISITOR_ID: '6zpwvWUNAco',
+    USER_AGENT: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',
+    EATS: 'AeCS5zA8mwKJA3VzvwD--o2-ZsGbWYFt6LMN2EuOPJLQrg6MIuKxBpbf9WNlMPlARBhbMM-hSWg982LQDZEnOBj-yHFw1TDTzIUdINTExUA6U5lOgLtxyv6guJS9HQ=='
   }
 } as const;
 /**

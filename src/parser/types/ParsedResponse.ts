@@ -4,6 +4,8 @@ import type {
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
   PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand, ShowMiniplayerCommand, NavigateAction
 } from '../index.js';
+import type Translation from '../classes/ytstudio/Translation.js';
+import type CreatorVideo from '../classes/ytstudio/CreatorVideo.js';
 
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
 import type CardCollection from '../classes/CardCollection.js';
@@ -21,11 +23,19 @@ import type EngagementPanelSectionList from '../classes/EngagementPanelSectionLi
 import type AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
 import type MusicThumbnail from '../classes/MusicThumbnail.js';
 import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
+import type { ContinuationContents } from '../parser.js';
 
 export interface IParsedResponse {
   background?: MusicThumbnail;
   challenge?: string;
   bg_challenge?: IBotguardChallenge;
+  botguard_data?: IBotguardData;
+  ctx?: string;
+  should_fetch_reauth_session_token?: boolean;
+  encoded_reauth_proof_token?: string;
+  session_risk_ctx?: string;
+  session_token?: string;
+  eats?: string;
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
   content?: YTNode;
@@ -45,9 +55,10 @@ export interface IParsedResponse {
   on_response_received_commands?: ObservedArray<AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand>;
   on_response_received_commands_memo?: Memo;
   continuation?: Continuation;
-  continuation_contents?: ItemSectionContinuation | SectionListContinuation | LiveChatContinuation | MusicPlaylistShelfContinuation |
-  MusicShelfContinuation | GridContinuation | PlaylistPanelContinuation | ContinuationCommand;
+  continuation_contents?: ContinuationContents;
   continuation_contents_memo?: Memo;
+  continuation_contents_array?: ContinuationContents[];
+  continuation_contents_array_memo?: Memo;
   metadata?: SuperParsedResult<YTNode>;
   microformat?: YTNode;
   overlay?: YTNode;
@@ -82,6 +93,11 @@ export interface IParsedResponse {
   continuation_endpoint?: YTNode;
   player_response?: IPlayerResponse;
   watch_next_response?: INextResponse;
+  video_id?: string;
+  translation?: Translation;
+  creator_video?: CreatorVideo;
+  feedback_responses?: { isProcessed: boolean }[];
+  challenge_prompt_type?: 'CHALLENGE_PROMPT_TYPE_UNSPECIFIED' | 'CHALLENGE_PROMPT_TYPE_AUTHENTICATE';
 }
 
 export interface ITrustedResource {
@@ -95,6 +111,11 @@ export interface IBotguardChallenge {
   program: string;
   global_name: string;
   client_experiments_state_blob: string;
+}
+
+export interface IBotguardData {
+  interpreter_url: ITrustedResource;
+  program: string;
 }
 
 export interface IPlaybackTracking {
@@ -148,5 +169,14 @@ export type IGetTranscriptResponse = Pick<IParsedResponse, 'actions' | 'actions_
 export type IGetNotificationsMenuResponse = Pick<IParsedResponse, 'actions' | 'actions_memo'>;
 export type IUpdatedMetadataResponse = Pick<IParsedResponse, 'actions' | 'actions_memo' | 'continuation'>;
 export type IGuideResponse = Pick<IParsedResponse, 'items' | 'items_memo'>;
-export type IGetChallengeResponse = Pick<IParsedResponse, 'challenge' | 'bg_challenge'>;
+export type IGetChallengeResponse = Pick<IParsedResponse, 'challenge' | 'bg_challenge' | 'botguard_data' | 'eats'>;
+export type IESRChallengeResponse = Pick<IParsedResponse, 'ctx' | 'should_fetch_reauth_session_token'>;
+export type IGetSessionTokenResponse = Pick<IParsedResponse, 'session_token'>;
+export type IGetWebReauthURLResponse = Pick<IParsedResponse, 'encoded_reauth_proof_token' | 'session_risk_ctx'>;
 export type IShowEngagementPanelResponse = Pick<IParsedResponse, 'content'>;
+export type ICreateCaptionsResponse = Pick<IParsedResponse, 'translation' | 'challenge_prompt_type'>;
+export type IParseCaptionsResponse = Pick<IParsedResponse, 'translation' | 'challenge_prompt_type'>;
+export type IUpdateCaptionsResponse = Pick<IParsedResponse, 'challenge_prompt_type'>;
+export type IMetadataUpdateResponse = Pick<IParsedResponse, 'creator_video' | 'challenge_prompt_type'>;
+export type ICreateVideoResponse = Pick<IParsedResponse, 'contents' | 'video_id' | 'challenge_prompt_type'>;
+export type IUploadFeedbackResponse = Pick<IParsedResponse, 'feedback_responses' | 'continuation_contents_array' | 'challenge_prompt_type'>;

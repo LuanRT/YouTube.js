@@ -300,3 +300,9 @@ export function getNsigProcessorFn(n?: string | null, sp?: string | null, s?: st
 
 return process("${n || ''}", "${sp || ''}", "${s || ''}");`;
 }
+
+export async function wait(milliseconds: number) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, milliseconds);
+  });
+}

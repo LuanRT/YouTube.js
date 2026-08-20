@@ -1,6 +1,6 @@
 import Session from './core/Session.js';
 
-import { Kids, Music, Studio } from './core/clients/index.js';
+import { Kids, Music, Studio, StudioWeb } from './core/clients/index.js';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
 import { Feed, TabbedFeed } from './core/mixins/index.js';
 
@@ -143,7 +143,7 @@ export default class Innertube {
           signatureTimestamp: session.player?.signature_timestamp
         }
       },
-      client: options?.client  
+      client: options?.client
     };
 
     if (options?.po_token) {
@@ -155,7 +155,7 @@ export default class Innertube {
         poToken: session.po_token
       };
     }
-    
+
     const watch_response = await watch_endpoint.call(session.actions, extra_payload);
 
     const cpn = generateRandomString(16);
@@ -296,7 +296,7 @@ export default class Innertube {
         'Cookie': session.cookie || ''
       }
     });
-    
+
     const text = await response.text();
 
     const data = JSON.parse(text.replace('window.google.ac.h(', '').slice(0, -1));
@@ -560,10 +560,10 @@ export default class Innertube {
     const payload: Record<string, any> = {
       engagementType: engagement_type
     };
-    
+
     if (ids)
       payload.ids = ids;
-    
+
     return this.actions.execute('/att/get', { parse: true, ...payload });
   }
 
@@ -588,6 +588,14 @@ export default class Innertube {
    */
   get studio() {
     return new Studio(this.#session);
+  }
+
+  /**
+   * An interface for interacting with YouTube Studio Web.
+   * @param channel_id - the channel id to interface with
+   */
+  studioWeb(channel_id: string) {
+    return new StudioWeb(this.#session, channel_id);
   }
 
   /**

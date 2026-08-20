@@ -1,19 +1,34 @@
 import type {
   IBrowseResponse,
+  ICreateCaptionsResponse,
+  ICreateVideoResponse,
+  IESRChallengeResponse,
   IGetChallengeResponse,
   IGetNotificationsMenuResponse,
+  IGetSessionTokenResponse,
+  IGetWebReauthURLResponse,
+  IMetadataUpdateResponse,
   INextResponse,
+  IParseCaptionsResponse,
   IParsedResponse,
   IPlayerResponse,
   IRawResponse,
   IResolveURLResponse,
   ISearchResponse,
-  IUpdatedMetadataResponse
+  IUpdateCaptionsResponse,
+  IUpdatedMetadataResponse,
+  IUploadFeedbackResponse
 } from '../parser/index.js';
 import { NavigateAction, Parser } from '../parser/index.js';
-import { InnertubeError } from '../utils/Utils.js';
+import { InnertubeError, u8ToBase64 } from '../utils/Utils.js';
+
+import {
+  UserInfo_DelegationContext,
+  UserInfo_DelegationContext_RoleType_ChannelRoleType
+} from '../../protos/generated/youtube/api/pfiinnertube/user_info.js';
 
 import type { Session } from './index.js';
+import { Constants } from '../utils/index.js';
 
 export interface ApiResponse {
   success: boolean;
@@ -34,14 +49,23 @@ export type InnertubeEndpoint =
 
 export type ParsedResponse<T> =
   T extends '/player' ? IPlayerResponse :
-    T extends '/search' ? ISearchResponse :
-      T extends '/browse' ? IBrowseResponse :
-        T extends '/next' ? INextResponse :
-          T extends '/updated_metadata' ? IUpdatedMetadataResponse :
-            T extends '/navigation/resolve_url' ? IResolveURLResponse :
-              T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
-                T extends '/att/get' ? IGetChallengeResponse :
-                  IParsedResponse;
+  T extends '/search' ? ISearchResponse :
+  T extends '/browse' ? IBrowseResponse :
+  T extends '/next' ? INextResponse :
+  T extends '/updated_metadata' ? IUpdatedMetadataResponse :
+  T extends '/navigation/resolve_url' ? IResolveURLResponse :
+  T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
+  T extends '/att/get' ? IGetChallengeResponse :
+  T extends '/att/esr' ? IESRChallengeResponse :
+  T extends '/ars/grst' ? IGetSessionTokenResponse :
+  T extends '/security/get_web_reauth_url' ? IGetWebReauthURLResponse :
+  T extends '/globalization/create_captions' ? ICreateCaptionsResponse :
+  T extends '/globalization/parse_captions' ? IParseCaptionsResponse :
+  T extends '/globalization/update_captions' ? IUpdateCaptionsResponse :
+  T extends '/video_manager/metadata_update' ? IMetadataUpdateResponse :
+  T extends '/upload/createvideo' ? ICreateVideoResponse :
+  T extends '/upload/feedback' ? IUploadFeedbackResponse :
+  IParsedResponse;
 
 export default class Actions {
   public session: Session;
@@ -145,6 +169,53 @@ export default class Actions {
       if (data?.client === 'YTMUSIC') {
         data.isAudioOnly = true;
       }
+
+      delete this.session.context.request?.returnLogEntry;
+      delete this.session.context.request?.eats;
+      delete this.session.context.request?.reauthRequestInfo;
+      delete this.session.context.request?.sessionInfo;
+      delete this.session.context.request?.attestationResponseData;
+      delete this.session.context.user?.delegationContext;
+      delete this.session.context.user?.serializedDelegationContext;
+      if (data?.client === 'WEB_CREATOR') {
+        if (this.session.context.request) { // should just be true
+          // TODO maybe I want to manually fetch the initial eats; but it seems that it doesn't matter to much...
+          if (data?.eats) {
+            this.session.context.request.eats = data?.eats;
+            delete data?.eats;
+          } else {
+            this.session.context.request.eats = Constants.CLIENTS.WEB_CREATOR.EATS;
+          }
+
+          if (data.reauth_proof_token) {
+            this.session.context.request.reauthRequestInfo = { encodedReauthProofToken: data.reauth_proof_token };
+            delete data.reauth_proof_token;
+          }
+
+          if (data.session_token) {
+            this.session.context.request.sessionInfo = { token: data.session_token };
+            delete data.session_token;
+          }
+
+          if (data.attestation_response_data && Reflect.has(data.attestation_response_data, 'challenge') && Reflect.has(data.attestation_response_data, 'webResponse')) {
+            this.session.context.request.attestationResponseData = data.attestation_response_data;
+          }
+
+          if (data.channel_id && this.session.context.user) {
+            const delegation_context = {
+              externalChannelId: data.channel_id,
+              // ?? Not to sure when this is ever not 'CREATOR_CHANNEL_ROLE_TYPE_OWNER', but if it can be else-things then gotta fetch it...
+              roleType: { channelRoleType: 'CREATOR_CHANNEL_ROLE_TYPE_OWNER' as const }
+            };
+
+            this.session.context.user.delegationContext = delegation_context;
+            this.session.context.user.serializedDelegationContext = u8ToBase64(UserInfo_DelegationContext.encode({
+              externalChannelId: delegation_context.externalChannelId,
+              roleType: { channelRoleType: UserInfo_DelegationContext_RoleType_ChannelRoleType.CREATOR_CHANNEL_ROLE_TYPE_OWNER }
+            }).finish());
+          }
+        }
+      }
     } else if (args) {
       data = args.serialized_data;
     }
@@ -160,6 +231,17 @@ export default class Actions {
           'application/json'
       }
     });
+
+    // YouTube Studio Web Context Cleanup
+    {
+      delete this.session.context.request?.returnLogEntry;
+      delete this.session.context.request?.eats;
+      delete this.session.context.request?.reauthRequestInfo;
+      delete this.session.context.request?.sessionInfo;
+      delete this.session.context.request?.attestationResponseData;
+      delete this.session.context.user?.delegationContext;
+      delete this.session.context.user?.serializedDelegationContext;
+    }
 
     if (args?.parse) {
       let parsed_response = Parser.parseResponse<ParsedResponse<T>>(await response.json());

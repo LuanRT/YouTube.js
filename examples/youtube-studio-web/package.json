@@ -1,0 +1,16 @@
+{
+  "name": "youtube-studio-web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {},
+  "devDependencies": {
+    "@types/jsdom": "^27.0.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "bgutils-js": "^4.0.3",
+    "jsdom": "^28.1.0",
+    "youtubei.js": "file:../../"
+  }
+}
