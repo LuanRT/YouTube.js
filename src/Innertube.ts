@@ -568,7 +568,6 @@ export default class Innertube {
     return this.actions.execute('/att/get', { parse: true, ...payload });
   }
 
-  // TODO better names this??
   async initialData(page_url: string) {
     const url = new URL(page_url);
     const inital_data = await this.session.http.fetch(url.pathname, {
@@ -583,9 +582,12 @@ export default class Innertube {
     const ytcfg_string = ytcfg_regex.exec(html)?.[1];
     const attestation_data_string = attestation_data_regex.exec(html)?.[1];
 
+    const yt_atn: {R: RawNode, T: string}|null = attestation_data_string ? parseLooseJSON(attestation_data_string) : null;
+    
     return {
       ytcfg: ytcfg_string ? JSON.parse(ytcfg_string) as RawNode : null,
-      atn: attestation_data_string ? parseResponse<IGetChallengeResponse>(parseLooseJSON(attestation_data_string).R) : null
+      atn: yt_atn?.R ? parseResponse<IGetChallengeResponse>(yt_atn.R) : null,
+      eacr_token: yt_atn ? yt_atn.T : null
     };
   }
 
