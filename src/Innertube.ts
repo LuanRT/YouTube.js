@@ -557,13 +557,15 @@ export default class Innertube {
   /**
    * Fetches an attestation challenge.
    */
-  async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[]) {
+  async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[], eacr_token?: string) {
     const payload: Record<string, any> = {
       engagementType: engagement_type
     };
     
     if (ids)
       payload.ids = ids;
+    if (eacr_token)
+      payload.eacrToken = eacr_token;
     
     return this.actions.execute('/att/get', { parse: true, ...payload });
   }
