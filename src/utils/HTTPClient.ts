@@ -46,8 +46,12 @@ export default class HTTPClient {
     const innertube_url = Constants.URLS.API.PRODUCTION_1 + session.api_version;
     const baseURL = init?.baseURL || innertube_url;
 
+    const input_is_raw_url = typeof input === 'string' && (/^https?:\/\//i).test(input);
+
     const request_url = typeof input === 'string'
-      ? new URL(`${baseURL}${baseURL.endsWith('/') || input.startsWith('/') ? '' : '/'}${input}`)
+      ? (input_is_raw_url
+        ? new URL(input)
+        : new URL(`${baseURL.replace(/\/+$/, '')}/${input.replace(/^\/+/, '')}`))
       : input instanceof URL ? input : new URL(input.url, baseURL);
 
     const headers =
@@ -61,9 +65,6 @@ export default class HTTPClient {
 
     this.#setupCommonHeaders(request_headers, session, request_url);
 
-    request_url.searchParams.set('prettyPrint', 'false');
-    request_url.searchParams.set('alt', 'json');
-
     const content_type = request_headers.get('Content-Type');
 
     let request_body = body;
@@ -72,6 +73,11 @@ export default class HTTPClient {
     const is_innertube_req =
       baseURL === innertube_url ||
       baseURL === Constants.URLS.YT_UPLOAD;
+
+    if (!input_is_raw_url && is_innertube_req) {
+      request_url.searchParams.set('prettyPrint', 'false');
+      request_url.searchParams.set('alt', 'json');
+    }
 
     // Copy context into payload when possible
     if (content_type === 'application/json' && is_innertube_req && (typeof body === 'string')) {
@@ -138,6 +144,8 @@ export default class HTTPClient {
 
         request_headers.set('Cookie', cookie);
       }
+    } else if (session.logged_in && this.#cookie && request_url.origin === Constants.URLS.YT_BASE) {
+      request_headers.set('Cookie', this.#cookie);
     }
 
     const request = new Platform.shim.Request(request_url, input instanceof Platform.shim.Request ? input : init);

@@ -300,3 +300,27 @@ export function getNsigProcessorFn(n?: string | null, sp?: string | null, s?: st
 
 return process("${n || ''}", "${sp || ''}", "${s || ''}");`;
 }
+
+// Could also just be done with an eval...
+export function parseLooseJSON(looseJson: string) {
+  let jsonStr = looseJson.replace(/,\s*([\]}])/g, '$1');
+  jsonStr = jsonStr.replace(/'((?:[^'\\]|\\[\s\S])*)'/g, (_match, innerStr) => {
+    const unescaped = innerStr.replace(/\\(\\|'|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4})/g, (_m: string, esc: string) => {
+      if (esc === '\\' || esc === '\'') return esc;
+      return String.fromCharCode(parseInt(esc.slice(1), 16));
+    });
+    return JSON.stringify(unescaped);
+  });
+  // just in case
+  jsonStr = jsonStr.replace(/([{,]\s*)([a-zA-Z0-9_$]+)\s*:/g, '$1"$2":');
+  const parsedData = JSON.parse(jsonStr);
+  for (const key in parsedData) {
+    const val = parsedData[key];
+    if (typeof val === 'string' && (val.trim().startsWith('{') || val.trim().startsWith('['))) {
+      try {
+        parsedData[key] = JSON.parse(val);
+      } catch { /** no-op */ }
+    }
+  }
+  return parsedData;
+}
