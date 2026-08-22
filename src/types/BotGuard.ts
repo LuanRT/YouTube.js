@@ -4,7 +4,7 @@ export interface BotGuardSolverChallenge extends IBotguardChallenge {
   ytcfg?: Record<string, unknown>;
 }
 
-export interface BotGuardChallengeInfo extends Required<IGetChallengeResponse> {
+export interface BotGuardChallengeInfo extends Pick<Required<IGetChallengeResponse>, 'bg_challenge' | 'challenge'> {
   bg_challenge: BotGuardSolverChallenge;
 }
 
