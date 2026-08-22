@@ -51,19 +51,22 @@ export default class BotGuardManager {
 
   #cleanCache() {
     for (const key of Object.keys(this.#botguard_challenge_info_cache)) {
-      if (this.#challengeExpired(this.#botguard_challenge_info_cache[key].challenge))
+      if (this.#challengeExpired(this.#botguard_challenge_info_cache[key].challenge)) {
         delete this.#botguard_challenge_info_cache[key];
+      }
     }
   }
 
   #insertCache<T>(challenge_info: BotGuardChallengeInfo, opts: ChallengeSolverOptsEngagement<T>) {
     this.#cleanCache();
+
     const inner_cache_key = this.#innerCacheKey(opts.engagement_type, opts.ids, opts.atn_page_url);
     this.#botguard_challenge_info_cache[inner_cache_key] = challenge_info;
   }
 
   #checkCache<T>(opts: ChallengeSolverOptsEngagement<T>): BotGuardChallengeInfo|null {
     this.#cleanCache();
+
     const inner_cache_key = this.#innerCacheKey(opts.engagement_type, opts.ids, opts.atn_page_url);
     if (!this.#challengeExpired(this.#botguard_challenge_info_cache[inner_cache_key]?.challenge))
       return this.#botguard_challenge_info_cache[inner_cache_key];
@@ -96,6 +99,7 @@ export default class BotGuardManager {
 
     const challenge_response = await this.#innertube.getAttestationChallenge(opts.engagement_type, opts.ids, opts.eacr_token);
     const botguard_challenge_info = this.#challengeResponseToBotGuardChallengeInfo(challenge_response, opts.ytcfg);
+
     this.#insertCache(botguard_challenge_info, opts);
     return botguard_challenge_info;
   }
