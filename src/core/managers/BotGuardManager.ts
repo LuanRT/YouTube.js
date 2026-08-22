@@ -97,7 +97,11 @@ export default class BotGuardManager {
     const cache_check = this.#checkCache(args);
     if (cache_check) return cache_check;
 
-    const challenge_response = await this.#innertube.getAttestationChallenge(args.engagement_type, args.ids, args.eacr_token);
+    const challenge_response = await this.#innertube.getAttestationChallenge(args.engagement_type, args.ids, {
+      eacr_token: args.eacr_token,
+      client: args.client,
+      eats: args.eats
+    });
     const botguard_challenge_info = this.#challengeResponseToBotGuardChallengeInfo(challenge_response, args.ytcfg);
 
     this.#insertCache(botguard_challenge_info, args);
