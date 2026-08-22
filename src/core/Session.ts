@@ -93,6 +93,16 @@ export type Context = {
     enableSafetyMode: boolean;
     lockedSafetyMode: boolean;
     onBehalfOfUser?: string;
+    delegationContext?: {
+      externalChannelId: string,
+      roleType: {
+        channelRoleType:
+        'CREATOR_CHANNEL_ROLE_TYPE_OWNER' | 'CREATOR_CHANNEL_ROLE_TYPE_MANAGER' | 'CREATOR_CHANNEL_ROLE_TYPE_EDITOR' | 'CREATOR_CHANNEL_ROLE_TYPE_EDITOR_LIMITED' |
+        'CREATOR_CHANNEL_ROLE_TYPE_SUBTITLE_EDITOR' | 'CREATOR_CHANNEL_ROLE_TYPE_VIEWER' | 'CREATOR_CHANNEL_ROLE_TYPE_VIEWER_LIMITED' | 'CREATOR_CHANNEL_ROLE_TYPE_UNSPECIFIED' |
+        'CREATOR_CHANNEL_ROLE_TYPE_MODERATOR' | 'CREATOR_CHANNEL_ROLE_TYPE_CUSTOM'
+      }
+    }
+    serializedDelegationContext?: string;
   };
   thirdParty?: {
     embedUrl: string;
@@ -100,6 +110,16 @@ export type Context = {
   request?: {
     useSsl: boolean;
     internalExperimentFlags: any[];
+    eats?: string;
+    returnLogEntry?: boolean;
+    sessionInfo?: { token: string };
+    attestationResponseData?: {
+      challenge: string;
+      webResponse: string;
+    };
+    reauthRequestInfo?: {
+      encodedReauthProofToken: string;
+    };
   };
 }
 
