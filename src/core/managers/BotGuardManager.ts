@@ -7,7 +7,7 @@ import type { EngagementType } from '../../types/Misc.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import type { ClientType } from '../index.js';
 
-export interface ChallengeSolverOptsBase<T> {
+export interface ChallengeSolverArgsBase<T> {
   content_binding?: T;
   atn_page_url?: string;
   eacr_token?: string;
@@ -16,16 +16,16 @@ export interface ChallengeSolverOptsBase<T> {
   ytcfg?: RawNode;
 }
 
-export interface ChallengeSolverOptsRunAttestationCommand<T> extends ChallengeSolverOptsBase<T> {
+export interface ChallengeSolverArgsRunAttestationCommand<T> extends ChallengeSolverArgsBase<T> {
   run_attestation_command: RunAttestationCommand;
 }
 
-export interface ChallengeSolverOptsEngagement<T> extends ChallengeSolverOptsBase<T> {
+export interface ChallengeSolverArgsEngagement<T> extends ChallengeSolverArgsBase<T> {
   engagement_type: EngagementType;
   ids: AttIdsRaw[];
 }
 
-export type ChallengeSolverOpts<T> = ChallengeSolverOptsEngagement<T> | ChallengeSolverOptsRunAttestationCommand<T>;
+export type ChallengeSolverArgs<T> = ChallengeSolverArgsEngagement<T> | ChallengeSolverArgsRunAttestationCommand<T>;
 
 export default class BotGuardManager {
   readonly #innertube: Innertube;
@@ -57,17 +57,17 @@ export default class BotGuardManager {
     }
   }
 
-  #insertCache<T>(challenge_info: BotGuardChallengeInfo, opts: ChallengeSolverOptsEngagement<T>) {
+  #insertCache<T>(challenge_info: BotGuardChallengeInfo, args: ChallengeSolverArgsEngagement<T>) {
     this.#cleanCache();
 
-    const inner_cache_key = this.#innerCacheKey(opts.engagement_type, opts.ids, opts.atn_page_url);
+    const inner_cache_key = this.#innerCacheKey(args.engagement_type, args.ids, args.atn_page_url);
     this.#botguard_challenge_info_cache[inner_cache_key] = challenge_info;
   }
 
-  #checkCache<T>(opts: ChallengeSolverOptsEngagement<T>): BotGuardChallengeInfo|null {
+  #checkCache<T>(args: ChallengeSolverArgsEngagement<T>): BotGuardChallengeInfo|null {
     this.#cleanCache();
 
-    const inner_cache_key = this.#innerCacheKey(opts.engagement_type, opts.ids, opts.atn_page_url);
+    const inner_cache_key = this.#innerCacheKey(args.engagement_type, args.ids, args.atn_page_url);
     if (!this.#challengeExpired(this.#botguard_challenge_info_cache[inner_cache_key]?.challenge))
       return this.#botguard_challenge_info_cache[inner_cache_key];
     return null;
@@ -93,58 +93,58 @@ export default class BotGuardManager {
     throw new InnertubeError('Unable to parse challenge_response to botguard_challenge_info');
   }
 
-  async #getApiChallenge<T>(opts: ChallengeSolverOptsEngagement<T>): Promise<BotGuardChallengeInfo> {
-    const cache_check = this.#checkCache(opts);
+  async #getApiChallenge<T>(args: ChallengeSolverArgsEngagement<T>): Promise<BotGuardChallengeInfo> {
+    const cache_check = this.#checkCache(args);
     if (cache_check) return cache_check;
 
-    const challenge_response = await this.#innertube.getAttestationChallenge(opts.engagement_type, opts.ids, opts.eacr_token);
-    const botguard_challenge_info = this.#challengeResponseToBotGuardChallengeInfo(challenge_response, opts.ytcfg);
+    const challenge_response = await this.#innertube.getAttestationChallenge(args.engagement_type, args.ids, args.eacr_token);
+    const botguard_challenge_info = this.#challengeResponseToBotGuardChallengeInfo(challenge_response, args.ytcfg);
 
-    this.#insertCache(botguard_challenge_info, opts);
+    this.#insertCache(botguard_challenge_info, args);
     return botguard_challenge_info;
   }
-  async #getPageChallenge<T>(opts: ChallengeSolverOptsEngagement<T>): Promise<BotGuardChallengeInfo> {
-    if (!opts.atn_page_url) throw new InnertubeError('Assertion failed; \'atn_page_url\' was supposed to not be empty');
-    const cache_check = this.#checkCache(opts);
+  async #getPageChallenge<T>(args: ChallengeSolverArgsEngagement<T>): Promise<BotGuardChallengeInfo> {
+    if (!args.atn_page_url) throw new InnertubeError('Assertion failed; \'atn_page_url\' was supposed to not be empty');
+    const cache_check = this.#checkCache(args);
     if (cache_check) return cache_check;
 
-    const initial_data = await this.#innertube.initialData(opts.atn_page_url);
-    if (!initial_data.atn && !initial_data.eacr_token) throw new InnertubeError(`Was unable to find a challenge in atn_page_url: ${opts.atn_page_url}`);
-    const challenge_response = initial_data.atn ?? await this.#getApiChallenge({ ...opts, engagement_type: 'ENGAGEMENT_TYPE_UNBOUND', eacr_token: initial_data.eacr_token! });
-    const botguard_challenge_info = this.#challengeResponseToBotGuardChallengeInfo(challenge_response, initial_data.ytcfg ?? opts.ytcfg);
+    const initial_data = await this.#innertube.initialData(args.atn_page_url);
+    if (!initial_data.atn && !initial_data.eacr_token) throw new InnertubeError(`Was unable to find a challenge in atn_page_url: ${args.atn_page_url}`);
+    const challenge_response = initial_data.atn ?? await this.#getApiChallenge({ ...args, engagement_type: 'ENGAGEMENT_TYPE_UNBOUND', eacr_token: initial_data.eacr_token! });
+    const botguard_challenge_info = this.#challengeResponseToBotGuardChallengeInfo(challenge_response, initial_data.ytcfg ?? args.ytcfg);
 
-    this.#insertCache(botguard_challenge_info, opts);
+    this.#insertCache(botguard_challenge_info, args);
     return botguard_challenge_info;
   }
 
-  async getChallenge<T>(opts: ChallengeSolverOptsEngagement<T>): Promise<BotGuardChallengeInfo> {
-    if (!opts.atn_page_url) return await this.#getApiChallenge(opts);
-    return await this.#getPageChallenge(opts);
+  async getChallenge<T>(args: ChallengeSolverArgsEngagement<T>): Promise<BotGuardChallengeInfo> {
+    if (!args.atn_page_url) return await this.#getApiChallenge(args);
+    return await this.#getPageChallenge(args);
   };
 
-  #normalizeChallengeSolverOpts<T>(opts: ChallengeSolverOpts<T>): ChallengeSolverOptsEngagement<T> {
-    if (!('run_attestation_command' in opts)) return opts;
+  #normalizeChallengeSolverOpts<T>(args: ChallengeSolverArgs<T>): ChallengeSolverArgsEngagement<T> {
+    if (!('run_attestation_command' in args)) return args;
     return {
-      engagement_type: opts.run_attestation_command.engagement_type,
-      ids: opts.run_attestation_command.raw_ids ?? [],
-      ...opts
+      engagement_type: args.run_attestation_command.engagement_type,
+      ids: args.run_attestation_command.raw_ids ?? [],
+      ...args
     };
   }
 
-  async run<T>(botguard_solver: BotGuardSolver<T>, opts: ChallengeSolverOpts<T>) {
-    const challenge = await this.getChallenge(this.#normalizeChallengeSolverOpts(opts));
+  async run<T>(botguard_solver: BotGuardSolver<T>, args: ChallengeSolverArgs<T>) {
+    const challenge = await this.getChallenge(this.#normalizeChallengeSolverOpts(args));
     return {
-      web_response: await botguard_solver.solve(challenge.bg_challenge, opts.content_binding ?? challenge.challenge as T),
+      web_response: await botguard_solver.solve(challenge.bg_challenge, args.content_binding ?? challenge.challenge as T),
       challenge
     };
   }
 
-  async log<T>(botguard_solver: BotGuardSolver<T>, opts: ChallengeSolverOpts<T>) {
-    const normalized_opts = this.#normalizeChallengeSolverOpts(opts);
+  async log<T>(botguard_solver: BotGuardSolver<T>, args: ChallengeSolverArgs<T>) {
+    const normalized_opts = this.#normalizeChallengeSolverOpts(args);
     const result = await this.run(botguard_solver, normalized_opts);
     return await this.#innertube.actions.execute('/att/log', {
-      ...(opts.client ? { client: opts.client } : {}),
-      ...(opts.eats ? { client: opts.eats } : {}),
+      ...(args.client ? { client: args.client } : {}),
+      ...(args.eats ? { client: args.eats } : {}),
       challenge: result.challenge.challenge,
       engagementType: normalized_opts.engagement_type,
       ids: normalized_opts.ids,
