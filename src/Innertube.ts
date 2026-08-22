@@ -1,7 +1,7 @@
 import Session from './core/Session.js';
 
 import { Kids, Music, Studio } from './core/clients/index.js';
-import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
+import { AccountManager, BotGuardManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
 import { Feed, TabbedFeed } from './core/mixins/index.js';
 
 import {
@@ -642,6 +642,13 @@ export default class Innertube {
    */
   get interact() {
     return new InteractionManager(this.#session.actions);
+  }
+
+  /**
+   * An interface for interacting with BotGuard
+   */
+  get botguard() {
+    return new BotGuardManager(this);
   }
 
   /**
