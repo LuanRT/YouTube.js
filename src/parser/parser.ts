@@ -507,6 +507,22 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.challenge = data.challenge;
   }
 
+  if (data.botguardData) {
+    const interpreter_url = {
+      private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
+      private_do_not_access_or_else_safe_script_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseSafeScriptWrappedValue
+    };
+
+    parsed_data.botguard_data = {
+      interpreter_url,
+      program: data.botguardData.program
+    };
+  }
+
+  if (data.eats) {
+    parsed_data.eats = data.eats;
+  }
+
   if (data.playerResponse) {
     parsed_data.player_response = parseResponse(data.playerResponse);
   }
