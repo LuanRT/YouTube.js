@@ -13,7 +13,7 @@ import type {
 import { NavigateAction, Parser } from '../parser/index.js';
 import { InnertubeError } from '../utils/Utils.js';
 
-import type { Session } from './index.js';
+import type { PartialContext, Session } from './index.js';
 
 export interface ApiResponse {
   success: boolean;
@@ -83,21 +83,24 @@ export default class Actions {
     parse: true;
     protobuf?: false;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ParsedResponse<T>>;
   async execute<T extends InnertubeEndpoint>(endpoint: T, args?: {
     [key: string]: any;
     parse?: false;
     protobuf?: true;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ApiResponse>;
   async execute<T extends InnertubeEndpoint>(endpoint: T, args?: {
     [key: string]: any;
     parse?: boolean;
     protobuf?: boolean;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ParsedResponse<T> | ApiResponse> {
     let data;
 
