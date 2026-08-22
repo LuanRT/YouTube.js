@@ -22,9 +22,7 @@ export default class VideoTitleHeaderView extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.video_title = {
-      content: data.videoTitle.content
-    };
+    this.video_title = Text.fromAttributed(data.videoTitle);
     this.header_button = Parser.parseItem(data.headerButton, ButtonView);
     this.renderer_context = {
       logging_context: {
