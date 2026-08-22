@@ -301,7 +301,6 @@ export function getNsigProcessorFn(n?: string | null, sp?: string | null, s?: st
 return process("${n || ''}", "${sp || ''}", "${s || ''}");`;
 }
 
-// Could also just be done with an eval...
 export function parseLooseJSON(looseJson: string) {
   let jsonStr = looseJson.replace(/,\s*([\]}])/g, '$1');
 
