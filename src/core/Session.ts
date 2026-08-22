@@ -103,6 +103,13 @@ export type Context = {
   };
 }
 
+export type PartialContext = {
+  client?: Partial<Context['client']>;
+  user?: Partial<Context['user']>;
+  thirdParty?: Partial<Context['thirdParty']>;
+  request?: Partial<Context['request']>;
+};
+
 type ContextData = {
   hl: string;
   gl: string;
