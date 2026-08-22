@@ -1,4 +1,5 @@
 import type Innertube from '../../Innertube.js';
+import type RunAttestationCommand from '../../parser/classes/commands/RunAttestationCommand.js';
 import type { AttIdsRaw } from '../../parser/classes/commands/RunAttestationCommand.js';
 import type { IGetChallengeResponse, RawNode } from '../../parser/index.js';
 import type { BotGuardChallengeInfo, BotGuardSolver, BotGuardSolverChallenge } from '../../types/BotGuard.js';
@@ -110,6 +111,18 @@ export default class BotGuardManager {
 
   async run<T>(botguard_solver: BotGuardSolver<T>, opts: ChallengeSolverOpts<T>) {
     const challenge = await this.getChallenge(opts);
+    return {
+      web_response: await botguard_solver.solve(challenge.bg_challenge, opts.content_binding ?? challenge.challenge as T),
+      challenge
+    };
+  }
+
+  async run_attestation_command<T>(botguard_solver: BotGuardSolver<T>, run_attestation_command: RunAttestationCommand, opts: Pick<ChallengeSolverOpts<T>, 'client'|'atn_page_url'|'content_binding'>) {
+    const challenge = await this.getChallenge({
+      engagement_type: run_attestation_command.engagement_type,
+      ids: run_attestation_command.raw_ids ?? [],
+      ...opts
+    });
     return {
       web_response: await botguard_solver.solve(challenge.bg_challenge, opts.content_binding ?? challenge.challenge as T),
       challenge
