@@ -134,4 +134,17 @@ export default class BotGuardManager {
       challenge
     };
   }
+
+  async log<T>(botguard_solver: BotGuardSolver<T>, opts: ChallengeSolverOpts<T>) {
+    const normalized_opts = this.#normalizeChallengeSolverOpts(opts);
+    const result = await this.run(botguard_solver, normalized_opts);
+    return await this.#innertube.actions.execute('/att/log', {
+      ...(opts.client ? { client: opts.client } : {}),
+      ...(opts.eats ? { client: opts.eats } : {}),
+      challenge: result.challenge.challenge,
+      engagementType: normalized_opts.engagement_type,
+      ids: normalized_opts.ids,
+      webResponse: result.web_response
+    });
+  }
 }
