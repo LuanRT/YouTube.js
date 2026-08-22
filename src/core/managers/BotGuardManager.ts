@@ -148,7 +148,7 @@ export default class BotGuardManager {
     const result = await this.run(botguard_solver, normalized_opts);
     return await this.#innertube.actions.execute('/att/log', {
       ...(args.client ? { client: args.client } : {}),
-      ...(args.eats ? { client: args.eats } : {}),
+      ...(args.eats ? { one_time_context: { request: { eats: args.eats } } } : {}),
       challenge: result.challenge.challenge,
       engagementType: normalized_opts.engagement_type,
       ids: normalized_opts.ids,
