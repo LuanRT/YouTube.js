@@ -24,15 +24,6 @@ export default class VideoTitleHeaderView extends YTNode {
     super();
     this.video_title = Text.fromAttributed(data.videoTitle);
     this.header_button = Parser.parseItem(data.headerButton, ButtonView);
-    this.renderer_context = {
-      logging_context: {
-        logging_directives: {
-          tracking_params: data.rendererContext.loggingContext.loggingDirectives.trackingParams,
-          visibility: {
-            types: data.rendererContext.loggingContext.loggingDirectives.visibility.types
-          }
-        }
-      }
-    };
+    this.renderer_context = new RendererContext(data.rendererContext);
   }
 }
