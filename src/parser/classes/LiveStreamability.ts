@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
-import { RendererContext } from '../misc.js';
+import RendererContext from './misc/RendererContext.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 import LiveStreamOfflineSlate from './LiveStreamOfflineSlate.js';
 
