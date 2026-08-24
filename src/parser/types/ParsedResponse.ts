@@ -57,6 +57,7 @@ export interface IParsedResponse {
   player_overlays?: SuperParsedResult<YTNode>;
   playback_tracking?: IPlaybackTracking;
   playability_status?: IPlayabilityStatus;
+  playability_status_memo?: Memo;
   streaming_data?: IStreamingData;
   player_config?: IPlayerConfig;
   current_video_endpoint?: NavigationEndpoint;
@@ -70,9 +71,9 @@ export interface IParsedResponse {
   cpn_info?: {
     cpn?: string;
     cpn_source?:
-      | 'CPN_SOURCE_TYPE_UNKNOWN'
-      | 'CPN_SOURCE_TYPE_CLIENT'
-      | 'CPN_SOURCE_TYPE_WATCH_SERVER';
+    | 'CPN_SOURCE_TYPE_UNKNOWN'
+    | 'CPN_SOURCE_TYPE_CLIENT'
+    | 'CPN_SOURCE_TYPE_WATCH_SERVER';
   },
   engagement_panels?: ObservedArray<EngagementPanelSectionList>;
   items?: SuperParsedResult<YTNode>;
@@ -81,12 +82,26 @@ export interface IParsedResponse {
   target_id?: string;
   continuation_endpoint?: YTNode;
   player_response?: IPlayerResponse;
+  heartbeat_params?: IHeartbeatParams;
   watch_next_response?: INextResponse;
+  heartbeat_server_data?: string;
+  stop_heartbeat?: boolean;
+  poll_delay_ms?: string;
 }
 
 export interface ITrustedResource {
   private_do_not_access_or_else_trusted_resource_url_wrapped_value?: string;
   private_do_not_access_or_else_safe_script_wrapped_value?: string;
+}
+
+export interface IHeartbeatParams {
+  drm_session_id?: string;
+  heartbeat_server_data?: string;
+  heartbeat_token?: string;
+  interval_milliseconds?: string;
+  max_retries?: string;
+  soft_fail_on_error?: boolean;
+  use_innertube_heartbeats_for_drm?: boolean;
 }
 
 export interface IBotguardChallenge {
@@ -105,6 +120,7 @@ export interface IPlayabilityStatus {
   status: string;
   error_screen: YTNode | null;
   audio_only_playability: AudioOnlyPlayability | null;
+  live_streamability: YTNode | null;
   embeddable: boolean;
   reason: string;
 }
@@ -139,7 +155,8 @@ export interface IStreamingData {
   server_abr_streaming_url?: string;
 }
 
-export type IPlayerResponse = Pick<IParsedResponse, 'captions' | 'cards' | 'endscreen' | 'microformat' | 'annotations' | 'playability_status' | 'streaming_data' | 'player_config' | 'playback_tracking' | 'storyboards' | 'video_details'>;
+export type IPlayerResponse = Pick<IParsedResponse, 'captions' | 'cards' | 'endscreen' | 'microformat' | 'annotations' | 'playability_status' | 'streaming_data' | 'player_config' | 'heartbeat_params' | 'playback_tracking' | 'storyboards' | 'video_details'>;
+export type IPlayerHeartbeatResponse = Pick<IParsedResponse, 'playability_status' | 'heartbeat_server_data' | 'poll_delay_ms' | 'stop_heartbeat'>;
 export type INextResponse = Pick<IParsedResponse, 'contents' | 'contents_memo' | 'continuation_contents' | 'continuation_contents_memo' | 'current_video_endpoint' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'player_overlays' | 'engagement_panels'>;
 export type IBrowseResponse = Pick<IParsedResponse, 'background' | 'continuation_contents' | 'continuation_contents_memo' | 'on_response_received_actions' | 'on_response_received_actions_memo' | 'on_response_received_endpoints' | 'on_response_received_endpoints_memo' | 'contents' | 'contents_memo' | 'header' | 'header_memo' | 'metadata' | 'microformat' | 'alerts' | 'sidebar' | 'sidebar_memo'>;
 export type ISearchResponse = Pick<IParsedResponse, 'header' | 'header_memo' | 'contents' | 'contents_memo' | 'on_response_received_commands' | 'on_response_received_commands_memo' | 'continuation_contents' | 'continuation_contents_memo' | 'refinements' | 'estimated_results'>;
