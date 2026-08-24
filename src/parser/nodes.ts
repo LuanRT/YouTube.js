@@ -289,6 +289,8 @@ export { default as LiveChatItemList } from './classes/LiveChatItemList.js';
 export { default as LiveChatMessageInput } from './classes/LiveChatMessageInput.js';
 export { default as LiveChatParticipant } from './classes/LiveChatParticipant.js';
 export { default as LiveChatParticipantsList } from './classes/LiveChatParticipantsList.js';
+export { default as LiveStreamability } from './classes/LiveStreamability.js';
+export { default as LiveStreamOfflineSlate } from './classes/LiveStreamOfflineSlate.js';
 export { default as LockupMetadataView } from './classes/LockupMetadataView.js';
 export { default as LockupView } from './classes/LockupView.js';
 export { default as MacroMarkersInfoItem } from './classes/MacroMarkersInfoItem.js';
