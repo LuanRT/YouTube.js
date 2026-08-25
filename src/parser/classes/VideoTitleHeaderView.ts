@@ -9,16 +9,7 @@ export default class VideoTitleHeaderView extends YTNode {
     content: string
   };
   header_button: ButtonView | null;
-  renderer_context: {
-    logging_context: {
-      logging_directives: {
-        tracking_params: string,
-        visibility: {
-          types: string
-        }
-      }
-    }
-  };
+  renderer_context?: RendererContext;
 
   constructor(data: RawNode) {
     super();
