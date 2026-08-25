@@ -13,6 +13,8 @@ export default class VideoTitleHeaderView extends YTNode {
     super();
     this.video_title = Text.fromAttributed(data.videoTitle);
     this.header_button = Parser.parseItem(data.headerButton, ButtonView);
-    this.renderer_context = new RendererContext(data.rendererContext);
+    if ('rendererContext' in data) {
+      this.renderer_context = new RendererContext(data.rendererContext);
+    }
   }
 }
