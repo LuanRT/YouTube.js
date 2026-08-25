@@ -5,9 +5,7 @@ import ButtonView from './ButtonView.js';
 export default class VideoTitleHeaderView extends YTNode {
   static type = 'VideoTitleHeaderView';
 
-  video_title: {
-    content: string
-  };
+  video_title: Text;
   header_button: ButtonView | null;
   renderer_context?: RendererContext;
 
