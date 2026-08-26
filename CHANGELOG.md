@@ -1,5 +1,20 @@
 # Changelog
 
+## [18.1.0](https://github.com/LuanRT/YouTube.js/compare/v18.0.0...v18.1.0) (2026-08-26)
+
+
+### Features
+
+* **parser:** Add `VideoTitleHeaderView` renderer parser ([#1238](https://github.com/LuanRT/YouTube.js/issues/1238)) ([e26e13d](https://github.com/LuanRT/YouTube.js/commit/e26e13d9b7cc511889010c63dee123fd39cb702c))
+* **Parser:** Add missing `/player/heartbeat` nodes ([#1249](https://github.com/LuanRT/YouTube.js/issues/1249)) ([9b3ee91](https://github.com/LuanRT/YouTube.js/commit/9b3ee912bddebea0711be14d917d969767c01236))
+
+
+### Bug Fixes
+
+* **Format:** Rename `target_duration_dec` to `target_duration_sec` ([0bdd5f1](https://github.com/LuanRT/YouTube.js/commit/0bdd5f198305c40f09f39ea2bf12f686dce02b55))
+* **parser:** Add `playability_status_memo` to `IPlayerHeartbeatResponse` ([a480854](https://github.com/LuanRT/YouTube.js/commit/a480854c501406cf55c9eb7ad5b540ab36a65b56))
+* **Text:** Handle missing `length` in `attachmentRuns` ([#1241](https://github.com/LuanRT/YouTube.js/issues/1241)) ([c636d81](https://github.com/LuanRT/YouTube.js/commit/c636d81127a3cbf3aae4bbc8fcf0b51a65f73fc7))
+
 ## [18.0.0](https://github.com/LuanRT/YouTube.js/compare/v17.2.0...v18.0.0) (2026-08-13)
 
 
