@@ -288,6 +288,7 @@ export default class Session extends EventEmitter {
   public logged_in: boolean;
   public actions: Actions;
   public user_agent?: string;
+  public eats?: string;
 
   constructor(
     public context: Context,
