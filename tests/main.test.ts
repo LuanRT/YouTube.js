@@ -1,4 +1,4 @@
-import { describe, expect, beforeAll, test } from 'vitest';
+import { describe, expect, beforeAll, test, vi } from 'vitest';
 
 import { Innertube, YT, YTMusic, YTNodes } from '../dist/src/platform/node.js';
 
@@ -374,6 +374,23 @@ describe('YouTube.js Tests', () => {
         expect(incremental_continuation.contents).toBeDefined();
         expect(incremental_continuation.contents?.contents).toBeDefined();
         expect(incremental_continuation.contents?.contents?.length).toBeGreaterThan(0);
+      });
+
+      test.each([
+        [ 'episode', 'EgWKAQJIAWoMEA4QChADEAQQCRAF' ],
+        [ 'podcast', 'EgWKAQJQAWoMEA4QChADEAQQCRAF' ]
+      ] as const)('encodes the %s filter params', async (type, expected_params) => {
+        const endpoint_call = vi.spyOn(YTNodes.NavigationEndpoint.prototype, 'call')
+          .mockRejectedValue(new Error('Request intercepted.'));
+
+        try {
+          await expect(innertube.music.search('technology podcast', { type }))
+            .rejects.toThrow('Request intercepted.');
+          expect(endpoint_call).toHaveBeenCalledOnce();
+          expect(decodeURIComponent(endpoint_call.mock.instances[0].payload.params)).toBe(expected_params);
+        } finally {
+          endpoint_call.mockRestore();
+        }
       });
     });
 
