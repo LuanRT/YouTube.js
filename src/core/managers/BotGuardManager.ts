@@ -2,13 +2,13 @@ import type Innertube from '../../Innertube.js';
 import type RunAttestationCommand from '../../parser/classes/commands/RunAttestationCommand.js';
 import type { AttIdsRaw } from '../../parser/classes/commands/RunAttestationCommand.js';
 import type { IGetChallengeResponse, RawNode } from '../../parser/index.js';
-import type { BotGuardChallengeInfo, BotGuardSolver, BotGuardSolverChallenge } from '../../types/BotGuard.js';
+import type { BotGuardChallengeInfo, BotGuardSolver, BotGuardSolverChallenge, BotGuardLogBinding } from '../../types/BotGuard.js';
 import type { EngagementType } from '../../types/Misc.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import type { ClientType } from '../index.js';
 
 export interface ChallengeSolverArgsBase<T> {
-  content_binding?: T;
+  content_binding: (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]) => T;
   atn_page_url?: string;
   eacr_token?: string;
   eats?: string;
@@ -126,7 +126,7 @@ export default class BotGuardManager {
     return await this.#getPageChallenge(args);
   };
 
-  #normalizeChallengeSolverOpts<T>(args: ChallengeSolverArgs<T>): ChallengeSolverArgsEngagement<T> {
+  #normalizeChallengeSolverArgs<T>(args: ChallengeSolverArgs<T>): ChallengeSolverArgsEngagement<T> {
     if (!('run_attestation_command' in args)) return args;
     return {
       engagement_type: args.run_attestation_command.engagement_type,
@@ -136,15 +136,25 @@ export default class BotGuardManager {
   }
 
   async run<T>(botguard_solver: BotGuardSolver<T>, args: ChallengeSolverArgs<T>) {
-    const challenge = await this.getChallenge(this.#normalizeChallengeSolverOpts(args));
+    const normalized_args = this.#normalizeChallengeSolverArgs(args);
+    const challenge = await this.getChallenge(normalized_args);
     return {
-      web_response: await botguard_solver.solve(challenge.bg_challenge, args.content_binding ?? challenge.challenge as T),
+      web_response: await botguard_solver.solve(challenge.bg_challenge, args.content_binding(challenge.challenge, normalized_args.engagement_type, normalized_args.ids)),
       challenge
     };
   }
 
-  async log<T>(botguard_solver: BotGuardSolver<T>, args: ChallengeSolverArgs<T>) {
-    const normalized_opts = this.#normalizeChallengeSolverOpts(args);
+  async log(botguard_solver: BotGuardSolver<BotGuardLogBinding>, args: Omit<ChallengeSolverArgs<BotGuardLogBinding>, 'content_binding'>) {
+    const log_content_binding_fn = (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]): BotGuardLogBinding => {
+      const spread_ids = Object.assign({}, ids);
+      return {
+        c: challenge,
+        e: engagement_type,
+        ...spread_ids
+      };
+    };
+    const full_args = { ...args, content_binding: log_content_binding_fn } as ChallengeSolverArgs<BotGuardLogBinding>;
+    const normalized_opts = this.#normalizeChallengeSolverArgs(full_args);
     const result = await this.run(botguard_solver, normalized_opts);
     return await this.#innertube.actions.execute('/att/log', {
       ...(args.client ? { client: args.client } : {}),
