@@ -546,6 +546,11 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.target_id = data.targetId;
   }
 
+  const challenge_prompt = data.responseContext?.webResponseContextExtensionData?.challenge;
+  if (challenge_prompt) {
+    parsed_data.challenge_prompt = challenge_prompt;
+  }
+
   return parsed_data;
 }
 
