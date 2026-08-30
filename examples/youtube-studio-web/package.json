@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bgutils-js": "^4.0.3",
+    "cookie-eater": "^1.0.0",
     "jsdom": "^28.1.0",
     "youtubei.js": "file:../../"
   }

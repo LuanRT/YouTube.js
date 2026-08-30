@@ -1,9 +1,10 @@
 import Innertube, { UniversalCache } from 'youtubei.js';
-import { botguard_solver, get_channel_id } from './utils.ts';
+import { botguard_solver, get_channel_id, youtube_cookies } from './utils.ts';
 
-const COOKIES = ""; // ?? Place your YouTube cookies here
 
 (async () => {
+  const COOKIES = await youtube_cookies();
+
   const yt = await Innertube.create({ cache: new UniversalCache(false), cookie: COOKIES });
 
   const CHANNEL_ID = await get_channel_id(yt);

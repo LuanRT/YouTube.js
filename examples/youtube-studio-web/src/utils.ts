@@ -4,6 +4,7 @@ import { JSDOM, VirtualConsole } from "jsdom";
 import Innertube, { type Types } from 'youtubei.js';
 import path from "path";
 import fs from 'fs/promises';
+import { get_cookies } from 'cookie-eater';
 
 export const botguard_solver: Types.BotGuardSolver<string> = {
   solve: async(botguard_challenge, binding) => {
@@ -72,4 +73,13 @@ export async function get_file_named_buffer_base64(file_path: string): Promise<T
       base64: (await fs.readFile(file_path, { encoding: "base64" })).toString()
     }
   };
+}
+
+export async function youtube_cookies(): Promise<string|undefined> {
+  const HOST_NAME = '.youtube.com';
+  const cookies_map = await get_cookies([HOST_NAME]);
+  const cookies = cookies_map?.[HOST_NAME].toString() ?? undefined;
+  
+  if(cookies) console.log(`Successfully found ${cookies_map?.[HOST_NAME].getCookies().length} cookies`);
+  return cookies;
 }
