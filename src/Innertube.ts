@@ -568,8 +568,6 @@ export default class Innertube {
       payload.eacrToken = args.eacr_token;
     if (args?.client)
       payload.client = args.client;
-    if (args?.eats)
-      payload.one_time_context = { request: { eats: args.eats } };
     
     return this.actions.execute('/att/get', { parse: true, ...payload });
   }

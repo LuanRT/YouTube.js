@@ -11,7 +11,6 @@ export interface ChallengeSolverArgsBase<T> {
   content_binding: (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]) => T;
   atn_page_url?: string;
   eacr_token?: string;
-  eats?: string;
   client?: ClientType;
   ytcfg?: RawNode;
 }
@@ -99,8 +98,7 @@ export default class BotGuardManager {
 
     const challenge_response = await this.#innertube.getAttestationChallenge(args.engagement_type, args.ids, {
       eacr_token: args.eacr_token,
-      client: args.client,
-      eats: args.eats
+      client: args.client
     });
     const botguard_challenge_info = this.#challengeResponseToBotGuardChallengeInfo(challenge_response, args.ytcfg);
 
@@ -158,7 +156,6 @@ export default class BotGuardManager {
     const result = await this.run(botguard_solver, normalized_opts);
     return await this.#innertube.actions.execute('/att/log', {
       ...(args.client ? { client: args.client } : {}),
-      ...(args.eats ? { one_time_context: { request: { eats: args.eats } } } : {}),
       challenge: result.challenge.challenge,
       engagementType: normalized_opts.engagement_type,
       ids: normalized_opts.ids,
