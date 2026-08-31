@@ -2,10 +2,11 @@ import type Innertube from '../../Innertube.js';
 import type RunAttestationCommand from '../../parser/classes/commands/RunAttestationCommand.js';
 import type { AttIdsRaw } from '../../parser/classes/commands/RunAttestationCommand.js';
 import type { IGetChallengeResponse, RawNode } from '../../parser/index.js';
-import type { BotGuardChallengeInfo, BotGuardSolver, BotGuardSolverChallenge, BotGuardLogBinding } from '../../types/BotGuard.js';
+import type { BotGuardChallengeInfo, BotGuardSolver, BotGuardSolverChallenge, BotGuardLogBinding, BotGuardSessionTokenBinding } from '../../types/BotGuard.js';
 import type { EngagementType } from '../../types/Misc.js';
+import { channelUserDelegationContext } from '../../utils/Context.js';
 import { InnertubeError } from '../../utils/Utils.js';
-import type { ClientType } from '../index.js';
+import type { ClientType, PartialContext } from '../index.js';
 
 export interface ChallengeSolverArgsBase<T> {
   content_binding: (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]) => T;
@@ -13,6 +14,7 @@ export interface ChallengeSolverArgsBase<T> {
   eacr_token?: string;
   client?: ClientType;
   ytcfg?: RawNode;
+  one_time_context?: PartialContext;
 }
 
 export interface ChallengeSolverArgsRunAttestationCommand<T> extends ChallengeSolverArgsBase<T> {
@@ -99,7 +101,8 @@ export default class BotGuardManager {
 
     const challenge_response = await this.#innertube.getAttestationChallenge(args.engagement_type, args.ids, {
       eacr_token: args.eacr_token,
-      client: args.client
+      client: args.client,
+      one_time_context: args.one_time_context
     });
     const botguard_challenge_info = this.#challengeResponseToBotGuardChallengeInfo(challenge_response, args.ytcfg);
 
