@@ -155,7 +155,7 @@ export default class BotGuardManager {
   /**
    * Fetches a challenge and logs its attestation.
    * @param botguard_solver - The BotGuard challenge solver
-   * @param args - BotGuard challenge fetching and solving args
+   * @param args - BotGuard challenge fetching args
    */
   async log(botguard_solver: BotGuardSolver<BotGuardLogBinding>, args: ChallengeFetchingArgs<BotGuardLogBinding>) {
     const log_content_binding_fn = (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]): BotGuardLogBinding => {
