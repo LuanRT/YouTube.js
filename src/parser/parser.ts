@@ -521,10 +521,6 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     };
   }
 
-  if (data.eats) {
-    parsed_data.eats = data.eats;
-  }
-
   if (data.playerResponse) {
     parsed_data.player_response = parseResponse(data.playerResponse);
   }
