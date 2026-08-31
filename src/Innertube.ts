@@ -557,7 +557,7 @@ export default class Innertube {
   /**
    * Fetches an attestation challenge.
    */
-  async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[], args?: {one_time_context?: PartialContext, eacr_token?: string, client?: ClientType, eats?: string} ) {
+  async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[], args?: {one_time_context?: PartialContext, eacr_token?: string, client?: InnerTubeClient} ) {
     const payload: Record<string, any> = {
       engagementType: engagement_type
     };
