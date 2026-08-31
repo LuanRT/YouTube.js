@@ -1,7 +1,10 @@
 import type {
   IBrowseResponse,
+  IESRChallengeResponse,
   IGetChallengeResponse,
   IGetNotificationsMenuResponse,
+  IGetSessionTokenResponse,
+  IGetWebReauthURLResponse,
   INextResponse,
   IParsedResponse,
   IPlayerHeartbeatResponse,
@@ -44,6 +47,9 @@ export type ParsedResponse<T> =
   T extends '/navigation/resolve_url' ? IResolveURLResponse :
   T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
   T extends '/att/get' ? IGetChallengeResponse :
+  T extends '/att/esr' ? IESRChallengeResponse :
+  T extends '/security/get_web_reauth_url' ? IGetWebReauthURLResponse :
+  T extends '/ars/grst' ? IGetSessionTokenResponse :
   IParsedResponse;
 
 export default class Actions {

@@ -28,6 +28,14 @@ export interface IParsedResponse {
   challenge?: string;
   bg_challenge?: IBotguardChallenge;
   botguard_data?: IBotguardData;
+  ctx?: string;
+  should_fetch_reauth_session_token?: boolean;
+  encoded_reauth_proof_token?: string;
+  session_risk_ctx?: string;
+  session_token?: string;
+  web_reauth_url?: string;
+  plt?: string;
+  require_challenge?: boolean;
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
   content?: YTNode;
@@ -174,4 +182,7 @@ export type IGetNotificationsMenuResponse = Pick<IParsedResponse, 'actions' | 'a
 export type IUpdatedMetadataResponse = Pick<IParsedResponse, 'actions' | 'actions_memo' | 'continuation'>;
 export type IGuideResponse = Pick<IParsedResponse, 'items' | 'items_memo'>;
 export type IGetChallengeResponse = Pick<IParsedResponse, 'challenge' | 'bg_challenge' | 'botguard_data'>;
+export type IESRChallengeResponse = Pick<IParsedResponse, 'ctx' | 'should_fetch_reauth_session_token' | 'session_token'>;
+export type IGetWebReauthURLResponse = Pick<IParsedResponse, 'web_reauth_url' | 'encoded_reauth_proof_token' | 'session_risk_ctx' | 'plt' | 'require_challenge'>;
+export type IGetSessionTokenResponse = Pick<IParsedResponse, 'session_token'>;
 export type IShowEngagementPanelResponse = Pick<IParsedResponse, 'content'>;

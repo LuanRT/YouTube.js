@@ -521,6 +521,38 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     };
   }
 
+  if (data.ctx) {
+    parsed_data.ctx = data.ctx;
+  }
+
+  if (data.shouldFetchReauthSessionToken !== undefined) {
+    parsed_data.should_fetch_reauth_session_token = data.shouldFetchReauthSessionToken;
+  }
+
+  if (data.encodedReauthProofToken) {
+    parsed_data.encoded_reauth_proof_token = data.encodedReauthProofToken;
+  }
+
+  if (data.sessionRiskCtx) {
+    parsed_data.session_risk_ctx = data.sessionRiskCtx;
+  }
+
+  if (data.sessionToken) {
+    parsed_data.session_token = data.sessionToken;
+  }
+
+  if (data.webReauthUrl) {
+    parsed_data.web_reauth_url = data.webReauthUrl;
+  }
+
+  if (data.plt) {
+    parsed_data.plt = data.plt;
+  }
+
+  if (data.requireChallenge) {
+    parsed_data.require_challenge = data.requireChallenge;
+  }
+
   if (data.playerResponse) {
     parsed_data.player_response = parseResponse(data.playerResponse);
   }
