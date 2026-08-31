@@ -586,10 +586,13 @@ export default class Innertube {
     const ytcfg_string = ytcfg_regex.exec(html)?.[1];
     const attestation_data_string = attestation_data_regex.exec(html)?.[1];
 
+    const ytcfg = ytcfg_string ? JSON.parse(ytcfg_string) as RawNode : null;
+    if (ytcfg?.EATS) this.#session.eats = ytcfg.EATS;
+
     const yt_atn: {R: RawNode, T: string}|null = attestation_data_string ? parseLooseJSON(attestation_data_string) : null;
     
     return {
-      ytcfg: ytcfg_string ? JSON.parse(ytcfg_string) as RawNode : null,
+      ytcfg: ytcfg,
       atn: yt_atn?.R ? parseResponse<IGetChallengeResponse>(yt_atn.R) : null,
       eacr_token: yt_atn ? yt_atn.T : null
     };
