@@ -2,7 +2,7 @@ import type { SessionOptions } from '../core/index.js';
 
 export type InnerTubeConfig = SessionOptions;
 export type InnerTubeClient = 'IOS' | 'WEB' | 'MWEB' | 'ANDROID' | 'ANDROID_VR' | 'VISIONOS' | 'YTMUSIC' | 'YTMUSIC_ANDROID' | 'YTSTUDIO_ANDROID' | 'TV' | 'TV_SIMPLY' |'TV_EMBEDDED' | 'YTKIDS' | 'WEB_EMBEDDED' | 'WEB_CREATOR';
-export type EngagementType = 'ENGAGEMENT_TYPE_UNBOUND' | 'ENGAGEMENT_TYPE_VIDEO_LIKE' | 'ENGAGEMENT_TYPE_VIDEO_DISLIKE' | 'ENGAGEMENT_TYPE_SUBSCRIBE' | 'ENGAGEMENT_TYPE_PLAYBACK' | 'ENGAGEMENT_TYPE_YPC_GET_PREMIUM_PAGE' | 'ENGAGEMENT_TYPE_YPC_GET_DOWNLOAD_ACTION';
+export type EngagementType = 'ENGAGEMENT_TYPE_UNBOUND' | 'ENGAGEMENT_TYPE_VIDEO_LIKE' | 'ENGAGEMENT_TYPE_VIDEO_DISLIKE' | 'ENGAGEMENT_TYPE_SUBSCRIBE' | 'ENGAGEMENT_TYPE_PLAYBACK' | 'ENGAGEMENT_TYPE_YPC_GET_PREMIUM_PAGE' | 'ENGAGEMENT_TYPE_YPC_GET_DOWNLOAD_ACTION' | 'ENGAGEMENT_TYPE_CREATOR_STUDIO_ACTION';
 
 export type UploadDate = 'all' | 'today' | 'week' | 'month' | 'year';
 export type SearchType = 'all' | 'video' | 'shorts' | 'channel' | 'playlist' | 'movie';
