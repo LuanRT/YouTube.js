@@ -1,4 +1,4 @@
-import Session, { type ClientType } from './core/Session.js';
+import Session, { type ClientType, type PartialContext } from './core/Session.js';
 
 import { Kids, Music, Studio } from './core/clients/index.js';
 import { AccountManager, BotGuardManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
@@ -557,7 +557,7 @@ export default class Innertube {
   /**
    * Fetches an attestation challenge.
    */
-  async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[], args?: {eacr_token?: string, client?: ClientType, eats?: string} ) {
+  async getAttestationChallenge(engagement_type: EngagementType, ids?: Record<string, any>[], args?: {one_time_context?: PartialContext, eacr_token?: string, client?: ClientType, eats?: string} ) {
     const payload: Record<string, any> = {
       engagementType: engagement_type
     };
@@ -568,6 +568,8 @@ export default class Innertube {
       payload.eacrToken = args.eacr_token;
     if (args?.client)
       payload.client = args.client;
+    if (args?.one_time_context)
+      payload.one_time_context = args.one_time_context;
     
     return this.actions.execute('/att/get', { parse: true, ...payload });
   }
