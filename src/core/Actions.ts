@@ -4,6 +4,7 @@ import type {
   IGetNotificationsMenuResponse,
   INextResponse,
   IParsedResponse,
+  IPlayerHeartbeatResponse,
   IPlayerResponse,
   IRawResponse,
   IResolveURLResponse,
@@ -22,7 +23,8 @@ export interface ApiResponse {
 }
 
 export type InnertubeEndpoint =
-  '/player'
+  | '/player'
+  | '/player/heartbeat'
   | '/search'
   | '/browse'
   | '/next'
@@ -34,14 +36,15 @@ export type InnertubeEndpoint =
 
 export type ParsedResponse<T> =
   T extends '/player' ? IPlayerResponse :
-    T extends '/search' ? ISearchResponse :
-      T extends '/browse' ? IBrowseResponse :
-        T extends '/next' ? INextResponse :
-          T extends '/updated_metadata' ? IUpdatedMetadataResponse :
-            T extends '/navigation/resolve_url' ? IResolveURLResponse :
-              T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
-                T extends '/att/get' ? IGetChallengeResponse :
-                  IParsedResponse;
+  T extends '/player/heartbeat' ? IPlayerHeartbeatResponse :
+  T extends '/search' ? ISearchResponse :
+  T extends '/browse' ? IBrowseResponse :
+  T extends '/next' ? INextResponse :
+  T extends '/updated_metadata' ? IUpdatedMetadataResponse :
+  T extends '/navigation/resolve_url' ? IResolveURLResponse :
+  T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
+  T extends '/att/get' ? IGetChallengeResponse :
+  IParsedResponse;
 
 export default class Actions {
   public session: Session;
