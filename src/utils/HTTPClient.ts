@@ -351,6 +351,7 @@ export default class HTTPClient {
       case 'WEB_CREATOR':
         ctx.client.clientName = Constants.CLIENTS.WEB_CREATOR.NAME;
         ctx.client.clientVersion = Constants.CLIENTS.WEB_CREATOR.VERSION;
+        if (ctx.request) ctx.request.returnLogEntry = true;
         break;
       default:
         break;
