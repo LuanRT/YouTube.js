@@ -24,6 +24,7 @@ export interface ChallengeSolverArgsEngagement<T> extends ChallengeSolverArgsBas
   ids: AttIdsRaw[];
 }
 
+export type ChallengeFetchingArgs<T> = Omit<ChallengeSolverArgsEngagement<T>, 'content_binding'>;
 export type ChallengeSolverArgs<T> = ChallengeSolverArgsEngagement<T> | ChallengeSolverArgsRunAttestationCommand<T>;
 
 export default class BotGuardManager {
@@ -56,14 +57,14 @@ export default class BotGuardManager {
     }
   }
 
-  #insertCache<T>(challenge_info: BotGuardChallengeInfo, args: ChallengeSolverArgsEngagement<T>) {
+  #insertCache<T>(challenge_info: BotGuardChallengeInfo, args: ChallengeFetchingArgs<T>) {
     this.#cleanCache();
 
     const inner_cache_key = this.#innerCacheKey(args.engagement_type, args.ids, args.atn_page_url);
     this.#botguard_challenge_info_cache[inner_cache_key] = challenge_info;
   }
 
-  #checkCache<T>(args: ChallengeSolverArgsEngagement<T>): BotGuardChallengeInfo|null {
+  #checkCache<T>(args: ChallengeFetchingArgs<T>): BotGuardChallengeInfo|null {
     this.#cleanCache();
 
     const inner_cache_key = this.#innerCacheKey(args.engagement_type, args.ids, args.atn_page_url);
@@ -92,7 +93,7 @@ export default class BotGuardManager {
     throw new InnertubeError('Unable to parse challenge_response to botguard_challenge_info');
   }
 
-  async #getApiChallenge<T>(args: ChallengeSolverArgsEngagement<T>): Promise<BotGuardChallengeInfo> {
+  async #getApiChallenge<T>(args: ChallengeFetchingArgs<T>): Promise<BotGuardChallengeInfo> {
     const cache_check = this.#checkCache(args);
     if (cache_check) return cache_check;
 
@@ -105,7 +106,7 @@ export default class BotGuardManager {
     this.#insertCache(botguard_challenge_info, args);
     return botguard_challenge_info;
   }
-  async #getPageChallenge<T>(args: ChallengeSolverArgsEngagement<T>): Promise<BotGuardChallengeInfo> {
+  async #getPageChallenge<T>(args: ChallengeFetchingArgs<T>): Promise<BotGuardChallengeInfo> {
     if (!args.atn_page_url) throw new InnertubeError('Assertion failed; \'atn_page_url\' was supposed to not be empty');
     const cache_check = this.#checkCache(args);
     if (cache_check) return cache_check;
@@ -119,7 +120,11 @@ export default class BotGuardManager {
     return botguard_challenge_info;
   }
 
-  async getChallenge<T>(args: ChallengeSolverArgsEngagement<T>): Promise<BotGuardChallengeInfo> {
+  /**
+   * Fetches a BotGuard challenge.
+   * @param args - BotGuard challenge fetching args
+   */
+  async getChallenge<T>(args: ChallengeFetchingArgs<T>): Promise<BotGuardChallengeInfo> {
     if (!args.atn_page_url) return await this.#getApiChallenge(args);
     return await this.#getPageChallenge(args);
   };
@@ -133,6 +138,11 @@ export default class BotGuardManager {
     };
   }
 
+  /**
+   * Fetches a challenge, runs it and returns its response.
+   * @param botguard_solver - The BotGuard challenge solver
+   * @param args - BotGuard challenge fetching and solving args
+   */
   async run<T>(botguard_solver: BotGuardSolver<T>, args: ChallengeSolverArgs<T>) {
     const normalized_args = this.#normalizeChallengeSolverArgs(args);
     const challenge = await this.getChallenge(normalized_args);
@@ -142,7 +152,12 @@ export default class BotGuardManager {
     };
   }
 
-  async log(botguard_solver: BotGuardSolver<BotGuardLogBinding>, args: Omit<ChallengeSolverArgs<BotGuardLogBinding>, 'content_binding'>) {
+  /**
+   * Fetches a challenge and logs its attestation.
+   * @param botguard_solver - The BotGuard challenge solver
+   * @param args - BotGuard challenge fetching and solving args
+   */
+  async log(botguard_solver: BotGuardSolver<BotGuardLogBinding>, args: ChallengeFetchingArgs<BotGuardLogBinding>) {
     const log_content_binding_fn = (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]): BotGuardLogBinding => {
       const spread_ids = Object.assign({}, ids);
       return {
