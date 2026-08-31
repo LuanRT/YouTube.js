@@ -15,6 +15,10 @@ export interface BotGuardLogBinding extends AttIdsRaw {
   e: EngagementType;
 }
 
+export interface BotGuardSessionTokenBinding {
+  atr_challenge: string;
+}
+
 export interface BotGuardSolver<T> {
   solve: (botguard_challenge: BotGuardSolverChallenge, binding: T) => Promise<string>;
 }

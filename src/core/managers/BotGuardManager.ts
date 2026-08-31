@@ -3,16 +3,16 @@ import type RunAttestationCommand from '../../parser/classes/commands/RunAttesta
 import type { AttIdsRaw } from '../../parser/classes/commands/RunAttestationCommand.js';
 import type { IGetChallengeResponse, RawNode } from '../../parser/index.js';
 import type { BotGuardChallengeInfo, BotGuardSolver, BotGuardSolverChallenge, BotGuardLogBinding, BotGuardSessionTokenBinding } from '../../types/BotGuard.js';
-import type { EngagementType } from '../../types/Misc.js';
+import type { EngagementType, InnerTubeClient } from '../../types/Misc.js';
 import { channelUserDelegationContext } from '../../utils/Context.js';
 import { InnertubeError } from '../../utils/Utils.js';
-import type { ClientType, PartialContext } from '../index.js';
+import type { PartialContext } from '../index.js';
 
 export interface ChallengeSolverArgsBase<T> {
   content_binding: (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]) => T;
   atn_page_url?: string;
   eacr_token?: string;
-  client?: ClientType;
+  client?: InnerTubeClient;
   ytcfg?: RawNode;
   one_time_context?: PartialContext;
 }
@@ -179,5 +179,93 @@ export default class BotGuardManager {
       ids: normalized_opts.ids,
       webResponse: result.web_response
     });
+  }
+
+  /**
+   * Fetches and solves the entire attestation routine for YouTube Studio
+   * @param botguard_solver - The BotGuard challenge solver
+   * @param channel_id - Channel ID of the target Studio session
+   */
+  async studioSessionToken(botguard_solver: BotGuardSolver<BotGuardSessionTokenBinding>, channel_id: string) {
+    const session_token_binding_fn = (challenge: string): BotGuardSessionTokenBinding => ({ atr_challenge: challenge });
+    const user_one_time_context = { user: channelUserDelegationContext(channel_id) };
+    const initial_data = await this.#innertube.initialData('https://studio.youtube.com/');
+
+    const base_args = {
+      content_binding: session_token_binding_fn,
+      ...(initial_data.ytcfg ? { ytcfg: initial_data.ytcfg } : {})
+    };
+
+    const unbounded_challenge = await this.run(botguard_solver, {
+      ...base_args,
+      ...(initial_data.eacr_token ? { eacr_token: initial_data.eacr_token } : {}),
+      client: 'WEB_CREATOR',
+      engagement_type: 'ENGAGEMENT_TYPE_UNBOUND',
+      ids: []
+    });
+    const creator_studio_result = await this.run(botguard_solver, {
+      ...base_args,
+      one_time_context: user_one_time_context,
+      client: 'WEB_CREATOR',
+      engagement_type: 'ENGAGEMENT_TYPE_CREATOR_STUDIO_ACTION',
+      ids: [ { externalChannelId: channel_id } ]
+    });
+
+    const attestation_data_response = {
+      challenge: unbounded_challenge.challenge.challenge,
+      web_response: unbounded_challenge.web_response
+    };
+
+    const evaluate_session_risk_response = await this.#innertube.actions.execute('/att/esr', { 
+      parse: true,
+      client: 'WEB_CREATOR',
+      challenge: creator_studio_result.challenge.challenge,
+      botguardResponse: creator_studio_result.web_response,
+      xguardClientStatus: 0,
+      one_time_context: user_one_time_context
+    });
+
+    if (evaluate_session_risk_response.session_token) {
+      return {
+        session_token: evaluate_session_risk_response.session_token,
+        attestation_data_response
+      };
+    }
+
+    let grst_ctx = evaluate_session_risk_response.ctx;
+    let reauth_proof_token: string = '';
+    if (evaluate_session_risk_response.should_fetch_reauth_session_token === true) {
+      const web_reauth_url = await this.#innertube.actions.execute('/security/get_web_reauth_url', { 
+        parse: true,
+        client: 'WEB_CREATOR',
+        challenge: creator_studio_result.challenge.challenge,
+        botguardResponse: creator_studio_result.web_response,
+        continueUrl: 'https://studio.youtube.com/reauth',
+        flow: 'REAUTH_FLOW_YT_STUDIO_COLD_LOAD',
+        ivctx: evaluate_session_risk_response.ctx,
+        one_time_context: user_one_time_context
+      });
+
+      if (web_reauth_url.plt) throw new InnertubeError('Session has expired, try refreshing your login credentials then try again.');
+      if (web_reauth_url.session_risk_ctx) grst_ctx = web_reauth_url.session_risk_ctx;
+      if (web_reauth_url.encoded_reauth_proof_token) reauth_proof_token = web_reauth_url.encoded_reauth_proof_token;
+    }
+
+    const reauth_session_token = await this.#innertube.actions.execute('/ars/grst', { 
+      parse: true,
+      client: 'WEB_CREATOR',
+      ctx: grst_ctx,
+      one_time_context: {
+        ...user_one_time_context,
+        request: { reauthRequestInfo: { encodedReauthProofToken: reauth_proof_token } }
+      }
+    });
+    
+    if (reauth_session_token.session_token === undefined) throw new InnertubeError('/ars/grst did not return a session token');
+
+    return {
+      session_token: reauth_session_token.session_token,
+      attestation_data_response
+    };
   }
 }
