@@ -301,26 +301,62 @@ export function getNsigProcessorFn(n?: string | null, sp?: string | null, s?: st
 return process("${n || ''}", "${sp || ''}", "${s || ''}");`;
 }
 
-// Could also just be done with an eval...
 export function parseLooseJSON(looseJson: string) {
   let jsonStr = looseJson.replace(/,\s*([\]}])/g, '$1');
-  jsonStr = jsonStr.replace(/'((?:[^'\\]|\\[\s\S])*)'/g, (_match, innerStr) => {
-    const unescaped = innerStr.replace(/\\(\\|'|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4})/g, (_m: string, esc: string) => {
-      if (esc === '\\' || esc === '\'') return esc;
-      return String.fromCharCode(parseInt(esc.slice(1), 16));
-    });
-    return JSON.stringify(unescaped);
-  });
+
+  jsonStr = jsonStr.replace(
+    /'((?:[^'\\]|\\[\s\S])*)'/g,
+    (_match, innerStr) => {
+      const unescaped = innerStr.replace(/\\'/g, '\'');
+      return JSON.stringify(unescaped);
+    }
+  );
+
   // just in case
   jsonStr = jsonStr.replace(/([{,]\s*)([a-zA-Z0-9_$]+)\s*:/g, '$1"$2":');
+
   const parsedData = JSON.parse(jsonStr);
-  for (const key in parsedData) {
-    const val = parsedData[key];
-    if (typeof val === 'string' && (val.trim().startsWith('{') || val.trim().startsWith('['))) {
-      try {
-        parsedData[key] = JSON.parse(val);
-      } catch { /** no-op */ }
+
+  /**
+   * \x41 -> A basically.
+   */
+  const decodeHexEscapes = (value: string): string => {
+    return value.replace(/\\x([0-9A-Fa-f]{2})/g, (_match, hex) => {
+      return String.fromCharCode(parseInt(hex, 16));
+    });
+  };
+  const decodeUnicodeEscapes = (value: string): string => {
+    return value.replace(/\\u([0-9A-Fa-f]{4})/g, (_match, unicode) => {
+      return String.fromCharCode(parseInt(unicode, 16));
+    });
+  };
+
+  const normalizeValue = (value: any): any => {
+    if (typeof value === 'string') {
+      const decodedValue = decodeHexEscapes(value);
+      const trimmed = decodedValue.trim();
+
+      if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+        try {
+          return normalizeValue(JSON.parse(decodedValue));
+        } catch {
+          return decodedValue;
+        }
+      }
+      return decodeUnicodeEscapes(decodedValue);
     }
-  }
-  return parsedData;
+
+    if (Array.isArray(value)) {
+      return value.map(normalizeValue);
+    }
+
+    if (value && typeof value === 'object') {
+      for (const key in value) {
+        value[key] = normalizeValue(value[key]);
+      }
+    }
+    return value;
+  };
+
+  return normalizeValue(parsedData);
 }

@@ -288,7 +288,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   _clearMemo();
 
   _createMemo();
-  const live_chat_item_context_menu_supported_renderers = data.liveChatItemContextMenuSupportedRenderers ? parseItem(data.liveChatItemContextMenuSupportedRenderers) : null;
+  const live_chat_item_context_menu_supported_renderers = parseItem(data.liveChatItemContextMenuSupportedRenderers);
   const live_chat_item_context_menu_supported_renderers_memo = _getMemo();
   if (live_chat_item_context_menu_supported_renderers) {
     parsed_data.live_chat_item_context_menu_supported_renderers = live_chat_item_context_menu_supported_renderers;
@@ -297,7 +297,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   _clearMemo();
 
   _createMemo();
-  const header = data.header ? parse(data.header) : null;
+  const header = parse(data.header);
   const header_memo = _getMemo();
   if (header) {
     parsed_data.header = header;
@@ -306,7 +306,7 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
   _clearMemo();
 
   _createMemo();
-  const sidebar = data.sidebar ? parseItem(data.sidebar) : null;
+  const sidebar = parseItem(data.sidebar);
   const sidebar_memo = _getMemo();
   if (sidebar) {
     parsed_data.sidebar = sidebar;
@@ -387,16 +387,18 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.playback_tracking = playback_tracking;
   }
 
-  const playability_status = data.playabilityStatus ? {
-    status: data.playabilityStatus.status,
-    reason: data.playabilityStatus.reason || '',
-    embeddable: !!data.playabilityStatus.playableInEmbed || false,
-    audio_only_playability: parseItem(data.playabilityStatus.audioOnlyPlayability, AudioOnlyPlayability),
-    error_screen: parseItem(data.playabilityStatus.errorScreen)
-  } : null;
-
-  if (playability_status) {
-    parsed_data.playability_status = playability_status;
+  if (data.playabilityStatus) {
+    _createMemo();
+    parsed_data.playability_status = {
+      status: data.playabilityStatus.status,
+      reason: data.playabilityStatus.reason || '',
+      embeddable: !!data.playabilityStatus.playableInEmbed,
+      audio_only_playability: parseItem(data.playabilityStatus.audioOnlyPlayability, AudioOnlyPlayability),
+      error_screen: parseItem(data.playabilityStatus.errorScreen),
+      live_streamability: parseItem(data.playabilityStatus.liveStreamability)
+    };
+    parsed_data.playability_status_memo = _getMemo();
+    _clearMemo();
   }
 
   if (data.streamingData) {
@@ -508,6 +510,50 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.challenge = data.challenge;
   }
 
+  if (data.botguardData) {
+    const interpreter_url = {
+      private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
+      private_do_not_access_or_else_safe_script_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseSafeScriptWrappedValue
+    };
+
+    parsed_data.botguard_data = {
+      interpreter_url,
+      program: data.botguardData.program
+    };
+  }
+
+  if (data.ctx) {
+    parsed_data.ctx = data.ctx;
+  }
+
+  if (data.shouldFetchReauthSessionToken !== undefined) {
+    parsed_data.should_fetch_reauth_session_token = data.shouldFetchReauthSessionToken;
+  }
+
+  if (data.encodedReauthProofToken) {
+    parsed_data.encoded_reauth_proof_token = data.encodedReauthProofToken;
+  }
+
+  if (data.sessionRiskCtx) {
+    parsed_data.session_risk_ctx = data.sessionRiskCtx;
+  }
+
+  if (data.sessionToken) {
+    parsed_data.session_token = data.sessionToken;
+  }
+
+  if (data.webReauthUrl) {
+    parsed_data.web_reauth_url = data.webReauthUrl;
+  }
+
+  if (data.plt) {
+    parsed_data.plt = data.plt;
+  }
+
+  if (data.requireChallenge) {
+    parsed_data.require_challenge = data.requireChallenge;
+  }
+
   if (data.playerResponse) {
     parsed_data.player_response = parseResponse(data.playerResponse);
   }
@@ -529,6 +575,34 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
 
   if (data.targetId) {
     parsed_data.target_id = data.targetId;
+  }
+
+  const challenge_prompt = data.responseContext?.webResponseContextExtensionData?.challenge;
+  if (challenge_prompt) {
+    parsed_data.challenge_prompt = challenge_prompt;
+  }
+  
+  if ('pollDelayMs' in data) {
+    parsed_data.poll_delay_ms = data.pollDelayMs;
+  }
+
+  if ('stopHeartbeat' in data) {
+    parsed_data.stop_heartbeat = data.stopHeartbeat;
+  }
+
+  if ('heartbeatServerData' in data) {
+    parsed_data.heartbeat_server_data = data.heartbeatServerData;
+  }
+
+  if ('heartbeatParams' in data) {
+    parsed_data.heartbeat_params = {
+      heartbeat_token: data.heartbeatParams?.heartbeatToken,
+      interval_milliseconds: data.heartbeatParams?.intervalMilliseconds,
+      max_retries: data.heartbeatParams?.maxRetries,
+      drm_session_id: data.heartbeatParams?.drmSessionId,
+      soft_fail_on_error: data.heartbeatParams?.softFailOnError,
+      heartbeat_server_data: data.heartbeatParams?.heartbeatServerData
+    };
   }
 
   return parsed_data;

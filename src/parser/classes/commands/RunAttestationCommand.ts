@@ -1,3 +1,4 @@
+import type { EngagementType } from '../../../types/Misc.js';
 import { YTNode } from '../../helpers.js';
 import type { IGetChallengeResponse, RawNode } from '../../types/index.js';
 import type { EngagementType } from '../../../types/Misc.js';
