@@ -144,7 +144,7 @@ export default class HTTPClient {
 
         request_headers.set('Cookie', cookie);
       }
-    } else if (session.logged_in && this.#cookie && request_url.origin === Constants.URLS.YT_BASE) {
+    } else if (session.logged_in && this.#cookie && input_is_raw_url) {
       request_headers.set('Cookie', this.#cookie);
     }
 
