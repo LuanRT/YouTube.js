@@ -164,7 +164,7 @@ export default class BotGuardManager {
    */
   async log(botguard_solver: BotGuardSolver<BotGuardLogBinding>, args: ChallengeFetchingArgs<BotGuardLogBinding>) {
     const log_content_binding_fn = (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]): BotGuardLogBinding => {
-      const spread_ids = Object.assign({}, ids);
+      const spread_ids = Object.assign({}, ...ids);
       return {
         c: challenge,
         e: engagement_type,
@@ -204,7 +204,7 @@ export default class BotGuardManager {
    */
   async studioAttestationResponseData(botguard_solver: BotGuardSolver<BotGuardLogBinding>, engagement_type: StudioActionsEngagementType, ids: AttIdsRaw[]){
     const challenge = await this.studioAttestationChallenge();
-    const spread_ids = Object.assign({}, ids);
+    const spread_ids = Object.assign({}, ...ids);
     const binding = {
       c: challenge.challenge,
       e: engagement_type,
