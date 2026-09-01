@@ -29,6 +29,8 @@ export interface ChallengeSolverArgsEngagement<T> extends ChallengeSolverArgsBas
 export type ChallengeFetchingArgs<T> = Omit<ChallengeSolverArgsEngagement<T>, 'content_binding'>;
 export type ChallengeSolverArgs<T> = ChallengeSolverArgsEngagement<T> | ChallengeSolverArgsRunAttestationCommand<T>;
 
+export type StudioActionsEngagementType = Extract<EngagementType, 'ENGAGEMENT_TYPE_VIDEO_UPLOAD' | 'ENGAGEMENT_TYPE_VIDEO_METADATA_UPDATE'>;
+
 export default class BotGuardManager {
   readonly #innertube: Innertube;
   #botguard_challenge_info_cache: Record<string, BotGuardChallengeInfo>;
@@ -182,39 +184,58 @@ export default class BotGuardManager {
   }
 
   /**
-   * Fetches and solves the entire attestation routine for YouTube Studio
+   * Fetches the attestation challenge for various YouTube Studio actions
+   */
+  async studioAttestationChallenge(){
+    const challenge = await this.getChallenge({
+      atn_page_url: 'https://studio.youtube.com/',
+      client: 'WEB_CREATOR',
+      engagement_type: 'ENGAGEMENT_TYPE_UNBOUND',
+      ids: []
+    });
+    return challenge;
+  }
+
+  /**
+   * Fetches and solves the attestation for YouTube Studio
+   * @param botguard_solver - The BotGuard challenge solver
+   * @param engagement_type - The challenge engagement type
+   * @param ids - The challenge ids
+   */
+  async studioAttestationResponseData(botguard_solver: BotGuardSolver<BotGuardLogBinding>, engagement_type: StudioActionsEngagementType, ids: AttIdsRaw[]){
+    const challenge = await this.studioAttestationChallenge();
+    const spread_ids = Object.assign({}, ids);
+    const binding = {
+      c: challenge.challenge,
+      e: engagement_type,
+      ...spread_ids
+    };
+    const web_response = await botguard_solver.solve(challenge.bg_challenge, binding);
+    return {
+      challenge: challenge.challenge,
+      webResponse: web_response
+    };
+  }
+
+  /**
+   * Fetches and solves the entire session attestation routine for YouTube Studio
    * @param botguard_solver - The BotGuard challenge solver
    * @param channel_id - Channel ID of the target Studio session
    */
   async studioSessionToken(botguard_solver: BotGuardSolver<BotGuardSessionTokenBinding>, channel_id: string) {
     const session_token_binding_fn = (challenge: string): BotGuardSessionTokenBinding => ({ atr_challenge: challenge });
     const user_one_time_context = { user: channelUserDelegationContext(channel_id) };
-    const initial_data = await this.#innertube.initialData('https://studio.youtube.com/');
 
-    const base_args = {
-      content_binding: session_token_binding_fn,
-      ...(initial_data.ytcfg ? { ytcfg: initial_data.ytcfg } : {})
-    };
+    // get initial eats & cache unbound challenge
+    await this.studioAttestationChallenge();
 
-    const unbounded_challenge = await this.run(botguard_solver, {
-      ...base_args,
-      ...(initial_data.eacr_token ? { eacr_token: initial_data.eacr_token } : {}),
-      client: 'WEB_CREATOR',
-      engagement_type: 'ENGAGEMENT_TYPE_UNBOUND',
-      ids: []
-    });
     const creator_studio_result = await this.run(botguard_solver, {
-      ...base_args,
+      content_binding: session_token_binding_fn,
       one_time_context: user_one_time_context,
       client: 'WEB_CREATOR',
       engagement_type: 'ENGAGEMENT_TYPE_CREATOR_STUDIO_ACTION',
       ids: [ { externalChannelId: channel_id } ]
     });
-
-    const attestation_data_response = {
-      challenge: unbounded_challenge.challenge.challenge,
-      web_response: unbounded_challenge.web_response
-    };
 
     const evaluate_session_risk_response = await this.#innertube.actions.execute('/att/esr', { 
       parse: true,
@@ -225,12 +246,7 @@ export default class BotGuardManager {
       one_time_context: user_one_time_context
     });
 
-    if (evaluate_session_risk_response.session_token) {
-      return {
-        session_token: evaluate_session_risk_response.session_token,
-        attestation_data_response
-      };
-    }
+    if (evaluate_session_risk_response.session_token) return evaluate_session_risk_response.session_token;
 
     let grst_ctx = evaluate_session_risk_response.ctx;
     let reauth_proof_token: string = '';
@@ -262,10 +278,6 @@ export default class BotGuardManager {
     });
     
     if (reauth_session_token.session_token === undefined) throw new InnertubeError('/ars/grst did not return a session token');
-
-    return {
-      session_token: reauth_session_token.session_token,
-      attestation_data_response
-    };
+    return reauth_session_token.session_token;
   }
 }
