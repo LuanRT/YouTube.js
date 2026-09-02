@@ -35,9 +35,10 @@ import type {
   InnerTubeClient,
   InnerTubeConfig,
   SearchFilters,
-  BotGuardSolver
+  BotGuardSolver,
+  BotGuardLogBinding
 } from './types/index.js';
-import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
+import type { IBrowseResponse, IGetChallengeResponse, IParsedResponse, RawNode } from './parser/index.js';
 
 import {
   CommunityPostCommentsParam,
@@ -53,6 +54,7 @@ import {
   SearchFilter_Prioritize
 } from '../protos/generated/misc/params.js';
 import PostManager from './core/managers/PostManager.js';
+import { parseResponse } from './parser/parser.js';
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -575,6 +577,31 @@ export default class Innertube {
     return this.actions.execute('/att/get', { parse: true, ...payload });
   }
 
+  async initialData(page_url: string) {
+    const url = new URL(page_url);
+    const inital_data = await this.session.http.fetch(url.href, {
+      method: 'GET'
+    });
+    const html = await inital_data.text();
+
+    const ytcfg_regex = /ytcfg\.set\(({.+?})\);/s;
+    const attestation_data_regex = /window\.ytAtN\(\s*({[\s\S]*?})\s*\)/;
+
+    const ytcfg_string = ytcfg_regex.exec(html)?.[1];
+    const attestation_data_string = attestation_data_regex.exec(html)?.[1];
+
+    const ytcfg = ytcfg_string ? JSON.parse(ytcfg_string) as RawNode : null;
+    if (ytcfg?.EATS) this.#session.eats = ytcfg.EATS;
+
+    const yt_atn: {R: RawNode, T: string}|null = attestation_data_string ? parseLooseJSON(attestation_data_string) : null;
+    
+    return {
+      ytcfg: ytcfg,
+      atn: yt_atn?.R ? parseResponse<IGetChallengeResponse>(yt_atn.R) : null,
+      eacr_token: yt_atn ? yt_atn.T : null
+    };
+  }
+
   /**
    * Utility method to call an endpoint without having to use {@link Actions}.
    */
@@ -622,7 +649,7 @@ export default class Innertube {
   /**
    * An interface for managing posts.
    */
-  posts(botguard_solver: BotGuardSolver<string>) {
+  posts(botguard_solver: BotGuardSolver<BotGuardLogBinding>) {
     return new PostManager(this, this.#session.actions, botguard_solver);
   }
 
