@@ -1,10 +1,11 @@
 import type { Actions } from '../index.js';
 import type Innertube from '../../Innertube.js';
 import { InnertubeError } from '../../utils/Utils.js';
-import type { BotGuardSolver } from '../../types/BotGuard.js';
+import type { BotGuardLogBinding, BotGuardSolver } from '../../types/BotGuard.js';
 import { AddBackstagePostAction, BackstagePost, RunAttestationCommand } from '../../parser/nodes.js';
 import { encodeCreateBackstagePostParams } from '../../utils/ProtoUtils.js';
 import type { CreatePostImage, CreatePostExtraOptions, CreatePostPayload, ImagesAttachment_PostImageData, PollAttachmentData_Option, CreatePostPayloadBase, CreatePostBaseOptions } from '../../types/CreatePost.ts';
+import type BotGuardManager from './BotGuardManager.js';
 
 export interface CreatePostResponse {
   post_id: string;
@@ -14,12 +15,14 @@ export interface CreatePostResponse {
 export default class PostManager {
   readonly #innertube: Innertube;
   readonly #actions: Actions;
-  readonly #botguard_solver: BotGuardSolver<string>;
+  readonly #botguard_solver: BotGuardSolver<BotGuardLogBinding>;
+  readonly #botguard: BotGuardManager;
 
-  constructor(innertube: Innertube, actions: Actions, botguard_solver: BotGuardSolver<string>) {
+  constructor(innertube: Innertube, actions: Actions, botguard_solver: BotGuardSolver<BotGuardLogBinding>) {
     this.#innertube = innertube;
     this.#actions = actions;
     this.#botguard_solver = botguard_solver;
+    this.#botguard = this.#innertube.botguard;
   }
 
   async #uploadImage(image: CreatePostImage, channel_id: string){
@@ -134,14 +137,8 @@ export default class PostManager {
     if (!create_post_response.actions?.is_array) throw new InnertubeError('create_post_response doesn\'t have any actions');
     const attestation_command = create_post_response.actions.array().firstOfType(RunAttestationCommand);
     if (!attestation_command) throw new InnertubeError('Post didn\'t send an attestation command');
-    const attestation_run_response = await attestation_command.run(this.#innertube, this.#botguard_solver, undefined, `https://www.youtube.com/channel/${channel_id}/posts`);
-    await this.#actions.execute('/att/log', {
-      challenge: attestation_run_response.challenge.challenge,
-      engagementType: attestation_command.engagement_type,
-      ids: attestation_command.raw_ids,
-      webResponse: attestation_run_response.web_response
-    });
-
+    
+    this.#botguard.log(this.#botguard_solver, {run_attestation_command: attestation_command, atn_page_url: `https://www.youtube.com/channel/${channel_id}/posts`});
     const add_backstage_post_action = create_post_response.actions.array().firstOfType(AddBackstagePostAction);
 
     return {
