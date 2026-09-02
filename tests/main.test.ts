@@ -298,6 +298,27 @@ describe('YouTube.js Tests', () => {
 
     //   expect(existsSync(`./${id}.mp4`)).toBeTruthy();
     // });
+
+    // test('Innertube#botguard.getChallenge.apiChallenge', async () => {
+    //   const challenge = await innertube.botguard.getChallenge({engagement_type: "ENGAGEMENT_TYPE_UNBOUND", ids: []});
+    //   expect(challenge).toBeDefined();
+    // });
+    // test('Innertube#botguard.getChallenge.pageChallenge_initialChallenge', async () => {
+    //   const challenge = await innertube.botguard.getChallenge({
+    //     engagement_type: "ENGAGEMENT_TYPE_VIDEO_LIKE", 
+    //     ids: [{encryptedVideoId: 'wf4kRfGzflo'}], 
+    //     atn_page_url: 'https://www.youtube.com'
+    //   });
+    //   expect(challenge).toBeDefined();
+    // });
+    // test('Innertube#botguard.getChallenge.pageChallenge_eacrTokenChallenge', async () => {
+    //   const challenge = await innertube.botguard.getChallenge({
+    //     engagement_type: "ENGAGEMENT_TYPE_VIDEO_LIKE", 
+    //     ids: [{encryptedVideoId: 'wf4kRfGzflo'}], 
+    //     atn_page_url: 'https://music.youtube.com'
+    //   });
+    //   expect(challenge).toBeDefined();
+    // });
   });
 
   describe('YouTube Music', () => {
