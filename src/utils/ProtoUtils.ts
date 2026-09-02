@@ -1,5 +1,5 @@
 import { base64ToU8, u8ToBase64 } from './Utils.js';
-import { NextParams, PeformCommentActionParams, VisitorData } from '../../protos/generated/misc/params.js';
+import { CreateBackstagePostParams, NextParams, PeformCommentActionParams, VisitorData } from '../../protos/generated/misc/params.js';
 
 export type CommentActionParamsArgs = {
   comment_id?: string,
@@ -51,4 +51,14 @@ export function encodeCommentActionParams(type: number, args: CommentActionParam
 export function encodeNextParams(video_ids: string[], playlist_title?: string): string {
   const writer = NextParams.encode({ videoId: video_ids, playlistTitle: playlist_title });
   return encodeURIComponent(u8ToBase64(writer.finish()).replace(/\+/g, '-').replace(/\//g, '_'));
+}
+
+export function encodeCreateBackstagePostParams(channel_id: string): string {
+  const writer = CreateBackstagePostParams.encode({
+    channelId: channel_id,
+    unkParam1: 1,
+    f6: { unkParam3: 5 },
+    f9: { unkParam1: 2 }
+  });
+  return u8ToBase64(writer.finish());
 }

@@ -42,6 +42,7 @@ import type { IBrowseResponse } from '../types/index.js';
 import type OpenPopupAction from '../classes/actions/OpenPopupAction.js';
 import type { ObservedArray } from '../helpers.js';
 import { observe } from '../helpers.js';
+import type { RunAttestationCommand } from '../nodes.js';
 
 export default class Channel extends TabbedFeed<IBrowseResponse> {
   public header?: C4TabbedHeader | CarouselHeader | InteractiveTabbedHeader | PageHeader;
@@ -429,7 +430,7 @@ export default class Channel extends TabbedFeed<IBrowseResponse> {
 }
 
 export class ChannelListContinuation extends Feed<IBrowseResponse> {
-  contents?: AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand;
+  contents?: AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand | RunAttestationCommand;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
@@ -449,7 +450,7 @@ export class ChannelListContinuation extends Feed<IBrowseResponse> {
 export class FilteredChannelList extends FilterableFeed<IBrowseResponse> {
   public filter?: ChipView | ListItemView;
   public secondary_filter?: ChipView;
-  public contents?: AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand;
+  public contents?: AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand | RunAttestationCommand;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
     super(actions, data, already_parsed);
