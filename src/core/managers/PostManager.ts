@@ -138,7 +138,7 @@ export default class PostManager {
     const attestation_command = create_post_response.actions.array().firstOfType(RunAttestationCommand);
     if (!attestation_command) throw new InnertubeError('Post didn\'t send an attestation command');
     
-    this.#botguard.log(this.#botguard_solver, {run_attestation_command: attestation_command, atn_page_url: `https://www.youtube.com/channel/${channel_id}/posts`});
+    this.#botguard.log(this.#botguard_solver, { run_attestation_command: attestation_command, atn_page_url: `https://www.youtube.com/channel/${channel_id}/posts` });
     const add_backstage_post_action = create_post_response.actions.array().firstOfType(AddBackstagePostAction);
 
     return {
