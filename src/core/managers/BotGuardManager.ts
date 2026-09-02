@@ -27,6 +27,7 @@ export interface ChallengeSolverArgsEngagement<T> extends ChallengeSolverArgsBas
 }
 
 export type ChallengeSolverArgs<T> = ChallengeSolverArgsEngagement<T> | ChallengeSolverArgsRunAttestationCommand<T>;
+export type ChallengeNoBindingSolverArgs<T> = Omit<ChallengeSolverArgsEngagement<T>, 'content_binding'> | Omit<ChallengeSolverArgsRunAttestationCommand<T>, 'content_binding'>;
 export type ChallengeFetchingArgs<T> = Omit<ChallengeSolverArgsEngagement<T>, 'content_binding'>;
 
 export type StudioActionsEngagementType = Extract<EngagementType, 'ENGAGEMENT_TYPE_VIDEO_UPLOAD' | 'ENGAGEMENT_TYPE_VIDEO_METADATA_UPDATE'>;
@@ -162,7 +163,7 @@ export default class BotGuardManager {
    * @param botguard_solver - The BotGuard challenge solver
    * @param args - BotGuard challenge fetching args
    */
-  async log(botguard_solver: BotGuardSolver<BotGuardLogBinding>, args: Omit<ChallengeSolverArgs<BotGuardLogBinding>, 'content_binding'>) {
+  async log(botguard_solver: BotGuardSolver<BotGuardLogBinding>, args: ChallengeNoBindingSolverArgs<BotGuardLogBinding>) {
     const log_content_binding_fn = (challenge: string, engagement_type: EngagementType, ids: AttIdsRaw[]): BotGuardLogBinding => {
       const spread_ids = Object.assign({}, ...ids);
       return {
