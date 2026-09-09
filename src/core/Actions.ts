@@ -1,7 +1,10 @@
 import type {
   IBrowseResponse,
+  IESRChallengeResponse,
   IGetChallengeResponse,
   IGetNotificationsMenuResponse,
+  IGetSessionTokenResponse,
+  IGetWebReauthURLResponse,
   INextResponse,
   IParsedResponse,
   IPlayerHeartbeatResponse,
@@ -14,7 +17,7 @@ import type {
 import { NavigateAction, Parser } from '../parser/index.js';
 import { InnertubeError } from '../utils/Utils.js';
 
-import type { Session } from './index.js';
+import type { PartialContext, Session } from './index.js';
 
 export interface ApiResponse {
   success: boolean;
@@ -44,6 +47,9 @@ export type ParsedResponse<T> =
   T extends '/navigation/resolve_url' ? IResolveURLResponse :
   T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
   T extends '/att/get' ? IGetChallengeResponse :
+  T extends '/att/esr' ? IESRChallengeResponse :
+  T extends '/security/get_web_reauth_url' ? IGetWebReauthURLResponse :
+  T extends '/ars/grst' ? IGetSessionTokenResponse :
   IParsedResponse;
 
 export default class Actions {
@@ -86,21 +92,24 @@ export default class Actions {
     parse: true;
     protobuf?: false;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ParsedResponse<T>>;
   async execute<T extends InnertubeEndpoint>(endpoint: T, args?: {
     [key: string]: any;
     parse?: false;
     protobuf?: true;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ApiResponse>;
   async execute<T extends InnertubeEndpoint>(endpoint: T, args?: {
     [key: string]: any;
     parse?: boolean;
     protobuf?: boolean;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ParsedResponse<T> | ApiResponse> {
     let data;
 
@@ -148,6 +157,11 @@ export default class Actions {
       if (data?.client === 'YTMUSIC') {
         data.isAudioOnly = true;
       }
+
+      if (data?.client === 'WEB_CREATOR') {
+        if (!data.one_time_context) data.one_time_context = {};
+        data.one_time_context.request = { eats: this.session.eats, ...data.one_time_context?.request };
+      }
     } else if (args) {
       data = args.serialized_data;
     }
@@ -164,8 +178,11 @@ export default class Actions {
       }
     });
 
+    const response_json = await response.json();
+    if (response_json?.eats) this.session.eats = response_json.eats;
+
     if (args?.parse) {
-      let parsed_response = Parser.parseResponse<ParsedResponse<T>>(await response.json());
+      let parsed_response = Parser.parseResponse<ParsedResponse<T>>(response_json);
 
       // Handle redirects
       if (this.#isBrowse(parsed_response) && parsed_response.on_response_received_actions?.[0]?.type === 'navigateAction') {
@@ -182,7 +199,7 @@ export default class Actions {
     return {
       success: response.ok,
       status_code: response.status,
-      data: await response.json()
+      data: response_json
     };
   }
 
