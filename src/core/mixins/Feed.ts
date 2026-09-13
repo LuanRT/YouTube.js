@@ -99,7 +99,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
 
     const lockup_views = memo.getType(LockupView)
       .filter((lockup) => {
-        return [ 'PLAYLIST', 'ALBUM', 'PODCAST' ].includes(lockup.content_type);
+        return [ 'PLAYLIST', 'ALBUM', 'PODCAST', 'SHOW' ].includes(lockup.content_type);
       });
 
     if (lockup_views.length > 0) {
