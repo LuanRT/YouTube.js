@@ -8,6 +8,7 @@ import Channel from '../../parser/classes/Channel.js';
 import CompactVideo from '../../parser/classes/CompactVideo.js';
 import GridChannel from '../../parser/classes/GridChannel.js';
 import GridPlaylist from '../../parser/classes/GridPlaylist.js';
+import GridShow from '../../parser/classes/GridShow.js';
 import GridVideo from '../../parser/classes/GridVideo.js';
 import LockupView from '../../parser/classes/LockupView.js';
 import Playlist from '../../parser/classes/Playlist.js';
@@ -94,7 +95,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
    * Get all playlists on a given page via memo
    */
   static getPlaylistsFromMemo(memo: Memo) {
-    const playlists: ObservedArray<Playlist | GridPlaylist | LockupView> = memo.getType(Playlist, GridPlaylist);
+    const playlists: ObservedArray<Playlist | GridPlaylist | GridShow | LockupView> = memo.getType(Playlist, GridPlaylist, GridShow);
 
     const lockup_views = memo.getType(LockupView)
       .filter((lockup) => {
