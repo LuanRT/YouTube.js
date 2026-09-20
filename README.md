@@ -54,6 +54,76 @@ const innertube = await Innertube.create(/* options */);
 
 For detailed usage, read the [YouTube.js Guide and API Documentation](https://ytjs.dev).
 
+## Cloudflare Workers Usage & Deployment
+
+To deploy and use YouTube.js on Cloudflare Workers, follow these steps:
+
+### 1. Prerequisites
+- Node.js installed on your system.
+- A Cloudflare account.
+- `wrangler` CLI installed (`npm install -g wrangler` or via `npx wrangler`).
+
+### 2. Project Setup
+Create a new project directory and initialize Wrangler:
+
+```bash
+mkdir my-cf-worker
+cd my-cf-worker
+npm init -y
+npm install youtubei.js@latest
+npm install -D wrangler typescript @cloudflare/workers-types
+```
+
+### 3. Configure `wrangler.toml`
+Create a `wrangler.toml` file in your project root directory:
+
+```toml
+name = "my-youtubei-worker"
+main = "src/index.ts"
+compatibility_date = "2024-02-08"
+```
+
+### 4. Write Worker Code (`src/index.ts`)
+Import `Innertube` specifically from `youtubei.js/cf-worker`:
+
+```ts
+import { Innertube } from 'youtubei.js/cf-worker';
+
+export interface Env {}
+
+export default {
+  async fetch(
+    request: Request,
+    env: Env,
+    ctx: ExecutionContext
+  ): Promise<Response> {
+    // Note: Initialize Innertube inside the fetch handler, not in the global scope
+    const yt = await Innertube.create();
+
+    const video = await yt.getInfo('jNQXAC9IVRw');
+
+    return new Response(JSON.stringify({
+      title: video.basic_info.title,
+      description: video.basic_info.short_description,
+    }), {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  },
+};
+```
+
+### 5. Local Development & Deployment
+
+**Local testing:**
+```bash
+npx wrangler dev
+```
+
+**Deploy to Cloudflare Workers:**
+```bash
+npx wrangler deploy
+```
+
 ## Contributing
 All contributions are welcome, big or small. If you want to contribute, take a look at the [issues page](https://github.com/LuanRT/YouTube.js/issues) and our [guidelines](https://github.com/LuanRT/YouTube.js/blob/main/CONTRIBUTING.md).
 
