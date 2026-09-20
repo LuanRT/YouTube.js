@@ -80,7 +80,8 @@ Create a `wrangler.toml` file in your project root directory:
 ```toml
 name = "my-youtubei-worker"
 main = "src/index.ts"
-compatibility_date = "2024-02-08"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
 ```
 
 ### 4. Write Worker Code (`src/index.ts`)

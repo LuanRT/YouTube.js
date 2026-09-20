@@ -1,4 +1,4 @@
-name = "cf-worker-youtubei"
-main = "src/index.ts"
+name = "youtube-js"
+main = "bundle/cf-worker.js"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
