@@ -109,6 +109,10 @@ export const CLIENTS = {
     API_KEY: 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
     API_VERSION: 'v1',
     STATIC_VISITOR_ID: '6zpwvWUNAco'
+  },
+  WEB_MUSIC_ANALYTICS: {
+    NAME: 'WEB_MUSIC_ANALYTICS',
+    VERSION: '2.0'
   }
 } as const;
 /**
@@ -129,7 +133,8 @@ export const CLIENT_NAME_IDS = {
   TVHTML5_SIMPLY: '74',
   TVHTML5_SIMPLY_EMBEDDED_PLAYER: '85',
   WEB_EMBEDDED_PLAYER: '56',
-  WEB_CREATOR: '62'
+  WEB_CREATOR: '62',
+  WEB_MUSIC_ANALYTICS: '31'
 } as const;
 export const STREAM_HEADERS = {
   'accept': '*/*',
