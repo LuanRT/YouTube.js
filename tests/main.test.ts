@@ -479,4 +479,73 @@ describe('YouTube.js Tests', () => {
       expect(search.contents?.length).toBeGreaterThan(0);
     });
   });
+
+  describe('YouTube Charts', () => {
+    test('Innertube#charts.getHome', async () => {
+      const home = await innertube.charts.getHome('global');
+      expect(home).toBeDefined();
+      expect(home.perspective_metadata).toBeDefined();
+      expect(home.videos).toBeDefined();
+    });
+    test('Innertube#charts.getArtist', async () => {
+      const babytron_artist = await innertube.charts.getArtist('/g/11h4t95_kw', 'DAY', 'us');
+      expect(babytron_artist).toBeDefined();
+      expect(babytron_artist.perspective_metadata).toBeDefined();
+      expect(babytron_artist.dates).toBeDefined();
+    });
+    test('Innertube#charts.getLocation', async () => {
+      const new_york_location = await innertube.charts.getLocation('0x89c24fa5d33f083b:0xc80b8f06e177fe62', 'WEEK', 'global');
+      expect(new_york_location).toBeDefined();
+      expect(new_york_location.perspective_metadata).toBeDefined();
+      expect(new_york_location.artists).toBeDefined();
+    });
+    test('Innertube#charts.getPodcasts', async () => {
+      const podcasts = await innertube.charts.getPodcasts('WEEKLY', 'us');
+      expect(podcasts).toBeDefined();
+      expect(podcasts.perspective_metadata).toBeDefined();
+      expect(podcasts.podcast_shows).toBeDefined();
+    });
+    test('Innertube#charts.getAnalytics(TRACKS)', async () => {
+      const analytics = await innertube.charts.getAnalytics('TRACKS', 'WEEKLY', 'global');
+      expect(analytics).toBeDefined();
+      expect(analytics.perspective_metadata).toBeDefined();
+      expect(analytics.track_types).toBeDefined();
+    });
+    test('Innertube#charts.getAnalytics(ARTISTS)', async () => {
+      const analytics = await innertube.charts.getAnalytics('ARTISTS', 'WEEKLY', 'global');
+      expect(analytics).toBeDefined();
+      expect(analytics.perspective_metadata).toBeDefined();
+      expect(analytics.artists).toBeDefined();
+    });
+    test('Innertube#charts.getAnalytics(TRENDING_VIDEOS)', async () => {
+      const analytics = await innertube.charts.getAnalytics('TRENDING_VIDEOS', 'DAILY');
+      expect(analytics).toBeDefined();
+      expect(analytics.perspective_metadata).toBeDefined();
+      expect(analytics.videos).toBeDefined();
+    });
+    test('Innertube#charts.getAnalytics(VIDEOS)', async () => {
+      const analytics = await innertube.charts.getAnalytics('VIDEOS', 'DAILY', 'global');
+      expect(analytics).toBeDefined();
+      expect(analytics.perspective_metadata).toBeDefined();
+      expect(analytics.videos).toBeDefined();
+    });
+    test('Innertube#charts.getAnalytics(SHORTS_TRACKS_BY_USAGE)', async () => {
+      const analytics = await innertube.charts.getAnalytics('SHORTS_TRACKS_BY_USAGE', 'DAILY', 'global');
+      expect(analytics).toBeDefined();
+      expect(analytics.perspective_metadata).toBeDefined();
+      expect(analytics.track_types).toBeDefined();
+    });
+    test('Innertube#charts.getAnalytics(TRENDING_MOVIES)', async () => {
+      const analytics = await innertube.charts.getAnalytics('TRENDING_MOVIES', 'DAILY', 'us');
+      expect(analytics).toBeDefined();
+      expect(analytics.perspective_metadata).toBeDefined();
+      expect(analytics.videos).toBeDefined();
+    });
+    test('Innertube#charts.getAnalytics(VIDEOS_LOP)', async () => {
+      const analytics = await innertube.charts.getAnalytics('VIDEOS_LOP', 'WEEKLY', 'in', 'international');
+      expect(analytics).toBeDefined();
+      expect(analytics.perspective_metadata).toBeDefined();
+      expect(analytics.videos).toBeDefined();
+    });
+  });
 });
