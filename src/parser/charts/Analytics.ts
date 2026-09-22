@@ -2,7 +2,7 @@ import type { ApiResponse } from '../../core/index.js';
 import { InnertubeError } from '../../utils/Utils.js';
 import type { ObservedArray } from '../helpers.js';
 import { Parser, type IBrowseResponse } from '../index.js';
-import { MusicAnalyticsSection, SectionList, type MusicAnalyticsPerspectiveMetadata, type MusicAnalyticsTrackViewsTypes, type MusicAnalyticsVideoViews } from '../nodes.js';
+import { MusicAnalyticsSection, SectionList, type MusicAnalyticsArtistViews, type MusicAnalyticsPerspectiveMetadata, type MusicAnalyticsTrackViewsTypes, type MusicAnalyticsVideoViews } from '../nodes.js';
 
 export default class Analytics {
   readonly #page: IBrowseResponse;
@@ -14,6 +14,10 @@ export default class Analytics {
     const analytics = this.#page.contents?.item().as(SectionList).contents[0].as(MusicAnalyticsSection);
     if (!analytics) throw new InnertubeError('Could not find Analytics Section.');
     this.#analytics_section = analytics;
+  }
+
+  get artists(): ObservedArray<MusicAnalyticsArtistViews>|undefined {
+    return this.#analytics_section.artists;
   }
 
   get perspective_metadata(): MusicAnalyticsPerspectiveMetadata|undefined {
