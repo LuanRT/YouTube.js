@@ -2,17 +2,31 @@ name: Mark stale issues and pull requests
 
 on:
   schedule:
-  - cron: "30 1 * * *"
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
 
 jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/stale@v4
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'This issue has been automatically marked as stale because it has not had recent activity. It will be closed if no further activity occurs. Thank you for your contributions.'
-        stale-pr-message: 'This PR has been automatically marked as stale because it has not had recent activity. Remove the stale label or comment or this will be closed in 2 days'
-        any-of-issue-labels: 'needs-more-info,cannot-reproduce,question,help-wanted'
-        days-before-stale: 60
-        days-before-close: 4
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+          stale-issue-message: 'This issue has been automatically marked as stale because it has not had recent activity. It will be closed in 7 days if no further activity occurs.'
+          close-issue-message: 'This issue was closed due to inactivity.'
+          any-of-issue-labels: 'needs-more-info,cannot-reproduce,question,help-wanted'
+          exempt-issue-labels: 'pinned,security,bug,feature'
+          days-before-issue-stale: 60
+          days-before-issue-close: 7
+
+          stale-pr-message: 'This PR has been automatically marked as stale because it has not had recent activity. Please push new commits or comment to keep it open.'
+          close-pr-message: 'This PR was closed due to inactivity.'
+          days-before-pr-stale: 30
+          days-before-pr-close: 5
+          exempt-draft-pr: true
+          exempt-all-pr-assignees: true

@@ -1,53 +1,79 @@
 version: 1
 labels:
   - label: "breaking-change"
-    title: "^refactor!:.*"
+    title: "^.*(!:|\\(.*\\)!:).*"
 
-  - label: "github"
-    files:
-      - ".github/.*"
-      
-  - label: "git"
-    files:
-      - ".gitignore"
-      - ".gitattributes"
-      
-  - label: "tests"
-    files:
-      - "test/.*"
-    
-  - label: "docs"
-    files:
-      - "docs/.*"
-      - "README.md"
-      
+  - label: "feature"
+    title: "^feat(\\(.*\\))?:.*"
+
+  - label: "bug"
+    title: "^fix(\\(.*\\))?:.*"
+
+  - label: "refactor"
+    title: "^refactor(\\(.*\\))?:.*"
+
+  - label: "chore"
+    title: "^chore(\\(.*\\))?:.*"
+
   - label: "parser"
     files:
       - "src/parser/.*"
       - "src/Innertube.ts"
-      
+
   - label: "core"
     files:
       - "src/core/.*"
-      
+
   - label: "protobuf"
     files:
-      - "src/proto/.*"
-  
-  - label: "xsmall-diff"
+      - "protos/.*"
+
+  - label: "types"
+    files:
+      - "src/types/.*"
+
+  - label: "utils"
+    files:
+      - "src/utils/.*"
+
+  - label: "dependencies"
+    files:
+      - "package\\.json"
+      - "package-lock\\.json"
+
+  - label: "ci/cd"
+    files:
+      - "\\.github/.*"
+
+  - label: "git"
+    files:
+      - ".gitignore"
+      - ".gitattributes"
+
+  - label: "tests"
+    files:
+      - "tests/.*"
+      - ".*\\.test\\.ts"
+
+  - label: "docs"
+    files:
+      - "docs/.*"
+      - "README\\.md"
+
+  - label: "size: XS"
     size-below: 10
-    
-  - label: "small-diff"
+
+  - label: "size: S"
     size-above: 9
     size-below: 100
-    
-  - label: "medium-diff"
+
+  - label: "size: M"
     size-above: 99
     size-below: 500
-    
-  - label: "large-diff"
+
+  - label: "size: L"
     size-above: 499
     size-below: 1000
-    
-  - label: "xlarge-diff"
+
+  - label: "size: XL"
     size-above: 999
