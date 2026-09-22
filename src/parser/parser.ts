@@ -88,7 +88,9 @@ const IGNORED_LIST = new Set([
   'GuideSigninPromo',
   'AdsEngagementPanelContent',
   'MiniGameCardView',
-  'GenAiFeedbackFormView'
+  'GenAiFeedbackFormView',
+  'PlayerInterstitial',
+  'InterstitialView'
 ]);
 
 const RUNTIME_NODES = new Map<string, YTNodeConstructor>(Object.entries(YTNodes));
