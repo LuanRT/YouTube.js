@@ -12,7 +12,7 @@ export type ChartLanguage = 'bho' | 'bgc' | 'hi' | 'pa' | 'ta' | 'te' | 'interna
 
 interface ChartsQueryArgsBase {
   perspective: Perspective;
-  country_code: CountryCode;
+  country_code?: CountryCode;
 }
 export type DateRange = { date_start?: undefined; date_end?: Date } | { date_start: Date; date_end: Date };
 interface ChartsQueryArgsHome extends ChartsQueryArgsBase { perspective: 'CHART_HOME'; }
@@ -47,7 +47,7 @@ export default class Charts {
     const query = new URLSearchParams();
     query.append('flags', 'MusicCharts__enable_apac_and_shorts_charts_expansion');
     query.append('perspective', args.perspective);
-    query.append('chart_params_country_code', args.country_code);
+    if (args.country_code) query.append('chart_params_country_code', args.country_code);
     switch (args.perspective) {
       case 'CHART_HOME': break;
       case 'PODCAST_SHOW':
@@ -97,20 +97,20 @@ export default class Charts {
   }
 
   async getAnalytics(chart_type: 'VIDEOS_LOP', period: PeriodType, country_code: 'in', chart_attribute: ChartLanguage): Promise<Analytics>
-  async getAnalytics(chart_type: Exclude<ChartType, 'PODCAST_SHOWS_BY_WATCH_TIME' | 'VIDEOS_LOP'>, period: PeriodType, country_code: CountryCode): Promise<Analytics>
-  async getAnalytics(chart_type: Exclude<ChartType, 'PODCAST_SHOWS_BY_WATCH_TIME'>, period: PeriodType, country_code: CountryCode, chart_attribute?: ChartLanguage): Promise<Analytics> {
+  async getAnalytics(chart_type: Exclude<ChartType, 'PODCAST_SHOWS_BY_WATCH_TIME' | 'VIDEOS_LOP'>, period: PeriodType, country_code?: CountryCode): Promise<Analytics>
+  async getAnalytics(chart_type: Exclude<ChartType, 'PODCAST_SHOWS_BY_WATCH_TIME'>, period: PeriodType, country_code?: CountryCode, chart_attribute?: ChartLanguage): Promise<Analytics> {
     return new Analytics(await this.call('FEmusic_analytics_charts_home', { perspective: 'CHART_DETAILS', country_code, chart_type, period, chart_attribute }));
   }
 
-  async getArtist(artist_id: string, interval: IntervalType, country_code: CountryCode, date_range?: DateRange) {
+  async getArtist(artist_id: string, interval: IntervalType, country_code?: CountryCode, date_range?: DateRange) {
     return new Artist(await this.call('FEmusic_analytics_insights_artist', { perspective: 'ARTIST', country_code, artist_id, interval, ...date_range }));
   }
 
-  async getLocation(location_id: string, interval: IntervalType, country_code: CountryCode, date_range?: DateRange) {
+  async getLocation(location_id: string, interval: IntervalType, country_code?: CountryCode, date_range?: DateRange) {
     return new Location(await this.call('FEmusic_analytics_insights_location', { perspective: 'LOCATION', country_code, location_id, interval, ...date_range }));
   }
 
-  async getPodcasts(period: PeriodType, country_code: Exclude<CountryCode, 'global'>) {
+  async getPodcasts(period: PeriodType, country_code?: Exclude<CountryCode, 'global'>) {
     return new Podcasts(await this.call('FEmusic_analytics_charts_home', { perspective: 'PODCAST_SHOW', country_code, period }));
   }
 
