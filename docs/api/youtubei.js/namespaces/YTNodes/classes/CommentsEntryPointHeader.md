@@ -2,7 +2,7 @@
 
 # Class: CommentsEntryPointHeader
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L9)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:9](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L9)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:9](https://
 
 > **new CommentsEntryPointHeader**(`data`): `CommentsEntryPointHeader`
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L19)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L19)
 
 #### Parameters
 
@@ -34,49 +34,49 @@ Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:19](https:/
 
 ### comment\_count?
 
-> `optional` **comment\_count**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **comment\_count?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L13)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L13)
 
 ***
 
 ### content\_renderer?
 
-> `optional` **content\_renderer**: [`CommentsSimplebox`](CommentsSimplebox.md) \| [`CommentsEntryPointTeaser`](CommentsEntryPointTeaser.md) \| `null`
+> `optional` **content\_renderer?**: [`CommentsSimplebox`](CommentsSimplebox.md) \| [`CommentsEntryPointTeaser`](CommentsEntryPointTeaser.md) \| `null`
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L16)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L16)
 
 ***
 
 ### header?
 
-> `optional` **header**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **header?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L12)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L12)
 
 ***
 
 ### simplebox\_placeholder?
 
-> `optional` **simplebox\_placeholder**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **simplebox\_placeholder?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L17)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L17)
 
 ***
 
 ### teaser\_avatar?
 
-> `optional` **teaser\_avatar**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
+> `optional` **teaser\_avatar?**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L14)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L14)
 
 ***
 
 ### teaser\_content?
 
-> `optional` **teaser\_content**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **teaser\_content?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L15)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L15)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:15](https:/
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'CommentsEntryPointHeader'`
 
-Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/comments/CommentsEntryPointHeader.ts#L10)
+Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:10](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentsEntryPointHeader.ts#L10)
 
 #### Overrides
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/comments/CommentsEntryPointHeader.ts:10](https:/
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -150,7 +150,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is CommentsEntryPointHeader & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -188,7 +188,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -226,7 +226,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

@@ -2,7 +2,7 @@
 
 # Interface: IBotguardChallenge
 
-Defined in: [src/parser/types/ParsedResponse.ts:91](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L91)
+Defined in: [src/parser/types/ParsedResponse.ts:107](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L107)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:91](https://github.com/LuanRT/Yo
 
 > **client\_experiments\_state\_blob**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:96](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L96)
+Defined in: [src/parser/types/ParsedResponse.ts:112](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L112)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:96](https://github.com/LuanRT/Yo
 
 > **global\_name**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:95](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L95)
+Defined in: [src/parser/types/ParsedResponse.ts:111](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L111)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:95](https://github.com/LuanRT/Yo
 
 > **interpreter\_hash**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:93](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L93)
+Defined in: [src/parser/types/ParsedResponse.ts:109](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L109)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:93](https://github.com/LuanRT/Yo
 
 > **interpreter\_url**: [`ITrustedResource`](ITrustedResource.md)
 
-Defined in: [src/parser/types/ParsedResponse.ts:92](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L92)
+Defined in: [src/parser/types/ParsedResponse.ts:108](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L108)
 
 ***
 
@@ -42,4 +42,4 @@ Defined in: [src/parser/types/ParsedResponse.ts:92](https://github.com/LuanRT/Yo
 
 > **program**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:94](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L94)
+Defined in: [src/parser/types/ParsedResponse.ts:110](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L110)

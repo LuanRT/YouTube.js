@@ -2,7 +2,7 @@
 
 # Class: VideoSummaryContentView
 
-Defined in: [src/parser/classes/VideoSummaryContentView.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoSummaryContentView.ts#L8)
+Defined in: [src/parser/classes/VideoSummaryContentView.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoSummaryContentView.ts#L8)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/VideoSummaryContentView.ts:8](https://github.com
 
 > **new VideoSummaryContentView**(`data`): `VideoSummaryContentView`
 
-Defined in: [src/parser/classes/VideoSummaryContentView.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoSummaryContentView.ts#L15)
+Defined in: [src/parser/classes/VideoSummaryContentView.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoSummaryContentView.ts#L15)
 
 #### Parameters
 
@@ -34,17 +34,17 @@ Defined in: [src/parser/classes/VideoSummaryContentView.ts:15](https://github.co
 
 ### dislike\_button\_view?
 
-> `optional` **dislike\_button\_view**: [`DislikeButtonView`](DislikeButtonView.md) \| `null`
+> `optional` **dislike\_button\_view?**: [`DislikeButtonView`](DislikeButtonView.md) \| `null`
 
-Defined in: [src/parser/classes/VideoSummaryContentView.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoSummaryContentView.ts#L11)
+Defined in: [src/parser/classes/VideoSummaryContentView.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoSummaryContentView.ts#L11)
 
 ***
 
 ### like\_button\_view?
 
-> `optional` **like\_button\_view**: [`LikeButtonView`](LikeButtonView.md) \| `null`
+> `optional` **like\_button\_view?**: [`LikeButtonView`](LikeButtonView.md) \| `null`
 
-Defined in: [src/parser/classes/VideoSummaryContentView.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoSummaryContentView.ts#L12)
+Defined in: [src/parser/classes/VideoSummaryContentView.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoSummaryContentView.ts#L12)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/VideoSummaryContentView.ts:12](https://github.co
 
 > **paragraphs**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`VideoSummaryParagraphView`](VideoSummaryParagraphView.md)\>
 
-Defined in: [src/parser/classes/VideoSummaryContentView.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoSummaryContentView.ts#L13)
+Defined in: [src/parser/classes/VideoSummaryContentView.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoSummaryContentView.ts#L13)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/VideoSummaryContentView.ts:13](https://github.co
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'VideoSummaryContentView'`
 
-Defined in: [src/parser/classes/VideoSummaryContentView.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/VideoSummaryContentView.ts#L9)
+Defined in: [src/parser/classes/VideoSummaryContentView.ts:9](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoSummaryContentView.ts#L9)
 
 #### Overrides
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/VideoSummaryContentView.ts:9](https://github.com
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -126,7 +126,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is VideoSummaryContentView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -164,7 +164,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -202,7 +202,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

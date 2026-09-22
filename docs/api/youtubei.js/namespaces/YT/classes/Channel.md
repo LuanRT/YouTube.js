@@ -2,7 +2,7 @@
 
 # Class: Channel
 
-Defined in: [src/parser/youtube/Channel.ts:46](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L46)
+Defined in: [src/parser/youtube/Channel.ts:46](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L46)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/youtube/Channel.ts:46](https://github.com/LuanRT/YouTube
 
 > **new Channel**(`actions`, `data`, `already_parsed?`): `Channel`
 
-Defined in: [src/parser/youtube/Channel.ts:54](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L54)
+Defined in: [src/parser/youtube/Channel.ts:54](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L54)
 
 #### Parameters
 
@@ -24,7 +24,7 @@ Defined in: [src/parser/youtube/Channel.ts:54](https://github.com/LuanRT/YouTube
 
 ##### data
 
-[`ApiResponse`](../../../../interfaces/ApiResponse.md) | [`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)
+[`ApiResponse`](../../../../interfaces/ApiResponse.md) \| [`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)
 
 ##### already\_parsed?
 
@@ -42,17 +42,17 @@ Defined in: [src/parser/youtube/Channel.ts:54](https://github.com/LuanRT/YouTube
 
 ### current\_tab?
 
-> `optional` **current\_tab**: [`Tab`](../../YTNodes/classes/Tab.md) \| [`ExpandableTab`](../../YTNodes/classes/ExpandableTab.md)
+> `optional` **current\_tab?**: [`Tab`](../../YTNodes/classes/Tab.md) \| [`ExpandableTab`](../../YTNodes/classes/ExpandableTab.md)
 
-Defined in: [src/parser/youtube/Channel.ts:50](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L50)
+Defined in: [src/parser/youtube/Channel.ts:50](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L50)
 
 ***
 
 ### header?
 
-> `optional` **header**: [`C4TabbedHeader`](../../YTNodes/classes/C4TabbedHeader.md) \| [`CarouselHeader`](../../YTNodes/classes/CarouselHeader.md) \| [`InteractiveTabbedHeader`](../../YTNodes/classes/InteractiveTabbedHeader.md) \| [`PageHeader`](../../YTNodes/classes/PageHeader.md)
+> `optional` **header?**: [`C4TabbedHeader`](../../YTNodes/classes/C4TabbedHeader.md) \| [`CarouselHeader`](../../YTNodes/classes/CarouselHeader.md) \| [`InteractiveTabbedHeader`](../../YTNodes/classes/InteractiveTabbedHeader.md) \| [`PageHeader`](../../YTNodes/classes/PageHeader.md)
 
-Defined in: [src/parser/youtube/Channel.ts:47](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L47)
+Defined in: [src/parser/youtube/Channel.ts:47](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L47)
 
 ***
 
@@ -60,151 +60,151 @@ Defined in: [src/parser/youtube/Channel.ts:47](https://github.com/LuanRT/YouTube
 
 > **metadata**: `object`
 
-Defined in: [src/parser/youtube/Channel.ts:48](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L48)
+Defined in: [src/parser/youtube/Channel.ts:48](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L48)
 
 #### android\_appindexing\_link?
 
-> `optional` **android\_appindexing\_link**: `string`
+> `optional` **android\_appindexing\_link?**: `string`
 
 #### android\_deep\_link?
 
-> `optional` **android\_deep\_link**: `string`
+> `optional` **android\_deep\_link?**: `string`
 
 #### android\_package?
 
-> `optional` **android\_package**: `string`
+> `optional` **android\_package?**: `string`
 
 #### app\_name?
 
-> `optional` **app\_name**: `string`
+> `optional` **app\_name?**: `string`
 
 #### available\_countries?
 
-> `optional` **available\_countries**: `string`[]
+> `optional` **available\_countries?**: `string`[]
 
 #### avatar?
 
-> `optional` **avatar**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
+> `optional` **avatar?**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
 #### description?
 
-> `optional` **description**: `string`
+> `optional` **description?**: `string`
 
 #### external\_id?
 
-> `optional` **external\_id**: `string`
+> `optional` **external\_id?**: `string`
 
 #### ios\_app\_arguments?
 
-> `optional` **ios\_app\_arguments**: `string`
+> `optional` **ios\_app\_arguments?**: `string`
 
 #### ios\_app\_store\_id?
 
-> `optional` **ios\_app\_store\_id**: `string`
+> `optional` **ios\_app\_store\_id?**: `string`
 
 #### ios\_appindexing\_link?
 
-> `optional` **ios\_appindexing\_link**: `string`
+> `optional` **ios\_appindexing\_link?**: `string`
 
 #### is\_family\_safe?
 
-> `optional` **is\_family\_safe**: `boolean`
+> `optional` **is\_family\_safe?**: `boolean`
 
 #### is\_unlisted?
 
-> `optional` **is\_unlisted**: `boolean`
+> `optional` **is\_unlisted?**: `boolean`
 
 #### keywords?
 
-> `optional` **keywords**: `string`[]
+> `optional` **keywords?**: `string`[]
 
 #### music\_artist\_name?
 
-> `optional` **music\_artist\_name**: `string`
+> `optional` **music\_artist\_name?**: `string`
 
 #### noindex?
 
-> `optional` **noindex**: `string`
+> `optional` **noindex?**: `string`
 
 #### og\_type?
 
-> `optional` **og\_type**: `string`
+> `optional` **og\_type?**: `string`
 
 #### rss\_url?
 
-> `optional` **rss\_url**: `string`
+> `optional` **rss\_url?**: `string`
 
 #### schema\_dot\_org\_type?
 
-> `optional` **schema\_dot\_org\_type**: `string`
+> `optional` **schema\_dot\_org\_type?**: `string`
 
 #### site\_name?
 
-> `optional` **site\_name**: `string`
+> `optional` **site\_name?**: `string`
 
 #### tags?
 
-> `optional` **tags**: `string`[]
+> `optional` **tags?**: `string`[]
 
 #### thumbnail?
 
-> `optional` **thumbnail**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
+> `optional` **thumbnail?**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
 #### title?
 
-> `optional` **title**: `string`
+> `optional` **title?**: `string`
 
 #### twitter\_card\_type?
 
-> `optional` **twitter\_card\_type**: `string`
+> `optional` **twitter\_card\_type?**: `string`
 
 #### twitter\_site\_handle?
 
-> `optional` **twitter\_site\_handle**: `string`
+> `optional` **twitter\_site\_handle?**: `string`
 
 #### type?
 
-> `readonly` `optional` **type**: `string`
+> `readonly` `optional` **type?**: `string`
 
 #### url?
 
-> `optional` **url**: `string`
+> `optional` **url?**: `string`
 
 #### url\_applinks\_android?
 
-> `optional` **url\_applinks\_android**: `string`
+> `optional` **url\_applinks\_android?**: `string`
 
 #### url\_applinks\_ios?
 
-> `optional` **url\_applinks\_ios**: `string`
+> `optional` **url\_applinks\_ios?**: `string`
 
 #### url\_applinks\_web?
 
-> `optional` **url\_applinks\_web**: `string`
+> `optional` **url\_applinks\_web?**: `string`
 
 #### url\_canonical?
 
-> `optional` **url\_canonical**: `string`
+> `optional` **url\_canonical?**: `string`
 
 #### url\_twitter\_android?
 
-> `optional` **url\_twitter\_android**: `string`
+> `optional` **url\_twitter\_android?**: `string`
 
 #### url\_twitter\_ios?
 
-> `optional` **url\_twitter\_ios**: `string`
+> `optional` **url\_twitter\_ios?**: `string`
 
 #### vanity\_channel\_url?
 
-> `optional` **vanity\_channel\_url**: `string`
+> `optional` **vanity\_channel\_url?**: `string`
 
 ***
 
 ### subscribe\_button?
 
-> `optional` **subscribe\_button**: [`SubscribeButton`](../../YTNodes/classes/SubscribeButton.md)
+> `optional` **subscribe\_button?**: [`SubscribeButton`](../../YTNodes/classes/SubscribeButton.md)
 
-Defined in: [src/parser/youtube/Channel.ts:49](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L49)
+Defined in: [src/parser/youtube/Channel.ts:49](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L49)
 
 ## Accessors
 
@@ -214,7 +214,7 @@ Defined in: [src/parser/youtube/Channel.ts:49](https://github.com/LuanRT/YouTube
 
 > **get** **actions**(): [`Actions`](../../../../classes/Actions.md)
 
-Defined in: [src/core/mixins/Feed.ts:181](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L181)
+Defined in: [src/core/mixins/Feed.ts:183](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L183)
 
 ##### Returns
 
@@ -232,7 +232,7 @@ Defined in: [src/core/mixins/Feed.ts:181](https://github.com/LuanRT/YouTube.js/b
 
 > **get** **channels**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Channel`](../../YTNodes/classes/Channel.md) \| [`GridChannel`](../../YTNodes/classes/GridChannel.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:127](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L127)
+Defined in: [src/core/mixins/Feed.ts:129](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L129)
 
 Get all the channels in the feed
 
@@ -252,7 +252,7 @@ Get all the channels in the feed
 
 > **get** **content\_type\_filters**(): `string`[]
 
-Defined in: [src/parser/youtube/Channel.ts:274](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L274)
+Defined in: [src/parser/youtube/Channel.ts:274](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L274)
 
 ##### Returns
 
@@ -266,7 +266,7 @@ Defined in: [src/parser/youtube/Channel.ts:274](https://github.com/LuanRT/YouTub
 
 > **get** **filter\_nodes**(): `FilterNodes`
 
-Defined in: [src/parser/youtube/Channel.ts:199](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L199)
+Defined in: [src/parser/youtube/Channel.ts:199](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L199)
 
 Returns the InnerTube renderer nodes representing filters.
 
@@ -282,7 +282,7 @@ Returns the InnerTube renderer nodes representing filters.
 
 > **get** **filters**(): `string`[]
 
-Defined in: [src/parser/youtube/Channel.ts:246](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L246)
+Defined in: [src/parser/youtube/Channel.ts:246](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L246)
 
 Returns the available primary filters as strings.
 
@@ -298,7 +298,7 @@ Returns the available primary filters as strings.
 
 > **get** **has\_about**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:412](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L412)
+Defined in: [src/parser/youtube/Channel.ts:421](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L421)
 
 ##### Returns
 
@@ -312,7 +312,7 @@ Defined in: [src/parser/youtube/Channel.ts:412](https://github.com/LuanRT/YouTub
 
 > **get** **has\_community**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:408](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L408)
+Defined in: [src/parser/youtube/Channel.ts:417](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L417)
 
 ##### Returns
 
@@ -326,7 +326,7 @@ Defined in: [src/parser/youtube/Channel.ts:408](https://github.com/LuanRT/YouTub
 
 > **get** **has\_continuation**(): `boolean`
 
-Defined in: [src/core/mixins/Feed.ts:195](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L195)
+Defined in: [src/core/mixins/Feed.ts:197](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L197)
 
 Checks if the feed has continuation.
 
@@ -346,7 +346,7 @@ Checks if the feed has continuation.
 
 > **get** **has\_courses**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:400](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L400)
+Defined in: [src/parser/youtube/Channel.ts:405](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L405)
 
 ##### Returns
 
@@ -360,7 +360,7 @@ Defined in: [src/parser/youtube/Channel.ts:400](https://github.com/LuanRT/YouTub
 
 > **get** **has\_home**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:376](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L376)
+Defined in: [src/parser/youtube/Channel.ts:381](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L381)
 
 ##### Returns
 
@@ -374,7 +374,7 @@ Defined in: [src/parser/youtube/Channel.ts:376](https://github.com/LuanRT/YouTub
 
 > **get** **has\_live\_streams**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:388](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L388)
+Defined in: [src/parser/youtube/Channel.ts:393](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L393)
 
 ##### Returns
 
@@ -388,7 +388,7 @@ Defined in: [src/parser/youtube/Channel.ts:388](https://github.com/LuanRT/YouTub
 
 > **get** **has\_playlists**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:404](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L404)
+Defined in: [src/parser/youtube/Channel.ts:413](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L413)
 
 ##### Returns
 
@@ -402,7 +402,7 @@ Defined in: [src/parser/youtube/Channel.ts:404](https://github.com/LuanRT/YouTub
 
 > **get** **has\_podcasts**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:396](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L396)
+Defined in: [src/parser/youtube/Channel.ts:401](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L401)
 
 ##### Returns
 
@@ -416,7 +416,7 @@ Defined in: [src/parser/youtube/Channel.ts:396](https://github.com/LuanRT/YouTub
 
 > **get** **has\_releases**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:392](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L392)
+Defined in: [src/parser/youtube/Channel.ts:397](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L397)
 
 ##### Returns
 
@@ -430,7 +430,7 @@ Defined in: [src/parser/youtube/Channel.ts:392](https://github.com/LuanRT/YouTub
 
 > **get** **has\_search**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:419](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L419)
+Defined in: [src/parser/youtube/Channel.ts:428](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L428)
 
 ##### Returns
 
@@ -444,7 +444,21 @@ Defined in: [src/parser/youtube/Channel.ts:419](https://github.com/LuanRT/YouTub
 
 > **get** **has\_shorts**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:384](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L384)
+Defined in: [src/parser/youtube/Channel.ts:389](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L389)
+
+##### Returns
+
+`boolean`
+
+***
+
+### has\_shows
+
+#### Get Signature
+
+> **get** **has\_shows**(): `boolean`
+
+Defined in: [src/parser/youtube/Channel.ts:409](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L409)
 
 ##### Returns
 
@@ -458,7 +472,7 @@ Defined in: [src/parser/youtube/Channel.ts:384](https://github.com/LuanRT/YouTub
 
 > **get** **has\_videos**(): `boolean`
 
-Defined in: [src/parser/youtube/Channel.ts:380](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L380)
+Defined in: [src/parser/youtube/Channel.ts:385](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L385)
 
 ##### Returns
 
@@ -472,7 +486,7 @@ Defined in: [src/parser/youtube/Channel.ts:380](https://github.com/LuanRT/YouTub
 
 > **get** **memo**(): [`Memo`](../../Helpers/classes/Memo.md)
 
-Defined in: [src/core/mixins/Feed.ts:138](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L138)
+Defined in: [src/core/mixins/Feed.ts:140](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L140)
 
 ##### Returns
 
@@ -490,7 +504,7 @@ Defined in: [src/core/mixins/Feed.ts:138](https://github.com/LuanRT/YouTube.js/b
 
 > **get** **page**(): `T`
 
-Defined in: [src/core/mixins/Feed.ts:188](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L188)
+Defined in: [src/core/mixins/Feed.ts:190](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L190)
 
 Get the original page data
 
@@ -510,7 +524,7 @@ Get the original page data
 
 > **get** **page\_contents**(): [`SectionList`](../../YTNodes/classes/SectionList.md) \| [`MusicQueue`](../../YTNodes/classes/MusicQueue.md) \| [`RichGrid`](../../YTNodes/classes/RichGrid.md) \| [`ReloadContinuationItemsCommand`](../../../../classes/ReloadContinuationItemsCommand.md)
 
-Defined in: [src/core/mixins/Feed.ts:145](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L145)
+Defined in: [src/core/mixins/Feed.ts:147](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L147)
 
 Returns contents from the page.
 
@@ -528,15 +542,15 @@ Returns contents from the page.
 
 #### Get Signature
 
-> **get** **playlists**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
+> **get** **playlists**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`GridShow`](../../YTNodes/classes/GridShow.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:134](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L134)
+Defined in: [src/core/mixins/Feed.ts:136](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L136)
 
 Get all playlists in the feed
 
 ##### Returns
 
-[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
+[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`GridShow`](../../YTNodes/classes/GridShow.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
 
 #### Inherited from
 
@@ -550,7 +564,7 @@ Get all playlists in the feed
 
 > **get** **posts**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`BackstagePost`](../../YTNodes/classes/BackstagePost.md) \| [`Post`](../../YTNodes/classes/Post.md) \| [`SharedPost`](../../YTNodes/classes/SharedPost.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:120](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L120)
+Defined in: [src/core/mixins/Feed.ts:122](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L122)
 
 Get all the community posts in the feed
 
@@ -570,7 +584,7 @@ Get all the community posts in the feed
 
 > **get** **secondary\_contents**(): [`SectionList`](../../YTNodes/classes/SectionList.md) \| [`BrowseFeedActions`](../../YTNodes/classes/BrowseFeedActions.md) \| [`ProfileColumn`](../../YTNodes/classes/ProfileColumn.md) \| [`SecondarySearchContainer`](../../YTNodes/classes/SecondarySearchContainer.md) \| `null`
 
-Defined in: [src/core/mixins/Feed.ts:169](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L169)
+Defined in: [src/core/mixins/Feed.ts:171](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L171)
 
 Returns secondary contents from the page.
 
@@ -590,7 +604,7 @@ Returns secondary contents from the page.
 
 > **get** **secondary\_filters**(): `string`[]
 
-Defined in: [src/parser/youtube/Channel.ts:265](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L265)
+Defined in: [src/parser/youtube/Channel.ts:265](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L265)
 
 Returns the available secondary filters as strings. 
 
@@ -611,7 +625,7 @@ Not all channels have secondary filters!
 
 > **get** **shelves**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ReelShelf`](../../YTNodes/classes/ReelShelf.md) \| [`RichShelf`](../../YTNodes/classes/RichShelf.md) \| [`Shelf`](../../YTNodes/classes/Shelf.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:155](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L155)
+Defined in: [src/core/mixins/Feed.ts:157](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L157)
 
 Returns all segments/sections from the page.
 
@@ -631,7 +645,7 @@ Returns all segments/sections from the page.
 
 > **get** **sort\_filters**(): `string`[]
 
-Defined in: [src/parser/youtube/Channel.ts:269](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L269)
+Defined in: [src/parser/youtube/Channel.ts:269](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L269)
 
 ##### Returns
 
@@ -645,7 +659,7 @@ Defined in: [src/parser/youtube/Channel.ts:269](https://github.com/LuanRT/YouTub
 
 > **get** **tabs**(): `string`[]
 
-Defined in: [src/core/mixins/TabbedFeed.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/TabbedFeed.ts#L19)
+Defined in: [src/core/mixins/TabbedFeed.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/TabbedFeed.ts#L19)
 
 ##### Returns
 
@@ -663,7 +677,7 @@ Defined in: [src/core/mixins/TabbedFeed.ts:19](https://github.com/LuanRT/YouTube
 
 > **get** **title**(): `string` \| `undefined`
 
-Defined in: [src/core/mixins/TabbedFeed.ts:55](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/TabbedFeed.ts#L55)
+Defined in: [src/core/mixins/TabbedFeed.ts:55](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/TabbedFeed.ts#L55)
 
 ##### Returns
 
@@ -681,7 +695,7 @@ Defined in: [src/core/mixins/TabbedFeed.ts:55](https://github.com/LuanRT/YouTube
 
 > **get** **videos**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:113](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L113)
+Defined in: [src/core/mixins/Feed.ts:115](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L115)
 
 Get all the videos in the feed
 
@@ -699,7 +713,7 @@ Get all the videos in the feed
 
 > **applyContentTypeFilter**(`content_type_filter`): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:177](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L177)
+Defined in: [src/parser/youtube/Channel.ts:177](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L177)
 
 Applies given content type filter to the list. Use [content\_type\_filters](#content_type_filters) to get available filters.
 
@@ -721,7 +735,7 @@ The content type filter to apply
 
 > **applyFilter**(`primaryFilter`, `secondaryFilter?`): `Promise`\<[`FilteredChannelList`](FilteredChannelList.md)\>
 
-Defined in: [src/parser/youtube/Channel.ts:101](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L101)
+Defined in: [src/parser/youtube/Channel.ts:101](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L101)
 
 Applies a filter to the channel list. [filters](#filters), [secondary\_filters](#secondary_filters), and [filter\_nodes](#filter_nodes) can be used to get available filters.
 
@@ -729,17 +743,17 @@ Applies a filter to the channel list. [filters](#filters), [secondary\_filters](
 
 ##### primaryFilter
 
+`string` \| [`ListItemView`](../../YTNodes/classes/ListItemView.md) \| [`ChipView`](../../YTNodes/classes/ChipView.md)
+
 The primary filter to apply. Can be a string representing the filter name,
 a [ChipView](../../YTNodes/classes/ChipView.md) instance, or a [ListItemView](../../YTNodes/classes/ListItemView.md) instance.
 
-`string` | [`ListItemView`](../../YTNodes/classes/ListItemView.md) | [`ChipView`](../../YTNodes/classes/ChipView.md)
-
 ##### secondaryFilter?
+
+`string` \| [`ChipView`](../../YTNodes/classes/ChipView.md)
 
 An optional secondary filter to apply after the primary filter.
 Can be a string representing the filter name or a [ChipView](../../YTNodes/classes/ChipView.md) instance.
-
-`string` | [`ChipView`](../../YTNodes/classes/ChipView.md)
 
 #### Returns
 
@@ -765,7 +779,7 @@ const latestMembersOnly = await filtered.applyFilter('Latest');
 
 > **applySort**(`sortFilter`): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:154](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L154)
+Defined in: [src/parser/youtube/Channel.ts:154](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L154)
 
 Applies a sort filter to the list. Use [sort\_filters](#sort_filters) to get available filters.
 
@@ -787,7 +801,7 @@ The sort filter to apply
 
 > **getAbout**(): `Promise`\<[`ChannelAboutFullMetadata`](../../YTNodes/classes/ChannelAboutFullMetadata.md) \| [`AboutChannel`](../../YTNodes/classes/AboutChannel.md)\>
 
-Defined in: [src/parser/youtube/Channel.ts:328](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L328)
+Defined in: [src/parser/youtube/Channel.ts:333](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L333)
 
 Retrieves the about page.
 Note that this does not return a new Channel object.
@@ -802,7 +816,7 @@ Note that this does not return a new Channel object.
 
 > **getCommunity**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:319](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L319)
+Defined in: [src/parser/youtube/Channel.ts:324](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L324)
 
 #### Returns
 
@@ -814,7 +828,7 @@ Defined in: [src/parser/youtube/Channel.ts:319](https://github.com/LuanRT/YouTub
 
 > **getContinuation**(): `Promise`\<[`ChannelListContinuation`](ChannelListContinuation.md)\>
 
-Defined in: [src/parser/youtube/Channel.ts:423](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L423)
+Defined in: [src/parser/youtube/Channel.ts:432](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L432)
 
 Retrieves next batch of contents and returns a new [Feed](../../Mixins/classes/Feed.md) object.
 
@@ -832,7 +846,7 @@ Retrieves next batch of contents and returns a new [Feed](../../Mixins/classes/F
 
 > **getContinuationData**(): `Promise`\<[`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md) \| `undefined`\>
 
-Defined in: [src/core/mixins/Feed.ts:202](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L202)
+Defined in: [src/core/mixins/Feed.ts:204](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L204)
 
 Retrieves continuation data as it is.
 
@@ -850,7 +864,7 @@ Retrieves continuation data as it is.
 
 > **getCourses**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:309](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L309)
+Defined in: [src/parser/youtube/Channel.ts:309](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L309)
 
 #### Returns
 
@@ -862,7 +876,7 @@ Defined in: [src/parser/youtube/Channel.ts:309](https://github.com/LuanRT/YouTub
 
 > **getHome**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:279](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L279)
+Defined in: [src/parser/youtube/Channel.ts:279](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L279)
 
 #### Returns
 
@@ -874,7 +888,7 @@ Defined in: [src/parser/youtube/Channel.ts:279](https://github.com/LuanRT/YouTub
 
 > **getLiveStreams**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:294](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L294)
+Defined in: [src/parser/youtube/Channel.ts:294](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L294)
 
 #### Returns
 
@@ -886,7 +900,7 @@ Defined in: [src/parser/youtube/Channel.ts:294](https://github.com/LuanRT/YouTub
 
 > **getPlaylists**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:314](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L314)
+Defined in: [src/parser/youtube/Channel.ts:319](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L319)
 
 #### Returns
 
@@ -898,7 +912,7 @@ Defined in: [src/parser/youtube/Channel.ts:314](https://github.com/LuanRT/YouTub
 
 > **getPodcasts**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:304](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L304)
+Defined in: [src/parser/youtube/Channel.ts:304](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L304)
 
 #### Returns
 
@@ -910,7 +924,7 @@ Defined in: [src/parser/youtube/Channel.ts:304](https://github.com/LuanRT/YouTub
 
 > **getReleases**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:299](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L299)
+Defined in: [src/parser/youtube/Channel.ts:299](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L299)
 
 #### Returns
 
@@ -922,7 +936,7 @@ Defined in: [src/parser/youtube/Channel.ts:299](https://github.com/LuanRT/YouTub
 
 > **getShelf**(`title`): [`ReelShelf`](../../YTNodes/classes/ReelShelf.md) \| [`RichShelf`](../../YTNodes/classes/RichShelf.md) \| [`Shelf`](../../YTNodes/classes/Shelf.md) \| `undefined`
 
-Defined in: [src/core/mixins/Feed.ts:162](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L162)
+Defined in: [src/core/mixins/Feed.ts:164](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L164)
 
 Finds shelf by title.
 
@@ -946,7 +960,19 @@ Finds shelf by title.
 
 > **getShorts**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:289](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L289)
+Defined in: [src/parser/youtube/Channel.ts:289](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L289)
+
+#### Returns
+
+`Promise`\<`Channel`\>
+
+***
+
+### getShows()
+
+> **getShows**(): `Promise`\<`Channel`\>
+
+Defined in: [src/parser/youtube/Channel.ts:314](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L314)
 
 #### Returns
 
@@ -958,7 +984,7 @@ Defined in: [src/parser/youtube/Channel.ts:289](https://github.com/LuanRT/YouTub
 
 > **getTabByName**(`title`): `Promise`\<[`TabbedFeed`](../../Mixins/classes/TabbedFeed.md)\<[`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)\>\>
 
-Defined in: [src/core/mixins/TabbedFeed.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/TabbedFeed.ts#L23)
+Defined in: [src/core/mixins/TabbedFeed.ts:23](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/TabbedFeed.ts#L23)
 
 #### Parameters
 
@@ -980,7 +1006,7 @@ Defined in: [src/core/mixins/TabbedFeed.ts:23](https://github.com/LuanRT/YouTube
 
 > **getTabByURL**(`url`): `Promise`\<[`TabbedFeed`](../../Mixins/classes/TabbedFeed.md)\<[`IBrowseResponse`](../../../../type-aliases/IBrowseResponse.md)\>\>
 
-Defined in: [src/core/mixins/TabbedFeed.ts:37](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/TabbedFeed.ts#L37)
+Defined in: [src/core/mixins/TabbedFeed.ts:37](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/TabbedFeed.ts#L37)
 
 #### Parameters
 
@@ -1002,7 +1028,7 @@ Defined in: [src/core/mixins/TabbedFeed.ts:37](https://github.com/LuanRT/YouTube
 
 > **getVideos**(): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:284](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L284)
+Defined in: [src/parser/youtube/Channel.ts:284](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L284)
 
 #### Returns
 
@@ -1014,7 +1040,7 @@ Defined in: [src/parser/youtube/Channel.ts:284](https://github.com/LuanRT/YouTub
 
 > **hasTabWithURL**(`url`): `boolean`
 
-Defined in: [src/core/mixins/TabbedFeed.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/TabbedFeed.ts#L51)
+Defined in: [src/core/mixins/TabbedFeed.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/TabbedFeed.ts#L51)
 
 #### Parameters
 
@@ -1036,7 +1062,7 @@ Defined in: [src/core/mixins/TabbedFeed.ts:51](https://github.com/LuanRT/YouTube
 
 > **search**(`query`): `Promise`\<`Channel`\>
 
-Defined in: [src/parser/youtube/Channel.ts:365](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/youtube/Channel.ts#L365)
+Defined in: [src/parser/youtube/Channel.ts:370](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/youtube/Channel.ts#L370)
 
 Searches within the channel.
 
@@ -1054,9 +1080,9 @@ Searches within the channel.
 
 ### getPlaylistsFromMemo()
 
-> `static` **getPlaylistsFromMemo**(`memo`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
+> `static` **getPlaylistsFromMemo**(`memo`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`GridShow`](../../YTNodes/classes/GridShow.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:95](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L95)
+Defined in: [src/core/mixins/Feed.ts:97](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L97)
 
 Get all playlists on a given page via memo
 
@@ -1068,7 +1094,7 @@ Get all playlists on a given page via memo
 
 #### Returns
 
-[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
+[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`GridPlaylist`](../../YTNodes/classes/GridPlaylist.md) \| [`GridShow`](../../YTNodes/classes/GridShow.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`Playlist`](../../YTNodes/classes/Playlist.md)\>
 
 #### Inherited from
 
@@ -1080,7 +1106,7 @@ Get all playlists on a given page via memo
 
 > `static` **getVideosFromMemo**(`memo`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CompactVideo`](../../YTNodes/classes/CompactVideo.md) \| [`GridVideo`](../../YTNodes/classes/GridVideo.md) \| [`LockupView`](../../YTNodes/classes/LockupView.md) \| [`PlaylistPanelVideo`](../../YTNodes/classes/PlaylistPanelVideo.md) \| [`PlaylistVideo`](../../YTNodes/classes/PlaylistVideo.md) \| [`ReelItem`](../../YTNodes/classes/ReelItem.md) \| [`ShortsLockupView`](../../YTNodes/classes/ShortsLockupView.md) \| [`Video`](../../YTNodes/classes/Video.md) \| [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)\>
 
-Defined in: [src/core/mixins/Feed.ts:78](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/Feed.ts#L78)
+Defined in: [src/core/mixins/Feed.ts:80](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/Feed.ts#L80)
 
 Get all videos on a given page via memo
 

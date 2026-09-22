@@ -4,7 +4,7 @@
 
 > **toTypeDeclaration**(`inference_type`, `indentation?`): `string`
 
-Defined in: [src/parser/generator.ts:520](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/generator.ts#L520)
+Defined in: [src/parser/generator.ts:520](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L520)
 
 For a given inference type, get the typescript type declaration
 

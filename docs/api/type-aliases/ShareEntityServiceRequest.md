@@ -4,20 +4,20 @@
 
 > **ShareEntityServiceRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:138](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L138)
+Defined in: [src/parser/types/CommandEndpoints.ts:138](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L138)
 
 ## Properties
 
 ### clientParams?
 
-> `optional` **clientParams**: `string`
+> `optional` **clientParams?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:140](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L140)
+Defined in: [src/parser/types/CommandEndpoints.ts:140](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L140)
 
 ***
 
 ### serializedSharedEntity?
 
-> `optional` **serializedSharedEntity**: `string`
+> `optional` **serializedSharedEntity?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:139](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L139)
+Defined in: [src/parser/types/CommandEndpoints.ts:139](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L139)

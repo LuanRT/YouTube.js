@@ -2,7 +2,7 @@
 
 # Class: PlayerError
 
-Defined in: [src/utils/Utils.ts:54](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/Utils.ts#L54)
+Defined in: [src/utils/Utils.ts:54](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L54)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/utils/Utils.ts:54](https://github.com/LuanRT/YouTube.js/blob/85
 
 > **new PlayerError**(`message?`): `PlayerError`
 
-Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1082
+Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1080
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1082
 
 > **new PlayerError**(`message?`, `options?`): `PlayerError`
 
-Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1082
+Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1080
 
 #### Parameters
 
@@ -58,9 +58,9 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1082
 
 ### cause?
 
-> `optional` **cause**: `unknown`
+> `optional` **cause?**: `unknown`
 
-Defined in: node\_modules/typescript/lib/lib.es2022.error.d.ts:26
+Defined in: node\_modules/typescript/lib/lib.es2022.error.d.ts:24
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: node\_modules/typescript/lib/lib.es2022.error.d.ts:26
 
 > **message**: `string`
 
-Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1077
+Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1075
 
 #### Inherited from
 
@@ -84,7 +84,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1077
 
 > **name**: `string`
 
-Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
+Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1074
 
 #### Inherited from
 
@@ -94,9 +94,9 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 ### stack?
 
-> `optional` **stack**: `string`
+> `optional` **stack?**: `string`
 
-Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1078
+Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 #### Inherited from
 
@@ -200,7 +200,7 @@ a();
 
 > `static` **isError**(`error`): `error is Error`
 
-Defined in: node\_modules/typescript/lib/lib.esnext.error.d.ts:23
+Defined in: node\_modules/typescript/lib/lib.esnext.error.d.ts:21
 
 Indicates whether the argument provided is a built-in Error instance or not.
 

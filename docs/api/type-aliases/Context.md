@@ -4,7 +4,7 @@
 
 > **Context** = `object`
 
-Defined in: [src/core/Session.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L39)
+Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L40)
 
 ## Properties
 
@@ -12,19 +12,19 @@ Defined in: [src/core/Session.ts:39](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **client**: `object`
 
-Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L40)
+Defined in: [src/core/Session.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L41)
 
 #### androidSdkVersion?
 
-> `optional` **androidSdkVersion**: `number`
+> `optional` **androidSdkVersion?**: `number`
 
 #### browserName?
 
-> `optional` **browserName**: `string`
+> `optional` **browserName?**: `string`
 
 #### browserVersion?
 
-> `optional` **browserVersion**: `string`
+> `optional` **browserVersion?**: `string`
 
 #### clientFormFactor
 
@@ -36,7 +36,7 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### clientScreen?
 
-> `optional` **clientScreen**: `string`
+> `optional` **clientScreen?**: `string`
 
 #### clientVersion
 
@@ -44,27 +44,27 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### configInfo?
 
-> `optional` **configInfo**: `object`
+> `optional` **configInfo?**: `object`
 
 ##### configInfo.appInstallData?
 
-> `optional` **appInstallData**: `string`
+> `optional` **appInstallData?**: `string`
 
 ##### configInfo.coldConfigData?
 
-> `optional` **coldConfigData**: `string`
+> `optional` **coldConfigData?**: `string`
 
 ##### configInfo.coldHashData?
 
-> `optional` **coldHashData**: `string`
+> `optional` **coldHashData?**: `string`
 
 ##### configInfo.hotHashData?
 
-> `optional` **hotHashData**: `string`
+> `optional` **hotHashData?**: `string`
 
 #### deviceExperimentId?
 
-> `optional` **deviceExperimentId**: `string`
+> `optional` **deviceExperimentId?**: `string`
 
 #### deviceMake
 
@@ -84,7 +84,7 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### kidsAppInfo?
 
-> `optional` **kidsAppInfo**: `object`
+> `optional` **kidsAppInfo?**: `object`
 
 ##### kidsAppInfo.categorySettings
 
@@ -108,7 +108,7 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### mainAppWebInfo?
 
-> `optional` **mainAppWebInfo**: `object`
+> `optional` **mainAppWebInfo?**: `object`
 
 ##### mainAppWebInfo.graftUrl
 
@@ -128,11 +128,11 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### memoryTotalKbytes?
 
-> `optional` **memoryTotalKbytes**: `string`
+> `optional` **memoryTotalKbytes?**: `string`
 
 #### originalUrl?
 
-> `optional` **originalUrl**: `string`
+> `optional` **originalUrl?**: `string`
 
 #### osName
 
@@ -148,27 +148,27 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### remoteHost?
 
-> `optional` **remoteHost**: `string`
+> `optional` **remoteHost?**: `string`
 
 #### rolloutToken?
 
-> `optional` **rolloutToken**: `string`
+> `optional` **rolloutToken?**: `string`
 
 #### screenDensityFloat?
 
-> `optional` **screenDensityFloat**: `number`
+> `optional` **screenDensityFloat?**: `number`
 
 #### screenHeightPoints?
 
-> `optional` **screenHeightPoints**: `number`
+> `optional` **screenHeightPoints?**: `number`
 
 #### screenPixelDensity?
 
-> `optional` **screenPixelDensity**: `number`
+> `optional` **screenPixelDensity?**: `number`
 
 #### screenWidthPoints?
 
-> `optional` **screenWidthPoints**: `number`
+> `optional` **screenWidthPoints?**: `number`
 
 #### timeZone
 
@@ -180,7 +180,7 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### userInterfaceTheme?
 
-> `optional` **userInterfaceTheme**: `string`
+> `optional` **userInterfaceTheme?**: `string`
 
 #### utcOffsetMinutes
 
@@ -188,15 +188,15 @@ Defined in: [src/core/Session.ts:40](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### visitorData?
 
-> `optional` **visitorData**: `string`
+> `optional` **visitorData?**: `string`
 
 ***
 
 ### request?
 
-> `optional` **request**: `object`
+> `optional` **request?**: `object`
 
-Defined in: [src/core/Session.ts:99](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L99)
+Defined in: [src/core/Session.ts:100](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L100)
 
 #### internalExperimentFlags
 
@@ -210,9 +210,9 @@ Defined in: [src/core/Session.ts:99](https://github.com/LuanRT/YouTube.js/blob/8
 
 ### thirdParty?
 
-> `optional` **thirdParty**: `object`
+> `optional` **thirdParty?**: `object`
 
-Defined in: [src/core/Session.ts:96](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L96)
+Defined in: [src/core/Session.ts:97](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L97)
 
 #### embedUrl
 
@@ -224,7 +224,7 @@ Defined in: [src/core/Session.ts:96](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **user**: `object`
 
-Defined in: [src/core/Session.ts:91](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L91)
+Defined in: [src/core/Session.ts:92](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L92)
 
 #### enableSafetyMode
 
@@ -236,4 +236,4 @@ Defined in: [src/core/Session.ts:91](https://github.com/LuanRT/YouTube.js/blob/8
 
 #### onBehalfOfUser?
 
-> `optional` **onBehalfOfUser**: `string`
+> `optional` **onBehalfOfUser?**: `string`

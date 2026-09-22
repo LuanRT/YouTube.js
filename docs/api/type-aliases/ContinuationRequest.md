@@ -4,23 +4,23 @@
 
 > **ContinuationRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:143](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L143)
+Defined in: [src/parser/types/CommandEndpoints.ts:143](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L143)
 
 ## Properties
 
 ### continuation?
 
-> `optional` **continuation**: `string`
+> `optional` **continuation?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:145](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L145)
+Defined in: [src/parser/types/CommandEndpoints.ts:145](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L145)
 
 ***
 
 ### fetchCommentsParams?
 
-> `optional` **fetchCommentsParams**: `object`
+> `optional` **fetchCommentsParams?**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:147](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L147)
+Defined in: [src/parser/types/CommandEndpoints.ts:147](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L147)
 
 #### continuation
 
@@ -30,14 +30,14 @@ Defined in: [src/parser/types/CommandEndpoints.ts:147](https://github.com/LuanRT
 
 ### formData?
 
-> `optional` **formData**: [`FormData`](FormData.md)
+> `optional` **formData?**: [`FormData`](FormData.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:144](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L144)
+Defined in: [src/parser/types/CommandEndpoints.ts:144](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L144)
 
 ***
 
 ### notificationsMenuRequestType?
 
-> `optional` **notificationsMenuRequestType**: `string`
+> `optional` **notificationsMenuRequestType?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:146](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L146)
+Defined in: [src/parser/types/CommandEndpoints.ts:146](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L146)

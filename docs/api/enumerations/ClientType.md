@@ -2,7 +2,7 @@
 
 # Enumeration: ClientType
 
-Defined in: [src/core/Session.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L22)
+Defined in: [src/core/Session.ts:22](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L22)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [src/core/Session.ts:22](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **ANDROID**: `"ANDROID"`
 
-Defined in: [src/core/Session.ts:28](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L28)
+Defined in: [src/core/Session.ts:28](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L28)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/core/Session.ts:28](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **ANDROID\_CREATOR**: `"ANDROID_CREATOR"`
 
-Defined in: [src/core/Session.ts:31](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L31)
+Defined in: [src/core/Session.ts:32](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L32)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/core/Session.ts:31](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **ANDROID\_MUSIC**: `"ANDROID_MUSIC"`
 
-Defined in: [src/core/Session.ts:30](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L30)
+Defined in: [src/core/Session.ts:31](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L31)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/core/Session.ts:30](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **ANDROID\_VR**: `"ANDROID_VR"`
 
-Defined in: [src/core/Session.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L29)
+Defined in: [src/core/Session.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L29)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/core/Session.ts:29](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **IOS**: `"iOS"`
 
-Defined in: [src/core/Session.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L27)
+Defined in: [src/core/Session.ts:27](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L27)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [src/core/Session.ts:27](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **KIDS**: `"WEB_KIDS"`
 
-Defined in: [src/core/Session.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L25)
+Defined in: [src/core/Session.ts:25](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L25)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [src/core/Session.ts:25](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **MUSIC**: `"WEB_REMIX"`
 
-Defined in: [src/core/Session.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L26)
+Defined in: [src/core/Session.ts:26](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L26)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [src/core/Session.ts:26](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **MWEB**: `"MWEB"`
 
-Defined in: [src/core/Session.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L24)
+Defined in: [src/core/Session.ts:24](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L24)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [src/core/Session.ts:24](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **TV**: `"TVHTML5"`
 
-Defined in: [src/core/Session.ts:32](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L32)
+Defined in: [src/core/Session.ts:33](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L33)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [src/core/Session.ts:32](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **TV\_EMBEDDED**: `"TVHTML5_SIMPLY_EMBEDDED_PLAYER"`
 
-Defined in: [src/core/Session.ts:34](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L34)
+Defined in: [src/core/Session.ts:35](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L35)
 
 ***
 
@@ -90,7 +90,15 @@ Defined in: [src/core/Session.ts:34](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **TV\_SIMPLY**: `"TVHTML5_SIMPLY"`
 
-Defined in: [src/core/Session.ts:33](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L33)
+Defined in: [src/core/Session.ts:34](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L34)
+
+***
+
+### VISIONOS
+
+> **VISIONOS**: `"VISIONOS"`
+
+Defined in: [src/core/Session.ts:30](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L30)
 
 ***
 
@@ -98,7 +106,7 @@ Defined in: [src/core/Session.ts:33](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **WEB**: `"WEB"`
 
-Defined in: [src/core/Session.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L23)
+Defined in: [src/core/Session.ts:23](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L23)
 
 ***
 
@@ -106,7 +114,7 @@ Defined in: [src/core/Session.ts:23](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **WEB\_CREATOR**: `"WEB_CREATOR"`
 
-Defined in: [src/core/Session.ts:36](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L36)
+Defined in: [src/core/Session.ts:37](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L37)
 
 ***
 
@@ -114,4 +122,4 @@ Defined in: [src/core/Session.ts:36](https://github.com/LuanRT/YouTube.js/blob/8
 
 > **WEB\_EMBEDDED**: `"WEB_EMBEDDED_PLAYER"`
 
-Defined in: [src/core/Session.ts:35](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/Session.ts#L35)
+Defined in: [src/core/Session.ts:36](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L36)

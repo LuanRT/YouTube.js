@@ -8,5 +8,6 @@
     "typedoc-plugin-markdown"
   ],
   "hidePageHeader": true,
+  "typeDeclarationFormat": "table",
   "tsconfig": "tsconfig.json"
 }

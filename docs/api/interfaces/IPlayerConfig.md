@@ -2,7 +2,7 @@
 
 # Interface: IPlayerConfig
 
-Defined in: [src/parser/types/ParsedResponse.ts:111](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L111)
+Defined in: [src/parser/types/ParsedResponse.ts:128](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L128)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:111](https://github.com/LuanRT/Y
 
 > **audio\_config**: `object`
 
-Defined in: [src/parser/types/ParsedResponse.ts:112](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L112)
+Defined in: [src/parser/types/ParsedResponse.ts:129](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L129)
 
 #### enable\_per\_format\_loudness
 
@@ -18,11 +18,11 @@ Defined in: [src/parser/types/ParsedResponse.ts:112](https://github.com/LuanRT/Y
 
 #### loudness\_db?
 
-> `optional` **loudness\_db**: `number`
+> `optional` **loudness\_db?**: `number`
 
 #### perceptual\_loudness\_db?
 
-> `optional` **perceptual\_loudness\_db**: `number`
+> `optional` **perceptual\_loudness\_db?**: `number`
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:112](https://github.com/LuanRT/Y
 
 > **media\_common\_config**: `object`
 
-Defined in: [src/parser/types/ParsedResponse.ts:120](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L120)
+Defined in: [src/parser/types/ParsedResponse.ts:137](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L137)
 
 #### dynamic\_readahead\_config
 
@@ -50,11 +50,11 @@ Defined in: [src/parser/types/ParsedResponse.ts:120](https://github.com/LuanRT/Y
 
 #### media\_ustreamer\_request\_config?
 
-> `optional` **media\_ustreamer\_request\_config**: `object`
+> `optional` **media\_ustreamer\_request\_config?**: `object`
 
 ##### media\_ustreamer\_request\_config.video\_playback\_ustreamer\_config?
 
-> `optional` **video\_playback\_ustreamer\_config**: `string`
+> `optional` **video\_playback\_ustreamer\_config?**: `string`
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:120](https://github.com/LuanRT/Y
 
 > **stream\_selection\_config**: `object`
 
-Defined in: [src/parser/types/ParsedResponse.ts:117](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L117)
+Defined in: [src/parser/types/ParsedResponse.ts:134](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L134)
 
 #### max\_bitrate
 

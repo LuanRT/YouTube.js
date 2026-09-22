@@ -4,7 +4,7 @@
 
 > **introspect**(`classdata`): `object`
 
-Defined in: [src/parser/generator.ts:376](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/generator.ts#L376)
+Defined in: [src/parser/generator.ts:376](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L376)
 
 Introspect an example of a class in order to determine its key info and dependencies
 
@@ -22,10 +22,7 @@ The example of the class
 
 The key info and any unimplemented dependencies
 
-### key\_info
-
-> **key\_info**: readonly \[`string`, [`InferenceType`](../type-aliases/InferenceType.md)\][]
-
-### unimplemented\_dependencies
-
-> **unimplemented\_dependencies**: \[`string`, `any`\][]
+| Name | Type | Defined in |
+| ------ | ------ | ------ |
+| `key_info` | readonly \[`string`, [`InferenceType`](../type-aliases/InferenceType.md)\][] | [src/parser/generator.ts:390](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L390) |
+| `unimplemented_dependencies` | \[`string`, `any`\][] | [src/parser/generator.ts:391](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L391) |

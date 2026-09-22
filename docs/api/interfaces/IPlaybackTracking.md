@@ -2,7 +2,7 @@
 
 # Interface: IPlaybackTracking
 
-Defined in: [src/parser/types/ParsedResponse.ts:99](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L99)
+Defined in: [src/parser/types/ParsedResponse.ts:115](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L115)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:99](https://github.com/LuanRT/Yo
 
 > **videostats\_playback\_url**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:101](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L101)
+Defined in: [src/parser/types/ParsedResponse.ts:117](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L117)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [src/parser/types/ParsedResponse.ts:101](https://github.com/LuanRT/Y
 
 > **videostats\_watchtime\_url**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:100](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L100)
+Defined in: [src/parser/types/ParsedResponse.ts:116](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L116)

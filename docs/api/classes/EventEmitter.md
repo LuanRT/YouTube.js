@@ -1,111 +1,53 @@
 [youtubei.js](../README.md) / EventEmitter
 
-# Class: EventEmitter
+# Class: EventEmitter\<Events\>
 
-Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/EventEmitterLike.ts#L3)
-
-## Extends
-
-- `EventTarget`
+Defined in: [src/utils/EventEmitterLike.ts:3](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/EventEmitterLike.ts#L3)
 
 ## Extended by
 
 - [`Session`](Session.md)
 - [`LiveChat`](../youtubei.js/namespaces/YT/classes/LiveChat.md)
 
+## Type Parameters
+
+### Events
+
+`Events` *extends* `Record`\<`string`, `Listener`\>
+
 ## Constructors
 
 ### Constructor
 
-> **new EventEmitter**(): `EventEmitterLike`
-
-Defined in: [src/utils/EventEmitterLike.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/EventEmitterLike.ts#L6)
+> **new EventEmitter**\<`Events`\>(): `EventEmitterLike`\<`Events`\>
 
 #### Returns
 
-`EventEmitterLike`
-
-#### Overrides
-
-`EventTarget.constructor`
+`EventEmitterLike`\<`Events`\>
 
 ## Methods
 
-### addEventListener()
-
-> **addEventListener**(`type`, `callback`, `options?`): `void`
-
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11569
-
-The **`addEventListener()`** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
-
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
-
-#### Parameters
-
-##### type
-
-`string`
-
-##### callback
-
-`EventListenerOrEventListenerObject` | `null`
-
-##### options?
-
-`boolean` | `AddEventListenerOptions`
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-`EventTarget.addEventListener`
-
-***
-
-### dispatchEvent()
-
-> **dispatchEvent**(`event`): `boolean`
-
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11575
-
-The **`dispatchEvent()`** method of the EventTarget sends an Event to the object, (synchronously) invoking the affected event listeners in the appropriate order.
-
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
-
-#### Parameters
-
-##### event
-
-`Event`
-
-#### Returns
-
-`boolean`
-
-#### Inherited from
-
-`EventTarget.dispatchEvent`
-
-***
-
 ### emit()
 
-> **emit**(`type`, ...`args`): `void`
+> **emit**\<`K`\>(`type`, ...`args`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/EventEmitterLike.ts#L10)
+Defined in: [src/utils/EventEmitterLike.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/EventEmitterLike.ts#L7)
+
+#### Type Parameters
+
+##### K
+
+`K` *extends* `string` \| `number` \| `symbol`
 
 #### Parameters
 
 ##### type
 
-`string`
+`K`
 
 ##### args
 
-...`any`[]
+...`Parameters`\<`Events`\[`K`\]\>
 
 #### Returns
 
@@ -115,19 +57,25 @@ Defined in: [src/utils/EventEmitterLike.ts:10](https://github.com/LuanRT/YouTube
 
 ### off()
 
-> **off**(`type`, `listener`): `void`
+> **off**\<`K`\>(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/EventEmitterLike.ts#L40)
+Defined in: [src/utils/EventEmitterLike.ts:45](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/EventEmitterLike.ts#L45)
+
+#### Type Parameters
+
+##### K
+
+`K` *extends* `string` \| `number` \| `symbol`
 
 #### Parameters
 
 ##### type
 
-`string`
+`K`
 
 ##### listener
 
-(...`args`) => `void`
+`Events`\[`K`\]
 
 #### Returns
 
@@ -137,19 +85,25 @@ Defined in: [src/utils/EventEmitterLike.ts:40](https://github.com/LuanRT/YouTube
 
 ### on()
 
-> **on**(`type`, `listener`): `void`
+> **on**\<`K`\>(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/EventEmitterLike.ts#L15)
+Defined in: [src/utils/EventEmitterLike.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/EventEmitterLike.ts#L17)
+
+#### Type Parameters
+
+##### K
+
+`K` *extends* `string` \| `number` \| `symbol`
 
 #### Parameters
 
 ##### type
 
-`string`
+`K`
 
 ##### listener
 
-(...`args`) => `void`
+`Events`\[`K`\]
 
 #### Returns
 
@@ -159,19 +113,25 @@ Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/YouTube
 
 ### once()
 
-> **once**(`type`, `listener`): `void`
+> **once**\<`K`\>(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/EventEmitterLike.ts#L27)
+Defined in: [src/utils/EventEmitterLike.ts:28](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/EventEmitterLike.ts#L28)
+
+#### Type Parameters
+
+##### K
+
+`K` *extends* `string` \| `number` \| `symbol`
 
 #### Parameters
 
 ##### type
 
-`string`
+`K`
 
 ##### listener
 
-(...`args`) => `void`
+`Events`\[`K`\]
 
 #### Returns
 
@@ -179,34 +139,18 @@ Defined in: [src/utils/EventEmitterLike.ts:27](https://github.com/LuanRT/YouTube
 
 ***
 
-### removeEventListener()
+### removeAllListeners()
 
-> **removeEventListener**(`type`, `callback`, `options?`): `void`
+> **removeAllListeners**(`type?`): `void`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:11581
-
-The **`removeEventListener()`** method of the EventTarget interface removes an event listener previously registered with EventTarget.addEventListener() from the target.
-
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/removeEventListener)
+Defined in: [src/utils/EventEmitterLike.ts:70](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/EventEmitterLike.ts#L70)
 
 #### Parameters
 
-##### type
+##### type?
 
-`string`
-
-##### callback
-
-`EventListenerOrEventListenerObject` | `null`
-
-##### options?
-
-`boolean` | `EventListenerOptions`
+keyof `Events`
 
 #### Returns
 
 `void`
-
-#### Inherited from
-
-`EventTarget.removeEventListener`

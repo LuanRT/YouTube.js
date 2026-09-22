@@ -4,60 +4,60 @@
 
 > **BrowseRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L6)
+Defined in: [src/parser/types/CommandEndpoints.ts:6](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L6)
 
 ## Properties
 
 ### browseId?
 
-> `optional` **browseId**: `string`
+> `optional` **browseId?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L7)
+Defined in: [src/parser/types/CommandEndpoints.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L7)
 
 ***
 
 ### browseRequestSupportedMetadata?
 
-> `optional` **browseRequestSupportedMetadata**: [`BrowseRequestSupportedMetadata`](BrowseRequestSupportedMetadata.md)
+> `optional` **browseRequestSupportedMetadata?**: [`BrowseRequestSupportedMetadata`](BrowseRequestSupportedMetadata.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L12)
+Defined in: [src/parser/types/CommandEndpoints.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L12)
 
 ***
 
 ### formData?
 
-> `optional` **formData**: [`FormData`](FormData.md)
+> `optional` **formData?**: [`FormData`](FormData.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L10)
+Defined in: [src/parser/types/CommandEndpoints.ts:10](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L10)
 
 ***
 
 ### inlineSettingStatus?
 
-> `optional` **inlineSettingStatus**: [`InlineSettingStatus`](InlineSettingStatus.md)
+> `optional` **inlineSettingStatus?**: [`InlineSettingStatus`](InlineSettingStatus.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L13)
+Defined in: [src/parser/types/CommandEndpoints.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L13)
 
 ***
 
 ### params?
 
-> `optional` **params**: `string`
+> `optional` **params?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L8)
+Defined in: [src/parser/types/CommandEndpoints.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L8)
 
 ***
 
 ### query?
 
-> `optional` **query**: `string`
+> `optional` **query?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L9)
+Defined in: [src/parser/types/CommandEndpoints.ts:9](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L9)
 
 ***
 
 ### subscriptionSettingsState?
 
-> `optional` **subscriptionSettingsState**: `string`
+> `optional` **subscriptionSettingsState?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L11)
+Defined in: [src/parser/types/CommandEndpoints.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L11)

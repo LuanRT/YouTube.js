@@ -2,7 +2,7 @@
 
 # Class: GridPlaylist
 
-Defined in: [src/parser/classes/GridPlaylist.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L8)
+Defined in: [src/parser/classes/GridPlaylist.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L8)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:8](https://github.com/LuanRT/You
 
 > **new GridPlaylist**(`data`): `GridPlaylist`
 
-Defined in: [src/parser/classes/GridPlaylist.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L23)
+Defined in: [src/parser/classes/GridPlaylist.ts:24](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L24)
 
 #### Parameters
 
@@ -34,9 +34,9 @@ Defined in: [src/parser/classes/GridPlaylist.ts:23](https://github.com/LuanRT/Yo
 
 ### author?
 
-> `optional` **author**: [`Author`](../../Misc/classes/Author.md)
+> `optional` **author?**: [`Author`](../../Misc/classes/Author.md)
 
-Defined in: [src/parser/classes/GridPlaylist.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L13)
+Defined in: [src/parser/classes/GridPlaylist.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L13)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:13](https://github.com/LuanRT/Yo
 
 > **badges**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/GridPlaylist.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L14)
+Defined in: [src/parser/classes/GridPlaylist.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L14)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:14](https://github.com/LuanRT/Yo
 
 > **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/GridPlaylist.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L15)
+Defined in: [src/parser/classes/GridPlaylist.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L15)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:15](https://github.com/LuanRT/Yo
 
 > **id**: `string`
 
-Defined in: [src/parser/classes/GridPlaylist.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L11)
+Defined in: [src/parser/classes/GridPlaylist.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L11)
 
 ***
 
@@ -68,7 +68,15 @@ Defined in: [src/parser/classes/GridPlaylist.ts:11](https://github.com/LuanRT/Yo
 
 > **sidebar\_thumbnails**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[] \| `null`
 
-Defined in: [src/parser/classes/GridPlaylist.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L19)
+Defined in: [src/parser/classes/GridPlaylist.ts:20](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L20)
+
+***
+
+### thumbnail\_overlays
+
+> **thumbnail\_overlays**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
+
+Defined in: [src/parser/classes/GridPlaylist.ts:18](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L18)
 
 ***
 
@@ -76,7 +84,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:19](https://github.com/LuanRT/Yo
 
 > **thumbnail\_renderer**: [`YTNode`](../../Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/classes/GridPlaylist.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L18)
+Defined in: [src/parser/classes/GridPlaylist.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L19)
 
 ***
 
@@ -84,7 +92,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:18](https://github.com/LuanRT/Yo
 
 > **thumbnails**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/GridPlaylist.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L17)
+Defined in: [src/parser/classes/GridPlaylist.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L17)
 
 ***
 
@@ -92,7 +100,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:17](https://github.com/LuanRT/Yo
 
 > **title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/GridPlaylist.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L12)
+Defined in: [src/parser/classes/GridPlaylist.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L12)
 
 ***
 
@@ -100,7 +108,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:12](https://github.com/LuanRT/Yo
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -112,7 +120,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **video\_count**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/GridPlaylist.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L20)
+Defined in: [src/parser/classes/GridPlaylist.ts:21](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L21)
 
 ***
 
@@ -120,7 +128,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:20](https://github.com/LuanRT/Yo
 
 > **video\_count\_short**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/GridPlaylist.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L21)
+Defined in: [src/parser/classes/GridPlaylist.ts:22](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L22)
 
 ***
 
@@ -128,7 +136,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:21](https://github.com/LuanRT/Yo
 
 > **view\_playlist**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/GridPlaylist.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L16)
+Defined in: [src/parser/classes/GridPlaylist.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L16)
 
 ***
 
@@ -136,7 +144,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:16](https://github.com/LuanRT/Yo
 
 > `static` **type**: `string` = `'GridPlaylist'`
 
-Defined in: [src/parser/classes/GridPlaylist.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/GridPlaylist.ts#L9)
+Defined in: [src/parser/classes/GridPlaylist.ts:9](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/GridPlaylist.ts#L9)
 
 #### Overrides
 
@@ -148,7 +156,7 @@ Defined in: [src/parser/classes/GridPlaylist.ts:9](https://github.com/LuanRT/You
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -190,7 +198,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is GridPlaylist & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -228,7 +236,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -266,7 +274,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

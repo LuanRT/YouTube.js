@@ -2,7 +2,7 @@
 
 # Class: MusicResponsiveListItem
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L23)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L29)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:23](https://github.co
 
 > **new MusicResponsiveListItem**(`data`): `MusicResponsiveListItem`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:77](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L77)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:83](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L83)
 
 #### Parameters
 
@@ -34,17 +34,17 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:77](https://github.co
 
 ### album?
 
-> `optional` **album**: `object`
+> `optional` **album?**: `object`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:44](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L44)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:50](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L50)
 
 #### endpoint?
 
-> `optional` **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **endpoint?**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
 #### id?
 
-> `optional` **id**: `string`
+> `optional` **id?**: `string`
 
 #### name
 
@@ -54,17 +54,17 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:44](https://github.co
 
 ### artists?
 
-> `optional` **artists**: `object`[]
+> `optional` **artists?**: `object`[]
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:50](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L50)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:56](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L56)
 
 #### channel\_id?
 
-> `optional` **channel\_id**: `string`
+> `optional` **channel\_id?**: `string`
 
 #### endpoint?
 
-> `optional` **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **endpoint?**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
 #### name
 
@@ -74,17 +74,17 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:50](https://github.co
 
 ### author?
 
-> `optional` **author**: `object`
+> `optional` **author?**: `object`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:69](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L69)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:75](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L75)
 
 #### channel\_id?
 
-> `optional` **channel\_id**: `string`
+> `optional` **channel\_id?**: `string`
 
 #### endpoint?
 
-> `optional` **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **endpoint?**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
 #### name
 
@@ -94,17 +94,17 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:69](https://github.co
 
 ### authors?
 
-> `optional` **authors**: `object`[]
+> `optional` **authors?**: `object`[]
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:57](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L57)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:63](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L63)
 
 #### channel\_id?
 
-> `optional` **channel\_id**: `string`
+> `optional` **channel\_id?**: `string`
 
 #### endpoint?
 
-> `optional` **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **endpoint?**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
 #### name
 
@@ -114,17 +114,17 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:57](https://github.co
 
 ### badges?
 
-> `optional` **badges**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
+> `optional` **badges?**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:33](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L33)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:39](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L39)
 
 ***
 
 ### duration?
 
-> `optional` **duration**: `object`
+> `optional` **duration?**: `object`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L39)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:45](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L45)
 
 #### seconds
 
@@ -138,9 +138,9 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:39](https://github.co
 
 ### endpoint?
 
-> `optional` **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **endpoint?**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L29)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:35](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L35)
 
 ***
 
@@ -148,7 +148,7 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:29](https://github.co
 
 > **fixed\_columns**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MusicResponsiveListItemFixedColumn`](MusicResponsiveListItemFixedColumn.md)\>
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L27)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:33](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L33)
 
 ***
 
@@ -156,31 +156,31 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:27](https://github.co
 
 > **flex\_columns**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MusicResponsiveListItemFlexColumn`](MusicResponsiveListItemFlexColumn.md)\>
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L26)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:32](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L32)
 
 ***
 
 ### id?
 
-> `optional` **id**: `string`
+> `optional` **id?**: `string`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:37](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L37)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:43](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L43)
 
 ***
 
 ### index?
 
-> `optional` **index**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **index?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:31](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L31)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:37](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L37)
 
 ***
 
 ### item\_count?
 
-> `optional` **item\_count**: `string`
+> `optional` **item\_count?**: `string`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:74](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L74)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:80](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L80)
 
 ***
 
@@ -188,71 +188,71 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:74](https://github.co
 
 > **item\_type**: `"endpoint"` \| `"unknown"` \| `"video"` \| `"playlist"` \| `"album"` \| `"artist"` \| `"library_artist"` \| `"non_music_track"` \| `"song"` \| `"podcast_show"` \| `undefined`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:30](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L30)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:36](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L36)
 
 ***
 
 ### menu?
 
-> `optional` **menu**: [`Menu`](Menu.md) \| `null`
+> `optional` **menu?**: [`Menu`](Menu.md) \| `null`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:34](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L34)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:40](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L40)
 
 ***
 
 ### name?
 
-> `optional` **name**: `string`
+> `optional` **name?**: `string`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:63](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L63)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:69](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L69)
 
 ***
 
 ### overlay?
 
-> `optional` **overlay**: [`MusicItemThumbnailOverlay`](MusicItemThumbnailOverlay.md) \| `null`
+> `optional` **overlay?**: [`MusicItemThumbnailOverlay`](MusicItemThumbnailOverlay.md) \| `null`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:35](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L35)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L41)
 
 ***
 
 ### song\_count?
 
-> `optional` **song\_count**: `string`
+> `optional` **song\_count?**: `string`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:66](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L66)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:72](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L72)
 
 ***
 
 ### subscribers?
 
-> `optional` **subscribers**: `string`
+> `optional` **subscribers?**: `string`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:65](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L65)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:71](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L71)
 
 ***
 
 ### subtitle?
 
-> `optional` **subtitle**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **subtitle?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:64](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L64)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:70](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L70)
 
 ***
 
 ### thumbnail?
 
-> `optional` **thumbnail**: [`MusicThumbnail`](MusicThumbnail.md) \| `null`
+> `optional` **thumbnail?**: [`MusicThumbnail`](MusicThumbnail.md) \| `null`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:32](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L32)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:38](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L38)
 
 ***
 
 ### title?
 
-> `optional` **title**: `string`
+> `optional` **title?**: `string`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:38](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L38)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:44](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L44)
 
 ***
 
@@ -260,7 +260,7 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:38](https://github.co
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -270,17 +270,17 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 ### views?
 
-> `optional` **views**: `string`
+> `optional` **views?**: `string`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:56](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L56)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:62](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L62)
 
 ***
 
 ### year?
 
-> `optional` **year**: `string`
+> `optional` **year?**: `string`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:75](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L75)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:81](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L81)
 
 ***
 
@@ -288,7 +288,7 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:75](https://github.co
 
 > `static` **type**: `string` = `'MusicResponsiveListItem'`
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L24)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:30](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L30)
 
 #### Overrides
 
@@ -302,7 +302,7 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:24](https://github.co
 
 > **get** **thumbnails**(): [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/MusicResponsiveListItem.ts:334](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicResponsiveListItem.ts#L334)
+Defined in: [src/parser/classes/MusicResponsiveListItem.ts:338](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicResponsiveListItem.ts#L338)
 
 ##### Returns
 
@@ -314,7 +314,7 @@ Defined in: [src/parser/classes/MusicResponsiveListItem.ts:334](https://github.c
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -356,7 +356,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is MusicResponsiveListItem & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -394,7 +394,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -432,7 +432,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

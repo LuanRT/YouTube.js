@@ -6,7 +6,7 @@
 
 > **parse**\<`T`, `K`\>(`data`, `requireArray`, `validTypes?`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<`InstanceType`\<`K`\[`number`\]\>\> \| `null`
 
-Defined in: [src/parser/parser.ts:629](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L629)
+Defined in: [src/parser/parser.ts:661](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L661)
 
 Parses an item or an array of items.
 
@@ -48,7 +48,7 @@ YTNode types that are allowed to be parsed.
 
 > **parse**\<`T`, `K`\>(`data`, `requireArray`, `validTypes?`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<`InstanceType`\<`K`\>\> \| `null`
 
-Defined in: [src/parser/parser.ts:630](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L630)
+Defined in: [src/parser/parser.ts:662](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L662)
 
 Parses an item or an array of items.
 
@@ -90,7 +90,7 @@ YTNode types that are allowed to be parsed.
 
 > **parse**\<`T`\>(`data?`, `requireArray?`, `validTypes?`): [`SuperParsedResult`](../../Helpers/classes/SuperParsedResult.md)\<`T`\>
 
-Defined in: [src/parser/parser.ts:631](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L631)
+Defined in: [src/parser/parser.ts:663](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L663)
 
 Parses an item or an array of items.
 
@@ -116,9 +116,9 @@ Whether the data should be parsed as an array.
 
 #### validTypes?
 
-YTNode types that are allowed to be parsed.
+[`YTNodeConstructor`](../../Helpers/interfaces/YTNodeConstructor.md)\<`T`\> \| [`YTNodeConstructor`](../../Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
 
-[`YTNodeConstructor`](../../Helpers/interfaces/YTNodeConstructor.md)\<`T`\> | [`YTNodeConstructor`](../../Helpers/interfaces/YTNodeConstructor.md)\<`T`\>[]
+YTNode types that are allowed to be parsed.
 
 ### Returns
 

@@ -2,7 +2,7 @@
 
 # Interface: AstVisitObject
 
-Defined in: [src/utils/javascript/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/helpers.ts#L28)
+Defined in: [src/utils/javascript/helpers.ts:28](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/helpers.ts#L28)
 
 ## Methods
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/javascript/helpers.ts:28](https://github.com/LuanRT/YouTu
 
 > `optional` **enter**(`node`, `parent`, `ancestors`): [`AstVisitResult`](../type-aliases/AstVisitResult.md)
 
-Defined in: [src/utils/javascript/helpers.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/helpers.ts#L39)
+Defined in: [src/utils/javascript/helpers.ts:39](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/helpers.ts#L39)
 
 Callback invoked when an AST node is entered.
 
@@ -24,9 +24,9 @@ Current AST node being visited.
 
 ##### parent
 
-Parent of the current AST node, or null if it's the root.
+`Node` \| `null`
 
-`Node` | `null`
+Parent of the current AST node, or null if it's the root.
 
 ##### ancestors
 
@@ -48,7 +48,7 @@ Array of ancestor nodes, starting from the root down to the parent.
 
 > `optional` **leave**(`node`, `parent`, `ancestors`): [`AstVisitResult`](../type-aliases/AstVisitResult.md)
 
-Defined in: [src/utils/javascript/helpers.ts:49](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/helpers.ts#L49)
+Defined in: [src/utils/javascript/helpers.ts:49](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/helpers.ts#L49)
 
 Callback invoked when an AST node is exited.
 
@@ -62,9 +62,9 @@ Current AST node being exited.
 
 ##### parent
 
-Parent of the current AST node, or null if it's the root.
+`Node` \| `null`
 
-`Node` | `null`
+Parent of the current AST node, or null if it's the root.
 
 ##### ancestors
 

@@ -4,7 +4,7 @@
 
 > **isIgnoredKey**(`key`): `boolean`
 
-Defined in: [src/parser/generator.ts:400](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/generator.ts#L400)
+Defined in: [src/parser/generator.ts:400](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L400)
 
 Is this key ignored by the parser?
 
@@ -12,9 +12,9 @@ Is this key ignored by the parser?
 
 ### key
 
-The key to check
+`string` \| `symbol`
 
-`string` | `symbol`
+The key to check
 
 ## Returns
 

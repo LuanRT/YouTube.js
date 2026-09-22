@@ -2,7 +2,7 @@
 
 # Class: EmojiRun
 
-Defined in: [src/parser/classes/misc/EmojiRun.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/EmojiRun.ts#L13)
+Defined in: [src/parser/classes/misc/EmojiRun.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/EmojiRun.ts#L13)
 
 ## Implements
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/misc/EmojiRun.ts:13](https://github.com/LuanRT/Y
 
 > **new EmojiRun**(`data`): `EmojiRun`
 
-Defined in: [src/parser/classes/misc/EmojiRun.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/EmojiRun.ts#L17)
+Defined in: [src/parser/classes/misc/EmojiRun.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/EmojiRun.ts#L17)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/classes/misc/EmojiRun.ts:17](https://github.com/LuanRT/Y
 
 > **emoji**: `Emoji`
 
-Defined in: [src/parser/classes/misc/EmojiRun.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/EmojiRun.ts#L15)
+Defined in: [src/parser/classes/misc/EmojiRun.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/EmojiRun.ts#L15)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/classes/misc/EmojiRun.ts:15](https://github.com/LuanRT/Y
 
 > **text**: `string`
 
-Defined in: [src/parser/classes/misc/EmojiRun.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/EmojiRun.ts#L14)
+Defined in: [src/parser/classes/misc/EmojiRun.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/EmojiRun.ts#L14)
 
 #### Implementation of
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/misc/EmojiRun.ts:14](https://github.com/LuanRT/Y
 
 > **toHTML**(): `string`
 
-Defined in: [src/parser/classes/misc/EmojiRun.ts:37](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/EmojiRun.ts#L37)
+Defined in: [src/parser/classes/misc/EmojiRun.ts:37](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/EmojiRun.ts#L37)
 
 #### Returns
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/misc/EmojiRun.ts:37](https://github.com/LuanRT/Y
 
 > **toString**(): `string`
 
-Defined in: [src/parser/classes/misc/EmojiRun.ts:33](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/EmojiRun.ts#L33)
+Defined in: [src/parser/classes/misc/EmojiRun.ts:33](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/EmojiRun.ts#L33)
 
 #### Returns
 

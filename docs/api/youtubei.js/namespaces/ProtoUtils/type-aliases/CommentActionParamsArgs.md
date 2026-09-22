@@ -4,36 +4,36 @@
 
 > **CommentActionParamsArgs** = `object`
 
-Defined in: [src/utils/ProtoUtils.ts:4](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L4)
+Defined in: [src/utils/ProtoUtils.ts:4](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/ProtoUtils.ts#L4)
 
 ## Properties
 
 ### comment\_id?
 
-> `optional` **comment\_id**: `string`
+> `optional` **comment\_id?**: `string`
 
-Defined in: [src/utils/ProtoUtils.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L5)
+Defined in: [src/utils/ProtoUtils.ts:5](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/ProtoUtils.ts#L5)
 
 ***
 
 ### target\_language?
 
-> `optional` **target\_language**: `string`
+> `optional` **target\_language?**: `string`
 
-Defined in: [src/utils/ProtoUtils.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L8)
+Defined in: [src/utils/ProtoUtils.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/ProtoUtils.ts#L8)
 
 ***
 
 ### text?
 
-> `optional` **text**: `string`
+> `optional` **text?**: `string`
 
-Defined in: [src/utils/ProtoUtils.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L7)
+Defined in: [src/utils/ProtoUtils.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/ProtoUtils.ts#L7)
 
 ***
 
 ### video\_id?
 
-> `optional` **video\_id**: `string`
+> `optional` **video\_id?**: `string`
 
-Defined in: [src/utils/ProtoUtils.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/ProtoUtils.ts#L6)
+Defined in: [src/utils/ProtoUtils.ts:6](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/ProtoUtils.ts#L6)

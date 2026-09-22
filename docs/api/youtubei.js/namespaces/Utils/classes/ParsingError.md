@@ -2,7 +2,7 @@
 
 # Class: ParsingError
 
-Defined in: [src/utils/Utils.ts:45](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/Utils.ts#L45)
+Defined in: [src/utils/Utils.ts:45](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L45)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/utils/Utils.ts:45](https://github.com/LuanRT/YouTube.js/blob/85
 
 > **new ParsingError**(`message`, `info?`): `ParsingError`
 
-Defined in: [src/utils/Utils.ts:33](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/Utils.ts#L33)
+Defined in: [src/utils/Utils.ts:33](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L33)
 
 #### Parameters
 
@@ -38,9 +38,9 @@ Defined in: [src/utils/Utils.ts:33](https://github.com/LuanRT/YouTube.js/blob/85
 
 ### cause?
 
-> `optional` **cause**: `unknown`
+> `optional` **cause?**: `unknown`
 
-Defined in: node\_modules/typescript/lib/lib.es2022.error.d.ts:26
+Defined in: node\_modules/typescript/lib/lib.es2022.error.d.ts:24
 
 #### Inherited from
 
@@ -52,7 +52,7 @@ Defined in: node\_modules/typescript/lib/lib.es2022.error.d.ts:26
 
 > **date**: `Date`
 
-Defined in: [src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/Utils.ts#L29)
+Defined in: [src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L29)
 
 #### Inherited from
 
@@ -62,9 +62,9 @@ Defined in: [src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/85
 
 ### info?
 
-> `optional` **info**: `any`
+> `optional` **info?**: `any`
 
-Defined in: [src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/Utils.ts#L31)
+Defined in: [src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L31)
 
 #### Inherited from
 
@@ -76,7 +76,7 @@ Defined in: [src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/85
 
 > **message**: `string`
 
-Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1077
+Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1075
 
 #### Inherited from
 
@@ -88,7 +88,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1077
 
 > **name**: `string`
 
-Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
+Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1074
 
 #### Inherited from
 
@@ -98,9 +98,9 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 ### stack?
 
-> `optional` **stack**: `string`
+> `optional` **stack?**: `string`
 
-Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1078
+Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 #### Inherited from
 
@@ -112,7 +112,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1078
 
 > **version**: `string`
 
-Defined in: [src/utils/Utils.ts:30](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/Utils.ts#L30)
+Defined in: [src/utils/Utils.ts:30](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L30)
 
 #### Inherited from
 
@@ -216,7 +216,7 @@ a();
 
 > `static` **isError**(`error`): `error is Error`
 
-Defined in: node\_modules/typescript/lib/lib.esnext.error.d.ts:23
+Defined in: node\_modules/typescript/lib/lib.esnext.error.d.ts:21
 
 Indicates whether the argument provided is a built-in Error instance or not.
 

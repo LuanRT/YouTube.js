@@ -4,51 +4,51 @@
 
 > **ReelWatchRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:84](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L84)
+Defined in: [src/parser/types/CommandEndpoints.ts:84](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L84)
 
 ## Properties
 
 ### disablePlayerResponse?
 
-> `optional` **disablePlayerResponse**: `boolean`
+> `optional` **disablePlayerResponse?**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:87](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L87)
+Defined in: [src/parser/types/CommandEndpoints.ts:87](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L87)
 
 ***
 
 ### inputType?
 
-> `optional` **inputType**: `string`
+> `optional` **inputType?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:85](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L85)
+Defined in: [src/parser/types/CommandEndpoints.ts:85](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L85)
 
 ***
 
 ### params?
 
-> `optional` **params**: `string`
+> `optional` **params?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:86](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L86)
+Defined in: [src/parser/types/CommandEndpoints.ts:86](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L86)
 
 ***
 
 ### playerRequest?
 
-> `optional` **playerRequest**: `object`
+> `optional` **playerRequest?**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:88](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L88)
+Defined in: [src/parser/types/CommandEndpoints.ts:88](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L88)
 
 #### contentCheckOk?
 
-> `optional` **contentCheckOk**: `boolean`
+> `optional` **contentCheckOk?**: `boolean`
 
 #### params?
 
-> `optional` **params**: `string`
+> `optional` **params?**: `string`
 
 #### racyCheckOk?
 
-> `optional` **racyCheckOk**: `boolean`
+> `optional` **racyCheckOk?**: `boolean`
 
 #### videoId
 

@@ -2,7 +2,7 @@
 
 # Interface: IPlayabilityStatus
 
-Defined in: [src/parser/types/ParsedResponse.ts:103](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L103)
+Defined in: [src/parser/types/ParsedResponse.ts:119](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L119)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:103](https://github.com/LuanRT/Y
 
 > **audio\_only\_playability**: [`AudioOnlyPlayability`](../youtubei.js/namespaces/YTNodes/classes/AudioOnlyPlayability.md) \| `null`
 
-Defined in: [src/parser/types/ParsedResponse.ts:106](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L106)
+Defined in: [src/parser/types/ParsedResponse.ts:122](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L122)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:106](https://github.com/LuanRT/Y
 
 > **embeddable**: `boolean`
 
-Defined in: [src/parser/types/ParsedResponse.ts:107](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L107)
+Defined in: [src/parser/types/ParsedResponse.ts:124](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L124)
 
 ***
 
@@ -26,7 +26,15 @@ Defined in: [src/parser/types/ParsedResponse.ts:107](https://github.com/LuanRT/Y
 
 > **error\_screen**: [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md) \| `null`
 
-Defined in: [src/parser/types/ParsedResponse.ts:105](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L105)
+Defined in: [src/parser/types/ParsedResponse.ts:121](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L121)
+
+***
+
+### live\_streamability
+
+> **live\_streamability**: [`YTNode`](../youtubei.js/namespaces/Helpers/classes/YTNode.md) \| `null`
+
+Defined in: [src/parser/types/ParsedResponse.ts:123](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L123)
 
 ***
 
@@ -34,7 +42,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:105](https://github.com/LuanRT/Y
 
 > **reason**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:108](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L108)
+Defined in: [src/parser/types/ParsedResponse.ts:125](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L125)
 
 ***
 
@@ -42,4 +50,4 @@ Defined in: [src/parser/types/ParsedResponse.ts:108](https://github.com/LuanRT/Y
 
 > **status**: `string`
 
-Defined in: [src/parser/types/ParsedResponse.ts:104](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/ParsedResponse.ts#L104)
+Defined in: [src/parser/types/ParsedResponse.ts:120](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L120)

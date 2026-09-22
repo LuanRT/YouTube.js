@@ -2,7 +2,7 @@
 
 # Class: AvatarStackView
 
-Defined in: [src/parser/classes/AvatarStackView.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/AvatarStackView.ts#L9)
+Defined in: [src/parser/classes/AvatarStackView.ts:9](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/AvatarStackView.ts#L9)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/AvatarStackView.ts:9](https://github.com/LuanRT/
 
 > **new AvatarStackView**(`data`): `AvatarStackView`
 
-Defined in: [src/parser/classes/AvatarStackView.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/AvatarStackView.ts#L16)
+Defined in: [src/parser/classes/AvatarStackView.ts:18](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/AvatarStackView.ts#L18)
 
 #### Parameters
 
@@ -32,11 +32,27 @@ Defined in: [src/parser/classes/AvatarStackView.ts:16](https://github.com/LuanRT
 
 ## Properties
 
+### avatar\_cluster\_size?
+
+> `optional` **avatar\_cluster\_size?**: `"AVATAR_SIZE_UNKNOWN"` \| `"AVATAR_SIZE_XS"` \| `"AVATAR_SIZE_S"` \| `"AVATAR_SIZE_M"` \| `"AVATAR_SIZE_XL"` \| `"AVATAR_SIZE_40"` \| `"AVATAR_SIZE_L"` \| `"AVATAR_SIZE_XXS"` \| `"AVATAR_SIZE_RESPONSIVE"` \| `"AVATAR_SIZE_XXL"` \| `"AVATAR_SIZE_XXXL"` \| `"AVATAR_SIZE_48"`
+
+Defined in: [src/parser/classes/AvatarStackView.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/AvatarStackView.ts#L14)
+
+***
+
 ### avatars
 
 > **avatars**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`AvatarView`](AvatarView.md)\>
 
-Defined in: [src/parser/classes/AvatarStackView.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/AvatarStackView.ts#L12)
+Defined in: [src/parser/classes/AvatarStackView.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/AvatarStackView.ts#L12)
+
+***
+
+### layout\_type?
+
+> `optional` **layout\_type?**: `"AVATAR_STACK_LAYOUT_CLUSTER"`
+
+Defined in: [src/parser/classes/AvatarStackView.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/AvatarStackView.ts#L15)
 
 ***
 
@@ -44,15 +60,15 @@ Defined in: [src/parser/classes/AvatarStackView.ts:12](https://github.com/LuanRT
 
 > **renderer\_context**: [`RendererContext`](../../Misc/classes/RendererContext.md)
 
-Defined in: [src/parser/classes/AvatarStackView.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/AvatarStackView.ts#L14)
+Defined in: [src/parser/classes/AvatarStackView.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/AvatarStackView.ts#L16)
 
 ***
 
 ### text?
 
-> `optional` **text**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **text?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/AvatarStackView.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/AvatarStackView.ts#L13)
+Defined in: [src/parser/classes/AvatarStackView.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/AvatarStackView.ts#L13)
 
 ***
 
@@ -60,7 +76,7 @@ Defined in: [src/parser/classes/AvatarStackView.ts:13](https://github.com/LuanRT
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -72,7 +88,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'AvatarStackView'`
 
-Defined in: [src/parser/classes/AvatarStackView.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/AvatarStackView.ts#L10)
+Defined in: [src/parser/classes/AvatarStackView.ts:10](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/AvatarStackView.ts#L10)
 
 #### Overrides
 
@@ -84,7 +100,7 @@ Defined in: [src/parser/classes/AvatarStackView.ts:10](https://github.com/LuanRT
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -126,7 +142,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is AvatarStackView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -164,7 +180,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -202,7 +218,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

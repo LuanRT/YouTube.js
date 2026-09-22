@@ -2,7 +2,7 @@
 
 # Class: Poll
 
-Defined in: [src/parser/classes/Poll.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/Poll.ts#L7)
+Defined in: [src/parser/classes/Poll.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/Poll.ts#L7)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/Poll.ts:7](https://github.com/LuanRT/YouTube.js/
 
 > **new Poll**(`data`): `Poll`
 
-Defined in: [src/parser/classes/Poll.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/Poll.ts#L25)
+Defined in: [src/parser/classes/Poll.ts:25](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/Poll.ts#L25)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/Poll.ts:25](https://github.com/LuanRT/YouTube.js
 
 > **choices**: `object`[]
 
-Defined in: [src/parser/classes/Poll.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/Poll.ts#L10)
+Defined in: [src/parser/classes/Poll.ts:10](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/Poll.ts#L10)
 
 #### deselect\_endpoint
 
@@ -74,25 +74,25 @@ Defined in: [src/parser/classes/Poll.ts:10](https://github.com/LuanRT/YouTube.js
 
 ### live\_chat\_poll\_id?
 
-> `optional` **live\_chat\_poll\_id**: `string`
+> `optional` **live\_chat\_poll\_id?**: `string`
 
-Defined in: [src/parser/classes/Poll.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/Poll.ts#L23)
+Defined in: [src/parser/classes/Poll.ts:23](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/Poll.ts#L23)
 
 ***
 
 ### poll\_type?
 
-> `optional` **poll\_type**: `string`
+> `optional` **poll\_type?**: `string`
 
-Defined in: [src/parser/classes/Poll.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/Poll.ts#L21)
+Defined in: [src/parser/classes/Poll.ts:21](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/Poll.ts#L21)
 
 ***
 
 ### total\_votes?
 
-> `optional` **total\_votes**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **total\_votes?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/Poll.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/Poll.ts#L22)
+Defined in: [src/parser/classes/Poll.ts:22](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/Poll.ts#L22)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/parser/classes/Poll.ts:22](https://github.com/LuanRT/YouTube.js
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -112,7 +112,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'Poll'`
 
-Defined in: [src/parser/classes/Poll.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/Poll.ts#L8)
+Defined in: [src/parser/classes/Poll.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/Poll.ts#L8)
 
 #### Overrides
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/classes/Poll.ts:8](https://github.com/LuanRT/YouTube.js/
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -166,7 +166,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is Poll & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -204,7 +204,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -242,7 +242,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

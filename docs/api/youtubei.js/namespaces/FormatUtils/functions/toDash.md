@@ -4,7 +4,7 @@
 
 > **toDash**(`streaming_data?`, `is_post_live_dvr?`, `url_transformer?`, `format_filter?`, `cpn?`, `player?`, `actions?`, `storyboards?`, `caption_tracks?`, `options?`): `Promise`\<`string`\>
 
-Defined in: [src/utils/DashManifest.tsx:290](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/DashManifest.tsx#L290)
+Defined in: [src/utils/DashManifest.tsx:290](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/DashManifest.tsx#L290)
 
 ## Parameters
 
@@ -38,7 +38,7 @@ Defined in: [src/utils/DashManifest.tsx:290](https://github.com/LuanRT/YouTube.j
 
 ### storyboards?
 
-[`PlayerStoryboardSpec`](../../YTNodes/classes/PlayerStoryboardSpec.md) | [`PlayerLiveStoryboardSpec`](../../YTNodes/classes/PlayerLiveStoryboardSpec.md)
+[`PlayerStoryboardSpec`](../../YTNodes/classes/PlayerStoryboardSpec.md) \| [`PlayerLiveStoryboardSpec`](../../YTNodes/classes/PlayerLiveStoryboardSpec.md)
 
 ### caption\_tracks?
 

@@ -2,7 +2,7 @@
 
 # Class: TrackInfo
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L22)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:22](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L22)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/ytmusic/TrackInfo.ts:22](https://github.com/LuanRT/YouTu
 
 > **new TrackInfo**(`data`, `actions`, `cpn`): `TrackInfo`
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L27)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:27](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L27)
 
 #### Parameters
 
@@ -42,9 +42,9 @@ Defined in: [src/parser/ytmusic/TrackInfo.ts:27](https://github.com/LuanRT/YouTu
 
 ### annotations?
 
-> `optional` **annotations**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`PlayerAnnotationsExpanded`](../../YTNodes/classes/PlayerAnnotationsExpanded.md)\>
+> `optional` **annotations?**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`PlayerAnnotationsExpanded`](../../YTNodes/classes/PlayerAnnotationsExpanded.md)\>
 
-Defined in: [src/core/mixins/MediaInfo.ts:40](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L40)
+Defined in: [src/core/mixins/MediaInfo.ts:40](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L40)
 
 #### Inherited from
 
@@ -56,15 +56,15 @@ Defined in: [src/core/mixins/MediaInfo.ts:40](https://github.com/LuanRT/YouTube.
 
 > **basic\_info**: `object`
 
-Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L39)
+Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L39)
 
 #### allow\_ratings?
 
-> `optional` **allow\_ratings**: `boolean`
+> `optional` **allow\_ratings?**: `boolean`
 
 #### author?
 
-> `optional` **author**: `string`
+> `optional` **author?**: `string`
 
 #### category
 
@@ -76,11 +76,11 @@ Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.
 
 #### channel\_id?
 
-> `optional` **channel\_id**: `string`
+> `optional` **channel\_id?**: `string`
 
 #### duration?
 
-> `optional` **duration**: `number`
+> `optional` **duration?**: `number`
 
 #### embed
 
@@ -96,11 +96,11 @@ Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.
 
 #### id?
 
-> `optional` **id**: `string`
+> `optional` **id?**: `string`
 
 #### is\_crawlable?
 
-> `optional` **is\_crawlable**: `boolean`
+> `optional` **is\_crawlable?**: `boolean`
 
 #### is\_disliked
 
@@ -116,31 +116,31 @@ Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.
 
 #### is\_live?
 
-> `optional` **is\_live**: `boolean`
+> `optional` **is\_live?**: `boolean`
 
 #### is\_live\_content?
 
-> `optional` **is\_live\_content**: `boolean`
+> `optional` **is\_live\_content?**: `boolean`
 
 #### is\_live\_dvr\_enabled?
 
-> `optional` **is\_live\_dvr\_enabled**: `boolean`
+> `optional` **is\_live\_dvr\_enabled?**: `boolean`
 
 #### is\_low\_latency\_live\_stream?
 
-> `optional` **is\_low\_latency\_live\_stream**: `boolean`
+> `optional` **is\_low\_latency\_live\_stream?**: `boolean`
 
 #### is\_owner\_viewing?
 
-> `optional` **is\_owner\_viewing**: `boolean`
+> `optional` **is\_owner\_viewing?**: `boolean`
 
 #### is\_post\_live\_dvr?
 
-> `optional` **is\_post\_live\_dvr**: `boolean`
+> `optional` **is\_post\_live\_dvr?**: `boolean`
 
 #### is\_private?
 
-> `optional` **is\_private**: `boolean`
+> `optional` **is\_private?**: `boolean`
 
 #### is\_unlisted
 
@@ -148,11 +148,11 @@ Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.
 
 #### is\_upcoming?
 
-> `optional` **is\_upcoming**: `boolean`
+> `optional` **is\_upcoming?**: `boolean`
 
 #### keywords?
 
-> `optional` **keywords**: `string`[]
+> `optional` **keywords?**: `string`[]
 
 #### like\_count
 
@@ -160,11 +160,11 @@ Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.
 
 #### live\_chunk\_readahead?
 
-> `optional` **live\_chunk\_readahead**: `number`
+> `optional` **live\_chunk\_readahead?**: `number`
 
 #### short\_description?
 
-> `optional` **short\_description**: `string`
+> `optional` **short\_description?**: `string`
 
 #### start\_timestamp
 
@@ -176,11 +176,11 @@ Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.
 
 #### thumbnail?
 
-> `optional` **thumbnail**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
+> `optional` **thumbnail?**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
 #### title?
 
-> `optional` **title**: `string`
+> `optional` **title?**: `string`
 
 #### url\_canonical
 
@@ -198,9 +198,9 @@ Defined in: [src/core/mixins/MediaInfo.ts:39](https://github.com/LuanRT/YouTube.
 
 ### captions?
 
-> `optional` **captions**: [`PlayerCaptionsTracklist`](../../YTNodes/classes/PlayerCaptionsTracklist.md)
+> `optional` **captions?**: [`PlayerCaptionsTracklist`](../../YTNodes/classes/PlayerCaptionsTracklist.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:43](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L43)
+Defined in: [src/core/mixins/MediaInfo.ts:43](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L43)
 
 #### Inherited from
 
@@ -210,9 +210,9 @@ Defined in: [src/core/mixins/MediaInfo.ts:43](https://github.com/LuanRT/YouTube.
 
 ### cards?
 
-> `optional` **cards**: [`CardCollection`](../../YTNodes/classes/CardCollection.md)
+> `optional` **cards?**: [`CardCollection`](../../YTNodes/classes/CardCollection.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:44](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L44)
+Defined in: [src/core/mixins/MediaInfo.ts:44](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L44)
 
 #### Inherited from
 
@@ -222,17 +222,17 @@ Defined in: [src/core/mixins/MediaInfo.ts:44](https://github.com/LuanRT/YouTube.
 
 ### current\_video\_endpoint?
 
-> `optional` **current\_video\_endpoint**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
+> `optional` **current\_video\_endpoint?**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L24)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:24](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L24)
 
 ***
 
 ### endscreen?
 
-> `optional` **endscreen**: [`Endscreen`](../../YTNodes/classes/Endscreen.md)
+> `optional` **endscreen?**: [`Endscreen`](../../YTNodes/classes/Endscreen.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:42](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L42)
+Defined in: [src/core/mixins/MediaInfo.ts:42](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L42)
 
 #### Inherited from
 
@@ -242,9 +242,9 @@ Defined in: [src/core/mixins/MediaInfo.ts:42](https://github.com/LuanRT/YouTube.
 
 ### playability\_status?
 
-> `optional` **playability\_status**: [`IPlayabilityStatus`](../../../../interfaces/IPlayabilityStatus.md)
+> `optional` **playability\_status?**: [`IPlayabilityStatus`](../../../../interfaces/IPlayabilityStatus.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:46](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L46)
+Defined in: [src/core/mixins/MediaInfo.ts:46](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L46)
 
 #### Inherited from
 
@@ -254,9 +254,9 @@ Defined in: [src/core/mixins/MediaInfo.ts:46](https://github.com/LuanRT/YouTube.
 
 ### player\_config?
 
-> `optional` **player\_config**: [`IPlayerConfig`](../../../../interfaces/IPlayerConfig.md)
+> `optional` **player\_config?**: [`IPlayerConfig`](../../../../interfaces/IPlayerConfig.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:47](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L47)
+Defined in: [src/core/mixins/MediaInfo.ts:47](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L47)
 
 #### Inherited from
 
@@ -266,17 +266,17 @@ Defined in: [src/core/mixins/MediaInfo.ts:47](https://github.com/LuanRT/YouTube.
 
 ### player\_overlays?
 
-> `optional` **player\_overlays**: [`PlayerOverlay`](../../YTNodes/classes/PlayerOverlay.md)
+> `optional` **player\_overlays?**: [`PlayerOverlay`](../../YTNodes/classes/PlayerOverlay.md)
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L25)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:25](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L25)
 
 ***
 
 ### storyboards?
 
-> `optional` **storyboards**: [`PlayerStoryboardSpec`](../../YTNodes/classes/PlayerStoryboardSpec.md) \| [`PlayerLiveStoryboardSpec`](../../YTNodes/classes/PlayerLiveStoryboardSpec.md)
+> `optional` **storyboards?**: [`PlayerStoryboardSpec`](../../YTNodes/classes/PlayerStoryboardSpec.md) \| [`PlayerLiveStoryboardSpec`](../../YTNodes/classes/PlayerLiveStoryboardSpec.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L41)
+Defined in: [src/core/mixins/MediaInfo.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L41)
 
 #### Inherited from
 
@@ -286,9 +286,9 @@ Defined in: [src/core/mixins/MediaInfo.ts:41](https://github.com/LuanRT/YouTube.
 
 ### streaming\_data?
 
-> `optional` **streaming\_data**: [`IStreamingData`](../../../../interfaces/IStreamingData.md)
+> `optional` **streaming\_data?**: [`IStreamingData`](../../../../interfaces/IStreamingData.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:45](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L45)
+Defined in: [src/core/mixins/MediaInfo.ts:45](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L45)
 
 #### Inherited from
 
@@ -298,9 +298,9 @@ Defined in: [src/core/mixins/MediaInfo.ts:45](https://github.com/LuanRT/YouTube.
 
 ### tabs?
 
-> `optional` **tabs**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Tab`](../../YTNodes/classes/Tab.md)\>
+> `optional` **tabs?**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Tab`](../../YTNodes/classes/Tab.md)\>
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L23)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:23](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L23)
 
 ## Accessors
 
@@ -310,7 +310,7 @@ Defined in: [src/parser/ytmusic/TrackInfo.ts:23](https://github.com/LuanRT/YouTu
 
 > **get** **actions**(): [`Actions`](../../../../classes/Actions.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:247](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L247)
+Defined in: [src/core/mixins/MediaInfo.ts:247](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L247)
 
 ##### Returns
 
@@ -328,7 +328,7 @@ Defined in: [src/core/mixins/MediaInfo.ts:247](https://github.com/LuanRT/YouTube
 
 > **get** **available\_tabs**(): `string`[]
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:155](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L155)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:155](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L155)
 
 ##### Returns
 
@@ -342,7 +342,7 @@ Defined in: [src/parser/ytmusic/TrackInfo.ts:155](https://github.com/LuanRT/YouT
 
 > **get** **cpn**(): `string`
 
-Defined in: [src/core/mixins/MediaInfo.ts:254](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L254)
+Defined in: [src/core/mixins/MediaInfo.ts:254](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L254)
 
 Content Playback Nonce.
 
@@ -362,7 +362,7 @@ Content Playback Nonce.
 
 > **get** **page**(): \[[`IPlayerResponse`](../../../../type-aliases/IPlayerResponse.md), [`INextResponse`](../../../../type-aliases/INextResponse.md)?\]
 
-Defined in: [src/core/mixins/MediaInfo.ts:261](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L261)
+Defined in: [src/core/mixins/MediaInfo.ts:261](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L261)
 
 Parsed InnerTube response.
 
@@ -380,7 +380,7 @@ Parsed InnerTube response.
 
 > **addToWatchHistory**(): `Promise`\<`Response`\>
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:144](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L144)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:144](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L144)
 
 Adds the song to the watch history.
 
@@ -398,7 +398,7 @@ Adds the song to the watch history.
 
 > **chooseFormat**(`options`): [`Format`](../../Misc/classes/Format.md)
 
-Defined in: [src/core/mixins/MediaInfo.ts:161](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L161)
+Defined in: [src/core/mixins/MediaInfo.ts:161](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L161)
 
 Selects the format that best matches the given options.
 
@@ -424,7 +424,7 @@ Options
 
 > **download**(`options?`): `Promise`\<`ReadableStream`\<`Uint8Array`\<`ArrayBufferLike`\>\>\>
 
-Defined in: [src/core/mixins/MediaInfo.ts:169](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L169)
+Defined in: [src/core/mixins/MediaInfo.ts:169](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L169)
 
 Downloads the video.
 
@@ -450,7 +450,7 @@ Download options.
 
 > **getLyrics**(): `Promise`\<[`MusicDescriptionShelf`](../../YTNodes/classes/MusicDescriptionShelf.md) \| `undefined`\>
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:136](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L136)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:136](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L136)
 
 Retrieves lyrics.
 
@@ -464,7 +464,7 @@ Retrieves lyrics.
 
 > **getRelated**(): `Promise`\<[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`MusicCarouselShelf`](../../YTNodes/classes/MusicCarouselShelf.md) \| [`MusicDescriptionShelf`](../../YTNodes/classes/MusicDescriptionShelf.md)\>\>
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:129](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L129)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:129](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L129)
 
 Retrieves related content.
 
@@ -478,7 +478,7 @@ Retrieves related content.
 
 > **getStreamingInfo**(`url_transformer?`, `format_filter?`): `Promise`\<`StreamingInfo`\>
 
-Defined in: [src/core/mixins/MediaInfo.ts:144](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L144)
+Defined in: [src/core/mixins/MediaInfo.ts:144](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L144)
 
 Get a cleaned up representation of the adaptive_formats
 
@@ -506,7 +506,7 @@ Get a cleaned up representation of the adaptive_formats
 
 > **getTab**(`title_or_page_type`): `Promise`\<[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\> \| [`SectionList`](../../YTNodes/classes/SectionList.md) \| [`MusicQueue`](../../YTNodes/classes/MusicQueue.md) \| [`RichGrid`](../../YTNodes/classes/RichGrid.md) \| [`Message`](../../YTNodes/classes/Message.md)\>
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:46](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L46)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:46](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L46)
 
 Retrieves contents of the given tab.
 
@@ -526,7 +526,7 @@ Retrieves contents of the given tab.
 
 > **getTranscript**(): `Promise`\<[`TranscriptInfo`](../../YT/classes/TranscriptInfo.md)\>
 
-Defined in: [src/core/mixins/MediaInfo.ts:182](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L182)
+Defined in: [src/core/mixins/MediaInfo.ts:182](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L182)
 
 Retrieves the video's transcript.
 
@@ -544,7 +544,7 @@ Retrieves the video's transcript.
 
 > **getUpNext**(`automix?`): `Promise`\<[`PlaylistPanel`](../../YTNodes/classes/PlaylistPanel.md)\>
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:75](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L75)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:75](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L75)
 
 Retrieves up next.
 
@@ -564,7 +564,7 @@ Retrieves up next.
 
 > **getUpNextContinuation**(`playlistPanel`): `Promise`\<[`PlaylistPanelContinuation`](../../../../classes/PlaylistPanelContinuation.md)\>
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:107](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L107)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:107](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L107)
 
 Retrieves up next continuation relative to current TrackInfo.
 
@@ -572,7 +572,7 @@ Retrieves up next continuation relative to current TrackInfo.
 
 ##### playlistPanel
 
-[`PlaylistPanel`](../../YTNodes/classes/PlaylistPanel.md) | [`PlaylistPanelContinuation`](../../../../classes/PlaylistPanelContinuation.md)
+[`PlaylistPanel`](../../YTNodes/classes/PlaylistPanel.md) \| [`PlaylistPanelContinuation`](../../../../classes/PlaylistPanelContinuation.md)
 
 #### Returns
 
@@ -584,7 +584,7 @@ Retrieves up next continuation relative to current TrackInfo.
 
 > **toDash**(`options?`): `Promise`\<`string`\>
 
-Defined in: [src/core/mixins/MediaInfo.ts:104](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/mixins/MediaInfo.ts#L104)
+Defined in: [src/core/mixins/MediaInfo.ts:104](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/mixins/MediaInfo.ts#L104)
 
 Generates a DASH manifest from the streaming data.
 
@@ -620,7 +620,7 @@ DASH manifest
 
 > **updateWatchTime**(`startTime`): `Promise`\<`Response`\>
 
-Defined in: [src/parser/ytmusic/TrackInfo.ts:151](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/ytmusic/TrackInfo.ts#L151)
+Defined in: [src/parser/ytmusic/TrackInfo.ts:151](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/ytmusic/TrackInfo.ts#L151)
 
 Updates the watch time of the song.
 

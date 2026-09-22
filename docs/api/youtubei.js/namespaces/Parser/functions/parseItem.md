@@ -6,7 +6,7 @@
 
 > **parseItem**\<`T`, `K`\>(`data`, `validTypes`): `InstanceType`\<`K`\[`number`\]\> \| `null`
 
-Defined in: [src/parser/parser.ts:536](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L536)
+Defined in: [src/parser/parser.ts:568](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L568)
 
 Parses an item.
 
@@ -24,9 +24,9 @@ Parses an item.
 
 #### data
 
-The data to parse.
+[`RawNode`](../../../../type-aliases/RawNode.md) \| `undefined`
 
-[`RawNode`](../../../../type-aliases/RawNode.md) | `undefined`
+The data to parse.
 
 #### validTypes
 
@@ -42,7 +42,7 @@ YTNode types that are allowed to be parsed.
 
 > **parseItem**\<`T`\>(`data`, `validTypes`): `T` \| `null`
 
-Defined in: [src/parser/parser.ts:537](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L537)
+Defined in: [src/parser/parser.ts:569](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L569)
 
 Parses an item.
 
@@ -56,9 +56,9 @@ Parses an item.
 
 #### data
 
-The data to parse.
+[`RawNode`](../../../../type-aliases/RawNode.md) \| `undefined`
 
-[`RawNode`](../../../../type-aliases/RawNode.md) | `undefined`
+The data to parse.
 
 #### validTypes
 
@@ -74,7 +74,7 @@ YTNode types that are allowed to be parsed.
 
 > **parseItem**(`data?`): [`YTNode`](../../Helpers/classes/YTNode.md)
 
-Defined in: [src/parser/parser.ts:538](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L538)
+Defined in: [src/parser/parser.ts:570](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L570)
 
 Parses an item.
 

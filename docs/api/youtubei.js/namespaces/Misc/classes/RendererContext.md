@@ -2,7 +2,7 @@
 
 # Class: RendererContext
 
-Defined in: [src/parser/classes/misc/RendererContext.ts:5](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/RendererContext.ts#L5)
+Defined in: [src/parser/classes/misc/RendererContext.ts:5](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/RendererContext.ts#L5)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/RendererContext.ts:5](https://github.com/Lu
 
 > **new RendererContext**(`data?`): `RendererContext`
 
-Defined in: [src/parser/classes/misc/RendererContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/RendererContext.ts#L9)
+Defined in: [src/parser/classes/misc/RendererContext.ts:9](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/RendererContext.ts#L9)
 
 #### Parameters
 
@@ -26,14 +26,14 @@ Defined in: [src/parser/classes/misc/RendererContext.ts:9](https://github.com/Lu
 
 ### accessibility\_context?
 
-> `optional` **accessibility\_context**: [`AccessibilityContext`](AccessibilityContext.md)
+> `optional` **accessibility\_context?**: [`AccessibilityContext`](AccessibilityContext.md)
 
-Defined in: [src/parser/classes/misc/RendererContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/RendererContext.ts#L7)
+Defined in: [src/parser/classes/misc/RendererContext.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/RendererContext.ts#L7)
 
 ***
 
 ### command\_context?
 
-> `optional` **command\_context**: [`CommandContext`](CommandContext.md)
+> `optional` **command\_context?**: [`CommandContext`](CommandContext.md)
 
-Defined in: [src/parser/classes/misc/RendererContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/misc/RendererContext.ts#L6)
+Defined in: [src/parser/classes/misc/RendererContext.ts:6](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/RendererContext.ts#L6)

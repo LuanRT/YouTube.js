@@ -2,15 +2,15 @@
 
 # Interface: EmitterOptions
 
-Defined in: [src/utils/javascript/JsExtractor.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L15)
+Defined in: [src/utils/javascript/JsExtractor.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsExtractor.ts#L15)
 
 ## Properties
 
 ### disallowSideEffectInitializers?
 
-> `optional` **disallowSideEffectInitializers**: `boolean` \| [`SideEffectPolicyOptions`](SideEffectPolicyOptions.md)
+> `optional` **disallowSideEffectInitializers?**: `boolean` \| [`SideEffectPolicyOptions`](SideEffectPolicyOptions.md)
 
-Defined in: [src/utils/javascript/JsExtractor.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L26)
+Defined in: [src/utils/javascript/JsExtractor.ts:26](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsExtractor.ts#L26)
 
 When true or configured, replace unsafe initializers (calls, `new`, etc.)
 with `undefined` to avoid executing side-effectful code.
@@ -20,9 +20,9 @@ Use `{ mode: 'loose' }` to allow a broader set of expressions.
 
 ### exportRawValues?
 
-> `optional` **exportRawValues**: `boolean`
+> `optional` **exportRawValues?**: `boolean`
 
-Defined in: [src/utils/javascript/JsExtractor.ts:35](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L35)
+Defined in: [src/utils/javascript/JsExtractor.ts:35](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsExtractor.ts#L35)
 
 When true, also export raw values of matched nodes.
 
@@ -30,9 +30,9 @@ When true, also export raw values of matched nodes.
 
 ### forceVarPredeclaration?
 
-> `optional` **forceVarPredeclaration**: `boolean`
+> `optional` **forceVarPredeclaration?**: `boolean`
 
-Defined in: [src/utils/javascript/JsExtractor.ts:31](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L31)
+Defined in: [src/utils/javascript/JsExtractor.ts:31](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsExtractor.ts#L31)
 
 When true, emit a single `var` declaration for every variable
 encountered, even if it originally had an initializer.
@@ -41,9 +41,9 @@ encountered, even if it originally had an initializer.
 
 ### maxDepth?
 
-> `optional` **maxDepth**: `number`
+> `optional` **maxDepth?**: `number`
 
-Defined in: [src/utils/javascript/JsExtractor.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L20)
+Defined in: [src/utils/javascript/JsExtractor.ts:20](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsExtractor.ts#L20)
 
 The maximum depth to traverse when emitting dependencies.
 If not specified, there is no limit on the depth.
@@ -52,8 +52,8 @@ If not specified, there is no limit on the depth.
 
 ### rawValueOnly?
 
-> `optional` **rawValueOnly**: `string`[]
+> `optional` **rawValueOnly?**: `string`[]
 
-Defined in: [src/utils/javascript/JsExtractor.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/JsExtractor.ts#L39)
+Defined in: [src/utils/javascript/JsExtractor.ts:39](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsExtractor.ts#L39)
 
 Array of names to skip emitting code/deps for, but still export the raw value.

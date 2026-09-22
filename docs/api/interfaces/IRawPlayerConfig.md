@@ -2,7 +2,7 @@
 
 # Interface: IRawPlayerConfig
 
-Defined in: [src/parser/types/RawResponse.ts:1546](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1546)
+Defined in: [src/parser/types/RawResponse.ts:1546](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1546)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/RawResponse.ts:1546](https://github.com/LuanRT/You
 
 > **audioConfig**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1547](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1547)
+Defined in: [src/parser/types/RawResponse.ts:1547](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1547)
 
 #### enablePerFormatLoudness
 
@@ -18,11 +18,11 @@ Defined in: [src/parser/types/RawResponse.ts:1547](https://github.com/LuanRT/You
 
 #### loudnessDb?
 
-> `optional` **loudnessDb**: `number`
+> `optional` **loudnessDb?**: `number`
 
 #### perceptualLoudnessDb?
 
-> `optional` **perceptualLoudnessDb**: `number`
+> `optional` **perceptualLoudnessDb?**: `number`
 
 ***
 
@@ -30,11 +30,11 @@ Defined in: [src/parser/types/RawResponse.ts:1547](https://github.com/LuanRT/You
 
 > **mediaCommonConfig**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1555](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1555)
+Defined in: [src/parser/types/RawResponse.ts:1555](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1555)
 
 #### dynamicReadaheadConfig?
 
-> `optional` **dynamicReadaheadConfig**: `object`
+> `optional` **dynamicReadaheadConfig?**: `object`
 
 ##### dynamicReadaheadConfig.maxReadAheadMediaTimeMs
 
@@ -50,7 +50,7 @@ Defined in: [src/parser/types/RawResponse.ts:1555](https://github.com/LuanRT/You
 
 #### mediaUstreamerRequestConfig?
 
-> `optional` **mediaUstreamerRequestConfig**: `object`
+> `optional` **mediaUstreamerRequestConfig?**: `object`
 
 ##### mediaUstreamerRequestConfig.videoPlaybackUstreamerConfig
 
@@ -62,7 +62,7 @@ Defined in: [src/parser/types/RawResponse.ts:1555](https://github.com/LuanRT/You
 
 > **streamSelectionConfig**: `object`
 
-Defined in: [src/parser/types/RawResponse.ts:1552](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/RawResponse.ts#L1552)
+Defined in: [src/parser/types/RawResponse.ts:1552](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1552)
 
 #### maxBitrate
 

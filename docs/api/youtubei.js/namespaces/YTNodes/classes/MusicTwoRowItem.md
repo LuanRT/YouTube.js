@@ -2,7 +2,7 @@
 
 # Class: MusicTwoRowItem
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L12)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L12)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:12](https://github.com/LuanRT
 
 > **new MusicTwoRowItem**(`data`): `MusicTwoRowItem`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:42](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L42)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:42](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L42)
 
 #### Parameters
 
@@ -34,9 +34,9 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:42](https://github.com/LuanRT
 
 ### artists?
 
-> `optional` **artists**: `object`[]
+> `optional` **artists?**: `object`[]
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L26)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:26](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L26)
 
 #### channel\_id
 
@@ -54,9 +54,9 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:26](https://github.com/LuanRT
 
 ### author?
 
-> `optional` **author**: `object`
+> `optional` **author?**: `object`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:32](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L32)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:32](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L32)
 
 #### channel\_id
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:32](https://github.com/LuanRT
 
 > **badges**: [`SuperParsedResult`](../../Helpers/classes/SuperParsedResult.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\> \| `null`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L19)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L19)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:19](https://github.com/LuanRT
 
 > **endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L16)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L16)
 
 ***
 
@@ -92,15 +92,15 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:16](https://github.com/LuanRT
 
 > **id**: `string` \| `undefined`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L17)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L17)
 
 ***
 
 ### item\_count?
 
-> `optional` **item\_count**: `string` \| `null`
+> `optional` **item\_count?**: `string` \| `null`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L22)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:22](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L22)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:22](https://github.com/LuanRT
 
 > **item\_type**: `string`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:20](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L20)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:20](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L20)
 
 ***
 
@@ -116,15 +116,15 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:20](https://github.com/LuanRT
 
 > **menu**: [`Menu`](Menu.md) \| `null`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:40](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L40)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:40](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L40)
 
 ***
 
 ### subscribers?
 
-> `optional` **subscribers**: `string`
+> `optional` **subscribers?**: `string`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:21](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L21)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:21](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L21)
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:21](https://github.com/LuanRT
 
 > **subtitle**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L18)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:18](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L18)
 
 ***
 
@@ -140,7 +140,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:18](https://github.com/LuanRT
 
 > **thumbnail**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:38](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L38)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:38](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L38)
 
 ***
 
@@ -148,7 +148,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:38](https://github.com/LuanRT
 
 > **thumbnail\_overlay**: [`MusicItemThumbnailOverlay`](MusicItemThumbnailOverlay.md) \| `null`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:39](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L39)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:39](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L39)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:39](https://github.com/LuanRT
 
 > **title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L15)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L15)
 
 ***
 
@@ -164,7 +164,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:15](https://github.com/LuanRT
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -174,17 +174,17 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 ### views?
 
-> `optional` **views**: `string`
+> `optional` **views?**: `string`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L24)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:24](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L24)
 
 ***
 
 ### year?
 
-> `optional` **year**: `string`
+> `optional` **year?**: `string`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L23)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:23](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L23)
 
 ***
 
@@ -192,7 +192,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:23](https://github.com/LuanRT
 
 > `static` **type**: `string` = `'MusicTwoRowItem'`
 
-Defined in: [src/parser/classes/MusicTwoRowItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/MusicTwoRowItem.ts#L13)
+Defined in: [src/parser/classes/MusicTwoRowItem.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/MusicTwoRowItem.ts#L13)
 
 #### Overrides
 
@@ -204,7 +204,7 @@ Defined in: [src/parser/classes/MusicTwoRowItem.ts:13](https://github.com/LuanRT
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -246,7 +246,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is MusicTwoRowItem & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -284,7 +284,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -322,7 +322,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

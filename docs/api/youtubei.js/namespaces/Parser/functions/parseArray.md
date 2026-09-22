@@ -6,7 +6,7 @@
 
 > **parseArray**\<`T`, `K`\>(`data`, `validTypes`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<`InstanceType`\<`K`\[`number`\]\>\>
 
-Defined in: [src/parser/parser.ts:602](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L602)
+Defined in: [src/parser/parser.ts:634](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L634)
 
 Parses an array of items.
 
@@ -24,9 +24,9 @@ Parses an array of items.
 
 #### data
 
-The data to parse.
+[`RawNode`](../../../../type-aliases/RawNode.md)[] \| `undefined`
 
-[`RawNode`](../../../../type-aliases/RawNode.md)[] | `undefined`
+The data to parse.
 
 #### validTypes
 
@@ -42,7 +42,7 @@ YTNode types that are allowed to be parsed.
 
 > **parseArray**\<`T`\>(`data`, `validType`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<`T`\>
 
-Defined in: [src/parser/parser.ts:603](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L603)
+Defined in: [src/parser/parser.ts:635](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L635)
 
 Parses an array of items.
 
@@ -56,9 +56,9 @@ Parses an array of items.
 
 #### data
 
-The data to parse.
+[`RawNode`](../../../../type-aliases/RawNode.md)[] \| `undefined`
 
-[`RawNode`](../../../../type-aliases/RawNode.md)[] | `undefined`
+The data to parse.
 
 #### validType
 
@@ -72,7 +72,7 @@ The data to parse.
 
 > **parseArray**(`data`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/parser.ts:604](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L604)
+Defined in: [src/parser/parser.ts:636](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L636)
 
 Parses an array of items.
 
@@ -80,9 +80,9 @@ Parses an array of items.
 
 #### data
 
-The data to parse.
+[`RawNode`](../../../../type-aliases/RawNode.md)[] \| `undefined`
 
-[`RawNode`](../../../../type-aliases/RawNode.md)[] | `undefined`
+The data to parse.
 
 ### Returns
 
