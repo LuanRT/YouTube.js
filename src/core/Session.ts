@@ -559,9 +559,9 @@ export default class Session extends EventEmitter {
     const text = await res.text();
 
     if (!text.startsWith(')]}\''))
-      throw new SessionError('Invalid JSPB response');
+      throw new SessionError('Incorrect JSPB formatting');
 
-    const data = JSON.parse(text.replace(/^\)\]\}'/, ''));
+    const data = JSON.parse(text.substring(5));
 
     const ytcfg = data[0][2];
 
