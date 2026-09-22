@@ -362,10 +362,10 @@ async function getSegmentInfo(
       throw new InnertubeError('Unable to get segment count for this Post Live DVR video without an Actions instance', { format });
     }
 
-    const target_duration_dec = format.target_duration_dec;
+    const target_duration_sec = format.target_duration_sec;
 
-    if (typeof target_duration_dec !== 'number') {
-      throw new InnertubeError('Format is missing target_duration_dec', { format });
+    if (typeof target_duration_sec !== 'number') {
+      throw new InnertubeError('Format is missing target_duration_sec', { format });
     }
 
     const info: SegmentInfo = {
@@ -380,7 +380,7 @@ async function getSegmentInfo(
           media_url: `${transformed_url}&sq=$Number$`,
           timeline: [
             {
-              duration: target_duration_dec * 1000,
+              duration: target_duration_sec * 1000,
               repeat_count: shared_post_live_dvr_info.item.segment_count
             }
           ]
@@ -936,9 +936,9 @@ export async function getStreamingInfo(
     if (storyboards.is(PlayerStoryboardSpec)) {
       duration = formats[0].approx_duration_ms / 1000;
     } else {
-      const target_duration_dec = formats[0].target_duration_dec;
+      const target_duration_dec = formats[0].target_duration_sec;
       if (target_duration_dec === undefined)
-        throw new InnertubeError('Format is missing target_duration_dec', { format: formats[0] });
+        throw new InnertubeError('Format is missing target_duration_sec', { format: formats[0] });
       duration = target_duration_dec;
     }
 

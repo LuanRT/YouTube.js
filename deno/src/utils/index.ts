@@ -2,7 +2,7 @@ export { default as UniversalCache } from './Cache.ts';
 
 export * as Constants from './Constants.ts';
 
-export { default as EventEmitter } from './EventEmitterLike.ts';
+export { EventEmitterLike as EventEmitter } from './EventEmitterLike.ts';
 
 export * as FormatUtils from './FormatUtils.ts';
 

@@ -51,7 +51,7 @@ export default class Format {
   public average_bitrate?: number;
   public bitrate: number;
   public spatial_audio_type?: SpatialAudioType;
-  public target_duration_dec?: number;
+  public target_duration_sec?: number;
   public fair_play_key_uri?: string;
   public stereo_layout?: StereoLayout;
   public max_dvr_duration_sec?: number;
@@ -164,7 +164,7 @@ export default class Format {
       this.max_dvr_duration_sec = data.maxDvrDurationSec;
 
     if (Reflect.has(data, 'targetDurationSec'))
-      this.target_duration_dec = data.targetDurationSec;
+      this.target_duration_sec = data.targetDurationSec;
 
     this.has_audio = !!data.audioBitrate || !!data.audioQuality;
     this.has_video = !!data.qualityLabel;
