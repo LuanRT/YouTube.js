@@ -1,5 +1,26 @@
 # Changelog
 
+## [18.1.0](https://github.com/LuanRT/YouTube.js/compare/v18.0.0...v18.1.0) (2026-09-22)
+
+
+### Features
+
+* **Channel:** add methods for show tab ([#1260](https://github.com/LuanRT/YouTube.js/issues/1260)) ([d252b36](https://github.com/LuanRT/YouTube.js/commit/d252b36f7e0bf5926a52a589a73d4aa6392a9683))
+* **GridPlaylist:** Add `thumbnail_overlays` ([#1263](https://github.com/LuanRT/YouTube.js/issues/1263)) ([30efa61](https://github.com/LuanRT/YouTube.js/commit/30efa610075a5911b9226991d80ae5ffc7840c16))
+* **LockupView:** Add show as possible `content_type` ([#1262](https://github.com/LuanRT/YouTube.js/issues/1262)) ([2b80e3e](https://github.com/LuanRT/YouTube.js/commit/2b80e3ef35f658bb2af573aa5f84b79d928e58d0))
+* **parser:** add 'attributionText' to HowThisWasMadeSectionView ([ef3afbe](https://github.com/LuanRT/YouTube.js/commit/ef3afbe435edc86ba3357b6fa951548ee3d46053))
+* **parser:** Add `VideoTitleHeaderView` renderer parser ([#1238](https://github.com/LuanRT/YouTube.js/issues/1238)) ([e26e13d](https://github.com/LuanRT/YouTube.js/commit/e26e13d9b7cc511889010c63dee123fd39cb702c))
+* **Parser:** Add missing `/player/heartbeat` nodes ([#1249](https://github.com/LuanRT/YouTube.js/issues/1249)) ([9b3ee91](https://github.com/LuanRT/YouTube.js/commit/9b3ee912bddebea0711be14d917d969767c01236))
+
+
+### Bug Fixes
+
+* **Format:** Rename `target_duration_dec` to `target_duration_sec` ([0bdd5f1](https://github.com/LuanRT/YouTube.js/commit/0bdd5f198305c40f09f39ea2bf12f686dce02b55))
+* **parser:** Add `playability_status_memo` to `IPlayerHeartbeatResponse` ([a480854](https://github.com/LuanRT/YouTube.js/commit/a480854c501406cf55c9eb7ad5b540ab36a65b56))
+* **parser:** Add `PlayerInterstitial` and `InterstitialView` to ignored list ([43dd935](https://github.com/LuanRT/YouTube.js/commit/43dd9353ba051c012e5b38f7f373a4bc1f113cb3))
+* **Session:** Adjust JSPB parsing logic ([7143efb](https://github.com/LuanRT/YouTube.js/commit/7143efb99add70ebfb65bcaa156f2b77f997bffe))
+* **Text:** Handle missing `length` in `attachmentRuns` ([#1241](https://github.com/LuanRT/YouTube.js/issues/1241)) ([c636d81](https://github.com/LuanRT/YouTube.js/commit/c636d81127a3cbf3aae4bbc8fcf0b51a65f73fc7))
+
 ## [18.0.0](https://github.com/LuanRT/YouTube.js/compare/v17.2.0...v18.0.0) (2026-08-13)
 
 
