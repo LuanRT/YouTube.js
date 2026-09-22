@@ -18,9 +18,6 @@
       "web.bundle": [
         "./dist/src/platform/lib.d.ts"
       ],
-      "web.bundle.min": [
-        "./dist/src/platform/lib.d.ts"
-      ],
       "cf-worker": [
         "./dist/src/platform/lib.d.ts"
       ]
