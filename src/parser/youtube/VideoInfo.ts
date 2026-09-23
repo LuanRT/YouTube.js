@@ -26,10 +26,10 @@ import StructuredDescriptionContent from '../classes/StructuredDescriptionConten
 import VideoDescriptionMusicSection from '../classes/VideoDescriptionMusicSection.js';
 import LiveChatWrap from './LiveChat.js';
 import MacroMarkersListEntity from '../classes/MacroMarkersListEntity.js';
+import WatchNextContinuation from '../classes/misc/WatchNextContinuation.js';
 
 import type { RawNode } from '../index.js';
 import { ReloadContinuationItemsCommand } from '../index.js';
-import AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
@@ -206,24 +206,13 @@ export default class VideoInfo extends MediaInfo {
   /**
    * Retrieves watch next feed continuation.
    */
-  async getWatchNextContinuation(): Promise<VideoInfo> {
+  async getWatchNextContinuation(): Promise<WatchNextContinuation> {
     if (!this.#watch_next_continuation)
       throw new InnertubeError('Watch next feed continuation not found');
 
-    const response = await this.#watch_next_continuation?.endpoint.call(this.actions, { parse: true });
-    const data = response?.on_response_received_endpoints?.firstOfType(AppendContinuationItemsAction);
+    const response = await this.#watch_next_continuation.endpoint.call(this.actions, { parse: true });
 
-    if (!data)
-      throw new InnertubeError('AppendContinuationItemsAction not found');
-
-    this.watch_next_feed = data?.contents;
-    if (this.watch_next_feed?.at(-1)?.is(ContinuationItem)) {
-      this.#watch_next_continuation = this.watch_next_feed.pop()?.as(ContinuationItem);
-    } else {
-      this.#watch_next_continuation = undefined;
-    }
-
-    return this;
+    return new WatchNextContinuation(this.actions, response);
   }
 
   /**
