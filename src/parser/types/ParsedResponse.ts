@@ -2,7 +2,8 @@ import type { Memo, ObservedArray, SuperParsedResult, YTNode } from '../helpers.
 import type {
   ReloadContinuationItemsCommand, Continuation, GridContinuation,
   ItemSectionContinuation, LiveChatContinuation, MusicPlaylistShelfContinuation, MusicShelfContinuation,
-  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand, ShowMiniplayerCommand, NavigateAction
+  PlaylistPanelContinuation, SectionListContinuation, ContinuationCommand, ShowMiniplayerCommand, NavigateAction,
+  IYoutubeApiInnertubeChallengePrompt
 } from '../index.js';
 
 import type PlayerCaptionsTracklist from '../classes/PlayerCaptionsTracklist.js';
@@ -26,6 +27,15 @@ export interface IParsedResponse {
   background?: MusicThumbnail;
   challenge?: string;
   bg_challenge?: IBotguardChallenge;
+  botguard_data?: IBotguardData;
+  ctx?: string;
+  should_fetch_reauth_session_token?: boolean;
+  encoded_reauth_proof_token?: string;
+  session_risk_ctx?: string;
+  session_token?: string;
+  web_reauth_url?: string;
+  plt?: string;
+  require_challenge?: boolean;
   actions?: SuperParsedResult<YTNode>;
   actions_memo?: Memo;
   content?: YTNode;
@@ -84,6 +94,7 @@ export interface IParsedResponse {
   player_response?: IPlayerResponse;
   heartbeat_params?: IHeartbeatParams;
   watch_next_response?: INextResponse;
+  challenge_prompt?: IYoutubeApiInnertubeChallengePrompt;
   heartbeat_server_data?: string;
   stop_heartbeat?: boolean;
   poll_delay_ms?: string;
@@ -110,6 +121,11 @@ export interface IBotguardChallenge {
   program: string;
   global_name: string;
   client_experiments_state_blob: string;
+}
+
+export interface IBotguardData {
+  interpreter_url: ITrustedResource;
+  program: string;
 }
 
 export interface IPlaybackTracking {
@@ -165,5 +181,8 @@ export type IGetTranscriptResponse = Pick<IParsedResponse, 'actions' | 'actions_
 export type IGetNotificationsMenuResponse = Pick<IParsedResponse, 'actions' | 'actions_memo'>;
 export type IUpdatedMetadataResponse = Pick<IParsedResponse, 'actions' | 'actions_memo' | 'continuation'>;
 export type IGuideResponse = Pick<IParsedResponse, 'items' | 'items_memo'>;
-export type IGetChallengeResponse = Pick<IParsedResponse, 'challenge' | 'bg_challenge'>;
+export type IGetChallengeResponse = Pick<IParsedResponse, 'challenge' | 'bg_challenge' | 'botguard_data'>;
+export type IESRChallengeResponse = Pick<IParsedResponse, 'ctx' | 'should_fetch_reauth_session_token' | 'session_token'>;
+export type IGetWebReauthURLResponse = Pick<IParsedResponse, 'web_reauth_url' | 'encoded_reauth_proof_token' | 'session_risk_ctx' | 'plt' | 'require_challenge'>;
+export type IGetSessionTokenResponse = Pick<IParsedResponse, 'session_token'>;
 export type IShowEngagementPanelResponse = Pick<IParsedResponse, 'content'>;
