@@ -124,7 +124,7 @@ export type Context = {
 }
 
 export type PartialContext = {
-  client?: Pick<Partial<NonNullable<Context['client']>>, 'kidsAppInfo'>;
+  client?: Pick<Partial<Context['client']>, 'kidsAppInfo'>;
   user?: Pick<Partial<NonNullable<Context['user']>>, 'delegationContext' | 'serializedDelegationContext'>;
   request?: Pick<Partial<NonNullable<Context['request']>>, 'eats' | 'sessionInfo' | 'attestationResponseData' | 'reauthRequestInfo'>;
 };
