@@ -573,10 +573,10 @@ export default class Innertube {
    */
   async pageConfig(page_url: string) {
     const url = new URL(page_url);
-    const inital_data = await this.session.http.fetch(url, {
+    const initial_data = await this.session.http.fetch(url, {
       method: 'GET'
     });
-    const html = await inital_data.text();
+    const html = await initial_data.text();
 
     const ytcfg_regex = /ytcfg\.set\(({.+?})\);/s;
     const attestation_data_regex = /window\.ytAtN\(\s*({[\s\S]*?})\s*\)/;
