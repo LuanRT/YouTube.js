@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.2.0](https://github.com/LuanRT/YouTube.js/compare/v18.1.0...v18.2.0) (2026-09-24)
+
+
+### Features
+
+* **parser:** Add `PlayerInterstitial` and `InterstitialView` class ([#1269](https://github.com/LuanRT/YouTube.js/issues/1269)) ([bad89d2](https://github.com/LuanRT/YouTube.js/commit/bad89d2657e88f907011655f199fba9fb615c339))
+
 ## [18.1.0](https://github.com/LuanRT/YouTube.js/compare/v18.0.0...v18.1.0) (2026-09-22)
 
 
