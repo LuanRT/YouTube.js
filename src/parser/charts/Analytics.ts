@@ -11,7 +11,7 @@ export default class Analytics {
 
   constructor(response: ApiResponse) {
     this.#page = Parser.parseResponse<IBrowseResponse>(response.data);
-    const analytics = this.#page.contents?.item().as(SectionList).contents[0].as(MusicAnalyticsSection);
+    const analytics = this.#page.contents?.item().as(SectionList).contents.firstOfType(MusicAnalyticsSection);
     if (!analytics) throw new InnertubeError('Could not find Analytics Section.');
     this.#analytics_section = analytics;
   }
