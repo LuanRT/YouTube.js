@@ -110,6 +110,16 @@ export type Context = {
   request?: {
     useSsl: boolean;
     internalExperimentFlags: any[];
+    eats?: string;
+    returnLogEntry?: boolean;
+    sessionInfo?: { token: string };
+    attestationResponseData?: {
+      challenge: string;
+      webResponse: string;
+    };
+    reauthRequestInfo?: {
+      encodedReauthProofToken: string;
+    };
   };
 }
 
