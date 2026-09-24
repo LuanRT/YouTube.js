@@ -569,7 +569,7 @@ export default class Innertube {
   }
 
   /**
-   * Fetches from a `ytcfg` and attestation data from a YouTube page url
+   * Fetches `ytcfg` and attestation data from a YouTube page url
    */
   async pageConfig(page_url: string) {
     const url = new URL(page_url);
