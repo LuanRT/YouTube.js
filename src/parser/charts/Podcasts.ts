@@ -5,7 +5,7 @@ import type { ObservedArray } from '../helpers.js';
 import { Parser, type IBrowseResponse } from '../index.js';
 import { MusicAnalyticsSection, SectionList, type MusicAnalyticsPerspectiveMetadata } from '../nodes.js';
 
-export default class Location {
+export default class Podcasts {
   readonly #page: IBrowseResponse;
   
   #analytics_section: MusicAnalyticsSection;
