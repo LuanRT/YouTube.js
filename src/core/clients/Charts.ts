@@ -14,7 +14,7 @@ interface ChartsQueryArgsBase {
   perspective: Perspective;
   country_code?: CountryCode;
 }
-export type DateRange = { date_start?: undefined; date_end?: Date } | { date_start: Date; date_end: Date };
+export type DateRange = { date_start?: never; date_end?: Date } | { date_start: Date; date_end: Date };
 interface ChartsQueryArgsHome extends ChartsQueryArgsBase { perspective: 'CHART_HOME'; }
 interface ChartsQueryArgsAnalytics extends ChartsQueryArgsBase { perspective: 'CHART_DETAILS'; chart_type: Exclude<ChartType, 'PODCAST_SHOWS_BY_WATCH_TIME'>; period: PeriodType; chart_attribute?: ChartLanguage; date_end?: Date; }
 interface ChartsQueryArgsPodcast extends ChartsQueryArgsBase { perspective: 'PODCAST_SHOW'; period: PeriodType; date_end?: Date; }
@@ -92,7 +92,7 @@ export default class Charts {
     return response;
   }
 
-  async getHome(country_code: CountryCode) {
+  async getHome(country_code?: CountryCode) {
     return new Home(await this.call('FEmusic_analytics_charts_home', { perspective: 'CHART_HOME', country_code }));
   }
 
