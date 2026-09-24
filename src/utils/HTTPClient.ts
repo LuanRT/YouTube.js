@@ -7,8 +7,8 @@ import {
   getCookie
 } from './Utils.js';
 
-import type { Context, Session } from '../core/index.js';
-import type { FetchFunction } from '../types/index.js';
+import type { Context, PartialContext, Session } from '../core/index.js';
+import type { FetchFunction, InnerTubeClient } from '../types/index.js';
 
 export interface HTTPClientInit {
   baseURL?: string;
@@ -158,11 +158,11 @@ export default class HTTPClient {
   }
 
   #processJsonPayload(json_body: string, session: Session): ProcessedJsonPayload {
-    const parsed_payload = JSON.parse(json_body);
+    const parsed_payload: { [key: string]: any, client?: InnerTubeClient, one_time_context?: PartialContext } = JSON.parse(json_body);
 
     // Deep copy since we're going to be modifying it.
     const adjusted_context = JSON.parse(JSON.stringify(session.context)) as Context;
-    this.#adjustContext(adjusted_context, parsed_payload.client);
+    this.#adjustContext(adjusted_context, parsed_payload.client, parsed_payload.one_time_context);
 
     const new_payload = {
       ...parsed_payload,
@@ -174,6 +174,7 @@ export default class HTTPClient {
     const clientNameId = Constants.CLIENT_NAME_IDS[clientNameFromAdjustedContext];
 
     delete new_payload.client;
+    delete new_payload.one_time_context;
 
     const isWebKids = new_payload.context.client.clientName === Constants.CLIENTS.WEB_KIDS.NAME;
 
@@ -203,7 +204,16 @@ export default class HTTPClient {
     }
   }
 
-  #adjustContext(ctx: Context, client?: string): void {
+  #adjustContext(ctx: Context, client?: string, otx?: PartialContext): void {
+    if (otx) {
+      ctx.client = { ...ctx.client, ...otx.client };
+      ctx.user = { ...ctx.user, ...otx.user };
+      if (ctx.request || otx.request)
+        ctx.request = { ...ctx.request, ...otx.request } as Context['request'];
+      if (ctx.thirdParty || otx.thirdParty)
+        ctx.thirdParty = { ...ctx.thirdParty, ...otx.thirdParty } as Context['thirdParty'];
+    }
+
     if (!client)
       return;
 
