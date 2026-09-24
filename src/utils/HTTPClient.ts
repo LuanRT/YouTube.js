@@ -210,8 +210,6 @@ export default class HTTPClient {
       ctx.user = { ...ctx.user, ...otx.user };
       if (ctx.request || otx.request)
         ctx.request = { ...ctx.request, ...otx.request } as Context['request'];
-      if (ctx.thirdParty || otx.thirdParty)
-        ctx.thirdParty = { ...ctx.thirdParty, ...otx.thirdParty } as Context['thirdParty'];
     }
 
     if (!client)
