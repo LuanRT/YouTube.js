@@ -28,11 +28,19 @@ export default class Charts {
   constructor(session: Session) {
     this.#actions = session.actions;
   }
+
   #appendChartType(query: URLSearchParams, chart_type: ChartType) {
     query.append('chart_params_chart_type', chart_type); 
   }
   #appendEntityParamsEntity(query: URLSearchParams, entity: EntityParamsEntity){
     query.append('entity_params_entity', entity);
+  }
+  #appendDateParamsInterval(query: URLSearchParams, args: ChartsQueryArgsArtist | ChartsQueryArgsLocation) {
+    if (args.date_end) {
+      if (args.date_start) query.append('date_params_start_time', this.#formatDateTime(args.date_start));
+      query.append('date_params_end_time', this.#formatDateTime(args.date_end));
+    }
+    if (args.interval) query.append('date_params_interval', args.interval);
   }
 
   #formatDate(date: Date) {
@@ -63,21 +71,13 @@ export default class Charts {
         break;
       case 'ARTIST':
         this.#appendEntityParamsEntity(query, 'ARTIST');
+        this.#appendDateParamsInterval(query, args);
         query.append('artist_params_id', args.artist_id);
-        if (args.date_end) {
-          if (args.date_start) query.append('date_params_start_time', this.#formatDateTime(args.date_start));
-          query.append('date_params_end_time', this.#formatDateTime(args.date_end));
-        }
-        if (args.interval) query.append('date_params_interval', args.interval);
         break;
       case 'LOCATION':
         this.#appendEntityParamsEntity(query, 'LOCATION');
+        this.#appendDateParamsInterval(query, args);
         query.append('location_params_id', args.location_id);
-        if (args.date_end) {
-          if (args.date_start) query.append('date_params_start_time', this.#formatDateTime(args.date_start));
-          query.append('date_params_end_time', this.#formatDateTime(args.date_end));
-        }
-        if (args.interval) query.append('date_params_interval', args.interval);
         break;
     }
     return query.toString();
