@@ -7,8 +7,8 @@ import {
   getCookie
 } from './Utils.js';
 
-import type { Context, Session } from '../core/index.js';
-import type { FetchFunction } from '../types/index.js';
+import type { Context, PartialContext, Session } from '../core/index.js';
+import type { FetchFunction, InnerTubeClient } from '../types/index.js';
 
 export interface HTTPClientInit {
   baseURL?: string;
@@ -46,8 +46,12 @@ export default class HTTPClient {
     const innertube_url = Constants.URLS.API.PRODUCTION_1 + session.api_version;
     const baseURL = init?.baseURL || innertube_url;
 
+    const input_is_raw_url = typeof input === 'string' && (/^https?:\/\//i).test(input);
+
     const request_url = typeof input === 'string'
-      ? new URL(`${baseURL}${baseURL.endsWith('/') || input.startsWith('/') ? '' : '/'}${input}`)
+      ? (input_is_raw_url
+        ? new URL(input)
+        : new URL(`${baseURL.replace(/\/+$/, '')}/${input.replace(/^\/+/, '')}`))
       : input instanceof URL ? input : new URL(input.url, baseURL);
 
     const headers =
@@ -61,9 +65,6 @@ export default class HTTPClient {
 
     this.#setupCommonHeaders(request_headers, session, request_url);
 
-    request_url.searchParams.set('prettyPrint', 'false');
-    request_url.searchParams.set('alt', 'json');
-
     const content_type = request_headers.get('Content-Type');
 
     let request_body = body;
@@ -72,6 +73,11 @@ export default class HTTPClient {
     const is_innertube_req =
       baseURL === innertube_url ||
       baseURL === Constants.URLS.YT_UPLOAD;
+
+    if (!input_is_raw_url && is_innertube_req) {
+      request_url.searchParams.set('prettyPrint', 'false');
+      request_url.searchParams.set('alt', 'json');
+    }
 
     // Copy context into payload when possible
     if (content_type === 'application/json' && is_innertube_req && (typeof body === 'string')) {
@@ -138,6 +144,8 @@ export default class HTTPClient {
 
         request_headers.set('Cookie', cookie);
       }
+    } else if (session.logged_in && this.#cookie && input_is_raw_url) {
+      request_headers.set('Cookie', this.#cookie);
     }
 
     const request = new Platform.shim.Request(request_url, input instanceof Platform.shim.Request ? input : init);
@@ -158,11 +166,11 @@ export default class HTTPClient {
   }
 
   #processJsonPayload(json_body: string, session: Session): ProcessedJsonPayload {
-    const parsed_payload = JSON.parse(json_body);
+    const parsed_payload: { [key: string]: any, client?: InnerTubeClient, one_time_context?: PartialContext } = JSON.parse(json_body);
 
     // Deep copy since we're going to be modifying it.
     const adjusted_context = JSON.parse(JSON.stringify(session.context)) as Context;
-    this.#adjustContext(adjusted_context, parsed_payload.client);
+    this.#adjustContext(adjusted_context, parsed_payload.client, parsed_payload.one_time_context);
 
     const new_payload = {
       ...parsed_payload,
@@ -174,6 +182,7 @@ export default class HTTPClient {
     const clientNameId = Constants.CLIENT_NAME_IDS[clientNameFromAdjustedContext];
 
     delete new_payload.client;
+    delete new_payload.one_time_context;
 
     const isWebKids = new_payload.context.client.clientName === Constants.CLIENTS.WEB_KIDS.NAME;
 
@@ -203,7 +212,16 @@ export default class HTTPClient {
     }
   }
 
-  #adjustContext(ctx: Context, client?: string): void {
+  #adjustContext(ctx: Context, client?: string, otx?: PartialContext): void {
+    if (otx) {
+      ctx.client = { ...ctx.client, ...otx.client };
+      ctx.user = { ...ctx.user, ...otx.user };
+      if (ctx.request || otx.request)
+        ctx.request = { ...ctx.request, ...otx.request } as Context['request'];
+      if (ctx.thirdParty || otx.thirdParty)
+        ctx.thirdParty = { ...ctx.thirdParty, ...otx.thirdParty } as Context['thirdParty'];
+    }
+
     if (!client)
       return;
 
@@ -333,6 +351,7 @@ export default class HTTPClient {
       case 'WEB_CREATOR':
         ctx.client.clientName = Constants.CLIENTS.WEB_CREATOR.NAME;
         ctx.client.clientVersion = Constants.CLIENTS.WEB_CREATOR.VERSION;
+        if (ctx.request) ctx.request.returnLogEntry = true;
         break;
       default:
         break;

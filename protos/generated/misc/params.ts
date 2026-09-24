@@ -285,6 +285,21 @@ export interface ClipParams_ClipParamsData {
   clipMetadata: string;
 }
 
+export interface CreateBackstagePostParams {
+  channelId: string;
+  unkParam1: number;
+  f6: CreateBackstagePostParams_Field6 | undefined;
+  f9: CreateBackstagePostParams_Field9 | undefined;
+}
+
+export interface CreateBackstagePostParams_Field6 {
+  unkParam3: number;
+}
+
+export interface CreateBackstagePostParams_Field9 {
+  unkParam1: number;
+}
+
 function createBaseVisitorData(): VisitorData {
   return { id: "", timestamp: 0 };
 }
@@ -2729,6 +2744,150 @@ export const ClipParams_ClipParamsData: MessageFns<ClipParams_ClipParamsData> = 
           }
 
           message.clipMetadata = reader.string();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBaseCreateBackstagePostParams(): CreateBackstagePostParams {
+  return { channelId: "", unkParam1: 0, f6: undefined, f9: undefined };
+}
+
+export const CreateBackstagePostParams: MessageFns<CreateBackstagePostParams> = {
+  encode(message: CreateBackstagePostParams, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.channelId !== "") {
+      writer.uint32(10).string(message.channelId);
+    }
+    if (message.unkParam1 !== 0) {
+      writer.uint32(16).int32(message.unkParam1);
+    }
+    if (message.f6 !== undefined) {
+      CreateBackstagePostParams_Field6.encode(message.f6, writer.uint32(50).fork()).join();
+    }
+    if (message.f9 !== undefined) {
+      CreateBackstagePostParams_Field9.encode(message.f9, writer.uint32(74).fork()).join();
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): CreateBackstagePostParams {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCreateBackstagePostParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 10) {
+            break;
+          }
+
+          message.channelId = reader.string();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.unkParam1 = reader.int32();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
+            break;
+          }
+
+          message.f6 = CreateBackstagePostParams_Field6.decode(reader, reader.uint32());
+          continue;
+        }
+        case 9: {
+          if (tag !== 74) {
+            break;
+          }
+
+          message.f9 = CreateBackstagePostParams_Field9.decode(reader, reader.uint32());
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBaseCreateBackstagePostParams_Field6(): CreateBackstagePostParams_Field6 {
+  return { unkParam3: 0 };
+}
+
+export const CreateBackstagePostParams_Field6: MessageFns<CreateBackstagePostParams_Field6> = {
+  encode(message: CreateBackstagePostParams_Field6, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.unkParam3 !== 0) {
+      writer.uint32(24).int32(message.unkParam3);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): CreateBackstagePostParams_Field6 {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCreateBackstagePostParams_Field6();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 3: {
+          if (tag !== 24) {
+            break;
+          }
+
+          message.unkParam3 = reader.int32();
+          continue;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBaseCreateBackstagePostParams_Field9(): CreateBackstagePostParams_Field9 {
+  return { unkParam1: 0 };
+}
+
+export const CreateBackstagePostParams_Field9: MessageFns<CreateBackstagePostParams_Field9> = {
+  encode(message: CreateBackstagePostParams_Field9, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.unkParam1 !== 0) {
+      writer.uint32(8).int32(message.unkParam1);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): CreateBackstagePostParams_Field9 {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCreateBackstagePostParams_Field9();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag !== 8) {
+            break;
+          }
+
+          message.unkParam1 = reader.int32();
           continue;
         }
       }

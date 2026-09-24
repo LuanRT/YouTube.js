@@ -41,6 +41,7 @@ import CommentView from './classes/comments/CommentView.js';
 import MusicThumbnail from './classes/MusicThumbnail.js';
 import OpenPopupAction from './classes/actions/OpenPopupAction.js';
 import AppendContinuationItemsAction from './classes/actions/AppendContinuationItemsAction.js';
+import RunAttestationCommand from './classes/commands/RunAttestationCommand.js';
 import type { IParsedResponse, IRawResponse, RawData, RawNode } from './types/index.js';
 
 const TAG = 'Parser';
@@ -509,6 +510,50 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.challenge = data.challenge;
   }
 
+  if (data.botguardData) {
+    const interpreter_url = {
+      private_do_not_access_or_else_trusted_resource_url_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue,
+      private_do_not_access_or_else_safe_script_wrapped_value: data.botguardData.interpreterSafeUrl?.privateDoNotAccessOrElseSafeScriptWrappedValue
+    };
+
+    parsed_data.botguard_data = {
+      interpreter_url,
+      program: data.botguardData.program
+    };
+  }
+
+  if (data.ctx) {
+    parsed_data.ctx = data.ctx;
+  }
+
+  if (data.shouldFetchReauthSessionToken !== undefined) {
+    parsed_data.should_fetch_reauth_session_token = data.shouldFetchReauthSessionToken;
+  }
+
+  if (data.encodedReauthProofToken) {
+    parsed_data.encoded_reauth_proof_token = data.encodedReauthProofToken;
+  }
+
+  if (data.sessionRiskCtx) {
+    parsed_data.session_risk_ctx = data.sessionRiskCtx;
+  }
+
+  if (data.sessionToken) {
+    parsed_data.session_token = data.sessionToken;
+  }
+
+  if (data.webReauthUrl) {
+    parsed_data.web_reauth_url = data.webReauthUrl;
+  }
+
+  if (data.plt) {
+    parsed_data.plt = data.plt;
+  }
+
+  if (data.requireChallenge) {
+    parsed_data.require_challenge = data.requireChallenge;
+  }
+
   if (data.playerResponse) {
     parsed_data.player_response = parseResponse(data.playerResponse);
   }
@@ -532,6 +577,11 @@ export function parseResponse<T extends IParsedResponse = IParsedResponse>(data:
     parsed_data.target_id = data.targetId;
   }
 
+  const challenge_prompt = data.responseContext?.webResponseContextExtensionData?.challenge;
+  if (challenge_prompt) {
+    parsed_data.challenge_prompt = challenge_prompt;
+  }
+  
   if ('pollDelayMs' in data) {
     parsed_data.poll_delay_ms = data.pollDelayMs;
   }
@@ -782,7 +832,9 @@ export function parseRR(actions: RawNode[]) {
       return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
     else if (action.openPopupAction)
       return new OpenPopupAction(action.openPopupAction);
-  }).filter((item) => item) as (AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand)[]);
+    else if (action.runAttestationCommand)
+      return new RunAttestationCommand(action.runAttestationCommand);
+  }).filter((item) => item) as (AppendContinuationItemsAction | OpenPopupAction | NavigateAction | ShowMiniplayerCommand | ReloadContinuationItemsCommand | RunAttestationCommand)[]);
 }
 
 export function parseActions(data: RawData) {
