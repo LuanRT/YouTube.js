@@ -509,6 +509,7 @@ export { default as TicketEvent } from './classes/TicketEvent.js';
 export { default as TicketShelf } from './classes/TicketShelf.js';
 export { default as TimedMarkerDecoration } from './classes/TimedMarkerDecoration.js';
 export { default as TitleAndButtonListHeader } from './classes/TitleAndButtonListHeader.js';
+export { default as ToggleableListItemView } from './classes/ToggleableListItemView.js';
 export { default as ToggleButton } from './classes/ToggleButton.js';
 export { default as ToggleButtonView } from './classes/ToggleButtonView.js';
 export { default as ToggleFormField } from './classes/ToggleFormField.js';
