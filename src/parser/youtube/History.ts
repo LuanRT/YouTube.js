@@ -2,6 +2,8 @@ import Feed from '../../core/mixins/Feed.js';
 import ItemSection from '../classes/ItemSection.js';
 import BrowseFeedActions from '../classes/BrowseFeedActions.js';
 import Button from '../classes/Button.js';
+import SearchBox from '../classes/SearchBox.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
@@ -27,6 +29,21 @@ export default class History extends Feed<IBrowseResponse> {
     if (!response)
       throw new Error('No continuation data found');
     return new History(this.actions, response, true);
+  }
+
+  /**
+   * Searches the watch history feed using the feed actions search box.
+   * @param query - The search query.
+   */
+  async search(query: string): Promise<History> {
+    const search_box = this.feed_actions?.contents.firstOfType(SearchBox);
+
+    if (!search_box)
+      throw new InnertubeError('Search box not found in watch history feed actions');
+
+    const response = await search_box.endpoint.call(this.actions, { query });
+
+    return new History(this.actions, response);
   }
 
   /**
