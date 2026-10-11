@@ -7,6 +7,7 @@ import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
 import Video from '../classes/Video.js';
 import LockupView from '../classes/LockupView.js';
+import MenuServiceItem from '../classes/menus/MenuServiceItem.js';
 
 // TODO: make feed actions usable
 export default class History extends Feed<IBrowseResponse> {
@@ -42,7 +43,11 @@ export default class History extends Feed<IBrowseResponse> {
         for (const content of section.contents) {
           if (content.is(Video)) {
             if (content.video_id === video_id && content.menu) {
-              feedbackToken = content.menu.top_level_buttons[0].as(Button).endpoint.payload.feedbackToken;
+              const removeButton =
+                content.menu.top_level_buttons.find((button) => button.is(Button))?.as(Button) ??
+                content.menu.items.find((item) => item.is(MenuServiceItem) && Boolean(item.endpoint.payload.feedbackToken))?.as(MenuServiceItem);
+
+              feedbackToken = removeButton?.endpoint.payload.feedbackToken;
               break;
             }
           } else if (content.is(LockupView)) {
