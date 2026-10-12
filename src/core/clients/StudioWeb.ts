@@ -619,8 +619,10 @@ export default class StudioWeb {
     while ((feedback = await feedback.next()) !== null);
   }
 
-  async uploadVideo(file: FileNamedBufferReader, details: Partial<UploadVideoDetails> = {}, video_read_mask: Partial<typeof TRUE_VIDEO_READ_MASK> = TRUE_VIDEO_READ_MASK, 
-    on_scotty_progress?: (written_bytes: number, total_bytes: number) => void, on_initial_create_video?: (full_created: { created: ICreateVideoResponse, feedback_token: string | null }) => any) {
+  async uploadVideo(file: FileNamedBufferReader, details: Partial<UploadVideoDetails> = {}, 
+    on_scotty_progress?: (written_bytes: number, total_bytes: number) => void, on_initial_create_video?: (full_created: { created: ICreateVideoResponse, feedback_token: string | null }) => any, 
+    video_read_mask: Partial<typeof TRUE_VIDEO_READ_MASK> = TRUE_VIDEO_READ_MASK) {
+    
     const frontend_upload_id = `innertube_studio:${Platform.shim.uuidv4().toUpperCase()}:0`;
     const start = await this.#scottyStart(UPLOAD_TYPES_TO_START_URL['VIDEO'], file, { frontendUploadId: frontend_upload_id });
 
