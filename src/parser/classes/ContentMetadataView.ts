@@ -11,6 +11,8 @@ export type MetadataRow = {
     text: Text | null;
     avatar_stack: AvatarStackView | null;
     enable_truncation?: boolean;
+    accessibility_label?: string;
+    leading_icon?: RawNode;
   }[];
   badges: ObservedArray<BadgeView>
 };
@@ -28,7 +30,9 @@ export default class ContentMetadataView extends YTNode {
       metadata_parts: row.metadataParts?.map((part: RawNode) => ({
         text: part.text ? Text.fromAttributed(part.text) : null,
         avatar_stack: Parser.parseItem(part.avatarStack, AvatarStackView),
-        enable_truncation: data.enableTruncation
+        enable_truncation: part.enableTruncation,
+        accessibility_label: part.accessibilityLabel,
+        leading_icon: part.leadingIcon
       })),
       badges: Parser.parseArray(row.badges, BadgeView)
     })) || [];

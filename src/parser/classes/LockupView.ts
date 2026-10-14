@@ -17,7 +17,8 @@ export default class LockupView extends YTNode {
   constructor(data: RawNode) {
     super();
     this.content_image = Parser.parseItem(data.contentImage, [ CollectionThumbnailView, ThumbnailView ]);
-    this.metadata = Parser.parseItem(data.metadata, LockupMetadataView);
+    this.metadata = Parser.parseItem(data.metadata, LockupMetadataView) ??
+      (data.metadata?.lockupMetadataViewModel ? new LockupMetadataView(data.metadata.lockupMetadataViewModel) : null);
     this.content_id = data.contentId;
     this.content_type = data.contentType.replace('LOCKUP_CONTENT_TYPE_', '');
     this.renderer_context = new RendererContext(data.rendererContext);

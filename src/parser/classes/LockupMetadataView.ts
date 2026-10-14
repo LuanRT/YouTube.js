@@ -17,7 +17,8 @@ export default class LockupMetadataView extends YTNode {
   constructor(data: RawNode) {
     super();
     this.title = Text.fromAttributed(data.title);
-    this.metadata = Parser.parseItem(data.metadata, ContentMetadataView);
+    this.metadata = Parser.parseItem(data.metadata, ContentMetadataView) ??
+      (data.metadata?.contentMetadataViewModel ? new ContentMetadataView(data.metadata.contentMetadataViewModel) : null);
     this.image = Parser.parseItem(data.image, [ DecoratedAvatarView, AvatarStackView ]);
     this.menu_button = Parser.parseItem(data.menuButton, ButtonView);
   }
