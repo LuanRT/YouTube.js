@@ -20,6 +20,7 @@ export { default as UpdateSubscribeButtonAction } from './classes/actions/Update
 export { default as ActiveAccountHeader } from './classes/ActiveAccountHeader.js';
 export { default as AddToPlaylist } from './classes/AddToPlaylist.js';
 export { default as Alert } from './classes/Alert.js';
+export { default as AlertWithActions } from './classes/AlertWithActions.js';
 export { default as AlertWithButton } from './classes/AlertWithButton.js';
 export { default as AnimatedThumbnailOverlayView } from './classes/AnimatedThumbnailOverlayView.js';
 export { default as AttributionView } from './classes/AttributionView.js';
@@ -82,6 +83,7 @@ export { default as AddToPlaylistCommand } from './classes/commands/AddToPlaylis
 export { default as CommandExecutorCommand } from './classes/commands/CommandExecutorCommand.js';
 export { default as ContinuationCommand } from './classes/commands/ContinuationCommand.js';
 export { default as GetKidsBlocklistPickerCommand } from './classes/commands/GetKidsBlocklistPickerCommand.js';
+export { default as PlayerErrorCommand } from './classes/commands/PlayerErrorCommand.js';
 export { default as RunAttestationCommand } from './classes/commands/RunAttestationCommand.js';
 export { default as ShowDialogCommand } from './classes/commands/ShowDialogCommand.js';
 export { default as ShowSheetCommand } from './classes/commands/ShowSheetCommand.js';
@@ -104,6 +106,7 @@ export { default as EmojiPicker } from './classes/comments/EmojiPicker.js';
 export { default as PdgCommentChip } from './classes/comments/PdgCommentChip.js';
 export { default as SponsorCommentBadge } from './classes/comments/SponsorCommentBadge.js';
 export { default as VoiceReplyContainerView } from './classes/comments/VoiceReplyContainerView.js';
+export { default as CommentsEntryPoint } from './classes/CommentsEntryPoint.js';
 export { default as CompactChannel } from './classes/CompactChannel.js';
 export { default as CompactLink } from './classes/CompactLink.js';
 export { default as CompactMix } from './classes/CompactMix.js';
@@ -299,6 +302,7 @@ export { default as MacroMarkersInfoItem } from './classes/MacroMarkersInfoItem.
 export { default as MacroMarkersList } from './classes/MacroMarkersList.js';
 export { default as MacroMarkersListEntity } from './classes/MacroMarkersListEntity.js';
 export { default as MacroMarkersListItem } from './classes/MacroMarkersListItem.js';
+export { default as MacroMarkersListView } from './classes/MacroMarkersListView.js';
 export { default as Menu } from './classes/menus/Menu.js';
 export { default as MenuFlexibleItem } from './classes/menus/MenuFlexibleItem.js';
 export { default as MenuNavigationItem } from './classes/menus/MenuNavigationItem.js';
@@ -430,6 +434,7 @@ export { default as RichMetadata } from './classes/RichMetadata.js';
 export { default as RichMetadataRow } from './classes/RichMetadataRow.js';
 export { default as RichSection } from './classes/RichSection.js';
 export { default as RichShelf } from './classes/RichShelf.js';
+export { default as RichTextListView } from './classes/RichTextListView.js';
 export { default as SearchBox } from './classes/SearchBox.js';
 export { default as SearchFilter } from './classes/SearchFilter.js';
 export { default as SearchFilterGroup } from './classes/SearchFilterGroup.js';
@@ -535,7 +540,10 @@ export { default as VerticalWatchCardList } from './classes/VerticalWatchCardLis
 export { default as Video } from './classes/Video.js';
 export { default as VideoAttributesSectionView } from './classes/VideoAttributesSectionView.js';
 export { default as VideoAttributeView } from './classes/VideoAttributeView.js';
+export { default as VideoBadgeView } from './classes/VideoBadgeView.js';
 export { default as VideoCard } from './classes/VideoCard.js';
+export { default as VideoDescriptionChannelSection } from './classes/VideoDescriptionChannelSection.js';
+export { default as VideoDescriptionCommentsSection } from './classes/VideoDescriptionCommentsSection.js';
 export { default as VideoDescriptionCourseSection } from './classes/VideoDescriptionCourseSection.js';
 export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHeader.js';
 export { default as VideoDescriptionInfocardsSection } from './classes/VideoDescriptionInfocardsSection.js';
@@ -543,6 +551,7 @@ export { default as VideoDescriptionMusicSection } from './classes/VideoDescript
 export { default as VideoDescriptionTranscriptSection } from './classes/VideoDescriptionTranscriptSection.js';
 export { default as VideoDescriptionYouchatSectionView } from './classes/VideoDescriptionYouchatSectionView.js';
 export { default as VideoInfoCardContent } from './classes/VideoInfoCardContent.js';
+export { default as VideoMetadata } from './classes/VideoMetadata.js';
 export { default as VideoMetadataCarouselView } from './classes/VideoMetadataCarouselView.js';
 export { default as VideoOwner } from './classes/VideoOwner.js';
 export { default as VideoPrimaryInfo } from './classes/VideoPrimaryInfo.js';

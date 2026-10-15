@@ -14,6 +14,10 @@ import ExpandableMetadata from './ExpandableMetadata.js';
 import MerchandiseShelf from './MerchandiseShelf.js';
 import HypeFanCreditsSectionView from './HypeFanCreditsSectionView.js';
 import VideoDescriptionYouchatSectionView from './VideoDescriptionYouchatSectionView.js';
+import VideoDescriptionChannelSection from './VideoDescriptionChannelSection.js';
+import VideoDescriptionCommentsSection from './VideoDescriptionCommentsSection.js';
+import ItemSection from './ItemSection.js';
+import MacroMarkersListView from './MacroMarkersListView.js';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
@@ -21,8 +25,10 @@ export default class StructuredDescriptionContent extends YTNode {
   public items: ObservedArray<
     VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
     VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | VideoDescriptionCourseSection |
-    VideoDescriptionYouchatSectionView | HorizontalCardList | ReelShelf | VideoAttributesSectionView |
-    HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf | HypeFanCreditsSectionView
+    VideoDescriptionChannelSection | VideoDescriptionCommentsSection | VideoDescriptionYouchatSectionView |
+    HorizontalCardList | ReelShelf | VideoAttributesSectionView |
+    HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf | HypeFanCreditsSectionView |
+    ItemSection | MacroMarkersListView
   >;
 
   constructor(data: RawNode) {
@@ -30,8 +36,10 @@ export default class StructuredDescriptionContent extends YTNode {
     this.items = Parser.parseArray(data.items, [
       VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
       VideoDescriptionInfocardsSection, VideoDescriptionCourseSection, VideoDescriptionTranscriptSection,
+      VideoDescriptionChannelSection, VideoDescriptionCommentsSection,
       VideoDescriptionYouchatSectionView, HorizontalCardList, ReelShelf, VideoAttributesSectionView,
-      HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf, HypeFanCreditsSectionView
+      HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf, HypeFanCreditsSectionView,
+      ItemSection, MacroMarkersListView
     ]);
   }
 }
