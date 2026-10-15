@@ -18,8 +18,8 @@ export default class LockupView extends YTNode {
 
   public content_image: CollectionThumbnailView | ThumbnailView | null;
   public metadata: LockupMetadataView | null;
-  public content_id?: string;
-  public content_type?: LockupContentType;
+  public content_id: string;
+  public content_type: LockupContentType;
   public styling?: LockupStyling;
   public renderer_context: RendererContext;
 
@@ -27,12 +27,8 @@ export default class LockupView extends YTNode {
     super();
     this.content_image = Parser.parseItem(data.contentImage, [ CollectionThumbnailView, ThumbnailView ]);
     this.metadata = Parser.parseItem(data.metadata, LockupMetadataView);
-
     this.content_id = data.contentId;
-
-    if (Reflect.has(data, 'contentType')) {
-      this.content_type = data.contentType.replace('LOCKUP_CONTENT_TYPE_', '');
-    }
+    this.content_type = data.contentType?.replace('LOCKUP_CONTENT_TYPE_', '') ?? 'UNSPECIFIED';
 
     if (Reflect.has(data, 'styling')) {
       this.styling = {

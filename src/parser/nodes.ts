@@ -89,6 +89,7 @@ export { default as UpdateEngagementPanelContentCommand } from './classes/comman
 export { default as AuthorCommentBadge } from './classes/comments/AuthorCommentBadge.js';
 export { default as CommentActionButtons } from './classes/comments/CommentActionButtons.js';
 export { default as CommentDialog } from './classes/comments/CommentDialog.js';
+export { default as CommentImageAttachmentView } from './classes/comments/CommentImageAttachmentView.js';
 export { default as CommentReplies } from './classes/comments/CommentReplies.js';
 export { default as CommentReplyDialog } from './classes/comments/CommentReplyDialog.js';
 export { default as CommentsEntryPointHeader } from './classes/comments/CommentsEntryPointHeader.js';
