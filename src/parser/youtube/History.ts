@@ -2,15 +2,18 @@ import Feed from '../../core/mixins/Feed.js';
 import ItemSection from '../classes/ItemSection.js';
 import BrowseFeedActions from '../classes/BrowseFeedActions.js';
 import Button from '../classes/Button.js';
+import SearchBox from '../classes/SearchBox.js';
+import { InnertubeError } from '../../utils/Utils.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
+import type { ObservedArray } from '../helpers.js';
 import Video from '../classes/Video.js';
 import LockupView from '../classes/LockupView.js';
 
 // TODO: make feed actions usable
 export default class History extends Feed<IBrowseResponse> {
-  public sections: ItemSection[];
+  public sections: ObservedArray<ItemSection>;
   public feed_actions: BrowseFeedActions;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
@@ -27,6 +30,21 @@ export default class History extends Feed<IBrowseResponse> {
     if (!response)
       throw new Error('No continuation data found');
     return new History(this.actions, response, true);
+  }
+
+  /**
+   * Searches the watch history feed using the feed actions search box.
+   * @param query - The search query.
+   */
+  async search(query: string): Promise<History> {
+    const search_box = this.feed_actions?.contents.firstOfType(SearchBox);
+
+    if (!search_box)
+      throw new InnertubeError('Search box not found in watch history feed actions');
+
+    const response = await search_box.endpoint.call(this.actions, { query });
+
+    return new History(this.actions, response);
   }
 
   /**
