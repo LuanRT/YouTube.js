@@ -7,12 +7,13 @@ import { InnertubeError } from '../../utils/Utils.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { IBrowseResponse } from '../types/index.js';
+import type { ObservedArray } from '../helpers.js';
 import Video from '../classes/Video.js';
 import LockupView from '../classes/LockupView.js';
 
 // TODO: make feed actions usable
 export default class History extends Feed<IBrowseResponse> {
-  public sections: ItemSection[];
+  public sections: ObservedArray<ItemSection>;
   public feed_actions: BrowseFeedActions;
 
   constructor(actions: Actions, data: ApiResponse | IBrowseResponse, already_parsed = false) {
