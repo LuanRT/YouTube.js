@@ -99,8 +99,6 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
 
     const lockup_views = memo.getType(LockupView)
       .filter((lockup) => {
-        // `content_type` is absent on some lockups (see `LockupView`); such a
-        // node names no playlist and does not belong in this list.
         return !!lockup.content_type && [ 'PLAYLIST', 'ALBUM', 'PODCAST', 'SHOW' ].includes(lockup.content_type);
       });
 
