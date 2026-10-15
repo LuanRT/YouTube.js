@@ -19,7 +19,7 @@ export default class LockupView extends YTNode {
     this.content_image = Parser.parseItem(data.contentImage, [ CollectionThumbnailView, ThumbnailView ]);
     this.metadata = Parser.parseItem(data.metadata, LockupMetadataView);
     this.content_id = data.contentId;
-    this.content_type = data.contentType.replace('LOCKUP_CONTENT_TYPE_', '');
+    this.content_type = data.contentType?.replace('LOCKUP_CONTENT_TYPE_', '') ?? 'UNSPECIFIED';
     this.renderer_context = new RendererContext(data.rendererContext);
   }
 }
