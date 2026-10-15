@@ -18,7 +18,7 @@ export default class LockupView extends YTNode {
 
   public content_image: CollectionThumbnailView | ThumbnailView | null;
   public metadata: LockupMetadataView | null;
-  public content_id: string;
+  public content_id?: string;
   public content_type: LockupContentType;
   public styling?: LockupStyling;
   public renderer_context: RendererContext;
