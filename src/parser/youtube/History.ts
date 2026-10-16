@@ -159,11 +159,7 @@ export default class History extends Feed<IBrowseResponse> {
       }
 
       if (feedbackToken) {
-        const body = { feedbackTokens: [ feedbackToken ] };
-        const response = await this.actions.execute('/feedback', body);
-        const data = response.data;
-
-        if (!data.feedbackResponses[0].isProcessed) {
+        if (!await this.#submitFeedback(feedbackToken)) {
           throw new Error('Failed to remove video from watch history');
         }
 

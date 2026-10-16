@@ -15,6 +15,19 @@ function historyWith(contents: object[]) {
   return { history, execute };
 }
 
+function historyWithVideo() {
+  return historyWith([ {
+    itemSectionRenderer: {
+      contents: [ {
+        videoRenderer: {
+          videoId: 'test-video',
+          menu: { menuRenderer: { topLevelButtons: [ button('Remove from watch history') ] } }
+        }
+      } ]
+    }
+  } ]);
+}
+
 describe('History controls', () => {
   test.each([
     { label: 'Pause watch history', paused: false },
@@ -105,5 +118,25 @@ describe('History controls', () => {
     execute.mockRejectedValue(new Error('Request failed'));
 
     await expect(history.resumeWatchHistory()).rejects.toThrow('Request failed');
+  });
+
+  describe('removeVideo', () => {
+    test('submits the video token and returns true when processed', async () => {
+      const { history, execute } = historyWithVideo();
+
+      await expect(history.removeVideo('test-video')).resolves.toBe(true);
+      expect(execute).toHaveBeenCalledWith('/feedback', { feedbackTokens: [ 'test-token' ] });
+    });
+
+    test.each([
+      { name: 'unprocessed feedback', data: { feedbackResponses: [ { isProcessed: false } ] } },
+      { name: 'empty feedback responses', data: { feedbackResponses: [] } },
+      { name: 'missing feedback responses', data: {} }
+    ])('rejects with a descriptive error for $name', async ({ data }) => {
+      const { history, execute } = historyWithVideo();
+      execute.mockResolvedValue({ data });
+
+      await expect(history.removeVideo('test-video')).rejects.toThrow('Failed to remove video from watch history');
+    });
   });
 });
