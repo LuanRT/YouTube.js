@@ -13,7 +13,7 @@ export default class ToggleableListItemView extends YTNode {
     is_toggled: boolean;
   };
   public entity_key?: string;
-  public entity_selector_type: string;
+  public entity_selector_type?: string;
 
   constructor(data: RawNode) {
     super();
