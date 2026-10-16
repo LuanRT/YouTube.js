@@ -6,7 +6,7 @@ import SearchBox from '../classes/SearchBox.js';
 import { InnertubeError } from '../../utils/Utils.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
-import type { IBrowseResponse } from '../types/index.js';
+import type { IBrowseResponse, RawNode } from '../types/index.js';
 import type { ObservedArray } from '../helpers.js';
 import Video from '../classes/Video.js';
 import LockupView from '../classes/LockupView.js';
@@ -65,9 +65,13 @@ export default class History extends Feed<IBrowseResponse> {
             }
           } else if (content.is(LockupView)) {
             if (content.content_id === video_id) {
-              const listItems = content.metadata?.menu_button?.on_tap?.payload.panelLoadingStrategy.inlineContent.sheetViewModel.content.listViewModel.listItems;
-              const listItem = listItems.find((video: { listItemViewModel: { title: { content: string; }; }; }) => video.listItemViewModel?.title.content === 'Remove from watch history');
-              feedbackToken = listItem.listItemViewModel.rendererContext.commandContext.onTap.innertubeCommand.feedbackEndpoint.feedbackToken;
+              const menu = content.metadata?.menu_button?.on_tap?.payload;
+              const listItems = menu?.panelLoadingStrategy?.inlineContent?.sheetViewModel?.content?.listViewModel?.listItems as RawNode[] | undefined;
+              feedbackToken = listItems?.map((item) => {
+                const command = item?.listItemViewModel?.rendererContext?.commandContext?.onTap?.innertubeCommand;
+                return command?.feedbackEndpoint?.feedbackToken ??
+                  command?.confirmDialogEndpoint?.confirmDialogRenderer?.confirmEndpoint?.feedbackEndpoint?.feedbackToken;
+              }).find((token) => typeof token === 'string' && token.length > 0);
               break;
             }
           }
