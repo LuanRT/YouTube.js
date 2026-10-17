@@ -1,0 +1,22 @@
+{
+  "name": "youtube-sabr-download-example",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Downloads a YouTube video using the SABR streaming protocol.",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "bgutils-js": "^3.1.2",
+    "googlevideo": "^4.0.4",
+    "jsdom": "^25.0.0",
+    "youtubei.js": "file:../.."
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
