@@ -11,7 +11,27 @@ import type { ObservedArray } from '../helpers.js';
 import Video from '../classes/Video.js';
 import LockupView from '../classes/LockupView.js';
 
-// TODO: make feed actions usable
+/**
+ * Finds a feedback token within an endpoint payload. The token is exposed directly on some layouts
+ * (`feedbackEndpoint`), but nested under a confirm dialog on others
+ * (`confirmDialogEndpoint.confirmDialogRenderer.confirmEndpoint.feedbackEndpoint`).
+ */
+function findFeedbackToken(node: unknown, depth = 0): string | undefined {
+  if (!node || typeof node !== 'object' || depth > 10)
+    return undefined;
+
+  if ('feedbackToken' in node && typeof node.feedbackToken === 'string')
+    return node.feedbackToken;
+
+  for (const value of Object.values(node)) {
+    const token = findFeedbackToken(value, depth + 1);
+    if (token)
+      return token;
+  }
+
+  return undefined;
+}
+
 export default class History extends Feed<IBrowseResponse> {
   public sections: ObservedArray<ItemSection>;
   public feed_actions: BrowseFeedActions;
@@ -20,6 +40,66 @@ export default class History extends Feed<IBrowseResponse> {
     super(actions, data, already_parsed);
     this.sections = this.memo.getType(ItemSection);
     this.feed_actions = this.memo.getType(BrowseFeedActions)[0];
+  }
+
+  /**
+   * Whether watch history is currently paused.
+   */
+  get is_watch_history_paused(): boolean {
+    return this.#watchHistoryFeedbackToken('resume') !== undefined;
+  }
+
+  /**
+   * Pauses watch history, so that future videos are not recorded.
+   * @returns `true` if YouTube processed the request.
+   */
+  async pauseWatchHistory(): Promise<boolean> {
+    return await this.#submitFeedback(this.#watchHistoryFeedbackToken('pause'));
+  }
+
+  /**
+   * Resumes watch history.
+   * @returns `true` if YouTube processed the request.
+   */
+  async resumeWatchHistory(): Promise<boolean> {
+    return await this.#submitFeedback(this.#watchHistoryFeedbackToken('resume'));
+  }
+
+  /**
+   * Clears the entire watch history.
+   * @returns `true` if YouTube processed the request.
+   */
+  async clearWatchHistory(): Promise<boolean> {
+    return await this.#submitFeedback(this.#watchHistoryFeedbackToken('clear'));
+  }
+
+  #watchHistoryFeedbackToken(action: 'clear' | 'pause' | 'resume'): string | undefined {
+    const patterns = {
+      clear: /clear( all)? watch history/i,
+      pause: /(pause|turn off).*watch history/i,
+      resume: /(resume|turn on).*watch history/i
+    };
+
+    for (const button of this.memo.getType(Button)) {
+      const labels = [ button.text, button.label, button.tooltip ];
+      if (!labels.some((label) => typeof label === 'string' && patterns[action].test(label)))
+        continue;
+
+      const token = findFeedbackToken(button.endpoint.payload);
+      if (token)
+        return token;
+    }
+
+    return undefined;
+  }
+
+  async #submitFeedback(feedback_token?: string): Promise<boolean> {
+    if (!feedback_token)
+      throw new InnertubeError('No watch history feedback token was found on the page');
+
+    const response = await this.actions.execute('/feedback', { feedbackTokens: [ feedback_token ] });
+
+    return Boolean(response.data.feedbackResponses?.[0]?.isProcessed);
   }
 
   /**
@@ -79,11 +159,7 @@ export default class History extends Feed<IBrowseResponse> {
       }
 
       if (feedbackToken) {
-        const body = { feedbackTokens: [ feedbackToken ] };
-        const response = await this.actions.execute('/feedback', body);
-        const data = response.data;
-
-        if (!data.feedbackResponses[0].isProcessed) {
+        if (!await this.#submitFeedback(feedbackToken)) {
           throw new Error('Failed to remove video from watch history');
         }
 
