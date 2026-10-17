@@ -57,7 +57,7 @@ export default class LockupView extends YTNode {
         continue;
 
       for (const badge of overlay.badges) {
-        if (!(/^\d{1,5}:\d{2}(?::\d{2})?$/).test(badge.text))
+        if (!(/^\d{1,3}(?:,\d{3})*:\d{2}(?::\d{2})?$/).test(badge.text))
           continue;
 
         return { text: badge.text, seconds: timeToSeconds(badge.text) };
