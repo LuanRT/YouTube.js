@@ -4,6 +4,7 @@ import Playlist from '../../parser/youtube/Playlist.js';
 import type { Actions } from '../index.js';
 import type { Feed } from '../mixins/index.js';
 import NavigationEndpoint from '../../parser/classes/NavigationEndpoint.js';
+import type { InnerTubeClient } from '../../types/index.js';
 
 export default class PlaylistManager {
   readonly #actions: Actions;
@@ -69,8 +70,9 @@ export default class PlaylistManager {
   /**
    * Adds a given playlist to the library of a user.
    * @param playlist_id - The playlist ID.
+   * @param client - Innertube client to use for action
    */
-  async addToLibrary(playlist_id: string){
+  async addToLibrary(playlist_id: string, client?: InnerTubeClient){
     throwIfMissing({ playlist_id });
 
     if (!this.#actions.session.logged_in)
@@ -79,18 +81,23 @@ export default class PlaylistManager {
     const like_playlist_endpoint = new NavigationEndpoint({
       likeEndpoint: {
         status: 'LIKE',
-        target: playlist_id
+        target: {
+          playlistId: playlist_id
+        }
       }
     });
 
-    return await like_playlist_endpoint.call(this.#actions);
+    return await like_playlist_endpoint.call(this.#actions, {
+      client
+    });
   }
 
   /**
    * Remove a given playlist to the library of a user.
    * @param playlist_id - The playlist ID.
+   * @param client - Innertube client to use for action
    */
-  async removeFromLibrary(playlist_id: string){
+  async removeFromLibrary(playlist_id: string, client?: InnerTubeClient){
     throwIfMissing({ playlist_id });
 
     if (!this.#actions.session.logged_in)
@@ -99,19 +106,24 @@ export default class PlaylistManager {
     const remove_like_playlist_endpoint = new NavigationEndpoint({
       likeEndpoint: {
         status: 'INDIFFERENT',
-        target: playlist_id
+        target: {
+          playlistId: playlist_id
+        }
       }
     });
 
-    return await remove_like_playlist_endpoint.call(this.#actions);
+    return await remove_like_playlist_endpoint.call(this.#actions, {
+      client
+    });
   }
 
   /**
    * Adds videos to a given playlist.
    * @param playlist_id - The playlist ID.
    * @param video_ids - An array of video IDs to add to the playlist.
+   * @param client - Innertube client to use for action
    */
-  async addVideos(playlist_id: string, video_ids: string[]): Promise<{ playlist_id: string; action_result: any }> {
+  async addVideos(playlist_id: string, video_ids: string[], client?: InnerTubeClient): Promise<{ playlist_id: string; action_result: any }> {
     throwIfMissing({ playlist_id, video_ids });
 
     if (!this.#actions.session.logged_in)
@@ -127,7 +139,9 @@ export default class PlaylistManager {
       }
     });
 
-    const response = await playlist_edit_endpoint.call(this.#actions);
+    const response = await playlist_edit_endpoint.call(this.#actions, {
+      client
+    });
 
     return {
       playlist_id,
