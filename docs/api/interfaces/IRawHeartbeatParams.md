@@ -2,7 +2,7 @@
 
 # Interface: IRawHeartbeatParams
 
-Defined in: [src/parser/types/RawResponse.ts:1580](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1580)
+Defined in: [src/parser/types/RawResponse.ts:1580](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/RawResponse.ts#L1580)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/RawResponse.ts:1580](https://github.com/LuanRT/You
 
 > `optional` **drmSessionId?**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1581](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1581)
+Defined in: [src/parser/types/RawResponse.ts:1581](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/RawResponse.ts#L1581)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/types/RawResponse.ts:1581](https://github.com/LuanRT/You
 
 > `optional` **heartbeatServerData?**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1582](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1582)
+Defined in: [src/parser/types/RawResponse.ts:1582](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/RawResponse.ts#L1582)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/parser/types/RawResponse.ts:1582](https://github.com/LuanRT/You
 
 > `optional` **heartbeatToken?**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1583](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1583)
+Defined in: [src/parser/types/RawResponse.ts:1583](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/RawResponse.ts#L1583)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/parser/types/RawResponse.ts:1583](https://github.com/LuanRT/You
 
 > `optional` **intervalMilliseconds?**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1584](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1584)
+Defined in: [src/parser/types/RawResponse.ts:1584](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/RawResponse.ts#L1584)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/parser/types/RawResponse.ts:1584](https://github.com/LuanRT/You
 
 > `optional` **maxRetries?**: `string`
 
-Defined in: [src/parser/types/RawResponse.ts:1585](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1585)
+Defined in: [src/parser/types/RawResponse.ts:1585](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/RawResponse.ts#L1585)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [src/parser/types/RawResponse.ts:1585](https://github.com/LuanRT/You
 
 > `optional` **softFailOnError?**: `boolean`
 
-Defined in: [src/parser/types/RawResponse.ts:1586](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1586)
+Defined in: [src/parser/types/RawResponse.ts:1586](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/RawResponse.ts#L1586)
 
 ***
 
@@ -58,4 +58,4 @@ Defined in: [src/parser/types/RawResponse.ts:1586](https://github.com/LuanRT/You
 
 > `optional` **useInnertubeHeartbeatsForDrm?**: `boolean`
 
-Defined in: [src/parser/types/RawResponse.ts:1587](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/RawResponse.ts#L1587)
+Defined in: [src/parser/types/RawResponse.ts:1587](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/RawResponse.ts#L1587)

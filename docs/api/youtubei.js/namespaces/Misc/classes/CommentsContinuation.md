@@ -2,7 +2,7 @@
 
 # Class: CommentsContinuation
 
-Defined in: [src/parser/classes/misc/CommentsContinuation.ts:10](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/CommentsContinuation.ts#L10)
+Defined in: [src/parser/classes/misc/CommentsContinuation.ts:10](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/CommentsContinuation.ts#L10)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/CommentsContinuation.ts:10](https://github.
 
 > **new CommentsContinuation**(`actions`, `data`): `CommentsContinuation`
 
-Defined in: [src/parser/classes/misc/CommentsContinuation.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/CommentsContinuation.ts#L16)
+Defined in: [src/parser/classes/misc/CommentsContinuation.ts:16](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/CommentsContinuation.ts#L16)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/parser/classes/misc/CommentsContinuation.ts:16](https://github.
 
 > **replies**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`CommentThread`](../../YTNodes/classes/CommentThread.md)\>
 
-Defined in: [src/parser/classes/misc/CommentsContinuation.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/CommentsContinuation.ts#L11)
+Defined in: [src/parser/classes/misc/CommentsContinuation.ts:11](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/CommentsContinuation.ts#L11)
 
 ## Accessors
 
@@ -42,7 +42,7 @@ Defined in: [src/parser/classes/misc/CommentsContinuation.ts:11](https://github.
 
 > **get** **has\_continuation**(): `boolean`
 
-Defined in: [src/parser/classes/misc/CommentsContinuation.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/CommentsContinuation.ts#L41)
+Defined in: [src/parser/classes/misc/CommentsContinuation.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/CommentsContinuation.ts#L41)
 
 Indicates whether this comment thread has more replies that can be fetched.
 
@@ -56,7 +56,7 @@ Indicates whether this comment thread has more replies that can be fetched.
 
 > **getContinuation**(): `Promise`\<`CommentsContinuation`\>
 
-Defined in: [src/parser/classes/misc/CommentsContinuation.ts:48](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/CommentsContinuation.ts#L48)
+Defined in: [src/parser/classes/misc/CommentsContinuation.ts:48](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/CommentsContinuation.ts#L48)
 
 Retrieves next batch of replies.
 

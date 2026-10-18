@@ -2,7 +2,7 @@
 
 # Class: ItemSection
 
-Defined in: [src/parser/classes/ItemSection.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/ItemSection.ts#L11)
+Defined in: [src/parser/classes/ItemSection.ts:11](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ItemSection.ts#L11)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ItemSection.ts:11](https://github.com/LuanRT/You
 
 > **new ItemSection**(`data`): `ItemSection`
 
-Defined in: [src/parser/classes/ItemSection.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/ItemSection.ts#L19)
+Defined in: [src/parser/classes/ItemSection.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ItemSection.ts#L19)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/ItemSection.ts:19](https://github.com/LuanRT/You
 
 > **contents**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/ItemSection.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/ItemSection.ts#L15)
+Defined in: [src/parser/classes/ItemSection.ts:15](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ItemSection.ts#L15)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/ItemSection.ts:15](https://github.com/LuanRT/You
 
 > `optional` **continuation?**: `string`
 
-Defined in: [src/parser/classes/ItemSection.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/ItemSection.ts#L17)
+Defined in: [src/parser/classes/ItemSection.ts:17](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ItemSection.ts#L17)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/ItemSection.ts:17](https://github.com/LuanRT/You
 
 > **header**: [`ItemSectionHeader`](ItemSectionHeader.md) \| [`ItemSectionTabbedHeader`](ItemSectionTabbedHeader.md) \| [`CommentsHeader`](CommentsHeader.md) \| [`SortFilterHeader`](SortFilterHeader.md) \| [`FeedFilterChipBar`](FeedFilterChipBar.md) \| [`ChipBarView`](ChipBarView.md) \| [`RelatedChipCloud`](RelatedChipCloud.md) \| `null`
 
-Defined in: [src/parser/classes/ItemSection.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/ItemSection.ts#L14)
+Defined in: [src/parser/classes/ItemSection.ts:14](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ItemSection.ts#L14)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/ItemSection.ts:14](https://github.com/LuanRT/You
 
 > `optional` **target\_id?**: `string`
 
-Defined in: [src/parser/classes/ItemSection.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/ItemSection.ts#L16)
+Defined in: [src/parser/classes/ItemSection.ts:16](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ItemSection.ts#L16)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/ItemSection.ts:16](https://github.com/LuanRT/You
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'ItemSection'`
 
-Defined in: [src/parser/classes/ItemSection.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/ItemSection.ts#L12)
+Defined in: [src/parser/classes/ItemSection.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ItemSection.ts#L12)
 
 #### Overrides
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/ItemSection.ts:12](https://github.com/LuanRT/You
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -134,7 +134,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ItemSection & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -172,7 +172,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -210,7 +210,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

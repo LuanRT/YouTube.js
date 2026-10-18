@@ -2,7 +2,7 @@
 
 # Class: LiveStreamability
 
-Defined in: [src/parser/classes/LiveStreamability.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L7)
+Defined in: [src/parser/classes/LiveStreamability.ts:7](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L7)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:7](https://github.com/LuanR
 
 > **new LiveStreamability**(`data`): `LiveStreamability`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:25](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L25)
+Defined in: [src/parser/classes/LiveStreamability.ts:25](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L25)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:25](https://github.com/Luan
 
 > `optional` **broadcast\_id?**: `string`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L11)
+Defined in: [src/parser/classes/LiveStreamability.ts:11](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L11)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:11](https://github.com/Luan
 
 > `optional` **creator\_redirect?**: `object`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L16)
+Defined in: [src/parser/classes/LiveStreamability.ts:16](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L16)
 
 #### hide\_autoplay\_toggle?
 
@@ -56,7 +56,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:16](https://github.com/Luan
 
 > `optional` **display\_endscreen?**: `boolean`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L14)
+Defined in: [src/parser/classes/LiveStreamability.ts:14](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L14)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:14](https://github.com/Luan
 
 > **offline\_slate**: [`LiveStreamOfflineSlate`](LiveStreamOfflineSlate.md) \| `null`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:22](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L22)
+Defined in: [src/parser/classes/LiveStreamability.ts:22](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L22)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:22](https://github.com/Luan
 
 > `optional` **poll\_delay\_ms?**: `string`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L15)
+Defined in: [src/parser/classes/LiveStreamability.ts:15](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L15)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:15](https://github.com/Luan
 
 > `optional` **renderer\_context?**: [`RendererContext`](../../Misc/classes/RendererContext.md)
 
-Defined in: [src/parser/classes/LiveStreamability.ts:23](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L23)
+Defined in: [src/parser/classes/LiveStreamability.ts:23](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L23)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:23](https://github.com/Luan
 
 > `optional` **stream\_transition\_endpoint?**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/LiveStreamability.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L12)
+Defined in: [src/parser/classes/LiveStreamability.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L12)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:12](https://github.com/Luan
 
 > `optional` **switch\_streams\_immediately?**: `boolean`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L13)
+Defined in: [src/parser/classes/LiveStreamability.ts:13](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L13)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:13](https://github.com/Luan
 
 > `optional` **transition\_timing?**: `"STREAM_TRANSITION_TIMING_UNSPECIFIED"` \| `"STREAM_TRANSITION_TIMING_AT_HEAD"` \| `"STREAM_TRANSITION_TIMING_IMMEDIATELY"` \| `"STREAM_TRANSITION_TIMING_AT_STREAM_END"`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L17)
+Defined in: [src/parser/classes/LiveStreamability.ts:17](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L17)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:17](https://github.com/Luan
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -124,7 +124,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **video\_id**: `string`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:10](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L10)
+Defined in: [src/parser/classes/LiveStreamability.ts:10](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L10)
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:10](https://github.com/Luan
 
 > `static` **type**: `string` = `'LiveStreamability'`
 
-Defined in: [src/parser/classes/LiveStreamability.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/LiveStreamability.ts#L8)
+Defined in: [src/parser/classes/LiveStreamability.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LiveStreamability.ts#L8)
 
 #### Overrides
 
@@ -144,7 +144,7 @@ Defined in: [src/parser/classes/LiveStreamability.ts:8](https://github.com/LuanR
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -186,7 +186,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is LiveStreamability & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -224,7 +224,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -262,7 +262,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

@@ -2,7 +2,7 @@
 
 # Class: CommentReplies
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L11)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:11](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L11)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:11](https://github.co
 
 > **new CommentReplies**(`data`): `CommentReplies`
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:21](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L21)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:21](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L21)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:21](https://github.co
 
 > **contents**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ContinuationItem`](ContinuationItem.md) \| [`CommentView`](CommentView.md)\>
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L14)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:14](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L14)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:14](https://github.co
 
 > **has\_channel\_owner\_replied**: `boolean`
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L19)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L19)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:19](https://github.co
 
 > **hide\_replies**: [`Button`](Button.md) \| `null`
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L17)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:17](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L17)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:17](https://github.co
 
 > **sub\_threads**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ContinuationItem`](ContinuationItem.md) \| [`CommentThread`](CommentThread.md)\>
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L15)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:15](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L15)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:15](https://github.co
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **view\_replies**: [`Button`](Button.md) \| `null`
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L16)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:16](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L16)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:16](https://github.co
 
 > **view\_replies\_creator\_thumbnail**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:18](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L18)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:18](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L18)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:18](https://github.co
 
 > `static` **type**: `string` = `'CommentReplies'`
 
-Defined in: [src/parser/classes/comments/CommentReplies.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentReplies.ts#L12)
+Defined in: [src/parser/classes/comments/CommentReplies.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentReplies.ts#L12)
 
 #### Overrides
 
@@ -108,7 +108,7 @@ Defined in: [src/parser/classes/comments/CommentReplies.ts:12](https://github.co
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -150,7 +150,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is CommentReplies & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -188,7 +188,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -226,7 +226,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

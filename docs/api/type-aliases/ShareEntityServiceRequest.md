@@ -4,7 +4,7 @@
 
 > **ShareEntityServiceRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:138](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L138)
+Defined in: [src/parser/types/CommandEndpoints.ts:138](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L138)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:138](https://github.com/LuanRT
 
 > `optional` **clientParams?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:140](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L140)
+Defined in: [src/parser/types/CommandEndpoints.ts:140](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L140)
 
 ***
 
@@ -20,4 +20,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:140](https://github.com/LuanRT
 
 > `optional` **serializedSharedEntity?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:139](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L139)
+Defined in: [src/parser/types/CommandEndpoints.ts:139](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L139)

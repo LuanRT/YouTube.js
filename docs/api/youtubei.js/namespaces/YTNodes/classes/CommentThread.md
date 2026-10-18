@@ -2,7 +2,7 @@
 
 # Class: CommentThread
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L15)
+Defined in: [src/parser/classes/comments/CommentThread.ts:15](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L15)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:15](https://github.com
 
 > **new CommentThread**(`data`): `CommentThread`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:35](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L35)
+Defined in: [src/parser/classes/comments/CommentThread.ts:35](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L35)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:35](https://github.com
 
 > **comment**: [`CommentView`](CommentView.md) \| `null`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:18](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L18)
+Defined in: [src/parser/classes/comments/CommentThread.ts:18](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L18)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:18](https://github.com
 
 > **comment\_replies\_data**: [`CommentReplies`](CommentReplies.md) \| `null`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:20](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L20)
+Defined in: [src/parser/classes/comments/CommentThread.ts:20](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L20)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:20](https://github.com
 
 > **has\_replies**: `boolean`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:22](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L22)
+Defined in: [src/parser/classes/comments/CommentThread.ts:22](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L22)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:22](https://github.com
 
 > **is\_moderated\_elq\_comment**: `boolean`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:21](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L21)
+Defined in: [src/parser/classes/comments/CommentThread.ts:21](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L21)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:21](https://github.com
 
 > `optional` **rendering\_priority?**: `"RENDERING_PRIORITY_UNKNOWN"` \| `"RENDERING_PRIORITY_PINNED_COMMENT"` \| `"RENDERING_PRIORITY_LINKED_COMMENT"` \| `"RENDERING_PRIORITY_REALTIME_COMMENT"` \| `"RENDERING_PRIORITY_COMMUNITY_GUIDELINES_BELOW_HEADER"` \| `"RENDERING_PRIORITY_FAN_COMMUNITY_SETUP_CARD"` \| `"RENDERING_PRIORITY_COMMENT_HEADER"`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:23](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L23)
+Defined in: [src/parser/classes/comments/CommentThread.ts:23](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L23)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:23](https://github.com
 
 > `optional` **replies?**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<`CommentThread`\>
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L19)
+Defined in: [src/parser/classes/comments/CommentThread.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L19)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:19](https://github.com
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'CommentThread'`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L16)
+Defined in: [src/parser/classes/comments/CommentThread.ts:16](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L16)
 
 #### Overrides
 
@@ -110,7 +110,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:16](https://github.com
 
 > **get** **has\_continuation**(): `boolean`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:47](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L47)
+Defined in: [src/parser/classes/comments/CommentThread.ts:47](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L47)
 
 Indicates whether this comment thread has more replies that can be fetched.
 
@@ -126,7 +126,7 @@ Indicates whether this comment thread has more replies that can be fetched.
 
 > **get** **is\_prepopulated**(): `boolean`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:56](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L56)
+Defined in: [src/parser/classes/comments/CommentThread.ts:56](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L56)
 
 Indicates whether this comment thread has prepopulated reply data. If false, you will need to call [CommentThread.getReplies](#getreplies) to fetch the initial batch of replies.
 
@@ -140,7 +140,7 @@ Indicates whether this comment thread has prepopulated reply data. If false, you
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -182,7 +182,7 @@ If the node is not of the given type
 
 > **getContinuation**(): `Promise`\<[`CommentsContinuation`](../../Misc/classes/CommentsContinuation.md)\>
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:99](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L99)
+Defined in: [src/parser/classes/comments/CommentThread.ts:99](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L99)
 
 Retrieves next batch of replies.
 
@@ -196,7 +196,7 @@ Retrieves next batch of replies.
 
 > **getReplies**(): `Promise`\<`CommentThread`\>
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:63](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L63)
+Defined in: [src/parser/classes/comments/CommentThread.ts:63](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L63)
 
 Retrieves replies to this comment thread.
 
@@ -210,7 +210,7 @@ Retrieves replies to this comment thread.
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is CommentThread & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -248,7 +248,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -286,7 +286,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 
@@ -328,7 +328,7 @@ If the node does not have the key
 
 > **processRepliesData**(): `void`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:129](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L129)
+Defined in: [src/parser/classes/comments/CommentThread.ts:129](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L129)
 
 **`Internal`**
 
@@ -342,7 +342,7 @@ Defined in: [src/parser/classes/comments/CommentThread.ts:129](https://github.co
 
 > **setActions**(`actions`): `void`
 
-Defined in: [src/parser/classes/comments/CommentThread.ts:122](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/comments/CommentThread.ts#L122)
+Defined in: [src/parser/classes/comments/CommentThread.ts:122](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/comments/CommentThread.ts#L122)
 
 **`Internal`**
 

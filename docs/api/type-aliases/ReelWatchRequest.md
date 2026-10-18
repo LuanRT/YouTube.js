@@ -4,7 +4,7 @@
 
 > **ReelWatchRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:84](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L84)
+Defined in: [src/parser/types/CommandEndpoints.ts:84](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L84)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:84](https://github.com/LuanRT/
 
 > `optional` **disablePlayerResponse?**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:87](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L87)
+Defined in: [src/parser/types/CommandEndpoints.ts:87](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L87)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:87](https://github.com/LuanRT/
 
 > `optional` **inputType?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:85](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L85)
+Defined in: [src/parser/types/CommandEndpoints.ts:85](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L85)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:85](https://github.com/LuanRT/
 
 > `optional` **params?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:86](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L86)
+Defined in: [src/parser/types/CommandEndpoints.ts:86](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L86)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:86](https://github.com/LuanRT/
 
 > `optional` **playerRequest?**: `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:88](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L88)
+Defined in: [src/parser/types/CommandEndpoints.ts:88](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L88)
 
 #### contentCheckOk?
 

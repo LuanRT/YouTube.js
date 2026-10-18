@@ -2,7 +2,7 @@
 
 # Class: VideoTitleHeaderView
 
-Defined in: [src/parser/classes/VideoTitleHeaderView.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoTitleHeaderView.ts#L7)
+Defined in: [src/parser/classes/VideoTitleHeaderView.ts:7](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/VideoTitleHeaderView.ts#L7)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/VideoTitleHeaderView.ts:7](https://github.com/Lu
 
 > **new VideoTitleHeaderView**(`data`): `VideoTitleHeaderView`
 
-Defined in: [src/parser/classes/VideoTitleHeaderView.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoTitleHeaderView.ts#L14)
+Defined in: [src/parser/classes/VideoTitleHeaderView.ts:14](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/VideoTitleHeaderView.ts#L14)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/VideoTitleHeaderView.ts:14](https://github.com/L
 
 > **header\_button**: [`ButtonView`](ButtonView.md) \| `null`
 
-Defined in: [src/parser/classes/VideoTitleHeaderView.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoTitleHeaderView.ts#L11)
+Defined in: [src/parser/classes/VideoTitleHeaderView.ts:11](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/VideoTitleHeaderView.ts#L11)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/VideoTitleHeaderView.ts:11](https://github.com/L
 
 > `optional` **renderer\_context?**: [`RendererContext`](../../Misc/classes/RendererContext.md)
 
-Defined in: [src/parser/classes/VideoTitleHeaderView.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoTitleHeaderView.ts#L12)
+Defined in: [src/parser/classes/VideoTitleHeaderView.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/VideoTitleHeaderView.ts#L12)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/VideoTitleHeaderView.ts:12](https://github.com/L
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -64,7 +64,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > **video\_title**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/VideoTitleHeaderView.ts:10](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoTitleHeaderView.ts#L10)
+Defined in: [src/parser/classes/VideoTitleHeaderView.ts:10](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/VideoTitleHeaderView.ts#L10)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/classes/VideoTitleHeaderView.ts:10](https://github.com/L
 
 > `static` **type**: `string` = `'VideoTitleHeaderView'`
 
-Defined in: [src/parser/classes/VideoTitleHeaderView.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/VideoTitleHeaderView.ts#L8)
+Defined in: [src/parser/classes/VideoTitleHeaderView.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/VideoTitleHeaderView.ts#L8)
 
 #### Overrides
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/VideoTitleHeaderView.ts:8](https://github.com/Lu
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -126,7 +126,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is VideoTitleHeaderView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -164,7 +164,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -202,7 +202,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

@@ -2,7 +2,7 @@
 
 # Class: InnertubeError
 
-Defined in: [src/utils/Utils.ts:28](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L28)
+Defined in: [src/utils/Utils.ts:28](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/Utils.ts#L28)
 
 ## Extends
 
@@ -20,7 +20,7 @@ Defined in: [src/utils/Utils.ts:28](https://github.com/LuanRT/YouTube.js/blob/06
 
 > **new InnertubeError**(`message`, `info?`): `InnertubeError`
 
-Defined in: [src/utils/Utils.ts:33](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L33)
+Defined in: [src/utils/Utils.ts:33](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/Utils.ts#L33)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: node\_modules/typescript/lib/lib.es2022.error.d.ts:24
 
 > **date**: `Date`
 
-Defined in: [src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L29)
+Defined in: [src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/Utils.ts#L29)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [src/utils/Utils.ts:29](https://github.com/LuanRT/YouTube.js/blob/06
 
 > `optional` **info?**: `any`
 
-Defined in: [src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L31)
+Defined in: [src/utils/Utils.ts:31](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/Utils.ts#L31)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > **version**: `string`
 
-Defined in: [src/utils/Utils.ts:30](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L30)
+Defined in: [src/utils/Utils.ts:30](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/Utils.ts#L30)
 
 ***
 
