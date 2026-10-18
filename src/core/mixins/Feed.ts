@@ -38,6 +38,7 @@ import type SectionList from '../../parser/classes/SectionList.js';
 import type SecondarySearchContainer from '../../parser/classes/SecondarySearchContainer.js';
 import type BrowseFeedActions from '../../parser/classes/BrowseFeedActions.js';
 import type ProfileColumn from '../../parser/classes/ProfileColumn.js';
+import type Message from '../../parser/classes/Message.js';
 
 export default class Feed<T extends IParsedResponse = IParsedResponse> {
   readonly #page: T;
@@ -144,7 +145,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
   /**
    * Returns contents from the page.
    */
-  get page_contents(): SectionList | MusicQueue | RichGrid | ReloadContinuationItemsCommand {
+  get page_contents(): Message | SectionList | MusicQueue | RichGrid | ReloadContinuationItemsCommand {
     const tab_content = this.#memo.getType(Tab)?.[0].content;
     const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand)[0];
     const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction)[0];
