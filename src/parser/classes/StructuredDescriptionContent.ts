@@ -15,12 +15,13 @@ import MerchandiseShelf from './MerchandiseShelf.js';
 import HypeFanCreditsSectionView from './HypeFanCreditsSectionView.js';
 import VideoDescriptionYouchatSectionView from './VideoDescriptionYouchatSectionView.js';
 import ItemSection from './ItemSection.js';
+import VideoTitleHeaderView from './VideoTitleHeaderView.js';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
 
   public items: ObservedArray<
-    VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
+    VideoTitleHeaderView | VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
     VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | VideoDescriptionCourseSection |
     VideoDescriptionYouchatSectionView | HorizontalCardList | ReelShelf | VideoAttributesSectionView |
     HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf | HypeFanCreditsSectionView |
@@ -30,7 +31,7 @@ export default class StructuredDescriptionContent extends YTNode {
   constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items, [
-      VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
+      VideoTitleHeaderView, VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
       VideoDescriptionInfocardsSection, VideoDescriptionCourseSection, VideoDescriptionTranscriptSection,
       VideoDescriptionYouchatSectionView, HorizontalCardList, ReelShelf, VideoAttributesSectionView,
       HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf, HypeFanCreditsSectionView,
