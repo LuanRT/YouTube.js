@@ -121,6 +121,7 @@ export { default as ContinuationItem } from './classes/ContinuationItem.js';
 export { default as ContinuationItemView } from './classes/ContinuationItemView.js';
 export { default as ConversationBar } from './classes/ConversationBar.js';
 export { default as CopyLink } from './classes/CopyLink.js';
+export { default as CourseProgressView } from './classes/CourseProgressView.js';
 export { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.js';
 export { default as CreatePlaylistDialogFormView } from './classes/CreatePlaylistDialogFormView.js';
 export { default as DecoratedAvatarView } from './classes/DecoratedAvatarView.js';

@@ -17,6 +17,7 @@ import VideoDescriptionYouchatSectionView from './VideoDescriptionYouchatSection
 import ItemSection from './ItemSection.js';
 import VideoTitleHeaderView from './VideoTitleHeaderView.js';
 import VideoDescriptionGamingSection from './VideoDescriptionGamingSection.js';
+import CourseProgressView from './CourseProgressView.js';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
@@ -26,7 +27,7 @@ export default class StructuredDescriptionContent extends YTNode {
     VideoDescriptionMusicSection | VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection |
     VideoDescriptionCourseSection | VideoDescriptionYouchatSectionView | HorizontalCardList | ReelShelf |
     VideoAttributesSectionView | HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf |
-    HypeFanCreditsSectionView | ItemSection
+    HypeFanCreditsSectionView | ItemSection | CourseProgressView
   >;
 
   constructor(data: RawNode) {
@@ -36,7 +37,7 @@ export default class StructuredDescriptionContent extends YTNode {
       VideoDescriptionMusicSection, VideoDescriptionInfocardsSection, VideoDescriptionCourseSection,
       VideoDescriptionTranscriptSection, VideoDescriptionYouchatSectionView, HorizontalCardList, ReelShelf,
       VideoAttributesSectionView, HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf,
-      HypeFanCreditsSectionView, ItemSection
+      HypeFanCreditsSectionView, ItemSection, CourseProgressView
     ]);
   }
 }
