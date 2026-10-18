@@ -1,6 +1,7 @@
 import { type RawNode } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
 
 export default class ToggleFormField extends YTNode {
   static type = 'ToggleFormField';

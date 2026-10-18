@@ -560,7 +560,7 @@ export default class Session extends EventEmitter<SessionEvents> {
     const [ [ device_info ], api_key ] = ytcfg;
 
     const config_info = device_info[61];
-    const app_install_data = config_info[config_info.length - 1];
+    const app_install_data = config_info?.[config_info.length - 1];
 
     const context_info = {
       hl: options.lang || device_info[0],

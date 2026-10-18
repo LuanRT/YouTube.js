@@ -3,6 +3,7 @@ import Author from '../misc/Author.ts';
 import NavigationEndpoint from '../NavigationEndpoint.ts';
 import Text from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
+import CommentImageAttachmentView from './CommentImageAttachmentView.ts';
 import CommentReplyDialog from './CommentReplyDialog.ts';
 import VoiceReplyContainerView from './VoiceReplyContainerView.ts';
 import { encodeCommentActionParams } from '../../../utils/ProtoUtils.ts';
@@ -41,6 +42,7 @@ export default class CommentView extends YTNode {
   public keys: CommentKeys;
 
   public content?: Text;
+  public image_attachment?: CommentImageAttachmentView | null;
   public published_time?: string;
   public author_is_channel_owner?: boolean;
   public author_button_a11y?: string;
@@ -148,6 +150,8 @@ export default class CommentView extends YTNode {
       if ('voiceReplyContainerViewModel' in comment_surface) {
         this.voice_reply_container = Parser.parseItem(comment_surface.voiceReplyContainerViewModel, VoiceReplyContainerView);
       }
+
+      this.image_attachment = Parser.parseItem(comment_surface.imageAttachmentViewModel, CommentImageAttachmentView);
     }
   }
 

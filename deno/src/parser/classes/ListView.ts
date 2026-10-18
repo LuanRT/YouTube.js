@@ -5,18 +5,19 @@ import { Parser } from '../index.ts';
 
 import ListItemView from './ListItemView.ts';
 import DownloadListItemView from './DownloadListItemView.ts';
+import ToggleableListItemView from './ToggleableListItemView.ts';
 import RendererContext from './misc/RendererContext.ts';
 
 export default class ListView extends YTNode {
   static type = 'ListView';
 
-  public items: ObservedArray<ListItemView | DownloadListItemView>;
+  public items: ObservedArray<ListItemView | DownloadListItemView | ToggleableListItemView>;
   public renderer_context?: RendererContext;
 
   constructor(data: RawNode) {
     super();
 
-    this.items = Parser.parseArray(data.listItems, [ ListItemView, DownloadListItemView ]);
+    this.items = Parser.parseArray(data.listItems, [ ListItemView, DownloadListItemView, ToggleableListItemView ]);
 
     if ('rendererContext' in data) {
       this.renderer_context = new RendererContext(data.rendererContext);
