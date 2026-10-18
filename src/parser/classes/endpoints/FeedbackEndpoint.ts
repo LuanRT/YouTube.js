@@ -20,14 +20,22 @@ export default class FeedbackEndpoint extends YTNode implements IEndpoint<Feedba
   public buildRequest(): FeedbackRequest {
     const request: FeedbackRequest = {};
 
+    request.feedbackTokens = [];
+
     if (this.#data.feedbackToken)
-      request.feedbackTokens = [ this.#data.feedbackToken ];
+      request.feedbackTokens.push(this.#data.feedbackToken);
 
     if (this.#data.cpn)
       request.feedbackContext = { cpn: this.#data.cpn };
 
-    request.isFeedbackTokenUnencrypted = !!this.#data.isFeedbackTokenUnencrypted;
     request.shouldMerge = !!this.#data.shouldMerge;
+
+    // @NOTE: extraFeedbackTokens and isFeedbackTokenUnencrypted are both client-side properties.
+    request.isFeedbackTokenUnencrypted = !!this.#data.isFeedbackTokenUnencrypted;
+    if (this.#data.extraFeedbackTokens) {
+      request.shouldMerge = true;
+      request.feedbackTokens.push(...this.#data.extraFeedbackTokens);
+    }
 
     return request;
   }

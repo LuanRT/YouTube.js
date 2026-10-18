@@ -1,5 +1,39 @@
 # Changelog
 
+## [18.2.0](https://github.com/LuanRT/YouTube.js/compare/v18.1.0...v18.2.0) (2026-10-18)
+
+
+### Features
+
+* **CompositeVideoPrimaryInfo:** Add `composite_source_video_primary_info_renderers` prop ([7be569a](https://github.com/LuanRT/YouTube.js/commit/7be569a2be4d380f6e4d76395028c4642c51c477))
+* **History:** Add support for searching watch history ([#1290](https://github.com/LuanRT/YouTube.js/issues/1290)) ([3276daa](https://github.com/LuanRT/YouTube.js/commit/3276daa6310031e3621ff26992816f0bf3a40722))
+* **LockupView:** Add `duration` getter ([#1303](https://github.com/LuanRT/YouTube.js/issues/1303)) ([447c613](https://github.com/LuanRT/YouTube.js/commit/447c6139cde1d38c1ed1a509263469cb7dc89e1b))
+* **LockupView:** Add `styling` ([#1285](https://github.com/LuanRT/YouTube.js/issues/1285)) ([22103e8](https://github.com/LuanRT/YouTube.js/commit/22103e8fcb29fea7334296bbb872998252be11c4))
+* **MediaInfo:** Expose publish and upload dates in `basic_info` ([#1274](https://github.com/LuanRT/YouTube.js/issues/1274)) ([6faab8e](https://github.com/LuanRT/YouTube.js/commit/6faab8ebd8f5eb7925b25d1a81078262e25f4f51))
+* **parser:** Add `CommentImageAttachmentView` ([#1299](https://github.com/LuanRT/YouTube.js/issues/1299)) ([c01873d](https://github.com/LuanRT/YouTube.js/commit/c01873db864beb13fb5e8f6be910aa50fafa765f))
+* **parser:** Add `CourseProgressView` class ([79f7934](https://github.com/LuanRT/YouTube.js/commit/79f7934658c77f22b3b8df72cdff73f6fb7906bb)), closes [#917](https://github.com/LuanRT/YouTube.js/issues/917)
+* **parser:** Add `LinearLayoutView` class ([bdb0797](https://github.com/LuanRT/YouTube.js/commit/bdb0797a16544e1f309475357e388d3251187d63))
+* **parser:** Add `MenuCustomIconItem` class ([50883a8](https://github.com/LuanRT/YouTube.js/commit/50883a8d309196de49b4b69ad816ff384ae82d46)), closes [#1242](https://github.com/LuanRT/YouTube.js/issues/1242)
+* **parser:** Add `PlayerInterstitial` and `InterstitialView` class ([#1269](https://github.com/LuanRT/YouTube.js/issues/1269)) ([bad89d2](https://github.com/LuanRT/YouTube.js/commit/bad89d2657e88f907011655f199fba9fb615c339))
+* **parser:** Add `VideoDescriptionGamingSection` class ([16f2ed9](https://github.com/LuanRT/YouTube.js/commit/16f2ed99097c0836b4a8803eb7498a86b0f0d690)), closes [#1118](https://github.com/LuanRT/YouTube.js/issues/1118)
+* **parser:** Add infocards section nodes ([8676d40](https://github.com/LuanRT/YouTube.js/commit/8676d40a04feee088271b41063799f946427ac22)), closes [#730](https://github.com/LuanRT/YouTube.js/issues/730)
+* **ShortsLockupView:** Add `thumbnail_view_model` ([#1283](https://github.com/LuanRT/YouTube.js/issues/1283)) ([c717f43](https://github.com/LuanRT/YouTube.js/commit/c717f432e9405d0271ceff001e1307181bf74387))
+
+
+### Bug Fixes
+
+* Handle missing session config and import `Text` in `ToggleFormField` ([#1276](https://github.com/LuanRT/YouTube.js/issues/1276)) ([710900a](https://github.com/LuanRT/YouTube.js/commit/710900af6c76f469d4be522e5e19cd1debd6baf6))
+* **LockupMetadataView:** Handle missing titles ([#1278](https://github.com/LuanRT/YouTube.js/issues/1278)) ([f268ba1](https://github.com/LuanRT/YouTube.js/commit/f268ba1f57995cc3bc751af2c824a0b87b917a68))
+* **LockupView:** `duration` getter not working with very long videos ([#1306](https://github.com/LuanRT/YouTube.js/issues/1306)) ([cb4a44e](https://github.com/LuanRT/YouTube.js/commit/cb4a44e508cbc04d30cb9b774da86fa884917743))
+* **LockupView:** `duration` parsing large values incorrectly ([#1308](https://github.com/LuanRT/YouTube.js/issues/1308)) ([b95ee26](https://github.com/LuanRT/YouTube.js/commit/b95ee26f2d63f9eb210e64cde11675850fabc8a1))
+* **LockupView:** Parser error when `content_type` is `undefined` ([#1297](https://github.com/LuanRT/YouTube.js/issues/1297)) ([ae4e655](https://github.com/LuanRT/YouTube.js/commit/ae4e655587f839bf732ff2ddc93cc4258de79c7c))
+* **parser:** Add `ToggleableListItemView` class ([#1282](https://github.com/LuanRT/YouTube.js/issues/1282)) ([02c5c8d](https://github.com/LuanRT/YouTube.js/commit/02c5c8d4c48fd9d9e87be6337ae99833e9a9c879))
+* **parser:** Improve storyboard data parsing ([32323cd](https://github.com/LuanRT/YouTube.js/commit/32323cdda631b5e4351fffdf49a9509e4fba1abd)), closes [#671](https://github.com/LuanRT/YouTube.js/issues/671)
+* **StructuredDescriptionContent:** Add `ItemSection` type to `items` ([fb801f9](https://github.com/LuanRT/YouTube.js/commit/fb801f9ea0cbe9445ab698be1b810373d65b5315))
+* **StructuredDescriptionContent:** Add `VideoTitleHeaderView` type to `items` ([20e3251](https://github.com/LuanRT/YouTube.js/commit/20e32519fde1ac0d106edc72e4435aca4543c0cb))
+* **Tab:** Add `Message` type to `content` ([3048496](https://github.com/LuanRT/YouTube.js/commit/3048496b5f99a8040ebf4ce02be9710f2df88991))
+* **Video:** `is_live` getter not working ([#1291](https://github.com/LuanRT/YouTube.js/issues/1291)) ([935364f](https://github.com/LuanRT/YouTube.js/commit/935364fed3fd042213231d08bd544fa6f42d2165))
+
 ## [18.1.0](https://github.com/LuanRT/YouTube.js/compare/v18.0.0...v18.1.0) (2026-09-22)
 
 
