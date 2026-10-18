@@ -4,7 +4,7 @@
 
 > **AddToPlaylistServiceRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:55](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L55)
+Defined in: [src/parser/types/CommandEndpoints.ts:55](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L55)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:55](https://github.com/LuanRT/
 
 > `optional` **excludeWatchLater?**: `boolean`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:59](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L59)
+Defined in: [src/parser/types/CommandEndpoints.ts:59](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L59)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:59](https://github.com/LuanRT/
 
 > `optional` **params?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:58](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L58)
+Defined in: [src/parser/types/CommandEndpoints.ts:58](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L58)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:58](https://github.com/LuanRT/
 
 > `optional` **playlistId?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:57](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L57)
+Defined in: [src/parser/types/CommandEndpoints.ts:57](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L57)
 
 ***
 
@@ -36,4 +36,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:57](https://github.com/LuanRT/
 
 > `optional` **videoIds?**: `string`[]
 
-Defined in: [src/parser/types/CommandEndpoints.ts:56](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L56)
+Defined in: [src/parser/types/CommandEndpoints.ts:56](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L56)

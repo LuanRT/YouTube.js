@@ -7,6 +7,7 @@ import AvatarView from './AvatarView.js';
 import RendererContext from './misc/RendererContext.js';
 import SubscribeButtonView from './SubscribeButtonView.js';
 import Text from './misc/Text.js';
+import Thumbnail from './misc/Thumbnail.js';
 
 export default class ListItemView extends YTNode {
   static type = 'ListItemView';
@@ -21,8 +22,9 @@ export default class ListItemView extends YTNode {
     | 'LIST_ITEM_SELECTION_STYLE_RADIO'
     | 'LIST_ITEM_SELECTION_STYLE_TOGGLE';
   public background_color?: number;
-  
+
   public leading_accessory: AvatarView | null;
+  public leading_image: Thumbnail[];
   public trailing_button: YTNode | null;
   public trailing_buttons: ObservedArray<SubscribeButtonView>;
   public is_disabled: boolean;
@@ -32,26 +34,22 @@ export default class ListItemView extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    if ('title' in data) {
+    if ('title' in data)
       this.title = Text.fromAttributed(data.title);
-    }
 
-    if ('subtitle' in data) {
+    if ('subtitle' in data)
       this.subtitle = Text.fromAttributed(data.subtitle);
-    }
 
-    if ('selectionText' in data) {
+    if ('selectionText' in data)
       this.selection_text = Text.fromAttributed(data.selectionText);
-    }
 
-    if ('selectionStyle' in data) {
+    if ('selectionStyle' in data)
       this.selection_style = data.selectionStyle;
-    }
 
-    if ('backgroundColor' in data) {
+    if ('backgroundColor' in data)
       this.background_color = parseInt(data.backgroundColor, 16);
-    }
 
+    this.leading_image = Thumbnail.fromResponse(data.leadingImage);
     this.leading_accessory = Parser.parseItem(data.leadingAccessory, AvatarView);
     this.trailing_buttons = Parser.parseArray(data.trailingButtons?.buttons, SubscribeButtonView);
     this.trailing_button = Parser.parseItem(data.trailingButton);
@@ -60,8 +58,7 @@ export default class ListItemView extends YTNode {
     this.is_selected = !!data.isSelected;
     this.has_divider_below = !!data.hasDividerBelow;
 
-    if ('rendererContext' in data) {
+    if ('rendererContext' in data)
       this.renderer_context = new RendererContext(data.rendererContext);
-    }
   }
 }

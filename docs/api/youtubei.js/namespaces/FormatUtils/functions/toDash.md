@@ -4,7 +4,7 @@
 
 > **toDash**(`streaming_data?`, `is_post_live_dvr?`, `url_transformer?`, `format_filter?`, `cpn?`, `player?`, `actions?`, `storyboards?`, `caption_tracks?`, `options?`): `Promise`\<`string`\>
 
-Defined in: [src/utils/DashManifest.tsx:290](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/DashManifest.tsx#L290)
+Defined in: [src/utils/DashManifest.tsx:290](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/DashManifest.tsx#L290)
 
 ## Parameters
 

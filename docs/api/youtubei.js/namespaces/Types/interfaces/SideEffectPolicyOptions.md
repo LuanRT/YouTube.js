@@ -2,7 +2,7 @@
 
 # Interface: SideEffectPolicyOptions
 
-Defined in: [src/utils/javascript/JsExtractor.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsExtractor.ts#L7)
+Defined in: [src/utils/javascript/JsExtractor.ts:7](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/JsExtractor.ts#L7)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/javascript/JsExtractor.ts:7](https://github.com/LuanRT/Yo
 
 > `optional` **mode?**: [`SideEffectMode`](../type-aliases/SideEffectMode.md)
 
-Defined in: [src/utils/javascript/JsExtractor.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsExtractor.ts#L12)
+Defined in: [src/utils/javascript/JsExtractor.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/JsExtractor.ts#L12)
 
 Determines how strictly side-effect detection should behave.
 Use `"loose"` to allow benign computed expressions.

@@ -4,7 +4,7 @@
 
 > **BrowseRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:6](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L6)
+Defined in: [src/parser/types/CommandEndpoints.ts:6](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L6)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:6](https://github.com/LuanRT/Y
 
 > `optional` **browseId?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L7)
+Defined in: [src/parser/types/CommandEndpoints.ts:7](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L7)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:7](https://github.com/LuanRT/Y
 
 > `optional` **browseRequestSupportedMetadata?**: [`BrowseRequestSupportedMetadata`](BrowseRequestSupportedMetadata.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L12)
+Defined in: [src/parser/types/CommandEndpoints.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L12)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:12](https://github.com/LuanRT/
 
 > `optional` **formData?**: [`FormData`](FormData.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:10](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L10)
+Defined in: [src/parser/types/CommandEndpoints.ts:10](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L10)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:10](https://github.com/LuanRT/
 
 > `optional` **inlineSettingStatus?**: [`InlineSettingStatus`](InlineSettingStatus.md)
 
-Defined in: [src/parser/types/CommandEndpoints.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L13)
+Defined in: [src/parser/types/CommandEndpoints.ts:13](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L13)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:13](https://github.com/LuanRT/
 
 > `optional` **params?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L8)
+Defined in: [src/parser/types/CommandEndpoints.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L8)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:8](https://github.com/LuanRT/Y
 
 > `optional` **query?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:9](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L9)
+Defined in: [src/parser/types/CommandEndpoints.ts:9](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L9)
 
 ***
 
@@ -60,4 +60,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:9](https://github.com/LuanRT/Y
 
 > `optional` **subscriptionSettingsState?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:11](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L11)
+Defined in: [src/parser/types/CommandEndpoints.ts:11](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L11)
